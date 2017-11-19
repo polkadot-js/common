@@ -4,6 +4,7 @@
 const BN = require('bn.js');
 
 const { addHexPrefix } = require('../hex');
+const isBN = require('../is/bn');
 
 const ZERO_STR = '0x';
 
@@ -12,7 +13,7 @@ module.exports = function toHex (value?: BN): string {
     return ZERO_STR;
   }
 
-  if (!BN.isBN(value)) {
+  if (!isBN(value)) {
     throw new Error(`Cannot convert from non-BN value '${value}' to hex`);
   }
 

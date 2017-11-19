@@ -1,6 +1,7 @@
 // ISC, Copyright 2017 Jaco Greeff
 // @flow
 
+const isBN = require('./bn');
 const isFunction = require('./function');
 const isHex = require('./hex');
 const isInstanceOf = require('./instanceOf');
@@ -9,6 +10,7 @@ const isString = require('./string');
 const isUndefined = require('./undefined');
 
 module.exports = {
+  isBN,
   isFunction,
   isHex,
   isInstanceOf,
