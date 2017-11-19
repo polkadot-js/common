@@ -42,6 +42,7 @@ echo "Incrementing package version"
 
 npm --no-git-tag-version version
 npm version patch -m "[CI Skip] Version bump"
+git push --quiet origin HEAD:refs/heads/$TRAVIS_BRANCH > /dev/null 2>&1
 
 echo "Publishing to npm"
 
@@ -50,10 +51,6 @@ cp LICENSE package.json package-lock.json lib/
 cd lib
 npm publish
 cd ..
-
-echo "Final push to GitHub"
-
-git push --quiet origin HEAD:refs/heads/$TRAVIS_BRANCH > /dev/null 2>&1
 
 echo "Release completed"
 
