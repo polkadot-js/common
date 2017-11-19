@@ -43,6 +43,12 @@ describe('hex', () => {
         hasHexPrefix(null)
       ).to.be.false;
     });
+
+    it('returns false when non-string value supplied', () => {
+      expect(
+        hasHexPrefix(false)
+      ).to.be.false;
+    });
   });
 
   describe('stripHexPrefix', () => {

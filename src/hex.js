@@ -1,6 +1,8 @@
 // ISC, Copyright 2017 Jaco Greeff
 // @flow
 
+const isHex = require('./is/hex');
+
 function addHexPrefix (value: ?string): string {
   if (value && hasHexPrefix(value)) {
     return value;
@@ -10,7 +12,7 @@ function addHexPrefix (value: ?string): string {
 }
 
 function hasHexPrefix (value: ?string): boolean {
-  return !!(value && value.substr(0, 2) === '0x');
+  return !!(value && isHex(value) && value.substr(0, 2) === '0x');
 }
 
 function stripHexPrefix (value: ?string): string {
