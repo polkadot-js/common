@@ -2,7 +2,7 @@
 
 /* eslint-disable no-unused-expressions */
 
-const { isFunction, isHex, isInstanceOf, isNumber, isString, isUndefined } = require('./is');
+const { isFunction, isHex, isInstanceOf, isNumber, isString, isUndefined } = require('./index');
 
 describe('is', () => {
   describe('isFunction', () => {
