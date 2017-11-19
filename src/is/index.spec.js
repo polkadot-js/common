@@ -2,9 +2,25 @@
 
 /* eslint-disable no-unused-expressions */
 
-const { isFunction, isHex, isInstanceOf, isNumber, isString, isUndefined } = require('./index');
+const BN = require('bn.js');
+
+const { isBN, isFunction, isHex, isInstanceOf, isNumber, isString, isUndefined } = require('./index');
 
 describe('is', () => {
+  describe('isBN', () => {
+    it('returns true when a BN value', () => {
+      expect(
+        isBN(new BN(123))
+      ).to.be.true;
+    });
+
+    it('returns false on non-BN values', () => {
+      expect(
+        isBN(0)
+      ).to.be.false;
+    });
+  });
+
   describe('isFunction', () => {
     it('returns true on valid functions', () => {
       expect(
