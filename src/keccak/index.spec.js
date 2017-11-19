@@ -2,19 +2,11 @@
 
 /* eslint-disable no-unused-expressions */
 
-const { keccak, keccakAsBuffer, keccakAsHex } = require('./keccak');
+const { keccakAsBuffer, keccakAsHex, keccakAsString } = require('./index');
 
 describe('keccak', () => {
   const value = 'test value';
   const result = '2d07364b5c231c56ce63d49430e085ea3033c750688ba532b24029124c26ca5e';
-
-  describe('keccak', () => {
-    it('returns an un-prefixed hex representation', () => {
-      expect(
-        keccak(value)
-      ).to.equal(result);
-    });
-  });
 
   describe('keccakAsBuffer', () => {
     it('returns an hex representation', () => {
@@ -27,10 +19,18 @@ describe('keccak', () => {
   });
 
   describe('keccakAsHex', () => {
-    it('returns an hex representation', () => {
+    it('returns a prefixed hex representation', () => {
       expect(
         keccakAsHex(value)
       ).to.equal(`0x${result}`);
+    });
+  });
+
+  describe('keccakAsString', () => {
+    it('returns an un-prefixed hex representation', () => {
+      expect(
+        keccakAsString(value)
+      ).to.equal(result);
     });
   });
 });
