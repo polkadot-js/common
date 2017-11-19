@@ -2,10 +2,11 @@
 // @flow
 
 const bn = require('./bn');
+const buffer = require('./buffer');
 const hex = require('./hex');
 const is = require('./is');
 const keccak = require('./keccak');
 
 module.exports = Object.assign(
-  {}, bn, hex, is, keccak
+  {}, bn, buffer, hex, is, keccak
 );
