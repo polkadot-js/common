@@ -3,6 +3,8 @@
 
 const isString = require('./string');
 
+const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
+
 module.exports = function isHex (value: any): boolean {
-  return isString(value) && /^0x[a-fA-F0-9]+$/.test(value);
+  return isString(value) && HEX_REGEX.test(value);
 };
