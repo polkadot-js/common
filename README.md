@@ -15,3 +15,25 @@ Installation -
 ```
 npm install --save @polkadot/util
 ```
+
+Functions can be imported directly from the package, e.g.
+
+```
+import { isHex } from '@polkadot/util';
+```
+
+Alternatively the function can be accessed directly,
+
+```
+import isHex from '@polkadot/util/is/hex';
+```
+
+## Available interfaces
+
+The following interfaces are available
+
+- [bn](docs/bn.md) Utilities to work with BN.js, e.g. converting to and from hex
+- [buffer](docs/buffer.md) Utilities to work with Buffers, e.g. converting to and from hex
+- [hex](docs/hex.md)
+- [is](docs/is.md) Type-checking utilities, e.g. string or number
+- [keccak](docs/keccak.md) Keccak creation, e.g. to buffer or hex
