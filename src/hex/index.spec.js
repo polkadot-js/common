@@ -2,71 +2,71 @@
 
 /* eslint-disable no-unused-expressions */
 
-const { addHexPrefix, hasHexPrefix, stripHexPrefix } = require('./hex');
+const { hexAddPrefix, hexHasPrefix, hexStripPrefix } = require('./index');
 
 describe('hex', () => {
-  describe('addHexPrefix', () => {
+  describe('hexAddPrefix', () => {
     it('does not add when prefix is available', () => {
       expect(
-        addHexPrefix('0x123')
+        hexAddPrefix('0x123')
       ).to.equal('0x123');
     });
 
     it('adds the prefix when it is not available', () => {
       expect(
-        addHexPrefix('123')
+        hexAddPrefix('123')
       ).to.equal('0x123');
     });
 
     it('returns null as 0x', () => {
       expect(
-        addHexPrefix(null)
+        hexAddPrefix(null)
       ).to.equal('0x');
     });
   });
 
-  describe('hasHexPrefix', () => {
+  describe('hexHasPrefix', () => {
     it('returns true when hex prefix is found', () => {
       expect(
-        hasHexPrefix('0x123')
+        hexHasPrefix('0x123')
       ).to.be.true;
     });
 
     it('returns false when no prefix attached', () => {
       expect(
-        hasHexPrefix('123')
+        hexHasPrefix('123')
       ).to.be.false;
     });
 
     it('returns false when null value supplied', () => {
       expect(
-        hasHexPrefix(null)
+        hexHasPrefix(null)
       ).to.be.false;
     });
 
     it('returns false when non-string value supplied', () => {
       expect(
-        hasHexPrefix(false)
+        hexHasPrefix(false)
       ).to.be.false;
     });
   });
 
-  describe('stripHexPrefix', () => {
+  describe('hexStripPrefix', () => {
     it('returns the value as-is when no prefix', () => {
       expect(
-        stripHexPrefix('01ab')
+        hexStripPrefix('01ab')
       ).to.equal('01ab');
     });
 
     it('returns an empty string when null value supplied', () => {
       expect(
-        stripHexPrefix(null)
+        hexStripPrefix(null)
       ).to.equal('');
     });
 
     it('strips the prefix from other strings', () => {
       expect(
-        stripHexPrefix('0x1223')
+        hexStripPrefix('0x1223')
       ).to.equal('1223');
     });
   });

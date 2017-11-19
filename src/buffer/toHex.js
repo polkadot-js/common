@@ -2,7 +2,7 @@
 // @flow
 
 const isBuffer = require('../is/buffer');
-const { addHexPrefix } = require('../hex');
+const hexAddPrefix = require('../hex/addPrefix');
 
 const ZERO_HEX = '0x';
 
@@ -15,7 +15,7 @@ module.exports = function toHex (value?: Buffer): string {
     throw new Error(`Cannot convert non-buffer to hex`);
   }
 
-  return addHexPrefix(
+  return hexAddPrefix(
     value.toString('hex')
   );
 };

@@ -2,7 +2,7 @@
 // @flow
 
 const isHex = require('../is/hex');
-const { stripHexPrefix } = require('../hex');
+const hexStripPrefix = require('../hex/stripPrefix');
 
 const EMPTY_BUFFER = Buffer.from([]);
 
@@ -15,5 +15,5 @@ module.exports = function fromHex (value?: string): Buffer {
     throw new Error(`Cannot convert non-hex value '${value}' to Buffer`);
   }
 
-  return Buffer.from(stripHexPrefix(value), 'hex');
+  return Buffer.from(hexStripPrefix(value), 'hex');
 };
