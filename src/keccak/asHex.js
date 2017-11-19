@@ -1,11 +1,11 @@
 // ISC, Copyright 2017 Jaco Greeff
 // @flow
 
-const { addHexPrefix } = require('../hex');
-const keccakAsString = require('./asString');
+const keccakAsBuffer = require('./asBuffer');
+const bufferToHex = require('../buffer/toHex');
 
 module.exports = function keccakAsHex (value: Buffer | string): string {
-  return addHexPrefix(
-    keccakAsString(value)
+  return bufferToHex(
+    keccakAsBuffer(value)
   );
 };
