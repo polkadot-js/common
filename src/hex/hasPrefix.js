@@ -3,6 +3,17 @@
 
 const isHex = require('../is/hex');
 
-module.exports = function hasPrefix (value: ?string): boolean {
+/**
+  @name hexHasPrefix
+  @signature hexHasPrefix (value: ?string): boolean
+  @summary Tests for the existence of a `0x` prefix.
+  @description
+    Checks for a valid hex input value and if the start matched `0x`
+  @example
+    import { hexHasPrefix } from '@polkadot/util';
+
+    console.log('has prefix', hexHasPrefix('0x1234')); // => true
+*/
+module.exports = function hexHasPrefix (value: ?string): boolean {
   return !!(value && isHex(value) && value.substr(0, 2) === '0x');
 };

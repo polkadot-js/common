@@ -15,3 +15,19 @@ Installation -
 ```
 npm install --save @polkadot/util
 ```
+
+Functions can be imported directly from the package, e.g.
+
+```js
+import { isHex } from '@polkadot/util';
+```
+
+Alternatively the function can be accessed directly,
+
+```js
+import isHex from '@polkadot/util/is/hex';
+```
+
+## Available Utilities
+
+For a list of currently exposed methods, see the [library documentation](docs/README.md).
