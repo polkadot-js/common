@@ -9,6 +9,9 @@ const isNumber = require('./number');
 const isString = require('./string');
 const isUndefined = require('./undefined');
 
+/**
+  @summary Type checking utilities
+*/
 module.exports = {
   isBN,
   isFunction,

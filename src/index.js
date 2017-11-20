@@ -5,8 +5,12 @@ const bn = require('./bn');
 const buffer = require('./buffer');
 const hex = require('./hex');
 const is = require('./is');
+const jsonrpc = require('./jsonrpc');
 const keccak = require('./keccak');
 
+/**
+  @summary Utility methods for this package are split into groups
+*/
 module.exports = Object.assign(
-  {}, bn, buffer, hex, is, keccak
+  {}, bn, buffer, hex, is, jsonrpc, keccak
 );
