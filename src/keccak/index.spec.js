@@ -14,7 +14,7 @@ describe('keccak', () => {
         keccakAsBuffer(value).equals(
           Buffer.from(result, 'hex')
         )
-      ).to.be.true;
+      ).toEqual(true);
     });
   });
 
@@ -22,7 +22,7 @@ describe('keccak', () => {
     it('returns a prefixed hex representation', () => {
       expect(
         keccakAsHex(value)
-      ).to.equal(`0x${result}`);
+      ).toEqual(`0x${result}`);
     });
   });
 
@@ -30,7 +30,7 @@ describe('keccak', () => {
     it('returns an un-prefixed hex representation', () => {
       expect(
         keccakAsString(value)
-      ).to.equal(result);
+      ).toEqual(result);
     });
   });
 });

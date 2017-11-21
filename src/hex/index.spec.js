@@ -9,19 +9,19 @@ describe('hex', () => {
     it('does not add when prefix is available', () => {
       expect(
         hexAddPrefix('0x123')
-      ).to.equal('0x123');
+      ).toEqual('0x123');
     });
 
     it('adds the prefix when it is not available', () => {
       expect(
         hexAddPrefix('123')
-      ).to.equal('0x123');
+      ).toEqual('0x123');
     });
 
     it('returns null as 0x', () => {
       expect(
         hexAddPrefix(null)
-      ).to.equal('0x');
+      ).toEqual('0x');
     });
   });
 
@@ -29,25 +29,25 @@ describe('hex', () => {
     it('returns true when hex prefix is found', () => {
       expect(
         hexHasPrefix('0x123')
-      ).to.be.true;
+      ).toEqual(true);
     });
 
     it('returns false when no prefix attached', () => {
       expect(
         hexHasPrefix('123')
-      ).to.be.false;
+      ).toEqual(false);
     });
 
     it('returns false when null value supplied', () => {
       expect(
         hexHasPrefix(null)
-      ).to.be.false;
+      ).toEqual(false);
     });
 
     it('returns false when non-string value supplied', () => {
       expect(
         hexHasPrefix(false)
-      ).to.be.false;
+      ).toEqual(false);
     });
   });
 
@@ -55,19 +55,19 @@ describe('hex', () => {
     it('returns the value as-is when no prefix', () => {
       expect(
         hexStripPrefix('01ab')
-      ).to.equal('01ab');
+      ).toEqual('01ab');
     });
 
     it('returns an empty string when null value supplied', () => {
       expect(
         hexStripPrefix(null)
-      ).to.equal('');
+      ).toEqual('');
     });
 
     it('strips the prefix from other strings', () => {
       expect(
         hexStripPrefix('0x1223')
-      ).to.equal('1223');
+      ).toEqual('1223');
     });
   });
 });
