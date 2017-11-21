@@ -14,7 +14,7 @@ describe('jsonrpc', () => {
           ],
           { type: 'A' }
         )
-      ).to.equal('test_method (b: A, a: B): A');
+      ).toEqual('test_method (b: A, a: B): A');
     });
   });
 });
