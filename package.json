@@ -24,15 +24,13 @@
   },
   "homepage": "https://github.com/polkadot-js/util#readme",
   "scripts": {
-    "build": "npm run build:js && npm run build:md",
-    "build:js": "rimraf build && babel src --out-dir build --ignore *.spec.js",
-    "build:md": "polkadot-dev-build-docs",
+    "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
     "check": "eslint src && flow check",
     "test": "jest --coverage src"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.2.2",
-    "@polkadot/jsonrpc": "^0.3.6"
+    "@polkadot/dev": "^0.2.3",
+    "@polkadot/jsonrpc": "^0.3.7"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",

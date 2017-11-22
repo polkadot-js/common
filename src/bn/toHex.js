@@ -26,7 +26,7 @@ module.exports = function bnToHex (value?: BN): string {
   }
 
   if (!isBN(value)) {
-    throw new Error(`Cannot convert from non-BN value '${value}' to hex`);
+    throw new Error(`Cannot convert from non-BN value '${(value: any)}' to hex`);
   }
 
   return hexAddPrefix(value.toString(16));
