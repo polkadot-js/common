@@ -38,7 +38,7 @@ module.exports = function logger (_type: string): Logger {
   const type = `          ${_type.toUpperCase()}:`.slice(-11);
 
   return {
-    format: (...values: any): void => format(error, values),
+    format: (...values: any): Array<any> => format(type, values),
     error: (...values: any): void => error(type, values),
     log: (...values: any): void => log(type, values),
     warn: (...values: any): void => warn(type, values)
