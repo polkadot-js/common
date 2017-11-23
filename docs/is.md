@@ -2,14 +2,14 @@
 
 Type checking utilities 
 
-- [isBN](#isBN) Tests for a `BN` object instance.
-- [isBuffer](#isBuffer) Tests for a `Buffer` object instance.
-- [isFunction](#isFunction) Tests for a `function`.
-- [isHex](#isHex) Tests for a hex string.
-- [isInstanceOf](#isInstanceOf) Tests for a instance of a class.
-- [isNumber](#isNumber) Tests for a JavaScript number.
-- [isString](#isString) Tests for a string.
-- [isUndefined](#isUndefined) Tests for a `undefined` values.
+- [isBN](#isbn) Tests for a `BN` object instance.
+- [isBuffer](#isbuffer) Tests for a `Buffer` object instance.
+- [isFunction](#isfunction) Tests for a `function`.
+- [isHex](#ishex) Tests for a hex string.
+- [isInstanceOf](#isinstanceof) Tests for a instance of a class.
+- [isNumber](#isnumber) Tests for a JavaScript number.
+- [isString](#isstring) Tests for a string.
+- [isUndefined](#isundefined) Tests for a `undefined` values.
 
 ## isBN
 
