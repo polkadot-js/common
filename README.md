@@ -1,5 +1,7 @@
 # Utilities
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/polkadot-js/util.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/polkadot-js/util.svg?branch=master)](https://travis-ci.org/polkadot-js/util)
 [![Coverage Status](https://coveralls.io/repos/github/polkadot-js/util/badge.svg?branch=master)](https://coveralls.io/github/polkadot-js/util?branch=master)
 [![Dependency Status](https://david-dm.org/polkadot-js/util.svg)](https://david-dm.org/polkadot-js/util)
