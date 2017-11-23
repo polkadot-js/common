@@ -2,9 +2,9 @@
 
 Create Keccak256 values as hex, string & buffer output 
 
-- [keccakAsBuffer](#keccakAsBuffer) Creates a keccak Buffer from the input.
-- [keccakAsHex](#keccakAsHex) Creates a keccak hex string from the input.
-- [keccakAsString](#keccakAsString) Creates a keccak string from the input.
+- [keccakAsBuffer](#keccakasbuffer) Creates a keccak Buffer from the input.
+- [keccakAsHex](#keccakashex) Creates a keccak hex string from the input.
+- [keccakAsString](#keccakasstring) Creates a keccak string from the input.
 
 ## keccakAsBuffer
 

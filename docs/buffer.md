@@ -2,8 +2,8 @@
 
 Utility methods to convert to and from `Buffer` objects 
 
-- [bufferFromHex](#bufferFromHex) Creates a Buffer object from a hex string.
-- [bufferToHex](#bufferToHex) Creates a hex value from a Buffer object.
+- [bufferFromHex](#bufferfromhex) Creates a Buffer object from a hex string.
+- [bufferToHex](#buffertohex) Creates a hex value from a Buffer object.
 
 ## bufferFromHex
 

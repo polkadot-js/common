@@ -2,9 +2,9 @@
 
 Internal utilities to create and test for hex values 
 
-- [hexAddPrefix](#hexAddPrefix) Adds the `0x` prefix to string values.
-- [hexHasPrefix](#hexHasPrefix) Tests for the existence of a `0x` prefix.
-- [hexStripPrefix](#hexStripPrefix) Strips any leading `0x` prefix.
+- [hexAddPrefix](#hexaddprefix) Adds the `0x` prefix to string values.
+- [hexHasPrefix](#hexhasprefix) Tests for the existence of a `0x` prefix.
+- [hexStripPrefix](#hexstripprefix) Strips any leading `0x` prefix.
 
 ## hexAddPrefix
 
