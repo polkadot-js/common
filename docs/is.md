@@ -10,6 +10,7 @@ Type checking utilities
 - [isInstanceOf](#isinstanceof) Tests for a instance of a class.
 - [isNumber](#isnumber) Tests for a JavaScript number.
 - [isString](#isstring) Tests for a string.
+- [isUint8Array](#isuint8array) Tests for a `Uint8Array` object instance.
 - [isUndefined](#isundefined) Tests for a `undefined` values.
 
 ## isBN
@@ -147,6 +148,23 @@ Checks to see if the input value is a JavaScript string.
 import { isString } from '@polkadot/util';
 
 console.log('isString', isString('test')); // => true
+```
+
+## isUint8Array
+
+Tests for a `Uint8Array` object instance.
+
+```js
+isUint8Array (value: any): boolean
+```
+
+
+Checks to see if the input object is an instance of `Uint8Array`.
+
+```js
+import { isUint8Array } from '@polkadot/util';
+
+console.log('isUint8Array', isUint8Array([])); // => false
 ```
 
 ## isUndefined
