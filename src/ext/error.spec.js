@@ -63,11 +63,9 @@ describe('Error', () => {
       captureStackTrace = Error.captureStackTrace;
 
       Error.captureStackTrace = function (error) {
-        var container = new Error();
-
         Object.defineProperty(error, 'stack', {
           configurable: true,
-          get: function getStack() {
+          get: function getStack () {
             const value = 'some stack returned';
 
             Object.defineProperty(this, 'stack', { value });

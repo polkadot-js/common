@@ -34,7 +34,7 @@ module.exports = class ExtError extends Error implements ExtErrorInterface {
         enumerable: false,
         value
       });
-    }
+    };
 
     extend('message', String(message));
     extend('name', this.constructor.name);
