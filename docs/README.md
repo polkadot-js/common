@@ -4,6 +4,7 @@ Utility methods for this package are split into groups
 
 - [bn](bn.md) Utility methods to convert to and from `BN` objects
 - [buffer](buffer.md) Utility methods to convert to and from `Buffer` objects
+- [ext](ext.md) Extensions to basic classes
 - [hex](hex.md) Internal utilities to create and test for hex values
 - [is](is.md) Type checking utilities
 - [jsonrpc](jsonrpc.md) Convenience functions for values from @polkadot/jsonrpc

@@ -4,7 +4,7 @@
 
 const BN = require('bn.js');
 
-const { isBN, isFunction, isHex, isInstanceOf, isNumber, isString, isUndefined } = require('./index');
+const { isBN, isBuffer, isError, isFunction, isHex, isInstanceOf, isNumber, isString, isUndefined } = require('./index');
 
 describe('is', () => {
   describe('isBN', () => {
@@ -17,6 +17,34 @@ describe('is', () => {
     it('returns false on non-BN values', () => {
       expect(
         isBN(0)
+      ).toEqual(false);
+    });
+  });
+
+  describe('isBuffer', () => {
+    it('returns true when a Buffer value', () => {
+      expect(
+        isBuffer(Buffer.from([]))
+      ).toEqual(true);
+    });
+
+    it('returns false on non-Buffer values', () => {
+      expect(
+        isBuffer(0)
+      ).toEqual(false);
+    });
+  });
+
+  describe('isError', () => {
+    it('returns true when an Error value', () => {
+      expect(
+        isError(new Error('testing'))
+      ).toEqual(true);
+    });
+
+    it('returns false on non-Error values', () => {
+      expect(
+        isError(0)
       ).toEqual(false);
     });
   });

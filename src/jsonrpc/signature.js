@@ -3,6 +3,12 @@
 
 import type { InterfaceInputType, InterfaceOutputType } from '@polkadot/jsonrpc/types';
 
+function formatParam (param: InterfaceInputType | InterfaceOutputType): string {
+  return param.name
+    ? `${((param.name: any): string)}: ${param.type}`
+    : param.type;
+}
+
 /**
   @name jsonrpcSignature
   @signature jsonrpcSignature (name: string, _inputs: Array<InterfaceInputType>, _output: InterfaceOutputType): string
@@ -17,9 +23,8 @@ import type { InterfaceInputType, InterfaceOutputType } from '@polkadot/jsonrpc/
     )); // => test_method (destination: Address): Address
 */
 module.exports = function jsonrpcSignature (name: string, _inputs: Array<InterfaceInputType>, _output: InterfaceOutputType): string {
-  const inputParams: string = _inputs
-    .map(({ name, type }) => `${name}: ${type}`)
-    .join(', ');
+  const inputs: string = _inputs.map(formatParam).join(', ');
+  const output: string = formatParam(_output);
 
-  return `${name} (${inputParams}): ${_output.type}`;
+  return `${name} (${inputs}): ${output}`;
 };
