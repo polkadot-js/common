@@ -4,6 +4,7 @@ Type checking utilities
 
 - [isBN](#isbn) Tests for a `BN` object instance.
 - [isBuffer](#isbuffer) Tests for a `Buffer` object instance.
+- [isError](#iserror) Tests for a `Error` object instance.
 - [isFunction](#isfunction) Tests for a `function`.
 - [isHex](#ishex) Tests for a hex string.
 - [isInstanceOf](#isinstanceof) Tests for a instance of a class.
@@ -44,6 +45,23 @@ Checks to see if the input object is an instance of `Buffer`.
 import { isBuffer } from '@polkadot/util';
 
 console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
+```
+
+## isError
+
+Tests for a `Error` object instance.
+
+```js
+isError (value: any): boolean
+```
+
+
+Checks to see if the input object is an instance of `Error`.
+
+```js
+import { isError } from '@polkadot/util';
+
+console.log('isError', isError(new Error('message'))); // => true
 ```
 
 ## isFunction

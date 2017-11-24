@@ -10,11 +10,23 @@ describe('jsonrpc', () => {
           'test_method',
           [
             { name: 'b', type: 'A' },
-            { name: 'a', type: 'B' }
+            { name: 'a', type: 'B' },
+            { type: 'C' },
+            { type: 'D' }
           ],
           { type: 'A' }
         )
-      ).toEqual('test_method (b: A, a: B): A');
+      ).toEqual('test_method (b: A, a: B, C, D): A');
+    });
+
+    it('empty inputs format correctly', () => {
+      expect(
+        jsonrpcSignature(
+          'test_method',
+          [],
+          { type: 'A' }
+        )
+      ).toEqual('test_method (): A');
     });
   });
 });
