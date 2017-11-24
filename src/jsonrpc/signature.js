@@ -3,12 +3,10 @@
 
 import type { InterfaceInputType, InterfaceOutputType } from '@polkadot/jsonrpc/types';
 
-type ParamType = InterfaceInputType | InterfaceOutputType;
-
-function formatParam ({ name, type }: ParamType): string {
-  return name
-    ? `${name}: ${type}`
-    : type;
+function formatParam (param: InterfaceInputType | InterfaceOutputType): string {
+  return param.name
+    ? `${((param.name: any): string)}: ${param.type}`
+    : param.type;
 }
 
 /**
