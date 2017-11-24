@@ -9,10 +9,11 @@ const is = require('./is');
 const jsonrpc = require('./jsonrpc');
 const keccak = require('./keccak');
 const logger = require('./logger');
+const u8a = require('./u8a');
 
 /**
   @summary Utility methods for this package are split into groups
 */
 module.exports = Object.assign(
-  {}, bn, buffer, ext, hex, is, jsonrpc, keccak, logger
+  {}, bn, buffer, ext, hex, is, jsonrpc, keccak, logger, u8a
 );
