@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util",
-  "version": "0.5.12",
+  "version": "0.5.13",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
   "keywords": [
