@@ -1,13 +1,12 @@
-# Utilities
-
 [![Build Status](https://travis-ci.org/polkadot-js/util.svg?branch=master)](https://travis-ci.org/polkadot-js/util)
 [![Coverage Status](https://coveralls.io/repos/github/polkadot-js/util/badge.svg?branch=master)](https://coveralls.io/github/polkadot-js/util?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/polkadot-js/util.svg)](https://greenkeeper.io/)
 [![Dependency Status](https://david-dm.org/polkadot-js/util.svg)](https://david-dm.org/polkadot-js/util)
 [![devDependency Status](https://david-dm.org/polkadot-js/util/dev-status.svg)](https://david-dm.org/polkadot-js/util#info=devDependencies)
 
-## Introduction
+# @polkadot/util
 
+Various useful utility functions that are used across all projects in the @polkadot namespace. It provides utlitiy functions with additional safety checks, allowing not only for consistent coding, but also reducing the general boilerplate.
 
 ## Usage
 
