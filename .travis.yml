@@ -10,4 +10,4 @@ before_install:
 install:
   - yarn
 script:
-  - yarn run polkadot-dev-build-travis
+  - yarn polkadot-dev-build-travis
