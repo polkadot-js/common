@@ -1,7 +1,7 @@
 // ISC, Copyright 2017 Jaco Greeff
 // @flow
 
-import type { InterfaceInputType, InterfaceOutputType } from '@polkadot/jsonrpc/types';
+import type { InterfaceInputType, InterfaceOutputType } from '@polkadot/api-jsonrpc/types';
 
 function formatParam (param: InterfaceInputType | InterfaceOutputType): string {
   return param.name

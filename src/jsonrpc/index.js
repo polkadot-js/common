@@ -4,7 +4,7 @@
 const jsonrpcSignature = require('./signature');
 
 /**
-  @summary Convenience functions for values from @polkadot/jsonrpc
+  @summary Convenience functions for values from @polkadot/api-jsonrpc
 */
 module.exports = {
   jsonrpcSignature
