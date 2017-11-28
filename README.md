@@ -1,3 +1,5 @@
+![ISC](https://img.shields.io/badge/license-ISC-lightgrey.svg)
+[![npm (scoped)](https://img.shields.io/npm/v/@polkadot/util.svg)](https://www.npmjs.com/package/@polkadot/util)
 [![Build Status](https://travis-ci.org/polkadot-js/util.svg?branch=master)](https://travis-ci.org/polkadot-js/util)
 [![Coverage Status](https://coveralls.io/repos/github/polkadot-js/util/badge.svg?branch=master)](https://coveralls.io/github/polkadot-js/util?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/polkadot-js/util.svg)](https://greenkeeper.io/)
@@ -6,7 +8,7 @@
 
 # @polkadot/util
 
-Various useful utility functions that are used across all projects in the @polkadot namespace. It provides utlitiy functions with additional safety checks, allowing not only for consistent coding, but also reducing the general boilerplate.
+Various useful utility functions that are used across all projects in the @polkadot namespace. It provides utility functions with additional safety checks, allowing not only for consistent coding, but also reducing the general boilerplate.
 
 ## Usage
 

@@ -6,8 +6,8 @@ cache:
   directories:
     - node_modules
 before_install:
-  - npm install -g yarn --cache-min 999999999
+  - npm install --global yarn --cache-min 999999999
 install:
   - yarn
 script:
-  - yarn run polkadot-dev-build-travis
+  - yarn polkadot-dev-build-travis
