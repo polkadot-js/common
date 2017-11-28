@@ -1,6 +1,6 @@
 # jsonrpc
 
-Convenience functions for values from @polkadot/jsonrpc 
+Convenience functions for values from @polkadot/api-jsonrpc 
 
 - [jsonrpcSignature](#jsonrpcsignature) Returns a string representation of the method with inputs and outputs.
 

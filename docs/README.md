@@ -7,7 +7,7 @@ Utility methods for this package are split into groups
 - [ext](ext.md) Extensions to basic classes
 - [hex](hex.md) Internal utilities to create and test for hex values
 - [is](is.md) Type checking utilities
-- [jsonrpc](jsonrpc.md) Convenience functions for values from @polkadot/jsonrpc
+- [jsonrpc](jsonrpc.md) Convenience functions for values from @polkadot/api-jsonrpc
 - [keccak](keccak.md) Create Keccak256 values as hex, string & buffer output
 - [u8a](u8a.md) Utility methods to convert to and from `Uint8Array` objects
 
