@@ -54,9 +54,15 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@polkadot/dev@^0.8.1":
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.8.1.tgz#828994b8017a7b780e2b162172551016920e5b48"
+"@polkadot/api-jsonrpc@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/api-jsonrpc/-/api-jsonrpc-0.5.1.tgz#e94e2a23249897df40d1f00557ca46b59fbf9247"
+  dependencies:
+    babel-runtime "^6.26.0"
+
+"@polkadot/dev@^0.9.2":
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.9.2.tgz#5d4911764372183283332bf46c9878719b693703"
   dependencies:
     babel-cli "^6.26.0"
     babel-core "^6.26.0"
@@ -88,12 +94,6 @@
     rimraf "^2.6.2"
     stylelint "^8.2.0"
     stylelint-config-standard "^18.0.0"
-
-"@polkadot/jsonrpc@^0.3.9":
-  version "0.3.18"
-  resolved "https://registry.yarnpkg.com/@polkadot/jsonrpc/-/jsonrpc-0.3.18.tgz#7693f2bb60e2f53e6a58202f6e8f1e0333e1d840"
-  dependencies:
-    babel-runtime "^6.26.0"
 
 abab@^1.0.3:
   version "1.0.4"
@@ -1296,8 +1296,8 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
     delayed-stream "~1.0.0"
 
 commander@^2.11.0:
-  version "2.12.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.12.1.tgz#468635c4168d06145b9323356d1da84d14ac4a7a"
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.12.2.tgz#0f5946c427ed9ec0d91a46bb9def53e54650e555"
 
 commander@~2.9.0:
   version "2.9.0"
