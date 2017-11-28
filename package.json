@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/polkadot-js/util#readme",
   "scripts": {
-    "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
-    "check": "eslint src && flow check",
-    "test": "jest --coverage src"
+    "build": "yarn polkadot-dev-build-babel && yarn polkadot-dev-build-docs",
+    "check": "yarn eslint src && yarn flow check",
+    "test": "yarn jest --coverage src"
   },
   "devDependencies": {
     "@polkadot/dev": "^0.8.1",
