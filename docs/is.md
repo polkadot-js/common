@@ -8,6 +8,7 @@ Type checking utilities
 - [isFunction](#isfunction) Tests for a `function`.
 - [isHex](#ishex) Tests for a hex string.
 - [isInstanceOf](#isinstanceof) Tests for a instance of a class.
+- [isNull](#isnull) Tests for a `null` values.
 - [isNumber](#isnumber) Tests for a JavaScript number.
 - [isString](#isstring) Tests for a string.
 - [isUint8Array](#isuint8array) Tests for a `Uint8Array` object instance.
@@ -114,6 +115,23 @@ Checks to see if the input value is an instance of the test class.
 import { isInstanceOf } from '@polkadot/util';
 
 console.log('isinstanceOf', isInstanceOf(new Array(0), Array)); // => true
+```
+
+## isNull
+
+Tests for a `null` values.
+
+```js
+isNull (value: any): boolean
+```
+
+
+Checks to see if the input value is `null`.
+
+```js
+import { isNull } from '@polkadot/util';
+
+console.log('isNull', isNull(null)); // => true
 ```
 
 ## isNumber
