@@ -1,5 +1,4 @@
 // ISC, Copyright 2017 Jaco Greeff
-// @flow
 
 const numberFromBuffer = require('./fromBuffer');
 const numberFromHex = require('./fromHex');

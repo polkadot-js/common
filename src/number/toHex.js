@@ -22,6 +22,6 @@ module.exports = function numberToHex (value?: number): string {
   }
 
   return hexAddPrefix(
-    value.toString(16)
+    (value || 0).toString(16)
   );
 };
