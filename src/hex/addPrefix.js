@@ -19,5 +19,9 @@ module.exports = function hexAddPrefix (value: ?string): string {
     return value;
   }
 
-  return `0x${value || ''}`;
+  const prefix = value && value.length % 2 === 1
+    ? '0'
+    : '';
+
+  return `0x${prefix}${value || ''}`;
 };
