@@ -1,7 +1,5 @@
 // ISC, Copyright 2017 Jaco Greeff
 
-/* global jest */
-
 const { logger } = require('./index');
 
 describe('logger', () => {
@@ -31,7 +29,7 @@ describe('logger', () => {
     });
 
     it('adds the date, type & params', () => {
-      expect(formatted.length).toBe(4);
+      expect(formatted).toHaveLength(4);
     });
   });
 

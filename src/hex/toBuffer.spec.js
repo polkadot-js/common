@@ -5,8 +5,8 @@ const { hexToBuffer } = require('./index');
 describe('hexToBuffer', () => {
   it('returns an empty buffer when null provided', () => {
     expect(
-      hexToBuffer(null).length
-    ).toEqual(0);
+      hexToBuffer(null)
+    ).toHaveLength(0);
   });
 
   it('returns a buffer with the correct values', () => {
