@@ -2,12 +2,12 @@
 
 Utility methods to convert to and from `BN` objects 
 
-- [bnFromHex](#bnfromhex) Creates a BN.js bignumber object from a hex string.
+- [bnFromHex](#bnfromhex) Creates a BN.js bignumber object from a hex string. [hex.md#hextobn](alias hexToBn)
 - [bnToHex](#bntohex) Creates a hex value from a BN.js bignumber object.
 
 ## bnFromHex
 
-Creates a BN.js bignumber object from a hex string.
+Creates a BN.js bignumber object from a hex string. [hex.md#hextobn](alias hexToBn)
 
 ```js
 bnFromHex (value?: string): BN
