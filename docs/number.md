@@ -2,44 +2,34 @@
 
 Utility methods to convert to and from `number` values 
 
-- [numberFromBuffer](#numberfrombuffer) Creates a Number value from a Buffer object.
-- [numberFromHex](#numberfromhex) Creates a Number value from a Buffer object.
+- [numberFromBuffer](#numberfrombuffer) Creates a Number value from a Buffer object. [buffer.md#buffertonumber](alias bufferToNumber)
+- [numberFromHex](#numberfromhex) Creates a Number value from a Buffer object. [buffer.md#hextonumber](alias hexToNumber)
 - [numberToBuffer](#numbertobuffer) Creates a Buffer object from a number.
 - [numberToHex](#numbertohex) Creates a hex value from a number.
 
 ## numberFromBuffer
 
-Creates a Number value from a Buffer object.
+Creates a Number value from a Buffer object. [buffer.md#buffertonumber](alias bufferToNumber)
 
 ```js
 numberFromBuffer (value?: Buffer): number
 ```
 
 
-`null` inputs returns an NaN result, `Buffer` values return the actual value as a `Number`.
 
-```js
-import { numberFromBuffer } from '@polkadot/util';
 
-numberFromBuffer(Buffer.from([12, 34, 56])); // => 0x123456
-```
 
 ## numberFromHex
 
-Creates a Number value from a Buffer object.
+Creates a Number value from a Buffer object. [buffer.md#hextonumber](alias hexToNumber)
 
 ```js
 numberFromHex (value?: Hex): number
 ```
 
 
-`null` inputs returns an Nan result, `hex` values return the actual value as a `Number`.
 
-```js
-import { numberFromHex } from '@polkadot/util';
 
-numberFromBuffer('0x1234'); // => 0x1234
-```
 
 ## numberToBuffer
 

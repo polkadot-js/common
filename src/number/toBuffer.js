@@ -1,7 +1,7 @@
 // ISC, Copyright 2017 Jaco Greeff
 // @flow
 
-const bufferFromHex = require('../buffer/fromHex');
+const hexToBuffer = require('../hex/toBuffer');
 const isNull = require('../is/null');
 const isUndefined = require('../is/undefined');
 const numberToHex = require('./toHex');
@@ -22,7 +22,7 @@ module.exports = function numberToBuffer (value?: number): Buffer {
     return Buffer.from([]);
   }
 
-  return bufferFromHex(
+  return hexToBuffer(
     numberToHex(value)
   );
 };

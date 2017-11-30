@@ -2,25 +2,48 @@
 
 Utility methods to convert to and from `Buffer` objects 
 
-- [bufferFromHex](#bufferfromhex) Creates a Buffer object from a hex string.
+- [bufferFromHex](#bufferfromhex) Creates a Buffer object from a hex string. [hex.md#hextobuffer](alias hexToBuffer)
+- [bufferFromNumber](#bufferfromnumber) Creates a Buffer object from a number. [number.md#numbertobuffer](alias numberToBuffer)
+- [bufferFromU8a](#bufferfromu8a) Creates a Buffer object from a Uint8Array. [u8a.md#u8atobuffer](alias u8aToBuffer)
 - [bufferToHex](#buffertohex) Creates a hex value from a Buffer object.
+- [bufferToNumber](#buffertonumber) Creates a Number value from a Buffer object.
+- [bufferToU8a](#buffertou8a) Creates a Uint8Array value from a Buffer object.
 
 ## bufferFromHex
 
-Creates a Buffer object from a hex string.
+Creates a Buffer object from a hex string. [hex.md#hextobuffer](alias hexToBuffer)
 
 ```js
 bufferFromHex (value?: string): Buffer
 ```
 
 
-`null` inputs returns an empty `Buffer` result. Hex input values return the actual bytes value converted to a Buffer. Anything that is not a hex string (including the `0x` prefix) throws an error.
+
+
+
+## bufferFromNumber
+
+Creates a Buffer object from a number. [number.md#numbertobuffer](alias numberToBuffer)
 
 ```js
-import { bufferFromHex } from '@polkadot/util';
-
-console.log('Buffer object', bufferFromHex('0x123480001f'));
+bufferFromNumber (value?: number): Buffer
 ```
+
+
+
+
+
+## bufferFromU8a
+
+Creates a Buffer object from a Uint8Array. [u8a.md#u8atobuffer](alias u8aToBuffer)
+
+```js
+bufferFromU8a (value?: string): Buffer
+```
+
+
+
+
 
 ## bufferToHex
 
@@ -37,4 +60,38 @@ bufferToHex (value?: Buffer): string
 import { bufferToHex } from '@polkadot/util';
 
 console.log('Hex value', bufferToHex(Buffer.from([1, 2, 3]));
+```
+
+## bufferToNumber
+
+Creates a Number value from a Buffer object.
+
+```js
+bufferToNumber (value?: Buffer): number
+```
+
+
+`null` inputs returns an NaN result, `Buffer` values return the actual value as a `Number`.
+
+```js
+import { bufferToNumber } from '@polkadot/util';
+
+bufferToNumber(Buffer.from([12, 34, 56])); // => 0x123456
+```
+
+## bufferToU8a
+
+Creates a Uint8Array value from a Buffer object.
+
+```js
+bufferToU8a (value?: Buffer): string
+```
+
+
+`null` inputs returns an empty result, `Buffer` values return the actual value as a `Uint8Array`. Anything that is not a `Buffer` object throws an error.
+
+```js
+import { bufferToU8a } from '@polkadot/util';
+
+bufferToU8a(Buffer.from([1, 2, 3]));
 ```

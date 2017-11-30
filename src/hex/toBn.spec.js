@@ -2,7 +2,7 @@
 
 const BN = require('bn.js');
 
-const hexToBn = require('./toBn');
+const { hexToBn } = require('./index');
 
 describe('hexToBn', () => {
   const value = '80';

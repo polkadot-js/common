@@ -14,13 +14,8 @@ bnFromHex (value?: string): BN
 ```
 
 
-`null` inputs returns a `BN(0)` result. Hex input values return the actual value converted to a BN. Anything that is not a hex string (including the `0x` prefix) throws an error.
 
-```js
-import { bnFromHex } from '@polkadot/util';
 
-console.log('BN object', bnFromHex('0x123480001f'));
-```
 
 ## bnToHex
 

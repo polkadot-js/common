@@ -10,6 +10,7 @@ const isInstanceOf = require('./instanceOf');
 const isNull = require('./null');
 const isNumber = require('./number');
 const isString = require('./string');
+const isUint8Array = require('./uint8Array');
 const isUndefined = require('./undefined');
 
 /**
@@ -25,5 +26,6 @@ module.exports = {
   isNull,
   isNumber,
   isString,
+  isUint8Array,
   isUndefined
 };

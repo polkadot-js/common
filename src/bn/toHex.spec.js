@@ -2,7 +2,7 @@
 
 const BN = require('bn.js');
 
-const bnToHex = require('./toHex');
+const { bnToHex } = require('./index');
 
 describe('bnToHex', () => {
   it('converts BN values to a prefixed hex representation', () => {

@@ -4,9 +4,13 @@ Internal utilities to create and test for hex values
 
 - [hexAddPrefix](#hexaddprefix) Adds the `0x` prefix to string values.
 - [hexFromBn](#hexfrombn) Creates a hex value from a BN.js bignumber object. [bn.md#bntohex](alias bnToHex)
+- [hexFromBn](#hexfrombn) Creates a hex value from a Buffer object. [buffer.md#buffertohex](alias bufferToHex)
+- [hexFromNumber](#hexfromnumber) Creates a hex value from a number. [number.md#numbertohex](alias numberToHex)
 - [hexHasPrefix](#hexhasprefix) Tests for the existence of a `0x` prefix.
 - [hexStripPrefix](#hexstripprefix) Strips any leading `0x` prefix.
 - [hexToBn](#hextobn) Creates a BN.js bignumber object from a hex string.
+- [hexToBuffer](#hextobuffer) Creates a Buffer object from a hex string.
+- [hexToNumber](#hextonumber) Creates a Number value from a Buffer object.
 
 ## hexAddPrefix
 
@@ -34,14 +38,32 @@ hexFromBn (value?: BN): string
 ```
 
 
-`null` inputs returns a `0x` result, BN values return the actual value as a `0x` prefixed hex value. Anything that is not a BN object throws an error.
+
+
+
+## hexFromBn
+
+Creates a hex value from a Buffer object. [buffer.md#buffertohex](alias bufferToHex)
 
 ```js
-import BN from 'bn.js';
-import { hexFromBn } from '@polkadot/util';
-
-console.log('Hex value', hexFromBn(new BN(0x123456)); // '0x123456'
+hexFromBuffer (value?: Buffer): string
 ```
+
+
+
+
+
+## hexFromNumber
+
+Creates a hex value from a number. [number.md#numbertohex](alias numberToHex)
+
+```js
+hexFromNumber (value?: number): string
+```
+
+
+
+
 
 ## hexHasPrefix
 
@@ -92,4 +114,38 @@ hexToBn (value?: string): BN
 import { hexToBn } from '@polkadot/util';
 
 console.log('BN object', hexToBn('0x123480001f'));
+```
+
+## hexToBuffer
+
+Creates a Buffer object from a hex string.
+
+```js
+hexToBuffer (value?: string): Buffer
+```
+
+
+`null` inputs returns an empty `Buffer` result. Hex input values return the actual bytes value converted to a Buffer. Anything that is not a hex string (including the `0x` prefix) throws an error.
+
+```js
+import { hexToBuffer } from '@polkadot/util';
+
+console.log('Buffer object', hexToBuffer('0x123480001f'));
+```
+
+## hexToNumber
+
+Creates a Number value from a Buffer object.
+
+```js
+hexToNumber (value?: Hex): number
+```
+
+
+`null` inputs returns an NaN result, `hex` values return the actual value as a `Number`.
+
+```js
+import { hexToNumber } from '@polkadot/util';
+
+hexToNumber('0x1234'); // => 0x1234
 ```
