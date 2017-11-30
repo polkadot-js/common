@@ -2,6 +2,7 @@
 [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/Flet/semistandard)
 [![npm (scoped)](https://img.shields.io/npm/v/@polkadot/util.svg)](https://www.npmjs.com/package/@polkadot/util)
 [![Build Status](https://travis-ci.org/polkadot-js/util.svg?branch=master)](https://travis-ci.org/polkadot-js/util)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ab7b7cd7a0485a04693f/maintainability)](https://codeclimate.com/github/polkadot-js/util/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/polkadot-js/util/badge.svg?branch=master)](https://coveralls.io/github/polkadot-js/util?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/polkadot-js/util.svg)](https://greenkeeper.io/)
 [![Dependency Status](https://david-dm.org/polkadot-js/util.svg)](https://david-dm.org/polkadot-js/util)
