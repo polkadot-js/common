@@ -2,25 +2,20 @@
 
 Utility methods to convert to and from `BN` objects 
 
-- [bnFromHex](#bnfromhex) Creates a BN.js bignumber object from a hex string.
+- [bnFromHex](#bnfromhex) Creates a BN.js bignumber object from a hex string. [hex.md#hextobn](alias hexToBn)
 - [bnToHex](#bntohex) Creates a hex value from a BN.js bignumber object.
 
 ## bnFromHex
 
-Creates a BN.js bignumber object from a hex string.
+Creates a BN.js bignumber object from a hex string. [hex.md#hextobn](alias hexToBn)
 
 ```js
 bnFromHex (value?: string): BN
 ```
 
 
-`null` inputs returns a `BN(0)` result. Hex input values return the actual value converted to a BN. Anything that is not a hex string (including the `0x` prefix) throws an error.
 
-```js
-import { bnFromHex } from '@polkadot/util';
 
-console.log('BN object', bnFromHex('0x123480001f'));
-```
 
 ## bnToHex
 

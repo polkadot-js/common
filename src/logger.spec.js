@@ -2,7 +2,7 @@
 
 /* global jest */
 
-const logger = require('./logger');
+const { logger } = require('./index');
 
 describe('logger', () => {
   let l;

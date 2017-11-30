@@ -1,9 +1,9 @@
 // ISC, Copyright 2017 Jaco Greeff
 
-const ExtError = require('./error');
 const isError = require('../is/error');
+const { ExtError } = require('./index');
 
-describe('Error', () => {
+describe('ExtError', () => {
   describe('constructor', () => {
     it('constructs an Error that is still an Error', () => {
       expect(
