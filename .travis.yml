@@ -8,6 +8,6 @@ cache:
 before_install:
   - npm install --global yarn --cache-min 999999999
 install:
-  - yarn
+  - yarn install
 script:
   - yarn polkadot-dev-build-travis

@@ -6,6 +6,7 @@ const hexFromBuffer = require('../bn/toHex');
 /**
   @name hexFromBn
   @signature hexFromBuffer (value?: Buffer): string
-  @summary Creates a hex value from a Buffer object. [alias bufferToHex](buffer.md#buffertohex)
+  @summary Creates a hex value from a Buffer object.
+  @alias buffer/toHex
 */
 module.exports = hexFromBuffer;

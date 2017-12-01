@@ -7,20 +7,10 @@ type Logger = {
   warn: (params: any) => void
 };
 
-function format (type: string, values: Array<any>): Array<any> {
-  return [new Date().toString(), type].concat(values);
-}
+type LogType = 'error' | 'log' | 'warn';
 
-function error (type: string, values: Array<any>): void {
-  console.error.apply(console, format(type, values));
-}
-
-function log (type: string, values: Array<any>): void {
-  console.log.apply(console, format(type, values));
-}
-
-function warn (type: string, values: Array<any>): void {
-  console.warn.apply(console, format(type, values));
+function apply (log: LogType, type: string, values: Array<any>): void {
+  console[log].apply(console, [new Date().toString(), type].concat(values));
 }
 
 /**
@@ -35,12 +25,11 @@ function warn (type: string, values: Array<any>): void {
     l.log('blah'); // <date>     TEST: blah
 */
 module.exports = function logger (_type: string): Logger {
-  const type = `          ${_type.toUpperCase()}:`.slice(-11);
+  const type = `               ${_type.toUpperCase()}:`.slice(-16);
 
   return {
-    format: (...values: any): Array<any> => format(type, values),
-    error: (...values: any): void => error(type, values),
-    log: (...values: any): void => log(type, values),
-    warn: (...values: any): void => warn(type, values)
+    error: (...values: any): void => apply('error', type, values),
+    log: (...values: any): void => apply('log', type, values),
+    warn: (...values: any): void => apply('warn', type, values)
   };
 };

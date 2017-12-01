@@ -26,11 +26,11 @@
   "scripts": {
     "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
     "check": "eslint src && flow check",
-    "test": "jest --coverage src"
+    "test": "jest src"
   },
   "devDependencies": {
     "@polkadot/api-jsonrpc": "^0.5.5",
-    "@polkadot/dev": "^0.11.2"
+    "@polkadot/dev": "^0.12.3"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
