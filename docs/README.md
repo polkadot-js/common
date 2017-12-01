@@ -16,7 +16,7 @@ Utility methods for this package are split into groups
 
 ## Logger
 
-Creates a consistent log interface for messages
+Creates a consistent log interface for messages 
 
 ```js
 logger (type: string): Logger

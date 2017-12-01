@@ -3,9 +3,9 @@
 Internal utilities to create and test for hex values 
 
 - [hexAddPrefix](#hexaddprefix) Adds the `0x` prefix to string values.
-- [hexFromBn](#hexfrombn) Creates a hex value from a BN.js bignumber object. [bn.md#bntohex](alias bnToHex)
-- [hexFromBn](#hexfrombn) Creates a hex value from a Buffer object. [buffer.md#buffertohex](alias bufferToHex)
-- [hexFromNumber](#hexfromnumber) Creates a hex value from a number. [number.md#numbertohex](alias numberToHex)
+- [hexFromBn](#hexfrombn) Creates a hex value from a BN.js bignumber object.
+- [hexFromBn](#hexfrombn) Creates a hex value from a Buffer object.
+- [hexFromNumber](#hexfromnumber) Creates a hex value from a number.
 - [hexHasPrefix](#hexhasprefix) Tests for the existence of a `0x` prefix.
 - [hexStripPrefix](#hexstripprefix) Strips any leading `0x` prefix.
 - [hexToBn](#hextobn) Creates a BN.js bignumber object from a hex string.
@@ -14,7 +14,7 @@ Internal utilities to create and test for hex values
 
 ## hexAddPrefix
 
-Adds the `0x` prefix to string values.
+Adds the `0x` prefix to string values. 
 
 ```js
 hexAddPrefix (value: ?string): string
@@ -31,7 +31,7 @@ console.log('With prefix', hexAddPrefix('0a0b12')) // => 0x0a0b12
 
 ## hexFromBn
 
-Creates a hex value from a BN.js bignumber object. [bn.md#bntohex](alias bnToHex)
+Creates a hex value from a BN.js bignumber object. [(alias of bnToHex)](bn.md#bntohex)
 
 ```js
 hexFromBn (value?: BN): string
@@ -43,7 +43,7 @@ hexFromBn (value?: BN): string
 
 ## hexFromBn
 
-Creates a hex value from a Buffer object. [buffer.md#buffertohex](alias bufferToHex)
+Creates a hex value from a Buffer object. [(alias of bufferToHex)](buffer.md#buffertohex)
 
 ```js
 hexFromBuffer (value?: Buffer): string
@@ -55,7 +55,7 @@ hexFromBuffer (value?: Buffer): string
 
 ## hexFromNumber
 
-Creates a hex value from a number. [number.md#numbertohex](alias numberToHex)
+Creates a hex value from a number. [(alias of numberToHex)](number.md#numbertohex)
 
 ```js
 hexFromNumber (value?: number): string
@@ -67,7 +67,7 @@ hexFromNumber (value?: number): string
 
 ## hexHasPrefix
 
-Tests for the existence of a `0x` prefix.
+Tests for the existence of a `0x` prefix. 
 
 ```js
 hexHasPrefix (value: ?string): boolean
@@ -84,7 +84,7 @@ console.log('has prefix', hexHasPrefix('0x1234')); // => true
 
 ## hexStripPrefix
 
-Strips any leading `0x` prefix.
+Strips any leading `0x` prefix. 
 
 ```js
 hexStripPrefix (value: ?string): string
@@ -101,7 +101,7 @@ console.log('stripped', hexStripPrefix('0x1234')); // => 1234
 
 ## hexToBn
 
-Creates a BN.js bignumber object from a hex string.
+Creates a BN.js bignumber object from a hex string. 
 
 ```js
 hexToBn (value?: string): BN
@@ -118,7 +118,7 @@ console.log('BN object', hexToBn('0x123480001f'));
 
 ## hexToBuffer
 
-Creates a Buffer object from a hex string.
+Creates a Buffer object from a hex string. 
 
 ```js
 hexToBuffer (value?: string): Buffer
@@ -135,7 +135,7 @@ console.log('Buffer object', hexToBuffer('0x123480001f'));
 
 ## hexToNumber
 
-Creates a Number value from a Buffer object.
+Creates a Number value from a Buffer object. 
 
 ```js
 hexToNumber (value?: Hex): number

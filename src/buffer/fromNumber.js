@@ -6,6 +6,7 @@ const bufferFromNumber = require('../number/toBuffer');
 /**
   @name bufferFromNumber
   @signature bufferFromNumber (value?: number): Buffer
-  @summary Creates a Buffer object from a number. [number.md#numbertobuffer](alias numberToBuffer)
+  @summary Creates a Buffer object from a number.
+  @alias number/toBuffer
 */
 module.exports = bufferFromNumber;

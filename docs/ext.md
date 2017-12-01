@@ -6,7 +6,7 @@ Extensions to basic classes
 
 ## ExtError
 
-Extension to the basic JS Error.
+Extension to the basic JS Error. 
 
 ```js
 ExtError (message: string = '', code: number = UNKNOWN_ERROR, value: any)

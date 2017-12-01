@@ -6,7 +6,7 @@ Convenience functions for values from @polkadot/api-jsonrpc
 
 ## jsonrpcSignature
 
-Returns a string representation of the method with inputs and outputs.
+Returns a string representation of the method with inputs and outputs. 
 
 ```js
 jsonrpcSignature (name: string, _inputs: Array<InterfaceInputType>, _output: InterfaceOutputType): string

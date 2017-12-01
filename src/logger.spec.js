@@ -21,18 +21,6 @@ describe('logger', () => {
     jest.restoreAllMocks();
   });
 
-  describe('format', () => {
-    let formatted;
-
-    beforeEach(() => {
-      formatted = l.format('paramA', 'paramB');
-    });
-
-    it('adds the date, type & params', () => {
-      expect(formatted).toHaveLength(4);
-    });
-  });
-
   it('logs to console.error with .error', () => {
     l.error('console.error test');
 

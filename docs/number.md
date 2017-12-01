@@ -2,14 +2,14 @@
 
 Utility methods to convert to and from `number` values 
 
-- [numberFromBuffer](#numberfrombuffer) Creates a Number value from a Buffer object. [buffer.md#buffertonumber](alias bufferToNumber)
-- [numberFromHex](#numberfromhex) Creates a Number value from a Buffer object. [buffer.md#hextonumber](alias hexToNumber)
+- [numberFromBuffer](#numberfrombuffer) Creates a Number value from a Buffer object.
+- [numberFromHex](#numberfromhex) Creates a Number value from a Buffer object.
 - [numberToBuffer](#numbertobuffer) Creates a Buffer object from a number.
 - [numberToHex](#numbertohex) Creates a hex value from a number.
 
 ## numberFromBuffer
 
-Creates a Number value from a Buffer object. [buffer.md#buffertonumber](alias bufferToNumber)
+Creates a Number value from a Buffer object. [(alias of bufferToNumber)](buffer.md#buffertonumber)
 
 ```js
 numberFromBuffer (value?: Buffer): number
@@ -21,7 +21,7 @@ numberFromBuffer (value?: Buffer): number
 
 ## numberFromHex
 
-Creates a Number value from a Buffer object. [buffer.md#hextonumber](alias hexToNumber)
+Creates a Number value from a Buffer object. [(alias of hexToNumber)](hex.md#hextonumber)
 
 ```js
 numberFromHex (value?: Hex): number
@@ -33,7 +33,7 @@ numberFromHex (value?: Hex): number
 
 ## numberToBuffer
 
-Creates a Buffer object from a number.
+Creates a Buffer object from a number. 
 
 ```js
 numberToBuffer (value?: number): Buffer
@@ -50,7 +50,7 @@ const buffer = numberToBuffer('0x1234'); // => Buffer.from([0x12, 0x34])
 
 ## numberToHex
 
-Creates a hex value from a number.
+Creates a hex value from a number. 
 
 ```js
 numberToHex (value?: number): string

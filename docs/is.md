@@ -16,7 +16,7 @@ Type checking utilities
 
 ## isBN
 
-Tests for a `BN` object instance.
+Tests for a `BN` object instance. 
 
 ```js
 isBN (value: any): boolean
@@ -34,7 +34,7 @@ console.log('isBN', isBN(new BN(1))); // => true
 
 ## isBuffer
 
-Tests for a `Buffer` object instance.
+Tests for a `Buffer` object instance. 
 
 ```js
 isBuffer (value: any): boolean
@@ -51,7 +51,7 @@ console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
 
 ## isError
 
-Tests for a `Error` object instance.
+Tests for a `Error` object instance. 
 
 ```js
 isError (value: any): boolean
@@ -68,7 +68,7 @@ console.log('isError', isError(new Error('message'))); // => true
 
 ## isFunction
 
-Tests for a `function`.
+Tests for a `function`. 
 
 ```js
 isFunction (value: any): boolean
@@ -85,7 +85,7 @@ console.log('isFunction', isFunction(() => false)); // => true
 
 ## isHex
 
-Tests for a hex string.
+Tests for a hex string. 
 
 ```js
 isHex (value: any): boolean
@@ -102,7 +102,7 @@ console.log('isHex', isHex('0x1234')); // => true
 
 ## isInstanceOf
 
-Tests for a instance of a class.
+Tests for a instance of a class. 
 
 ```js
 isInstanceOf (value: any, clazz: any): boolean
@@ -119,7 +119,7 @@ console.log('isinstanceOf', isInstanceOf(new Array(0), Array)); // => true
 
 ## isNull
 
-Tests for a `null` values.
+Tests for a `null` values. 
 
 ```js
 isNull (value: any): boolean
@@ -136,7 +136,7 @@ console.log('isNull', isNull(null)); // => true
 
 ## isNumber
 
-Tests for a JavaScript number.
+Tests for a JavaScript number. 
 
 ```js
 isNumber (value: any): boolean
@@ -153,7 +153,7 @@ console.log('isNumber', isNumber(1234)); // => true
 
 ## isString
 
-Tests for a string.
+Tests for a string. 
 
 ```js
 isString (value: any): boolean
@@ -170,7 +170,7 @@ console.log('isString', isString('test')); // => true
 
 ## isUint8Array
 
-Tests for a `Uint8Array` object instance.
+Tests for a `Uint8Array` object instance. 
 
 ```js
 isUint8Array (value: any): boolean
@@ -187,7 +187,7 @@ console.log('isUint8Array', isUint8Array([])); // => false
 
 ## isUndefined
 
-Tests for a `undefined` values.
+Tests for a `undefined` values. 
 
 ```js
 isUndefined (value: any): boolean
