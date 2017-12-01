@@ -8,7 +8,7 @@ Create Keccak256 values as hex, string & buffer output
 
 ## keccakAsBuffer
 
-Creates a keccak Buffer from the input.
+Creates a keccak Buffer from the input. 
 
 ```js
 keccakAsBuffer (value: Buffer | string): Buffer
@@ -25,7 +25,7 @@ console.log('asBuffer', keccakAsBuffer('123')) // => Buffer
 
 ## keccakAsHex
 
-Creates a keccak hex string from the input.
+Creates a keccak hex string from the input. 
 
 ```js
 keccakAsHex (value: Buffer | string): string
@@ -42,7 +42,7 @@ console.log('asHex', keccakAsHex('123')) // => 0x...
 
 ## keccakAsString
 
-Creates a keccak string from the input.
+Creates a keccak string from the input. 
 
 ```js
 keccakAsString (value: Buffer | string): string

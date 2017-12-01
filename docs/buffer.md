@@ -2,16 +2,16 @@
 
 Utility methods to convert to and from `Buffer` objects 
 
-- [bufferFromHex](#bufferfromhex) Creates a Buffer object from a hex string. [hex.md#hextobuffer](alias hexToBuffer)
-- [bufferFromNumber](#bufferfromnumber) Creates a Buffer object from a number. [number.md#numbertobuffer](alias numberToBuffer)
-- [bufferFromU8a](#bufferfromu8a) Creates a Buffer object from a Uint8Array. [u8a.md#u8atobuffer](alias u8aToBuffer)
+- [bufferFromHex](#bufferfromhex) Creates a Buffer object from a hex string.
+- [bufferFromNumber](#bufferfromnumber) Creates a Buffer object from a number.
+- [bufferFromU8a](#bufferfromu8a) Creates a Buffer object from a Uint8Array.
 - [bufferToHex](#buffertohex) Creates a hex value from a Buffer object.
 - [bufferToNumber](#buffertonumber) Creates a Number value from a Buffer object.
 - [bufferToU8a](#buffertou8a) Creates a Uint8Array value from a Buffer object.
 
 ## bufferFromHex
 
-Creates a Buffer object from a hex string. [hex.md#hextobuffer](alias hexToBuffer)
+Creates a Buffer object from a hex string. [(alias of hexToBuffer)](hex.md#hextobuffer)
 
 ```js
 bufferFromHex (value?: string): Buffer
@@ -23,7 +23,7 @@ bufferFromHex (value?: string): Buffer
 
 ## bufferFromNumber
 
-Creates a Buffer object from a number. [number.md#numbertobuffer](alias numberToBuffer)
+Creates a Buffer object from a number. [(alias of numberToBuffer)](number.md#numbertobuffer)
 
 ```js
 bufferFromNumber (value?: number): Buffer
@@ -35,7 +35,7 @@ bufferFromNumber (value?: number): Buffer
 
 ## bufferFromU8a
 
-Creates a Buffer object from a Uint8Array. [u8a.md#u8atobuffer](alias u8aToBuffer)
+Creates a Buffer object from a Uint8Array. [(alias of u8aToBuffer)](u8a.md#u8atobuffer)
 
 ```js
 bufferFromU8a (value?: string): Buffer
@@ -47,7 +47,7 @@ bufferFromU8a (value?: string): Buffer
 
 ## bufferToHex
 
-Creates a hex value from a Buffer object.
+Creates a hex value from a Buffer object. 
 
 ```js
 bufferToHex (value?: Buffer): string
@@ -64,7 +64,7 @@ console.log('Hex value', bufferToHex(Buffer.from([1, 2, 3]));
 
 ## bufferToNumber
 
-Creates a Number value from a Buffer object.
+Creates a Number value from a Buffer object. 
 
 ```js
 bufferToNumber (value?: Buffer): number
@@ -81,7 +81,7 @@ bufferToNumber(Buffer.from([12, 34, 56])); // => 0x123456
 
 ## bufferToU8a
 
-Creates a Uint8Array value from a Buffer object.
+Creates a Uint8Array value from a Buffer object. 
 
 ```js
 bufferToU8a (value?: Buffer): string
