@@ -6,6 +6,6 @@ const numberFromHex = require('../hex/toNumber');
 /**
   @name numberFromHex
   @signature numberFromHex (value?: Hex): number
-  @summary Creates a Number value from a Buffer object. [buffer.md#hextonumber](alias hexToNumber)
+  @summary Creates a Number value from a Buffer object. [alias hexToNumber](buffer.md#hextonumber)
 */
 module.exports = numberFromHex;
