@@ -49,6 +49,7 @@ module.exports = class ExtError extends Error implements ExtErrorInterface {
   }
 
   static CODES = {
+    ASSERT: -90009,
     UNKNOWN,
     INVALID_JSONRPC: -99998,
     METHOD_NOT_FOUND: -32601 // Rust client
