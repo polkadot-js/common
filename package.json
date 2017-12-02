@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
   "keywords": [
@@ -26,7 +26,7 @@
   "scripts": {
     "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
     "check": "eslint src && flow check",
-    "test": "jest src"
+    "test": "jest --coverage src"
   },
   "devDependencies": {
     "@polkadot/api-jsonrpc": "^0.5.5",
