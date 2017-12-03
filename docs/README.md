@@ -19,7 +19,7 @@ Utility methods for this package are split into groups
 Checks for a valid test, if not ExtError is thrown. 
 
 ```js
-assert (test: boolean, message: string, code: number = ExtError.CODES.ASSERT, data: any): void
+assert (test: any, message: string | () => string, code: number = ExtError.CODES.ASSERT, data: any): void
 ```
 
 
@@ -30,6 +30,7 @@ const assert = require('@polkadot/util/assert');
 
 assert(true, 'True should be true'); // true returned
 assert(false, 'False should not be true'); // ExtError thrown
+assert(false, () => 'message'); // ExtError with 'message'
 ```
 
 ## Logger

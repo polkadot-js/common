@@ -45,7 +45,7 @@ numberToBuffer (value?: number): Buffer
 ```js
 import { numberToBuffer } from '@polkadot/util';
 
-const buffer = numberToBuffer('0x1234'); // => Buffer.from([0x12, 0x34])
+const buffer = numberToBuffer(0x1234); // => Buffer.from([0x12, 0x34])
 ```
 
 ## numberToHex
