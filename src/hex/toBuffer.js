@@ -1,10 +1,9 @@
 // ISC, Copyright 2017 Jaco Greeff
 // @flow
 
+const assert = require('../assert');
 const isHex = require('../is/hex');
 const hexStripPrefix = require('./stripPrefix');
-
-const EMPTY_BUFFER = Buffer.from([]);
 
 /**
   @name hexToBuffer
@@ -19,12 +18,10 @@ const EMPTY_BUFFER = Buffer.from([]);
 */
 module.exports = function hexToBuffer (value?: string): Buffer {
   if (!value) {
-    return EMPTY_BUFFER;
+    return Buffer.from([]);
   }
 
-  if (!isHex(value)) {
-    throw new Error(`Cannot convert non-hex value '${value}' to Buffer`);
-  }
+  assert(isHex(value), `Cannot convert non-hex value '${value}' to Buffer`);
 
   return Buffer.from(hexStripPrefix(value), 'hex');
 };

@@ -3,6 +3,7 @@
 
 const BN = require('bn.js');
 
+const assert = require('../assert');
 const hexStripPrefix = require('./stripPrefix');
 const isHex = require('../is/hex');
 
@@ -24,9 +25,7 @@ module.exports = function hexToBn (value?: string): BN {
     return ZERO_BN;
   }
 
-  if (!isHex(value)) {
-    throw new Error(`Cannot convert from non-hex value '${value}' to BN`);
-  }
+  assert(isHex(value), `Cannot convert from non-hex value '${value}' to BN`);
 
   return new BN(hexStripPrefix(value), 16);
 };

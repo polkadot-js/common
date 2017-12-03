@@ -1,6 +1,7 @@
 // ISC, Copyright 2017 Jaco Greeff
 // @flow
 
+const assert = require('../assert');
 const isBuffer = require('../is/buffer');
 const hexAddPrefix = require('../hex/addPrefix');
 
@@ -22,9 +23,7 @@ module.exports = function bufferToHex (value?: Buffer): string {
     return ZERO_HEX;
   }
 
-  if (!isBuffer(value)) {
-    throw new Error(`Cannot convert non-buffer to hex`);
-  }
+  assert(isBuffer(value), `Cannot convert non-buffer to hex`);
 
   return hexAddPrefix(
     value.toString('hex')

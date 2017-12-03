@@ -3,6 +3,7 @@
 
 const BN = require('bn.js');
 
+const assert = require('../assert');
 const hexAddPrefix = require('../hex/addPrefix');
 const isBN = require('../is/bn');
 
@@ -25,9 +26,7 @@ module.exports = function bnToHex (value?: BN): string {
     return ZERO_STR;
   }
 
-  if (!isBN(value)) {
-    throw new Error(`Cannot convert from non-BN value '${(value: any)}' to hex`);
-  }
+  assert(isBN(value), `Cannot convert from non-BN value '${(value: any)}' to hex`);
 
   return hexAddPrefix(value.toString(16));
 };
