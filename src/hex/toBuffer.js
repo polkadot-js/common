@@ -5,8 +5,6 @@ const assert = require('../assert');
 const isHex = require('../is/hex');
 const hexStripPrefix = require('./stripPrefix');
 
-const EMPTY_BUFFER = Buffer.from([]);
-
 /**
   @name hexToBuffer
   @signature hexToBuffer (value?: string): Buffer
@@ -20,7 +18,7 @@ const EMPTY_BUFFER = Buffer.from([]);
 */
 module.exports = function hexToBuffer (value?: string): Buffer {
   if (!value) {
-    return EMPTY_BUFFER;
+    return Buffer.from([]);
   }
 
   assert(isHex(value), `Cannot convert non-hex value '${value}' to Buffer`);

@@ -11,7 +11,7 @@ const ZERO_STR = '0x';
 
 /**
   @name bnToHex
-  @signature bnToHex (value: BN): string
+  @signature bnToHex (value?: BN): string
   @summary Creates a hex value from a BN.js bignumber object.
   @description
     `null` inputs returns a `0x` result, BN values return the actual value as a `0x` prefixed hex value. Anything that is not a BN object throws an error.

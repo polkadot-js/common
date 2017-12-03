@@ -15,7 +15,7 @@ const numberToHex = require('./toHex');
   @example
     import { numberToBuffer } from '@polkadot/util';
 
-    const buffer = numberToBuffer('0x1234'); // => Buffer.from([0x12, 0x34])
+    const buffer = numberToBuffer(0x1234); // => Buffer.from([0x12, 0x34])
 */
 module.exports = function numberToBuffer (value?: number): Buffer {
   if (isUndefined(value) || isNull(value) || isNaN(value)) {
