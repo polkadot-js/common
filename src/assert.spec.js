@@ -15,6 +15,12 @@ describe('assert', () => {
     ).toThrow(/error thrown/);
   });
 
+  it('should throw an error when message: () => string', () => {
+    expect(
+      () => assert(false, () => 'message from function')
+    ).toThrow(/message from function/);
+  });
+
   it('throws a valid constructed ExtError', () => {
     try {
       assert(false, 'error', -666, { some: 'data' });
