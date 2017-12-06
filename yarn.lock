@@ -54,9 +54,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@polkadot/api-jsonrpc@^0.5.11":
-  version "0.5.11"
-  resolved "https://registry.yarnpkg.com/@polkadot/api-jsonrpc/-/api-jsonrpc-0.5.11.tgz#a03190a8645c942a0893fa8ec1b4990432c62242"
+"@polkadot/api-jsonrpc@^0.6.1":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@polkadot/api-jsonrpc/-/api-jsonrpc-0.6.2.tgz#61f4cd8c523decab2be3ca35185c91d3aa61e321"
   dependencies:
     babel-runtime "^6.26.0"
 
