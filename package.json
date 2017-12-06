@@ -29,7 +29,7 @@
     "test": "jest --coverage"
   },
   "devDependencies": {
-    "@polkadot/api-jsonrpc": "^0.5.11",
+    "@polkadot/api-jsonrpc": "^0.6.1",
     "@polkadot/dev": "^0.13.1"
   },
   "dependencies": {
