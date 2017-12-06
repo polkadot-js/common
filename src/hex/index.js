@@ -2,6 +2,7 @@
 // @flow
 
 const hexAddPrefix = require('./addPrefix');
+const hexFixLength = require('./fixLength');
 const hexFromBn = require('./fromBn');
 const hexFromBuffer = require('./fromBuffer');
 const hexFromNumber = require('./fromNumber');
@@ -16,6 +17,7 @@ const hexToNumber = require('./toNumber');
 */
 module.exports = {
   hexAddPrefix,
+  hexFixLength,
   hexFromBn,
   hexFromBuffer,
   hexFromNumber,
