@@ -1,0 +1,8 @@
+// ISC, Copyright 2017 Jaco Greeff
+// @flow
+
+const ZEROS_256 = '0000000000000000000000000000000000000000000000000000000000000000';
+
+module.exports = {
+  ZEROS_256
+};
