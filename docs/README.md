@@ -2,6 +2,7 @@
 
 Utility methods for this package are split into groups 
 
+- [array](array.md) Utility methods that operates on arrays
 - [bn](bn.md) Utility methods to convert to and from `BN` objects
 - [buffer](buffer.md) Utility methods to convert to and from `Buffer` objects
 - [ext](ext.md) Extensions to basic classes
