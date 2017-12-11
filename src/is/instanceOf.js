@@ -10,7 +10,7 @@
   @example
     import { isInstanceOf } from '@polkadot/util';
 
-    console.log('isinstanceOf', isInstanceOf(new Array(0), Array)); // => true
+    console.log('isInstanceOf', isInstanceOf(new Array(0), Array)); // => true
 */
 module.exports = function isInstanceOf (value: any, clazz: any): boolean {
   return value instanceof clazz;

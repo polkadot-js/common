@@ -28,4 +28,16 @@ describe('isHex', () => {
       isHex(false)
     ).toEqual(false);
   });
+
+  it('returns true when valid hex and bitLength matches', () => {
+    expect(
+      isHex('0x1234', 16)
+    ).toEqual(true);
+  });
+
+  it('returns true when valid hex and bitLength does not match', () => {
+    expect(
+      isHex('0x1234', 8)
+    ).toEqual(false);
+  });
 });
