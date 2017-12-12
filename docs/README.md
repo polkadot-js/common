@@ -50,3 +50,21 @@ const l = require('@polkadot/util/logger')('test');
 
 l.log('blah'); // <date>     TEST: blah
 ```
+
+## promisify
+
+Wraps an async callback into a `Promise` 
+
+```js
+function promisify (fn: (any) => void, ...params: Array<any>): Promise<any>
+```
+
+
+Wraps the supplied async function `fn` that has a standard JS callback `(error: Error, result: any)` into a `Promise`, passing the supplied parameters. When `error` is set, the Promise is rejected, else the Promise resolves with the `result` value.
+
+```js
+const promisify = require('@polkadot/util/promisify');
+
+await promisify((a, cb) => cb(null, a), true); // resolves with `true`
+await promisify((cb) => cb(new Error('error!'))); // rejects with `error!`
+```
