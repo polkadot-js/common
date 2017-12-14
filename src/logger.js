@@ -2,9 +2,9 @@
 // @flow
 
 type Logger = {
-  error: (params: any) => void,
-  log: (params: any) => void,
-  warn: (params: any) => void
+  error: (...values: Array<any>) => void,
+  log: (...values: Array<any>) => void,
+  warn: (...values: Array<any>) => void
 };
 
 type LogType = 'error' | 'log' | 'warn';
