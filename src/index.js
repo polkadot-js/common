@@ -13,11 +13,12 @@ const keccak = require('./keccak');
 const logger = require('./logger');
 const number = require('./number');
 const promisify = require('./promisify');
+const string = require('./string');
 const u8a = require('./u8a');
 
 /**
   @summary Utility methods for this package are split into groups
 */
 module.exports = Object.assign(
-  {}, array, { assert }, bn, buffer, ext, hex, is, jsonrpc, keccak, { logger }, number, { promisify }, u8a
+  {}, array, { assert }, bn, buffer, ext, hex, is, jsonrpc, keccak, { logger }, number, { promisify }, string, u8a
 );
