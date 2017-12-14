@@ -28,8 +28,8 @@ module.exports = function logger (_type: string): Logger {
   const type = `               ${_type.toUpperCase()}:`.slice(-16);
 
   return {
-    error: (...values: any): void => apply('error', type, values),
-    log: (...values: any): void => apply('log', type, values),
-    warn: (...values: any): void => apply('warn', type, values)
+    error: (...values: Array<any>): void => apply('error', type, values),
+    log: (...values: Array<any>): void => apply('log', type, values),
+    warn: (...values: Array<any>): void => apply('warn', type, values)
   };
 };
