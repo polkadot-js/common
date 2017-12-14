@@ -11,6 +11,7 @@ Utility methods for this package are split into groups
 - [jsonrpc](jsonrpc.md) Convenience functions for values from @polkadot/api-jsonrpc
 - [keccak](keccak.md) Create Keccak256 values as hex, string & buffer output
 - [number](number.md) Utility methods to convert to and from `number` values
+- [string](string.md) Utility methods to convert to work with `string` values
 - [u8a](u8a.md) Utility methods to convert to and from `Uint8Array` objects
 
 # Available methods
@@ -56,7 +57,7 @@ l.log('blah'); // <date>     TEST: blah
 Wraps an async callback into a `Promise` 
 
 ```js
-function promisify (fn: (any) => void, ...params: Array<any>): Promise<any>
+function promisify (this: any, fn: Function, ...params: Array<any>): Promise<any>
 ```
 
 
@@ -65,6 +66,6 @@ Wraps the supplied async function `fn` that has a standard JS callback `(error: 
 ```js
 const promisify = require('@polkadot/util/promisify');
 
-await promisify((a, cb) => cb(null, a), true); // resolves with `true`
-await promisify((cb) => cb(new Error('error!'))); // rejects with `error!`
+await promisify(null, ((a, cb) => cb(null, a), true); // resolves with `true`
+await promisify(null, (cb) => cb(new Error('error!'))); // rejects with `error!`
 ```
