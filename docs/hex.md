@@ -3,7 +3,7 @@
 Internal utilities to create and test for hex values 
 
 - [hexAddPrefix](#hexaddprefix) Adds the `0x` prefix to string values.
-- [hexFixLength](#hexfixlength) Pads or shifts a hex string to a specific bitLength
+- [hexFixLength](#hexfixlength) Shifts a hex string to a specific bitLength
 - [hexFromBn](#hexfrombn) Creates a hex value from a BN.js bignumber object.
 - [hexFromBn](#hexfrombn) Creates a hex value from a Buffer object.
 - [hexFromNumber](#hexfromnumber) Creates a hex value from a number.
@@ -32,19 +32,20 @@ console.log('With prefix', hexAddPrefix('0a0b12')) // => 0x0a0b12
 
 ## hexFixLength
 
-Pads or shifts a hex string to a specific bitLength 
+Shifts a hex string to a specific bitLength 
 
 ```js
-hexFixLength (value: string, bitLength: number = -1): string
+hexFixLength (value: string, bitLength: number = -1, withPadding: boolean = false): string
 ```
 
 
-Returns a `0x` prefixed string with the specified number of bits contained in the return value. (If bitLength is -1, length checking is not done). Input values with less bits are zero-padded, values with more bits are trimmed to the specified length.
+Returns a `0x` prefixed string with the specified number of bits contained in the return value. (If bitLength is -1, length checking is not done). Values with more bits are trimmed to the specified length. Input values with less bits are returned as-is by default. When `withPadding` is set, shorter val;ues are padded with `0`.
 
 ```js
 import { hexFixLength } from '@polkadot/util';
 
-console.log('fixed', hexFixLength('0x12', 16)) // => 0x0012
+console.log('fixed', hexFixLength('0x12', 16)) // => 0x12
+console.log('fixed', hexFixLength('0x12', 16, true)) // => 0x0012
 console.log('fixed', hexFixLength('0x0012', 8)) // => 0x12
 ```
 
