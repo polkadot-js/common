@@ -3,6 +3,7 @@
 Type checking utilities 
 
 - [isBN](#isbn) Tests for a `BN` object instance.
+- [isBoolean](#isboolean) Tests for a boolean value.
 - [isBuffer](#isbuffer) Tests for a `Buffer` object instance.
 - [isError](#iserror) Tests for a `Error` object instance.
 - [isFunction](#isfunction) Tests for a `function`.
@@ -32,6 +33,23 @@ import BN from 'bn.js';
 import { isBN } from '@polkadot/util';
 
 console.log('isBN', isBN(new BN(1))); // => true
+```
+
+## isBoolean
+
+Tests for a boolean value. 
+
+```js
+isBoolean (value: any): boolean
+```
+
+
+Checks to see if the input value is a JavaScript boolean.
+
+```js
+import { isBoolean } from '@polkadot/util';
+
+isBoolean(false); // => true
 ```
 
 ## isBuffer

@@ -3,6 +3,7 @@
 
 const isBN = require('./bn');
 const isBuffer = require('./buffer');
+const isBoolean = require('./boolean');
 const isError = require('./error');
 const isFunction = require('./function');
 const isHex = require('./hex');
@@ -20,6 +21,7 @@ const isUndefined = require('./undefined');
 */
 module.exports = {
   isBN,
+  isBoolean,
   isBuffer,
   isError,
   isFunction,
