@@ -4,8 +4,10 @@
 import type { InterfaceInputType, InterfaceOutputType } from '@polkadot/api-jsonrpc/types';
 
 function formatParam (param: InterfaceInputType | InterfaceOutputType): string {
+  // flowlint-next-line sketchy-null-mixed:off,sketchy-null-string:off
   return param.name
-    ? `${((param.name: any): string)}: ${param.type}`
+    // $FlowFixMe InterfaceInputType found, has name
+    ? `${param.name}: ${param.type}`
     : param.type;
 }
 

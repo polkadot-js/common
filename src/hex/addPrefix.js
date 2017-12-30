@@ -15,10 +15,12 @@ const hasPrefix = require('./hasPrefix');
     console.log('With prefix', hexAddPrefix('0a0b12')) // => 0x0a0b12
 */
 module.exports = function hexAddPrefix (value: ?string): string {
+  // flowlint-next-line sketchy-null-string:off
   if (value && hasPrefix(value)) {
     return value;
   }
 
+  // flowlint-next-line sketchy-null-string:off
   const prefix = value && value.length % 2 === 1
     ? '0'
     : '';

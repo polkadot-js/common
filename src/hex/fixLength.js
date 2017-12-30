@@ -1,8 +1,6 @@
 // ISC, Copyright 2017 Jaco Greeff
 // @flow
 
-const assert = require('../assert');
-const isHex = require('../is/hex');
 const hexAddPrefix = require('./addPrefix');
 const hexStripPrefix = require('./stripPrefix');
 const { ZEROS_256 } = require('./constants');
@@ -21,8 +19,6 @@ const { ZEROS_256 } = require('./constants');
     console.log('fixed', hexFixLength('0x0012', 8)) // => 0x12
 */
 module.exports = function hexFixLength (value: string, bitLength: number = -1, withPadding: boolean = false): string {
-  assert(isHex(value), `Expected hex input value, found '${value}' instead`);
-
   const strLength = bitLength / 4;
   const hexLength = strLength + 2;
 

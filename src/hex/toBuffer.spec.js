@@ -16,10 +16,4 @@ describe('hexToBuffer', () => {
       )
     ).toEqual(true);
   });
-
-  it('throws error on non-hex inputs', () => {
-    expect(
-      () => hexToBuffer('notAHex')
-    ).toThrow(/Cannot convert non-hex value/);
-  });
 });

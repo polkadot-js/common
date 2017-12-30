@@ -1,11 +1,9 @@
 // ISC, Copyright 2017 Jaco Greeff
 // @flow
 
-const assert = require('../assert');
-const isBuffer = require('../is/buffer');
 const hexAddPrefix = require('../hex/addPrefix');
 
-const ZERO_HEX = '0x';
+const ZERO_HEX = '0x00';
 
 /**
   @name bufferToHex
@@ -16,14 +14,12 @@ const ZERO_HEX = '0x';
   @example
     import { bufferToHex } from '@polkadot/util';
 
-    console.log('Hex value', bufferToHex(Buffer.from([1, 2, 3]));
+    bufferToHex(Buffer.from([1, 2, 3]); // => 0x010203
 */
 module.exports = function bufferToHex (value?: Buffer): string {
   if (!value) {
     return ZERO_HEX;
   }
-
-  assert(isBuffer(value), `Cannot convert non-buffer to hex`);
 
   return hexAddPrefix(
     value.toString('hex')

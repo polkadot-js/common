@@ -1,9 +1,6 @@
 // ISC, Copyright 2017 Jaco Greeff
 // @flow
 
-const assert = require('../assert');
-const isBuffer = require('../is/buffer');
-
 /**
   @name bufferToU8a
   @signature bufferToU8a (value?: Buffer): string
@@ -19,8 +16,6 @@ module.exports = function bufferToU8a (buffer?: Buffer): Uint8Array {
   if (!buffer) {
     return new Uint8Array([]);
   }
-
-  assert(isBuffer(buffer), 'Cannot convert non-buffer to Uint8Array');
 
   const array = new Uint8Array(buffer.length);
 

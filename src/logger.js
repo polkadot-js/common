@@ -2,14 +2,14 @@
 // @flow
 
 type Logger = {
-  error: (...values: Array<any>) => void,
-  log: (...values: Array<any>) => void,
-  warn: (...values: Array<any>) => void
+  error: (...values: Array<mixed>) => void,
+  log: (...values: Array<mixed>) => void,
+  warn: (...values: Array<mixed>) => void
 };
 
 type LogType = 'error' | 'log' | 'warn';
 
-function apply (log: LogType, type: string, values: Array<any>): void {
+function apply (log: LogType, type: string, values: Array<mixed>): void {
   console[log].apply(console, [new Date().toString(), type].concat(values));
 }
 
@@ -28,8 +28,8 @@ module.exports = function logger (_type: string): Logger {
   const type = `               ${_type.toUpperCase()}:`.slice(-16);
 
   return {
-    error: (...values: Array<any>): void => apply('error', type, values),
-    log: (...values: Array<any>): void => apply('log', type, values),
-    warn: (...values: Array<any>): void => apply('warn', type, values)
+    error: (...values: Array<mixed>): void => apply('error', type, values),
+    log: (...values: Array<mixed>): void => apply('log', type, values),
+    warn: (...values: Array<mixed>): void => apply('warn', type, values)
   };
 };

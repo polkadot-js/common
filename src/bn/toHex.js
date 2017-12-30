@@ -3,11 +3,9 @@
 
 const BN = require('bn.js');
 
-const assert = require('../assert');
 const hexAddPrefix = require('../hex/addPrefix');
-const isBN = require('../is/bn');
 
-const ZERO_STR = '0x';
+const ZERO_STR = '0x00';
 
 /**
   @name bnToHex
@@ -19,14 +17,12 @@ const ZERO_STR = '0x';
     import BN from 'bn.js';
     import { bnToHex } from '@polkadot/util';
 
-    console.log('Hex value', bnToHex(new BN(123456));
+    bnToHex(new BN(0x123456)); // => '0x123456'
 */
 module.exports = function bnToHex (value?: BN): string {
   if (!value) {
     return ZERO_STR;
   }
-
-  assert(isBN(value), `Cannot convert from non-BN value '${(value: any)}' to hex`);
 
   return hexAddPrefix(value.toString(16));
 };

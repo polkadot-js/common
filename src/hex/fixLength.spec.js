@@ -3,12 +3,6 @@
 const { hexFixLength } = require('./index');
 
 describe('hexFixLength', () => {
-  it('throws an exception on non-hex inputs', () => {
-    expect(
-      () => hexFixLength('notAHex')
-    ).toThrow(/Expected hex input value/);
-  });
-
   it('returns bitLength === -1 as-is', () => {
     expect(
       hexFixLength('0x12345678')

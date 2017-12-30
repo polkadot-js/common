@@ -15,6 +15,7 @@ const hasPrefix = require('./hasPrefix');
     console.log('stripped', hexStripPrefix('0x1234')); // => 1234
 */
 module.exports = function hexStripPrefix (value: ?string): string {
+  // flowlint-next-line sketchy-null-string:off
   if (value && hasPrefix(value)) {
     return value.substr(2);
   }

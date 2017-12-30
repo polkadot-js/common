@@ -3,12 +3,6 @@
 const { promisify } = require('./index');
 
 describe('promisify', () => {
-  it('requires a function to promisify', () => {
-    expect(
-      () => promisify()
-    ).toThrow(/Expected function input/);
-  });
-
   it('handles functions with no parameters (resolve)', () => {
     const fn = (cb) => cb(null, [true, 'test', 1]);
 

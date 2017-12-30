@@ -6,7 +6,7 @@ const isFunction = require('./is/function');
 
 /**
   @name assert
-  @signature assert (test: any, message: string | () => string, code: number = ExtError.CODES.ASSERT, data: any): void
+  @signature assert (test: mixed, message: string | () => string, code: number = ExtError.CODES.ASSERT, data: mixed): void
   @summary Checks for a valid test, if not ExtError is thrown.
   @description
     Checks that `test` is a truthy value. If value is falsy (`null`, `undefined`, `false`, ...), it throws an ExtError with the supplied `message` and an optional `code` and `data`. When `test` passes, `true` is returned.
@@ -17,14 +17,17 @@ const isFunction = require('./is/function');
     assert(false, 'False should not be true'); // ExtError thrown
     assert(false, () => 'message'); // ExtError with 'message'
 */
-module.exports = function assert (test: any, message: string | () => string, code: number = ExtError.CODES.ASSERT, data: any): boolean {
+module.exports = function assert (test: mixed, message: string | () => string, code: number = ExtError.CODES.ASSERT, data: mixed): boolean {
+  // flowlint-next-line sketchy-null:off
   if (test) {
     return true;
   }
 
   if (isFunction(message)) {
-    message = ((message: any): () => string)();
+    // $FlowFixMe we have a function here
+    message = message();
   }
 
-  throw new ExtError(((message: any): string), code, data);
+  // $FlowFixMe we have a string here
+  throw new ExtError(message, code, data);
 };

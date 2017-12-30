@@ -7,7 +7,7 @@ const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
 
 /**
   @name isHex
-  @signature isHex (value: any, bitLength: number = -1): boolean
+  @signature isHex (value: string, bitLength: number = -1): boolean
   @summary Tests for a hex string.
   @description
     Checks to see if the input value is a `0x` prefixed hex string. Optionally (`bitLength` !== -1) checks to see if the bitLength is correct.
@@ -17,11 +17,11 @@ const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
     isHex('0x1234'); // => true
     isHex('0x1234', 8); // => false
 */
-module.exports = function isHex (value: any, bitLength: number = -1): boolean {
+module.exports = function isHex (value: string, bitLength: number = -1): boolean {
   const isValidHex = isString(value) && HEX_REGEX.test(value);
 
   if (isValidHex && bitLength !== -1) {
-    return (value: string).length === 2 + bitLength / 4;
+    return value.length === (2 + bitLength / 4);
   }
 
   return isValidHex;

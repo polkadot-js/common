@@ -3,7 +3,7 @@
 
 /**
   @name isBoolean
-  @signature isBoolean (value: any): boolean
+  @signature isBoolean (value: mixed): boolean
   @summary Tests for a boolean value.
   @description
     Checks to see if the input value is a JavaScript boolean.
@@ -12,6 +12,6 @@
 
     isBoolean(false); // => true
 */
-module.exports = function isBoolean (value: any): boolean {
+module.exports = function isBoolean (value: mixed): boolean {
   return typeof value === 'boolean';
 };

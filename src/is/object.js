@@ -3,7 +3,7 @@
 
 /**
   @name isObject
-  @signature isObject (value: any): boolean
+  @signature isObject (value: mixed): boolean
   @summary Tests for an `object`.
   @description
     Checks to see if the input value is a JavaScript object.
@@ -13,6 +13,6 @@
     isObject({}); // => true
     isObject('something'); // => false
 */
-module.exports = function isObject (value: any): boolean {
+module.exports = function isObject (value: mixed): boolean {
   return typeof value === 'object';
 };

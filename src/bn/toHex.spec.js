@@ -11,15 +11,9 @@ describe('bnToHex', () => {
     ).toEqual('0x80');
   });
 
-  it('converts null values to 0x', () => {
+  it('converts null values to 0x00', () => {
     expect(
       bnToHex(null)
-    ).toEqual('0x');
-  });
-
-  it('throws when trying to convert non-BN values', () => {
-    expect(
-      () => bnToHex('notABn')
-    ).toThrow(/Cannot convert from non-BN/);
+    ).toEqual('0x00');
   });
 });

@@ -5,7 +5,7 @@ const isInstanceOf = require('./instanceOf');
 
 /**
   @name isBuffer
-  @signature isBuffer (value: any): boolean
+  @signature isBuffer (value: mixed): boolean
   @summary Tests for a `Buffer` object instance.
   @description
     Checks to see if the input object is an instance of `Buffer`.
@@ -14,6 +14,6 @@ const isInstanceOf = require('./instanceOf');
 
     console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
 */
-module.exports = function isBuffer (value: any): boolean {
+module.exports = function isBuffer (value: mixed): boolean {
   return isInstanceOf(value, Buffer);
 };
