@@ -3,12 +3,6 @@
 const { arrayFilter } = require('./index');
 
 describe('filterArray', () => {
-  it('expects an array input', () => {
-    expect(
-      () => arrayFilter('notAnArray')
-    ).toThrow(/Expected Array input value/);
-  });
-
   it('filters arrays, removing undefined', () => {
     expect(
       arrayFilter([0, '', null, false, void 0, NaN])

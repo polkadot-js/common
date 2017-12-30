@@ -3,7 +3,7 @@
 
 /**
   @name isUndefined
-  @signature isUndefined (value: any): boolean
+  @signature isUndefined (value: mixed): boolean
   @summary Tests for a `undefined` values.
   @description
     Checks to see if the input value is `undefined`.
@@ -12,6 +12,6 @@
 
     console.log('isUndefined', isUndefined(void(0))); // => true
 */
-module.exports = function isUndefined (value: any): boolean {
+module.exports = function isUndefined (value: mixed): boolean {
   return typeof value === 'undefined';
 };

@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
   "keywords": [
@@ -29,8 +29,8 @@
     "test": "jest --coverage"
   },
   "devDependencies": {
-    "@polkadot/api-jsonrpc": "^0.6.7",
-    "@polkadot/dev": "^0.13.5"
+    "@polkadot/api-jsonrpc": "^0.6.8",
+    "@polkadot/dev": "^0.14.5"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",

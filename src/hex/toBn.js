@@ -3,9 +3,7 @@
 
 const BN = require('bn.js');
 
-const assert = require('../assert');
 const hexStripPrefix = require('./stripPrefix');
-const isHex = require('../is/hex');
 
 const ZERO_BN = new BN(0);
 
@@ -18,14 +16,13 @@ const ZERO_BN = new BN(0);
   @example
     import { hexToBn } from '@polkadot/util';
 
-    console.log('BN object', hexToBn('0x123480001f'));
+    hexToBn('0x123480001f'); // => BN(0x123480001f)
 */
 module.exports = function hexToBn (value?: string): BN {
+  // flowlint-next-line sketchy-null-string:off
   if (!value) {
     return ZERO_BN;
   }
-
-  assert(isHex(value), `Cannot convert from non-hex value '${value}' to BN`);
 
   return new BN(hexStripPrefix(value), 16);
 };

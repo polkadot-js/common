@@ -6,7 +6,7 @@ const hexToBuffer = require('../hex/toBuffer');
 
 /**
   @name hexToNumber
-  @signature hexToNumber (value?: Hex): number
+  @signature hexToNumber (value?: string): number
   @summary Creates a Number value from a Buffer object.
   @description
     `null` inputs returns an NaN result, `hex` values return the actual value as a `Number`.
@@ -16,6 +16,7 @@ const hexToBuffer = require('../hex/toBuffer');
     hexToNumber('0x1234'); // => 0x1234
 */
 module.exports = function hexToNumber (value?: string): number {
+  // flowlint-next-line sketchy-null-string:off
   if (!value) {
     return NaN;
   }

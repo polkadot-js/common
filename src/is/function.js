@@ -3,7 +3,7 @@
 
 /**
   @name isFunction
-  @signature isFunction (value: any): boolean
+  @signature isFunction (value: mixed): boolean
   @summary Tests for a `function`.
   @description
     Checks to see if the input value is a JavaScript function.
@@ -12,6 +12,6 @@
 
     console.log('isFunction', isFunction(() => false)); // => true
 */
-module.exports = function isFunction (value: any): boolean {
+module.exports = function isFunction (value: mixed): boolean {
   return typeof value === 'function';
 };

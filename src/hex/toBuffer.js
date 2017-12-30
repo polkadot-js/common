@@ -1,8 +1,6 @@
 // ISC, Copyright 2017 Jaco Greeff
 // @flow
 
-const assert = require('../assert');
-const isHex = require('../is/hex');
 const hexStripPrefix = require('./stripPrefix');
 
 /**
@@ -14,14 +12,13 @@ const hexStripPrefix = require('./stripPrefix');
   @example
     import { hexToBuffer } from '@polkadot/util';
 
-    console.log('Buffer object', hexToBuffer('0x123480001f'));
+    hexToBuffer('0x123480001f'); // Buffer([0x12, 0x34, 0x80, 0x00, 0x1f])
 */
 module.exports = function hexToBuffer (value?: string): Buffer {
+  // flowlint-next-line sketchy-null-string:off
   if (!value) {
     return Buffer.from([]);
   }
-
-  assert(isHex(value), `Cannot convert non-hex value '${value}' to Buffer`);
 
   return Buffer.from(hexStripPrefix(value), 'hex');
 };

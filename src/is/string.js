@@ -3,7 +3,7 @@
 
 /**
   @name isString
-  @signature isString (value: any): boolean
+  @signature isString (value: mixed): boolean
   @summary Tests for a string.
   @description
     Checks to see if the input value is a JavaScript string.
@@ -12,6 +12,6 @@
 
     console.log('isString', isString('test')); // => true
 */
-module.exports = function isString (value: any): boolean {
+module.exports = function isString (value: mixed): boolean {
   return typeof value === 'string';
 };

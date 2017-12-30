@@ -5,7 +5,7 @@ const BN = require('bn.js');
 
 /**
   @name isBN
-  @signature isBN (value: any): boolean
+  @signature isBN (value: mixed): boolean
   @summary Tests for a `BN` object instance.
   @description
     Checks to see if the input object is an instance of `BN` (bn.js).
@@ -15,6 +15,6 @@ const BN = require('bn.js');
 
     console.log('isBN', isBN(new BN(1))); // => true
 */
-module.exports = function isBN (value: any): boolean {
+module.exports = function isBN (value: mixed): boolean {
   return BN.isBN(value);
 };

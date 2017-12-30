@@ -3,7 +3,7 @@
 
 /**
   @name isNumber
-  @signature isNumber (value: any): boolean
+  @signature isNumber (value: mixed): boolean
   @summary Tests for a JavaScript number.
   @description
     Checks to see if the input value is a valid number.
@@ -12,6 +12,6 @@
 
     console.log('isNumber', isNumber(1234)); // => true
 */
-module.exports = function isNumber (value: any): boolean {
+module.exports = function isNumber (value: mixed): boolean {
   return typeof value === 'number';
 };

@@ -14,10 +14,4 @@ describe('u8aToBuffer', () => {
       u8aToBuffer(new Uint8Array([128, 0, 10]))
     ).toEqual(Buffer.from([128, 0, 10]));
   });
-
-  it('throws when non-Uint8Array value is supplied', () => {
-    expect(
-      () => u8aToBuffer('noU8A')
-    ).toThrow(/Cannot convert non-Uint8Array/);
-  });
 });

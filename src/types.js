@@ -3,7 +3,7 @@
 
 export interface ExtErrorInterface {
   code: number;
-  data: any;
+  data: mixed;
   message: string;
   stack: string;
 }

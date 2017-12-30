@@ -3,7 +3,7 @@
 
 /**
   @name isNull
-  @signature isNull (value: any): boolean
+  @signature isNull (value: mixed): boolean
   @summary Tests for a `null` values.
   @description
     Checks to see if the input value is `null`.
@@ -12,6 +12,6 @@
 
     console.log('isNull', isNull(null)); // => true
 */
-module.exports = function isNull (value: any): boolean {
+module.exports = function isNull (value: mixed): boolean {
   return value === null;
 };

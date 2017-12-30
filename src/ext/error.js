@@ -12,7 +12,7 @@ const UNKNOWN = -99999;
   @signature ExtError (message: string = '', code: number = UNKNOWN_ERROR, value: any)
   @summary Extension to the basic JS Error.
   @description
-    The built-in JavaScript Error class is extended by adding a code to allow for Error categorization. In addition to the normal `stack`, `message`, the numeric `code` and `data` (any types) parameters are available on the object.
+    The built-in JavaScript Error class is extended by adding a code to allow for Error categorization. In addition to the normal `stack`, `message`, the numeric `code` and `data` (mixed types) parameters are available on the object.
   @example
     const { ExtError } = require('@polkadot/util');
 
@@ -20,15 +20,15 @@ const UNKNOWN = -99999;
 */
 module.exports = class ExtError extends Error implements ExtErrorInterface {
   code: number;
-  data: any;
+  data: mixed;
   message: string;
   name: string;
   stack: string;
 
-  constructor (message: string = '', code: number = UNKNOWN, data: any) {
+  constructor (message: string = '', code: number = UNKNOWN, data: mixed) {
     super();
 
-    const extend = (name: string, value: any): void => {
+    const extend = (name: string, value: mixed): void => {
       Object.defineProperty(this, name, {
         configurable: true,
         enumerable: false,

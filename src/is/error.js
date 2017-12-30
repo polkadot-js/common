@@ -5,7 +5,7 @@ const isInstanceOf = require('./instanceOf');
 
 /**
   @name isError
-  @signature isError (value: any): boolean
+  @signature isError (value: mixed): boolean
   @summary Tests for a `Error` object instance.
   @description
     Checks to see if the input object is an instance of `Error`.
@@ -14,6 +14,6 @@ const isInstanceOf = require('./instanceOf');
 
     console.log('isError', isError(new Error('message'))); // => true
 */
-module.exports = function isError (value: any): boolean {
+module.exports = function isError (value: mixed): boolean {
   return isInstanceOf(value, Error);
 };

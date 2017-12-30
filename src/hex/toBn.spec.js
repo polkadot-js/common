@@ -22,10 +22,4 @@ describe('hexToBn', () => {
       )
     ).toEqual(true);
   });
-
-  it('throws when trying to convert non-BN values', () => {
-    expect(
-      () => hexToBn('noAHex')
-    ).toThrow(/Cannot convert from non-hex/);
-  });
 });
