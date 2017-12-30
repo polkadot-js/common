@@ -22,7 +22,7 @@ Type checking utilities
 Tests for a `BN` object instance. 
 
 ```js
-isBN (value: any): boolean
+isBN (value: mixed): boolean
 ```
 
 
@@ -40,7 +40,7 @@ console.log('isBN', isBN(new BN(1))); // => true
 Tests for a boolean value. 
 
 ```js
-isBoolean (value: any): boolean
+isBoolean (value: mixed): boolean
 ```
 
 
@@ -57,7 +57,7 @@ isBoolean(false); // => true
 Tests for a `Buffer` object instance. 
 
 ```js
-isBuffer (value: any): boolean
+isBuffer (value: mixed): boolean
 ```
 
 
@@ -74,7 +74,7 @@ console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
 Tests for a `Error` object instance. 
 
 ```js
-isError (value: any): boolean
+isError (value: mixed): boolean
 ```
 
 
@@ -91,7 +91,7 @@ console.log('isError', isError(new Error('message'))); // => true
 Tests for a `function`. 
 
 ```js
-isFunction (value: any): boolean
+isFunction (value: mixed): boolean
 ```
 
 
@@ -108,7 +108,7 @@ console.log('isFunction', isFunction(() => false)); // => true
 Tests for a hex string. 
 
 ```js
-isHex (value: any, bitLength: number = -1): boolean
+isHex (value: string, bitLength: number = -1): boolean
 ```
 
 
@@ -126,7 +126,7 @@ isHex('0x1234', 8); // => false
 Tests for a instance of a class. 
 
 ```js
-isInstanceOf (value: any, clazz: any): boolean
+isInstanceOf (value: mixed, clazz: Class<mixed>): boolean
 ```
 
 
@@ -143,7 +143,7 @@ console.log('isInstanceOf', isInstanceOf(new Array(0), Array)); // => true
 Tests if the value is a valid IP address 
 
 ```js
-isIp (value: any, type?: 'v4' | 'v6'): boolean
+isIp (value: string, type?: 'v4' | 'v6'): boolean
 ```
 
 
@@ -163,7 +163,7 @@ isIp('1:2:3:4:5:6:7:8', 'v4'); // => false
 Tests for a `null` values. 
 
 ```js
-isNull (value: any): boolean
+isNull (value: mixed): boolean
 ```
 
 
@@ -180,7 +180,7 @@ console.log('isNull', isNull(null)); // => true
 Tests for a JavaScript number. 
 
 ```js
-isNumber (value: any): boolean
+isNumber (value: mixed): boolean
 ```
 
 
@@ -197,7 +197,7 @@ console.log('isNumber', isNumber(1234)); // => true
 Tests for an `object`. 
 
 ```js
-isObject (value: any): boolean
+isObject (value: mixed): boolean
 ```
 
 
@@ -215,7 +215,7 @@ isObject('something'); // => false
 Tests for a string. 
 
 ```js
-isString (value: any): boolean
+isString (value: mixed): boolean
 ```
 
 
@@ -232,7 +232,7 @@ console.log('isString', isString('test')); // => true
 Tests for a `Uint8Array` object instance. 
 
 ```js
-isUint8Array (value: any): boolean
+isUint8Array (value: mixed): boolean
 ```
 
 
@@ -249,7 +249,7 @@ console.log('isUint8Array', isUint8Array([])); // => false
 Tests for a `undefined` values. 
 
 ```js
-isUndefined (value: any): boolean
+isUndefined (value: mixed): boolean
 ```
 
 

@@ -9,7 +9,7 @@ Utility methods to convert to work with `string` values
 Returns a string with maximum length 
 
 ```js
-stringShorten (value: any, prefixLength: number = 8): string
+stringShorten (value: mixed, prefixLength: number = 8): string
 ```
 
 

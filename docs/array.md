@@ -9,7 +9,7 @@ Utility methods that operates on arrays
 Filters undefined and (optionally) null values from an array 
 
 ```js
-arrayFilter (array: Array<any>, allowNulls: boolean = true): Array<any>
+arrayFilter (array: Array<mixed>, allowNulls: boolean = true): Array<mixed>
 ```
 
 

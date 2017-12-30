@@ -21,7 +21,7 @@ Utility methods for this package are split into groups
 Checks for a valid test, if not ExtError is thrown. 
 
 ```js
-assert (test: any, message: string | () => string, code: number = ExtError.CODES.ASSERT, data: any): void
+assert (test: mixed, message: string | () => string, code: number = ExtError.CODES.ASSERT, data: mixed): void
 ```
 
 
@@ -57,7 +57,7 @@ l.log('blah'); // <date>     TEST: blah
 Wraps an async callback into a `Promise` 
 
 ```js
-function promisify (this: any, fn: Function, ...params: Array<any>): Promise<any>
+function promisify (this: ?Object, fn: Function, ...params: Array<mixed>): Promise<mixed>
 ```
 
 

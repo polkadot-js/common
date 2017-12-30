@@ -32,5 +32,5 @@ bnToHex (value?: BN): string
 import BN from 'bn.js';
 import { bnToHex } from '@polkadot/util';
 
-console.log('Hex value', bnToHex(new BN(123456));
+bnToHex(new BN(0x123456)); // => '0x123456'
 ```

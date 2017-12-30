@@ -133,7 +133,7 @@ hexToBn (value?: string): BN
 ```js
 import { hexToBn } from '@polkadot/util';
 
-console.log('BN object', hexToBn('0x123480001f'));
+hexToBn('0x123480001f'); // => BN(0x123480001f)
 ```
 
 ## hexToBuffer
@@ -150,7 +150,7 @@ hexToBuffer (value?: string): Buffer
 ```js
 import { hexToBuffer } from '@polkadot/util';
 
-console.log('Buffer object', hexToBuffer('0x123480001f'));
+hexToBuffer('0x123480001f'); // Buffer([0x12, 0x34, 0x80, 0x00, 0x1f])
 ```
 
 ## hexToNumber
@@ -158,7 +158,7 @@ console.log('Buffer object', hexToBuffer('0x123480001f'));
 Creates a Number value from a Buffer object. 
 
 ```js
-hexToNumber (value?: Hex): number
+hexToNumber (value?: string): number
 ```
 
 

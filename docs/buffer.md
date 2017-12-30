@@ -59,7 +59,7 @@ bufferToHex (value?: Buffer): string
 ```js
 import { bufferToHex } from '@polkadot/util';
 
-console.log('Hex value', bufferToHex(Buffer.from([1, 2, 3]));
+bufferToHex(Buffer.from([1, 2, 3]); // => 0x010203
 ```
 
 ## bufferToNumber
