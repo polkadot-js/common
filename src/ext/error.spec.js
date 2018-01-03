@@ -1,4 +1,4 @@
-// ISC, Copyright 2017 Jaco Greeff
+// ISC, Copyright 2017-2018 Jaco Greeff
 
 const isError = require('../is/error');
 const { ExtError } = require('./index');
