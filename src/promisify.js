@@ -3,7 +3,7 @@
 
 /**
   @name promisify
-  @signature function promisify (this: ?Object, fn: Function, ...params: Array<mixed>): Promise<mixed>
+  @signature function promisify (this: ?Object, fn: Function, ...params: Array<mixed>): Promise<any>
   @summary Wraps an async callback into a `Promise`
   @description
     Wraps the supplied async function `fn` that has a standard JS callback `(error: Error, result: any)` into a `Promise`, passing the supplied parameters. When `error` is set, the Promise is rejected, else the Promise resolves with the `result` value.
@@ -14,10 +14,11 @@
     await promisify(null, (cb) => cb(new Error('error!'))); // rejects with `error!`
 */
 // flowlint-next-line unclear-type:off
-module.exports = function promisify (self: ?Object, fn: Function, ...params: Array<mixed>): Promise<mixed> {
+module.exports = function promisify (self: ?Object, fn: Function, ...params: Array<mixed>): Promise<any> {
   return new Promise((resolve, reject) => {
     fn.apply(self, params.concat([
-      (error: ?Error, result: mixed): void => {
+      // flowlint-next-line unclear-type:off
+      (error: ?Error, result: any): void => {
         if (error) {
           reject(error);
         } else {
