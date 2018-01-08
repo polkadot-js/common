@@ -57,7 +57,7 @@ l.log('blah'); // <date>     TEST: blah
 Wraps an async callback into a `Promise` 
 
 ```js
-function promisify (this: ?Object, fn: Function, ...params: Array<mixed>): Promise<mixed>
+function promisify (this: ?Object, fn: Function, ...params: Array<mixed>): Promise<any>
 ```
 
 
