@@ -25,6 +25,7 @@ module.exports = function logger (_type: string): Logger {
   let isDebug;
 
   try {
+    // $FlowFixMe this can fail (undefined/null) - hence the try/catch
     const debugList = process.env.DEBUG.split(',');
 
     isDebug = !!debugList.find((entry) => _type.indexOf(entry) === 0);
