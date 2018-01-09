@@ -6,9 +6,14 @@ describe('logger', () => {
   let dateMatch;
   let prefixMatch;
   let l;
+  let ln;
   let spy;
 
   beforeEach(() => {
+    ln = logger('notDebug');
+
+    process.env.DEBUG = 'test';
+
     l = logger('test');
 
     spy = {
@@ -66,5 +71,41 @@ describe('logger', () => {
       'a',
       2
     );
+  });
+
+  it('does debug log when DEBUG specified', () => {
+    l.debug('test');
+
+    expect(spy.log).toHaveBeenCalledWith(
+      dateMatch,
+      prefixMatch,
+      'test'
+    );
+  });
+
+  it('does debug log when DEBUG partial specified', () => {
+    l = logger('testing');
+    l.debug('test');
+
+    expect(spy.log).toHaveBeenCalledWith(
+      dateMatch,
+      expect.stringMatching(/TESTING:/),
+      'test'
+    );
+  });
+
+  it('does not debug log when non-matching DEBUG specified', () => {
+    process.env.DEBUG = 'blah';
+
+    l = logger('test');
+    l.debug('test');
+
+    expect(spy.log).not.toHaveBeenCalled();
+  });
+
+  it('does not debug log when no DEBUG specified', () => {
+    ln.debug('test');
+
+    expect(spy.log).not.toHaveBeenCalled();
   });
 });
