@@ -69,9 +69,9 @@
   dependencies:
     babel-runtime "^6.26.0"
 
-"@polkadot/dev@^0.14.6":
-  version "0.14.6"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.14.6.tgz#4677e48d6a0ce692acdaea75a36ee93968a60e48"
+"@polkadot/dev@^0.14.8":
+  version "0.14.8"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.14.8.tgz#8437d616c701a556cef977c9455a2257c89a66b8"
   dependencies:
     babel-cli "^6.26.0"
     babel-core "^6.26.0"
@@ -95,7 +95,7 @@
     eslint-plugin-promise "^3.6.0"
     eslint-plugin-react "^7.4.0"
     eslint-plugin-standard "^3.0.1"
-    flow-bin "^0.62.0"
+    flow-bin "^0.63.1"
     flow-copy-source "^1.2.1"
     jest "^22.0.0"
     makeshift "^1.1.0"
@@ -925,6 +925,10 @@ bindings@^1.2.1:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.3.0.tgz#b346f6ecf6a95f5a815c5839fc7cdb22502f1ed7"
 
+bindings@~1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.2.1.tgz#14ad6113812d2d37d72e67b4cacb4bb726505f11"
+
 bl@^1.0.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/bl/-/bl-1.2.1.tgz#cac328f7bee45730d404b692203fcb590e172d5e"
@@ -1293,6 +1297,13 @@ dashdash@^1.12.0:
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
   dependencies:
     assert-plus "^1.0.0"
+
+deasync@^0.1.12:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/deasync/-/deasync-0.1.12.tgz#0159492a4133ab301d6c778cf01e74e63b10e549"
+  dependencies:
+    bindings "~1.2.1"
+    nan "^2.0.7"
 
 debug@^2.2.0, debug@^2.6.8:
   version "2.6.9"
@@ -1831,9 +1842,9 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-flow-bin@^0.62.0:
-  version "0.62.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.62.0.tgz#14bca669a6e3f95c0bc0c2d1eb55ec4e98cb1d83"
+flow-bin@^0.63.1:
+  version "0.63.1"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.63.1.tgz#ab00067c197169a5fb5b4996c8f6927b06694828"
 
 flow-copy-source@^1.2.1:
   version "1.2.1"
@@ -3185,7 +3196,7 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
-nan@^2.0.5, nan@^2.2.1, nan@^2.3.0:
+nan@^2.0.5, nan@^2.0.7, nan@^2.2.1, nan@^2.3.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.8.0.tgz#ed715f3fe9de02b57a5e6252d90a96675e1f085a"
 
