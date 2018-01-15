@@ -25,7 +25,7 @@
   "homepage": "https://github.com/polkadot-js/util#readme",
   "scripts": {
     "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
-    "check": "eslint src && flow ls && flow check",
+    "check": "eslint src && flow ls | grep -v node_modules && flow check && exit 1",
     "test": "jest --coverage"
   },
   "devDependencies": {
