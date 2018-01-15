@@ -1,10 +1,8 @@
 [ignore]
-.*/build/.*
 
 [include]
 
 [libs]
-./node_modules/@polkadot/dev/flow-typed
 
 [lints]
 all=warn
