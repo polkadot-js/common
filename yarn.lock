@@ -63,15 +63,15 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@polkadot/api-jsonrpc@^0.6.9":
-  version "0.6.9"
-  resolved "https://registry.yarnpkg.com/@polkadot/api-jsonrpc/-/api-jsonrpc-0.6.9.tgz#11244a10da77fcd3ed74c9f583c837a5acb5215e"
+"@polkadot/api-jsonrpc@^0.6.12":
+  version "0.6.12"
+  resolved "https://registry.yarnpkg.com/@polkadot/api-jsonrpc/-/api-jsonrpc-0.6.12.tgz#ca978c22474b050486a107347580e778a41215b3"
   dependencies:
     babel-runtime "^6.26.0"
 
-"@polkadot/dev@^0.14.8":
-  version "0.14.8"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.14.8.tgz#8437d616c701a556cef977c9455a2257c89a66b8"
+"@polkadot/dev@^0.14.10":
+  version "0.14.10"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.14.10.tgz#f3fcc4baff131139cb8d57dc5a648b3a9978c719"
   dependencies:
     babel-cli "^6.26.0"
     babel-core "^6.26.0"
@@ -934,6 +934,16 @@ bl@^1.0.0:
   resolved "https://registry.yarnpkg.com/bl/-/bl-1.2.1.tgz#cac328f7bee45730d404b692203fcb590e172d5e"
   dependencies:
     readable-stream "^2.0.5"
+
+blake2@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/blake2/-/blake2-1.4.0.tgz#c77bf108c68ee83c5f57d31edefc6bdefe14c368"
+  dependencies:
+    nan "^2.0.0"
+
+blakejs@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/blakejs/-/blakejs-1.1.0.tgz#69df92ef953aa88ca51a32df6ab1c54a155fc7a5"
 
 block-stream@*:
   version "0.0.9"
@@ -3196,7 +3206,7 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
-nan@^2.0.5, nan@^2.0.7, nan@^2.2.1, nan@^2.3.0:
+nan@^2.0.0, nan@^2.0.5, nan@^2.0.7, nan@^2.2.1, nan@^2.3.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.8.0.tgz#ed715f3fe9de02b57a5e6252d90a96675e1f085a"
 

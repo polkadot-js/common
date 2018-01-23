@@ -1,7 +1,7 @@
 {
-  "name": "@polkadot/util",
+  "name": "@polkadot/util-crypto",
   "version": "0.13.0",
-  "description": "A collection of useful utilities for @polkadot",
+  "description": "A collection of useful crypto utilities for @polkadot",
   "main": "index.js",
   "keywords": [
     "Polkadot"
@@ -29,16 +29,10 @@
     "test": "jest --coverage"
   },
   "devDependencies": {
-    "@polkadot/api-jsonrpc": "^0.6.12",
-    "@polkadot/dev": "^0.14.10"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
-    "blake2": "^1.4.0",
     "blakejs": "^1.1.0",
-    "bn.js": "^4.11.8",
-    "deasync": "^0.1.12",
-    "ip-regex": "^2.1.0",
     "keccak": "^1.3.0"
   }
 }

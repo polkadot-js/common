@@ -1,6 +1,6 @@
 # Available interfaces
 
-Utility methods for this package are split into groups 
+Utility methods for this package are split into groups
 
 - [array](array.md) Utility methods that operates on arrays
 - [bn](bn.md) Utility methods to convert to and from `BN` objects
@@ -9,7 +9,6 @@ Utility methods for this package are split into groups
 - [hex](hex.md) Internal utilities to create and test for hex values
 - [is](is.md) Type checking utilities
 - [jsonrpc](jsonrpc.md) Convenience functions for values from @polkadot/api-jsonrpc
-- [keccak](keccak.md) Create Keccak256 values as hex, string & buffer output
 - [number](number.md) Utility methods to convert to and from `number` values
 - [string](string.md) Utility methods to convert to work with `string` values
 - [u8a](u8a.md) Utility methods to convert to and from `Uint8Array` objects
@@ -18,7 +17,7 @@ Utility methods for this package are split into groups
 
 ## assert
 
-Checks for a valid test, if not ExtError is thrown. 
+Checks for a valid test, if not ExtError is thrown.
 
 ```js
 assert (test: mixed, message: string | () => string, code: number = ExtError.CODES.ASSERT, data: mixed): void
@@ -37,7 +36,7 @@ assert(false, () => 'message'); // ExtError with 'message'
 
 ## Logger
 
-Creates a consistent log interface for messages 
+Creates a consistent log interface for messages
 
 ```js
 logger (type: string): Logger
@@ -54,7 +53,7 @@ l.log('blah'); // <date>     TEST: blah
 
 ## promisify
 
-Wraps an async callback into a `Promise` 
+Wraps an async callback into a `Promise`
 
 ```js
 function promisify (this: ?Object, fn: Function, ...params: Array<mixed>): Promise<any>

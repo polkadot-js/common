@@ -12,7 +12,7 @@ const createKeccak = require('keccak');
   @description
     From either a `string` or a `Buffer` input, create the keccak and return the result as a `Buffer`.
   @example
-    import { keccakAsBuffer } from '@polkadot/util';
+    import { keccakAsBuffer } from '@polkadot/util-crypto';
 
     console.log('asBuffer', keccakAsBuffer('123')) // => Buffer
 */

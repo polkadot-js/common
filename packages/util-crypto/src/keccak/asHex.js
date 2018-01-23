@@ -3,8 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+const bufferToHex = require('@polkadot/util/buffer/toHex');
+
 const keccakAsBuffer = require('./asBuffer');
-const bufferToHex = require('../buffer/toHex');
 
 /**
   @name keccakAsHex
@@ -13,7 +14,7 @@ const bufferToHex = require('../buffer/toHex');
   @description
     From either a `string` or a `Buffer` input, create the keccak and return the result as a `0x` prefixed hex string.
   @example
-    import { keccakAsHex } from '@polkadot/util';
+    import { keccakAsHex } from '@polkadot/util-crypto';
 
     console.log('asHex', keccakAsHex('123')) // => 0x...
 */
