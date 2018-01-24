@@ -5,11 +5,12 @@
 
 const blake2s = require('./blake2s');
 const keccak = require('./keccak');
+const nacl = require('./nacl');
 const xxhash = require('./xxhash');
 
 /**
   @summary Utility methods for this package are split into groups
 */
 module.exports = Object.assign(
-  {}, blake2s, keccak, xxhash
+  {}, blake2s, keccak, nacl, xxhash
 );

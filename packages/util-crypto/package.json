@@ -33,6 +33,7 @@
     "babel-runtime": "^6.26.0",
     "blakejs": "^1.1.0",
     "keccak": "^1.3.0",
+    "tweetnacl": "^1.0.0",
     "xxhashjs": "^0.2.2"
   }
 }

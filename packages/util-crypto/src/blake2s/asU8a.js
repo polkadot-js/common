@@ -6,6 +6,17 @@
 // TODO: For Node we can also use node-blake2 (npm blake2)
 const blakejs = require('blakejs');
 
+/**
+  @name blake2sAsU8a
+  @signature blake2sAsU8a (value: Uint8Array): Uint8Array
+  @summary Creates a blake2s Uint8Array from the input.
+  @description
+    From a `Uint8Array` input, create the blake2s and return the result as a `Uint8Array`.
+  @example
+    import { blake2sAsU8a } from '@polkadot/util-crypto';
+
+    blake2sAsU8a('abc') // => Uint8Array('508c5e8c327c14e2e1a72ba34eeb452f37458b209ed63a294d999b4c86675982')
+*/
 module.exports = function blake2sAsU8a (data: Uint8Array): Uint8Array {
   return blakejs.blake2s(data);
 };
