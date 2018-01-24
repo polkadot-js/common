@@ -12,7 +12,7 @@ const keccakAsBuffer = require('./asBuffer');
   @description
     From either a `string` or a `Buffer` input, create the keccak and return the result as a non-prefixed string.
   @example
-    import { keccakAsString } from '@polkadot/util';
+    import { keccakAsString } from '@polkadot/util-crypto';
 
     console.log('asString', keccakAsString('123')) // => string
 */

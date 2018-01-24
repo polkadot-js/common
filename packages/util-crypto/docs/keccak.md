@@ -18,7 +18,7 @@ keccakAsBuffer (value: Buffer | string): Buffer
 From either a `string` or a `Buffer` input, create the keccak and return the result as a `Buffer`.
 
 ```js
-import { keccakAsBuffer } from '@polkadot/util';
+import { keccakAsBuffer } from '@polkadot/util-crypto';
 
 console.log('asBuffer', keccakAsBuffer('123')) // => Buffer
 ```
@@ -35,7 +35,7 @@ keccakAsHex (value: Buffer | string): string
 From either a `string` or a `Buffer` input, create the keccak and return the result as a `0x` prefixed hex string.
 
 ```js
-import { keccakAsHex } from '@polkadot/util';
+import { keccakAsHex } from '@polkadot/util-crypto';
 
 console.log('asHex', keccakAsHex('123')) // => 0x...
 ```
@@ -52,7 +52,7 @@ keccakAsString (value: Buffer | string): string
 From either a `string` or a `Buffer` input, create the keccak and return the result as a non-prefixed string.
 
 ```js
-import { keccakAsString } from '@polkadot/util';
+import { keccakAsString } from '@polkadot/util-crypto';
 
 console.log('asString', keccakAsString('123')) // => string
 ```

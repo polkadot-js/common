@@ -5,9 +5,8 @@
 [![travis](https://img.shields.io/travis/polkadot-js/util.svg?style=flat-square)](https://travis-ci.org/polkadot-js/util)
 [![maintainability](https://img.shields.io/codeclimate/maintainability/polkadot-js/util.svg?style=flat-square)](https://codeclimate.com/github/polkadot-js/util/maintainability)
 [![coverage](https://img.shields.io/coveralls/polkadot-js/util.svg?style=flat-square)](https://coveralls.io/github/polkadot-js/util?branch=master)
-[![greenkeeper](https://img.shields.io/badge/greenkeeper-enabled-brightgreen.svg?style=flat-square)](https://greenkeeper.io/)
-[![dependency](https://img.shields.io/david/polkadot-js/util.svg?style=flat-square)](https://david-dm.org/polkadot-js/util)
-[![devDependency](https://img.shields.io/david/dev/polkadot-js/util.svg?style=flat-square)](https://david-dm.org/polkadot-js/util#info=devDependencies)
+[![dependency](https://david-dm.org/polkadot-js/util.svg?style=flat-square&path=packages/util)](https://david-dm.org/polkadot-js/util?path=packages/util)
+[![devDependency](https://david-dm.org/polkadot-js/util/dev-status.svg?style=flat-square&path=packages/util)](https://david-dm.org/polkadot-js/util?path=packages/util#info=devDependencies)
 
 # @polkadot/util
 

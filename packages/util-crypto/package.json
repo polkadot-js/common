@@ -22,17 +22,17 @@
   "bugs": {
     "url": "https://github.com/polkadot-js/util/issues"
   },
-  "homepage": "https://github.com/polkadot-js/util#readme",
+  "homepage": "https://github.com/polkadot-js/util/tree/master/packages/util-crypto#readme",
   "scripts": {
     "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
     "check": "eslint src && flow check",
-    "test": "jest --coverage"
+    "test": "echo \"Tests only available from root wrapper\""
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "blakejs": "^1.1.0",
-    "keccak": "^1.3.0"
+    "keccak": "^1.3.0",
+    "xxhashjs": "^0.2.2"
   }
 }

@@ -5,7 +5,7 @@ Internal utilities to create and test for hex values
 - [hexAddPrefix](#hexaddprefix) Adds the `0x` prefix to string values.
 - [hexFixLength](#hexfixlength) Shifts a hex string to a specific bitLength
 - [hexFromBn](#hexfrombn) Creates a hex value from a BN.js bignumber object.
-- [hexFromBn](#hexfrombn) Creates a hex value from a Buffer object.
+- [hexFromBuffer](#hexfrombuffer) Creates a hex value from a Buffer object.
 - [hexFromNumber](#hexfromnumber) Creates a hex value from a number.
 - [hexHasPrefix](#hexhasprefix) Tests for the existence of a `0x` prefix.
 - [hexStripPrefix](#hexstripprefix) Strips any leading `0x` prefix.
@@ -61,7 +61,7 @@ hexFromBn (value?: BN): string
 
 
 
-## hexFromBn
+## hexFromBuffer
 
 Creates a hex value from a Buffer object. [(alias of bufferToHex)](buffer.md#buffertohex)
 

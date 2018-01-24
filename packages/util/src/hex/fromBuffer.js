@@ -3,12 +3,12 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hexFromBuffer = require('../bn/toHex');
+const bufferToHex = require('../buffer/toHex');
 
 /**
-  @name hexFromBn
+  @name hexFromBuffer
   @signature hexFromBuffer (value?: Buffer): string
   @summary Creates a hex value from a Buffer object.
   @alias buffer/toHex
 */
-module.exports = hexFromBuffer;
+module.exports = bufferToHex;
