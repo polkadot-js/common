@@ -5,6 +5,17 @@
 
 const nacl = require('tweetnacl');
 
+/**
+  @name sha512AsU8a
+  @signature sha512AsU8a (data: Uint8Array): Uint8Array
+  @summary Creates sha-512 hash of the input.
+  @description
+    Returns a sha-512 `Uint8Array` from the supplied data.
+  @example
+    import { sha512AsU8a } from '@polkadot/util-crypto';
+
+    sha512AsU8a(Uint8Array.from([...])) // => Uint8Array([...])
+*/
 module.exports = function sha512AsU8a (data: Uint8Array): Uint8Array {
   return nacl.hash(data);
 };
