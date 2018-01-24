@@ -16,6 +16,6 @@ const xxhashAsValue = require('./asValue');
 
     xxhashAsNumber('abcd', 0xabcd)) // => 0xcda8fae4
 */
-module.exports = function xxhashAsNumber (data: Buffer | Uint8Array | string, seed: number): string {
+module.exports = function xxhashAsNumber (data: Buffer | Uint8Array | string, seed: number): number {
   return xxhashAsValue(data, seed).toNumber();
 };

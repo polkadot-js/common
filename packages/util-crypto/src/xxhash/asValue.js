@@ -11,8 +11,10 @@ const xxhashjs = require('xxhashjs');
 
 module.exports = function xxhashAsValue (data: Buffer | Uint8Array | string, seed: number): xxhashjs$Result {
   if (isBuffer(data) || isString(data)) {
+    // $FlowFixMe we have determined the type
     return xxhashjs.h32(data, seed);
   }
 
+  // $FlowFixMe we have determined the type
   return xxhashjs.h32(data.buffer, seed);
 };
