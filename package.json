@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@polkadot/api-jsonrpc": "^0.6.9",
-    "@polkadot/dev": "^0.14.8"
+    "@polkadot/dev": "^0.15.1"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
