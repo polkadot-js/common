@@ -1,0 +1,39 @@
+{
+  "name": "@polkadot/util-crypto",
+  "version": "0.13.0",
+  "description": "A collection of useful crypto utilities for @polkadot",
+  "main": "index.js",
+  "keywords": [
+    "Polkadot"
+  ],
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polkadot-js/util.git"
+  },
+  "bugs": {
+    "url": "https://github.com/polkadot-js/util/issues"
+  },
+  "homepage": "https://github.com/polkadot-js/util/tree/master/packages/util-crypto#readme",
+  "scripts": {
+    "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
+    "check": "eslint src && flow check",
+    "test": "echo \"Tests only available from root wrapper\""
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "blakejs": "^1.1.0",
+    "keccak": "^1.3.0",
+    "tweetnacl": "^1.0.0",
+    "xxhashjs": "^0.2.2"
+  }
+}
