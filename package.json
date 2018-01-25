@@ -5,12 +5,12 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "polkadot-dev-build-babel && (cd packages && (cd util && polkadot-dev-build-docs && cd ..) && (cd util-crypto && polkadot-dev-build-docs && cd ..) && cd ..)",
+    "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
     "check": "eslint packages && flow check",
     "test": "jest --coverage"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.14.10",
+    "@polkadot/dev": "^0.15.1",
     "lerna": "^2.5.1"
   }
 }
