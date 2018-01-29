@@ -20,6 +20,7 @@ const xxhashAsValue = require('./asValue');
 */
 module.exports = function xxhashAsBn (data: Buffer | Uint8Array | string, seed: number): BN {
   return new BN(
-    xxhashAsValue(data, seed).toNumber()
+    xxhashAsValue(data, seed).toString(16),
+    16
   );
 };
