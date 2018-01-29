@@ -9,7 +9,9 @@ describe('syncify', () => {
     expect(
       syncify(
         new Promise((resolve) => {
-          setTimeout(() => resolve(12345), 100);
+          setTimeout(() => {
+            resolve(12345);
+          }, 100);
         })
       )
     ).toEqual(12345);
@@ -19,7 +21,9 @@ describe('syncify', () => {
     expect(
       () => syncify(
         new Promise((resolve, reject) => {
-          setTimeout(() => reject(new Error('test reject error')), 100);
+          setTimeout(() => {
+            reject(new Error('test reject error'));
+          }, 100);
         })
       )
     ).toThrow(/test reject error/);
