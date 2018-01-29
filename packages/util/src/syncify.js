@@ -14,17 +14,13 @@ const isUndefined = require('./is/undefined');
 module.exports = function syncify (promise: Promise<any>): any {
   let result;
 
-  promise
-    .catch((error) => error)
-    .then((_result) => {
-      result = _result;
-    });
+  (async () => {
+    result = await promise.catch((error) => error);
+  })();
 
-  let ms = 0;
-
-  while (isUndefined(result)) {
-    deasync.sleep(ms++);
-  }
+  deasync.loopWhile(
+    () => isUndefined(result)
+  );
 
   if (isError(result)) {
     throw result;

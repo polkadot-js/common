@@ -29,7 +29,7 @@
     "test": "echo \"Tests only available from root wrapper\""
   },
   "devDependencies": {
-    "@polkadot/api-jsonrpc": "^0.6.12",
+    "@polkadot/api-jsonrpc": "^0.7.1",
     "@polkadot/dev": "^0.15.1"
   },
   "dependencies": {
