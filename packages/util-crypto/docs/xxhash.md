@@ -4,7 +4,6 @@ Create [XXHash](http://cyan4973.github.io/xxHash/) values as BN, hex & number ou
 
 - [xxhashAsBn](#xxhashasbn) Creates a xxhash BN from the input.
 - [xxhashAsHex](#xxhashashex) Creates a xxhash hex from the input.
-- [xxhashAsNumber](#xxhashasnumber) Creates a xxhash number from the input.
 
 ## xxhashAsBn
 
@@ -20,7 +19,7 @@ From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and 
 ```js
 import { xxhashAsNumber } from '@polkadot/util-crypto';
 
-xxhashAsBn('abcd', 0xabcd)) // => new BN(0xcda8fae4)
+xxhashAsBn('abcd', 0xabcd)) // => new BN(0xe29f70f8b8c96df7)
 ```
 
 ## xxhashAsHex
@@ -37,22 +36,5 @@ From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and 
 ```js
 import { xxhashAsHex } from '@polkadot/util-crypto';
 
-xxhashAsHex('abcd', 0xabcd)) // => 0xcda8fae4
-```
-
-## xxhashAsNumber
-
-Creates a xxhash number from the input. 
-
-```js
-xxhashAsNumber (data: Buffer | Uint8Array | string, seed: number): number
-```
-
-
-From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a number.
-
-```js
-import { xxhashAsNumber } from '@polkadot/util-crypto';
-
-xxhashAsNumber('abcd', 0xabcd)) // => 0xcda8fae4
+xxhashAsHex('abcd', 0xabcd)) // => 0xe29f70f8b8c96df7
 ```

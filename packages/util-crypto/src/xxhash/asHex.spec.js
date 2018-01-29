@@ -8,6 +8,6 @@ describe('xxhashAsHex', () => {
   it('creates the correct hex output', () => {
     expect(
       xxhashAsHex('abcd', 0xabcd)
-    ).toEqual('0xcda8fae4');
+    ).toEqual('0xe29f70f8b8c96df7');
   });
 });

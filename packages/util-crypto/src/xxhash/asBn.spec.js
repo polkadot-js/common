@@ -8,6 +8,6 @@ describe('xxhashAsBn', () => {
   it('creates the correct BN output', () => {
     expect(
       xxhashAsBn('abcd', 0xabcd).toString(16)
-    ).toEqual('cda8fae4');
+    ).toEqual('e29f70f8b8c96df7');
   });
 });

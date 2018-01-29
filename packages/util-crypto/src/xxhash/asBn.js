@@ -16,7 +16,7 @@ const xxhashAsValue = require('./asValue');
   @example
     import { xxhashAsNumber } from '@polkadot/util-crypto';
 
-    xxhashAsBn('abcd', 0xabcd)) // => new BN(0xcda8fae4)
+    xxhashAsBn('abcd', 0xabcd)) // => new BN(0xe29f70f8b8c96df7)
 */
 module.exports = function xxhashAsBn (data: Buffer | Uint8Array | string, seed: number): BN {
   return new BN(
