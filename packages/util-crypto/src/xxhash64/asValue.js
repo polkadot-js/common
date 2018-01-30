@@ -16,9 +16,9 @@ module.exports = function xxhash64AsValue (data: Buffer | Uint8Array | string, s
     return xxhashjs.h64(data, seed);
   }
 
-  // $FlowFixMe we have determined the type
   return xxhashjs.h64(
-    // HACK: We can't use data.buffer, it has the incorrect length
+    // NOTE: We can't use data.buffer, it has the incorrect length
+    // $FlowFixMe we have determined the type
     u8aToBuffer(data),
     seed
   );
