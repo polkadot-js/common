@@ -7,6 +7,9 @@ const xxhashAsHex = require('./asHex');
 const xxhashAsHex128 = require('./asHex128');
 const xxhashAsHex256 = require('./asHex256');
 
+/**
+  @summary Create xxhash64 values with specified bitlengths
+*/
 module.exports = {
   xxhashAsHex,
   xxhashAsHex128,

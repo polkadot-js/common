@@ -1,6 +1,6 @@
 # xxhash
 
- 
+Create xxhash64 values with specified bitlengths 
 
 - [xxhashAsHex](#xxhashashex) Creates a xxhash64 hex from the input.
 - [xxhashAsHex128](#xxhashashex128) Creates a xxhash64 hex with 128-bits from the input.

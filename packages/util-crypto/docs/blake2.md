@@ -1,6 +1,6 @@
 # blake2
 
- 
+Create blake2b values with specified bitlengths 
 
 - [blake2AsHex](#blake2ashex) Creates a blake2b hex from the input.
 - [blake2AsHex128](#blake2ashex128) Creates a blake2b hex with 128-bits from the input.
