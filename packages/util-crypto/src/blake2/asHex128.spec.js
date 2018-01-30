@@ -2,12 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { xxhashAsHex128 } = require('./index');
+const { blake2AsHex128 } = require('./index');
 
-describe('xxhashAsHex128', () => {
+describe('blake2AsHex128', () => {
   it('returns a 128-bit value (as specified)', () => {
     expect(
-      xxhashAsHex128('abc')
-    ).toEqual('0x44bc2cf5ad770999bea9ca8199328908');
+      blake2AsHex128('abc')
+    ).toEqual('0xba80a53f981c4d0d6a2797b69f12f6e9');
   });
 });

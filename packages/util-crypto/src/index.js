@@ -3,6 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+const blake2 = require('./blake2');
 const blake2s = require('./blake2s');
 const blake2b = require('./blake2b');
 const keccak = require('./keccak');
@@ -17,5 +18,5 @@ const xxhash64 = require('./xxhash64');
   @summary Utility methods for this package are split into groups
 */
 module.exports = Object.assign(
-  {}, blake2b, blake2s, keccak, nacl, random, sha512, xxhash, xxhash32, xxhash64
+  {}, blake2, blake2b, blake2s, keccak, nacl, random, sha512, xxhash, xxhash32, xxhash64
 );
