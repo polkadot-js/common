@@ -3,6 +3,7 @@
 Utility methods to convert to and from `Uint8Array` objects 
 
 - [u8aFromBuffer](#u8afrombuffer) Creates a Uint8Array value from a Buffer object.
+- [u8aFromHex](#u8afromhex) Creates a Uint8Array value from a hex string.
 - [u8aFromUtf8](#u8afromutf8) Creates a Uint8Array object from a utf-8 string.
 - [u8aToBuffer](#u8atobuffer) Creates a Buffer object from a hex string.
 - [u8aToUtf8](#u8atoutf8) Creates a utf-8 string from a Uint8Array object.
@@ -12,7 +13,19 @@ Utility methods to convert to and from `Uint8Array` objects
 Creates a Uint8Array value from a Buffer object. [(alias of bufferToU8a)](buffer.md#buffertou8a)
 
 ```js
-u8aFromBuffer (value?: Buffer): number
+u8aFromBuffer (value?: Buffer): Uint8Array
+```
+
+
+
+
+
+## u8aFromHex
+
+Creates a Uint8Array value from a hex string. [(alias of hexToU8a)](hex.md#hextou8a)
+
+```js
+u8aFromHex (value?: string): Uint8Array
 ```
 
 

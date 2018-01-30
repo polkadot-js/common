@@ -18,4 +18,12 @@ describe('hexToBuffer', () => {
       )
     ).toEqual(true);
   });
+
+  it('returns a buffer with the correct values (no prefix)', () => {
+    expect(
+      Buffer.from([128, 0, 10]).equals(
+        hexToBuffer('80000a')
+      )
+    ).toEqual(true);
+  });
 });
