@@ -9,7 +9,7 @@ const isBuffer = require('@polkadot/util/is/buffer');
 const isString = require('@polkadot/util/is/string');
 const xxhashjs = require('xxhashjs');
 
-module.exports = function xxhashAsValue (data: Buffer | Uint8Array | string, seed: number): xxhashjs$Result {
+module.exports = function xxhash64AsValue (data: Buffer | Uint8Array | string, seed: number): xxhashjs$Result {
   if (isBuffer(data) || isString(data)) {
     // $FlowFixMe we have determined the type
     return xxhashjs.h64(data, seed);

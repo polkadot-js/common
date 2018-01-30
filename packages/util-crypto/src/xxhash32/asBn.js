@@ -5,22 +5,22 @@
 
 const BN = require('bn.js');
 
-const xxhashAsValue = require('./asValue');
+const xxhash32AsValue = require('./asValue');
 
 /**
-  @name xxhashAsBn
-  @signature xxhashAsBn (data: Buffer | Uint8Array | string, seed: number): BN
+  @name xxhash32AsBn
+  @signature xxhash32AsBn (data: Buffer | Uint8Array | string, seed: number): BN
   @summary Creates a xxhash BN from the input.
   @description
     From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a BN.
   @example
-    import { xxhashAsNumber } from '@polkadot/util-crypto';
+    import { xxhash32AsNumber } from '@polkadot/util-crypto';
 
-    xxhashAsBn('abcd', 0xabcd)) // => new BN(0xe29f70f8b8c96df7)
+    xxhash32AsBn('abcd', 0xabcd)) // => new BN(0xcda8fae4)
 */
-module.exports = function xxhashAsBn (data: Buffer | Uint8Array | string, seed: number): BN {
+module.exports = function xxhash32AsBn (data: Buffer | Uint8Array | string, seed: number): BN {
   return new BN(
-    xxhashAsValue(data, seed).toString(16),
+    xxhash32AsValue(data, seed).toString(16),
     16
   );
 };

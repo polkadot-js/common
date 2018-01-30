@@ -5,21 +5,21 @@
 
 const hexAddPrefix = require('@polkadot/util/hex/addPrefix');
 
-const xxhashAsValue = require('./asValue');
+const xxhash32AsRaw = require('./asRaw');
 
 /**
-  @name xxhashAsHex
-  @signature xxhashAsHex (data: Buffer | Uint8Array | string, seed: number): string
+  @name xxhash32AsHex
+  @signature xxhash32AsHex (data: Buffer | Uint8Array | string, seed: number): string
   @summary Creates a xxhash hex from the input.
   @description
     From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a hex string.
   @example
-    import { xxhashAsHex } from '@polkadot/util-crypto';
+    import { xxhash32AsHex } from '@polkadot/util-crypto';
 
-    xxhashAsHex('abcd', 0xabcd)) // => 0xe29f70f8b8c96df7
+    xxhash32AsHex('abcd', 0xabcd)) // => 0xcda8fae4
 */
-module.exports = function xxhashAsHex (data: Buffer | Uint8Array | string, seed: number): string {
+module.exports = function xxhash32AsHex (data: Buffer | Uint8Array | string, seed: number): string {
   return hexAddPrefix(
-    xxhashAsValue(data, seed).toString(16)
+    xxhash32AsRaw(data, seed)
   );
 };

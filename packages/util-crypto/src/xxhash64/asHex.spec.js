@@ -2,12 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { xxhashAsHex } = require('./index');
+const { xxhash64AsHex } = require('./index');
 
-describe('xxhashAsHex', () => {
+describe('xxhash64AsHex', () => {
   it('creates the correct hex output', () => {
     expect(
-      xxhashAsHex('abcd', 0xabcd)
+      xxhash64AsHex('abcd', 0xabcd)
     ).toEqual('0xe29f70f8b8c96df7');
   });
 });
