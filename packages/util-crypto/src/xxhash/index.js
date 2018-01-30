@@ -3,15 +3,15 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const xxhashAsBn = require('./asBn');
 const xxhashAsHex = require('./asHex');
-const xxhashAsNumber = require('./asNumber');
+const xxhashAsHex128 = require('./asHex128');
+const xxhashAsHex256 = require('./asHex256');
 
 /**
-  @summary Create [XXHash](http://cyan4973.github.io/xxHash/) values as BN, hex & number output
+  @summary Create xxhash64 values with specified bitlengths
 */
 module.exports = {
-  xxhashAsBn,
   xxhashAsHex,
-  xxhashAsNumber
+  xxhashAsHex128,
+  xxhashAsHex256
 };

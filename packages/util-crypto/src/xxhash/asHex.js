@@ -5,21 +5,29 @@
 
 const hexAddPrefix = require('@polkadot/util/hex/addPrefix');
 
-const xxhashAsValue = require('./asValue');
+const xxhash64AsRaw = require('../xxhash64/asRaw');
 
 /**
   @name xxhashAsHex
-  @signature xxhashAsHex (data: Buffer | Uint8Array | string, seed: number): string
-  @summary Creates a xxhash hex from the input.
+  @signature xxhashAsHex (data: Buffer | Uint8Array | string, bitLenght: number = 64): string
+  @summary Creates a xxhash64 hex from the input.
   @description
-    From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a hex string.
+    From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash64 and return the result as a hex string with the specified `bitLength`.
   @example
     import { xxhashAsHex } from '@polkadot/util-crypto';
 
-    xxhashAsHex('abcd', 0xabcd)) // => 0xcda8fae4
+    xxhashAsHex('abc')) // => 0x44bc2cf5ad770999
 */
-module.exports = function xxhashAsHex (data: Buffer | Uint8Array | string, seed: number): string {
+module.exports = function xxhashAsHex (data: Buffer | Uint8Array | string, bitLength: number = 64): string {
+  const strLength = Math.ceil(bitLength / 4);
+  const iterations = Math.ceil(strLength / 8);
+  let result = xxhash64AsRaw(data, 0);
+
+  for (let seed = 1; seed < iterations; seed++) {
+    result += xxhash64AsRaw(data, seed);
+  }
+
   return hexAddPrefix(
-    xxhashAsValue(data, seed).toString(16)
+    result.substr(0, strLength)
   );
 };

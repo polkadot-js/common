@@ -1,58 +1,58 @@
 # xxhash
 
-Create [XXHash](http://cyan4973.github.io/xxHash/) values as BN, hex & number output 
+Create xxhash64 values with specified bitlengths 
 
-- [xxhashAsBn](#xxhashasbn) Creates a xxhash BN from the input.
-- [xxhashAsHex](#xxhashashex) Creates a xxhash hex from the input.
-- [xxhashAsNumber](#xxhashasnumber) Creates a xxhash number from the input.
-
-## xxhashAsBn
-
-Creates a xxhash BN from the input. 
-
-```js
-xxhashAsBn (data: Buffer | Uint8Array | string, seed: number): BN
-```
-
-
-From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a BN.
-
-```js
-import { xxhashAsNumber } from '@polkadot/util-crypto';
-
-xxhashAsBn('abcd', 0xabcd)) // => new BN(0xcda8fae4)
-```
+- [xxhashAsHex](#xxhashashex) Creates a xxhash64 hex from the input.
+- [xxhashAsHex128](#xxhashashex128) Creates a xxhash64 hex with 128-bits from the input.
+- [xxhashAsHex256](#xxhashashex256) Creates a xxhash64 hex with 256-bits from the input.
 
 ## xxhashAsHex
 
-Creates a xxhash hex from the input. 
+Creates a xxhash64 hex from the input. 
 
 ```js
-xxhashAsHex (data: Buffer | Uint8Array | string, seed: number): string
+xxhashAsHex (data: Buffer | Uint8Array | string, bitLenght: number = 64): string
 ```
 
 
-From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a hex string.
+From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash64 and return the result as a hex string with the specified `bitLength`.
 
 ```js
 import { xxhashAsHex } from '@polkadot/util-crypto';
 
-xxhashAsHex('abcd', 0xabcd)) // => 0xcda8fae4
+xxhashAsHex('abc')) // => 0x44bc2cf5ad770999
 ```
 
-## xxhashAsNumber
+## xxhashAsHex128
 
-Creates a xxhash number from the input. 
+Creates a xxhash64 hex with 128-bits from the input. 
 
 ```js
-xxhashAsNumber (data: Buffer | Uint8Array | string, seed: number): number
+xxhashAsHex128 (data: Buffer | Uint8Array | string): string
 ```
 
 
-From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a number.
+From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash64 and return the result as a hex string with 128 bits.
 
 ```js
-import { xxhashAsNumber } from '@polkadot/util-crypto';
+import { xxhashAsHex128 } from '@polkadot/util-crypto';
 
-xxhashAsNumber('abcd', 0xabcd)) // => 0xcda8fae4
+xxhashAsHex128('abc')) // => 0x44bc2cf5ad770999
+```
+
+## xxhashAsHex256
+
+Creates a xxhash64 hex with 256-bits from the input. 
+
+```js
+xxhashAsHex256 (data: Buffer | Uint8Array | string): string
+```
+
+
+From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash64 and return the result as a hex string with 256 bits.
+
+```js
+import { xxhashAsHex256 } from '@polkadot/util-crypto';
+
+xxhashAsHex256('abc')) // => 0x44bc2cf5ad770999bea9ca8199328908
 ```

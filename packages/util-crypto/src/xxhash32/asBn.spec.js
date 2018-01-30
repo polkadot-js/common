@@ -2,12 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { xxhashAsBn } = require('./index');
+const { xxhash32AsBn } = require('./index');
 
-describe('xxhashAsBn', () => {
+describe('xxhash32AsBn', () => {
   it('creates the correct BN output', () => {
     expect(
-      xxhashAsBn('abcd', 0xabcd).toString(16)
+      xxhash32AsBn('abcd', 0xabcd).toString(16)
     ).toEqual('cda8fae4');
   });
 });
