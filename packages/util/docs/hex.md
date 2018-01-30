@@ -12,6 +12,7 @@ Internal utilities to create and test for hex values
 - [hexToBn](#hextobn) Creates a BN.js bignumber object from a hex string.
 - [hexToBuffer](#hextobuffer) Creates a Buffer object from a hex string.
 - [hexToNumber](#hextonumber) Creates a Number value from a Buffer object.
+- [hexToU8a](#hextou8a) Creates a Buffer object from a hex string.
 
 ## hexAddPrefix
 
@@ -168,4 +169,21 @@ hexToNumber (value?: string): number
 import { hexToNumber } from '@polkadot/util';
 
 hexToNumber('0x1234'); // => 0x1234
+```
+
+## hexToU8a
+
+Creates a Buffer object from a hex string. 
+
+```js
+hexToU8a (value?: string): Uint8Array
+```
+
+
+`null` inputs returns an empty `Uint8Array` result. Hex input values return the actual bytes value converted to a Uint8Array. Anything that is not a hex string (including the `0x` prefix) throws an error.
+
+```js
+import { hexToU8a } from '@polkadot/util';
+
+hexToU8a('0x123480001f'); // Uint8Array([0x12, 0x34, 0x80, 0x00, 0x1f])
 ```

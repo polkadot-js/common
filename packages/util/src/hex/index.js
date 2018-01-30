@@ -13,6 +13,7 @@ const hexStripPrefix = require('./stripPrefix');
 const hexToBn = require('./toBn');
 const hexToBuffer = require('./toBuffer');
 const hexToNumber = require('./toNumber');
+const hexToU8a = require('./toU8a');
 
 /**
   @summary Internal utilities to create and test for hex values
@@ -27,5 +28,6 @@ module.exports = {
   hexStripPrefix,
   hexToBn,
   hexToBuffer,
-  hexToNumber
+  hexToNumber,
+  hexToU8a
 };
