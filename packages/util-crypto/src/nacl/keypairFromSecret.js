@@ -5,11 +5,12 @@
 
 import type { KeypairType } from '../types';
 
-const nacl = require('tweetnacl');
+// const nacl = require('tweetnacl');
+const naclKeypairFromSeed = require('./keypairFromSeed');
 
 /**
   @name naclKeypairFromSecret
-  @signature naclKeypairFromSecret (secretKey: Uint8Array): { secretKey: Uint8Array, publicKey: Uint8Array }
+  @signature naclKeypairFromSecret (secret: Uint8Array | string): { secretKey: Uint8Array, publicKey: Uint8Array }
   @summary Creates a new public/secret keypair from a secret.
   @description
     Returns a object containing a `publicKey` & `secretKey` generated from the supplied secret.
@@ -18,6 +19,8 @@ const nacl = require('tweetnacl');
 
     naclKeypairFromSecret(...) // => { secretKey: [...], publicKey: [...] }
 */
-module.exports = function naclKeypairFromSecret (secretKey: Uint8Array): KeypairType {
-  return nacl.sign.keyPair.fromSecretKey(secretKey);
+module.exports = function naclKeypairFromSecret (secret: Uint8Array | string): KeypairType {
+  // NOTE: According to the Rust implementation, this is equivalent to the seed version
+  return naclKeypairFromSeed(secret);
+  // return nacl.sign.keyPair.fromSecretKey(secretKey);
 };

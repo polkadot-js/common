@@ -30,7 +30,7 @@ naclKeypair() // => { secretKey: [...], publicKey: [...] }
 Creates a new public/secret keypair from a secret. 
 
 ```js
-naclKeypairFromSecret (secretKey: Uint8Array): { secretKey: Uint8Array, publicKey: Uint8Array }
+naclKeypairFromSecret (secret: Uint8Array | string): { secretKey: Uint8Array, publicKey: Uint8Array }
 ```
 
 
@@ -47,11 +47,11 @@ naclKeypairFromSecret(...) // => { secretKey: [...], publicKey: [...] }
 Creates a new public/secret keypair from a seed. 
 
 ```js
-naclKeypairFromSeed (seed: Uint8Array): { secretKey: Uint8Array, publicKey: Uint8Array }
+naclKeypairFromSeed (seed: Uint8Array | string): { secretKey: Uint8Array, publicKey: Uint8Array }
 ```
 
 
-Returns a object containing a `publicKey` & `secretKey` generated from the supplied seed.
+Returns a object containing a `publicKey` & `secretKey` generated from the supplied seed. Seed can be a `Uint8Array`, a hex string or a string of bytes.
 
 ```js
 import { naclKeypairFromSeed } from '@polkadot/util-crypto';
