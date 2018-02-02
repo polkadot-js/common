@@ -7,7 +7,7 @@ Utility methods to convert to and from `Uint8Array` objects
 - [u8aFromString](#u8afromstring) Creates a Uint8Array object from a string.
 - [u8aFromUtf8](#u8afromutf8) Creates a Uint8Array object from a utf-8 string.
 - [u8aToBuffer](#u8atobuffer) Creates a Buffer object from a hex string.
-- [u8aToHex](#u8atohex) Creates a hex-8 string from a Uint8Array object.
+- [u8aToHex](#u8atohex) Creates a hex string from a Uint8Array object.
 - [u8aToUtf8](#u8atoutf8) Creates a utf-8 string from a Uint8Array object.
 
 ## u8aFromBuffer
@@ -87,7 +87,7 @@ console.log('Buffer', u8aToBuffer('0x123480001f'));
 
 ## u8aToHex
 
-Creates a hex-8 string from a Uint8Array object. 
+Creates a hex string from a Uint8Array object. 
 
 ```js
 u8aToHex (value?: UInt8Array): string

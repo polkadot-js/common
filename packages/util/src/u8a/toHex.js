@@ -6,7 +6,7 @@
 /**
   @name u8aToHex
   @signature u8aToHex (value?: UInt8Array): string
-  @summary Creates a hex-8 string from a Uint8Array object.
+  @summary Creates a hex string from a Uint8Array object.
   @description
     `UInt8Array` input values return the actual hex string. `null` or `undefined` values returns an `0x` string.
   @example
