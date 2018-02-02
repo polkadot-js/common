@@ -97,7 +97,7 @@ u8aToHex (value?: UInt8Array): string
 `UInt8Array` input values return the actual hex string. `null` or `undefined` values returns an `0x` string.
 
 ```js
-import { u8aToHex\ } from '@polkadot/util';
+import { u8aToHex } from '@polkadot/util';
 
 u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
 ```
