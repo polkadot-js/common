@@ -20,8 +20,6 @@ module.exports = function u8aToHex (value?: Uint8Array): string {
   }
 
   return value.reduce((result, item) => {
-    const digit = `0${item.toString(16)}`.slice(-2);
-
-    return `${result}${digit}`;
+    return result + ('0' + item.toString(16)).slice(-2);
   }, '0x');
 };
