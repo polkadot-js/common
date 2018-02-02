@@ -7,6 +7,7 @@ Utility methods to convert to and from `Uint8Array` objects
 - [u8aFromString](#u8afromstring) Creates a Uint8Array object from a string.
 - [u8aFromUtf8](#u8afromutf8) Creates a Uint8Array object from a utf-8 string.
 - [u8aToBuffer](#u8atobuffer) Creates a Buffer object from a hex string.
+- [u8aToHex](#u8atohex) Creates a hex string from a Uint8Array object.
 - [u8aToUtf8](#u8atoutf8) Creates a utf-8 string from a Uint8Array object.
 
 ## u8aFromBuffer
@@ -84,6 +85,23 @@ import { u8aToBuffer } from '@polkadot/util';
 console.log('Buffer', u8aToBuffer('0x123480001f'));
 ```
 
+## u8aToHex
+
+Creates a hex string from a Uint8Array object. 
+
+```js
+u8aToHex (value?: UInt8Array): string
+```
+
+
+`UInt8Array` input values return the actual hex string. `null` or `undefined` values returns an `0x` string.
+
+```js
+import { u8aToHex\ } from '@polkadot/util';
+
+u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
+```
+
 ## u8aToUtf8
 
 Creates a utf-8 string from a Uint8Array object. 
@@ -96,7 +114,7 @@ u8aToUtf8 (value?: UInt8Array): string
 `UInt8Array` input values return the actual decoded utf-8 string. `null` or `undefined` values returns an empty string.
 
 ```js
-import { u8aToString } from '@polkadot/util';
+import { u8aToUtf8 } from '@polkadot/util';
 
 u8aToUtf8(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f])); // hello
 ```

@@ -14,7 +14,7 @@ const decoder = new TextDecoder('utf-8');
   @description
     `UInt8Array` input values return the actual decoded utf-8 string. `null` or `undefined` values returns an empty string.
   @example
-    import { u8aToString } from '@polkadot/util';
+    import { u8aToUtf8 } from '@polkadot/util';
 
     u8aToUtf8(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f])); // hello
 */
