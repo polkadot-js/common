@@ -14,7 +14,7 @@ const xxhashAsHex = require('./asHex');
   @example
     import { xxhashAsHex128 } from '@polkadot/util-crypto';
 
-    xxhashAsHex128('abc')) // => 0x44bc2cf5ad770999
+    xxhashAsHex128('abc') // => 0x44bc2cf5ad770999
 */
 module.exports = function xxhashAsHex128 (data: Buffer | Uint8Array | string): string {
   return xxhashAsHex(data, 128);
