@@ -3,6 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+import type BN from 'bn.js';
+
 /**
   @name bnToU8a
   @signature bnToU8a (value?: BN): Uint8Array
@@ -19,5 +21,6 @@ module.exports = function bnToU8a (value?: BN): Uint8Array {
     return new Uint8Array([]);
   }
 
+  // $FlowFixMe toArray doesn't need params
   return new Uint8Array(value.toArray());
 };

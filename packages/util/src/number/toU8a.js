@@ -18,6 +18,7 @@ const numberToHex = require('./toHex');
     numberToU8a(0x1234); // => [0x12, 0x34]
 */
 module.exports = function numberToU8a (value?: number): Uint8Array {
+  // flowlint-next-line sketchy-null-number:off
   if (!value || isNaN(value)) {
     return new Uint8Array([]);
   }
