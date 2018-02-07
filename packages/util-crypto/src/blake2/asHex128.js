@@ -7,7 +7,7 @@ const blake2AsHex = require('./asHex');
 
 /**
   @name blake2AsHex128
-  @signature blake2AsHex128 (data: Buffer): string
+  @signature blake2AsHex128 (data: Uint8Array): string
   @summary Creates a blake2b hex with 128-bits from the input.
   @description
     From a `Uint8Array` input, create the blake2b and return the result as a hex string with 128 bits.

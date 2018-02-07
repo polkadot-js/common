@@ -19,11 +19,9 @@ const blake2bAsBuffer = require('../blake2b/asBuffer');
     blake2AsHex('abc')) // => 0xba80a53f981c4d0d
 */
 module.exports = function blake2AsHex (data: Uint8Array, bitLength: number = 64): string {
-  const byteLength = Math.ceil(bitLength / 8);
-
   return hexAddPrefix(
     blake2bAsBuffer(data)
-      .slice(0, byteLength)
+      .slice(0, Math.ceil(bitLength / 8))
       .toString('hex')
   );
 };

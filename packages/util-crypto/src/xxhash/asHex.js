@@ -16,7 +16,7 @@ const xxhash64AsRaw = require('../xxhash64/asRaw');
   @example
     import { xxhashAsHex } from '@polkadot/util-crypto';
 
-    xxhashAsHex('abc')) // => 0x44bc2cf5ad770999
+    xxhashAsHex('abc') // => 0x44bc2cf5ad770999
 */
 module.exports = function xxhashAsHex (data: Buffer | Uint8Array | string, bitLength: number = 64): string {
   const strLength = Math.ceil(bitLength / 4);
