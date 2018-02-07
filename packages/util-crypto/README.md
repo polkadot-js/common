@@ -6,7 +6,7 @@
 [![maintainability](https://img.shields.io/codeclimate/maintainability/polkadot-js/util.svg?style=flat-square)](https://codeclimate.com/github/polkadot-js/util/maintainability)
 [![coverage](https://img.shields.io/coveralls/polkadot-js/util.svg?style=flat-square)](https://coveralls.io/github/polkadot-js/util?branch=master)
 [![dependency](https://david-dm.org/polkadot-js/util.svg?style=flat-square&path=packages/util)](https://david-dm.org/polkadot-js/util?path=packages/util-crypto)
-[![devDependency](https://david-dm.org/polkadot-js/util/dev-status.svg?style=flat-square&path=packages/util-crypto)](https://david-dm.org/polkadot-js/util?path=packages/util#info=devDependencies)
+[![devDependency](https://david-dm.org/polkadot-js/util/dev-status.svg?style=flat-square&path=packages/util-crypto)](https://david-dm.org/polkadot-js/util?path=packages/util-crypto#info=devDependencies)
 
 # @polkadot/util-crypto
 
