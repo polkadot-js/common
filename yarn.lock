@@ -4574,6 +4574,10 @@ rimraf@2, rimraf@^2.2.8, rimraf@^2.5.1, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.
   dependencies:
     glob "^7.0.5"
 
+rlp@jacogr/rlp:
+  version "2.0.0"
+  resolved "https://codeload.github.com/jacogr/rlp/tar.gz/ca33b296fc43d7a3543d8a8f172adc9b66826f5f"
+
 run-async@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/run-async/-/run-async-2.3.0.tgz#0371ab4ae0bdd720d4166d7dfda64ff7a445a6c0"
