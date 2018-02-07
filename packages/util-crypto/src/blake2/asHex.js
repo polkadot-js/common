@@ -16,7 +16,7 @@ const blake2bAsBuffer = require('../blake2b/asBuffer');
   @example
     import { blake2AsHex } from '@polkadot/util-crypto';
 
-    blake2AsHex('abc')) // => 0xba80a53f981c4d0d
+    blake2AsHex('abc') // => 0xba80a53f981c4d0d
 */
 module.exports = function blake2AsHex (data: Uint8Array, bitLength: number = 64): string {
   return hexAddPrefix(

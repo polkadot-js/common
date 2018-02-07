@@ -14,7 +14,7 @@ const blake2AsHex = require('./asHex');
   @example
     import { blake2AsHex128 } from '@polkadot/util-crypto';
 
-    blake2AsHex128('abc')) // => 0x44bc2cf5ad770999
+    blake2AsHex128('abc') // => 0x44bc2cf5ad770999
 */
 module.exports = function blake2AsHex128 (data: Uint8Array): string {
   return blake2AsHex(data, 128);

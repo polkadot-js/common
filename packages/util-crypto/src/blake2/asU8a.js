@@ -14,7 +14,7 @@ const blake2bAsU8a = require('../blake2b/asU8a');
   @example
     import { blake2AsU8a } from '@polkadot/util-crypto';
 
-    blake2AsU8a('abc')) // => [0xba, 0x80, 0xa53, 0xf98, 0x1c, 0x4d, 0x0d]
+    blake2AsU8a('abc') // => [0xba, 0x80, 0xa53, 0xf98, 0x1c, 0x4d, 0x0d]
 */
 module.exports = function blake2AsU8a (data: Uint8Array, bitLength: number = 64): Uint8Array {
   return blake2bAsU8a(data).slice(0, Math.ceil(bitLength / 8));
