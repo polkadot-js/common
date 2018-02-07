@@ -5,11 +5,13 @@
 
 const bnFromHex = require('./fromHex');
 const bnToHex = require('./toHex');
+const bnToU8a = require('./toU8a');
 
 /**
   @summary Utility methods to convert to and from `BN` objects
 */
 module.exports = {
   bnFromHex,
-  bnToHex
+  bnToHex,
+  bnToU8a
 };

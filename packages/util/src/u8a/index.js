@@ -3,6 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+const u8aFromBn = require('./fromBn');
 const u8aFromBuffer = require('./fromBuffer');
 const u8aFromHex = require('./fromHex');
 const u8aFromUtf8 = require('./fromUtf8');
@@ -15,6 +16,7 @@ const u8aToUtf8 = require('./toUtf8');
   @summary Utility methods to convert to and from `Uint8Array` objects
 */
 module.exports = {
+  u8aFromBn,
   u8aFromBuffer,
   u8aFromHex,
   u8aFromString,
