@@ -12,5 +12,5 @@ all=warn
 
 [options]
 include_warnings=true
-module.name_mapper='^@polkadot/util-\(crypto\|triehash\)\(.*\)$' -> '<PROJECT_ROOT>/packages/util-\1/src\2'
+module.name_mapper='^@polkadot/util-\(crypto\|rlp\|triehash\)\(.*\)$' -> '<PROJECT_ROOT>/packages/util-\1/src\2'
 module.name_mapper='^@polkadot/util\(.*\)$' -> '<PROJECT_ROOT>/packages/util/src\1'

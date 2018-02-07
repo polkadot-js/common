@@ -7,11 +7,11 @@ const BN = require('bn.js');
 const bnToU8a = require('@polkadot/util/bn/toU8a');
 const u8aToHex = require('@polkadot/util/u8a/toHex');
 
-const { rlpEncode } = require('./index');
+const { encode } = require('./index');
 
 const officalTests = require('../test/rlptest.json');
 
-describe('rlpEncode', () => {
+describe('encode', () => {
   Object
     .keys(officalTests)
     .map((name) => ({ name, test: officalTests[name] }))
@@ -19,7 +19,7 @@ describe('rlpEncode', () => {
       it(`passes official ${name}`, () => {
         expect(
           u8aToHex(
-            rlpEncode(
+            encode(
               test.in[0] !== '#'
                 ? test.in
                 : bnToU8a(new BN(test.in.slice(1)))

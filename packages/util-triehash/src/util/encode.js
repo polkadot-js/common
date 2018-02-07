@@ -5,8 +5,9 @@
 
 import type { Trie$Pairs } from '../types';
 
+const u8aToBuffer = require('@polkadot/util/u8a/toBuffer');
 const keccakAsU8a = require('@polkadot/util-crypto/keccak/asU8a');
-const rlp = require('rlp');
+const rlpEncode = require('@polkadot/util-rlp/encode');
 
 const encodeHexPrefix = require('./encodeHexPrefix');
 const sharedPrefixLength = require('./sharedPrefixLength');
@@ -14,14 +15,15 @@ const sharedPrefixLength = require('./sharedPrefixLength');
 // flowlint-next-line unclear-type:off
 function encodeAux (pairs: Trie$Pairs, preLength: number): any {
   const encoded = encode(pairs, preLength);
-  // flowlint-next-line unclear-type:off
-  const rlped = rlp.encode((encoded: any));
+  const rlped = rlpEncode(encoded);
 
   if (rlped.length <= 31) {
     return encoded;
   }
 
-  return keccakAsU8a(rlped);
+  return keccakAsU8a(
+    u8aToBuffer(rlped)
+  );
 }
 
 // flowlint-next-line unclear-type:off

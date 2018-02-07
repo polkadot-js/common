@@ -3,10 +3,10 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const rlpDecode = require('./decode');
-const rlpEncode = require('./encode');
+const decode = require('./decode');
+const encode = require('./encode');
 
 module.exports = {
-  rlpDecode,
-  rlpEncode
+  decode,
+  encode
 };

@@ -8,14 +8,14 @@
 const hexToU8a = require('@polkadot/util/hex/toU8a');
 const u8aToHex = require('@polkadot/util/u8a/toHex');
 
-const { rlpDecode, rlpEncode } = require('./index');
+const { decode, encode } = require('./index');
 
 const officalTests = require('../test/rlptest.json');
 
-describe('rlpDecode', () => {
+describe('decode', () => {
   it('returns empty list for undefined inputs', () => {
     expect(
-      rlpDecode()
+      decode()
     ).toEqual(
       new Uint8Array([])
     );
@@ -23,7 +23,7 @@ describe('rlpDecode', () => {
 
   it('returns empty list for empty inputs', () => {
     expect(
-      rlpDecode([])
+      decode([])
     ).toEqual(
       new Uint8Array([])
     );
@@ -36,8 +36,8 @@ describe('rlpDecode', () => {
       it(`passes official ${name}`, () => {
         expect(
           u8aToHex(
-            rlpEncode(
-              rlpDecode(
+            encode(
+              decode(
                 hexToU8a(`0x${test.out}`)
               )
             )
