@@ -5,6 +5,12 @@
 const { numberToU8a } = require('./index');
 
 describe('numberToU8a', () => {
+  it('converts 0 to empty', () => {
+    expect(
+      numberToU8a(0)
+    ).toEqual(new Uint8Array([]));
+  });
+
   it('converts undefined to empty', () => {
     expect(
       numberToU8a()

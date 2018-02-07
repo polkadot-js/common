@@ -4,8 +4,6 @@
 // @flow
 
 const hexToU8a = require('../hex/toU8a');
-const isNull = require('../is/null');
-const isUndefined = require('../is/undefined');
 const numberToHex = require('./toHex');
 
 /**
@@ -20,7 +18,7 @@ const numberToHex = require('./toHex');
     numberToU8a(0x1234); // => [0x12, 0x34]
 */
 module.exports = function numberToU8a (value?: number): Uint8Array {
-  if (isUndefined(value) || isNull(value) || isNaN(value)) {
+  if (!value || isNaN(value)) {
     return new Uint8Array([]);
   }
 
