@@ -17,6 +17,7 @@ It is split up into a number of internal packages -
 
 - [packages/util](packages/util/) General utilities
 - [packages/util-crypto](packages/util-crypto/) Crypto and hashing utilities
+- [packages/util-triehash](packages/util-triehash/) Calculation of trie hashes
 
 ## Contributing
 
