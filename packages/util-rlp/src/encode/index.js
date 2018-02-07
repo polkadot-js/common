@@ -3,9 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const toU8a = require('../util/toU8a');
-
 const encodeArray = require('./array');
+const toU8a = require('./toU8a');
 const encodeU8a = require('./u8a');
 
 // Adapted from https://github.com/ethereumjs/rlp/blob/0ce09db81fc303fcee593f7cc094ba44015f9b92/index.js#L9

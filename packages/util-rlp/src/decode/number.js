@@ -5,7 +5,7 @@
 
 import type { DecodeFunc, DecodeOutput } from './types';
 
-const safeParseInt = require('../util/safeParseInt');
+const safeParseInt = require('./safeParseInt');
 
 module.exports = function decodeNumber (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
   const llength = input[0] - 0xb6;

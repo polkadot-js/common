@@ -2,6 +2,8 @@
 
 Utility methods to convert to and from `Uint8Array` objects 
 
+- [u8aConcat](#u8aconcat) Creates a concatenated Uint8Array from the inputs.
+- [u8aFromBn](#u8afrombn) Creates a Uint8Array value from a BN object.
 - [u8aFromBuffer](#u8afrombuffer) Creates a Uint8Array value from a Buffer object.
 - [u8aFromHex](#u8afromhex) Creates a Uint8Array value from a hex string.
 - [u8aFromString](#u8afromstring) Creates a Uint8Array object from a string.
@@ -9,6 +11,38 @@ Utility methods to convert to and from `Uint8Array` objects
 - [u8aToBuffer](#u8atobuffer) Creates a Buffer object from a hex string.
 - [u8aToHex](#u8atohex) Creates a hex string from a Uint8Array object.
 - [u8aToUtf8](#u8atoutf8) Creates a utf-8 string from a Uint8Array object.
+
+## u8aConcat
+
+Creates a concatenated Uint8Array from the inputs. 
+
+```js
+u8aConcat (values: Array<Uint8Array>): Uint8Array
+```
+
+
+Concatenates the input arrays into a single `UInt8Array`.
+
+```js
+import { u8aConcat } from '@polkadot/util';
+
+u8aConcat([
+new Uint8Array([1, 2, 3]),
+new Uint8Array([4, 5, 6])
+]); // [1, 2, 3, 4, 5, 6]
+```
+
+## u8aFromBn
+
+Creates a Uint8Array value from a BN object. [(alias of bnToU8a)](bn.md#bntou8a)
+
+```js
+u8aFromBn (value?: BN): Uint8Array
+```
+
+
+
+
 
 ## u8aFromBuffer
 
