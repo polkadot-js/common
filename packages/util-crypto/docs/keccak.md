@@ -1,10 +1,11 @@
 # keccak
 
-Create Keccak256 values as hex, string & buffer output 
+Create Keccak256 values as hex, string, Buffer & Uint8Array output 
 
 - [keccakAsBuffer](#keccakasbuffer) Creates a keccak Buffer from the input.
 - [keccakAsHex](#keccakashex) Creates a keccak hex string from the input.
 - [keccakAsString](#keccakasstring) Creates a keccak string from the input.
+- [keccakAsU8a](#keccakasu8a) Creates a keccak Uint8Array from the input.
 
 ## keccakAsBuffer
 
@@ -55,4 +56,21 @@ From either a `string` or a `Buffer` input, create the keccak and return the res
 import { keccakAsString } from '@polkadot/util-crypto';
 
 console.log('asString', keccakAsString('123')) // => string
+```
+
+## keccakAsU8a
+
+Creates a keccak Uint8Array from the input. 
+
+```js
+keccakAsU8a (value: Buffer | string): Uint8Array
+```
+
+
+From either a `string` or a `Buffer` input, create the keccak and return the result as a `Uint8Array`.
+
+```js
+import { keccakAsU8a } from '@polkadot/util-crypto';
+
+keccakAsU8a('123') // => Uint8Array
 ```
