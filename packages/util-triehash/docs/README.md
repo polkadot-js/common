@@ -31,7 +31,7 @@ v: u8aFromString('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 Creates a trie hash from the supplied values. 
 
 ```js
-trieRootOrdered (pvalues: Array<Uint8Array>): Uint8Array
+trieRootOrdered (values: Array<Uint8Array>): Uint8Array
 ```
 
 
