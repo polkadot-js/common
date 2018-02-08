@@ -5,15 +5,14 @@
 
 const assert = require('@polkadot/util/assert');
 
-const decode = require('./decode');
+const internalDecode = require('./decode');
 
-// Adapted from https://github.com/ethereumjs/rlp/blob/0ce09db81fc303fcee593f7cc094ba44015f9b92/index.js#L51
-module.exports = function rlpDecode (input?: Uint8Array): Uint8Array | Array<*> {
+module.exports = function decoder (input?: Uint8Array): Uint8Array | Array<*> {
   if (!input || input.length === 0) {
     return new Uint8Array([]);
   }
 
-  const { decoded, remainder } = decode(input);
+  const { decoded, remainder } = internalDecode(input);
 
   assert(remainder.length === 0, 'invalid remainder');
 

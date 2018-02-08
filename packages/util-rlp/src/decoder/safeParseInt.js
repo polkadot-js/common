@@ -3,10 +3,10 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+const assert = require('@polkadot/util/assert');
+
 module.exports = function safeParseInt (input: Uint8Array): number {
-  if (input[0] === 0) {
-    throw new Error('invalid RLP: extra zeros');
-  }
+  assert(input[0] > 0, 'invalid RLP: extra zeros');
 
   return input.reduce((result, value) => (result * 256) + value, 0);
 };

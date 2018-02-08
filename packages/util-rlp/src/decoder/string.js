@@ -5,6 +5,8 @@
 
 import type { DecodeFunc, DecodeOutput } from './types';
 
+const assert = require('@polkadot/util/assert');
+
 module.exports = function decodeString (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
   const firstByte = input[0];
   const length = firstByte - 0x7f;
@@ -17,9 +19,7 @@ module.exports = function decodeString (decode: DecodeFunc, input: Uint8Array): 
     decoded = input.slice(1, length);
   }
 
-  if (length === 2 && decoded[0] < 0x80) {
-    throw new Error('invalid rlp encoding: byte must be less 0x80');
-  }
+  assert(!(length === 2 && decoded[0] < 0x80), 'invalid rlp encoding: byte must be less 0x80');
 
   return {
     decoded,

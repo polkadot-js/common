@@ -5,6 +5,8 @@
 
 import type { DecodeFunc, DecodeOutput } from './types';
 
+const assert = require('@polkadot/util/assert');
+
 const safeParseInt = require('./safeParseInt');
 
 module.exports = function decodeNumber (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
@@ -12,9 +14,7 @@ module.exports = function decodeNumber (decode: DecodeFunc, input: Uint8Array): 
   const length = safeParseInt(input.slice(1, llength));
   const decoded = input.slice(llength, length + llength);
 
-  if (decoded.length < length) {
-    throw (new Error('invalid RLP'));
-  }
+  assert(decoded.length === length, 'invalid RLP');
 
   return {
     decoded,

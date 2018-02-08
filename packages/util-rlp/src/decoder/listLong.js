@@ -5,6 +5,8 @@
 
 import type { DecodeFunc, DecodeOutput } from './types';
 
+const assert = require('@polkadot/util/assert');
+
 const safeParseInt = require('./safeParseInt');
 
 module.exports = function decodeListLong (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
@@ -13,15 +15,11 @@ module.exports = function decodeListLong (decode: DecodeFunc, input: Uint8Array)
   const totalLength = llength + length;
   const decoded = [];
 
-  if (totalLength > input.length) {
-    throw new Error('invalid rlp: total length is larger than the data');
-  }
+  assert(totalLength <= input.length, 'invalid rlp: total length is larger than the data');
 
   let innerRemainder = input.slice(llength, totalLength);
 
-  if (innerRemainder.length === 0) {
-    throw new Error('invalid rlp, List has a invalid length');
-  }
+  assert(innerRemainder.length > 0, 'invalid rlp, List has a invalid length');
 
   while (innerRemainder.length) {
     const d = decode(innerRemainder);

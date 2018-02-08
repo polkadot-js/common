@@ -2,7 +2,6 @@
 
 Utility methods to create [Ethereum Trie hashes](https://github.com/ethereum/wiki/wiki/Patricia-Tree) 
 
-- [util](util.md) Internal utilities used along with hash generation
 
 # Available methods
 

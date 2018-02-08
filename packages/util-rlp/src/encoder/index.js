@@ -7,14 +7,13 @@ const encodeArray = require('./array');
 const toU8a = require('./toU8a');
 const encodeU8a = require('./u8a');
 
-// Adapted from https://github.com/ethereumjs/rlp/blob/0ce09db81fc303fcee593f7cc094ba44015f9b92/index.js#L9
 // flowlint-next-line unclear-type:off
-function rlpEncode (input: any): Uint8Array {
+function encoder (input: any): Uint8Array {
   if (input instanceof Array) {
-    return encodeArray(rlpEncode, input);
+    return encodeArray(encoder, input);
   }
 
-  return encodeU8a(rlpEncode, toU8a(input));
+  return encodeU8a(encoder, toU8a(input));
 }
 
-module.exports = rlpEncode;
+module.exports = encoder;
