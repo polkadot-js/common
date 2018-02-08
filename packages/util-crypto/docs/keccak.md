@@ -1,6 +1,6 @@
 # keccak
 
-Create Keccak256 values as hex, string, Buffer & Uint8Array output 
+Create Keccak256 values as hex & Uint8Array output 
 
 - [keccakAsHex](#keccakashex) Creates a keccak hex string from the input.
 - [keccakAsU8a](#keccakasu8a) Creates a keccak Uint8Array from the input.

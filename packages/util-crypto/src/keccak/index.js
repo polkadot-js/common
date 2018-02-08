@@ -7,7 +7,7 @@ const keccakAsHex = require('./asHex');
 const keccakAsU8a = require('./asU8a');
 
 /**
-  @summary Create Keccak256 values as hex, string, Buffer & Uint8Array output
+  @summary Create Keccak256 values as hex & Uint8Array output
 */
 module.exports = {
   keccakAsHex,

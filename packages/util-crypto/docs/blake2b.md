@@ -1,6 +1,6 @@
 # blake2b
 
-Create [Blake2b](https://blake2.net/) values as hex, Buffer & Uint8Array output 
+Create [Blake2b](https://blake2.net/) values as hex & Uint8Array output 
 
 - [blake2bAsHex](#blake2bashex) Creates a blake2b hex string from the input.
 - [blake2bAsU8a](#blake2basu8a) Creates a blake2b Uint8Array from the input.

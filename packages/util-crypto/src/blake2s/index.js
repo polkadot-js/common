@@ -7,7 +7,7 @@ const blake2sAsHex = require('./asHex');
 const blake2sAsU8a = require('./asU8a');
 
 /**
-  @summary Create [Blake2s](https://blake2.net/) values as hex, Buffer & Uint8Array output
+  @summary Create [Blake2s](https://blake2.net/) values as hex & Uint8Array output
 */
 module.exports = {
   blake2sAsHex,
