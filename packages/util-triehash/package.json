@@ -31,7 +31,7 @@
   "dependencies": {
     "@polkadot/util": "^0.14.1",
     "@polkadot/util-crypto": "^0.14.1",
-    "babel-runtime": "^6.26.0",
-    "rlp": "jacogr/rlp"
+    "@polkadot/util-rlp": "^0.14.1",
+    "babel-runtime": "^6.26.0"
   }
 }

@@ -1,0 +1,38 @@
+{
+  "name": "@polkadot/util-rlp",
+  "version": "0.14.1",
+  "description": "RLP encoding and decoding",
+  "main": "index.js",
+  "keywords": [
+    "Polkadot"
+  ],
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polkadot-js/util.git"
+  },
+  "bugs": {
+    "url": "https://github.com/polkadot-js/util/issues"
+  },
+  "homepage": "https://github.com/polkadot-js/util/tree/master/packages/util-triehash#readme",
+  "scripts": {
+    "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
+    "check": "eslint src && flow check",
+    "test": "echo \"Tests only available from root wrapper\""
+  },
+  "dependencies": {
+    "@polkadot/util": "^0.14.1",
+    "babel-runtime": "^6.26.0"
+  },
+  "devDependencies": {
+    "ethereumjs-testing": "^1.0.4"
+  }
+}

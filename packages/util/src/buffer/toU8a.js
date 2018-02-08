@@ -19,11 +19,5 @@ module.exports = function bufferToU8a (buffer?: Buffer): Uint8Array {
     return new Uint8Array([]);
   }
 
-  const array = new Uint8Array(buffer.length);
-
-  for (let index = 0; index < buffer.length; ++index) {
-    array[index] = buffer[index];
-  }
-
-  return array;
+  return new Uint8Array(buffer);
 };

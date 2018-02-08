@@ -7,7 +7,7 @@ const keccakAsBuffer = require('./asBuffer');
 
 /**
   @name keccakAsString
-  @signature keccakAsString (value: Buffer | string): string
+  @signature keccakAsString (value: Buffer | Uint8Array | string): string
   @summary Creates a keccak string from the input.
   @description
     From either a `string` or a `Buffer` input, create the keccak and return the result as a non-prefixed string.
@@ -16,6 +16,6 @@ const keccakAsBuffer = require('./asBuffer');
 
     console.log('asString', keccakAsString('123')) // => string
 */
-module.exports = function keccakAsString (value: Buffer | string): string {
+module.exports = function keccakAsString (value: Buffer | Uint8Array | string): string {
   return keccakAsBuffer(value).toString('hex');
 };

@@ -3,7 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-/**
-  @summary Internal utilities used along with hash generation
-*/
-module.exports = {};
+export type DecodeOutput = {
+  decoded: Uint8Array | Array<*>,
+  remainder: Uint8Array
+}
+
+export type DecodeFunc = (input: Uint8Array) => DecodeOutput;
