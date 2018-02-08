@@ -5,8 +5,9 @@
 const hexToU8a = require('@polkadot/util/hex/toU8a');
 const u8aToHex = require('@polkadot/util/u8a/toHex');
 
-const rlptests = require('../test/rlptests');
 const { decode, encode } = require('./index');
+
+const rlptests = require('../test/getTests')('RLPTests/rlptest.json');
 
 describe('decode', () => {
   it('returns empty list for undefined inputs', () => {

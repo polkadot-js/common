@@ -5,7 +5,8 @@
 const u8aToHex = require('@polkadot/util/u8a/toHex');
 
 const { encode } = require('./index');
-const rlptests = require('../test/rlptests');
+
+const rlptests = require('../test/getTests')('RLPTests/rlptest.json');
 
 describe('encode', () => {
   rlptests.forEach(({ name, input, output }) => {
