@@ -4,7 +4,7 @@
 // @flow
 
 const bufferToU8a = require('@polkadot/util/buffer/toU8a');
-const createKeccak = require('keccak');
+const keccakAsBuffer = require('./asBuffer');
 
 /**
   @name keccakAsU8a
@@ -19,6 +19,6 @@ const createKeccak = require('keccak');
 */
 module.exports = function keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array {
   return bufferToU8a(
-    createKeccak('keccak256').update(value).digest()
+    keccakAsBuffer(value)
   );
 };

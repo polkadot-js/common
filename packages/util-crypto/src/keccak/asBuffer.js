@@ -17,5 +17,7 @@ const createKeccak = require('keccak');
     console.log('asBuffer', keccakAsBuffer('123')) // => Buffer
 */
 module.exports = function keccakAsBuffer (value: Buffer | Uint8Array | string): Buffer {
-  return createKeccak('keccak256').update(value).digest();
+  // HACK: For the time being, don't change the definition (although fork of library is used)
+  // flowlint-next-line unclear-type:off
+  return createKeccak('keccak256').update(((value: any): Buffer)).digest();
 };
