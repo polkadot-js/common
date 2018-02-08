@@ -5,7 +5,7 @@
 
 const hexAddPrefix = require('@polkadot/util/hex/addPrefix');
 
-const xxhash64AsRaw = require('../xxhash64/asRaw');
+const xxhash64AsRaw = require('./xxhash64/asRaw');
 
 /**
   @name xxhashAsHex
