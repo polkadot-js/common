@@ -9,7 +9,7 @@ const keccakAsBuffer = require('./asBuffer');
 
 /**
   @name keccakAsHex
-  @signature keccakAsHex (value: Buffer | string): string
+  @signature keccakAsHex (value: Buffer | Uint8Array | string): string
   @summary Creates a keccak hex string from the input.
   @description
     From either a `string` or a `Buffer` input, create the keccak and return the result as a `0x` prefixed hex string.
@@ -18,7 +18,7 @@ const keccakAsBuffer = require('./asBuffer');
 
     console.log('asHex', keccakAsHex('123')) // => 0x...
 */
-module.exports = function keccakAsHex (value: Buffer | string): string {
+module.exports = function keccakAsHex (value: Buffer | Uint8Array | string): string {
   return bufferToHex(
     keccakAsBuffer(value)
   );

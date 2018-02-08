@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+const u8aFromString = require('@polkadot/util/u8a/fromString');
+
 const { keccakAsBuffer } = require('./index');
 
 const value = 'test value';
@@ -11,6 +13,14 @@ describe('keccakAsBuffer', () => {
   it('returns an hex representation', () => {
     expect(
       keccakAsBuffer(value).equals(
+        Buffer.from(result, 'hex')
+      )
+    ).toEqual(true);
+  });
+
+  it('returns an hex representation (Uint8Array input)', () => {
+    expect(
+      keccakAsBuffer(u8aFromString(value)).equals(
         Buffer.from(result, 'hex')
       )
     ).toEqual(true);

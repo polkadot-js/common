@@ -8,7 +8,7 @@ const createKeccak = require('keccak');
 
 /**
   @name keccakAsU8a
-  @signature keccakAsU8a (value: Buffer | string): Uint8Array
+  @signature keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array
   @summary Creates a keccak Uint8Array from the input.
   @description
     From either a `string` or a `Buffer` input, create the keccak and return the result as a `Uint8Array`.
@@ -17,7 +17,7 @@ const createKeccak = require('keccak');
 
     keccakAsU8a('123') // => Uint8Array
 */
-module.exports = function keccakAsU8a (value: Buffer | string): Uint8Array {
+module.exports = function keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array {
   return bufferToU8a(
     createKeccak('keccak256').update(value).digest()
   );
