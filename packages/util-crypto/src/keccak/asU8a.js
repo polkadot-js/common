@@ -3,8 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const bufferToU8a = require('@polkadot/util/buffer/toU8a');
-const keccakAsBuffer = require('./asBuffer');
+const { keccak256 } = require('js-sha3');
 
 /**
   @name keccakAsU8a
@@ -18,7 +17,7 @@ const keccakAsBuffer = require('./asBuffer');
     keccakAsU8a('123') // => Uint8Array
 */
 module.exports = function keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array {
-  return bufferToU8a(
-    keccakAsBuffer(value)
+  return new Uint8Array(
+    keccak256.arrayBuffer(value)
   );
 };

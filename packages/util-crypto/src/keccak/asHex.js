@@ -3,9 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const bufferToHex = require('@polkadot/util/buffer/toHex');
+const u8aToHex = require('@polkadot/util/u8a/toHex');
 
-const keccakAsBuffer = require('./asBuffer');
+const keccakAsU8a = require('./asU8a');
 
 /**
   @name keccakAsHex
@@ -16,10 +16,10 @@ const keccakAsBuffer = require('./asBuffer');
   @example
     import { keccakAsHex } from '@polkadot/util-crypto';
 
-    console.log('asHex', keccakAsHex('123')) // => 0x...
+    keccakAsHex('123') // => 0x...
 */
 module.exports = function keccakAsHex (value: Buffer | Uint8Array | string): string {
-  return bufferToHex(
-    keccakAsBuffer(value)
+  return u8aToHex(
+    keccakAsU8a(value)
   );
 };
