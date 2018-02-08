@@ -1,6 +1,7 @@
 [ignore]
 <PROJECT_ROOT>/build
 <PROJECT_ROOT>/packages/.*/build
+<PROJECT_ROOT>/node_modules/ethereumjs-testing
 
 [include]
 
