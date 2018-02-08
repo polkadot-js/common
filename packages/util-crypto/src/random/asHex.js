@@ -3,9 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const bufferToHex = require('@polkadot/util/buffer/toHex');
+const u8aToHex = require('@polkadot/util/u8a/toHex');
 
-const randomAsBuffer = require('./asBuffer');
+const randomAsU8a = require('./asU8a');
 
 /**
   @name randomAsHex
@@ -19,7 +19,7 @@ const randomAsBuffer = require('./asBuffer');
     randomAsHex() // => 0x...
 */
 module.exports = function randomAsHex (length?: number = 32): string {
-  return bufferToHex(
-    randomAsBuffer(length)
+  return u8aToHex(
+    randomAsU8a(length)
   );
 };

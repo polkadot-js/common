@@ -3,8 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const bufferToHex = require('@polkadot/util/buffer/toHex');
-const blake2sAsBuffer = require('./asBuffer');
+const u8aToHex = require('@polkadot/util/u8a/toHex');
+const blake2sAsU8a = require('./asU8a');
 
 /**
   @name blake2sAsHex
@@ -18,7 +18,7 @@ const blake2sAsBuffer = require('./asBuffer');
     blake2sAsHex('abc') // => '0x508c5e8c327c14e2e1a72ba34eeb452f37458b209ed63a294d999b4c86675982'
 */
 module.exports = function blake2sAsHex (data: Uint8Array): string {
-  return bufferToHex(
-    blake2sAsBuffer(data)
+  return u8aToHex(
+    blake2sAsU8a(data)
   );
 };

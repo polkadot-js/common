@@ -2,27 +2,9 @@
 
 Returns a sequence of secure random bytes in a variety of formats 
 
-- [randomAsBuffer](#randomasbuffer) Creates a Buffer filled with random bytes.
 - [randomAsHex](#randomashex) Creates a hex string filled with random bytes.
 - [randomAsNumber](#randomasnumber) Creates a random number from random bytes.
 - [randomAsU8a](#randomasu8a) Creates a Uint8Array filled with random bytes.
-
-## randomAsBuffer
-
-Creates a Buffer filled with random bytes. 
-
-```js
-randomAsBuffer (length?: number = 32): Buffer
-```
-
-
-Returns a `Buffer` with the specified (optional) length filled with random bytes.
-
-```js
-import { randomAsBuffer } from '@polkadot/util-crypto';
-
-randomAsBuffer() // => Buffer([...])
-```
 
 ## randomAsHex
 
