@@ -12,7 +12,7 @@ Create Keccak256 values as hex, string, Buffer & Uint8Array output
 Creates a keccak Buffer from the input. 
 
 ```js
-keccakAsBuffer (value: Buffer | string): Buffer
+keccakAsBuffer (value: Buffer | Uint8Array | string): Buffer
 ```
 
 
@@ -29,7 +29,7 @@ console.log('asBuffer', keccakAsBuffer('123')) // => Buffer
 Creates a keccak hex string from the input. 
 
 ```js
-keccakAsHex (value: Buffer | string): string
+keccakAsHex (value: Buffer | Uint8Array | string): string
 ```
 
 
@@ -46,7 +46,7 @@ console.log('asHex', keccakAsHex('123')) // => 0x...
 Creates a keccak string from the input. 
 
 ```js
-keccakAsString (value: Buffer | string): string
+keccakAsString (value: Buffer | Uint8Array | string): string
 ```
 
 
@@ -63,7 +63,7 @@ console.log('asString', keccakAsString('123')) // => string
 Creates a keccak Uint8Array from the input. 
 
 ```js
-keccakAsU8a (value: Buffer | string): Uint8Array
+keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array
 ```
 
 
