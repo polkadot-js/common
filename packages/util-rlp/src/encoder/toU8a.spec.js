@@ -15,6 +15,14 @@ describe('toU8a', () => {
     );
   });
 
+  it('converts Buffers (uses as Uint8Array)', () => {
+    expect(
+      toU8a(Buffer.from([0x12, 0x34, 0x56]))
+    ).toEqual(
+      new Uint8Array([0x12, 0x34, 0x56])
+    );
+  });
+
   it('returns undefined as empty', () => {
     expect(
       toU8a()
@@ -58,14 +66,6 @@ describe('toU8a', () => {
   it('converts BN', () => {
     expect(
       toU8a(new BN(0x123456))
-    ).toEqual(
-      new Uint8Array([0x12, 0x34, 0x56])
-    );
-  });
-
-  it('converts Buffers', () => {
-    expect(
-      toU8a(Buffer.from([0x12, 0x34, 0x56]))
     ).toEqual(
       new Uint8Array([0x12, 0x34, 0x56])
     );

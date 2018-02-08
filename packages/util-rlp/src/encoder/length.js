@@ -12,7 +12,8 @@ module.exports = function encodeLength (length: number, offset: number): Uint8Ar
   }
 
   const hexLength = numberToHex(length).slice(2);
-  const firstByte = numberToHex(offset + 55 + hexLength.length / 2);
 
-  return hexToU8a(firstByte + hexLength);
+  return hexToU8a(
+    numberToHex(offset + 55 + hexLength.length / 2) + hexLength
+  );
 };
