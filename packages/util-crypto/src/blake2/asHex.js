@@ -3,9 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hexAddPrefix = require('@polkadot/util/hex/addPrefix');
-
-const blake2bAsBuffer = require('../blake2b/asBuffer');
+const blake2bAsHex = require('./blake2b/asHex');
 
 /**
   @name blake2AsHex
@@ -19,9 +17,5 @@ const blake2bAsBuffer = require('../blake2b/asBuffer');
     blake2AsHex('abc') // => 0xba80a53f981c4d0d
 */
 module.exports = function blake2AsHex (data: Uint8Array, bitLength: number = 64): string {
-  return hexAddPrefix(
-    blake2bAsBuffer(data)
-      .slice(0, Math.ceil(bitLength / 8))
-      .toString('hex')
-  );
+  return blake2bAsHex(data).substr(0, Math.ceil(bitLength / 4) + 2);
 };
