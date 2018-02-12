@@ -5,6 +5,9 @@
 
 import type BN from 'bn.js';
 
+const bnToHex = require('./toHex');
+const hexToU8a = require('../hex/toU8a');
+
 /**
   @name bnToU8a
   @signature bnToU8a (value?: BN): Uint8Array
@@ -16,11 +19,12 @@ import type BN from 'bn.js';
 
     bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
 */
-module.exports = function bnToU8a (value?: BN): Uint8Array {
+module.exports = function bnToU8a (value?: BN, bitLength: number = -1): Uint8Array {
   if (!value) {
     return new Uint8Array([]);
   }
 
-  // $FlowFixMe toArray doesn't need params
-  return new Uint8Array(value.toArray());
+  return hexToU8a(
+    bnToHex(value, bitLength)
+  );
 };

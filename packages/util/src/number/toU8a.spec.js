@@ -29,9 +29,15 @@ describe('numberToU8a', () => {
     ).toEqual(new Uint8Array([]));
   });
 
-  it('converts values to the buffer', () => {
+  it('converts values to the u8a', () => {
     expect(
       numberToU8a(0x3456)
     ).toEqual(new Uint8Array([0x34, 0x56]));
+  });
+
+  it('converts values to the u8a (bitLength)', () => {
+    expect(
+      numberToU8a(0x3456, 32)
+    ).toEqual(new Uint8Array([0x00, 0x00, 0x34, 0x56]));
   });
 });

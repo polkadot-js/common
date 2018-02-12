@@ -34,4 +34,10 @@ describe('numberToHex', () => {
       numberToHex(0x1245)
     ).toEqual('0x1245');
   });
+
+  it('converts number to hex (specfified bitLength)', () => {
+    expect(
+      numberToHex(0x1245, 32)
+    ).toEqual('0x00001245');
+  });
 });
