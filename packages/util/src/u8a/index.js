@@ -4,6 +4,7 @@
 // @flow
 
 const u8aConcat = require('./concat');
+const u8aFixLength = require('./fixLength');
 const u8aFromBn = require('./fromBn');
 const u8aFromBuffer = require('./fromBuffer');
 const u8aFromHex = require('./fromHex');
@@ -19,6 +20,7 @@ const u8aToUtf8 = require('./toUtf8');
 */
 module.exports = {
   u8aConcat,
+  u8aFixLength,
   u8aFromBn,
   u8aFromBuffer,
   u8aFromHex,
