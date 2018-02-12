@@ -176,7 +176,7 @@ hexToNumber('0x1234'); // => 0x1234
 Creates a Buffer object from a hex string. 
 
 ```js
-hexToU8a (value?: string): Uint8Array
+hexToU8a (value?: string, bitLength: number = -1): Uint8Array
 ```
 
 
@@ -185,5 +185,6 @@ hexToU8a (value?: string): Uint8Array
 ```js
 import { hexToU8a } from '@polkadot/util';
 
-hexToU8a('0x123480001f'); // Uint8Array([0x12, 0x34, 0x80, 0x00, 0x1f])
+hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
+hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
 ```
