@@ -26,4 +26,12 @@ describe('hexToU8a', () => {
       new Uint8Array([128, 0, 10])
     );
   });
+
+  it('returns a Uint8Array with the correct values (bitLengfth)', () => {
+    expect(
+      hexToU8a('80000a', 32)
+    ).toEqual(
+      new Uint8Array([0, 128, 0, 10])
+    );
+  });
 });

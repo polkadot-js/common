@@ -7,27 +7,34 @@ const hexStripPrefix = require('./stripPrefix');
 
 /**
   @name hexToU8a
-  @signature hexToU8a (value?: string): Uint8Array
+  @signature hexToU8a (value?: string, bitLength: number = -1): Uint8Array
   @summary Creates a Buffer object from a hex string.
   @description
     `null` inputs returns an empty `Uint8Array` result. Hex input values return the actual bytes value converted to a Uint8Array. Anything that is not a hex string (including the `0x` prefix) throws an error.
   @example
     import { hexToU8a } from '@polkadot/util';
 
-    hexToU8a('0x123480001f'); // Uint8Array([0x12, 0x34, 0x80, 0x00, 0x1f])
+    hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
+    hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
 */
-module.exports = function hexToU8a (_value?: string): Uint8Array {
+module.exports = function hexToU8a (_value?: string, bitLength: number = -1): Uint8Array {
   // flowlint-next-line sketchy-null-string:off
   if (!_value) {
     return new Uint8Array([]);
   }
 
   const value = hexStripPrefix(_value);
-  const bufLength = Math.ceil(value.length / 2);
+  const valLength = value.length / 2;
+  const bufLength = Math.ceil(
+    bitLength === -1
+      ? valLength
+      : bitLength / 8
+  );
   const result = new Uint8Array(bufLength);
+  const offset = Math.max(0, bufLength - valLength);
 
   for (let index = 0; index < bufLength; index++) {
-    result[index] = parseInt(value.substr(index * 2, 2), 16);
+    result[index + offset] = parseInt(value.substr(index * 2, 2), 16);
   }
 
   return result;
