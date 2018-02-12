@@ -3,6 +3,7 @@
 Utility methods to convert to and from `Uint8Array` objects 
 
 - [u8aConcat](#u8aconcat) Creates a concatenated Uint8Array from the inputs.
+- [u8aFixLength](#u8afixlength) Shifts a Uint8Array to a specific bitLength
 - [u8aFromBn](#u8afrombn) Creates a Uint8Array value from a BN object.
 - [u8aFromBuffer](#u8afrombuffer) Creates a Uint8Array value from a Buffer object.
 - [u8aFromHex](#u8afromhex) Creates a Uint8Array value from a hex string.
@@ -31,6 +32,25 @@ u8aConcat([
 new Uint8Array([1, 2, 3]),
 new Uint8Array([4, 5, 6])
 ]); // [1, 2, 3, 4, 5, 6]
+```
+
+## u8aFixLength
+
+Shifts a Uint8Array to a specific bitLength 
+
+```js
+u8aFixLength (value: string, bitLength: number = -1, withPadding: boolean = false): string
+```
+
+
+Returns a uint8Array with the specified number of bits contained in the return value. (If bitLength is -1, length checking is not done). Values with more bits are trimmed to the specified length.
+
+```js
+import { u8aFixLength } from '@polkadot/util';
+
+u8aFixLength('0x12') // => 0x12
+u8aFixLength('0x12', 16) // => 0x0012
+u8aFixLength('0x1234', 8) // => 0x12
 ```
 
 ## u8aFromBn

@@ -21,7 +21,7 @@ const { ZEROS_256 } = require('./constants');
     console.log('fixed', hexFixLength('0x0012', 8)) // => 0x12
 */
 module.exports = function hexFixLength (value: string, bitLength: number = -1, withPadding: boolean = false): string {
-  const strLength = bitLength / 4;
+  const strLength = Math.ceil(bitLength / 4);
   const hexLength = strLength + 2;
 
   if (bitLength === -1 || value.length === hexLength || (!withPadding && value.length < hexLength)) {
