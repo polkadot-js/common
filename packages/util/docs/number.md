@@ -58,12 +58,13 @@ numberToHex (value?: number): string
 ```
 
 
-`null`/`undefined`/`NaN` inputs returns an empty `0x` result. `number` input values return the actual bytes value converted to a `hex`.
+`null`/`undefined`/`NaN` inputs returns an empty `0x` result. `number` input values return the actual bytes value converted to a `hex`. With `bitLength` set, it converts the number to the equivalent size.
 
 ```js
 import { numberToHex } from '@polkadot/util';
 
-const hex = numberToHex(0x1234); // => '0x1234'
+numberToHex(0x1234); // => '0x1234'
+numberToHex(0x1234, 32) // => 0x00001234
 ```
 
 ## numberToU8a
@@ -71,11 +72,11 @@ const hex = numberToHex(0x1234); // => '0x1234'
 Creates a Uint8Array object from a number. 
 
 ```js
-numberToBuffer (value?: number): Uint8Array
+numberToBuffer (value?: number, bitLenght: number = -1): Uint8Array
 ```
 
 
-`null`/`undefined`/`NaN` inputs returns an empty `Uint8Array` result. `number` input values return the actual bytes value converted to a `Uint8Array`.
+`null`/`undefined`/`NaN` inputs returns an empty `Uint8Array` result. `number` input values return the actual bytes value converted to a `Uint8Array`. With `bitLength`, it converts the value to the equivalent size.
 
 ```js
 import { numberToU8a } from '@polkadot/util';

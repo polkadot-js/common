@@ -7,15 +7,21 @@ const BN = require('bn.js');
 const { bnToU8a } = require('./index');
 
 describe('bnToU8a', () => {
+  it('converts null values to 0x00', () => {
+    expect(
+      bnToU8a(null)
+    ).toEqual(new Uint8Array([]));
+  });
+
   it('converts BN values to a prefixed hex representation', () => {
     expect(
       bnToU8a(new BN(0x123456))
     ).toEqual(new Uint8Array([0x12, 0x34, 0x56]));
   });
 
-  it('converts null values to 0x00', () => {
+  it('converts BN values to a prefixed hex representation (bitLength)', () => {
     expect(
-      bnToU8a(null)
-    ).toEqual(new Uint8Array([]));
+      bnToU8a(new BN(0x123456), 32)
+    ).toEqual(new Uint8Array([0x00, 0x12, 0x34, 0x56]));
   });
 });

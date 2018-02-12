@@ -7,15 +7,21 @@ const BN = require('bn.js');
 const { bnToHex } = require('./index');
 
 describe('bnToHex', () => {
+  it('converts null values to 0x00', () => {
+    expect(
+      bnToHex(null)
+    ).toEqual('0x00');
+  });
+
   it('converts BN values to a prefixed hex representation', () => {
     expect(
       bnToHex(new BN(128))
     ).toEqual('0x80');
   });
 
-  it('converts null values to 0x00', () => {
+  it('converts BN values to a prefixed hex representation (bitLength)', () => {
     expect(
-      bnToHex(null)
-    ).toEqual('0x00');
+      bnToHex(new BN(128), 16)
+    ).toEqual('0x0080');
   });
 });

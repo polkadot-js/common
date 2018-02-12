@@ -23,11 +23,11 @@ bnFromHex (value?: string): BN
 Creates a hex value from a BN.js bignumber object. 
 
 ```js
-bnToHex (value?: BN): string
+bnToHex (value?: BN, bitLength: number = -1): string
 ```
 
 
-`null` inputs returns a `0x` result, BN values return the actual value as a `0x` prefixed hex value. Anything that is not a BN object throws an error.
+`null` inputs returns a `0x` result, BN values return the actual value as a `0x` prefixed hex value. Anything that is not a BN object throws an error. With `bitLength` set, it fixes the number to the specified length.
 
 ```js
 import BN from 'bn.js';
