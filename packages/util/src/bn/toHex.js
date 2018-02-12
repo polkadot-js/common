@@ -23,6 +23,7 @@ const ZERO_STR = '0x00';
     bnToHex(new BN(0x123456)); // => '0x123456'
 */
 module.exports = function bnToHex (value?: BN | number, bitLength: number = -1): string {
+  // flowlint-next-line sketchy-null-number:off
   if (!value) {
     return ZERO_STR;
   }

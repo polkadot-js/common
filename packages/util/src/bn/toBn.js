@@ -19,7 +19,13 @@ const BN = require('bn.js');
     bnToBn(new BN(0x1234)); // => BN(0x1234)
 */
 module.exports = function bnToBn (value?: BN | number): BN {
+  // flowlint-next-line sketchy-null-number:off
+  if (!value) {
+    return new BN(0);
+  }
+
   return BN.isBN(value)
+    // $FlowFixMe type is determined
     ? value
-    : new BN(value || 0);
+    : new BN(value);
 };
