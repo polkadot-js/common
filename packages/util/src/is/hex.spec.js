@@ -7,6 +7,12 @@ const { isHex } = require('./index');
 describe('isHex', () => {
   const test = '123abcd45';
 
+  it('returns true on 0x hex values', () => {
+    expect(
+      isHex('0x')
+    ).toEqual(true);
+  });
+
   it('returns true on hex values', () => {
     expect(
       isHex(`0x${test}`)
