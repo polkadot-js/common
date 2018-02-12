@@ -5,12 +5,13 @@
 
 import type BN from 'bn.js';
 
-const bnToHex = require('./toHex');
 const hexToU8a = require('../hex/toU8a');
+const bnToBn = require('./toBn');
+const bnToHex = require('./toHex');
 
 /**
   @name bnToU8a
-  @signature bnToU8a (value?: BN): Uint8Array
+  @signature bnToU8a (value?: BN | number, bitLength: number = -1): Uint8Array
   @summary Creates a Uint8Array object from a BN.
   @description
     `null`/`undefined`/`NaN` inputs returns an empty `Uint8Array` result. `BN` input values return the actual bytes value converted to a `Uint8Array`.
@@ -19,12 +20,13 @@ const hexToU8a = require('../hex/toU8a');
 
     bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
 */
-module.exports = function bnToU8a (value?: BN, bitLength: number = -1): Uint8Array {
+module.exports = function bnToU8a (value?: BN | number, bitLength: number = -1): Uint8Array {
+  // flowlint-next-line sketchy-null-number:off
   if (!value) {
     return new Uint8Array([]);
   }
 
   return hexToU8a(
-    bnToHex(value, bitLength)
+    bnToHex(bnToBn(value), bitLength)
   );
 };

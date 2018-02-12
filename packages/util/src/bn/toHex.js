@@ -6,6 +6,7 @@
 const BN = require('bn.js');
 
 const hexFixLength = require('../hex/fixLength');
+const bnToBn = require('./toBn');
 
 const ZERO_STR = '0x00';
 
@@ -21,10 +22,11 @@ const ZERO_STR = '0x00';
 
     bnToHex(new BN(0x123456)); // => '0x123456'
 */
-module.exports = function bnToHex (value?: BN, bitLength: number = -1): string {
+module.exports = function bnToHex (value?: BN | number, bitLength: number = -1): string {
+  // flowlint-next-line sketchy-null-number:off
   if (!value) {
     return ZERO_STR;
   }
 
-  return hexFixLength(value.toString(16), bitLength, true);
+  return hexFixLength(bnToBn(value).toString(16), bitLength, true);
 };
