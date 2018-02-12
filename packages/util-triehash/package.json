@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-triehash",
-  "version": "0.14.7",
+  "version": "0.14.8",
   "description": "Creation of triehash values",
   "main": "index.js",
   "keywords": [

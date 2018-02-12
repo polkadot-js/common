@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-rlp",
-  "version": "0.14.7",
+  "version": "0.14.8",
   "description": "RLP encoding and decoding",
   "main": "index.js",
   "keywords": [
