@@ -24,7 +24,5 @@ module.exports = function hexToBn (value?: string): BN {
     return new BN(0);
   }
 
-  console.log('value', value, hexStripPrefix(value), hexStripPrefix(value) || '0');
-
   return new BN(hexStripPrefix(value) || '0', 16);
 };

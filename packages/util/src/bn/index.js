@@ -4,6 +4,7 @@
 // @flow
 
 const bnFromHex = require('./fromHex');
+const bnToBn = require('./toBn');
 const bnToHex = require('./toHex');
 const bnToU8a = require('./toU8a');
 
@@ -12,6 +13,7 @@ const bnToU8a = require('./toU8a');
 */
 module.exports = {
   bnFromHex,
+  bnToBn,
   bnToHex,
   bnToU8a
 };

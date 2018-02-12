@@ -3,6 +3,7 @@
 Utility methods to convert to and from `BN` objects 
 
 - [bnFromHex](#bnfromhex) Creates a BN.js bignumber object from a hex string.
+- [bnToBn](#bntobn) Creates a BN value from a BN.js bignumber or number input.
 - [bnToHex](#bntohex) Creates a hex value from a BN.js bignumber object.
 - [bnToU8a](#bntou8a) Creates a Uint8Array object from a BN.
 
@@ -17,6 +18,25 @@ bnFromHex (value?: string): BN
 
 
 
+
+## bnToBn
+
+Creates a BN value from a BN.js bignumber or number input. 
+
+```js
+bnToBn (value?: BN : number): BN
+```
+
+
+`null` inputs returns a `0x0` result, BN values returns the value, numnbers returns a BN representation.
+
+```js
+import BN from 'bn.js';
+import { bnToBn } from '@polkadot/util';
+
+bnToBn(0x1234); // => BN(0x1234)
+bnToBn(new BN(0x1234)); // => BN(0x1234)
+```
 
 ## bnToHex
 
@@ -41,7 +61,7 @@ bnToHex(new BN(0x123456)); // => '0x123456'
 Creates a Uint8Array object from a BN. 
 
 ```js
-bnToU8a (value?: BN): Uint8Array
+bnToU8a (value?: BN | number, bitLength: number = -1): Uint8Array
 ```
 
 
