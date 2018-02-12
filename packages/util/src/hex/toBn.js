@@ -7,8 +7,6 @@ const BN = require('bn.js');
 
 const hexStripPrefix = require('./stripPrefix');
 
-const ZERO_BN = new BN(0);
-
 /**
   @name hexToBn
   @signature hexToBn (value?: string): BN
@@ -23,8 +21,10 @@ const ZERO_BN = new BN(0);
 module.exports = function hexToBn (value?: string): BN {
   // flowlint-next-line sketchy-null-string:off
   if (!value) {
-    return ZERO_BN;
+    return new BN(0);
   }
 
-  return new BN(hexStripPrefix(value), 16);
+  console.log('value', value, hexStripPrefix(value), hexStripPrefix(value) || '0');
+
+  return new BN(hexStripPrefix(value) || '0', 16);
 };

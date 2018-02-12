@@ -7,12 +7,10 @@ const BN = require('bn.js');
 const { hexToBn } = require('./index');
 
 describe('hexToBn', () => {
-  const value = '80';
-
   it('converts prefixed hex values to BN', () => {
     expect(
-      hexToBn(`0x${value}`).eq(
-        new BN(value, 16)
+      hexToBn(0x81).eq(
+        new BN(0x81)
       )
     ).toEqual(true);
   });
@@ -20,6 +18,14 @@ describe('hexToBn', () => {
   it('converts null values to BN(0)', () => {
     expect(
       hexToBn(null).eq(
+        new BN(0)
+      )
+    ).toEqual(true);
+  });
+
+  it('converts 0x values to BN(0)', () => {
+    expect(
+      hexToBn('0x').eq(
         new BN(0)
       )
     ).toEqual(true);

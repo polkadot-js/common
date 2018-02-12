@@ -20,7 +20,7 @@ const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
     isHex('0x1234', 8); // => false
 */
 module.exports = function isHex (value: string, bitLength: number = -1): boolean {
-  const isValidHex = isString(value) && HEX_REGEX.test(value);
+  const isValidHex = value === '0x' || (isString(value) && HEX_REGEX.test(value));
 
   if (isValidHex && bitLength !== -1) {
     return value.length === (2 + bitLength / 4);

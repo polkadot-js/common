@@ -8,6 +8,7 @@ Utility methods to convert to and from `Uint8Array` objects
 - [u8aFromHex](#u8afromhex) Creates a Uint8Array value from a hex string.
 - [u8aFromString](#u8afromstring) Creates a Uint8Array object from a string.
 - [u8aFromUtf8](#u8afromutf8) Creates a Uint8Array object from a utf-8 string.
+- [u8aToBn](#u8atobn) Creates a BN from a Uint8Array object.
 - [u8aToBuffer](#u8atobuffer) Creates a Buffer object from a hex string.
 - [u8aToHex](#u8atohex) Creates a hex string from a Uint8Array object.
 - [u8aToUtf8](#u8atoutf8) Creates a utf-8 string from a Uint8Array object.
@@ -100,6 +101,23 @@ String input values return the actual encoded `UInt8Array`. `null` or `undefined
 import { u8aFromUtf8 } from '@polkadot/util';
 
 u8aFromUtf8('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
+```
+
+## u8aToBn
+
+Creates a BN from a Uint8Array object. 
+
+```js
+u8aToHex (value?: Uint8Array): BN
+```
+
+
+`UInt8Array` input values return the actual BN. `null` or `undefined` values returns an `0x0` value.
+
+```js
+import { u8aToBn } from '@polkadot/util';
+
+u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
 ```
 
 ## u8aToBuffer
