@@ -29,7 +29,7 @@
     "test": "echo \"Tests only available from root wrapper\""
   },
   "dependencies": {
-    "@polkadot/util": "^0.14.7",
+    "@polkadot/util": "^0.14.8",
     "babel-runtime": "^6.26.0"
   },
   "devDependencies": {
