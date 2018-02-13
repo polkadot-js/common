@@ -24,4 +24,10 @@ describe('bnToU8a', () => {
       bnToU8a(new BN(0x123456), 32)
     ).toEqual(new Uint8Array([0x00, 0x12, 0x34, 0x56]));
   });
+
+  it('converts using little endian (as set)', () => {
+    expect(
+      bnToU8a(new BN(0x123456), 32, true)
+    ).toEqual(new Uint8Array([0x56, 0x34, 0x12, 0x00]));
+  });
 });
