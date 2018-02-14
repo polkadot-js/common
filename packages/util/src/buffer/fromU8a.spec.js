@@ -4,12 +4,12 @@
 
 const isFunction = require('../is/function');
 
-const { bufferFromHex } = require('./index');
+const { bufferFromU8a } = require('./index');
 
-describe('bufferFromHex', () => {
+describe('bufferFromU8a', () => {
   it('exists as a function', () => {
     expect(
-      isFunction(bufferFromHex)
+      isFunction(bufferFromU8a)
     ).toEqual(true);
   });
 });
