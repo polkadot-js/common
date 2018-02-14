@@ -10,8 +10,12 @@ describe('logger', () => {
   let l;
   let ln;
   let spy;
+  let oldEnv;
 
   beforeEach(() => {
+    oldEnv = process.env;
+    process.env.NODE_ENV = 'development';
+
     ln = logger('notDebug');
 
     process.env.DEBUG = 'test';
@@ -30,6 +34,7 @@ describe('logger', () => {
   });
 
   afterEach(() => {
+    process.env = oldEnv;
     jest.restoreAllMocks();
   });
 
@@ -98,6 +103,25 @@ describe('logger', () => {
 
   it('does not debug log when non-matching DEBUG specified', () => {
     process.env.DEBUG = 'blah';
+
+    l = logger('test');
+    l.debug('test');
+
+    expect(spy.log).not.toHaveBeenCalled();
+  });
+
+  it('does debug log when NODE_ENV=test specified', () => {
+    process.env.DEBUG = 'blah';
+    process.env.NODE_ENV = 'test';
+
+    l = logger('test');
+    l.debug('test');
+
+    expect(spy.log).toHaveBeenCalled();
+  });
+
+  it('does not debug log when no process.env', () => {
+    process.env = void 0;
 
     l = logger('test');
     l.debug('test');
