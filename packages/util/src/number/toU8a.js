@@ -8,7 +8,7 @@ const numberToHex = require('./toHex');
 
 /**
   @name numberToU8a
-  @signature numberToBuffer (value?: number, bitLenght: number = -1): Uint8Array
+  @signature numberToU8a (value?: number, bitLenght: number = -1): Uint8Array
   @summary Creates a Uint8Array object from a number.
   @description
     `null`/`undefined`/`NaN` inputs returns an empty `Uint8Array` result. `number` input values return the actual bytes value converted to a `Uint8Array`. With `bitLength`, it converts the value to the equivalent size.

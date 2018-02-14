@@ -3,8 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const bufferToNumber = require('../buffer/toNumber');
-const hexToBuffer = require('../hex/toBuffer');
+const hexToBn = require('./toBn');
 
 /**
   @name hexToNumber
@@ -23,7 +22,5 @@ module.exports = function hexToNumber (value?: string): number {
     return NaN;
   }
 
-  return bufferToNumber(
-    hexToBuffer(value)
-  );
+  return hexToBn(value).toNumber();
 };

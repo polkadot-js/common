@@ -6,12 +6,10 @@
 const hexAddPrefix = require('./addPrefix');
 const hexFixLength = require('./fixLength');
 const hexFromBn = require('./fromBn');
-const hexFromBuffer = require('./fromBuffer');
 const hexFromNumber = require('./fromNumber');
 const hexHasPrefix = require('./hasPrefix');
 const hexStripPrefix = require('./stripPrefix');
 const hexToBn = require('./toBn');
-const hexToBuffer = require('./toBuffer');
 const hexToNumber = require('./toNumber');
 const hexToU8a = require('./toU8a');
 
@@ -22,12 +20,10 @@ module.exports = {
   hexAddPrefix,
   hexFixLength,
   hexFromBn,
-  hexFromBuffer,
   hexFromNumber,
   hexHasPrefix,
   hexStripPrefix,
   hexToBn,
-  hexToBuffer,
   hexToNumber,
   hexToU8a
 };
