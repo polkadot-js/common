@@ -27,10 +27,10 @@ module.exports = function logger (_type: string): Logger {
   let isDebug;
 
   try {
-    // $FlowFixMe this can fail (undefined/null) - hence the try/catch
-    const debugList = process.env.DEBUG.split(',');
+    const isTest = process.env.NODE_ENV === 'test';
+    const debugList = (process.env.DEBUG || '').split(',');
 
-    isDebug = !!debugList.find((entry) => _type.indexOf(entry) === 0);
+    isDebug = isTest || !!debugList.find((entry) => _type.indexOf(entry) === 0);
   } catch (error) {
     isDebug = false;
   }
