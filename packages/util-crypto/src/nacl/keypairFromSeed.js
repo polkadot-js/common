@@ -8,7 +8,7 @@ import type { KeypairType } from '../types';
 const nacl = require('tweetnacl');
 const hexToU8a = require('@polkadot/util/hex/toU8a');
 const isHex = require('@polkadot/util/is/hex');
-const isUint8Array = require('@polkadot/util/is/uint8Array');
+const isU8a = require('@polkadot/util/is/u8a');
 const u8aFromString = require('@polkadot/util/u8a/fromString');
 
 /**
@@ -23,7 +23,7 @@ const u8aFromString = require('@polkadot/util/u8a/fromString');
     naclKeypairFromSeed(...) // => { secretKey: [...], publicKey: [...] }
 */
 module.exports = function naclKeypairFromSeed (seed: Uint8Array | string): KeypairType {
-  if (isUint8Array(seed)) {
+  if (isU8a(seed)) {
     // $FlowFixMe type has been determined
     return nacl.sign.keyPair.fromSeed(seed);
   }

@@ -5,12 +5,10 @@ Internal utilities to create and test for hex values
 - [hexAddPrefix](#hexaddprefix) Adds the `0x` prefix to string values.
 - [hexFixLength](#hexfixlength) Shifts a hex string to a specific bitLength
 - [hexFromBn](#hexfrombn) Creates a hex value from a BN.js bignumber object.
-- [hexFromBuffer](#hexfrombuffer) Creates a hex value from a Buffer object.
 - [hexFromNumber](#hexfromnumber) Creates a hex value from a number.
 - [hexHasPrefix](#hexhasprefix) Tests for the existence of a `0x` prefix.
 - [hexStripPrefix](#hexstripprefix) Strips any leading `0x` prefix.
 - [hexToBn](#hextobn) Creates a BN.js bignumber object from a hex string.
-- [hexToBuffer](#hextobuffer) Creates a Buffer object from a hex string.
 - [hexToNumber](#hextonumber) Creates a Number value from a Buffer object.
 - [hexToU8a](#hextou8a) Creates a Buffer object from a hex string.
 
@@ -56,18 +54,6 @@ Creates a hex value from a BN.js bignumber object. [(alias of bnToHex)](bn.md#bn
 
 ```js
 hexFromBn (value?: BN): string
-```
-
-
-
-
-
-## hexFromBuffer
-
-Creates a hex value from a Buffer object. [(alias of bufferToHex)](buffer.md#buffertohex)
-
-```js
-hexFromBuffer (value?: Buffer): string
 ```
 
 
@@ -135,23 +121,6 @@ hexToBn (value?: string): BN
 import { hexToBn } from '@polkadot/util';
 
 hexToBn('0x123480001f'); // => BN(0x123480001f)
-```
-
-## hexToBuffer
-
-Creates a Buffer object from a hex string. 
-
-```js
-hexToBuffer (value?: string): Buffer
-```
-
-
-`null` inputs returns an empty `Buffer` result. Hex input values return the actual bytes value converted to a Buffer. Anything that is not a hex string (including the `0x` prefix) throws an error.
-
-```js
-import { hexToBuffer } from '@polkadot/util';
-
-hexToBuffer('0x123480001f'); // Buffer([0x12, 0x34, 0x80, 0x00, 0x1f])
 ```
 
 ## hexToNumber

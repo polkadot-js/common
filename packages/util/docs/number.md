@@ -2,23 +2,9 @@
 
 Utility methods to convert to and from `number` values 
 
-- [numberFromBuffer](#numberfrombuffer) Creates a Number value from a Buffer object.
 - [numberFromHex](#numberfromhex) Creates a Number value from a Buffer object.
-- [numberToBuffer](#numbertobuffer) Creates a Buffer object from a number.
 - [numberToHex](#numbertohex) Creates a hex value from a number.
 - [numberToU8a](#numbertou8a) Creates a Uint8Array object from a number.
-
-## numberFromBuffer
-
-Creates a Number value from a Buffer object. [(alias of bufferToNumber)](buffer.md#buffertonumber)
-
-```js
-numberFromBuffer (value?: Buffer): number
-```
-
-
-
-
 
 ## numberFromHex
 
@@ -31,23 +17,6 @@ numberFromHex (value?: Hex): number
 
 
 
-
-## numberToBuffer
-
-Creates a Buffer object from a number. 
-
-```js
-numberToBuffer (value?: number): Buffer
-```
-
-
-`null`/`undefined`/`NaN` inputs returns an empty `Buffer` result. `number` input values return the actual bytes value converted to a `Buffer`.
-
-```js
-import { numberToBuffer } from '@polkadot/util';
-
-const buffer = numberToBuffer(0x1234); // => Buffer.from([0x12, 0x34])
-```
 
 ## numberToHex
 
@@ -72,7 +41,7 @@ numberToHex(0x1234, 32) // => 0x00001234
 Creates a Uint8Array object from a number. 
 
 ```js
-numberToBuffer (value?: number, bitLenght: number = -1): Uint8Array
+numberToU8a (value?: number, bitLenght: number = -1): Uint8Array
 ```
 
 
