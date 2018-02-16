@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-rlp",
-  "version": "0.15.1",
+  "version": "0.15.2",
   "description": "RLP encoding and decoding",
   "main": "index.js",
   "keywords": [
@@ -29,7 +29,7 @@
     "test": "echo \"Tests only available from root wrapper\""
   },
   "dependencies": {
-    "@polkadot/util": "^0.15.1",
+    "@polkadot/util": "^0.15.2",
     "babel-runtime": "^6.26.0"
   },
   "devDependencies": {
