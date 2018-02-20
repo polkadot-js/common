@@ -13,6 +13,7 @@ const u8aFromString = require('./fromString');
 const u8aToBn = require('./toBn');
 const u8aToBuffer = require('./toBuffer');
 const u8aToHex = require('./toHex');
+const u8aToString = require('./toString');
 const u8aToUtf8 = require('./toUtf8');
 
 /**
@@ -29,5 +30,6 @@ module.exports = {
   u8aToBn,
   u8aToBuffer,
   u8aToHex,
+  u8aToString,
   u8aToUtf8
 };
