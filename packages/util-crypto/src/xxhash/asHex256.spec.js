@@ -8,6 +8,6 @@ describe('xxhashAsHex256', () => {
   it('returns a 256-bit value (as specified)', () => {
     expect(
       xxhashAsHex256('abc')
-    ).toEqual('0x44bc2cf5ad770999bea9ca819932890853a0b8b27057daf72bd60d36955db703');
+    ).toEqual('0x990977adf52cbc440889329981caa9bef7da5770b2b8a05303b75d95360dd62b');
   });
 });

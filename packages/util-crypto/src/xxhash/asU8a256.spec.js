@@ -11,7 +11,7 @@ describe('xxhashAsU8a256', () => {
     expect(
       xxhashAsU8a256('abc')
     ).toEqual(
-      hexToU8a('0x44bc2cf5ad770999bea9ca819932890853a0b8b27057daf72bd60d36955db703')
+      hexToU8a('0x990977adf52cbc440889329981caa9bef7da5770b2b8a05303b75d95360dd62b')
     );
   });
 });

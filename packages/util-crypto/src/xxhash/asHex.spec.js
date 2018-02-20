@@ -8,18 +8,18 @@ describe('xxhashAsHex', () => {
   it('returns a 64-bit value by default', () => {
     expect(
       xxhashAsHex('abc')
-    ).toEqual('0x44bc2cf5ad770999');
+    ).toEqual('0x990977adf52cbc44');
   });
 
   it('returns a 128-bit value (as specified)', () => {
     expect(
       xxhashAsHex('abc', 128)
-    ).toEqual('0x44bc2cf5ad770999bea9ca8199328908');
+    ).toEqual('0x990977adf52cbc440889329981caa9be');
   });
 
   it('returns a 256-bit value (as specified)', () => {
     expect(
       xxhashAsHex('abc', 256)
-    ).toEqual('0x44bc2cf5ad770999bea9ca819932890853a0b8b27057daf72bd60d36955db703');
+    ).toEqual('0x990977adf52cbc440889329981caa9bef7da5770b2b8a05303b75d95360dd62b');
   });
 });

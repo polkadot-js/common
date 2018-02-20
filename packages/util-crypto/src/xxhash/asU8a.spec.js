@@ -11,7 +11,7 @@ describe('xxhashAsU8a', () => {
     expect(
       xxhashAsU8a('abc')
     ).toEqual(
-      hexToU8a('0x44bc2cf5ad770999')
+      hexToU8a('0x990977adf52cbc44')
     );
   });
 
@@ -19,7 +19,7 @@ describe('xxhashAsU8a', () => {
     expect(
       xxhashAsU8a('abc', 128)
     ).toEqual(
-      hexToU8a('0x44bc2cf5ad770999bea9ca8199328908')
+      hexToU8a('0x990977adf52cbc440889329981caa9be')
     );
   });
 
@@ -27,7 +27,7 @@ describe('xxhashAsU8a', () => {
     expect(
       xxhashAsU8a('abc', 256)
     ).toEqual(
-      hexToU8a('0x44bc2cf5ad770999bea9ca819932890853a0b8b27057daf72bd60d36955db703')
+      hexToU8a('0x990977adf52cbc440889329981caa9bef7da5770b2b8a05303b75d95360dd62b')
     );
   });
 });
