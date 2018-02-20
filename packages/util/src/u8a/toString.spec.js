@@ -20,7 +20,7 @@ describe('u8aToString', () => {
   it('decodes the buffer correctly', () => {
     expect(
       u8aToString(
-        new Uint8Array([21,23,45,67])
+        new Uint8Array([21, 23, 45, 67])
       )
     ).toEqual('21,23,45,67');
   });
