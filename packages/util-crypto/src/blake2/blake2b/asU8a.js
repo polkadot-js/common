@@ -17,6 +17,6 @@ const blakejs = require('blakejs');
 
     blake2bAsU8a('abc') // => Uint8Array('508c5e8c327c14e2e1a72ba34eeb452f37458b209ed63a294d999b4c86675982')
 */
-module.exports = function blake2bAsU8a (data: Uint8Array): Uint8Array {
-  return blakejs.blake2b(data);
+module.exports = function blake2bAsU8a (data: Uint8Array, bitLength: number = 512): Uint8Array {
+  return blakejs.blake2b(data, null, bitLength / 8);
 };

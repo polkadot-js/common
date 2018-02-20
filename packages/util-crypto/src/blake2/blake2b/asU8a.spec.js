@@ -7,7 +7,7 @@ const { blake2bAsU8a } = require('./index');
 describe('blake2bAsU8a', () => {
   it('creates the correct hash', () => {
     expect(
-      blake2bAsU8a('abc')
+      blake2bAsU8a('abc', 512)
     ).toEqual(
       Uint8Array.from([
         0xba, 0x80, 0xa5, 0x3f, 0x98, 0x1c, 0x4d, 0x0d,
