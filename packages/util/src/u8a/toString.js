@@ -12,18 +12,12 @@
   @example
     import { u8aToString } from '@polkadot/util';
 
-    u8aToString(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f])); // hello
+    u8aToString(new Uint8Array([21,23,45,67])); // 21,23,45,67
 */
 module.exports = function u8aToString (value?: Uint8Array): string {
   if (!value || !value.length) {
     return '';
   }
 
-  return value
-    .reduce((result, ch) => {
-      result.push(String.fromCharCode(ch));
-
-      return result;
-    }, [])
-    .join('');
+  return value.toString();
 };
