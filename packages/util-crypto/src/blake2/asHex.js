@@ -7,7 +7,7 @@ const blake2bAsHex = require('./blake2b/asHex');
 
 /**
   @name blake2AsHex
-  @signature blake2AsHex (data: Uint8Array, bitLenght: number = 64): string
+  @signature blake2AsHex (data: Uint8Array, bitLenght: number = 256): string
   @summary Creates a blake2b hex from the input.
   @description
     From a `Uint8Array` input, create the blake2b and return the result as a hex string with the specified `bitLength`.
@@ -16,6 +16,6 @@ const blake2bAsHex = require('./blake2b/asHex');
 
     blake2AsHex('abc') // => 0xba80a53f981c4d0d
 */
-module.exports = function blake2AsHex (data: Uint8Array, bitLength: number = 64): string {
-  return blake2bAsHex(data).substr(0, Math.ceil(bitLength / 4) + 2);
+module.exports = function blake2AsHex (data: Uint8Array, bitLength: number = 256): string {
+  return blake2bAsHex(data, bitLength);
 };

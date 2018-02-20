@@ -8,6 +8,6 @@ describe('blake2AsHex128', () => {
   it('returns a 128-bit value (as specified)', () => {
     expect(
       blake2AsHex128('abc')
-    ).toEqual('0xba80a53f981c4d0d6a2797b69f12f6e9');
+    ).toEqual('0xcf4ab791c62b8d2b2109c90275287816');
   });
 });
