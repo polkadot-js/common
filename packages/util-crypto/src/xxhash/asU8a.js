@@ -3,9 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hexToU8a = require('@polkadot/util/hex/toU8a');
-
-const xxhashAsHex = require('./asHex');
+const xxhash64AsBn = require('./xxhash64/asBn');
 
 /**
   @name xxhashAsU8a
@@ -19,7 +17,13 @@ const xxhashAsHex = require('./asHex');
     xxhashAsU8a('abc') // => 0x44bc2cf5ad770999
 */
 module.exports = function xxhashAsU8a (data: Buffer | Uint8Array | string, bitLength: number = 64): Uint8Array {
-  return hexToU8a(
-    xxhashAsHex(data, bitLength)
-  );
+  const byteLength = Math.ceil(bitLength / 8);
+  const iterations = Math.ceil(bitLength / 64);
+  const u8a = new Uint8Array(byteLength);
+
+  for (let seed = 0; seed < iterations; seed++) {
+    u8a.set(xxhash64AsBn(data, seed).toArray('le', 8), seed * 8);
+  }
+
+  return u8a;
 };
