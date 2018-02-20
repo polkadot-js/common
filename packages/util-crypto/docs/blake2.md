@@ -16,7 +16,7 @@ Create blake2b values with specified bitlengths
 Creates a blake2b hex from the input. 
 
 ```js
-blake2AsHex (data: Uint8Array, bitLenght: number = 64): string
+blake2AsHex (data: Uint8Array, bitLenght: number = 256): string
 ```
 
 
@@ -84,7 +84,7 @@ blake2AsHex512('abc') // => 0x44bc2cf5ad770999
 Creates a blake2b u8a from the input. 
 
 ```js
-blake2AsU8a (data: Uint8Array, bitLenght: number = 64): Uint8Array
+blake2AsU8a (data: Uint8Array, bitLenght: number = 256): Uint8Array
 ```
 
 
