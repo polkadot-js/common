@@ -2,8 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const hexToU8a = require('@polkadot/util/hex/toU8a');
-
 const { blake2AsU8a256 } = require('./index');
 
 describe('blake2AsU8a256', () => {
