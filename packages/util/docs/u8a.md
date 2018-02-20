@@ -189,7 +189,7 @@ u8aToString (value?: UInt8Array): string
 ```js
 import { u8aToString } from '@polkadot/util';
 
-u8aToString(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f])); // hello
+u8aToString(new Uint8Array([21,23,45,67])); // 21,23,45,67
 ```
 
 ## u8aToUtf8
