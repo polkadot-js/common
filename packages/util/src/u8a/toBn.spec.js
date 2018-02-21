@@ -13,6 +13,15 @@ describe('u8aToBn', () => {
     ).toEqual('1234');
   });
 
+  it('converts values (little-endian)', () => {
+    expect(
+      u8aToBn(
+        new Uint8Array([0x12, 0x34]),
+        true
+      ).toString(16)
+    ).toEqual('3412');
+  });
+
   it('converts empty', () => {
     expect(
       u8aToBn(

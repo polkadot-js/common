@@ -9,7 +9,7 @@ const hexStripPrefix = require('./stripPrefix');
 
 /**
   @name hexToBn
-  @signature hexToBn (value?: string): BN
+  @signature hexToBn (value?: string, isLe: boolean = false): BN
   @summary Creates a BN.js bignumber object from a hex string.
   @description
     `null` inputs returns a `BN(0)` result. Hex input values return the actual value converted to a BN. Anything that is not a hex string (including the `0x` prefix) throws an error.
@@ -18,11 +18,11 @@ const hexStripPrefix = require('./stripPrefix');
 
     hexToBn('0x123480001f'); // => BN(0x123480001f)
 */
-module.exports = function hexToBn (value?: string): BN {
+module.exports = function hexToBn (value?: string, isLe: boolean = false): BN {
   // flowlint-next-line sketchy-null-string:off
   if (!value) {
     return new BN(0);
   }
 
-  return new BN(hexStripPrefix(value) || '0', 16);
+  return new BN(hexStripPrefix(value) || '0', 16, isLe ? 'le' : 'be');
 };
