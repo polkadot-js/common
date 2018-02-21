@@ -111,7 +111,7 @@ console.log('stripped', hexStripPrefix('0x1234')); // => 1234
 Creates a BN.js bignumber object from a hex string. 
 
 ```js
-hexToBn (value?: string): BN
+hexToBn (value?: string, isLe: boolean = false): BN
 ```
 
 

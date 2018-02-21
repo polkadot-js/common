@@ -129,7 +129,7 @@ u8aFromUtf8('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
 Creates a BN from a Uint8Array object. 
 
 ```js
-u8aToHex (value?: Uint8Array): BN
+u8aToHex (value?: Uint8Array, isLe: boolean = false): BN
 ```
 
 

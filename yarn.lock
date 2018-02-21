@@ -69,9 +69,9 @@
   dependencies:
     babel-runtime "^6.26.0"
 
-"@polkadot/dev@^0.16.11":
-  version "0.16.11"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.16.11.tgz#86dfbf1f60bef4a6ce0f8e60520fc6bf8adc7d59"
+"@polkadot/dev@^0.16.12":
+  version "0.16.12"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.16.12.tgz#0d46d2b713510375381c273ebb787b040c9907ef"
   dependencies:
     babel-cli "^6.26.0"
     babel-core "^6.26.0"

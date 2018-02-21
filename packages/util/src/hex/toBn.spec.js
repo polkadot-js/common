@@ -30,4 +30,12 @@ describe('hexToBn', () => {
       )
     ).toEqual(true);
   });
+
+  it('converts little-endian', () => {
+    expect(
+      hexToBn('0x4500000000000000', true).eq(
+        new BN(69)
+      )
+    ).toEqual(true);
+  });
 });
