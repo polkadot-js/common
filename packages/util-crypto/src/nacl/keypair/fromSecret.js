@@ -3,14 +3,13 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { KeypairType } from '../types';
+import type { KeypairType } from '../../types';
 
-// const nacl = require('tweetnacl');
-const naclKeypairFromSeed = require('./keypairFromSeed');
+const nacl = require('tweetnacl');
 
 /**
   @name naclKeypairFromSecret
-  @signature naclKeypairFromSecret (secret: Uint8Array | string): { secretKey: Uint8Array, publicKey: Uint8Array }
+  @signature naclKeypairFromSecret (secret: Uint8Array): { secretKey: Uint8Array, publicKey: Uint8Array }
   @summary Creates a new public/secret keypair from a secret.
   @description
     Returns a object containing a `publicKey` & `secretKey` generated from the supplied secret.
@@ -19,8 +18,6 @@ const naclKeypairFromSeed = require('./keypairFromSeed');
 
     naclKeypairFromSecret(...) // => { secretKey: [...], publicKey: [...] }
 */
-module.exports = function naclKeypairFromSecret (secret: Uint8Array | string): KeypairType {
-  // NOTE: According to the Rust implementation, this is equivalent to the seed version
-  return naclKeypairFromSeed(secret);
-  // return nacl.sign.keyPair.fromSecretKey(secretKey);
+module.exports = function naclKeypairFromSecret (secret: Uint8Array): KeypairType {
+  return nacl.sign.keyPair.fromSecretKey(secret);
 };

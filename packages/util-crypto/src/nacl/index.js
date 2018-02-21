@@ -3,9 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const naclKeypair = require('./keypair');
-const naclKeypairFromSecret = require('./keypairFromSecret');
-const naclKeypairFromSeed = require('./keypairFromSeed');
+const naclKeypairFromRandom = require('./keypair/fromRandom');
+const naclKeypairFromSecret = require('./keypair/fromSecret');
+const naclKeypairFromSeed = require('./keypair/fromSeed');
 const naclSign = require('./sign');
 const naclVerify = require('./verify');
 
@@ -13,7 +13,7 @@ const naclVerify = require('./verify');
   @summary Implements [NaCl](http://nacl.cr.yp.to/) secret-key authenticated encryption, public-key authenticated encryption, hashing, and public-key signatures
 */
 module.exports = {
-  naclKeypair,
+  naclKeypairFromRandom,
   naclKeypairFromSecret,
   naclKeypairFromSeed,
   naclSign,

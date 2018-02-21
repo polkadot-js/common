@@ -3,13 +3,13 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { KeypairType } from '../types';
+import type { KeypairType } from '../../types';
 
 const nacl = require('tweetnacl');
 
 /**
   @name naclKeypair
-  @signature naclKeypair (): { secretKey: Uint8Array, publicKey: Uint8Array }
+  @signature naclKeypairFromRandom (): { secretKey: Uint8Array, publicKey: Uint8Array }
   @summary Creates a new public/secret keypair.
   @description
     Returns a new generate object containing a `publicKey` & `secretKey`.
@@ -18,6 +18,6 @@ const nacl = require('tweetnacl');
 
     naclKeypair() // => { secretKey: [...], publicKey: [...] }
 */
-module.exports = function naclKeypair (): KeypairType {
+module.exports = function naclKeypairFromRandom (): KeypairType {
   return nacl.sign.keyPair();
 };

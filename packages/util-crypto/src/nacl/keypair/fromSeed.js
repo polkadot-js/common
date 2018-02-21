@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { KeypairType } from '../types';
+import type { KeypairType } from '../../types';
 
 const nacl = require('tweetnacl');
 const hexToU8a = require('@polkadot/util/hex/toU8a');
