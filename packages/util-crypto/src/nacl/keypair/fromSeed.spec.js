@@ -5,7 +5,7 @@
 const u8aFromString = require('@polkadot/util/u8a/fromString');
 const u8aToHex = require('@polkadot/util/u8a/toHex');
 
-const { naclKeypairFromSeed } = require('./index');
+const { naclKeypairFromSeed } = require('../index');
 
 describe('naclKeypairFromSeed', () => {
   // NOTE: Aligned with Rust test, b"12345678901234567890123456789012"

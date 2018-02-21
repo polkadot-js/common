@@ -2,13 +2,13 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { naclKeypair } = require('./index');
+const { naclKeypairFromRandom } = require('../index');
 
-describe('naclKeypair', () => {
+describe('naclKeypairFromRandom', () => {
   let keypair;
 
   beforeEach(() => {
-    keypair = naclKeypair();
+    keypair = naclKeypairFromRandom();
   });
 
   it('generates a valid publicKey', () => {
