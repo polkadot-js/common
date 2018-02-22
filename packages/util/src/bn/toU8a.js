@@ -32,7 +32,7 @@ module.exports = function bnToU8a (value?: BN | number, bitLength: number = -1, 
 
   if (bitLength === -1) {
     return hexToU8a(
-      bnToHex(bnToBn(value || 0), bitLength)
+      bnToHex(bnToBn(value), bitLength)
     );
   }
 
