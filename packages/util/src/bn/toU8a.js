@@ -21,9 +21,13 @@ const bnToHex = require('./toHex');
     bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
 */
 module.exports = function bnToU8a (value?: BN | number, bitLength: number = -1, isLe: boolean = false): Uint8Array {
+  const byteLength = Math.ceil(bitLength / 8);
+
   // flowlint-next-line sketchy-null-number:off
   if (!value) {
-    return new Uint8Array([]);
+    return bitLength === -1
+      ? new Uint8Array([])
+      : new Uint8Array(byteLength);
   }
 
   if (bitLength === -1) {
@@ -32,7 +36,6 @@ module.exports = function bnToU8a (value?: BN | number, bitLength: number = -1, 
     );
   }
 
-  const byteLength = Math.ceil(bitLength / 8);
   const output = new Uint8Array(byteLength);
 
   output.set(

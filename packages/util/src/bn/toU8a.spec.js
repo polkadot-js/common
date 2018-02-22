@@ -13,6 +13,12 @@ describe('bnToU8a', () => {
     ).toEqual(new Uint8Array([]));
   });
 
+  it('converts null values to 0x00000000 (bitLength)', () => {
+    expect(
+      bnToU8a(null, 32)
+    ).toEqual(new Uint8Array([0, 0, 0, 0]));
+  });
+
   it('converts BN values to a prefixed hex representation', () => {
     expect(
       bnToU8a(new BN(0x123456))
