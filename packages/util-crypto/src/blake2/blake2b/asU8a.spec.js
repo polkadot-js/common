@@ -5,20 +5,17 @@
 const { blake2bAsU8a } = require('./index');
 
 describe('blake2bAsU8a', () => {
+  it('creates the correct hash (default length)', () => {
+    expect(
+      blake2bAsU8a('abc')
+    ).toEqual(new Uint8Array([186, 128, 165, 63, 152, 28, 77, 13, 106, 39, 151, 182, 159, 18, 246, 233, 76, 33, 47, 20, 104, 90, 196, 183, 75, 18, 187, 111, 219, 255, 162, 209, 125, 135, 197, 57, 42, 171, 121, 45, 194, 82, 213, 222, 69, 51, 204, 149, 24, 211, 138, 168, 219, 241, 146, 90, 185, 35, 134, 237, 212, 0, 153, 35]));
+  });
+
   it('creates the correct hash', () => {
     expect(
-      blake2bAsU8a('abc', 512)
+      blake2bAsU8a('abc', 256)
     ).toEqual(
-      Uint8Array.from([
-        0xba, 0x80, 0xa5, 0x3f, 0x98, 0x1c, 0x4d, 0x0d,
-        0x6a, 0x27, 0x97, 0xb6, 0x9f, 0x12, 0xf6, 0xe9,
-        0x4c, 0x21, 0x2f, 0x14, 0x68, 0x5a, 0xc4, 0xb7,
-        0x4b, 0x12, 0xbb, 0x6f, 0xdb, 0xff, 0xa2, 0xd1,
-        0x7d, 0x87, 0xc5, 0x39, 0x2a, 0xab, 0x79, 0x2d,
-        0xc2, 0x52, 0xd5, 0xde, 0x45, 0x33, 0xcc, 0x95,
-        0x18, 0xd3, 0x8a, 0xa8, 0xdb, 0xf1, 0x92, 0x5a,
-        0xb9, 0x23, 0x86, 0xed, 0xd4, 0x00, 0x99, 0x23
-      ])
+      new Uint8Array([189, 221, 129, 60, 99, 66, 57, 114, 49, 113, 239, 63, 238, 152, 87, 155, 148, 150, 78, 59, 177, 203, 62, 66, 114, 98, 200, 192, 104, 213, 35, 25])
     );
   });
 });
