@@ -11,9 +11,13 @@ const rlpEncode = require('@polkadot/util-rlp/encode');
 const encode = require('./encode');
 
 module.exports = function genRoot (pairs: Trie$Pairs): Uint8Array {
+  const encoded = encode(pairs, 0);
+
   return keccakAsU8a(
     rlpEncode(
-      encode(pairs, 0)
+      encoded.length
+        ? encoded
+        : new Uint8Array([])
     )
   );
 };
