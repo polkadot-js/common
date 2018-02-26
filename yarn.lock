@@ -69,9 +69,9 @@
   dependencies:
     babel-runtime "^6.26.0"
 
-"@polkadot/dev@^0.16.12":
-  version "0.16.12"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.16.12.tgz#0d46d2b713510375381c273ebb787b040c9907ef"
+"@polkadot/dev@^0.16.13":
+  version "0.16.13"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.16.13.tgz#d1c9f59d6b9ec2dbb1b4cbe49acbbe948ee33494"
   dependencies:
     babel-cli "^6.26.0"
     babel-core "^6.26.0"
@@ -84,7 +84,7 @@
     coveralls "^3.0.0"
     dox "^0.9.0"
     eslint "^4.18.0"
-    eslint-config-semistandard "^12.0.0"
+    eslint-config-semistandard "^12.0.1"
     eslint-config-standard "^11.0.0"
     eslint-config-standard-jsx "^5.0.0"
     eslint-config-standard-react "^6.0.0"
@@ -1803,9 +1803,9 @@ escodegen@^1.9.0:
   optionalDependencies:
     source-map "~0.5.6"
 
-eslint-config-semistandard@^12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-semistandard/-/eslint-config-semistandard-12.0.0.tgz#e6482de68e05c2dbdddaf45c3078f6a97fe23f1a"
+eslint-config-semistandard@^12.0.1:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-semistandard/-/eslint-config-semistandard-12.0.1.tgz#e35d66959dfe6f0d8e8445d7a4de37d8fd8875f4"
 
 eslint-config-standard-jsx@^5.0.0:
   version "5.0.0"
