@@ -3,11 +3,18 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { Logger } from './types';
+import type { Logger, Logger$Data } from './types';
 
 type ConsoleType = 'error' | 'log' | 'warn';
 
-function apply (log: ConsoleType, type: string, values: Array<mixed>): void {
+const isFunction = require('./is/function');
+
+function apply (log: ConsoleType, type: string, values: Logger$Data): void {
+  if (values.length === 1 && isFunction(values[0])) {
+    // flowlint-next-line unclear-type:off
+    return apply(log, type, ((values[0]: any): Function)());
+  }
+
   console[log].apply(console, [new Date().toString(), type].concat(values));
 }
 
@@ -37,10 +44,10 @@ module.exports = function logger (_type: string): Logger {
 
   return {
     debug: isDebug
-      ? (...values: Array<mixed>): void => apply('log', type, values)
-      : (...values: Array<mixed>): void => void 0,
-    error: (...values: Array<mixed>): void => apply('error', type, values),
-    log: (...values: Array<mixed>): void => apply('log', type, values),
-    warn: (...values: Array<mixed>): void => apply('warn', type, values)
+      ? (...values: Logger$Data): void => apply('log', type, values)
+      : (...values: Logger$Data): void => void 0,
+    error: (...values: Logger$Data): void => apply('error', type, values),
+    log: (...values: Logger$Data): void => apply('log', type, values),
+    warn: (...values: Logger$Data): void => apply('warn', type, values)
   };
 };

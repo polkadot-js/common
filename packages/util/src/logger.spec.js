@@ -38,6 +38,38 @@ describe('logger', () => {
     jest.restoreAllMocks();
   });
 
+  it('logs to console.log with .log', () => {
+    l.log('console.log test');
+
+    expect(spy.log).toHaveBeenCalledWith(
+      dateMatch,
+      prefixMatch,
+      'console.log test'
+    );
+  });
+
+  it('logs with mulptiple values', () => {
+    l.log('test', 'a', 2);
+
+    expect(spy.log).toHaveBeenCalledWith(
+      dateMatch,
+      prefixMatch,
+      'test',
+      'a',
+      2
+    );
+  });
+
+  it('logs when called with function', () => {
+    l.log(() => 'a function test');
+
+    expect(spy.log).toHaveBeenCalledWith(
+      dateMatch,
+      prefixMatch,
+      'a function test'
+    );
+  });
+
   it('logs to console.error with .error', () => {
     l.error('console.error test');
 
@@ -55,28 +87,6 @@ describe('logger', () => {
       dateMatch,
       prefixMatch,
       'console.warn test'
-    );
-  });
-
-  it('logs to console.log with .log', () => {
-    l.log('console.log test');
-
-    expect(spy.log).toHaveBeenCalledWith(
-      dateMatch,
-      prefixMatch,
-      'console.log test'
-    );
-  });
-
-  it('logs to with mulptiple values', () => {
-    l.log('test', 'a', 2);
-
-    expect(spy.log).toHaveBeenCalledWith(
-      dateMatch,
-      prefixMatch,
-      'test',
-      'a',
-      2
     );
   });
 
