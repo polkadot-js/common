@@ -5,21 +5,27 @@
 const { hexStripPrefix } = require('./index');
 
 describe('hexStripPrefix', () => {
-  it('returns the value as-is when no prefix', () => {
-    expect(
-      hexStripPrefix('01ab')
-    ).toEqual('01ab');
-  });
-
   it('returns an empty string when null value supplied', () => {
     expect(
       hexStripPrefix(null)
     ).toEqual('');
   });
 
-  it('strips the prefix from other strings', () => {
+  it('strips the prefix from hex strings', () => {
     expect(
       hexStripPrefix('0x1223')
     ).toEqual('1223');
+  });
+
+  it('returns un-prefixed hex as-is', () => {
+    expect(
+      hexStripPrefix('abcd1223')
+    ).toEqual('abcd1223');
+  });
+
+  it('throws when invalid hex', () => {
+    expect(
+      () => hexStripPrefix('0x0x01ab')
+    ).toThrow(/Invalid hex/);
   });
 });

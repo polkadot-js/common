@@ -5,6 +5,8 @@
 
 const hasPrefix = require('./hasPrefix');
 
+const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
+
 /**
   @name hexStripPrefix
   @signature hexStripPrefix (value: ?string): string
@@ -18,9 +20,17 @@ const hasPrefix = require('./hasPrefix');
 */
 module.exports = function hexStripPrefix (value: ?string): string {
   // flowlint-next-line sketchy-null-string:off
-  if (value && hasPrefix(value)) {
+  if (!value) {
+    return '';
+  }
+
+  if (hasPrefix(value)) {
     return value.substr(2);
   }
 
-  return value || '';
+  if (UNPREFIX_HEX_REGEX.test(value)) {
+    return value;
+  }
+
+  throw new Error(`Invalid hex ${value} passed to hexStripPrefix`);
 };
