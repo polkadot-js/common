@@ -10,9 +10,11 @@ export interface ExtErrorInterface {
   stack: string;
 }
 
+export type Logger$Data = Array<mixed | () => Array<mixed>>;
+
 export type Logger = {
-  debug: (...values: Array<mixed>) => void,
-  error: (...values: Array<mixed>) => void,
-  log: (...values: Array<mixed>) => void,
-  warn: (...values: Array<mixed>) => void
+  debug: (...values: Logger$Data) => void,
+  error: (...values: Logger$Data) => void,
+  log: (...values: Logger$Data) => void,
+  warn: (...values: Logger$Data) => void
 };
