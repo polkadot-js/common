@@ -11,19 +11,25 @@ type TestKeyring = {
 
 const createKeyring = require('./index');
 
+function padSeed (seed: string): string {
+  return seed.length < 32
+    ? padSeed(`${seed} `)
+    : seed;
+}
+
 const SEEDS = {
   alice:
-    'Alice                           ',
+    padSeed('Alice'),
   bob:
-    'Bob                             ',
+    padSeed('Bob'),
   charlie:
-    'Charlie                         ',
+    padSeed('Charlie'),
   dave:
-    'Dave                            ',
+    padSeed('Dave'),
   eve:
-    'Eve                             ',
+    padSeed('Eve'),
   ferdie:
-    'Ferdie                          ',
+    padSeed('Ferdie'),
   one:
     '12345678901234567890123456789012',
   two:

@@ -7,11 +7,11 @@ const { u8aConcat } = require('./index');
 describe('u8aConcat', () => {
   it('concatenates arrays', () => {
     expect(
-      u8aConcat([
+      u8aConcat(
         new Uint8Array([1, 2, 3, 4]),
         new Uint8Array([5, 6]),
         new Uint8Array([7, 8, 9])
-      ])
+      )
     ).toEqual(
       new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9])
     );
