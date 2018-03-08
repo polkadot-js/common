@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-keyring",
-  "version": "0.16.5",
+  "version": "0.16.6",
   "description": "Keyring management",
   "main": "index.js",
   "engines": {
@@ -31,8 +31,8 @@
     "test": "echo \"Tests only available from root wrapper\""
   },
   "dependencies": {
-    "@polkadot/util": "^0.16.5",
-    "@polkadot/util-crypto": "^0.16.5",
+    "@polkadot/util": "^0.16.6",
+    "@polkadot/util-crypto": "^0.16.6",
     "babel-runtime": "^6.26.0"
   }
 }
