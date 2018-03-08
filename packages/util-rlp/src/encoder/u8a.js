@@ -14,8 +14,8 @@ module.exports = function encodeU8a (encoder: EncodeFunc, input: Uint8Array): Ui
     return input;
   }
 
-  return u8aConcat([
+  return u8aConcat(
     encodeLength(input.length, 128),
     input
-  ]);
+  );
 };

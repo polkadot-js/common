@@ -11,18 +11,10 @@ const encodeLength = require('./length');
 
 // flowlint-next-line unclear-type:off
 module.exports = function encodeArray (encoder: EncodeFunc, input: any): Uint8Array {
-  const output = [];
+  const encoded = u8aConcat.apply(null, input.map(encoder));
 
-  for (let i = 0; i < input.length; i++) {
-    output.push(
-      encoder(input[i])
-    );
-  }
-
-  const encoded = u8aConcat(output);
-
-  return u8aConcat([
+  return u8aConcat(
     encodeLength(encoded.length, 192),
     encoded
-  ]);
+  );
 };
