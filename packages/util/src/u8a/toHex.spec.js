@@ -18,4 +18,12 @@ describe('u8aToHex', () => {
       )
     ).toEqual('0x80000a');
   });
+
+  it('handles starting zeros correctly', () => {
+    expect(
+      u8aToHex(
+        new Uint8Array([ 0, 1, 0, 0, 0, 0, 0, 0 ])
+      )
+    ).toEqual('0x0001000000000000');
+  });
 });

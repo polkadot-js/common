@@ -7,6 +7,12 @@ const BN = require('bn.js');
 
 const hexStripPrefix = require('./stripPrefix');
 
+function reverse (value: string): string {
+  return (value.match(new RegExp('.{1,2}', 'g')) || [])
+    .reverse()
+    .join('');
+}
+
 /**
   @name hexToBn
   @signature hexToBn (value?: string, isLe: boolean = false): BN
@@ -18,11 +24,13 @@ const hexStripPrefix = require('./stripPrefix');
 
     hexToBn('0x123480001f'); // => BN(0x123480001f)
 */
-module.exports = function hexToBn (value?: string, isLe: boolean = false): BN {
+module.exports = function hexToBn (_value?: string, isLe: boolean = false): BN {
   // flowlint-next-line sketchy-null-string:off
-  if (!value) {
+  if (!_value) {
     return new BN(0);
   }
 
-  return new BN(hexStripPrefix(value) || '0', 16, isLe ? 'le' : 'be');
+  const value = hexStripPrefix(_value) || '00';
+
+  return new BN(isLe ? reverse(value) : value, 16);
 };

@@ -29,4 +29,13 @@ describe('u8aToBn', () => {
       ).toString(16)
     ).toEqual('0');
   });
+
+  it('handled overflows correctly', () => {
+    expect(
+      u8aToBn(
+        new Uint8Array([ 0, 1, 0, 0, 0, 0, 0, 0 ]),
+        true
+      ).toString()
+    ).toEqual('256');
+  });
 });
