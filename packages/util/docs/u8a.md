@@ -20,7 +20,7 @@ Utility methods to convert to and from `Uint8Array` objects
 Creates a concatenated Uint8Array from the inputs. 
 
 ```js
-u8aConcat (values: Array<Uint8Array>): Uint8Array
+u8aConcat (...values: Array<Uint8Array>): Uint8Array
 ```
 
 
@@ -29,10 +29,10 @@ Concatenates the input arrays into a single `UInt8Array`.
 ```js
 import { u8aConcat } from '@polkadot/util';
 
-u8aConcat([
+u8aConcat(
 new Uint8Array([1, 2, 3]),
 new Uint8Array([4, 5, 6])
-]); // [1, 2, 3, 4, 5, 6]
+); // [1, 2, 3, 4, 5, 6]
 ```
 
 ## u8aFixLength
