@@ -8,11 +8,9 @@ import type { KeyringPair } from './types';
 
 const naclSign = require('@polkadot/util-crypto/nacl/sign');
 const naclVerify = require('@polkadot/util-crypto/nacl/verify');
-const u8aToString = require('@polkadot/util/u8a/toString');
 
 module.exports = function pair ({ publicKey, secretKey }: KeypairType): KeyringPair {
   return {
-    id: u8aToString(publicKey),
     publicKey,
     sign: (message: Uint8Array): Uint8Array =>
       naclSign(message, secretKey),
