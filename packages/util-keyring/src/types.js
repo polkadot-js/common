@@ -4,7 +4,6 @@
 // @flow
 
 export type KeyringPair = {
-  id: string,
   publicKey: Uint8Array,
 
   sign (message: Uint8Array): Uint8Array,

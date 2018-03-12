@@ -6,11 +6,10 @@
 import type { KeyringInstance, KeyringPair } from './types';
 
 type KeyringPairMap = {
-  [string]: KeyringPair
+  [Uint8Array]: KeyringPair
 };
 
 const naclKeypairFromSeed = require('@polkadot/util-crypto/nacl/keypair/fromSeed');
-const u8aToString = require('@polkadot/util/u8a/toString');
 
 const createPair = require('./pair');
 
@@ -24,12 +23,12 @@ module.exports = function keyring (): KeyringInstance {
     addFromSeed: (seed: Uint8Array | string): KeyringPair => {
       const pair = createPair(naclKeypairFromSeed(seed));
 
-      pairs[pair.id] = pair;
+      pairs[pair.publicKey] = pair;
 
       return pair;
     },
     getPair: (publicKey: Uint8Array): ?KeyringPair =>
-      pairs[u8aToString(publicKey)],
+      pairs[publicKey],
     getPairs,
     getPublicKeys: (): Array<Uint8Array> =>
       getPairs().map(({ publicKey }) => publicKey)
