@@ -16,6 +16,6 @@ const blake2AsU8a = require('./asU8a');
 
     blake2AsU8a256('abc') // => 0x44bc2cf5ad770999
 */
-module.exports = function blake2AsU8a256 (data: Uint8Array): Uint8Array {
-  return blake2AsU8a(data, 256);
+module.exports = function blake2AsU8a256 (data: Uint8Array, key?: Uint8Array): Uint8Array {
+  return blake2AsU8a(data, 256, key);
 };

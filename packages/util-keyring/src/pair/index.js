@@ -4,14 +4,22 @@
 // @flow
 
 import type { KeypairType } from '@polkadot/util-crypto/types';
-import type { KeyringPair } from './types';
+import type { KeyringPairEncrypted, KeyringPair } from '../types';
 
 const naclSign = require('@polkadot/util-crypto/nacl/sign');
 const naclVerify = require('@polkadot/util-crypto/nacl/verify');
 
+const decrypt = require('./decrypt');
+const encrypt = require('./encrypt');
+
 module.exports = function pair ({ publicKey, secretKey }: KeypairType): KeyringPair {
   return {
     publicKey,
+    decryptSelf: (encrypted: KeyringPairEncrypted, secret: Uint8Array | string): void => {
+      secretKey = decrypt(encrypted, secret);
+    },
+    encryptSelf: (secret: Uint8Array | string): KeyringPairEncrypted =>
+      encrypt(secretKey, secret, publicKey),
     sign: (message: Uint8Array): Uint8Array =>
       naclSign(message, secretKey),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
