@@ -6,6 +6,7 @@
 const naclKeypairFromRandom = require('./keypair/fromRandom');
 const naclKeypairFromSecret = require('./keypair/fromSecret');
 const naclKeypairFromSeed = require('./keypair/fromSeed');
+const naclKeypairFromString = require('./keypair/fromString');
 const naclSign = require('./sign');
 const naclVerify = require('./verify');
 
@@ -16,6 +17,7 @@ module.exports = {
   naclKeypairFromRandom,
   naclKeypairFromSecret,
   naclKeypairFromSeed,
+  naclKeypairFromString,
   naclSign,
   naclVerify
 };
