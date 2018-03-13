@@ -5,15 +5,12 @@
 
 import type { KeyringPairEncrypted } from '../types';
 
+const kdf = require('@polkadot/util-crypto/kdf/asU8a');
 const naclEncrypt = require('@polkadot/util-crypto/nacl/encrypt');
-const randomAsU8a = require('@polkadot/util-crypto/random/asU8a');
 
-const secretRounds = require('./secretRounds');
-
-module.exports = function encrypt (message: Uint8Array, _secret: string, publicKey: Uint8Array, rounds: number = 8): KeyringPairEncrypted {
-  const salt = randomAsU8a(32);
-  const secret = secretRounds(_secret, rounds, salt);
-  const { encrypted, nonce } = naclEncrypt(message, secret);
+module.exports = function encrypt (message: Uint8Array, secret: string, publicKey: Uint8Array): KeyringPairEncrypted {
+  const { key, rounds, salt } = kdf(secret);
+  const { encrypted, nonce } = naclEncrypt(message, key);
 
   return {
     crypto: {

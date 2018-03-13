@@ -4,6 +4,7 @@
 // @flow
 
 const blake2 = require('./blake2');
+const kdf = require('./kdf');
 const keccak = require('./keccak');
 const nacl = require('./nacl');
 const random = require('./random');
@@ -14,5 +15,5 @@ const xxhash = require('./xxhash');
   @summary Utility methods for this package are split into groups
 */
 module.exports = Object.assign(
-  {}, blake2, keccak, nacl, random, sha512, xxhash
+  {}, blake2, kdf, keccak, nacl, random, sha512, xxhash
 );

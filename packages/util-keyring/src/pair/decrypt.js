@@ -5,14 +5,13 @@
 
 import type { KeyringPairEncrypted } from '../types';
 
+const kdf = require('@polkadot/util-crypto/kdf/asU8a');
 const naclDecrypt = require('@polkadot/util-crypto/nacl/decrypt');
 const assert = require('@polkadot/util/assert');
 
-const secretRounds = require('./secretRounds');
-
-module.exports = function decrypt ({ crypto: { params: { nonce }, kdf: { rounds, salt }, text } }: KeyringPairEncrypted, _secret: string): Uint8Array {
-  const secret = secretRounds(_secret, rounds, salt);
-  const secretKey = naclDecrypt(text, secret, nonce);
+module.exports = function decrypt ({ crypto: { params: { nonce }, kdf: { rounds, salt }, text } }: KeyringPairEncrypted, secret: string): Uint8Array {
+  const { key } = kdf(secret, rounds, salt);
+  const secretKey = naclDecrypt(text, key, nonce);
 
   assert(secretKey, 'Unable to decrypt pair using secret');
 
