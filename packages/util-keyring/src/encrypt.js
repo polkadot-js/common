@@ -5,7 +5,7 @@
 
 import type { KeyringPairEncrypted, KeyringPair } from './types';
 
-module.exports = function encrypt (pair: ?KeyringPair, secret: string): ?KeyringPairEncrypted {
+module.exports = function encrypt (pair: ?KeyringPair, secret: Uint8Array | string): ?KeyringPairEncrypted {
   if (!pair) {
     return null;
   }

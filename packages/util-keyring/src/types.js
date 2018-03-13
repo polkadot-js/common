@@ -22,8 +22,8 @@ export type KeyringPairEncrypted = {
 export type KeyringPair = {
   publicKey: Uint8Array,
 
-  decryptSelf: (box: KeyringPairEncrypted, secret: string) => void,
-  encryptSelf: (secret: string) => KeyringPairEncrypted,
+  decryptSelf: (box: KeyringPairEncrypted, secret: Uint8Array | string) => void,
+  encryptSelf: (secret: Uint8Array | string) => KeyringPairEncrypted,
   sign (message: Uint8Array): Uint8Array,
   verify (message: Uint8Array, signature: Uint8Array): boolean
 };
@@ -36,6 +36,8 @@ export type KeyringPairs = {
 
 export type KeyringInstance = {
   addFromSeed (seed: Uint8Array | string): KeyringPair,
+  decrypt (encrypted: KeyringPairEncrypted, secret: Uint8Array | string): KeyringPair,
+  encrypt (publicKey: Uint8Array, secret: Uint8Array | string): ?KeyringPairEncrypted,
   getPair (publicKey: Uint8Array): ?KeyringPair,
   getPairs (): Array<KeyringPair>,
   getPublicKeys (): Array<Uint8Array>

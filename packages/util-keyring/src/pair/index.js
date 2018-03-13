@@ -15,10 +15,10 @@ const encrypt = require('./encrypt');
 module.exports = function pair ({ publicKey, secretKey }: KeypairType): KeyringPair {
   return {
     publicKey,
-    decryptSelf: (encrypted: KeyringPairEncrypted, secret: string): void => {
+    decryptSelf: (encrypted: KeyringPairEncrypted, secret: Uint8Array | string): void => {
       secretKey = decrypt(encrypted, secret);
     },
-    encryptSelf: (secret: string): KeyringPairEncrypted =>
+    encryptSelf: (secret: Uint8Array | string): KeyringPairEncrypted =>
       encrypt(secretKey, secret, publicKey),
     sign: (message: Uint8Array): Uint8Array =>
       naclSign(message, secretKey),

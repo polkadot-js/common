@@ -9,7 +9,7 @@ const kdf = require('@polkadot/util-crypto/kdf/asU8a');
 const naclDecrypt = require('@polkadot/util-crypto/nacl/decrypt');
 const assert = require('@polkadot/util/assert');
 
-module.exports = function decrypt ({ crypto: { params: { nonce }, kdf: { rounds, salt }, text } }: KeyringPairEncrypted, secret: string): Uint8Array {
+module.exports = function decrypt ({ crypto: { params: { nonce }, kdf: { rounds, salt }, text } }: KeyringPairEncrypted, secret: Uint8Array | string): Uint8Array {
   const { key } = kdf(secret, rounds, salt);
   const secretKey = naclDecrypt(text, key, nonce);
 
