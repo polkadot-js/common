@@ -17,7 +17,6 @@ module.exports = function encrypt (message: Uint8Array, _secret: string, publicK
 
   return {
     crypto: {
-      cipher: 'xsalsa20-poly1305',
       params: {
         nonce
       },

@@ -7,7 +7,6 @@ export type KeyringPairEncrypted$Cipher = 'xsalsa20-poly1305';
 
 export type KeyringPairEncrypted = {
   crypto: {
-    cipher: KeyringPairEncrypted$Cipher,
     params: {
       nonce: Uint8Array
     },
