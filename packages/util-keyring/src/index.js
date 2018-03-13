@@ -3,35 +3,29 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { KeyringInstance, KeyringPair } from './types';
-
-type KeyringPairMap = {
-  [string]: KeyringPair
-};
+import type { KeyringPairEncrypted, KeyringInstance, KeyringPair } from './types';
 
 const naclKeypairFromSeed = require('@polkadot/util-crypto/nacl/keypair/fromSeed');
-const u8aToString = require('@polkadot/util/u8a/toString');
 
+const decrypt = require('./decrypt');
+const encrypt = require('./encrypt');
 const createPair = require('./pair');
+const createPairs = require('./pairs');
 
 module.exports = function keyring (): KeyringInstance {
-  const pairs: KeyringPairMap = {};
-  const getPairs = (): Array<KeyringPair> =>
-    // flowlint-next-line unclear-type:off
-    ((Object.values(pairs): any): Array<KeyringPair>);
+  const pairs = createPairs();
 
   return {
-    addFromSeed: (seed: Uint8Array | string): KeyringPair => {
-      const pair = createPair(naclKeypairFromSeed(seed));
-
-      pairs[pair.id] = pair;
-
-      return pair;
-    },
+    addFromSeed: (seed: Uint8Array | string): KeyringPair =>
+      pairs.add(createPair(naclKeypairFromSeed(seed))),
+    decrypt: (encrypted: KeyringPairEncrypted, secret: string): KeyringPair =>
+      pairs.add(decrypt(encrypted, secret)),
+    encrypt: (publicKey: Uint8Array, secret: string): ?KeyringPairEncrypted =>
+      encrypt(pairs.get(publicKey), secret),
     getPair: (publicKey: Uint8Array): ?KeyringPair =>
-      pairs[u8aToString(publicKey)],
-    getPairs,
+      pairs.get(publicKey),
+    getPairs: pairs.all,
     getPublicKeys: (): Array<Uint8Array> =>
-      getPairs().map(({ publicKey }) => publicKey)
+      pairs.all().map(({ publicKey }) => publicKey)
   };
 };
