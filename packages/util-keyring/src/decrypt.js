@@ -5,18 +5,15 @@
 
 import type { KeyringPairEncrypted, KeyringPair } from './types';
 
-const naclKeypairFromString = require('@polkadot/util-crypto/nacl/keypair/fromString');
-
 const createPair = require('./pair');
 
 module.exports = function decrypt (box: KeyringPairEncrypted, secret: string): KeyringPair {
-  const { secretKey } = naclKeypairFromString(secret);
   const pair = createPair({
     publicKey: box.publicKey,
     secretKey: new Uint8Array([])
   });
 
-  pair.decryptSelf(box, secretKey);
+  pair.decryptSelf(box, secret);
 
   return pair;
 };

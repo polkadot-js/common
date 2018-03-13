@@ -16,6 +16,6 @@ const nacl = require('tweetnacl');
 
     naclDecrypt([...], [...], [...]) // => [...]
 */
-module.exports = function naclDecrypt (message: Uint8Array, secretKey: Uint8Array, nonce: Uint8Array): ?Uint8Array {
-  return nacl.secretbox.open(message, nonce, secretKey.subarray(0, 32));
+module.exports = function naclDecrypt (message: Uint8Array, secret: Uint8Array, nonce: Uint8Array): ?Uint8Array {
+  return nacl.secretbox.open(message, nonce, secret);
 };

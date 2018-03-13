@@ -2,22 +2,17 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { naclEncrypt, naclKeypairFromString } = require('./index');
+const { naclEncrypt } = require('./index');
 
 describe('naclEncrypt', () => {
-  let secretKey;
-
-  beforeEach(() => {
-    secretKey = naclKeypairFromString('test').secretKey;
-  });
-
   it('encrypts a message', () => {
+    const secret = new Uint8Array(32);
     const message = new Uint8Array([1, 2, 3, 4, 5, 4, 3, 2, 1]);
 
     expect(
-      naclEncrypt(message, secretKey, new Uint8Array(24))
+      naclEncrypt(message, secret, new Uint8Array(24))
     ).toEqual({
-      encrypted: new Uint8Array([93, 217, 158, 85, 80, 152, 227, 85, 76, 189, 150, 53, 119, 41, 104, 26, 112, 117, 232, 250, 95, 83, 65, 222, 199]),
+      encrypted: new Uint8Array([94, 21, 20, 69, 68, 221, 140, 245, 200, 67, 77, 188, 129, 85, 227, 141, 199, 60, 184, 251, 251, 129, 205, 46, 234]),
       nonce: new Uint8Array(24)
     });
   });

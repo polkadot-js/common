@@ -23,8 +23,8 @@ const randomAsU8a = require('../random/asU8a');
 
     naclSign([...], [...]) // => [...]
 */
-module.exports = function naclEncrypt (message: Uint8Array, secretKey: Uint8Array, nonce: Uint8Array = randomAsU8a(24)): Encrypted {
-  const encrypted = nacl.secretbox(message, nonce, secretKey.subarray(0, 32));
+module.exports = function naclEncrypt (message: Uint8Array, secret: Uint8Array, nonce: Uint8Array = randomAsU8a(24)): Encrypted {
+  const encrypted = nacl.secretbox(message, nonce, secret);
 
   return {
     encrypted,

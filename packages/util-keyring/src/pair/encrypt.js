@@ -7,12 +7,21 @@ import type { KeyringPairEncrypted } from '../types';
 
 const naclEncrypt = require('@polkadot/util-crypto/nacl/encrypt');
 
-module.exports = function encrypt (message: Uint8Array, secret: Uint8Array, publicKey: Uint8Array): KeyringPairEncrypted {
+const secretRounds = require('./secretRounds');
+
+module.exports = function encrypt (message: Uint8Array, _secret: string, publicKey: Uint8Array, rounds: number = 8): KeyringPairEncrypted {
+  const secret = secretRounds(_secret, rounds);
   const { encrypted, nonce } = naclEncrypt(message, secret);
 
   return {
-    encrypted,
-    nonce,
+    crypto: {
+      cipher: 'xsalsa20-poly1305',
+      params: {
+        nonce,
+        rounds
+      },
+      text: encrypted
+    },
     publicKey
   };
 };

@@ -3,17 +3,25 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+export type KeyringPairEncrypted$Cipher = 'xsalsa20-poly1305';
+
 export type KeyringPairEncrypted = {
-  encrypted: Uint8Array,
-  nonce: Uint8Array,
-  publicKey: Uint8Array
+  crypto: {
+    cipher: KeyringPairEncrypted$Cipher,
+    params: {
+      nonce: Uint8Array,
+      rounds: number
+    },
+    text: Uint8Array
+  },
+  publicKey: Uint8Array,
 };
 
 export type KeyringPair = {
   publicKey: Uint8Array,
 
-  decryptSelf: (box: KeyringPairEncrypted, secret: Uint8Array) => void,
-  encryptSelf: (secret: Uint8Array) => KeyringPairEncrypted,
+  decryptSelf: (box: KeyringPairEncrypted, secret: string) => void,
+  encryptSelf: (secret: string) => KeyringPairEncrypted,
   sign (message: Uint8Array): Uint8Array,
   verify (message: Uint8Array, signature: Uint8Array): boolean
 };
