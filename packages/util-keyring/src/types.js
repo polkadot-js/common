@@ -9,8 +9,11 @@ export type KeyringPairEncrypted = {
   crypto: {
     cipher: KeyringPairEncrypted$Cipher,
     params: {
-      nonce: Uint8Array,
-      rounds: number
+      nonce: Uint8Array
+    },
+    kdf: {
+      rounds: number,
+      salt: Uint8Array
     },
     text: Uint8Array
   },

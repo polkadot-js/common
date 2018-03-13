@@ -15,8 +15,8 @@ const encrypt = require('./encrypt');
 module.exports = function pair ({ publicKey, secretKey }: KeypairType): KeyringPair {
   return {
     publicKey,
-    decryptSelf: ({ crypto: { text, params: { nonce, rounds } } }: KeyringPairEncrypted, secret: string): void => {
-      secretKey = decrypt(text, secret, nonce, rounds);
+    decryptSelf: (encrypted: KeyringPairEncrypted, secret: string): void => {
+      secretKey = decrypt(encrypted, secret);
     },
     encryptSelf: (secret: string): KeyringPairEncrypted =>
       encrypt(secretKey, secret, publicKey),

@@ -3,14 +3,16 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+import type { KeyringPairEncrypted } from '../types';
+
 const naclDecrypt = require('@polkadot/util-crypto/nacl/decrypt');
 const assert = require('@polkadot/util/assert');
 
 const secretRounds = require('./secretRounds');
 
-module.exports = function decrypt (encrypted: Uint8Array, _secret: string, nonce: Uint8Array, rounds: number): Uint8Array {
-  const secret = secretRounds(_secret, rounds);
-  const secretKey = naclDecrypt(encrypted, secret, nonce);
+module.exports = function decrypt ({ crypto: { params: { nonce }, kdf: { rounds, salt }, text } }: KeyringPairEncrypted, _secret: string): Uint8Array {
+  const secret = secretRounds(_secret, rounds, salt);
+  const secretKey = naclDecrypt(text, secret, nonce);
 
   assert(secretKey, 'Unable to decrypt pair using secret');
 
