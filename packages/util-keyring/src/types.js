@@ -16,7 +16,7 @@ export type KeyringPairEncrypted = {
     },
     text: Uint8Array
   },
-  publicKey: Uint8Array,
+  publicKey: Uint8Array
 };
 
 export type KeyringPair = {
