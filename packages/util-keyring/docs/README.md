@@ -2,5 +2,6 @@
 
  
 
+- [pair](pair.md) 
 
 # Available methods

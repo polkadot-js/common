@@ -3,6 +3,7 @@
 Utility methods for this package are split into groups 
 
 - [blake2](blake2.md) Create blake2b values with specified bitlengths
+- [kdf](kdf.md) Create Keys for use in encryption (rounds & salt) based on inputs
 - [keccak](keccak.md) Create Keccak256 values as hex & Uint8Array output
 - [nacl](nacl.md) Implements [NaCl](http://nacl.cr.yp.to/) secret-key authenticated encryption, public-key authenticated encryption, hashing, and public-key signatures
 - [random](random.md) Returns a sequence of secure random bytes in a variety of formats
