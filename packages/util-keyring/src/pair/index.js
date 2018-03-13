@@ -17,8 +17,6 @@ module.exports = function pair ({ publicKey, secretKey }: KeypairType): KeyringP
     publicKey,
     decryptSelf: ({ encrypted, nonce }: KeyringPairEncrypted, secret: Uint8Array): void => {
       secretKey = decrypt(encrypted, secret, nonce);
-
-      console.error('decryptSelf', publicKey.toString(), secretKey.toString());
     },
     encryptSelf: (secret: Uint8Array): KeyringPairEncrypted =>
       encrypt(secretKey, secret, publicKey),

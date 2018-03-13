@@ -30,7 +30,7 @@ module.exports = function hexToBn (_value?: string, isLe: boolean = false): BN {
     return new BN(0);
   }
 
-  const value = hexStripPrefix(_value) || '00';
+  const value = hexStripPrefix(_value);
 
-  return new BN(isLe ? reverse(value) : value, 16);
+  return new BN((isLe ? reverse(value) : value) || '00', 16);
 };
