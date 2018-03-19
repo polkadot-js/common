@@ -8,16 +8,16 @@ import type { Trie$Pairs } from '../types';
 const keccakAsU8a = require('@polkadot/util-crypto/keccak/asU8a');
 const rlpEncode = require('@polkadot/util-rlp/encode');
 
-const encode = require('../encode');
+const encode = require('./index');
 
-module.exports = function genRoot (pairs: Trie$Pairs): Uint8Array {
-  const encoded = encode(pairs, 0);
+// flowlint-next-line unclear-type:off
+module.exports = function encodeAux (pairs: Trie$Pairs, preLength: number): any {
+  const encoded = encode(pairs, preLength);
+  const rlped = rlpEncode(encoded);
 
-  return keccakAsU8a(
-    rlpEncode(
-      encoded.length
-        ? encoded
-        : new Uint8Array([])
-    )
-  );
+  if (rlped.length <= 31) {
+    return encoded;
+  }
+
+  return keccakAsU8a(rlped);
 };

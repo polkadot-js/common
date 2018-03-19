@@ -29,7 +29,7 @@
     "test": "echo \"Tests only available from root wrapper\""
   },
   "devDependencies": {
-    "@polkadot/api-jsonrpc": "^0.7.1"
+    "@polkadot/api-jsonrpc": "^0.8.4"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
