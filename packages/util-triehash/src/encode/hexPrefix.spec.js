@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const encodeHexPrefix = require('./encodeHexPrefix');
+const encodeHexPrefix = require('./hexPrefix');
 
 describe('encodeHexPrefix', () => {
   it('encodes [0, 0, 1, 2, 3, 4, 5], false', () => {
