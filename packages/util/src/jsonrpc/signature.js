@@ -5,13 +5,7 @@
 
 import type { InterfaceInputType, InterfaceOutputType } from '@polkadot/api-jsonrpc/types';
 
-function formatParam (param: InterfaceInputType | InterfaceOutputType): string {
-  // flowlint-next-line sketchy-null-mixed:off,sketchy-null-string:off
-  return param.name
-    // $FlowFixMe InterfaceInputType found, has name
-    ? `${param.name}: ${param.type}`
-    : param.type;
-}
+const formatParam = require('./param');
 
 /**
   @name jsonrpcSignature
@@ -24,11 +18,11 @@ function formatParam (param: InterfaceInputType | InterfaceOutputType): string {
 
     console.log(jsonrpcSignature(
       'test_method', [{ name: 'dest', type: 'Address' }], { type: 'Address' }
-    )); // => test_method (destination: Address): Address
+    )); // => test_method (dest: Address): Address
 */
 module.exports = function jsonrpcSignature (name: string, _inputs: Array<InterfaceInputType>, _output: InterfaceOutputType): string {
-  const inputs: string = _inputs.map(formatParam).join(', ');
-  const output: string = formatParam(_output);
+  const inputs = _inputs.map(formatParam).join(', ');
+  const output = formatParam(_output);
 
   return `${name} (${inputs}): ${output}`;
 };
