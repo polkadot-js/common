@@ -9,12 +9,17 @@ type TestKeyring = {
   [string]: KeyringPair
 };
 
+const hexToU8a = require('@polkadot/util/hex/toU8a');
+const u8aFromString = require('@polkadot/util/u8a/fromString');
+
 const createKeyring = require('./index');
 
-function padSeed (seed: string): string {
-  return seed.length < 32
-    ? padSeed(`${seed} `)
-    : seed;
+function padSeed (seed: string): Uint8Array {
+  while (seed.length < 32) {
+    seed += ' ';
+  }
+
+  return u8aFromString(seed);
 }
 
 const SEEDS = {
@@ -31,9 +36,9 @@ const SEEDS = {
   ferdie:
     padSeed('Ferdie'),
   one:
-    '12345678901234567890123456789012',
+    padSeed('12345678901234567890123456789012'),
   two:
-    '0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60'
+    hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60')
 };
 
 module.exports = function testKeyring (): TestKeyring {

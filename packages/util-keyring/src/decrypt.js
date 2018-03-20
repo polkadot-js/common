@@ -3,17 +3,17 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { KeyringPairEncrypted, KeyringPair } from './types';
+import type { KeyringPair } from './types';
 
 const createPair = require('./pair');
 
-module.exports = function decrypt (box: KeyringPairEncrypted, secret: Uint8Array | string): KeyringPair {
+module.exports = function decrypt (encoded: Uint8Array, passphrase: Uint8Array | string): KeyringPair {
   const pair = createPair({
-    publicKey: box.publicKey,
-    secretKey: new Uint8Array([])
+    publicKey: new Uint8Array(32),
+    secretKey: new Uint8Array(64)
   });
 
-  pair.decryptSelf(box, secret);
+  pair.decodePkcs8(encoded, passphrase);
 
   return pair;
 };

@@ -14,7 +14,7 @@ module.exports = function pairs (): KeyringPairs {
 
   return {
     add: (pair: KeyringPair): KeyringPair => {
-      self[pair.publicKey] = pair;
+      self[pair.publicKey()] = pair;
 
       return pair;
     },

@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util",
-  "version": "0.17.4",
+  "version": "0.18.0",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
   "keywords": [
@@ -29,7 +29,7 @@
     "test": "echo \"Tests only available from root wrapper\""
   },
   "devDependencies": {
-    "@polkadot/api-jsonrpc": "^0.8.4"
+    "@polkadot/api-jsonrpc": "^0.8.5"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",

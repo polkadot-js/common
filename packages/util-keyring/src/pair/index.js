@@ -4,22 +4,40 @@
 // @flow
 
 import type { KeypairType } from '@polkadot/util-crypto/types';
-import type { KeyringPairEncrypted, KeyringPair } from '../types';
+import type { KeyringPair } from '../types';
 
+const naclFromSeed = require('@polkadot/util-crypto/nacl/keypair/fromSeed');
 const naclSign = require('@polkadot/util-crypto/nacl/sign');
 const naclVerify = require('@polkadot/util-crypto/nacl/verify');
+const assert = require('@polkadot/util/assert');
 
-const decrypt = require('./decrypt');
-const encrypt = require('./encrypt');
+const decode = require('./decode');
+const encode = require('./encode');
+
+function decodePkcs8 (encoded: Uint8Array, passphrase?: Uint8Array | string) {
+  const { publicKey, secretKey } = decode(encoded, passphrase);
+  const validate = naclFromSeed(secretKey.subarray(0, 32));
+
+  assert(validate.publicKey.toString() === publicKey.toString(), 'Pkcs8 decoded keys are not matching');
+
+  return {
+    publicKey,
+    secretKey
+  };
+}
 
 module.exports = function pair ({ publicKey, secretKey }: KeypairType): KeyringPair {
   return {
-    publicKey,
-    decryptSelf: (encrypted: KeyringPairEncrypted, secret: Uint8Array | string): void => {
-      secretKey = decrypt(encrypted, secret);
+    decodePkcs8: (encoded: Uint8Array, passphrase?: Uint8Array | string): void => {
+      const decoded = decodePkcs8(encoded, passphrase);
+
+      publicKey = decoded.publicKey;
+      secretKey = decoded.secretKey;
     },
-    encryptSelf: (secret: Uint8Array | string): KeyringPairEncrypted =>
-      encrypt(secretKey, secret, publicKey),
+    encodePkcs8: (passphrase?: Uint8Array | string): Uint8Array =>
+      encode(secretKey, passphrase),
+    publicKey: (): Uint8Array =>
+      publicKey,
     sign: (message: Uint8Array): Uint8Array =>
       naclSign(message, secretKey),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
