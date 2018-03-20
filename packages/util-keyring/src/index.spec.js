@@ -19,10 +19,8 @@ describe('keypair', () => {
 
   it('adds the pair', () => {
     expect(
-      keypair.addFromSeed(seedTwo)
-    ).toMatchObject({
-      publicKey: publicKeyTwo
-    });
+      keypair.addFromSeed(seedTwo).publicKey()
+    ).toEqual(publicKeyTwo);
   });
 
   it('allows publicKeys retrieval', () => {
@@ -35,9 +33,7 @@ describe('keypair', () => {
 
   it('allows retrieval of a specific item', () => {
     expect(
-      keypair.getPair(publicKeyOne)
-    ).toMatchObject({
-      publicKey: publicKeyOne
-    });
+      keypair.getPair(publicKeyOne).publicKey()
+    ).toEqual(publicKeyOne);
   });
 });

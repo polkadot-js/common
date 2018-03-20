@@ -3,12 +3,12 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { KeyringPairEncrypted, KeyringPair } from './types';
+import type { KeyringPair } from './types';
 
-module.exports = function encrypt (pair: ?KeyringPair, secret: Uint8Array | string): ?KeyringPairEncrypted {
+module.exports = function encrypt (pair: ?KeyringPair, passphrase: Uint8Array | string): ?Uint8Array {
   if (!pair) {
     return null;
   }
 
-  return pair.encryptSelf(secret);
+  return pair.encodePkcs8(passphrase);
 };
