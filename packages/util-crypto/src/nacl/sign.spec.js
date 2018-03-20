@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+const u8aFromString = require('@polkadot/util/u8a/fromString');
+
 const { naclSign, naclKeypairFromSeed } = require('./index');
 
 describe('naclSign', () => {
@@ -9,7 +11,7 @@ describe('naclSign', () => {
 
   beforeEach(() => {
     secretKey = naclKeypairFromSeed(
-      '12345678901234567890123456789012'
+      u8aFromString('12345678901234567890123456789012')
     ).secretKey;
   });
 
