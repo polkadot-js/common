@@ -11,7 +11,7 @@ module.exports = function decrypt (encoded: Uint8Array, passphrase: Uint8Array |
   const pair = createPair({
     publicKey: new Uint8Array(32),
     secretKey: new Uint8Array(64)
-  }, new Uint8Array(32));
+  });
 
   pair.decodePkcs8(encoded, passphrase);
 

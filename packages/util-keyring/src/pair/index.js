@@ -15,29 +15,27 @@ const decode = require('./decode');
 const encode = require('./encode');
 
 function decodePkcs8 (encoded: Uint8Array, passphrase?: Uint8Array | string) {
-  const { publicKey, seed } = decode(encoded, passphrase);
-  const validate = naclFromSeed(seed);
+  const { publicKey, secretKey } = decode(encoded, passphrase);
+  const validate = naclFromSeed(secretKey.subarray(0, 32));
 
-  assert(validate.publicKey.toString() === publicKey.toString(), `Pkcs8 decoded keys are not matching, ${validate.publicKey.toString()} !== ${publicKey.toString()}`);
+  assert(validate.publicKey.toString() === publicKey.toString(), 'Pkcs8 decoded keys are not matching');
 
   return {
     publicKey,
-    secretKey: validate.secretKey,
-    seed
+    secretKey
   };
 }
 
-module.exports = function pair ({ publicKey, secretKey }: KeypairType, seed: Uint8Array): KeyringPair {
+module.exports = function pair ({ publicKey, secretKey }: KeypairType): KeyringPair {
   return {
     decodePkcs8: (encoded: Uint8Array, passphrase?: Uint8Array | string): void => {
       const decoded = decodePkcs8(encoded, passphrase);
 
       publicKey = decoded.publicKey;
       secretKey = decoded.secretKey;
-      seed = decoded.seed;
     },
     encodePkcs8: (passphrase?: Uint8Array | string): Uint8Array =>
-      encode(seed, publicKey, passphrase),
+      encode(secretKey, passphrase),
     publicKey: (): Uint8Array =>
       publicKey,
     sign: (message: Uint8Array): Uint8Array =>

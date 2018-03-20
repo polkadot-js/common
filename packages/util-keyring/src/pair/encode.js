@@ -7,13 +7,13 @@ const u8aConcat = require('@polkadot/util/u8a/concat');
 
 const { PKCS8_DIVIDER, PKCS8_HEADER } = require('./defaults');
 
-module.exports = function encode (seed: Uint8Array, publicKey: Uint8Array, passphrase?: Uint8Array | string): Uint8Array {
+module.exports = function encode (secretKey: Uint8Array, passphrase?: Uint8Array | string): Uint8Array {
   // TODO: encrypt using passphrase
 
   return u8aConcat(
     PKCS8_HEADER,
-    seed,
+    secretKey.subarray(0, 32),
     PKCS8_DIVIDER,
-    publicKey
+    secretKey.subarray(32, 64)
   );
 };

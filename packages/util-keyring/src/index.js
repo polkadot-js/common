@@ -17,7 +17,7 @@ module.exports = function keyring (): KeyringInstance {
 
   return {
     addFromSeed: (seed: Uint8Array): KeyringPair =>
-      pairs.add(createPair(naclKeypairFromSeed(seed), seed)),
+      pairs.add(createPair(naclKeypairFromSeed(seed))),
     decrypt: (encrypted: Uint8Array, passphrase: Uint8Array | string): KeyringPair =>
       pairs.add(decrypt(encrypted, passphrase)),
     encrypt: (publicKey: Uint8Array, passphrase: Uint8Array | string): ?Uint8Array =>
