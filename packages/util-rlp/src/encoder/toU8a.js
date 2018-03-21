@@ -58,7 +58,9 @@ function fromPrimitive (value: any): ?Uint8Array {
 
 // flowlint-next-line unclear-type:off
 module.exports = function toU8a (value: any): Uint8Array {
-  const result = fromEmpty(value) || fromObject(value) || fromPrimitive(value);
+  const result = fromEmpty(value) ||
+    fromObject(value) ||
+    fromPrimitive(value);
 
   assert(result, 'invalid type');
 
