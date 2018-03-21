@@ -18,52 +18,39 @@ const isUndefined = require('@polkadot/util/is/undefined');
 const numberToU8a = require('@polkadot/util/number/toU8a');
 const u8aFromUtf8 = require('@polkadot/util/u8a/fromUtf8');
 
-// flowlint-next-line unclear-type:off
-function fromEmpty (value: any): ?Uint8Array {
-  if (isNull(value) || isUndefined(value)) {
-    return new Uint8Array([]);
-  }
+function newEmpty (): Uint8Array {
+  return new Uint8Array([]);
 }
 
-// flowlint-next-line unclear-type:off
-function fromObject (value: any): ?Uint8Array {
-  if (isBuffer(value)) {
-    return bufferToU8a(value);
+function convertString (value: string): Uint8Array {
+  if (hexHasPrefix(value)) {
+    return hexToU8a(value);
   }
 
-  // NOTE: U8a after Buffer check (internally compatible)
-  if (isU8a(value)) {
-    return value;
-  }
-
-  if (isBn(value)) {
-    return bnToU8a(value);
-  }
+  return u8aFromUtf8(value);
 }
 
-// flowlint-next-line unclear-type:off
-function fromPrimitive (value: any): ?Uint8Array {
-  if (isNumber(value)) {
-    return numberToU8a(value);
-  }
-
-  if (isString(value)) {
-    if (hexHasPrefix(value)) {
-      return hexToU8a(value);
-    }
-
-    return u8aFromUtf8(value);
-  }
+function convertU8a (value: Uint8Array): Uint8Array {
+  return value;
 }
+
+const encoders = [
+  { check: isNull, fn: newEmpty },
+  { check: isUndefined, fn: newEmpty },
+  // NOTE: Buffer before U8a
+  { check: isBuffer, fn: bufferToU8a },
+  { check: isU8a, fn: convertU8a },
+  { check: isBn, fn: bnToU8a },
+  { check: isNumber, fn: numberToU8a },
+  { check: isString, fn: convertString }
+];
 
 // flowlint-next-line unclear-type:off
 module.exports = function toU8a (value: any): Uint8Array {
-  const result = fromEmpty(value) ||
-    fromObject(value) ||
-    fromPrimitive(value);
+  const encoder = encoders.find(({ check }) => check(value));
 
-  assert(result, 'invalid type');
+  assert(encoder, 'invalid type');
 
-  // flowlint-next-line unclear-type:off
-  return ((result: any): Uint8Array);
+  // $FlowFixMe value checked above
+  return encoder.fn(value);
 };
