@@ -3,6 +3,13 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+type Encoder = {
+  // flowlint-next-line unclear-type:off
+  check: (value: any) => boolean,
+  // flowlint-next-line unclear-type:off
+  fn: (value: any) => Uint8Array
+};
+
 const assert = require('@polkadot/util/assert');
 const bnToU8a = require('@polkadot/util/bn/toU8a');
 const bufferToU8a = require('@polkadot/util/buffer/toU8a');
@@ -34,7 +41,7 @@ function convertU8a (value: Uint8Array): Uint8Array {
   return value;
 }
 
-const encoders = [
+const encoders: Array<Encoder> = [
   { check: isNull, fn: newEmpty },
   { check: isUndefined, fn: newEmpty },
   // NOTE: Buffer before U8a

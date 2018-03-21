@@ -3,7 +3,12 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { DecodeOutput } from './types';
+import type { DecodeFunc, DecodeOutput } from './types';
+
+type Decoder = {
+  max: number,
+  fn: (decode: DecodeFunc, input: Uint8Array) => DecodeOutput
+};
 
 const decodeListLong = require('./listLong');
 const decodeListShort = require('./listShort');
@@ -11,7 +16,7 @@ const decodeNumber = require('./number');
 const decodeSingle = require('./single');
 const decodeString = require('./string');
 
-const decoders = [
+const decoders: Array<Decoder> = [
   { max: 0x7f, fn: decodeSingle },
   { max: 0xb7, fn: decodeString },
   { max: 0xbf, fn: decodeNumber },
