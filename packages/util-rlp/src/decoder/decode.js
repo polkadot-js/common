@@ -3,7 +3,12 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { DecodeOutput } from './types';
+import type { DecodeFunc, DecodeOutput } from './types';
+
+type Decoder = {
+  max: number,
+  fn: (decode: DecodeFunc, input: Uint8Array) => DecodeOutput
+};
 
 const decodeListLong = require('./listLong');
 const decodeListShort = require('./listShort');
@@ -11,32 +16,19 @@ const decodeNumber = require('./number');
 const decodeSingle = require('./single');
 const decodeString = require('./string');
 
+const decoders: Array<Decoder> = [
+  { max: 0x7f, fn: decodeSingle },
+  { max: 0xb7, fn: decodeString },
+  { max: 0xbf, fn: decodeNumber },
+  { max: 0xf7, fn: decodeListShort },
+  { max: 0xff, fn: decodeListLong }
+];
+
 function decode (input: Uint8Array): DecodeOutput {
-  const firstByte = input[0];
-
-  // a single byte whose value is in the [0x00, 0x7f] range, that byte is its own RLP encoding
-  if (firstByte <= 0x7f) {
-    return decodeSingle(decode, input);
-  }
-
-  // string is 0-55 bytes long. A single byte with value 0x80 plus the length of the string followed by the string
-  // The range of the first byte is [0x80, 0xb7]
-  if (firstByte <= 0xb7) {
-    return decodeString(decode, input);
-  }
-
-  // a number
-  if (firstByte <= 0xbf) {
-    return decodeNumber(decode, input);
-  }
-
-  // a list between  0-55 bytes long
-  if (firstByte <= 0xf7) {
-    return decodeListShort(decode, input);
-  }
-
-  // a list  over 55 bytes long
-  return decodeListLong(decode, input);
+  return decoders
+    .find(({ max }) => input[0] <= max)
+    // $FlowFixMe last entry (listLong) is max uint8 value
+    .fn(decode, input);
 }
 
 module.exports = decode;
