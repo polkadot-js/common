@@ -5,7 +5,7 @@
 
 import type { KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringPair } from '../types';
-import type { PairState } from './types';
+import type { PairState, PairState$Meta } from './types';
 
 const naclSign = require('@polkadot/util-crypto/nacl/sign');
 const naclVerify = require('@polkadot/util-crypto/nacl/verify');
