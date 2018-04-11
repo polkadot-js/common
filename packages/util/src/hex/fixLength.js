@@ -5,7 +5,6 @@
 
 const hexAddPrefix = require('./addPrefix');
 const hexStripPrefix = require('./stripPrefix');
-const { ZEROS_256 } = require('./constants');
 
 /**
   @name hexFixLength
@@ -37,6 +36,6 @@ module.exports = function hexFixLength (value: string, bitLength: number = -1, w
   }
 
   return hexAddPrefix(
-    `${ZEROS_256}${hexStripPrefix(value)}`.slice(-1 * strLength)
+    `${'0'.repeat(strLength)}${hexStripPrefix(value)}`.slice(-1 * strLength)
   );
 };
