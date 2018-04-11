@@ -4,6 +4,8 @@
 // @flow
 
 const u8aConcat = require('@polkadot/util/u8a/concat');
+const assert = require('@polkadot/util/assert');
+const naclFromSeed = require('@polkadot/util-crypto/nacl/keypair/fromSeed');
 
 const { PKCS8_DIVIDER, PKCS8_HEADER } = require('./defaults');
 
@@ -15,9 +17,13 @@ module.exports = function decode (encoded: Uint8Array, passphrase?: Uint8Array |
   // TODO: decrypt using passphrase
   const publicKey = encoded.subarray(PUBLIC_OFFSET, PUBLIC_OFFSET + KEY_LENGTH);
   const seed = encoded.subarray(SEED_OFFSET, SEED_OFFSET + KEY_LENGTH);
+  const secretKey = u8aConcat(seed, publicKey);
+  const validate = naclFromSeed(seed);
+
+  assert(validate.publicKey.toString() === publicKey.toString(), 'Pkcs8 decoded keys are not matching');
 
   return {
     publicKey,
-    secretKey: u8aConcat(seed, publicKey)
+    secretKey
   };
 };
