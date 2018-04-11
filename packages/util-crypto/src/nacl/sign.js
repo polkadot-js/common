@@ -17,6 +17,5 @@ const nacl = require('tweetnacl');
     naclSign([...], [...]) // => [...]
 */
 module.exports = function naclSign (message: Uint8Array, secretKey: Uint8Array): Uint8Array {
-  // NOTE: Original message appended to the signature, slice result only
-  return nacl.sign(message, secretKey).subarray(0, 64);
+  return nacl.sign.detached(message, secretKey);
 };
