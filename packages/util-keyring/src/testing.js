@@ -46,8 +46,9 @@ module.exports = function testKeyring (): TestKeyring {
 
   return Object
     .keys(SEEDS)
-    .reduce((result, key) => {
-      result[key] = keyring.addFromSeed(SEEDS[key]);
+    .reduce((result, name) => {
+      result[name] = keyring.addFromSeed(SEEDS[name]);
+      result[name].setMeta({ name });
 
       return result;
     }, {});
