@@ -19,13 +19,14 @@ const u8aToU8a = require('./toU8a');
       new Uint8Array([4, 5, 6])
     ); // [1, 2, 3, 4, 5, 6]
 */
-module.exports = function u8aConcat (...list: Array<Uint8Array | string>): Uint8Array {
+module.exports = function u8aConcat (..._list: Array<Uint8Array | string>): Uint8Array {
+  const list: Array<Uint8Array> = _list.map(u8aToU8a);
   const length = list.reduce((total, item) => total + item.length, 0);
   const result = new Uint8Array(length);
   let offset = 0;
 
   return list.reduce((result, item) => {
-    result.set(u8aToU8a(item), offset);
+    result.set(item, offset);
     offset += item.length;
 
     return result;
