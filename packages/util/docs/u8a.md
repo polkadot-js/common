@@ -13,6 +13,7 @@ Utility methods to convert to and from `Uint8Array` objects
 - [u8aToBuffer](#u8atobuffer) Creates a Buffer object from a hex string.
 - [u8aToHex](#u8atohex) Creates a hex string from a Uint8Array object.
 - [u8aToString](#u8atostring) Creates a string from a Uint8Array object.
+- [u8aToU8a](#u8atou8a) Creates a Uint8Array value from a Uint8Array bignumber or hex input.
 - [u8aToUtf8](#u8atoutf8) Creates a utf-8 string from a Uint8Array object.
 
 ## u8aConcat
@@ -20,7 +21,7 @@ Utility methods to convert to and from `Uint8Array` objects
 Creates a concatenated Uint8Array from the inputs. 
 
 ```js
-u8aConcat (...values: Array<Uint8Array>): Uint8Array
+u8aConcat (...values: Array<Uint8Array | string>): Uint8Array
 ```
 
 
@@ -190,6 +191,24 @@ u8aToString (value?: UInt8Array): string
 import { u8aToString } from '@polkadot/util';
 
 u8aToString(new Uint8Array([21,23,45,67])); // 21,23,45,67
+```
+
+## u8aToU8a
+
+Creates a Uint8Array value from a Uint8Array bignumber or hex input. 
+
+```js
+u8aToU8a (value?: Uint8Array | string): Uint8Array
+```
+
+
+`null` inputs returns a `[]` result, Uint8Array values returns the value, hex strings returns a Uint8Array representation.
+
+```js
+import { u8aToU8a } from '@polkadot/util';
+
+u8aToU8a(new Uint8Array([0x12, 0x34]); // => Uint8Array([0x12, 0x34])
+u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
 ```
 
 ## u8aToUtf8
