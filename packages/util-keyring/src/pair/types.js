@@ -3,10 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-export type PairState$Meta = {
-  [string]: string
-};
+import type { KeyringPair$Meta } from '../types';
 
 export type PairState = {
-  meta: PairState$Meta
+  meta: KeyringPair$Meta
 };

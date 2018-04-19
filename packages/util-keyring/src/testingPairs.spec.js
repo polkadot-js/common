@@ -5,7 +5,7 @@
 describe('testing', () => {
   it('creates without failing', () => {
     expect(
-      require('./testing')
+      require('./testingPairs')
     ).toBeDefined();
   });
 });

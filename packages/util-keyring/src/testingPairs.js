@@ -1,0 +1,25 @@
+// Copyright 2017-2018 Jaco Greeff
+// This software may be modified and distributed under the terms
+// of the ISC license. See the LICENSE file for details.
+// @flow
+
+import type { KeyringPair } from './types';
+
+type TestKeyringMap = {
+  [string]: KeyringPair
+};
+
+const createKeyring = require('./testing');
+
+module.exports = function testKeyringPairs (): TestKeyringMap {
+  const keyring = createKeyring();
+  const pairs = keyring.getPairs();
+
+  return pairs.reduce((result, pair) => {
+    const { name } = pair.getMeta();
+
+    result[(name: string)] = pair;
+
+    return result;
+  }, {});
+};
