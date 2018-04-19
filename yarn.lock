@@ -79,15 +79,15 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@polkadot/api-jsonrpc@^0.8.13":
-  version "0.8.13"
-  resolved "https://registry.yarnpkg.com/@polkadot/api-jsonrpc/-/api-jsonrpc-0.8.13.tgz#60a0241204cef405936b21e009970c5a7295d909"
+"@polkadot/api-jsonrpc@^0.8.14":
+  version "0.8.14"
+  resolved "https://registry.yarnpkg.com/@polkadot/api-jsonrpc/-/api-jsonrpc-0.8.14.tgz#94be22fcd1802ddbd87c35e52b8916e1f9135dd6"
   dependencies:
     babel-runtime "^6.26.0"
 
-"@polkadot/dev@^0.17.6":
-  version "0.17.6"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.17.6.tgz#8935c83ee71d32bf343e83fe537deb20b5764be0"
+"@polkadot/dev@^0.17.8":
+  version "0.17.8"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.17.8.tgz#d22daea75e88587250c4f8d7ebdda1dd957570df"
   dependencies:
     babel-cli "^6.26.0"
     babel-core "^6.26.0"

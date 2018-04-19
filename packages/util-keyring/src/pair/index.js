@@ -4,8 +4,8 @@
 // @flow
 
 import type { KeypairType } from '@polkadot/util-crypto/types';
-import type { KeyringPair } from '../types';
-import type { PairState, PairState$Meta } from './types';
+import type { KeyringPair, KeyringPair$Meta } from '../types';
+import type { PairState } from './types';
 
 const naclSign = require('@polkadot/util-crypto/nacl/sign');
 const naclVerify = require('@polkadot/util-crypto/nacl/verify');
@@ -29,11 +29,11 @@ module.exports = function pair ({ publicKey, secretKey }: KeypairType): KeyringP
     },
     encodePkcs8: (passphrase?: Uint8Array | string): Uint8Array =>
       encode(secretKey, passphrase),
-    getMeta: (): PairState$Meta =>
+    getMeta: (): KeyringPair$Meta =>
       getMeta(state),
     publicKey: (): Uint8Array =>
       publicKey,
-    setMeta: (meta: PairState$Meta): void =>
+    setMeta: (meta: KeyringPair$Meta): void =>
       setMeta(state, meta),
     sign: (message: Uint8Array): Uint8Array =>
       naclSign(message, secretKey),
