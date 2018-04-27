@@ -3,6 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+const u8aToHex = require('./toHex');
+
 /**
   @name u8aToHexShort
   @signature u8aToHexShort (value?: UInt8Array, max: number = 16): string
@@ -14,20 +16,16 @@
 
     u8aToHexShort(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf]), 4); // 0x68...0f
 */
-module.exports = function u8aToHex (value?: Uint8Array, max: number = 16): string {
+module.exports = function u8aToHexShort (value?: Uint8Array, _max: number = 16): string {
   if (!value || !value.length) {
     return '0x';
   }
 
-  const interim = value.reduce((result, item) => {
-    return result + ('0' + item.toString(16)).slice(-2);
-  }, '');
+  const max = _max / 2;
 
-  if (interim.length <= max) {
-    return `0x${interim}`;
+  if (value.length <= max) {
+    return u8aToHex(value);
   }
 
-  const mid = Math.floor(max / 2);
-
-  return `0x${interim.substr(0, mid)}...${interim.slice(-1 * mid)}`;
+  return `${u8aToHex(value.subarray(0, max))}…`;
 };

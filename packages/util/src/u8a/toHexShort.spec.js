@@ -22,12 +22,12 @@ describe('u8aToHexShort', () => {
   it('returns the hex value for the array (max (default) < length)', () => {
     expect(
       u8aToHexShort(input)
-    ).toEqual('0x01020304...06070809');
+    ).toEqual('0x0102030405000607…');
   });
 
   it('returns the hex value for the array (max < length)', () => {
     expect(
       u8aToHexShort(input, 10)
-    ).toEqual('0x01020...70809');
+    ).toEqual('0x0102030405…');
   });
 });
