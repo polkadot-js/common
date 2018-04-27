@@ -28,7 +28,7 @@ export type KeyringInstance = {
   addFromSeed (seed: Uint8Array): KeyringPair,
   decrypt (encrypted: Uint8Array, secret: Uint8Array | string): KeyringPair,
   encrypt (publicKey: Uint8Array, secret: Uint8Array | string): ?Uint8Array,
-  getPair (publicKey: Uint8Array): ?KeyringPair,
+  getPair (publicKey: Uint8Array): KeyringPair,
   getPairs (): Array<KeyringPair>,
   getPublicKeys (): Array<Uint8Array>
 };

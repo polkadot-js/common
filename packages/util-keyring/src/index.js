@@ -22,7 +22,7 @@ module.exports = function keyring (): KeyringInstance {
       pairs.add(decrypt(encrypted, passphrase)),
     encrypt: (publicKey: Uint8Array, passphrase: Uint8Array | string): ?Uint8Array =>
       encrypt(pairs.get(publicKey), passphrase),
-    getPair: (publicKey: Uint8Array): ?KeyringPair =>
+    getPair: (publicKey: Uint8Array): KeyringPair =>
       pairs.get(publicKey),
     getPairs: pairs.all,
     getPublicKeys: (): Array<Uint8Array> =>

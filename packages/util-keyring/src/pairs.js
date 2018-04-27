@@ -9,6 +9,9 @@ type KeyringPairMap = {
   [Uint8Array]: KeyringPair
 };
 
+const assert = require('@polkadot/util/assert');
+const u8aToHex = require('@polkadot/util/u8a/toHex');
+
 module.exports = function pairs (): KeyringPairs {
   const self: KeyringPairMap = {};
 
@@ -21,7 +24,12 @@ module.exports = function pairs (): KeyringPairs {
     all: (): Array<KeyringPair> =>
       // flowlint-next-line unclear-type:off
       ((Object.values(self): any): Array<KeyringPair>),
-    get: (publicKey: Uint8Array): ?KeyringPair =>
-      self[publicKey]
+    get: (publicKey: Uint8Array): KeyringPair => {
+      const pair = self[publicKey];
+
+      assert(pair, `Unable to retrieve keypair for publicKey '${u8aToHex(publicKey)}'`);
+
+      return pair;
+    }
   };
 };
