@@ -21,13 +21,13 @@ export type KeyringPair = {
 export type KeyringPairs = {
   add: (pair: KeyringPair) => KeyringPair,
   all: () => Array<KeyringPair>,
-  get: (publicKey: Uint8Array) => ?KeyringPair
+  get: (publicKey: Uint8Array) => KeyringPair
 };
 
 export type KeyringInstance = {
   addFromSeed (seed: Uint8Array): KeyringPair,
   decrypt (encrypted: Uint8Array, secret: Uint8Array | string): KeyringPair,
-  encrypt (publicKey: Uint8Array, secret: Uint8Array | string): ?Uint8Array,
+  encrypt (publicKey: Uint8Array, secret: Uint8Array | string): Uint8Array,
   getPair (publicKey: Uint8Array): KeyringPair,
   getPairs (): Array<KeyringPair>,
   getPublicKeys (): Array<Uint8Array>

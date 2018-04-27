@@ -30,9 +30,9 @@ describe('encrypt', () => {
     );
   });
 
-  it('returns null for non-existing', () => {
+  it('returns throws for non-existing', () => {
     expect(
-      keypair.encrypt(new Uint8Array([]), 'test')
-    ).toEqual(null);
+      () => keypair.encrypt(new Uint8Array([]), 'test')
+    ).toThrow(/Unable to retrieve/);
   });
 });

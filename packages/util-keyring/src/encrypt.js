@@ -5,10 +5,6 @@
 
 import type { KeyringPair } from './types';
 
-module.exports = function encrypt (pair: ?KeyringPair, passphrase: Uint8Array | string): ?Uint8Array {
-  if (!pair) {
-    return null;
-  }
-
+module.exports = function encrypt (pair: KeyringPair, passphrase: Uint8Array | string): Uint8Array {
   return pair.encodePkcs8(passphrase);
 };
