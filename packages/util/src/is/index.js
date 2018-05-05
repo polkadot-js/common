@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const isBN = require('./bn');
+const isBn = require('./bn');
 const isBuffer = require('./buffer');
 const isBoolean = require('./boolean');
 const isError = require('./error');
@@ -14,6 +14,7 @@ const isIp = require('./ip');
 const isNull = require('./null');
 const isNumber = require('./number');
 const isObject = require('./object');
+const isObservable = require('./observable');
 const isString = require('./string');
 const isU8a = require('./u8a');
 const isUndefined = require('./undefined');
@@ -22,7 +23,7 @@ const isUndefined = require('./undefined');
   @summary Type checking utilities
 */
 module.exports = {
-  isBN,
+  isBn,
   isBoolean,
   isBuffer,
   isError,
@@ -31,6 +32,7 @@ module.exports = {
   isInstanceOf,
   isIp,
   isObject,
+  isObservable,
   isNull,
   isNumber,
   isString,
