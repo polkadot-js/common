@@ -33,6 +33,7 @@
   "dependencies": {
     "@polkadot/util": "^0.19.4",
     "@polkadot/util-crypto": "^0.19.4",
-    "babel-runtime": "^6.26.0"
+    "babel-runtime": "^6.26.0",
+    "bs58": "^4.0.1"
   }
 }

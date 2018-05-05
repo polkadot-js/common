@@ -9,6 +9,7 @@ export type KeyringPair$Meta = {
 }
 
 export type KeyringPair = {
+  address: () => string,
   decodePkcs8: (encoded: Uint8Array, passphrase: Uint8Array | string) => void,
   encodePkcs8: (passphrase: Uint8Array | string) => Uint8Array,
   getMeta: () => KeyringPair$Meta,
@@ -28,6 +29,7 @@ export type KeyringInstance = {
   addFromSeed (seed: Uint8Array): KeyringPair,
   decrypt (encrypted: Uint8Array, secret: Uint8Array | string): KeyringPair,
   encrypt (publicKey: Uint8Array, secret: Uint8Array | string): Uint8Array,
+  getAddress (address: string): KeyringPair,
   getPair (publicKey: Uint8Array): KeyringPair,
   getPairs (): Array<KeyringPair>,
   getPublicKeys (): Array<Uint8Array>

@@ -10,6 +10,7 @@ import type { PairState } from './types';
 const naclSign = require('@polkadot/util-crypto/nacl/sign');
 const naclVerify = require('@polkadot/util-crypto/nacl/verify');
 
+const encodeAddress = require('../address/encode');
 const decode = require('./decode');
 const encode = require('./encode');
 const getMeta = require('./getMeta');
@@ -17,15 +18,19 @@ const setMeta = require('./setMeta');
 
 module.exports = function pair ({ publicKey, secretKey }: KeypairType): KeyringPair {
   const state: PairState = {
+    address: encodeAddress(publicKey),
     meta: {}
   };
 
   return {
+    address: (): string =>
+      state.address,
     decodePkcs8: (encoded: Uint8Array, passphrase?: Uint8Array | string): void => {
       const decoded = decode(encoded, passphrase);
 
       publicKey = decoded.publicKey;
       secretKey = decoded.secretKey;
+      state.address = encodeAddress(publicKey);
     },
     encodePkcs8: (passphrase?: Uint8Array | string): Uint8Array =>
       encode(secretKey, passphrase),

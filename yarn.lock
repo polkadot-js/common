@@ -79,15 +79,15 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@polkadot/api-jsonrpc@^0.9.5":
-  version "0.9.5"
-  resolved "https://registry.yarnpkg.com/@polkadot/api-jsonrpc/-/api-jsonrpc-0.9.5.tgz#67cd9568ea25b7c1b7f1d1f3b0b7faa9f733ad25"
+"@polkadot/api-jsonrpc@^0.9.15":
+  version "0.9.15"
+  resolved "https://registry.yarnpkg.com/@polkadot/api-jsonrpc/-/api-jsonrpc-0.9.15.tgz#e210f5ce82d7c41c11ddf3cd83e521ede9f1ddae"
   dependencies:
     babel-runtime "^6.26.0"
 
-"@polkadot/dev@^0.17.12":
-  version "0.17.12"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.17.12.tgz#90d0d302681c5eae4683eea75949548a99e52831"
+"@polkadot/dev@^0.17.13":
+  version "0.17.13"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.17.13.tgz#cd5690d4c45abcc1e4b2624944c79229a82930e2"
   dependencies:
     babel-cli "^6.26.0"
     babel-core "^6.26.0"
@@ -112,7 +112,7 @@
     eslint-plugin-promise "^3.6.0"
     eslint-plugin-react "^7.7.0"
     eslint-plugin-standard "^3.0.1"
-    flow-bin "^0.70.0"
+    flow-bin "^0.71.0"
     flow-copy-source "^1.3.0"
     jest "^22.4.2"
     makeshift "^1.1.0"
@@ -970,6 +970,12 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
+base-x@^3.0.2:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/base-x/-/base-x-3.0.4.tgz#94c1788736da065edb1d68808869e357c977fa77"
+  dependencies:
+    safe-buffer "^5.0.1"
+
 base@^0.11.1:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/base/-/base-0.11.2.tgz#7bde5ced145b6d551a90db87f83c558b4eb48a8f"
@@ -1085,6 +1091,12 @@ browserslist@^3.0.0:
   dependencies:
     caniuse-lite "^1.0.30000809"
     electron-to-chromium "^1.3.33"
+
+bs58@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/bs58/-/bs58-4.0.1.tgz#be161e76c354f6f788ae4071f63f34e8c4f0a42a"
+  dependencies:
+    base-x "^3.0.2"
 
 bser@^2.0.0:
   version "2.0.0"
@@ -2362,9 +2374,9 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-flow-bin@^0.70.0:
-  version "0.70.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.70.0.tgz#080ae83a997f2b4ddb3dc2649bf13336825292b5"
+flow-bin@^0.71.0:
+  version "0.71.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.71.0.tgz#fd1b27a6458c3ebaa5cb811853182ed631918b70"
 
 flow-copy-source@^1.3.0:
   version "1.3.0"

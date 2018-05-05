@@ -1,0 +1,38 @@
+// Copyright 2017-2018 Jaco Greeff
+// This software may be modified and distributed under the terms
+// of the ISC license. See the LICENSE file for details.
+// @flow
+
+const keyring = require('../testingPairs')();
+const decode = require('./decode');
+
+describe('decode', () => {
+  it('decodes an address', () => {
+    expect(
+      decode('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaDtZ')
+    ).toEqual(
+      keyring.alice.publicKey()
+    );
+  });
+
+  it('fails when prefix is invalid', () => {
+    expect(
+      () => decode('BXHKtJjKdXjvbvTg6qK275sgcKKq8dnU38MQQAiR3LN2stP')
+    ).toThrow(/address prefix/);
+  });
+
+  it('fails when length is invalid', () => {
+    expect(
+      () => decode('y9EMHt34JJo4rWLSaxoLGdYXvjgSXEd4zHUnQgfNzwES8b')
+    ).toThrow(/address length/);
+  });
+
+  it('fails when the checksum does not match', () => {
+    expect(
+      () => decode('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMa9cj')
+    ).toThrow(/address checksum/);
+    expect(
+      () => decode('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaDwU')
+    ).toThrow(/address checksum/);
+  });
+});
