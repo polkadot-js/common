@@ -7,6 +7,7 @@ import type { KeyringInstance, KeyringPair } from './types';
 
 const naclKeypairFromSeed = require('@polkadot/util-crypto/nacl/keypair/fromSeed');
 
+const addressDecode = require('./address/decode');
 const decrypt = require('./decrypt');
 const encrypt = require('./encrypt');
 const createPair = require('./pair');
@@ -22,6 +23,10 @@ module.exports = function keyring (): KeyringInstance {
       pairs.add(decrypt(encrypted, passphrase)),
     encrypt: (publicKey: Uint8Array, passphrase: Uint8Array | string): Uint8Array =>
       encrypt(pairs.get(publicKey), passphrase),
+    getAddress: (address: string): KeyringPair =>
+      pairs.get(
+        addressDecode(address)
+      ),
     getPair: (publicKey: Uint8Array): KeyringPair =>
       pairs.get(publicKey),
     getPairs: pairs.all,

@@ -3,9 +3,10 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { KeyringPair$Meta } from '../types';
+const decodeAddress = require('./decode');
+const encodeAddress = require('./encode');
 
-export type PairState = {
-  address: string,
-  meta: KeyringPair$Meta
+module.exports = {
+  decodeAddress,
+  encodeAddress
 };

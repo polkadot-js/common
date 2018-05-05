@@ -3,9 +3,10 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { KeyringPair } from './types';
+import type { KeyringPair, KeyringInstance } from './types';
 
 type TestKeyringMap = {
+  _keyring: KeyringInstance,
   [string]: KeyringPair
 };
 
@@ -21,5 +22,5 @@ module.exports = function testKeyringPairs (): TestKeyringMap {
     result[(name: string)] = pair;
 
     return result;
-  }, {});
+  }, { _keyring: keyring });
 };
