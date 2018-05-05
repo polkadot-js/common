@@ -2,7 +2,7 @@
 
 Type checking utilities 
 
-- [isBN](#isbn) Tests for a `BN` object instance.
+- [isBn](#isbn) Tests for a `BN` object instance.
 - [isBoolean](#isboolean) Tests for a boolean value.
 - [isBuffer](#isbuffer) Tests for a `Buffer` object instance.
 - [isError](#iserror) Tests for a `Error` object instance.
@@ -13,11 +13,12 @@ Type checking utilities
 - [isNull](#isnull) Tests for a `null` values.
 - [isNumber](#isnumber) Tests for a JavaScript number.
 - [isObject](#isobject) Tests for an `object`.
+- [isBObservable](#isbobservable) Tests for a `Observable` object instance.
 - [isString](#isstring) Tests for a string.
 - [isU8a](#isu8a) Tests for a `Uint8Array` object instance.
 - [isUndefined](#isundefined) Tests for a `undefined` values.
 
-## isBN
+## isBn
 
 Tests for a `BN` object instance. 
 
@@ -30,9 +31,9 @@ Checks to see if the input object is an instance of `BN` (bn.js).
 
 ```js
 import BN from 'bn.js';
-import { isBN } from '@polkadot/util';
+import { isBn } from '@polkadot/util';
 
-console.log('isBN', isBN(new BN(1))); // => true
+console.log('isBn', isBn(new BN(1))); // => true
 ```
 
 ## isBoolean
@@ -208,6 +209,23 @@ import { isObject } from '@polkadot/util';
 
 isObject({}); // => true
 isObject('something'); // => false
+```
+
+## isBObservable
+
+Tests for a `Observable` object instance. 
+
+```js
+isObservable (value: mixed): boolean
+```
+
+
+Checks to see if the input object is an instance of `BN` (bn.js).
+
+```js
+import { isObservable } from '@polkadot/util';
+
+console.log('isObservable', isObservable(...));
 ```
 
 ## isString
