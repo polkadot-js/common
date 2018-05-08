@@ -36,11 +36,14 @@ const SEEDS = {
 module.exports = function testKeyring (): KeyringInstance {
   const keyring = createKeyring();
 
-  Object.keys(SEEDS).forEach((name) => {
-    keyring
-      .addFromSeed(SEEDS[name])
-      .setMeta({ name });
-  });
+  Object
+    .keys(SEEDS)
+    .forEach((name) => {
+      keyring.addFromSeed(SEEDS[name], {
+        isTesting: true,
+        name
+      });
+    });
 
   return keyring;
 };

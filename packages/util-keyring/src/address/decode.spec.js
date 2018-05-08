@@ -15,6 +15,22 @@ describe('decode', () => {
     );
   });
 
+  it('converts a publicKey (u8a) as-is', () => {
+    expect(
+      decode(new Uint8Array([1, 2, 3]))
+    ).toEqual(
+      new Uint8Array([1, 2, 3])
+    );
+  });
+
+  it('converts a publicKey (hex) as-is', () => {
+    expect(
+      decode('0x01020304')
+    ).toEqual(
+      new Uint8Array([1, 2, 3, 4])
+    );
+  });
+
   it('fails when prefix is invalid', () => {
     expect(
       () => decode('BXHKtJjKdXjvbvTg6qK275sgcKKq8dnU38MQQAiR3LN2stP')

@@ -10,7 +10,12 @@ type KeyringPairMap = {
 };
 
 const assert = require('@polkadot/util/assert');
+const isHex = require('@polkadot/util/is/hex');
+const isU8a = require('@polkadot/util/is/u8a');
 const u8aToHex = require('@polkadot/util/u8a/toHex');
+const u8aToU8a = require('@polkadot/util/u8a/toU8a');
+
+const addressDecode = require('./address/decode');
 
 module.exports = function pairs (): KeyringPairs {
   const self: KeyringPairMap = {};
@@ -24,12 +29,22 @@ module.exports = function pairs (): KeyringPairs {
     all: (): Array<KeyringPair> =>
       // flowlint-next-line unclear-type:off
       ((Object.values(self): any): Array<KeyringPair>),
-    get: (publicKey: Uint8Array): KeyringPair => {
-      const pair = self[publicKey];
+    get: (address: string | Uint8Array): KeyringPair => {
+      const pair = self[addressDecode(address)];
 
-      assert(pair, `Unable to retrieve keypair for publicKey '${u8aToHex(publicKey)}'`);
+      assert(pair, () => {
+        const formatted: string = isU8a(address) || isHex(address)
+          ? u8aToHex(u8aToU8a(address))
+          // flowlint-next-line unclear-type:off
+          : ((address: any): string);
+
+        return `Unable to retrieve keypair '${formatted}'`;
+      });
 
       return pair;
+    },
+    remove: (address: string | Uint8Array): void => {
+      delete self[addressDecode(address)];
     }
   };
 };
