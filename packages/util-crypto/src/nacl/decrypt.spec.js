@@ -11,7 +11,7 @@ describe('naclDecrypt', () => {
     const { encrypted, nonce } = naclEncrypt(message, secret);
 
     expect(
-      naclDecrypt(encrypted, secret, nonce)
+      naclDecrypt(encrypted, nonce, secret)
     ).toEqual(
       message
     );

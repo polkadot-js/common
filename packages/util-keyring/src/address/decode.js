@@ -8,10 +8,18 @@
 const bs58 = require('bs58');
 const assert = require('@polkadot/util/assert');
 const bufferToU8a = require('@polkadot/util/buffer/toU8a');
+const isHex = require('@polkadot/util/is/hex');
+const isU8a = require('@polkadot/util/is/u8a');
+const u8aToU8a = require('@polkadot/util/u8a/toU8a');
 const blake2b = require('@polkadot/util-crypto/blake2/asU8a512');
 
-module.exports = function decode (encoded: string): Uint8Array {
-  const decoded = bufferToU8a(bs58.decode(encoded));
+module.exports = function decode (encoded: string | Uint8Array): Uint8Array {
+  if (isU8a(encoded) || isHex(encoded)) {
+    return u8aToU8a(encoded);
+  }
+
+  // flowlint-next-line unclear-type:off
+  const decoded = bufferToU8a(bs58.decode(((encoded: any): string)));
 
   assert(decoded[0] === 42, 'Invalid decoded address prefix');
   assert(decoded.length === 32 + 1 + 2, 'Invalid decoded address length');

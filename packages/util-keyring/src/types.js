@@ -8,29 +8,42 @@ export type KeyringPair$Meta = {
   [string]: any
 }
 
+export type KeyringPair$Json = {
+  address: string,
+  encoded: string,
+  encoding: {
+    content: 'pkcs8',
+    type: 'xsalsa20-poly1305' | 'none',
+    version: '0'
+  },
+  meta: KeyringPair$Meta
+};
+
 export type KeyringPair = {
   address: () => string,
-  decodePkcs8: (encoded: Uint8Array, passphrase: Uint8Array | string) => void,
-  encodePkcs8: (passphrase: Uint8Array | string) => Uint8Array,
+  decodePkcs8: (encoded: Uint8Array, passphrase?: string) => void,
+  encodePkcs8: (passphrase?: string) => Uint8Array,
   getMeta: () => KeyringPair$Meta,
+  hasSecretKey: () => boolean,
   publicKey: () => Uint8Array,
   setMeta: (meta: KeyringPair$Meta) => void,
   sign (message: Uint8Array): Uint8Array,
+  toJson (passphrase?: string): KeyringPair$Json,
   verify (message: Uint8Array, signature: Uint8Array): boolean
 };
 
 export type KeyringPairs = {
   add: (pair: KeyringPair) => KeyringPair,
   all: () => Array<KeyringPair>,
-  get: (publicKey: Uint8Array) => KeyringPair
+  get: (address: string | Uint8Array) => KeyringPair,
+  remove: (address: string | Uint8Array) => void
 };
 
 export type KeyringInstance = {
-  addFromSeed (seed: Uint8Array): KeyringPair,
-  decrypt (encrypted: Uint8Array, secret: Uint8Array | string): KeyringPair,
-  encrypt (publicKey: Uint8Array, secret: Uint8Array | string): Uint8Array,
-  getAddress (address: string): KeyringPair,
-  getPair (publicKey: Uint8Array): KeyringPair,
+  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta): KeyringPair,
+  addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair,
+  addFromJson (pair: KeyringPair$Json): KeyringPair,
+  getPair (address: string | Uint8Array): KeyringPair,
   getPairs (): Array<KeyringPair>,
   getPublicKeys (): Array<Uint8Array>
 };

@@ -3,34 +3,34 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-import type { KeyringInstance, KeyringPair } from './types';
+import type { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
 
 const naclKeypairFromSeed = require('@polkadot/util-crypto/nacl/keypair/fromSeed');
+const hexToU8a = require('@polkadot/util/hex/toU8a');
 
 const addressDecode = require('./address/decode');
-const decrypt = require('./decrypt');
-const encrypt = require('./encrypt');
 const createPair = require('./pair');
 const createPairs = require('./pairs');
 
 module.exports = function keyring (): KeyringInstance {
   const pairs = createPairs();
+  const addFromAddress = (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array) =>
+    pairs.add(createPair({ publicKey: addressDecode(address) }, meta, defaultEncoded));
 
   return {
-    addFromSeed: (seed: Uint8Array): KeyringPair =>
-      pairs.add(createPair(naclKeypairFromSeed(seed))),
-    decrypt: (encrypted: Uint8Array, passphrase: Uint8Array | string): KeyringPair =>
-      pairs.add(decrypt(encrypted, passphrase)),
-    encrypt: (publicKey: Uint8Array, passphrase: Uint8Array | string): Uint8Array =>
-      encrypt(pairs.get(publicKey), passphrase),
-    getAddress: (address: string): KeyringPair =>
-      pairs.get(
-        addressDecode(address)
-      ),
-    getPair: (publicKey: Uint8Array): KeyringPair =>
-      pairs.get(publicKey),
+    addFromAddress,
+    addFromJson: ({ address, encoded, meta }: KeyringPair$Json): KeyringPair =>
+      addFromAddress(address, meta, hexToU8a(encoded)),
+    addFromSeed: (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair =>
+      pairs.add(createPair(naclKeypairFromSeed(seed), meta)),
+    getPair: (address: string | Uint8Array): KeyringPair =>
+      pairs.get(address),
     getPairs: pairs.all,
     getPublicKeys: (): Array<Uint8Array> =>
-      pairs.all().map(({ publicKey }) => publicKey())
+      pairs.all().map(({ publicKey }) => publicKey()),
+    removePair: (address: string | Uint8Array): void =>
+      pairs.remove(address),
+    toJson: (address: string | Uint8Array, passphrase?: string): KeyringPair$Json =>
+      pairs.get(address).toJson(passphrase)
   };
 };
