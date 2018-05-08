@@ -12,11 +12,11 @@ Implements [NaCl](http://nacl.cr.yp.to/) secret-key authenticated encryption, pu
 Decrypts a message using the supplied secretKey and nonce 
 
 ```js
-naclDecrypt (message: Uint8Array, secretKey: Uint8Array, nonce: Uint8Array): Uint8Array
+naclDecrypt (message: Uint8Array, nonce: Uint8Array, secret: Uint8Array): Uint8Array
 ```
 
 
-Returns an decrypted message, using the `secretKey` and `nonce`.
+Returns an decrypted message, using the `secret` and `nonce`.
 
 ```js
 import { naclDecrypt } from '@polkadot/util-crypto';
@@ -29,7 +29,7 @@ naclDecrypt([...], [...], [...]) // => [...]
 Encrypts a message using the supplied secretKey and nonce 
 
 ```js
-naclEncrypt (message: Uint8Array, secretKey: Uint8Array, nonce?: Uint8Array): { encrypted: Uint8Array, nonce: Uint8Array }
+naclEncrypt (message: Uint8Array, secret: Uint8Array, nonce?: Uint8Array): { encrypted: Uint8Array, nonce: Uint8Array }
 ```
 
 

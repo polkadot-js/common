@@ -109,7 +109,7 @@ console.log('isFunction', isFunction(() => false)); // => true
 Tests for a hex string. 
 
 ```js
-isHex (value: string, bitLength: number = -1): boolean
+isHex (value: mixed, bitLength: number = -1): boolean
 ```
 
 
