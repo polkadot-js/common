@@ -7,7 +7,8 @@ const assert = require('@polkadot/util/assert');
 
 const internalDecode = require('./decode');
 
-module.exports = function decoder (input?: Uint8Array): Uint8Array | Array<*> {
+// flowlint-next-line unclear-type:off
+module.exports = function decoder (input?: Uint8Array): Uint8Array | Array<any> {
   if (!input || input.length === 0) {
     return new Uint8Array([]);
   }

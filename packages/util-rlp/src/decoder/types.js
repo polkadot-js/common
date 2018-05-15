@@ -4,7 +4,8 @@
 // @flow
 
 export type DecodeOutput = {
-  decoded: Uint8Array | Array<*>,
+  // flowlint-next-line unclear-type:off
+  decoded: Uint8Array | Array<any>,
   remainder: Uint8Array
 }
 
