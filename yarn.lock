@@ -652,7 +652,7 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@polkadot/api-jsonrpc@^0.11.0":
+"@polkadot/api-jsonrpc@^0.10.13":
   version "0.10.13"
   resolved "https://registry.yarnpkg.com/@polkadot/api-jsonrpc/-/api-jsonrpc-0.10.13.tgz#340ac5fe258bead66f8c9a5285913ff6f713ad71"
   dependencies:
