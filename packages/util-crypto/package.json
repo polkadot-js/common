@@ -29,7 +29,7 @@
     "test": "echo \"Tests only available from root wrapper\""
   },
   "dependencies": {
-    "babel-runtime": "^6.26.0",
+    "@babel/runtime": "^7.0.0-beta.47",
     "blakejs": "^1.1.0",
     "js-sha3": "^0.7.0",
     "tweetnacl": "^1.0.0",
