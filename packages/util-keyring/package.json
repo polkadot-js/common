@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-keyring",
-  "version": "0.20.0",
+  "version": "0.20.1",
   "description": "Keyring management",
   "main": "index.js",
   "engines": {
