@@ -10,7 +10,6 @@ const buffer = require('./buffer');
 const ext = require('./ext');
 const hex = require('./hex');
 const is = require('./is');
-const jsonrpc = require('./jsonrpc');
 const logger = require('./logger');
 const number = require('./number');
 const promisify = require('./promisify');
@@ -21,5 +20,5 @@ const u8a = require('./u8a');
   @summary Utility methods for this package are split into groups
 */
 module.exports = Object.assign(
-  {}, array, { assert }, bn, buffer, ext, hex, is, jsonrpc, { logger }, number, { promisify }, string, u8a
+  {}, array, { assert }, bn, buffer, ext, hex, is, { logger }, number, { promisify }, string, u8a
 );
