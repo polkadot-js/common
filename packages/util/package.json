@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util",
-  "version": "0.20.5",
+  "version": "0.21.0",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
   "keywords": [
@@ -27,9 +27,6 @@
     "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
     "check": "eslint src && flow check",
     "test": "echo \"Tests only available from root wrapper\""
-  },
-  "devDependencies": {
-    "@polkadot/api-jsonrpc": "^0.11.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.47",

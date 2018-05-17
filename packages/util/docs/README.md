@@ -8,7 +8,6 @@ Utility methods for this package are split into groups
 - [ext](ext.md) Extensions to basic classes
 - [hex](hex.md) Internal utilities to create and test for hex values
 - [is](is.md) Type checking utilities
-- [jsonrpc](jsonrpc.md) Convenience functions for values from @polkadot/api-jsonrpc
 - [number](number.md) Utility methods to convert to and from `number` values
 - [string](string.md) Utility methods to convert to work with `string` values
 - [u8a](u8a.md) Utility methods to convert to and from `Uint8Array` objects
