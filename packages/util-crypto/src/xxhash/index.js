@@ -4,20 +4,12 @@
 // @flow
 
 const xxhashAsHex = require('./asHex');
-const xxhashAsHex128 = require('./asHex128');
-const xxhashAsHex256 = require('./asHex256');
 const xxhashAsU8a = require('./asU8a');
-const xxhashAsU8a128 = require('./asU8a128');
-const xxhashAsU8a256 = require('./asU8a256');
 
 /**
   @summary Create xxhash64 values with specified bitlengths
 */
 module.exports = {
   xxhashAsHex,
-  xxhashAsHex128,
-  xxhashAsHex256,
-  xxhashAsU8a,
-  xxhashAsU8a128,
-  xxhashAsU8a256
+  xxhashAsU8a
 };

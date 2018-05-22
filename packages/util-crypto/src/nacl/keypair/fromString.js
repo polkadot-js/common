@@ -7,7 +7,7 @@ import type { KeypairType } from '../../types';
 
 const u8aFromUtf8 = require('@polkadot/util/u8a/fromUtf8');
 
-const blake2AsU8a256 = require('../../blake2/asU8a256');
+const blake2AsU8a = require('../../blake2/asU8a');
 const fromSeed = require('./fromSeed');
 
 /**
@@ -23,8 +23,9 @@ const fromSeed = require('./fromSeed');
 */
 module.exports = function naclKeypairFromString (value: string): KeypairType {
   return fromSeed(
-    blake2AsU8a256(
-      u8aFromUtf8(value)
+    blake2AsU8a(
+      u8aFromUtf8(value),
+      256
     )
   );
 };
