@@ -26,8 +26,8 @@ module.exports = function pair ({ publicKey, secretKey }: $Shape<KeypairType>, m
   return {
     address: (): string =>
       state.address,
-    decodePkcs8: (encoded?: Uint8Array, passphrase?: string): void => {
-      const decoded = decode(encoded || defaultEncoded, passphrase);
+    decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void => {
+      const decoded = decode(passphrase, encoded || defaultEncoded);
 
       publicKey = decoded.publicKey;
       secretKey = decoded.secretKey;

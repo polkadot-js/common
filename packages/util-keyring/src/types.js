@@ -21,7 +21,7 @@ export type KeyringPair$Json = {
 
 export type KeyringPair = {
   address: () => string,
-  decodePkcs8: (encoded: Uint8Array, passphrase?: string) => void,
+  decodePkcs8: (passphrase?: string, encoded?: Uint8Array) => void,
   encodePkcs8: (passphrase?: string) => Uint8Array,
   getMeta: () => KeyringPair$Meta,
   hasSecretKey: () => boolean,
