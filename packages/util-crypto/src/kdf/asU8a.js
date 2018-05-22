@@ -12,7 +12,7 @@ type KdfU8a = {
 const isU8a = require('@polkadot/util/is/u8a');
 const u8aFromUtf8 = require('@polkadot/util/u8a/fromUtf8');
 
-const blake2AsU8a256 = require('../blake2/asU8a256');
+const blake2AsU8a = require('../blake2/asU8a');
 const randomAsU8a = require('../random/asU8a');
 
 /**
@@ -35,7 +35,7 @@ module.exports = function kdfAsU8a (secret: Uint8Array | string, _rounds: number
     : u8aFromUtf8(((secret: any): string));
 
   for (let count = 0; count < rounds; count++) {
-    key = blake2AsU8a256(key, salt);
+    key = blake2AsU8a(key, 256, salt);
   }
 
   return {

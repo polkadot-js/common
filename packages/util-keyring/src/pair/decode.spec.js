@@ -14,7 +14,7 @@ describe('decode', () => {
   it('returns correct publicKey from encoded', () => {
     expect(
       () => keyring.alice.decodePkcs8(
-        keyring.alice.encodePkcs8('testing'), 'testing'
+        'testing', keyring.alice.encodePkcs8('testing')
       )
     ).not.toThrow();
   });

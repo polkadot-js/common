@@ -17,7 +17,7 @@ const SEED_OFFSET = PKCS8_HEADER.length;
 const DIV_OFFSET = SEED_OFFSET + KEY_LENGTH;
 const PUBLIC_OFFSET = SEED_OFFSET + KEY_LENGTH + PKCS8_DIVIDER.length;
 
-module.exports = function decode (_encrypted?: Uint8Array, passphrase?: string) {
+module.exports = function decode (passphrase?: string, _encrypted?: Uint8Array) {
   assert(_encrypted, `No encrypted data available to decode`);
 
   // flowlint-next-line unclear-type:off
