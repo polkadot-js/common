@@ -45,5 +45,6 @@ export type KeyringInstance = {
   addFromJson (pair: KeyringPair$Json): KeyringPair,
   getPair (address: string | Uint8Array): KeyringPair,
   getPairs (): Array<KeyringPair>,
-  getPublicKeys (): Array<Uint8Array>
+  getPublicKeys (): Array<Uint8Array>,
+  removePair (address: string | Uint8Array): void
 };
