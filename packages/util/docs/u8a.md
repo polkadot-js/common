@@ -12,7 +12,6 @@ Utility methods to convert to and from `Uint8Array` objects
 - [u8aToBn](#u8atobn) Creates a BN from a Uint8Array object.
 - [u8aToBuffer](#u8atobuffer) Creates a Buffer object from a hex string.
 - [u8aToHex](#u8atohex) Creates a hex string from a Uint8Array object.
-- [u8aToHexShort](#u8atohexshort) Creates a hex string from a Uint8Array object with max characters.
 - [u8aToString](#u8atostring) Creates a string from a Uint8Array object.
 - [u8aToU8a](#u8atou8a) Creates a Uint8Array value from a Uint8Array bignumber or hex input.
 - [u8aToUtf8](#u8atoutf8) Creates a utf-8 string from a Uint8Array object.
@@ -175,23 +174,6 @@ u8aToHex (value?: UInt8Array): string
 import { u8aToHex } from '@polkadot/util';
 
 u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
-```
-
-## u8aToHexShort
-
-Creates a hex string from a Uint8Array object with max characters. 
-
-```js
-u8aToHexShort (value?: UInt8Array, max: number = 16): string
-```
-
-
-`UInt8Array` input values return the actual hex string shortened to the specified characters. `null` or `undefined` values returns an `0x` string.
-
-```js
-import { u8aToHexShort } from '@polkadot/util';
-
-u8aToHexShort(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf]), 4); // 0x68...0f
 ```
 
 ## u8aToString
