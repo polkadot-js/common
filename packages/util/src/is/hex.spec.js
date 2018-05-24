@@ -5,7 +5,7 @@
 const { isHex } = require('./index');
 
 describe('isHex', () => {
-  const test = '123abcd45';
+  const test = '1234abcd';
 
   it('returns true on 0x hex values', () => {
     expect(
@@ -17,6 +17,12 @@ describe('isHex', () => {
     expect(
       isHex(`0x${test}`)
     ).toEqual(true);
+  });
+
+  it('returns false on hex values (non % 2)', () => {
+    expect(
+      isHex(`0x${test}0`)
+    ).toEqual(false);
   });
 
   it('returns true on uppercase values', () => {
