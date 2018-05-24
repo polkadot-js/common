@@ -19,14 +19,14 @@ const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
     isHex('0x1234'); // => true
     isHex('0x1234', 8); // => false
 */
-module.exports = function isHex (value: mixed, bitLength: number = -1): boolean {
-  // $FlowFixMe for the regex we have a string
+module.exports = function isHex (_value: mixed, bitLength: number = -1, ignoreLength: boolean = false): boolean {
+  // flowlint-next-line unclear-type:off
+  const value = ((_value: any): string);
   const isValidHex = value === '0x' || (isString(value) && HEX_REGEX.test(value));
 
   if (isValidHex && bitLength !== -1) {
-    // $FlowFixMe type is a string as checked above
-    return value.length === (2 + bitLength / 4);
+    return value.length === (2 + Math.ceil(bitLength / 4));
   }
 
-  return isValidHex;
+  return isValidHex && (ignoreLength || (value.length % 2 === 0));
 };

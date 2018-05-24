@@ -18,5 +18,5 @@ const isHex = require('../is/hex');
 */
 module.exports = function hexHasPrefix (value: ?string): boolean {
   // flowlint-next-line sketchy-null-string:off
-  return !!(value && isHex(value) && value.substr(0, 2) === '0x');
+  return !!(value && isHex(value, -1, true) && value.substr(0, 2) === '0x');
 };

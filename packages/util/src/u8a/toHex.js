@@ -14,12 +14,22 @@
 
     u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
 */
-module.exports = function u8aToHex (value?: Uint8Array): string {
+module.exports = function u8aToHex (value?: Uint8Array, bitLength: number = -1, isPrefixed: boolean = true): string {
   if (!value || !value.length) {
-    return '0x';
+    return isPrefixed
+      ? '0x'
+      : '';
   }
 
-  return value.reduce((result, item) => {
-    return result + ('0' + item.toString(16)).slice(-2);
-  }, '0x');
+  const byteLength = Math.ceil(bitLength / 8);
+
+  if (byteLength <= 0 || value.length <= byteLength) {
+    return value.reduce((result, item) => {
+      return result + `0${item.toString(16)}`.slice(-2);
+    }, isPrefixed ? '0x' : '');
+  }
+
+  const halfLength = Math.ceil(byteLength / 2);
+
+  return `${u8aToHex(value.subarray(0, halfLength), -1, isPrefixed)}…${u8aToHex(value.subarray(value.length - halfLength), -1, false)}`;
 };
