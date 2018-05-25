@@ -3,6 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+const assert = require('../assert');
+const isHex = require('../is/hex');
 const hexStripPrefix = require('./stripPrefix');
 
 /**
@@ -22,6 +24,8 @@ module.exports = function hexToU8a (_value?: string, bitLength: number = -1): Ui
   if (!_value) {
     return new Uint8Array([]);
   }
+
+  assert(isHex(_value), `Expected hex value to convert, found '${_value}'`);
 
   const value = hexStripPrefix(_value);
   const valLength = value.length / 2;
