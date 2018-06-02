@@ -19,14 +19,17 @@ module.exports = function decode (encoded: string | Uint8Array): Uint8Array {
   }
 
   // flowlint-next-line unclear-type:off
-  const decoded = bufferToU8a(bs58.decode(((encoded: any): string)));
+  const str = ((encoded: any): string);
+  const decoded = bufferToU8a(bs58.decode(str));
+  const error = (message: string) =>
+    `Decoding ${str}: ${message}`;
 
-  assert(decoded[0] === 42, 'Invalid decoded address prefix');
-  assert(decoded.length === 32 + 1 + 2, 'Invalid decoded address length');
+  assert(decoded[0] === 42, error('Invalid decoded address prefix'));
+  assert(decoded.length === 32 + 1 + 2, error('Invalid decoded address length'));
 
   const hash = blake2b(decoded.subarray(0, 33), 512);
 
-  assert(decoded[33] === hash[0] && decoded[34] === hash[1], 'Invalid decoded address checksum');
+  assert(decoded[33] === hash[0] && decoded[34] === hash[1], error(' Invalid decoded address checksum'));
 
   return decoded.slice(1, 33);
 };
