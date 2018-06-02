@@ -12,7 +12,7 @@ export type KeyringPair$Json = {
   address: string,
   encoded: string,
   encoding: {
-    content: 'pkcs8',
+    content: 'pkcs8' | 'none',
     type: 'xsalsa20-poly1305' | 'none',
     version: '0'
   },
