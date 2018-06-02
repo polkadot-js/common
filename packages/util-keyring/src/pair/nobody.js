@@ -5,16 +5,12 @@
 
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
 
-const hexToU8a = require('@polkadot/util/hex/toU8a');
-
 const addressEncode = require('../address/encode');
 
-const publicKey = hexToU8a(
-  '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
-);
+const publicKey = new Uint8Array(32);
 const address = addressEncode(publicKey);
 const meta = {
-  name: 'everybody'
+  name: 'nobody'
 };
 const json = {
   address,

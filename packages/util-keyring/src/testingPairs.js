@@ -11,7 +11,7 @@ type TestKeyringMap = {
 };
 
 const createKeyring = require('./testing');
-const everybody = require('./pair/everybody')();
+const nobody = require('./pair/nobody')();
 
 module.exports = function testKeyringPairs (): TestKeyringMap {
   const keyring = createKeyring();
@@ -23,5 +23,5 @@ module.exports = function testKeyringPairs (): TestKeyringMap {
     result[(name: string)] = pair;
 
     return result;
-  }, { _keyring: keyring, everybody });
+  }, { _keyring: keyring, nobody });
 };

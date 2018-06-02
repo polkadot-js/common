@@ -15,14 +15,13 @@ Various useful utility functions that are used across all projects in the [@polk
 
 It is split up into a number of internal packages -
 
-- [packages/util](packages/util/) General utilities
-- [packages/util-crypto](packages/util-crypto/) Crypto and hashing utilities
-- [packages/util-keyring](packages/util-crypto/) Keyring management
-- [packages/util-rlp](packages/util-rlp/) RLP encoding & decoding
-- [packages/util-triehash](packages/util-triehash/) Calculation of trie hashes
+- [util](packages/util/) General utilities
+- [util-crypto](packages/util-crypto/) Crypto and hashing utilities
+- [util-keyring](packages/util-keyring/) Keyring management
+- [util-rlp](packages/util-rlp/) RLP encoding & decoding
+- [util-triehash](packages/util-triehash/) Calculation of trie hashes
 
 ## Contributing
 
-- Make sure you have [Lerna](https://lernajs.io/) installed, `yarn install -g lerna`
 - Bootstrap the dependencies, `yarn`
 - Make any changes in the relevant package, on master merges new versions will be published automatically
