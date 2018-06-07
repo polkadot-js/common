@@ -5,17 +5,7 @@
 
 import type { Trie$Pairs } from '../types';
 
-function getSharedLength (a: Uint8Array, b: Uint8Array): number {
-  const count = Math.min(a.length, b.length);
-
-  for (let index = 0; index < count; index++) {
-    if (a[index] !== b[index]) {
-      return index;
-    }
-  }
-
-  return count;
-}
+const getSharedLength = require('./sharedLength');
 
 module.exports = function sharedPrefixLength (pairs: Trie$Pairs): number {
   return pairs.reduce((length, { k }, index) => {
