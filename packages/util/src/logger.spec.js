@@ -44,7 +44,7 @@ describe('logger', () => {
     expect(spy.log).toHaveBeenCalledWith(
       dateMatch,
       prefixMatch,
-      'console.log test'
+      expect.stringMatching('console.log test')
     );
   });
 
@@ -54,8 +54,8 @@ describe('logger', () => {
     expect(spy.log).toHaveBeenCalledWith(
       dateMatch,
       prefixMatch,
-      'test',
-      'a',
+      expect.stringMatching('test'),
+      expect.stringMatching('a'),
       2
     );
   });
@@ -66,7 +66,7 @@ describe('logger', () => {
     expect(spy.log).toHaveBeenCalledWith(
       dateMatch,
       prefixMatch,
-      'a function test'
+      expect.stringMatching('a function test')
     );
   });
 
@@ -76,7 +76,7 @@ describe('logger', () => {
     expect(spy.error).toHaveBeenCalledWith(
       dateMatch,
       prefixMatch,
-      'console.error test'
+      expect.stringMatching('console.error test')
     );
   });
 
@@ -86,7 +86,7 @@ describe('logger', () => {
     expect(spy.warn).toHaveBeenCalledWith(
       dateMatch,
       prefixMatch,
-      'console.warn test'
+      expect.stringMatching('console.warn test')
     );
   });
 
@@ -96,7 +96,7 @@ describe('logger', () => {
     expect(spy.log).toHaveBeenCalledWith(
       dateMatch,
       prefixMatch,
-      'test'
+      expect.stringMatching('test')
     );
   });
 
@@ -107,7 +107,7 @@ describe('logger', () => {
     expect(spy.log).toHaveBeenCalledWith(
       dateMatch,
       expect.stringMatching(/TESTING:/),
-      'test'
+      expect.stringMatching('test')
     );
   });
 

@@ -6,16 +6,40 @@
 import type { Logger, Logger$Data } from './types';
 
 type ConsoleType = 'error' | 'log' | 'warn';
+type LogType = ConsoleType | 'debug';
+
+const chalk = require('chalk');
 
 const isFunction = require('./is/function');
 
-function apply (log: ConsoleType, type: string, values: Logger$Data): void {
+const logTo: { [LogType]: ConsoleType } = {
+  debug: 'log',
+  error: 'error',
+  log: 'log',
+  warn: 'warn'
+};
+
+const chalked: { [LogType]: (value: string) => string } = {
+  debug: chalk.gray,
+  error: chalk.red,
+  log: chalk.reset,
+  warn: chalk.yellow
+};
+
+function apply (log: LogType, type: string, values: Logger$Data): void {
   if (values.length === 1 && isFunction(values[0])) {
     // flowlint-next-line unclear-type:off
     return apply(log, type, ((values[0]: any): Function)());
   }
 
-  console[log].apply(console, [new Date().toString(), type].concat(values));
+  const chalk = (value: string): string =>
+    chalked[log](value);
+
+  console[logTo[log]].apply(
+    console, [
+      chalk(new Date().toString()), chalk(type)
+    ].concat(values)
+  );
 }
 
 /**
@@ -44,7 +68,7 @@ module.exports = function logger (_type: string): Logger {
 
   return {
     debug: isDebug
-      ? (...values: Logger$Data): void => apply('log', type, values)
+      ? (...values: Logger$Data): void => apply('debug', type, values)
       : (...values: Logger$Data): void => void 0,
     error: (...values: Logger$Data): void => apply('error', type, values),
     log: (...values: Logger$Data): void => apply('log', type, values),
