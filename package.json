@@ -1,6 +1,10 @@
 {
   "version": "0.22.7",
   "private": true,
+  "engines": {
+    "node": "^10.1.0",
+    "yarn": "^1.7.0"
+  },
   "workspaces": [
     "packages/*"
   ],
@@ -11,6 +15,6 @@
     "test": "jest --coverage"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.19.18"
+    "@polkadot/dev": "^0.19.23"
   }
 }
