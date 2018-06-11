@@ -19,7 +19,7 @@ const hexStripPrefix = require('./stripPrefix');
     hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
     hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
 */
-module.exports = function hexToU8a (_value?: string, bitLength: number = -1): Uint8Array {
+module.exports = function hexToU8a (_value?: string | null, bitLength: number = -1): Uint8Array {
   // flowlint-next-line sketchy-null-string:off
   if (!_value) {
     return new Uint8Array([]);

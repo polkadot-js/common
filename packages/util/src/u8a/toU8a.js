@@ -18,7 +18,7 @@ const hexToU8a = require('../hex/toU8a');
     u8aToU8a(new Uint8Array([0x12, 0x34]); // => Uint8Array([0x12, 0x34])
     u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
 */
-module.exports = function u8aToU8a (value?: Uint8Array | string): Uint8Array {
+module.exports = function u8aToU8a (value?: Uint8Array | string | null): Uint8Array {
   // flowlint-next-line sketchy-null-string:off
   if (!value) {
     return new Uint8Array(0);
