@@ -20,6 +20,10 @@
     "ed25519"
   ],
   "author": "Jaco Greeff <jacogr@gmail.com>",
+  "maintainers": [
+    "Jaco Greeff <jacogr@gmail.com>"
+  ],
+  "contributors": [],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/polkadot-js/client/issues"
