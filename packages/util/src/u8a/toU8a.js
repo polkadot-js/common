@@ -4,9 +4,11 @@
 // @flow
 
 const isBuffer = require('../is/buffer');
-const isU8a = require('../is/u8a');
+const isHex = require('../is/hex');
+const isString = require('../is/string');
 const bufferToU8a = require('../buffer/toU8a');
 const hexToU8a = require('../hex/toU8a');
+const u8aFromUtf8 = require('./fromUtf8');
 
 /**
   @name u8aToU8a
@@ -31,9 +33,16 @@ module.exports = function u8aToU8a (value?: Buffer | Uint8Array | string | null)
     return bufferToU8a(value);
   }
 
-  return isU8a(value)
+  if (isString(value)) {
+    if (isHex(value)) {
+      // $FlowFixMe type is determined
+      return hexToU8a(value);
+    }
+
     // $FlowFixMe type is determined
-    ? value
-    // $FlowFixMe type is determined
-    : hexToU8a(value);
+    return u8aFromUtf8(value);
+  }
+
+  // $FlowFixMe type is determined
+  return value;
 };

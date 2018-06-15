@@ -19,6 +19,12 @@ describe('u8aToU8a', () => {
     );
   });
 
+  it('returns Uint8Array (string input)', () => {
+    expect(
+      u8aToU8a('abcde fghij')
+    ).toEqual(new Uint8Array([97, 98, 99, 100, 101, 32, 102, 103, 104, 105, 106]));
+  });
+
   it('returns a Uint8Array (buffer input)', () => {
     expect(
       u8aToU8a(Buffer.from('80000a', 'hex'))
