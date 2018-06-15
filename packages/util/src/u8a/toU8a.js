@@ -3,7 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+const isBuffer = require('../is/buffer');
 const isU8a = require('../is/u8a');
+const bufferToU8a = require('../buffer/toU8a');
 const hexToU8a = require('../hex/toU8a');
 
 /**
@@ -18,10 +20,15 @@ const hexToU8a = require('../hex/toU8a');
     u8aToU8a(new Uint8Array([0x12, 0x34]); // => Uint8Array([0x12, 0x34])
     u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
 */
-module.exports = function u8aToU8a (value?: Uint8Array | string | null): Uint8Array {
+module.exports = function u8aToU8a (value?: Buffer | Uint8Array | string | null): Uint8Array {
   // flowlint-next-line sketchy-null-string:off
   if (!value) {
     return new Uint8Array(0);
+  }
+
+  if (isBuffer(value)) {
+    // $FlowFixMe type is determined
+    return bufferToU8a(value);
   }
 
   return isU8a(value)
