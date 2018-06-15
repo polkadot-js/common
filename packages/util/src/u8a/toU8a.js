@@ -3,8 +3,12 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const isU8a = require('../is/u8a');
+const isBuffer = require('../is/buffer');
+const isHex = require('../is/hex');
+const isString = require('../is/string');
+const bufferToU8a = require('../buffer/toU8a');
 const hexToU8a = require('../hex/toU8a');
+const u8aFromUtf8 = require('./fromUtf8');
 
 /**
   @name u8aToU8a
@@ -18,15 +22,27 @@ const hexToU8a = require('../hex/toU8a');
     u8aToU8a(new Uint8Array([0x12, 0x34]); // => Uint8Array([0x12, 0x34])
     u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
 */
-module.exports = function u8aToU8a (value?: Uint8Array | string | null): Uint8Array {
+module.exports = function u8aToU8a (value?: Buffer | Uint8Array | string | null): Uint8Array {
   // flowlint-next-line sketchy-null-string:off
   if (!value) {
     return new Uint8Array(0);
   }
 
-  return isU8a(value)
+  if (isBuffer(value)) {
     // $FlowFixMe type is determined
-    ? value
+    return bufferToU8a(value);
+  }
+
+  if (isString(value)) {
+    if (isHex(value)) {
+      // $FlowFixMe type is determined
+      return hexToU8a(value);
+    }
+
     // $FlowFixMe type is determined
-    : hexToU8a(value);
+    return u8aFromUtf8(value);
+  }
+
+  // $FlowFixMe type is determined
+  return value;
 };
