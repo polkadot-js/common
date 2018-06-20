@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const BN = require('bn.js');
+import BN from 'bn.js';
 
-const { bnToBn } = require('./index');
+import { bnToBn } from './index';
 
 describe('bnToBn', () => {
   it('converts null values to 0x00', () => {

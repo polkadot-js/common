@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const BN = require('bn.js');
+import BN from 'bn.js';
 
 /**
   @name isBn
@@ -17,6 +17,6 @@ const BN = require('bn.js');
 
     console.log('isBn', isBn(new BN(1))); // => true
 */
-module.exports = function isBn (value: mixed): boolean {
+export default function isBn (value: mixed): boolean {
   return BN.isBN(value);
-};
+}

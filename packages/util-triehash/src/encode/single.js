@@ -5,10 +5,10 @@
 
 import type { Trie$Pair } from '../types';
 
-const encodeHexPrefix = require('./hexPrefix');
+import encodeHexPrefix from './hexPrefix';
 
 // flowlint-next-line unclear-type:off
-module.exports = function encodeSingle (pair: Trie$Pair, preLength: number): Array<any> {
+export default function encodeSingle (pair: Trie$Pair, preLength: number): Array<any> {
   return [
     encodeHexPrefix(
       pair.k.slice(preLength),
@@ -16,4 +16,4 @@ module.exports = function encodeSingle (pair: Trie$Pair, preLength: number): Arr
     ),
     pair.v
   ];
-};
+}

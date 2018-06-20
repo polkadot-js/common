@@ -3,9 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const u8aToHex = require('@polkadot/util/u8a/toHex');
+import u8aToHex from '@polkadot/util/u8a/toHex';
 
-const xxhashAsU8a = require('./asU8a');
+import xxhashAsU8a from './asU8a';
 
 /**
   @name xxhashAsHex
@@ -18,8 +18,8 @@ const xxhashAsU8a = require('./asU8a');
 
     xxhashAsHex('abc') // => 0x44bc2cf5ad770999
 */
-module.exports = function xxhashAsHex (data: Buffer | Uint8Array | string, bitLength: number = 64): string {
+export default function xxhashAsHex (data: Buffer | Uint8Array | string, bitLength: number = 64): string {
   return u8aToHex(
     xxhashAsU8a(data, bitLength)
   );
-};
+}

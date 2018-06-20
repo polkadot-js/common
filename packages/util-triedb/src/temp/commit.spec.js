@@ -2,15 +2,17 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const memory = require('./index')();
+import factory from './index';
 
 describe('commit', () => {
+  let memory;
   const k1 = new Uint8Array([1]);
   const k2 = new Uint8Array([2]);
   const v1 = new Uint8Array([9]);
   const v2 = new Uint8Array([8]);
 
   beforeEach(() => {
+    memory = factory();
     memory.commit([
       { k: k1, v: v1 }
     ]);

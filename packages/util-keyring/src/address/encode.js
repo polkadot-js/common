@@ -5,16 +5,17 @@
 
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L34
 
-const bs58 = require('bs58');
-const assert = require('@polkadot/util/assert');
-const u8aConcat = require('@polkadot/util/u8a/concat');
-const u8aToBuffer = require('@polkadot/util/u8a/toBuffer');
-const u8aToU8a = require('@polkadot/util/u8a/toU8a');
-const blake2b = require('@polkadot/util-crypto/blake2/asU8a');
+import bs58 from 'bs58';
+
+import assert from '@polkadot/util/assert';
+import u8aConcat from '@polkadot/util/u8a/concat';
+import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
+import u8aToU8a from '@polkadot/util/u8a/toU8a';
+import blake2b from '@polkadot/util-crypto/blake2/asU8a';
 
 const PREFIX = new Uint8Array([42]);
 
-module.exports = function encode (_publicKey: Uint8Array | string): string {
+export default function encode (_publicKey: Uint8Array | string): string {
   const publicKey = u8aToU8a(_publicKey);
 
   assert(publicKey.length === 32, `Expected a valid publicKey to convert`);
@@ -27,4 +28,4 @@ module.exports = function encode (_publicKey: Uint8Array | string): string {
       u8aConcat(input, hash.subarray(0, 2))
     )
   );
-};
+}

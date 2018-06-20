@@ -6,6 +6,6 @@
 import type { KeyringPair$Meta } from '../types';
 import type { PairState } from './types';
 
-module.exports = function getMeta (state: PairState): KeyringPair$Meta {
+export default function getMeta (state: PairState): KeyringPair$Meta {
   return state.meta;
-};
+}

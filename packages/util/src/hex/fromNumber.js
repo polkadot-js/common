@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hexFromNumber = require('../number/toHex');
+import hexFromNumber from '../number/toHex';
 
 /**
   @name hexFromNumber
@@ -11,4 +11,4 @@ const hexFromNumber = require('../number/toHex');
   @summary Creates a hex value from a number.
   @alias number/toHex
 */
-module.exports = hexFromNumber;
+export default hexFromNumber;

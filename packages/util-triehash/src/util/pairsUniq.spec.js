@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const pairsUniq = require('./pairsUniq');
+import pairsUniq from './pairsUniq';
 
 describe('pairsUniq', () => {
   it('returns non-duplicated unchanged', () => {

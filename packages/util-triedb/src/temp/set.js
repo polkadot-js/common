@@ -6,9 +6,9 @@
 import type { Trie$Pair } from '@polkadot/util-triehash/types';
 import type { Temp$Storage } from './types';
 
-module.exports = function set (storage: Temp$Storage, k: Uint8Array, v: Uint8Array): void {
+export default function set (storage: Temp$Storage, k: Uint8Array, v: Uint8Array): void {
   storage[k] = ({
     k: k.slice(),
     v: v.slice()
   }: Trie$Pair);
-};
+}

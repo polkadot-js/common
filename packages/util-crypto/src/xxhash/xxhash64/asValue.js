@@ -5,21 +5,20 @@
 
 import type { xxhashjs$Result } from 'xxhashjs';
 
-const isBuffer = require('@polkadot/util/is/buffer');
-const isString = require('@polkadot/util/is/string');
-const u8aToBuffer = require('@polkadot/util/u8a/toBuffer');
-const xxhashjs = require('xxhashjs');
+import isBuffer from '@polkadot/util/is/buffer';
+import isString from '@polkadot/util/is/string';
+import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
+import xxhashjs from 'xxhashjs';
 
-module.exports = function xxhash64AsValue (data: Buffer | Uint8Array | string, seed: number): xxhashjs$Result {
+export default function xxhash64AsValue (data: Buffer | Uint8Array | string, seed: number): xxhashjs$Result {
   if (isBuffer(data) || isString(data)) {
     // $FlowFixMe we have determined the type
     return xxhashjs.h64(data, seed);
   }
 
   return xxhashjs.h64(
-    // NOTE: We can't use data.buffer, it has the incorrect length
     // $FlowFixMe we have determined the type
     u8aToBuffer(data),
     seed
   );
-};
+}

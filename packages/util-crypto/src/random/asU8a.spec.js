@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const isU8a = require('@polkadot/util/is/u8a');
+import isU8a from '@polkadot/util/is/u8a';
 
-const { randomAsU8a } = require('./index');
+import { randomAsU8a } from './index';
 
 describe('randomAsU8a', () => {
   it('generates a Uint8Array', () => {

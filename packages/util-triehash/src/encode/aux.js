@@ -5,13 +5,13 @@
 
 import type { Trie$Pairs } from '../types';
 
-const keccakAsU8a = require('@polkadot/util-crypto/keccak/asU8a');
-const rlpEncode = require('@polkadot/util-rlp/encode');
+import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
+import rlpEncode from '@polkadot/util-rlp/encode';
 
-const encode = require('./index');
+import encode from './index';
 
 // flowlint-next-line unclear-type:off
-module.exports = function encodeAux (pairs: Trie$Pairs, preLength: number): any {
+export default function encodeAux (pairs: Trie$Pairs, preLength: number): any {
   const encoded = encode(pairs, preLength);
   const rlped = rlpEncode(encoded);
 
@@ -20,4 +20,4 @@ module.exports = function encodeAux (pairs: Trie$Pairs, preLength: number): any 
   }
 
   return keccakAsU8a(rlped);
-};
+}

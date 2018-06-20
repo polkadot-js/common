@@ -14,6 +14,6 @@
 
     console.log('isUndefined', isUndefined(void(0))); // => true
 */
-module.exports = function isUndefined (value: mixed): boolean {
+export default function isUndefined (value: mixed): boolean {
   return typeof value === 'undefined';
-};
+}

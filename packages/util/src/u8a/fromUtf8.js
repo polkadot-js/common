@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-require('./polyfill/textEncoder');
+import './polyfill/textEncoder';
 
 const encoder = new TextEncoder();
 
@@ -18,11 +18,11 @@ const encoder = new TextEncoder();
 
     u8aFromUtf8('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
 */
-module.exports = function u8aFromUtf8 (value?: string): Uint8Array {
+export default function u8aFromUtf8 (value?: string): Uint8Array {
   // flowlint-next-line sketchy-null-string:off
   if (!value) {
     return new Uint8Array([]);
   }
 
   return encoder.encode(value);
-};
+}

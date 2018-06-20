@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const isInstanceOf = require('./instanceOf');
+import isInstanceOf from './instanceOf';
 
 /**
   @name isU8a
@@ -16,6 +16,6 @@ const isInstanceOf = require('./instanceOf');
 
     console.log('isU8a', isU8a([])); // => false
 */
-module.exports = function isU8a (value: mixed): boolean {
+export default function isU8a (value: mixed): boolean {
   return isInstanceOf(value, Uint8Array);
-};
+}

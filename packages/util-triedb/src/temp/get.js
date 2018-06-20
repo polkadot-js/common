@@ -5,10 +5,10 @@
 
 import type { Temp$Storage } from './types';
 
-module.exports = function get (storage: Temp$Storage, k: Uint8Array): Uint8Array | null {
+export default function get (storage: Temp$Storage, k: Uint8Array): Uint8Array | null {
   const value = storage[k];
 
   return value && value.v
     ? value.v.slice()
     : null;
-};
+}

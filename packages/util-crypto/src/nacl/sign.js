@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const nacl = require('tweetnacl');
+import nacl from 'tweetnacl';
 
 /**
   @name naclSign
@@ -16,6 +16,6 @@ const nacl = require('tweetnacl');
 
     naclSign([...], [...]) // => [...]
 */
-module.exports = function naclSign (message: Uint8Array, secretKey: Uint8Array): Uint8Array {
+export default function naclSign (message: Uint8Array, secretKey: Uint8Array): Uint8Array {
   return nacl.sign.detached(message, secretKey);
-};
+}

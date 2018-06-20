@@ -14,10 +14,10 @@
 
     bufferToU8a(Buffer.from([1, 2, 3]));
 */
-module.exports = function bufferToU8a (buffer?: Buffer): Uint8Array {
+export default function bufferToU8a (buffer?: Buffer): Uint8Array {
   if (!buffer) {
     return new Uint8Array([]);
   }
 
   return new Uint8Array(buffer);
-};
+}

@@ -3,22 +3,25 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const array = require('./array');
-const assert = require('./assert');
-const bn = require('./bn');
-const buffer = require('./buffer');
-const ext = require('./ext');
-const hex = require('./hex');
-const is = require('./is');
-const logger = require('./logger');
-const number = require('./number');
-const promisify = require('./promisify');
-const string = require('./string');
-const u8a = require('./u8a');
+import assert from './assert';
+import logger from './logger';
+import promisify from './promisify';
+
+export * from './array';
+export * from './bn';
+export * from './buffer';
+export * from './ext';
+export * from './hex';
+export * from './is';
+export * from './number';
+export * from './string';
+export * from './u8a';
 
 /**
   @summary Utility methods for this package are split into groups
 */
-module.exports = Object.assign(
-  {}, array, { assert }, bn, buffer, ext, hex, is, { logger }, number, { promisify }, string, u8a
-);
+export {
+  assert,
+  logger,
+  promisify
+};

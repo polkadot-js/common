@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const u8aFromBn = require('../bn/toU8a');
+import u8aFromBn from '../bn/toU8a';
 
 /**
   @name u8aFromBn
@@ -11,4 +11,4 @@ const u8aFromBn = require('../bn/toU8a');
   @summary Creates a Uint8Array value from a BN object.
   @alias bn/toU8a
 */
-module.exports = u8aFromBn;
+export default u8aFromBn;

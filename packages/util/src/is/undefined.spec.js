@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { isUndefined } = require('./index');
+import { isUndefined } from './index';
 
 describe('isUndefined', () => {
   it('returns true on undefined values', () => {

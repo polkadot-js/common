@@ -3,11 +3,11 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const stringShorten = require('./shorten');
+import stringShorten from './shorten';
 
 /**
   @summary Utility methods to convert to work with `string` values
 */
-module.exports = {
+export {
   stringShorten
 };

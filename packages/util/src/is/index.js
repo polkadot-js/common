@@ -3,26 +3,26 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const isBn = require('./bn');
-const isBuffer = require('./buffer');
-const isBoolean = require('./boolean');
-const isError = require('./error');
-const isFunction = require('./function');
-const isHex = require('./hex');
-const isInstanceOf = require('./instanceOf');
-const isIp = require('./ip');
-const isNull = require('./null');
-const isNumber = require('./number');
-const isObject = require('./object');
-const isObservable = require('./observable');
-const isString = require('./string');
-const isU8a = require('./u8a');
-const isUndefined = require('./undefined');
+import isBn from './bn';
+import isBuffer from './buffer';
+import isBoolean from './boolean';
+import isError from './error';
+import isFunction from './function';
+import isHex from './hex';
+import isInstanceOf from './instanceOf';
+import isIp from './ip';
+import isNull from './null';
+import isNumber from './number';
+import isObject from './object';
+import isObservable from './observable';
+import isString from './string';
+import isU8a from './u8a';
+import isUndefined from './undefined';
 
 /**
   @summary Type checking utilities
 */
-module.exports = {
+export {
   isBn,
   isBoolean,
   isBuffer,

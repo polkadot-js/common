@@ -14,7 +14,7 @@
 
     u8aFromString('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
 */
-module.exports = function u8aFromString (value: string): Uint8Array {
+export default function u8aFromString (value: string): Uint8Array {
   const stringArray = [];
 
   for (let index = 0; index < value.length; index++) {
@@ -24,4 +24,4 @@ module.exports = function u8aFromString (value: string): Uint8Array {
   }
 
   return new Uint8Array(stringArray);
-};
+}

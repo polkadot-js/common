@@ -3,9 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const BN = require('bn.js');
+import BN from 'bn.js';
 
-const xxhash64AsRaw = require('./asRaw');
+import xxhash64AsRaw from './asRaw';
 
 /**
   @name xxhash64AsBn
@@ -18,9 +18,9 @@ const xxhash64AsRaw = require('./asRaw');
 
     xxhash64AsBn('abcd', 0xabcd)) // => new BN(0xe29f70f8b8c96df7)
 */
-module.exports = function xxhash64AsBn (data: Buffer | Uint8Array | string, seed: number): BN {
+export default function xxhash64AsBn (data: Buffer | Uint8Array | string, seed: number): BN {
   return new BN(
     xxhash64AsRaw(data, seed),
     16
   );
-};
+}

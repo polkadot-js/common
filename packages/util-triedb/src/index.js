@@ -6,11 +6,11 @@
 // import type { LevelUp$AbstractStorage } from 'levelup';
 // import type { TrieDb } from './types';
 
-// const clear = require('./clear');
-// const commit = require('./commit');
-// const state = require('./state');
+// const clear from './clear');
+// const commit from './commit');
+// const state from './state');
 
-// module.exports = function triedb (db: LevelUp$AbstractStorage): TrieDb {
+// export default function triedb (db: LevelUp$AbstractStorage): TrieDb {
 //   const self = state(db);
 
 //   return {

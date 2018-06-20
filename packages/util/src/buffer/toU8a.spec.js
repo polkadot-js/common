@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { bufferToU8a } = require('./index');
+import { bufferToU8a } from './index';
 
 describe('bufferToU8a', () => {
   it('returns an empty buffer when null provided', () => {

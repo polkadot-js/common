@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const decoder = require('./decoder');
+import decoder from './decoder';
 
 /**
   @name decode
@@ -16,4 +16,4 @@ const decoder = require('./decoder');
 
     encode(new Uint8Array([0x83, 0x64, 0x6f, 0x67])) // => 'dog' as Uint8Array
 */
-module.exports = decoder;
+export default decoder;

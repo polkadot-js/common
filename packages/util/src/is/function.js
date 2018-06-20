@@ -14,6 +14,6 @@
 
     console.log('isFunction', isFunction(() => false)); // => true
 */
-module.exports = function isFunction (value: mixed): boolean {
+export default function isFunction (value: mixed): boolean {
   return typeof value === 'function';
-};
+}

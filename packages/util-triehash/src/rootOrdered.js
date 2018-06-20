@@ -2,11 +2,11 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const rlpEncode = require('@polkadot/util-rlp/encode');
+import rlpEncode from '@polkadot/util-rlp/encode';
 
-const asNibbles = require('./util/asNibbles');
-const genRoot = require('./util/genRoot');
-const pairsUniq = require('./util/pairsUniq');
+import asNibbles from './util/asNibbles';
+import genRoot from './util/genRoot';
+import pairsUniq from './util/pairsUniq';
 
 /**
   @name trieRootOrdered
@@ -23,7 +23,7 @@ const pairsUniq = require('./util/pairsUniq');
       u8aFromString('reindeer')
     ]) // => 0xe766d5d51b89dc39d981b41bda63248d7abce4f0225eefd023792a540bcffee3
 */
-module.exports = function trieRootOrdered (values: Array<Uint8Array>): Uint8Array {
+export default function trieRootOrdered (values: Array<Uint8Array>): Uint8Array {
   return genRoot(
     pairsUniq(
       values.map((v, index) => ({
@@ -34,4 +34,4 @@ module.exports = function trieRootOrdered (values: Array<Uint8Array>): Uint8Arra
       }))
     )
   );
-};
+}

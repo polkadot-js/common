@@ -3,10 +3,10 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const BN = require('bn.js');
+import BN from 'bn.js';
 
-const hexFixLength = require('../hex/fixLength');
-const bnToBn = require('./toBn');
+import hexFixLength from '../hex/fixLength';
+import bnToBn from './toBn';
 
 const ZERO_STR = '0x00';
 
@@ -22,11 +22,11 @@ const ZERO_STR = '0x00';
 
     bnToHex(new BN(0x123456)); // => '0x123456'
 */
-module.exports = function bnToHex (value?: BN | number, bitLength: number = -1): string {
+export default function bnToHex (value?: BN | number, bitLength: number = -1): string {
   // flowlint-next-line sketchy-null-number:off
   if (!value) {
     return ZERO_STR;
   }
 
   return hexFixLength(bnToBn(value).toString(16), bitLength, true);
-};
+}

@@ -5,15 +5,15 @@
 
 import type { KeyringPair, KeyringInstance } from './types';
 
+import createKeyring from './testing';
+import nobody from './pair/nobody';
+
 type TestKeyringMap = {
   _keyring: KeyringInstance,
   [string]: KeyringPair
 };
 
-const createKeyring = require('./testing');
-const nobody = require('./pair/nobody')();
-
-module.exports = function testKeyringPairs (): TestKeyringMap {
+export default function testKeyringPairs (): TestKeyringMap {
   const keyring = createKeyring();
   const pairs = keyring.getPairs();
 
@@ -23,5 +23,5 @@ module.exports = function testKeyringPairs (): TestKeyringMap {
     result[(name: string)] = pair;
 
     return result;
-  }, { _keyring: keyring, nobody });
-};
+  }, { _keyring: keyring, nobody: nobody() });
+}

@@ -5,7 +5,7 @@
 
 import type { KeypairType } from '../../types';
 
-const nacl = require('tweetnacl');
+import nacl from 'tweetnacl';
 
 /**
   @name naclKeypair
@@ -18,6 +18,6 @@ const nacl = require('tweetnacl');
 
     naclKeypair() // => { secretKey: [...], publicKey: [...] }
 */
-module.exports = function naclKeypairFromRandom (): KeypairType {
+export default function naclKeypairFromRandom (): KeypairType {
   return nacl.sign.keyPair();
-};
+}

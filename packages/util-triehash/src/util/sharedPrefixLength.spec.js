@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const sharedPrefixLength = require('./sharedPrefixLength');
+import sharedPrefixLength from './sharedPrefixLength';
 
 describe('sharedPrefixLength', () => {
   it('returns 0 where no matches found', () => {

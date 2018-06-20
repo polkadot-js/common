@@ -5,9 +5,9 @@
 
 import type { Trie$Pairs } from '../types';
 
-const getSharedLength = require('./sharedLength');
+import getSharedLength from './sharedLength';
 
-module.exports = function sharedPrefixLength (pairs: Trie$Pairs): number {
+export default function sharedPrefixLength (pairs: Trie$Pairs): number {
   return pairs.reduce((length, { k }, index) => {
     if (index === 0) {
       return k.length;
@@ -18,4 +18,4 @@ module.exports = function sharedPrefixLength (pairs: Trie$Pairs): number {
       length
     );
   }, 0);
-};
+}

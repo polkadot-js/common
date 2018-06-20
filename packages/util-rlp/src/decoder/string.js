@@ -5,9 +5,9 @@
 
 import type { DecodeFunc, DecodeOutput } from './types';
 
-const assert = require('@polkadot/util/assert');
+import assert from '@polkadot/util/assert';
 
-module.exports = function decodeString (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
+export default function decodeString (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
   const firstByte = input[0];
   const length = firstByte - 0x7f;
   let decoded;
@@ -25,4 +25,4 @@ module.exports = function decodeString (decode: DecodeFunc, input: Uint8Array): 
     decoded,
     remainder: input.slice(length)
   };
-};
+}

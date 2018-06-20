@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const BN = require('bn.js');
+import BN from 'bn.js';
 
-const toU8a = require('./toU8a');
+import toU8a from './toU8a';
 
 describe('toU8a', () => {
   it('returns a Uint8Array input as-is', () => {

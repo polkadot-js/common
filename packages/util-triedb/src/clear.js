@@ -5,5 +5,5 @@
 
 import type { TrieDbState } from './types';
 
-module.exports = function clear (self: TrieDbState): void {
-};
+export default function clear (self: TrieDbState): void {
+}

@@ -3,14 +3,14 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const u8aConcat = require('@polkadot/util/u8a/concat');
-const u8aFixLength = require('@polkadot/util/u8a/fixLength');
-const u8aFromString = require('@polkadot/util/u8a/fromString');
-const naclEncrypt = require('@polkadot/util-crypto/nacl/encrypt');
+import u8aConcat from '@polkadot/util/u8a/concat';
+import u8aFixLength from '@polkadot/util/u8a/fixLength';
+import u8aFromString from '@polkadot/util/u8a/fromString';
+import naclEncrypt from '@polkadot/util-crypto/nacl/encrypt';
 
-const { PKCS8_DIVIDER, PKCS8_HEADER } = require('./defaults');
+import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
 
-module.exports = function encode (secretKey: Uint8Array, passphrase?: string): Uint8Array {
+export default function encode (secretKey: Uint8Array, passphrase?: string): Uint8Array {
   const encoded = u8aConcat(
     PKCS8_HEADER,
     secretKey.subarray(0, 32),
@@ -26,4 +26,4 @@ module.exports = function encode (secretKey: Uint8Array, passphrase?: string): U
   const { encrypted, nonce } = naclEncrypt(encoded, u8aFixLength(u8aFromString(passphrase), 256, true));
 
   return u8aConcat(nonce, encrypted);
-};
+}

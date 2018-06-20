@@ -15,6 +15,6 @@
     isObject({}); // => true
     isObject('something'); // => false
 */
-module.exports = function isObject (value: mixed): boolean {
+export default function isObject (value: mixed): boolean {
   return typeof value === 'object';
-};
+}

@@ -3,15 +3,15 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const bnFromHex = require('./fromHex');
-const bnToBn = require('./toBn');
-const bnToHex = require('./toHex');
-const bnToU8a = require('./toU8a');
+import bnFromHex from './fromHex';
+import bnToBn from './toBn';
+import bnToHex from './toHex';
+import bnToU8a from './toU8a';
 
 /**
   @summary Utility methods to convert to and from `BN` objects
 */
-module.exports = {
+export {
   bnFromHex,
   bnToBn,
   bnToHex,

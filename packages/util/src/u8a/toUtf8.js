@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-require('./polyfill/textDecoder');
+import './polyfill/textDecoder';
 
 const decoder = new TextDecoder('utf-8');
 
@@ -18,10 +18,10 @@ const decoder = new TextDecoder('utf-8');
 
     u8aToUtf8(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f])); // hello
 */
-module.exports = function u8aToUtf8 (value?: Uint8Array): string {
+export default function u8aToUtf8 (value?: Uint8Array): string {
   if (!value || !value.length) {
     return '';
   }
 
   return decoder.decode(value);
-};
+}

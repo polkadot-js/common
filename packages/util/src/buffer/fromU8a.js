@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const bufferFromU8a = require('../u8a/toBuffer');
+import bufferFromU8a from '../u8a/toBuffer';
 
 /**
   @name bufferFromU8a
@@ -11,4 +11,4 @@ const bufferFromU8a = require('../u8a/toBuffer');
   @summary Creates a Buffer object from a Uint8Array.
   @alias u8a/toBuffer
 */
-module.exports = bufferFromU8a;
+export default bufferFromU8a;

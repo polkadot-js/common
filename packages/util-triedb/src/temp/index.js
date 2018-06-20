@@ -7,15 +7,15 @@ import type { Trie$Pairs } from '@polkadot/util-triehash/types';
 import type { TrieDb } from '../types';
 import type { Temp$Storage } from './types';
 
-const trieRoot = require('@polkadot/util-triehash/root');
+import trieRoot from '@polkadot/util-triehash/root';
 
-const commit = require('./commit');
-const del = require('./del');
-const get = require('./get');
-const pairs = require('./pairs');
-const set = require('./set');
+import commit from './commit';
+import del from './del';
+import get from './get';
+import pairs from './pairs';
+import set from './set';
 
-module.exports = function temp (): TrieDb {
+export default function temp (): TrieDb {
   let storage: Temp$Storage = {};
 
   return {
@@ -37,4 +37,4 @@ module.exports = function temp (): TrieDb {
     trieRoot: (): Uint8Array =>
       trieRoot(pairs(storage))
   };
-};
+}

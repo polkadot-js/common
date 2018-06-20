@@ -5,16 +5,13 @@
 
 import type { Trie$Pairs } from '../types';
 
-// FIXME: This is horrible, but since aux calls back into encode (and ius used by the signgular encodes below, we set the export to valid before it is used)
-module.exports = encode;
-
-const encodePairs = require('./pairs');
-const encodeShared = require('./shared');
-const encodeSingle = require('./single');
-const sharedPrefixLength = require('../util/sharedPrefixLength');
+import encodePairs from './pairs';
+import encodeShared from './shared';
+import encodeSingle from './single';
+import sharedPrefixLength from '../util/sharedPrefixLength';
 
 // flowlint-next-line unclear-type:off
-function encode (pairs: Trie$Pairs, preLength: number): Array<any> {
+export default function encode (pairs: Trie$Pairs, preLength: number): Array<any> {
   if (pairs.length === 0) {
     return [];
   }

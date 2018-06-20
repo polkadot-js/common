@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const BN = require('bn.js');
+import BN from 'bn.js';
 
-const { isBn } = require('./index');
+import { isBn } from './index';
 
 describe('isBN', () => {
   it('returns true when a BN value', () => {

@@ -3,9 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const BN = require('bn.js');
+import BN from 'bn.js';
 
-const hexStripPrefix = require('./stripPrefix');
+import hexStripPrefix from './stripPrefix';
 
 function reverse (value: string): string {
   return (value.match(new RegExp('.{1,2}', 'g')) || [])
@@ -24,7 +24,7 @@ function reverse (value: string): string {
 
     hexToBn('0x123480001f'); // => BN(0x123480001f)
 */
-module.exports = function hexToBn (_value?: string, isLe: boolean = false): BN {
+export default function hexToBn (_value?: string, isLe: boolean = false): BN {
   // flowlint-next-line sketchy-null-string:off
   if (!_value) {
     return new BN(0);
@@ -33,4 +33,4 @@ module.exports = function hexToBn (_value?: string, isLe: boolean = false): BN {
   const value = hexStripPrefix(_value);
 
   return new BN((isLe ? reverse(value) : value) || '00', 16);
-};
+}

@@ -2,10 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const u8aFromString = require('@polkadot/util/u8a/fromString');
-const hexToU8a = require('@polkadot/util/hex/toU8a');
+import u8aFromString from '@polkadot/util/u8a/fromString';
+import hexToU8a from '@polkadot/util/hex/toU8a';
 
-const { trieRoot } = require('./index');
+import { trieRoot } from './index';
 
 describe('trieRoot', () => {
   it('encodes empty k/v pairs', () => {

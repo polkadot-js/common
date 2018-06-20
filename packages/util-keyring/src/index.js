@@ -5,14 +5,14 @@
 
 import type { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
 
-const naclKeypairFromSeed = require('@polkadot/util-crypto/nacl/keypair/fromSeed');
-const hexToU8a = require('@polkadot/util/hex/toU8a');
+import naclKeypairFromSeed from '@polkadot/util-crypto/nacl/keypair/fromSeed';
+import hexToU8a from '@polkadot/util/hex/toU8a';
 
-const addressDecode = require('./address/decode');
-const createPair = require('./pair');
-const createPairs = require('./pairs');
+import addressDecode from './address/decode';
+import createPair from './pair';
+import createPairs from './pairs';
 
-module.exports = function keyring (): KeyringInstance {
+export default function keyring (): KeyringInstance {
   const pairs = createPairs();
   const addFromAddress = (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array) =>
     pairs.add(createPair({ publicKey: addressDecode(address) }, meta, defaultEncoded));
@@ -33,4 +33,4 @@ module.exports = function keyring (): KeyringInstance {
     toJson: (address: string | Uint8Array, passphrase?: string): KeyringPair$Json =>
       pairs.get(address).toJson(passphrase)
   };
-};
+}

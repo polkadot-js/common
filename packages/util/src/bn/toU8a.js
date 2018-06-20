@@ -5,9 +5,9 @@
 
 import type BN from 'bn.js';
 
-const hexToU8a = require('../hex/toU8a');
-const bnToBn = require('./toBn');
-const bnToHex = require('./toHex');
+import hexToU8a from '../hex/toU8a';
+import bnToBn from './toBn';
+import bnToHex from './toHex';
 
 /**
   @name bnToU8a
@@ -20,7 +20,7 @@ const bnToHex = require('./toHex');
 
     bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
 */
-module.exports = function bnToU8a (value?: BN | number, bitLength: number = -1, isLe: boolean = false): Uint8Array {
+export default function bnToU8a (value?: BN | number, bitLength: number = -1, isLe: boolean = false): Uint8Array {
   const byteLength = Math.ceil(bitLength / 8);
 
   // flowlint-next-line sketchy-null-number:off
@@ -44,4 +44,4 @@ module.exports = function bnToU8a (value?: BN | number, bitLength: number = -1, 
   );
 
   return output;
-};
+}

@@ -5,7 +5,7 @@
 
 import type { DecodeFunc, DecodeOutput } from './types';
 
-module.exports = function decodeListShort (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
+export default function decodeListShort (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
   const length = input[0] - 0xbf;
   let innerRemainder = input.slice(1, length);
   const decoded = [];
@@ -21,4 +21,4 @@ module.exports = function decodeListShort (decode: DecodeFunc, input: Uint8Array
     decoded,
     remainder: input.slice(length)
   };
-};
+}

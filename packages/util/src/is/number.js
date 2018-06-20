@@ -14,6 +14,6 @@
 
     console.log('isNumber', isNumber(1234)); // => true
 */
-module.exports = function isNumber (value: mixed): boolean {
+export default function isNumber (value: mixed): boolean {
   return typeof value === 'number';
-};
+}

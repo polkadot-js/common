@@ -5,11 +5,11 @@
 
 import type { EncodeFunc } from './types';
 
-const u8aConcat = require('@polkadot/util/u8a/concat');
+import u8aConcat from '@polkadot/util/u8a/concat';
 
-const encodeLength = require('./length');
+import encodeLength from './length';
 
-module.exports = function encodeU8a (encoder: EncodeFunc, input: Uint8Array): Uint8Array {
+export default function encodeU8a (encoder: EncodeFunc, input: Uint8Array): Uint8Array {
   if (input.length === 1 && input[0] < 128) {
     return input;
   }
@@ -18,4 +18,4 @@ module.exports = function encodeU8a (encoder: EncodeFunc, input: Uint8Array): Ui
     encodeLength(input.length, 128),
     input
   );
-};
+}

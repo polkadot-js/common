@@ -3,11 +3,11 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const ExtError = require('./error');
+import ExtError from './error';
 
 /**
   @summary Extensions to basic classes
 */
-module.exports = {
+export {
   ExtError
 };

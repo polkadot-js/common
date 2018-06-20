@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { hexHasPrefix } = require('./index');
+import { hexHasPrefix } from './index';
 
 describe('hexHasPrefix', () => {
   it('returns true when hex prefix is found', () => {

@@ -3,13 +3,13 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const keccakAsHex = require('./asHex');
-const keccakAsU8a = require('./asU8a');
+import keccakAsHex from './asHex';
+import keccakAsU8a from './asU8a';
 
 /**
   @summary Create Keccak256 values as hex & Uint8Array output
 */
-module.exports = {
+export {
   keccakAsHex,
   keccakAsU8a
 };

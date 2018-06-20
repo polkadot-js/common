@@ -6,10 +6,10 @@
 import type { Trie$Pairs } from '@polkadot/util-triehash/types';
 import type { Temp$Storage } from './types';
 
-const del = require('./del');
-const set = require('./set');
+import del from './del';
+import set from './set';
 
-module.exports = function commit (storage: Temp$Storage, values: Trie$Pairs): void {
+export default function commit (storage: Temp$Storage, values: Trie$Pairs): void {
   values.forEach(({ k, v }) => {
     if (v && v.length) {
       set(storage, k, v);
@@ -17,4 +17,4 @@ module.exports = function commit (storage: Temp$Storage, values: Trie$Pairs): vo
       del(storage, k);
     }
   });
-};
+}

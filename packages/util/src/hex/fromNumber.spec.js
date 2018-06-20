@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const isFunction = require('../is/function');
+import isFunction from '../is/function';
 
-const { hexFromNumber } = require('./index');
+import { hexFromNumber } from './index';
 
 describe('hexFromNumber', () => {
   it('exists as a function', () => {

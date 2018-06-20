@@ -5,16 +5,16 @@
 
 import type { DecodeFunc, DecodeOutput } from './types';
 
+import decodeListLong from './listLong';
+import decodeListShort from './listShort';
+import decodeNumber from './number';
+import decodeSingle from './single';
+import decodeString from './string';
+
 type Decoder = {
   max: number,
   fn: (decode: DecodeFunc, input: Uint8Array) => DecodeOutput
 };
-
-const decodeListLong = require('./listLong');
-const decodeListShort = require('./listShort');
-const decodeNumber = require('./number');
-const decodeSingle = require('./single');
-const decodeString = require('./string');
 
 const decoders: Array<Decoder> = [
   { max: 0x7f, fn: decodeSingle },
@@ -24,11 +24,9 @@ const decoders: Array<Decoder> = [
   { max: 0xff, fn: decodeListLong }
 ];
 
-function decode (input: Uint8Array): DecodeOutput {
+export default function decode (input: Uint8Array): DecodeOutput {
   return decoders
     .find(({ max }) => input[0] <= max)
     // $FlowFixMe last entry (listLong) is max uint8 value
     .fn(decode, input);
 }
-
-module.exports = decode;

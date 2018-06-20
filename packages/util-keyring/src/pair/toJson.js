@@ -6,9 +6,9 @@
 import type { KeyringPair$Json } from '../types';
 import type { PairState } from './types';
 
-const u8aToHex = require('@polkadot/util/u8a/toHex');
+import u8aToHex from '@polkadot/util/u8a/toHex';
 
-module.exports = function toJson ({ address, meta }: PairState, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
+export default function toJson ({ address, meta }: PairState, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
   return {
     address,
     encoded: u8aToHex(encoded),
@@ -23,4 +23,4 @@ module.exports = function toJson ({ address, meta }: PairState, encoded: Uint8Ar
       ...meta
     }
   };
-};
+}

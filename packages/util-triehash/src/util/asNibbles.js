@@ -14,7 +14,7 @@
 
     asNibbles(new Uint8Array([0x41, 0x20]) // => Uint8Array([4, 1, 2, 0])
 */
-module.exports = function asNibbles (bytes: Uint8Array | Array<number>): Uint8Array {
+export default function asNibbles (bytes: Uint8Array | Array<number>): Uint8Array {
   return bytes.reduce((result, byte, index) => {
     result.set(
       [byte >> 4, byte & 0b1111],
@@ -23,4 +23,4 @@ module.exports = function asNibbles (bytes: Uint8Array | Array<number>): Uint8Ar
 
     return result;
   }, new Uint8Array(bytes.length * 2));
-};
+}

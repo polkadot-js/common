@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { u8aToString } = require('./index');
+import { u8aToString } from './index';
 
 describe('u8aToString', () => {
   it('decodes to an empty string for undefined', () => {

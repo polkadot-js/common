@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const BN = require('bn.js');
+import BN from 'bn.js';
 
 /**
   @name bnToBn
@@ -18,7 +18,7 @@ const BN = require('bn.js');
     bnToBn(0x1234); // => BN(0x1234)
     bnToBn(new BN(0x1234)); // => BN(0x1234)
 */
-module.exports = function bnToBn (value?: BN | number): BN {
+export default function bnToBn (value?: BN | number): BN {
   // flowlint-next-line sketchy-null-number:off
   if (!value) {
     return new BN(0);
@@ -28,4 +28,4 @@ module.exports = function bnToBn (value?: BN | number): BN {
     // $FlowFixMe type is determined
     ? value
     : new BN(value);
-};
+}

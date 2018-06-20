@@ -5,5 +5,5 @@
 
 import type { TrieDbState } from './types';
 
-module.exports = function commit (self: TrieDbState): void {
-};
+export default function commit (self: TrieDbState): void {
+}

@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-module.exports = function getSharedLength (a: Uint8Array, b: Uint8Array): number {
+export default function getSharedLength (a: Uint8Array, b: Uint8Array): number {
   const count = Math.min(a.length, b.length);
 
   for (let index = 0; index < count; index++) {
@@ -13,4 +13,4 @@ module.exports = function getSharedLength (a: Uint8Array, b: Uint8Array): number
   }
 
   return count;
-};
+}

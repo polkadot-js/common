@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const isString = require('./string');
+import isString from './string';
 
 const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
 
@@ -19,9 +19,9 @@ const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
     isHex('0x1234'); // => true
     isHex('0x1234', 8); // => false
 */
-module.exports = function isHex (_value: mixed, bitLength: number = -1, ignoreLength: boolean = false): boolean {
+export default function isHex (_value: mixed, bitLength: number = -1, ignoreLength: boolean = false): boolean {
   // flowlint-next-line unclear-type:off
-  const value = ((_value: any): string);
+  const value: string = (_value: any);
   const isValidHex = value === '0x' || (isString(value) && HEX_REGEX.test(value));
 
   if (isValidHex && bitLength !== -1) {
@@ -29,4 +29,4 @@ module.exports = function isHex (_value: mixed, bitLength: number = -1, ignoreLe
   }
 
   return isValidHex && (ignoreLength || (value.length % 2 === 0));
-};
+}

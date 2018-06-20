@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const safeParseInt = require('./safeParseInt');
+import safeParseInt from './safeParseInt';
 
 describe('safeParseInt', () => {
   it('does not allow 0 in first position', () => {

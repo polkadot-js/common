@@ -3,15 +3,15 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const deasync = require('deasync');
+import deasync from 'deasync';
 
-const isError = require('./is/error');
-const isUndefined = require('./is/undefined');
+import isError from './is/error';
+import isUndefined from './is/undefined';
 
 // FIXME: This is currently for Node environments only - for Browser environments deasync is not available, we need a different solution.
 
 // flowlint-next-line unclear-type:off
-module.exports = function syncify (promise: Promise<any>): any {
+export default function syncify (promise: Promise<any>): any {
   let result;
 
   (async () => {
@@ -27,4 +27,4 @@ module.exports = function syncify (promise: Promise<any>): any {
   }
 
   return result;
-};
+}

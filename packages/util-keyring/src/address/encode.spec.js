@@ -3,8 +3,10 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const keyring = require('../testingPairs')();
-const encode = require('./encode');
+import testingPairs from '../testingPairs';
+import encode from './encode';
+
+const keyring = testingPairs();
 
 describe('encode', () => {
   it('encodes an address to a valid value', () => {

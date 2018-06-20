@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { blake2bAsU8a } = require('./index');
+import { blake2bAsU8a } from './index';
 
 describe('blake2bAsU8a', () => {
   it('creates the correct hash (default length)', () => {

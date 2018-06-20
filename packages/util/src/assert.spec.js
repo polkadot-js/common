@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { assert } = require('./index');
+import { assert } from './index';
 
 describe('assert', () => {
   it('should not throw an error when test is true', () => {

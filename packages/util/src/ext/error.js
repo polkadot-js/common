@@ -5,9 +5,18 @@
 
 import type { ExtErrorInterface } from '../types';
 
-const isFunction = require('../is/function');
+import isFunction from '../is/function';
 
 const UNKNOWN = -99999;
+
+// flowlint-next-line unclear-type:off
+function extend (that: any, name: string, value: mixed): void {
+  Object.defineProperty(that, name, {
+    configurable: true,
+    enumerable: false,
+    value
+  });
+}
 
 /**
   @name ExtError
@@ -16,11 +25,11 @@ const UNKNOWN = -99999;
   @description
     The built-in JavaScript Error class is extended by adding a code to allow for Error categorization. In addition to the normal `stack`, `message`, the numeric `code` and `data` (mixed types) parameters are available on the object.
   @example
-    const { ExtError } = require('@polkadot/util');
+    const { ExtError } from '@polkadot/util');
 
     throw new ExtError('some message', ExtError.CODES.METHOD_NOT_FOUND); // => error.code = -32601
 */
-module.exports = class ExtError extends Error implements ExtErrorInterface {
+export default class ExtError extends Error implements ExtErrorInterface {
   code: number;
   data: mixed;
   message: string;
@@ -30,23 +39,15 @@ module.exports = class ExtError extends Error implements ExtErrorInterface {
   constructor (message: string = '', code: number = UNKNOWN, data: mixed) {
     super();
 
-    const extend = (name: string, value: mixed): void => {
-      Object.defineProperty(this, name, {
-        configurable: true,
-        enumerable: false,
-        value
-      });
-    };
-
-    extend('message', String(message));
-    extend('name', this.constructor.name);
-    extend('data', data);
-    extend('code', code);
+    extend(this, 'message', String(message));
+    extend(this, 'name', this.constructor.name);
+    extend(this, 'data', data);
+    extend(this, 'code', code);
 
     if (isFunction(Error.captureStackTrace)) {
       Error.captureStackTrace(this, this.constructor);
     } else {
-      extend('stack', (new Error(message)).stack);
+      extend(this, 'stack', (new Error(message)).stack);
     }
   }
 
@@ -56,4 +57,4 @@ module.exports = class ExtError extends Error implements ExtErrorInterface {
     INVALID_JSONRPC: -99998,
     METHOD_NOT_FOUND: -32601 // Rust client
   };
-};
+}

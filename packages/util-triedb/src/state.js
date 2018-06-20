@@ -6,16 +6,16 @@
 import type { LevelUp$AbstractStorage } from 'levelup';
 import type { TrieDbState } from './types';
 
-const l = require('@polkadot/util/logger')('triedb');
+import logger from '@polkadot/util/logger';
 
-const createTemp = require('./temp');
+import createTemp from './temp';
 
-module.exports = function state (db: LevelUp$AbstractStorage): TrieDbState {
+export default function state (db: LevelUp$AbstractStorage): TrieDbState {
   const storage = createTemp();
 
   return {
     db,
-    l,
+    l: logger('triedb'),
     storage
   };
-};
+}

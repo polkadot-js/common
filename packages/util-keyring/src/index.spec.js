@@ -2,10 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const hexToU8a = require('@polkadot/util/hex/toU8a');
-const u8aFromString = require('@polkadot/util/u8a/fromString');
+import hexToU8a from '@polkadot/util/hex/toU8a';
+import u8aFromString from '@polkadot/util/u8a/fromString';
 
-const index = require('./index');
+import index from './index';
 
 describe('keypair', () => {
   const publicKeyOne = new Uint8Array([47, 140, 97, 41, 216, 22, 207, 81, 195, 116, 188, 127, 8, 195, 230, 62, 209, 86, 207, 120, 174, 251, 74, 101, 80, 217, 123, 135, 153, 121, 119, 238]);

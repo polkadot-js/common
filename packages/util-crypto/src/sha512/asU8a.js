@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const nacl = require('tweetnacl');
+import nacl from 'tweetnacl';
 
 /**
   @name sha512AsU8a
@@ -16,6 +16,6 @@ const nacl = require('tweetnacl');
 
     sha512AsU8a(Uint8Array.from([...])) // => Uint8Array([...])
 */
-module.exports = function sha512AsU8a (data: Uint8Array): Uint8Array {
+export default function sha512AsU8a (data: Uint8Array): Uint8Array {
   return nacl.hash(data);
-};
+}

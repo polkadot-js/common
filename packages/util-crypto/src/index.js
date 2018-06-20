@@ -3,16 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const blake2 = require('./blake2');
-const keccak = require('./keccak');
-const nacl = require('./nacl');
-const random = require('./random');
-const sha512 = require('./sha512');
-const xxhash = require('./xxhash');
-
-/**
-  @summary Utility methods for this package are split into groups
-*/
-module.exports = Object.assign(
-  {}, blake2, keccak, nacl, random, sha512, xxhash
-);
+export * from './blake2';
+export * from './keccak';
+export * from './nacl';
+export * from './random';
+export * from './sha512';
+export * from './xxhash';

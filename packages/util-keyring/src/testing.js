@@ -5,10 +5,10 @@
 
 import type { KeyringInstance } from './types';
 
-const hexToU8a = require('@polkadot/util/hex/toU8a');
-const u8aFromString = require('@polkadot/util/u8a/fromString');
+import hexToU8a from '@polkadot/util/hex/toU8a';
+import u8aFromString from '@polkadot/util/u8a/fromString';
 
-const createKeyring = require('./index');
+import createKeyring from './index';
 
 function padSeed (seed: string): Uint8Array {
   return u8aFromString(seed.padEnd(32, ' '));
@@ -33,7 +33,7 @@ const SEEDS = {
     hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60')
 };
 
-module.exports = function testKeyring (): KeyringInstance {
+export default function testKeyring (): KeyringInstance {
   const keyring = createKeyring();
 
   Object
@@ -46,4 +46,4 @@ module.exports = function testKeyring (): KeyringInstance {
     });
 
   return keyring;
-};
+}

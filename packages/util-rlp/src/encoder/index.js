@@ -3,17 +3,15 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const encodeArray = require('./array');
-const toU8a = require('./toU8a');
-const encodeU8a = require('./u8a');
+import encodeArray from './array';
+import toU8a from './toU8a';
+import encodeU8a from './u8a';
 
 // flowlint-next-line unclear-type:off
-function encoder (input: any): Uint8Array {
+export default function encoder (input: any): Uint8Array {
   if (input instanceof Array) {
     return encodeArray(encoder, input);
   }
 
   return encodeU8a(encoder, toU8a(input));
 }
-
-module.exports = encoder;

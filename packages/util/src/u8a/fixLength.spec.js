@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { u8aFixLength } = require('./index');
+import { u8aFixLength } from './index';
 
 describe('u8aFixLength', () => {
   it('returns bitLength === -1 as-is', () => {

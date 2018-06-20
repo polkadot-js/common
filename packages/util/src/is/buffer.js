@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const isInstanceOf = require('./instanceOf');
+import isInstanceOf from './instanceOf';
 
 /**
   @name isBuffer
@@ -16,6 +16,6 @@ const isInstanceOf = require('./instanceOf');
 
     console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
 */
-module.exports = function isBuffer (value: mixed): boolean {
+export default function isBuffer (value: mixed): boolean {
   return isInstanceOf(value, Buffer);
-};
+}

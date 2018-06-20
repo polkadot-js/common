@@ -5,13 +5,13 @@
 
 import type { Trie$Pair, Trie$Pairs } from '../types';
 
+import u8aToHex from '@polkadot/util/u8a/toHex';
+
 type PairMap = {
   [string]: Trie$Pair
 };
 
-const u8aToHex = require('@polkadot/util/u8a/toHex');
-
-module.exports = function pairsUniq (pairs: Trie$Pairs): Trie$Pairs {
+export default function pairsUniq (pairs: Trie$Pairs): Trie$Pairs {
   const map: PairMap = pairs.reduce((result, pair) => {
     result[u8aToHex(pair.k)] = pair;
 
@@ -22,4 +22,4 @@ module.exports = function pairsUniq (pairs: Trie$Pairs): Trie$Pairs {
     .keys(map)
     .sort()
     .map((key) => map[key]);
-};
+}

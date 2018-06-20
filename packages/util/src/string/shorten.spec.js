@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { stringShorten } = require('./index');
+import { stringShorten } from './index';
 
 describe('stringShorten', () => {
   it('returns the value as-is when <= maxLength', () => {

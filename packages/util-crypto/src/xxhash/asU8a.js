@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const xxhash64AsBn = require('./xxhash64/asBn');
+import xxhash64AsBn from './xxhash64/asBn';
 
 /**
   @name xxhashAsU8a
@@ -16,7 +16,7 @@ const xxhash64AsBn = require('./xxhash64/asBn');
 
     xxhashAsU8a('abc') // => 0x44bc2cf5ad770999
 */
-module.exports = function xxhashAsU8a (data: Buffer | Uint8Array | string, bitLength: number = 64): Uint8Array {
+export default function xxhashAsU8a (data: Buffer | Uint8Array | string, bitLength: number = 64): Uint8Array {
   const byteLength = Math.ceil(bitLength / 8);
   const iterations = Math.ceil(bitLength / 64);
   const u8a = new Uint8Array(byteLength);
@@ -26,4 +26,4 @@ module.exports = function xxhashAsU8a (data: Buffer | Uint8Array | string, bitLe
   }
 
   return u8a;
-};
+}

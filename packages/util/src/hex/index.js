@@ -3,20 +3,20 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hexAddPrefix = require('./addPrefix');
-const hexFixLength = require('./fixLength');
-const hexFromBn = require('./fromBn');
-const hexFromNumber = require('./fromNumber');
-const hexHasPrefix = require('./hasPrefix');
-const hexStripPrefix = require('./stripPrefix');
-const hexToBn = require('./toBn');
-const hexToNumber = require('./toNumber');
-const hexToU8a = require('./toU8a');
+import hexAddPrefix from './addPrefix';
+import hexFixLength from './fixLength';
+import hexFromBn from './fromBn';
+import hexFromNumber from './fromNumber';
+import hexHasPrefix from './hasPrefix';
+import hexStripPrefix from './stripPrefix';
+import hexToBn from './toBn';
+import hexToNumber from './toNumber';
+import hexToU8a from './toU8a';
 
 /**
   @summary Internal utilities to create and test for hex values
 */
-module.exports = {
+export {
   hexAddPrefix,
   hexFixLength,
   hexFromBn,

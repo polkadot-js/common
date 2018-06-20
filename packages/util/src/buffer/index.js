@@ -3,13 +3,13 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const bufferFromU8a = require('./fromU8a');
-const bufferToU8a = require('./toU8a');
+import bufferFromU8a from './fromU8a';
+import bufferToU8a from './toU8a';
 
 /**
   @summary Utility methods to convert to and from `Buffer` objects
 */
-module.exports = {
+export {
   bufferFromU8a,
   bufferToU8a
 };
