@@ -1,6 +1,6 @@
 # Available interfaces
 
-Utility methods for this package are split into groups 
+ 
 
 - [blake2](blake2.md) Create blake2b values with specified bitlengths
 - [keccak](keccak.md) Create Keccak256 values as hex & Uint8Array output
