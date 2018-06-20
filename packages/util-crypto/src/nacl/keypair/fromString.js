@@ -5,10 +5,10 @@
 
 import type { KeypairType } from '../../types';
 
-const u8aFromUtf8 = require('@polkadot/util/u8a/fromUtf8');
+import u8aFromUtf8 from '@polkadot/util/u8a/fromUtf8';
 
-const blake2AsU8a = require('../../blake2/asU8a');
-const fromSeed = require('./fromSeed');
+import blake2AsU8a from '../../blake2/asU8a';
+import fromSeed from './fromSeed';
 
 /**
   @name naclKeypairFromString
@@ -21,11 +21,11 @@ const fromSeed = require('./fromSeed');
 
     naclKeypairFromString('test') // => { secretKey: [...], publicKey: [...] }
 */
-module.exports = function naclKeypairFromString (value: string): KeypairType {
+export default function naclKeypairFromString (value: string): KeypairType {
   return fromSeed(
     blake2AsU8a(
       u8aFromUtf8(value),
       256
     )
   );
-};
+}

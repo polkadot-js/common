@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { isInstanceOf } = require('./index');
+import { isInstanceOf } from './index';
 
 describe('isInstanceOf', () => {
   it('returns true on real instances', () => {

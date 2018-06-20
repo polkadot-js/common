@@ -3,8 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const isFunction = require('./function');
-const isObject = require('./object');
+import isFunction from './function';
+import isObject from './object';
 
 /**
   @name isBObservable
@@ -17,7 +17,7 @@ const isObject = require('./object');
 
     console.log('isObservable', isObservable(...));
 */
-module.exports = function isObservable (value: mixed): boolean {
+export default function isObservable (value: mixed): boolean {
   // $FlowFixMe check for possibly non-existent .next
   return isObject(value) && isFunction(value.next);
-};
+}

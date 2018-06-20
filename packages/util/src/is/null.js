@@ -14,6 +14,6 @@
 
     console.log('isNull', isNull(null)); // => true
 */
-module.exports = function isNull (value: mixed): boolean {
+export default function isNull (value: mixed): boolean {
   return value === null;
-};
+}

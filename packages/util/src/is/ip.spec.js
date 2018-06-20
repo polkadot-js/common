@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { isIp } = require('./index');
+import { isIp } from './index';
 
 describe('isIp', () => {
   it('returns false when non-ip found', () => {

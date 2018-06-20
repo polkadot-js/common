@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { hexStripPrefix } = require('./index');
+import { hexStripPrefix } from './index';
 
 describe('hexStripPrefix', () => {
   it('returns an empty string when null value supplied', () => {

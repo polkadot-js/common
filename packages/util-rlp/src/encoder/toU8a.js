@@ -3,27 +3,27 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+import assert from '@polkadot/util/assert';
+import bnToU8a from '@polkadot/util/bn/toU8a';
+import bufferToU8a from '@polkadot/util/buffer/toU8a';
+import hexHasPrefix from '@polkadot/util/hex/hasPrefix';
+import hexToU8a from '@polkadot/util/hex/toU8a';
+import isBn from '@polkadot/util/is/bn';
+import isBuffer from '@polkadot/util/is/buffer';
+import isNull from '@polkadot/util/is/null';
+import isNumber from '@polkadot/util/is/number';
+import isString from '@polkadot/util/is/string';
+import isU8a from '@polkadot/util/is/u8a';
+import isUndefined from '@polkadot/util/is/undefined';
+import numberToU8a from '@polkadot/util/number/toU8a';
+import u8aFromUtf8 from '@polkadot/util/u8a/fromUtf8';
+
 type Encoder = {
   // flowlint-next-line unclear-type:off
   check: (value: any) => boolean,
   // flowlint-next-line unclear-type:off
   fn: (value: any) => Uint8Array
 };
-
-const assert = require('@polkadot/util/assert');
-const bnToU8a = require('@polkadot/util/bn/toU8a');
-const bufferToU8a = require('@polkadot/util/buffer/toU8a');
-const hexHasPrefix = require('@polkadot/util/hex/hasPrefix');
-const hexToU8a = require('@polkadot/util/hex/toU8a');
-const isBn = require('@polkadot/util/is/bn');
-const isBuffer = require('@polkadot/util/is/buffer');
-const isNull = require('@polkadot/util/is/null');
-const isNumber = require('@polkadot/util/is/number');
-const isString = require('@polkadot/util/is/string');
-const isU8a = require('@polkadot/util/is/u8a');
-const isUndefined = require('@polkadot/util/is/undefined');
-const numberToU8a = require('@polkadot/util/number/toU8a');
-const u8aFromUtf8 = require('@polkadot/util/u8a/fromUtf8');
 
 function newEmpty (): Uint8Array {
   return new Uint8Array([]);
@@ -53,11 +53,11 @@ const encoders: Array<Encoder> = [
 ];
 
 // flowlint-next-line unclear-type:off
-module.exports = function toU8a (value: any): Uint8Array {
+export default function toU8a (value: any): Uint8Array {
   const encoder = encoders.find(({ check }) => check(value));
 
   assert(encoder, 'invalid type');
 
   // $FlowFixMe value checked above
   return encoder.fn(value);
-};
+}

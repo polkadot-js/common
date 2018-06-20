@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const u8aToU8a = require('./toU8a');
+import u8aToU8a from './toU8a';
 
 /**
   @name u8aConcat
@@ -19,7 +19,7 @@ const u8aToU8a = require('./toU8a');
       new Uint8Array([4, 5, 6])
     ); // [1, 2, 3, 4, 5, 6]
 */
-module.exports = function u8aConcat (..._list: Array<Uint8Array | string>): Uint8Array {
+export default function u8aConcat (..._list: Array<Uint8Array | string>): Uint8Array {
   const list: Array<Uint8Array> = _list.map(u8aToU8a);
   const length = list.reduce((total, item) => total + item.length, 0);
   const result = new Uint8Array(length);
@@ -31,4 +31,4 @@ module.exports = function u8aConcat (..._list: Array<Uint8Array | string>): Uint
 
     return result;
   }, result);
-};
+}

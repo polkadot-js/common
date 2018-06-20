@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { naclDecrypt, naclEncrypt } = require('./index');
+import { naclDecrypt, naclEncrypt } from './index';
 
 describe('naclDecrypt', () => {
   it('decrypts a encrypted message', () => {

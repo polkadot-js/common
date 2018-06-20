@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const isFunction = require('../is/function');
+import isFunction from '../is/function';
 
-const { u8aFromBn } = require('./index');
+import { u8aFromBn } from './index';
 
 describe('u8aFromBn', () => {
   it('exists as a function', () => {

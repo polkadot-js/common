@@ -5,12 +5,12 @@
 
 import type { Logger, Logger$Data } from './types';
 
+import chalk from 'chalk';
+
+import isFunction from './is/function';
+
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
-
-const chalk = require('chalk');
-
-const isFunction = require('./is/function');
 
 const logTo: { [LogType]: ConsoleType } = {
   debug: 'log',
@@ -49,11 +49,11 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
   @description
     Returns a `Logger` that has `.log`, `.error`, `.warn` and `.debug` (constrolled with environment `DEBUG=typeA,typeB`) methods. Logging is done with a consistent prefix (type of logger, date) followed by the actual message using the underlying console.
   @example
-    const l = require('@polkadot/util/logger')('test');
+    const l from '@polkadot/util/logger')('test');
 
     l.log('blah'); // <date>     TEST: blah
 */
-module.exports = function logger (_type: string): Logger {
+export default function logger (_type: string): Logger {
   const type = `               ${_type.toUpperCase()}:`.slice(-16);
   let isDebug;
 
@@ -74,4 +74,4 @@ module.exports = function logger (_type: string): Logger {
     log: (...values: Logger$Data): void => apply('log', type, values),
     warn: (...values: Logger$Data): void => apply('warn', type, values)
   };
-};
+}

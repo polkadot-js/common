@@ -3,9 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-type IpTypes = 'v4' | 'v6';
+import ipRegex from 'ip-regex';
 
-const ipRegex = require('ip-regex');
+type IpTypes = 'v4' | 'v6';
 
 /**
   @name isIp
@@ -21,7 +21,7 @@ const ipRegex = require('ip-regex');
     isIp('192.168.0.1', 'v6')); // => false
     isIp('1:2:3:4:5:6:7:8', 'v4'); // => false
 */
-module.exports = function isIp (value: string, type?: IpTypes): boolean {
+export default function isIp (value: string, type?: IpTypes): boolean {
   if (type === 'v4') {
     return ipRegex.v4({ exact: true }).test(value);
   } else if (type === 'v6') {
@@ -29,4 +29,4 @@ module.exports = function isIp (value: string, type?: IpTypes): boolean {
   }
 
   return ipRegex({ exact: true }).test(value);
-};
+}

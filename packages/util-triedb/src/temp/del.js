@@ -5,6 +5,6 @@
 
 import type { Temp$Storage } from './types';
 
-module.exports = function del (storage: Temp$Storage, k: Uint8Array): void {
+export default function del (storage: Temp$Storage, k: Uint8Array): void {
   delete storage[k];
-};
+}

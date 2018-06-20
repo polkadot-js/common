@@ -3,8 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hexAddPrefix = require('./addPrefix');
-const hexStripPrefix = require('./stripPrefix');
+import hexAddPrefix from './addPrefix';
+import hexStripPrefix from './stripPrefix';
 
 /**
   @name hexFixLength
@@ -19,7 +19,7 @@ const hexStripPrefix = require('./stripPrefix');
     console.log('fixed', hexFixLength('0x12', 16, true)) // => 0x0012
     console.log('fixed', hexFixLength('0x0012', 8)) // => 0x12
 */
-module.exports = function hexFixLength (value: string, bitLength: number = -1, withPadding: boolean = false): string {
+export default function hexFixLength (value: string, bitLength: number = -1, withPadding: boolean = false): string {
   const strLength = Math.ceil(bitLength / 4);
   const hexLength = strLength + 2;
 
@@ -38,4 +38,4 @@ module.exports = function hexFixLength (value: string, bitLength: number = -1, w
   return hexAddPrefix(
     `${'0'.repeat(strLength)}${hexStripPrefix(value)}`.slice(-1 * strLength)
   );
-};
+}

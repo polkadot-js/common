@@ -3,24 +3,24 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const u8aConcat = require('./concat');
-const u8aFixLength = require('./fixLength');
-const u8aFromBn = require('./fromBn');
-const u8aFromBuffer = require('./fromBuffer');
-const u8aFromHex = require('./fromHex');
-const u8aFromUtf8 = require('./fromUtf8');
-const u8aFromString = require('./fromString');
-const u8aToBn = require('./toBn');
-const u8aToBuffer = require('./toBuffer');
-const u8aToHex = require('./toHex');
-const u8aToString = require('./toString');
-const u8aToU8a = require('./toU8a');
-const u8aToUtf8 = require('./toUtf8');
+import u8aConcat from './concat';
+import u8aFixLength from './fixLength';
+import u8aFromBn from './fromBn';
+import u8aFromBuffer from './fromBuffer';
+import u8aFromHex from './fromHex';
+import u8aFromUtf8 from './fromUtf8';
+import u8aFromString from './fromString';
+import u8aToBn from './toBn';
+import u8aToBuffer from './toBuffer';
+import u8aToHex from './toHex';
+import u8aToString from './toString';
+import u8aToU8a from './toU8a';
+import u8aToUtf8 from './toUtf8';
 
 /**
   @summary Utility methods to convert to and from `Uint8Array` objects
 */
-module.exports = {
+export {
   u8aConcat,
   u8aFixLength,
   u8aFromBn,

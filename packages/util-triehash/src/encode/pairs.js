@@ -5,7 +5,7 @@
 
 import type { Trie$Pairs } from '../types';
 
-const encodeAux = require('./aux');
+import encodeAux from './aux';
 
 function calcLength (pairs: Trie$Pairs, preLength: number, index: number, start: number): number {
   let length = 0;
@@ -22,7 +22,7 @@ function calcLength (pairs: Trie$Pairs, preLength: number, index: number, start:
 }
 
 // flowlint-next-line unclear-type:off
-module.exports = function encodePairs (pairs: Trie$Pairs, preLength: number): Array<any> {
+export default function encodePairs (pairs: Trie$Pairs, preLength: number): Array<any> {
   const result = [];
 
   let start = preLength === pairs[0].k.length
@@ -45,4 +45,4 @@ module.exports = function encodePairs (pairs: Trie$Pairs, preLength: number): Ar
   }
 
   return result;
-};
+}

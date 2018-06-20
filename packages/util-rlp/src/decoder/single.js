@@ -5,9 +5,9 @@
 
 import type { DecodeFunc, DecodeOutput } from './types';
 
-module.exports = function decodeSingle (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
+export default function decodeSingle (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
   return {
     decoded: input.slice(0, 1),
     remainder: input.slice(1)
   };
-};
+}

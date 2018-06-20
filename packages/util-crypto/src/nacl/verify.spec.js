@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const u8aFromString = require('@polkadot/util/u8a/fromString');
+import u8aFromString from '@polkadot/util/u8a/fromString';
 
-const { naclVerify, naclKeypairFromSeed } = require('./index');
+import { naclVerify, naclKeypairFromSeed } from './index';
 
 describe('naclSign', () => {
   let publicKey;

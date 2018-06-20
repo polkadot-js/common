@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const { keccak256 } = require('js-sha3');
+import { keccak256 } from 'js-sha3';
 
 /**
   @name keccakAsU8a
@@ -16,8 +16,8 @@ const { keccak256 } = require('js-sha3');
 
     keccakAsU8a('123') // => Uint8Array
 */
-module.exports = function keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array {
+export default function keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array {
   return new Uint8Array(
     keccak256.arrayBuffer(value)
   );
-};
+}

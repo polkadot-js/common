@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const isInstanceOf = require('./instanceOf');
+import isInstanceOf from './instanceOf';
 
 /**
   @name isError
@@ -16,6 +16,6 @@ const isInstanceOf = require('./instanceOf');
 
     console.log('isError', isError(new Error('message'))); // => true
 */
-module.exports = function isError (value: mixed): boolean {
+export default function isError (value: mixed): boolean {
   return isInstanceOf(value, Error);
-};
+}

@@ -3,8 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const ExtError = require('./ext/error');
-const isFunction = require('./is/function');
+import ExtError from './ext/error';
+import isFunction from './is/function';
 
 /**
   @name assert
@@ -13,13 +13,13 @@ const isFunction = require('./is/function');
   @description
     Checks that `test` is a truthy value. If value is falsy (`null`, `undefined`, `false`, ...), it throws an ExtError with the supplied `message` and an optional `code` and `data`. When `test` passes, `true` is returned.
   @example
-    const assert = require('@polkadot/util/assert');
+    const assert from '@polkadot/util/assert');
 
     assert(true, 'True should be true'); // true returned
     assert(false, 'False should not be true'); // ExtError thrown
     assert(false, () => 'message'); // ExtError with 'message'
 */
-module.exports = function assert (test: mixed, message: string | () => string, code: number = ExtError.CODES.ASSERT, data: mixed): boolean {
+export default function assert (test: mixed, message: string | () => string, code: number = ExtError.CODES.ASSERT, data: mixed): boolean {
   // flowlint-next-line sketchy-null:off
   if (test) {
     return true;
@@ -32,4 +32,4 @@ module.exports = function assert (test: mixed, message: string | () => string, c
 
   // $FlowFixMe we have a string here
   throw new ExtError(message, code, data);
-};
+}

@@ -6,9 +6,9 @@
 import type { KeyringPair$Meta } from '../types';
 import type { PairState } from './types';
 
-module.exports = function setMeta (state: PairState, meta: KeyringPair$Meta): void {
+export default function setMeta (state: PairState, meta: KeyringPair$Meta): void {
   state.meta = {
     ...state.meta,
     ...meta
   };
-};
+}

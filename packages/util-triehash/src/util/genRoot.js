@@ -5,12 +5,12 @@
 
 import type { Trie$Pairs } from '../types';
 
-const keccakAsU8a = require('@polkadot/util-crypto/keccak/asU8a');
-const rlpEncode = require('@polkadot/util-rlp/encode');
+import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
+import rlpEncode from '@polkadot/util-rlp/encode';
 
-const encode = require('../encode');
+import encode from '../encode';
 
-module.exports = function genRoot (pairs: Trie$Pairs): Uint8Array {
+export default function genRoot (pairs: Trie$Pairs): Uint8Array {
   const encoded = encode(pairs, 0);
 
   return keccakAsU8a(
@@ -20,4 +20,4 @@ module.exports = function genRoot (pairs: Trie$Pairs): Uint8Array {
         : new Uint8Array([])
     )
   );
-};
+}

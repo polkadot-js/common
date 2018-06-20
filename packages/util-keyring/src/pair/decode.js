@@ -3,21 +3,21 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const u8aConcat = require('@polkadot/util/u8a/concat');
-const u8aFixLength = require('@polkadot/util/u8a/fixLength');
-const u8aFromString = require('@polkadot/util/u8a/fromString');
-const assert = require('@polkadot/util/assert');
-const naclDecrypt = require('@polkadot/util-crypto/nacl/decrypt');
-const naclFromSeed = require('@polkadot/util-crypto/nacl/keypair/fromSeed');
+import u8aConcat from '@polkadot/util/u8a/concat';
+import u8aFixLength from '@polkadot/util/u8a/fixLength';
+import u8aFromString from '@polkadot/util/u8a/fromString';
+import assert from '@polkadot/util/assert';
+import naclDecrypt from '@polkadot/util-crypto/nacl/decrypt';
+import naclFromSeed from '@polkadot/util-crypto/nacl/keypair/fromSeed';
 
-const { PKCS8_DIVIDER, PKCS8_HEADER } = require('./defaults');
+import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
 
 const KEY_LENGTH = 32;
 const SEED_OFFSET = PKCS8_HEADER.length;
 const DIV_OFFSET = SEED_OFFSET + KEY_LENGTH;
 const PUBLIC_OFFSET = SEED_OFFSET + KEY_LENGTH + PKCS8_DIVIDER.length;
 
-module.exports = function decode (passphrase?: string, _encrypted?: Uint8Array) {
+export default function decode (passphrase?: string, _encrypted?: Uint8Array) {
   assert(_encrypted, `No encrypted data available to decode`);
 
   // flowlint-next-line unclear-type:off
@@ -47,4 +47,4 @@ module.exports = function decode (passphrase?: string, _encrypted?: Uint8Array) 
     publicKey,
     secretKey
   };
-};
+}

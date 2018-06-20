@@ -5,9 +5,9 @@
 
 import type { Trie$Pairs } from './types';
 
-const asNibbles = require('./util/asNibbles');
-const genRoot = require('./util/genRoot');
-const pairsUniq = require('./util/pairsUniq');
+import asNibbles from './util/asNibbles';
+import genRoot from './util/genRoot';
+import pairsUniq from './util/pairsUniq';
 
 /**
   @name trieRoot
@@ -24,11 +24,11 @@ const pairsUniq = require('./util/pairsUniq');
       v: u8aFromString('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     }]) // => 0xd23786fb4a010da3ce639d66d5e904a11dbc02746d1ce25029e53290cabf28ab
 */
-module.exports = function trieRoot (pairs: Trie$Pairs): Uint8Array {
+export default function trieRoot (pairs: Trie$Pairs): Uint8Array {
   return genRoot(
     pairsUniq(pairs).map(({ k, v }) => ({
       k: asNibbles(k),
       v
     }))
   );
-};
+}

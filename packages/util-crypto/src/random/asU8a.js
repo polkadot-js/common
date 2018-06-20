@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const nacl = require('tweetnacl');
+import nacl from 'tweetnacl';
 
 /**
   @name randomAsU8a
@@ -16,6 +16,6 @@ const nacl = require('tweetnacl');
 
     randomAsU8s() // => Uint8Array([...])
 */
-module.exports = function randomAsU8a (length?: number = 32): Uint8Array {
+export default function randomAsU8a (length?: number = 32): Uint8Array {
   return nacl.randomBytes(length);
-};
+}

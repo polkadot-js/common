@@ -14,7 +14,7 @@
 
     u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
 */
-module.exports = function u8aToHex (value?: Uint8Array | null, bitLength: number = -1, isPrefixed: boolean = true): string {
+export default function u8aToHex (value?: Uint8Array | null, bitLength: number = -1, isPrefixed: boolean = true): string {
   const prefix = isPrefixed
     ? '0x'
     : '';
@@ -34,4 +34,4 @@ module.exports = function u8aToHex (value?: Uint8Array | null, bitLength: number
   return value.reduce((result, item) => {
     return result + `0${item.toString(16)}`.slice(-2);
   }, prefix);
-};
+}

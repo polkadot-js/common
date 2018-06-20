@@ -3,13 +3,13 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const xxhashAsHex = require('./asHex');
-const xxhashAsU8a = require('./asU8a');
+import xxhashAsHex from './asHex';
+import xxhashAsU8a from './asU8a';
 
 /**
   @summary Create xxhash64 values with specified bitlengths
 */
-module.exports = {
+export {
   xxhashAsHex,
   xxhashAsU8a
 };

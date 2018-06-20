@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const syncify = require('./syncify');
+import syncify from './syncify';
 
 describe('syncify', () => {
   it('returns the result of the promise', () => {

@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const u8aFromString = require('@polkadot/util/u8a/fromString');
+import u8aFromString from '@polkadot/util/u8a/fromString';
 
-const { naclKeypairFromSeed } = require('../index');
+import { naclKeypairFromSeed } from '../index';
 
 describe('naclKeypairFromSeed', () => {
   // NOTE: Aligned with Rust test, b"12345678901234567890123456789012"

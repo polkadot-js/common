@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { isBuffer } = require('./index');
+import { isBuffer } from './index';
 
 describe('isBuffer', () => {
   it('returns true when a Buffer value', () => {

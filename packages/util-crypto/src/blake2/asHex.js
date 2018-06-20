@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const blake2bAsHex = require('./blake2b/asHex');
+import blake2bAsHex from './blake2b/asHex';
 
 /**
   @name blake2AsHex
@@ -16,6 +16,6 @@ const blake2bAsHex = require('./blake2b/asHex');
 
     blake2AsHex('abc') // => 0xba80a53f981c4d0d
 */
-module.exports = function blake2AsHex (data: Uint8Array, bitLength: number = 256): string {
+export default function blake2AsHex (data: Uint8Array, bitLength: number = 256): string {
   return blake2bAsHex(data, bitLength);
-};
+}

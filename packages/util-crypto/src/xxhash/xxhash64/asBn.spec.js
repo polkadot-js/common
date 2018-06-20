@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { xxhash64AsBn } = require('./index');
+import { xxhash64AsBn } from './index';
 
 describe('xxhash64AsBn', () => {
   it('creates the correct BN output', () => {

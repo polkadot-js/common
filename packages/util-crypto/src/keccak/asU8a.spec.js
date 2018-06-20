@@ -2,10 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const hexToU8a = require('@polkadot/util/hex/toU8a');
-const u8aFromString = require('@polkadot/util/u8a/fromString');
+import hexToU8a from '@polkadot/util/hex/toU8a';
+import u8aFromString from '@polkadot/util/u8a/fromString';
 
-const { keccakAsU8a } = require('./index');
+import { keccakAsU8a } from './index';
 
 describe('keccakAsU8a', () => {
   const input = 'test value';

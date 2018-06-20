@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { xxhash64AsRaw } = require('./index');
+import { xxhash64AsRaw } from './index';
 
 describe('xxhash64AsRaw', () => {
   it('creates the correct non-prefixed hex output', () => {

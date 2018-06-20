@@ -3,11 +3,11 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const arrayFilter = require('./filter');
+import arrayFilter from './filter';
 
 /**
   @summary Utility methods that operates on arrays
 */
-module.exports = {
+export {
   arrayFilter
 };

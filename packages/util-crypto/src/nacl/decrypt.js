@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const nacl = require('tweetnacl');
+import nacl from 'tweetnacl';
 
 /**
   @name naclDecrypt
@@ -16,6 +16,6 @@ const nacl = require('tweetnacl');
 
     naclDecrypt([...], [...], [...]) // => [...]
 */
-module.exports = function naclDecrypt (encrypted: Uint8Array, nonce: Uint8Array, secret: Uint8Array): ?Uint8Array {
+export default function naclDecrypt (encrypted: Uint8Array, nonce: Uint8Array, secret: Uint8Array): ?Uint8Array {
   return nacl.secretbox.open(encrypted, nonce, secret);
-};
+}

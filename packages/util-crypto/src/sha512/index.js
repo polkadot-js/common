@@ -3,11 +3,11 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const sha512AsU8a = require('./asU8a');
+import sha512AsU8a from './asU8a';
 
 /**
   @summary Implements Sha-512 hashing functions for a variety of input and outputs
 */
-module.exports = {
+export {
   sha512AsU8a
 };

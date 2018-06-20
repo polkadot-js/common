@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const encodeLength = require('./length');
+import encodeLength from './length';
 
 describe('encodeLength', () => {
   it('returns offset + length where <= 55', () => {

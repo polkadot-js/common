@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hasPrefix = require('./hasPrefix');
+import hasPrefix from './hasPrefix';
 
 /**
   @name hexAddPrefix
@@ -16,7 +16,7 @@ const hasPrefix = require('./hasPrefix');
 
     console.log('With prefix', hexAddPrefix('0a0b12')) // => 0x0a0b12
 */
-module.exports = function hexAddPrefix (value: ?string): string {
+export default function hexAddPrefix (value: ?string): string {
   // flowlint-next-line sketchy-null-string:off
   if (value && hasPrefix(value)) {
     return value;
@@ -28,4 +28,4 @@ module.exports = function hexAddPrefix (value: ?string): string {
     : '';
 
   return `0x${prefix}${value || ''}`;
-};
+}

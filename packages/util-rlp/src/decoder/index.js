@@ -3,12 +3,12 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const assert = require('@polkadot/util/assert');
+import assert from '@polkadot/util/assert';
 
-const internalDecode = require('./decode');
+import internalDecode from './decode';
 
 // flowlint-next-line unclear-type:off
-module.exports = function decoder (input?: Uint8Array): Uint8Array | Array<any> {
+export default function decoder (input?: Uint8Array): Uint8Array | Array<any> {
   if (!input || input.length === 0) {
     return new Uint8Array([]);
   }
@@ -18,4 +18,4 @@ module.exports = function decoder (input?: Uint8Array): Uint8Array | Array<any> 
   assert(remainder.length === 0, 'invalid remainder');
 
   return decoded;
-};
+}

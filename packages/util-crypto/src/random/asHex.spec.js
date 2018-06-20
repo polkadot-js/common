@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const isHex = require('@polkadot/util/is/hex');
+import isHex from '@polkadot/util/is/hex';
 
-const { randomAsHex } = require('./index');
+import { randomAsHex } from './index';
 
 describe('randomAsBuffer', () => {
   it('generated results does not match', () => {

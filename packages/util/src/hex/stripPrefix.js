@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hasPrefix = require('./hasPrefix');
+import hasPrefix from './hasPrefix';
 
 const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
 
@@ -18,7 +18,7 @@ const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
 
     console.log('stripped', hexStripPrefix('0x1234')); // => 1234
 */
-module.exports = function hexStripPrefix (value: ?string): string {
+export default function hexStripPrefix (value: ?string): string {
   // flowlint-next-line sketchy-null-string:off
   if (!value) {
     return '';
@@ -33,4 +33,4 @@ module.exports = function hexStripPrefix (value: ?string): string {
   }
 
   throw new Error(`Invalid hex ${value} passed to hexStripPrefix`);
-};
+}

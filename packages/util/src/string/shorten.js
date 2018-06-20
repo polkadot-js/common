@@ -14,7 +14,7 @@
 
     stringShorten('1234567890', 2); // => 12..90
 */
-module.exports = function stringShorten (_value: mixed, prefixLength: number = 6): string {
+export default function stringShorten (_value: mixed, prefixLength: number = 6): string {
   // $FlowFixMe coerced into string (by any means)
   const value = `${_value}`;
 
@@ -23,4 +23,4 @@ module.exports = function stringShorten (_value: mixed, prefixLength: number = 6
   }
 
   return `${value.substr(0, prefixLength)}..${value.slice(-prefixLength)}`;
-};
+}

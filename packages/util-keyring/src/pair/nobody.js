@@ -5,7 +5,7 @@
 
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
 
-const addressEncode = require('../address/encode');
+import addressEncode from '../address/encode';
 
 const publicKey = new Uint8Array(32);
 const address = addressEncode(publicKey);
@@ -23,7 +23,7 @@ const json = {
   meta
 };
 
-module.exports = function everybody (): KeyringPair {
+export default function everybody (): KeyringPair {
   return {
     address: (): string =>
       address,
@@ -46,4 +46,4 @@ module.exports = function everybody (): KeyringPair {
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       false
   };
-};
+}

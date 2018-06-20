@@ -3,14 +3,14 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const numberFromHex = require('./fromHex');
-const numberToHex = require('./toHex');
-const numberToU8a = require('./toU8a');
+import numberFromHex from './fromHex';
+import numberToHex from './toHex';
+import numberToU8a from './toU8a';
 
 /**
   @summary Utility methods to convert to and from `number` values
 */
-module.exports = {
+export {
   numberFromHex,
   numberToHex,
   numberToU8a

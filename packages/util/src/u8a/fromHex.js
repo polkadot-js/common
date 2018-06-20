@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const u8aFromHex = require('../hex/toU8a');
+import u8aFromHex from '../hex/toU8a';
 
 /**
   @name u8aFromHex
@@ -11,4 +11,4 @@ const u8aFromHex = require('../hex/toU8a');
   @summary Creates a Uint8Array value from a hex string.
   @alias hex/toU8a
 */
-module.exports = u8aFromHex;
+export default u8aFromHex;

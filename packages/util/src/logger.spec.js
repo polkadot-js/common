@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { logger } = require('./index');
+import { logger } from './index';
 
 describe('logger', () => {
   let dateMatch;

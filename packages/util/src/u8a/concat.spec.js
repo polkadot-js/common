@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { u8aConcat } = require('./index');
+import { u8aConcat } from './index';
 
 describe('u8aConcat', () => {
   it('concatenates arrays', () => {

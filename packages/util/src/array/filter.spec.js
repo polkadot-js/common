@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { arrayFilter } = require('./index');
+import { arrayFilter } from './index';
 
 describe('filterArray', () => {
   it('filters arrays, removing undefined', () => {

@@ -3,13 +3,13 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const trieRoot = require('./root');
-const trieRootOrdered = require('./rootOrdered');
+import trieRoot from './root';
+import trieRootOrdered from './rootOrdered';
 
 /**
   @summary Utility methods to create [Ethereum Trie hashes](https://github.com/ethereum/wiki/wiki/Patricia-Tree)
 */
-module.exports = {
+export {
   trieRoot,
   trieRootOrdered
 };

@@ -14,10 +14,10 @@
 
     console.log('Buffer', u8aToBuffer('0x123480001f'));
 */
-module.exports = function u8aToBuffer (value?: Uint8Array): Buffer {
+export default function u8aToBuffer (value?: Uint8Array): Buffer {
   if (!value) {
     return Buffer.from([]);
   }
 
   return Buffer.from(value);
-};
+}

@@ -16,7 +16,7 @@
     u8aFixLength('0x12', 16) // => 0x0012
     u8aFixLength('0x1234', 8) // => 0x12
 */
-module.exports = function u8aFixLength (value: Uint8Array, bitLength: number = -1, atStart?: boolean = false): Uint8Array {
+export default function u8aFixLength (value: Uint8Array, bitLength: number = -1, atStart?: boolean = false): Uint8Array {
   const byteLength = Math.ceil(bitLength / 8);
 
   if (bitLength === -1 || value.length === byteLength) {
@@ -36,4 +36,4 @@ module.exports = function u8aFixLength (value: Uint8Array, bitLength: number = -
   }
 
   return result;
-};
+}

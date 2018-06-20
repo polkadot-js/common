@@ -7,17 +7,17 @@ import type { KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
 import type { PairState } from './types';
 
-const naclSign = require('@polkadot/util-crypto/nacl/sign');
-const naclVerify = require('@polkadot/util-crypto/nacl/verify');
+import naclSign from '@polkadot/util-crypto/nacl/sign';
+import naclVerify from '@polkadot/util-crypto/nacl/verify';
 
-const encodeAddress = require('../address/encode');
-const decode = require('./decode');
-const encode = require('./encode');
-const getMeta = require('./getMeta');
-const setMeta = require('./setMeta');
-const toJson = require('./toJson');
+import encodeAddress from '../address/encode';
+import decode from './decode';
+import encode from './encode';
+import getMeta from './getMeta';
+import setMeta from './setMeta';
+import toJson from './toJson';
 
-module.exports = function pair ({ publicKey, secretKey }: $Shape<KeypairType>, meta?: KeyringPair$Meta = {}, defaultEncoded?: Uint8Array): KeyringPair {
+export default function pair ({ publicKey, secretKey }: $Shape<KeypairType>, meta?: KeyringPair$Meta = {}, defaultEncoded?: Uint8Array): KeyringPair {
   const state: PairState = {
     address: encodeAddress(publicKey),
     meta: { ...meta }
@@ -50,4 +50,4 @@ module.exports = function pair ({ publicKey, secretKey }: $Shape<KeypairType>, m
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       naclVerify(message, signature, publicKey)
   };
-};
+}

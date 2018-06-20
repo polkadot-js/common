@@ -3,8 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const isNull = require('../is/null');
-const isUndefined = require('../is/undefined');
+import isNull from '../is/null';
+import isUndefined from '../is/undefined';
 
 /**
   @name arrayFilter
@@ -18,8 +18,8 @@ const isUndefined = require('../is/undefined');
     arrayFilter([0, void 0, true, null, false, '']); // [0, true, null, false, '']
     arrayFilter([0, void 0, true, null, false, ''], false); // [0, true, false, '']
 */
-module.exports = function arrayFilter (array: Array<mixed>, allowNulls: boolean = true): Array<mixed> {
+export default function arrayFilter (array: Array<mixed>, allowNulls: boolean = true): Array<mixed> {
   return array.filter((value) => {
     return !isUndefined(value) && (allowNulls || !isNull(value));
   });
-};
+}

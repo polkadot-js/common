@@ -14,6 +14,6 @@
 
     console.log('isInstanceOf', isInstanceOf(new Array(0), Array)); // => true
 */
-module.exports = function isInstanceOf (value: mixed, clazz: Class<mixed>): boolean {
+export default function isInstanceOf (value: mixed, clazz: Class<mixed>): boolean {
   return value instanceof clazz;
-};
+}

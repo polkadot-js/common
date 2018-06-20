@@ -5,11 +5,11 @@
 
 import type { Trie$Pairs } from '../types';
 
-const encodeAux = require('./aux');
-const encodeHexPrefix = require('./hexPrefix');
+import encodeAux from './aux';
+import encodeHexPrefix from './hexPrefix';
 
 // flowlint-next-line unclear-type:off
-module.exports = function encodeShared (pairs: Trie$Pairs, preLength: number, sharedLength: number): Array<any> {
+export default function encodeShared (pairs: Trie$Pairs, preLength: number, sharedLength: number): Array<any> {
   return [
     encodeHexPrefix(
       pairs[0].k.slice(preLength, sharedLength),
@@ -17,4 +17,4 @@ module.exports = function encodeShared (pairs: Trie$Pairs, preLength: number, sh
     ),
     encodeAux(pairs, sharedLength)
   ];
-};
+}

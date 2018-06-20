@@ -14,6 +14,6 @@
 
     isBoolean(false); // => true
 */
-module.exports = function isBoolean (value: mixed): boolean {
+export default function isBoolean (value: mixed): boolean {
   return typeof value === 'boolean';
-};
+}

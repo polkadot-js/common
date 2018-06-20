@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const encoder = require('./encoder');
+import encoder from './encoder';
 
 /**
   @name encode
@@ -16,4 +16,4 @@ const encoder = require('./encoder');
 
     encode('dog') // => [0x83, 0x64, 0x6f, 0x67]
 */
-module.exports = encoder;
+export default encoder;

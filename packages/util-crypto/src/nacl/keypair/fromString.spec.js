@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { naclKeypairFromString } = require('../index');
+import { naclKeypairFromString } from '../index';
 
 describe('naclKeypairFromSeed', () => {
   it('generates a valid publicKey/secretKey pair', () => {

@@ -2,10 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const hexToU8a = require('@polkadot/util/hex/toU8a');
-const u8aFromString = require('@polkadot/util/u8a/fromString');
+import hexToU8a from '@polkadot/util/hex/toU8a';
+import u8aFromString from '@polkadot/util/u8a/fromString';
 
-const { trieRootOrdered } = require('./index');
+import { trieRootOrdered } from './index';
 
 describe('trieRootOrdered', () => {
   // https://github.com/paritytech/parity/blob/e95b09348386d01b71901365785c5fa3aa2f7a6d/util/triehash/src/lib.rs#L42

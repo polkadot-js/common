@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { isFunction } = require('./index');
+import { isFunction } from './index';
 
 describe('isFunction', () => {
   it('returns true on valid functions', () => {

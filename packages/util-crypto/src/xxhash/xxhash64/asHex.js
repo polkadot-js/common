@@ -3,9 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hexAddPrefix = require('@polkadot/util/hex/addPrefix');
+import hexAddPrefix from '@polkadot/util/hex/addPrefix';
 
-const xxhash64AsRaw = require('./asRaw');
+import xxhash64AsRaw from './asRaw';
 
 /**
   @name xxhash64AsHex
@@ -18,8 +18,8 @@ const xxhash64AsRaw = require('./asRaw');
 
     xxhash64AsHex('abcd', 0xabcd)) // => 0xe29f70f8b8c96df7
 */
-module.exports = function xxhash64AsHex (data: Buffer | Uint8Array | string, seed: number): string {
+export default function xxhash64AsHex (data: Buffer | Uint8Array | string, seed: number): string {
   return hexAddPrefix(
     xxhash64AsRaw(data, seed)
   );
-};
+}

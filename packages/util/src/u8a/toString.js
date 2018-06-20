@@ -14,10 +14,10 @@
 
     u8aToString(new Uint8Array([21,23,45,67])); // 21,23,45,67
 */
-module.exports = function u8aToString (value?: Uint8Array): string {
+export default function u8aToString (value?: Uint8Array): string {
   if (!value || !value.length) {
     return '';
   }
 
   return value.toString();
-};
+}

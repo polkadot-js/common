@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hexToBn = require('./toBn');
+import hexToBn from './toBn';
 
 /**
   @name hexToNumber
@@ -16,11 +16,11 @@ const hexToBn = require('./toBn');
 
     hexToNumber('0x1234'); // => 0x1234
 */
-module.exports = function hexToNumber (value?: string): number {
+export default function hexToNumber (value?: string): number {
   // flowlint-next-line sketchy-null-string:off
   if (!value) {
     return NaN;
   }
 
   return hexToBn(value).toNumber();
-};
+}

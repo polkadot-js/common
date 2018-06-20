@@ -3,9 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hexFixLength = require('../hex/fixLength');
-const isNull = require('../is/null');
-const isUndefined = require('../is/undefined');
+import hexFixLength from '../hex/fixLength';
+import isNull from '../is/null';
+import isUndefined from '../is/undefined';
 
 /**
   @name numberToHex
@@ -19,7 +19,7 @@ const isUndefined = require('../is/undefined');
     numberToHex(0x1234); // => '0x1234'
     numberToHex(0x1234, 32) // => 0x00001234
 */
-module.exports = function numberToHex (value?: number, bitLength: number = -1): string {
+export default function numberToHex (value?: number, bitLength: number = -1): string {
   if (isUndefined(value) || isNull(value) || isNaN(value)) {
     return '0x';
   }
@@ -29,4 +29,4 @@ module.exports = function numberToHex (value?: number, bitLength: number = -1): 
     bitLength,
     true
   );
-};
+}

@@ -5,11 +5,11 @@
 
 import type { DecodeFunc, DecodeOutput } from './types';
 
-const assert = require('@polkadot/util/assert');
+import assert from '@polkadot/util/assert';
 
-const safeParseInt = require('./safeParseInt');
+import safeParseInt from './safeParseInt';
 
-module.exports = function decodeListLong (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
+export default function decodeListLong (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
   const llength = input[0] - 0xf6;
   const length = safeParseInt(input.slice(1, llength));
   const totalLength = llength + length;
@@ -32,4 +32,4 @@ module.exports = function decodeListLong (decode: DecodeFunc, input: Uint8Array)
     decoded,
     remainder: input.slice(totalLength)
   };
-};
+}

@@ -5,16 +5,16 @@
 
 import type { EncodeFunc } from './types';
 
-const u8aConcat = require('@polkadot/util/u8a/concat');
+import u8aConcat from '@polkadot/util/u8a/concat';
 
-const encodeLength = require('./length');
+import encodeLength from './length';
 
 // flowlint-next-line unclear-type:off
-module.exports = function encodeArray (encoder: EncodeFunc, input: any): Uint8Array {
+export default function encodeArray (encoder: EncodeFunc, input: any): Uint8Array {
   const encoded = u8aConcat.apply(null, input.map(encoder));
 
   return u8aConcat(
     encodeLength(encoded.length, 192),
     encoded
   );
-};
+}

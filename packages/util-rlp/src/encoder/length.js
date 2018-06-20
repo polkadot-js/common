@@ -3,10 +3,10 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const numberToHex = require('@polkadot/util/number/toHex');
-const hexToU8a = require('@polkadot/util/hex/toU8a');
+import numberToHex from '@polkadot/util/number/toHex';
+import hexToU8a from '@polkadot/util/hex/toU8a';
 
-module.exports = function encodeLength (length: number, offset: number): Uint8Array {
+export default function encodeLength (length: number, offset: number): Uint8Array {
   if (length < 56) {
     return new Uint8Array([length + offset]);
   }
@@ -16,4 +16,4 @@ module.exports = function encodeLength (length: number, offset: number): Uint8Ar
   return hexToU8a(
     numberToHex(offset + 55 + hexLength.length / 2) + hexLength
   );
-};
+}

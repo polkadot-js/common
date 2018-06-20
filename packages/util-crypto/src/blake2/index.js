@@ -3,13 +3,13 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const blake2AsHex = require('./asHex');
-const blake2AsU8a = require('./asU8a');
+import blake2AsHex from './asHex';
+import blake2AsU8a from './asU8a';
 
 /**
   @summary Create blake2b values with specified bitlengths
 */
-module.exports = {
+export {
   blake2AsHex,
   blake2AsU8a
 };

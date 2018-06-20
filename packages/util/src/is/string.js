@@ -14,6 +14,6 @@
 
     console.log('isString', isString('test')); // => true
 */
-module.exports = function isString (value: mixed): boolean {
+export default function isString (value: mixed): boolean {
   return typeof value === 'string';
-};
+}

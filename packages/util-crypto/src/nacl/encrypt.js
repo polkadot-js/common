@@ -3,14 +3,14 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
+import nacl from 'tweetnacl';
+
+import randomAsU8a from '../random/asU8a';
+
 type Encrypted = {
   encrypted: Uint8Array,
   nonce: Uint8Array
 };
-
-const nacl = require('tweetnacl');
-
-const randomAsU8a = require('../random/asU8a');
 
 /**
   @name naclEncrypt
@@ -23,9 +23,9 @@ const randomAsU8a = require('../random/asU8a');
 
     naclSign([...], [...]) // => [...]
 */
-module.exports = function naclEncrypt (message: Uint8Array, secret: Uint8Array, nonce: Uint8Array = randomAsU8a(24)): Encrypted {
+export default function naclEncrypt (message: Uint8Array, secret: Uint8Array, nonce: Uint8Array = randomAsU8a(24)): Encrypted {
   return {
     encrypted: nacl.secretbox(message, nonce, secret),
     nonce
   };
-};
+}

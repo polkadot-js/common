@@ -2,11 +2,13 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const u8aToHex = require('@polkadot/util/u8a/toHex');
+import u8aToHex from '@polkadot/util/u8a/toHex';
 
-const { encode } = require('./index');
+import { encode } from './index';
 
-const rlptests = require('../test/getTests')('RLPTests/rlptest.json');
+import getTests from '../test/getTests';
+
+const rlptests = getTests('RLPTests/rlptest.json');
 
 describe('encode', () => {
   rlptests.forEach(({ name, input, output }) => {

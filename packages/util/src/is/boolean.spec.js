@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { isBoolean } = require('./index');
+import { isBoolean } from './index';
 
 describe('isBoolean', () => {
   it('returns true on false', () => {

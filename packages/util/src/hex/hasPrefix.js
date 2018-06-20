@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const isHex = require('../is/hex');
+import isHex from '../is/hex';
 
 /**
   @name hexHasPrefix
@@ -16,7 +16,7 @@ const isHex = require('../is/hex');
 
     console.log('has prefix', hexHasPrefix('0x1234')); // => true
 */
-module.exports = function hexHasPrefix (value: ?string): boolean {
+export default function hexHasPrefix (value: ?string): boolean {
   // flowlint-next-line sketchy-null-string:off
   return !!(value && isHex(value, -1, true) && value.substr(0, 2) === '0x');
-};
+}

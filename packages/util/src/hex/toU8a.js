@@ -3,9 +3,9 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const assert = require('../assert');
-const isHex = require('../is/hex');
-const hexStripPrefix = require('./stripPrefix');
+import assert from '../assert';
+import isHex from '../is/hex';
+import hexStripPrefix from './stripPrefix';
 
 /**
   @name hexToU8a
@@ -19,7 +19,7 @@ const hexStripPrefix = require('./stripPrefix');
     hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
     hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
 */
-module.exports = function hexToU8a (_value?: string | null, bitLength: number = -1): Uint8Array {
+export default function hexToU8a (_value?: string | null, bitLength: number = -1): Uint8Array {
   // flowlint-next-line sketchy-null-string:off
   if (!_value) {
     return new Uint8Array([]);
@@ -42,4 +42,4 @@ module.exports = function hexToU8a (_value?: string | null, bitLength: number = 
   }
 
   return result;
-};
+}

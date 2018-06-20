@@ -2,7 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const keyring = require('../testingPairs')();
+import testingPairs from '../testingPairs';
+
+const keyring = testingPairs();
 
 describe('decode', () => {
   it('fails when no data provided', () => {

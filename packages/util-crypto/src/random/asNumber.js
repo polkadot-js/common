@@ -3,10 +3,10 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const hexToBn = require('@polkadot/util/hex/toBn');
-const BN = require('bn.js');
+import BN from 'bn.js';
+import hexToBn from '@polkadot/util/hex/toBn';
 
-const randomAsHex = require('./asHex');
+import randomAsHex from './asHex';
 
 const BN_53 = new BN(0b11111111111111111111111111111111111111111111111111111);
 
@@ -21,8 +21,8 @@ const BN_53 = new BN(0b11111111111111111111111111111111111111111111111111111);
 
     randomAsNumber() // => <random number>
 */
-module.exports = function randomAsNumber (): number {
+export default function randomAsNumber (): number {
   return hexToBn(
     randomAsHex(8)
   ).and(BN_53).toNumber();
-};
+}

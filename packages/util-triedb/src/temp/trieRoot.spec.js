@@ -2,12 +2,18 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const u8aFromString = require('@polkadot/util/u8a/fromString');
-const hexToU8a = require('@polkadot/util/hex/toU8a');
+import u8aFromString from '@polkadot/util/u8a/fromString';
+import hexToU8a from '@polkadot/util/hex/toU8a';
 
-const temp = require('./index')();
+import factory from './index';
 
 describe('trieRoot', () => {
+  let temp;
+
+  beforeEach(() => {
+    temp = factory();
+  });
+
   it('calculates the correct trieRoot', () => {
     temp.set(u8aFromString('doe'), u8aFromString('reindeer'));
     temp.set(u8aFromString('dog'), u8aFromString('puppy'));

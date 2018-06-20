@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const { isHex } = require('./index');
+import { isHex } from './index';
 
 describe('isHex', () => {
   const test = '1234abcd';

@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 // @flow
 
-const bnFromHex = require('../hex/toBn');
+import bnFromHex from '../hex/toBn';
 
 /**
   @name bnFromHex
@@ -11,4 +11,4 @@ const bnFromHex = require('../hex/toBn');
   @summary Creates a BN.js bignumber object from a hex string.
   @alias hex/toBn
 */
-module.exports = bnFromHex;
+export default bnFromHex;

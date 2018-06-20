@@ -5,19 +5,19 @@
 
 import type { KeyringPairs, KeyringPair } from './types';
 
+import assert from '@polkadot/util/assert';
+import isHex from '@polkadot/util/is/hex';
+import isU8a from '@polkadot/util/is/u8a';
+import u8aToHex from '@polkadot/util/u8a/toHex';
+import u8aToU8a from '@polkadot/util/u8a/toU8a';
+
+import addressDecode from './address/decode';
+
 type KeyringPairMap = {
   [Uint8Array]: KeyringPair
 };
 
-const assert = require('@polkadot/util/assert');
-const isHex = require('@polkadot/util/is/hex');
-const isU8a = require('@polkadot/util/is/u8a');
-const u8aToHex = require('@polkadot/util/u8a/toHex');
-const u8aToU8a = require('@polkadot/util/u8a/toU8a');
-
-const addressDecode = require('./address/decode');
-
-module.exports = function pairs (): KeyringPairs {
+export default function pairs (): KeyringPairs {
   const self: KeyringPairMap = {};
 
   return {
@@ -47,4 +47,4 @@ module.exports = function pairs (): KeyringPairs {
       delete self[addressDecode(address)];
     }
   };
-};
+}
