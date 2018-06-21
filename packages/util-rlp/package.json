@@ -6,12 +6,14 @@
   "keywords": [
     "Polkadot"
   ],
-  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "author": "martin becze <mjbecze@gmail.com>",
   "maintainers": [
     "Jaco Greeff <jacogr@gmail.com>"
   ],
-  "contributors": [],
-  "license": "ISC",
+  "contributors": [
+    "martin becze <mjbecze@gmail.com>"
+  ],
+  "license": "MPL-2.0",
   "engines": {
     "node": ">=6.4"
   },

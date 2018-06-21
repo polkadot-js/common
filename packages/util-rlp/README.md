@@ -1,5 +1,5 @@
 [![polkadotjs](https://img.shields.io/badge/polkadot-js-orange.svg?style=flat-square)](https://polkadot.js.org)
-![isc](https://img.shields.io/badge/license-ISC-lightgrey.svg?style=flat-square)
+![mpl-2](https://img.shields.io/badge/license-MPL-lightgrey.svg?style=flat-square)
 [![style](https://img.shields.io/badge/code%20style-semistandard-lightgrey.svg?style=flat-square)](https://github.com/Flet/semistandard)
 [![npm](https://img.shields.io/npm/v/@polkadot/util-rlp.svg?style=flat-square)](https://www.npmjs.com/package/@polkadot/util-rlp)
 [![travis](https://img.shields.io/travis/polkadot-js/util.svg?style=flat-square)](https://travis-ci.org/polkadot-js/util)
