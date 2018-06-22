@@ -36,6 +36,7 @@
     "@babel/runtime": "^7.0.0-beta.47",
     "@types/deasync": "^0.1.0",
     "@types/ip-regex": "^2.0.0",
+    "@types/levelup": "^0.0.30",
     "bn.js": "^4.11.8",
     "chalk": "^2.4.1",
     "deasync": "^0.1.12",

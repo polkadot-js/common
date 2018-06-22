@@ -8,7 +8,6 @@ import { getSingleFile } from 'ethereumjs-testing';
 import bnToU8a from '@polkadot/util/bn/toU8a';
 
 export default function getTests (file: string) {
-  // @ts-ignore not adding that one for tests
   const tests = getSingleFile(file);
 
   return Object.keys(tests).map((name) => ({
