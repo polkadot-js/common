@@ -9,16 +9,16 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "polkadot-dev-build-ts && polkadot-dev-build-docs",
+    "build": "polkadot-dev-build-ts",
     "check": "tsc --noEmit",
     "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "jest --coverage"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.20.1"
+    "@polkadot/dev": "^0.20.2"
   },
   "dependencies": {
-    "@polkadot/ts": "^0.0.16"
+    "@polkadot/ts": "^0.0.18"
   }
 }
