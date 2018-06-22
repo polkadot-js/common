@@ -1,5 +1,13 @@
 {
   "extends": "./node_modules/@polkadot/dev/config/tsconfig",
+  "paths": {
+    "@polkadot/util-crypto/*": [ "./packages/util/src/*" ],
+    "@polkadot/util-keyring/*": [ "./packages/util-crypto/src/*" ],
+    "@polkadot/util-rlp/*": [ "./packages/util/src-rlp/*" ],
+    "@polkadot/util-triedb/*": [ "./packages/util-triedb/src/*" ],
+    "@polkadot/util-triehash/*": [ "./packages/util-triehash/src/*" ],
+    "@polkadot/util/*": [ "./packages/util/src/*" ]
+  },
   "typeRoots": [
     "./node_modules/@polkadot/ts",
     "./node_modules/@types"

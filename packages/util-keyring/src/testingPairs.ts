@@ -9,7 +9,7 @@ import nobody from './pair/nobody';
 
 type TestKeyringMap = {
   _keyring: KeyringInstance,
-  [string]: KeyringPair
+  [index: string]: KeyringPair
 };
 
 export default function testKeyringPairs (): TestKeyringMap {
@@ -19,7 +19,7 @@ export default function testKeyringPairs (): TestKeyringMap {
   return pairs.reduce((result, pair) => {
     const { name } = pair.getMeta();
 
-    result[(name: string)] = pair;
+    result[(name as string)] = pair;
 
     return result;
   }, { _keyring: keyring, nobody: nobody() });

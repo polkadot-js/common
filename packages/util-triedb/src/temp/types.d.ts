@@ -5,5 +5,6 @@
 import { Trie$Pair } from '@polkadot/util-triehash/types';
 
 export type Temp$Storage = {
-  [Uint8Array]: Trie$Pair
+  // @ts-ignore we use implicit conversions...
+  [index: Uint8Array]: Trie$Pair
 };

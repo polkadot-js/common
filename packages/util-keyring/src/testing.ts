@@ -13,7 +13,7 @@ function padSeed (seed: string): Uint8Array {
   return u8aFromString(seed.padEnd(32, ' '));
 }
 
-const SEEDS = {
+const SEEDS: { [index: string ]: Uint8Array } = {
   alice:
     padSeed('Alice'),
   bob:

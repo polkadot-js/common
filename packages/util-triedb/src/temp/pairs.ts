@@ -6,7 +6,7 @@ import { Trie$Pairs } from '@polkadot/util-triehash/types';
 import { Temp$Storage } from './types';
 
 export default function pairs (storage: Temp$Storage): Trie$Pairs {
-  const keys = ((Object.keys(storage): any): Array<Uint8Array>);
-
-  return keys.map((k) => storage[k]);
+  return Object
+    .keys(storage)
+    .map((k) => storage[k]);
 }

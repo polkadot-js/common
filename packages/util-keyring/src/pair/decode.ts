@@ -19,9 +19,12 @@ const PUBLIC_OFFSET = SEED_OFFSET + KEY_LENGTH + PKCS8_DIVIDER.length;
 export default function decode (passphrase?: string, _encrypted?: Uint8Array) {
   assert(_encrypted, `No encrypted data available to decode`);
 
-  const encrypted = ((_encrypted: any): Uint8Array);
+  const encrypted = (_encrypted as Uint8Array);
   const encoded = passphrase
-    ? ((naclDecrypt(encrypted.subarray(24), encrypted.subarray(0, 24), u8aFixLength(u8aFromString(passphrase), 256, true)): any): Uint8Array)
+    ? (naclDecrypt(
+        encrypted.subarray(24),
+        encrypted.subarray(0, 24),
+        u8aFixLength(u8aFromString(passphrase), 256, true)) as Uint8Array)
     : encrypted;
 
   assert(encoded, `Unable to unencrypt using the supplied passphrase`);

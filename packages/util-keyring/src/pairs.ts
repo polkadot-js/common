@@ -13,7 +13,8 @@ import u8aToU8a from '@polkadot/util/u8a/toU8a';
 import addressDecode from './address/decode';
 
 type KeyringPairMap = {
-  [Uint8Array]: KeyringPair
+  // @ts-ignore we use coercion :(
+  [index: Uint8Array]: KeyringPair
 };
 
 export default function pairs (): KeyringPairs {
@@ -21,19 +22,21 @@ export default function pairs (): KeyringPairs {
 
   return {
     add: (pair: KeyringPair): KeyringPair => {
+      // @ts-ignore we use coercion :(
       self[pair.publicKey()] = pair;
 
       return pair;
     },
     all: (): Array<KeyringPair> =>
-      ((Object.values(self): any): Array<KeyringPair>),
+      (Object.values(self) as Array<KeyringPair>),
     get: (address: string | Uint8Array): KeyringPair => {
+      // @ts-ignore we use coercion :(
       const pair = self[addressDecode(address)];
 
       assert(pair, () => {
         const formatted: string = isU8a(address) || isHex(address)
           ? u8aToHex(u8aToU8a(address))
-          : ((address: any): string);
+          : (address as string);
 
         return `Unable to retrieve keypair '${formatted}'`;
       });
@@ -41,6 +44,7 @@ export default function pairs (): KeyringPairs {
       return pair;
     },
     remove: (address: string | Uint8Array): void => {
+      // @ts-ignore we use coercion :(
       delete self[addressDecode(address)];
     }
   };

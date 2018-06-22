@@ -2,12 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { Trie$Pair } from '@polkadot/util-triehash/types';
 import { Temp$Storage } from './types';
 
 export default function set (storage: Temp$Storage, k: Uint8Array, v: Uint8Array): void {
-  storage[k] = ({
+  // @ts-ignore we coax into string here, bad I know
+  storage[k] = {
     k: k.slice(),
     v: v.slice()
-  }: Trie$Pair);
+  };
 }

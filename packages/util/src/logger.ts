@@ -2,8 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-/// <reference types="node"/>
-
 import { Logger, Logger$Data } from './types';
 
 import chalk from 'chalk';
@@ -13,14 +11,14 @@ import isFunction from './is/function';
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
 
-const logTo: { [key: LogType]: ConsoleType } = {
+const logTo = {
   debug: 'log',
   error: 'error',
   log: 'log',
   warn: 'warn'
 };
 
-const chalked: { [key: LogType]: (value: string) => string } = {
+const chalked = {
   debug: chalk.gray,
   error: chalk.red,
   log: chalk.reset,
@@ -29,12 +27,15 @@ const chalked: { [key: LogType]: (value: string) => string } = {
 
 function apply (log: LogType, type: string, values: Logger$Data): void {
   if (values.length === 1 && isFunction(values[0])) {
-    return apply(log, type, ((values[0]: any): Function)());
+    const fnResult = (values[0] as Function)();
+
+    return apply(log, type, fnResult);
   }
 
   const chalk = (value: string): string =>
     chalked[log](value);
 
+  // @ts-ignore Not sure how to coax TS here...
   console[logTo[log]].apply(
     console, [
       chalk(new Date().toString()), chalk(type)
