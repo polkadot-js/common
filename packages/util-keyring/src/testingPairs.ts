@@ -8,7 +8,6 @@ import createKeyring from './testing';
 import nobody from './pair/nobody';
 
 type TestKeyringMap = {
-  _keyring: KeyringInstance,
   [index: string]: KeyringPair
 };
 
@@ -19,8 +18,9 @@ export default function testKeyringPairs (): TestKeyringMap {
   return pairs.reduce((result, pair) => {
     const { name } = pair.getMeta();
 
-    result[(name as string)] = pair;
+    // @ts-ignore dunno what the complaint here is about...
+    result[name as string] = pair;
 
     return result;
-  }, { _keyring: keyring, nobody: nobody() });
+  }, { 'nobody': nobody() });
 }

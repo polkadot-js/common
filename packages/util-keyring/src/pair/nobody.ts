@@ -11,7 +11,7 @@ const address = addressEncode(publicKey);
 const meta = {
   name: 'nobody'
 };
-const json = {
+const json: KeyringPair$Json = {
   address,
   encoded: '',
   encoding: {

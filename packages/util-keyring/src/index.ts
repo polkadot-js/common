@@ -14,6 +14,7 @@ import createPairs from './pairs';
 export default function keyring (): KeyringInstance {
   const pairs = createPairs();
   const addFromAddress = (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array) =>
+    // @ts-ignore no secretKey - cannot unlock
     pairs.add(createPair({ publicKey: addressDecode(address) }, meta, defaultEncoded));
 
   return {

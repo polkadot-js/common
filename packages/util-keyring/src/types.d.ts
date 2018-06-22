@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 export type KeyringPair$Meta = {
-  [string]: any
+  [index: string]: any
 }
 
 export type KeyringPair$Json = {
@@ -44,5 +44,6 @@ export type KeyringInstance = {
   getPair (address: string | Uint8Array): KeyringPair,
   getPairs (): Array<KeyringPair>,
   getPublicKeys (): Array<Uint8Array>,
-  removePair (address: string | Uint8Array): void
+  removePair (address: string | Uint8Array): void,
+  toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json
 };

@@ -14,7 +14,8 @@
     asNibbles(new Uint8Array([0x41, 0x20]) // => Uint8Array([4, 1, 2, 0])
 */
 export default function asNibbles (bytes: Uint8Array | Array<number>): Uint8Array {
-  return bytes.reduce((result, byte, index) => {
+  // HACK TypeScript gets a little bit confused as to what to apply, hence casting here although the reduces function for both types does exactly the same
+  return (bytes as number[]).reduce((result, byte, index) => {
     result.set(
       [byte >> 4, byte & 0b1111],
       index * 2

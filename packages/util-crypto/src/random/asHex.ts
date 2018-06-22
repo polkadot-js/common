@@ -17,7 +17,7 @@ import randomAsU8a from './asU8a';
 
     randomAsHex() // => 0x...
 */
-export default function randomAsHex (length?: number = 32): string {
+export default function randomAsHex (length: number = 32): string {
   return u8aToHex(
     randomAsU8a(length)
   );

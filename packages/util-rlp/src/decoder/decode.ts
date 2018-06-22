@@ -4,6 +4,8 @@
 
 import { DecodeFunc, DecodeOutput } from './types';
 
+import assert from '@polkadot/util/assert';
+
 import decodeListLong from './listLong';
 import decodeListShort from './listShort';
 import decodeNumber from './number';
@@ -24,7 +26,10 @@ const decoders: Array<Decoder> = [
 ];
 
 export default function decode (input: Uint8Array): DecodeOutput {
-  return decoders
-    .find(({ max }) => input[0] <= max)
-    .fn(decode, input);
+  const decoder = decoders.find(({ max }) => input[0] <= max);
+
+  assert(decoder, 'Unable to find decoder for input type');
+
+  // @ts-ignore assert catches invalids, which _should_ not happen...
+  return decoder.fn(decode, input);
 }

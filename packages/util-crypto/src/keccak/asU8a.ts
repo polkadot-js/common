@@ -17,6 +17,6 @@ import { keccak256 } from 'js-sha3';
 */
 export default function keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array {
   return new Uint8Array(
-    keccak256.arrayBuffer(value)
+    keccak256.update(value).arrayBuffer()
   );
 }

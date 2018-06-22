@@ -16,7 +16,7 @@ import getMeta from './getMeta';
 import setMeta from './setMeta';
 import toJson from './toJson';
 
-export default function pair ({ publicKey, secretKey }: $Shape<KeypairType>, meta?: KeyringPair$Meta = {}, defaultEncoded?: Uint8Array): KeyringPair {
+export default function pair ({ publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, defaultEncoded?: Uint8Array): KeyringPair {
   const state: PairState = {
     address: encodeAddress(publicKey),
     meta: { ...meta }

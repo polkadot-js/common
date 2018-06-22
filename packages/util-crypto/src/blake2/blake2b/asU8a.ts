@@ -16,6 +16,6 @@ import blakejs from 'blakejs';
 
     blake2bAsU8a('abc') // => Uint8Array('508c5e8c327c14e2e1a72ba34eeb452f37458b209ed63a294d999b4c86675982')
 */
-export default function blake2bAsU8a (data: Uint8Array, bitLength: number = 512, key: ?Uint8Array = null): Uint8Array {
+export default function blake2bAsU8a (data: Uint8Array, bitLength: number = 512, key: Uint8Array | null = null): Uint8Array {
   return blakejs.blake2b(data, key, bitLength / 8);
 }

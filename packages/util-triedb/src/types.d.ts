@@ -2,7 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { LevelUp$AbstractStorage } from 'levelup';
 import { Logger } from '@polkadot/util/types';
 import { Trie$Pairs } from '@polkadot/util-triehash/types';
 
@@ -18,7 +17,7 @@ export type TrieDb = {
 }
 
 export type TrieDbState = {
-  db: LevelUp$AbstractStorage,
+  db: {},
   l: Logger,
   storage: TrieDb
 };
