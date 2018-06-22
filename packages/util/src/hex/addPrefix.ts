@@ -15,7 +15,7 @@ import hasPrefix from './hasPrefix';
 
     console.log('With prefix', hexAddPrefix('0a0b12')) // => 0x0a0b12
 */
-export default function hexAddPrefix (value: ?string): string {
+export default function hexAddPrefix (value: string | null | undefined): string {
   if (value && hasPrefix(value)) {
     return value;
   }

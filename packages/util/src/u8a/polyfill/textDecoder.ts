@@ -3,5 +3,6 @@
 // of the ISC license. See the LICENSE file for details.
 
 if (typeof TextDecoder === 'undefined') {
+  // @ts-ignore
   global.TextDecoder = require('util').TextDecoder;
 }

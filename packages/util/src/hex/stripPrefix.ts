@@ -17,7 +17,7 @@ const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
 
     console.log('stripped', hexStripPrefix('0x1234')); // => 1234
 */
-export default function hexStripPrefix (value: ?string): string {
+export default function hexStripPrefix (value: string | null | undefined): string {
   if (!value) {
     return '';
   }

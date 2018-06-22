@@ -17,5 +17,5 @@ import isObject from './object';
     console.log('isObservable', isObservable(...));
 */
 export default function isObservable (value: any): boolean {
-  return isObject(value) && isFunction(value.next);
+  return isObject(value) && isFunction((value as any).next);
 }

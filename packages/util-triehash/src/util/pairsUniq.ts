@@ -7,15 +7,15 @@ import { Trie$Pair, Trie$Pairs } from '../types';
 import u8aToHex from '@polkadot/util/u8a/toHex';
 
 type PairMap = {
-  [string]: Trie$Pair
+  [index: string]: Trie$Pair
 };
 
 export default function pairsUniq (pairs: Trie$Pairs): Trie$Pairs {
-  const map: PairMap = pairs.reduce((result, pair) => {
+  const map = pairs.reduce((result, pair) => {
     result[u8aToHex(pair.k)] = pair;
 
     return result;
-  }, {});
+  }, ({} as PairMap));
 
   return Object
     .keys(map)

@@ -3,5 +3,6 @@
 // of the ISC license. See the LICENSE file for details.
 
 if (typeof TextEncoder === 'undefined') {
+  // @ts-ignore
   global.TextEncoder = require('util').TextEncoder;
 }

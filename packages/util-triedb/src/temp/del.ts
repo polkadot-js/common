@@ -5,5 +5,6 @@
 import { Temp$Storage } from './types';
 
 export default function del (storage: Temp$Storage, k: Uint8Array): void {
+  // @ts-ignore yes, U8a index
   delete storage[k];
 }

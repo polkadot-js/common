@@ -5,6 +5,7 @@
 import { Temp$Storage } from './types';
 
 export default function get (storage: Temp$Storage, k: Uint8Array): Uint8Array | null {
+  // @ts-ignore yes, U8a index
   const value = storage[k];
 
   return value && value.v

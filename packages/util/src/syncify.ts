@@ -10,7 +10,7 @@ import isUndefined from './is/undefined';
 // FIXME: This is currently for Node environments only - for Browser environments deasync is not available, we need a different solution.
 
 export default function syncify (promise: Promise<any>): any {
-  let result;
+  let result: any;
 
   (async () => {
     result = await promise.catch((error) => error);

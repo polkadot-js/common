@@ -13,6 +13,6 @@
 
     console.log('isInstanceOf', isInstanceOf(new Array(0), Array)); // => true
 */
-export default function isInstanceOf (value: any, clazz: class): boolean {
+export default function isInstanceOf (value: any, clazz: any): boolean {
   return value instanceof clazz;
 }

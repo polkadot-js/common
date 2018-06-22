@@ -14,10 +14,10 @@
     await promisify(null, ((a, cb) => cb(null, a), true); // resolves with `true`
     await promisify(null, (cb) => cb(new Error('error!'))); // rejects with `error!`
 */
-export default function promisify (self: ?Object, fn: Function, ...params: Array<any>): Promise<any> {
+export default function promisify (self: any, fn: Function, ...params: Array<any>): Promise<any> {
   return new Promise((resolve, reject) => {
     fn.apply(self, params.concat([
-      (error: ?Error, result: any): void => {
+      (error: Error | null, result: any): void => {
         if (error) {
           reject(error);
         } else {

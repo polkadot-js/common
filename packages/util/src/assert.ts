@@ -20,7 +20,7 @@ type MessageFn = () => string;
     assert(false, 'False should not be true'); // ExtError thrown
     assert(false, () => 'message'); // ExtError with 'message'
 */
-export default function assert (test: any, message: string | MessageFn, code: number = ExtError.CODES.ASSERT, data: any): boolean {
+export default function assert (test: any, message: string | MessageFn, code: number = ExtError.CODES.ASSERT, data?: any): boolean {
   if (test) {
     return true;
   }

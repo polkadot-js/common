@@ -28,10 +28,15 @@ function extend (that: any, name: string, value: any): void {
     throw new ExtError('some message', ExtError.CODES.METHOD_NOT_FOUND); // => error.code = -32601
 */
 export default class ExtError extends Error implements ExtErrorInterface {
+  // @ts-ignore we are assigning it via extend
   code: number;
+  // @ts-ignore we are assigning it via extend
   data: any;
+  // @ts-ignore we are assigning it via extend
   message: string;
+  // @ts-ignore we are assigning it via extend
   name: string;
+  // @ts-ignore we are assigning it via extend
   stack: string;
 
   constructor (message: string = '', code: number = UNKNOWN, data: any) {
