@@ -741,9 +741,9 @@
     rimraf "^2.6.2"
     typescript "^2.9.2"
 
-"@polkadot/ts@^0.0.18":
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.0.18.tgz#1b8801bd22a9aa0c568d018c059f6086cf91903d"
+"@polkadot/ts@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.0.20.tgz#a1d413e5e743a6f64acb2a8525beabc4090bb06d"
 
 "@types/base-x@*":
   version "1.0.29"
