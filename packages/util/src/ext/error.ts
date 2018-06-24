@@ -39,7 +39,7 @@ export default class ExtError extends Error implements ExtErrorInterface {
   // @ts-ignore we are assigning it via extend
   stack: string;
 
-  constructor (message: string = '', code: number = UNKNOWN, data: any) {
+  constructor (message: string = '', code: number = UNKNOWN, data?: any) {
     super();
 
     extend(this, 'message', String(message));
