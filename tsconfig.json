@@ -3,8 +3,20 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@polkadot/extrinsics-codec/*": [ "packages/code-extrinsics/src/*" ],
+      "@polkadot/primitives-builder/*": [ "packages/code-primitives-builder/src/*" ],
+      "@polkadot/primitives-codec/*": [ "packages/code-primitives/src/*" ],
+      "@polkadot/primitives-json/*": [ "packages/code-primitives-json/src/*" ],
+
+      "@polkadot/extrinsics/*": [ "packages/type-extrinsics/src/*" ],
+      "@polkadot/jsonrpc/*": [ "packages/type-jsonrpc/src/*" ],
+      "@polkadot/params/*": [ "packages/type-params/src/*" ],
+      "@polkadot/primitives/*": [ "packages/type-primitives/src/*" ],
+      "@polkadot/storage/*": [ "packages/type-storage/src/*" ],
+
       "@polkadot/trie-db/*": [ "packages/trie-sb/src/*" ],
       "@polkadot/trie-hash/*": [ "packages/trie-hash/src/*" ],
+
       "@polkadot/util-crypto/*": [ "packages/util-crypto/src/*" ],
       "@polkadot/util-keyring/*": [ "packages/util-keyring/src/*" ],
       "@polkadot/util-rlp/*": [ "packages/util-rlp/src/*" ],

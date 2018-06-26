@@ -1,0 +1,25 @@
+{
+  "name": "@polkadot/extrinsics-codec",
+  "version": "0.25.0",
+  "main": "index.js",
+  "repository": "https://github.com/polkadot-js/apps.git",
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "maintainers": [
+    "Jaco Greeff <jacogr@gmail.com>"
+  ],
+  "contributors": [],
+  "license": "ISC",
+  "scripts": {
+    "build": "polkadot-dev-build-babel",
+    "check": "stylelint 'src/**/*.css' && eslint src && flow check",
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.51",
+    "@polkadot/extrinsics": "^0.25.0",
+    "@polkadot/params": "^0.25.0",
+    "@polkadot/util": "^0.25.0",
+    "@polkadot/util-keyring": "^0.25.0",
+    "bn.js": "^4.11.8"
+  }
+}
