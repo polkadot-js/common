@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { Trie$Pairs } from '@polkadot/util-triehash/types';
+import { Trie$Pairs } from '@polkadot/trie-hash/types';
 import { Temp$Storage } from './types';
 
 import del from './del';

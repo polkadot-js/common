@@ -13,13 +13,17 @@
 
 Various useful utility functions that are used across all projects in the [@polkadot](https://polkadot.js.org) namespace. It provides utility functions with additional safety checks, allowing not only for consistent coding, but also reducing the general boilerplate.
 
-It is split up into a number of internal packages -
+It is split up into a number of internal packages, namely utilities -
 
 - [util](packages/util/) General utilities
 - [util-crypto](packages/util-crypto/) Crypto and hashing utilities
 - [util-keyring](packages/util-keyring/) Keyring management
 - [util-rlp](packages/util-rlp/) RLP encoding & decoding
-- [util-triehash](packages/util-triehash/) Calculation of trie hashes
+
+Various useful trie interfaces and utilities -
+
+- [trie-db](packages/trie-db/) Merkle Patricia Tree implementation adapcted for Polkadot
+- [trie-hash](packages/trie-hash/) Calculate hashes (either ordered or unordered) from a set of inputs
 
 ## Contributing
 

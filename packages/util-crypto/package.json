@@ -21,12 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/polkadot-js/util.git"
+    "url": "git+https://github.com/polkadot-js/common.git"
   },
   "bugs": {
-    "url": "https://github.com/polkadot-js/util/issues"
+    "url": "https://github.com/polkadot-js/common/issues"
   },
-  "homepage": "https://github.com/polkadot-js/util/tree/master/packages/util-crypto#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "scripts": {
     "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
     "check": "eslint src && flow check",

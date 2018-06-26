@@ -3,11 +3,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@polkadot/trie-db/*": [ "packages/trie-sb/src/*" ],
+      "@polkadot/trie-hash/*": [ "packages/trie-hash/src/*" ],
       "@polkadot/util-crypto/*": [ "packages/util-crypto/src/*" ],
       "@polkadot/util-keyring/*": [ "packages/util-keyring/src/*" ],
       "@polkadot/util-rlp/*": [ "packages/util-rlp/src/*" ],
       "@polkadot/util-triedb/*": [ "packages/util-triedb/src/*" ],
-      "@polkadot/util-triehash/*": [ "packages/util-triehash/src/*" ],
       "@polkadot/util/*": [ "packages/util/src/*" ]
     },
     "typeRoots": [
