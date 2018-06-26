@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util",
-  "version": "0.24.9",
+  "version": "0.25.0",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
   "keywords": [
@@ -21,12 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/polkadot-js/util.git"
+    "url": "git+https://github.com/polkadot-js/common.git"
   },
   "bugs": {
-    "url": "https://github.com/polkadot-js/util/issues"
+    "url": "https://github.com/polkadot-js/common/issues"
   },
-  "homepage": "https://github.com/polkadot-js/util/tree/master/packages/util#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util#readme",
   "scripts": {
     "build": "polkadot-dev-build-babel && polkadot-dev-build-docs",
     "check": "eslint src && flow check",

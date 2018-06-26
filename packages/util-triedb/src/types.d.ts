@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import { Logger } from '@polkadot/util/types';
-import { Trie$Pairs } from '@polkadot/util-triehash/types';
+import { Trie$Pairs } from '@polkadot/trie-hash/types';
 
 export type TrieDb = {
   clear: () => void,

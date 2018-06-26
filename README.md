@@ -13,13 +13,32 @@
 
 Various useful utility functions that are used across all projects in the [@polkadot](https://polkadot.js.org) namespace. It provides utility functions with additional safety checks, allowing not only for consistent coding, but also reducing the general boilerplate.
 
-It is split up into a number of internal packages -
+It is split up into a number of internal packages, namely utilities -
 
 - [util](packages/util/) General utilities
 - [util-crypto](packages/util-crypto/) Crypto and hashing utilities
 - [util-keyring](packages/util-keyring/) Keyring management
 - [util-rlp](packages/util-rlp/) RLP encoding & decoding
-- [util-triehash](packages/util-triehash/) Calculation of trie hashes
+
+Various useful trie interfaces and utilities -
+
+- [trie-db](packages/trie-db/) Merkle Patricia Tree implementation adapcted for Polkadot
+- [trie-hash](packages/trie-hash/) Calculate hashes (either ordered or unordered) from a set of inputs
+
+Type definitions for interfaces as exposed by Polkadot & Substrate clients -
+
+- [@polkadot/extrinsics](packages/type-extrinsics/) Base extrinsic definitions
+- [@polkadot/jsonrpc](packages/type-jsonrpc/) Definitions for JSONRPC endpoints
+- [@polkadot/params](packages/type-params/) Input/output parameter formatting
+- [@polkadot/primitives](packages/type-primitives/) Primitive type definitions
+- [@polkadot/storage](packages/type-storage/) Definitions for storage entries
+
+Codecs for types (possibly to be combined with types) -
+
+- [@polkadot/extrinsics-codec](packages/code-extrinsics/) Encoders for extrinsics
+- [@polkadot/primitives-codec](packages/code-primitives/) Primitive encoding/decoding
+- [@polkadot/primitives-builder](packages/code-primitives-builder/) Primitive creator
+- [@polkadot/primitives-json](packages/code-primitives-json/) Primitive json encoding/decoding
 
 ## Contributing
 
