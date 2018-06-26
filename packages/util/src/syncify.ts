@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-const deasync = require('deasync');
+import deasync from 'deasync';
 
 import isError from './is/error';
 import isUndefined from './is/undefined';
