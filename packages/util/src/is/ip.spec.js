@@ -23,7 +23,7 @@ describe('isIp', () => {
     ).toEqual(true);
   });
 
-  it.skip('returns false on IPv4 addresses (IPv6 type)', () => {
+  it('returns false on IPv4 addresses (IPv6 type)', () => {
     expect(
       isIp('192.168.0.1', 'v6')
     ).toEqual(false);
@@ -41,7 +41,7 @@ describe('isIp', () => {
     ).toEqual(true);
   });
 
-  it.skip('returns false on IPv6 addresses (IPv4 type)', () => {
+  it('returns false on IPv6 addresses (IPv4 type)', () => {
     expect(
       isIp('1:2:3:4:5:6:7:8', 'v4')
     ).toEqual(false);
