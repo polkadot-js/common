@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/primitives-codec",
-  "version": "0.25.0",
+  "version": "0.25.1",
   "description": "Encoding for primitives as runtime execution inputs",
   "main": "index.js",
   "engines": {
@@ -34,10 +34,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
-    "@polkadot/primitives": "^0.25.0",
-    "@polkadot/primitives-builder": "^0.25.0",
-    "@polkadot/util": "^0.25.0",
-    "@polkadot/util-crypto": "^0.25.0",
-    "@polkadot/util-keyring": "^0.25.0"
+    "@polkadot/primitives": "^0.25.1",
+    "@polkadot/primitives-builder": "^0.25.1",
+    "@polkadot/util": "^0.25.1",
+    "@polkadot/util-crypto": "^0.25.1",
+    "@polkadot/util-keyring": "^0.25.1"
   }
 }
