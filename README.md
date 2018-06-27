@@ -30,15 +30,12 @@ Type definitions for interfaces as exposed by Polkadot & Substrate clients -
 - [@polkadot/extrinsics](packages/type-extrinsics/) Base extrinsic definitions
 - [@polkadot/jsonrpc](packages/type-jsonrpc/) Definitions for JSONRPC endpoints
 - [@polkadot/params](packages/type-params/) Input/output parameter formatting
-- [@polkadot/primitives](packages/type-primitives/) Primitive type definitions
+- [@polkadot/primitives](packages/type-primitives/) Primitive type definitions, builder & codecs
 - [@polkadot/storage](packages/type-storage/) Definitions for storage entries
 
 Codecs for types (possibly to be combined with types) -
 
 - [@polkadot/extrinsics-codec](packages/code-extrinsics/) Encoders for extrinsics
-- [@polkadot/primitives-codec](packages/code-primitives/) Primitive encoding/decoding
-- [@polkadot/primitives-builder](packages/code-primitives-builder/) Primitive creator
-- [@polkadot/primitives-json](packages/code-primitives-json/) Primitive json encoding/decoding
 
 ## Contributing
 

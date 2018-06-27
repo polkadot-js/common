@@ -4,7 +4,7 @@
 
 import { EncodingVersions, Param$Type } from '../../types';
 
-import addrPrefixes from '@polkadot/extrinsics-codec/encode/prefixes';
+import addrPrefixes from '@polkadot/extrinsics/codec/encode/prefixes';
 import bnToU8a from '@polkadot/util/bn/toU8a';
 import u8aConcat from '@polkadot/util/u8a/concat';
 import u8aFromString from '@polkadot/util/u8a/fromString';

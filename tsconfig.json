@@ -4,9 +4,6 @@
     "baseUrl": ".",
     "paths": {
       "@polkadot/extrinsics-codec/*": [ "packages/code-extrinsics/src/*" ],
-      "@polkadot/primitives-builder/*": [ "packages/code-primitives-builder/src/*" ],
-      "@polkadot/primitives-codec/*": [ "packages/code-primitives/src/*" ],
-      "@polkadot/primitives-json/*": [ "packages/code-primitives-json/src/*" ],
 
       "@polkadot/extrinsics/*": [ "packages/type-extrinsics/src/*" ],
       "@polkadot/jsonrpc/*": [ "packages/type-jsonrpc/src/*" ],
