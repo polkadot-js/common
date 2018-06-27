@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/extrinsics-codec",
-  "version": "0.25.2",
+  "version": "0.25.3",
   "main": "index.js",
   "repository": "https://github.com/polkadot-js/apps.git",
   "author": "Jaco Greeff <jacogr@gmail.com>",
@@ -16,10 +16,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
-    "@polkadot/extrinsics": "^0.25.2",
-    "@polkadot/params": "^0.25.2",
-    "@polkadot/util": "^0.25.2",
-    "@polkadot/util-keyring": "^0.25.2",
+    "@polkadot/extrinsics": "^0.25.3",
+    "@polkadot/params": "^0.25.3",
+    "@polkadot/util": "^0.25.3",
+    "@polkadot/util-keyring": "^0.25.3",
     "bn.js": "^4.11.8"
   }
 }

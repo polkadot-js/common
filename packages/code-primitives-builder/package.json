@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/primitives-builder",
-  "version": "0.25.2",
+  "version": "0.25.3",
   "description": "Builder for primitives for Polkadot",
   "main": "index.js",
   "engines": {
@@ -34,14 +34,14 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
-    "@polkadot/extrinsics-codec": "^0.25.2",
-    "@polkadot/primitives": "^0.25.2",
-    "@polkadot/primitives-codec": "^0.25.2",
-    "@polkadot/trie-hash": "^0.25.2",
-    "@polkadot/util": "^0.25.2",
-    "@polkadot/util-crypto": "^0.25.2"
+    "@polkadot/extrinsics-codec": "^0.25.3",
+    "@polkadot/primitives": "^0.25.3",
+    "@polkadot/primitives-codec": "^0.25.3",
+    "@polkadot/trie-hash": "^0.25.3",
+    "@polkadot/util": "^0.25.3",
+    "@polkadot/util-crypto": "^0.25.3"
   },
   "devDependencies": {
-    "@polkadot/util-keyring": "^0.25.2"
+    "@polkadot/util-keyring": "^0.25.3"
   }
 }
