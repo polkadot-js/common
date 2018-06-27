@@ -17,8 +17,8 @@ export * from './string';
 export * from './u8a';
 
 /**
-  @summary Utility methods for this package are split into groups
-*/
+ * @summary Utility methods for this package are split into groups
+ */
 export {
   assert,
   logger,

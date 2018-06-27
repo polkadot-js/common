@@ -5,8 +5,8 @@
 import stringShorten from './shorten';
 
 /**
-  @summary Utility methods to convert to work with `string` values
-*/
+ * @summary Utility methods to convert to work with `string` values
+ */
 export {
   stringShorten
 };

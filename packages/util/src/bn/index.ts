@@ -8,8 +8,8 @@ import bnToHex from './toHex';
 import bnToU8a from './toU8a';
 
 /**
-  @summary Utility methods to convert to and from `BN` objects
-*/
+ * @summary Utility methods to convert to and from `BN` objects
+ */
 export {
   bnFromHex,
   bnToBn,

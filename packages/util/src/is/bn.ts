@@ -5,17 +5,17 @@
 import BN from 'bn.js';
 
 /**
-  @name isBn
-  @signature isBN (value: any): boolean
-  @summary Tests for a `BN` object instance.
-  @description
-    Checks to see if the input object is an instance of `BN` (bn.js).
-  @example
-    import BN from 'bn.js';
-    import { isBn } from '@polkadot/util';
-
-    console.log('isBn', isBn(new BN(1))); // => true
-*/
+ * @name isBn
+ * @signature isBN (value: any): boolean
+ * @summary Tests for a `BN` object instance.
+ * @description
+ * Checks to see if the input object is an instance of `BN` (bn.js).
+ * @example
+ *   import BN from 'bn.js';
+ *   import { isBn } from '@polkadot/util';
+ *
+ *   console.log('isBn', isBn(new BN(1))); // => true
+ */
 export default function isBn (value: any): value is BN {
   return BN.isBN(value);
 }

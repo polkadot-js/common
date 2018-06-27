@@ -7,8 +7,8 @@ import randomAsNumber from './asNumber';
 import randomAsU8a from './asU8a';
 
 /**
-  @summary Returns a sequence of secure random bytes in a variety of formats
-*/
+ * @summary Returns a sequence of secure random bytes in a variety of formats
+ */
 export {
   randomAsHex,
   randomAsNumber,

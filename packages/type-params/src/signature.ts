@@ -7,16 +7,16 @@ import { SectionItem } from './types';
 import typeToString from './typeToString';
 
 /**
-  @name signature
-  @signature jsonrpcSignature (method: InterfaceMethodDefinition): string
-  @summary Returns a string representation of the method with inputs and outputs.
-  @description
-    Formats the name, inputs and outputs into a human-readable string. This contains the input parameter names, input types and output type.
-  @example
-    import signature from '@polkadot/params/signature';
-
-    console.log(signature({ name: 'test_method', params: [ { name: 'dest', type: 'Address' } ], type: 'Address' })); // => test_method (dest: Address): Address
-*/
+ * @name signature
+ * @signature jsonrpcSignature (method: InterfaceMethodDefinition): string
+ * @summary Returns a string representation of the method with inputs and outputs.
+ * @description
+ * Formats the name, inputs and outputs into a human-readable string. This contains the input parameter names input types and output type.
+ * @example
+ *   import signature from '@polkadot/params/signature';
+ *
+ *   signature({ name: 'test_method', params: [ { name: 'dest', type: 'Address' } ], type: 'Address' }); // => test_method (dest: Address): Address
+ */
 export default function signature<T> ({ name, params, type }: SectionItem<T>): string {
   const inputs = params.map(({ name, type }) =>
     `${name}: ${typeToString(type)}`

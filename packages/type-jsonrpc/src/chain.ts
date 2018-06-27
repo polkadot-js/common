@@ -30,8 +30,8 @@ const newHead: CreateItemOptions = {
 };
 
 /**
-  @summary Methods to retrieve chain data.
-*/
+ * @summary Methods to retrieve chain data.
+ */
 export default (name: Interface$Sections): Section<Interfaces> =>
   createSection(name)((createMethod: CreateItems<Interfaces>) => ({
     description: 'Retrieval of chain data',

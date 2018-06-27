@@ -10,6 +10,7 @@ import bnToBn from '@polkadot/util/bn/toBn';
 
 import extrinsicsRawRoot from './extrinsic/rootRaw';
 
+// tslint:disable-next-line:variable-name
 export default function header ({ digest: { logs = [] } = {}, extrinsicsRoot, number, parentHash = new Uint8Array(32), stateRoot = new Uint8Array(32) }: HeaderIncomplete, extrinsics?: Array<UncheckedRaw>): Header {
   return {
     digest: {

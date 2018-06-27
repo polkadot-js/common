@@ -11,6 +11,7 @@ import hashDecode from '../hash/decode';
 import bnDecode from '../bn/decode';
 import bytesDecode from '../bytes/decode';
 
+// tslint:disable-next-line:variable-name
 export default function headerDecode ({ digest, extrinsicsRoot, number, parentHash, stateRoot }: JsonHeader): Header {
   return headerBuilder({
     digest: {

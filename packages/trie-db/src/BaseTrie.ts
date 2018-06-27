@@ -304,7 +304,7 @@ export default class BaseTrie {
   // @ts-ignore FIXME, we need to properly check the full file
   _findValueNodes (onFound, cb) {
     // @ts-ignore FIXME, we need to properly check the full file
-    this._walkTrie(this.root, (nodeRef, node, key, walkController) => {
+    this._walkTrie(this.root, (nodeRef, node, key, walkController) => { // tslint:disable-line
       let fullKey = key;
 
       if (node.key) {
@@ -331,7 +331,7 @@ export default class BaseTrie {
   // @ts-ignore FIXME, we need to properly check the full file
   _findDbNodes (onFound, cb) {
     // @ts-ignore FIXME, we need to properly check the full file
-    this._walkTrie(this.root, (nodeRef, node, key, walkController) => {
+    this._walkTrie(this.root, (nodeRef, node, key, walkController) => { // tslint:disable-line
       if (isRawNode(nodeRef)) {
         walkController.next();
       } else {
@@ -509,6 +509,7 @@ export default class BaseTrie {
             const childKey = key.concat(keyExtension);
             const priority = childKey.length;
 
+            // tslint:disable-next-line
             taskExecutor(priority, async (taskCallback) => {
               const childNode = await self._lookupNode(childRef);
 
@@ -527,6 +528,7 @@ export default class BaseTrie {
 
           const priority = childKey.length;
 
+          // tslint:disable-next-line
           taskExecutor(priority, async (taskCallback) => {
             const childNode = await self._lookupNode(childRef);
 

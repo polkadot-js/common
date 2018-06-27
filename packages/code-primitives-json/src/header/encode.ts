@@ -9,6 +9,7 @@ import bnEncode from '../bn/encode';
 import bytesEncode from '../bytes/encode';
 import hashEncode from '../hash/encode';
 
+// tslint:disable-next-line:variable-name
 export default function headerEncode ({ parentHash, number, stateRoot, extrinsicsRoot, digest }: Header): JsonHeader {
   return {
     digest: {

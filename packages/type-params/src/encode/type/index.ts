@@ -90,7 +90,8 @@ export default function encodeType (type: Param$Type, value: any, version: Encod
         return bnToU8a(value || 0, 8, true);
 
       default:
-        (type as never); // eslint-disable-line no-unused-expressions
+        // tslint:disable-next-line
+        (type as never);
         throw new Error(`No formatter for ${type}`);
     }
   } catch (error) {

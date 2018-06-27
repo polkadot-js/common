@@ -5,8 +5,8 @@
 import ExtError from './error';
 
 /**
-  @summary Extensions to basic classes
-*/
+ * @summary Extensions to basic classes
+ */
 export {
   ExtError
 };

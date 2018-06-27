@@ -5,4 +5,5 @@
 import { TrieDbState } from './types';
 
 export default function commit (self: TrieDbState): void {
+  // TODO
 }

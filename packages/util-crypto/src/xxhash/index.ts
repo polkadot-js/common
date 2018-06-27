@@ -6,8 +6,8 @@ import xxhashAsHex from './asHex';
 import xxhashAsU8a from './asU8a';
 
 /**
-  @summary Create xxhash64 values with specified bitlengths
-*/
+ * @summary Create xxhash64 values with specified bitlengths
+ */
 export {
   xxhashAsHex,
   xxhashAsU8a

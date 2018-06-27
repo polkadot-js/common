@@ -5,9 +5,9 @@
 import hexFromBn from '../bn/toHex';
 
 /**
-  @name hexFromBn
-  @signature hexFromBn (value?: BN): string
-  @summary Creates a hex value from a BN.js bignumber object.
-  @alias bn/toHex
-*/
+ * @name hexFromBn
+ * @signature hexFromBn (value?: BN): string
+ * @summary Creates a hex value from a BN.js bignumber object.
+ * @alias bn/toHex
+ */
 export default hexFromBn;

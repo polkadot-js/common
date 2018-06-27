@@ -44,16 +44,16 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
 }
 
 /**
-  @name Logger
-  @signature logger (type: string): Logger
-  @summary Creates a consistent log interface for messages
-  @description
-    Returns a `Logger` that has `.log`, `.error`, `.warn` and `.debug` (constrolled with environment `DEBUG=typeA,typeB`) methods. Logging is done with a consistent prefix (type of logger, date) followed by the actual message using the underlying console.
-  @example
-    const l from '@polkadot/util/logger')('test');
-
-    l.log('blah'); // <date>     TEST: blah
-*/
+ * @name Logger
+ * @signature logger (type: string): Logger
+ * @summary Creates a consistent log interface for messages
+ * @description
+ * Returns a `Logger` that has `.log`, `.error`, `.warn` and `.debug` (constrolled with environment `DEBUG=typeA,typeB`) methods. Logging is done with a consistent prefix (type of logger, date) followed by the actual message using the underlying console.
+ * @example
+ *   const l from '@polkadot/util/logger')('test');
+ *
+ *   l.log('blah'); // <date>     TEST: blah
+ */
 export default function logger (_type: string): Logger {
   const type = `               ${_type.toUpperCase()}:`.slice(-16);
   let isDebug;

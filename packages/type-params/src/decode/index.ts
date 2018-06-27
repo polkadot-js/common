@@ -49,9 +49,9 @@ export default function decode (type: Param$Types, input: Uint8Array, version: E
   if (Array.isArray(type)) {
     // Arrays have single entries, Tuples will have multiple types
     if (type.length === 1) {
-      return decodeArray((type as Param$Type$Array), input, version);
+      return decodeArray(type, input, version);
     } else {
-      return decodeTuple((type as Param$Type$Array), input, version);
+      return decodeTuple(type, input, version);
     }
   }
 

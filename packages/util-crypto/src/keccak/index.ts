@@ -6,8 +6,8 @@ import keccakAsHex from './asHex';
 import keccakAsU8a from './asU8a';
 
 /**
-  @summary Create Keccak256 values as hex & Uint8Array output
-*/
+ * @summary Create Keccak256 values as hex & Uint8Array output
+ */
 export {
   keccakAsHex,
   keccakAsU8a

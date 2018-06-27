@@ -46,14 +46,14 @@ export default async function verifyProof (rootHash, _key, proofs) {
 
       if (cld.length === 2) {
         // @ts-ignore FIXME, we need to properly check the full file
-      const embeddedNode = nodeFactory.fromRaw(cld);
+        const embeddedNode = nodeFactory.fromRaw(cld);
 
         assert(i === lastIndex, 'Additional nodes at end of proof (embeddedNode)');
         // @ts-ignore FIXME, we need to properly check the full file
-      assert(nibblesMatchingLength(embeddedNode.key, key) === embeddedNode.key.length, 'Key length does not match with the proof one (embeddedNode)');
+        assert(nibblesMatchingLength(embeddedNode.key, key) === embeddedNode.key.length, 'Key length does not match with the proof one (embeddedNode)');
 
         // @ts-ignore FIXME, we need to properly check the full file
-      key = key.slice(embeddedNode.key.length);
+        key = key.slice(embeddedNode.key.length);
 
         assert(key.length === 0, 'Key does not match with the proof one (embeddedNode)');
 

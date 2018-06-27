@@ -31,7 +31,7 @@ export default class CheckpointTrie extends BaseTrie {
   _checkpoints: Array<Uint8Array>;
   _scratch: any; // FIXME
   // @ts-ignore FIXME, we need to properly check the full file
-  __putDBs: any[]; // FIXME
+  __putDBs: any[]; // tslint:disable-line
 
   // @ts-ignore FIXME, we need to properly check the full file
   constructor (db, root: Uint8Array) {

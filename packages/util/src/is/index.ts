@@ -19,8 +19,8 @@ import isU8a from './u8a';
 import isUndefined from './undefined';
 
 /**
-  @summary Type checking utilities
-*/
+ * @summary Type checking utilities
+ */
 export {
   isBn,
   isBoolean,

@@ -26,8 +26,8 @@ const version: CreateItemOptions = {
 };
 
 /**
-  @summary Methods to retrieve system info.
-*/
+ * @summary Methods to retrieve system info.
+ */
 export default (sname: Interface$Sections): Section<Interfaces> =>
   createSection(sname)((createMethod: CreateItems<Interfaces>) => ({
     description: 'Methods to retrieve system info',

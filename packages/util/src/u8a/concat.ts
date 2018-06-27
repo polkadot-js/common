@@ -5,19 +5,19 @@
 import u8aToU8a from './toU8a';
 
 /**
-  @name u8aConcat
-  @signature u8aConcat (...values: Array<Uint8Array | string>): Uint8Array
-  @summary Creates a concatenated Uint8Array from the inputs.
-  @description
-    Concatenates the input arrays into a single `UInt8Array`.
-  @example
-    import { u8aConcat } from '@polkadot/util';
-
-    u8aConcat(
-      new Uint8Array([1, 2, 3]),
-      new Uint8Array([4, 5, 6])
-    ); // [1, 2, 3, 4, 5, 6]
-*/
+ * @name u8aConcat
+ * @signature u8aConcat (...values: Array<Uint8Array | string>): Uint8Array
+ * @summary Creates a concatenated Uint8Array from the inputs.
+ * @description
+ * Concatenates the input arrays into a single `UInt8Array`.
+ * @example
+ *   import { u8aConcat } from '@polkadot/util';
+ *
+ *   u8aConcat(
+ *     new Uint8Array([1, 2, 3]),
+ *     new Uint8Array([4, 5, 6])
+ *   ); // [1, 2, 3, 4, 5, 6]
+ */
 export default function u8aConcat (..._list: Array<Uint8Array | string>): Uint8Array {
   const list: Array<Uint8Array> = _list.map(u8aToU8a);
   const length = list.reduce((total, item) => total + item.length, 0);
