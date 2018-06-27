@@ -3,8 +3,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@polkadot/extrinsics-codec/*": [ "packages/code-extrinsics/src/*" ],
-
       "@polkadot/extrinsics/*": [ "packages/type-extrinsics/src/*" ],
       "@polkadot/jsonrpc/*": [ "packages/type-jsonrpc/src/*" ],
       "@polkadot/params/*": [ "packages/type-params/src/*" ],
