@@ -9,8 +9,8 @@ type Task = {
   fn: Task$Fn,
   priority: number,
   reject: (error: Error) => void,
-  resolve: (value: any) => void,
-}
+  resolve: (value: any) => void
+};
 
 // https://github.com/ethereumjs/merkle-patricia-tree/pull/38
 export default function taskExecutor (maxPoolSize: number) {

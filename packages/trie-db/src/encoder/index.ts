@@ -5,10 +5,8 @@
 // @ts-ignore FIXME, we need to properly check the full file
 import { LevelUp$AbstractStorage } from 'levelup';
 // @ts-ignore FIXME, we need to properly check the full file
-import { EncoderBufferOptions, EncodingBuffer } from 'encoding-down';
+import encodingDown, { EncoderBufferOptions, EncodingBuffer } from 'encoding-down';
 
-// @ts-ignore FIXME, we need to properly check the full file
-import encodingDown from 'encoding-down';
 import logger from '@polkadot/util/logger';
 
 import decode from './decode';

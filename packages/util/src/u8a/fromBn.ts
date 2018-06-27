@@ -5,9 +5,9 @@
 import u8aFromBn from '../bn/toU8a';
 
 /**
-  @name u8aFromBn
-  @signature u8aFromBn (value?: BN): Uint8Array
-  @summary Creates a Uint8Array value from a BN object.
-  @alias bn/toU8a
-*/
+ * @name u8aFromBn
+ * @signature u8aFromBn (value?: BN): Uint8Array
+ * @summary Creates a Uint8Array value from a BN object.
+ * @alias bn/toU8a
+ */
 export default u8aFromBn;

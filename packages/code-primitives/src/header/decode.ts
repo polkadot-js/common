@@ -10,6 +10,7 @@ import decodeRaw from './decodeRaw';
 import { OFF_PARENT_HASH, OFF_STATE_ROOT, OFF_TX_ROOT } from './offsets';
 
 export default function decodeHeader (u8a: Uint8Array): Header {
+  // tslint:disable-next-line:variable-name
   const { number, logs } = decodeRaw(u8a);
 
   return createHeader({

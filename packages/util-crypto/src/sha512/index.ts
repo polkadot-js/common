@@ -5,8 +5,8 @@
 import sha512AsU8a from './asU8a';
 
 /**
-  @summary Implements Sha-512 hashing functions for a variety of input and outputs
-*/
+ * @summary Implements Sha-512 hashing functions for a variety of input and outputs
+ */
 export {
   sha512AsU8a
 };

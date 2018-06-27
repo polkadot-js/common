@@ -6,16 +6,16 @@ import isFunction from './function';
 import isObject from './object';
 
 /**
-  @name isBObservable
-  @signature isObservable (value: any): boolean
-  @summary Tests for a `Observable` object instance.
-  @description
-    Checks to see if the input object is an instance of `BN` (bn.js).
-  @example
-    import { isObservable } from '@polkadot/util';
-
-    console.log('isObservable', isObservable(...));
-*/
+ * @name isBObservable
+ * @signature isObservable (value: any): boolean
+ * @summary Tests for a `Observable` object instance.
+ * @description
+ * Checks to see if the input object is an instance of `BN` (bn.js).
+ * @example
+ *   import { isObservable } from '@polkadot/util';
+ *
+ *   console.log('isObservable', isObservable(...));
+ */
 export default function isObservable (value: any): boolean {
   return isObject(value) && isFunction((value as any).next);
 }

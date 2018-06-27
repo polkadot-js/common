@@ -5,16 +5,16 @@
 import isInstanceOf from './instanceOf';
 
 /**
-  @name isError
-  @signature isError (value: any): boolean
-  @summary Tests for a `Error` object instance.
-  @description
-    Checks to see if the input object is an instance of `Error`.
-  @example
-    import { isError } from '@polkadot/util';
-
-    console.log('isError', isError(new Error('message'))); // => true
-*/
+ * @name isError
+ * @signature isError (value: any): boolean
+ * @summary Tests for a `Error` object instance.
+ * @description
+ * Checks to see if the input object is an instance of `Error`.
+ * @example
+ *   import { isError } from '@polkadot/util';
+ *
+ *   console.log('isError', isError(new Error('message'))); // => true
+ */
 export default function isError (value: any): value is Error {
   return isInstanceOf(value, Error);
 }

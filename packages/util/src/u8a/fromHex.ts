@@ -5,9 +5,9 @@
 import u8aFromHex from '../hex/toU8a';
 
 /**
-  @name u8aFromHex
-  @signature u8aFromHex (value?: string): Uint8Array
-  @summary Creates a Uint8Array value from a hex string.
-  @alias hex/toU8a
-*/
+ * @name u8aFromHex
+ * @signature u8aFromHex (value?: string): Uint8Array
+ * @summary Creates a Uint8Array value from a hex string.
+ * @alias hex/toU8a
+ */
 export default u8aFromHex;

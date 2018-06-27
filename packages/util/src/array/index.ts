@@ -5,8 +5,8 @@
 import arrayFilter from './filter';
 
 /**
-  @summary Utility methods that operates on arrays
-*/
+ * @summary Utility methods that operates on arrays
+ */
 export {
   arrayFilter
 };

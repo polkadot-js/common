@@ -17,16 +17,16 @@ function extend (that: any, name: string, value: any): void {
 }
 
 /**
-  @name ExtError
-  @signature ExtError (message: string = '', code: number = UNKNOWN_ERROR, value: any)
-  @summary Extension to the basic JS Error.
-  @description
-    The built-in JavaScript Error class is extended by adding a code to allow for Error categorization. In addition to the normal `stack`, `message`, the numeric `code` and `data` (any types) parameters are available on the object.
-  @example
-    const { ExtError } from '@polkadot/util');
-
-    throw new ExtError('some message', ExtError.CODES.METHOD_NOT_FOUND); // => error.code = -32601
-*/
+ * @name ExtError
+ * @signature ExtError (message: string = '', code: number = UNKNOWN_ERROR, value: any)
+ * @summary Extension to the basic JS Error.
+ * @description
+ * The built-in JavaScript Error class is extended by adding a code to allow for Error categorization. In addition to the normal `stack`, `message`, the numeric `code` and `data` (any types) parameters are available on the object.
+ * @example
+ *   const { ExtError } from '@polkadot/util');
+ *
+ *   throw new ExtError('some message', ExtError.CODES.METHOD_NOT_FOUND); // => error.code = -32601
+ */
 export default class ExtError extends Error implements ExtErrorInterface {
   // @ts-ignore we are assigning it via extend
   code: number;

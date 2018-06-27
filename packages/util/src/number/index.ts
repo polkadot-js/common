@@ -7,8 +7,8 @@ import numberToHex from './toHex';
 import numberToU8a from './toU8a';
 
 /**
-  @summary Utility methods to convert to and from `number` values
-*/
+ * @summary Utility methods to convert to and from `number` values
+ */
 export {
   numberFromHex,
   numberToHex,

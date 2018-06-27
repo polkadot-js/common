@@ -95,7 +95,8 @@ export default function decodeValue (decode: Decoder, type: Param$Type, input: U
         return byte(input);
 
       default:
-        (type as never); // eslint-disable-line no-unused-expressions
+        // tslint:disable-next-line
+        (type as never);
         throw new Error(`No value decoder for type='${type}'`);
     }
   } catch (error) {

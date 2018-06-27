@@ -13,8 +13,8 @@ import hexToNumber from './toNumber';
 import hexToU8a from './toU8a';
 
 /**
-  @summary Internal utilities to create and test for hex values
-*/
+ * @summary Internal utilities to create and test for hex values
+ */
 export {
   hexAddPrefix,
   hexFixLength,

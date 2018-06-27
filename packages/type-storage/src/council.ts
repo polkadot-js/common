@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import { CreateItems, CreateItemOptions, Section } from '@polkadot/params/types';
-import { Storages, Storage$Sections } from './types';
+import { Storages } from './types';
 
 import param from '@polkadot/params/param';
 import createSection from '@polkadot/params/section';

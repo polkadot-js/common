@@ -17,8 +17,8 @@ import u8aToU8a from './toU8a';
 import u8aToUtf8 from './toUtf8';
 
 /**
-  @summary Utility methods to convert to and from `Uint8Array` objects
-*/
+ * @summary Utility methods to convert to and from `Uint8Array` objects
+ */
 export {
   u8aConcat,
   u8aFixLength,

@@ -79,8 +79,8 @@ const getStorageSizeAt: CreateItemOptions = {
 };
 
 /**
-  @summary Query the state and state storage.
-*/
+ * @summary Query the state and state storage.
+ */
 export default (name: Interface$Sections): Section<Interfaces> =>
   createSection(name)((createMethod: CreateItems<Interfaces>) => ({
     description: 'Query of state',

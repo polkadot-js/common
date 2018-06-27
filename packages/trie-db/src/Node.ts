@@ -106,7 +106,7 @@ export default class TrieNode {
     }
   }
 
-  getKey ()  {
+  getKey () {
     if (this.type !== 'branch') {
       return removeHexPrefix(
         // @ts-ignore FIXME, we need to properly check the full file
@@ -153,7 +153,9 @@ export default class TrieNode {
         children.push([this.key, this.getValue()]);
         break;
       case 'branch':
-        for (let index = 0, end = 16; index < end; index++) {
+        let end = 16;
+
+        for (let index = 0; index < end; index++) {
           const value = this.getValue(index);
 
           if (value) {

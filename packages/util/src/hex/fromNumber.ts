@@ -5,9 +5,9 @@
 import hexFromNumber from '../number/toHex';
 
 /**
-  @name hexFromNumber
-  @signature hexFromNumber (value?: number): string
-  @summary Creates a hex value from a number.
-  @alias number/toHex
-*/
+ * @name hexFromNumber
+ * @signature hexFromNumber (value?: number): string
+ * @summary Creates a hex value from a number.
+ * @alias number/toHex
+ */
 export default hexFromNumber;

@@ -3,16 +3,16 @@
 // of the ISC license. See the LICENSE file for details.
 
 /**
-  @name u8aFromString
-  @signature u8aFromString (value: string): UInt8Array
-  @summary Creates a Uint8Array object from a string.
-  @description
-    String input values return the actual encoded `UInt8Array`.
-  @example
-    import { u8aFromString } from '@polkadot/util';
-
-    u8aFromString('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
-*/
+ * @name u8aFromString
+ * @signature u8aFromString (value: string): UInt8Array
+ * @summary Creates a Uint8Array object from a string.
+ * @description
+ * String input values return the actual encoded `UInt8Array`.
+ * @example
+ *   import { u8aFromString } from '@polkadot/util';
+ *
+ *   u8aFromString('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
+ */
 export default function u8aFromString (value: string): Uint8Array {
   const stringArray = [];
 

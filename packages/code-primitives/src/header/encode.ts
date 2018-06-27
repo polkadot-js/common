@@ -13,6 +13,7 @@ import u8aToU8a from '@polkadot/util/u8a/toU8a';
 import encodeArray from '../encoder/array';
 import encodeU8a from '../encoder/u8a';
 
+// tslint:disable-next-line:variable-name
 export default function encodeHeader ({ digest: { logs }, extrinsicsRoot, parentHash, number, stateRoot }: Header, extrinsics?: Array<UncheckedRaw>): Uint8Array {
   return u8aConcat(
     u8aToU8a(parentHash),

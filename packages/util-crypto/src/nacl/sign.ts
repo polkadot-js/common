@@ -5,16 +5,16 @@
 import nacl from 'tweetnacl';
 
 /**
-  @name naclSign
-  @signature naclSign (message: Uint8Array, secretKey: Uint8Array): Uint8Array
-  @summary Signs a message using the supplied secretKey
-  @description
-    Returns message signature of `message`, using the `secretKey`.
-  @example
-    import { naclSign } from '@polkadot/util-crypto';
-
-    naclSign([...], [...]) // => [...]
-*/
+ * @name naclSign
+ * @signature naclSign (message: Uint8Array, secretKey: Uint8Array): Uint8Array
+ * @summary Signs a message using the supplied secretKey
+ * @description
+ * Returns message signature of `message`, using the `secretKey`.
+ * @example
+ *   import { naclSign } from '@polkadot/util-crypto';
+ *
+ *   naclSign([...], [...]) // => [...]
+ */
 export default function naclSign (message: Uint8Array, secretKey: Uint8Array): Uint8Array {
   return nacl.sign.detached(message, secretKey);
 }

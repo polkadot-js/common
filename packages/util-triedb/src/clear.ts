@@ -5,4 +5,5 @@
 import { TrieDbState } from './types';
 
 export default function clear (self: TrieDbState): void {
+  // TODO
 }

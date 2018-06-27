@@ -2,10 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { SizeType } from '@polkadot/primitives/sizes';
+import sizes, { SizeType } from '@polkadot/primitives/sizes';
 import { EncodingVersions } from './types';
-
-import sizes from '@polkadot/primitives/sizes';
 
 const Balance: Map<EncodingVersions, SizeType> = new Map([
   ['latest' as EncodingVersions, sizes.Balance],

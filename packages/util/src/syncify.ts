@@ -12,8 +12,13 @@ import isUndefined from './is/undefined';
 export default function syncify (promise: Promise<any>): any {
   let result: any;
 
+  // tslint:disable-next-line
   (async () => {
-    result = await promise.catch((error) => error);
+    try {
+      result = await promise;
+    } catch (error) {
+      result = error;
+    }
   })();
 
   deasync.loopWhile(

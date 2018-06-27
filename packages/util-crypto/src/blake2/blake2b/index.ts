@@ -6,8 +6,8 @@ import blake2bAsHex from './asHex';
 import blake2bAsU8a from './asU8a';
 
 /**
-  @summary Create [Blake2b](https://blake2.net/) values as hex & Uint8Array output
-*/
+ * @summary Create [Blake2b](https://blake2.net/) values as hex & Uint8Array output
+ */
 export {
   blake2bAsHex,
   blake2bAsU8a

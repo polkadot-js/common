@@ -17,11 +17,13 @@ type RawData = {
 };
 
 export default function decodeRaw (u8a: Uint8Array): RawData {
+  // tslint:disable-next-line:variable-name
   const { body, header, number } = decodeHeader(u8a);
   const length = u8aToBn(body.subarray(0, 4), true).toNumber();
   const extrinsics = [];
+  let offset = 4;
 
-  for (let index = 0, offset = 4; index < length; index++) {
+  for (let index = 0; index < length; index++) {
     const extrinsic = decodeExtrinsic(
       body.subarray(offset)
     );

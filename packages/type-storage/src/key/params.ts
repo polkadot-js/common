@@ -73,7 +73,8 @@ export default function formatParams (params: Params, values: Storage$Key$Value[
           return bnToU8a((value as Date).getTime(), 64, true);
 
         default:
-          (type as never); // eslint-disable-line
+          // tslint:disable-next-line
+          (type as never);
           throw new Error('Unable to find handler');
       }
     } catch (error) {

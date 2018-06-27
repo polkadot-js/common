@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { Interfaces, Interface$Sections } from './types';
+import { Interfaces } from './types';
 
 import author from './author';
 import chain from './chain';

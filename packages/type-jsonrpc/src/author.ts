@@ -18,8 +18,8 @@ const submitExtrinsic: CreateItemOptions = {
 };
 
 /**
-  @summary Methods to work with authors & contributors.
-*/
+ * @summary Methods to work with authors & contributors.
+ */
 export default (name: Interface$Sections): Section<Interfaces> =>
   createSection(name)((createMethod: CreateItems<Interfaces>) => ({
     description: 'Authoring of network items',

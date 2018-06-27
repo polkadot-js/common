@@ -12,8 +12,8 @@ import naclSign from './sign';
 import naclVerify from './verify';
 
 /**
-  @summary Implements [NaCl](http://nacl.cr.yp.to/) secret-key authenticated encryption, public-key authenticated encryption, hashing, and public-key signatures
-*/
+ * @summary Implements [NaCl](http://nacl.cr.yp.to/) secret-key authenticated encryption, public-key authenticated encryption, hashing, and public-key signatures
+ */
 export {
   naclDecrypt,
   naclEncrypt,

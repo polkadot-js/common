@@ -28,7 +28,7 @@ export default function pairs (): KeyringPairs {
       return pair;
     },
     all: (): Array<KeyringPair> =>
-      (Object.values(self) as Array<KeyringPair>),
+      Object.values(self),
     get: (address: string | Uint8Array): KeyringPair => {
       // @ts-ignore we use coercion :(
       const pair = self[addressDecode(address)];

@@ -6,8 +6,8 @@ import trieRoot from './root';
 import trieRootOrdered from './rootOrdered';
 
 /**
-  @summary Utility methods to create [Ethereum Trie hashes](https://github.com/ethereum/wiki/wiki/Patricia-Tree)
-*/
+ * @summary Utility methods to create [Ethereum Trie hashes](https://github.com/ethereum/wiki/wiki/Patricia-Tree)
+ */
 export {
   trieRoot,
   trieRootOrdered

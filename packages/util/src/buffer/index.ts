@@ -6,8 +6,8 @@ import bufferFromU8a from './fromU8a';
 import bufferToU8a from './toU8a';
 
 /**
-  @summary Utility methods to convert to and from `Buffer` objects
-*/
+ * @summary Utility methods to convert to and from `Buffer` objects
+ */
 export {
   bufferFromU8a,
   bufferToU8a

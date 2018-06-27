@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { CreateItems, CreateItemOptions, Param$Type, Section } from '@polkadot/params/types';
+import { CreateItems, CreateItemOptions, Section } from '@polkadot/params/types';
 import { Storages, Storage$Sections } from './types';
 
 import param from '@polkadot/params/param';

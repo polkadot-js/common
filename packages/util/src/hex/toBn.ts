@@ -13,16 +13,16 @@ function reverse (value: string): string {
 }
 
 /**
-  @name hexToBn
-  @signature hexToBn (value?: string, isLe: boolean = false): BN
-  @summary Creates a BN.js bignumber object from a hex string.
-  @description
-    `null` inputs returns a `BN(0)` result. Hex input values return the actual value converted to a BN. Anything that is not a hex string (including the `0x` prefix) throws an error.
-  @example
-    import { hexToBn } from '@polkadot/util';
-
-    hexToBn('0x123480001f'); // => BN(0x123480001f)
-*/
+ * @name hexToBn
+ * @signature hexToBn (value?: string, isLe: boolean = false): BN
+ * @summary Creates a BN.js bignumber object from a hex string.
+ * @description
+ * `null` inputs returns a `BN(0)` result. Hex input values return the actual value converted to a BN. Anything that is not a hex string (including the `0x` prefix) throws an error.
+ * @example
+ *   import { hexToBn } from '@polkadot/util';
+ *
+ *   hexToBn('0x123480001f'); // => BN(0x123480001f)
+ */
 export default function hexToBn (_value?: string, isLe: boolean = false): BN {
   if (!_value) {
     return new BN(0);
