@@ -5,6 +5,10 @@
 import isFunction from './function';
 import isObject from './object';
 
+type Observable = {
+  next: (...paarams: any[]) => any
+};
+
 /**
  * @name isBObservable
  * @signature isObservable (value: any): boolean
@@ -16,6 +20,6 @@ import isObject from './object';
  *
  *   console.log('isObservable', isObservable(...));
  */
-export default function isObservable (value: any): boolean {
-  return isObject(value) && isFunction((value as any).next);
+export default function isObservable (value: any): value is Observable {
+  return isObject(value) && isFunction((value as Observable).next);
 }

@@ -736,9 +736,9 @@
     tslint-config-semistandard "^7.0.0"
     typescript "^2.9.2"
 
-"@polkadot/ts@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.3.tgz#e277fb89c43a64b244a6d1ae03fc4ede128b155d"
+"@polkadot/ts@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.5.tgz#bd944090a788d9379866059fb61b5708b4696cc7"
 
 "@types/async@^2.0.49":
   version "2.0.49"
@@ -747,6 +747,12 @@
 "@types/base-x@*":
   version "1.0.29"
   resolved "https://registry.yarnpkg.com/@types/base-x/-/base-x-1.0.29.tgz#8a2d73e4a5c3121757a5f8870cfa4509655186b6"
+
+"@types/bn.js@^4.11.1":
+  version "4.11.1"
+  resolved "https://registry.yarnpkg.com/@types/bn.js/-/bn.js-4.11.1.tgz#6fd07b93490ecf0f3501a31ea9cfd330885b10fa"
+  dependencies:
+    "@types/node" "*"
 
 "@types/bs58@^3.0.30":
   version "3.0.30"

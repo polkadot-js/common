@@ -18,7 +18,7 @@ export default function decode (encoded: string | Uint8Array): Uint8Array {
     return u8aToU8a(encoded);
   }
 
-  const decoded = bufferToU8a(bs58.decode(encoded as string));
+  const decoded = bufferToU8a(bs58.decode(encoded));
   const error = (message: string) =>
     `Decoding ${encoded}: ${message}`;
 
