@@ -2,10 +2,6 @@ const config = require('@polkadot/dev/config/jest');
 
 module.exports = Object.assign({}, config, {
   moduleNameMapper: {
-    '@polkadot/extrinsics-codec(.*)$': '<rootDir>/packages/code-extrinsics/src/$1',
-    '@polkadot/primitives-codec(.*)$': '<rootDir>/packages/code-primitives/src/$1',
-    '@polkadot/primitives-(builder|json)(.*)$': '<rootDir>/packages/code-primitives-$1/src/$2',
-
     '@polkadot/extrinsics(.*)$': '<rootDir>/packages/type-extrinsics/src/$1',
     '@polkadot/jsonrpc(.*)$': '<rootDir>/packages/type-jsonrpc/src/$1',
     '@polkadot/params(.*)$': '<rootDir>/packages/type-params/src/$1',

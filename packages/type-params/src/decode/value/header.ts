@@ -4,7 +4,7 @@
 
 import { Param$Decoded } from '../../types';
 
-import decodeHeader from '@polkadot/primitives-codec/header/decode';
+import decodeHeader from '@polkadot/primitives/codec/header/decode';
 
 export default function header (input: Uint8Array): Param$Decoded {
   // FIXME We don't have a way to determine the length atm
