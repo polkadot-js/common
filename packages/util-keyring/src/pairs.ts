@@ -36,7 +36,7 @@ export default function pairs (): KeyringPairs {
       assert(pair, () => {
         const formatted: string = isU8a(address) || isHex(address)
           ? u8aToHex(u8aToU8a(address))
-          : (address as string);
+          : address;
 
         return `Unable to retrieve keypair '${formatted}'`;
       });
