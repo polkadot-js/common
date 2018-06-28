@@ -4,7 +4,6 @@
 
 import syncify from './syncify';
 
-// FIXME fails locally now for some reason - not TS related. Since it is unused (for _right_ now), not an issue, but needs to be solved
 describe('syncify', () => {
   it('returns the result of the promise', () => {
     expect(
