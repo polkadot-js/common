@@ -14,7 +14,7 @@ const submitExtrinsic: CreateItemOptions = {
   params: [
     param('extrinsic', 'Bytes')
   ],
-  type: 'Header'
+  type: 'Hash'
 };
 
 /**
