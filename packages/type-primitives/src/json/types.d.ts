@@ -5,7 +5,7 @@
 export type JsonBnType = string;
 export type JsonHash = string;
 
-export type JsonBytes = string;
+export type JsonBytes = string | Array<number>;
 export type JsonH160 = JsonHash;
 export type JsonH256 = JsonHash;
 export type JsonH512 = JsonHash;

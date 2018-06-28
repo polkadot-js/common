@@ -8,5 +8,7 @@ import { JsonBytes } from '../types';
 import hexToU8a from '@polkadot/util/hex/toU8a';
 
 export default function bytesDecode (value: JsonBytes): Bytes {
-  return hexToU8a(value);
+  return Array.isArray(value)
+    ? new Uint8Array(value)
+    : hexToU8a(value);
 }

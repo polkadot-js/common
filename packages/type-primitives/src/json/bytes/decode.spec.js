@@ -10,4 +10,10 @@ describe('bytesDecode', () => {
       bytesDecode('0x0012345600')
     ).toEqual(new Uint8Array([0x00, 0x12, 0x34, 0x56, 0x00]));
   });
+
+  it('decodes byte array (number', () => {
+    expect(
+      bytesDecode([0x00, 0x12, 0x34, 0x56, 0x00])
+    ).toEqual(new Uint8Array([0x00, 0x12, 0x34, 0x56, 0x00]));
+  });
 });
