@@ -3,11 +3,10 @@
 // This software may be modified and distributed under the terms
 // of the MPL-2.0 license. See the LICENSE file for details.
 
-import { DecodedRlp, Trie$Node$Type } from './types';
+import { DecodedRlp, Trie$Node$Type, HashFn } from './types';
 
 import isU8a from '@polkadot/util/is/u8a';
 import u8aToHex from '@polkadot/util/u8a/toHex';
-import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
 import encodeRlp from '@polkadot/util-rlp/encode';
 
 import nibblesFromU8a from './nibbles/fromU8a';
@@ -37,10 +36,12 @@ function removeHexPrefix (key: Uint8Array): Uint8Array {
 }
 
 export default class TrieNode {
+  hashing: HashFn;
   raw: DecodedRlp;
   type: Trie$Node$Type;
 
-  constructor (type: Trie$Node$Type, raw: DecodedRlp) {
+  constructor (hashing: HashFn, type: Trie$Node$Type, raw: DecodedRlp) {
+    this.hashing = hashing;
     this.raw = raw;
     this.type = type;
   }
@@ -120,7 +121,7 @@ export default class TrieNode {
   }
 
   hash (): Uint8Array {
-    return keccakAsU8a(this.serialize());
+    return this.hashing(this.serialize());
   }
 
   toString (): string {

@@ -8,7 +8,7 @@ import toU8a from '@polkadot/util/u8a/toU8a';
 import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
 import encodeRlp from '@polkadot/util-rlp/encode';
 
-import Trie from '../src/index';
+import Trie from '../src/Trie';
 
 describe('it should create the genesis state root from ethereum', () => {
   const trie4 = new Trie();

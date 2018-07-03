@@ -5,7 +5,7 @@
 
 import randomAsU8a from '@polkadot/util-crypto/random/asU8a';
 
-import Trie from '../src/index';
+import Trie from '../src/Trie';
 
 describe('put & get raw functions', () => {
   var trie = new Trie();
