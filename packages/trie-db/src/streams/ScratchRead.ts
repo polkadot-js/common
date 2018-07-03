@@ -8,9 +8,9 @@ import { Trie$Base } from '../types';
 // @ts-ignore FIXME, we need to properly check the full file
 import { Readable } from 'readable-stream';
 import logger from '@polkadot/util/logger';
-import u8aToHex from '@polkadot/util/u8a/toHex';
+// import u8aToHex from '@polkadot/util/u8a/toHex';
 
-import rlpToString from '../util/rlpToString';
+// import rlpToString from '../util/rlpToString';
 
 const l = logger('trie/scratch');
 
@@ -39,7 +39,7 @@ export default class ScratchReadStream extends Readable {
     };
     // @ts-ignore FIXME, we need to properly check the full file
     const onFound = (nodeRef, node, key, next) => {
-      l.debug(() => ['onFound', u8aToHex(nodeRef), node.type, rlpToString(node.raw)]);
+      // l.debug(() => ['onFound', u8aToHex(nodeRef), node.type, rlpToString(node.raw)]);
 
       // @ts-ignore FIXME, we need to properly check the full file
       this.push({

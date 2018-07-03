@@ -8,7 +8,7 @@ import { Trie$Base } from '../types';
 // @ts-ignore FIXME, we need to properly check the full file
 import { Readable } from 'readable-stream';
 import logger from '@polkadot/util/logger';
-import u8aToHex from '@polkadot/util/u8a/toHex';
+// import u8aToHex from '@polkadot/util/u8a/toHex';
 
 import { nibblesToU8a } from '../nibbles';
 
@@ -40,7 +40,7 @@ export default class TrieReadStream extends Readable {
     };
     // @ts-ignore FIXME, we need to properly check the full file
     const onFound = (nodeRef, node, nibbles, next) => {
-      l.debug(() => ['onFound', nibbles, u8aToHex(node.value)]);
+      // l.debug(() => ['onFound', nibbles, u8aToHex(node.value)]);
 
       // @ts-ignore FIXME, we need to properly check the full file
       this.push({
