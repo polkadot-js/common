@@ -5,7 +5,7 @@
 import u8aToHex from '@polkadot/util/u8a/toHex';
 import toU8a from '@polkadot/util/u8a/toU8a';
 
-import Trie from '../src/Trie';
+import Trie from '../src/index';
 
 const EMPTY_ROOT = '0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421';
 const HELLO_ROOT = '0x0a915659b88f80bfa200570bd2767a6ab8cb0a4e44fd240cc5ed7a27728c4531';

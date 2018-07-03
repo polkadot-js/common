@@ -6,7 +6,7 @@
 import toU8a from '@polkadot/util/u8a/toU8a';
 import u8aToHex from '@polkadot/util/u8a/toHex';
 
-import Trie from '../src/Trie';
+import Trie from '../src/index';
 import { tests } from 'ethereumjs-testing';
 
 const jsonTests = tests.trieTests;

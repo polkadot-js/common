@@ -2,19 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the MPL-2.0 license. See the LICENSE file for details.
 
-export interface BaseDb {
-  del: (key: Uint8Array) => void,
-  get: (key: Uint8Array) => Uint8Array | null,
-  put: (key: Uint8Array, value: Uint8Array) => void
-}
-
-export interface TrieDb extends BaseDb {
-  checkpoint: () => void,
-  commit: () => void,
-  revert: () => void,
-  trieRoot: () => Uint8Array
-}
-
 export type Callback = (error?: Error | null, result?: any) => void;
 
 // NOTE This is actually DecodedRlp = Array<Uint8Array | DecodedRlp>, but since the decoder is relatively simple, we get away with the definition below
