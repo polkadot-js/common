@@ -99,7 +99,7 @@ export default class BaseTrie {
    * @returns {Function} Promise<void>
    */
   async put (key: Uint8Array, value: Uint8Array) {
-    l.debug(() => ['put', 'key ->', u8aToHex(key), 'value ->', u8aToHex(value)]);
+    l.debug(() => ['put', 'key ->', u8aToHex(key), 'value ->', u8aToHex(value, 256)]);
 
     if (!value || value.toString() === '') {
       return this.del(key);
@@ -244,7 +244,7 @@ export default class BaseTrie {
     const stack: any[] = []; // FIXME
     const targetKey = nibblesFromU8a(_targetKey);
 
-    l.debug(() => ['findPath', targetKey.join(', ')]);
+    // l.debug(() => ['findPath', targetKey.join(', ')]);
 
     // @ts-ignore FIXME, we need to properly check the full file
     const processNode = (nodeRef, node, keyProgress, walkController) => {

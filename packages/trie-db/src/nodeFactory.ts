@@ -7,10 +7,10 @@ import { Logger } from '@polkadot/util/types';
 import { HashFn, DecodedRlp, NodeFactory, Trie$Node, Trie$Node$Type } from './types';
 
 import logger from '@polkadot/util/logger';
-import u8aToHex from '@polkadot/util/u8a/toHex';
+// import u8aToHex from '@polkadot/util/u8a/toHex';
 
 import nibblesFromU8a from './nibbles/fromU8a';
-import rlpToString from './util/rlpToString';
+// import rlpToString from './util/rlpToString';
 
 import TrieNode from './Node';
 
@@ -43,7 +43,7 @@ function getNodeType (node: DecodedRlp): Trie$Node$Type {
 
 function fromBranch (l: Logger, hashing: HashFn) {
   return (rlp: DecodedRlp): Trie$Node => {
-    l.debug(() => ['fromBranch']);
+    // l.debug(() => ['fromBranch']);
 
     const node = new TrieNode(hashing, 'branch', Array.apply(null, Array(17)));
 
@@ -62,7 +62,7 @@ function fromBranch (l: Logger, hashing: HashFn) {
 
 function fromRaw (l: Logger, hashing: HashFn) {
   return (rlp: DecodedRlp): Trie$Node => {
-    l.debug(() => ['fromRaw ->', rlpToString(rlp)]);
+    // l.debug(() => ['fromRaw ->', rlpToString(rlp)]);
 
     const node = new TrieNode(hashing, getNodeType(rlp), rlp);
 
@@ -72,7 +72,7 @@ function fromRaw (l: Logger, hashing: HashFn) {
 
 function fromType (l: Logger, hashing: HashFn, type: Trie$Node$Type) {
   return (key: Uint8Array, value: Uint8Array): Trie$Node => {
-    l.debug(() => ['fromType', 'type ->', type, 'key ->', u8aToHex(key), 'value ->', u8aToHex(value)]);
+    // l.debug(() => ['fromType', 'type ->', type, 'key ->', u8aToHex(key), 'value ->', u8aToHex(value, 256)]);
 
     const node = new TrieNode(hashing, type, Array(2));
 
