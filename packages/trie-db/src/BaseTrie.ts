@@ -77,7 +77,7 @@ export default class BaseTrie {
    * @param {Buffer|String} key - the key to search for
    * @param {Function} cb A callback `Function` which is given the arguments `err` - for errors that may have occured and `value` - the found value in a `Buffer` or if no value was found `null`
    */
-  async get (key: Uint8Array) {
+  async get (key: Uint8Array): Promise<Uint8Array | null> {
     l.debug(() => ['get', 'key ->', u8aToHex(key)]);
 
     const result = await this.findPath(key);
