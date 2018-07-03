@@ -5,7 +5,7 @@
 
 import toU8a from '@polkadot/util/u8a/toU8a';
 
-import Trie from '../src/Trie';
+import Trie from '../src/index';
 
 describe('testing checkpoints', () => {
   let trie, preRoot, postRoot;

@@ -6,7 +6,7 @@
 import u8aToHex from '@polkadot/util/u8a/toHex';
 import toU8a from '@polkadot/util/u8a/toU8a';
 
-import Trie from '../src/Trie';
+import Trie from '../src/index';
 
 describe('simple save and retrive', () => {
   it('should not crash if given a non-existant root', async () => {
