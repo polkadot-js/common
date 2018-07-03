@@ -3,12 +3,14 @@
 // This software may be modified and distributed under the terms
 // of the MPL-2.0 license. See the LICENSE file for details.
 
+import { HashFn } from '../types';
+
 import assert from '@polkadot/util/assert';
 import decodeRlp from '@polkadot/util-rlp/decode';
 import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
 
 import { nibblesMatchingLength, nibblesFromU8a } from '../nibbles';
-import nodeFactory from '../nodeFactory';
+import createNodeFactory from '../nodeFactory';
 
 /**
  * Verifies a merkle proof for a given key
@@ -19,14 +21,15 @@ import nodeFactory from '../nodeFactory';
  * @returns Promise<{String}>
  */
 // @ts-ignore FIXME, we need to properly check the full file
-export default async function verifyProof (rootHash, _key, proofs) {
+export default async function verifyProof (rootHash, _key, proofs, hashing: HashFn = keccakAsU8a) {
+  const nodeFactory = createNodeFactory(hashing);
   const lastIndex = proofs.length - 1;
   let key = nibblesFromU8a(_key);
   let wantedHash = rootHash;
 
   for (let i = 0; i < proofs.length; i++) {
     const proof = proofs[i];
-    const hash = keccakAsU8a(proof);
+    const hash = hashing(proof);
 
     assert(hash.toString() === wantedHash.toString(), `Bad proof node ${i}: hash mismatch`);
 

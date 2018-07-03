@@ -7,6 +7,8 @@ export type Callback = (error?: Error | null, result?: any) => void;
 // NOTE This is actually DecodedRlp = Array<Uint8Array | DecodedRlp>, but since the decoder is relatively simple, we get away with the definition below
 export type DecodedRlp = Array<Uint8Array | Array<Uint8Array>>;
 
+export type HashFn = (data: Uint8Array) => Uint8Array;
+
 export type Trie$Node$Type = 'branch' | 'extention' | 'leaf';
 
 export interface Trie$Node {
@@ -26,3 +28,10 @@ export type Trie$Base = {
 };
 
 export type SemaphorePromise = (fn: () => Promise<any>) => Promise<any>;
+
+type NodeFactory = {
+  fromBranch (rlp: DecodedRlp): Trie$Node
+  fromRaw (rlp: DecodedRlp): Trie$Node,
+  fromExtention (key: Uint8Array, value: Uint8Array): Trie$Node,
+  fromLeaf (key: Uint8Array, value: Uint8Array): Trie$Node
+}

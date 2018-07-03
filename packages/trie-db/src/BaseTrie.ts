@@ -3,7 +3,7 @@
 // This software may be modified and distributed under the terms
 // of the MPL-2.0 license. See the LICENSE file for details.
 
-import { SemaphorePromise } from './types';
+import { HashFn, NodeFactory, SemaphorePromise } from './types';
 
 import async from 'async';
 // @ts-ignore FIXME, we need to properly check the full file
@@ -20,7 +20,7 @@ import { EMPTY_ROOT_U8A, EMPTY_ROOT_STR } from './constants';
 import encoder from './encoder';
 import { nibblesMatchingLength, nibblesIsEqual, nibblesFromU8a } from './nibbles';
 import ReadStream from './streams/TrieRead';
-import nodeFactory from './nodeFactory';
+import createFactory from './nodeFactory';
 import isRawNode from './util/isRawNode';
 import prioritizedTaskExecutor from './util/taskExecutor';
 import semaphore from './util/semaphore';
@@ -36,11 +36,13 @@ export default class BaseTrie {
   _putDBs: any[]; // FIXME
   dbDown: any; // FIXME
   db: any; // FIXME
+  hashing: HashFn;
+  nodeFactory: NodeFactory;
   putRaw: RawPutFn;
   semaphore: SemaphorePromise;
 
   // @ts-ignore FIXME, we need to properly check the full file
-  constructor (db, root: Uint8Array) {
+  constructor (db, root: Uint8Array, hashing: HashFn) {
     this.putRaw = this._putRaw;
 
     this.semaphore = semaphore(1);
@@ -48,6 +50,8 @@ export default class BaseTrie {
     this.db = levelup(encoder(this.dbDown));
     this._getDBs = [this.db];
     this._putDBs = [this.db];
+    this.hashing = hashing;
+    this.nodeFactory = createFactory(hashing);
     this.root = root;
 
     l.debug(() => ['Created BaseTrie', typeof db, u8aToHex(root)]);
@@ -163,7 +167,7 @@ export default class BaseTrie {
   // @ts-ignore FIXME, we need to properly check the full file
   async _lookupNode (node) {
     if (isRawNode(node)) {
-      return nodeFactory.fromRaw(node);
+      return this.nodeFactory.fromRaw(node);
     }
 
     let value = await this.getRaw(node);
@@ -171,7 +175,7 @@ export default class BaseTrie {
     if (value) {
       try {
         // @ts-ignore FIXME, we need to properly check the full file
-        value = nodeFactory.fromRaw(decodeRlp(value));
+        value = this.nodeFactory.fromRaw(decodeRlp(value));
       } catch (error) {
         l.error('_lookupNode decoding', typeof value, value);
         throw error;
@@ -390,7 +394,9 @@ export default class BaseTrie {
         // add an extention to a branch node
         keyRemainder.shift();
         // create a new leaf
-        stack.push(nodeFactory.fromLeaf(keyRemainder, value));
+        stack.push(
+          this.nodeFactory.fromLeaf(keyRemainder, value)
+        );
       } else {
         lastNode.value = value;
       }
@@ -399,12 +405,12 @@ export default class BaseTrie {
       const lastKey = lastNode.key;
       const matchingLength = nibblesMatchingLength(lastKey, keyRemainder);
       // @ts-ignore FIXME, we need to properly check the full file
-      const newBranchNode = nodeFactory.fromBranch();
+      const newBranchNode = this.nodeFactory.fromBranch();
 
       // create a new extention node
       if (matchingLength !== 0) {
         const newKey = lastNode.key.slice(0, matchingLength);
-        const newExtNode = nodeFactory.fromExtention(newKey, value);
+        const newExtNode = this.nodeFactory.fromExtention(newKey, value);
 
         stack.push(newExtNode);
         lastKey.splice(0, matchingLength);
@@ -441,7 +447,9 @@ export default class BaseTrie {
         keyRemainder.shift();
 
         // add a leaf node to the new branch node
-        stack.push(nodeFactory.fromLeaf(keyRemainder, value));
+        stack.push(
+          this.nodeFactory.fromLeaf(keyRemainder, value)
+        );
       } else {
         newBranchNode.value = value;
       }
@@ -613,7 +621,7 @@ export default class BaseTrie {
           // create an extention node
           // branch->extention->branch
           // @ts-ignore FIXME, we need to properly check the full file
-          stack.push(nodeFactory.fromExtention([branchKey], null));
+          stack.push(this.nodeFactory.fromExtention([branchKey], null));
           key.push(branchKey);
         } else {
           // branch key is an extention or a leaf
@@ -727,7 +735,7 @@ export default class BaseTrie {
 
   // Creates the initial node from an empty tree
   _createInitialNode (key: Uint8Array, value: Uint8Array) {
-    const newNode = nodeFactory.fromLeaf(key, value);
+    const newNode = this.nodeFactory.fromLeaf(key, value);
 
     this.root = newNode.hash();
 
@@ -783,7 +791,7 @@ export default class BaseTrie {
   copy () {
     l.debug(() => ['Copying BaseTrie', typeof this.dbDown, u8aToHex(this.root)]);
 
-    return new BaseTrie(this.dbDown, this.root);
+    return new BaseTrie(this.dbDown, this.root, this.hashing);
   }
 
   /**

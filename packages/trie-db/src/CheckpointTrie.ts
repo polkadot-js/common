@@ -3,6 +3,8 @@
 // This software may be modified and distributed under the terms
 // of the MPL-2.0 license. See the LICENSE file for details.
 
+import { HashFn } from './types';
+
 // @ts-ignore FIXME, we need to properly check the full file
 import levelws from 'level-ws';
 // @ts-ignore FIXME, we need to properly check the full file
@@ -34,8 +36,8 @@ export default class CheckpointTrie extends BaseTrie {
   __putDBs: any[]; // tslint:disable-line
 
   // @ts-ignore FIXME, we need to properly check the full file
-  constructor (db, root: Uint8Array) {
-    super(db, root);
+  constructor (db, root: Uint8Array, hashing: HashFn) {
+    super(db, root, hashing);
 
     this._scratch = null;
     this._checkpoints = [];
@@ -50,7 +52,7 @@ export default class CheckpointTrie extends BaseTrie {
   copy () {
     l.debug(() => ['Copying CheckpointTrie', typeof this.dbDown, u8aToHex(this.root)]);
 
-    return new CheckpointTrie(this.dbDown, this.root);
+    return new CheckpointTrie(this.dbDown, this.root, this.hashing);
   }
 
   async checkpoint () {

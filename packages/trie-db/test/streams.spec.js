@@ -5,7 +5,7 @@
 
 import toU8a from '@polkadot/util/u8a/toU8a';
 
-import Trie from '../src/index';
+import Trie from '../src/Trie';
 
 describe('kv stream test', () => {
   var trie = new Trie();

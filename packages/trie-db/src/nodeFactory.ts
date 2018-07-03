@@ -4,7 +4,7 @@
 // of the MPL-2.0 license. See the LICENSE file for details.
 
 import { Logger } from '@polkadot/util/types';
-import { DecodedRlp, Trie$Node, Trie$Node$Type } from './types';
+import { HashFn, DecodedRlp, NodeFactory, Trie$Node, Trie$Node$Type } from './types';
 
 import logger from '@polkadot/util/logger';
 import u8aToHex from '@polkadot/util/u8a/toHex';
@@ -41,11 +41,11 @@ function getNodeType (node: DecodedRlp): Trie$Node$Type {
   throw new Error(`Unable to determine Node type`);
 }
 
-function fromBranch (l: Logger) {
+function fromBranch (l: Logger, hashing: HashFn) {
   return (rlp: DecodedRlp): Trie$Node => {
     l.debug(() => ['fromBranch']);
 
-    const node = new TrieNode('branch', Array.apply(null, Array(17)));
+    const node = new TrieNode(hashing, 'branch', Array.apply(null, Array(17)));
 
     // NOTE Removed since
     //   (1) 'branch' is never called with any keys,
@@ -60,21 +60,21 @@ function fromBranch (l: Logger) {
   };
 }
 
-function fromRaw (l: Logger) {
+function fromRaw (l: Logger, hashing: HashFn) {
   return (rlp: DecodedRlp): Trie$Node => {
     l.debug(() => ['fromRaw ->', rlpToString(rlp)]);
 
-    const node = new TrieNode(getNodeType(rlp), rlp);
+    const node = new TrieNode(hashing, getNodeType(rlp), rlp);
 
     return node;
   };
 }
 
-function fromType (l: Logger, type: Trie$Node$Type) {
+function fromType (l: Logger, hashing: HashFn, type: Trie$Node$Type) {
   return (key: Uint8Array, value: Uint8Array): Trie$Node => {
     l.debug(() => ['fromType', 'type ->', type, 'key ->', u8aToHex(key), 'value ->', u8aToHex(value)]);
 
-    const node = new TrieNode(type, Array(2));
+    const node = new TrieNode(hashing, type, Array(2));
 
     node.setValue(value);
     node.setKey(key);
@@ -83,9 +83,9 @@ function fromType (l: Logger, type: Trie$Node$Type) {
   };
 }
 
-export default {
-  fromBranch: fromBranch(l),
-  fromExtention: fromType(l, 'extention'),
-  fromLeaf: fromType(l, 'leaf'),
-  fromRaw: fromRaw(l)
-};
+export default (hashing: HashFn): NodeFactory => ({
+  fromBranch: fromBranch(l, hashing),
+  fromExtention: fromType(l, hashing, 'extention'),
+  fromLeaf: fromType(l, hashing, 'leaf'),
+  fromRaw: fromRaw(l, hashing)
+});
