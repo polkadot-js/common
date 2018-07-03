@@ -5,12 +5,12 @@
 import deasync from 'deasync';
 
 import isError from './is/error';
-import isUndefined from './is/undefined';
 
 // FIXME: This is currently for Node environments only - for Browser environments deasync is not available, we need a different solution.
 
 export default function syncify (promise: Promise<any>): any {
   let result: any;
+  let hasResult = false;
 
   // tslint:disable-next-line
   (async () => {
@@ -19,10 +19,12 @@ export default function syncify (promise: Promise<any>): any {
     } catch (error) {
       result = error;
     }
+
+    hasResult = true;
   })();
 
   deasync.loopWhile(
-    () => isUndefined(result)
+    () => hasResult === false
   );
 
   if (isError(result)) {
