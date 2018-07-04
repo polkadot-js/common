@@ -18,7 +18,7 @@ import BaseTrie from './BaseTrie';
 import encoder from './encoder';
 import ScratchReadStream from './streams/ScratchRead';
 
-const l = logger('trie/checkpt');
+// const l = logger('trie/checkpt');
 
 function putRaw (key: Uint8Array, value: Uint8Array) {
   return Promise.all(

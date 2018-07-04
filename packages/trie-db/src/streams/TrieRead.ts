@@ -7,7 +7,7 @@ import { Trie$Base } from '../types';
 
 // @ts-ignore FIXME, we need to properly check the full file
 import { Readable } from 'readable-stream';
-import logger from '@polkadot/util/logger';
+// import logger from '@polkadot/util/logger';
 // import u8aToHex from '@polkadot/util/u8a/toHex';
 
 import { nibblesToU8a } from '../nibbles';

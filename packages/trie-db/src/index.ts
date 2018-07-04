@@ -5,7 +5,7 @@
 
 import { HashFn } from './types';
 
-import logger from '@polkadot/util/logger';
+// import logger from '@polkadot/util/logger';
 import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
 
 import CheckpointTrie from './CheckpointTrie';

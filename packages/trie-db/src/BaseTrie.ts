@@ -27,7 +27,7 @@ import semaphore from './util/semaphore';
 
 type RawPutFn = (key: Uint8Array, value: Uint8Array) => Promise<any>;
 
-const l = logger('trie/base');
+// const l = logger('trie/base');
 
 export default class BaseTrie {
   // @ts-ignore we are assigning via this.root in constructor
