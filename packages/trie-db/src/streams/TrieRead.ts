@@ -12,7 +12,7 @@ import logger from '@polkadot/util/logger';
 
 import { nibblesToU8a } from '../nibbles';
 
-const l = logger('trie/read');
+// const l = logger('trie/read');
 
 export default class TrieReadStream extends Readable {
   trie: Trie$Base;

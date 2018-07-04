@@ -13,7 +13,7 @@ import logger from '@polkadot/util/logger';
 import assert from '@polkadot/util/assert';
 import isU8a from '@polkadot/util/is/u8a';
 import promisify from '@polkadot/util/promisify';
-import u8aToHex from '@polkadot/util/u8a/toHex';
+// import u8aToHex from '@polkadot/util/u8a/toHex';
 import decodeRlp from '@polkadot/util-rlp/decode';
 
 import { EMPTY_ROOT_U8A, EMPTY_ROOT_STR } from './constants';

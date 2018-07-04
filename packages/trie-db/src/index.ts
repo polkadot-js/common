@@ -11,7 +11,7 @@ import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
 import CheckpointTrie from './CheckpointTrie';
 import { prove, verifyProof } from './proof';
 
-const l = logger('trie');
+// const l = logger('trie');
 
 export default class Trie extends CheckpointTrie {
   static prove = prove;

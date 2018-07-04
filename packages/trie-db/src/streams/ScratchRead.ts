@@ -12,7 +12,7 @@ import logger from '@polkadot/util/logger';
 
 // import rlpToString from '../util/rlpToString';
 
-const l = logger('trie/scratch');
+// const l = logger('trie/scratch');
 
 export default class ScratchReadStream extends Readable {
   trie: Trie$Base;
