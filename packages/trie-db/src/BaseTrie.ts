@@ -9,7 +9,7 @@ import async from 'async';
 // @ts-ignore FIXME, we need to properly check the full file
 import levelup from 'levelup';
 import memdown from 'memdown';
-import logger from '@polkadot/util/logger';
+// import logger from '@polkadot/util/logger';
 import assert from '@polkadot/util/assert';
 import isU8a from '@polkadot/util/is/u8a';
 import promisify from '@polkadot/util/promisify';

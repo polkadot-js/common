@@ -11,7 +11,7 @@ import levelws from 'level-ws';
 import levelup from 'levelup';
 import memdown from 'memdown';
 import assert from '@polkadot/util/assert';
-import logger from '@polkadot/util/logger';
+// import logger from '@polkadot/util/logger';
 // import u8aToHex from '@polkadot/util/u8a/toHex';
 
 import BaseTrie from './BaseTrie';
