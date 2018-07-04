@@ -21,6 +21,6 @@ export default class Trie extends CheckpointTrie {
   constructor (db, root, hashing: HashFn = keccakAsU8a) {
     super(db, root, hashing);
 
-    l.debug('Created Trie');
+    // l.debug('Created Trie');
   }
 }

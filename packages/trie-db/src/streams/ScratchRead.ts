@@ -33,7 +33,7 @@ export default class ScratchReadStream extends Readable {
     }
 
     const onDone = () => {
-      l.debug(() => 'onDone');
+      // l.debug(() => 'onDone');
       // @ts-ignore FIXME, we need to properly check the full file
       this.push(null);
     };
@@ -50,7 +50,7 @@ export default class ScratchReadStream extends Readable {
       next();
     };
 
-    l.debug(() => 'Starting stream');
+    // l.debug(() => 'Starting stream');
 
     this._started = true;
     this.trie._findDbNodes(onFound, onDone);

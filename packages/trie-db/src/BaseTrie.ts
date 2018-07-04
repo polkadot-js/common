@@ -54,7 +54,7 @@ export default class BaseTrie {
     this.nodeFactory = createFactory(hashing);
     this.root = root;
 
-    l.debug(() => ['Created BaseTrie', typeof db, u8aToHex(root)]);
+    // l.debug(() => ['Created BaseTrie', typeof db, u8aToHex(root)]);
   }
 
   get root (): Uint8Array {
@@ -78,7 +78,7 @@ export default class BaseTrie {
    * @param {Function} cb A callback `Function` which is given the arguments `err` - for errors that may have occured and `value` - the found value in a `Buffer` or if no value was found `null`
    */
   async get (key: Uint8Array): Promise<Uint8Array | null> {
-    l.debug(() => ['get', 'key ->', u8aToHex(key)]);
+    // l.debug(() => ['get', 'key ->', u8aToHex(key)]);
 
     const result = await this.findPath(key);
 
@@ -99,7 +99,7 @@ export default class BaseTrie {
    * @returns {Function} Promise<void>
    */
   async put (key: Uint8Array, value: Uint8Array) {
-    l.debug(() => ['put', 'key ->', u8aToHex(key), 'value ->', u8aToHex(value, 256)]);
+    // l.debug(() => ['put', 'key ->', u8aToHex(key), 'value ->', u8aToHex(value, 256)]);
 
     if (!value || value.toString() === '') {
       return this.del(key);
@@ -124,7 +124,7 @@ export default class BaseTrie {
    * @param {Function} callback the callback `Function`
    */
   del (key: Uint8Array) {
-    l.debug(() => ['del', 'key ->', u8aToHex(key)]);
+    // l.debug(() => ['del', 'key ->', u8aToHex(key)]);
 
     return this.semaphore(async () => {
       const result = await this.findPath(key);
@@ -177,7 +177,7 @@ export default class BaseTrie {
         // @ts-ignore FIXME, we need to properly check the full file
         value = this.nodeFactory.fromRaw(decodeRlp(value));
       } catch (error) {
-        l.error('_lookupNode decoding', typeof value, value);
+        // l.error('_lookupNode decoding', typeof value, value);
         throw error;
       }
     }
@@ -789,7 +789,7 @@ export default class BaseTrie {
   // creates a new trie backed by the same db
   // and starting at the same root
   copy () {
-    l.debug(() => ['Copying BaseTrie', typeof this.dbDown, u8aToHex(this.root)]);
+    // l.debug(() => ['Copying BaseTrie', typeof this.dbDown, u8aToHex(this.root)]);
 
     return new BaseTrie(this.dbDown, this.root, this.hashing);
   }

@@ -42,7 +42,7 @@ export default class CheckpointTrie extends BaseTrie {
     this._scratch = null;
     this._checkpoints = [];
 
-    l.debug(() => 'Created CheckpointTrie');
+    // l.debug(() => 'Created CheckpointTrie');
   }
 
   get isCheckpoint () {
@@ -50,13 +50,13 @@ export default class CheckpointTrie extends BaseTrie {
   }
 
   copy () {
-    l.debug(() => ['Copying CheckpointTrie', typeof this.dbDown, u8aToHex(this.root)]);
+    // l.debug(() => ['Copying CheckpointTrie', typeof this.dbDown, u8aToHex(this.root)]);
 
     return new CheckpointTrie(this.dbDown, this.root, this.hashing);
   }
 
   async checkpoint () {
-    l.debug(() => 'Marking checkpoint');
+    // l.debug(() => 'Marking checkpoint');
 
     const wasCheckpoint = this.isCheckpoint;
 
@@ -68,7 +68,7 @@ export default class CheckpointTrie extends BaseTrie {
   }
 
   commit () {
-    l.debug(() => 'Committing checkpoint');
+    // l.debug(() => 'Committing checkpoint');
 
     return this.semaphore(async () => {
       assert(this.isCheckpoint, 'trying to commit when not checkpointed');
@@ -84,7 +84,7 @@ export default class CheckpointTrie extends BaseTrie {
   }
 
   revert () {
-    l.debug(() => 'Reverting checkpoint');
+    // l.debug(() => 'Reverting checkpoint');
 
     return this.semaphore(async () => {
       if (!this.isCheckpoint) {
@@ -115,7 +115,7 @@ export default class CheckpointTrie extends BaseTrie {
   }
 
   _enterCpMode () {
-    l.debug(() => 'Entering checkpoint mode');
+    // l.debug(() => 'Entering checkpoint mode');
 
     this._scratch = levelup(encoder(memdown()));
 
@@ -128,7 +128,7 @@ export default class CheckpointTrie extends BaseTrie {
 
   // @ts-ignore FIXME, we need to properly check the full file
   _exitCpMode (commitState) {
-    l.debug(() => 'Exiting checkpoint mode');
+    // l.debug(() => 'Exiting checkpoint mode');
 
     const scratch = this._scratch;
     this._scratch = null;
