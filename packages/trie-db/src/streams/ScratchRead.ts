@@ -7,12 +7,12 @@ import { Trie$Base } from '../types';
 
 // @ts-ignore FIXME, we need to properly check the full file
 import { Readable } from 'readable-stream';
-import logger from '@polkadot/util/logger';
+// import logger from '@polkadot/util/logger';
 // import u8aToHex from '@polkadot/util/u8a/toHex';
 
 // import rlpToString from '../util/rlpToString';
 
-const l = logger('trie/scratch');
+// const l = logger('trie/scratch');
 
 export default class ScratchReadStream extends Readable {
   trie: Trie$Base;
@@ -33,7 +33,7 @@ export default class ScratchReadStream extends Readable {
     }
 
     const onDone = () => {
-      l.debug(() => 'onDone');
+      // l.debug(() => 'onDone');
       // @ts-ignore FIXME, we need to properly check the full file
       this.push(null);
     };
@@ -50,7 +50,7 @@ export default class ScratchReadStream extends Readable {
       next();
     };
 
-    l.debug(() => 'Starting stream');
+    // l.debug(() => 'Starting stream');
 
     this._started = true;
     this.trie._findDbNodes(onFound, onDone);

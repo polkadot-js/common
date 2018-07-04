@@ -5,13 +5,13 @@
 
 import { HashFn } from './types';
 
-import logger from '@polkadot/util/logger';
+// import logger from '@polkadot/util/logger';
 import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
 
 import CheckpointTrie from './CheckpointTrie';
 import { prove, verifyProof } from './proof';
 
-const l = logger('trie');
+// const l = logger('trie');
 
 export default class Trie extends CheckpointTrie {
   static prove = prove;
@@ -21,6 +21,6 @@ export default class Trie extends CheckpointTrie {
   constructor (db, root, hashing: HashFn = keccakAsU8a) {
     super(db, root, hashing);
 
-    l.debug('Created Trie');
+    // l.debug('Created Trie');
   }
 }
