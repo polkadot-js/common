@@ -9,7 +9,7 @@ import u8aToBn from '@polkadot/util/u8a/toBn';
 export default function bytes (input: Uint8Array): Param$Decoded {
   const keyLength = u8aToBn(input.subarray(0, 4), true).toNumber();
   const key = input.subarray(4, keyLength + 4);
-  const valLength = u8aToBn(input.subarray(keyLength, keyLength + 4), true).toNumber();
+  const valLength = u8aToBn(input.subarray(keyLength + 4, keyLength + 8), true).toNumber();
   const length = valLength + keyLength + 8;
   const value = input.subarray(keyLength + 8, length);
 
