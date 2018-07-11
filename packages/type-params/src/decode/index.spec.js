@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+import toU8a from '@polkadot/util/u8a/toU8a';
+
 import decode from './index';
 
 describe('decode', () => {
@@ -67,5 +69,33 @@ describe('decode', () => {
         ]))
       )
     ).toEqual('{"length":15,"value":["69",[true,false,true]]}');
+  });
+
+  it('decodes KeyValueStorage arrays', () => {
+    expect(
+      decode(['KeyValueStorage'], new Uint8Array([
+        2, 0, 0, 0,
+        4, 0, 0, 0,
+        0x11, 0x22, 0x33, 0x44,
+        9, 0, 0, 0,
+        0x99, 0x88, 0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11,
+        1, 0, 0, 0,
+        0x11,
+        2, 0, 0, 0,
+        0x99, 0x88
+      ]))
+    ).toEqual({
+      length: 36,
+      value: [
+        {
+          key: toU8a('0x11223344'),
+          value: toU8a('0x998877665544332211')
+        },
+        {
+          key: toU8a('0x11'),
+          value: toU8a('0x9988')
+        }
+      ]
+    })
   });
 });
