@@ -12,6 +12,7 @@ import u8aToU8a from '@polkadot/util/u8a/toU8a';
 import addressDecode from '@polkadot/util-keyring/address/decode';
 
 import sizes from '../../sizes';
+import keyValue from './keyValue';
 
 export default function encodeType (type: Param$Type, value: any, version: EncodingVersions): Uint8Array {
   try {
@@ -44,8 +45,6 @@ export default function encodeType (type: Param$Type, value: any, version: Encod
       case 'CandidateReceipt':
       case 'Digest':
       case 'Header':
-      case 'KeyValue':
-      case 'KeyValueStorage':
       case 'MisbehaviorReport':
       case 'Proposal':
         return u8aToU8a(value);
@@ -57,6 +56,10 @@ export default function encodeType (type: Param$Type, value: any, version: Encod
 
       case 'Index':
         return bnToU8a(value, sizes.Index.get(version), true);
+
+      case 'KeyValue':
+      case 'KeyValueStorage':
+        return keyValue(value);
 
       case 'ParachainId':
       case 'PropIndex':
