@@ -20,7 +20,7 @@ const propose: CreateItemOptions = {
 const second: CreateItemOptions = {
   description: 'Second',
   params: [
-    param('proposal', 'u32')
+    param('proposal', 'PropIndex')
   ],
   type: []
 };
