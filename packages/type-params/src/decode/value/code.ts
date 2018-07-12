@@ -4,9 +4,14 @@
 
 import { Param$Decoded } from '../../types';
 
+import u8aToBn from '@polkadot/util/u8a/toBn';
+
 export default function code (input: Uint8Array): Param$Decoded {
+  const length = u8aToBn(input.subarray(0, 4), true).toNumber() + 4;
+  const value = input.subarray(4, length);
+
   return {
-    length: input.length,
-    value: input
+    length,
+    value
   };
 }
