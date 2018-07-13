@@ -36,4 +36,4 @@ Type definitions for interfaces as exposed by Polkadot & Substrate clients -
 ## Contributing
 
 - Bootstrap the dependencies, `yarn`
-- Make any changes in the relevant package, on master merges new versions will be published automatically
+- Make any changes in the relevant package, on master merges new versions will be published automatically to npmjs
