@@ -40,7 +40,7 @@ const launchPeriod: CreateItemOptions = {
 
 const minimumDeposit: CreateItemOptions = {
   description: 'The minimum amount as a deposit for a public referendum',
-  key: 'dem:lau',
+  key: 'dem:min',
   params: [],
   type: 'Balance'
 };
