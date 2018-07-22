@@ -11,7 +11,7 @@ import createSection from '@polkadot/params/section';
 const deregisterParachain: CreateItemOptions = {
   description: 'Deregister a parachain',
   params: [
-    param('id', ['u32'])
+    param('id', ['ParachainId'])
   ],
   type: []
 };
@@ -19,7 +19,7 @@ const deregisterParachain: CreateItemOptions = {
 const registerParachain: CreateItemOptions = {
   description: 'Register a parachain',
   params: [
-    param('id', ['u32']),
+    param('id', ['ParachainId']),
     param('code', ['Code']),
     param('headData', ['Bytes'])
   ],
