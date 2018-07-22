@@ -8,6 +8,24 @@ import { Extrinsics, Extrinsic$Sections } from './types';
 import param from '@polkadot/params/param';
 import createSection from '@polkadot/params/section';
 
+const deregisterParachain: CreateItemOptions = {
+  description: 'Deregister a parachain',
+  params: [
+    param('id', ['ParachainId'])
+  ],
+  type: []
+};
+
+const registerParachain: CreateItemOptions = {
+  description: 'Register a parachain',
+  params: [
+    param('id', ['ParachainId']),
+    param('code', ['Code']),
+    param('headData', ['Bytes'])
+  ],
+  type: []
+};
+
 const setHeads: CreateItemOptions = {
   description: 'Sets parachain heads',
   isHidden: true, // inherent
@@ -24,5 +42,10 @@ export default (name: Extrinsic$Sections, index: number): Section<Extrinsics> =>
       setHeads:
         createMethod('setHeads', 0)(setHeads)
     },
-    private: {}
+    private: {
+      deregisterParachain:
+        createMethod('deregisterParachain', 1)(deregisterParachain),
+      registerParachain:
+        createMethod('registerParachain', 0)(registerParachain)
+    }
   }));
