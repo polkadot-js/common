@@ -8,6 +8,22 @@ import { Extrinsics, Extrinsic$Sections } from './types';
 import param from '@polkadot/params/param';
 import createSection from '@polkadot/params/section';
 
+const nominate: CreateItemOptions = {
+  description: 'Nominate',
+  params: [
+    param('target', 'AccountId')
+  ],
+  type: []
+};
+
+const unnominate: CreateItemOptions = {
+  description: 'Unnominate',
+  params: [
+    param('targetIndex', 'u32')
+  ],
+  type: []
+};
+
 const transfer: CreateItemOptions = {
   description: 'Transfer',
   params: [
@@ -68,7 +84,11 @@ export default (name: Extrinsic$Sections, index: number): Section<Extrinsics> =>
       stake:
         createMethod('stake', 1)(stake),
       unstake:
-        createMethod('unstake', 2)(unstake)
+        createMethod('unstake', 2)(unstake),
+      nominate:
+        createMethod('nominate', 3)(nominate),
+      unnominate:
+        createMethod('unnominate', 4)(unnominate)
     },
     private: {
       setSessionsPerEra:
