@@ -7,7 +7,7 @@ import rolesFromId from './fromId';
 describe('rolesFromId', () => {
   it('returns the role mapping an string', () => {
     expect(
-      rolesFromId(0b00000100 | 0b00001000)
-    ).toEqual(['none', 'collator', 'validator']);
+      rolesFromId(0b00000001 | 0b00000100)
+    ).toEqual(['none', 'full', 'authority']);
   });
 });

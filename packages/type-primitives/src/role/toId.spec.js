@@ -7,7 +7,7 @@ import rolesToId from './toId';
 describe('rolesToId', () => {
   it('returns the role mapping an string', () => {
     expect(
-      rolesToId(['collator'])
+      rolesToId(['authority'])
     ).toEqual(0b00000100);
   });
 });

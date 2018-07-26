@@ -8,8 +8,7 @@ const all: RoleMap = {
   none: 0b00000000,
   full: 0b00000001,
   light: 0b00000010,
-  collator: 0b00000100,
-  validator: 0b00001000
+  authority: 0b00000100
 };
 
 export default all;
