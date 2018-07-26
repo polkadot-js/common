@@ -6,8 +6,7 @@ export type RoleMap = {
   none: number,
   full: number,
   light: number,
-  collator: number,
-  validator: number
+  authority: number
 };
 
 export type Role = keyof RoleMap;
