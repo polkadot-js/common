@@ -2,18 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import roleToId from './toId';
+import rolesToId from './toId';
 
-describe('roleToId', () => {
-  it('throws when valid mapping is not found', () => {
-    expect(
-      () => roleToId()
-    ).toThrow(/mapping from role/);
-  });
-
+describe('rolesToId', () => {
   it('returns the role mapping an string', () => {
     expect(
-      roleToId('collator')
+      rolesToId(['collator'])
     ).toEqual(0b00000100);
   });
 });

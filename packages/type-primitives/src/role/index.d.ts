@@ -2,4 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-export type Role = 'collator' | 'full' | 'light' | 'none' | 'validator';
+export type RoleMap = {
+  none: number,
+  full: number,
+  light: number,
+  collator: number,
+  validator: number
+};
+
+export type Role = keyof RoleMap;
