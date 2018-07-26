@@ -4,16 +4,15 @@
 
 import { Role } from './index';
 
-import assert from '@polkadot/util/assert';
-import isUndefined from '@polkadot/util/is/undefined';
-
 import all from './all';
 
-export default function roleFromId (roleId: number): Role {
-  const role = [...all].find(([key, value]) => value === roleId);
-
-  assert(!isUndefined(role), `Unable to find valid role for '${roleId}'`);
-
-  // @ts-ignore we have something, checked by assert
-  return role[0];
+export default function rolesFromId (roleId: number): Array<Role> {
+  return Object
+    .keys(all)
+    .map((key) =>
+      key as Role
+    )
+    .filter((key) =>
+      (roleId & all[key]) === all[key]
+    );
 }

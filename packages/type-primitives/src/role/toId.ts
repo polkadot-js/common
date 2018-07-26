@@ -4,16 +4,10 @@
 
 import { Role } from './index';
 
-import assert from '@polkadot/util/assert';
-import isUndefined from '@polkadot/util/is/undefined';
-
 import all from './all';
 
-export default function roleToId (role: Role): number {
-  const roleId = all.get(role);
-
-  assert(!isUndefined(roleId), `Unable to perform mapping from role '${role}'`);
-
-  // @ts-ignore assert catches above
-  return roleId;
+export default function rolesToId (roles: Array<Role>): number {
+  return roles.reduce((encoded, role) => {
+    return encoded | all[role];
+  }, 0);
 }
