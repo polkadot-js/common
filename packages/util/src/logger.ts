@@ -5,6 +5,7 @@
 import { Logger, Logger$Data } from './types';
 
 import chalk from 'chalk';
+import moment from 'moment';
 
 import isFunction from './is/function';
 
@@ -38,7 +39,7 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
   // @ts-ignore Not sure how to coax TS here...
   console[logTo[log]].apply(
     console, [
-      chalk(new Date().toISOString()), chalk(type)
+      chalk(moment().format('YYYY-MM-DD HH:mm:ss')), chalk(type)
     ].concat(values)
   );
 }
