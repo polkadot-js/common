@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/primitives",
-  "version": "0.26.29",
+  "version": "0.26.30",
   "description": "Type defintions for the Polkadot network",
   "main": "index.js",
   "engines": {
@@ -34,8 +34,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
-    "@polkadot/trie-hash": "^0.26.29",
-    "@polkadot/util": "^0.26.29"
+    "@polkadot/trie-hash": "^0.26.30",
+    "@polkadot/util": "^0.26.30"
   },
   "devDependencies": {
     "bn.js": "^4.11.8"
