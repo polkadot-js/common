@@ -5,10 +5,11 @@
 import { u8aToBn } from './index';
 
 describe('u8aToBn', () => {
-  it('converts values', () => {
+  it('converts values (big-endian)', () => {
     expect(
       u8aToBn(
-        new Uint8Array([0x12, 0x34])
+        new Uint8Array([0x12, 0x34]),
+        false
       ).toString(16)
     ).toEqual('1234');
   });
@@ -25,12 +26,13 @@ describe('u8aToBn', () => {
   it('converts empty', () => {
     expect(
       u8aToBn(
-        new Uint8Array([])
+        new Uint8Array([]),
+        true
       ).toString(16)
     ).toEqual('0');
   });
 
-  it('handled overflows correctly', () => {
+  it('handled overflows correctly (little-endian)', () => {
     expect(
       u8aToBn(
         new Uint8Array([ 0, 1, 0, 0, 0, 0, 0, 0 ]),

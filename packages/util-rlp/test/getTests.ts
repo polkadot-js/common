@@ -14,7 +14,7 @@ export default function getTests (file: string) {
     name,
     input: tests[name].in[0] !== '#'
       ? tests[name].in
-      : bnToU8a(new BN(tests[name].in.slice(1))),
+      : bnToU8a(new BN(tests[name].in.slice(1)), -1, true),
     output: `0x${tests[name].out.toLowerCase()}`
   }));
 }

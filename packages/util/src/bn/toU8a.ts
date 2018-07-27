@@ -19,7 +19,7 @@ import bnToHex from './toHex';
  *
  *   bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
  */
-export default function bnToU8a (value?: BN | number, bitLength: number = -1, isLe: boolean = false): Uint8Array {
+export default function bnToU8a (value: BN | number, bitLength: number, isLe: boolean): Uint8Array {
   const byteLength = Math.ceil(bitLength / 8);
 
   if (!value) {

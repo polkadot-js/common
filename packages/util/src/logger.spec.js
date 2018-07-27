@@ -29,7 +29,9 @@ describe('logger', () => {
     };
     global.console = spy;
 
-    dateMatch = expect.stringMatching(/20[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/);
+
+    // dateMatch = expect.stringMatching(/20[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/);
+    dateMatch = expect.stringMatching(/20[0-9]{2}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}/);
     prefixMatch = expect.stringMatching(/TEST:/);
   });
 

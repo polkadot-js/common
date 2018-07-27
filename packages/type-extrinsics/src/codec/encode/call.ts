@@ -7,13 +7,14 @@ import { EncodingVersions } from '@polkadot/params/types';
 import { ExtrinsicWithAccount, ExtrinsicWithIndex } from '../types';
 
 import sizes from '@polkadot/params/sizes';
+import defaultSizes from '@polkadot/primitives/sizes';
 import bnToU8a from '@polkadot/util/bn/toU8a';
 import u8aConcat from '@polkadot/util/u8a/concat';
 
 export default function encodeCall (publicKey: Uint8Array, nonce: number | BN, data: ExtrinsicWithIndex, version: EncodingVersions): ExtrinsicWithAccount {
   return u8aConcat(
     publicKey,
-    bnToU8a(nonce, sizes.Index.get(version), true),
+    bnToU8a(nonce, sizes.Index.get(version) || defaultSizes.Index, true),
     data
   );
 }

@@ -44,7 +44,7 @@ const encoders: Array<Encoder> = [
   // NOTE: Buffer before U8a
   { check: isBuffer, fn: bufferToU8a },
   { check: isU8a, fn: convertU8a },
-  { check: isBn, fn: bnToU8a },
+  { check: isBn, fn: (value: any) => bnToU8a(value, -1, false) },
   { check: isNumber, fn: numberToU8a },
   { check: isString, fn: convertString }
 ];
