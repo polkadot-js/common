@@ -11,7 +11,7 @@ export default function createMethod<T> (section: keyof T, sectionIndex: Uint8Ar
   return (name: string, index: number = 0): CreateItem<T> =>
     ({ description, key = '', params, type, isDeprecated = false, isHidden = false, isSigned = false, isSubscription = false, isUnhashed = false }: CreateItemOptions): SectionItem<T> => ({
       description,
-      index: u8aConcat(sectionIndex, bnToU8a(index, 8)),
+      index: u8aConcat(sectionIndex, bnToU8a(index, 8, true)),
       isDeprecated,
       isHidden,
       isSigned,

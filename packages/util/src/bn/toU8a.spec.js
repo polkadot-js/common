@@ -9,25 +9,25 @@ import { bnToU8a } from './index';
 describe('bnToU8a', () => {
   it('converts null values to 0x00', () => {
     expect(
-      bnToU8a(null)
+      bnToU8a(null, -1, false)
     ).toEqual(new Uint8Array([]));
   });
 
   it('converts null values to 0x00000000 (bitLength)', () => {
     expect(
-      bnToU8a(null, 32)
+      bnToU8a(null, 32, false)
     ).toEqual(new Uint8Array([0, 0, 0, 0]));
   });
 
   it('converts BN values to a prefixed hex representation', () => {
     expect(
-      bnToU8a(new BN(0x123456))
+      bnToU8a(new BN(0x123456), -1, false)
     ).toEqual(new Uint8Array([0x12, 0x34, 0x56]));
   });
 
   it('converts BN values to a prefixed hex representation (bitLength)', () => {
     expect(
-      bnToU8a(new BN(0x123456), 32)
+      bnToU8a(new BN(0x123456), 32, false)
     ).toEqual(new Uint8Array([0x00, 0x12, 0x34, 0x56]));
   });
 
