@@ -38,7 +38,7 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
   // @ts-ignore Not sure how to coax TS here...
   console[logTo[log]].apply(
     console, [
-      chalk(new Date().toString()), chalk(type)
+      chalk(new Date().toISOString()), chalk(type)
     ].concat(values)
   );
 }
