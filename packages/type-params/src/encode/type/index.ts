@@ -10,6 +10,7 @@ import u8aConcat from '@polkadot/util/u8a/concat';
 import u8aFromString from '@polkadot/util/u8a/fromString';
 import u8aToU8a from '@polkadot/util/u8a/toU8a';
 import addressDecode from '@polkadot/util-keyring/address/decode';
+import defaultSizes from '@polkadot/primitives/sizes';
 
 import sizes from '../../sizes';
 import keyValue from './keyValue';
@@ -26,7 +27,7 @@ export default function encodeType (type: Param$Type, value: any, version: Encod
         );
 
       case 'Balance':
-        return bnToU8a(value, sizes.Balance.get(version), true);
+        return bnToU8a(value, sizes.Balance.get(version) || defaultSizes.Balance, true);
 
       case 'BlockNumber':
       case 'SessionKey':
@@ -55,7 +56,7 @@ export default function encodeType (type: Param$Type, value: any, version: Encod
         return u8aToU8a(value);
 
       case 'Index':
-        return bnToU8a(value, sizes.Index.get(version), true);
+        return bnToU8a(value, sizes.Index.get(version) || defaultSizes.Balance, true);
 
       case 'KeyValue':
       case 'KeyValueStorage':
