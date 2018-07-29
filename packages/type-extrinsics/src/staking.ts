@@ -41,7 +41,9 @@ const stake: CreateItemOptions = {
 
 const unstake: CreateItemOptions = {
   description: 'Unstake',
-  params: [],
+  params: [
+    param('position', 'u32')
+  ],
   type: []
 };
 
