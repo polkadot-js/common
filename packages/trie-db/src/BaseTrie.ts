@@ -41,8 +41,7 @@ export default class BaseTrie {
   putRaw: RawPutFn;
   semaphore: SemaphorePromise;
 
-  // @ts-ignore FIXME, we need to properly check the full file
-  constructor (db, root: Uint8Array, hashing: HashFn) {
+  constructor (db: any, root: Uint8Array, hashing: HashFn) {
     this.putRaw = this._putRaw;
 
     this.semaphore = semaphore(1);
