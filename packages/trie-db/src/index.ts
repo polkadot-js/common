@@ -9,6 +9,7 @@ import { HashFn } from './types';
 import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
 
 import CheckpointTrie from './CheckpointTrie';
+import { EMPTY_ROOT_U8A } from './constants';
 import { prove, verifyProof } from './proof';
 
 // const l = logger('trie');
@@ -17,8 +18,7 @@ export default class Trie extends CheckpointTrie {
   static prove = prove;
   static verifyProof = verifyProof;
 
-  // @ts-ignore FIXME, we need to properly check the full file
-  constructor (db, root, hashing: HashFn = keccakAsU8a) {
+  constructor (db: any, root: Uint8Array = EMPTY_ROOT_U8A, hashing: HashFn = keccakAsU8a) {
     super(db, root, hashing);
 
     // l.debug('Created Trie');

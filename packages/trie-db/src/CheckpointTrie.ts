@@ -36,7 +36,7 @@ export default class CheckpointTrie extends BaseTrie {
   __putDBs: any[]; // tslint:disable-line
 
   // @ts-ignore FIXME, we need to properly check the full file
-  constructor (db, root: Uint8Array, hashing: HashFn) {
+  constructor (db: any, root: Uint8Array, hashing: HashFn) {
     super(db, root, hashing);
 
     this._scratch = null;
