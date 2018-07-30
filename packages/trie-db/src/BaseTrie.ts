@@ -14,6 +14,7 @@ import assert from '@polkadot/util/assert';
 import isU8a from '@polkadot/util/is/u8a';
 import promisify from '@polkadot/util/promisify';
 // import u8aToHex from '@polkadot/util/u8a/toHex';
+import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
 import decodeRlp from '@polkadot/util-rlp/decode';
 
 import { EMPTY_ROOT_U8A, EMPTY_ROOT_STR } from './constants';
@@ -41,7 +42,7 @@ export default class BaseTrie {
   putRaw: RawPutFn;
   semaphore: SemaphorePromise;
 
-  constructor (db: any, root: Uint8Array, hashing: HashFn) {
+  constructor (db: any, root: Uint8Array = EMPTY_ROOT_U8A, hashing: HashFn = keccakAsU8a) {
     this.putRaw = this._putRaw;
 
     this.semaphore = semaphore(1);
