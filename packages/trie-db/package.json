@@ -36,7 +36,6 @@
     "async": "^1.4.2",
     "encoding-down": "^5.0.3",
     "level-ws": "0.1.0",
-    "leveldown": "^4.0.1",
     "levelup": "^3.0.1",
     "memdown": "^3.0.0",
     "readable-stream": "^2.2.8",
