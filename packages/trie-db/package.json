@@ -38,6 +38,7 @@
     "level-ws": "0.1.0",
     "levelup": "^3.0.1",
     "memdown": "^3.0.0",
+    "leveldown": "^4.0.1",
     "readable-stream": "^2.2.8",
     "semaphore": ">=1.0.1"
   },
