@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/storage",
-  "version": "0.26.34",
+  "version": "0.26.35",
   "description": "Generic wrapper wrapper around state storage",
   "main": "index.js",
   "engines": {
@@ -35,10 +35,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
-    "@polkadot/params": "^0.26.34",
-    "@polkadot/primitives": "^0.26.34",
-    "@polkadot/util": "^0.26.34",
-    "@polkadot/util-crypto": "^0.26.34",
-    "@polkadot/util-keyring": "^0.26.34"
+    "@polkadot/params": "^0.26.35",
+    "@polkadot/primitives": "^0.26.35",
+    "@polkadot/util": "^0.26.35",
+    "@polkadot/util-crypto": "^0.26.35",
+    "@polkadot/util-keyring": "^0.26.35"
   }
 }
