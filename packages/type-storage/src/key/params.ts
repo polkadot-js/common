@@ -34,6 +34,7 @@ export default function formatParams (params: Params, values: Storage$Key$Value[
           return bnToU8a((value as BN), 128, true);
 
         case 'BlockNumber':
+        case 'Gas':
         case 'u64':
           return bnToU8a((value as BN), 64, true);
 
@@ -54,8 +55,8 @@ export default function formatParams (params: Params, values: Storage$Key$Value[
         case 'Signature':
           return u8aToU8a((value as Uint8Array));
 
-        case 'Index':
-          return bnToU8a((value as BN), sizes.Index, true);
+        case 'AccountIndex':
+          return bnToU8a((value as BN), sizes.AccountIndex, true);
 
         case 'ParachainId':
         case 'PropIndex':

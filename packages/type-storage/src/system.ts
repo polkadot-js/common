@@ -8,6 +8,15 @@ import { Storages, Storage$Sections } from './types';
 import param from '@polkadot/params/param';
 import createSection from '@polkadot/params/section';
 
+const accountIndexOf: CreateItemOptions = {
+  description: 'The index of the given account',
+  key: 'sys:non',
+  params: [
+    param('who', 'AccountId')
+  ],
+  type: 'AccountIndex'
+};
+
 const blockHashAt: CreateItemOptions = {
   description: 'The blockHash for a specific number',
   key: 'sys:old',
@@ -17,18 +26,11 @@ const blockHashAt: CreateItemOptions = {
   type: 'Hash'
 };
 
-const blockNumber: CreateItemOptions = {
-  description: 'The current block number being processed',
-  key: 'sys:num',
+const extrinsicIndex: CreateItemOptions = {
+  description: 'The extrinsics index',
+  key: 'sys:xti',
   params: [],
-  type: 'BlockNumber'
-};
-
-const digest: CreateItemOptions = {
-  description: 'The digest for the current block',
-  key: 'sys:dig',
-  params: [],
-  type: 'Digest'
+  type: 'u32'
 };
 
 const extrinsicData: CreateItemOptions = {
@@ -40,27 +42,11 @@ const extrinsicData: CreateItemOptions = {
   type: 'Bytes'
 };
 
-const extrinsicIndex: CreateItemOptions = {
-  description: 'The extrinsics index',
-  key: 'sys:xti',
+const blockNumber: CreateItemOptions = {
+  description: 'The current block number being processed',
+  key: 'sys:num',
   params: [],
-  type: 'u32'
-};
-
-const extrinsicsRoot: CreateItemOptions = {
-  description: 'The extrinsicsRoot for the current block',
-  key: 'sys:txr',
-  params: [],
-  type: 'Hash'
-};
-
-const accountIndexOf: CreateItemOptions = {
-  description: 'The index of the given account',
-  key: 'sys:non',
-  params: [
-    param('who', 'AccountId')
-  ],
-  type: 'Index'
+  type: 'BlockNumber'
 };
 
 const parentHash: CreateItemOptions = {
@@ -70,11 +56,18 @@ const parentHash: CreateItemOptions = {
   type: 'Hash'
 };
 
-const randomSeed: CreateItemOptions = {
-  description: 'The random seed',
-  key: 'sys:rnd',
+const extrinsicsRoot: CreateItemOptions = {
+  description: 'The extrinsicsRoot for the current block',
+  key: 'sys:txr',
   params: [],
   type: 'Hash'
+};
+
+const digest: CreateItemOptions = {
+  description: 'The digest for the current block',
+  key: 'sys:dig',
+  params: [],
+  type: 'Digest'
 };
 
 export default (name: Storage$Sections): Section<Storages> =>
@@ -96,8 +89,6 @@ export default (name: Storage$Sections): Section<Storages> =>
       accountIndexOf:
         createMethod('accountIndexOf')(accountIndexOf),
       parentHash:
-        createMethod('parentHash')(parentHash),
-      randomSeed:
-        createMethod('randomSeed')(randomSeed)
+        createMethod('parentHash')(parentHash)
     }
   }));

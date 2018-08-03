@@ -8,25 +8,23 @@ import { Storages } from './types';
 import param from '@polkadot/params/param';
 import createSection from '@polkadot/params/section';
 
-const activeCouncil: CreateItemOptions = {
-  description: 'The current council',
-  key: 'cou:act',
-  params: [],
-  type: [['AccountId', 'BlockNumber']]
-};
-
-const approvalsOf: CreateItemOptions = {
-  description: 'The last cleared vote index that this voter was last active at',
-  key: 'cou:apr',
-  params: [
-    param('who', 'AccountId')
-  ],
-  type: ['bool']
-};
-
 const candidacyBond: CreateItemOptions = {
   description: 'How much should be locked up in order to submit candidacy',
   key: 'cou:cbo',
+  params: [],
+  type: 'Balance'
+};
+
+const votingBond: CreateItemOptions = {
+  description: 'How much should be locked up in order to be able to submit votes',
+  key: 'cou:vbo',
+  params: [],
+  type: 'Balance'
+};
+
+const presentSlashPerVoter: CreateItemOptions = {
+  description: 'The punishment, per voter, if you provide an invalid presentation',
+  key: 'cou:pss',
   params: [],
   type: 'Balance'
 };
@@ -38,25 +36,11 @@ const carryCount: CreateItemOptions = {
   type: 'u32'
 };
 
-const candidateCount: CreateItemOptions = {
-  description: 'Number of candidates',
-  key: 'cou:cnc',
+const presentationDuration: CreateItemOptions = {
+  description: 'How long to give each top candidate to present themselves after the vote ends',
+  key: 'cou:pdu',
   params: [],
-  type: 'u32'
-};
-
-const candidates: CreateItemOptions = {
-  description: 'The present candidate lis',
-  key: 'cou:can',
-  params: [],
-  type: ['AccountId']
-};
-
-const desiredSeats: CreateItemOptions = {
-  description: 'The number of desired seats',
-  key: 'cou:sts',
-  params: [],
-  type: 'u32'
+  type: 'BlockNumber'
 };
 
 const inactiveGracePeriod: CreateItemOptions = {
@@ -66,41 +50,48 @@ const inactiveGracePeriod: CreateItemOptions = {
   type: 'VoteIndex'
 };
 
-const lastActiveOf: CreateItemOptions = {
-  description: 'The last cleared vote index that this voter was last active at',
-  key: 'cou:lac',
-  params: [
-    param('who', 'AccountId')
-  ],
+const votingPeriod: CreateItemOptions = {
+  description: 'How often (in blocks) to check for new votes',
+  key: 'cou:per',
+  params: [],
+  type: 'BlockNumber'
+};
+
+const termDuration: CreateItemOptions = {
+  description: 'How long each position is active for',
+  key: 'cou:trm',
+  params: [],
+  type: 'BlockNumber'
+};
+
+const desiredSeats: CreateItemOptions = {
+  description: 'The number of desired seats',
+  key: 'cou:sts',
+  params: [],
+  type: 'u32'
+};
+
+const activeCouncil: CreateItemOptions = {
+  description: 'The current council',
+  key: 'cou:act',
+  params: [],
+  type: [['AccountId', 'BlockNumber']]
+};
+
+const voteCount: CreateItemOptions = {
+  description: 'The total number of votes that have happened or are in progress',
+  key: 'cou:vco',
+  params: [],
   type: 'VoteIndex'
 };
 
-const leaderboard: CreateItemOptions = {
-  description: 'Get the leaderboard if we;re in the presentation phase',
-  key: 'cou:win',
-  params: [],
-  type: [['Balance', 'AccountId']]
-};
-
-const nextFinalise: CreateItemOptions = {
-  description: 'The accounts holding the seats that will become free',
-  key: 'cou:nxt',
-  params: [],
-  type: ['BlockNumber', 'u32', ['AccountId']]
-};
-
-const presentSlashPerVoter: CreateItemOptions = {
-  description: 'The punishment, per voter, if you provide an invalid presentation',
-  key: 'cou:pss',
-  params: [],
-  type: 'Balance'
-};
-
-const presentationDuration: CreateItemOptions = {
-  description: 'How long to give each top candidate to present themselves after the vote ends',
-  key: 'cou:pdu',
-  params: [],
-  type: 'BlockNumber'
+const approvalsOf: CreateItemOptions = {
+  description: 'The last cleared vote index that this voter was last active at',
+  key: 'cou:apr',
+  params: [
+    param('who', 'AccountId')
+  ],
+  type: ['bool']
 };
 
 const registerInfoOf: CreateItemOptions = {
@@ -112,39 +103,13 @@ const registerInfoOf: CreateItemOptions = {
   type: [['VoteIndex', 'u32']]
 };
 
-const snapshotedStakes: CreateItemOptions = {
-  description: 'The balances',
-  key: 'cou:sss',
-  params: [],
-  type: ['Balance']
-};
-
-const termDuration: CreateItemOptions = {
-  description: 'How long each position is active for',
-  key: 'cou:trm',
-  params: [],
-  type: 'BlockNumber'
-};
-
-const voteCount: CreateItemOptions = {
-  description: 'The total number of votes that have happened or are in progress',
-  key: 'cou:vco',
-  params: [],
+const lastActiveOf: CreateItemOptions = {
+  description: 'The last cleared vote index that this voter was last active at',
+  key: 'cou:lac',
+  params: [
+    param('who', 'AccountId')
+  ],
   type: 'VoteIndex'
-};
-
-const votingBond: CreateItemOptions = {
-  description: 'How much should be locked up in order to be able to submit votes',
-  key: 'cou:vbo',
-  params: [],
-  type: 'Balance'
-};
-
-const votingPeriod: CreateItemOptions = {
-  description: 'How often (in blocks) to check for new votes',
-  key: 'cou:per',
-  params: [],
-  type: 'BlockNumber'
 };
 
 const voters: CreateItemOptions = {
@@ -152,6 +117,41 @@ const voters: CreateItemOptions = {
   key: 'cou:vrs',
   params: [],
   type: ['AccountId']
+};
+
+const candidates: CreateItemOptions = {
+  description: 'The present candidate lis',
+  key: 'cou:can',
+  params: [],
+  type: ['AccountId']
+};
+
+const candidateCount: CreateItemOptions = {
+  description: 'Number of candidates',
+  key: 'cou:cnc',
+  params: [],
+  type: 'u32'
+};
+
+const nextFinalise: CreateItemOptions = {
+  description: 'The accounts holding the seats that will become free',
+  key: 'cou:nxt',
+  params: [],
+  type: ['BlockNumber', 'u32', ['AccountId']]
+};
+
+const snapshotedStakes: CreateItemOptions = {
+  description: 'The balances',
+  key: 'cou:sss',
+  params: [],
+  type: ['Balance']
+};
+
+const leaderboard: CreateItemOptions = {
+  description: 'Get the leaderboard if we;re in the presentation phase',
+  key: 'cou:win',
+  params: [],
+  type: [['Balance', 'AccountId']]
 };
 
 export default (name: keyof Storages): Section<Storages> =>

@@ -5,10 +5,10 @@
 import { Storages } from './types';
 
 import consensus from './consensus';
+// import contract from './contract';
 import council from './council';
 import councilVoting from './councilVoting';
 import democracy from './democracy';
-import governance from './governance';
 import parachains from './parachains';
 import session from './session';
 import staking from './staking';
@@ -17,10 +17,10 @@ import timestamp from './timestamp';
 
 const storages: Storages = {
   consensus: consensus('consensus'),
+  // contract: contract('contract'),
   council: council('council'),
   councilVoting: councilVoting('councilVoting'),
   democracy: democracy('democracy'),
-  governance: governance('governance'),
   parachains: parachains('parachains'),
   session: session('session'),
   staking: staking('staking'),

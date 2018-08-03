@@ -6,10 +6,10 @@ export type SizeType = 32 | 64 | 128;
 
 const Balance: SizeType = 128;
 const BlockNumber: SizeType = 64;
-const Index: SizeType = 32;
+const AccountIndex: SizeType = 32;
 
 export default {
+  AccountIndex,
   Balance,
-  BlockNumber,
-  Index
+  BlockNumber
 };

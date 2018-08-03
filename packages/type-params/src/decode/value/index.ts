@@ -33,6 +33,7 @@ export default function decodeValue (decode: Decoder, type: Param$Type, input: U
         return bn(input, sizes.Balance);
 
       case 'BlockNumber':
+      case 'Gas':
       case 'SessionKey':
       case 'u64':
         return bn(input, 64);
@@ -62,8 +63,8 @@ export default function decodeValue (decode: Decoder, type: Param$Type, input: U
       case 'Hash':
         return u8a(input, 256, 0);
 
-      case 'Index':
-        return bn(input, sizes.Index);
+      case 'AccountIndex':
+        return bn(input, sizes.AccountIndex);
 
       case 'KeyValue':
       case 'KeyValueStorage':
