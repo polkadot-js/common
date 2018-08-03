@@ -30,6 +30,7 @@ export default function encodeType (type: Param$Type, value: any, version: Encod
         return bnToU8a(value, sizes.Balance.get(version) || defaultSizes.Balance, true);
 
       case 'BlockNumber':
+      case 'Gas':
       case 'SessionKey':
       case 'u64':
         return bnToU8a(value, 64, true);

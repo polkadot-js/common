@@ -11,10 +11,10 @@ import { MisbehaviorReport } from '@polkadot/primitives/misbehavior';
 export type EncodingVersions = 'poc-1' | 'latest';
 
 // TODO: Also update the following
-// - @polkadot/storage/create/decode/index.js
+// - @polkadot/storage/key/params.ts
 // - decode/value/index.js
 // - encode/type/index.js
-export type Param$Type = 'AccountId' | 'Balance' | 'BlockNumber' | 'bool' | 'Bytes' | 'Call' | 'CandidateReceipt' | 'Code' | 'Digest' | 'Hash' | 'Header' | 'Index' | 'KeyValue' | 'KeyValueStorage' | 'MisbehaviorReport' | 'ParachainId' | 'PropIndex' | 'Proposal' | 'ReferendumIndex' | 'SessionKey' | 'Signature' | 'String' | 'Timestamp' | 'u32' | 'u64' | 'u128' | 'VoteIndex' | 'VoteThreshold';
+export type Param$Type = 'AccountId' | 'Balance' | 'BlockNumber' | 'bool' | 'Bytes' | 'Call' | 'CandidateReceipt' | 'Code' | 'Digest' | 'Gas' | 'Hash' | 'Header' | 'Index' | 'KeyValue' | 'KeyValueStorage' | 'MisbehaviorReport' | 'ParachainId' | 'PropIndex' | 'Proposal' | 'ReferendumIndex' | 'SessionKey' | 'Signature' | 'String' | 'Timestamp' | 'u32' | 'u64' | 'u128' | 'VoteIndex' | 'VoteThreshold';
 
 export type Param$Type$Array = Array<Param$Type | Array<Param$Type | Array<Param$Type>>>;
 

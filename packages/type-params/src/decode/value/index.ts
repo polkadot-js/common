@@ -33,6 +33,7 @@ export default function decodeValue (decode: Decoder, type: Param$Type, input: U
         return bn(input, sizes.Balance);
 
       case 'BlockNumber':
+      case 'Gas':
       case 'SessionKey':
       case 'u64':
         return bn(input, 64);
