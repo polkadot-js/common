@@ -13,7 +13,6 @@ export type Storages = {
   council: Section<Storages>,
   councilVoting: Section<Storages>,
   democracy: Section<Storages>,
-  governance: Section<Storages>,
   parachains: Section<Storages>,
   session: Section<Storages>,
   staking: Section<Storages>,
