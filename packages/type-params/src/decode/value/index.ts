@@ -63,8 +63,8 @@ export default function decodeValue (decode: Decoder, type: Param$Type, input: U
       case 'Hash':
         return u8a(input, 256, 0);
 
-      case 'Index':
-        return bn(input, sizes.Index);
+      case 'AccountIndex':
+        return bn(input, sizes.AccountIndex);
 
       case 'KeyValue':
       case 'KeyValueStorage':

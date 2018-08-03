@@ -60,7 +60,7 @@ const accountIndexOf: CreateItemOptions = {
   params: [
     param('who', 'AccountId')
   ],
-  type: 'Index'
+  type: 'AccountIndex'
 };
 
 const parentHash: CreateItemOptions = {

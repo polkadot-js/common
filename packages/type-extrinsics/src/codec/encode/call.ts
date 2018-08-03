@@ -14,7 +14,7 @@ import u8aConcat from '@polkadot/util/u8a/concat';
 export default function encodeCall (publicKey: Uint8Array, nonce: number | BN, data: ExtrinsicWithIndex, version: EncodingVersions): ExtrinsicWithAccount {
   return u8aConcat(
     publicKey,
-    bnToU8a(nonce, sizes.Index.get(version) || defaultSizes.Index, true),
+    bnToU8a(nonce, sizes.AccountIndex.get(version) || defaultSizes.AccountIndex, true),
     data
   );
 }

@@ -10,12 +10,12 @@ const Balance: Map<EncodingVersions, SizeType> = new Map([
   ['poc-1' as EncodingVersions, 64 as SizeType]
 ]);
 
-const Index: Map<EncodingVersions, SizeType> = new Map([
-  ['latest' as EncodingVersions, sizes.Index],
+const AccountIndex: Map<EncodingVersions, SizeType> = new Map([
+  ['latest' as EncodingVersions, sizes.AccountIndex],
   ['poc-1' as EncodingVersions, 64 as SizeType]
 ]);
 
 export default {
-  Balance,
-  Index
+  AccountIndex,
+  Balance
 };

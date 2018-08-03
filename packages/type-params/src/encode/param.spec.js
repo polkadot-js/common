@@ -37,7 +37,7 @@ describe('encodeParam', () => {
 
   it('encodes tuple types with actual array values', () => {
     expect(
-      encodeParam({ type: ['Balance', 'Index'] }, [3, 4])
+      encodeParam({ type: ['Balance', 'AccountIndex'] }, [3, 4])
     ).toEqual(
       new Uint8Array([
         2, 0, 0, 0,

@@ -56,8 +56,8 @@ export default function encodeType (type: Param$Type, value: any, version: Encod
       case 'Signature':
         return u8aToU8a(value);
 
-      case 'Index':
-        return bnToU8a(value, sizes.Index.get(version) || defaultSizes.Balance, true);
+      case 'AccountIndex':
+        return bnToU8a(value, sizes.AccountIndex.get(version) || defaultSizes.Balance, true);
 
       case 'KeyValue':
       case 'KeyValueStorage':
