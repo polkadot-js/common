@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/trie-hash",
-  "version": "0.26.35",
+  "version": "0.26.36",
   "description": "Creation of triehash values",
   "main": "index.js",
   "keywords": [
@@ -34,8 +34,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
-    "@polkadot/util": "^0.26.35",
-    "@polkadot/util-crypto": "^0.26.35",
-    "@polkadot/util-rlp": "^0.26.35"
+    "@polkadot/util": "^0.26.36",
+    "@polkadot/util-crypto": "^0.26.36",
+    "@polkadot/util-rlp": "^0.26.36"
   }
 }
