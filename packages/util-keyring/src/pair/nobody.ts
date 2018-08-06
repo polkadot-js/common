@@ -32,8 +32,11 @@ export default function everybody (): KeyringPair {
       new Uint8Array(0),
     getMeta: (): KeyringPair$Meta =>
       meta,
-    hasSecretKey: (): boolean =>
+    isLocked: (): boolean =>
       true,
+    lock: (): void => {
+      // no locking, it is always locked
+    },
     publicKey: (): Uint8Array =>
       publicKey,
     setMeta: (meta: KeyringPair$Meta): void =>
