@@ -5,8 +5,10 @@
 import { EncodingVersions, Param$Decoded, Param$Type } from '../../types';
 import { Decoder } from '../types';
 
+import encodeAddress from '@polkadot/util-keyring/address/encode';
 import sizes from '@polkadot/primitives/sizes';
 
+import account from './account';
 import bool from './bool';
 import bn from './bn';
 import byte from './byte';
@@ -27,7 +29,7 @@ export default function decodeValue (decode: Decoder, type: Param$Type, input: U
     switch (type) {
       // TODO Pass back the actual address, not publicKey?
       case 'AccountId':
-        return u8a(input, 256, version === 'poc-1' ? 0 : 1);
+        return account(input.slice(0, 32), 256);
 
       case 'Balance':
         return bn(input, sizes.Balance);

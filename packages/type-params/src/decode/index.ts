@@ -4,6 +4,7 @@
 
 import { EncodingVersions, Param$Decoded, Param$Type$Array, Param$Types, Param$Value, Param$Value$Array } from '../types';
 
+import encodeAddress from '@polkadot/util-keyring/address/encode';
 import u8aToBn from '@polkadot/util/u8a/toBn';
 
 import decodeValue from './value';
@@ -33,6 +34,10 @@ function decodeArray ([ type ]: Param$Type$Array, input: Uint8Array, version: En
 
   for (let index = 0; index < arrayLength; index++) {
     const decoded = decode(type, input.subarray(length), version);
+
+    if (type === 'AccountId') {
+      decoded.value = encodeAddress((decoded.value as Uint8Array))
+    }
 
     // NOTE small TS hack, since we don't have recursive arrays, assume primitives to push
     value.push(decoded.value as Param$Value);
