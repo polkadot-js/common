@@ -36,8 +36,11 @@ export default function pair ({ publicKey, secretKey }: KeypairType, meta: Keyri
       encode(secretKey, passphrase),
     getMeta: (): KeyringPair$Meta =>
       getMeta(state),
-    hasSecretKey: (): boolean =>
+    isLocked: (): boolean =>
       !!(secretKey && secretKey.length !== 0),
+    lock: (): void => {
+      secretKey = new Uint8Array(0);
+    },
     publicKey: (): Uint8Array =>
       publicKey,
     setMeta: (meta: KeyringPair$Meta): void =>

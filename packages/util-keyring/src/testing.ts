@@ -38,10 +38,14 @@ export default function testKeyring (): KeyringInstance {
   Object
     .keys(SEEDS)
     .forEach((name) => {
-      keyring.addFromSeed(SEEDS[name], {
+      const pair = keyring.addFromSeed(SEEDS[name], {
         isTesting: true,
         name
       });
+
+      pair.lock = () => {
+        // we don't have lock/unlock functionality here
+      };
     });
 
   return keyring;
