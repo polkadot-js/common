@@ -7,13 +7,17 @@ import { Param$Decoded } from '../../types';
 import u8aToBn from '@polkadot/util/u8a/toBn';
 import u8aToUtf8 from '@polkadot/util/u8a/toUtf8';
 
-export default function string (input: Uint8Array): Param$Decoded {
-  const length = u8aToBn(input.subarray(0, 4), true).toNumber();
+export default function string (input: Uint8Array | null): Param$Decoded {
+  const length = input
+    ? u8aToBn(input.subarray(0, 4), true).toNumber()
+    : 0;
 
   return {
     length: length + 4,
-    value: u8aToUtf8(
-      input.subarray(4, length + 4)
-    )
+    value: input
+      ? u8aToUtf8(
+        input.subarray(4, length + 4)
+      )
+      : ''
   };
 }

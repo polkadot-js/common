@@ -6,9 +6,11 @@ import { Param$Decoded } from '../../types';
 
 import decodeHeader from '@polkadot/primitives/codec/header/decode';
 
-export default function header (input: Uint8Array): Param$Decoded {
+export default function header (input: Uint8Array | null): Param$Decoded {
   // FIXME We don't have a way to determine the length atm
-  const length = input.length;
+  const length = input
+    ? input.length
+    : 0;
   const value = decodeHeader(input);
 
   return {
