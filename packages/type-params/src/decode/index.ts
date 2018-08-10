@@ -8,7 +8,14 @@ import u8aToBn from '@polkadot/util/u8a/toBn';
 
 import decodeValue from './value';
 
-function decodeTuple (type: Param$Type$Array, input: Uint8Array, version: EncodingVersions): Param$Decoded {
+function decodeTuple (type: Param$Type$Array, input: Uint8Array | null, version: EncodingVersions): Param$Decoded {
+  if (!input) {
+    return {
+      length: 0,
+      value: []
+    };
+  }
+
   const value: Param$Value$Array = [];
   let length = 0;
 
@@ -26,7 +33,14 @@ function decodeTuple (type: Param$Type$Array, input: Uint8Array, version: Encodi
   };
 }
 
-function decodeArray ([ type ]: Param$Type$Array, input: Uint8Array, version: EncodingVersions): Param$Decoded {
+function decodeArray ([ type ]: Param$Type$Array, input: Uint8Array | null, version: EncodingVersions): Param$Decoded {
+  if (!input) {
+    return {
+      length: 0,
+      value: []
+    };
+  }
+
   const arrayLength = u8aToBn(input.subarray(0, 4), true).toNumber();
   const value: Param$Value$Array = [];
   let length = 4;
