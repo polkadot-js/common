@@ -4,22 +4,34 @@
 
 import { Header } from '../../header';
 
-import createHeader from '../../create/header';
+import BN from 'bn.js';
 
+import createHeader from '../../create/header';
 import decodeRaw from './decodeRaw';
 import { OFF_PARENT_HASH, OFF_STATE_ROOT, OFF_TX_ROOT } from './offsets';
 
-export default function decodeHeader (u8a: Uint8Array): Header {
+export default function decodeHeader (u8a: Uint8Array | null): Header {
   // tslint:disable-next-line:variable-name
-  const { number, logs } = decodeRaw(u8a);
+  const { number, logs } = u8a
+    ? decodeRaw(u8a)
+    : {
+      number: new BN(0),
+      logs: []
+    };
 
   return createHeader({
     digest: {
       logs
     },
-    extrinsicsRoot: u8a.subarray(OFF_TX_ROOT, OFF_TX_ROOT + 32),
+    extrinsicsRoot: u8a
+      ? u8a.subarray(OFF_TX_ROOT, OFF_TX_ROOT + 32)
+      : new Uint8Array(),
     number,
-    parentHash: u8a.subarray(OFF_PARENT_HASH, OFF_PARENT_HASH + 32),
-    stateRoot: u8a.subarray(OFF_STATE_ROOT, OFF_STATE_ROOT + 32)
+    parentHash: u8a
+      ? u8a.subarray(OFF_PARENT_HASH, OFF_PARENT_HASH + 32)
+      : new Uint8Array(),
+    stateRoot: u8a
+      ? u8a.subarray(OFF_STATE_ROOT, OFF_STATE_ROOT + 32)
+      : new Uint8Array()
   });
 }

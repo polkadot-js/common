@@ -6,13 +6,15 @@ import { Param$Decoded } from '../../types';
 
 import u8aToBn from '@polkadot/util/u8a/toBn';
 
-export default function time (input: Uint8Array): Param$Decoded {
+export default function time (input: Uint8Array | null): Param$Decoded {
   return {
     length: 8,
-    value: new Date(
-      u8aToBn(input.subarray(0, 8), true)
-        .imuln(1000)
-        .toNumber()
-    )
+    value: input
+      ? new Date(
+        u8aToBn(input.subarray(0, 8), true)
+          .imuln(1000)
+          .toNumber()
+      )
+      : new Date(0)
   };
 }

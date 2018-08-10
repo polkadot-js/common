@@ -4,9 +4,9 @@
 
 import { Param$Decoded } from '../../types';
 
-export default function bool (input: Uint8Array): Param$Decoded {
+export default function bool (input: Uint8Array | null): Param$Decoded {
   return {
     length: 1,
-    value: input[0] !== 0
+    value: !!(input && input[0] !== 0)
   };
 }
