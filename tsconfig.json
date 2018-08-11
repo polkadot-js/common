@@ -3,15 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@polkadot/extrinsics/*": [ "packages/type-extrinsics/src/*" ],
-      "@polkadot/jsonrpc/*": [ "packages/type-jsonrpc/src/*" ],
-      "@polkadot/params/*": [ "packages/type-params/src/*" ],
-      "@polkadot/primitives/*": [ "packages/type-primitives/src/*" ],
-      "@polkadot/storage/*": [ "packages/type-storage/src/*" ],
-
       "@polkadot/trie-db/*": [ "packages/trie-sb/src/*" ],
       "@polkadot/trie-hash/*": [ "packages/trie-hash/src/*" ],
-
       "@polkadot/util-crypto/*": [ "packages/util-crypto/src/*" ],
       "@polkadot/util-keyring/*": [ "packages/util-keyring/src/*" ],
       "@polkadot/util-rlp/*": [ "packages/util-rlp/src/*" ],
