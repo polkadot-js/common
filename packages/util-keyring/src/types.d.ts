@@ -41,10 +41,10 @@ export type KeyringPairs = {
 export type KeyringInstance = {
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta): KeyringPair,
   addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair,
-  addFromJson (pair: KeyringPair$Json): KeyringPair,
+  addFromJson (json: KeyringPair$Json): KeyringPair,
   getPair (address: string | Uint8Array): KeyringPair,
   getPairs (): Array<KeyringPair>,
   getPublicKeys (): Array<Uint8Array>,
   removePair (address: string | Uint8Array): void,
-  toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json
+  toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json | void
 };
