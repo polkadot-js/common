@@ -25,14 +25,6 @@ Various useful trie interfaces and utilities -
 - [trie-db](packages/trie-db/) Merkle Patricia Tree implementation adapcted for Polkadot
 - [trie-hash](packages/trie-hash/) Calculate hashes (either ordered or unordered) from a set of inputs
 
-Type definitions for interfaces as exposed by Polkadot & Substrate clients -
-
-- [@polkadot/extrinsics](packages/type-extrinsics/) Base extrinsic definitions & codecs
-- [@polkadot/jsonrpc](packages/type-jsonrpc/) Definitions for JSONRPC endpoints
-- [@polkadot/params](packages/type-params/) Input/output parameter formatting
-- [@polkadot/primitives](packages/type-primitives/) Primitive type definitions, builder & codecs
-- [@polkadot/storage](packages/type-storage/) Definitions for storage entries
-
 ## Contributing
 
 - Bootstrap the dependencies, `yarn`
