@@ -11,7 +11,7 @@ import u8aFromUtf8 from './fromUtf8';
 
 /**
  * @name u8aToU8a
- * @signature u8aToU8a (value?: Uint8Array | string): Uint8Array
+ * @signature u8aToU8a (value?: Array<number> | Buffer | Uint8Array | string | null): Uint8Array
  * @summary Creates a Uint8Array value from a Uint8Array bignumber or hex input.
  * @description
  * `null` inputs returns a `[]` result, Uint8Array values returns the value, hex strings returns a Uint8Array representation.
@@ -21,7 +21,7 @@ import u8aFromUtf8 from './fromUtf8';
  *   u8aToU8a(new Uint8Array([0x12, 0x34]); // => Uint8Array([0x12, 0x34])
  *   u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
  */
-export default function u8aToU8a (value?: Buffer | Uint8Array | string | null): Uint8Array {
+export default function u8aToU8a (value?: Array<number> | Buffer | Uint8Array | string | null): Uint8Array {
   if (!value) {
     return new Uint8Array(0);
   }
@@ -36,6 +36,10 @@ export default function u8aToU8a (value?: Buffer | Uint8Array | string | null): 
     }
 
     return u8aFromUtf8(value);
+  }
+
+  if (Array.isArray(value)) {
+    return Uint8Array.from(value);
   }
 
   return value;
