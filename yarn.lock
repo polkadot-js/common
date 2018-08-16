@@ -1213,9 +1213,9 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.0.tgz#50c1e2260ac0ed9439a181de3725a0168d59c48a"
 
-"@polkadot/dev@^0.20.13":
-  version "0.20.13"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.20.13.tgz#3db66a91d096f56f2d6ecf1e6d08240c58df0386"
+"@polkadot/dev@^0.20.16":
+  version "0.20.16"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.20.16.tgz#abf216be962a38937a6f38b1ca253f2cf8d3e302"
   dependencies:
     "@babel/cli" "^7.0.0-rc.1"
     "@babel/core" "^7.0.0-rc.1"
@@ -1258,9 +1258,9 @@
     typedoc "^0.11.1"
     typescript "^3.0.1"
 
-"@polkadot/ts@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.11.tgz#5f5a30251ec5b8f7061389d67d9f3a51cdb1485f"
+"@polkadot/ts@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.12.tgz#06e1a117b408ea934eba53aca7746dd53092a08c"
 
 "@types/async@^2.0.49":
   version "2.0.49"
@@ -1586,7 +1586,7 @@ async-each@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
 
-async@^1.4.0, async@^1.5.2, async@~1.5.2:
+async@^1.4.0, async@~1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
@@ -1595,6 +1595,12 @@ async@^2.1.4:
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
   dependencies:
     lodash "^4.14.0"
+
+async@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.1.tgz#b245a23ca71930044ec53fa46aa00a3e87c6a610"
+  dependencies:
+    lodash "^4.17.10"
 
 asynckit@^0.4.0:
   version "0.4.0"
