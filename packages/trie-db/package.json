@@ -3,7 +3,6 @@
   "version": "0.28.2",
   "description": "This is an implementation of the modified merkle patricia tree as speficed in Ethereum's yellow paper, adpated for Polkadot.",
   "main": "index.js",
-  "scripts": {},
   "maintainers": [
     "Jaco Greeff <jacogr@gmail.com>"
   ],
