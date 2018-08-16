@@ -7,9 +7,10 @@ import toU8a from '@polkadot/util/u8a/toU8a';
 import u8aToHex from '@polkadot/util/u8a/toHex';
 
 import Trie from '../src/index';
-import { tests } from 'ethereumjs-testing';
+import getTests from '../../../test/getTests';
 
-const jsonTests = tests.trieTests;
+const trietest = getTests('TrieTests/trietest.json');
+const trieanyorder = getTests('TrieTests/trieanyorder.json');
 
 describe('official tests', () => {
   let trie;
@@ -19,12 +20,12 @@ describe('official tests', () => {
   });
 
   describe('ordered tests', () => {
-    const testNames = Object.keys(jsonTests.trietest);
+    const testNames = Object.keys(trietest);
 
-    testNames.forEach((name) => {
+    trietest.forEach(({ name, input, root }) => {
       it(name, async () => {
         await Promise.all(
-          jsonTests.trietest[name].in.map((input) =>
+          input.map((input) =>
             trie.put(toU8a(input[0]), toU8a(input[1]))
           )
         );
@@ -32,30 +33,29 @@ describe('official tests', () => {
         expect(
           u8aToHex(trie.root)
         ).toEqual(
-          jsonTests.trietest[name].root
+          root
         );
       });
     });
   });
 
   describe('unordered tests', () => {
-    const testNames = Object.keys(jsonTests.trieanyorder);
+    const testNames = Object.keys(trieanyorder);
 
-    testNames.forEach((name) => {
-      const test = jsonTests.trieanyorder[name];
-      const keys = Object.keys(test.in);
+    trieanyorder.forEach(({ name, input, root }) => {
+      const keys = Object.keys(input);
 
       it(name, async () => {
         await Promise.all(
           keys.map((key) =>
-            trie.put(toU8a(key), toU8a(test.in[key]))
+            trie.put(toU8a(key), toU8a(input[key]))
           )
         );
 
         expect(
           u8aToHex(trie.root)
         ).toEqual(
-          test.root
+          root
         );
       });
     });

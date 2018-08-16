@@ -7,7 +7,7 @@ import u8aToHex from '@polkadot/util/u8a/toHex';
 
 import { decode, encode } from './index';
 
-import getTests from '../test/getTests';
+import getTests from '../../../test/getTests';
 
 const rlptests = getTests('RLPTests/rlptest.json');
 

@@ -28,10 +28,10 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.51",
+    "@babel/runtime": "^7.0.0-rc.1",
     "@polkadot/util": "^0.28.2",
     "blakejs": "^1.1.0",
-    "js-sha3": "^0.7.0",
+    "js-sha3": "^0.8.0",
     "tweetnacl": "^1.0.0",
     "xxhashjs": "^0.2.2"
   }

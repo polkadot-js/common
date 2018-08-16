@@ -15,6 +15,9 @@ export default function getTests (file: string) {
     input: tests[name].in[0] !== '#'
       ? tests[name].in
       : bnToU8a(new BN(tests[name].in.slice(1)), -1, true),
-    output: `0x${tests[name].out.toLowerCase()}`
+    output: tests[name].out
+      ? `0x${tests[name].out.toLowerCase()}`
+      : undefined,
+    root: tests[name].root
   }));
 }
