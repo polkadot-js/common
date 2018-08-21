@@ -13,14 +13,14 @@
     "typescript": "^3.0.1"
   },
   "scripts": {
-    "build": "polkadot-dev-build-ts",
+    "build": "polkadot-dev-build-ts && polkadot-dev-build-docs",
     "check": "tslint --project . && tsc --noEmit",
     "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "jest --coverage"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.20.16",
-    "@polkadot/ts": "^0.1.12"
+    "@polkadot/dev": "^0.20.17",
+    "@polkadot/ts": "^0.1.13"
   }
 }
