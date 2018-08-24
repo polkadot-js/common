@@ -31,6 +31,9 @@ class DiskDown extends AbstractLevelDOWN {
   }
 
   __getFilePath (key: Buffer, doExistence: boolean): FilePath {
+    // TODO We probably want to limit the number of entries in a specific directory, i.e
+    // based on the path split into sub-directories so one never gets to a size of 2^32
+    // keys. As a start (testing) this is a simpler approach.
     const path = `${this.location}/${key.toString('hex')}`;
     const exists = doExistence
       ? fs.existsSync(path)
@@ -67,11 +70,12 @@ class DiskDown extends AbstractLevelDOWN {
     const filePath = this.__getFilePath(key, true);
 
     this._store.delete(key.toString());
-    process.nextTick(callback);
 
     if (filePath.exists) {
       fs.unlinkSync(filePath.path);
     }
+
+    process.nextTick(callback);
   }
 
   _get (key: Buffer, options: any, callback: Function) {
@@ -111,6 +115,7 @@ class DiskDown extends AbstractLevelDOWN {
 
     this._store.set(key.toString(), value);
     fs.writeFileSync(filePath.path, value);
+
     process.nextTick(callback);
   }
 }
