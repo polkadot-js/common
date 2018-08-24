@@ -3,9 +3,15 @@
 // This software may be modified and distributed under the terms
 // of the MPL-2.0 license. See the LICENSE file for details.
 
+import mkdirp from 'mkdirp';
 import toU8a from '@polkadot/util/u8a/toU8a';
+// import diskdown from '@polkadot/db-diskdown/index';
 
 import Trie from '../src/index';
+
+// const DISKPATH = `${process.cwd()}/--test--db--`;
+
+// mkdirp(DISKPATH);
 
 describe('testing checkpoints', () => {
   let trie, preRoot, postRoot;

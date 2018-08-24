@@ -1,0 +1,36 @@
+{
+  "name": "@polkadot/db-diskdown",
+  "version": "0.28.4",
+  "description": "Simple file-base key-value storage system",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polkadot-js/client.git"
+  },
+  "keywords": [
+    "AbstractLevelDOWN"
+  ],
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "maintainers": [
+    "Jaco Greeff <jacogr@gmail.com>"
+  ],
+  "contributors": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polkadot-js/client/issues"
+  },
+  "homepage": "https://github.com/polkadot-js/client/tree/master/packages/db-diskdown#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-rc.1",
+    "@polkadot/util": "^0.28.4",
+    "abstract-leveldown": "^5.0.0",
+    "lru_map": "^0.3.3"
+  }
+}

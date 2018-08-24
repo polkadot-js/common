@@ -1239,9 +1239,9 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.0.tgz#50c1e2260ac0ed9439a181de3725a0168d59c48a"
 
-"@polkadot/dev@^0.20.17":
-  version "0.20.17"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.20.17.tgz#30c89e0c2c03402eca3a4da8bb02e3d499849c96"
+"@polkadot/dev@^0.20.18":
+  version "0.20.18"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.20.18.tgz#fb08df68a53f47cebdd0cea9366c0714b40879a6"
   dependencies:
     "@babel/cli" "^7.0.0-rc.1"
     "@babel/core" "^7.0.0-rc.1"
@@ -1285,9 +1285,9 @@
     typedoc-plugin-markdown "^1.1.13"
     typescript "^3.0.1"
 
-"@polkadot/ts@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.13.tgz#31540153a5381f1442e3f24f615eefd7442dbeac"
+"@polkadot/ts@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.17.tgz#0d85085038ae7e6757e059d07c8e9c54596919b3"
 
 "@types/async@^2.0.49":
   version "2.0.49"
@@ -4913,6 +4913,10 @@ lru-cache@^4.1.2, lru-cache@^4.1.3:
   dependencies:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
+
+lru_map@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/lru_map/-/lru_map-0.3.3.tgz#b5c8351b9464cbd750335a79650a0ec0e56118dd"
 
 ltgt@~2.2.0:
   version "2.2.1"
