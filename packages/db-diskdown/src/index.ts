@@ -36,12 +36,19 @@ class DiskDown extends AbstractLevelDOWN {
     this._store = new LRUMap(LRU_SIZE);
   }
 
-  __getFilePath (key: Buffer, doExistence: boolean): FilePath {
+  private __keyToString (key: Buffer): string {
+    return key
+      .toString('base64')
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_');
+  }
+
+  private __getFilePath (key: Buffer, doExistence: boolean): FilePath {
     // NOTE We want to limit the number of entries in any specific directory. Split the
     // key into parts and use this to construct the path and the actual filename. We want
     // to limit the entries per directory, but at the same time minimize the number of
     // directories we need to create (when non-existent)
-    const parts = key.toString('base64').replace('+', '-').replace('/', '_').match(/.{1,2}/g) || [];
+    const parts = this.__keyToString(key).match(/.{1,2}/g) || [];
     const directoryPath = `${this.location}/${parts.slice(0, 3).join('/')}`;
     const filePath = `${directoryPath}/${parts.slice(3).join('')}`;
     let directoryExists = false;
