@@ -5,19 +5,19 @@
 
 import mkdirp from 'mkdirp';
 import toU8a from '@polkadot/util/u8a/toU8a';
-// import diskdown from '@polkadot/db-diskdown/index';
+import diskdown from '@polkadot/db-diskdown/index';
 
 import Trie from '../src/index';
 
-// const DISKPATH = `${process.cwd()}/--test--db--`;
+const DISKPATH = `${process.cwd()}/--test--db--`;
 
-// mkdirp(DISKPATH);
+mkdirp(DISKPATH);
 
 describe('testing checkpoints', () => {
   let trie, preRoot, postRoot;
 
   it('sets up the trie', async () => {
-    trie = new Trie();
+    trie = new Trie(diskdown(DISKPATH));
 
     await trie.put(toU8a('do'), toU8a('verb'));
     await trie.put(toU8a('doge'), toU8a('coin'));

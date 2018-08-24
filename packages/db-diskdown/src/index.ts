@@ -6,11 +6,17 @@ import { AbstractLevelDOWN } from 'abstract-leveldown';
 import fs from 'fs';
 import { LRUMap } from 'lru_map';
 import logger from '@polkadot/util/logger';
+import mkdirp from 'mkdirp';
 import isUndefined from '@polkadot/util/is/undefined';
 
-type FilePath = {
+type FilePathEntry = {
   exists: boolean,
   path: string
+};
+
+type FilePath = {
+  directory: FilePathEntry,
+  file: FilePathEntry
 };
 
 const LRU_SIZE = 4096;
@@ -31,17 +37,35 @@ class DiskDown extends AbstractLevelDOWN {
   }
 
   __getFilePath (key: Buffer, doExistence: boolean): FilePath {
-    // TODO We probably want to limit the number of entries in a specific directory, i.e
-    // based on the path split into sub-directories so one never gets to a size of 2^32
-    // keys. As a start (testing) this is a simpler approach.
-    const path = `${this.location}/${key.toString('hex')}`;
-    const exists = doExistence
-      ? fs.existsSync(path)
-      : false;
+    // NOTE We want to limit the number of entries in any specific directory. Split the
+    // key into parts and use this to construct the path and the actual filename. We want
+    // to limit the entries per directory, but at the same time minimize the number of
+    // directories we need to create (when non-existent)
+    const parts = key.toString('hex').match(/.{1,4}/g) || [];
+    const directoryPath = `${this.location}/${parts.slice(0, 4).join('/')}`;
+    const filePath = `${directoryPath}/${parts.slice(4).join('')}`;
+    let directoryExists = false;
+    let fileExists = true;
+
+    if (doExistence) {
+      fileExists = fs.existsSync(filePath);
+
+      if (fileExists) {
+        directoryExists = true;
+      } else {
+        directoryExists = fs.existsSync(directoryPath);
+      }
+    }
 
     return {
-      exists,
-      path
+      directory: {
+        exists: directoryExists,
+        path: directoryPath
+      },
+      file: {
+        exists: fileExists,
+        path: filePath
+      }
     };
   }
 
@@ -71,8 +95,8 @@ class DiskDown extends AbstractLevelDOWN {
 
     this._store.delete(key.toString());
 
-    if (filePath.exists) {
-      fs.unlinkSync(filePath.path);
+    if (filePath.file.exists) {
+      fs.unlinkSync(filePath.file.path);
     }
 
     process.nextTick(callback);
@@ -90,8 +114,8 @@ class DiskDown extends AbstractLevelDOWN {
       return returnValue();
     }
 
-    if (filePath.exists) {
-      value = fs.readFileSync(filePath.path);
+    if (filePath.file.exists) {
+      value = fs.readFileSync(filePath.file.path);
 
       return returnValue();
     }
@@ -114,7 +138,12 @@ class DiskDown extends AbstractLevelDOWN {
     const filePath = this.__getFilePath(key, false);
 
     this._store.set(key.toString(), value);
-    fs.writeFileSync(filePath.path, value);
+
+    if (!filePath.directory.exists) {
+      mkdirp.sync(filePath.directory.path);
+    }
+
+    fs.writeFileSync(filePath.file.path, value);
 
     process.nextTick(callback);
   }

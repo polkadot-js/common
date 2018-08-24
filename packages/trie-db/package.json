@@ -40,7 +40,6 @@
     "semaphore": ">=1.0.1"
   },
   "devDependencies": {
-    "ethereumjs-testing": "1.0.4",
-    "mkdirp": "^0.5.1"
+    "ethereumjs-testing": "1.0.4"
   }
 }
