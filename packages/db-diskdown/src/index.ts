@@ -20,6 +20,7 @@ type FilePath = {
 };
 
 const LRU_SIZE = 8192;
+const DIR_DEPTH = 1;
 
 const l = logger('db-diskdown');
 const noop = () =>
@@ -47,10 +48,10 @@ class DiskDown extends AbstractLevelDOWN {
     // NOTE We want to limit the number of entries in any specific directory. Split the
     // key into parts and use this to construct the path and the actual filename. We want
     // to limit the entries per directory, but at the same time minimize the number of
-    // directories we need to create (when non-existent)
-    const parts = this.__keyToString(key).match(/.{1,2}/g) || [];
-    const directoryPath = `${this.location}/${parts.slice(0, 3).join('/')}`;
-    const filePath = `${directoryPath}/${parts.slice(3).join('')}`;
+    // directories we need to create (when non-existent as well as the size overhead)
+    const parts = this.__keyToString(key).match(/.{1,3}/g) || [];
+    const directoryPath = `${this.location}/${parts.slice(0, DIR_DEPTH).join('/')}`;
+    const filePath = `${directoryPath}/${parts.slice(DIR_DEPTH).join('')}`;
     let directoryExists = false;
     let fileExists = true;
 
