@@ -34,5 +34,8 @@
     "abstract-leveldown": "^5.0.0",
     "lru_map": "^0.3.3",
     "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.2"
   }
 }

@@ -2,79 +2,36 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+import { DiskStore } from './types';
+
 import { AbstractLevelDOWN } from 'abstract-leveldown';
-import fs from 'fs';
 import { LRUMap } from 'lru_map';
-import logger from '@polkadot/util/logger';
-import mkdirp from 'mkdirp';
 import isUndefined from '@polkadot/util/is/undefined';
+import logger from '@polkadot/util/logger';
 
-type FilePathEntry = {
-  exists: boolean,
-  path: string
-};
-
-type FilePath = {
-  directory: FilePathEntry,
-  file: FilePathEntry
-};
+import Combined from './store/Combined';
+import Scatter from './store/Scatter';
 
 const LRU_SIZE = 8192;
-const DIR_DEPTH = 1;
 
-const l = logger('db-diskdown');
+const l = logger('disk/scatter');
 const noop = () =>
   undefined;
 
 class DiskDown extends AbstractLevelDOWN {
-  location: string;
+  _disk: DiskStore;
   _store: LRUMap<string, Buffer>;
 
   constructor (location: string) {
     super(location);
 
-    this.location = location;
+    // FIXME We only want one of these, however add both to aid in easy
+    // debug testing (i.e. remove the one not needed - defaults still to
+    // Scatter with the override as set here)
+    this._disk = new Combined(location);
+    this._disk = new Scatter(location);
+
     this._store = new LRUMap(LRU_SIZE);
-  }
-
-  private __keyToString (key: Buffer): string {
-    return key
-      .toString('base64')
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_');
-  }
-
-  private __getFilePath (key: Buffer, doExistence: boolean): FilePath {
-    // NOTE We want to limit the number of entries in any specific directory. Split the
-    // key into parts and use this to construct the path and the actual filename. We want
-    // to limit the entries per directory, but at the same time minimize the number of
-    // directories we need to create (when non-existent as well as the size overhead)
-    const parts = this.__keyToString(key).match(/.{1,3}/g) || [];
-    const directoryPath = `${this.location}/${parts.slice(0, DIR_DEPTH).join('/')}`;
-    const filePath = `${directoryPath}/${parts.slice(DIR_DEPTH).join('')}`;
-    let directoryExists = false;
-    let fileExists = true;
-
-    if (doExistence) {
-      fileExists = fs.existsSync(filePath);
-
-      if (fileExists) {
-        directoryExists = true;
-      } else {
-        directoryExists = fs.existsSync(directoryPath);
-      }
-    }
-
-    return {
-      directory: {
-        exists: directoryExists,
-        path: directoryPath
-      },
-      file: {
-        exists: fileExists,
-        path: filePath
-      }
-    };
   }
 
   _batch (array: Array<any>, options: any, callback: Function) {
@@ -99,13 +56,8 @@ class DiskDown extends AbstractLevelDOWN {
   _del (key: Buffer, options: any, callback: Function) {
     l.debug(() => ['_del', key]);
 
-    const filePath = this.__getFilePath(key, true);
-
     this._store.delete(key.toString());
-
-    if (filePath.file.exists) {
-      fs.unlinkSync(filePath.file.path);
-    }
+    this._disk.delete(key);
 
     process.nextTick(callback);
   }
@@ -113,29 +65,18 @@ class DiskDown extends AbstractLevelDOWN {
   _get (key: Buffer, options: any, callback: Function) {
     l.debug(() => ['_get', key.toString('hex')]);
 
-    const filePath = this.__getFilePath(key, true);
-    let value = this._store.get(key.toString());
-    const returnValue = () =>
-      process.nextTick(callback, null, value);
+    const value = this._store.get(key.toString()) || this._disk.get(key);
 
-    if (!isUndefined(value)) {
-      return returnValue();
+    if (isUndefined(value)) {
+      process.nextTick(callback, new Error('NotFound'));
+      return;
     }
 
-    if (filePath.file.exists) {
-      value = fs.readFileSync(filePath.file.path);
-
-      return returnValue();
-    }
-
-    // 'NotFound' error, consistent with LevelDOWN API
-    process.nextTick(callback, new Error('NotFound'));
+    process.nextTick(callback, null, value);
   }
 
   _open (options: any, callback: Function) {
     l.debug(() => ['_open', options]);
-
-    this._store.clear();
 
     process.nextTick(callback, null, this);
   }
@@ -143,15 +84,8 @@ class DiskDown extends AbstractLevelDOWN {
   _put (key: Buffer, value: Buffer, options: any, callback: Function) {
     l.debug(() => ['_put', key.toString('hex'), value]);
 
-    const filePath = this.__getFilePath(key, false);
-
     this._store.set(key.toString(), value);
-
-    if (!filePath.directory.exists) {
-      mkdirp.sync(filePath.directory.path);
-    }
-
-    fs.writeFileSync(filePath.file.path, value);
+    this._disk.set(key, value);
 
     process.nextTick(callback);
   }
