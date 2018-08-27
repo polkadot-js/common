@@ -13,6 +13,7 @@ import Combined from './store/Combined';
 // import Scatter from './store/Scatter';
 
 const LRU_SIZE = 8192;
+const KEY_LENGTH = 32;
 
 const l = logger('disk/scatter');
 const noop = () =>
@@ -84,6 +85,20 @@ class DiskDown extends AbstractLevelDOWN {
     this._disk.set(key, value);
 
     process.nextTick(callback);
+  }
+
+  _serializeKey (key: Buffer): Buffer {
+    if (key.length === KEY_LENGTH) {
+      return key;
+    } else if (key.length < KEY_LENGTH) {
+      const paddedKey = Buffer.alloc(KEY_LENGTH);
+
+      paddedKey.set(key, 0);
+
+      return paddedKey;
+    }
+
+    throw new Error(`${key.toString()} too large, expected <= 32 bytes`);
   }
 }
 
