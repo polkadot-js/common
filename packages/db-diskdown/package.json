@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/db-diskdown",
-  "version": "0.28.7",
+  "version": "0.28.8",
   "description": "Simple file-base key-value storage system",
   "main": "index.js",
   "engines": {
@@ -29,7 +29,7 @@
   "homepage": "https://github.com/polkadot-js/client/tree/master/packages/db-diskdown#readme",
   "dependencies": {
     "@babel/runtime": "^7.0.0-rc.1",
-    "@polkadot/util": "^0.28.7",
+    "@polkadot/util": "^0.28.8",
     "@types/mkdirp": "^0.5.2",
     "abstract-leveldown": "^5.0.0",
     "lru_map": "^0.3.3",
