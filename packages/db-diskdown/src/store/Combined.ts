@@ -36,7 +36,8 @@ type Value = Key & {
   valueAt: number
 };
 
-const UINT_SIZE = 4; // 4GB total size (max allowed here is 6 as per Nodejs)
+// NOTE 1,099,511,627,776 filesize (max allowed here is 6 as per Nodejs)
+const UINT_SIZE = 5;
 const KEY_SIZE = 32;
 const KEY_TOTAL_SIZE = KEY_SIZE + UINT_SIZE + UINT_SIZE;
 const ENTRY_SIZE = 1 + UINT_SIZE;
