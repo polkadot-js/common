@@ -40,7 +40,7 @@ const UINT_SIZE = 6; // 48-bit, the max Node supports
 const KEY_SIZE = 32;
 const KEY_TOTAL_SIZE = KEY_SIZE + UINT_SIZE + UINT_SIZE;
 const ENTRY_SIZE = 1 + UINT_SIZE;
-const HEADER_SIZE = 10 * ENTRY_SIZE;
+const HEADER_SIZE = 256 * ENTRY_SIZE;
 
 const l = logger('disk/combined');
 
@@ -296,7 +296,7 @@ export default class StoreCombined implements DiskStore {
       };
     }
 
-    throw new Error(`Unhandled entry type ${entry[0]}`);
+    throw new Error(`Unhandled entry type ${entryType}`);
   }
 
   private findKey (key: Buffer, doCreate: boolean): Leaf | null {
