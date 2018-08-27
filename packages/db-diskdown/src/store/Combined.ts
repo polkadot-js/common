@@ -36,7 +36,7 @@ type Value = Key & {
   valueAt: number
 };
 
-const UINT_SIZE = 6; // 48-bit, the max Node supports
+const UINT_SIZE = 4; // 4GB total size (max allowed here is 6 as per Nodejs)
 const KEY_SIZE = 32;
 const KEY_TOTAL_SIZE = KEY_SIZE + UINT_SIZE + UINT_SIZE;
 const ENTRY_SIZE = 1 + UINT_SIZE;
