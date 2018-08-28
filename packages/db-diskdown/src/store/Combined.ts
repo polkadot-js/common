@@ -101,14 +101,14 @@ export default class Combined implements DiskStore {
     const newStat = fs.lstatSync(newFile);
     const oldStat = fs.lstatSync(this._file);
     const percentage = 100 * (newStat.size / oldStat.size);
-    const sizeMb = newStat.size / (1024 * 1024);
+    const sizeMB = newStat.size / (1024 * 1024);
     const elapsed = (Date.now() - start) / 1000;
 
     fs.unlinkSync(this._file);
     // fs.renameSync(this._file, `${this._file}.old`);
     fs.renameSync(newFile, this._file);
 
-    l.log(`compacted in ${elapsed.toFixed(2)}s, ${(count / 1000).toFixed(2)}k keys, ${sizeMb.toFixed(2)}MB (${percentage.toFixed(2)}%)`);
+    l.log(`compacted in ${elapsed.toFixed(2)}s, ${(count / 1000).toFixed(2)}k keys, ${sizeMB.toFixed(2)}MB (${percentage.toFixed(2)}%)`);
   }
 
   delete (key: Buffer): void {
