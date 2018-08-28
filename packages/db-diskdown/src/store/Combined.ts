@@ -99,9 +99,15 @@ export default class Combined implements DiskStore {
     fs.closeSync(newFd);
 
     const newStat = fs.lstatSync(newFile);
+    const oldStat = fs.lstatSync(this._file);
+    const percentage = 100 * (newStat.size / oldStat.size);
     const elapsed = (Date.now() - start) / 1000;
 
-    l.log(`compacted in ${elapsed.toFixed(2)}s, ${(count / 1000).toFixed(2)}k keys, ${(newStat.size / (1024 * 1024)).toFixed(2)}MB`);
+    // fs.unlinkSync(this._file);
+    fs.renameSync(this._file, `${this._file}.old`);
+    fs.renameSync(newFile, this._file);
+
+    l.log(`compacted in ${elapsed.toFixed(2)}s, ${(count / 1000).toFixed(2)}k keys, ${(newStat.size / (1024 * 1024)).toFixed(2)}MB (${percentage.toFixed(2)}%)`);
   }
 
   delete (key: Buffer): void {
@@ -188,7 +194,7 @@ export default class Combined implements DiskStore {
 
     this._compactUpdateLink(fd, at, index, headerAt, Slot.BRANCH);
 
-    return at;
+    return headerAt;
   }
 
   private _compact (progress: (message: string) => void, newFd: number, oldFd: number, newAt: number = 0, oldAt: number = 0, depth: number = 0): number {
