@@ -31,12 +31,10 @@ class DiskDown extends AbstractLevelDOWN {
     this._store = new LRUMap(LRU_SIZE);
   }
 
-  compact (callback: Function): void {
+  compact (progress: (message: string) => void): void {
     l.debug(() => ['compact']);
 
-    this._disk.compact();
-
-    process.nextTick(callback);
+    this._disk.compact(progress);
   }
 
   _open (options: any, callback: Function) {

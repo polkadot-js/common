@@ -54,7 +54,7 @@ export default class Scatter implements DiskStore {
     // noop
   }
 
-  compact (): void {
+  compact (progress: (message: string) => void): void {
     // noop
   }
 
