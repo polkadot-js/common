@@ -10,9 +10,8 @@ import isUndefined from '@polkadot/util/is/undefined';
 import logger from '@polkadot/util/logger';
 
 import Combined from './store/Combined';
-// import Scatter from './store/Scatter';
 
-const LRU_SIZE = 8192;
+const LRU_SIZE = 16384;
 const KEY_LENGTH = 32;
 
 const l = logger('disk/scatter');
@@ -26,7 +25,6 @@ class DiskDown extends AbstractLevelDOWN {
   constructor (location: string) {
     super(location);
 
-    // this._disk = new Scatter(location);
     this._disk = new Combined(location);
     this._store = new LRUMap(LRU_SIZE);
   }
