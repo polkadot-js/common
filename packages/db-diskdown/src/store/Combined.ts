@@ -232,7 +232,7 @@ export default class Combined implements DiskStore {
 
       count += indexCount;
 
-      if (oldAt === 0) {
+      if (depth === 0) {
         const percentage = `   ${(100 * (index + 1) / ENTRY_NUM).toFixed(2)}`;
 
         progress(`${percentage.slice(-6)}% compacted, ${count} keys`);
