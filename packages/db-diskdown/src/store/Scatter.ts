@@ -17,7 +17,7 @@ const DIR_DEPTH = 1;
 
 const l = logger('disk/scatter');
 
-export default class StoreScatter implements DiskStore {
+export default class Scatter implements DiskStore {
   _location: string;
 
   constructor (location: string) {
@@ -46,16 +46,20 @@ export default class StoreScatter implements DiskStore {
     };
   }
 
+  open (): void {
+    // noop
+  }
+
+  close (): void {
+    // noop
+  }
+
+  compact (): void {
+    // noop
+  }
+
   delete (key: Buffer): void {
     throw new Error('delete not implemented, only stubbed');
-
-    // l.debug(() => ['del', key.toString('hex')]);
-
-    // const { file } = this._getFilePath(key);
-
-    // if (fs.existsSync(file)) {
-    //   fs.unlinkSync(file);
-    // }
   }
 
   get (key: Buffer): Buffer | undefined {

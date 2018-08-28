@@ -3,7 +3,10 @@
 // of the ISC license. See the LICENSE file for details.
 
 export interface DiskStore {
+  close (): void;
+  compact (): void,
   delete (key: Buffer): void;
   get (key: Buffer): Buffer | undefined;
+  open (): void,
   set (key: Buffer, value: Buffer): void;
 }

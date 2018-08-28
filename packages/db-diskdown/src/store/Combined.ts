@@ -5,6 +5,7 @@
 import { DiskStore } from '../types';
 
 import fs from 'fs';
+import assert from '@polkadot/util/assert';
 import logger from '@polkadot/util/logger';
 
 enum Slot {
@@ -40,8 +41,9 @@ type Value = Key & {
 const UINT_SIZE = 5;
 const KEY_SIZE = 32;
 const KEY_TOTAL_SIZE = KEY_SIZE + UINT_SIZE + UINT_SIZE;
+const ENTRY_NUM = 256;
 const ENTRY_SIZE = 1 + UINT_SIZE;
-const HEADER_SIZE = 256 * ENTRY_SIZE;
+const HEADER_SIZE = ENTRY_NUM * ENTRY_SIZE;
 
 const l = logger('disk/combined');
 
@@ -59,21 +61,232 @@ function debug (obj: any) {
   );
 }
 
-export default class StoreCombined implements DiskStore {
+export default class Combined implements DiskStore {
   _fd: number;
+  _file: string;
 
   constructor (location: string) {
     if (!fs.existsSync(location)) {
       throw new Error(`Unable to open ${location}`);
     }
 
-    const file = `${location}/store.db`;
+    this._file = `${location}/store.db`;
+    this._fd = -1;
+  }
 
-    if (!fs.existsSync(file)) {
-      fs.writeFileSync(file, Buffer.alloc(HEADER_SIZE));
+  open (): void {
+    this._fd = this._open(this._file);
+  }
+
+  close (): void {
+    this.assertOpen();
+
+    fs.closeSync(this._fd);
+  }
+
+  compact (): void {
+    assert(this._fd === -1, 'Database cannot be open for compacting');
+
+    l.log('Compacting database');
+
+    const start = Date.now();
+    const newFile = `${this._file}.compacted`;
+    const newFd = this._open(newFile, true);
+    const oldFd = this._open(this._file);
+    const count = this._compact(newFd, oldFd, 0, 0);
+
+    fs.closeSync(oldFd);
+    fs.closeSync(newFd);
+
+    const elapsed = (Date.now() - start) / 1000;
+
+    l.log(`Database compacted in ${elapsed.toFixed(2)}s, ${count} keys written`);
+  }
+
+  delete (key: Buffer): void {
+    throw new Error('delete not implemented, only stubbed');
+  }
+
+  get (key: Buffer): Buffer | undefined {
+    this.assertOpen();
+
+    l.debug(() => ['get', debug({ key })]);
+
+    const desc = this.findKey(key, false);
+
+    if (!desc) {
+      return;
     }
 
-    this._fd = fs.openSync(file, 'a+');
+    return this.readValue(desc).value;
+  }
+
+  set (key: Buffer, value: Buffer): void {
+    this.assertOpen();
+
+    l.debug(() => ['set', debug({ key, value })]);
+
+    const desc = this.findKey(key, true);
+
+    if (!desc) {
+      throw new Error('Unable to create key');
+    }
+
+    this.writeValue(desc, value);
+  }
+
+  private _compactReadEntry (fd: number, at: number, index: number): Buffer {
+    const entry = Buffer.alloc(ENTRY_SIZE);
+    const entryAt = at + (index * ENTRY_SIZE);
+
+    fs.readSync(fd, entry, 0, ENTRY_SIZE, entryAt);
+
+    return entry;
+  }
+
+  private _compactReadKey (fd: number, at: number): [Buffer, Buffer] {
+    const key = Buffer.alloc(KEY_TOTAL_SIZE);
+
+    fs.readSync(fd, key, 0, KEY_TOTAL_SIZE, at);
+
+    const valueLength = key.readUIntBE(KEY_SIZE, UINT_SIZE);
+    const valueAt = key.readUIntBE(KEY_SIZE + UINT_SIZE, UINT_SIZE);
+    const value = Buffer.alloc(valueLength);
+
+    fs.readSync(fd, value, 0, valueLength, valueAt);
+
+    return [key, value];
+  }
+
+  private _compactWriteKey (fd: number, key: Buffer, value: Buffer): number {
+    const stats = fs.fstatSync(fd);
+    const at = stats.size;
+
+    fs.writeSync(fd, value, 0, value.length, at);
+    key.writeUIntBE(at, KEY_SIZE + UINT_SIZE, UINT_SIZE);
+    fs.writeSync(fd, key, 0, KEY_TOTAL_SIZE);
+
+    return at + value.length;
+  }
+
+  private _compactWriteHeader (fd: number): number {
+    const stats = fs.fstatSync(fd);
+    const at = stats.size;
+    const header = Buffer.alloc(HEADER_SIZE);
+
+    fs.writeSync(fd, header, 0, HEADER_SIZE, at);
+
+    return at;
+  }
+
+  private _compactUpdateLink (fd: number, at: number, index: number, pointer: number, type: Slot): void {
+    const entry = Buffer.alloc(ENTRY_SIZE);
+
+    entry.set([type], 0);
+    entry.writeUIntBE(pointer, 1, UINT_SIZE);
+
+    fs.writeSync(fd, entry, 0, ENTRY_SIZE, at + (index * ENTRY_SIZE));
+  }
+
+  private _compact (newFd: number, oldFd: number, newAt: number, oldAt: number): number {
+    let count = 0;
+
+    for (let index = 0; index < ENTRY_NUM; index++) {
+      const entry = this._compactReadEntry(oldFd, oldAt, 0);
+      const pointer = entry.readUIntBE(1, UINT_SIZE);
+      const entryType = entry[0];
+
+      if (entryType === Slot.EMPTY) {
+        // empty, do nothing
+      } else if (entryType === Slot.LEAF) {
+        const [key, value] = this._compactReadKey(oldFd, pointer);
+        const keyAt = this._compactWriteKey(newFd, key, value);
+
+        this._compactUpdateLink(newFd, newAt, index, keyAt, Slot.LEAF);
+
+        count++;
+      } else if (entryType === Slot.BRANCH) {
+        const headerAt = this._compactWriteHeader(newFd);
+
+        this._compactUpdateLink(newFd, newAt, index, headerAt, Slot.BRANCH);
+
+        count += this._compact(newFd, oldFd, pointer, headerAt);
+      } else {
+        throw new Error(`Unknown entry type, ${entryType}`);
+      }
+    }
+
+    return count;
+  }
+
+  private _findKey (key: Buffer, doCreate: boolean, keyIndex: number, diskAt: number): Leaf | null {
+    const entry = Buffer.alloc(ENTRY_SIZE);
+    const entryAt = diskAt + (key[keyIndex] * ENTRY_SIZE);
+
+    fs.readSync(this._fd, entry, 0, ENTRY_SIZE, entryAt);
+
+    l.debug(() => ['findKey', debug({ key, doCreate, keyIndex, diskAt, entry, entryAt })]);
+
+    const entryType = entry[0];
+
+    if (entryType === Slot.BRANCH) {
+      const branchAt = entry.readUIntBE(1, UINT_SIZE);
+
+      l.debug(() => ['findKey/isBranch', debug({ branchAt })]);
+
+      return this._findKey(key, doCreate, keyIndex + 1, branchAt);
+    }
+
+    if (entryType === Slot.EMPTY) {
+      l.debug(() => ['findKey/isEmpty']);
+
+      return doCreate
+        ? this.writeNewLeaf(entry, entryAt, key)
+        : null;
+    }
+
+    if (entryType === Slot.LEAF) {
+      const keyAt = entry.readUIntBE(1, UINT_SIZE);
+      const keyValue = Buffer.alloc(KEY_TOTAL_SIZE);
+
+      fs.readSync(this._fd, keyValue, 0, KEY_TOTAL_SIZE, keyAt);
+
+      l.debug(() => ['findKey/isLeaf', debug({ keyAt, entry, keyValue })]);
+
+      let matchIndex = keyIndex;
+
+      while (matchIndex < KEY_SIZE) {
+        if (keyValue[matchIndex] !== key[matchIndex]) {
+          break;
+        }
+
+        matchIndex++;
+      }
+
+      if (matchIndex !== KEY_SIZE) {
+        return doCreate
+          ? this.writeNewBranch(entry, entryAt, key, keyAt, keyValue, matchIndex, matchIndex - keyIndex - 1)
+          : null;
+      }
+
+      return {
+        entry,
+        entryAt,
+        key,
+        keyAt,
+        keyValue
+      };
+    }
+
+    throw new Error(`Unhandled entry type ${entryType}`);
+  }
+
+  private findKey (key: Buffer, doCreate: boolean): Leaf | null {
+    const result = this._findKey(key, doCreate, 0, 0);
+
+    l.debug(() => ['findKey', '=>', debug(result)]);
+
+    return result;
   }
 
   private _readValue (key: Buffer, keyAt: number, keyValue: Buffer): Value {
@@ -238,111 +451,19 @@ export default class StoreCombined implements DiskStore {
     return result;
   }
 
-  private _findKey (key: Buffer, doCreate: boolean, keyIndex: number, diskAt: number): Leaf | null {
-    const entry = Buffer.alloc(ENTRY_SIZE);
-    const entryAt = diskAt + (key[keyIndex] * ENTRY_SIZE);
-
-    fs.readSync(this._fd, entry, 0, ENTRY_SIZE, entryAt);
-
-    l.debug(() => ['findKey', debug({ key, doCreate, keyIndex, diskAt, entry, entryAt })]);
-
-    const entryType = entry[0];
-
-    if (entryType === Slot.BRANCH) {
-      const branchAt = entry.readUIntBE(1, UINT_SIZE);
-
-      l.debug(() => ['findKey/isBranch', debug({ branchAt })]);
-
-      return this._findKey(key, doCreate, keyIndex + 1, branchAt);
-    }
-
-    if (entryType === Slot.EMPTY) {
-      l.debug(() => ['findKey/isEmpty']);
-
-      return doCreate
-        ? this.writeNewLeaf(entry, entryAt, key)
-        : null;
-    }
-
-    if (entryType === Slot.LEAF) {
-      const keyAt = entry.readUIntBE(1, UINT_SIZE);
-      const keyValue = Buffer.alloc(KEY_TOTAL_SIZE);
-
-      fs.readSync(this._fd, keyValue, 0, KEY_TOTAL_SIZE, keyAt);
-
-      l.debug(() => ['findKey/isLeaf', debug({ keyAt, entry, keyValue })]);
-
-      let matchIndex = keyIndex;
-
-      while (matchIndex < KEY_SIZE) {
-        if (keyValue[matchIndex] !== key[matchIndex]) {
-          break;
-        }
-
-        matchIndex++;
-      }
-
-      if (matchIndex !== KEY_SIZE) {
-        return doCreate
-          ? this.writeNewBranch(entry, entryAt, key, keyAt, keyValue, matchIndex, matchIndex - keyIndex - 1)
-          : null;
-      }
-
-      return {
-        entry,
-        entryAt,
-        key,
-        keyAt,
-        keyValue
-      };
-    }
-
-    throw new Error(`Unhandled entry type ${entryType}`);
+  private assertOpen (): void {
+    assert(this._fd !== -1, 'Expected an open database');
   }
 
-  private findKey (key: Buffer, doCreate: boolean): Leaf | null {
-    const result = this._findKey(key, doCreate, 0, 0);
-
-    l.debug(() => ['findKey', '=>', debug(result)]);
-
-    return result;
-  }
-
-  delete (key: Buffer): void {
-    throw new Error('delete not implemented, only stubbed');
-
-    // l.debug(() => ['del', debug({ key })]);
-
-    // const desc = this.findKey(key, false);
-
-    // if (desc) {
-    //   desc.entry.set([Slot.EMPTY], 0);
-
-    //   fs.writeSync(this._fd, desc.entry, 0, 1, desc.entryAt);
-    // }
-  }
-
-  get (key: Buffer): Buffer | undefined {
-    l.debug(() => ['get', debug({ key })]);
-
-    const desc = this.findKey(key, false);
-
-    if (!desc) {
-      return;
+  private _open (file: string, startEmpty: boolean = false): number {
+    if (startEmpty) {
+      return fs.openSync(file, 'w+');
     }
 
-    return this.readValue(desc).value;
-  }
-
-  set (key: Buffer, value: Buffer): void {
-    l.debug(() => ['set', debug({ key, value })]);
-
-    const desc = this.findKey(key, true);
-
-    if (!desc) {
-      throw new Error('Unable to create key');
+    if (!fs.existsSync(file)) {
+      fs.writeFileSync(file, Buffer.alloc(HEADER_SIZE));
     }
 
-    this.writeValue(desc, value);
+    return fs.openSync(file, 'a+');
   }
 }

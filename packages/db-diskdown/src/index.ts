@@ -31,6 +31,30 @@ class DiskDown extends AbstractLevelDOWN {
     this._store = new LRUMap(LRU_SIZE);
   }
 
+  compact (callback: Function): void {
+    l.debug(() => ['compact']);
+
+    this._disk.compact();
+
+    process.nextTick(callback);
+  }
+
+  _open (options: any, callback: Function) {
+    l.debug(() => ['_open', options]);
+
+    this._disk.open();
+
+    process.nextTick(callback);
+  }
+
+  _close (callback: Function) {
+    l.debug(() => ['_close']);
+
+    this._disk.close();
+
+    process.nextTick(callback);
+  }
+
   _batch (array: Array<any>, options: any, callback: Function) {
     l.debug(() => ['_batch', array]);
 
@@ -70,12 +94,6 @@ class DiskDown extends AbstractLevelDOWN {
     }
 
     process.nextTick(callback, null, value);
-  }
-
-  _open (options: any, callback: Function) {
-    l.debug(() => ['_open', options]);
-
-    process.nextTick(callback, null, this);
   }
 
   _put (key: Buffer, value: Buffer, options: any, callback: Function) {
