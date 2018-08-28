@@ -98,9 +98,10 @@ export default class Combined implements DiskStore {
     fs.closeSync(oldFd);
     fs.closeSync(newFd);
 
+    const newStat = fs.lstatSync(newFile);
     const elapsed = (Date.now() - start) / 1000;
 
-    l.log(`compacting completed in ${elapsed.toFixed(2)}s`); // , ${count} keys written`);
+    l.log(`compacted in ${elapsed.toFixed(2)}s, ${(count / 1000).toFixed(2)}k keys, ${(newStat.size / (1024 * 1024)).toFixed(2)}MB`);
   }
 
   delete (key: Buffer): void {
