@@ -4,7 +4,7 @@
 
 export interface DiskStore {
   close (): void;
-  compact (): void,
+  compact (progress: (message: string) => void): void,
   delete (key: Buffer): void;
   get (key: Buffer): Buffer | undefined;
   open (): void,

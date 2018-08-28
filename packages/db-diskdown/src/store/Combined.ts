@@ -84,7 +84,7 @@ export default class Combined implements DiskStore {
     fs.closeSync(this._fd);
   }
 
-  compact (): void {
+  compact (progress: (message: string) => void): void {
     assert(this._fd === -1, 'Database cannot be open for compacting');
 
     l.log('compacting database');
@@ -93,7 +93,7 @@ export default class Combined implements DiskStore {
     const newFile = `${this._file}.compacted`;
     const newFd = this._open(newFile, true);
     const oldFd = this._open(this._file);
-    const count = this._compact(newFd, oldFd);
+    const count = this._compact(progress, newFd, oldFd);
 
     fs.closeSync(oldFd);
     fs.closeSync(newFd);
@@ -191,7 +191,7 @@ export default class Combined implements DiskStore {
     return at;
   }
 
-  private _compact (newFd: number, oldFd: number, newAt: number = 0, oldAt: number = 0, depth: number = 0): number {
+  private _compact (progress: (message: string) => void, newFd: number, oldFd: number, newAt: number = 0, oldAt: number = 0, depth: number = 0): number {
     // l.debug(() => ['_compact', debug({ newFd, oldFd, newAt, oldAt })]);
 
     let count = 0;
@@ -218,7 +218,7 @@ export default class Combined implements DiskStore {
 
         const headerAt = this._compactWriteHeader(newFd, newAt, index);
 
-        indexCount += this._compact(newFd, oldFd, headerAt, dataAt, depth + 1);
+        indexCount += this._compact(progress, newFd, oldFd, headerAt, dataAt, depth + 1);
       } else {
         throw new Error(`Unknown entry type, ${entryType}`);
       }
@@ -228,7 +228,7 @@ export default class Combined implements DiskStore {
       if (oldAt === 0) {
         const percentage = `   ${(100 * (index + 1) / ENTRY_NUM).toFixed(2)}`;
 
-        l.log(`${percentage.slice(-6)}% compacted, ${count} keys`);
+        progress(`${percentage.slice(-6)}% compacted, ${count} keys`);
       }
     }
 
