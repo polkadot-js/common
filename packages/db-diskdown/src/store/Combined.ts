@@ -88,7 +88,7 @@ export default class Combined implements DiskStore {
   compact (): void {
     assert(this._fd === -1, 'Database cannot be open for compacting');
 
-    l.log('Compacting database');
+    l.log('compacting database');
 
     const start = Date.now();
     const newFile = `${this._file}.compacted`;
@@ -101,7 +101,7 @@ export default class Combined implements DiskStore {
 
     const elapsed = (Date.now() - start) / 1000;
 
-    l.log(`compacted in ${elapsed.toFixed(2)}s, ${count} keys written`);
+    l.log(`compacting completed in ${elapsed.toFixed(2)}s`); // , ${count} keys written`);
   }
 
   delete (key: Buffer): void {
@@ -226,9 +226,9 @@ export default class Combined implements DiskStore {
       count += indexCount;
 
       if (oldAt === 0) {
-        const percentage = `   ${(100 * (index + 1) / ENTRY_NUM).toFixed(2)}`.slice(-6);
+        const percentage = `   ${(100 * (index + 1) / ENTRY_NUM).toFixed(2)}`;
 
-        l.log(`${percentage}%: written ${count} keys`);
+        l.log(`${percentage.slice(-6)}% compacted, ${count} keys`);
       }
     }
 
