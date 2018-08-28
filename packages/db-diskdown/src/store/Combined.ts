@@ -87,20 +87,21 @@ export default class Combined implements DiskStore {
   compact (): void {
     assert(this._fd === -1, 'Database cannot be open for compacting');
 
-    l.log('Compacting database');
+    l.log('compacting database');
 
     const start = Date.now();
     const newFile = `${this._file}.compacted`;
     const newFd = this._open(newFile, true);
     const oldFd = this._open(this._file);
-    const count = this._compact(newFd, oldFd, 0, 0);
+    const count = this._compact(newFd, oldFd);
 
     fs.closeSync(oldFd);
     fs.closeSync(newFd);
 
+    const newStat = fs.lstatSync(newFile);
     const elapsed = (Date.now() - start) / 1000;
 
-    l.log(`Database compacted in ${elapsed.toFixed(2)}s, ${count} keys written`);
+    l.log(`compacted in ${elapsed.toFixed(2)}s, ${(count / 1000).toFixed(2)}k keys, ${(newStat.size / (1024 * 1024)).toFixed(2)}MB`);
   }
 
   delete (key: Buffer): void {
@@ -169,16 +170,6 @@ export default class Combined implements DiskStore {
     return at + value.length;
   }
 
-  private _compactWriteHeader (fd: number): number {
-    const stats = fs.fstatSync(fd);
-    const at = stats.size;
-    const header = Buffer.alloc(HEADER_SIZE);
-
-    fs.writeSync(fd, header, 0, HEADER_SIZE, at);
-
-    return at;
-  }
-
   private _compactUpdateLink (fd: number, at: number, index: number, pointer: number, type: Slot): void {
     const entry = Buffer.alloc(ENTRY_SIZE);
 
@@ -188,33 +179,60 @@ export default class Combined implements DiskStore {
     fs.writeSync(fd, entry, 0, ENTRY_SIZE, at + (index * ENTRY_SIZE));
   }
 
-  private _compact (newFd: number, oldFd: number, newAt: number, oldAt: number): number {
+  private _compactWriteHeader (fd: number, at: number, index: number): number {
+    const stats = fs.fstatSync(fd);
+    const headerAt = stats.size;
+    const header = Buffer.alloc(HEADER_SIZE);
+
+    fs.writeSync(fd, header, 0, HEADER_SIZE, headerAt);
+
+    this._compactUpdateLink(fd, at, index, headerAt, Slot.BRANCH);
+
+    return at;
+  }
+
+  private _compact (newFd: number, oldFd: number, newAt: number = 0, oldAt: number = 0, depth: number = 0): number {
+    // l.debug(() => ['_compact', debug({ newFd, oldFd, newAt, oldAt })]);
+
     let count = 0;
 
     for (let index = 0; index < ENTRY_NUM; index++) {
-      const entry = this._compactReadEntry(oldFd, oldAt, 0);
-      const pointer = entry.readUIntBE(1, UINT_SIZE);
+      const entry = this._compactReadEntry(oldFd, oldAt, index);
+      const dataAt = entry.readUIntBE(1, UINT_SIZE);
       const entryType = entry[0];
+      let indexCount = 0;
 
       if (entryType === Slot.EMPTY) {
-        // empty, do nothing
+        // l.debug(() => '_compact/isEmpty');
       } else if (entryType === Slot.LEAF) {
-        const [key, value] = this._compactReadKey(oldFd, pointer);
+        // l.debug(() => '_compact/isLeaf');
+
+        const [key, value] = this._compactReadKey(oldFd, dataAt);
         const keyAt = this._compactWriteKey(newFd, key, value);
 
         this._compactUpdateLink(newFd, newAt, index, keyAt, Slot.LEAF);
 
-        count++;
+        indexCount++;
       } else if (entryType === Slot.BRANCH) {
-        const headerAt = this._compactWriteHeader(newFd);
+        // l.debug(() => '_compact/isBranch');
 
-        this._compactUpdateLink(newFd, newAt, index, headerAt, Slot.BRANCH);
+        const headerAt = this._compactWriteHeader(newFd, newAt, index);
 
-        count += this._compact(newFd, oldFd, pointer, headerAt);
+        indexCount += this._compact(newFd, oldFd, headerAt, dataAt, depth + 1);
       } else {
         throw new Error(`Unknown entry type, ${entryType}`);
       }
+
+      count += indexCount;
+
+      if (oldAt === 0) {
+        const percentage = `   ${(100 * (index + 1) / ENTRY_NUM).toFixed(2)}`;
+
+        l.log(`${percentage.slice(-6)}% compacted, ${count} keys`);
+      }
     }
+
+    // l.debug(() => ['_compact', '=>', `${depth}: ${count} keys written`]);
 
     return count;
   }
@@ -456,11 +474,7 @@ export default class Combined implements DiskStore {
   }
 
   private _open (file: string, startEmpty: boolean = false): number {
-    if (startEmpty) {
-      return fs.openSync(file, 'w+');
-    }
-
-    if (!fs.existsSync(file)) {
+    if (!fs.existsSync(file) || startEmpty) {
       fs.writeFileSync(file, Buffer.alloc(HEADER_SIZE));
     }
 
