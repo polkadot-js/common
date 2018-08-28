@@ -7,7 +7,6 @@ import { DiskStore } from '../types';
 import fs from 'fs';
 import assert from '@polkadot/util/assert';
 import logger from '@polkadot/util/logger';
-import bnToHex from '@polkadot/util/bn/toHex';
 
 enum Slot {
   EMPTY = 0,
