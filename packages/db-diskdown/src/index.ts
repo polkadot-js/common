@@ -5,11 +5,14 @@
 import { DiskStore } from './types';
 
 import { AbstractLevelDOWN } from 'abstract-leveldown';
+import { LRUMap } from 'lru_map';
 import isUndefined from '@polkadot/util/is/undefined';
 import logger from '@polkadot/util/logger';
 
 import Combined from './store/Combined';
+// import Scatter from './store/Scatter';
 
+const LRU_SIZE = 8192;
 const KEY_LENGTH = 32;
 
 const l = logger('disk/scatter');
@@ -18,11 +21,14 @@ const noop = () =>
 
 class DiskDown extends AbstractLevelDOWN {
   _disk: DiskStore;
+  _store: LRUMap<string, Buffer>;
 
   constructor (location: string) {
     super(location);
 
+    // this._disk = new Scatter(location);
     this._disk = new Combined(location);
+    this._store = new LRUMap(LRU_SIZE);
   }
 
   compact (progress: (message: string) => void): void {
@@ -69,6 +75,7 @@ class DiskDown extends AbstractLevelDOWN {
   _del (key: Buffer, options: any, callback: Function) {
     l.debug(() => ['_del', key]);
 
+    this._store.delete(key.toString());
     this._disk.delete(key);
 
     process.nextTick(callback);
@@ -77,7 +84,7 @@ class DiskDown extends AbstractLevelDOWN {
   _get (key: Buffer, options: any, callback: Function) {
     l.debug(() => ['_get', key.toString('hex')]);
 
-    const value = this._disk.get(key);
+    const value = this._store.get(key.toString()) || this._disk.get(key);
 
     if (isUndefined(value)) {
       process.nextTick(callback, new Error('NotFound'));
@@ -90,6 +97,7 @@ class DiskDown extends AbstractLevelDOWN {
   _put (key: Buffer, value: Buffer, options: any, callback: Function) {
     l.debug(() => ['_put', key.toString('hex'), value]);
 
+    this._store.set(key.toString(), value);
     this._disk.set(key, value);
 
     process.nextTick(callback);
