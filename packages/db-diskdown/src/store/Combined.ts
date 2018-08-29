@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { DiskStore } from '../types';
+import { DiskStore, ProgressValue } from '../types';
 
 import fs from 'fs';
 import assert from '@polkadot/util/assert';
@@ -84,7 +84,7 @@ export default class Combined implements DiskStore {
     fs.closeSync(this._fd);
   }
 
-  compact (progress: (message: string) => void): void {
+  compact (progress: (value: ProgressValue) => void): void {
     assert(this._fd === -1, 'Database cannot be open for compacting');
 
     l.log('compacting database');
@@ -93,7 +93,7 @@ export default class Combined implements DiskStore {
     const newFile = `${this._file}.compacted`;
     const newFd = this._open(newFile, true);
     const oldFd = this._open(this._file);
-    const count = this._compact(progress, newFd, oldFd);
+    const keys = this._compact(progress, newFd, oldFd);
 
     fs.closeSync(oldFd);
     fs.closeSync(newFd);
@@ -108,7 +108,7 @@ export default class Combined implements DiskStore {
     // fs.renameSync(this._file, `${this._file}.old`);
     fs.renameSync(newFile, this._file);
 
-    l.log(`compacted in ${elapsed.toFixed(2)}s, ${(count / 1000).toFixed(2)}k keys, ${sizeMB.toFixed(2)}MB (${percentage.toFixed(2)}%)`);
+    l.log(`compacted in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys, ${sizeMB.toFixed(2)}MB (${percentage.toFixed(2)}%)`);
   }
 
   delete (key: Buffer): void {
@@ -198,16 +198,15 @@ export default class Combined implements DiskStore {
     return headerAt;
   }
 
-  private _compact (progress: (message: string) => void, newFd: number, oldFd: number, newAt: number = 0, oldAt: number = 0, depth: number = 0): number {
+  private _compact (progress: (value: ProgressValue) => void, newFd: number, oldFd: number, newAt: number = 0, oldAt: number = 0, depth: number = 0, percent: number = 0): number {
     // l.debug(() => ['_compact', debug({ newFd, oldFd, newAt, oldAt })]);
 
-    let count = 0;
+    let keys = 0;
 
     for (let index = 0; index < ENTRY_NUM; index++) {
       const entry = this._compactReadEntry(oldFd, oldAt, index);
       const dataAt = entry.readUIntBE(1, UINT_SIZE);
       const entryType = entry[0];
-      let indexCount = 0;
 
       if (entryType === Slot.EMPTY) {
         // l.debug(() => '_compact/isEmpty');
@@ -219,29 +218,29 @@ export default class Combined implements DiskStore {
 
         this._compactUpdateLink(newFd, newAt, index, keyAt, Slot.LEAF);
 
-        indexCount++;
+        keys++;
       } else if (entryType === Slot.BRANCH) {
         // l.debug(() => '_compact/isBranch');
 
         const headerAt = this._compactWriteHeader(newFd, newAt, index);
 
-        indexCount += this._compact(progress, newFd, oldFd, headerAt, dataAt, depth + 1);
+        keys += this._compact(progress, newFd, oldFd, headerAt, dataAt, depth + 1, percent);
       } else {
         throw new Error(`Unknown entry type, ${entryType}`);
       }
 
-      count += indexCount;
+      percent += (100 / ENTRY_NUM) / Math.pow(ENTRY_NUM, depth);
 
-      if (depth === 0) {
-        const percentage = `   ${(100 * (index + 1) / ENTRY_NUM).toFixed(2)}`;
-
-        progress(`${percentage.slice(-6)}% compacted, ${count} keys`);
-      }
+      progress({
+        depth,
+        keys,
+        percent
+      });
     }
 
-    // l.debug(() => ['_compact', '=>', `${depth}: ${count} keys written`]);
+    // l.debug(() => ['_compact', '=>', `${depth}: ${keys} keys written`]);
 
-    return count;
+    return keys;
   }
 
   private _findKey (key: Buffer, doCreate: boolean, keyIndex: number, diskAt: number): Leaf | null {

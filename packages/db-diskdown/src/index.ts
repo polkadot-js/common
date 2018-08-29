@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { DiskStore } from './types';
+import { DiskStore, ProgressValue } from './types';
 
 import { AbstractLevelDOWN } from 'abstract-leveldown';
 import { LRUMap } from 'lru_map';
@@ -29,7 +29,7 @@ class DiskDown extends AbstractLevelDOWN {
     this._store = new LRUMap(LRU_SIZE);
   }
 
-  compact (progress: (message: string) => void): void {
+  compact (progress: (value: ProgressValue) => void): void {
     l.debug(() => ['compact']);
 
     this._disk.compact(progress);

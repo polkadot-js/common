@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { DiskStore } from '../types';
+import { DiskStore, ProgressValue } from '../types';
 
 import fs from 'fs';
 import mkdirp from 'mkdirp';
@@ -54,7 +54,7 @@ export default class Scatter implements DiskStore {
     // noop
   }
 
-  compact (progress: (message: string) => void): void {
+  compact (progress: (value: ProgressValue) => void): void {
     // noop
   }
 
