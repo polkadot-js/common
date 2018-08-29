@@ -320,20 +320,14 @@ export default class Combined implements DiskStore {
     return result;
   }
 
-  private _extractValueInfo (keyValue: Buffer): { valueAt: number, valueLength: number } {
-    return {
-      valueLength: keyValue.readUIntBE(KEY_SIZE, UINT_SIZE),
-      valueAt: keyValue.readUIntBE(KEY_SIZE + UINT_SIZE, UINT_SIZE)
-    };
-  }
-
   private _readValue (key: Buffer, keyAt: number, keyValue: Buffer): Value {
     l.debug(() => ['readValue', debug({ key, keyAt, keyValue })]);
 
-    const { valueAt, valueLength } = this._extractValueInfo(keyValue);
+    const length = keyValue.readUIntBE(KEY_SIZE, UINT_SIZE);
+    const valueAt = keyValue.readUIntBE(KEY_SIZE + UINT_SIZE, UINT_SIZE);
     const value = Buffer.alloc(length);
 
-    fs.readSync(this._fd, value, 0, valueLength, valueAt);
+    fs.readSync(this._fd, value, 0, length, valueAt);
 
     return {
       key,
@@ -355,13 +349,8 @@ export default class Combined implements DiskStore {
   private _writeValue (key: Buffer, keyAt: number, keyValue: Buffer, value: Buffer): Value {
     l.debug(() => ['writeValue', debug({ keyAt, keyValue, value })]);
 
-    let { valueAt, valueLength } = this._extractValueInfo(keyValue);
-
-    if (valueLength < value.length) {
-      const stats = fs.fstatSync(this._fd);
-
-      valueAt = stats.size;
-    }
+    const stats = fs.fstatSync(this._fd);
+    const valueAt = stats.size;
 
     fs.writeSync(this._fd, value, 0, value.length, valueAt);
 
