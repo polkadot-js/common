@@ -331,7 +331,7 @@ export default class Combined implements DiskStore {
     l.debug(() => ['readValue', debug({ key, keyAt, keyValue })]);
 
     const { valueAt, valueLength } = this._extractValueInfo(keyValue);
-    const value = Buffer.alloc(valueLength);
+    const value = Buffer.alloc(length);
 
     fs.readSync(this._fd, value, 0, valueLength, valueAt);
 
