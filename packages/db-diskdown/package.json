@@ -32,7 +32,6 @@
     "@polkadot/util": "^0.28.23",
     "@types/mkdirp": "^0.5.2",
     "abstract-leveldown": "^5.0.0",
-    "lru_map": "^0.3.3",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
