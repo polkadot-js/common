@@ -198,45 +198,54 @@ export default class Combined implements DiskStore {
     return headerAt;
   }
 
-  private _compact (progress: (value: ProgressValue) => void, newFd: number, oldFd: number, newAt: number = 0, oldAt: number = 0, depth: number = 0, keys: number = 0, percent: number = 0): number {
+  private _compact (progress: (value: ProgressValue) => void, newFd: number, oldFd: number): number {
     // l.debug(() => ['_compact', debug({ newFd, oldFd, newAt, oldAt })]);
 
-    for (let index = 0; index < ENTRY_NUM; index++) {
-      const entry = this._compactReadEntry(oldFd, oldAt, index);
-      const dataAt = entry.readUIntBE(1, UINT_SIZE);
-      const entryType = entry[0];
+    let keys = 0;
+    let percent = 0;
 
-      if (entryType === Slot.EMPTY) {
-        // l.debug(() => '_compact/isEmpty');
-      } else if (entryType === Slot.LEAF) {
-        // l.debug(() => '_compact/isLeaf');
+    const doCompact = (newAt: number, oldAt: number, depth: number) => {
+      const increment = (100 / ENTRY_NUM) / Math.pow(ENTRY_NUM, depth);
 
-        const [key, value] = this._compactReadKey(oldFd, dataAt);
-        const keyAt = this._compactWriteKey(newFd, key, value);
+      for (let index = 0; index < ENTRY_NUM; index++) {
+        const entry = this._compactReadEntry(oldFd, oldAt, index);
+        const dataAt = entry.readUIntBE(1, UINT_SIZE);
+        const entryType = entry[0];
 
-        this._compactUpdateLink(newFd, newAt, index, keyAt, Slot.LEAF);
+        if (entryType === Slot.EMPTY) {
+          // l.debug(() => '_compact/isEmpty');
+          percent += increment;
+        } else if (entryType === Slot.LEAF) {
+          // l.debug(() => '_compact/isLeaf');
 
-        keys++;
-      } else if (entryType === Slot.BRANCH) {
-        // l.debug(() => '_compact/isBranch');
+          const [key, value] = this._compactReadKey(oldFd, dataAt);
+          const keyAt = this._compactWriteKey(newFd, key, value);
 
-        const headerAt = this._compactWriteHeader(newFd, newAt, index);
+          this._compactUpdateLink(newFd, newAt, index, keyAt, Slot.LEAF);
 
-        keys = this._compact(progress, newFd, oldFd, headerAt, dataAt, depth + 1, keys, percent);
-      } else {
-        throw new Error(`Unknown entry type, ${entryType}`);
+          keys++;
+          percent += increment;
+        } else if (entryType === Slot.BRANCH) {
+          // l.debug(() => '_compact/isBranch');
+
+          const headerAt = this._compactWriteHeader(newFd, newAt, index);
+
+          doCompact(headerAt, dataAt, depth + 1);
+        } else {
+          throw new Error(`Unknown entry type, ${entryType}`);
+        }
+
+        progress({
+          depth,
+          keys,
+          percent
+        });
       }
 
-      percent += (100 / ENTRY_NUM) / Math.pow(ENTRY_NUM, depth);
+      // l.debug(() => ['_compact', '=>', `${depth}: ${keys} keys written`]);
+    };
 
-      progress({
-        depth,
-        keys,
-        percent
-      });
-    }
-
-    // l.debug(() => ['_compact', '=>', `${depth}: ${keys} keys written`]);
+    doCompact(0, 0, 0);
 
     return keys;
   }
