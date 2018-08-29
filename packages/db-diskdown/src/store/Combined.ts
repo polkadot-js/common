@@ -198,10 +198,8 @@ export default class Combined implements DiskStore {
     return headerAt;
   }
 
-  private _compact (progress: (value: ProgressValue) => void, newFd: number, oldFd: number, newAt: number = 0, oldAt: number = 0, depth: number = 0, percent: number = 0): number {
+  private _compact (progress: (value: ProgressValue) => void, newFd: number, oldFd: number, newAt: number = 0, oldAt: number = 0, depth: number = 0, keys: number = 0, percent: number = 0): number {
     // l.debug(() => ['_compact', debug({ newFd, oldFd, newAt, oldAt })]);
-
-    let keys = 0;
 
     for (let index = 0; index < ENTRY_NUM; index++) {
       const entry = this._compactReadEntry(oldFd, oldAt, index);
@@ -224,7 +222,7 @@ export default class Combined implements DiskStore {
 
         const headerAt = this._compactWriteHeader(newFd, newAt, index);
 
-        keys += this._compact(progress, newFd, oldFd, headerAt, dataAt, depth + 1, percent);
+        keys = this._compact(progress, newFd, oldFd, headerAt, dataAt, depth + 1, keys, percent);
       } else {
         throw new Error(`Unknown entry type, ${entryType}`);
       }
