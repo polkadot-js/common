@@ -222,7 +222,7 @@ export default class Trie {
     );
   }
 
-  get (key: Uint8Array): Node {
+  get (key: Uint8Array): Uint8Array | null {
     return this._get(
       this.getNode(this.rootHash),
       toNibbles(key)
@@ -268,14 +268,14 @@ export default class Trie {
       return this._deleteKvNode(node, trieKey);
     }
 
-    throw new Error('Invalid nodeType');
+    throw new Error('Unreachable');
   }
 
   private _deleteBranchNode (node: NodeBranch, trieKey: Uint8Array): Node {
     if (trieKey.length === 0) {
       node[node.length - 1] = null;
 
-      return this._normalizeBranchNode(node);
+      return this._normaliseBranchNode(node);
     }
 
     const nodeToDelete = this.getNode(node[trieKey[0]]);
@@ -289,13 +289,59 @@ export default class Trie {
     node[trieKey[0]] = encodedSubNode;
 
     if (isNull(encodedSubNode)) {
-      return this._normalizeBranchNode(node);
+      return this._normaliseBranchNode(node);
     }
 
     return node;
   }
 
-  private _get (node: Node, trieKey: Uint8Array): Node {
+  private _deleteKvNode (node: NodeNotEmpty, trieKey: Uint8Array): Node {
+    const currentKey = extractKey(node);
+    const nodeType = getNodeType(node);
+
+    if (!keyStartsWith(trieKey, currentKey)) {
+      return node;
+    }
+
+    if (nodeType === NodeType.LEAF) {
+      return keyEquals(trieKey, currentKey)
+        ? null
+        : node;
+    }
+
+    const subKey = trieKey.subarray(currentKey.length);
+    const subNode = this.getNode(node[1]);
+    const newSub = this._delete(subNode, subKey);
+    const encodedNewSub = this._persistNode(newSub);
+
+    if (keyEquals(encodedNewSub, node[1])) {
+      return node;
+    } else if (isNull(newSub)) {
+      return null;
+    }
+
+    if (isKvNode(newSub)) {
+      const subNibbles = decodeNibbles(newSub[0]);
+      const newKey = new Uint8Array(currentKey.length + subNibbles.length);
+
+      newKey.set(currentKey);
+      newKey.set(subNibbles, currentKey.length);
+
+      return [
+        encodeNibbles(newKey),
+        newSub[1]
+      ];
+    } else if (isBranchNode(newSub)) {
+      return [
+        encodeNibbles(currentKey),
+        encodedNewSub
+      ];
+    }
+
+    throw new Error('Unreachable');
+  }
+
+  private _get (node: Node, trieKey: Uint8Array): NodeEncodedOrEmpty {
     if (isEmptyNode(node)) {
       return null;
     } else if (isBranchNode(node)) {
@@ -307,7 +353,7 @@ export default class Trie {
     throw new Error('Invalid NodeType');
   }
 
-  private _getBranchNode (node: NodeBranch, trieKey: Uint8Array): Node {
+  private _getBranchNode (node: NodeBranch, trieKey: Uint8Array): NodeEncodedOrEmpty {
     if (trieKey.length === 0) {
       return node[16];
     }
@@ -317,16 +363,17 @@ export default class Trie {
     return this._get(subNode, trieKey.subarray(1));
   }
 
-  private _getKvNode (node: NodeKv, trieKey: Uint8Array): EncodedPath {
+  private _getKvNode (node: NodeKv, trieKey: Uint8Array): NodeEncodedOrEmpty {
     const currentKey = extractKey(node);
+    const nodeType = getNodeType(node);
 
-    if (isLeafNode(node)) {
+    if (nodeType === NodeType.LEAF) {
       if (keyEquals(trieKey, currentKey)) {
         return node[1];
       }
 
       return null;
-    } else if (isExtensionNode(node)) {
+    } else if (nodeType === NodeType.EXTENSION) {
       if (keyStartsWith(trieKey, currentKey)) {
         const subNode = this.getNode(node[1]);
 
@@ -336,7 +383,7 @@ export default class Trie {
       return null;
     }
 
-    throw new Error('Invalid nodeType');
+    throw new Error('Unreachable');
   }
 
   private _nodeToDbMapping (node: Node): NodeNotEmpty {
@@ -362,38 +409,11 @@ export default class Trie {
     ];
   }
 
-  // private _normaliseBranchNode (node: Node): Node {
-  //       iter_node = iter(node)
-  //       if any(iter_node) and any(iter_node):
-  //           return node
-
-  //       if node[16]:
-  //           return [compute_leaf_key([]), node[16]]
-
-  //       sub_node_idx, sub_node_hash = next(
-  //           (idx, v)
-  //           for idx, v
-  //           in enumerate(node[:16])
-  //           if v
-  //       )
-  //       sub_node = this.get_node(sub_node_hash)
-  //       sub_node_type = get_node_type(sub_node)
-
-  //       this._prune_node(sub_node)
-
-  //       if sub_node_type in {NODE_TYPE_LEAF, NODE_TYPE_EXTENSION}:
-  //           new_subnode_key = encode_nibbles(tuple(itertools.chain(
-  //               [sub_node_idx],
-  //               decode_nibbles(sub_node[0]),
-  //           )))
-  //           return [new_subnode_key, sub_node[1]]
-  //       elif sub_node_type == NODE_TYPE_BRANCH:
-  //           subnode_hash = this._persist_node(sub_node)
-  //           return [encode_nibbles([sub_node_idx]), subnode_hash]
-  //       else:
-  //           raise Exception("Invariant: this code block should be unreachable")
-
-  // }
+  private _normaliseBranchNode (node: Node): Node {
+    // TODO A branch with only a single non-blank item should be turned into a
+    // leaf or extension node
+    return node;
+  }
 
   private _persistNode (node: Node): NodeEncodedOrEmpty {
     const [key, value] = this._nodeToDbMapping(node);
@@ -417,7 +437,7 @@ export default class Trie {
       return this._setBranchNode(node, trieKey, value);
     }
 
-    throw new Error('Invalid nodeType');
+    throw new Error('Unreachable');
   }
 
   private _setBranchNode (node: NodeBranch, trieKey: Uint8Array, value: Uint8Array): NodeNotEmpty {
