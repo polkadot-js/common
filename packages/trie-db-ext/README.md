@@ -1,5 +1,3 @@
 # @polkadot/trie-db-ext
 
-A re-implementation of a Patricia Trie, porting the [Parity version](https://github.com/paritytech/parity-common/blob/master/patricia_trie/src/triedbmut.rs) from Rust to JavaScript.
-
-Unlike other implementations, this allows for the specification of a hash function as well as encoder/decoder.
+A re-implementation of a Patricia Trie. Unlike other implementations, this allows for the specification of a hash function as well as encoder/decoder and operates in a sync fashion by default.
