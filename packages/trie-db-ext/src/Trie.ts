@@ -6,6 +6,7 @@ import { NodeType } from './types';
 
 import { EMPTY_HASH } from './constants';
 
+import isNull from '@polkadot/util/is/null';
 import hashing from '@polkadot/util-crypto/keccak/asU8a';
 import nodeDecode from '@polkadot/util-rlp/decode';
 import nodeEncode from '@polkadot/util-rlp/encode';
@@ -13,17 +14,19 @@ import fromNibbles from '@polkadot/trie-hash/util/fromNibbles';
 import toNibbles from '@polkadot/trie-hash/util/asNibbles';
 
 type NodeEmpty = null;
-type NodeEncoded = Uint8Array | NodeEmpty;
+type NodeEncoded = Uint8Array;
+type NodeEncodedOrEmpty = NodeEncoded | NodeEmpty;
 type NodeBranch = [
-  NodeEncoded, NodeEncoded, NodeEncoded, NodeEncoded,
-  NodeEncoded, NodeEncoded, NodeEncoded, NodeEncoded,
-  NodeEncoded, NodeEncoded, NodeEncoded, NodeEncoded,
-  NodeEncoded, NodeEncoded, NodeEncoded, NodeEncoded,
-  NodeEncoded
+  NodeEncodedOrEmpty, NodeEncodedOrEmpty, NodeEncodedOrEmpty, NodeEncodedOrEmpty,
+  NodeEncodedOrEmpty, NodeEncodedOrEmpty, NodeEncodedOrEmpty, NodeEncodedOrEmpty,
+  NodeEncodedOrEmpty, NodeEncodedOrEmpty, NodeEncodedOrEmpty, NodeEncodedOrEmpty,
+  NodeEncodedOrEmpty, NodeEncodedOrEmpty, NodeEncodedOrEmpty, NodeEncodedOrEmpty,
+  NodeEncodedOrEmpty
 ];
-type NodeKv = [NodeEncoded, NodeEncoded];
-
-type Node = NodeEmpty | NodeKv | NodeBranch;
+type EncodedPath = Uint8Array | null;
+type NodeKv = [EncodedPath, NodeEncodedOrEmpty];
+type NodeNotEmpty = NodeKv | NodeBranch;
+type Node = NodeEmpty | NodeNotEmpty;
 
 const NIBBLE_TERMINATOR = 16;
 const HP_FLAG_2 = 2;
@@ -31,14 +34,21 @@ const HP_FLAG_0 = 0;
 
 const NEEDS_TERMINATOR = [HP_FLAG_2, HP_FLAG_2 + 1];
 const IS_ODD_LENGTH = [HP_FLAG_0 + 1, HP_FLAG_2 + 1];
-const IS_KV_NODE = [NodeType.LEAF, NodeType.EXTENSION];
 
 function isEmptyNode (node: Node): node is NodeEmpty {
-  return !node;
+  return !isNull(node);
 }
 
 function isKvNode (node: Node): node is NodeKv {
   return !isEmptyNode(node) && node.length === 2;
+}
+
+function isExtensionNode (node: Node): node is NodeKv {
+  return getNodeType(node) === NodeType.EXTENSION;
+}
+
+function isLeafNode (node: Node): node is NodeKv {
+  return getNodeType(node) === NodeType.LEAF;
 }
 
 function isBranchNode (node: Node): node is NodeBranch {
@@ -46,7 +56,7 @@ function isBranchNode (node: Node): node is NodeBranch {
 }
 
 function decodeNode (encoded: Uint8Array | Node): Node {
-  if (!encoded || encoded.length === 0) {
+  if (isNull(encoded) || encoded.length === 0) {
     return null;
   } else if (Array.isArray(encoded)) {
     return encoded;
@@ -55,9 +65,9 @@ function decodeNode (encoded: Uint8Array | Node): Node {
   return nodeDecode(encoded) as Node;
 }
 
-function extractKey (node: Node): Uint8Array | null {
+function extractKey (node: Node): Uint8Array {
   if (!isKvNode(node)) {
-    throw new Error('Cano only extract keys from KV branches');
+    throw new Error('Can only extract keys from KV branches');
   }
 
   const [prefixedKey] = node;
@@ -68,9 +78,9 @@ function extractKey (node: Node): Uint8Array | null {
 }
 
 function keyEquals (key: Uint8Array | null, test: Uint8Array | null): boolean {
-  if (!key && !test) {
+  if (isNull(key) && isNull(test)) {
     return true;
-  } else if (!key || !test || key.length !== test.length) {
+  } else if (isNull(key) || isNull(test) || (key.length !== test.length)) {
     return false;
   }
 
@@ -78,9 +88,9 @@ function keyEquals (key: Uint8Array | null, test: Uint8Array | null): boolean {
 }
 
 function keyStartsWith (key: Uint8Array | null, partial: Uint8Array | null): boolean {
-  if (!key && !partial) {
+  if (isNull(key) && isNull(partial)) {
     return true;
-  } else if (!key || !partial || (key.length < partial.length)) {
+  } else if (isNull(key) || isNull(partial) || (key.length < partial.length)) {
     return false;
   }
 
@@ -118,7 +128,7 @@ function removeNibblesTerminator (nibbles: Uint8Array): Uint8Array {
   return nibbles;
 }
 
-function decodeNibbles (value: NodeEncoded): Uint8Array {
+function decodeNibbles (value: NodeEncodedOrEmpty): Uint8Array {
   const nibblesWithFlag = toNibbles(value);
   const [flag] = nibblesWithFlag;
 
@@ -147,10 +157,34 @@ function encodeNibbles (nibbles: Uint8Array): NodeEncoded {
   return fromNibbles(prefixed);
 }
 
-function computeLeafKey (nibbles: Uint8Array): NodeEncoded {
+function computeExtensionKey (nibbles: Uint8Array): EncodedPath {
+  return encodeNibbles(nibbles);
+}
+
+function computeLeafKey (nibbles: Uint8Array): EncodedPath {
   return encodeNibbles(
     addNibblesTerminator(nibbles)
   );
+}
+
+function getCommonPrefixLength (left: Uint8Array, right: Uint8Array): number {
+  for (let index = 0; index < left.length && index < right.length; index++) {
+    if (left[index] !== right[index]) {
+      return index;
+    }
+  }
+
+  return Math.min(left.length, right.length);
+}
+
+function consumeCommonPrefix (left: Uint8Array, right: Uint8Array): [Uint8Array, Uint8Array, Uint8Array] {
+  const length = getCommonPrefixLength(left, right);
+
+  return [
+    left.subarray(0, length),
+    left.subarray(length),
+    right.subarray(length)
+  ];
 }
 
 function getNodeType (node: Node): NodeType {
@@ -229,7 +263,7 @@ export default class Trie {
     if (isEmptyNode(node)) {
       return null;
     } else if (isBranchNode(node)) {
-      return self._deleteBranchNode(node, trieKey);
+      return this._deleteBranchNode(node, trieKey);
     } else if (isKvNode(node)) {
       return this._deleteKvNode(node, trieKey);
     }
@@ -254,7 +288,7 @@ export default class Trie {
 
     node[trieKey[0]] = encodedSubNode;
 
-    if (isEmptyNode(encodedSubNode)) {
+    if (isNull(encodedSubNode)) {
       return this._normalizeBranchNode(node);
     }
 
@@ -283,30 +317,29 @@ export default class Trie {
     return this._get(subNode, trieKey.subarray(1));
   }
 
-  private _getKvNode (node: NodeKv, trieKey: Uint8Array): Node {
+  private _getKvNode (node: NodeKv, trieKey: Uint8Array): EncodedPath {
     const currentKey = extractKey(node);
-    const nodeType = getNodeType(node);
 
-    if (nodeType === NodeType.LEAF) {
+    if (isLeafNode(node)) {
       if (keyEquals(trieKey, currentKey)) {
         return node[1];
       }
 
       return null;
-    } else if (nodeType === NodeType.EXTENSION) {
+    } else if (isExtensionNode(node)) {
       if (keyStartsWith(trieKey, currentKey)) {
         const subNode = this.getNode(node[1]);
 
-        return this._get(subNode, trieKey.subarray(0, currentKey.length));
+        return this._get(subNode, trieKey.subarray(0, currentKey ? currentKey.length : 0));
       }
 
-      return new Uint8Array();
+      return null;
     }
 
     throw new Error('Invalid nodeType');
   }
 
-  private _nodeToDbMapping (node: Node): Node {
+  private _nodeToDbMapping (node: Node): NodeNotEmpty {
     if (isEmptyNode(node)) {
       return [
         null,
@@ -343,10 +376,10 @@ export default class Trie {
   //           in enumerate(node[:16])
   //           if v
   //       )
-  //       sub_node = self.get_node(sub_node_hash)
+  //       sub_node = this.get_node(sub_node_hash)
   //       sub_node_type = get_node_type(sub_node)
 
-  //       self._prune_node(sub_node)
+  //       this._prune_node(sub_node)
 
   //       if sub_node_type in {NODE_TYPE_LEAF, NODE_TYPE_EXTENSION}:
   //           new_subnode_key = encode_nibbles(tuple(itertools.chain(
@@ -355,14 +388,14 @@ export default class Trie {
   //           )))
   //           return [new_subnode_key, sub_node[1]]
   //       elif sub_node_type == NODE_TYPE_BRANCH:
-  //           subnode_hash = self._persist_node(sub_node)
+  //           subnode_hash = this._persist_node(sub_node)
   //           return [encode_nibbles([sub_node_idx]), subnode_hash]
   //       else:
   //           raise Exception("Invariant: this code block should be unreachable")
 
   // }
 
-  private _persistNode (node: Node): Node {
+  private _persistNode (node: Node): NodeEncodedOrEmpty {
     const [key, value] = this._nodeToDbMapping(node);
 
     if (value) {
@@ -372,25 +405,23 @@ export default class Trie {
     return key;
   }
 
-  private _set (node: Node, trieKey: Uint8Array, value: Uint8Array): Node {
-    const nodeType = getNodeType(node);
-
-    if (nodeType === NodeType.EMPTY) {
+  private _set (node: Node, trieKey: Uint8Array, value: Uint8Array): NodeNotEmpty {
+    if (isEmptyNode(node)) {
       return [
         computeLeafKey(trieKey),
         value
       ];
-    } else if (IS_KV_NODE.includes(nodeType)) {
+    } else if (isKvNode(node)) {
       return this._setKvNode(node, trieKey, value);
-    } else if (nodeType === NodeType.BRANCH) {
+    } else if (isBranchNode(node)) {
       return this._setBranchNode(node, trieKey, value);
     }
 
     throw new Error('Invalid nodeType');
   }
 
-  private _setBranchNode (node: NodeBranch, trieKey: Uint8Array, value: Uint8Array): Node {
-    if (trieKey) {
+  private _setBranchNode (node: NodeBranch, trieKey: Uint8Array, value: Uint8Array): NodeNotEmpty {
+    if (trieKey && trieKey.length) {
       const subNode = this.getNode(node[trieKey[0]]);
       const newNode = this._set(subNode, trieKey.subarray(1), value);
 
@@ -400,6 +431,81 @@ export default class Trie {
     }
 
     return node;
+  }
+
+  private _setKvNode (node: NodeKv, trieKey: Uint8Array, value: Uint8Array): NodeNotEmpty {
+    const currentKey = extractKey(node);
+    const [commonPrefix, currentRemainder, trieRemainder] = consumeCommonPrefix(currentKey, trieKey);
+    const isExtension = isExtensionNode(node);
+    const isLeaf = isLeafNode(node);
+    let newNode: NodeNotEmpty;
+
+    if (currentRemainder.length === 0 && trieRemainder.length === 0) {
+      if (isLeaf) {
+        return [
+          node[0],
+          value
+        ];
+      }
+
+      const subNode = this.getNode(node[1]);
+
+      newNode = this._set(subNode, trieRemainder, value);
+    } else if (currentRemainder.length === 0) {
+      if (isExtension) {
+        const subNode = this.getNode(node[1]);
+
+        newNode = this._set(subNode, trieRemainder, value);
+      } else {
+        const subPosition = trieRemainder[0];
+        const subKey = computeLeafKey(trieRemainder.subarray(1));
+        const subNode: NodeKv = [subKey, value];
+
+        newNode = [
+          null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null,
+          node[1]
+        ];
+        newNode[subPosition] = this._persistNode(subNode);
+      }
+    } else {
+      newNode = [
+        null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null,
+        null
+      ];
+
+      if (currentRemainder.length === 1 && isExtension) {
+        newNode[currentRemainder[0]] = node[1];
+      } else {
+        const computedKey = isExtension
+          ? computeExtensionKey(currentRemainder.subarray(1))
+          : computeLeafKey(currentRemainder.subarray(1));
+
+        newNode[currentRemainder[0]] = this._persistNode([
+          computedKey,
+          node[1]
+        ]);
+      }
+
+      if (trieRemainder.length) {
+        newNode[trieRemainder[0]] = this._persistNode([
+          computeLeafKey(trieRemainder.subarray(1)),
+          value
+        ]);
+      } else {
+        newNode[16] = value;
+      }
+    }
+
+    if (commonPrefix.length) {
+      return [
+        computeExtensionKey(commonPrefix),
+        this._persistNode(newNode)
+      ];
+    }
+
+    return newNode;
   }
 
   private _setRootNode (node: Node): void {
@@ -413,4 +519,5 @@ export default class Trie {
 
       this.rootHash = newHash;
     }
+  }
 }
