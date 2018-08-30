@@ -5,11 +5,9 @@
 import nibblesFromU8a from './fromU8a';
 import nibblesIsEqual from './isEqual';
 import nibblesMatchingLength from './matchingLength';
-import nibblesToU8a from './toU8a';
 
 export {
   nibblesFromU8a,
   nibblesIsEqual,
-  nibblesMatchingLength,
-  nibblesToU8a
+  nibblesMatchingLength
 };

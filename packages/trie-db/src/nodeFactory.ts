@@ -7,9 +7,8 @@ import { Logger } from '@polkadot/util/types';
 import { HashFn, DecodedRlp, NodeFactory, Trie$Node, Trie$Node$Type } from './types';
 
 import logger from '@polkadot/util/logger';
-// import u8aToHex from '@polkadot/util/u8a/toHex';
+import nibblesFromU8a from '@polkadot/trie-hash/util/asNibbles';
 
-import nibblesFromU8a from './nibbles/fromU8a';
 // import rlpToString from './util/rlpToString';
 
 import TrieNode from './Node';

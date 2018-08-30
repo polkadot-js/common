@@ -7,10 +7,9 @@ import { Trie$Base } from '../types';
 
 // @ts-ignore FIXME, we need to properly check the full file
 import { Readable } from 'readable-stream';
+import nibblesToU8a from '@polkadot/trie-hash/util/fromNibbles';
 // import logger from '@polkadot/util/logger';
 // import u8aToHex from '@polkadot/util/u8a/toHex';
-
-import { nibblesToU8a } from '../nibbles';
 
 // const l = logger('trie/read');
 

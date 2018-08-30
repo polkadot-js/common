@@ -4,7 +4,7 @@
 
 /**
  * @name asNibbles
- * @signature asNibbles (pairs: Trie$Pairs): Uint8Array
+ * @signature asNibbles (bytes: Uint8Array | Array<number>): Uint8Array
  * @summary Converts the input to Nibbles.
  * @description
  * From an `Uint8Array` input, calculate and return a list of nibbles that makes up the input.
@@ -15,12 +15,12 @@
  */
 export default function asNibbles (bytes: Uint8Array | Array<number>): Uint8Array {
   // HACK TypeScript gets a little bit confused as to what to apply, hence casting here although the reduces function for both types does exactly the same
-  return (bytes as number[]).reduce((result, byte, index) => {
-    result.set(
+  return (bytes as number[]).reduce((nibbles, byte, index) => {
+    nibbles.set(
       [byte >> 4, byte & 0b1111],
       index * 2
     );
 
-    return result;
+    return nibbles;
   }, new Uint8Array(bytes.length * 2));
 }

@@ -8,9 +8,9 @@ import { DecodedRlp, Trie$Node$Type, HashFn } from './types';
 import isU8a from '@polkadot/util/is/u8a';
 import u8aToHex from '@polkadot/util/u8a/toHex';
 import encodeRlp from '@polkadot/util-rlp/encode';
+import nibblesToU8a from '@polkadot/trie-hash/util/fromNibbles';
 
 import nibblesFromU8a from './nibbles/fromU8a';
-import nibblesToU8a from './nibbles/toU8a';
 
 function addHexPrefix (key: Array<number>, isTerminator: boolean): Array<number> {
   // odd
