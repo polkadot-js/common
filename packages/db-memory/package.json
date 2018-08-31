@@ -1,7 +1,7 @@
 {
-  "name": "@polkadot/trie-db-ext",
+  "name": "@polkadot/db-memory",
   "version": "0.28.25",
-  "description": "This is an implementation of the modified merkle patricia tree as speficed in Ethereum's yellow paper, adpated for Polkadot",
+  "description": "Implementation of a basic sync in-memory database with overlays",
   "main": "index.js",
   "keywords": [
     "Polkadot"
@@ -26,15 +26,9 @@
   "bugs": {
     "url": "https://github.com/polkadot-js/common/issues"
   },
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-db-ext#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/db-memory#readme",
   "dependencies": {
     "@babel/runtime": "^7.0.0-rc.1",
-    "@polkadot/trie-hash": "^0.28.25",
-    "@polkadot/util": "^0.28.25",
-    "@polkadot/util-crypto": "^0.28.25",
-    "@polkadot/util-rlp": "^0.28.25"
-  },
-  "devDependencies": {
-    "@polkadot/db-memory": "^0.28.25"
+    "@polkadot/util": "^0.28.25"
   }
 }

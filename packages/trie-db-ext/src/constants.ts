@@ -15,5 +15,6 @@ export {
   EMPTY_NODE,
   EMPTY_HASH,
   EMPTY_HASH_STR,
+  EMPTY_U8A,
   EMPTY_U8A_STR
 };

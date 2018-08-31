@@ -125,20 +125,20 @@ export default class TrieNode {
   }
 
   toString (): string {
+    const format = (value: any): string => {
+      if (isU8a(value)) {
+        return u8aToHex(value);
+      } else if (Array.isArray(value)) {
+        return `[${value.map((v) => format(v))}]`;
+      } else if (value) {
+        return 'object';
+      }
+
+      return 'empty';
+    };
+
     return this.raw.reduce((out, el, index) => {
-      if (index !== 0) {
-        out += ', ';
-      }
-
-      if (isU8a(el)) {
-        out += u8aToHex(el);
-      } else if (el) {
-        out += 'object';
-      } else {
-        out += 'empty';
-      }
-
-      return out;
+      return `${out}${index ? ', ' : ''}${format(el)}`;
     }, `${this.type}: [`) + ']';
   }
 

@@ -19,8 +19,26 @@ describe('simple save and retrive', () => {
 
   var trie = new Trie();
 
+  it('starts with a valid root', () => {
+    expect(
+      trie.root
+    ).toEqual(
+      new Uint8Array([
+        86, 232, 31, 23, 27, 204, 85, 166, 255, 131, 69, 230, 146, 192, 248, 110, 91, 72, 224, 27, 153, 108, 173, 192, 1, 98, 47, 181, 227, 99, 180, 33
+      ])
+    )
+  });
+
   it('save a value', async () => {
     await trie.put(toU8a('test'), toU8a('one'));
+
+    expect(
+      trie.root
+    ).toEqual(
+      new Uint8Array([
+        43, 119, 232, 84, 123, 197, 94, 42, 149, 34, 124, 147, 159, 159, 157, 103, 149, 45, 225, 233, 112, 160, 23, 224, 145, 11, 229, 16, 176, 144, 175, 243
+      ])
+    );
   });
 
   it('should get a value', async () => {
@@ -35,6 +53,7 @@ describe('simple save and retrive', () => {
     const value = await trie.get(toU8a('test'));
 
     expect(value).toEqual(toU8a('two'));
+    expect(trie.root).toEqual(new Uint8Array([127, 237, 74, 184, 190, 46, 103, 129, 65, 141, 13, 96, 61, 232, 146, 13, 56, 32, 59, 29, 246, 58, 175, 140, 72, 182, 196, 103, 230, 245, 229, 148]));
   });
 
   it('should delete a value', async () => {
@@ -43,10 +62,13 @@ describe('simple save and retrive', () => {
     const value = await trie.get(toU8a('test'));
 
     expect(value).toEqual(null);
+    expect(trie.root).toEqual(new Uint8Array([86, 232, 31, 23, 27, 204, 85, 166, 255, 131, 69, 230, 146, 192, 248, 110, 91, 72, 224, 27, 153, 108, 173, 192, 1, 98, 47, 181, 227, 99, 180, 33]));
   });
 
   it('should recreate a value', async () => {
     await trie.put(toU8a('test'), toU8a('one'));
+
+    expect(trie.root).toEqual(new Uint8Array([43, 119, 232, 84, 123, 197, 94, 42, 149, 34, 124, 147, 159, 159, 157, 103, 149, 45, 225, 233, 112, 160, 23, 224, 145, 11, 229, 16, 176, 144, 175, 243]));
   });
 
   it('should get updated a value', async () => {
@@ -75,6 +97,7 @@ describe('simple save and retrive', () => {
     const value = await trie.get(toU8a('doge'));
 
     expect(value).toEqual(null);
+    expect(trie.root).toEqual(new Uint8Array([43, 119, 232, 84, 123, 197, 94, 42, 149, 34, 124, 147, 159, 159, 157, 103, 149, 45, 225, 233, 112, 160, 23, 224, 145, 11, 229, 16, 176, 144, 175, 243]));
   });
 });
 
@@ -85,6 +108,11 @@ describe('storing longer values', () => {
 
   it('should store a longer string', async () => {
     await trie.put(toU8a('done'), toU8a(longString));
+
+    expect(trie.root).toEqual(new Uint8Array([79, 170, 48, 228, 218, 25, 91, 13, 86, 114, 153, 98, 252, 127, 54, 124, 242, 163, 153, 215, 249, 196, 65, 209, 186, 130, 39, 6, 181, 246, 231, 111]));
+  });
+
+  it('stores subsequent values', async () => {
     await trie.put(toU8a('doge'), toU8a('coin'));
 
     expect(longStringRoot).toEqual(u8aToHex(trie.root));
@@ -98,6 +126,10 @@ describe('storing longer values', () => {
 
   it('should when being modiefied delete the old value', async () => {
     await trie.put(toU8a('done'), toU8a('test'));
+
+    expect(trie.root).toEqual(new Uint8Array([
+      219, 23, 9, 241, 116, 187, 56, 113, 244, 253, 200, 19, 242, 27, 188, 158, 217, 68, 67, 249, 222, 154, 243, 190, 184, 56, 173, 54, 214, 42, 91, 206
+    ]));
   });
 });
 

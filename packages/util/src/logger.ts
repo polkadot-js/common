@@ -7,7 +7,13 @@ import { Logger, Logger$Data } from './types';
 import chalk from 'chalk';
 import moment from 'moment';
 
+import isBn from './is/bn';
 import isFunction from './is/function';
+import isObject from './is/object';
+import isNull from './is/null';
+import isU8a from '@polkadot/util/is/u8a';
+import isUndefined from './is/undefined';
+import u8aToHex from '@polkadot/util/u8a/toHex';
 
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
@@ -26,11 +32,41 @@ const chalked = {
   warn: chalk.yellow
 };
 
+function formatValue (value: any): any {
+  if (isNull(value)) {
+    return null;
+  } else if (isUndefined(value)) {
+    return undefined;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map(formatValue);
+  }
+
+  if (isBn(value)) {
+    return value.toString();
+  }
+
+  if (isU8a(value)) {
+    return u8aToHex(value);
+  }
+
+  if (isObject(value) && value.constructor === Object) {
+    return Object.keys(value).reduce((result, key) => {
+      result[key] = formatValue(value[key]);
+
+      return result;
+    }, {} as { [index: string]: any });
+  }
+
+  return value;
+}
+
 function apply (log: LogType, type: string, values: Logger$Data): void {
   if (values.length === 1 && isFunction(values[0])) {
     const fnResult = (values[0] as Function)();
 
-    return apply(log, type, fnResult);
+    return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult]);
   }
 
   const chalk = (value: string): string =>
@@ -40,7 +76,9 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
   console[logTo[log]].apply(
     console, [
       chalk(moment().format('YYYY-MM-DD HH:mm:ss')), chalk(type)
-    ].concat(values)
+    ].concat(
+      values.map(formatValue)
+    )
   );
 }
 

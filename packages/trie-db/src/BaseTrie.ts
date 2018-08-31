@@ -9,11 +9,11 @@ import async from 'async';
 // @ts-ignore FIXME, we need to properly check the full file
 import levelup from 'levelup';
 import memdown from 'memdown';
-// import logger from '@polkadot/util/logger';
+import logger from '@polkadot/util/logger';
 import assert from '@polkadot/util/assert';
 import isU8a from '@polkadot/util/is/u8a';
 import promisify from '@polkadot/util/promisify';
-// import u8aToHex from '@polkadot/util/u8a/toHex';
+import u8aToHex from '@polkadot/util/u8a/toHex';
 import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
 import decodeRlp from '@polkadot/util-rlp/decode';
 
@@ -28,7 +28,7 @@ import semaphore from './util/semaphore';
 
 type RawPutFn = (key: Uint8Array, value: Uint8Array) => Promise<any>;
 
-// const l = logger('trie/base');
+const l = logger('trie/base');
 
 export default class BaseTrie {
   // @ts-ignore we are assigning via this.root in constructor
@@ -78,7 +78,7 @@ export default class BaseTrie {
    * @param {Function} cb A callback `Function` which is given the arguments `err` - for errors that may have occured and `value` - the found value in a `Buffer` or if no value was found `null`
    */
   async get (key: Uint8Array): Promise<Uint8Array | null> {
-    // l.debug(() => ['get', 'key ->', u8aToHex(key)]);
+    l.debug(() => ['get', 'key ->', u8aToHex(key)]);
 
     const result = await this.findPath(key);
 
@@ -99,7 +99,7 @@ export default class BaseTrie {
    * @returns {Function} Promise<void>
    */
   async put (key: Uint8Array, value: Uint8Array) {
-    // l.debug(() => ['put', 'key ->', u8aToHex(key), 'value ->', u8aToHex(value, 256)]);
+    l.debug(() => ['put', 'key ->', u8aToHex(key), 'value ->', u8aToHex(value, 256)]);
 
     if (!value || value.toString() === '') {
       return this.del(key);
@@ -113,6 +113,8 @@ export default class BaseTrie {
       // first try to find the give key or its nearst node
       const result = await this.findPath(key);
 
+      l.debug(() => ['put: path', result]);
+
       return this._updateNode(key, value, result && result.remainder, result && result.stack);
     });
   }
@@ -124,7 +126,7 @@ export default class BaseTrie {
    * @param {Function} callback the callback `Function`
    */
   del (key: Uint8Array) {
-    // l.debug(() => ['del', 'key ->', u8aToHex(key)]);
+    l.debug(() => ['del', 'key ->', u8aToHex(key)]);
 
     return this.semaphore(async () => {
       const result = await this.findPath(key);
@@ -572,7 +574,7 @@ export default class BaseTrie {
    */
   // @ts-ignore FIXME, we need to properly check the full file
   _saveStack (key, stack, opStack: any[]) {
-    let lastRoot;
+    let lastRoot: any;
 
     // update nodes
     while (stack.length) {
@@ -595,11 +597,15 @@ export default class BaseTrie {
 
       // @ts-ignore FIXME, we need to properly check the full file
       lastRoot = this._formatNode(node, stack.length === 0, opStack);
+
+      l.debug(() => ['_saveStack', { lastRoot, node }]);
     }
 
     if (lastRoot) {
       this.root = lastRoot;
     }
+
+    l.debug(() => ['_saveStack', opStack]);
 
     return this._batchNodes(opStack);
   }
@@ -756,6 +762,8 @@ export default class BaseTrie {
     if (rlpNode.length >= 32 || topLevel) {
       const hashRoot = node.hash();
 
+      l.debug(() => ['_formatNode', { hashRoot }]);
+
       // FIXME Actually 2 things wrong here - this is on checkpoint, so one higher-level class...
       // @ts-ignore FIXME, we need to properly check the full file
       if (remove && this.isCheckpoint) {
@@ -773,6 +781,8 @@ export default class BaseTrie {
 
       return hashRoot;
     }
+
+    l.debug(() => ['_formatNode', { raw: node.raw }]);
 
     return node.raw;
   }
