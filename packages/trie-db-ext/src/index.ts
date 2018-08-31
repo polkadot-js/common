@@ -8,6 +8,7 @@ import { Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } 
 import MemoryDb from '@polkadot/db-memory/index';
 import isNull from '@polkadot/util/is/null';
 import logger from '@polkadot/util/logger';
+import u8aConcat from '@polkadot/util/u8a/concat';
 import hashing from '@polkadot/util-crypto/keccak/asU8a';
 import toNibbles from '@polkadot/trie-hash/util/asNibbles';
 
@@ -178,10 +179,7 @@ export default class Trie {
 
     if (isKvNode(newSub)) {
       const subNibbles = decodeNibbles(newSub[0]);
-      const newKey = new Uint8Array(currentKey.length + subNibbles.length);
-
-      newKey.set(currentKey);
-      newKey.set(subNibbles, currentKey.length);
+      const newKey = u8aConcat(currentKey, subNibbles);
 
       return [
         encodeNibbles(newKey),
@@ -309,10 +307,7 @@ export default class Trie {
       ];
     } else if (isKvNode(subNode)) {
       const subNibbles = decodeNibbles(subNode[0]);
-      const newKey = new Uint8Array(subNibbles.length + 1);
-
-      newKey.set([index]);
-      newKey.set(subNibbles, 1);
+      const newKey = u8aConcat(new Uint8Array([index]), subNibbles);
 
       return [
         encodeNibbles(newKey),
