@@ -110,7 +110,7 @@ export default class Trie {
   }
 
   private _del (node: Node, trieKey: Uint8Array): Node {
-    l.debug(() => ['_del', { node, trieKey }]);
+    // l.debug(() => ['_del', { node, trieKey }]);
 
     if (isEmptyNode(node)) {
       return null;
@@ -198,7 +198,7 @@ export default class Trie {
   }
 
   private _get (node: Node, trieKey: Uint8Array): NodeEncodedOrEmpty {
-    l.debug(() => ['_get', { node, trieKey }]);
+    // l.debug(() => ['_get', { node, trieKey }]);
 
     if (isEmptyNode(node)) {
       return null;
@@ -336,7 +336,7 @@ export default class Trie {
   }
 
   private _put (node: Node, trieKey: Uint8Array, value: Uint8Array): NodeNotEmpty {
-    l.debug(() => ['_put', { node, trieKey, value }]);
+    // l.debug(() => ['_put', { node, trieKey, value }]);
 
     if (isEmptyNode(node)) {
       return [
