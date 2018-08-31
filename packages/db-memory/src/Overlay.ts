@@ -59,6 +59,14 @@ export default class OverlayDb implements TxDb {
     this.txStarted = false;
   }
 
+  close (): void {
+    this.backing.open();
+  }
+
+  open (): void {
+    this.backing.close();
+  }
+
   get (key: Uint8Array): Uint8Array | null {
     // l.debug(() => ['get', u8aToHex(key)]);
 

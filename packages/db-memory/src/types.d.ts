@@ -3,6 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 
 export interface BaseDb {
+  close (): void;
+  open (): void;
   get (key: Uint8Array): Uint8Array | null;
   put (key: Uint8Array, value: Uint8Array): void;
 }

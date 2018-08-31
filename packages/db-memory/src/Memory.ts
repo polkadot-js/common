@@ -20,6 +20,14 @@ export default class MemoryDb implements BaseDb {
     this.storage = {};
   }
 
+  close (): void {
+    // noop
+  }
+
+  open (): void {
+    // noop
+  }
+
   get (key: Uint8Array): Uint8Array | null {
     // l.debug(() => ['get', u8aToHex(key)]);
 
