@@ -51,11 +51,11 @@ export default class TransactionDb implements TxDb {
   }
 
   close (): void {
-    this.backing.open();
+    this.backing.close();
   }
 
   open (): void {
-    this.backing.close();
+    this.backing.open();
   }
 
   maintain (fn: ProgressCb): void {
