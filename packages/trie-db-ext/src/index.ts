@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { TxDb } from '@polkadot/db-memory/types';
+import { TxDb } from '@polkadot/db/types';
 import { Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
 
 import MemoryDb from '@polkadot/db/Memory';
@@ -31,24 +31,34 @@ export default class Trie {
     this.txRoot = rootHash;
   }
 
-  createCheckpoint (): Uint8Array {
-    this.db.createTx();
+  private createCheckpoint (): Uint8Array {
     this.txRoot = this.rootHash;
 
     return this.txRoot;
   }
 
-  commitCheckpoint (): Uint8Array {
-    this.db.commitTx();
+  private commitCheckpoint (): Uint8Array {
+    return this.rootHash;
+  }
+
+  private revertCheckpoint (): Uint8Array {
+    this.rootHash = this.txRoot;
 
     return this.rootHash;
   }
 
-  revertCheckpoint (): Uint8Array {
-    this.db.revertTx();
-    this.rootHash = this.txRoot;
+  transaction (fn: () => boolean): Uint8Array {
+    try {
+      this.createCheckpoint();
 
-    return this.rootHash;
+      return this.db.transaction(fn)
+        ? this.commitCheckpoint()
+        : this.revertCheckpoint();
+    } catch (error) {
+      this.revertCheckpoint();
+
+      throw error;
+    }
   }
 
   del (key: Uint8Array) {

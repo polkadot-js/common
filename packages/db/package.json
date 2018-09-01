@@ -31,7 +31,6 @@
     "@babel/runtime": "^7.0.0-rc.1",
     "@polkadot/util": "^0.28.25",
     "lru_map": "^0.3.3",
-    "rocksdb-node": "^1.7.2",
     "snappy": "^6.0.4"
   }
 }
