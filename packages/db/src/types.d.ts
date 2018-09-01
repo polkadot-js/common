@@ -21,6 +21,6 @@ export interface BaseDb {
   put (key: Uint8Array, value: Uint8Array): void;
 }
 
-export interface TxDb extends BaseDb {
-  transaction (fn: () => boolean): boolean;
+export interface TxDb <T = any> extends BaseDb {
+  transaction (fn: () => boolean): T;
 }
