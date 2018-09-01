@@ -5,7 +5,7 @@
 import { BaseDb, ProgressCb } from '../types';
 
 import fs from 'fs';
-// import snappy from 'snappy';
+import snappy from 'snappy';
 import assert from '@polkadot/util/assert';
 import logger from '@polkadot/util/logger';
 import bufferToU8a from '@polkadot/util/buffer/toU8a';
@@ -141,19 +141,19 @@ export default class FileFlatDb implements BaseDb {
   }
 
   private _deserializeValue (value: Buffer): Uint8Array | null {
-    // return bufferToU8a(
-    //   snappy.uncompressSync(value)
-    // );
+    // return bufferToU8a(value);
 
-    return bufferToU8a(value);
+    return bufferToU8a(
+      snappy.uncompressSync(value)
+    );
   }
 
   private _serializeValue (value: Uint8Array): Buffer {
-    // return snappy.compressSync(
-    //   u8aToBuffer(value)
-    // );
+    // return u8aToBuffer(value);
 
-    return u8aToBuffer(value);
+    return snappy.compressSync(
+      u8aToBuffer(value)
+    );
   }
 
   private _serializeKey (key: Uint8Array): Buffer {
