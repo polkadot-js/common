@@ -8,7 +8,7 @@ import u8aToUtf8 from '@polkadot/util/u8a/toUtf8';
 
 import Trie from '../src/index';
 
-describe.skip'simple merkle proofs generation and verification', () => {
+describe.skip('simple merkle proofs generation and verification', () => {
   it('create a merkle proof and verify it with a single short key', async () => {
     const trie = new Trie();
 

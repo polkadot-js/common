@@ -7,7 +7,7 @@ import randomAsU8a from '@polkadot/util-crypto/random/asU8a';
 
 import Trie from '../src/index';
 
-describe.skip'put & get raw functions', () => {
+describe.skip('put & get raw functions', () => {
   var trie = new Trie();
   var key = randomAsU8a(32);
   var val = randomAsU8a(32);

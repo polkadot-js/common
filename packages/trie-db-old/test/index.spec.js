@@ -8,7 +8,7 @@ import toU8a from '@polkadot/util/u8a/toU8a';
 
 import Trie from '../src/index';
 
-describe.skip'simple save and retrive', () => {
+describe.skip('simple save and retrive', () => {
   it('should not crash if given a non-existant root', async () => {
     const root = toU8a('0x3f4399b08efe68945c1cf90ffe85bbe3ce978959da753f9e649f034015b8817d');
     const trie = new Trie(null, root);
@@ -101,7 +101,7 @@ describe.skip'simple save and retrive', () => {
   });
 });
 
-describe.skip'storing longer values', () => {
+describe.skip('storing longer values', () => {
   const trie = new Trie();
   const longString = 'this will be a really really really long value';
   const longStringRoot = '0xb173e2db29e79c78963cff5196f8a983fbe0171388972106b114ef7f5c24dfa3';
@@ -133,7 +133,7 @@ describe.skip'storing longer values', () => {
   });
 });
 
-describe.skip'testing Extentions and branches', () => {
+describe.skip('testing Extentions and branches', () => {
   const trie = new Trie();
 
   it('should store a value', async () => {
@@ -157,7 +157,7 @@ describe.skip'testing Extentions and branches', () => {
   });
 });
 
-describe.skip'testing Extentions and branches - reverse', () => {
+describe.skip('testing Extentions and branches - reverse', () => {
   const trie = new Trie();
 
   it('should create extention to store this value', async () => {
@@ -181,7 +181,7 @@ describe.skip'testing Extentions and branches - reverse', () => {
   });
 });
 
-describe.skip'testing deletions cases', () => {
+describe.skip('testing deletions cases', () => {
   const trie = new Trie();
 
   it('should delete from a branch->branch-branch', async () => {
