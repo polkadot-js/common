@@ -34,4 +34,6 @@ export type NodeNotEmpty = NodeKv | NodeBranch;
 export type Node = NodeEmpty | NodeNotEmpty;
 
 export interface TrieDb extends TxDb<Uint8Array> {
+  getRoot (): Uint8Array;
+  setRoot (rootHash: Uint8Array): void;
 }
