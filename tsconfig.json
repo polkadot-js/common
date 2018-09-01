@@ -3,9 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@polkadot/db-diskdown/*": [ "packages/db-diskdown/src/*" ],
-      "@polkadot/db-memory/*": [ "packages/db-memory/src/*" ],
-      "@polkadot/db-rocksdb/*": [ "packages/db-rocksdb/src/*" ],
+      "@polkadot/db/*": [ "packages/db/src/*" ],
       "@polkadot/trie-db-ext/*": [ "packages/trie-db-ext/src/*" ],
       "@polkadot/trie-db/*": [ "packages/trie-db/src/*" ],
       "@polkadot/trie-hash/*": [ "packages/trie-hash/src/*" ],

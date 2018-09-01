@@ -1,8 +1,8 @@
-// Copyright 2017-2018 @polkadot/db-memory authors & contributors
+// Copyright 2017-2018 @polkadot/db authors & contributors
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { BaseDb } from './types';
+import { BaseDb, ProgressCb } from '../types';
 
 // import logger from '@polkadot/util/logger';
 // import u8aToHex from '@polkadot/util/u8a/toHex';
@@ -26,6 +26,18 @@ export default class MemoryDb implements BaseDb {
 
   open (): void {
     // noop
+  }
+
+  maintain (fn: ProgressCb): void {
+    fn({
+      isCompleted: true,
+      keys: Object.keys(this.storage).length,
+      percent: 100
+    });
+  }
+
+  del (key: Uint8Array): void {
+    delete this.storage[key.toString()];
   }
 
   get (key: Uint8Array): Uint8Array | null {

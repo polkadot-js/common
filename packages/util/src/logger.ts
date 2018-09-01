@@ -8,6 +8,7 @@ import chalk from 'chalk';
 import moment from 'moment';
 
 import isBn from './is/bn';
+import isBuffer from './is/buffer';
 import isFunction from './is/function';
 import isObject from './is/object';
 import isNull from './is/null';
@@ -45,6 +46,10 @@ function formatValue (value: any): any {
 
   if (isBn(value)) {
     return value.toString();
+  }
+
+  if (isBuffer(value)) {
+    return `0x${value.toString('hex')}`;
   }
 
   if (isU8a(value)) {

@@ -1,12 +1,15 @@
-// Copyright 2017-2018 @polkadot/db-diskdown authors & contributors
+// Copyright 2017-2018 @polkadot/db authors & contributors
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { DiskStore, ProgressValue } from '../types';
+import { BaseDb, ProgressCb } from '../types';
 
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 import logger from '@polkadot/util/logger';
+import bufferToU8a from '@polkadot/util/buffer/toU8a';
+import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
+import u8aToHex from '@polkadot/util/u8a/toHex';
 
 type FilePath = {
   directory: string,
@@ -15,28 +18,21 @@ type FilePath = {
 
 const DIR_DEPTH = 1;
 
-const l = logger('disk/scatter');
+const l = logger('db/tree');
 
-export default class Scatter implements DiskStore {
+export default class FileTreeDb implements BaseDb {
   _location: string;
 
   constructor (location: string) {
     this._location = location;
   }
 
-  private _keyToString (key: Buffer): string {
-    return key
-      .toString('base64')
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_');
-  }
-
-  private _getFilePath (key: Buffer): FilePath {
+  private _getFilePath (key: Uint8Array): FilePath {
     // NOTE We want to limit the number of entries in any specific directory. Split the
     // key into parts and use this to construct the path and the actual filename. We want
     // to limit the entries per directory, but at the same time minimize the number of
     // directories we need to create (when non-existent as well as the size overhead)
-    const parts = this._keyToString(key).match(/.{1,3}/g) || [];
+    const parts = u8aToHex(key).match(/.{1,6}/g) || [];
     const directory = `${this._location}/${parts.slice(0, DIR_DEPTH).join('/')}`;
     const file = `${directory}/${parts.slice(DIR_DEPTH).join('')}`;
 
@@ -54,28 +50,40 @@ export default class Scatter implements DiskStore {
     // noop
   }
 
-  compact (progress: (value: ProgressValue) => void): void {
-    // noop
+  maintain (fn: ProgressCb): void {
+    fn({
+      isCompleted: true,
+      keys: 0,
+      percent: 100
+    });
   }
 
-  delete (key: Buffer): void {
-    throw new Error('delete not implemented, only stubbed');
+  del (key: Uint8Array): void {
+    l.debug(() => ['del', { key }]);
+
+    const { file } = this._getFilePath(key);
+
+    if (fs.existsSync(file)) {
+      fs.unlinkSync(file);
+    }
   }
 
-  get (key: Buffer): Buffer | undefined {
-    l.debug(() => ['get', key.toString('hex')]);
+  get (key: Uint8Array): Uint8Array | null {
+    l.debug(() => ['get', { key }]);
 
     const { file } = this._getFilePath(key);
 
     if (!fs.existsSync(file)) {
-      return;
+      return null;
     }
 
-    return fs.readFileSync(file);
+    return bufferToU8a(
+      fs.readFileSync(file)
+    );
   }
 
-  set (key: Buffer, value: Buffer): void {
-    l.debug(() => ['set', key.toString('hex'), value]);
+  put (key: Uint8Array, value: Uint8Array): void {
+    l.debug(() => ['set', { key, value }]);
 
     const { directory, file } = this._getFilePath(key);
 
@@ -83,6 +91,6 @@ export default class Scatter implements DiskStore {
       mkdirp.sync(directory);
     }
 
-    fs.writeFileSync(file, value);
+    fs.writeFileSync(file, u8aToBuffer(value));
   }
 }

@@ -1,61 +1,74 @@
-// Copyright 2017-2018 @polkadot/db-diskdown authors & contributors
+// Copyright 2017-2018 @polkadot/db authors & contributors
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
 import mkdirp from 'mkdirp';
+import os from 'os';
 import path from 'path';
 import rimraf from 'rimraf';
 
-import Combined from './Combined';
+import FileFlatDb from './FileFlatDb';
 
-const KEY_A = Buffer.from([
+const KEY_A = new Uint8Array([
   1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
-const KEY_B = Buffer.from([
+const KEY_B = new Uint8Array([
   2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
-const KEY_C = Buffer.from([
+const KEY_C = new Uint8Array([
   1, 2, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
-const KEY_D = Buffer.from([
+const KEY_D = new Uint8Array([
   1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
-const KEY_E = Buffer.from([
+const KEY_E = new Uint8Array([
   1, 2, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
-const VAL_A = Buffer.from([0x42, 1, 0x69]);
-const VAL_B = Buffer.from([0x42, 1, 2, 0x69]);
-const VAL_C = Buffer.from([0x42, 1, 2, 3, 0x69]);
-const VAL_D = Buffer.from([0x42, 1, 2, 3, 4, 0x69]);
-const VAL_E = Buffer.from([0x42, 1, 2, 3, 4, 5, 0x69]);
+const VAL_A = new Uint8Array([0x42, 1, 0x69]);
+const VAL_B = new Uint8Array([0x42, 1, 2, 0x69]);
+const VAL_C = new Uint8Array([0x42, 1, 2, 3, 0x69]);
+const VAL_D = new Uint8Array([0x42, 1, 2, 3, 4, 0x69]);
+const VAL_E = new Uint8Array([0x42, 1, 2, 3, 4, 5, 0x69]);
+
+describe.skip('FileFlatDb (compacting)', () => {
+  const combined = new FileFlatDb(process.cwd());
+
+  it('compacts without failing', () => {
+    expect(
+      combined.maintain(() => {})
+    ).not.toBe(0);
+  });
+});
 
 // NOTE Skipped, doesn't seem to be too happy on CI (cwd issues?)
-describe.skip('StoreCombined', () => {
-  const testGet = (key, val) =>
-    expect(store.get(key).equals(val)).toEqual(true);
+describe('FileFlatDb (basics)', () => {
+  const testGet = (key, value) =>
+    expect(store.get(key)).toEqual(value);
 
-  const location = path.join(process.cwd(), '--test-Combined');
+  const location = path.join(os.tmpdir(), '--test-FileFlatDb');
   let store;
 
   beforeAll(() => {
     mkdirp.sync(location);
 
-    store = new Combined(location);
+    store = new FileFlatDb(location);
+    store.open();
   });
 
   afterAll(() => {
+    store.close();
     rimraf.sync(location);
   });
 
   it('writes an entry', () => {
     console.error('A: execute');
 
-    store.set(KEY_A, VAL_A);
+    store.put(KEY_A, VAL_A);
 
     console.error('A: expectations');
 
@@ -65,7 +78,7 @@ describe.skip('StoreCombined', () => {
   it('writes an entry (additional)', () => {
     console.error('B: execute');
 
-    store.set(KEY_B, VAL_B);
+    store.put(KEY_B, VAL_B);
 
     console.error('A: expectations');
 
@@ -76,7 +89,7 @@ describe.skip('StoreCombined', () => {
   it('writes an entry (expanding the tree)', () => {
     console.error('C: execute');
 
-    store.set(KEY_C, VAL_C);
+    store.put(KEY_C, VAL_C);
 
     console.error('C: expectations');
 
@@ -88,7 +101,7 @@ describe.skip('StoreCombined', () => {
   it('writes an entry (expanding the tree, again)', () => {
     console.error('D: execute');
 
-    store.set(KEY_D, VAL_D);
+    store.put(KEY_D, VAL_D);
 
     console.error('D: expectations');
 
@@ -101,7 +114,7 @@ describe.skip('StoreCombined', () => {
   it('writes an entry (expanding the tree, yet again)', () => {
     console.error('E: execute');
 
-    store.set(KEY_E, VAL_E);
+    store.put(KEY_E, VAL_E);
 
     console.error('E: expectations');
 

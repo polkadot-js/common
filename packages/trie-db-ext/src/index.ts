@@ -5,7 +5,7 @@
 import { TxDb } from '@polkadot/db-memory/types';
 import { Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
 
-import MemoryDb from '@polkadot/db-memory/index';
+import MemoryDb from '@polkadot/db/Memory';
 import isNull from '@polkadot/util/is/null';
 import logger from '@polkadot/util/logger';
 import u8aConcat from '@polkadot/util/u8a/concat';

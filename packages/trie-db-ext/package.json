@@ -35,7 +35,7 @@
     "@polkadot/util-rlp": "^0.28.25"
   },
   "devDependencies": {
-    "@polkadot/db-memory": "^0.28.25",
+    "@polkadot/db": "^0.28.25",
     "ethereumjs-testing": "1.0.4"
   }
 }

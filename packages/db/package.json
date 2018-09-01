@@ -1,7 +1,7 @@
 {
-  "name": "@polkadot/db-memory",
+  "name": "@polkadot/db",
   "version": "0.28.25",
-  "description": "Implementation of a basic sync in-memory database with overlays",
+  "description": "Implementation of a basic sync in-memory and on-disk databases with overlays",
   "main": "index.js",
   "keywords": [
     "Polkadot"
@@ -26,11 +26,12 @@
   "bugs": {
     "url": "https://github.com/polkadot-js/common/issues"
   },
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/db-memory#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/db#readme",
   "dependencies": {
     "@babel/runtime": "^7.0.0-rc.1",
-    "@polkadot/db-memory": "^0.28.25",
     "@polkadot/util": "^0.28.25",
-    "rocksdb-node": "^1.7.2"
+    "lru_map": "^0.3.3",
+    "rocksdb-node": "^1.7.2",
+    "snappy": "^6.0.4"
   }
 }

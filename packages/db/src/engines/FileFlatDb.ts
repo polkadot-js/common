@@ -1,12 +1,16 @@
-// Copyright 2017-2018 @polkadot/db-diskdown authors & contributors
+// Copyright 2017-2018 @polkadot/db authors & contributors
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { DiskStore, ProgressValue } from '../types';
+import { BaseDb, ProgressCb } from '../types';
 
 import fs from 'fs';
+// import snappy from 'snappy';
 import assert from '@polkadot/util/assert';
 import logger from '@polkadot/util/logger';
+import bufferToU8a from '@polkadot/util/buffer/toU8a';
+import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
+import u8aToHex from '@polkadot/util/u8a/toHex';
 
 enum Slot {
   EMPTY = 0,
@@ -45,23 +49,9 @@ const ENTRY_NUM = 256;
 const ENTRY_SIZE = 1 + UINT_SIZE;
 const HEADER_SIZE = ENTRY_NUM * ENTRY_SIZE;
 
-const l = logger('disk/combined');
+const l = logger('db/flat');
 
-function debug (obj: any) {
-  return JSON.stringify(
-    !obj
-      ? obj
-      : Object.keys(obj).reduce((result, key) => {
-        result[key] = Buffer.isBuffer(obj[key])
-          ? obj[key].toString('hex')
-          : obj[key];
-
-        return result;
-      }, {} as any)
-  );
-}
-
-export default class Combined implements DiskStore {
+export default class FileFlatDb implements BaseDb {
   _fd: number;
   _file: string;
 
@@ -84,7 +74,7 @@ export default class Combined implements DiskStore {
     fs.closeSync(this._fd);
   }
 
-  compact (progress: (value: ProgressValue) => void): void {
+  maintain (fn: ProgressCb): void {
     assert(this._fd === -1, 'Database cannot be open for compacting');
 
     l.log('compacting database');
@@ -93,7 +83,7 @@ export default class Combined implements DiskStore {
     const newFile = `${this._file}.compacted`;
     const newFd = this._open(newFile, true);
     const oldFd = this._open(this._file);
-    const keys = this._compact(progress, newFd, oldFd);
+    const keys = this._compact(fn, newFd, oldFd);
 
     fs.closeSync(oldFd);
     fs.closeSync(newFd);
@@ -105,42 +95,62 @@ export default class Combined implements DiskStore {
     const elapsed = (Date.now() - start) / 1000;
 
     fs.unlinkSync(this._file);
-    // fs.renameSync(this._file, `${this._file}.old`);
     fs.renameSync(newFile, this._file);
 
     l.log(`compacted in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys, ${sizeMB.toFixed(2)}MB (${percentage.toFixed(2)}%)`);
   }
 
-  delete (key: Buffer): void {
+  del (key: Uint8Array): void {
     throw new Error('delete not implemented, only stubbed');
   }
 
-  get (key: Buffer): Buffer | undefined {
+  get (key: Uint8Array): Uint8Array | null {
     this.assertOpen();
 
-    l.debug(() => ['get', debug({ key })]);
+    l.debug(() => ['get', { key }]);
 
-    const desc = this.findKey(key, false);
+    const desc = this.findKey(this._serializeKey(key), false);
 
     if (!desc) {
-      return;
+      return null;
     }
 
-    return this.readValue(desc).value;
+    const result = this.readValue(desc);
+
+    return result && result.value
+      ? bufferToU8a(result.value)
+      : null;
   }
 
-  set (key: Buffer, value: Buffer): void {
+  put (key: Uint8Array, value: Uint8Array): void {
     this.assertOpen();
 
-    l.debug(() => ['set', debug({ key, value })]);
+    l.debug(() => ['set', { key, value }]);
 
-    const desc = this.findKey(key, true);
+    const desc = this.findKey(this._serializeKey(key), true);
 
     if (!desc) {
       throw new Error('Unable to create key');
     }
 
-    this.writeValue(desc, value);
+    this.writeValue(
+      desc,
+      u8aToBuffer(value)
+    );
+  }
+
+  private _serializeKey (key: Uint8Array): Buffer {
+    if (key.length === KEY_SIZE) {
+      return u8aToBuffer(key);
+    } else if (key.length < KEY_SIZE) {
+      const paddedKey = Buffer.alloc(KEY_SIZE);
+
+      paddedKey.set(key, 0);
+
+      return paddedKey;
+    }
+
+    throw new Error(`${u8aToHex(key)} too large, expected <= 32 bytes`);
   }
 
   private _compactReadEntry (fd: number, at: number, index: number): Buffer {
@@ -198,7 +208,7 @@ export default class Combined implements DiskStore {
     return headerAt;
   }
 
-  private _compact (progress: (value: ProgressValue) => void, newFd: number, oldFd: number): number {
+  private _compact (fn: ProgressCb, newFd: number, oldFd: number): number {
     // l.debug(() => ['_compact', debug({ newFd, oldFd, newAt, oldAt })]);
 
     let keys = 0;
@@ -235,8 +245,8 @@ export default class Combined implements DiskStore {
           throw new Error(`Unknown entry type, ${entryType}`);
         }
 
-        progress({
-          depth,
+        fn({
+          isCompleted: depth === 0 && index === (ENTRY_NUM - 1),
           keys,
           percent
         });
@@ -256,14 +266,14 @@ export default class Combined implements DiskStore {
 
     fs.readSync(this._fd, entry, 0, ENTRY_SIZE, entryAt);
 
-    l.debug(() => ['findKey', debug({ key, doCreate, keyIndex, diskAt, entry, entryAt })]);
+    l.debug(() => ['findKey', { key, doCreate, keyIndex, diskAt, entry, entryAt }]);
 
     const entryType = entry[0];
 
     if (entryType === Slot.BRANCH) {
       const branchAt = entry.readUIntBE(1, UINT_SIZE);
 
-      l.debug(() => ['findKey/isBranch', debug({ branchAt })]);
+      l.debug(() => ['findKey/isBranch', { branchAt }]);
 
       return this._findKey(key, doCreate, keyIndex + 1, branchAt);
     }
@@ -282,7 +292,7 @@ export default class Combined implements DiskStore {
 
       fs.readSync(this._fd, keyValue, 0, KEY_TOTAL_SIZE, keyAt);
 
-      l.debug(() => ['findKey/isLeaf', debug({ keyAt, entry, keyValue })]);
+      l.debug(() => ['findKey/isLeaf', { keyAt, entry, keyValue }]);
 
       let matchIndex = keyIndex;
 
@@ -315,7 +325,7 @@ export default class Combined implements DiskStore {
   private findKey (key: Buffer, doCreate: boolean): Leaf | null {
     const result = this._findKey(key, doCreate, 0, 0);
 
-    l.debug(() => ['findKey', '=>', debug(result)]);
+    l.debug(() => ['findKey', { result }]);
 
     return result;
   }
@@ -328,7 +338,7 @@ export default class Combined implements DiskStore {
   }
 
   private _readValue (key: Buffer, keyAt: number, keyValue: Buffer): Value {
-    l.debug(() => ['readValue', debug({ key, keyAt, keyValue })]);
+    l.debug(() => ['readValue', { key, keyAt, keyValue }]);
 
     const { valueAt, valueLength } = this._extractValueInfo(keyValue);
     const value = Buffer.alloc(valueLength);
@@ -347,13 +357,13 @@ export default class Combined implements DiskStore {
   private readValue ({ key, keyAt, keyValue }: Key): Value {
     const result = this._readValue(key, keyAt, keyValue);
 
-    l.debug(() => ['readValue', '=>', debug(result)]);
+    l.debug(() => ['readValue', { result }]);
 
     return result;
   }
 
   private _writeValue (key: Buffer, keyAt: number, keyValue: Buffer, value: Buffer): Value {
-    l.debug(() => ['writeValue', debug({ keyAt, keyValue, value })]);
+    l.debug(() => ['writeValue', { keyAt, keyValue, value }]);
 
     let { valueAt, valueLength } = this._extractValueInfo(keyValue);
 
@@ -382,13 +392,13 @@ export default class Combined implements DiskStore {
   private writeValue ({ key, keyAt, keyValue }: Key, value: Buffer): Value {
     const result = this._writeValue(key, keyAt, keyValue, value);
 
-    l.debug(() => ['writeValue', '=>', debug(result)]);
+    l.debug(() => ['writeValue', '=>', { result }]);
 
     return result;
   }
 
   private _writeNewKey (key: Buffer): Key {
-    l.debug(() => ['writeNewKey', debug({ key })]);
+    l.debug(() => ['writeNewKey', { key }]);
 
     const stats = fs.fstatSync(this._fd);
     const keyAt = stats.size;
@@ -408,13 +418,13 @@ export default class Combined implements DiskStore {
   private writeNewKey (key: Buffer): Key {
     const result = this._writeNewKey(key);
 
-    l.debug(() => ['writeNewKey', '=>', debug(result)]);
+    l.debug(() => ['writeNewKey', '=>', { result }]);
 
     return result;
   }
 
   private _writeNewBranch (entry: Buffer, entryAt: number, key: Buffer, prevAt: number, prevValue: Buffer, matchIndex: number, depth: number): Branch {
-    l.debug(() => ['writeNewBranch', debug({ entry, entryAt, key, prevValue, matchIndex, depth })]);
+    l.debug(() => ['writeNewBranch', { entry, entryAt, key, prevValue, matchIndex, depth }]);
 
     const { keyAt, keyValue } = this.writeNewKey(key);
     const branch = Buffer.alloc(HEADER_SIZE);
@@ -461,13 +471,13 @@ export default class Combined implements DiskStore {
   private writeNewBranch (entry: Buffer, entryAt: number, key: Buffer, prevAt: number, prevValue: Buffer, matchIndex: number, depth: number): Leaf {
     const result = this._writeNewBranch(entry, entryAt, key, prevAt, prevValue, matchIndex, depth);
 
-    l.debug(() => ['writeNewBranch', '=>', debug(result)]);
+    l.debug(() => ['writeNewBranch', '=>', { result }]);
 
     return result;
   }
 
   private _writeNewLeaf (entry: Buffer, entryAt: number, key: Buffer): Leaf {
-    l.debug(() => ['writeNewLeaf', debug({ entry, entryAt, key })]);
+    l.debug(() => ['writeNewLeaf', { entry, entryAt, key }]);
 
     const { keyAt, keyValue } = this.writeNewKey(key);
 
@@ -488,7 +498,7 @@ export default class Combined implements DiskStore {
   private writeNewLeaf (entry: Buffer, entryAt: number, key: Buffer): Leaf {
     const result = this._writeNewLeaf(entry, entryAt, key);
 
-    l.debug(() => ['writeNewLeaf', '=>', debug(result)]);
+    l.debug(() => ['writeNewLeaf', '=>', { result }]);
 
     return result;
   }

@@ -1,0 +1,63 @@
+// Copyright 2017-2018 @polkadot/db authors & contributors
+// This software may be modified and distributed under the terms
+// of the ISC license. See the LICENSE file for details.
+
+import toU8a from '@polkadot/util/u8a/fromString';
+
+import LruDb from './LruDb';
+import MemoryDb from './MemoryDb';
+
+describe('LruDb', () => {
+  const memory = new MemoryDb();
+  const db = new LruDb(memory);
+
+  it('retrieves an item from the backing when not available (caching it)', () => {
+    const key = toU8a('test1');
+    const value = toU8a('value1');
+
+    memory.put(key, value);
+
+    expect(db.get(key)).toEqual(value);
+    expect(db._getLru(key)).toEqual({ value });
+  });
+
+  it('replaces an item (caching and backing)', () => {
+    const key = toU8a('test1');
+    const value = toU8a('test');
+
+    db.put(key, value);
+
+    expect(db.get(key)).toEqual(value);
+    expect(memory.get(key)).toEqual(value);
+    expect(db._getLru(key)).toEqual({ value });
+  });
+
+  it('retrieves item from LRU when available', () => {
+    const key = toU8a('test1');
+    const value = toU8a('test');
+
+    memory.del(key);
+
+    expect(db.get(key)).toEqual(value);
+  });
+
+  it('puts item both in LRU and backing', () => {
+    const key = toU8a('test0');
+    const value = toU8a('value0');
+
+    db.put(key, value);
+
+    expect(memory.get(key)).toEqual(value);
+    expect(db._getLru(key)).toEqual({ value });
+  });
+
+  it('deletes an item from both backing and db', () => {
+    const key = toU8a('test0');
+
+    db.del(key);
+
+    expect(memory.get(key)).toEqual(null);
+    expect(db._getLru(key)).toEqual({ value: null });
+    expect(db.get(key)).toEqual(null);
+  });
+});
