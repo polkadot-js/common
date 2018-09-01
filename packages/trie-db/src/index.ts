@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import { TxDb, ProgressCb } from '@polkadot/db/types';
-import { Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
+import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
 
 import MemoryDb from '@polkadot/db/Memory';
 import isNull from '@polkadot/util/is/null';
@@ -20,7 +20,7 @@ import { EMPTY_HASH, EMPTY_U8A } from './constants';
 
 const l = logger('trie/db');
 
-export default class Trie implements TxDb<Uint8Array> {
+export default class Trie implements TrieDb {
   private db: TxDb;
   private txRoot: Uint8Array;
   private rootHash: Uint8Array;

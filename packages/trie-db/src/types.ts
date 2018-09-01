@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+import { TxDb } from '@polkadot/db/types';
+
 export enum NodeType {
   EMPTY = 0,
   LEAF = 1,
@@ -30,3 +32,6 @@ export type NodeKv = [EncodedPath, NodeEncodedOrEmpty];
 export type NodeNotEmpty = NodeKv | NodeBranch;
 
 export type Node = NodeEmpty | NodeNotEmpty;
+
+export interface TrieDb extends TxDb<Uint8Array> {
+}
