@@ -1,45 +1,41 @@
 {
   "name": "@polkadot/trie-db",
-  "version": "0.28.25",
-  "description": "This is an implementation of the modified merkle patricia tree as speficed in Ethereum's yellow paper, adpated for Polkadot.",
+  "version": "0.29.0",
+  "description": "This is an implementation of the modified merkle patricia tree as speficed in Ethereum's yellow paper, adpated for Polkadot",
   "main": "index.js",
+  "keywords": [
+    "Polkadot"
+  ],
+  "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [
     "Jaco Greeff <jacogr@gmail.com>"
   ],
-  "contributors": [
-    "mjbecze <mjbecze@gmail.com>",
-    "Aaron Kumavis <http://aaron.kumavis.me/> (https://github.com/kumavis)"
-  ],
+  "contributors": [],
+  "license": "ISC",
+  "engines": {
+    "node": ">=6.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/polkadot-js/common.git"
+    "url": "git+https://github.com/polkadot-js/common.git"
   },
   "bugs": {
     "url": "https://github.com/polkadot-js/common/issues"
   },
-  "keywords": [
-    "merkle",
-    "radix",
-    "trie",
-    "ethereum"
-  ],
-  "license": "MPL-2.0",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-db#readme",
   "dependencies": {
     "@babel/runtime": "^7.0.0-rc.1",
-    "@polkadot/trie-hash": "^0.28.25",
-    "@polkadot/util": "^0.28.25",
-    "@polkadot/util-crypto": "^0.28.25",
-    "@polkadot/util-rlp": "^0.28.25",
-    "@types/async": "^2.0.49",
-    "@types/semaphore": "^1.1.0",
-    "async": "^2.6.1",
-    "encoding-down": "^5.0.3",
-    "level-ws": "0.1.0",
-    "levelup": "^3.1.1",
-    "memdown": "^3.0.0",
-    "semaphore": ">=1.0.1"
+    "@polkadot/trie-hash": "^0.29.0",
+    "@polkadot/util": "^0.29.0",
+    "@polkadot/util-crypto": "^0.29.0",
+    "@polkadot/util-rlp": "^0.29.0"
   },
   "devDependencies": {
+    "@polkadot/db": "^0.29.0",
     "ethereumjs-testing": "1.0.4"
   }
 }
