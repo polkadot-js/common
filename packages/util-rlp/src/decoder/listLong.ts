@@ -18,7 +18,7 @@ export default function decodeListLong (decode: DecodeFunc, input: Uint8Array): 
 
   let innerRemainder = input.slice(llength, totalLength);
 
-  assert(innerRemainder.length > 0, 'invalid rlp, List has a invalid length');
+  assert(innerRemainder.length > 0, 'invalid rlp, list has a invalid length');
 
   while (innerRemainder.length) {
     const d = decode(innerRemainder);

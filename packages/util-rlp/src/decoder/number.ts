@@ -13,7 +13,7 @@ export default function decodeNumber (decode: DecodeFunc, input: Uint8Array): De
   const length = safeParseInt(input.slice(1, llength));
   const decoded = input.slice(llength, length + llength);
 
-  assert(decoded.length === length, 'invalid RLP');
+  assert(decoded.length === length, `invalid rlp, expected length ${length}, found ${decoded.length}`);
 
   return {
     decoded,

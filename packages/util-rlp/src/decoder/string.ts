@@ -18,7 +18,7 @@ export default function decodeString (decode: DecodeFunc, input: Uint8Array): De
     decoded = input.slice(1, length);
   }
 
-  assert(!(length === 2 && decoded[0] < 0x80), 'invalid rlp encoding: byte must be less 0x80');
+  assert(!(length === 2 && decoded[0] < 0x80), 'invalid rlp, byte must be less 0x80');
 
   return {
     decoded,

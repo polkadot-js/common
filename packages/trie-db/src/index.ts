@@ -453,7 +453,7 @@ export default class Trie implements TrieDb {
       }
     }
 
-    l.log(() => ['newNode', newNode]);
+    // l.debug(() => ['newNode', newNode]);
 
     if (commonPrefix.length) {
       return [
