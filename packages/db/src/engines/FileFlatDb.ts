@@ -5,7 +5,7 @@
 import { BaseDb, ProgressCb } from '../types';
 
 import fs from 'fs';
-// import snappy from 'snappy';
+import snappy from 'snappy';
 import assert from '@polkadot/util/assert';
 import logger from '@polkadot/util/logger';
 import bufferToU8a from '@polkadot/util/buffer/toU8a';
@@ -48,6 +48,7 @@ const KEY_TOTAL_SIZE = KEY_SIZE + UINT_SIZE + UINT_SIZE;
 const ENTRY_NUM = 256;
 const ENTRY_SIZE = 1 + UINT_SIZE;
 const HEADER_SIZE = ENTRY_NUM * ENTRY_SIZE;
+const DEFAULT_FILE = 'store.db';
 
 const l = logger('db/flat');
 
@@ -55,12 +56,12 @@ export default class FileFlatDb implements BaseDb {
   _fd: number;
   _file: string;
 
-  constructor (location: string) {
+  constructor (location: string, file: string = DEFAULT_FILE) {
     if (!fs.existsSync(location)) {
       throw new Error(`Unable to open ${location}`);
     }
 
-    this._file = `${location}/store.db`;
+    this._file = `${location}/${file}`;
     this._fd = -1;
   }
 
@@ -118,7 +119,7 @@ export default class FileFlatDb implements BaseDb {
     const result = this.readValue(desc);
 
     return result && result.value
-      ? bufferToU8a(result.value)
+      ? this._deserializeValue(result.value)
       : null;
   }
 
@@ -135,8 +136,24 @@ export default class FileFlatDb implements BaseDb {
 
     this.writeValue(
       desc,
-      u8aToBuffer(value)
+      this._serializeValue(value)
     );
+  }
+
+  private _deserializeValue (value: Buffer): Uint8Array | null {
+    // return bufferToU8a(
+    //   snappy.uncompressSync(value)
+    // );
+
+    return bufferToU8a(value);
+  }
+
+  private _serializeValue (value: Uint8Array): Buffer {
+    // return snappy.compressSync(
+    //   u8aToBuffer(value)
+    // );
+
+    return u8aToBuffer(value);
   }
 
   private _serializeKey (key: Uint8Array): Buffer {

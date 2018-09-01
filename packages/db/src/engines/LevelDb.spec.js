@@ -2,21 +2,21 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import os from 'os';
 import mkdirp from 'mkdirp';
+import os from 'os';
 import path from 'path';
 import toU8a from '@polkadot/util/u8a/fromString';
 
-// import RocksDb from './RocksDb';
+import LevelDb from './LevelDb';
 
-describe.skip('RocksDb', () => {
-  const location = path.join(os.tmpdir(), '--test-RocksDb');
+describe('LevelDb', () => {
+  const location = path.join(os.tmpdir(), '--test-LevelDb');
   let db;
 
   beforeAll(() => {
     mkdirp.sync(location);
 
-    db = new RocksDb(location);
+    db = new LevelDb(location);
     db.open();
   });
 
