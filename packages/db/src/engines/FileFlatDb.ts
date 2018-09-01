@@ -5,7 +5,7 @@
 import { BaseDb, ProgressCb } from '../types';
 
 import fs from 'fs';
-import snappy from 'snappy';
+// import snappy from 'snappy';
 import assert from '@polkadot/util/assert';
 import logger from '@polkadot/util/logger';
 import bufferToU8a from '@polkadot/util/buffer/toU8a';
