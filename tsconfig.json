@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "@polkadot/db/*": [ "packages/db/src/*" ],
-      "@polkadot/trie-db-ext/*": [ "packages/trie-db-ext/src/*" ],
+      "@polkadot/trie-db-old/*": [ "packages/trie-db-old/src/*" ],
       "@polkadot/trie-db/*": [ "packages/trie-db/src/*" ],
       "@polkadot/trie-hash/*": [ "packages/trie-hash/src/*" ],
       "@polkadot/util-crypto/*": [ "packages/util-crypto/src/*" ],
