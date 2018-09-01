@@ -11,7 +11,7 @@ describe('safeParseInt', () => {
       () => safeParseInt(
         new Uint8Array([0])
       )
-    ).toThrow(/invalid RLP: extra zeros/);
+    ).toThrow(/invalid rlp, extra zeros found/);
   });
 
   it('converts a value to the correct number', () => {
