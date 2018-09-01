@@ -10,7 +10,7 @@ import encodeRlp from '@polkadot/util-rlp/encode';
 
 import Trie from '../src/index';
 
-describe('it should create the genesis state root from ethereum', () => {
+describe.skip'it should create the genesis state root from ethereum', () => {
   const trie4 = new Trie();
   const g = toU8a('0x8a40bfaa73256b60764c1bf40675a99083efb075');
   const j = toU8a('0xe6716f9544a56c530d868e4bfbacb172315bdead');

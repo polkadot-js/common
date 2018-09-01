@@ -11,7 +11,7 @@ const EMPTY_ROOT = '0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e3
 const HELLO_ROOT = '0x0a915659b88f80bfa200570bd2767a6ab8cb0a4e44fd240cc5ed7a27728c4531';
 const FOO_ROOT = '0xed4e32371288ee83be74f78fb492f01261b7c3dc9c422581bb705c4376492dc6';
 
-describe('@polkadot refactoring', () => {
+describe.skip'@polkadot refactoring', () => {
   const trie = new Trie();
 
   it('has the correct starting trieroot', () => {

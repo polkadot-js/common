@@ -7,7 +7,7 @@ import taskExecutor from '../src/util/taskExecutor';
 
 const executor = taskExecutor(2);
 
-describe('taskExecutor', () => {
+describe.skip'taskExecutor', () => {
   it('executes in order', async () => {
     var tasks = [1, 2, 3, 4, 5, 6, 7];
     var executionOrder = [];

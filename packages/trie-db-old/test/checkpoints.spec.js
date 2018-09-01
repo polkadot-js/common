@@ -13,7 +13,7 @@ import Trie from '../src/index';
 
 // mkdirp(DISKPATH);
 
-describe('testing checkpoints', () => {
+describe.skip'testing checkpoints', () => {
   let trie, preRoot, postRoot;
 
   it('sets up the trie', async () => {

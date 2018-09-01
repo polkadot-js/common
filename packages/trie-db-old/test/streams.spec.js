@@ -7,7 +7,7 @@ import toU8a from '@polkadot/util/u8a/toU8a';
 
 import Trie from '../src/index';
 
-describe('kv stream test', () => {
+describe.skip'kv stream test', () => {
   var trie = new Trie();
   var init = [{
     type: 'del',
@@ -112,7 +112,7 @@ describe('kv stream test', () => {
   });
 });
 
-describe('db stream test', () => {
+describe.skip'db stream test', () => {
   var trie = new Trie();
   var init = [{
     type: 'put',
