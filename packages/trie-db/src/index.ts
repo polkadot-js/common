@@ -47,13 +47,19 @@ export default class Trie implements TrieDb {
     return this.rootHash;
   }
 
-  transaction (fn: () => boolean): Uint8Array {
+  transaction (fn: () => boolean): boolean {
     try {
       this.createCheckpoint();
 
-      return this.db.transaction(fn)
-        ? this.commitCheckpoint()
-        : this.revertCheckpoint();
+      const result = this.db.transaction(fn);
+
+      if (result) {
+        this.commitCheckpoint();
+      } else {
+        this.revertCheckpoint();
+      }
+
+      return result;
     } catch (error) {
       this.revertCheckpoint();
 
