@@ -62,7 +62,7 @@ export default class FileFlatDb implements BaseDb {
     this._fd = -1;
     this._file = path.join(base, file);
 
-    mkdirp.sync(this._file);
+    mkdirp.sync(base);
   }
 
   open (): void {
