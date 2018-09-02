@@ -5,5 +5,16 @@ cache:
   yarn: true
   directories:
     - node_modules
+install:
+  - export ROCKSDB=$HOME/rocksdb-master
+  - export CGO_CFLAGS="-I${ROCKSDB}/include/"
+  - export CGO_LDFLAGS="-L${ROCKSDB} -lrocksdb -lstdc++ -lm -lz"
+  - export LD_LIBRARY_PATH="${ROCKSDB}:/usr/local/lib"
+  - cd
+  - curl -sLO https://github.com/facebook/rocksdb/archive/master.zip
+  - unzip master.zip
+  - cd rocksdb-master
+  - make shared_lib
+  - cd
 script:
   - yarn polkadot-dev-build-travis

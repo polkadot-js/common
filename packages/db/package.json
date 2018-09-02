@@ -34,10 +34,8 @@
     "@types/snappy": "^6.0.0",
     "lru_map": "^0.3.3",
     "mkdirp": "^0.5.1",
-    "snappy": "^6.0.4"
-  },
-  "optionalDependencies": {
     "nosql-leveldb": "^3.0.1",
-    "rocksdb-node": "jacogr/rocksdb-node#00ebfdbf0462ee615f4f48f1db403fd4df8471ea"
+    "rocksdb-node": "jacogr/rocksdb-node#00ebfdbf0462ee615f4f48f1db403fd4df8471ea",
+    "snappy": "^6.0.4"
   }
 }
