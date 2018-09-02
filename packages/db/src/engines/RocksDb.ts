@@ -1,0 +1,95 @@
+// Copyright 2017-2018 @polkadot/db authors & contributors
+// This software may be modified and distributed under the terms
+// of the ISC license. See the LICENSE file for details.
+
+import { BaseDb, ProgressCb } from '../types';
+
+import rocksdb, { RocksDb } from 'rocksdb-node';
+import mkdirp from 'mkdirp';
+import path from 'path';
+import snappy from 'snappy';
+import logger from '@polkadot/util/logger';
+import bufferToU8a from '@polkadot/util/buffer/toU8a';
+import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
+import u8aToHex from '@polkadot/util/u8a/toHex';
+
+// import assert from '@polkadot/util/assert';
+// import u8aToHex from '@polkadot/util/u8a/toHex';
+
+const l = logger('db/rocksdb');
+
+export default class Rocks implements BaseDb {
+  private db: RocksDb;
+
+  constructor (base: string, name: string) {
+    const location = path.join(base, name);
+
+    mkdirp.sync(location);
+
+    this.db = rocksdb.open({ create_if_missing: true }, location);
+  }
+
+  close (): void {
+    l.debug(() => ['close']);
+
+    this.db.close();
+  }
+
+  open (): void {
+    l.debug(() => ['open']);
+  }
+
+  maintain (fn: ProgressCb): void {
+    fn({
+      isCompleted: true,
+      keys: 0,
+      percent: 100
+    });
+  }
+
+  del (key: Uint8Array): void {
+    this.db.del(
+      {},
+      this._serializeKey(key)
+    );
+  }
+
+  get (key: Uint8Array): Uint8Array | null {
+    try {
+      return this._deserializeValue(
+        this.db.get(
+          { buffer: true },
+          this._serializeKey(key)
+        ) as Buffer
+      );
+    } catch (error) {
+      return null;
+    }
+  }
+
+  put (key: Uint8Array, value: Uint8Array): void {
+    this.db.put(
+      {},
+      this._serializeKey(key),
+      this._serializeValue(value)
+    );
+  }
+
+  private _deserializeValue (value: Buffer): Uint8Array | null {
+    return value
+      ? bufferToU8a(
+        snappy.uncompressSync(value)
+      )
+      : null;
+  }
+
+  private _serializeKey (key: Uint8Array): string {
+    return u8aToHex(key);
+  }
+
+  private _serializeValue (value: Uint8Array): Buffer {
+    return snappy.compressSync(
+      u8aToBuffer(value)
+    );
+  }
+}
