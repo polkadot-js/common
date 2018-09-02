@@ -9,7 +9,7 @@ import toU8a from '@polkadot/util/u8a/fromString';
 
 import RocksDb from './RocksDb';
 
-describe('RocksDb', () => {
+describe.skip('RocksDb', () => {
   const base = path.join(os.tmpdir(), '--test--');
   const name = 'RocksDb';
   const location = path.join(base, name);
