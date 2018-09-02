@@ -14,6 +14,7 @@ install:
   - make shared_lib
   - popd
   - export CFLAGS="-I${ROCKSDB}/include/"
+  - export CXXFLAGS="-I${ROCKSDB}/include/"
   - export LDFLAGS="-L${ROCKSDB} -lrocksdb -lstdc++ -lm -lz"
   - export LD_LIBRARY_PATH="${ROCKSDB}:/usr/local/lib"
   - yarn

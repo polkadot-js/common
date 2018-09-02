@@ -7,7 +7,7 @@ import { BaseDb, ProgressCb } from '../types';
 import rocksdb, { RocksDb } from 'rocksdb-node';
 import mkdirp from 'mkdirp';
 import path from 'path';
-import snappy from 'snappy';
+// import snappy from 'snappy';
 import logger from '@polkadot/util/logger';
 import bufferToU8a from '@polkadot/util/buffer/toU8a';
 import u8aToBuffer from '@polkadot/util/u8a/toBuffer';

@@ -1285,9 +1285,9 @@
     typedoc-plugin-markdown "^1.1.13"
     typescript "^3.0.1"
 
-"@polkadot/ts@^0.1.21":
-  version "0.1.21"
-  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.21.tgz#8941ae51a6ab74281c0d782c7346f9b2fd1b0dd0"
+"@polkadot/ts@^0.1.22":
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.22.tgz#8f89d87257ea515bfc79685f5fda70b531a3107b"
 
 "@types/base-x@*":
   version "1.0.29"

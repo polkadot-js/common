@@ -7,7 +7,7 @@ import { BaseDb, ProgressCb } from '../types';
 import leveldb, { LevelDb } from 'nosql-leveldb';
 import mkdirp from 'mkdirp';
 import path from 'path';
-import snappy from 'snappy';
+// import snappy from 'snappy';
 import logger from '@polkadot/util/logger';
 import bufferToU8a from '@polkadot/util/buffer/toU8a';
 import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
@@ -86,9 +86,8 @@ export default class Level implements BaseDb {
       : null;
   }
 
-  private _serializeKey (key: Uint8Array): Buffer {
-    // FIXME Definition
-    return (u8aToHex(key) as any) as Buffer;
+  private _serializeKey (key: Uint8Array): string {
+    return u8aToHex(key);
   }
 
   private _serializeValue (value: Uint8Array): Buffer {
