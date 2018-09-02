@@ -4,7 +4,7 @@
 
 import { BaseDb, ProgressCb } from '../types';
 
-import leveldb, { LevelDb } from 'nosql-leveldb';
+import rocksdb, { RocksDb } from 'rocksdb-node';
 import mkdirp from 'mkdirp';
 import path from 'path';
 // import snappy from 'snappy';
@@ -16,31 +16,27 @@ import u8aToHex from '@polkadot/util/u8a/toHex';
 // import assert from '@polkadot/util/assert';
 // import u8aToHex from '@polkadot/util/u8a/toHex';
 
-const l = logger('db/leveldb');
+const l = logger('db/rocksdb');
 
-export default class Level implements BaseDb {
-  private db: LevelDb;
+export default class Rocks implements BaseDb {
+  private db: RocksDb;
 
   constructor (base: string, name: string) {
     const location = path.join(base, name);
 
     mkdirp.sync(location);
 
-    this.db = leveldb(location);
+    this.db = rocksdb.open({ create_if_missing: true }, location);
   }
 
   close (): void {
     l.debug(() => ['close']);
 
-    this.db.closeSync();
+    this.db.close();
   }
 
   open (): void {
     l.debug(() => ['open']);
-
-    this.db.openSync({
-      createIfMissing: true
-    });
   }
 
   maintain (fn: ProgressCb): void {
@@ -52,7 +48,8 @@ export default class Level implements BaseDb {
   }
 
   del (key: Uint8Array): void {
-    this.db.delSync(
+    this.db.del(
+      {},
       this._serializeKey(key)
     );
   }
@@ -60,10 +57,10 @@ export default class Level implements BaseDb {
   get (key: Uint8Array): Uint8Array | null {
     try {
       return this._deserializeValue(
-        this.db.getSync(
-          this._serializeKey(key),
-          { asBuffer: true }
-        )
+        this.db.get(
+          { buffer: true },
+          this._serializeKey(key)
+        ) as Buffer
       );
     } catch (error) {
       return null;
@@ -71,7 +68,8 @@ export default class Level implements BaseDb {
   }
 
   put (key: Uint8Array, value: Uint8Array): void {
-    this.db.putSync(
+    this.db.put(
+      {},
       this._serializeKey(key),
       this._serializeValue(value)
     );

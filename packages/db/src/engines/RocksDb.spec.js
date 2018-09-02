@@ -7,16 +7,16 @@ import os from 'os';
 import path from 'path';
 import toU8a from '@polkadot/util/u8a/fromString';
 
-import LevelDb from './LevelDb';
+import RocksDb from './RocksDb';
 
-describe.skip('LevelDb', () => {
+describe.skip('RocksDb', () => {
   const base = path.join(os.tmpdir(), '--test--');
-  const name = 'LevelDb';
+  const name = 'RocksDb';
   const location = path.join(base, name);
   let db;
 
   beforeAll(() => {
-    db = new LevelDb(base, name);
+    db = new RocksDb(base, name);
     db.open();
   });
 
