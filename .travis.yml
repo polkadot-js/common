@@ -16,5 +16,6 @@ install:
   - cd rocksdb-master
   - make shared_lib
   - popd
+  - yarn
 script:
   - yarn polkadot-dev-build-travis
