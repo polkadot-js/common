@@ -10,11 +10,11 @@ install:
   - export CGO_CFLAGS="-I${ROCKSDB}/include/"
   - export CGO_LDFLAGS="-L${ROCKSDB} -lrocksdb -lstdc++ -lm -lz"
   - export LD_LIBRARY_PATH="${ROCKSDB}:/usr/local/lib"
-  - cd
+  - pushd $HOME
   - curl -sLO https://github.com/facebook/rocksdb/archive/master.zip
   - unzip master.zip
   - cd rocksdb-master
   - make shared_lib
-  - cd
+  - popd
 script:
   - yarn polkadot-dev-build-travis
