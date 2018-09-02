@@ -9,7 +9,7 @@ import toU8a from '@polkadot/util/u8a/fromString';
 
 import LevelDb from './LevelDb';
 
-describe('LevelDb', () => {
+describe.skip('LevelDb', () => {
   const base = path.join(os.tmpdir(), '--test--');
   const name = 'LevelDb';
   const location = path.join(base, name);
