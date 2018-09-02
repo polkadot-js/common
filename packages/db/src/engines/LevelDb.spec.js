@@ -10,13 +10,13 @@ import toU8a from '@polkadot/util/u8a/fromString';
 import LevelDb from './LevelDb';
 
 describe('LevelDb', () => {
-  const location = path.join(os.tmpdir(), '--test-LevelDb');
+  const base = path.join(os.tmpdir(), '--test--');
+  const name = 'LevelDb';
+  const location = path.join(base, name);
   let db;
 
   beforeAll(() => {
-    mkdirp.sync(location);
-
-    db = new LevelDb(location);
+    db = new LevelDb(base, name);
     db.open();
   });
 

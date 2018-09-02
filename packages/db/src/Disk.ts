@@ -7,10 +7,10 @@ import LruDb from './engines/LruDb';
 import TransactionDb from './engines/TransactionDb';
 
 export default class DiskDb extends TransactionDb {
-  constructor (location: string, file?: string) {
+  constructor (base: string, name: string) {
     super(
       new LruDb(
-        new FileFlatDb(location, file)
+        new FileFlatDb(base, name)
       )
     );
   }

@@ -5,6 +5,8 @@
 import { BaseDb, ProgressCb } from '../types';
 
 import leveldb, { LevelDb } from 'nosql-leveldb';
+import mkdirp from 'mkdirp';
+import path from 'path';
 import snappy from 'snappy';
 import logger from '@polkadot/util/logger';
 import bufferToU8a from '@polkadot/util/buffer/toU8a';
@@ -18,7 +20,11 @@ const l = logger('db/leveldb');
 export default class Level implements BaseDb {
   private db: LevelDb;
 
-  constructor (location: string) {
+  constructor (base: string, name: string) {
+    const location = path.join(base, name);
+
+    mkdirp.sync(location);
+
     this.db = leveldb(location);
   }
 

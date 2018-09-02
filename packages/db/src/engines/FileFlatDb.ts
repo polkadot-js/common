@@ -5,6 +5,8 @@
 import { BaseDb, ProgressCb } from '../types';
 
 import fs from 'fs';
+import mkdirp from 'mkdirp';
+import path from 'path';
 import snappy from 'snappy';
 import assert from '@polkadot/util/assert';
 import logger from '@polkadot/util/logger';
@@ -53,16 +55,14 @@ const DEFAULT_FILE = 'store.db';
 const l = logger('db/flat');
 
 export default class FileFlatDb implements BaseDb {
-  _fd: number;
-  _file: string;
+  private _fd: number;
+  private _file: string;
 
-  constructor (location: string, file: string = DEFAULT_FILE) {
-    if (!fs.existsSync(location)) {
-      throw new Error(`Unable to open ${location}`);
-    }
-
-    this._file = `${location}/${file}`;
+  constructor (base: string, file: string = DEFAULT_FILE) {
     this._fd = -1;
+    this._file = path.join(base, file);
+
+    mkdirp.sync(this._file);
   }
 
   open (): void {
