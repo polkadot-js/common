@@ -4,7 +4,10 @@
 
 import { BaseDb, ProgressCb } from '../types';
 
-import leveldb from 'nosql-leveldb';
+import leveldb, { LevelDb } from 'nosql-leveldb';
+import mkdirp from 'mkdirp';
+import path from 'path';
+import snappy from 'snappy';
 import logger from '@polkadot/util/logger';
 import bufferToU8a from '@polkadot/util/buffer/toU8a';
 import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
@@ -17,7 +20,11 @@ const l = logger('db/leveldb');
 export default class Level implements BaseDb {
   private db: LevelDb;
 
-  constructor (location: string) {
+  constructor (base: string, name: string) {
+    const location = path.join(base, name);
+
+    mkdirp.sync(location);
+
     this.db = leveldb(location);
   }
 
@@ -30,7 +37,10 @@ export default class Level implements BaseDb {
   open (): void {
     l.debug(() => ['open']);
 
-    this.db.openSync();
+    this.db.openSync({
+      compression: false,
+      createIfMissing: true
+    });
   }
 
   maintain (fn: ProgressCb): void {
@@ -69,7 +79,9 @@ export default class Level implements BaseDb {
 
   private _deserializeValue (value: Buffer): Uint8Array | null {
     return value
-      ? bufferToU8a(value)
+      ? bufferToU8a(
+        snappy.uncompressSync(value)
+      )
       : null;
   }
 
@@ -78,6 +90,8 @@ export default class Level implements BaseDb {
   }
 
   private _serializeValue (value: Uint8Array): Buffer {
-    return u8aToBuffer(value);
+    return snappy.compressSync(
+      u8aToBuffer(value)
+    );
   }
 }

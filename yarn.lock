@@ -1285,9 +1285,9 @@
     typedoc-plugin-markdown "^1.1.13"
     typescript "^3.0.1"
 
-"@polkadot/ts@^0.1.17":
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.17.tgz#0d85085038ae7e6757e059d07c8e9c54596919b3"
+"@polkadot/ts@^0.1.21":
+  version "0.1.21"
+  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.21.tgz#8941ae51a6ab74281c0d782c7346f9b2fd1b0dd0"
 
 "@types/base-x@*":
   version "1.0.29"
@@ -1374,6 +1374,12 @@
   resolved "https://registry.yarnpkg.com/@types/shelljs/-/shelljs-0.8.0.tgz#0caa56b68baae4f68f44e0dd666ab30b098e3632"
   dependencies:
     "@types/glob" "*"
+    "@types/node" "*"
+
+"@types/snappy@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@types/snappy/-/snappy-6.0.0.tgz#9817e368bea67b7775b91b579700749b62d9bba5"
+  dependencies:
     "@types/node" "*"
 
 "@types/xxhashjs@^0.1.1":

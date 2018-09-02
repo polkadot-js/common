@@ -31,6 +31,7 @@
     "@babel/runtime": "^7.0.0-rc.1",
     "@polkadot/util": "^0.29.7",
     "@types/mkdirp": "^0.5.2",
+    "@types/snappy": "^6.0.0",
     "lru_map": "^0.3.3",
     "mkdirp": "^0.5.1",
     "nosql-leveldb": "^3.0.1",
