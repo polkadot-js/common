@@ -11,6 +11,7 @@ import snappy from 'snappy';
 import logger from '@polkadot/util/logger';
 import bufferToU8a from '@polkadot/util/buffer/toU8a';
 import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
+import u8aToHex from '@polkadot/util/u8a/toHex';
 
 // import assert from '@polkadot/util/assert';
 // import u8aToHex from '@polkadot/util/u8a/toHex';
@@ -38,7 +39,6 @@ export default class Level implements BaseDb {
     l.debug(() => ['open']);
 
     this.db.openSync({
-      compression: false,
       createIfMissing: true
     });
   }
@@ -79,19 +79,23 @@ export default class Level implements BaseDb {
 
   private _deserializeValue (value: Buffer): Uint8Array | null {
     return value
-      ? bufferToU8a(
-        snappy.uncompressSync(value)
-      )
+      ? bufferToU8a(value)
+      // ? bufferToU8a(
+      //   snappy.uncompressSync(value)
+      // )
       : null;
   }
 
   private _serializeKey (key: Uint8Array): Buffer {
-    return u8aToBuffer(key);
+    // FIXME Definition
+    return (u8aToHex(key) as any) as Buffer;
   }
 
   private _serializeValue (value: Uint8Array): Buffer {
-    return snappy.compressSync(
-      u8aToBuffer(value)
-    );
+    return u8aToBuffer(value);
+
+    // return snappy.compressSync(
+    //   u8aToBuffer(value)
+    // );
   }
 }

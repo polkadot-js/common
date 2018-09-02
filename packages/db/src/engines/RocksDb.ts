@@ -77,9 +77,10 @@ export default class Rocks implements BaseDb {
 
   private _deserializeValue (value: Buffer): Uint8Array | null {
     return value
-      ? bufferToU8a(
-        snappy.uncompressSync(value)
-      )
+      ? bufferToU8a(value)
+      // ? bufferToU8a(
+      //   snappy.uncompressSync(value)
+      // )
       : null;
   }
 
@@ -88,8 +89,10 @@ export default class Rocks implements BaseDb {
   }
 
   private _serializeValue (value: Uint8Array): Buffer {
-    return snappy.compressSync(
-      u8aToBuffer(value)
-    );
+    return u8aToBuffer(value);
+
+    // return snappy.compressSync(
+    //   u8aToBuffer(value)
+    // );
   }
 }
