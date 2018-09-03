@@ -18,11 +18,11 @@ const KEY_B = new Uint8Array([
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
 const KEY_C = new Uint8Array([
-  0x10, 2, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0x10, 2, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
 const KEY_D = new Uint8Array([
-  0x10, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0x10, 2, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
 const KEY_E = new Uint8Array([
@@ -98,12 +98,12 @@ describe.skip('FileFlatDb (basics)', () => {
 
     console.error('C: expectations');
 
-    testGet(KEY_A, VAL_A);
-    testGet(KEY_B, VAL_B);
+    // testGet(KEY_A, VAL_A);
+    // testGet(KEY_B, VAL_B);
     testGet(KEY_C, VAL_C);
   });
 
-  it('writes an entry (expanding the tree, again)', () => {
+  it.skip('writes an entry (expanding the tree, again)', () => {
     console.error('D: execute');
 
     store.put(KEY_D, VAL_D);
@@ -116,7 +116,7 @@ describe.skip('FileFlatDb (basics)', () => {
     testGet(KEY_D, VAL_D);
   });
 
-  it('writes an entry (expanding the tree, yet again)', () => {
+  it.skip('writes an entry (expanding the tree, yet again)', () => {
     console.error('E: execute');
 
     store.put(KEY_E, VAL_E);
@@ -130,7 +130,7 @@ describe.skip('FileFlatDb (basics)', () => {
     testGet(KEY_E, VAL_E);
   });
 
-  it('writes an entry, expanding the top-level', () => {
+  it.skip('writes an entry, expanding the top-level', () => {
     console.error('F: execute');
 
     store.put(KEY_F, VAL_F);
