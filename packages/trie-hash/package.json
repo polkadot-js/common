@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/trie-hash",
-  "version": "0.29.14",
+  "version": "0.29.15",
   "description": "Creation of triehash values",
   "main": "index.js",
   "keywords": [
@@ -29,8 +29,8 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-hash#readme",
   "dependencies": {
     "@babel/runtime": "^7.0.0-rc.1",
-    "@polkadot/util": "^0.29.14",
-    "@polkadot/util-crypto": "^0.29.14",
-    "@polkadot/util-rlp": "^0.29.14"
+    "@polkadot/util": "^0.29.15",
+    "@polkadot/util-crypto": "^0.29.15",
+    "@polkadot/util-rlp": "^0.29.15"
   }
 }
