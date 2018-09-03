@@ -50,7 +50,7 @@ describe.skip('FileFlatDb (basics)', () => {
   const testGet = (key, value) =>
     expect(store.get(key)).toEqual(value);
 
-  const location = path.join(os.tmpdir(), '--test-FileFlatDb');
+  const location = path.join(process.cwd(), '--test-FileFlatDb');
   let store;
 
   beforeAll(() => {
