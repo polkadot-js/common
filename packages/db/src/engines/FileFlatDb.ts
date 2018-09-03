@@ -210,7 +210,7 @@ export default class FileFlatDb implements BaseDb {
     if (entryType === Slot.BRANCH) {
       const nextBranchAt = branch.readUIntBE(entryIndex + 1, UINT_SIZE);
 
-      l.debug(() => ['findKey/isBranch', { branchAt }]);
+      l.debug(() => ['findKey/isBranch', { nextBranchAt }]);
 
       return this._findKey(key, doCreate, keyIndex + 1, nextBranchAt);
     }
