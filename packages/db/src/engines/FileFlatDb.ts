@@ -23,10 +23,6 @@ enum Slot {
   LEAF = 2
 }
 
-type Entry = {
-  entryIndex: number
-};
-
 type NibbleBuffer = {
   buffer: Buffer,
   nibbles: Uint8Array
@@ -38,14 +34,7 @@ type Key = {
   keyValue: Buffer
 };
 
-type Leaf = Entry & Key;
-
-type Branch = Leaf & {
-  branch: Buffer,
-  branchAt: number
-};
-
-type Value = Key & {
+type Value = {
   value: Buffer,
   valueAt: number
 };
@@ -210,7 +199,7 @@ export default class FileFlatDb implements BaseDb {
     this._lruBranch.set(branchAt, branch);
   }
 
-  private _findKey (key: NibbleBuffer, doCreate: boolean, keyIndex: number, branchAt: number): Branch | null {
+  private _findKey (key: NibbleBuffer, doCreate: boolean, keyIndex: number, branchAt: number): Key | null {
     const entryIndex = key.nibbles[keyIndex] * ENTRY_SIZE;
     const branch = this._getBranch(branchAt);
 
@@ -219,11 +208,11 @@ export default class FileFlatDb implements BaseDb {
     const entryType = branch[entryIndex];
 
     if (entryType === Slot.BRANCH) {
-      const branchAt = branch.readUIntBE(entryIndex + 1, UINT_SIZE);
+      const nextBranchAt = branch.readUIntBE(entryIndex + 1, UINT_SIZE);
 
       l.debug(() => ['findKey/isBranch', { branchAt }]);
 
-      return this._findKey(key, doCreate, keyIndex + 1, branchAt);
+      return this._findKey(key, doCreate, keyIndex + 1, nextBranchAt);
     }
 
     if (entryType === Slot.EMPTY) {
@@ -242,7 +231,7 @@ export default class FileFlatDb implements BaseDb {
 
       const prevValue = this._serializeKey(keyValue.subarray(0, KEY_SIZE));
 
-      l.debug(() => ['findKey/isLeaf', { keyAt, branch, entryIndex, keyValue }]);
+      l.debug(() => ['findKey/isLeaf', { keyAt, branch, branchAt, entryIndex, keyValue }]);
 
       let matchIndex = keyIndex;
 
@@ -261,9 +250,6 @@ export default class FileFlatDb implements BaseDb {
       }
 
       return {
-        branch,
-        branchAt,
-        entryIndex,
         key,
         keyAt,
         keyValue
@@ -273,7 +259,7 @@ export default class FileFlatDb implements BaseDb {
     throw new Error(`Unhandled entry type ${entryType}`);
   }
 
-  private findKey (key: NibbleBuffer, doCreate: boolean): Leaf | null {
+  private findKey (key: NibbleBuffer, doCreate: boolean): Key | null {
     const result = this._findKey(key, doCreate, 0, 0);
 
     l.debug(() => ['findKey', { result }]);
@@ -288,8 +274,8 @@ export default class FileFlatDb implements BaseDb {
     };
   }
 
-  private _readValue (key: NibbleBuffer, keyAt: number, keyValue: Buffer): Value {
-    l.debug(() => ['readValue', { key, keyAt, keyValue }]);
+  private _readValue (keyValue: Buffer): Value {
+    l.debug(() => ['readValue', { keyValue }]);
 
     const { valueAt, valueLength } = this._extractValueInfo(keyValue);
     const value = Buffer.alloc(valueLength);
@@ -297,23 +283,20 @@ export default class FileFlatDb implements BaseDb {
     fs.readSync(this._fd, value, 0, valueLength, valueAt);
 
     return {
-      key,
-      keyAt,
-      keyValue,
       value,
       valueAt
     };
   }
 
-  private readValue ({ key, keyAt, keyValue }: Key): Value {
-    const result = this._readValue(key, keyAt, keyValue);
+  private readValue ({ keyValue }: Key): Value {
+    const result = this._readValue(keyValue);
 
     l.debug(() => ['readValue', { result }]);
 
     return result;
   }
 
-  private _writeValue (key: NibbleBuffer, keyAt: number, keyValue: Buffer, value: Buffer): Value {
+  private _writeValue (keyAt: number, keyValue: Buffer, value: Buffer): Value {
     l.debug(() => ['writeValue', { keyAt, keyValue, value }]);
 
     let { valueAt, valueLength } = this._extractValueInfo(keyValue);
@@ -332,16 +315,13 @@ export default class FileFlatDb implements BaseDb {
     fs.writeSync(this._fd, keyValue, KEY_SIZE, 2 * UINT_SIZE, keyAt + KEY_SIZE);
 
     return {
-      key,
-      keyAt,
-      keyValue,
       value,
       valueAt
     };
   }
 
-  private writeValue ({ key, keyAt, keyValue }: Key, value: Buffer): Value {
-    const result = this._writeValue(key, keyAt, keyValue, value);
+  private writeValue ({ keyAt, keyValue }: Key, value: Buffer): Value {
+    const result = this._writeValue(keyAt, keyValue, value);
 
     l.debug(() => ['writeValue', '=>', { result }]);
 
@@ -374,7 +354,7 @@ export default class FileFlatDb implements BaseDb {
     return result;
   }
 
-  private _writeNewBranch (branch: Buffer, branchAt: number, entryIndex: number, key: NibbleBuffer, prevAt: number, prevValue: NibbleBuffer, matchIndex: number, depth: number): Branch {
+  private _writeNewBranch (branch: Buffer, branchAt: number, entryIndex: number, key: NibbleBuffer, prevAt: number, prevValue: NibbleBuffer, matchIndex: number, depth: number): Key {
     l.debug(() => ['writeNewBranch', { branch, branchAt, entryIndex, key, prevValue, matchIndex, depth }]);
 
     const { keyAt, keyValue } = this.writeNewKey(key);
@@ -382,7 +362,7 @@ export default class FileFlatDb implements BaseDb {
     const keyIndex = ENTRY_SIZE * key.nibbles[matchIndex];
     const prevIndex = ENTRY_SIZE * prevValue.nibbles[matchIndex];
     const stats = fs.fstatSync(this._fd);
-    let newBranchAt = stats.size;
+    const newBranchAt = stats.size;
 
     newBranch.set([Slot.LEAF], keyIndex);
     newBranch.writeUIntBE(keyAt, keyIndex + 1, UINT_SIZE);
@@ -396,7 +376,7 @@ export default class FileFlatDb implements BaseDb {
 
     for (let offset = 1; depth > 0; depth--, offset++) {
       const intermediate = Buffer.alloc(BRANCH_SIZE);
-      const intermediateIndex = ENTRY_SIZE * key.nibbles[matchIndex - offset];
+      const intermediateIndex = key.nibbles[matchIndex - offset] * ENTRY_SIZE;
       const stats = fs.fstatSync(this._fd);
 
       intermediate.set([Slot.BRANCH], intermediateIndex);
@@ -412,16 +392,13 @@ export default class FileFlatDb implements BaseDb {
     fs.writeSync(this._fd, branch, entryIndex, ENTRY_SIZE, branchAt + entryIndex);
 
     return {
-      branch,
-      branchAt,
-      entryIndex: keyIndex,
       key,
       keyAt,
       keyValue
     };
   }
 
-  private writeNewBranch (branch: Buffer, branchAt: number, entryIndex: number, key: NibbleBuffer, prevAt: number, prevValue: NibbleBuffer, matchIndex: number, depth: number): Branch {
+  private writeNewBranch (branch: Buffer, branchAt: number, entryIndex: number, key: NibbleBuffer, prevAt: number, prevValue: NibbleBuffer, matchIndex: number, depth: number): Key {
     const result = this._writeNewBranch(branch, branchAt, entryIndex, key, prevAt, prevValue, matchIndex, depth);
 
     l.debug(() => ['writeNewBranch', '=>', { result }]);
@@ -429,7 +406,7 @@ export default class FileFlatDb implements BaseDb {
     return result;
   }
 
-  private _writeNewLeaf (branch: Buffer, branchAt: number, entryIndex: number, key: NibbleBuffer): Branch {
+  private _writeNewLeaf (branch: Buffer, branchAt: number, entryIndex: number, key: NibbleBuffer): Key {
     l.debug(() => ['writeNewLeaf', { branch, branchAt, entryIndex, key }]);
 
     const { keyAt, keyValue } = this.writeNewKey(key);
@@ -437,19 +414,16 @@ export default class FileFlatDb implements BaseDb {
     branch.set([Slot.LEAF], entryIndex);
     branch.writeUIntBE(keyAt, entryIndex + 1, UINT_SIZE);
 
-    fs.writeSync(this._fd, branch, entryIndex, ENTRY_SIZE, entryIndex + branchAt);
+    fs.writeSync(this._fd, branch, entryIndex, ENTRY_SIZE, branchAt + entryIndex);
 
     return {
-      branch,
-      branchAt,
-      entryIndex,
       key,
       keyAt,
       keyValue
     };
   }
 
-  private writeNewLeaf (branch: Buffer, branchAt: number, entryIndex: number, key: NibbleBuffer): Branch {
+  private writeNewLeaf (branch: Buffer, branchAt: number, entryIndex: number, key: NibbleBuffer): Key {
     const result = this._writeNewLeaf(branch, branchAt, entryIndex, key);
 
     l.debug(() => ['writeNewLeaf', '=>', { result }]);
