@@ -354,10 +354,10 @@ export default class FileFlatDb implements BaseDb {
     l.debug(() => ['writeNewBranch', { branch, branchAt, entryIndex, key, prevValue, matchIndex, depth }]);
 
     const { keyAt, keyValue } = this.writeNewKey(key);
-    const newBranch = Buffer.alloc(BRANCH_SIZE);
     const keyIndex = ENTRY_SIZE * key.nibbles[matchIndex];
     const prevIndex = ENTRY_SIZE * prevValue.nibbles[matchIndex];
-    const newBranchAt = fs.fstatSync(this._fd).size;
+    let newBranchAt = fs.fstatSync(this._fd).size;
+    let newBranch = Buffer.alloc(BRANCH_SIZE);
 
     newBranch.set([Slot.LEAF], keyIndex);
     newBranch.writeUIntBE(keyAt, keyIndex + 1, UINT_SIZE);
@@ -367,22 +367,20 @@ export default class FileFlatDb implements BaseDb {
     fs.writeSync(this._fd, branch, 0, BRANCH_SIZE, newBranchAt);
     this._cacheBranch(newBranchAt, newBranch);
 
-    let intermediateAt = newBranchAt;
-
     for (let offset = 1; depth > 0; depth--, offset++) {
-      const intermediate = Buffer.alloc(BRANCH_SIZE);
-      const intermediateIndex = key.nibbles[matchIndex - offset] * ENTRY_SIZE;
+      const branchIndex = key.nibbles[matchIndex - offset] * ENTRY_SIZE;
 
-      intermediate.set([Slot.BRANCH], intermediateIndex);
-      intermediate.writeUIntBE(intermediateAt, intermediateIndex + 1, UINT_SIZE);
-      intermediateAt = fs.fstatSync(this._fd).size;
+      newBranch = Buffer.alloc(BRANCH_SIZE);
+      newBranch.set([Slot.BRANCH], branchIndex);
+      newBranch.writeUIntBE(newBranchAt, branchIndex + 1, UINT_SIZE);
+      newBranchAt += BRANCH_SIZE;
 
-      fs.writeSync(this._fd, intermediate, 0, BRANCH_SIZE, intermediateAt);
-      this._cacheBranch(intermediateAt, intermediate);
+      fs.writeSync(this._fd, newBranch, 0, BRANCH_SIZE, newBranchAt);
+      this._cacheBranch(newBranchAt, newBranch);
     }
 
     branch.set([Slot.BRANCH], entryIndex);
-    branch.writeUIntBE(intermediateAt, entryIndex + 1, UINT_SIZE);
+    branch.writeUIntBE(newBranchAt, entryIndex + 1, UINT_SIZE);
     fs.writeSync(this._fd, branch, entryIndex, ENTRY_SIZE, branchAt + entryIndex);
 
     return {
