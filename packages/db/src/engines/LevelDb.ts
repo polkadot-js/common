@@ -9,14 +9,18 @@ import mkdirp from 'mkdirp';
 import path from 'path';
 // import snappy from 'snappy';
 import logger from '@polkadot/util/logger';
-import bufferToU8a from '@polkadot/util/buffer/toU8a';
-import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
-import u8aToHex from '@polkadot/util/u8a/toHex';
+import stringToU8a from '@polkadot/util/u8a/fromUtf8';
+import u8aToString from '@polkadot/util/u8a/toUtf8';
+// import u8aToHex from '@polkadot/util/u8a/toHex';
 
 // import assert from '@polkadot/util/assert';
 // import u8aToHex from '@polkadot/util/u8a/toHex';
 
 const l = logger('db/leveldb');
+
+// NOTE Looking at the implementation, the getSync does a new Buffer when requested as a Buffer.
+// With this in mind, we always work with utf8 strings as encoded - serializing/deserializing
+// on the way in and out
 
 export default class Level implements BaseDb {
   private db: LevelDb;
@@ -62,8 +66,8 @@ export default class Level implements BaseDb {
       return this._deserializeValue(
         this.db.getSync(
           this._serializeKey(key),
-          { asBuffer: true }
-        )
+          { asBuffer: false }
+        ) as string
       );
     } catch (error) {
       return null;
@@ -77,21 +81,24 @@ export default class Level implements BaseDb {
     );
   }
 
-  private _deserializeValue (value: Buffer): Uint8Array | null {
+  private _deserializeValue (value: string): Uint8Array | null {
     return value
-      ? bufferToU8a(value)
-      // ? bufferToU8a(
-      //   snappy.uncompressSync(value)
-      // )
+      ? stringToU8a(value)
       : null;
+    // return value
+    //   ? bufferToU8a(value)
+    //   // ? bufferToU8a(
+    //   //   snappy.uncompressSync(value)
+    //   // )
+    //   : null;
   }
 
   private _serializeKey (key: Uint8Array): string {
-    return u8aToHex(key);
+    return u8aToString(key);
   }
 
-  private _serializeValue (value: Uint8Array): Buffer {
-    return u8aToBuffer(value);
+  private _serializeValue (value: Uint8Array): string {
+    return u8aToString(value);
 
     // return snappy.compressSync(
     //   u8aToBuffer(value)
