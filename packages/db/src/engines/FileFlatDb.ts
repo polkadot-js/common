@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { BaseDb, ProgressCb } from '../types';
+import { BaseDb, BaseDbOptions, ProgressCb } from '../types';
 
 import fs from 'fs';
 import mkdirp from 'mkdirp';
@@ -10,6 +10,7 @@ import path from 'path';
 import snappy from 'snappy';
 import assert from '@polkadot/util/assert';
 import logger from '@polkadot/util/logger';
+import isUndefined from '@polkadot/util/is/undefined';
 import bufferToU8a from '@polkadot/util/buffer/toU8a';
 import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
 import u8aToHex from '@polkadot/util/u8a/toHex';
@@ -57,10 +58,14 @@ const l = logger('db/flat');
 export default class FileFlatDb implements BaseDb {
   private _fd: number;
   private _file: string;
+  private _isCompressed: boolean;
 
-  constructor (base: string, file: string = DEFAULT_FILE) {
+  constructor (base: string, file: string = DEFAULT_FILE, options: BaseDbOptions = {}) {
     this._fd = -1;
     this._file = path.join(base, file);
+    this._isCompressed = options && !isUndefined(options.isCompressed)
+      ? options.isCompressed
+      : false;
 
     mkdirp.sync(base);
   }
@@ -141,19 +146,19 @@ export default class FileFlatDb implements BaseDb {
   }
 
   private _deserializeValue (value: Buffer): Uint8Array | null {
-    // return bufferToU8a(value);
-
     return bufferToU8a(
-      snappy.uncompressSync(value)
+      this._isCompressed
+        ? snappy.uncompressSync(value)
+        : value
     );
   }
 
   private _serializeValue (value: Uint8Array): Buffer {
-    // return u8aToBuffer(value);
-
-    return snappy.compressSync(
-      u8aToBuffer(value)
-    );
+    return this._isCompressed
+      ? snappy.compressSync(
+        u8aToBuffer(value)
+      )
+      : u8aToBuffer(value);
   }
 
   private _serializeKey (key: Uint8Array): Buffer {

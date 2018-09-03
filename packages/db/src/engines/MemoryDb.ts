@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { BaseDb, ProgressCb } from '../types';
+import { BaseDb, BaseDbOptions, ProgressCb } from '../types';
 
 // import logger from '@polkadot/util/logger';
 // import u8aToHex from '@polkadot/util/u8a/toHex';
@@ -16,7 +16,7 @@ type Storage = {
 export default class MemoryDb implements BaseDb {
   private storage: Storage;
 
-  constructor () {
+  constructor (options?: BaseDbOptions) {
     this.storage = {};
   }
 
