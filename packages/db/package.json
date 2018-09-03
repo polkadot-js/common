@@ -35,7 +35,6 @@
     "@types/snappy": "^6.0.0",
     "lru_map": "^0.3.3",
     "mkdirp": "^0.5.1",
-    "nosql-leveldb": "^3.0.1",
     "snappy": "^6.0.4"
   }
 }
