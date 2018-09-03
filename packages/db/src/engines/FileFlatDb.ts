@@ -390,8 +390,8 @@ export default class FileFlatDb implements BaseDb {
     branch.writeUIntBE(prevAt, prevIndex + 1, UINT_SIZE);
 
     fs.writeSync(this._fd, branch, 0, HEADER_SIZE, branchAt);
-    this._cacheEntry(keyIndex + branchAt, branch.slice(keyIndex, keyIndex + ENTRY_SIZE));
-    this._cacheEntry(prevIndex + branchAt, branch.slice(prevIndex, prevIndex + ENTRY_SIZE));
+    this._cacheEntry(branchAt + keyIndex, branch.slice(keyIndex, keyIndex + ENTRY_SIZE));
+    this._cacheEntry(branchAt + prevIndex, branch.slice(prevIndex, prevIndex + ENTRY_SIZE));
 
     let intermediateAt = branchAt;
 
@@ -405,7 +405,7 @@ export default class FileFlatDb implements BaseDb {
       intermediateAt = stats.size;
 
       fs.writeSync(this._fd, intermediate, 0, HEADER_SIZE, intermediateAt);
-      this._cacheEntry(intermediateIndex + intermediateAt, branch.slice(intermediateIndex, intermediateIndex + ENTRY_SIZE));
+      this._cacheEntry(intermediateAt + intermediateIndex, intermediate.slice(intermediateIndex, intermediateIndex + ENTRY_SIZE));
     }
 
     entry.set([Slot.BRANCH], 0);

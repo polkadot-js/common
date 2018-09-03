@@ -46,11 +46,11 @@ describe.skip('FileFlatDb (compacting)', () => {
 });
 
 // NOTE Skipped, doesn't seem to be too happy on CI (cwd issues?)
-describe.skip('FileFlatDb (basics)', () => {
+describe('FileFlatDb (basics)', () => {
   const testGet = (key, value) =>
     expect(store.get(key)).toEqual(value);
 
-  const location = path.join(os.tmpdir(), '--test-FileFlatDb');
+  const location = path.join(process.cwd(), '--test-FileFlatDb');
   let store;
 
   beforeAll(() => {
