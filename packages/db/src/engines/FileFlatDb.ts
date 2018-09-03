@@ -302,16 +302,13 @@ export default class FileFlatDb implements BaseDb {
     let { valueAt, valueLength } = this._extractValueInfo(keyValue);
 
     if (valueLength < value.length) {
-      const stats = fs.fstatSync(this._fd);
-
-      valueAt = stats.size;
+      valueAt = fs.fstatSync(this._fd).size;
     }
-
-    fs.writeSync(this._fd, value, 0, value.length, valueAt);
 
     keyValue.writeUIntBE(value.length, KEY_SIZE, UINT_SIZE);
     keyValue.writeUIntBE(valueAt, KEY_SIZE + UINT_SIZE, UINT_SIZE);
 
+    fs.writeSync(this._fd, value, 0, value.length, valueAt);
     fs.writeSync(this._fd, keyValue, KEY_SIZE, 2 * UINT_SIZE, keyAt + KEY_SIZE);
 
     return {
@@ -331,8 +328,7 @@ export default class FileFlatDb implements BaseDb {
   private _writeNewKey (key: NibbleBuffer): Key {
     l.debug(() => ['writeNewKey', { key }]);
 
-    const stats = fs.fstatSync(this._fd);
-    const keyAt = stats.size;
+    const keyAt = fs.fstatSync(this._fd).size;
     const keyValue = Buffer.alloc(KEY_TOTAL_SIZE);
 
     keyValue.set(key.buffer, 0);
@@ -361,8 +357,7 @@ export default class FileFlatDb implements BaseDb {
     const newBranch = Buffer.alloc(BRANCH_SIZE);
     const keyIndex = ENTRY_SIZE * key.nibbles[matchIndex];
     const prevIndex = ENTRY_SIZE * prevValue.nibbles[matchIndex];
-    const stats = fs.fstatSync(this._fd);
-    const newBranchAt = stats.size;
+    const newBranchAt = fs.fstatSync(this._fd).size;
 
     newBranch.set([Slot.LEAF], keyIndex);
     newBranch.writeUIntBE(keyAt, keyIndex + 1, UINT_SIZE);
@@ -377,11 +372,10 @@ export default class FileFlatDb implements BaseDb {
     for (let offset = 1; depth > 0; depth--, offset++) {
       const intermediate = Buffer.alloc(BRANCH_SIZE);
       const intermediateIndex = key.nibbles[matchIndex - offset] * ENTRY_SIZE;
-      const stats = fs.fstatSync(this._fd);
 
       intermediate.set([Slot.BRANCH], intermediateIndex);
       intermediate.writeUIntBE(intermediateAt, intermediateIndex + 1, UINT_SIZE);
-      intermediateAt = stats.size;
+      intermediateAt = fs.fstatSync(this._fd).size;
 
       fs.writeSync(this._fd, intermediate, 0, BRANCH_SIZE, intermediateAt);
       this._cacheBranch(intermediateAt, intermediate);
@@ -467,14 +461,15 @@ export default class FileFlatDb implements BaseDb {
   }
 
   private _compactWriteKey (fd: number, key: Buffer, value: Buffer): number {
-    const stats = fs.fstatSync(fd);
-    const at = stats.size;
+    const valueAt = fs.fstatSync(fd).size;
+    const keyAt = valueAt + value.length;
 
-    fs.writeSync(fd, value, 0, value.length, at);
-    key.writeUIntBE(at, KEY_SIZE + UINT_SIZE, UINT_SIZE);
-    fs.writeSync(fd, key, 0, KEY_TOTAL_SIZE);
+    key.writeUIntBE(valueAt, KEY_SIZE + UINT_SIZE, UINT_SIZE);
 
-    return at + value.length;
+    fs.writeSync(fd, value, 0, value.length, valueAt);
+    fs.writeSync(fd, key, 0, KEY_TOTAL_SIZE, keyAt);
+
+    return keyAt;
   }
 
   private _compactUpdateLink (fd: number, at: number, index: number, pointer: number, type: Slot): void {
@@ -487,8 +482,7 @@ export default class FileFlatDb implements BaseDb {
   }
 
   private _compactWriteHeader (fd: number, at: number, index: number): number {
-    const stats = fs.fstatSync(fd);
-    const headerAt = stats.size;
+    const headerAt = fs.fstatSync(fd).size;
     const header = Buffer.alloc(BRANCH_SIZE);
 
     fs.writeSync(fd, header, 0, BRANCH_SIZE, headerAt);

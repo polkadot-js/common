@@ -10,23 +10,27 @@ import rimraf from 'rimraf';
 import FileFlatDb from './FileFlatDb';
 
 const KEY_A = new Uint8Array([
-  1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0x10, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
 const KEY_B = new Uint8Array([
-  2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0x20, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
 const KEY_C = new Uint8Array([
-  1, 2, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0x10, 2, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
 const KEY_D = new Uint8Array([
-  1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0x10, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
 const KEY_E = new Uint8Array([
-  1, 2, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0x10, 2, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+]);
+const KEY_F = new Uint8Array([
+  0x50, 2, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
 const VAL_A = new Uint8Array([0x42, 1, 0x69]);
@@ -34,6 +38,7 @@ const VAL_B = new Uint8Array([0x42, 1, 2, 0x69]);
 const VAL_C = new Uint8Array([0x42, 1, 2, 3, 0x69]);
 const VAL_D = new Uint8Array([0x42, 1, 2, 3, 4, 0x69]);
 const VAL_E = new Uint8Array([0x42, 1, 2, 3, 4, 5, 0x69]);
+const VAL_F = new Uint8Array([0x42, 1, 2, 3, 4, 5, 6, 0x69]);
 
 describe.skip('FileFlatDb (compacting)', () => {
   const combined = new FileFlatDb(process.cwd());
@@ -123,5 +128,20 @@ describe.skip('FileFlatDb (basics)', () => {
     testGet(KEY_C, VAL_C);
     testGet(KEY_D, VAL_D);
     testGet(KEY_E, VAL_E);
+  });
+
+  it('writes an entry, expanding the top-level', () => {
+    console.error('F: execute');
+
+    store.put(KEY_F, VAL_F);
+
+    console.error('F: expectations');
+
+    testGet(KEY_A, VAL_A);
+    testGet(KEY_B, VAL_B);
+    testGet(KEY_C, VAL_C);
+    testGet(KEY_D, VAL_D);
+    testGet(KEY_E, VAL_E);
+    testGet(KEY_F, VAL_F);
   });
 });
