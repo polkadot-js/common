@@ -5,6 +5,7 @@
 import { BaseDb, BaseDbOptions, ProgressCb } from '../types';
 
 import fs from 'fs';
+import { LRUMap } from 'lru_map';
 import mkdirp from 'mkdirp';
 import path from 'path';
 import snappy from 'snappy';
@@ -57,6 +58,7 @@ const KEY_TOTAL_SIZE = KEY_SIZE + UINT_SIZE + UINT_SIZE;
 const ENTRY_NUM = 16; // nibbles, 256 for bytes (where serialize would be noop)
 const ENTRY_SIZE = 1 + UINT_SIZE;
 const HEADER_SIZE = ENTRY_NUM * ENTRY_SIZE;
+const LRU_ENTRY_SIZE = 8192;
 const DEFAULT_FILE = 'store.db';
 
 const l = logger('db/flat');
@@ -65,10 +67,12 @@ export default class FileFlatDb implements BaseDb {
   private _fd: number;
   private _file: string;
   private _isCompressed: boolean;
+  private _lruEntry: LRUMap<number, Buffer>;
 
   constructor (base: string, file: string = DEFAULT_FILE, options: BaseDbOptions = {}) {
     this._fd = -1;
     this._file = path.join(base, file);
+    this._lruEntry = new LRUMap(LRU_ENTRY_SIZE);
     this._isCompressed = options && !isUndefined(options.isCompressed)
       ? options.isCompressed
       : false;
@@ -78,12 +82,14 @@ export default class FileFlatDb implements BaseDb {
 
   open (): void {
     this._fd = this._open(this._file);
+    this._lruEntry.clear();
   }
 
   close (): void {
     this.assertOpen();
 
     fs.closeSync(this._fd);
+    this._lruEntry.clear();
   }
 
   maintain (fn: ProgressCb): void {
@@ -188,11 +194,26 @@ export default class FileFlatDb implements BaseDb {
     };
   }
 
-  private _findKey (key: NibbleBuffer, doCreate: boolean, keyIndex: number, diskAt: number): Leaf | null {
-    const entry = Buffer.alloc(ENTRY_SIZE);
-    const entryAt = diskAt + (key.nibbles[keyIndex] * ENTRY_SIZE);
+  private _getEntry (entryAt: number): Buffer {
+    let entry = this._lruEntry.get(entryAt);
 
-    fs.readSync(this._fd, entry, 0, ENTRY_SIZE, entryAt);
+    if (!entry) {
+      entry = Buffer.alloc(ENTRY_SIZE);
+
+      fs.readSync(this._fd, entry, 0, ENTRY_SIZE, entryAt);
+      this._cacheEntry(entryAt, entry);
+    }
+
+    return entry;
+  }
+
+  private _cacheEntry (entryAt: number, entry: Buffer): void {
+    this._lruEntry.set(entryAt, entry);
+  }
+
+  private _findKey (key: NibbleBuffer, doCreate: boolean, keyIndex: number, diskAt: number): Leaf | null {
+    const entryAt = diskAt + (key.nibbles[keyIndex] * ENTRY_SIZE);
+    const entry = this._getEntry(entryAt);
 
     l.debug(() => ['findKey', { key, doCreate, keyIndex, diskAt, entry, entryAt }]);
 
@@ -367,7 +388,10 @@ export default class FileFlatDb implements BaseDb {
     branch.writeUIntBE(keyAt, keyIndex + 1, UINT_SIZE);
     branch.set([Slot.LEAF], prevIndex);
     branch.writeUIntBE(prevAt, prevIndex + 1, UINT_SIZE);
+
     fs.writeSync(this._fd, branch, 0, HEADER_SIZE, branchAt);
+    this._cacheEntry(keyIndex + branchAt, branch.slice(keyIndex, keyIndex + ENTRY_SIZE));
+    this._cacheEntry(prevIndex + branchAt, branch.slice(prevIndex, prevIndex + ENTRY_SIZE));
 
     let intermediateAt = branchAt;
 
@@ -381,6 +405,7 @@ export default class FileFlatDb implements BaseDb {
       intermediateAt = stats.size;
 
       fs.writeSync(this._fd, intermediate, 0, HEADER_SIZE, intermediateAt);
+      this._cacheEntry(intermediateIndex + intermediateAt, branch.slice(intermediateIndex, intermediateIndex + ENTRY_SIZE));
     }
 
     entry.set([Slot.BRANCH], 0);
