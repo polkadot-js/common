@@ -58,7 +58,7 @@ const KEY_TOTAL_SIZE = KEY_SIZE + UINT_SIZE + UINT_SIZE;
 const ENTRY_NUM = 16; // nibbles, 256 for bytes (where serialize would be noop)
 const ENTRY_SIZE = 1 + UINT_SIZE;
 const HEADER_SIZE = ENTRY_NUM * ENTRY_SIZE;
-const LRU_ENTRY_SIZE = 8192;
+const LRU_ENTRY_SIZE = 16384;
 const DEFAULT_FILE = 'store.db';
 
 const l = logger('db/flat');
