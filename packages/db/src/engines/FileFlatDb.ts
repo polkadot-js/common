@@ -47,6 +47,7 @@ const ENTRY_NUM = 16; // nibbles, 256 for bytes (where serialize would be noop)
 const ENTRY_SIZE = 1 + UINT_SIZE;
 const BRANCH_SIZE = ENTRY_NUM * ENTRY_SIZE;
 const LRU_BRANCH_COUNT = 2048;
+const LRU_DATA_COUNT = 4096;
 const DEFAULT_FILE = 'store.db';
 
 const l = logger('db/flat');
@@ -56,11 +57,13 @@ export default class FileFlatDb implements BaseDb {
   private _file: string;
   private _isCompressed: boolean;
   private _lruBranch: LRUMap<number, Buffer>;
+  private _lruData: LRUMap<number, Buffer>;
 
   constructor (base: string, file: string = DEFAULT_FILE, options: BaseDbOptions = {}) {
     this._fd = -1;
     this._file = path.join(base, file);
     this._lruBranch = new LRUMap(LRU_BRANCH_COUNT);
+    this._lruData = new LRUMap(LRU_DATA_COUNT);
     this._isCompressed = options && !isUndefined(options.isCompressed)
       ? options.isCompressed
       : false;
@@ -70,14 +73,18 @@ export default class FileFlatDb implements BaseDb {
 
   open (): void {
     this._fd = this._open(this._file);
+
     this._lruBranch.clear();
+    this._lruData.clear();
   }
 
   close (): void {
     this.assertOpen();
 
     fs.closeSync(this._fd);
+
     this._lruBranch.clear();
+    this._lruData.clear();
   }
 
   maintain (fn: ProgressCb): void {
@@ -182,7 +189,15 @@ export default class FileFlatDb implements BaseDb {
     };
   }
 
-  private _getBranch (branchAt: number): Buffer {
+  private _cacheBranch (branchAt: number, branch: Buffer): void {
+    this._lruBranch.set(branchAt, branch);
+  }
+
+  private _cacheData (dataAt: number, data: Buffer): void {
+    this._lruData.set(dataAt, data);
+  }
+
+  private _getCachedBranch (branchAt: number): Buffer {
     let branch = this._lruBranch.get(branchAt);
 
     if (!branch) {
@@ -195,21 +210,26 @@ export default class FileFlatDb implements BaseDb {
     return branch;
   }
 
-  private _getKeyValue (keyAt: number): Buffer {
-    const keyValue = Buffer.alloc(KEY_TOTAL_SIZE);
+  private _getCachedData (dataAt: number, length: number): Buffer {
+    let data = this._lruData.get(dataAt);
 
-    fs.readSync(this._fd, keyValue, 0, KEY_TOTAL_SIZE, keyAt);
+    if (!data) {
+      data = Buffer.alloc(length);
 
-    return keyValue;
+      fs.readSync(this._fd, data, 0, length, dataAt);
+      this._cacheData(dataAt, data);
+    }
+
+    return data;
   }
 
-  private _cacheBranch (branchAt: number, branch: Buffer): void {
-    this._lruBranch.set(branchAt, branch);
+  private _getKeyValue (keyAt: number): Buffer {
+    return this._getCachedData(keyAt, KEY_TOTAL_SIZE);
   }
 
   private _findKey (key: NibbleBuffer, doCreate: boolean, keyIndex: number, branchAt: number): Key | null {
     const entryIndex = key.nibbles[keyIndex] * ENTRY_SIZE;
-    const branch = this._getBranch(branchAt);
+    const branch = this._getCachedBranch(branchAt);
 
     l.debug(() => ['findKey', { key, doCreate, keyIndex, branchAt, branch, entryIndex }]);
 
@@ -282,9 +302,7 @@ export default class FileFlatDb implements BaseDb {
     l.debug(() => ['readValue', { keyValue }]);
 
     const { valueAt, valueLength } = this._extractValueInfo(keyValue);
-    const value = Buffer.alloc(valueLength);
-
-    fs.readSync(this._fd, value, 0, valueLength, valueAt);
+    const value = this._getCachedData(valueAt, valueLength);
 
     return {
       value,
@@ -307,6 +325,7 @@ export default class FileFlatDb implements BaseDb {
 
     if (valueLength < value.length) {
       valueAt = fs.fstatSync(this._fd).size;
+      this._cacheData(valueAt, value);
     }
 
     keyValue.writeUIntBE(value.length, KEY_SIZE, UINT_SIZE);
@@ -338,6 +357,7 @@ export default class FileFlatDb implements BaseDb {
     keyValue.set(key.buffer, 0);
 
     fs.writeSync(this._fd, keyValue, 0, KEY_TOTAL_SIZE, keyAt);
+    this._cacheData(keyAt, keyValue);
 
     return {
       key,
@@ -363,13 +383,13 @@ export default class FileFlatDb implements BaseDb {
     let newBranchAt = fs.fstatSync(this._fd).size;
     let newBranch = Buffer.alloc(BRANCH_SIZE);
 
+    // FIXME Combine this along with all the newBranch writes in the loop into a single write
     newBranch.set([Slot.LEAF], keyIndex);
     newBranch.writeUIntBE(keyAt, keyIndex + 1, UINT_SIZE);
     newBranch.set([Slot.LEAF], prevIndex);
     newBranch.writeUIntBE(prevAt, prevIndex + 1, UINT_SIZE);
 
     fs.writeSync(this._fd, newBranch, 0, BRANCH_SIZE, newBranchAt);
-
     this._cacheBranch(newBranchAt, newBranch);
 
     for (let offset = 1; depth > 0; depth--, offset++) {
