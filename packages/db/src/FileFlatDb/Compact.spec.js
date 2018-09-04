@@ -17,3 +17,4 @@ describe.skip('FileFlatDb (compacting)', () => {
       combined.maintain(() => {})
     ).not.toBe(0);
   });
+});
