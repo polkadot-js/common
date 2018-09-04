@@ -28,6 +28,7 @@ const l = logger('db/flat');
 
 export default class FileFlatDb implements BaseDb {
   private _fd: number;
+  private _fileSize: number = 0;
   private _file: string;
   private _isCompressed: boolean;
   private _lruBranch: LRUMap<number, Buffer>;
@@ -47,6 +48,7 @@ export default class FileFlatDb implements BaseDb {
 
   open (): void {
     this._fd = this._open(this._file);
+    this._fileSize = fs.fstatSync(this._fd).size;
 
     this._lruBranch.clear();
     this._lruData.clear();
@@ -279,15 +281,12 @@ export default class FileFlatDb implements BaseDb {
 
     let { valueAt, valueLength } = this._extractValueInfo(keyValue);
 
-    if (valueLength < value.length) {
-      valueAt = fs.fstatSync(this._fd).size;
-      this._cacheData(valueAt, value);
-    }
+    valueAt = (valueLength < value.length)
+      ? this._writeNewBuffer(value)
+      : this._writeUpdatedBuffer(value, valueAt);
 
     keyValue.writeUIntBE(value.length, defaults.KEY_SIZE, defaults.UINT_SIZE);
     keyValue.writeUIntBE(valueAt, defaults.KEY_SIZE + defaults.UINT_SIZE, defaults.UINT_SIZE);
-
-    fs.writeSync(this._fd, value, 0, value.length, valueAt);
     fs.writeSync(this._fd, keyValue, defaults.KEY_SIZE, 2 * defaults.UINT_SIZE, keyAt + defaults.KEY_SIZE);
 
     return {
@@ -307,13 +306,11 @@ export default class FileFlatDb implements BaseDb {
   private _writeNewKey (key: NibbleBuffer): Key {
     l.debug(() => ['writeNewKey', { key }]);
 
-    const keyAt = fs.fstatSync(this._fd).size;
     const keyValue = Buffer.alloc(defaults.KEY_TOTAL_SIZE);
 
     keyValue.set(key.buffer, 0);
 
-    fs.writeSync(this._fd, keyValue, 0, defaults.KEY_TOTAL_SIZE, keyAt);
-    this._cacheData(keyAt, keyValue);
+    const keyAt = this._writeNewBuffer(keyValue);
 
     return {
       key,
@@ -336,17 +333,15 @@ export default class FileFlatDb implements BaseDb {
     const { keyAt, keyValue } = this.writeNewKey(key);
     const keyIndex = key.nibbles[matchIndex] * defaults.ENTRY_SIZE;
     const prevIndex = prevKey.nibbles[matchIndex] * defaults.ENTRY_SIZE;
-    let newBranchAt = fs.fstatSync(this._fd).size;
+    const buffers = [];
+    let newBranchAt = this._fileSize;
     let newBranch = Buffer.alloc(defaults.BRANCH_SIZE);
 
-    // FIXME Combine this along with all the newBranch writes in the loop into a single write
     newBranch.set([Slot.LEAF], keyIndex);
     newBranch.writeUIntBE(keyAt, keyIndex + 1, defaults.UINT_SIZE);
     newBranch.set([Slot.LEAF], prevIndex);
     newBranch.writeUIntBE(prevAt, prevIndex + 1, defaults.UINT_SIZE);
-
-    fs.writeSync(this._fd, newBranch, 0, defaults.BRANCH_SIZE, newBranchAt);
-    this._cacheBranch(newBranchAt, newBranch);
+    buffers.push(newBranch);
 
     for (let offset = 1; depth > 0; depth--, offset++) {
       const branchIndex = key.nibbles[matchIndex - offset] * defaults.ENTRY_SIZE;
@@ -354,11 +349,11 @@ export default class FileFlatDb implements BaseDb {
       newBranch = Buffer.alloc(defaults.BRANCH_SIZE);
       newBranch.set([Slot.BRANCH], branchIndex);
       newBranch.writeUIntBE(newBranchAt, branchIndex + 1, defaults.UINT_SIZE);
+      buffers.push(newBranch);
       newBranchAt += defaults.BRANCH_SIZE;
-
-      fs.writeSync(this._fd, newBranch, 0, defaults.BRANCH_SIZE, newBranchAt);
-      this._cacheBranch(newBranchAt, newBranch);
     }
+
+    this._writeNewBuffers(buffers);
 
     branch.set([Slot.BRANCH], entryIndex);
     branch.writeUIntBE(newBranchAt, entryIndex + 1, defaults.UINT_SIZE);
@@ -402,6 +397,45 @@ export default class FileFlatDb implements BaseDb {
     l.debug(() => ['writeNewLeaf', '=>', { result }]);
 
     return result;
+  }
+
+  private _writeUpdatedBuffer (buffer: Buffer, bufferAt: number): number {
+    fs.writeSync(this._fd, buffer, 0, buffer.length, bufferAt);
+    this._cacheData(bufferAt, buffer);
+
+    return bufferAt;
+  }
+
+  private _writeNewBuffer (buffer: Buffer, withCache: boolean = true): number {
+    const startAt = this._fileSize;
+
+    fs.writeSync(this._fd, buffer, 0, buffer.length, startAt);
+
+    if (withCache) {
+      this._cacheData(startAt, buffer);
+    }
+
+    this._fileSize += buffer.length;
+
+    return startAt;
+  }
+
+  private _writeNewBuffers (buffers: Array<Buffer>): number {
+    const data = Buffer.alloc(
+      buffers.reduce((size, buffer) =>
+        size += buffer.length,
+        0
+      )
+    );
+
+    buffers.reduce((at, buffer) => {
+      data.set(buffer, at);
+      this._cacheData(this._fileSize + at, buffer);
+
+      return at + buffer.length;
+    }, 0);
+
+    return this._writeNewBuffer(data, false);
   }
 
   private assertOpen (): void {
