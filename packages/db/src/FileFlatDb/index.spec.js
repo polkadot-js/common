@@ -7,7 +7,7 @@ import os from 'os';
 import path from 'path';
 import rimraf from 'rimraf';
 
-import FileFlatDb from './FileFlatDb';
+import FileFlatDb from './index';
 
 const KEY_A = new Uint8Array([
   0x10, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -39,16 +39,6 @@ const VAL_C = new Uint8Array([0x42, 1, 2, 3, 0x69]);
 const VAL_D = new Uint8Array([0x42, 1, 2, 3, 4, 0x69]);
 const VAL_E = new Uint8Array([0x42, 1, 2, 3, 4, 5, 0x69]);
 const VAL_F = new Uint8Array([0x42, 1, 2, 3, 4, 5, 6, 0x69]);
-
-describe.skip('FileFlatDb (compacting)', () => {
-  const combined = new FileFlatDb(process.cwd());
-
-  it('compacts without failing', () => {
-    expect(
-      combined.maintain(() => {})
-    ).not.toBe(0);
-  });
-});
 
 // NOTE Skipped, doesn't seem to be too happy on CI (cwd issues?)
 describe.skip('FileFlatDb (basics)', () => {
@@ -103,7 +93,7 @@ describe.skip('FileFlatDb (basics)', () => {
     testGet(KEY_C, VAL_C);
   });
 
-  it.skip('writes an entry (expanding the tree, again)', () => {
+  it('writes an entry (expanding the tree, again)', () => {
     console.error('D: execute');
 
     store.put(KEY_D, VAL_D);
@@ -116,7 +106,7 @@ describe.skip('FileFlatDb (basics)', () => {
     testGet(KEY_D, VAL_D);
   });
 
-  it.skip('writes an entry (expanding the tree, yet again)', () => {
+  it('writes an entry (expanding the tree, yet again)', () => {
     console.error('E: execute');
 
     store.put(KEY_E, VAL_E);
@@ -130,7 +120,7 @@ describe.skip('FileFlatDb (basics)', () => {
     testGet(KEY_E, VAL_E);
   });
 
-  it.skip('writes an entry, expanding the top-level', () => {
+  it('writes an entry, expanding the top-level', () => {
     console.error('F: execute');
 
     store.put(KEY_F, VAL_F);
@@ -143,5 +133,25 @@ describe.skip('FileFlatDb (basics)', () => {
     testGet(KEY_D, VAL_D);
     testGet(KEY_E, VAL_E);
     testGet(KEY_F, VAL_F);
+  });
+
+  it('overrides with smaller values', () => {
+    console.error('G: execute');
+
+    store.put(KEY_F, VAL_A);
+
+    console.error('G: expectations');
+
+    testGet(KEY_F, VAL_A);
+  });
+
+  it('overrides with larger values', () => {
+    console.error('H: execute');
+
+    store.put(KEY_A, VAL_F);
+
+    console.error('H: expectations');
+
+    testGet(KEY_A, VAL_F);
   });
 });
