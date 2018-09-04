@@ -279,11 +279,10 @@ export default class FileFlatDb implements BaseDb {
   private _writeValue (keyAt: number, keyValue: Buffer, value: Buffer): Value {
     l.debug(() => ['writeValue', { keyAt, keyValue, value }]);
 
-    let { valueAt, valueLength } = this._extractValueInfo(keyValue);
-
-    valueAt = (valueLength < value.length)
+    const current = this._extractValueInfo(keyValue);
+    const valueAt = value.length > current.valueLength
       ? this._writeNewBuffer(value)
-      : this._writeUpdatedBuffer(value, valueAt);
+      : this._writeUpdatedBuffer(value, current.valueAt);
 
     keyValue.writeUIntBE(value.length, defaults.KEY_SIZE, defaults.UINT_SIZE);
     keyValue.writeUIntBE(valueAt, defaults.KEY_SIZE + defaults.UINT_SIZE, defaults.UINT_SIZE);
@@ -421,21 +420,14 @@ export default class FileFlatDb implements BaseDb {
   }
 
   private _writeNewBuffers (buffers: Array<Buffer>): number {
-    const data = Buffer.alloc(
-      buffers.reduce((size, buffer) =>
-        size += buffer.length,
-        0
-      )
-    );
+    let bufferAt = this._fileSize;
 
-    buffers.reduce((at, buffer) => {
-      data.set(buffer, at);
-      this._cacheData(this._fileSize + at, buffer);
+    buffers.forEach((buffer) => {
+      this._cacheData(bufferAt, buffer);
+      bufferAt += buffer.length;
+    });
 
-      return at + buffer.length;
-    }, 0);
-
-    return this._writeNewBuffer(data, false);
+    return this._writeNewBuffer(Buffer.concat(buffers), false);
   }
 
   private assertOpen (): void {
