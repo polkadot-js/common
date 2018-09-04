@@ -7,7 +7,7 @@ import os from 'os';
 import path from 'path';
 import rimraf from 'rimraf';
 
-import FileFlatDb from './FileFlatDb';
+import FileFlatDb from './index';
 
 const KEY_A = new Uint8Array([
   0x10, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -39,16 +39,6 @@ const VAL_C = new Uint8Array([0x42, 1, 2, 3, 0x69]);
 const VAL_D = new Uint8Array([0x42, 1, 2, 3, 4, 0x69]);
 const VAL_E = new Uint8Array([0x42, 1, 2, 3, 4, 5, 0x69]);
 const VAL_F = new Uint8Array([0x42, 1, 2, 3, 4, 5, 6, 0x69]);
-
-describe.skip('FileFlatDb (compacting)', () => {
-  const combined = new FileFlatDb(process.cwd());
-
-  it('compacts without failing', () => {
-    expect(
-      combined.maintain(() => {})
-    ).not.toBe(0);
-  });
-});
 
 // NOTE Skipped, doesn't seem to be too happy on CI (cwd issues?)
 describe.skip('FileFlatDb (basics)', () => {

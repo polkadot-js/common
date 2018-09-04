@@ -4,7 +4,7 @@
 
 import { BaseDbOptions } from './types';
 
-import FileFlatDb from './engines/FileFlatDb';
+import FileFlatDb from './FileFlatDb';
 import LruDb from './engines/LruDb';
 import TransactionDb from './engines/TransactionDb';
 

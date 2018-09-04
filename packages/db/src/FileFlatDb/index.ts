@@ -3,6 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import { BaseDb, BaseDbOptions, ProgressCb } from '../types';
+import { Key, NibbleBuffer, Slot, Value } from './types';
 
 import fs from 'fs';
 import { LRUMap } from 'lru_map';
@@ -17,38 +18,11 @@ import bufferToU8a from '@polkadot/util/buffer/toU8a';
 import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
 import u8aToHex from '@polkadot/util/u8a/toHex';
 
-enum Slot {
-  EMPTY = 0,
-  BRANCH = 1,
-  LEAF = 2
-}
+import Compact from './Compact';
+import defaults from './defaults';
 
-type NibbleBuffer = {
-  buffer: Buffer,
-  nibbles: Uint8Array
-};
-
-type Key = {
-  key: NibbleBuffer,
-  keyAt: number,
-  keyValue: Buffer
-};
-
-type Value = {
-  value: Buffer,
-  valueAt: number
-};
-
-// NOTE 1,099,511,627,776 filesize (max allowed here is 6 as per Nodejs)
-const UINT_SIZE = 5;
-const KEY_SIZE = 32;
-const KEY_TOTAL_SIZE = KEY_SIZE + UINT_SIZE + UINT_SIZE;
-const ENTRY_NUM = 16; // nibbles, 256 for bytes (where serialize would be noop)
-const ENTRY_SIZE = 1 + UINT_SIZE;
-const BRANCH_SIZE = ENTRY_NUM * ENTRY_SIZE;
 const LRU_BRANCH_COUNT = 2048;
 const LRU_DATA_COUNT = 4096;
-const DEFAULT_FILE = 'store.db';
 
 const l = logger('db/flat');
 
@@ -59,7 +33,7 @@ export default class FileFlatDb implements BaseDb {
   private _lruBranch: LRUMap<number, Buffer>;
   private _lruData: LRUMap<number, Buffer>;
 
-  constructor (base: string, file: string = DEFAULT_FILE, options: BaseDbOptions = {}) {
+  constructor (base: string, file: string = defaults.DEFAULT_FILE, options: BaseDbOptions = {}) {
     this._fd = -1;
     this._file = path.join(base, file);
     this._lruBranch = new LRUMap(LRU_BRANCH_COUNT);
@@ -90,27 +64,9 @@ export default class FileFlatDb implements BaseDb {
   maintain (fn: ProgressCb): void {
     assert(this._fd === -1, 'Database cannot be open for compacting');
 
-    l.log('compacting database');
+    const compactor = new Compact(this._file);
 
-    const start = Date.now();
-    const newFile = `${this._file}.compacted`;
-    const newFd = this._open(newFile, true);
-    const oldFd = this._open(this._file);
-    const keys = this._compact(fn, newFd, oldFd);
-
-    fs.closeSync(oldFd);
-    fs.closeSync(newFd);
-
-    const newStat = fs.lstatSync(newFile);
-    const oldStat = fs.lstatSync(this._file);
-    const percentage = 100 * (newStat.size / oldStat.size);
-    const sizeMB = newStat.size / (1024 * 1024);
-    const elapsed = (Date.now() - start) / 1000;
-
-    fs.unlinkSync(this._file);
-    fs.renameSync(newFile, this._file);
-
-    l.log(`compacted in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys, ${sizeMB.toFixed(2)}MB (${percentage.toFixed(2)}%)`);
+    compactor.maintain(fn);
   }
 
   del (key: Uint8Array): void {
@@ -169,16 +125,16 @@ export default class FileFlatDb implements BaseDb {
   }
 
   private _serializeKey (u8a: Uint8Array): NibbleBuffer {
-    if (u8a.length > KEY_SIZE) {
+    if (u8a.length > defaults.KEY_SIZE) {
       throw new Error(`${u8aToHex(u8a)} too large, expected <= 32 bytes`);
     }
 
     let buffer;
 
-    if (u8a.length === KEY_SIZE) {
+    if (u8a.length === defaults.KEY_SIZE) {
       buffer = u8aToBuffer(u8a);
     } else {
-      buffer = Buffer.alloc(KEY_SIZE);
+      buffer = Buffer.alloc(defaults.KEY_SIZE);
 
       buffer.set(u8a, 0);
     }
@@ -201,9 +157,9 @@ export default class FileFlatDb implements BaseDb {
     let branch = this._lruBranch.get(branchAt);
 
     if (!branch) {
-      branch = Buffer.alloc(BRANCH_SIZE);
+      branch = Buffer.alloc(defaults.BRANCH_SIZE);
 
-      fs.readSync(this._fd, branch, 0, BRANCH_SIZE, branchAt);
+      fs.readSync(this._fd, branch, 0, defaults.BRANCH_SIZE, branchAt);
       this._cacheBranch(branchAt, branch);
     }
 
@@ -224,11 +180,11 @@ export default class FileFlatDb implements BaseDb {
   }
 
   private _getKeyValue (keyAt: number): Buffer {
-    return this._getCachedData(keyAt, KEY_TOTAL_SIZE);
+    return this._getCachedData(keyAt, defaults.KEY_TOTAL_SIZE);
   }
 
   private _findKey (key: NibbleBuffer, doCreate: boolean, keyIndex: number, branchAt: number): Key | null {
-    const entryIndex = key.nibbles[keyIndex] * ENTRY_SIZE;
+    const entryIndex = key.nibbles[keyIndex] * defaults.ENTRY_SIZE;
     const branch = this._getCachedBranch(branchAt);
 
     l.debug(() => ['findKey', { key, doCreate, keyIndex, branchAt, branch, entryIndex }]);
@@ -236,7 +192,7 @@ export default class FileFlatDb implements BaseDb {
     const entryType = branch[entryIndex];
 
     if (entryType === Slot.BRANCH) {
-      const nextBranchAt = branch.readUIntBE(entryIndex + 1, UINT_SIZE);
+      const nextBranchAt = branch.readUIntBE(entryIndex + 1, defaults.UINT_SIZE);
 
       l.debug(() => ['findKey/isBranch', { nextBranchAt }]);
 
@@ -252,14 +208,14 @@ export default class FileFlatDb implements BaseDb {
     }
 
     if (entryType === Slot.LEAF) {
-      const keyAt = branch.readUIntBE(entryIndex + 1, UINT_SIZE);
+      const keyAt = branch.readUIntBE(entryIndex + 1, defaults.UINT_SIZE);
       const keyValue = this._getKeyValue(keyAt);
-      const prevKey = this._serializeKey(keyValue.subarray(0, KEY_SIZE));
+      const prevKey = this._serializeKey(keyValue.subarray(0, defaults.KEY_SIZE));
       let matchIndex = keyIndex;
 
       l.debug(() => ['findKey/isLeaf', { keyAt, branch, branchAt, entryIndex, keyValue }]);
 
-      while (matchIndex < KEY_SIZE) {
+      while (matchIndex < defaults.KEY_SIZE) {
         if (prevKey.nibbles[matchIndex] !== key.nibbles[matchIndex]) {
           break;
         }
@@ -267,7 +223,7 @@ export default class FileFlatDb implements BaseDb {
         matchIndex++;
       }
 
-      if (matchIndex !== KEY_SIZE) {
+      if (matchIndex !== defaults.KEY_SIZE) {
         return doCreate
           ? this.writeNewBranch(branch, branchAt, entryIndex, key, keyAt, prevKey, matchIndex, matchIndex - keyIndex - 1)
           : null;
@@ -293,8 +249,8 @@ export default class FileFlatDb implements BaseDb {
 
   private _extractValueInfo (keyValue: Buffer): { valueAt: number, valueLength: number } {
     return {
-      valueLength: keyValue.readUIntBE(KEY_SIZE, UINT_SIZE),
-      valueAt: keyValue.readUIntBE(KEY_SIZE + UINT_SIZE, UINT_SIZE)
+      valueLength: keyValue.readUIntBE(defaults.KEY_SIZE, defaults.UINT_SIZE),
+      valueAt: keyValue.readUIntBE(defaults.KEY_SIZE + defaults.UINT_SIZE, defaults.UINT_SIZE)
     };
   }
 
@@ -328,11 +284,11 @@ export default class FileFlatDb implements BaseDb {
       this._cacheData(valueAt, value);
     }
 
-    keyValue.writeUIntBE(value.length, KEY_SIZE, UINT_SIZE);
-    keyValue.writeUIntBE(valueAt, KEY_SIZE + UINT_SIZE, UINT_SIZE);
+    keyValue.writeUIntBE(value.length, defaults.KEY_SIZE, defaults.UINT_SIZE);
+    keyValue.writeUIntBE(valueAt, defaults.KEY_SIZE + defaults.UINT_SIZE, defaults.UINT_SIZE);
 
     fs.writeSync(this._fd, value, 0, value.length, valueAt);
-    fs.writeSync(this._fd, keyValue, KEY_SIZE, 2 * UINT_SIZE, keyAt + KEY_SIZE);
+    fs.writeSync(this._fd, keyValue, defaults.KEY_SIZE, 2 * defaults.UINT_SIZE, keyAt + defaults.KEY_SIZE);
 
     return {
       value,
@@ -352,11 +308,11 @@ export default class FileFlatDb implements BaseDb {
     l.debug(() => ['writeNewKey', { key }]);
 
     const keyAt = fs.fstatSync(this._fd).size;
-    const keyValue = Buffer.alloc(KEY_TOTAL_SIZE);
+    const keyValue = Buffer.alloc(defaults.KEY_TOTAL_SIZE);
 
     keyValue.set(key.buffer, 0);
 
-    fs.writeSync(this._fd, keyValue, 0, KEY_TOTAL_SIZE, keyAt);
+    fs.writeSync(this._fd, keyValue, 0, defaults.KEY_TOTAL_SIZE, keyAt);
     this._cacheData(keyAt, keyValue);
 
     return {
@@ -378,35 +334,35 @@ export default class FileFlatDb implements BaseDb {
     l.debug(() => ['writeNewBranch', { branch, branchAt, entryIndex, key, prevAt, prevKey, matchIndex, depth }]);
 
     const { keyAt, keyValue } = this.writeNewKey(key);
-    const keyIndex = key.nibbles[matchIndex] * ENTRY_SIZE;
-    const prevIndex = prevKey.nibbles[matchIndex] * ENTRY_SIZE;
+    const keyIndex = key.nibbles[matchIndex] * defaults.ENTRY_SIZE;
+    const prevIndex = prevKey.nibbles[matchIndex] * defaults.ENTRY_SIZE;
     let newBranchAt = fs.fstatSync(this._fd).size;
-    let newBranch = Buffer.alloc(BRANCH_SIZE);
+    let newBranch = Buffer.alloc(defaults.BRANCH_SIZE);
 
     // FIXME Combine this along with all the newBranch writes in the loop into a single write
     newBranch.set([Slot.LEAF], keyIndex);
-    newBranch.writeUIntBE(keyAt, keyIndex + 1, UINT_SIZE);
+    newBranch.writeUIntBE(keyAt, keyIndex + 1, defaults.UINT_SIZE);
     newBranch.set([Slot.LEAF], prevIndex);
-    newBranch.writeUIntBE(prevAt, prevIndex + 1, UINT_SIZE);
+    newBranch.writeUIntBE(prevAt, prevIndex + 1, defaults.UINT_SIZE);
 
-    fs.writeSync(this._fd, newBranch, 0, BRANCH_SIZE, newBranchAt);
+    fs.writeSync(this._fd, newBranch, 0, defaults.BRANCH_SIZE, newBranchAt);
     this._cacheBranch(newBranchAt, newBranch);
 
     for (let offset = 1; depth > 0; depth--, offset++) {
-      const branchIndex = key.nibbles[matchIndex - offset] * ENTRY_SIZE;
+      const branchIndex = key.nibbles[matchIndex - offset] * defaults.ENTRY_SIZE;
 
-      newBranch = Buffer.alloc(BRANCH_SIZE);
+      newBranch = Buffer.alloc(defaults.BRANCH_SIZE);
       newBranch.set([Slot.BRANCH], branchIndex);
-      newBranch.writeUIntBE(newBranchAt, branchIndex + 1, UINT_SIZE);
-      newBranchAt += BRANCH_SIZE;
+      newBranch.writeUIntBE(newBranchAt, branchIndex + 1, defaults.UINT_SIZE);
+      newBranchAt += defaults.BRANCH_SIZE;
 
-      fs.writeSync(this._fd, newBranch, 0, BRANCH_SIZE, newBranchAt);
+      fs.writeSync(this._fd, newBranch, 0, defaults.BRANCH_SIZE, newBranchAt);
       this._cacheBranch(newBranchAt, newBranch);
     }
 
     branch.set([Slot.BRANCH], entryIndex);
-    branch.writeUIntBE(newBranchAt, entryIndex + 1, UINT_SIZE);
-    fs.writeSync(this._fd, branch, entryIndex, ENTRY_SIZE, branchAt + entryIndex);
+    branch.writeUIntBE(newBranchAt, entryIndex + 1, defaults.UINT_SIZE);
+    fs.writeSync(this._fd, branch, entryIndex, defaults.ENTRY_SIZE, branchAt + entryIndex);
 
     return {
       key,
@@ -429,9 +385,9 @@ export default class FileFlatDb implements BaseDb {
     const { keyAt, keyValue } = this.writeNewKey(key);
 
     branch.set([Slot.LEAF], entryIndex);
-    branch.writeUIntBE(keyAt, entryIndex + 1, UINT_SIZE);
+    branch.writeUIntBE(keyAt, entryIndex + 1, defaults.UINT_SIZE);
 
-    fs.writeSync(this._fd, branch, entryIndex, ENTRY_SIZE, branchAt + entryIndex);
+    fs.writeSync(this._fd, branch, entryIndex, defaults.ENTRY_SIZE, branchAt + entryIndex);
 
     return {
       key,
@@ -454,116 +410,9 @@ export default class FileFlatDb implements BaseDb {
 
   private _open (file: string, startEmpty: boolean = false): number {
     if (!fs.existsSync(file) || startEmpty) {
-      fs.writeFileSync(file, Buffer.alloc(BRANCH_SIZE));
+      fs.writeFileSync(file, Buffer.alloc(defaults.BRANCH_SIZE));
     }
 
     return fs.openSync(file, 'a+');
-  }
-
-  private _compactReadEntry (fd: number, at: number, index: number): Buffer {
-    const entry = Buffer.alloc(ENTRY_SIZE);
-    const entryAt = at + (index * ENTRY_SIZE);
-
-    fs.readSync(fd, entry, 0, ENTRY_SIZE, entryAt);
-
-    return entry;
-  }
-
-  private _compactReadKey (fd: number, at: number): [Buffer, Buffer] {
-    const key = Buffer.alloc(KEY_TOTAL_SIZE);
-
-    fs.readSync(fd, key, 0, KEY_TOTAL_SIZE, at);
-
-    const valueLength = key.readUIntBE(KEY_SIZE, UINT_SIZE);
-    const valueAt = key.readUIntBE(KEY_SIZE + UINT_SIZE, UINT_SIZE);
-    const value = Buffer.alloc(valueLength);
-
-    fs.readSync(fd, value, 0, valueLength, valueAt);
-
-    return [key, value];
-  }
-
-  private _compactWriteKey (fd: number, key: Buffer, value: Buffer): number {
-    const valueAt = fs.fstatSync(fd).size;
-    const keyAt = valueAt + value.length;
-
-    key.writeUIntBE(valueAt, KEY_SIZE + UINT_SIZE, UINT_SIZE);
-
-    fs.writeSync(fd, value, 0, value.length, valueAt);
-    fs.writeSync(fd, key, 0, KEY_TOTAL_SIZE, keyAt);
-
-    return keyAt;
-  }
-
-  private _compactUpdateLink (fd: number, at: number, index: number, pointer: number, type: Slot): void {
-    const entry = Buffer.alloc(ENTRY_SIZE);
-
-    entry.set([type], 0);
-    entry.writeUIntBE(pointer, 1, UINT_SIZE);
-
-    fs.writeSync(fd, entry, 0, ENTRY_SIZE, at + (index * ENTRY_SIZE));
-  }
-
-  private _compactWriteHeader (fd: number, at: number, index: number): number {
-    const headerAt = fs.fstatSync(fd).size;
-    const header = Buffer.alloc(BRANCH_SIZE);
-
-    fs.writeSync(fd, header, 0, BRANCH_SIZE, headerAt);
-
-    this._compactUpdateLink(fd, at, index, headerAt, Slot.BRANCH);
-
-    return headerAt;
-  }
-
-  private _compact (fn: ProgressCb, newFd: number, oldFd: number): number {
-    // l.debug(() => ['_compact', debug({ newFd, oldFd, newAt, oldAt })]);
-
-    let keys = 0;
-    let percent = 0;
-
-    const doCompact = (newAt: number, oldAt: number, depth: number) => {
-      const increment = (100 / ENTRY_NUM) / Math.pow(ENTRY_NUM, depth);
-
-      for (let index = 0; index < ENTRY_NUM; index++) {
-        const entry = this._compactReadEntry(oldFd, oldAt, index);
-        const dataAt = entry.readUIntBE(1, UINT_SIZE);
-        const entryType = entry[0];
-
-        if (entryType === Slot.EMPTY) {
-          // l.debug(() => '_compact/isEmpty');
-          percent += increment;
-        } else if (entryType === Slot.LEAF) {
-          // l.debug(() => '_compact/isLeaf');
-
-          const [key, value] = this._compactReadKey(oldFd, dataAt);
-          const keyAt = this._compactWriteKey(newFd, key, value);
-
-          this._compactUpdateLink(newFd, newAt, index, keyAt, Slot.LEAF);
-
-          keys++;
-          percent += increment;
-        } else if (entryType === Slot.BRANCH) {
-          // l.debug(() => '_compact/isBranch');
-
-          const headerAt = this._compactWriteHeader(newFd, newAt, index);
-
-          doCompact(headerAt, dataAt, depth + 1);
-        } else {
-          throw new Error(`Unknown entry type, ${entryType}`);
-        }
-
-        fn({
-          isCompleted: depth === 0 && index === (ENTRY_NUM - 1),
-          keys,
-          percent
-        });
-      }
-
-      // l.debug(() => ['_compact', '=>', `${depth}: ${keys} keys written`]);
-    };
-
-    doCompact(0, 0, 0);
-
-    return keys;
   }
 }
