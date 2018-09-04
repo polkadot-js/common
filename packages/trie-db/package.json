@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/trie-db",
-  "version": "0.29.19",
+  "version": "0.29.20",
   "description": "This is an implementation of the modified merkle patricia tree as speficed in Ethereum's yellow paper, adpated for Polkadot",
   "main": "index.js",
   "keywords": [
@@ -29,13 +29,13 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-db#readme",
   "dependencies": {
     "@babel/runtime": "^7.0.0-rc.1",
-    "@polkadot/trie-hash": "^0.29.19",
-    "@polkadot/util": "^0.29.19",
-    "@polkadot/util-crypto": "^0.29.19",
-    "@polkadot/util-rlp": "^0.29.19"
+    "@polkadot/trie-hash": "^0.29.20",
+    "@polkadot/util": "^0.29.20",
+    "@polkadot/util-crypto": "^0.29.20",
+    "@polkadot/util-rlp": "^0.29.20"
   },
   "devDependencies": {
-    "@polkadot/db": "^0.29.19",
+    "@polkadot/db": "^0.29.20",
     "ethereumjs-testing": "1.0.4"
   }
 }
