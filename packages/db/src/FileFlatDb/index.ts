@@ -21,8 +21,8 @@ import u8aToHex from '@polkadot/util/u8a/toHex';
 import Compact from './Compact';
 import defaults from './defaults';
 
-const LRU_BRANCH_COUNT = 2048;
-const LRU_DATA_COUNT = 4096;
+const LRU_BRANCH_COUNT = 16384; // * 96 = bytes
+const LRU_DATA_COUNT = 8192;
 
 const l = logger('db/flat');
 
