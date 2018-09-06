@@ -1,7 +1,6 @@
-// Copyright 2015-2018 authors & contributors of https://github.com/ethereumjs/merkle-patricia-tree
 // Copyright 2017-2018 @polkadot/trie-db authors & contributors
 // This software may be modified and distributed under the terms
-// of the MPL-2.0 license. See the LICENSE file for details.
+// of the ISC license. See the LICENSE file for details.
 
 import u8aToHex from '@polkadot/util/u8a/toHex';
 import toU8a from '@polkadot/util/u8a/toU8a';
@@ -156,7 +155,7 @@ describe('storing longer values', () => {
     expect(trie.get(toU8a('doge'))).toEqual(toU8a('coin'));
   });
 
-  it('should when being modiefied delete the old value', () => {
+  it('should when being modified delete the old value', () => {
     trie.put(toU8a('done'), toU8a('test'));
 
     expect(

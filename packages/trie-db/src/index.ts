@@ -18,6 +18,14 @@ import { decodeNibbles, encodeNibbles } from './util/nibbles';
 import { getNodeType, decodeNode, encodeNode } from './util/node';
 import { EMPTY_HASH, EMPTY_U8A } from './constants';
 
+type Snapshot = {
+  root: Uint8Array,
+  kv: Array<{
+    key: Uint8Array,
+    value: Uint8Array
+  }>
+};
+
 const l = logger('trie/db');
 
 export default class Trie implements TrieDb {
@@ -84,7 +92,7 @@ export default class Trie implements TrieDb {
 
     this._setRootNode(
       this._del(
-        this.getNode(this.rootHash),
+        this._getNode(this.rootHash),
         toNibbles(key)
       )
     );
@@ -94,7 +102,7 @@ export default class Trie implements TrieDb {
     l.debug(() => ['get', { key }]);
 
     return this._get(
-      this.getNode(this.rootHash),
+      this._getNode(this.rootHash),
       toNibbles(key)
     );
   }
@@ -104,7 +112,7 @@ export default class Trie implements TrieDb {
 
     this._setRootNode(
       this._put(
-        this.getNode(this.rootHash),
+        this._getNode(this.rootHash),
         toNibbles(key),
         value
       )
@@ -112,7 +120,7 @@ export default class Trie implements TrieDb {
   }
 
   getRoot (): Uint8Array {
-    const rootNode = this.getNode(this.rootHash);
+    const rootNode = this.getNode();
 
     if (isNull(rootNode)) {
       return EMPTY_U8A;
@@ -121,12 +129,82 @@ export default class Trie implements TrieDb {
     return this.rootHash;
   }
 
+  getNode (hash?: Uint8Array): Node {
+    return this._getNode(hash || this.rootHash);
+  }
+
   setRoot (rootHash: Uint8Array): void {
     this.rootHash = rootHash;
     // return this._setRootNode(rootNode);
   }
 
-  private getNode (hash: Uint8Array | null): Node {
+  createSnapshot (fn: ProgressCb, hash?: Uint8Array, percent: number = 0, depth: number = 0): Snapshot {
+    const root = hash || this.rootHash || EMPTY_HASH;
+
+    l.log('creating current state key/value snapshot');
+    l.debug(() => ['getTrie', { hash }]);
+
+    const node = this._getNode(root);
+
+    if (isNull(node)) {
+      return {
+        root,
+        kv: []
+      };
+    }
+
+    const snapshot = node.reduce((snapshot, node) => {
+      if (isNull(node) || node.length !== 32) {
+        return snapshot;
+      }
+
+      this.createSnapshot(fn, node, percent, depth + 1).kv.forEach((pair) =>
+        snapshot.kv.push(pair)
+      );
+
+      percent += (1 / node.length) / Math.pow(node.length, depth);
+
+      fn({
+        keys: snapshot.kv.length,
+        percent
+      });
+
+      return snapshot;
+    }, { root, kv: [{ key: root, value: encodeNode(node) }] } as Snapshot);
+
+    if (depth === 0) {
+      l.log(`snapshot created with ${snapshot.kv.length} entries`);
+
+      fn({
+        isCompleted: true,
+        keys: snapshot.kv.length,
+        percent: 100
+      });
+    }
+
+    return snapshot;
+  }
+
+  restoreSnapshot (snapshot: Snapshot, fn: ProgressCb): void {
+    snapshot.kv.forEach(({ key, value }, keys) => {
+      this.db.put(key, value);
+
+      fn({
+        keys,
+        percent: (100 * keys) / snapshot.kv.length
+      });
+    });
+
+    this.rootHash = snapshot.root;
+
+    fn({
+      isCompleted: true,
+      keys: snapshot.kv.length,
+      percent: 100
+    });
+  }
+
+  private _getNode (hash: Uint8Array | null): Node {
     if (!hash || hash.length === 0 || keyEquals(hash, EMPTY_HASH)) {
       return null;
     } else if (hash.length < 32) {
@@ -161,7 +239,7 @@ export default class Trie implements TrieDb {
       return this._normaliseBranchNode(node);
     }
 
-    const nodeToDelete = this.getNode(node[trieKey[0]]);
+    const nodeToDelete = this._getNode(node[trieKey[0]]);
     const subNode = this._del(nodeToDelete, trieKey.subarray(1));
     const encodedSubNode = this._persistNode(subNode);
 
@@ -195,7 +273,7 @@ export default class Trie implements TrieDb {
     }
 
     const subKey = trieKey.subarray(currentKey.length);
-    const subNode = this.getNode(node[1]);
+    const subNode = this._getNode(node[1]);
     const newSub = this._del(subNode, subKey);
     const encodedNewSub = this._persistNode(newSub);
 
@@ -244,7 +322,7 @@ export default class Trie implements TrieDb {
       return node[16];
     }
 
-    const subNode = this.getNode(node[trieKey[0]]);
+    const subNode = this._getNode(node[trieKey[0]]);
 
     return this._get(subNode, trieKey.subarray(1));
   }
@@ -265,7 +343,7 @@ export default class Trie implements TrieDb {
       return null;
     } else if (nodeType === NodeType.EXTENSION) {
       if (keyStartsWith(trieKey, currentKey)) {
-        const subNode = this.getNode(node[1]);
+        const subNode = this._getNode(node[1]);
 
         return this._get(subNode, trieKey.subarray(currentKey ? currentKey.length : 0));
       }
@@ -290,6 +368,7 @@ export default class Trie implements TrieDb {
 
     if (encoded.length < 32) {
       return [
+        // FIXME typings...
         // @ts-ignore Ok, this is not correct - this comes back as an embedded node, which mean that our definitions here are completely wrong (or what we think it is, does not align with what it should be as per the spec and implementation)
         node,
         null
@@ -326,7 +405,7 @@ export default class Trie implements TrieDb {
     }
 
     const [{ index, value }] = mapped;
-    const subNode = this.getNode(value);
+    const subNode = this._getNode(value);
 
     if (isBranchNode(subNode)) {
       return [
@@ -379,7 +458,7 @@ export default class Trie implements TrieDb {
     // l.debug(() => ['_putBranchNode', { node, trieKey, value }]);
 
     if (trieKey && trieKey.length) {
-      const subNode = this.getNode(node[trieKey[0]]);
+      const subNode = this._getNode(node[trieKey[0]]);
       const newNode = this._put(subNode, trieKey.subarray(1), value);
 
       node[trieKey[0]] = this._persistNode(newNode);
@@ -409,12 +488,12 @@ export default class Trie implements TrieDb {
         ];
       }
 
-      const subNode = this.getNode(node[1]);
+      const subNode = this._getNode(node[1]);
 
       newNode = this._put(subNode, trieRemainder, value);
     } else if (currentRemainder.length === 0) {
       if (isExtension) {
-        const subNode = this.getNode(node[1]);
+        const subNode = this._getNode(node[1]);
 
         newNode = this._put(subNode, trieRemainder, value);
       } else {
