@@ -62,6 +62,10 @@ export default class TransactionDb implements TxDb {
     this.backing.empty();
   }
 
+  rename (base: string, file: string): void {
+    this.backing.rename(base, file);
+  }
+
   maintain (fn: ProgressCb): void {
     assert(this.txStarted === false, 'Cannot maintain inside an open transaction');
 

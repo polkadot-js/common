@@ -33,14 +33,10 @@ export type NodeNotEmpty = NodeKv | NodeBranch;
 
 export type Node = NodeEmpty | NodeNotEmpty;
 
-export type SnapshotValue = {
-  key: Uint8Array,
-  value: Uint8Array
-};
-
 export interface TrieDb extends TxDb {
+  readonly db: TxDb;
+
   getRoot (): Uint8Array;
   setRoot (rootHash: Uint8Array): void;
-  createSnapshot (dest: TrieDb, fn: ProgressCb): number;
-  restoreSnapshot (value: SnapshotValue): void;
+  snapshot (dest: TrieDb, fn: ProgressCb): number;
 }

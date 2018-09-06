@@ -51,7 +51,11 @@ export default class FileTreeDb implements BaseDb {
   }
 
   empty (): void {
-    throw new Error('error is not implemented');
+    l.error('empty() is not implemented');
+  }
+
+  rename (base: string, file: string): void {
+    l.error('rename() is not implemented');
   }
 
   maintain (fn: ProgressCb): void {

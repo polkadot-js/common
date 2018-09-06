@@ -29,6 +29,8 @@ const l = logger('db/flat');
 export default class FileFlatDb implements BaseDb {
   private _fd: number;
   private _fileSize: number = 0;
+  private _base: string;
+  private _path: string;
   private _file: string;
   private _isCompressed: boolean;
   private _lruBranch: LRUMap<number, Buffer>;
@@ -36,7 +38,9 @@ export default class FileFlatDb implements BaseDb {
 
   constructor (base: string, file: string = defaults.DEFAULT_FILE, options: BaseDbOptions = {}) {
     this._fd = -1;
-    this._file = path.join(base, file);
+    this._base = base;
+    this._file = file;
+    this._path = path.join(base, file);
     this._lruBranch = new LRUMap(LRU_BRANCH_COUNT);
     this._lruData = new LRUMap(LRU_DATA_COUNT);
     this._isCompressed = options && !isUndefined(options.isCompressed)
@@ -47,7 +51,7 @@ export default class FileFlatDb implements BaseDb {
   }
 
   open (): void {
-    this._fd = this._open(this._file);
+    this._fd = this._open(this._path);
     this._fileSize = fs.fstatSync(this._fd).size;
 
     this._lruBranch.clear();
@@ -66,8 +70,20 @@ export default class FileFlatDb implements BaseDb {
   empty (): void {
     this.close();
 
-    this._fd = this._open(this._file, true);
+    this._fd = this._open(this._path, true);
     this._fileSize = fs.fstatSync(this._fd).size;
+  }
+
+  rename (base: string, file: string): void {
+    assert(this._fd === -1, 'Database cannot be open for renaming');
+
+    const oldPath = this._path;
+
+    this._base = base;
+    this._file = file;
+    this._path = path.join(base, file);
+
+    fs.renameSync(oldPath, this._path);
   }
 
   maintain (fn: ProgressCb): void {

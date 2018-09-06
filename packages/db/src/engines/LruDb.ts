@@ -45,6 +45,10 @@ export default class LruDb implements BaseDb {
     this.backing.empty();
   }
 
+  rename (base: string, file: string): void {
+    this.backing.rename(base, file);
+  }
+
   maintain (fn: ProgressCb): void {
     this.backing.maintain(fn);
   }

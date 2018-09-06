@@ -31,6 +31,10 @@ export default class MemoryDb implements BaseDb {
     this.storage = {};
   }
 
+  rename (base: string, file: string): void {
+    l.error('rename() is not implemented');
+  }
+
   maintain (fn: ProgressCb): void {
     fn({
       isCompleted: true,

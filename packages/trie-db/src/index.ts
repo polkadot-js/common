@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import { TxDb, ProgressCb } from '@polkadot/db/types';
-import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType, SnapshotValue } from './types';
+import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
 
 import MemoryDb from '@polkadot/db/Memory';
 import isNull from '@polkadot/util/is/null';
@@ -21,7 +21,7 @@ import { EMPTY_HASH, EMPTY_U8A } from './constants';
 const l = logger('trie/db');
 
 export default class Trie implements TrieDb {
-  private db: TxDb;
+  readonly db: TxDb;
   private txRoot: Uint8Array;
   private rootHash: Uint8Array;
 
@@ -83,6 +83,10 @@ export default class Trie implements TrieDb {
     this.db.maintain(fn);
   }
 
+  rename (base: string, file: string): void {
+    this.db.rename(base, file);
+  }
+
   del (key: Uint8Array) {
     l.debug(() => ['del', { key }]);
 
@@ -134,12 +138,12 @@ export default class Trie implements TrieDb {
     // return this._setRootNode(rootNode);
   }
 
-  createSnapshot (dest: Trie, fn: ProgressCb): number {
+  snapshot (dest: TrieDb, fn: ProgressCb): number {
     const start = Date.now();
 
     l.log('creating current state snapshot');
 
-    const keys = this._createSnapshot(dest, fn, this.rootHash, 0, 0, 0);
+    const keys = this._snapshot(dest, fn, this.rootHash, 0, 0, 0);
     const elapsed = (Date.now() - start) / 1000;
 
     dest.setRoot(this.rootHash);
@@ -155,10 +159,8 @@ export default class Trie implements TrieDb {
     return keys;
   }
 
-  private _createSnapshot (dest: Trie, fn: ProgressCb, hash: Uint8Array, keys: number, percent: number, depth: number): number {
-    const root = hash || this.rootHash || EMPTY_HASH;
-
-    l.debug(() => ['createSnapshot', { hash }]);
+  private _snapshot (dest: TrieDb, fn: ProgressCb, root: Uint8Array, keys: number, percent: number, depth: number): number {
+    l.debug(() => ['snapshot', { root }]);
 
     const node = this._getNode(root);
 
@@ -167,31 +169,20 @@ export default class Trie implements TrieDb {
     }
 
     keys++;
+    dest.db.put(root, encodeNode(node));
+    fn({ keys, percent });
 
-    fn({
-      keys,
-      percent
-    });
-    dest.restoreSnapshot({
-      key: root,
-      value: encodeNode(node)
-    });
+    const filtered = node.filter((node) =>
+      node && node.length === 32
+    ) as Array<Uint8Array>;
 
-    node.forEach((node) => {
-      if (isNull(node) || node.length !== 32) {
-        return;
-      }
+    filtered.forEach((root) => {
+      keys = this._snapshot(dest, fn, root, keys, percent, depth + 1);
 
-      keys = this._createSnapshot(dest, fn, node, keys, percent, depth + 1);
-
-      percent += (1 / node.length) / Math.pow(node.length, depth);
+      percent += (100 / filtered.length) / Math.pow(filtered.length, depth);
     });
 
     return keys;
-  }
-
-  restoreSnapshot ({ key, value }: SnapshotValue): void {
-    this.db.put(key, value);
   }
 
   private _getNode (hash: Uint8Array | null): Node {
