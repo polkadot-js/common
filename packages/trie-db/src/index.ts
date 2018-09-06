@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import { TxDb, ProgressCb } from '@polkadot/db/types';
-import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType, Snapshot } from './types';
+import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType, SnapshotValue } from './types';
 
 import MemoryDb from '@polkadot/db/Memory';
 import isNull from '@polkadot/util/is/null';
@@ -134,9 +134,8 @@ export default class Trie implements TrieDb {
     // return this._setRootNode(rootNode);
   }
 
-  createSnapshot (fn: ProgressCb, hash?: Uint8Array, percent: number = 0, depth: number = 0, _snapshot?: Snapshot): Snapshot {
+  createSnapshot (dest: Trie, fn: ProgressCb, hash?: Uint8Array, keys: number = 0, percent: number = 0, depth: number = 0): void {
     const root = hash || this.rootHash || EMPTY_HASH;
-    const snapshot = _snapshot || { root, kv: [] };
 
     if (depth === 0) {
       l.log('creating current state key/value snapshot');
@@ -147,10 +146,16 @@ export default class Trie implements TrieDb {
     const node = this._getNode(root);
 
     if (isNull(node)) {
-      return snapshot;
+      return;
     }
 
-    snapshot.kv.push({
+    keys++;
+
+    fn({
+      keys,
+      percent
+    });
+    dest.restoreSnapshot({
       key: root,
       value: encodeNode(node)
     });
@@ -160,46 +165,26 @@ export default class Trie implements TrieDb {
         return;
       }
 
-      this.createSnapshot(fn, node, percent, depth + 1, snapshot);
+      this.createSnapshot(dest, fn, node, keys, percent, depth + 1);
 
       percent += (1 / node.length) / Math.pow(node.length, depth);
-
-      fn({
-        keys: snapshot.kv.length,
-        percent
-      });
     });
 
     if (depth === 0) {
-      l.log(`snapshot created with ${snapshot.kv.length} entries`);
+      dest.setRoot(root);
+
+      l.log(`snapshot created with ${keys} keys`);
 
       fn({
         isCompleted: true,
-        keys: snapshot.kv.length,
+        keys,
         percent: 100
       });
     }
-
-    return snapshot;
   }
 
-  restoreSnapshot (snapshot: Snapshot, fn: ProgressCb): void {
-    snapshot.kv.forEach(({ key, value }, keys) => {
-      this.db.put(key, value);
-
-      fn({
-        keys,
-        percent: (100 * keys) / snapshot.kv.length
-      });
-    });
-
-    this.rootHash = snapshot.root;
-
-    fn({
-      isCompleted: true,
-      keys: snapshot.kv.length,
-      percent: 100
-    });
+  restoreSnapshot ({ key, value }: SnapshotValue): void {
+    this.db.put(key, value);
   }
 
   private _getNode (hash: Uint8Array | null): Node {

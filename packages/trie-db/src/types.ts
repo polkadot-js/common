@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { TxDb, ProgressCb } from '@polkadot/db/types';
+import { TxDb, ProgressCb, ProgressValue } from '@polkadot/db/types';
 
 export enum NodeType {
   EMPTY = 0,
@@ -33,17 +33,14 @@ export type NodeNotEmpty = NodeKv | NodeBranch;
 
 export type Node = NodeEmpty | NodeNotEmpty;
 
-export type Snapshot = {
-  root: Uint8Array,
-  kv: Array<{
-    key: Uint8Array,
-    value: Uint8Array
-  }>
+export type SnapshotValue = {
+  key: Uint8Array,
+  value: Uint8Array
 };
 
 export interface TrieDb extends TxDb {
   getRoot (): Uint8Array;
   setRoot (rootHash: Uint8Array): void;
-  createSnapshot (fn: ProgressCb): Snapshot;
-  restoreSnapshot (snapshot: Snapshot, fn: ProgressCb): void;
+  createSnapshot (dest: TrieDb, fn: ProgressCb): void;
+  restoreSnapshot (value: SnapshotValue): void;
 }
