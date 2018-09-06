@@ -41,6 +41,6 @@ export type SnapshotValue = {
 export interface TrieDb extends TxDb {
   getRoot (): Uint8Array;
   setRoot (rootHash: Uint8Array): void;
-  createSnapshot (dest: TrieDb, fn: ProgressCb): void;
+  createSnapshot (dest: TrieDb, fn: ProgressCb): number;
   restoreSnapshot (value: SnapshotValue): void;
 }

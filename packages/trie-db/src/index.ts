@@ -134,7 +134,7 @@ export default class Trie implements TrieDb {
     // return this._setRootNode(rootNode);
   }
 
-  createSnapshot (dest: Trie, fn: ProgressCb, hash?: Uint8Array, keys: number = 0, percent: number = 0, depth: number = 0): void {
+  createSnapshot (dest: Trie, fn: ProgressCb, hash?: Uint8Array, keys: number = 0, percent: number = 0, depth: number = 0): number {
     const root = hash || this.rootHash || EMPTY_HASH;
 
     if (depth === 0) {
@@ -146,7 +146,7 @@ export default class Trie implements TrieDb {
     const node = this._getNode(root);
 
     if (isNull(node)) {
-      return;
+      return keys;
     }
 
     keys++;
@@ -165,7 +165,7 @@ export default class Trie implements TrieDb {
         return;
       }
 
-      this.createSnapshot(dest, fn, node, keys, percent, depth + 1);
+      keys = this.createSnapshot(dest, fn, node, keys, percent, depth + 1);
 
       percent += (1 / node.length) / Math.pow(node.length, depth);
     });
@@ -181,6 +181,8 @@ export default class Trie implements TrieDb {
         percent: 100
       });
     }
+
+    return keys;
   }
 
   restoreSnapshot ({ key, value }: SnapshotValue): void {
