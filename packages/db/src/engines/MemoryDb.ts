@@ -20,11 +20,15 @@ export default class MemoryDb implements BaseDb {
   }
 
   close (): void {
-    // noop
+    this.empty();
   }
 
   open (): void {
-    // noop
+    this.empty();
+  }
+
+  empty (): void {
+    this.storage = {};
   }
 
   maintain (fn: ProgressCb): void {

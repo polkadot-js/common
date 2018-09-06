@@ -38,6 +38,13 @@ export default class LruDb implements BaseDb {
     this.backing.open();
   }
 
+  empty (): void {
+    l.debug(() => ['empty']);
+
+    this.lru.clear();
+    this.backing.empty();
+  }
+
   maintain (fn: ProgressCb): void {
     this.backing.maintain(fn);
   }

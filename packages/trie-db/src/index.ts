@@ -83,6 +83,10 @@ export default class Trie implements TrieDb {
     this.db.close();
   }
 
+  empty (): void {
+    this.db.empty();
+  }
+
   maintain (fn: ProgressCb): void {
     this.db.maintain(fn);
   }
