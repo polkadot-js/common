@@ -58,6 +58,10 @@ export default class TransactionDb implements TxDb {
     this.backing.open();
   }
 
+  empty (): void {
+    this.backing.empty();
+  }
+
   maintain (fn: ProgressCb): void {
     assert(this.txStarted === false, 'Cannot maintain inside an open transaction');
 

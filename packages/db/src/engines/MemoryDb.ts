@@ -4,14 +4,13 @@
 
 import { BaseDb, BaseDbOptions, ProgressCb } from '../types';
 
-// import logger from '@polkadot/util/logger';
-// import u8aToHex from '@polkadot/util/u8a/toHex';
+import logger from '@polkadot/util/logger';
 
 type Storage = {
   [index: string]: Uint8Array
 };
 
-// const l = logger('db/memory');
+const l = logger('db/memory');
 
 export default class MemoryDb implements BaseDb {
   private storage: Storage;
@@ -21,11 +20,15 @@ export default class MemoryDb implements BaseDb {
   }
 
   close (): void {
-    // noop
+    this.empty();
   }
 
   open (): void {
-    // noop
+    this.empty();
+  }
+
+  empty (): void {
+    this.storage = {};
   }
 
   maintain (fn: ProgressCb): void {
@@ -37,17 +40,19 @@ export default class MemoryDb implements BaseDb {
   }
 
   del (key: Uint8Array): void {
+    l.debug(() => ['del', { key }]);
+
     delete this.storage[key.toString()];
   }
 
   get (key: Uint8Array): Uint8Array | null {
-    // l.debug(() => ['get', u8aToHex(key)]);
+    l.debug(() => ['get', { key }]);
 
     return this.storage[key.toString()] || null;
   }
 
   put (key: Uint8Array, value: Uint8Array): void {
-    // l.debug(() => ['put', u8aToHex(key), u8aToHex(value)]);
+    l.debug(() => ['put', { key, value }]);
 
     this.storage[key.toString()] = value;
   }

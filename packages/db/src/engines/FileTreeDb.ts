@@ -50,6 +50,10 @@ export default class FileTreeDb implements BaseDb {
     // noop
   }
 
+  empty (): void {
+    throw new Error('error is not implemented');
+  }
+
   maintain (fn: ProgressCb): void {
     fn({
       isCompleted: true,

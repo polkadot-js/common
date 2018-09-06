@@ -63,6 +63,13 @@ export default class FileFlatDb implements BaseDb {
     this._lruData.clear();
   }
 
+  empty (): void {
+    this.close();
+
+    this._fd = this._open(this._file, true);
+    this._fileSize = fs.fstatSync(this._fd).size;
+  }
+
   maintain (fn: ProgressCb): void {
     assert(this._fd === -1, 'Database cannot be open for compacting');
 
@@ -435,7 +442,13 @@ export default class FileFlatDb implements BaseDb {
   }
 
   private _open (file: string, startEmpty: boolean = false): number {
-    if (!fs.existsSync(file) || startEmpty) {
+    const isExisting = fs.existsSync(file);
+
+    if (!isExisting || startEmpty) {
+      if (isExisting) {
+        fs.renameSync(file, `${file}.${Date.now()}`);
+      }
+
       fs.writeFileSync(file, Buffer.alloc(defaults.BRANCH_SIZE));
     }
 
