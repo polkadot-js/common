@@ -152,7 +152,11 @@ export default class Trie implements TrieDb {
 
     dest.setRoot(this.rootHash);
 
-    l.log(`snapshot created in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys`);
+    const newSize = dest.db.size();
+    const percentage = 100 * (newSize / this.db.size());
+    const sizeMB = newSize / (1024 * 1024);
+
+    l.log(`snapshot created in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys, ${sizeMB.toFixed(2)}MB (${percentage.toFixed(2)}%)`);
 
     fn({
       isCompleted: true,
