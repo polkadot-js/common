@@ -134,8 +134,9 @@ export default class Trie implements TrieDb {
     // return this._setRootNode(rootNode);
   }
 
-  createSnapshot (fn: ProgressCb, hash?: Uint8Array, percent: number = 0, depth: number = 0): Snapshot {
+  createSnapshot (fn: ProgressCb, hash?: Uint8Array, percent: number = 0, depth: number = 0, _snapshot?: Snapshot): Snapshot {
     const root = hash || this.rootHash || EMPTY_HASH;
+    const snapshot = _snapshot || { root, kv: [] };
 
     if (depth === 0) {
       l.log('creating current state key/value snapshot');
@@ -146,20 +147,20 @@ export default class Trie implements TrieDb {
     const node = this._getNode(root);
 
     if (isNull(node)) {
-      return {
-        root,
-        kv: []
-      };
+      return snapshot;
     }
 
-    const snapshot = node.reduce((snapshot, node) => {
+    snapshot.kv.push({
+      key: root,
+      value: encodeNode(node)
+    });
+
+    node.forEach((node) => {
       if (isNull(node) || node.length !== 32) {
-        return snapshot;
+        return;
       }
 
-      this.createSnapshot(fn, node, percent, depth + 1).kv.forEach((pair) =>
-        snapshot.kv.push(pair)
-      );
+      this.createSnapshot(fn, node, percent, depth + 1, snapshot);
 
       percent += (1 / node.length) / Math.pow(node.length, depth);
 
@@ -167,9 +168,7 @@ export default class Trie implements TrieDb {
         keys: snapshot.kv.length,
         percent
       });
-
-      return snapshot;
-    }, { root, kv: [{ key: root, value: encodeNode(node) }] } as Snapshot);
+    });
 
     if (depth === 0) {
       l.log(`snapshot created with ${snapshot.kv.length} entries`);
