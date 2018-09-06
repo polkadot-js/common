@@ -18,7 +18,8 @@ describe('snapshots', () => {
     trie.put(toU8a('test'), toU8a('one'));
     trie.put(toU8a('doge'), toU8a('coin'));
     trie.del(toU8a('doge'));
-    trie.createSnapshot(back, () => {});
+
+    trie.snapshot(back, () => {});
 
     expect(back.getRoot()).toEqual(root);
     expect(trie.get(toU8a('test'))).toEqual(toU8a('one'));
@@ -36,7 +37,8 @@ describe('snapshots', () => {
     trie.put(toU8a('dog'), toU8a('doggie'));
     trie.put(toU8a('dogge'), toU8a('bigger dog'));
     trie.put(toU8a('dodge'), toU8a('coin'));
-    trie.createSnapshot(back, () => {});
+
+    trie.snapshot(back, () => {});
 
     expect(back.getRoot()).toEqual(root);
     expect(back.get(toU8a('one'))).toEqual(toU8a('testing'));
