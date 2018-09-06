@@ -87,6 +87,10 @@ export default class Trie implements TrieDb {
     this.db.rename(base, file);
   }
 
+  size (): number {
+    return this.db.size();
+  }
+
   del (key: Uint8Array) {
     l.debug(() => ['del', { key }]);
 
@@ -168,10 +172,6 @@ export default class Trie implements TrieDb {
       return keys;
     }
 
-    keys++;
-    dest.db.put(root, encodeNode(node));
-    fn({ keys, percent });
-
     const filtered = node.filter((node) =>
       node && node.length === 32
     ) as Array<Uint8Array>;
@@ -181,6 +181,10 @@ export default class Trie implements TrieDb {
 
       percent += (100 / filtered.length) / Math.pow(filtered.length, depth);
     });
+
+    keys++;
+    dest.db.put(root, encodeNode(node));
+    fn({ keys, percent });
 
     return keys;
   }

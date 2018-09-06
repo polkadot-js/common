@@ -72,6 +72,10 @@ export default class TransactionDb implements TxDb {
     this.backing.maintain(fn);
   }
 
+  size (): number {
+    return this.backing.size();
+  }
+
   del (key: Uint8Array): void {
     if (this.txStarted) {
       this.txOverlay[key.toString()] = {

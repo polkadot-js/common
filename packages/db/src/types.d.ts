@@ -18,9 +18,9 @@ export interface BaseDb {
   close (): void;
   open (): void;
   empty (): void;
-  rename (base: string, file: string): void;
-
   maintain (fn: ProgressCb): void;
+  rename (base: string, file: string): void;
+  size (): number;
 
   del (key: Uint8Array): void;
   get (key: Uint8Array): Uint8Array | null;

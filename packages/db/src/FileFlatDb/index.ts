@@ -74,6 +74,10 @@ export default class FileFlatDb implements BaseDb {
     this._fileSize = fs.fstatSync(this._fd).size;
   }
 
+  size (): number {
+    return this._fileSize;
+  }
+
   rename (base: string, file: string): void {
     assert(this._fd === -1, 'Database cannot be open for renaming');
 

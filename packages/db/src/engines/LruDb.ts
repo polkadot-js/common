@@ -53,6 +53,10 @@ export default class LruDb implements BaseDb {
     this.backing.maintain(fn);
   }
 
+  size (): number {
+    return this.backing.size();
+  }
+
   del (key: Uint8Array): void {
     const keyStr = key.toString();
 

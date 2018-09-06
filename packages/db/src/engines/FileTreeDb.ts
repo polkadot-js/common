@@ -58,6 +58,12 @@ export default class FileTreeDb implements BaseDb {
     l.error('rename() is not implemented');
   }
 
+  size (): number {
+    l.error('size() is not implemented');
+
+    return 0;
+  }
+
   maintain (fn: ProgressCb): void {
     fn({
       isCompleted: true,
