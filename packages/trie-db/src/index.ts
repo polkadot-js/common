@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import { TxDb, ProgressCb } from '@polkadot/db/types';
-import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
+import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType, Snapshot } from './types';
 
 import MemoryDb from '@polkadot/db/Memory';
 import isNull from '@polkadot/util/is/null';
@@ -17,14 +17,6 @@ import { extractKey, keyEquals, keyStartsWith, computeExtensionKey, computeLeafK
 import { decodeNibbles, encodeNibbles } from './util/nibbles';
 import { getNodeType, decodeNode, encodeNode } from './util/node';
 import { EMPTY_HASH, EMPTY_U8A } from './constants';
-
-type Snapshot = {
-  root: Uint8Array,
-  kv: Array<{
-    key: Uint8Array,
-    value: Uint8Array
-  }>
-};
 
 const l = logger('trie/db');
 
@@ -145,7 +137,10 @@ export default class Trie implements TrieDb {
   createSnapshot (fn: ProgressCb, hash?: Uint8Array, percent: number = 0, depth: number = 0): Snapshot {
     const root = hash || this.rootHash || EMPTY_HASH;
 
-    l.log('creating current state key/value snapshot');
+    if (depth === 0) {
+      l.log('creating current state key/value snapshot');
+    }
+
     l.debug(() => ['getTrie', { hash }]);
 
     const node = this._getNode(root);
