@@ -189,7 +189,7 @@ export default class Trie implements TrieDb {
         keys = this._snapshot(dest, fn, u8a, keys, percent, depth + 1);
       }
 
-      percent += (100 / node.length) / Math.pow(100, depth);
+      percent += (100 / node.length) / Math.pow(17, depth);
     });
 
     return keys;
