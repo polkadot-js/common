@@ -50,6 +50,10 @@ export default class FileTreeDb implements BaseDb {
     // noop
   }
 
+  drop (): void {
+    l.error('drop() is not implemented');
+  }
+
   empty (): void {
     l.error('empty() is not implemented');
   }

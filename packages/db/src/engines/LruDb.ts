@@ -38,6 +38,10 @@ export default class LruDb implements BaseDb {
     this.backing.open();
   }
 
+  drop (): void {
+    this.backing.drop();
+  }
+
   empty (): void {
     l.debug(() => ['empty']);
 

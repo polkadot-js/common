@@ -17,6 +17,7 @@ export type BaseDbOptions = {
 export interface BaseDb {
   close (): void;
   open (): void;
+  drop (): void;
   empty (): void;
   maintain (fn: ProgressCb): void;
   rename (base: string, file: string): void;

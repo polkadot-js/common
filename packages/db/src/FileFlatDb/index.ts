@@ -51,6 +51,8 @@ export default class FileFlatDb implements BaseDb {
   }
 
   open (): void {
+    this.assertOpen(false);
+
     this._fd = this._open(this._path);
     this._fileSize = fs.fstatSync(this._fd).size;
 
@@ -67,8 +69,14 @@ export default class FileFlatDb implements BaseDb {
     this._lruData.clear();
   }
 
+  drop (): void {
+    this.assertOpen(false);
+
+    fs.unlinkSync(this._path);
+  }
+
   empty (): void {
-    this.close();
+    this.assertOpen(false);
 
     this._fd = this._open(this._path, true);
     this._fileSize = fs.fstatSync(this._fd).size;
@@ -79,7 +87,7 @@ export default class FileFlatDb implements BaseDb {
   }
 
   rename (base: string, file: string): void {
-    assert(this._fd === -1, 'Database cannot be open for renaming');
+    this.assertOpen(false);
 
     const oldPath = this._path;
 
@@ -91,7 +99,7 @@ export default class FileFlatDb implements BaseDb {
   }
 
   maintain (fn: ProgressCb): void {
-    assert(this._fd === -1, 'Database cannot be open for compacting');
+    this.assertOpen(false);
 
     const compactor = new Compact(this._file);
 
@@ -457,8 +465,12 @@ export default class FileFlatDb implements BaseDb {
     return this._writeNewBuffer(Buffer.concat(buffers), false);
   }
 
-  private assertOpen (): void {
-    assert(this._fd !== -1, 'Expected an open database');
+  private assertOpen (open: boolean = true): void {
+    const test = open
+      ? this._fd !== -1
+      : this._fd === -1;
+
+    assert(test, `Expected ${open ? 'an open' : 'a closed'} database`);
   }
 
   private _open (file: string, startEmpty: boolean = false): number {

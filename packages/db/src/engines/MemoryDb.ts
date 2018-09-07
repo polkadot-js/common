@@ -27,6 +27,10 @@ export default class MemoryDb implements BaseDb {
     this.empty();
   }
 
+  drop (): void {
+    this.empty();
+  }
+
   empty (): void {
     this.storage = {};
   }

@@ -79,6 +79,10 @@ export default class Trie implements TrieDb {
     this.db.empty();
   }
 
+  drop (): void {
+    this.db.drop();
+  }
+
   maintain (fn: ProgressCb): void {
     this.db.maintain(fn);
   }
@@ -176,19 +180,17 @@ export default class Trie implements TrieDb {
       return keys;
     }
 
-    const filtered = node.filter((node) =>
-      node && node.length === 32
-    ) as Array<Uint8Array>;
-
-    filtered.forEach((root) => {
-      keys = this._snapshot(dest, fn, root, keys, percent, depth + 1);
-
-      percent += (100 / filtered.length) / Math.pow(filtered.length, depth);
-    });
-
     keys++;
     dest.db.put(root, encodeNode(node));
     fn({ keys, percent });
+
+    node.forEach((u8a) => {
+      if (u8a && u8a.length === 32) {
+        keys = this._snapshot(dest, fn, u8a, keys, percent, depth + 1);
+      }
+
+      percent += (100 / node.length) / Math.pow(100, depth);
+    });
 
     return keys;
   }

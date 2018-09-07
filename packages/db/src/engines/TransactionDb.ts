@@ -58,6 +58,10 @@ export default class TransactionDb implements TxDb {
     this.backing.open();
   }
 
+  drop (): void {
+    this.backing.drop();
+  }
+
   empty (): void {
     this.backing.empty();
   }
