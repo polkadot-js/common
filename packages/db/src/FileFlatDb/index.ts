@@ -65,6 +65,7 @@ export default class FileFlatDb implements BaseDb {
 
     fs.closeSync(this._fd);
 
+    this._fd = -1;
     this._lruBranch.clear();
     this._lruData.clear();
   }
