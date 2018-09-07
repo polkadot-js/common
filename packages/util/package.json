@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util#readme",
   "dependencies": {
-    "@babel/runtime": "^7.0.0-rc.1",
+    "@babel/runtime": "^7.0.0",
     "@types/bn.js": "^4.11.1",
     "@types/deasync": "^0.1.0",
     "@types/ip-regex": "^2.0.0",
