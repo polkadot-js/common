@@ -53,7 +53,7 @@ export default class Compact {
       fs.writeFileSync(file, Buffer.alloc(defaults.BRANCH_SIZE));
     }
 
-    return fs.openSync(file, 'a+');
+    return fs.openSync(file, 'r+');
   }
 
   private _compact (fn: ProgressCb, newFd: number, oldFd: number): number {

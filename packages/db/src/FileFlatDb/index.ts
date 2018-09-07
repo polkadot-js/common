@@ -485,6 +485,6 @@ export default class FileFlatDb implements BaseDb {
       fs.writeFileSync(file, Buffer.alloc(defaults.BRANCH_SIZE));
     }
 
-    return fs.openSync(file, 'a+');
+    return fs.openSync(file, 'r+');
   }
 }
