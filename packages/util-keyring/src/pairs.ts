@@ -17,35 +17,41 @@ type KeyringPairMap = {
   [index: Uint8Array]: KeyringPair
 };
 
-export default function pairs (): KeyringPairs {
-  const self: KeyringPairMap = {};
+export default class Pairs implements KeyringPairs {
+  private _map: KeyringPairMap;
 
-  return {
-    add: (pair: KeyringPair): KeyringPair => {
-      // @ts-ignore we use coercion :(
-      self[pair.publicKey()] = pair;
+  constructor () {
+    this._map = {};
+  }
 
-      return pair;
-    },
-    all: (): Array<KeyringPair> =>
-      Object.values(self),
-    get: (address: string | Uint8Array): KeyringPair => {
-      // @ts-ignore we use coercion :(
-      const pair = self[addressDecode(address)];
+  add (pair: KeyringPair): KeyringPair {
+    // @ts-ignore we use coercion :(
+    this._map[pair.publicKey()] = pair;
 
-      assert(pair, () => {
-        const formatted: string = isU8a(address) || isHex(address)
-          ? u8aToHex(u8aToU8a(address))
-          : address;
+    return pair;
+  }
 
-        return `Unable to retrieve keypair '${formatted}'`;
-      });
+  all (): Array<KeyringPair> {
+    return Object.values(this._map);
+  }
 
-      return pair;
-    },
-    remove: (address: string | Uint8Array): void => {
-      // @ts-ignore we use coercion :(
-      delete self[addressDecode(address)];
-    }
-  };
+  get (address: string | Uint8Array): KeyringPair {
+    // @ts-ignore we use coercion :(
+    const pair = this._map[addressDecode(address)];
+
+    assert(pair, () => {
+      const formatted: string = isU8a(address) || isHex(address)
+        ? u8aToHex(u8aToU8a(address))
+        : address;
+
+      return `Unable to retrieve keypair '${formatted}'`;
+    });
+
+    return pair;
+  }
+
+  remove (address: string | Uint8Array): void {
+    // @ts-ignore we use coercion :(
+    delete this._map[addressDecode(address)];
+  }
 }

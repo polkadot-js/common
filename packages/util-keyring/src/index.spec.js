@@ -5,7 +5,7 @@
 import hexToU8a from '@polkadot/util/hex/toU8a';
 import u8aFromString from '@polkadot/util/u8a/fromString';
 
-import index from './index';
+import Keyring from './index';
 
 describe('keypair', () => {
   const publicKeyOne = new Uint8Array([47, 140, 97, 41, 216, 22, 207, 81, 195, 116, 188, 127, 8, 195, 230, 62, 209, 86, 207, 120, 174, 251, 74, 101, 80, 217, 123, 135, 153, 121, 119, 238]);
@@ -15,7 +15,7 @@ describe('keypair', () => {
   let keypair;
 
   beforeEach(() => {
-    keypair = index();
+    keypair = new Keyring();
 
     keypair.addFromSeed(seedOne);
   });
