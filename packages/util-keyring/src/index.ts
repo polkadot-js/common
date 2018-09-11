@@ -9,28 +9,49 @@ import hexToU8a from '@polkadot/util/hex/toU8a';
 
 import addressDecode from './address/decode';
 import createPair from './pair';
-import createPairs from './pairs';
+import Pairs from './pairs';
 
-export default function keyring (): KeyringInstance {
-  const pairs = createPairs();
-  const addFromAddress = (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array) =>
+export default class Keyring implements KeyringInstance {
+  private _pairs: Pairs;
+
+  constructor () {
+    this._pairs = new Pairs();
+  }
+
+  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array): KeyringPair {
     // @ts-ignore no secretKey - cannot unlock
-    pairs.add(createPair({ publicKey: addressDecode(address) }, meta, defaultEncoded));
+    return this._pairs.add(createPair({ publicKey: addressDecode(address) }, meta, defaultEncoded));
+  }
 
-  return {
-    addFromAddress,
-    addFromJson: ({ address, encoded, meta }: KeyringPair$Json): KeyringPair =>
-      addFromAddress(address, meta, hexToU8a(encoded)),
-    addFromSeed: (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair =>
-      pairs.add(createPair(naclKeypairFromSeed(seed), meta)),
-    getPair: (address: string | Uint8Array): KeyringPair =>
-      pairs.get(address),
-    getPairs: pairs.all,
-    getPublicKeys: (): Array<Uint8Array> =>
-      pairs.all().map(({ publicKey }) => publicKey()),
-    removePair: (address: string | Uint8Array): void =>
-      pairs.remove(address),
-    toJson: (address: string | Uint8Array, passphrase?: string): KeyringPair$Json =>
-      pairs.get(address).toJson(passphrase)
-  };
+  addFromJson ({ address, encoded, meta }: KeyringPair$Json): KeyringPair {
+    return this.addFromAddress(address, meta, hexToU8a(encoded));
+  }
+
+  addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair {
+    return this._pairs.add(createPair(naclKeypairFromSeed(seed), meta));
+  }
+
+  getPair (address: string | Uint8Array): KeyringPair {
+    return this._pairs.get(address);
+  }
+
+  getPairs (): Array<KeyringPair> {
+    return this._pairs.all();
+  }
+
+  getPublicKeys (): Array<Uint8Array> {
+    return this._pairs
+      .all()
+      .map(({ publicKey }) =>
+        publicKey()
+      );
+  }
+
+  removePair (address: string | Uint8Array): void {
+    this._pairs.remove(address);
+  }
+
+  toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json {
+    return this._pairs.get(address).toJson(passphrase);
+  }
 }

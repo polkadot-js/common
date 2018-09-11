@@ -31,14 +31,14 @@ export type KeyringPair = {
   verify (message: Uint8Array, signature: Uint8Array): boolean
 };
 
-export type KeyringPairs = {
+export interface KeyringPairs {
   add: (pair: KeyringPair) => KeyringPair,
   all: () => Array<KeyringPair>,
   get: (address: string | Uint8Array) => KeyringPair,
   remove: (address: string | Uint8Array) => void
-};
+}
 
-export type KeyringInstance = {
+export interface KeyringInstance {
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta): KeyringPair,
   addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair,
   addFromJson (pair: KeyringPair$Json): KeyringPair,
@@ -47,4 +47,4 @@ export type KeyringInstance = {
   getPublicKeys (): Array<Uint8Array>,
   removePair (address: string | Uint8Array): void,
   toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json
-};
+}

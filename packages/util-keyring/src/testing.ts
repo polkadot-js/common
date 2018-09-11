@@ -7,7 +7,7 @@ import { KeyringInstance } from './types';
 import hexToU8a from '@polkadot/util/hex/toU8a';
 import u8aFromString from '@polkadot/util/u8a/fromString';
 
-import createKeyring from './index';
+import Keyring from './index';
 
 function padSeed (seed: string): Uint8Array {
   return u8aFromString(seed.padEnd(32, ' '));
@@ -33,7 +33,7 @@ const SEEDS: { [index: string ]: Uint8Array } = {
 };
 
 export default function testKeyring (): KeyringInstance {
-  const keyring = createKeyring();
+  const keyring = new Keyring();
 
   Object
     .keys(SEEDS)
