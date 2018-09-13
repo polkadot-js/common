@@ -33,7 +33,7 @@ const chalked = {
   warn: chalk.yellow
 };
 
-function formatValue (value: any): any {
+export function format (value: any): any {
   if (isNull(value)) {
     return null;
   } else if (isUndefined(value)) {
@@ -41,7 +41,7 @@ function formatValue (value: any): any {
   }
 
   if (Array.isArray(value)) {
-    return value.map(formatValue);
+    return value.map(format);
   }
 
   if (isBn(value)) {
@@ -58,7 +58,7 @@ function formatValue (value: any): any {
 
   if (isObject(value) && value.constructor === Object) {
     return Object.keys(value).reduce((result, key) => {
-      result[key] = formatValue(value[key]);
+      result[key] = format(value[key]);
 
       return result;
     }, {} as { [index: string]: any });
@@ -82,7 +82,7 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
     console, [
       chalk(moment().format('YYYY-MM-DD HH:mm:ss')), chalk(type)
     ].concat(
-      values.map(formatValue)
+      values.map(format)
     )
   );
 }
