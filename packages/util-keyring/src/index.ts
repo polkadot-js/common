@@ -18,9 +18,13 @@ export default class Keyring implements KeyringInstance {
     this._pairs = new Pairs();
   }
 
+  addPair (pair: KeyringPair): KeyringPair {
+    return this._pairs.add(pair);
+  }
+
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array): KeyringPair {
     // @ts-ignore no secretKey - cannot unlock
-    return this._pairs.add(createPair({ publicKey: addressDecode(address) }, meta, defaultEncoded));
+    return this.addPair(createPair({ publicKey: addressDecode(address) }, meta, defaultEncoded));
   }
 
   addFromJson ({ address, encoded, meta }: KeyringPair$Json): KeyringPair {
@@ -28,7 +32,7 @@ export default class Keyring implements KeyringInstance {
   }
 
   addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair {
-    return this._pairs.add(createPair(naclKeypairFromSeed(seed), meta));
+    return this.addPair(createPair(naclKeypairFromSeed(seed), meta));
   }
 
   getPair (address: string | Uint8Array): KeyringPair {

@@ -39,6 +39,7 @@ export interface KeyringPairs {
 }
 
 export interface KeyringInstance {
+  addPair (pair: KeyringPair): KeyringPair,
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta): KeyringPair,
   addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair,
   addFromJson (pair: KeyringPair$Json): KeyringPair,
