@@ -4,11 +4,13 @@
 
 import stringLowerFirst from './lowerFirst';
 import stringShorten from './shorten';
+import stringUpperFirst from './upperFirst';
 
 /**
  * @summary Utility methods to convert to work with `string` values
  */
 export {
   stringLowerFirst,
-  stringShorten
+  stringShorten,
+  stringUpperFirst
 };
