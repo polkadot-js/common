@@ -20,7 +20,7 @@ It is split up into a number of internal packages, namely utilities -
 - [util-keyring](packages/util-keyring/) Keyring management
 - [util-rlp](packages/util-rlp/) RLP encoding & decoding
 
-Various useful trie interfaces and utilities -
+Various useful trie and database interfaces -
 
 - [db](packages/db/) Sync memory and disk database interfaces
 - [trie-db](packages/trie-db/) Merkle Patricia Tree implementation adapcted for Polkadot
