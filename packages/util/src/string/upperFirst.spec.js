@@ -5,13 +5,13 @@
 import { stringUpperFirst } from '.';
 
 describe('stringUpperFirst', () => {
-  it("lowers the first letter if it's a capital letter", () => {
+  it("uppers the first letter if it's a capital letter", () => {
     expect(
       stringUpperFirst('ABC')
     ).toBe('ABC');
   });
 
-  it("lowers the first letter if it's a lowercase letter", () => {
+  it("uppers the first letter if it's a lowercase letter", () => {
     expect(
       stringUpperFirst('abc')
     ).toBe('Abc');
