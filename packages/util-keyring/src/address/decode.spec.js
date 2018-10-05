@@ -33,6 +33,12 @@ describe('decode', () => {
     );
   });
 
+  it('decodes a short address', () => {
+    expect(
+      decode('25GwHy')
+    ).toEqual(new Uint8Array([1]));
+  });
+
   it('fails when prefix is invalid', () => {
     expect(
       () => decode('BXHKtJjKdXjvbvTg6qK275sgcKKq8dnU38MQQAiR3LN2stP')

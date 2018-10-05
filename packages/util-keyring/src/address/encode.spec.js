@@ -20,6 +20,14 @@ describe('encode', () => {
       () => encode(
         keyring.alice.publicKey().slice(0, 30)
       )
-    ).toThrow(/Expected a valid publicKey/);
+    ).toThrow(/Expected a valid key/);
+  });
+
+  it('encodes a 1-byte address', () => {
+    expect(
+      encode(
+        new Uint8Array([1])
+      )
+    ).toEqual('25GwHy');
   });
 });
