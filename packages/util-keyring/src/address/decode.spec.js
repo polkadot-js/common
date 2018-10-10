@@ -35,7 +35,13 @@ describe('decode', () => {
 
   it('decodes a short address', () => {
     expect(
-      decode('25GwHy')
+      decode('F7L6')
+    ).toEqual(new Uint8Array([1]));
+  });
+
+  it('decodes a short address (with prefix)', () => {
+    expect(
+      decode('Pqt7', 68)
     ).toEqual(new Uint8Array([1]));
   });
 

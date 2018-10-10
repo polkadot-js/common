@@ -15,7 +15,7 @@ import blake2b from '@polkadot/util-crypto/blake2/asU8a';
 
 import defaults from './defaults';
 
-export default function decode (encoded: string | Uint8Array): Uint8Array {
+export default function decode (encoded: string | Uint8Array, prefix: number = defaults.prefix): Uint8Array {
   if (isU8a(encoded) || isHex(encoded)) {
     return u8aToU8a(encoded);
   }
@@ -24,17 +24,17 @@ export default function decode (encoded: string | Uint8Array): Uint8Array {
   const error = (message: string) =>
     `Decoding ${encoded}: ${message}`;
 
-  assert(decoded[0] === defaults.prefix[0], error('Invalid decoded address prefix'));
+  assert(decoded[0] === prefix, error('Invalid decoded address prefix'));
+  assert(defaults.allowedOutputLengths.includes(decoded.length), error('Invalid decoded address length'));
 
-  // 32 + (1 + 2) in original
-  assert(defaults.allowedLengths.includes(decoded.length - 3), error('Invalid decoded address length'));
+  const isPublicKey = decoded.length === 35;
+  const finalLength = decoded.length - (isPublicKey ? 2 : 1);
+  const hash = blake2b(decoded.subarray(0, finalLength), 512);
+  const checks = isPublicKey
+    ? decoded[decoded.length - 2] === hash[0] && decoded[decoded.length - 1] === hash[1]
+    : decoded[decoded.length - 1] === hash[0];
 
-  // 33 in original
-  const hash = blake2b(decoded.subarray(0, decoded.length - 2), 512);
+  assert(checks, error('Invalid decoded address checksum'));
 
-  // 33 & 34 in original
-  assert(decoded[decoded.length - 2] === hash[0] && decoded[decoded.length - 1] === hash[1], error(' Invalid decoded address checksum'));
-
-  // 33 in original
-  return decoded.slice(1, decoded.length - 2);
+  return decoded.slice(1, finalLength);
 }

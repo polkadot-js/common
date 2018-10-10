@@ -3,6 +3,8 @@
 // of the ISC license. See the LICENSE file for details.
 
 export default {
-  allowedLengths: [1, 3, 5, 9, 32],
-  prefix: new Uint8Array([42])
+  allowedInputLengths: [1, 3, 5, 9, 32],
+  // publicKey has prefix + 2 checksum bytes, short only prefix + 1 checksum byte
+  allowedOutputLengths: [3, 5, 7, 11, 35],
+  prefix: 42
 };

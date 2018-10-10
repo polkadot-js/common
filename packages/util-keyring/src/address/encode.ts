@@ -14,17 +14,17 @@ import blake2b from '@polkadot/util-crypto/blake2/asU8a';
 
 import defaults from './defaults';
 
-export default function encode (_key: Uint8Array | string): string {
+export default function encode (_key: Uint8Array | string, prefix: number = defaults.prefix): string {
   const key = u8aToU8a(_key);
 
-  assert(defaults.allowedLengths.includes(key.length), `Expected a valid key to convert, with length ${defaults.allowedLengths}`);
+  assert(defaults.allowedInputLengths.includes(key.length), `Expected a valid key to convert, with length ${defaults.allowedInputLengths}`);
 
-  const input = u8aConcat(defaults.prefix, key);
+  const input = u8aConcat(new Uint8Array([prefix]), key);
   const hash = blake2b(input, 512);
 
   return bs58.encode(
     u8aToBuffer(
-      u8aConcat(input, hash.subarray(0, 2))
+      u8aConcat(input, hash.subarray(0, key.length === 32 ? 2 : 1))
     )
   );
 }

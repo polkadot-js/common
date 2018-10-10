@@ -28,6 +28,14 @@ describe('encode', () => {
       encode(
         new Uint8Array([1])
       )
-    ).toEqual('25GwHy');
+    ).toEqual('F7L6');
+  });
+
+  it('encodes a 1-byte address (with prefix)', () => {
+    expect(
+      encode(
+        new Uint8Array([1]), 68
+      )
+    ).toEqual('Pqt7');
   });
 });
