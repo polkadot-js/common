@@ -20,6 +20,46 @@ describe('encode', () => {
       () => encode(
         keyring.alice.publicKey().slice(0, 30)
       )
-    ).toThrow(/Expected a valid publicKey/);
+    ).toThrow(/Expected a valid key/);
+  });
+
+  it('encodes a 1-byte address', () => {
+    expect(
+      encode(
+        new Uint8Array([1])
+      )
+    ).toEqual('F7L6');
+  });
+
+  it('encodes a 1-byte address (with prefix)', () => {
+    expect(
+      encode(
+        new Uint8Array([1]), 68
+      )
+    ).toEqual('Pqt7');
+  });
+
+  it('encodes a 2-byte address', () => {
+    expect(
+      encode(
+        new Uint8Array([0, 1]), 68
+      )
+    ).toEqual('2jpAJz');
+  });
+
+  it('encodes a 4-byte address', () => {
+    expect(
+      encode(
+        new Uint8Array([1, 2, 3, 4]), 68
+      )
+    ).toEqual('as7QnGQ7');
+  });
+
+  it('enodes a 8-byte address', () => {
+    expect(
+      encode(
+        new Uint8Array([42, 44, 10, 0, 0, 0, 0, 0]), 68
+      )
+    ).toEqual('4q7qY5RBG7Z4xX');
   });
 });

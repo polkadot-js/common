@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+import { Prefix } from './types';
+
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L6
 
 import bs58 from 'bs58';
@@ -13,7 +15,9 @@ import isU8a from '@polkadot/util/is/u8a';
 import u8aToU8a from '@polkadot/util/u8a/toU8a';
 import blake2b from '@polkadot/util-crypto/blake2/asU8a';
 
-export default function decode (encoded: string | Uint8Array): Uint8Array {
+import defaults from './defaults';
+
+export default function decode (encoded: string | Uint8Array, prefix: Prefix = defaults.prefix): Uint8Array {
   if (isU8a(encoded) || isHex(encoded)) {
     return u8aToU8a(encoded);
   }
@@ -22,12 +26,21 @@ export default function decode (encoded: string | Uint8Array): Uint8Array {
   const error = (message: string) =>
     `Decoding ${encoded}: ${message}`;
 
-  assert(decoded[0] === 42, error('Invalid decoded address prefix'));
-  assert(decoded.length === 32 + 1 + 2, error('Invalid decoded address length'));
+  assert(decoded[0] === prefix, error('Invalid decoded address prefix'));
+  assert(defaults.allowedEncodedLengths.includes(decoded.length), error('Invalid decoded address length'));
 
-  const hash = blake2b(decoded.subarray(0, 33), 512);
+  const isPublicKey = decoded.length === 35;
 
-  assert(decoded[33] === hash[0] && decoded[34] === hash[1], error(' Invalid decoded address checksum'));
+  // non-publicKeys has 1 byte checksums, else default to 2
+  const endPos = decoded.length - (isPublicKey ? 2 : 1);
 
-  return decoded.slice(1, 33);
+  // calculate the hash and do the checksum byte checks
+  const hash = blake2b(decoded.subarray(0, endPos), 512);
+  const checks = isPublicKey
+    ? decoded[decoded.length - 2] === hash[0] && decoded[decoded.length - 1] === hash[1]
+    : decoded[decoded.length - 1] === hash[0];
+
+  assert(checks, error('Invalid decoded address checksum'));
+
+  return decoded.slice(1, endPos);
 }
