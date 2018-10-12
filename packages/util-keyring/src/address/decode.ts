@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+import { Prefix } from './types';
+
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L6
 
 import bs58 from 'bs58';
@@ -15,7 +17,7 @@ import blake2b from '@polkadot/util-crypto/blake2/asU8a';
 
 import defaults from './defaults';
 
-export default function decode (encoded: string | Uint8Array, prefix: number = defaults.prefix): Uint8Array {
+export default function decode (encoded: string | Uint8Array, prefix: Prefix = defaults.prefix): Uint8Array {
   if (isU8a(encoded) || isHex(encoded)) {
     return u8aToU8a(encoded);
   }

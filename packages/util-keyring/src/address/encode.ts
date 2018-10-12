@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+import { Prefix } from './types';
+
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L34
 
 import bs58 from 'bs58';
@@ -14,7 +16,7 @@ import blake2b from '@polkadot/util-crypto/blake2/asU8a';
 
 import defaults from './defaults';
 
-export default function encode (_key: Uint8Array | string, prefix: number = defaults.prefix): string {
+export default function encode (_key: Uint8Array | string, prefix: Prefix = defaults.prefix): string {
   const key = u8aToU8a(_key);
 
   assert(defaults.allowedInputLengths.includes(key.length), `Expected a valid key to convert, with length ${defaults.allowedInputLengths}`);
