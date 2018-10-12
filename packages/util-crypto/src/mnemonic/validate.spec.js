@@ -1,0 +1,19 @@
+// Copyright 2017-2018 @polkadot/util-crypto authors & contributors
+// This software may be modified and distributed under the terms
+// of the ISC license. See the LICENSE file for details.
+
+import validate from './validate';
+
+describe('mnemonicValidate', () => {
+  it('returns true on valid', () => {
+    expect(
+      validate('seed sock milk update focus rotate barely fade car face mechanic mercy')
+    ).toEqual(true);
+  });
+
+  it('returns false on invalid', () => {
+    expect(
+      validate('wine photo extra cushion basket dwarf humor cloud truck job boat submit')
+    ).toEqual(false);
+  });
+});
