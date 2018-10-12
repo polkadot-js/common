@@ -27,16 +27,20 @@ export default function decode (encoded: string | Uint8Array, prefix: Prefix = d
     `Decoding ${encoded}: ${message}`;
 
   assert(decoded[0] === prefix, error('Invalid decoded address prefix'));
-  assert(defaults.allowedOutputLengths.includes(decoded.length), error('Invalid decoded address length'));
+  assert(defaults.allowedEncodedLengths.includes(decoded.length), error('Invalid decoded address length'));
 
   const isPublicKey = decoded.length === 35;
-  const finalLength = decoded.length - (isPublicKey ? 2 : 1);
-  const hash = blake2b(decoded.subarray(0, finalLength), 512);
+
+  // non-publicKeys has 1 byte checksums, else default to 2
+  const endPos = decoded.length - (isPublicKey ? 2 : 1);
+
+  // calculate the hash and do the checksum byte checks
+  const hash = blake2b(decoded.subarray(0, endPos), 512);
   const checks = isPublicKey
     ? decoded[decoded.length - 2] === hash[0] && decoded[decoded.length - 1] === hash[1]
     : decoded[decoded.length - 1] === hash[0];
 
   assert(checks, error('Invalid decoded address checksum'));
 
-  return decoded.slice(1, finalLength);
+  return decoded.slice(1, endPos);
 }

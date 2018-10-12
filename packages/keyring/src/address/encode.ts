@@ -19,14 +19,17 @@ import defaults from './defaults';
 export default function encode (_key: Uint8Array | string, prefix: Prefix = defaults.prefix): string {
   const key = u8aToU8a(_key);
 
-  assert(defaults.allowedInputLengths.includes(key.length), `Expected a valid key to convert, with length ${defaults.allowedInputLengths}`);
+  assert(defaults.allowedDecodedLengths.includes(key.length), `Expected a valid key to convert, with length ${defaults.allowedDecodedLengths}`);
 
+  const isPublicKey = key.length === 32;
+
+  // generate an input with the prefix and calculate hash
   const input = u8aConcat(new Uint8Array([prefix]), key);
   const hash = blake2b(input, 512);
 
   return bs58.encode(
     u8aToBuffer(
-      u8aConcat(input, hash.subarray(0, key.length === 32 ? 2 : 1))
+      u8aConcat(input, hash.subarray(0, isPublicKey ? 2 : 1))
     )
   );
 }

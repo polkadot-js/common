@@ -38,4 +38,28 @@ describe('encode', () => {
       )
     ).toEqual('Pqt7');
   });
+
+  it('encodes a 2-byte address', () => {
+    expect(
+      encode(
+        new Uint8Array([0, 1]), 68
+      )
+    ).toEqual('2jpAJz');
+  });
+
+  it('encodes a 4-byte address', () => {
+    expect(
+      encode(
+        new Uint8Array([1, 2, 3, 4]), 68
+      )
+    ).toEqual('as7QnGQ7');
+  });
+
+  it('enodes a 8-byte address', () => {
+    expect(
+      encode(
+        new Uint8Array([42, 44, 10, 0, 0, 0, 0, 0]), 68
+      )
+    ).toEqual('4q7qY5RBG7Z4xX');
+  });
 });

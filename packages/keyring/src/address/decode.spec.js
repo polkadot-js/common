@@ -39,10 +39,28 @@ describe('decode', () => {
     ).toEqual(new Uint8Array([1]));
   });
 
-  it('decodes a short address (with prefix)', () => {
+  it('decodes a 1-byte accountId (with prefix)', () => {
     expect(
       decode('Pqt7', 68)
     ).toEqual(new Uint8Array([1]));
+  });
+
+  it('decodes a 2-byte accountId', () => {
+    expect(
+      decode('2jpAJz', 68)
+    ).toEqual(new Uint8Array([0, 1]));
+  });
+
+  it('encodes a 4-byte address', () => {
+    expect(
+      decode('as7QnGQ7', 68)
+    ).toEqual(new Uint8Array([1, 2, 3, 4]));
+  });
+
+  it('decodes a 8-byte accountId', () => {
+    expect(
+      decode('4q7qY5RBG7Z4xX', 68)
+    ).toEqual(new Uint8Array([42, 44, 10, 0, 0, 0, 0, 0]));
   });
 
   it('fails when prefix is invalid', () => {
