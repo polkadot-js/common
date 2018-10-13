@@ -5,7 +5,6 @@
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
 
 import mnemonicToSecret from '@polkadot/util-crypto/mnemonic/toSecret';
-import naclKeypairFromSecret from '@polkadot/util-crypto/nacl/keypair/fromSecret';
 import naclKeypairFromSeed from '@polkadot/util-crypto/nacl/keypair/fromSeed';
 import hexToU8a from '@polkadot/util/hex/toU8a';
 
@@ -34,7 +33,7 @@ export default class Keyring implements KeyringInstance {
   }
 
   addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta): KeyringPair {
-    return this.addPair(createPair(naclKeypairFromSecret(mnemonicToSecret(mnemonic)), meta));
+    return this.addFromSeed(mnemonicToSecret(mnemonic).subarray(0, 32), meta);
   }
 
   addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair {
