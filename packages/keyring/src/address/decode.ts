@@ -26,8 +26,12 @@ export default function decode (encoded: string | Uint8Array, prefix: Prefix = d
   const error = (message: string) =>
     `Decoding ${encoded}: ${message}`;
 
-  assert(decoded[0] === prefix, error('Invalid decoded address prefix'));
+  assert(defaults.allowedPrefix.includes(decoded[0] as Prefix), error('Invalid decoded address prefix'));
   assert(defaults.allowedEncodedLengths.includes(decoded.length), error('Invalid decoded address length'));
+
+  if (decoded[0] !== prefix) {
+    console.log(`WARN: Expected ${prefix}, found ${decoded[0]}`);
+  }
 
   const isPublicKey = decoded.length === 35;
 

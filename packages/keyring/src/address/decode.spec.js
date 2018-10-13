@@ -63,9 +63,9 @@ describe('decode', () => {
     ).toEqual(new Uint8Array([42, 44, 10, 0, 0, 0, 0, 0]));
   });
 
-  it('fails when prefix is invalid', () => {
+  it('allows invalid prefix (in list)', () => {
     expect(
-      () => decode('BXHKtJjKdXjvbvTg6qK275sgcKKq8dnU38MQQAiR3LN2stP')
+      () => decode('6GfvWUvHvU8otbZ7sFhXH4eYeMcKdUkL61P3nFy52efEPVUx')
     ).toThrow(/address prefix/);
   });
 
