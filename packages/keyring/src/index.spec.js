@@ -6,6 +6,7 @@ import hexToU8a from '@polkadot/util/hex/toU8a';
 import u8aFromString from '@polkadot/util/u8a/fromString';
 
 import Keyring from './index';
+import setPrefix from './address/setPrefix';
 
 describe('keypair', () => {
   const publicKeyOne = new Uint8Array([47, 140, 97, 41, 216, 22, 207, 81, 195, 116, 188, 127, 8, 195, 230, 62, 209, 86, 207, 120, 174, 251, 74, 101, 80, 217, 123, 135, 153, 121, 119, 238]);
@@ -18,6 +19,7 @@ describe('keypair', () => {
     keypair = new Keyring();
 
     keypair.addFromSeed(seedOne);
+    setPrefix(42);
   });
 
   it('adds the pair', () => {
@@ -27,9 +29,11 @@ describe('keypair', () => {
   });
 
   it('adds from a mnemonic', () => {
+    setPrefix(68);
+
     expect(
-      keypair.addFromMnemonic('seed sock milk update focus rotate barely fade car face mechanic mercy').address()
-    ).toEqual('5E2DuAdUMXXu8yvuydaEtcGBN6MFJpa9cCmvR1wh9WS3GLg4');
+      keypair.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card').address()
+    ).toEqual('7pDZKLEixRnF6Q5jzr7DsCEiNPt3d6Rknc14SyUcnRwTQK14');
   });
 
   it('allows publicKeys retrieval', () => {
