@@ -4,7 +4,6 @@
 
 import { KeyringInstance } from './types';
 
-import hexToU8a from '@polkadot/util/hex/toU8a';
 import u8aFromString from '@polkadot/util/u8a/fromString';
 
 import Keyring from './index';
