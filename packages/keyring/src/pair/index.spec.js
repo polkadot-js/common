@@ -6,21 +6,20 @@ import testingPairs from '../testingPairs';
 
 const keyring = testingPairs();
 
-// aligned with @polkadot/util-crypto tests
 describe('pair', () => {
-  const SIGNATURE = new Uint8Array([28, 58, 206, 239, 249, 70, 59, 191, 166, 40, 219, 218, 235, 170, 25, 79, 10, 94, 9, 197, 34, 126, 1, 150, 246, 68, 28, 238, 36, 26, 172, 163, 168, 90, 202, 211, 126, 246, 57, 212, 43, 24, 88, 197, 240, 113, 118, 76, 37, 81, 91, 110, 236, 50, 144, 134, 100, 223, 220, 238, 34, 185, 211, 7]);
+  const SIGNATURE = new Uint8Array([80, 191, 198, 147, 225, 207, 75, 88, 126, 39, 129, 109, 191, 38, 72, 181, 75, 254, 81, 143, 244, 79, 237, 38, 236, 141, 28, 252, 134, 26, 169, 234, 79, 33, 153, 158, 151, 34, 175, 188, 235, 20, 35, 135, 83, 120, 139, 211, 233, 130, 1, 208, 201, 215, 73, 80, 56, 98, 185, 196, 11, 8, 193, 14]);
 
   it('has a publicKey', () => {
     expect(
-      keyring.one.publicKey()
+      keyring.alice.publicKey()
     ).toEqual(
-      new Uint8Array([47, 140, 97, 41, 216, 22, 207, 81, 195, 116, 188, 127, 8, 195, 230, 62, 209, 86, 207, 120, 174, 251, 74, 101, 80, 217, 123, 135, 153, 121, 119, 238])
+      new Uint8Array([209, 114, 167, 76, 218, 76, 134, 89, 18, 195, 43, 160, 168, 10, 87, 174, 105, 171, 174, 65, 14, 92, 203, 89, 222, 232, 78, 47, 68, 50, 219, 79])
     );
   });
 
   it('allows signing', () => {
     expect(
-      keyring.one.sign(
+      keyring.alice.sign(
         new Uint8Array([0x61, 0x62, 0x63, 0x64])
       )
     ).toEqual(SIGNATURE);
@@ -28,7 +27,7 @@ describe('pair', () => {
 
   it('validates a correctly signed message', () => {
     expect(
-      keyring.one.verify(
+      keyring.alice.verify(
         new Uint8Array([0x61, 0x62, 0x63, 0x64]),
         SIGNATURE
       )
@@ -37,7 +36,7 @@ describe('pair', () => {
 
   it('fails a correctly signed message (message changed)', () => {
     expect(
-      keyring.one.verify(
+      keyring.alice.verify(
         new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]),
         SIGNATURE
       )

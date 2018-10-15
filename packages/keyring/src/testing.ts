@@ -25,11 +25,12 @@ const SEEDS: { [index: string ]: Uint8Array } = {
   eve:
     padSeed('Eve'),
   ferdie:
-    padSeed('Ferdie'),
-  one:
-    padSeed('12345678901234567890123456789012'),
-  two:
-    hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60')
+    padSeed('Ferdie')
+  // NOTE These were originally part of tests, don't remove completely (yet), first check impact
+  // one:
+  //   padSeed('12345678901234567890123456789012'),
+  // two:
+  //   hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60')
 };
 
 export default function testKeyring (): KeyringInstance {
