@@ -9,9 +9,13 @@
  * @description
  * From an `Uint8Array` input, calculate and return a list of nibbles that makes up the input.
  * @example
- *   import { fromNibbles } from '@polkadot/trie-hash/util';
+ * <BR>
  *
- *   asNibbles(new Uint8Array([4, 1, 2, 0])) // => Uint8Array([0x41, 0x20]
+ * ```javascript
+ * import { fromNibbles } from '@polkadot/trie-hash/util';
+ *
+ * asNibbles(new Uint8Array([4, 1, 2, 0])); // => Uint8Array([0x41, 0x20]
+ * ```
  */
 export default function fromNibbles (nibbles: Uint8Array | Array<number>): Uint8Array {
   const u8a = new Uint8Array(nibbles.length / 2);
