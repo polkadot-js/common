@@ -9,7 +9,7 @@ import rlpEncode from '@polkadot/util-rlp/encode';
 
 import encode from './index';
 
-export default function encodeAux (pairs: Trie$Pairs, preLength: number): any {
+export default function encodeAux (pairs: Trie$Pairs, preLength: number): Uint8Array | any[] {
   const encoded = encode(pairs, preLength);
   const rlped = rlpEncode(encoded);
 
