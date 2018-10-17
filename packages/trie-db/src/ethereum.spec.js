@@ -22,7 +22,7 @@ describe('official tests', () => {
   describe.skip('ordered tests', () => {
     const testNames = Object.keys(trietest);
 
-    trietest.forEach(({ name, input, root }) => {
+    testNames.forEach(({ name, input, root }) => {
       it(name, () => {
         input.map((input) =>
           trie.put(toU8a(input[0]), toU8a(input[1]))
@@ -40,13 +40,13 @@ describe('official tests', () => {
   describe('unordered tests', () => {
     const testNames = Object.keys(trieanyorder);
 
-    trieanyorder.forEach(({ name, input, root }) => {
+    testNames.forEach(({ name, input, root }) => {
       const keys = Object.keys(input);
 
       it(name, () => {
         keys.map((key) =>
           trie.put(toU8a(key), toU8a(input[key]))
-        )
+        );
 
         expect(
           u8aToHex(trie.getRoot())
