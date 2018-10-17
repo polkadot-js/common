@@ -13,3 +13,5 @@ yarn-debug.log*
 yarn-error.log*
 store.db
 store.db.compacted
+_book
+docs/html
