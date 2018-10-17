@@ -6,6 +6,10 @@ import { Trie$Pairs } from '../types';
 
 import getSharedLength from './sharedLength';
 
+/**
+ * @name sharedPrefixLength
+ * @signature sharedPrefixLength (pairs: Trie$Pairs): number
+ */
 export default function sharedPrefixLength (pairs: Trie$Pairs): number {
   return pairs.reduce((length, { k }, index) => {
     if (index === 0) {
