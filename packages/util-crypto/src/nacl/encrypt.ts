@@ -18,9 +18,13 @@ type Encrypted = {
  * @description
  * Returns an encrypted message, using the `secretKey` and `nonce`. If the `nonce` was not supplied, a random value is generated.
  * @example
- *   import { naclEncrypt } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   naclSign([...], [...]) // => [...]
+ * ```javascript
+ * import { naclEncrypt } from '@polkadot/util-crypto';
+ *
+ * naclEncrypt([...], [...]); // => [...]
+ * ```
  */
 export default function naclEncrypt (message: Uint8Array, secret: Uint8Array, nonce: Uint8Array = randomAsU8a(24)): Encrypted {
   return {

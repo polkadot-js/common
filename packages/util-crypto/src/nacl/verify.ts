@@ -11,9 +11,13 @@ import nacl from 'tweetnacl';
  * @description
  * Verifies the `signature` on `message` with the supplied `plublicKey`. Returns `true` on sucess, `false` otherwise.
  * @example
- *   import { naclVerify } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   naclVerify([...], [...], [...]) // => true/false
+ * ```javascript
+ * import { naclVerify } from '@polkadot/util-crypto';
+ *
+ * naclVerify([...], [...], [...]); // => true/false
+ * ```
  */
 export default function naclVerify (message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array): boolean {
   return nacl.sign.detached.verify(message, signature, publicKey);

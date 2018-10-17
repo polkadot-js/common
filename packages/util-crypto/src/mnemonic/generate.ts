@@ -4,6 +4,19 @@
 
 import { generateMnemonic } from 'bip39';
 
+/**
+ * @name mnemonicGenerate
+ * @signature mnemonicGenerate (): string
+ * @summary Creates a valid mnemonic string using using [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki).
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { mnemonicGenerate } from '@polkadot/util-crypto';
+ *
+ * const mnemonic = mnemonicGenerate(); // => string
+ * ```
+ */
 export default function mnemonicGenerate (): string {
   return generateMnemonic();
 }

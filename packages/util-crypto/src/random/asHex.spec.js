@@ -29,7 +29,7 @@ describe('randomAsBuffer', () => {
     ).toHaveLength(32 * 2 + 2);
   });
 
-  it('generates with the suuplied length', () => {
+  it('generates with the supplied length', () => {
     expect(
       randomAsHex(66)
     ).toHaveLength(66 * 2 + 2);

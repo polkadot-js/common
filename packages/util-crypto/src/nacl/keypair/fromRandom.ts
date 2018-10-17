@@ -7,15 +7,19 @@ import { KeypairType } from '../../types';
 import nacl from 'tweetnacl';
 
 /**
- * @name naclKeypair
+ * @name naclKeypairFromRandom
  * @signature naclKeypairFromRandom (): { secretKey: Uint8Array, publicKey: Uint8Array }
  * @summary Creates a new public/secret keypair.
  * @description
  * Returns a new generate object containing a `publicKey` & `secretKey`.
  * @example
- *   import { naclKeypair } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   naclKeypair() // => { secretKey: [...], publicKey: [...] }
+ * ```javascript
+ * import { naclKeypairFromRandom } from '@polkadot/util-crypto';
+ *
+ * naclKeypairFromRandom(); // => { secretKey: [...], publicKey: [...] }
+ * ```
  */
 export default function naclKeypairFromRandom (): KeypairType {
   return nacl.sign.keyPair();

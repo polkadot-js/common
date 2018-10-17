@@ -11,9 +11,13 @@ import xxhash64AsValue from './asValue';
  * @description
  * From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a non-prefixed hex string.
  * @example
- *   import { xxhash64AsRaw } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   xxhash64AsRaw('abcd', 0xabcd)) // => e29f70f8b8c96df7
+ * ```javascript
+ * import { xxhash64AsRaw } from '@polkadot/util-crypto';
+ *
+ * xxhash64AsRaw('abcd', 0xabcd)); // => e29f70f8b8c96df7
+ * ```
  */
 export default function xxhash64AsRaw (data: Buffer | Uint8Array | string, seed: number): string {
   return xxhash64AsValue(data, seed).toString(16);

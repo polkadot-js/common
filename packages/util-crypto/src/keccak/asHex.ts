@@ -13,9 +13,13 @@ import keccakAsU8a from './asU8a';
  * @description
  * From either a `string` or a `Buffer` input, create the keccak and return the result as a `0x` prefixed hex string.
  * @example
- *   import { keccakAsHex } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   keccakAsHex('123') // => 0x...
+ * ```javascript
+ * import { keccakAsHex } from '@polkadot/util-crypto';
+ *
+ * keccakAsHex('123'); // => 0x...
+ * ```
  */
 export default function keccakAsHex (value: Buffer | Uint8Array | string): string {
   return u8aToHex(

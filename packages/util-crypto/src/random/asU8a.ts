@@ -11,9 +11,13 @@ import nacl from 'tweetnacl';
  * @description
  * Returns a `Uint8Array` with the specified (optional) length filled with random bytes.
  * @example
- *   import { randomAsU8a } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   randomAsU8s() // => Uint8Array([...])
+ * ```javascript
+ * import { randomAsU8a } from '@polkadot/util-crypto';
+ *
+ * randomAsU8a(); // => Uint8Array([...])
+ * ```
  */
 export default function randomAsU8a (length: number = 32): Uint8Array {
   return nacl.randomBytes(length);

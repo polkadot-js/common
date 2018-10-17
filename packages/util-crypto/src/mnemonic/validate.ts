@@ -4,6 +4,20 @@
 
 import { validateMnemonic } from 'bip39';
 
+/**
+ * @name mnemonicValidate
+ * @signature mnemonicValidate (mnemonic: string): boolean
+ * @summary Validates a mnemonic input using [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki).
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { mnemonicGenerate, mnemonicValidate } from '@polkadot/util-crypto';
+ *
+ * const mnemonic = mnemonicGenerate(); // => string
+ * const isValidMnemonic = mnemonicValidate(mnemonic); // => boolean
+ * ```
+ */
 export default function mnemonicValidate (mnemonic: string): boolean {
   return validateMnemonic(mnemonic);
 }

@@ -13,9 +13,13 @@ import randomAsU8a from './asU8a';
  * @description
  * Returns a hex string with the specified (optional) length filled with random bytes.
  * @example
- *   import { randomAsHex } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   randomAsHex() // => 0x...
+ * ```javascript
+ * import { randomAsHex } from '@polkadot/util-crypto';
+ *
+ * randomAsHex(); // => 0x...
+ * ```
  */
 export default function randomAsHex (length: number = 32): string {
   return u8aToHex(
