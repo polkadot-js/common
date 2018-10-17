@@ -9,9 +9,13 @@
  * @description
  * Checks to see if the input value is a JavaScript string.
  * @example
- *   import { isString } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('isString', isString('test')); // => true
+ * ```javascript
+ * import { isString } from '@polkadot/util';
+ *
+ * console.log('isString', isString('test')); // => true
+ * ```
  */
 export default function isString (value: any): value is string {
   return typeof value === 'string';

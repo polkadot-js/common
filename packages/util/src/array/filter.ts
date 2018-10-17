@@ -12,10 +12,14 @@ import isUndefined from '../is/undefined';
  * @description
  * Returns a new array with all `undefined` values removed. Optionally, when `allowNulls = false`, it removes the `null` values as well
  * @example
- *   import { arrayFilter } from '@polkadot/util';
+ * <BR>
  *
- *   arrayFilter([0, void 0, true, null, false, '']); // [0, true, null, false, '']
- *   arrayFilter([0, void 0, true, null, false, ''], false); // [0, true, false, '']
+ * ```javascript
+ * import { arrayFilter } from '@polkadot/util';
+ *
+ * arrayFilter([0, void 0, true, null, false, '']); // [0, true, null, false, '']
+ * arrayFilter([0, void 0, true, null, false, ''], false); // [0, true, false, '']
+ * ```
  */
 export default function arrayFilter (array: Array<any>, allowNulls: boolean = true): Array<any> {
   return array.filter((value) => {

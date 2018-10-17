@@ -9,9 +9,13 @@
  * @description
  * String input values return the actual encoded `UInt8Array`.
  * @example
- *   import { u8aFromString } from '@polkadot/util';
+ * <BR>
  *
- *   u8aFromString('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
+ * ```javascript
+ * import { u8aFromString } from '@polkadot/util';
+ *
+ * u8aFromString('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
+ * ```
  */
 export default function u8aFromString (value: string): Uint8Array {
   const stringArray = [];

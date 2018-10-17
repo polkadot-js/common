@@ -11,9 +11,13 @@ import hasPrefix from './hasPrefix';
  * @description
  * Returns a `0x` prefixed string from the input value. If the input is already prefixed, it is returned unchanged.
  * @example
- *   import { hexAddPrefix } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('With prefix', hexAddPrefix('0a0b12')) // => 0x0a0b12
+ * ```javascript
+ * import { hexAddPrefix } from '@polkadot/util';
+ *
+ * console.log('With prefix', hexAddPrefix('0a0b12')); // => 0x0a0b12
+ * ```
  */
 export default function hexAddPrefix (value: string | null | undefined): string {
   if (value && hasPrefix(value)) {

@@ -9,9 +9,13 @@
  * @description
  * Checks to see if the input value is `undefined`.
  * @example
- *   import { isUndefined } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('isUndefined', isUndefined(void(0))); // => true
+ * ```javascript
+ * import { isUndefined } from '@polkadot/util';
+ *
+ * console.log('isUndefined', isUndefined(void(0))); // => true
+ * ```
  */
 export default function isUndefined (value: any): value is undefined {
   return typeof value === 'undefined';

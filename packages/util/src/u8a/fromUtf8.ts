@@ -13,9 +13,13 @@ const encoder = new TextEncoder();
  * @description
  * String input values return the actual encoded `UInt8Array`. `null` or `undefined` values returns an empty encoded array.
  * @example
- *   import { u8aFromUtf8 } from '@polkadot/util';
+ * <BR>
  *
- *   u8aFromUtf8('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
+ * ```javascript
+ * import { u8aFromUtf8 } from '@polkadot/util';
+ *
+ * u8aFromUtf8('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
+ * ```
  */
 export default function u8aFromUtf8 (value?: string): Uint8Array {
   if (!value) {

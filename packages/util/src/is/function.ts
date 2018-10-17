@@ -9,9 +9,13 @@
  * @description
  * Checks to see if the input value is a JavaScript function.
  * @example
- *   import { isFunction } from '@polkadot/util';
+ * <BR>
  *
- *   isFunction(() => false); // => true
+ * ```javascript
+ * import { isFunction } from '@polkadot/util';
+ *
+ * isFunction(() => false); // => true
+ * ```
  */
 export default function isFunction (value: any): value is Function {
   return typeof value === 'function';

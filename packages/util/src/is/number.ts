@@ -9,9 +9,13 @@
  * @description
  * Checks to see if the input value is a valid number.
  * @example
- *   import { isNumber } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('isNumber', isNumber(1234)); // => true
+ * ```javascript
+ * import { isNumber } from '@polkadot/util';
+ *
+ * console.log('isNumber', isNumber(1234)); // => true
+ * ```
  */
 export default function isNumber (value: any): value is number {
   return typeof value === 'number';

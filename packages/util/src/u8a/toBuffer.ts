@@ -9,9 +9,13 @@
  * @description
  * `null` inputs returns an empty `Buffer` result. `UInt8Array` input values return the actual bytes value converted to a `Buffer`. Anything that is not a `UInt8Array` throws an error.
  * @example
- *   import { u8aToBuffer } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('Buffer', u8aToBuffer('0x123480001f'));
+ * ```javascript
+ * import { u8aToBuffer } from '@polkadot/util';
+ *
+ * console.log('Buffer', u8aToBuffer('0x123480001f'));
+ * ```
  */
 export default function u8aToBuffer (value?: Uint8Array): Buffer {
   if (!value) {

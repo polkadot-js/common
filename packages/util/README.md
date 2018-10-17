@@ -17,7 +17,7 @@ Various useful utility functions that are used across all projects in the [@polk
 Installation -
 
 ```
-npm install --save @polkadot/util
+yarn add @polkadot/util
 ```
 
 Functions can be imported directly from the package, e.g.
@@ -34,4 +34,22 @@ import isHex from '@polkadot/util/is/hex';
 
 ## Available Utilities
 
-For a list of currently exposed methods, see the [library documentation](docs/README.md).
+For a list of currently exposed methods, see the [Polkadot-JS Common Documentation Portal](https://polkadot.js.org/api/common/util/).
+
+Utility methods for this package are split into groups
+
+### Assert
+
+* Checks for a valid test, if not `ExtError` is thrown
+
+### Logger
+
+* Creates a consistent log interface for messages that has `.log`, `.error`, `.warn` and `.debug` (controlled with environment `DEBUG=typeA,typeB`) methods.
+
+### Promisify
+
+* Wraps a supplied asynchronous callback function into a Promise, passing supplied parameters. When `error` is set, the Promise is rejected, else the Promise resolves with the `result` value.
+
+### Syncify
+
+* This is currently for Node environments only.

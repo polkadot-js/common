@@ -19,9 +19,13 @@ function reverse (value: string): string {
  * @description
  * `null` inputs returns a `BN(0)` result. Hex input values return the actual value converted to a BN. Anything that is not a hex string (including the `0x` prefix) throws an error.
  * @example
- *   import { hexToBn } from '@polkadot/util';
+ * <BR>
  *
- *   hexToBn('0x123480001f'); // => BN(0x123480001f)
+ * ```javascript
+ * import { hexToBn } from '@polkadot/util';
+ *
+ * hexToBn('0x123480001f'); // => BN(0x123480001f)
+ * ```
  */
 export default function hexToBn (_value?: string, isLe: boolean = false): BN {
   if (!_value) {

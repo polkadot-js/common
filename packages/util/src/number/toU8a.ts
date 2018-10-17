@@ -12,9 +12,13 @@ import numberToHex from './toHex';
  * @description
  * `null`/`undefined`/`NaN` inputs returns an empty `Uint8Array` result. `number` input values return the actual bytes value converted to a `Uint8Array`. With `bitLength`, it converts the value to the equivalent size.
  * @example
- *   import { numberToU8a } from '@polkadot/util';
+ * <BR>
  *
- *   numberToU8a(0x1234); // => [0x12, 0x34]
+ * ```javascript
+ * import { numberToU8a } from '@polkadot/util';
+ *
+ * numberToU8a(0x1234); // => [0x12, 0x34]
+ * ```
  */
 export default function numberToU8a (value?: number, bitLength: number = -1): Uint8Array {
   if (!value || isNaN(value)) {

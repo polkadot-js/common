@@ -14,9 +14,13 @@ import u8aToHex from './toHex';
  * @description
  * `UInt8Array` input values return the actual BN. `null` or `undefined` values returns an `0x0` value.
  * @example
- *   import { u8aToBn } from '@polkadot/util';
+ * <BR>
  *
- *   u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
+ * ```javascript
+ * import { u8aToBn } from '@polkadot/util';
+ *
+ * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
+ * ```
  */
 export default function u8aToBn (value: Uint8Array, isLe: boolean): BN {
   return hexToBn(

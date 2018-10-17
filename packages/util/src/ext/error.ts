@@ -23,9 +23,13 @@ function extend (that: any, name: string, value: any): void {
  * @description
  * The built-in JavaScript Error class is extended by adding a code to allow for Error categorization. In addition to the normal `stack`, `message`, the numeric `code` and `data` (any types) parameters are available on the object.
  * @example
- *   const { ExtError } from '@polkadot/util');
+ * <BR>
  *
- *   throw new ExtError('some message', ExtError.CODES.METHOD_NOT_FOUND); // => error.code = -32601
+ * ```javascript
+ * const { ExtError } from '@polkadot/util');
+ *
+ * throw new ExtError('some message', ExtError.CODES.METHOD_NOT_FOUND); // => error.code = -32601
+ * ```
  */
 export default class ExtError extends Error implements ExtErrorInterface {
   // @ts-ignore we are assigning it via extend

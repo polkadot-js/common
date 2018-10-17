@@ -11,9 +11,13 @@ import isInstanceOf from './instanceOf';
  * @description
  * Checks to see if the input object is an instance of `Buffer`.
  * @example
- *   import { isBuffer } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
+ * ```javascript
+ * import { isBuffer } from '@polkadot/util';
+ *
+ * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
+ * ```
  */
 export default function isBuffer (value: any): value is Buffer {
   return isInstanceOf(value, Buffer);

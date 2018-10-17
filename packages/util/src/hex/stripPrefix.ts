@@ -13,9 +13,13 @@ const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
  * @description
  * Tests for the existence of a `0x` prefix, and returns the value without the prefix. Un-prefixed values are returned as-is.
  * @example
- *   import { hexStripPrefix } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('stripped', hexStripPrefix('0x1234')); // => 1234
+ * ```javascript
+ * import { hexStripPrefix } from '@polkadot/util';
+ *
+ * console.log('stripped', hexStripPrefix('0x1234')); // => 1234
+ * ```
  */
 export default function hexStripPrefix (value: string | null | undefined): string {
   if (!value) {

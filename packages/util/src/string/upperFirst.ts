@@ -12,9 +12,13 @@ import isUndefined from '../is/undefined';
  * @description
  * Lowercase the first letter of a string
  * @example
- *   import { stringUpperFirst } from '@polkadot/util';
+ * <BR>
  *
- *   stringUpperFirst('abc'); // => 'Abc'
+ * ```javascript
+ * import { stringUpperFirst } from '@polkadot/util';
+ *
+ * stringUpperFirst('abc'); // => 'Abc'
+ * ```
  */
 export default function stringUpperFirst (_value: string): string {
   if (isNull(_value) || isUndefined(_value)) {

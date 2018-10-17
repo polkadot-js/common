@@ -9,9 +9,13 @@
  * @description
  * Checks to see if the input value is an instance of the test class.
  * @example
- *   import { isInstanceOf } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('isInstanceOf', isInstanceOf(new Array(0), Array)); // => true
+ * ```javascript
+ * import { isInstanceOf } from '@polkadot/util';
+ *
+ * console.log('isInstanceOf', isInstanceOf(new Array(0), Array)); // => true
+ * ```
  */
 export default function isInstanceOf (value: any, clazz: any): boolean {
   return value instanceof clazz;

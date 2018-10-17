@@ -9,9 +9,13 @@
  * @description
  * `UInt8Array` input values return the actual decoded string. `null` or `undefined` values returns an empty string.
  * @example
- *   import { u8aToString } from '@polkadot/util';
+ * <BR>
  *
- *   u8aToString(new Uint8Array([21,23,45,67])); // 21,23,45,67
+ * ```javascript
+ * import { u8aToString } from '@polkadot/util';
+ *
+ * u8aToString(new Uint8Array([21,23,45,67])); // 21,23,45,67
+ * ```
  */
 export default function u8aToString (value?: Uint8Array): string {
   if (!value || !value.length) {
