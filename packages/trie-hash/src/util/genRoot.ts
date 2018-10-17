@@ -9,6 +9,11 @@ import rlpEncode from '@polkadot/util-rlp/encode';
 
 import encode from '../encode';
 
+/**
+ * @name genRoot
+ * @signature genRoot (pairs: Trie$Pairs): Uint8Array
+ * @summary Encodes supplied pairs into u8a output by calculating with RLP.
+ */
 export default function genRoot (pairs: Trie$Pairs): Uint8Array {
   const encoded = encode(pairs, 0);
 
