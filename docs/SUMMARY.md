@@ -1,10 +1,5 @@
 ## Packages
 
-- [db](db/README.md)
-  - Classes
-    - Engines
-      - [DiskDb](db/classes/_disk_.diskdb.md)
-      - [Memory](db/classes/_memory_.memory.md)
 - [keyring](keyring/README.md)
   - Classes
     - [Keyring](keyring/classes/_index_.keyring.md)
@@ -84,22 +79,6 @@
       - [xxhash64AsHex](util-crypto/modules/_xxhash_xxhash64_ashex_.md)
       - [xxhash64AsRaw](util-crypto/modules/_xxhash_xxhash64_asraw_.md)
       - [xxhash64AsValue](util-crypto/modules/_xxhash_xxhash64_asvalue_.md)
-- [util-rlp](util-rlp/README.md)
-  - Functions
-    - Decoder
-      - [decode](util-rlp/modules/_decoder_index_.md)
-      - [decodeListLong](util-rlp/modules/_decoder_listlong_.md)
-      - [decodeListShort](util-rlp/modules/_decoder_listshort_.md)
-      - [decodeNumber](util-rlp/modules/_decoder_number_.md)
-      - [decodeSingle](util-rlp/modules/_decoder_single_.md)
-      - [decodeString](util-rlp/modules/_decoder_string_.md)
-      - [safeParseInt](util-rlp/modules/_decoder_safeparseint_.md)
-    - Encoder
-      - [encode](util-rlp/modules/_encoder_index_.md)
-      - [encodeArray](util-rlp/modules/_encoder_array_.md)
-      - [encodeLength](util-rlp/modules/_encoder_length_.md)
-      - [encodeU8a](util-rlp/modules/_encoder_u8a_.md)
-      - [toU8a](util-rlp/modules/_encoder_tou8a_.md)
 
 ## Examples
 
