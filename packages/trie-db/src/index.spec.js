@@ -7,7 +7,7 @@ import toU8a from '@polkadot/util/u8a/toU8a';
 
 import Trie from './index';
 
-describe('simple save and retrive', () => {
+describe('simple save and retrieve', () => {
   const trie = new Trie();
 
   it('starts with a valid root', () => {
@@ -218,9 +218,9 @@ describe('testing deletions cases', () => {
   const trie = new Trie();
 
   it('should delete from a branch->branch-branch', () => {
-    trie.put(new Uint8Array([11, 11, 11]), toU8a('first')),
-    trie.put(new Uint8Array([12, 22, 22]), toU8a('create the first branch')),
-    trie.put(new Uint8Array([12, 34, 44]), toU8a('create the last branch'))
+    trie.put(new Uint8Array([11, 11, 11]), toU8a('first'));
+    trie.put(new Uint8Array([12, 22, 22]), toU8a('create the first branch'));
+    trie.put(new Uint8Array([12, 34, 44]), toU8a('create the last branch'));
     trie.del(new Uint8Array([12, 22, 22]));
 
     const value = trie.get(new Uint8Array([12, 22, 22]));
@@ -228,11 +228,11 @@ describe('testing deletions cases', () => {
     expect(null).toEqual(value);
   });
 
-  it('should delete from a branch->branch-extention', () => {
-    trie.put(new Uint8Array([11, 11, 11]), toU8a('first')),
-    trie.put(new Uint8Array([12, 22, 22]), toU8a('create the first branch')),
-    trie.put(new Uint8Array([12, 33, 33]), toU8a('create the middle branch')),
-    trie.put(new Uint8Array([12, 33, 44]), toU8a('create the last branch'))
+  it('should delete from a branch->branch-extension', () => {
+    trie.put(new Uint8Array([11, 11, 11]), toU8a('first'));
+    trie.put(new Uint8Array([12, 22, 22]), toU8a('create the first branch'));
+    trie.put(new Uint8Array([12, 33, 33]), toU8a('create the middle branch'));
+    trie.put(new Uint8Array([12, 33, 44]), toU8a('create the last branch'));
     trie.del(new Uint8Array([12, 22, 22]));
 
     const value = trie.get(new Uint8Array([12, 22, 22]));
@@ -240,7 +240,7 @@ describe('testing deletions cases', () => {
     expect(null).toEqual(value);
   });
 
-  it('should delete from a extention->branch-extention', () => {
+  it('should delete from a extension->branch-extension', () => {
     trie.put(new Uint8Array([11, 11, 11]), toU8a('first'));
     trie.put(new Uint8Array([12, 22, 22]), toU8a('create the first branch'));
     trie.put(new Uint8Array([12, 33, 33]), toU8a('create the middle branch'));
@@ -252,7 +252,7 @@ describe('testing deletions cases', () => {
     expect(null).toEqual(value);
   });
 
-  it('should delete from a extention->branch-branch', () => {
+  it('should delete from a extension->branch-branch', () => {
     trie.put(new Uint8Array([11, 11, 11]), toU8a('first'));
     trie.put(new Uint8Array([12, 22, 22]), toU8a('create the first branch'));
     trie.put(new Uint8Array([12, 33, 33]), toU8a('create the middle branch'));
