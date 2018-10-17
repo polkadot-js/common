@@ -15,13 +15,17 @@ import pairsUniq from './util/pairsUniq';
  * @description
  * From an `Array<{k: Uint8Array, v: Uint8Array}>` input, calculate the triehash and return the result as a `Uint8Array`.
  * @example
- *   import { u8aFromString } from '@polkadot/util';
- *   import { trieRoot } from '@polkadot/trie-hash';
+ * <BR>
  *
- *   trieRoot([{
- *     k: u8aFromString('A'),
- *     v: u8aFromString('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
- *   }]) // => 0xd23786fb4a010da3ce639d66d5e904a11dbc02746d1ce25029e53290cabf28ab
+ * ```javascript
+ * import { u8aFromString } from '@polkadot/util';
+ * import { trieRoot } from '@polkadot/trie-hash';
+ *
+ * trieRoot([{
+ *   k: u8aFromString('A'),
+ *   v: u8aFromString('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+ * }]); // => 0xd23786fb4a010da3ce639d66d5e904a11dbc02746d1ce25029e53290cabf28ab
+ * ```
  */
 export default function trieRoot (pairs: Trie$Pairs): Uint8Array {
   return genRoot(
