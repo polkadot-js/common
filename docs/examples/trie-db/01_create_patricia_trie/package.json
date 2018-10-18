@@ -10,8 +10,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@polkadot/trie-db": "^0.31.6",
-    "@polkadot/db": "^0.31.6"
+    "@polkadot/trie-db": "^0.32.1",
+    "@polkadot/db": "^0.32.2"
   },
   "devDependencies": {
     "rimraf": "^2.6.2"
