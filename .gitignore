@@ -14,7 +14,6 @@ yarn-error.log*
 store.db
 store.db.compacted
 _book
-docs/html
 docs/gitbook/**
 docs/*.html
 docs/examples/**/index.html
