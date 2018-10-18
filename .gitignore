@@ -1,5 +1,7 @@
+_book/
 build/
 coverage/
+docs/
 node_modules/
 tmp/
 .DS_Store
