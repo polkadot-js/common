@@ -4,11 +4,7 @@
 
 import { KeyringPairs, KeyringPair } from './types';
 
-import assert from '@polkadot/util/assert';
-import isHex from '@polkadot/util/is/hex';
-import isU8a from '@polkadot/util/is/u8a';
-import u8aToHex from '@polkadot/util/u8a/toHex';
-import u8aToU8a from '@polkadot/util/u8a/toU8a';
+import { assert, isHex, isU8a, u8aToHex, u8aToU8a } from '@polkadot/util/index';
 
 import addressDecode from './address/decode';
 

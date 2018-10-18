@@ -7,13 +7,8 @@ import { Prefix } from './types';
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L6
 
 import bs58 from 'bs58';
-
-import assert from '@polkadot/util/assert';
-import bufferToU8a from '@polkadot/util/buffer/toU8a';
-import isHex from '@polkadot/util/is/hex';
-import isU8a from '@polkadot/util/is/u8a';
-import u8aToU8a from '@polkadot/util/u8a/toU8a';
-import blake2b from '@polkadot/util-crypto/blake2/asU8a';
+import { assert, bufferToU8a, isHex, isU8a, u8aToU8a } from '@polkadot/util/index';
+import { blake2AsU8a } from '@polkadot/util-crypto/index';
 
 import defaults from './defaults';
 
@@ -39,7 +34,7 @@ export default function decode (encoded: string | Uint8Array, prefix: Prefix = d
   const endPos = decoded.length - (isPublicKey ? 2 : 1);
 
   // calculate the hash and do the checksum byte checks
-  const hash = blake2b(decoded.subarray(0, endPos), 512);
+  const hash = blake2AsU8a(decoded.subarray(0, endPos), 512);
   const checks = isPublicKey
     ? decoded[decoded.length - 2] === hash[0] && decoded[decoded.length - 1] === hash[1]
     : decoded[decoded.length - 1] === hash[0];

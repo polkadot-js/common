@@ -4,7 +4,7 @@
 
 import { KeypairType } from '../../types';
 
-import stringToU8a from '@polkadot/util/string/toU8a';
+import { stringToU8a } from '@polkadot/util/index';
 
 import blake2AsU8a from '../../blake2/asU8a';
 import fromSeed from './fromSeed';

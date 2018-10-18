@@ -4,7 +4,7 @@
 
 import { Node, NodeType, NodeNotEmpty } from '../types';
 
-import isNull from '@polkadot/util/is/null';
+import { isNull } from '@polkadot/util/index';
 import nodeDecode from '@polkadot/util-rlp/decode';
 import nodeEncode from '@polkadot/util-rlp/encode';
 

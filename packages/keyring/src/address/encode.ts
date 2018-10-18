@@ -7,12 +7,8 @@ import { Prefix } from './types';
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L34
 
 import bs58 from 'bs58';
-
-import assert from '@polkadot/util/assert';
-import u8aConcat from '@polkadot/util/u8a/concat';
-import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
-import u8aToU8a from '@polkadot/util/u8a/toU8a';
-import blake2b from '@polkadot/util-crypto/blake2/asU8a';
+import { assert, u8aConcat, u8aToBuffer, u8aToU8a } from '@polkadot/util/index';
+import { blake2AsU8a } from '@polkadot/util-crypto/index';
 
 import defaults from './defaults';
 
@@ -25,7 +21,7 @@ export default function encode (_key: Uint8Array | string, prefix: Prefix = defa
 
   // generate an input with the prefix and calculate hash
   const input = u8aConcat(new Uint8Array([prefix]), key);
-  const hash = blake2b(input, 512);
+  const hash = blake2AsU8a(input, 512);
 
   return bs58.encode(
     u8aToBuffer(

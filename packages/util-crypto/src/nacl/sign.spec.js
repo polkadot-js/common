@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import u8aFromString from '@polkadot/util/string/toU8a';
+import { u8aFromString } from '@polkadot/util/index';
 
 import { naclSign, naclKeypairFromSeed } from './index';
 

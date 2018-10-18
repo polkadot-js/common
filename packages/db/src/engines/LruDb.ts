@@ -5,7 +5,7 @@
 import { BaseDb, ProgressCb } from '../types';
 
 import { LRUMap } from 'lru_map';
-import logger from '@polkadot/util/logger';
+import { logger } from '@polkadot/util/index';
 
 type CachedValue = {
   value: Uint8Array | null

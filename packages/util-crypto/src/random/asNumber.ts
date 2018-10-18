@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import BN from 'bn.js';
-import hexToBn from '@polkadot/util/hex/toBn';
+import { hexToBn } from '@polkadot/util/index';
 
 import randomAsHex from './asHex';
 

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import hashing from '@polkadot/util-crypto/keccak/asU8a';
+import { keccakAsU8a as hashing } from '@polkadot/util-crypto/index';
 import trieRoot from '@polkadot/trie-hash/root';
 
 const EMPTY_NODE = new Uint8Array();

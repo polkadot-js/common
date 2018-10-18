@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the MPL-2.0 license. See the LICENSE file for details.
 
-import assert from '@polkadot/util/assert';
+import { assert } from '@polkadot/util/index';
 
 export default function safeParseInt (input: Uint8Array): number {
   assert(input[0] > 0, 'invalid rlp, extra zeros found');

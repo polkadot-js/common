@@ -2,12 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import stringToU8a from '@polkadot/util/string/toU8a';
-import u8aConcat from '@polkadot/util/u8a/concat';
-import u8aFixLength from '@polkadot/util/u8a/fixLength';
-import assert from '@polkadot/util/assert';
-import naclDecrypt from '@polkadot/util-crypto/nacl/decrypt';
-import naclFromSeed from '@polkadot/util-crypto/nacl/keypair/fromSeed';
+import { assert, stringToU8a, u8aConcat, u8aFixLength } from '@polkadot/util/index';
+import { naclDecrypt, naclKeypairFromSeed } from '@polkadot/util-crypto/index';
 
 import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
 
@@ -38,7 +34,7 @@ export default function decode (passphrase?: string, _encrypted?: Uint8Array) {
   const publicKey = encoded.subarray(PUBLIC_OFFSET, PUBLIC_OFFSET + KEY_LENGTH);
   const seed = encoded.subarray(SEED_OFFSET, SEED_OFFSET + KEY_LENGTH);
   const secretKey = u8aConcat(seed, publicKey);
-  const validate = naclFromSeed(seed);
+  const validate = naclKeypairFromSeed(seed);
 
   assert(validate.publicKey.toString() === publicKey.toString(), 'Pkcs8 decoded publicKeys are not matching');
 

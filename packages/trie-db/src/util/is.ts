@@ -4,7 +4,7 @@
 
 import { Node, NodeBranch, NodeKv, NodeEmpty, NodeType } from '../types';
 
-import isNull from '@polkadot/util/is/null';
+import { isNull } from '@polkadot/util/index';
 
 import { getNodeType } from './node';
 

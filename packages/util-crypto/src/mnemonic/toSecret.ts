@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import { mnemonicToSeed } from 'bip39';
-import bufferToU8a from '@polkadot/util/buffer/toU8a';
+import { bufferToU8a } from '@polkadot/util/index';
 
 export default function toSecret (mnemonic: string): Uint8Array {
   return bufferToU8a(
