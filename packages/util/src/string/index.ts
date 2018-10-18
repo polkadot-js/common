@@ -5,6 +5,7 @@
 import stringCamelCase from './camelCase';
 import stringLowerFirst from './lowerFirst';
 import stringShorten from './shorten';
+import stringToU8a from './toU8a';
 import stringUpperFirst from './upperFirst';
 
 /**
@@ -14,5 +15,6 @@ export {
   stringCamelCase,
   stringLowerFirst,
   stringShorten,
+  stringToU8a,
   stringUpperFirst
 };

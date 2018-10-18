@@ -20,8 +20,8 @@ describe('u8aToString', () => {
   it('decodes the buffer correctly', () => {
     expect(
       u8aToString(
-        new Uint8Array([21, 23, 45, 67])
+        new Uint8Array([208, 159, 209, 128, 208, 184, 208, 178, 208, 181, 209, 130, 44, 32, 208, 188, 208, 184, 209, 128, 33])
       )
-    ).toEqual('21,23,45,67');
+    ).toEqual('Привет, мир!');
   });
 });

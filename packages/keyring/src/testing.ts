@@ -4,12 +4,12 @@
 
 import { KeyringInstance } from './types';
 
-import u8aFromString from '@polkadot/util/u8a/fromString';
+import stringToU8a from '@polkadot/util/string/toU8a';
 
 import Keyring from './index';
 
 function padSeed (seed: string): Uint8Array {
-  return u8aFromString(seed.padEnd(32, ' '));
+  return stringToU8a(seed.padEnd(32, ' '));
 }
 
 const SEEDS: { [index: string ]: Uint8Array } = {

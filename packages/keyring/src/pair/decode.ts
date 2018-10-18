@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+import stringToU8a from '@polkadot/util/string/toU8a';
 import u8aConcat from '@polkadot/util/u8a/concat';
 import u8aFixLength from '@polkadot/util/u8a/fixLength';
-import u8aFromString from '@polkadot/util/u8a/fromString';
 import assert from '@polkadot/util/assert';
 import naclDecrypt from '@polkadot/util-crypto/nacl/decrypt';
 import naclFromSeed from '@polkadot/util-crypto/nacl/keypair/fromSeed';
@@ -24,7 +24,7 @@ export default function decode (passphrase?: string, _encrypted?: Uint8Array) {
     ? (naclDecrypt(
         encrypted.subarray(24),
         encrypted.subarray(0, 24),
-        u8aFixLength(u8aFromString(passphrase), 256, true)) as Uint8Array)
+        u8aFixLength(stringToU8a(passphrase), 256, true)) as Uint8Array)
     : encrypted;
 
   assert(encoded, `Unable to unencrypt using the supplied passphrase`);
