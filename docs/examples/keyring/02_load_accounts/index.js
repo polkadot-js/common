@@ -1,6 +1,6 @@
 // Import Keyring class and utility function
 const Keyring = require('@polkadot/keyring').default;
-const u8aFromUtf8 = require('@polkadot/util/u8a/fromUtf8').default;
+const stringToU8a = require('@polkadot/util/string/toU8a').default;
 
 async function main () {
   // Create account seed for Alice
@@ -13,7 +13,7 @@ async function main () {
   const keyring = new Keyring();
 
   // Create Alice's pair with account seed. Add to keyring pair dictionary
-  keyring.addFromSeed(u8aFromUtf8(ALICE_SEED));
+  keyring.addFromSeed(stringToU8a(ALICE_SEED));
 
   // Create Bob's pair with account address. Add to keyring pair dictionary
   keyring.addFromAddress(BOB_ADDR);

@@ -99,7 +99,7 @@ export default class Keyring implements KeyringInstance {
    *
    * ```javascript
    * import Keyring from '@polkadot/keyring';
-   * import u8aFromUtf8 from '@polkadot/util/u8a/fromUtf8';
+   * import stringToU8a from '@polkadot/util/string/toU8a';
    *
    * const ALICE_SEED = 'Alice'.padEnd(32, ' ');
    *
@@ -107,7 +107,7 @@ export default class Keyring implements KeyringInstance {
    * const keyring = new Keyring();
    *
    * // Add Alice to our keyring pair dictionary (with the known seed for the account)
-   * const pairAlice = keyring.addFromSeed(u8aFromUtf8(ALICE_SEED));
+   * const pairAlice = keyring.addFromSeed(stringToU8a(ALICE_SEED));
    * ```
    *
    * Refer to an actual implementation in [Polkadot-JS ui-keyring > account > create](https://github.com/polkadot-js/apps/blob/master/packages/ui-keyring/src/account/create.ts#L11)
@@ -127,7 +127,7 @@ export default class Keyring implements KeyringInstance {
    *
    * ```javascript
    * import Keyring from '@polkadot/keyring';
-   * import u8aFromUtf8 from '@polkadot/util/u8a/fromUtf8';
+   * import stringToU8a from '@polkadot/util/string/toU8a';
    *
    * const ALICE_SEED = 'Alice'.padEnd(32, ' ');
    *
@@ -135,7 +135,7 @@ export default class Keyring implements KeyringInstance {
    * const keyring = new Keyring();
    *
    * // Add Alice to our keyring pair dictionary (with the known seed for the account)
-   * const pairAlice = keyring.addFromSeed(u8aFromUtf8(ALICE_SEED));
+   * const pairAlice = keyring.addFromSeed(stringToU8a(ALICE_SEED));
    *
    * // Retrieve the same pair that is stored in the keyring pair dictionary by
    * // providing the account address as an argument, and also the public key as an argument.

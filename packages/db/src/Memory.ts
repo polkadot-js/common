@@ -23,7 +23,7 @@ import TransactionDb from './engines/TransactionDb';
  * <BR>
  *
  * ```javascript
- * import u8aFromString from '@polkadot/util/u8a/fromString';
+ * import stringToU8a from '@polkadot/util/string/toU8a';
  * import MemoryDb from '@polkadot/db/Memory';
  * import TransactionDb from '@polkadot/db/engines/TransactionDb';
  *
@@ -34,8 +34,8 @@ import TransactionDb from './engines/TransactionDb';
  * memoryDb.open();
  *
  * // Declare key/value pair to allocate to store under a the key
- * const key = u8aFromString('key');
- * const value = u8aFromString('some value');
+ * const key = stringToU8a('key');
+ * const value = stringToU8a('some value');
  *
  * // Store key/value pair in memory db
  * memoryDb.put(key, value);

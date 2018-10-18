@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import u8aFromString from '@polkadot/util/string/toU8a';
+import stringToU8a from '@polkadot/util/string/toU8a';
 import hexToU8a from '@polkadot/util/hex/toU8a';
 
 import { trieRoot } from './index';
@@ -22,8 +22,8 @@ describe('trieRoot', () => {
   it('encodes a simple k/v pair', () => {
     expect(
       trieRoot([{
-        k: u8aFromString('A'),
-        v: u8aFromString('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+        k: stringToU8a('A'),
+        v: stringToU8a('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
       }])
     ).toEqual(
       hexToU8a(
@@ -35,8 +35,8 @@ describe('trieRoot', () => {
   it('encodes two simple k/v pairs', () => {
     expect(
       trieRoot([
-        { k: u8aFromString('A'), v: u8aFromString('aaaa') },
-        { k: u8aFromString('B'), v: u8aFromString('bbbb') }
+        { k: stringToU8a('A'), v: stringToU8a('aaaa') },
+        { k: stringToU8a('B'), v: stringToU8a('bbbb') }
       ])
     ).toEqual(
       hexToU8a(
@@ -50,16 +50,16 @@ describe('trieRoot', () => {
     expect(
       trieRoot([
         {
-          k: u8aFromString('doe'),
-          v: u8aFromString('reindeer')
+          k: stringToU8a('doe'),
+          v: stringToU8a('reindeer')
         },
         {
-          k: u8aFromString('dog'),
-          v: u8aFromString('puppy')
+          k: stringToU8a('dog'),
+          v: stringToU8a('puppy')
         },
         {
-          k: u8aFromString('dogglesworth'),
-          v: u8aFromString('cat')
+          k: stringToU8a('dogglesworth'),
+          v: stringToU8a('cat')
         }
       ])
     ).toEqual(

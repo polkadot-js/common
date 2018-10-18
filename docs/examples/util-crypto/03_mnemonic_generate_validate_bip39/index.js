@@ -1,4 +1,5 @@
 const { mnemonicGenerate } = require('@polkadot/util-crypto');
+const { mnemonicToSeed } = require('@polkadot/util-crypto');
 const { mnemonicValidate } = require('@polkadot/util-crypto');
 const { toSecret } = require('@polkadot/util-crypto');
 const { naclKeypairFromSeed } = require('@polkadot/util-crypto');
@@ -14,7 +15,7 @@ async function main () {
 
   // Create valid seed from mnemonic as u8a and convert it to a string
   // FIXME - Replace with mnemonicToSeed once exposed
-  const seedAlice = toSecret(mnemonicAlice).subarray(0, 32);
+  const seedAlice = mnemonicToSeed(mnemonicAlice);
 
   // Generate new public/secret keypair for Alice from the supplied seed
   const { secretKey, publicKey } = naclKeypairFromSeed(seedAlice);

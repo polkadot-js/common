@@ -17,12 +17,12 @@ import pairsUniq from './util/pairsUniq';
  * <BR>
  *
  * ```javascript
- * import { u8aFromString } from '@polkadot/util';
+ * import stringToU8a from '@polkadot/util/string/toU8a';
  * import { trieRootOrdered } from '@polkadot/trie-hash';
  *
  * trieRootOrdered([
- *   u8aFromString('doe'),
- *   u8aFromString('reindeer')
+ *   stringToU8a('doe'),
+ *   stringToU8a('reindeer')
  * ]); // => 0xe766d5d51b89dc39d981b41bda63248d7abce4f0225eefd023792a540bcffee3
  * ```
  */

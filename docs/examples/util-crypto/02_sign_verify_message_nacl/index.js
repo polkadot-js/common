@@ -1,4 +1,4 @@
-const u8aFromString = require('@polkadot/util/u8a/fromString').default;
+const stringToU8a = require('@polkadot/util/string/toU8a').default;
 const { randomAsU8a } = require('@polkadot/util-crypto');
 
 const { naclKeypairFromSeed } = require('@polkadot/util-crypto');
@@ -11,11 +11,11 @@ async function main () {
   const seedAlice = 'Alice'.padEnd(32, ' ');
 
   // Generate new public/secret keypair for Alice from the supplied seed
-  const { secretKey, publicKey } = naclKeypairFromSeed(u8aFromString(seedAlice));
+  const { secretKey, publicKey } = naclKeypairFromSeed(stringToU8a(seedAlice));
 
   // Encrypt message. Create Uint8Array's filled with random bytes of specified length
   const secret = randomAsU8a(32);
-  const messagePreEncryption = u8aFromString('please send me DOTs');
+  const messagePreEncryption = stringToU8a('please send me DOTs');
   const noncePreEncryption = randomAsU8a(24);
 
   const { encrypted, nonce } = naclEncrypt(messagePreEncryption, secret, noncePreEncryption);

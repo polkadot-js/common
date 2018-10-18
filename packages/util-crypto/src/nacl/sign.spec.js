@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import u8aFromString from '@polkadot/util/string/toU8a';
+import stringToU8a from '@polkadot/util/string/toU8a';
 
 import { naclSign, naclKeypairFromSeed } from './index';
 
@@ -11,7 +11,7 @@ describe('naclSign', () => {
 
   beforeEach(() => {
     secretKey = naclKeypairFromSeed(
-      u8aFromString('12345678901234567890123456789012')
+      stringToU8a('12345678901234567890123456789012')
     ).secretKey;
   });
 
