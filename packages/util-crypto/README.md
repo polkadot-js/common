@@ -32,8 +32,8 @@ Below is a list of currently exposed methods published at the [Polkadot-JS Commo
       - [keccakAsU8a](https://polkadot.js.org/common/util-crypto/modules/_keccak_asu8a_.md)
     - Mnemonic
       - [mnemonicGenerate](https://polkadot.js.org/common/util-crypto/modules/_mnemonic_generate_.md)
-	    - [mnemonicValidate](https://polkadot.js.org/common/util-crypto/modules/_mnemonic_validate_.md)
-	    - [toSecret](https://polkadot.js.org/common/util-crypto/modules/_mnemonic_tosecret_.md)
+      - [mnemonicToSeed](https://polkadot.js.org/common/util-crypto/modules/_mnemonic_toseed_.md)
+      - [mnemonicValidate](https://polkadot.js.org/common/util-crypto/modules/_mnemonic_validate_.md)
     - Nacl
       - [naclDecrypt](https://polkadot.js.org/common/util-crypto/modules/_nacl_decrypt_.md)
       - [naclEncrypt](https://polkadot.js.org/common/util-crypto/modules/_nacl_encrypt_.md)
