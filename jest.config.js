@@ -7,5 +7,14 @@ module.exports = Object.assign({}, config, {
     '@polkadot/trie-(db-old|db|hash)(.*)$': '<rootDir>/packages/trie-$1/src/$2',
     '@polkadot/util-(crypto|rlp)(.*)$': '<rootDir>/packages/util-$1/src/$2',
     '@polkadot/util(.*)$': '<rootDir>/packages/util/src/$1'
-  }
+  },
+  modulePathIgnorePatterns: [
+    '<rootDir>/packages/db/build',
+    '<rootDir>/packages/keyring/build',
+    '<rootDir>/packages/trie-db/build',
+    '<rootDir>/packages/trie-hash/build',
+    '<rootDir>/packages/util/build',
+    '<rootDir>/packages/util-crypto/build',
+    '<rootDir>/packages/util-rlp/build'
+  ]
 });
