@@ -10,7 +10,10 @@ async function main () {
   const keyring = new Keyring();
 
   // Create pair and add Alice to keyring pair dictionary (with account seed)
-  keyring.addFromSeed(stringToU8a(ALICE_SEED));
+  const pairAlice = keyring.addFromSeed(stringToU8a(ALICE_SEED));
+
+  console.log(`Created keyring pair for Alice with address: ` +
+              `${keyring.getPair(pairAlice.address()).address()}`);
 }
 
 main().catch(console.error).finally(_ => process.exit());
