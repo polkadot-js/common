@@ -4,7 +4,7 @@
 
 import { KeyringInstance } from './types';
 
-import stringToU8a from '@polkadot/util/string/toU8a';
+import { stringToU8a } from '@polkadot/util/index';
 
 import Keyring from './index';
 

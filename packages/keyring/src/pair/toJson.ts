@@ -5,7 +5,7 @@
 import { KeyringPair$Json } from '../types';
 import { PairState } from './types';
 
-import u8aToHex from '@polkadot/util/u8a/toHex';
+import { u8aToHex } from '@polkadot/util/index';
 
 export default function toJson ({ address, meta }: PairState, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
   return {

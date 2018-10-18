@@ -4,7 +4,7 @@
 
 import { Trie$Pair, Trie$Pairs } from '../types';
 
-import u8aToHex from '@polkadot/util/u8a/toHex';
+import { u8aToHex } from '@polkadot/util/index';
 
 type PairMap = {
   [index: string]: Trie$Pair

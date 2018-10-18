@@ -4,7 +4,7 @@
 
 import { Trie$Pairs } from '../types';
 
-import keccakAsU8a from '@polkadot/util-crypto/keccak/asU8a';
+import { keccakAsU8a } from '@polkadot/util-crypto/index';
 import rlpEncode from '@polkadot/util-rlp/encode';
 
 import encode from '../encode';

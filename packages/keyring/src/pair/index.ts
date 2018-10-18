@@ -6,8 +6,7 @@ import { KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
 import { PairState } from './types';
 
-import naclSign from '@polkadot/util-crypto/nacl/sign';
-import naclVerify from '@polkadot/util-crypto/nacl/verify';
+import { naclSign, naclVerify } from '@polkadot/util-crypto/index';
 
 import encodeAddress from '../address/encode';
 import decode from './decode';
