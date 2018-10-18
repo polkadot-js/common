@@ -4,8 +4,6 @@
 
 import hexAddPrefix from './addPrefix';
 import hexFixLength from './fixLength';
-import hexFromBn from './fromBn';
-import hexFromNumber from './fromNumber';
 import hexHasPrefix from './hasPrefix';
 import hexStripPrefix from './stripPrefix';
 import hexToBn from './toBn';
@@ -18,8 +16,6 @@ import hexToU8a from './toU8a';
 export {
   hexAddPrefix,
   hexFixLength,
-  hexFromBn,
-  hexFromNumber,
   hexHasPrefix,
   hexStripPrefix,
   hexToBn,

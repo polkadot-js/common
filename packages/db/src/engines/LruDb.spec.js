@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import toU8a from '@polkadot/util/u8a/fromString';
+import toU8a from '@polkadot/util/u8a/toU8a';
 
 import LruDb from './LruDb';
 import MemoryDb from './MemoryDb';

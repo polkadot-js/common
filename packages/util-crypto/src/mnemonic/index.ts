@@ -3,14 +3,14 @@
 // of the ISC license. See the LICENSE file for details.
 
 import mnemonicGenerate from './generate';
+import mnemonicToSeed from './toSeed';
 import mnemonicValidate from './validate';
-import toSecret from './toSecret';
 
 /**
  * @summary Create valid mnemonic strings, validate them using BIP39, and convert them to valid seeds
  */
 export {
   mnemonicGenerate,
-  mnemonicValidate,
-  toSecret
+  mnemonicToSeed,
+  mnemonicValidate
 };

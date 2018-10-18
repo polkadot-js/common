@@ -5,6 +5,7 @@
 export * from './blake2';
 export * from './mnemonic';
 export * from './keccak';
+export * from './mnemonic';
 export * from './nacl';
 export * from './random';
 export * from './sha512';

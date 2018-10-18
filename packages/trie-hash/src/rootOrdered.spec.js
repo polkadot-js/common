@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import hexToU8a from '@polkadot/util/hex/toU8a';
-import u8aFromString from '@polkadot/util/u8a/fromString';
+import u8aFromString from '@polkadot/util/string/toU8a';
 
 import { trieRootOrdered } from './index';
 

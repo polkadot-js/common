@@ -7,7 +7,7 @@ import isHex from '../is/hex';
 import isString from '../is/string';
 import bufferToU8a from '../buffer/toU8a';
 import hexToU8a from '../hex/toU8a';
-import u8aFromUtf8 from './fromUtf8';
+import stringToU8a from '../string/toU8a';
 
 /**
  * @name u8aToU8a
@@ -39,7 +39,7 @@ export default function u8aToU8a (value?: Array<number> | Buffer | Uint8Array | 
       return hexToU8a(value);
     }
 
-    return u8aFromUtf8(value);
+    return stringToU8a(value);
   }
 
   if (Array.isArray(value)) {

@@ -15,7 +15,7 @@ import isString from '@polkadot/util/is/string';
 import isU8a from '@polkadot/util/is/u8a';
 import isUndefined from '@polkadot/util/is/undefined';
 import numberToU8a from '@polkadot/util/number/toU8a';
-import u8aFromUtf8 from '@polkadot/util/u8a/fromUtf8';
+import stringToU8a from '@polkadot/util/string/toU8a';
 
 type Encoder = {
   check: (value: any) => boolean,
@@ -31,7 +31,7 @@ function convertString (value: string): Uint8Array {
     return hexToU8a(value);
   }
 
-  return u8aFromUtf8(value);
+  return stringToU8a(value);
 }
 
 function convertU8a (value: Uint8Array): Uint8Array {

@@ -4,11 +4,11 @@
 
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
 
-import mnemonicToSecret from '@polkadot/util-crypto/mnemonic/toSecret';
+import mnemonicToSeed from '@polkadot/util-crypto/mnemonic/toSeed';
 import naclKeypairFromSeed from '@polkadot/util-crypto/nacl/keypair/fromSeed';
 import hexToU8a from '@polkadot/util/hex/toU8a';
 
-import addressDecode from './address/decode';
+import { decodeAddress, encodeAddress, setAddressPrefix } from './address';
 import createPair from './pair';
 import Pairs from './pairs';
 
@@ -57,7 +57,7 @@ export default class Keyring implements KeyringInstance {
    */
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array): KeyringPair {
     // @ts-ignore no secretKey - cannot unlock
-    return this.addPair(createPair({ publicKey: addressDecode(address) }, meta, defaultEncoded));
+    return this.addPair(createPair({ publicKey: decodeAddress(address) }, meta, defaultEncoded));
   }
 
   /**
@@ -84,7 +84,7 @@ export default class Keyring implements KeyringInstance {
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
   addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta): KeyringPair {
-    return this.addFromSeed(mnemonicToSecret(mnemonic).subarray(0, 32), meta);
+    return this.addFromSeed(mnemonicToSeed(mnemonic), meta);
   }
 
   /**
@@ -225,4 +225,4 @@ export default class Keyring implements KeyringInstance {
   }
 }
 
-export { Keyring };
+export { Keyring, decodeAddress, encodeAddress, setAddressPrefix };
