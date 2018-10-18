@@ -32,11 +32,23 @@ Alternatively the function can be accessed directly,
 import isHex from '@polkadot/util/is/hex';
 ```
 
-## Available Utilities
+## Documentation and Available Utilities
 
-For a list of currently exposed methods, see the [Polkadot-JS Common Documentation Portal](https://polkadot.js.org/api/common/util/).
+Below is a list of currently exposed methods published at the [Polkadot-JS Common Documentation Portal](https://polkadot.js.org/common/util/).
 
-Utility methods for this package are split into groups
+Utility methods for this package are split into groups, some of which are included in the list below:
+
+- [util](https://polkadot.js.org/common/util/README.md)
+  - Classes
+    - [Error](https://polkadot.js.org/common/util/classes/_ext_error_.exterror.md)
+  - Functions
+    - [arrayFilter](https://polkadot.js.org/common/util/modules/_array_filter_.md)
+    - [assert](https://polkadot.js.org/common/util/modules/_assert_.md)
+    - [logger](https://polkadot.js.org/common/util/modules/_logger_.md)
+    - [promisify](https://polkadot.js.org/common/util/modules/_promisify_.md)
+    - [syncify](https://polkadot.js.org/common/util/modules/_syncify_.md)
+
+Below is information about some of the available methods:
 
 ### Assert
 

@@ -12,9 +12,60 @@
 
 Various useful cyrpto utility functions that are used across all projects in the [@polkadot](https://polkadot.js.org) namespace. It provides utility functions with additional safety checks, allowing not only for consistent coding, but also reducing the general boilerplate.
 
-## Available Utilities
+## Usage
 
-For a list of currently exposed methods, see the [Polkadot-JS Common Documentation Portal](https://polkadot.js.org/api/common/util-crypto/).
+Installation -
+
+```
+yarn add @polkadot/util-crypto
+```
+
+Functions can be imported as follows:
+
+```js
+import { mnemonicGenerate } from '@polkadot/util-crypto';
+```
+
+## Documentation and Available Utilities
+
+Below is a list of currently exposed methods published at the [Polkadot-JS Common Documentation Portal](https://polkadot.js.org/common/util-crypto/).
+
+- [util-crypto](https://polkadot.js.org/common/util-crypto/README.md)
+  - Functions
+    - Blake2b
+      - [blake2AsHex](https://polkadot.js.org/common/util-crypto/modules/_blake2_ashex_.md)
+      - [blake2AsU8a](https://polkadot.js.org/common/util-crypto/modules/_blake2_asu8a_.md)
+      - [blake2bAsHex](https://polkadot.js.org/common/util-crypto/modules/_blake2_blake2b_ashex_.md)
+      - [blake2bAsU8a](https://polkadot.js.org/common/util-crypto/modules/_blake2_blake2b_asu8a_.md)
+    - Keccak
+      - [keccakAsHex](https://polkadot.js.org/common/util-crypto/modules/_keccak_ashex_.md)
+      - [keccakAsU8a](https://polkadot.js.org/common/util-crypto/modules/_keccak_asu8a_.md)
+    - Mnemonic
+      - [mnemonicGenerate](https://polkadot.js.org/common/util-crypto/modules/_mnemonic_generate_.md)
+	    - [mnemonicValidate](https://polkadot.js.org/common/util-crypto/modules/_mnemonic_validate_.md)
+	    - [toSecret](https://polkadot.js.org/common/util-crypto/modules/_mnemonic_tosecret_.md)
+    - Nacl
+      - [naclDecrypt](https://polkadot.js.org/common/util-crypto/modules/_nacl_decrypt_.md)
+      - [naclEncrypt](https://polkadot.js.org/common/util-crypto/modules/_nacl_encrypt_.md)
+      - [naclKeypairFromRandom](https://polkadot.js.org/common/util-crypto/modules/_nacl_keypair_fromrandom_.md)
+      - [naclKeypairFromSecret](https://polkadot.js.org/common/util-crypto/modules/_nacl_keypair_fromsecret_.md)
+      - [naclKeypairFromSeed](https://polkadot.js.org/common/util-crypto/modules/_nacl_keypair_fromseed_.md)
+      - [naclKeypairFromString](https://polkadot.js.org/common/util-crypto/modules/_nacl_keypair_fromstring_.md)
+      - [naclSign](https://polkadot.js.org/common/util-crypto/modules/_nacl_sign_.md)
+      - [naclVerify](https://polkadot.js.org/common/util-crypto/modules/_nacl_verify_.md)
+    - Random
+      - [randomAsHex](https://polkadot.js.org/common/util-crypto/modules/_random_ashex_.md)
+      - [randomAsNumber](https://polkadot.js.org/common/util-crypto/modules/_random_asnumber_.md)
+      - [randomAsU8a](https://polkadot.js.org/common/util-crypto/modules/_random_asu8a_.md)
+    - SHA-512
+      - [sha512AsU8a](https://polkadot.js.org/common/util-crypto/modules/_sha512_asu8a_.md)
+    - xxHash
+      - [xxhashAsHex](https://polkadot.js.org/common/util-crypto/modules/_xxhash_ashex_.md)
+      - [xxhashAsU8a](https://polkadot.js.org/common/util-crypto/modules/_xxhash_asu8a_.md)
+      - [xxhash64AsBn](https://polkadot.js.org/common/util-crypto/modules/_xxhash_xxhash64_asbn_.md)
+      - [xxhash64AsHex](https://polkadot.js.org/common/util-crypto/modules/_xxhash_xxhash64_ashex_.md)
+      - [xxhash64AsRaw](https://polkadot.js.org/common/util-crypto/modules/_xxhash_xxhash64_asraw_.md)
+      - [xxhash64AsValue](https://polkadot.js.org/common/util-crypto/modules/_xxhash_xxhash64_asvalue_.md)
 
 ### Blake2b
 
