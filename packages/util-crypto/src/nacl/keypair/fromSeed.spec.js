@@ -2,13 +2,13 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { u8aFromString } from '@polkadot/util/index';
+import { stringToU8a } from '@polkadot/util/index';
 
 import { naclKeypairFromSeed } from '../index';
 
 describe('naclKeypairFromSeed', () => {
   // NOTE: Aligned with Rust test, b"12345678901234567890123456789012"
-  const TEST = u8aFromString('12345678901234567890123456789012');
+  const TEST = stringToU8a('12345678901234567890123456789012');
   const RESULT = {
     publicKey: new Uint8Array([
       0x2f, 0x8c, 0x61, 0x29, 0xd8, 0x16, 0xcf, 0x51,

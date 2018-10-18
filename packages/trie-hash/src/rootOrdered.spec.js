@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { hexToU8a, u8aFromString } from '@polkadot/util/index';
+import { hexToU8a, stringToU8a } from '@polkadot/util/index';
 
 import { trieRootOrdered } from './index';
 
@@ -11,8 +11,8 @@ describe('trieRootOrdered', () => {
   it('encodes a values', () => {
     expect(
       trieRootOrdered([
-        u8aFromString('doe'),
-        u8aFromString('reindeer')
+        stringToU8a('doe'),
+        stringToU8a('reindeer')
       ])
     ).toEqual(
       hexToU8a(

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import u8aFromString from '@polkadot/util/string/toU8a';
+import stringToU8a from '@polkadot/util/string/toU8a';
 
 import asNibbles from './asNibbles';
 
@@ -20,7 +20,7 @@ describe('asNibbles', () => {
   it('converts a single', () => {
     expect(
       asNibbles(
-        u8aFromString('A')
+        stringToU8a('A')
       )
     ).toEqual(
       new Uint8Array([4, 1])
