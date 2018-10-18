@@ -6,10 +6,8 @@ import { TxDb, ProgressCb } from '@polkadot/db/types';
 import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
 
 import MemoryDb from '@polkadot/db/Memory';
-import isNull from '@polkadot/util/is/null';
-import logger from '@polkadot/util/logger';
-import u8aConcat from '@polkadot/util/u8a/concat';
-import hashing from '@polkadot/util-crypto/keccak/asU8a';
+import { isNull, logger , u8aConcat } from '@polkadot/util/index';
+import { keccakAsU8a as hashing } from '@polkadot/util-crypto/index';
 import toNibbles from '@polkadot/trie-hash/util/asNibbles';
 
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';

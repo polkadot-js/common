@@ -16,12 +16,6 @@ Functions can be imported directly from the package, e.g.
 import { isHex } from '@polkadot/util';
 ```
 
-Alternatively the function can be accessed directly,
-
-```js
-import isHex from '@polkadot/util/is/hex';
-```
-
 ## Documentation and Available Utilities
 
 Below is a list of currently exposed methods published at the [Polkadot-JS Common Documentation Portal](https://polkadot.js.org/common/util/).

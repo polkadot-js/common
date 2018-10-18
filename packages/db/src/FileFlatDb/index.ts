@@ -11,12 +11,7 @@ import mkdirp from 'mkdirp';
 import path from 'path';
 import snappy from 'snappy';
 import asNibbles from '@polkadot/trie-hash/util/asNibbles';
-import assert from '@polkadot/util/assert';
-import logger from '@polkadot/util/logger';
-import isUndefined from '@polkadot/util/is/undefined';
-import bufferToU8a from '@polkadot/util/buffer/toU8a';
-import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
-import u8aToHex from '@polkadot/util/u8a/toHex';
+import { assert, bufferToU8a, isUndefined, logger, u8aToBuffer, u8aToHex } from '@polkadot/util/index';
 
 import Compact from './Compact';
 import defaults from './defaults';

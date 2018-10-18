@@ -6,10 +6,7 @@ import { BaseDb, ProgressCb } from '../types';
 
 import fs from 'fs';
 import mkdirp from 'mkdirp';
-import logger from '@polkadot/util/logger';
-import bufferToU8a from '@polkadot/util/buffer/toU8a';
-import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
-import u8aToHex from '@polkadot/util/u8a/toHex';
+import { bufferToU8a, logger, u8aToBuffer, u8aToHex } from '@polkadot/util/index';
 
 type FilePath = {
   directory: string,

@@ -4,7 +4,7 @@
 
 import { DecodeFunc, DecodeOutput } from './types';
 
-import assert from '@polkadot/util/assert';
+import { assert } from '@polkadot/util/index';
 
 import safeParseInt from './safeParseInt';
 

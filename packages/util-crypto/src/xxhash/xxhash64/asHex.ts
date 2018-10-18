@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import hexAddPrefix from '@polkadot/util/hex/addPrefix';
+import { hexAddPrefix } from '@polkadot/util/index';
 
 import xxhash64AsRaw from './asRaw';
 

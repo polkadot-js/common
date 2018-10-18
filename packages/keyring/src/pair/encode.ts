@@ -2,10 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import stringToU8a from '@polkadot/util/string/toU8a';
-import u8aConcat from '@polkadot/util/u8a/concat';
-import u8aFixLength from '@polkadot/util/u8a/fixLength';
-import naclEncrypt from '@polkadot/util-crypto/nacl/encrypt';
+import { stringToU8a, u8aConcat, u8aFixLength } from '@polkadot/util/index';
+import { naclEncrypt } from '@polkadot/util-crypto/index';
 
 import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
 

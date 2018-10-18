@@ -4,9 +4,8 @@
 
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
 
-import mnemonicToSeed from '@polkadot/util-crypto/mnemonic/toSeed';
-import naclKeypairFromSeed from '@polkadot/util-crypto/nacl/keypair/fromSeed';
-import hexToU8a from '@polkadot/util/hex/toU8a';
+import { hexToU8a } from '@polkadot/util/index';
+import { mnemonicToSeed , naclKeypairFromSeed } from '@polkadot/util-crypto/index';
 
 import { decodeAddress, encodeAddress, setAddressPrefix } from './address';
 import createPair from './pair';

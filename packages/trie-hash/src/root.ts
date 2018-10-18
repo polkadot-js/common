@@ -18,7 +18,7 @@ import pairsUniq from './util/pairsUniq';
  * <BR>
  *
  * ```javascript
- * import stringToU8a from '@polkadot/util/string/toU8a';
+ * import { stringToU8a } from '@polkadot/util';
  * import { trieRoot } from '@polkadot/trie-hash';
  *
  * trieRoot([{

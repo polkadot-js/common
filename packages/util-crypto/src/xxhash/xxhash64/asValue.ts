@@ -2,10 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import isBuffer from '@polkadot/util/is/buffer';
-import isString from '@polkadot/util/is/string';
-import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
 import xxhashjs from 'xxhashjs';
+import { isBuffer, isString, u8aToBuffer } from '@polkadot/util/index';
 
 /**
  * @name xxhash64AsValue

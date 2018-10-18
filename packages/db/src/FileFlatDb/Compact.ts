@@ -6,8 +6,7 @@ import { ProgressCb } from '../types';
 import { Slot } from './types';
 
 import fs from 'fs';
-import assert from '@polkadot/util/assert';
-import logger from '@polkadot/util/logger';
+import { assert, logger } from '@polkadot/util/index';
 
 import defaults from './defaults';
 

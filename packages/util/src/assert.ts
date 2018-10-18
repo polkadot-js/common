@@ -17,7 +17,7 @@ type MessageFn = () => string;
  * <BR>
  *
  * ```javascript
- * const assert from '@polkadot/util/assert');
+ * const { assert } from '@polkadot/util';
  *
  * assert(true, 'True should be true'); // true returned
  * assert(false, 'False should not be true'); // ExtError thrown
