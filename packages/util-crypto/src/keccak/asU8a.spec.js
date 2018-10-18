@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import hexToU8a from '@polkadot/util/hex/toU8a';
-import u8aFromString from '@polkadot/util/u8a/fromString';
+import stringToU8a from '@polkadot/util/string/toU8a';
 
 import { keccakAsU8a } from './index';
 
@@ -30,7 +30,7 @@ describe('keccakAsU8a', () => {
   it('returns an hex representation (Uint8Array)', () => {
     expect(
       keccakAsU8a(
-        u8aFromString(input)
+        stringToU8a(input)
       )
     ).toEqual(output);
   });

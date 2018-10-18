@@ -2,7 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import numberFromHex from './fromHex';
 import numberToHex from './toHex';
 import numberToU8a from './toU8a';
 
@@ -10,7 +9,6 @@ import numberToU8a from './toU8a';
  * @summary Utility methods to convert to and from `number` values
  */
 export {
-  numberFromHex,
   numberToHex,
   numberToU8a
 };

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import u8aFromString from '@polkadot/util/u8a/fromString';
+import stringToU8a from '@polkadot/util/string/toU8a';
 
 import fromNibbles from './fromNibbles';
 
@@ -13,7 +13,7 @@ describe('fromNibbles', () => {
         new Uint8Array([4, 1])
       )
     ).toEqual(
-      u8aFromString('A')
+      stringToU8a('A')
     );
   });
 

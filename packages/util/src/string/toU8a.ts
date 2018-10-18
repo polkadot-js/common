@@ -7,17 +7,17 @@ import './polyfill/textEncoder';
 const encoder = new TextEncoder();
 
 /**
- * @name u8aFromUtf8
- * @signature u8aFromUtf8 (value?: string): UInt8Array
+ * @name stringToU8a
+ * @signature stringToU8a (value?: string): UInt8Array
  * @summary Creates a Uint8Array object from a utf-8 string.
  * @description
  * String input values return the actual encoded `UInt8Array`. `null` or `undefined` values returns an empty encoded array.
  * @example
- *   import { u8aFromUtf8 } from '@polkadot/util';
+ *   import { stringToU8a } from '@polkadot/util';
  *
- *   u8aFromUtf8('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
+ *   stringToU8a('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
  */
-export default function u8aFromUtf8 (value?: string): Uint8Array {
+export default function stringToU8a (value?: string): Uint8Array {
   if (!value) {
     return new Uint8Array([]);
   }

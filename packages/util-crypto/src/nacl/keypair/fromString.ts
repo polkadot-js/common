@@ -4,7 +4,7 @@
 
 import { KeypairType } from '../../types';
 
-import u8aFromUtf8 from '@polkadot/util/u8a/fromUtf8';
+import stringToU8a from '@polkadot/util/string/toU8a';
 
 import blake2AsU8a from '../../blake2/asU8a';
 import fromSeed from './fromSeed';
@@ -23,7 +23,7 @@ import fromSeed from './fromSeed';
 export default function naclKeypairFromString (value: string): KeypairType {
   return fromSeed(
     blake2AsU8a(
-      u8aFromUtf8(value),
+      stringToU8a(value),
       256
     )
   );
