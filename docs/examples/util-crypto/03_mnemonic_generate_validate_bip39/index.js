@@ -1,4 +1,5 @@
-const { mnemonicGenerate, mnemonicToSeed, mnemonicValidate, naclKeypairFromSeed
+const {
+  mnemonicGenerate, mnemonicToSeed, mnemonicValidate, naclKeypairFromSeed
 } = require('@polkadot/util-crypto');
 
 async function main () {

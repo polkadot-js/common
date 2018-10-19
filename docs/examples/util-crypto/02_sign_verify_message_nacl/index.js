@@ -1,5 +1,6 @@
 const { stringToU8a, u8aToHex } = require('@polkadot/util');
-const { naclEncrypt, naclKeypairFromSeed, naclSign, naclVerify, randomAsU8a
+const {
+  naclEncrypt, naclKeypairFromSeed, naclSign, naclVerify, randomAsU8a
 } = require('@polkadot/util-crypto');
 
 async function main () {
