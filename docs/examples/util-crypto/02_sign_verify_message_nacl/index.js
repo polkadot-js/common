@@ -1,10 +1,6 @@
-const stringToU8a = require('@polkadot/util/string/toU8a').default;
-const { randomAsU8a } = require('@polkadot/util-crypto');
-
-const { naclKeypairFromSeed } = require('@polkadot/util-crypto');
-const { naclEncrypt } = require('@polkadot/util-crypto');
-const { naclSign } = require('@polkadot/util-crypto');
-const { naclVerify } = require('@polkadot/util-crypto');
+const { stringToU8a, u8aToHex } = require('@polkadot/util');
+const { naclEncrypt, naclKeypairFromSeed, naclSign, naclVerify, randomAsU8a
+} = require('@polkadot/util-crypto');
 
 async function main () {
   // Create account seed for Alice as fallback if generated mnemonic not valid
@@ -22,6 +18,7 @@ async function main () {
 
   // Sign the message with a valid signature
   const messageSignature = naclSign(encrypted, secretKey);
+  console.log(`Message signature: ${u8aToHex(messageSignature)}`);
 
   // Validate that the message was correctly signed
   const isValidSignature = naclVerify(encrypted, messageSignature, publicKey);
