@@ -1,0 +1,535 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>util-crypto · Polkadot Common Book</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-insert-logo-link/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-sunlight-highlighter/sunlight.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../examples/keyring/" />
+    
+    
+    <link rel="prev" href="../util/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Packages</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../keyring/">
+            
+                <a href="../keyring/">
+            
+                    
+                    keyring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../trie-db/">
+            
+                <a href="../trie-db/">
+            
+                    
+                    trie-db
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../trie-hash/">
+            
+                <a href="../trie-hash/">
+            
+                    
+                    trie-hash
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../util/">
+            
+                <a href="../util/">
+            
+                    
+                    util
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    util-crypto
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Examples</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../examples/keyring/">
+            
+                <a href="../examples/keyring/">
+            
+                    
+                    Keyring
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../examples/keyring/01_create_account/">
+            
+                <a href="../examples/keyring/01_create_account/">
+            
+                    
+                    Create Account
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../examples/keyring/02_load_accounts/">
+            
+                <a href="../examples/keyring/02_load_accounts/">
+            
+                    
+                    Load Accounts
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../examples/util-crypto/">
+            
+                <a href="../examples/util-crypto/">
+            
+                    
+                    Util-Crypto
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="../examples/util-crypto/01_encrypt_decrypt_message_nacl/">
+            
+                <a href="../examples/util-crypto/01_encrypt_decrypt_message_nacl/">
+            
+                    
+                    Encrypt & Decrypt Message
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="../examples/util-crypto/02_sign_verify_message_nacl/">
+            
+                <a href="../examples/util-crypto/02_sign_verify_message_nacl/">
+            
+                    
+                    Sign & Verify Message
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="../examples/util-crypto/03_mnemonic_generate_validate_bip39/">
+            
+                <a href="../examples/util-crypto/03_mnemonic_generate_validate_bip39/">
+            
+                    
+                    Create & Validate Mnemonic
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >util-crypto</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="polkadotutil-crypto">@polkadot/util-crypto</h1>
+<p>Various useful cyrpto utility functions that are used across all projects in the <a href="https://polkadot.js.org" target="_blank">@polkadot</a> namespace. It provides utility functions with additional safety checks, allowing not only for consistent coding, but also reducing the general boilerplate.</p>
+<h2 id="usage">Usage</h2>
+<p>Installation -</p>
+<pre><code>yarn add @polkadot/util-crypto
+</code></pre><p>Functions can be imported as follows:</p>
+<pre><code class="lang-js"><div class="sunlight-container sunlight-theme-gitbook"><div class="sunlight-code-container"><pre class="sunlight-highlight-javascript sunlight-highlighted"><span class="sunlight-javascript"><span class="sunlight-reservedWord">import</span>&#xA0;<span class="sunlight-punctuation">{</span>&#xA0;<span class="sunlight-ident">mnemonicGenerate</span>&#xA0;<span class="sunlight-punctuation">}</span>&#xA0;<span class="sunlight-ident">from</span>&#xA0;<span class="sunlight-string">&apos;@polkadot/util-crypto&apos;</span><span class="sunlight-punctuation">;</span>
+</span></pre></div></div></code></pre>
+<h2 id="documentation-and-available-utilities">Documentation and Available Utilities</h2>
+<p>Below is a list of currently exposed methods published at the <a href="https://polkadot.js.org/common/util-crypto/" target="_blank">Polkadot-JS Common Documentation Portal</a>.</p>
+<ul>
+<li><a href="https://polkadot.js.org/common/util-crypto/README.md" target="_blank">util-crypto</a><ul>
+<li>Functions<ul>
+<li>Blake2b<ul>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_blake2_ashex_.md" target="_blank">blake2AsHex</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_blake2_asu8a_.md" target="_blank">blake2AsU8a</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_blake2_blake2b_ashex_.md" target="_blank">blake2bAsHex</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_blake2_blake2b_asu8a_.md" target="_blank">blake2bAsU8a</a></li>
+</ul>
+</li>
+<li>Keccak<ul>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_keccak_ashex_.md" target="_blank">keccakAsHex</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_keccak_asu8a_.md" target="_blank">keccakAsU8a</a></li>
+</ul>
+</li>
+<li>Mnemonic<ul>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_mnemonic_generate_.md" target="_blank">mnemonicGenerate</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_mnemonic_toseed_.md" target="_blank">mnemonicToSeed</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_mnemonic_validate_.md" target="_blank">mnemonicValidate</a></li>
+</ul>
+</li>
+<li>Nacl<ul>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_nacl_decrypt_.md" target="_blank">naclDecrypt</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_nacl_encrypt_.md" target="_blank">naclEncrypt</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_nacl_keypair_fromrandom_.md" target="_blank">naclKeypairFromRandom</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_nacl_keypair_fromsecret_.md" target="_blank">naclKeypairFromSecret</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_nacl_keypair_fromseed_.md" target="_blank">naclKeypairFromSeed</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_nacl_keypair_fromstring_.md" target="_blank">naclKeypairFromString</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_nacl_sign_.md" target="_blank">naclSign</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_nacl_verify_.md" target="_blank">naclVerify</a></li>
+</ul>
+</li>
+<li>Random<ul>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_random_ashex_.md" target="_blank">randomAsHex</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_random_asnumber_.md" target="_blank">randomAsNumber</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_random_asu8a_.md" target="_blank">randomAsU8a</a></li>
+</ul>
+</li>
+<li>SHA-512<ul>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_sha512_asu8a_.md" target="_blank">sha512AsU8a</a></li>
+</ul>
+</li>
+<li>xxHash<ul>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_xxhash_ashex_.md" target="_blank">xxhashAsHex</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_xxhash_asu8a_.md" target="_blank">xxhashAsU8a</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_xxhash_xxhash64_asbn_.md" target="_blank">xxhash64AsBn</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_xxhash_xxhash64_ashex_.md" target="_blank">xxhash64AsHex</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_xxhash_xxhash64_asraw_.md" target="_blank">xxhash64AsRaw</a></li>
+<li><a href="https://polkadot.js.org/common/util-crypto/modules/_xxhash_xxhash64_asvalue_.md" target="_blank">xxhash64AsValue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="blake2b">Blake2b</h3>
+<ul>
+<li>Creates a blake2b u8a output containing a hash from a u8a input bytes using given bit-length or default bit-length of 256. An optional key u8a of up to 64 bytes may be provided</li>
+<li>Creates a blake2b hex string with optionally specified bit-length from the u8a input or default bit-length used is 256</li>
+<li>Uses the <a href="https://blake2.net/" target="_blank">Blake2b</a> hash function of <a href="https://www.npmjs.com/package/blakejs" target="_blank">blakejs</a> library</li>
+<li>Note: All hashes used in Polkadot-JS are 32 bytes (i.e. 256 / 8)</li>
+<li>Note: BLAKE hash functions are in the Nacl library</li>
+<li>Note: Only handles up to 2**53 bytes of input</li>
+</ul>
+<h3 id="keccak">Keccak</h3>
+<ul>
+<li>Creates a Keccak-256 hex string from the input (such as for conversion from seed phrase)</li>
+<li>Creates a Keccak-256 Uint8Array from the input</li>
+<li>Uses the Keccak-256 hash function from the <a href="https://www.npmjs.com/package/js-sha3" target="_blank">js-sha3</a> library</li>
+</ul>
+<h3 id="mnemonic">Mnemonic</h3>
+<ul>
+<li>Generate valid mnemonics (for account seed phrase) using <a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki" target="_blank">BIP39</a></li>
+<li>Converts mnemonics to a valid seed secret with Uint8Array output</li>
+</ul>
+<h3 id="nacl">Nacl</h3>
+<ul>
+<li>Implements <a href="http://nacl.cr.yp.to/" target="_blank">NaCl</a> secret-key authenticated encryption, public-key authenticated encryption, hashing, and public-key signatures</li>
+<li>Decrypts a message that has been encrypted with a secret key using Nacl</li>
+<li>Encrypts a message with a secret key and generates an associated nonce using Nacl</li>
+<li>Signing a message with a secret key to generate a valid signature using Nacl</li>
+<li>Verifies a signed message by providing the message, signature, and public key (associated with the secret key that signed it) using Nacl</li>
+</ul>
+<h3 id="random">Random</h3>
+<ul>
+<li>Returns a sequence of secure random bytes in a variety of formats</li>
+<li>Creates a u8a with a specified (optional) bit-length (default 32) filled with random bytes</li>
+<li>Creates a hex string with a specified (optional) bit-length (default 32) filled with random bytes</li>
+<li>Creates a random number from random secure bytes</li>
+</ul>
+<h3 id="sha-512">SHA-512</h3>
+<ul>
+<li>Implements SHA-512 hashing functions for a variety of input and outputs</li>
+<li>Creates a SHA-512 hash of u8a input</li>
+<li>Uses the SHA-512 hash function of <a href="https://www.npmjs.com/package/tweetnacl" target="_blank">tweetnacl</a> library</li>
+</ul>
+<h3 id="xxhash">xxHash</h3>
+<ul>
+<li>Create xxhash64 values with specified bitlengths</li>
+<li>Creates a xxhash64 u8a from the input with a specified (optional) bit-length (default 64)</li>
+<li>Creates a xxhash64 hex string from the input with a specified (optional) bit-length (default 64)</li>
+<li>Uses <a href="http://cyan4973.github.io/xxHash/" target="_blank">xxHash</a> to generate values as BN, hex &amp; number output</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../util/" class="navigation navigation-prev " aria-label="Previous page: util">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../examples/keyring/" class="navigation navigation-next " aria-label="Next page: Keyring">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"util-crypto","level":"1.6","depth":1,"next":{"title":"Keyring","level":"2.1","depth":1,"path":"examples/keyring/README.md","ref":"examples/keyring/README.md","articles":[{"title":"Create Account","level":"2.1.1","depth":2,"path":"examples/keyring/01_create_account/README.md","ref":"examples/keyring/01_create_account/README.md","articles":[]},{"title":"Load Accounts","level":"2.1.2","depth":2,"path":"examples/keyring/02_load_accounts/README.md","ref":"examples/keyring/02_load_accounts/README.md","articles":[]}]},"previous":{"title":"util","level":"1.5","depth":1,"path":"util/README.md","ref":"util/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["include-codeblock","insert-logo-link","mermaid-gb3","-highlight","sunlight-highlighter"],"root":"docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"insert-logo-link":{"src":"/common/logo.png","url":"https://polkadot.js.org"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"mermaid-gb3":{},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"sunlight-highlighter":{"theme":"gitbook","lineNumbers":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Polkadot Common Book","gitbook":">=2.4.0"},"file":{"path":"util-crypto/README.md","mtime":"2018-10-19T15:37:56.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-19T15:38:38.079Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-insert-logo-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+
+    </body>
+</html>
+
