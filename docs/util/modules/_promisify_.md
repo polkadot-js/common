@@ -8,7 +8,7 @@
 
 ▸ **promisify**(self: *`any`*, fn: *`Function`*, ...params: *`Array`<`any`>*): `Promise`<`any`>
 
-*Defined in [promisify.ts:21](https://github.com/polkadot-js/common/blob/1fb1f9d/packages/util/src/promisify.ts#L21)*
+*Defined in [promisify.ts:21](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/promisify.ts#L21)*
 
 *__name__*: promisify
 
