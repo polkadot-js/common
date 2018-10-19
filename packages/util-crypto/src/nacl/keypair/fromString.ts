@@ -16,9 +16,13 @@ import fromSeed from './fromSeed';
  * @description
  * Returns a object containing a `publicKey` & `secretKey` generated from the supplied string. The string is hashed and the value used as the input seed.
  * @example
- *   import { naclKeypairFromString } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   naclKeypairFromString('test') // => { secretKey: [...], publicKey: [...] }
+ * ```javascript
+ * import { naclKeypairFromString } from '@polkadot/util-crypto';
+ *
+ * naclKeypairFromString('test'); // => { secretKey: [...], publicKey: [...] }
+ * ```
  */
 export default function naclKeypairFromString (value: string): KeypairType {
   return fromSeed(

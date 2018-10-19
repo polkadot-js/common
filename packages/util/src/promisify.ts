@@ -9,10 +9,14 @@
  * @description
  * Wraps the supplied async function `fn` that has a standard JS callback `(error: Error, result: any)` into a `Promise`, passing the supplied parameters. When `error` is set, the Promise is rejected, else the Promise resolves with the `result` value.
  * @example
- *   import { promisify } from '@polkadot/util';
+ * <BR>
  *
- *   await promisify(null, ((a, cb) => cb(null, a), true); // resolves with `true`
- *   await promisify(null, (cb) => cb(new Error('error!'))); // rejects with `error!`
+ * ```javascript
+ * const { promisify } from '@polkadot/util';
+ *
+ * await promisify(null, ((a, cb) => cb(null, a), true); // resolves with `true`
+ * await promisify(null, (cb) => cb(new Error('error!'))); // rejects with `error!`
+ * ```
  */
 export default function promisify (self: any, fn: Function, ...params: Array<any>): Promise<any> {
   return new Promise((resolve, reject) => {

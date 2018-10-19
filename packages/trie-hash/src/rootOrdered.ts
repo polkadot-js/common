@@ -14,13 +14,17 @@ import pairsUniq from './util/pairsUniq';
  * @description
  * From an `Array<Uint8Array>` input, calculate the ordered triehash and return the result as a `Uint8Array`.
  * @example
- *   import { stringToU8a } from '@polkadot/util';
- *   import { trieRootOrdered } from '@polkadot/trie-hash';
+ * <BR>
  *
- *   trieRootOrdered([
- *     stringToU8a('doe'),
- *     stringToU8a('reindeer')
- *   ]) // => 0xe766d5d51b89dc39d981b41bda63248d7abce4f0225eefd023792a540bcffee3
+ * ```javascript
+ * import { stringToU8a } from '@polkadot/util';
+ * import { trieRootOrdered } from '@polkadot/trie-hash';
+ *
+ * trieRootOrdered([
+ *   stringToU8a('doe'),
+ *   stringToU8a('reindeer')
+ * ]); // => 0xe766d5d51b89dc39d981b41bda63248d7abce4f0225eefd023792a540bcffee3
+ * ```
  */
 export default function trieRootOrdered (values: Array<Uint8Array>): Uint8Array {
   return genRoot(

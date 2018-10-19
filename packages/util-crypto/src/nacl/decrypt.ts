@@ -11,9 +11,13 @@ import nacl from 'tweetnacl';
  * @description
  * Returns an decrypted message, using the `secret` and `nonce`.
  * @example
- *   import { naclDecrypt } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   naclDecrypt([...], [...], [...]) // => [...]
+ * ```javascript
+ * import { naclDecrypt } from '@polkadot/util-crypto';
+ *
+ * naclDecrypt([...], [...], [...]); // => [...]
+ * ```
  */
 export default function naclDecrypt (encrypted: Uint8Array, nonce: Uint8Array, secret: Uint8Array): Uint8Array | null {
   return nacl.secretbox.open(encrypted, nonce, secret);

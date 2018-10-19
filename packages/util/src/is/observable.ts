@@ -16,9 +16,13 @@ type Observable = {
  * @description
  * Checks to see if the input object is an instance of `BN` (bn.js).
  * @example
- *   import { isObservable } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('isObservable', isObservable(...));
+ * ```javascript
+ * import { isObservable } from '@polkadot/util';
+ *
+ * console.log('isObservable', isObservable(...));
+ * ```
  */
 export default function isObservable (value: any): value is Observable {
   return isObject(value) && isFunction((value as Observable).next);

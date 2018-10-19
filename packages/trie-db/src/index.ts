@@ -18,6 +18,15 @@ import { EMPTY_HASH, EMPTY_U8A } from './constants';
 
 const l = logger('trie/db');
 
+/**
+ * # @polkadot/common/trie-db
+ *
+ * ## Overview
+ *
+ * @name Trie
+ * @summary Re-implementation of a Patricia Trie
+ * @example See [Polkadot-JS Common Trie-DB Examples](https://polkadot.js.org/api/common/examples/trie-db/)
+ */
 export default class Trie implements TrieDb {
   readonly db: TxDb;
   private txRoot: Uint8Array;

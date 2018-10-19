@@ -13,10 +13,14 @@ type ObjectIndexed = {
  * @description
  * Checks to see if the input value is a JavaScript object.
  * @example
- *   import { isObject } from '@polkadot/util';
+ * <BR>
  *
- *   isObject({}); // => true
- *   isObject('something'); // => false
+ * ```javascript
+ * import { isObject } from '@polkadot/util';
+ *
+ * isObject({}); // => true
+ * isObject('something'); // => false
+ * ```
  */
 export default function isObject (value: any): value is ObjectIndexed {
   return typeof value === 'object';

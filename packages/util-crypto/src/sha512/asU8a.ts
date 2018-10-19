@@ -11,9 +11,13 @@ import nacl from 'tweetnacl';
  * @description
  * Returns a sha-512 `Uint8Array` from the supplied data.
  * @example
- *   import { sha512AsU8a } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   sha512AsU8a(Uint8Array.from([...])) // => Uint8Array([...])
+ * ```javascript
+ * import { sha512AsU8a } from '@polkadot/util-crypto';
+ *
+ * sha512AsU8a(Uint8Array.from([...])); // => Uint8Array([...])
+ * ```
  */
 export default function sha512AsU8a (data: Uint8Array): Uint8Array {
   return nacl.hash(data);

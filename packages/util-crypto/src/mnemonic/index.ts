@@ -6,6 +6,9 @@ import mnemonicGenerate from './generate';
 import mnemonicToSeed from './toSeed';
 import mnemonicValidate from './validate';
 
+/**
+ * @summary Create valid mnemonic strings, validate them using BIP39, and convert them to valid seeds
+ */
 export {
   mnemonicGenerate,
   mnemonicToSeed,

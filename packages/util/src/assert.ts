@@ -14,11 +14,15 @@ type MessageFn = () => string;
  * @description
  * Checks that `test` is a truthy value. If value is falsy (`null`, `undefined`, `false`, ...), it throws an ExtError with the supplied `message` and an optional `code` and `data`. When `test` passes, `true` is returned.
  * @example
- *   import assert from '@polkadot/util/assert';
+ * <BR>
  *
- *   assert(true, 'True should be true'); // true returned
- *   assert(false, 'False should not be true'); // ExtError thrown
- *   assert(false, () => 'message'); // ExtError with 'message'
+ * ```javascript
+ * const { assert } from '@polkadot/util';
+ *
+ * assert(true, 'True should be true'); // true returned
+ * assert(false, 'False should not be true'); // ExtError thrown
+ * assert(false, () => 'message'); // ExtError with 'message'
+ * ```
  */
 export default function assert (test: any, message: string | MessageFn, code: number = ExtError.CODES.ASSERT, data?: any): boolean {
   if (test) {

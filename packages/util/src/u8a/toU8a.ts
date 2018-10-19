@@ -16,10 +16,14 @@ import stringToU8a from '../string/toU8a';
  * @description
  * `null` inputs returns a `[]` result, Uint8Array values returns the value, hex strings returns a Uint8Array representation.
  * @example
- *   import { u8aToU8a } from '@polkadot/util';
+ * <BR>
  *
- *   u8aToU8a(new Uint8Array([0x12, 0x34]); // => Uint8Array([0x12, 0x34])
- *   u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
+ * ```javascript
+ * import { u8aToU8a } from '@polkadot/util';
+ *
+ * u8aToU8a(new Uint8Array([0x12, 0x34]); // => Uint8Array([0x12, 0x34])
+ * u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
+ * ```
  */
 export default function u8aToU8a (value?: Array<number> | Buffer | Uint8Array | string | null): Uint8Array {
   if (!value) {

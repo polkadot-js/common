@@ -5,7 +5,7 @@
 import mkdirp from 'mkdirp';
 import os from 'os';
 import path from 'path';
-import toU8a from '@polkadot/util/u8a/fromString';
+import stringToU8a from '@polkadot/util/string/toU8a';
 
 import LevelDb from './LevelDb';
 
@@ -26,8 +26,8 @@ describe.skip('LevelDb', () => {
   });
 
   it('sets & retrieves', () => {
-    const key = toU8a('key0');
-    const value = toU8a('value0');
+    const key = stringToU8a('key0');
+    const value = stringToU8a('value0');
 
     db.put(key, value);
 
@@ -35,15 +35,15 @@ describe.skip('LevelDb', () => {
   });
 
   it('retrieves null for non-existing', () => {
-    const key = toU8a('key1');
+    const key = stringToU8a('key1');
 
     expect(db.get(key)).toEqual(null);
   });
 
   it('overrides values', () => {
-    const key = toU8a('key2');
-    const value = toU8a('value1');
-    const replace = toU8a('value2');
+    const key = stringToU8a('key2');
+    const value = stringToU8a('value1');
+    const replace = stringToU8a('value2');
 
     db.put(key, value);
 
@@ -55,7 +55,7 @@ describe.skip('LevelDb', () => {
   });
 
   it('deletes values', () => {
-    const key = toU8a('key2');
+    const key = stringToU8a('key2');
 
     db.del(key);
 

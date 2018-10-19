@@ -1,7 +1,6 @@
 _book/
 build/
 coverage/
-docs/
 node_modules/
 tmp/
 .DS_Store
@@ -9,8 +8,9 @@ tmp/
 .env.development.local
 .env.test.local
 .env.production.local
-package-lock.json
+lerna-debug.log*
 npm-debug.log*
+package-lock.json
 yarn-debug.log*
 yarn-error.log*
 store.db

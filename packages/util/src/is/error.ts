@@ -11,9 +11,13 @@ import isInstanceOf from './instanceOf';
  * @description
  * Checks to see if the input object is an instance of `Error`.
  * @example
- *   import { isError } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('isError', isError(new Error('message'))); // => true
+ * ```javascript
+ * import { isError } from '@polkadot/util';
+ *
+ * console.log('isError', isError(new Error('message'))); // => true
+ * ```
  */
 export default function isError (value: any): value is Error {
   return isInstanceOf(value, Error);

@@ -11,12 +11,16 @@ import u8aToU8a from './toU8a';
  * @description
  * Concatenates the input arrays into a single `UInt8Array`.
  * @example
- *   import { u8aConcat } from '@polkadot/util';
+ * <BR>
  *
- *   u8aConcat(
- *     new Uint8Array([1, 2, 3]),
- *     new Uint8Array([4, 5, 6])
- *   ); // [1, 2, 3, 4, 5, 6]
+ * ```javascript
+ * import { u8aConcat } from '@polkadot/util';
+ *
+ * u8aConcat(
+ *   new Uint8Array([1, 2, 3]),
+ *   new Uint8Array([4, 5, 6])
+ * ); // [1, 2, 3, 4, 5, 6]
+ * ```
  */
 export default function u8aConcat (..._list: Array<Uint8Array | string>): Uint8Array {
   const list: Array<Uint8Array> = _list.map(u8aToU8a);

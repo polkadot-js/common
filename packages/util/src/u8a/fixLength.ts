@@ -9,11 +9,15 @@
  * @description
  * Returns a uint8Array with the specified number of bits contained in the return value. (If bitLength is -1, length checking is not done). Values with more bits are trimmed to the specified length.
  * @example
- *   import { u8aFixLength } from '@polkadot/util';
+ * <BR>
  *
- *   u8aFixLength('0x12') // => 0x12
- *   u8aFixLength('0x12', 16) // => 0x0012
- *   u8aFixLength('0x1234', 8) // => 0x12
+ * ```javascript
+ * import { u8aFixLength } from '@polkadot/util';
+ *
+ * u8aFixLength('0x12') // => 0x12
+ * u8aFixLength('0x12', 16) // => 0x0012
+ * u8aFixLength('0x1234', 8) // => 0x12
+ * ```
  */
 export default function u8aFixLength (value: Uint8Array, bitLength: number = -1, atStart: boolean = false): Uint8Array {
   const byteLength = Math.ceil(bitLength / 8);

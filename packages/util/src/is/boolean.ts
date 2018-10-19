@@ -9,9 +9,13 @@
  * @description
  * Checks to see if the input value is a JavaScript boolean.
  * @example
- *   import { isBoolean } from '@polkadot/util';
+ * <BR>
  *
- *   isBoolean(false); // => true
+ * ```javascript
+ * import { isBoolean } from '@polkadot/util';
+ *
+ * isBoolean(false); // => true
+ * ```
  */
 export default function isBoolean (value: any): value is boolean {
   return typeof value === 'boolean';

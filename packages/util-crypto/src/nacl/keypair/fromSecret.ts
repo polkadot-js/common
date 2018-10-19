@@ -13,9 +13,13 @@ import nacl from 'tweetnacl';
  * @description
  * Returns a object containing a `publicKey` & `secretKey` generated from the supplied secret.
  * @example
- *   import { naclKeypairFromSecret } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   naclKeypairFromSecret(...) // => { secretKey: [...], publicKey: [...] }
+ * ```javascript
+ * import { naclKeypairFromSecret } from '@polkadot/util-crypto';
+ *
+ * naclKeypairFromSecret(...); // => { secretKey: [...], publicKey: [...] }
+ * ```
  */
 export default function naclKeypairFromSecret (secret: Uint8Array): KeypairType {
   return nacl.sign.keyPair.fromSecretKey(secret);

@@ -11,9 +11,13 @@ import isInstanceOf from './instanceOf';
  * @description
  * Checks to see if the input object is an instance of `Uint8Array`.
  * @example
- *   import { isUint8Array } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('isU8a', isU8a([])); // => false
+ * ```javascript
+ * import { isUint8Array } from '@polkadot/util';
+ *
+ * console.log('isU8a', isU8a([])); // => false
+ * ```
  */
 export default function isU8a (value: any): value is Uint8Array {
   return isInstanceOf(value, Uint8Array);

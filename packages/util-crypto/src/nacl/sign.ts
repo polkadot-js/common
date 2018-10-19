@@ -11,9 +11,13 @@ import nacl from 'tweetnacl';
  * @description
  * Returns message signature of `message`, using the `secretKey`.
  * @example
- *   import { naclSign } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   naclSign([...], [...]) // => [...]
+ * ```javascript
+ * import { naclSign } from '@polkadot/util-crypto';
+ *
+ * naclSign([...], [...]); // => [...]
+ * ```
  */
 export default function naclSign (message: Uint8Array, secretKey: Uint8Array): Uint8Array {
   return nacl.sign.detached(message, secretKey);

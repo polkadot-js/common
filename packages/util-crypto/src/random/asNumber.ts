@@ -16,9 +16,13 @@ const BN_53 = new BN(0b11111111111111111111111111111111111111111111111111111);
  * @description
  * Returns a random number generated from the secure bytes.
  * @example
- *   import { randomAsNumber } from '@polkadot/util-crypto';
+ * <BR>
  *
- *   randomAsNumber() // => <random number>
+ * ```javascript
+ * import { randomAsNumber } from '@polkadot/util-crypto';
+ *
+ * randomAsNumber(); // => <random number>
+ * ```
  */
 export default function randomAsNumber (): number {
   return hexToBn(

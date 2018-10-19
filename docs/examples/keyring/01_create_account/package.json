@@ -1,0 +1,19 @@
+{
+  "name": "01_create_account",
+  "version": "0.1.0",
+  "description": "Example showing how to create an account",
+  "main": "index.js",
+  "author": "ltfschoen",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf node_modules",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@polkadot/util": "^0.32.2",
+    "@polkadot/keyring": "^0.32.1"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.2"
+  }
+}

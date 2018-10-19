@@ -10,6 +10,11 @@ type PairMap = {
   [index: string]: Trie$Pair
 };
 
+/**
+ * @name pairsUniq
+ * @signature pairsUniq (pairs: Trie$Pairs): Trie$Pairs
+ * @summary Removes pairs with duplicate keys from the supplied pairs.
+ */
 export default function pairsUniq (pairs: Trie$Pairs): Trie$Pairs {
   const map = pairs.reduce((result, pair) => {
     result[u8aToHex(pair.k)] = pair;

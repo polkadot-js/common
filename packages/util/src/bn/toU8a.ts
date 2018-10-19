@@ -15,9 +15,13 @@ import bnToHex from './toHex';
  * @description
  * `null`/`undefined`/`NaN` inputs returns an empty `Uint8Array` result. `BN` input values return the actual bytes value converted to a `Uint8Array`. Optionally convert using little-endian format if `isLE` is set.
  * @example
- *   import { bnToU8a } from '@polkadot/util';
+ * <BR>
  *
- *   bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
+ * ```javascript
+ * import { bnToU8a } from '@polkadot/util';
+ *
+ * bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
+ * ```
  */
 export default function bnToU8a (value: BN | number, bitLength: number, isLe: boolean): Uint8Array {
   const byteLength = Math.ceil(bitLength / 8);

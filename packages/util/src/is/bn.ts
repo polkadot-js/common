@@ -11,10 +11,14 @@ import BN from 'bn.js';
  * @description
  * Checks to see if the input object is an instance of `BN` (bn.js).
  * @example
- *   import BN from 'bn.js';
- *   import { isBn } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('isBn', isBn(new BN(1))); // => true
+ * ```javascript
+ * import BN from 'bn.js';
+ * import { isBn } from '@polkadot/util';
+ *
+ * console.log('isBn', isBn(new BN(1))); // => true
+ * ```
  */
 export default function isBn (value: any): value is BN {
   return BN.isBN(value);

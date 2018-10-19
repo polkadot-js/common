@@ -11,9 +11,13 @@ import isHex from '../is/hex';
  * @description
  * Checks for a valid hex input value and if the start matched `0x`
  * @example
- *   import { hexHasPrefix } from '@polkadot/util';
+ * <BR>
  *
- *   console.log('has prefix', hexHasPrefix('0x1234')); // => true
+ * ```javascript
+ * import { hexHasPrefix } from '@polkadot/util';
+ *
+ * console.log('has prefix', hexHasPrefix('0x1234')); // => true
+ * ```
  */
 export default function hexHasPrefix (value: string | null | undefined): boolean {
   return !!(value && isHex(value, -1, true) && value.substr(0, 2) === '0x');
