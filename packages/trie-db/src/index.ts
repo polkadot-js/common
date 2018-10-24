@@ -103,7 +103,7 @@ export default class Trie implements TrieDb {
   }
 
   del (key: Uint8Array) {
-    l.debug(() => ['del', { key }]);
+    // l.debug(() => ['del', { key }]);
 
     this._setRootNode(
       this._del(
@@ -114,7 +114,7 @@ export default class Trie implements TrieDb {
   }
 
   get (key: Uint8Array): Uint8Array | null {
-    l.debug(() => ['get', { key }]);
+    // l.debug(() => ['get', { key }]);
 
     return this._get(
       this._getNode(this.rootHash),
@@ -123,7 +123,7 @@ export default class Trie implements TrieDb {
   }
 
   put (key: Uint8Array, value: Uint8Array): void {
-    l.debug(() => ['put', { key, value }]);
+    // l.debug(() => ['put', { key, value }]);
 
     this._setRootNode(
       this._put(
@@ -179,7 +179,7 @@ export default class Trie implements TrieDb {
   }
 
   private _snapshot (dest: TrieDb, fn: ProgressCb, root: Uint8Array, keys: number, percent: number, depth: number): number {
-    l.debug(() => ['snapshot', { root }]);
+    // l.debug(() => ['snapshot', { root }]);
 
     const node = this._getNode(root);
 
@@ -331,7 +331,7 @@ export default class Trie implements TrieDb {
     const currentKey = extractKey(node);
     const nodeType = getNodeType(node);
 
-    l.debug(() => [{ currentKey, trieKey, nodeType }]);
+    // l.debug(() => [{ currentKey, trieKey, nodeType }]);
 
     if (nodeType === NodeType.LEAF) {
       if (keyEquals(trieKey, currentKey)) {
@@ -476,7 +476,7 @@ export default class Trie implements TrieDb {
     const isLeaf = isLeafNode(node);
     let newNode: NodeNotEmpty;
 
-    l.debug(() => ['_putKvNode', { currentKey, commonPrefix, currentRemainder, trieRemainder }]);
+    // l.debug(() => ['_putKvNode', { currentKey, commonPrefix, currentRemainder, trieRemainder }]);
 
     if (currentRemainder.length === 0 && trieRemainder.length === 0) {
       if (isLeaf) {

@@ -54,19 +54,19 @@ export default class MemoryDb implements BaseDb {
   }
 
   del (key: Uint8Array): void {
-    l.debug(() => ['del', { key }]);
+    // l.debug(() => ['del', { key }]);
 
     delete this.storage[key.toString()];
   }
 
   get (key: Uint8Array): Uint8Array | null {
-    l.debug(() => ['get', { key }]);
+    // l.debug(() => ['get', { key }]);
 
     return this.storage[key.toString()] || null;
   }
 
   put (key: Uint8Array, value: Uint8Array): void {
-    l.debug(() => ['put', { key, value }]);
+    // l.debug(() => ['put', { key, value }]);
 
     this.storage[key.toString()] = value;
   }
