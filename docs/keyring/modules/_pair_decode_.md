@@ -8,7 +8,7 @@
 
 ▸ **decode**(passphrase?: * `undefined` &#124; `string`*, _encrypted?: *`Uint8Array`*): `object`
 
-*Defined in [pair/decode.ts:15](https://github.com/polkadot-js/common/blob/40f3ceb/packages/keyring/src/pair/decode.ts#L15)*
+*Defined in [pair/decode.ts:15](https://github.com/polkadot-js/common/blob/5ce8f91/packages/keyring/src/pair/decode.ts#L15)*
 
 **Parameters:**
 
