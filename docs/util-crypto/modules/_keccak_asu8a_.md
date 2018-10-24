@@ -8,7 +8,7 @@
 
 ▸ **keccakAsU8a**(value: * `Buffer` &#124; `Uint8Array` &#124; `string`*): `Uint8Array`
 
-*Defined in [keccak/asU8a.ts:22](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util-crypto/src/keccak/asU8a.ts#L22)*
+*Defined in [keccak/asU8a.ts:22](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util-crypto/src/keccak/asU8a.ts#L22)*
 
 *__name__*: keccakAsU8a
 
@@ -19,6 +19,7 @@
 *__description__*: From either a `string` or a `Buffer` input, create the keccak and return the result as a `Uint8Array`.
 
 *__example__*:   
+
 ```javascript
 import { keccakAsU8a } from '@polkadot/util-crypto';
 

@@ -8,7 +8,7 @@
 
 ▸ **hexToNumber**(value?: * `undefined` &#124; `string`*): `number`
 
-*Defined in [hex/toNumber.ts:22](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util/src/hex/toNumber.ts#L22)*
+*Defined in [hex/toNumber.ts:22](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/hex/toNumber.ts#L22)*
 
 *__name__*: hexToNumber
 
@@ -19,6 +19,7 @@
 *__description__*: `null` inputs returns an NaN result, `hex` values return the actual value as a `Number`.
 
 *__example__*:   
+
 ```javascript
 import { hexToNumber } from '@polkadot/util';
 

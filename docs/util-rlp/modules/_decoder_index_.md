@@ -8,17 +8,18 @@
 
 ▸ **decoder**(input?: *`Uint8Array`*):  `Uint8Array` &#124; `Array`<`any`>
 
-*Defined in [decoder/index.ts:24](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util-rlp/src/decoder/index.ts#L24)*
+*Defined in [decoder/index.ts:24](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util-rlp/src/decoder/index.ts#L24)*
 
 *__name__*: decoder
 
-*__signature__*: decoder (input?: Uint8Array): Uint8Array | Array<*>
+*__signature__*: decoder (input?: Uint8Array): Uint8Array | Array<\*>
 
 *__summary__*: Decodes the input RLP.
 
 *__description__*: From an input, decode the RLP and return the result as a `Uint8Array` or `Array`.
 
 *__example__*:   
+
 ```javascript
 import { decode } from '@polkadot/util-rlp';
 

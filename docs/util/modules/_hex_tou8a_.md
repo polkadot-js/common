@@ -8,7 +8,7 @@
 
 ▸ **hexToU8a**(_value?: * `string` &#124; `null`*, bitLength?: *`number`*): `Uint8Array`
 
-*Defined in [hex/toU8a.ts:25](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util/src/hex/toU8a.ts#L25)*
+*Defined in [hex/toU8a.ts:25](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/hex/toU8a.ts#L25)*
 
 *__name__*: hexToU8a
 
@@ -19,6 +19,7 @@
 *__description__*: `null` inputs returns an empty `Uint8Array` result. Hex input values return the actual bytes value converted to a Uint8Array. Anything that is not a hex string (including the `0x` prefix) throws an error.
 
 *__example__*:   
+
 ```javascript
 import { hexToU8a } from '@polkadot/util';
 

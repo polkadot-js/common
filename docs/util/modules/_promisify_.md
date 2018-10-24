@@ -8,7 +8,7 @@
 
 ▸ **promisify**(self: *`any`*, fn: *`Function`*, ...params: *`Array`<`any`>*): `Promise`<`any`>
 
-*Defined in [promisify.ts:21](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util/src/promisify.ts#L21)*
+*Defined in [promisify.ts:21](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/promisify.ts#L21)*
 
 *__name__*: promisify
 
@@ -19,6 +19,7 @@
 *__description__*: Wraps the supplied async function `fn` that has a standard JS callback `(error: Error, result: any)` into a `Promise`, passing the supplied parameters. When `error` is set, the Promise is rejected, else the Promise resolves with the `result` value.
 
 *__example__*:   
+
 ```javascript
 const { promisify } from '@polkadot/util';
 

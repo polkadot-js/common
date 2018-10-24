@@ -8,7 +8,7 @@
 
 ▸ **bnToHex**(value?: * `BN` &#124; `number`*, bitLength?: *`number`*): `string`
 
-*Defined in [bn/toHex.ts:28](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util/src/bn/toHex.ts#L28)*
+*Defined in [bn/toHex.ts:28](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/bn/toHex.ts#L28)*
 
 *__name__*: bnToHex
 
@@ -19,6 +19,7 @@
 *__description__*: `null` inputs returns a `0x` result, BN values return the actual value as a `0x` prefixed hex value. Anything that is not a BN object throws an error. With `bitLength` set, it fixes the number to the specified length.
 
 *__example__*:   
+
 ```javascript
 import BN from 'bn.js';
 import { bnToHex } from '@polkadot/util';

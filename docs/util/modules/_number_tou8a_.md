@@ -8,7 +8,7 @@
 
 ▸ **numberToU8a**(value?: * `undefined` &#124; `number`*, bitLength?: *`number`*): `Uint8Array`
 
-*Defined in [number/toU8a.ts:23](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util/src/number/toU8a.ts#L23)*
+*Defined in [number/toU8a.ts:23](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/number/toU8a.ts#L23)*
 
 *__name__*: numberToU8a
 
@@ -19,6 +19,7 @@
 *__description__*: `null`/`undefined`/`NaN` inputs returns an empty `Uint8Array` result. `number` input values return the actual bytes value converted to a `Uint8Array`. With `bitLength`, it converts the value to the equivalent size.
 
 *__example__*:   
+
 ```javascript
 import { numberToU8a } from '@polkadot/util';
 

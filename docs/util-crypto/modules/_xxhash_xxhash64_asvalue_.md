@@ -8,7 +8,7 @@
 
 ▸ **xxhash64AsValue**(data: * `Buffer` &#124; `Uint8Array` &#124; `string`*, seed: *`number`*): `number`
 
-*Defined in [xxhash/xxhash64/asValue.ts:23](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util-crypto/src/xxhash/xxhash64/asValue.ts#L23)*
+*Defined in [xxhash/xxhash64/asValue.ts:23](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util-crypto/src/xxhash/xxhash64/asValue.ts#L23)*
 
 *__name__*: xxhash64AsValue
 
@@ -19,6 +19,7 @@
 *__description__*: From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a hex number
 
 *__example__*:   
+
 ```javascript
 import { xxhash64AsValue } from '@polkadot/util-crypto';
 

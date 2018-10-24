@@ -8,7 +8,7 @@
 
 ▸ **blake2AsU8a**(data: *`Uint8Array`*, bitLength?: *`number`*, key?: *`Uint8Array`*): `Uint8Array`
 
-*Defined in [blake2/asU8a.ts:22](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util-crypto/src/blake2/asU8a.ts#L22)*
+*Defined in [blake2/asU8a.ts:22](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util-crypto/src/blake2/asU8a.ts#L22)*
 
 *__name__*: blake2AsU8a
 
@@ -19,6 +19,7 @@
 *__description__*: From a `Uint8Array` input, create the blake2b and return the result as a u8a with the specified `bitLength`.
 
 *__example__*:   
+
 ```javascript
 import { blake2AsU8a } from '@polkadot/util-crypto';
 

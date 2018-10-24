@@ -8,7 +8,7 @@
 
 ▸ **naclSign**(message: *`Uint8Array`*, secretKey: *`Uint8Array`*): `Uint8Array`
 
-*Defined in [nacl/sign.ts:22](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util-crypto/src/nacl/sign.ts#L22)*
+*Defined in [nacl/sign.ts:22](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util-crypto/src/nacl/sign.ts#L22)*
 
 *__name__*: naclSign
 
@@ -19,6 +19,7 @@
 *__description__*: Returns message signature of `message`, using the `secretKey`.
 
 *__example__*:   
+
 ```javascript
 import { naclSign } from '@polkadot/util-crypto';
 

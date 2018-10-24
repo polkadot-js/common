@@ -68,7 +68,7 @@ Below is a list of currently exposed methods published at the [Polkadot-JS Commo
 *   Uses the [Blake2b](https://blake2.net/) hash function of [blakejs](https://www.npmjs.com/package/blakejs) library
 *   Note: All hashes used in Polkadot-JS are 32 bytes (i.e. 256 / 8)
 *   Note: BLAKE hash functions are in the Nacl library
-*   Note: Only handles up to 2**53 bytes of input
+*   Note: Only handles up to 2\*\*53 bytes of input
 
 ### Keccak
 

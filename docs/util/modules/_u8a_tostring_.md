@@ -8,7 +8,7 @@
 
 ▸ **u8aToString**(value?: *`Uint8Array`*): `string`
 
-*Defined in [u8a/toString.ts:24](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util/src/u8a/toString.ts#L24)*
+*Defined in [u8a/toString.ts:24](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/u8a/toString.ts#L24)*
 
 *__name__*: u8aToString
 
@@ -19,6 +19,7 @@
 *__description__*: `UInt8Array` input values return the actual decoded utf-8 string. `null` or `undefined` values returns an empty string.
 
 *__example__*:   
+
 ```javascript
 import { u8aToString } from '@polkadot/util';
 

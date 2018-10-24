@@ -8,7 +8,7 @@
 
 ▸ **isBuffer**(value: *`any`*): `boolean`
 
-*Defined in [is/buffer.ts:22](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util/src/is/buffer.ts#L22)*
+*Defined in [is/buffer.ts:22](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/is/buffer.ts#L22)*
 
 *__name__*: isBuffer
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input object is an instance of `Buffer`.
 
 *__example__*:   
+
 ```javascript
 import { isBuffer } from '@polkadot/util';
 

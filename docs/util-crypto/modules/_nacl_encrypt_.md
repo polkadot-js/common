@@ -8,7 +8,7 @@
 
 ▸ **naclEncrypt**(message: *`Uint8Array`*, secret: *`Uint8Array`*, nonce?: *`Uint8Array`*): `Encrypted`
 
-*Defined in [nacl/encrypt.ts:29](https://github.com/polkadot-js/common/blob/40f3ceb/packages/util-crypto/src/nacl/encrypt.ts#L29)*
+*Defined in [nacl/encrypt.ts:29](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util-crypto/src/nacl/encrypt.ts#L29)*
 
 *__name__*: naclEncrypt
 
@@ -19,6 +19,7 @@
 *__description__*: Returns an encrypted message, using the `secretKey` and `nonce`. If the `nonce` was not supplied, a random value is generated.
 
 *__example__*:   
+
 ```javascript
 import { naclEncrypt } from '@polkadot/util-crypto';
 
