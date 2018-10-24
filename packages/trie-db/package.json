@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-db#readme",
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
+    "@babel/runtime": "^7.1.2",
     "@polkadot/db": "^0.32.6",
     "@polkadot/trie-hash": "^0.32.6",
     "@polkadot/util": "^0.32.6",

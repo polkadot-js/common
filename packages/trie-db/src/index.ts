@@ -123,7 +123,7 @@ export default class Trie implements TrieDb {
   }
 
   put (key: Uint8Array, value: Uint8Array): void {
-    l.debug(() => ['put', { key, value }]);
+    l.debug(() => ['put', { key, value: value.subarray(0, 64) }]);
 
     this._setRootNode(
       this._put(
