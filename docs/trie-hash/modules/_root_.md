@@ -8,7 +8,7 @@
 
 ▸ **trieRoot**(pairs: *`Trie$Pairs`*): `Uint8Array`
 
-*Defined in [root.ts:30](https://github.com/polkadot-js/common/blob/5ce8f91/packages/trie-hash/src/root.ts#L30)*
+*Defined in [root.ts:30](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/trie-hash/src/root.ts#L30)*
 
 *__name__*: trieRoot
 
@@ -19,6 +19,7 @@
 *__description__*: From an `Array<{k: Uint8Array, v: Uint8Array}>` input, calculate the triehash and return the result as a `Uint8Array`.
 
 *__example__*:   
+
 ```javascript
 import { stringToU8a } from '@polkadot/util';
 import { trieRoot } from '@polkadot/trie-hash';

@@ -8,7 +8,7 @@
 
 ▸ **trieRootOrdered**(values: *`Array`<`Uint8Array`>*): `Uint8Array`
 
-*Defined in [rootOrdered.ts:29](https://github.com/polkadot-js/common/blob/5ce8f91/packages/trie-hash/src/rootOrdered.ts#L29)*
+*Defined in [rootOrdered.ts:29](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/trie-hash/src/rootOrdered.ts#L29)*
 
 *__name__*: trieRootOrdered
 
@@ -19,6 +19,7 @@
 *__description__*: From an `Array<Uint8Array>` input, calculate the ordered triehash and return the result as a `Uint8Array`.
 
 *__example__*:   
+
 ```javascript
 import { stringToU8a } from '@polkadot/util';
 import { trieRootOrdered } from '@polkadot/trie-hash';

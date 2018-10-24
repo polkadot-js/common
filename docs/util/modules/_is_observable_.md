@@ -8,7 +8,7 @@
 
 ▸ **isObservable**(value: *`any`*): `boolean`
 
-*Defined in [is/observable.ts:27](https://github.com/polkadot-js/common/blob/5ce8f91/packages/util/src/is/observable.ts#L27)*
+*Defined in [is/observable.ts:27](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/is/observable.ts#L27)*
 
 *__name__*: isBObservable
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input object is an instance of `BN` (bn.js).
 
 *__example__*:   
+
 ```javascript
 import { isObservable } from '@polkadot/util';
 

@@ -8,7 +8,7 @@
 
 ▸ **hexToBn**(_value?: * `undefined` &#124; `string`*, isLe?: *`boolean`*): `BN`
 
-*Defined in [hex/toBn.ts:30](https://github.com/polkadot-js/common/blob/5ce8f91/packages/util/src/hex/toBn.ts#L30)*
+*Defined in [hex/toBn.ts:30](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/hex/toBn.ts#L30)*
 
 *__name__*: hexToBn
 
@@ -19,6 +19,7 @@
 *__description__*: `null` inputs returns a `BN(0)` result. Hex input values return the actual value converted to a BN. Anything that is not a hex string (including the `0x` prefix) throws an error.
 
 *__example__*:   
+
 ```javascript
 import { hexToBn } from '@polkadot/util';
 

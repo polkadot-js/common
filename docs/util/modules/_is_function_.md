@@ -8,7 +8,7 @@
 
 ▸ **isFunction**(value: *`any`*): `boolean`
 
-*Defined in [is/function.ts:20](https://github.com/polkadot-js/common/blob/5ce8f91/packages/util/src/is/function.ts#L20)*
+*Defined in [is/function.ts:20](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/is/function.ts#L20)*
 
 *__name__*: isFunction
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input value is a JavaScript function.
 
 *__example__*:   
+
 ```javascript
 import { isFunction } from '@polkadot/util';
 

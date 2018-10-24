@@ -8,7 +8,7 @@
 
 ▸ **asNibbles**(bytes: * `Uint8Array` &#124; `Array`<`number`> &#124; `null`*): `Uint8Array`
 
-*Defined in [util/asNibbles.ts:20](https://github.com/polkadot-js/common/blob/5ce8f91/packages/trie-hash/src/util/asNibbles.ts#L20)*
+*Defined in [util/asNibbles.ts:20](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/trie-hash/src/util/asNibbles.ts#L20)*
 
 *__name__*: asNibbles
 
@@ -19,6 +19,7 @@
 *__description__*: From an `Uint8Array` input, calculate and return a list of nibbles that makes up the input.
 
 *__example__*:   
+
 ```javascript
 import { asNibbles } from '@polkadot/trie-hash/util';
 

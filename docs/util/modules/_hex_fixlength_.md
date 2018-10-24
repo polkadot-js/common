@@ -8,7 +8,7 @@
 
 ▸ **hexFixLength**(value: *`string`*, bitLength?: *`number`*, withPadding?: *`boolean`*): `string`
 
-*Defined in [hex/fixLength.ts:25](https://github.com/polkadot-js/common/blob/5ce8f91/packages/util/src/hex/fixLength.ts#L25)*
+*Defined in [hex/fixLength.ts:25](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/hex/fixLength.ts#L25)*
 
 *__name__*: hexFixLength
 
@@ -19,6 +19,7 @@
 *__description__*: Returns a `0x` prefixed string with the specified number of bits contained in the return value. (If bitLength is -1, length checking is not done). Values with more bits are trimmed to the specified length. Input values with less bits are returned as-is by default. When `withPadding` is set, shorter values are padded with `0`.
 
 *__example__*:   
+
 ```javascript
 import { hexFixLength } from '@polkadot/util';
 

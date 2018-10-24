@@ -8,7 +8,7 @@
 
 ▸ **assert**(test: *`any`*, message: * `string` &#124; `MessageFn`*, code?: *`number`*, data?: *`any`*): `boolean`
 
-*Defined in [assert.ts:27](https://github.com/polkadot-js/common/blob/5ce8f91/packages/util/src/assert.ts#L27)*
+*Defined in [assert.ts:27](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/assert.ts#L27)*
 
 *__name__*: assert
 
@@ -19,6 +19,7 @@
 *__description__*: Checks that `test` is a truthy value. If value is falsy (`null`, `undefined`, `false`, ...), it throws an ExtError with the supplied `message` and an optional `code` and `data`. When `test` passes, `true` is returned.
 
 *__example__*:   
+
 ```javascript
 const { assert } from '@polkadot/util';
 

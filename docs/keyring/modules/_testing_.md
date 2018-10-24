@@ -8,7 +8,7 @@
 
 ▸ **testKeyring**(): `KeyringInstance`
 
-*Defined in [testing.ts:57](https://github.com/polkadot-js/common/blob/5ce8f91/packages/keyring/src/testing.ts#L57)*
+*Defined in [testing.ts:57](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/keyring/src/testing.ts#L57)*
 
 *__name__*: testKeyring
 
@@ -19,6 +19,7 @@
 *__description__*: The test accounts (i.e. alice, bob, dave, eve, ferdie) are available on the dev chain and each test account is initialised with DOT funds.
 
 *__example__*:   
+
 ```javascript
 import testKeyring from '@polkadot/keyring/testing';
 

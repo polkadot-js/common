@@ -8,7 +8,7 @@
 
 ▸ **sha512AsU8a**(data: *`Uint8Array`*): `Uint8Array`
 
-*Defined in [sha512/asU8a.ts:22](https://github.com/polkadot-js/common/blob/5ce8f91/packages/util-crypto/src/sha512/asU8a.ts#L22)*
+*Defined in [sha512/asU8a.ts:22](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util-crypto/src/sha512/asU8a.ts#L22)*
 
 *__name__*: sha512AsU8a
 
@@ -19,6 +19,7 @@
 *__description__*: Returns a sha-512 `Uint8Array` from the supplied data.
 
 *__example__*:   
+
 ```javascript
 import { sha512AsU8a } from '@polkadot/util-crypto';
 

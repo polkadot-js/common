@@ -8,7 +8,7 @@
 
 ▸ **u8aToHex**(value?: * `Uint8Array` &#124; `null`*, bitLength?: *`number`*, isPrefixed?: *`boolean`*): `string`
 
-*Defined in [u8a/toHex.ts:20](https://github.com/polkadot-js/common/blob/5ce8f91/packages/util/src/u8a/toHex.ts#L20)*
+*Defined in [u8a/toHex.ts:20](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/u8a/toHex.ts#L20)*
 
 *__name__*: u8aToHex
 
@@ -19,6 +19,7 @@
 *__description__*: `UInt8Array` input values return the actual hex string. `null` or `undefined` values returns an `0x` string.
 
 *__example__*:   
+
 ```javascript
 import { u8aToHex } from '@polkadot/util';
 

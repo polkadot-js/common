@@ -8,7 +8,7 @@
 
 ▸ **isString**(value: *`any`*): `boolean`
 
-*Defined in [is/string.ts:20](https://github.com/polkadot-js/common/blob/5ce8f91/packages/util/src/is/string.ts#L20)*
+*Defined in [is/string.ts:20](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util/src/is/string.ts#L20)*
 
 *__name__*: isString
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input value is a JavaScript string.
 
 *__example__*:   
+
 ```javascript
 import { isString } from '@polkadot/util';
 

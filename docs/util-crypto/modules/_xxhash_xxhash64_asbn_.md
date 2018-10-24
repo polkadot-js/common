@@ -8,7 +8,7 @@
 
 ▸ **xxhash64AsBn**(data: * `Buffer` &#124; `Uint8Array` &#124; `string`*, seed: *`number`*): `BN`
 
-*Defined in [xxhash/xxhash64/asBn.ts:24](https://github.com/polkadot-js/common/blob/5ce8f91/packages/util-crypto/src/xxhash/xxhash64/asBn.ts#L24)*
+*Defined in [xxhash/xxhash64/asBn.ts:24](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util-crypto/src/xxhash/xxhash64/asBn.ts#L24)*
 
 *__name__*: xxhash64AsBn
 
@@ -19,6 +19,7 @@
 *__description__*: From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a BN.
 
 *__example__*:   
+
 ```javascript
 import { xxhash64AsNumber } from '@polkadot/util-crypto';
 

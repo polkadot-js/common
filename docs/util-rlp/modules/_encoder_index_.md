@@ -8,7 +8,7 @@
 
 ▸ **encoder**(input: *`any`*): `Uint8Array`
 
-*Defined in [encoder/index.ts:24](https://github.com/polkadot-js/common/blob/5ce8f91/packages/util-rlp/src/encoder/index.ts#L24)*
+*Defined in [encoder/index.ts:24](https://github.com/polkadot-js/common/blob/0cb6e6c/packages/util-rlp/src/encoder/index.ts#L24)*
 
 *__name__*: encoder
 
@@ -19,6 +19,7 @@
 *__description__*: From an input, calculate the RLP and return the result as a `Uint8Array`.
 
 *__example__*:   
+
 ```javascript
 import { encode } from '@polkadot/util-rlp';
 
