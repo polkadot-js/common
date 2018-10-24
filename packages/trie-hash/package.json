@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-hash#readme",
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
+    "@babel/runtime": "^7.1.2",
     "@polkadot/util": "^0.32.7",
     "@polkadot/util-crypto": "^0.32.7",
     "@polkadot/util-rlp": "^0.32.7"

@@ -66,7 +66,7 @@ export default class MemoryDb implements BaseDb {
   }
 
   put (key: Uint8Array, value: Uint8Array): void {
-    l.debug(() => ['put', { key, value: value.subarray(0, 128) }]);
+    l.debug(() => ['put', { key, value: value.subarray(0, 64) }]);
 
     this.storage[key.toString()] = value;
   }
