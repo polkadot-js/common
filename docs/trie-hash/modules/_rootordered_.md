@@ -8,7 +8,7 @@
 
 ▸ **trieRootOrdered**(values: *`Array`<`Uint8Array`>*): `Uint8Array`
 
-*Defined in [rootOrdered.ts:29](https://github.com/polkadot-js/common/blob/7153110/packages/trie-hash/src/rootOrdered.ts#L29)*
+*Defined in [rootOrdered.ts:29](https://github.com/polkadot-js/common/blob/d0291db/packages/trie-hash/src/rootOrdered.ts#L29)*
 
 *__name__*: trieRootOrdered
 

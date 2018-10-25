@@ -8,7 +8,7 @@
 
 ▸ **decodeNode**(encoded: * `Uint8Array` &#124; [Node](_types_.md#node)*): [Node](_types_.md#node)
 
-*Defined in [util/node.ts:31](https://github.com/polkadot-js/common/blob/7153110/packages/trie-db/src/util/node.ts#L31)*
+*Defined in [util/node.ts:31](https://github.com/polkadot-js/common/blob/d0291db/packages/trie-db/src/util/node.ts#L31)*
 
 **Parameters:**
 
@@ -25,7 +25,7 @@ ___
 
 ▸ **encodeNode**(node: *[Node](_types_.md#node)*): `Uint8Array`
 
-*Defined in [util/node.ts:48](https://github.com/polkadot-js/common/blob/7153110/packages/trie-db/src/util/node.ts#L48)*
+*Defined in [util/node.ts:48](https://github.com/polkadot-js/common/blob/d0291db/packages/trie-db/src/util/node.ts#L48)*
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ ___
 
 ▸ **getNodeType**(node: *[Node](_types_.md#node)*): [NodeType](../enums/_types_.nodetype.md)
 
-*Defined in [util/node.ts:14](https://github.com/polkadot-js/common/blob/7153110/packages/trie-db/src/util/node.ts#L14)*
+*Defined in [util/node.ts:14](https://github.com/polkadot-js/common/blob/d0291db/packages/trie-db/src/util/node.ts#L14)*
 
 **Parameters:**
 
