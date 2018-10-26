@@ -23,7 +23,7 @@ async function main () {
     .forEach((pair, index) => {
       const address = pair.address();
 
-      console.log(`${index} account has json: `,
+      console.log(`\nAccount with index #${index} has json: `,
         JSON.stringify(keyring.toJson(address), null, 2));
     });
 }

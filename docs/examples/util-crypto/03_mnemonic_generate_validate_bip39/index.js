@@ -1,6 +1,4 @@
-const {
-  mnemonicGenerate, mnemonicToSeed, mnemonicValidate, naclKeypairFromSeed
-} = require('@polkadot/util-crypto');
+const { mnemonicGenerate, mnemonicToSeed, mnemonicValidate, naclKeypairFromSeed } = require('@polkadot/util-crypto');
 
 async function main () {
   // Create mnemonic string for Alice using BIP39
