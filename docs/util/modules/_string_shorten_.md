@@ -8,7 +8,7 @@
 
 ▸ **stringShorten**(_value: *`any`*, prefixLength?: *`number`*): `string`
 
-*Defined in [string/shorten.ts:20](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/string/shorten.ts#L20)*
+*Defined in [string/shorten.ts:20](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/string/shorten.ts#L20)*
 
 *__name__*: stringShorten
 
@@ -19,6 +19,7 @@
 *__description__*: Checks the string against the `prefixLength`, if longer than dopuble this, shortens it by placing `..` in the middle of it
 
 *__example__*:   
+
 ```javascript
 import { stringShorten } from '@polkadot/util';
 

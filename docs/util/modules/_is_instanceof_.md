@@ -8,7 +8,7 @@
 
 ▸ **isInstanceOf**(value: *`any`*, clazz: *`any`*): `boolean`
 
-*Defined in [is/instanceOf.ts:20](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/is/instanceOf.ts#L20)*
+*Defined in [is/instanceOf.ts:20](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/is/instanceOf.ts#L20)*
 
 *__name__*: isInstanceOf
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input value is an instance of the test class.
 
 *__example__*:   
+
 ```javascript
 import { isInstanceOf } from '@polkadot/util';
 

@@ -8,7 +8,7 @@
 
 ▸ **u8aToBn**(value: *`Uint8Array`*, isLe: *`boolean`*): `BN`
 
-*Defined in [u8a/toBn.ts:25](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/u8a/toBn.ts#L25)*
+*Defined in [u8a/toBn.ts:25](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/u8a/toBn.ts#L25)*
 
 *__name__*: u8aToBn
 
@@ -19,6 +19,7 @@
 *__description__*: `UInt8Array` input values return the actual BN. `null` or `undefined` values returns an `0x0` value.
 
 *__example__*:   
+
 ```javascript
 import { u8aToBn } from '@polkadot/util';
 

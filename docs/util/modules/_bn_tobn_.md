@@ -8,7 +8,7 @@
 
 ▸ **bnToBn**(value?: * `BN` &#124; `number`*): `BN`
 
-*Defined in [bn/toBn.ts:24](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/bn/toBn.ts#L24)*
+*Defined in [bn/toBn.ts:24](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/bn/toBn.ts#L24)*
 
 *__name__*: bnToBn
 
@@ -19,6 +19,7 @@
 *__description__*: `null` inputs returns a `0x0` result, BN values returns the value, numnbers returns a BN representation.
 
 *__example__*:   
+
 ```javascript
 import BN from 'bn.js';
 import { bnToBn } from '@polkadot/util';

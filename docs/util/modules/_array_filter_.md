@@ -8,7 +8,7 @@
 
 ▸ **arrayFilter**(array: *`Array`<`any`>*, allowNulls?: *`boolean`*): `Array`<`any`>
 
-*Defined in [array/filter.ts:24](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/array/filter.ts#L24)*
+*Defined in [array/filter.ts:24](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/array/filter.ts#L24)*
 
 *__name__*: arrayFilter
 
@@ -19,6 +19,7 @@
 *__description__*: Returns a new array with all `undefined` values removed. Optionally, when `allowNulls = false`, it removes the `null` values as well
 
 *__example__*:   
+
 ```javascript
 import { arrayFilter } from '@polkadot/util';
 

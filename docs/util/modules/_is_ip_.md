@@ -8,7 +8,7 @@
 
 ▸ **isIp**(value: *`string`*, type?: *`IpTypes`*): `boolean`
 
-*Defined in [is/ip.ts:27](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/is/ip.ts#L27)*
+*Defined in [is/ip.ts:27](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/is/ip.ts#L27)*
 
 *__name__*: isIp
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the value is a valid IP address. Optionally check for either v4/v6
 
 *__example__*:   
+
 ```javascript
 import { isIp } from '@polkadot/util';
 

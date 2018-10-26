@@ -8,7 +8,7 @@
 
 ▸ **isObject**(value: *`any`*): `boolean`
 
-*Defined in [is/object.ts:25](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/is/object.ts#L25)*
+*Defined in [is/object.ts:25](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/is/object.ts#L25)*
 
 *__name__*: isObject
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input value is a JavaScript object.
 
 *__example__*:   
+
 ```javascript
 import { isObject } from '@polkadot/util';
 

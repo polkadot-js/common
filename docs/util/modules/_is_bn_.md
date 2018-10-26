@@ -8,7 +8,7 @@
 
 ▸ **isBn**(value: *`any`*): `boolean`
 
-*Defined in [is/bn.ts:23](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/is/bn.ts#L23)*
+*Defined in [is/bn.ts:23](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/is/bn.ts#L23)*
 
 *__name__*: isBn
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input object is an instance of `BN` (bn.js).
 
 *__example__*:   
+
 ```javascript
 import BN from 'bn.js';
 import { isBn } from '@polkadot/util';

@@ -8,7 +8,7 @@
 
 ▸ **isNull**(value: *`any`*): `boolean`
 
-*Defined in [is/null.ts:20](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/is/null.ts#L20)*
+*Defined in [is/null.ts:20](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/is/null.ts#L20)*
 
 *__name__*: isNull
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input value is `null`.
 
 *__example__*:   
+
 ```javascript
 import { isNull } from '@polkadot/util';
 

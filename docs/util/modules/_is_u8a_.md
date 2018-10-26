@@ -8,7 +8,7 @@
 
 ▸ **isU8a**(value: *`any`*): `boolean`
 
-*Defined in [is/u8a.ts:22](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/is/u8a.ts#L22)*
+*Defined in [is/u8a.ts:22](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/is/u8a.ts#L22)*
 
 *__name__*: isU8a
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input object is an instance of `Uint8Array`.
 
 *__example__*:   
+
 ```javascript
 import { isUint8Array } from '@polkadot/util';
 

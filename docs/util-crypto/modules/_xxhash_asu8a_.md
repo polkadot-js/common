@@ -8,7 +8,7 @@
 
 ▸ **xxhashAsU8a**(data: * `Buffer` &#124; `Uint8Array` &#124; `string`*, bitLength?: *`number`*): `Uint8Array`
 
-*Defined in [xxhash/asU8a.ts:22](https://github.com/polkadot-js/common/blob/b53a677/packages/util-crypto/src/xxhash/asU8a.ts#L22)*
+*Defined in [xxhash/asU8a.ts:22](https://github.com/polkadot-js/common/blob/d0291db/packages/util-crypto/src/xxhash/asU8a.ts#L22)*
 
 *__name__*: xxhashAsU8a
 
@@ -19,6 +19,7 @@
 *__description__*: From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash64 and return the result as a `Uint8Array` with the specified `bitLength`.
 
 *__example__*:   
+
 ```javascript
 import { xxhashAsU8a } from '@polkadot/util-crypto';
 

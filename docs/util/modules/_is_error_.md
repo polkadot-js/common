@@ -8,7 +8,7 @@
 
 ▸ **isError**(value: *`any`*): `boolean`
 
-*Defined in [is/error.ts:22](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/is/error.ts#L22)*
+*Defined in [is/error.ts:22](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/is/error.ts#L22)*
 
 *__name__*: isError
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input object is an instance of `Error`.
 
 *__example__*:   
+
 ```javascript
 import { isError } from '@polkadot/util';
 

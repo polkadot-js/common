@@ -8,7 +8,7 @@
 
 ▸ **isHex**(_value: *`any`*, bitLength?: *`number`*, ignoreLength?: *`boolean`*): `boolean`
 
-*Defined in [is/hex.ts:25](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/is/hex.ts#L25)*
+*Defined in [is/hex.ts:25](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/is/hex.ts#L25)*
 
 *__name__*: isHex
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input value is a `0x` prefixed hex string. Optionally (`bitLength` !== -1) checks to see if the bitLength is correct.
 
 *__example__*:   
+
 ```javascript
 import { isHex } from '@polkadot/util';
 

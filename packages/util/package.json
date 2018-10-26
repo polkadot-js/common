@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util",
-  "version": "0.32.5",
+  "version": "0.32.10",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
   "keywords": [
@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util#readme",
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
-    "@types/bn.js": "^4.11.1",
+    "@babel/runtime": "^7.1.2",
+    "@types/bn.js": "^4.11.2",
     "@types/camelcase": "^4.1.0",
     "@types/deasync": "^0.1.0",
     "@types/ip-regex": "^2.0.0",

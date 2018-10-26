@@ -8,7 +8,7 @@
 
 ▸ **toJson**(__namedParameters: *`object`*, encoded: *`Uint8Array`*, isEncrypted: *`boolean`*): `KeyringPair$Json`
 
-*Defined in [pair/toJson.ts:10](https://github.com/polkadot-js/common/blob/b53a677/packages/keyring/src/pair/toJson.ts#L10)*
+*Defined in [pair/toJson.ts:10](https://github.com/polkadot-js/common/blob/d0291db/packages/keyring/src/pair/toJson.ts#L10)*
 
 **Parameters:**
 

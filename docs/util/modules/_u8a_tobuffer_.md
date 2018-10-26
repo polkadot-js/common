@@ -8,7 +8,7 @@
 
 ▸ **u8aToBuffer**(value?: *`Uint8Array`*): `Buffer`
 
-*Defined in [u8a/toBuffer.ts:20](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/u8a/toBuffer.ts#L20)*
+*Defined in [u8a/toBuffer.ts:20](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/u8a/toBuffer.ts#L20)*
 
 *__name__*: u8aToBuffer
 
@@ -19,6 +19,7 @@
 *__description__*: `null` inputs returns an empty `Buffer` result. `UInt8Array` input values return the actual bytes value converted to a `Buffer`. Anything that is not a `UInt8Array` throws an error.
 
 *__example__*:   
+
 ```javascript
 import { u8aToBuffer } from '@polkadot/util';
 

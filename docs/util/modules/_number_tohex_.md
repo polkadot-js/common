@@ -8,7 +8,7 @@
 
 ▸ **numberToHex**(value?: * `undefined` &#124; `number`*, bitLength?: *`number`*): `string`
 
-*Defined in [number/toHex.ts:25](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/number/toHex.ts#L25)*
+*Defined in [number/toHex.ts:25](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/number/toHex.ts#L25)*
 
 *__name__*: numberToHex
 
@@ -19,6 +19,7 @@
 *__description__*: `null`/`undefined`/`NaN` inputs returns an empty `0x` result. `number` input values return the actual bytes value converted to a `hex`. With `bitLength` set, it converts the number to the equivalent size.
 
 *__example__*:   
+
 ```javascript
 import { numberToHex } from '@polkadot/util';
 

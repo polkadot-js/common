@@ -8,7 +8,7 @@
 
 ▸ **isUndefined**(value: *`any`*): `boolean`
 
-*Defined in [is/undefined.ts:20](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/is/undefined.ts#L20)*
+*Defined in [is/undefined.ts:20](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/is/undefined.ts#L20)*
 
 *__name__*: isUndefined
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input value is `undefined`.
 
 *__example__*:   
+
 ```javascript
 import { isUndefined } from '@polkadot/util';
 

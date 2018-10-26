@@ -8,7 +8,7 @@
 
 ▸ **randomAsNumber**(): `number`
 
-*Defined in [random/asNumber.ts:27](https://github.com/polkadot-js/common/blob/b53a677/packages/util-crypto/src/random/asNumber.ts#L27)*
+*Defined in [random/asNumber.ts:27](https://github.com/polkadot-js/common/blob/d0291db/packages/util-crypto/src/random/asNumber.ts#L27)*
 
 *__name__*: randomAsNumber
 
@@ -19,6 +19,7 @@
 *__description__*: Returns a random number generated from the secure bytes.
 
 *__example__*:   
+
 ```javascript
 import { randomAsNumber } from '@polkadot/util-crypto';
 

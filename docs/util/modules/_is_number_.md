@@ -8,7 +8,7 @@
 
 ▸ **isNumber**(value: *`any`*): `boolean`
 
-*Defined in [is/number.ts:20](https://github.com/polkadot-js/common/blob/b53a677/packages/util/src/is/number.ts#L20)*
+*Defined in [is/number.ts:20](https://github.com/polkadot-js/common/blob/d0291db/packages/util/src/is/number.ts#L20)*
 
 *__name__*: isNumber
 
@@ -19,6 +19,7 @@
 *__description__*: Checks to see if the input value is a valid number.
 
 *__example__*:   
+
 ```javascript
 import { isNumber } from '@polkadot/util';
 

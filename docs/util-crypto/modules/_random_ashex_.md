@@ -8,7 +8,7 @@
 
 ▸ **randomAsHex**(length?: *`number`*): `string`
 
-*Defined in [random/asHex.ts:24](https://github.com/polkadot-js/common/blob/b53a677/packages/util-crypto/src/random/asHex.ts#L24)*
+*Defined in [random/asHex.ts:24](https://github.com/polkadot-js/common/blob/d0291db/packages/util-crypto/src/random/asHex.ts#L24)*
 
 *__name__*: randomAsHex
 
@@ -19,6 +19,7 @@
 *__description__*: Returns a hex string with the specified (optional) length filled with random bytes.
 
 *__example__*:   
+
 ```javascript
 import { randomAsHex } from '@polkadot/util-crypto';
 
