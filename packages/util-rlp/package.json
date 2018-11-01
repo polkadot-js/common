@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-rlp",
-  "version": "0.32.10",
+  "version": "0.32.11",
   "description": "RLP encoding and decoding",
   "main": "index.js",
   "keywords": [
@@ -31,7 +31,7 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-hash#readme",
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "@polkadot/util": "^0.32.10"
+    "@polkadot/util": "^0.32.11"
   },
   "devDependencies": {
     "ethereumjs-testing": "1.0.4"
