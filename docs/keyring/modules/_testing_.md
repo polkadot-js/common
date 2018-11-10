@@ -8,7 +8,7 @@
 
 ▸ **testKeyring**(): `KeyringInstance`
 
-*Defined in [testing.ts:57](https://github.com/polkadot-js/common/blob/0ddac0a/packages/keyring/src/testing.ts#L57)*
+*Defined in [testing.ts:57](https://github.com/polkadot-js/common/blob/a9878a2/packages/keyring/src/testing.ts#L57)*
 
 *__name__*: testKeyring
 
