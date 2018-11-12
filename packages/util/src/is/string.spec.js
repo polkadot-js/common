@@ -17,6 +17,12 @@ describe('isString', () => {
     ).toEqual(true);
   });
 
+  it('returns true on String object', () => {
+    expect(
+      isString(new String('foo'))
+    ).toEqual(true);
+  });
+
   it('returns false on invalid numbers', () => {
     expect(
       isString(2)

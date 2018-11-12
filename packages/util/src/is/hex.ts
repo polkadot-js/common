@@ -22,9 +22,8 @@ const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
  * isHex('0x1234', 8); // => false
  * ```
  */
-export default function isHex (_value: any, bitLength: number = -1, ignoreLength: boolean = false): boolean {
-  const value = (_value as string);
-  const isValidHex = value === '0x' || (isString(value) && HEX_REGEX.test(value));
+export default function isHex (value: any, bitLength: number = -1, ignoreLength: boolean = false): value is string | String {
+  const isValidHex = value === '0x' || (isString(value) && HEX_REGEX.test(value.toString()));
 
   if (isValidHex && bitLength !== -1) {
     return value.length === (2 + Math.ceil(bitLength / 4));
