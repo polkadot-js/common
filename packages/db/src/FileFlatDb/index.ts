@@ -363,7 +363,7 @@ export default class FileFlatDb implements BaseDb {
     const { keyAt, keyValue } = this.writeNewKey(key);
     const keyIndex = key.nibbles[matchIndex] * defaults.ENTRY_SIZE;
     const prevIndex = prevKey.nibbles[matchIndex] * defaults.ENTRY_SIZE;
-    const buffers = [];
+    const buffers: Array<Buffer> = [];
     let newBranchAt = this._fileSize;
     let newBranch = Buffer.alloc(defaults.BRANCH_SIZE);
 
