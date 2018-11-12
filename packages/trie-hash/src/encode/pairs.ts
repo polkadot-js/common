@@ -21,8 +21,7 @@ function calcLength (pairs: Trie$Pairs, preLength: number, index: number, start:
 }
 
 export default function encodePairs (pairs: Trie$Pairs, preLength: number): Array<any> {
-  const result = [];
-
+  const result: Array<any> = [];
   let start = preLength === pairs[0].k.length
     ? 1
     : 0;

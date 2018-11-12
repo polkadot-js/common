@@ -7,7 +7,7 @@ import { DecodeFunc, DecodeOutput } from './types';
 export default function decodeListShort (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
   const length = input[0] - 0xbf;
   let innerRemainder = input.slice(1, length);
-  const decoded = [];
+  const decoded: Array<any | Uint8Array> = [];
 
   while (innerRemainder.length) {
     const d = decode(innerRemainder);

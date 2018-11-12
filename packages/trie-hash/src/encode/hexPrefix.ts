@@ -4,7 +4,7 @@
 
 export default function encodeHexPrefix (nibbles: Uint8Array | Array<number>, isLeaf: boolean): Uint8Array {
   const bits = ((nibbles.length & 1) + (2 * (isLeaf ? 1 : 0))) << 4;
-  const result = [];
+  const result: Array<number> = [];
   let offset = nibbles.length % 2;
 
   result.push(bits + (offset ? nibbles[0] : 0));
