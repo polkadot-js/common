@@ -6,9 +6,9 @@
 
 ##  isHex
 
-▸ **isHex**(_value: *`any`*, bitLength?: *`number`*, ignoreLength?: *`boolean`*): `boolean`
+▸ **isHex**(value: *`any`*, bitLength?: *`number`*, ignoreLength?: *`boolean`*): `boolean`
 
-*Defined in [is/hex.ts:25](https://github.com/polkadot-js/common/blob/a9878a2/packages/util/src/is/hex.ts#L25)*
+*Defined in [is/hex.ts:25](https://github.com/polkadot-js/common/blob/7a43354/packages/util/src/is/hex.ts#L25)*
 
 *__name__*: isHex
 
@@ -31,7 +31,7 @@ isHex('0x1234', 8); // => false
 
 | Param | Type | Default value |
 | ------ | ------ | ------ |
-| _value | `any` | - |
+| value | `any` | - |
 | `Default value` bitLength | `number` |  -1 |
 | `Default value` ignoreLength | `boolean` | false |
 

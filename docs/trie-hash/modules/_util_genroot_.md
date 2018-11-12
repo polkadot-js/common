@@ -8,7 +8,7 @@
 
 ▸ **genRoot**(pairs: *`Trie$Pairs`*): `Uint8Array`
 
-*Defined in [util/genRoot.ts:17](https://github.com/polkadot-js/common/blob/a9878a2/packages/trie-hash/src/util/genRoot.ts#L17)*
+*Defined in [util/genRoot.ts:17](https://github.com/polkadot-js/common/blob/7a43354/packages/trie-hash/src/util/genRoot.ts#L17)*
 
 *__name__*: genRoot
 
