@@ -29,9 +29,39 @@ Overview
 
 ⊕ **new Keyring**(): [Keyring](_index_.keyring.md)
 
-*Defined in [index.ts:33](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/index.ts#L33)*
+*Defined in [index.ts:33](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L33)*
 
 **Returns:** [Keyring](_index_.keyring.md)
+
+___
+
+# Properties
+
+<a id="decodeaddress"></a>
+
+##  decodeAddress
+
+**● decodeAddress**: *[decode](../modules/_address_decode_.md#decode)* =  decodeAddress
+
+*Defined in [index.ts:39](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L39)*
+
+___
+<a id="encodeaddress"></a>
+
+##  encodeAddress
+
+**● encodeAddress**: *[encode](../modules/_address_encode_.md#encode)* =  encodeAddress
+
+*Defined in [index.ts:40](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L40)*
+
+___
+<a id="setaddressprefix"></a>
+
+##  setAddressPrefix
+
+**● setAddressPrefix**: *[setPrefix](../modules/_address_setprefix_.md#setprefix)* =  setAddressPrefix
+
+*Defined in [index.ts:41](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L41)*
 
 ___
 
@@ -43,7 +73,7 @@ ___
 
 ▸ **addFromAddress**(address: * `string` &#124; `Uint8Array`*, meta?: *`KeyringPair$Meta`*, defaultEncoded?: *`Uint8Array`*): `KeyringPair`
 
-*Defined in [index.ts:57](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/index.ts#L57)*
+*Defined in [index.ts:61](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L61)*
 
 *__name__*: addFromAddress
 
@@ -70,7 +100,7 @@ ___
 
 ▸ **addFromJson**(__namedParameters: *`object`*): `KeyringPair`
 
-*Defined in [index.ts:72](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/index.ts#L72)*
+*Defined in [index.ts:76](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L76)*
 
 *__name__*: addFromJson
 
@@ -97,7 +127,7 @@ ___
 
 ▸ **addFromMnemonic**(mnemonic: *`string`*, meta?: *`KeyringPair$Meta`*): `KeyringPair`
 
-*Defined in [index.ts:85](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/index.ts#L85)*
+*Defined in [index.ts:89](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L89)*
 
 *__name__*: addFromMnemonic
 
@@ -123,7 +153,7 @@ ___
 
 ▸ **addFromSeed**(seed: *`Uint8Array`*, meta?: *`KeyringPair$Meta`*): `KeyringPair`
 
-*Defined in [index.ts:114](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/index.ts#L114)*
+*Defined in [index.ts:118](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L118)*
 
 *__name__*: addFromSeed
 
@@ -166,7 +196,7 @@ ___
 
 ▸ **addPair**(pair: *`KeyringPair`*): `KeyringPair`
 
-*Defined in [index.ts:44](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/index.ts#L44)*
+*Defined in [index.ts:48](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L48)*
 
 *__name__*: addPair
 
@@ -189,7 +219,7 @@ ___
 
 ▸ **getPair**(address: * `string` &#124; `Uint8Array`*): `KeyringPair`
 
-*Defined in [index.ts:150](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/index.ts#L150)*
+*Defined in [index.ts:154](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L154)*
 
 *__name__*: getPair
 
@@ -239,7 +269,7 @@ ___
 
 ▸ **getPairs**(): `Array`<`KeyringPair`>
 
-*Defined in [index.ts:182](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/index.ts#L182)*
+*Defined in [index.ts:186](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L186)*
 
 *__name__*: getPairs
 
@@ -280,7 +310,7 @@ ___
 
 ▸ **getPublicKeys**(): `Array`<`Uint8Array`>
 
-*Defined in [index.ts:192](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/index.ts#L192)*
+*Defined in [index.ts:196](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L196)*
 
 *__name__*: getPublicKeys
 
@@ -299,7 +329,7 @@ ___
 
 ▸ **removePair**(address: * `string` &#124; `Uint8Array`*): `void`
 
-*Defined in [index.ts:207](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/index.ts#L207)*
+*Defined in [index.ts:211](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L211)*
 
 *__name__*: removePair
 
@@ -324,7 +354,7 @@ ___
 
 ▸ **toJson**(address: * `string` &#124; `Uint8Array`*, passphrase?: * `undefined` &#124; `string`*): `KeyringPair$Json`
 
-*Defined in [index.ts:222](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/index.ts#L222)*
+*Defined in [index.ts:226](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/index.ts#L226)*
 
 *__name__*: toJson
 

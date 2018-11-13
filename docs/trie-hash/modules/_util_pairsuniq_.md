@@ -8,7 +8,7 @@
 
 ▸ **pairsUniq**(pairs: *`Trie$Pairs`*): `Trie$Pairs`
 
-*Defined in [util/pairsUniq.ts:18](https://github.com/polkadot-js/common/blob/22f8df1/packages/trie-hash/src/util/pairsUniq.ts#L18)*
+*Defined in [util/pairsUniq.ts:18](https://github.com/polkadot-js/common/blob/8f6b01a/packages/trie-hash/src/util/pairsUniq.ts#L18)*
 
 *__name__*: pairsUniq
 

@@ -16,7 +16,7 @@
 
 ⊕ **new Pairs**(): [Pairs](_pairs_.pairs.md)
 
-*Defined in [pairs.ts:17](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/pairs.ts#L17)*
+*Defined in [pairs.ts:17](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/pairs.ts#L17)*
 
 **Returns:** [Pairs](_pairs_.pairs.md)
 
@@ -30,7 +30,7 @@ ___
 
 ▸ **add**(pair: *`KeyringPair`*): `KeyringPair`
 
-*Defined in [pairs.ts:23](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/pairs.ts#L23)*
+*Defined in [pairs.ts:23](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/pairs.ts#L23)*
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ ___
 
 ▸ **all**(): `Array`<`KeyringPair`>
 
-*Defined in [pairs.ts:30](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/pairs.ts#L30)*
+*Defined in [pairs.ts:30](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/pairs.ts#L30)*
 
 **Returns:** `Array`<`KeyringPair`>
 
@@ -58,7 +58,7 @@ ___
 
 ▸ **get**(address: * `string` &#124; `Uint8Array`*): `KeyringPair`
 
-*Defined in [pairs.ts:34](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/pairs.ts#L34)*
+*Defined in [pairs.ts:34](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/pairs.ts#L34)*
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ ___
 
 ▸ **remove**(address: * `string` &#124; `Uint8Array`*): `void`
 
-*Defined in [pairs.ts:49](https://github.com/polkadot-js/common/blob/22f8df1/packages/keyring/src/pairs.ts#L49)*
+*Defined in [pairs.ts:49](https://github.com/polkadot-js/common/blob/8f6b01a/packages/keyring/src/pairs.ts#L49)*
 
 **Parameters:**
 
