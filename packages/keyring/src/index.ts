@@ -228,4 +228,4 @@ export default class Keyring implements KeyringInstance {
   }
 }
 
-export { Keyring };
+export { Keyring, decodeAddress, encodeAddress, setAddressPrefix };
