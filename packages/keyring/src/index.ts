@@ -36,6 +36,10 @@ export default class Keyring implements KeyringInstance {
     this._pairs = new Pairs();
   }
 
+  decodeAddress = decodeAddress;
+  encodeAddress = encodeAddress;
+  setAddressPrefix = setAddressPrefix;
+
   /**
    * @name addPair
    * @signature addPair (pair: KeyringPair): KeyringPair
@@ -56,7 +60,7 @@ export default class Keyring implements KeyringInstance {
    */
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array): KeyringPair {
     // @ts-ignore no secretKey - cannot unlock
-    return this.addPair(createPair({ publicKey: decodeAddress(address) }, meta, defaultEncoded));
+    return this.addPair(createPair({ publicKey: this.decodeAddress(address) }, meta, defaultEncoded));
   }
 
   /**
@@ -224,4 +228,4 @@ export default class Keyring implements KeyringInstance {
   }
 }
 
-export { Keyring, decodeAddress, encodeAddress, setAddressPrefix };
+export { Keyring };

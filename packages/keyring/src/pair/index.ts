@@ -8,7 +8,7 @@ import { PairState } from './types';
 
 import { naclSign, naclVerify } from '@polkadot/util-crypto/index';
 
-import encodeAddress from '../address/encode';
+import { encodeAddress } from '../address';
 import decode from './decode';
 import encode from './encode';
 import getMeta from './getMeta';

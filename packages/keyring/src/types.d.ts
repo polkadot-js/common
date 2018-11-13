@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+import { Prefix } from './address/types';
+
 export type KeyringPair$Meta = {
   [index: string]: any
 }
@@ -39,6 +41,10 @@ export interface KeyringPairs {
 }
 
 export interface KeyringInstance {
+  decodeAddress (encoded: string | Uint8Array): Uint8Array,
+  encodeAddress (key: Uint8Array | string): string,
+  setAddressPrefix (prefix: Prefix): void,
+
   addPair (pair: KeyringPair): KeyringPair,
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta): KeyringPair,
   addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta): KeyringPair,
