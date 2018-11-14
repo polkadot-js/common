@@ -16,11 +16,11 @@
 
 ⊕ **new FileTreeDb**(location: *`string`*): [FileTreeDb](_engines_filetreedb_.filetreedb.md)
 
-*Defined in [engines/FileTreeDb.ts:21](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L21)*
+*Defined in [engines/FileTreeDb.ts:21](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L21)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | location | `string` |
 
@@ -36,7 +36,7 @@ ___
 
 **● _location**: *`string`*
 
-*Defined in [engines/FileTreeDb.ts:21](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L21)*
+*Defined in [engines/FileTreeDb.ts:21](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L21)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 ▸ **close**(): `void`
 
-*Defined in [engines/FileTreeDb.ts:46](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L46)*
+*Defined in [engines/FileTreeDb.ts:46](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L46)*
 
 **Returns:** `void`
 
@@ -59,11 +59,11 @@ ___
 
 ▸ **del**(key: *`Uint8Array`*): `void`
 
-*Defined in [engines/FileTreeDb.ts:76](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L76)*
+*Defined in [engines/FileTreeDb.ts:76](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L76)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 
@@ -76,7 +76,7 @@ ___
 
 ▸ **drop**(): `void`
 
-*Defined in [engines/FileTreeDb.ts:50](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L50)*
+*Defined in [engines/FileTreeDb.ts:50](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L50)*
 
 **Returns:** `void`
 
@@ -87,7 +87,7 @@ ___
 
 ▸ **empty**(): `void`
 
-*Defined in [engines/FileTreeDb.ts:54](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L54)*
+*Defined in [engines/FileTreeDb.ts:54](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L54)*
 
 **Returns:** `void`
 
@@ -98,11 +98,11 @@ ___
 
 ▸ **get**(key: *`Uint8Array`*):  `Uint8Array` &#124; `null`
 
-*Defined in [engines/FileTreeDb.ts:86](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L86)*
+*Defined in [engines/FileTreeDb.ts:86](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L86)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 
@@ -115,11 +115,11 @@ ___
 
 ▸ **maintain**(fn: *`ProgressCb`*): `void`
 
-*Defined in [engines/FileTreeDb.ts:68](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L68)*
+*Defined in [engines/FileTreeDb.ts:68](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L68)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | fn | `ProgressCb` |
 
@@ -132,7 +132,7 @@ ___
 
 ▸ **open**(): `void`
 
-*Defined in [engines/FileTreeDb.ts:42](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L42)*
+*Defined in [engines/FileTreeDb.ts:42](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L42)*
 
 **Returns:** `void`
 
@@ -143,11 +143,11 @@ ___
 
 ▸ **put**(key: *`Uint8Array`*, value: *`Uint8Array`*): `void`
 
-*Defined in [engines/FileTreeDb.ts:100](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L100)*
+*Defined in [engines/FileTreeDb.ts:100](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L100)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 | value | `Uint8Array` |
@@ -161,11 +161,11 @@ ___
 
 ▸ **rename**(base: *`string`*, file: *`string`*): `void`
 
-*Defined in [engines/FileTreeDb.ts:58](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L58)*
+*Defined in [engines/FileTreeDb.ts:58](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L58)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | base | `string` |
 | file | `string` |
@@ -179,7 +179,7 @@ ___
 
 ▸ **size**(): `number`
 
-*Defined in [engines/FileTreeDb.ts:62](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/FileTreeDb.ts#L62)*
+*Defined in [engines/FileTreeDb.ts:62](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/FileTreeDb.ts#L62)*
 
 **Returns:** `number`
 

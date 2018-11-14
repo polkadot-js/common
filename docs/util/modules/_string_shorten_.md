@@ -8,7 +8,7 @@
 
 ▸ **stringShorten**(_value: *`any`*, prefixLength?: *`number`*): `string`
 
-*Defined in [string/shorten.ts:20](https://github.com/polkadot-js/common/blob/dc07e26/packages/util/src/string/shorten.ts#L20)*
+*Defined in [string/shorten.ts:20](https://github.com/polkadot-js/common/blob/75c09a9/packages/util/src/string/shorten.ts#L20)*
 
 *__name__*: stringShorten
 
@@ -28,7 +28,7 @@ stringShorten('1234567890', 2); // => 12..90
 
 **Parameters:**
 
-| Param | Type | Default value |
+| Name | Type | Default value |
 | ------ | ------ | ------ |
 | _value | `any` | - |
 | `Default value` prefixLength | `number` | 6 |

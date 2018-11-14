@@ -8,7 +8,7 @@
 
 ▸ **isNull**(value: *`any`*): `boolean`
 
-*Defined in [is/null.ts:20](https://github.com/polkadot-js/common/blob/dc07e26/packages/util/src/is/null.ts#L20)*
+*Defined in [is/null.ts:20](https://github.com/polkadot-js/common/blob/75c09a9/packages/util/src/is/null.ts#L20)*
 
 *__name__*: isNull
 
@@ -28,7 +28,7 @@ console.log('isNull', isNull(null)); // => true
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | value | `any` |
 

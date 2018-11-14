@@ -8,7 +8,7 @@
 
 ▸ **isNumber**(value: *`any`*): `boolean`
 
-*Defined in [is/number.ts:20](https://github.com/polkadot-js/common/blob/dc07e26/packages/util/src/is/number.ts#L20)*
+*Defined in [is/number.ts:20](https://github.com/polkadot-js/common/blob/75c09a9/packages/util/src/is/number.ts#L20)*
 
 *__name__*: isNumber
 
@@ -28,7 +28,7 @@ console.log('isNumber', isNumber(1234)); // => true
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | value | `any` |
 

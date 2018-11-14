@@ -8,7 +8,7 @@
 
 ▸ **u8aToBn**(value: *`Uint8Array`*, isLe: *`boolean`*): `BN`
 
-*Defined in [u8a/toBn.ts:25](https://github.com/polkadot-js/common/blob/dc07e26/packages/util/src/u8a/toBn.ts#L25)*
+*Defined in [u8a/toBn.ts:25](https://github.com/polkadot-js/common/blob/75c09a9/packages/util/src/u8a/toBn.ts#L25)*
 
 *__name__*: u8aToBn
 
@@ -28,7 +28,7 @@ u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | value | `Uint8Array` |
 | isLe | `boolean` |

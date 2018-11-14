@@ -8,11 +8,11 @@
 
 ▸ **setMeta**(state: *`PairState`*, meta: *`KeyringPair$Meta`*): `void`
 
-*Defined in [pair/setMeta.ts:8](https://github.com/polkadot-js/common/blob/dc07e26/packages/keyring/src/pair/setMeta.ts#L8)*
+*Defined in [pair/setMeta.ts:8](https://github.com/polkadot-js/common/blob/75c09a9/packages/keyring/src/pair/setMeta.ts#L8)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | state | `PairState` |
 | meta | `KeyringPair$Meta` |

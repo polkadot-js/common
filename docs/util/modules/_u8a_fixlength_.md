@@ -8,7 +8,7 @@
 
 ▸ **u8aFixLength**(value: *`Uint8Array`*, bitLength?: *`number`*, atStart?: *`boolean`*): `Uint8Array`
 
-*Defined in [u8a/fixLength.ts:22](https://github.com/polkadot-js/common/blob/dc07e26/packages/util/src/u8a/fixLength.ts#L22)*
+*Defined in [u8a/fixLength.ts:22](https://github.com/polkadot-js/common/blob/75c09a9/packages/util/src/u8a/fixLength.ts#L22)*
 
 *__name__*: u8aFixLength
 
@@ -30,7 +30,7 @@ u8aFixLength('0x1234', 8) // => 0x12
 
 **Parameters:**
 
-| Param | Type | Default value |
+| Name | Type | Default value |
 | ------ | ------ | ------ |
 | value | `Uint8Array` | - |
 | `Default value` bitLength | `number` |  -1 |

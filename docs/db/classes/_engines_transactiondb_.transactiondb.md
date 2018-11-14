@@ -20,11 +20,11 @@
 
 ⊕ **new TransactionDb**(backing: *`BaseDb`*): [TransactionDb](_engines_transactiondb_.transactiondb.md)
 
-*Defined in [engines/TransactionDb.ts:21](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L21)*
+*Defined in [engines/TransactionDb.ts:21](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L21)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | backing | `BaseDb` |
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **close**(): `void`
 
-*Defined in [engines/TransactionDb.ts:51](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L51)*
+*Defined in [engines/TransactionDb.ts:51](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L51)*
 
 **Returns:** `void`
 
@@ -51,11 +51,11 @@ ___
 
 ▸ **del**(key: *`Uint8Array`*): `void`
 
-*Defined in [engines/TransactionDb.ts:81](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L81)*
+*Defined in [engines/TransactionDb.ts:81](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L81)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 
@@ -68,7 +68,7 @@ ___
 
 ▸ **drop**(): `void`
 
-*Defined in [engines/TransactionDb.ts:59](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L59)*
+*Defined in [engines/TransactionDb.ts:59](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L59)*
 
 **Returns:** `void`
 
@@ -79,7 +79,7 @@ ___
 
 ▸ **empty**(): `void`
 
-*Defined in [engines/TransactionDb.ts:63](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L63)*
+*Defined in [engines/TransactionDb.ts:63](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L63)*
 
 **Returns:** `void`
 
@@ -90,11 +90,11 @@ ___
 
 ▸ **get**(key: *`Uint8Array`*):  `Uint8Array` &#124; `null`
 
-*Defined in [engines/TransactionDb.ts:93](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L93)*
+*Defined in [engines/TransactionDb.ts:93](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L93)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 
@@ -107,11 +107,11 @@ ___
 
 ▸ **maintain**(fn: *`ProgressCb`*): `void`
 
-*Defined in [engines/TransactionDb.ts:71](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L71)*
+*Defined in [engines/TransactionDb.ts:71](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L71)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | fn | `ProgressCb` |
 
@@ -124,7 +124,7 @@ ___
 
 ▸ **open**(): `void`
 
-*Defined in [engines/TransactionDb.ts:55](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L55)*
+*Defined in [engines/TransactionDb.ts:55](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L55)*
 
 **Returns:** `void`
 
@@ -135,11 +135,11 @@ ___
 
 ▸ **put**(key: *`Uint8Array`*, value: *`Uint8Array`*): `void`
 
-*Defined in [engines/TransactionDb.ts:107](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L107)*
+*Defined in [engines/TransactionDb.ts:107](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L107)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 | value | `Uint8Array` |
@@ -153,11 +153,11 @@ ___
 
 ▸ **rename**(base: *`string`*, file: *`string`*): `void`
 
-*Defined in [engines/TransactionDb.ts:67](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L67)*
+*Defined in [engines/TransactionDb.ts:67](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L67)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | base | `string` |
 | file | `string` |
@@ -171,7 +171,7 @@ ___
 
 ▸ **size**(): `number`
 
-*Defined in [engines/TransactionDb.ts:77](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L77)*
+*Defined in [engines/TransactionDb.ts:77](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L77)*
 
 **Returns:** `number`
 
@@ -182,11 +182,11 @@ ___
 
 ▸ **transaction**(fn: *`function`*): `boolean`
 
-*Defined in [engines/TransactionDb.ts:29](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/TransactionDb.ts#L29)*
+*Defined in [engines/TransactionDb.ts:29](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/TransactionDb.ts#L29)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | fn | `function` |
 

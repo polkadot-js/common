@@ -8,11 +8,11 @@
 
 ▸ **format**(value: *`any`*): `any`
 
-*Defined in [logger.ts:36](https://github.com/polkadot-js/common/blob/dc07e26/packages/util/src/logger.ts#L36)*
+*Defined in [logger.ts:36](https://github.com/polkadot-js/common/blob/75c09a9/packages/util/src/logger.ts#L36)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | value | `any` |
 
@@ -25,7 +25,7 @@ ___
 
 ▸ **logger**(_type: *`string`*): `Logger`
 
-*Defined in [logger.ts:105](https://github.com/polkadot-js/common/blob/dc07e26/packages/util/src/logger.ts#L105)*
+*Defined in [logger.ts:105](https://github.com/polkadot-js/common/blob/75c09a9/packages/util/src/logger.ts#L105)*
 
 *__name__*: Logger
 
@@ -45,7 +45,7 @@ l.log('blah'); // <date>     TEST: blah
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | _type | `string` |
 

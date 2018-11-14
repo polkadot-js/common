@@ -8,7 +8,7 @@
 
 ▸ **stringUpperFirst**(_value: *`string`*): `string`
 
-*Defined in [string/upperFirst.ts:23](https://github.com/polkadot-js/common/blob/dc07e26/packages/util/src/string/upperFirst.ts#L23)*
+*Defined in [string/upperFirst.ts:23](https://github.com/polkadot-js/common/blob/75c09a9/packages/util/src/string/upperFirst.ts#L23)*
 
 *__name__*: stringUpperFirst
 
@@ -28,7 +28,7 @@ stringUpperFirst('abc'); // => 'Abc'
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | _value | `string` |
 

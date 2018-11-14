@@ -8,7 +8,7 @@
 
 ▸ **hexAddPrefix**(value: * `string` &#124; `null` &#124; `undefined`*): `string`
 
-*Defined in [hex/addPrefix.ts:22](https://github.com/polkadot-js/common/blob/dc07e26/packages/util/src/hex/addPrefix.ts#L22)*
+*Defined in [hex/addPrefix.ts:22](https://github.com/polkadot-js/common/blob/75c09a9/packages/util/src/hex/addPrefix.ts#L22)*
 
 *__name__*: hexAddPrefix
 
@@ -28,7 +28,7 @@ console.log('With prefix', hexAddPrefix('0a0b12')); // => 0x0a0b12
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | value |  `string` &#124; `null` &#124; `undefined`|
 

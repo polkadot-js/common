@@ -8,11 +8,11 @@
 
 ▸ **encodeShared**(pairs: *`Trie$Pairs`*, preLength: *`number`*, sharedLength: *`number`*): `Array`<`any`>
 
-*Defined in [encode/shared.ts:10](https://github.com/polkadot-js/common/blob/dc07e26/packages/trie-hash/src/encode/shared.ts#L10)*
+*Defined in [encode/shared.ts:10](https://github.com/polkadot-js/common/blob/75c09a9/packages/trie-hash/src/encode/shared.ts#L10)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | pairs | `Trie$Pairs` |
 | preLength | `number` |

@@ -16,11 +16,11 @@
 
 ⊕ **new MemoryDb**(options?: *`BaseDbOptions`*): [MemoryDb](_engines_memorydb_.memorydb.md)
 
-*Defined in [engines/MemoryDb.ts:16](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/MemoryDb.ts#L16)*
+*Defined in [engines/MemoryDb.ts:16](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/MemoryDb.ts#L16)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | `Optional` options | `BaseDbOptions` |
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **close**(): `void`
 
-*Defined in [engines/MemoryDb.ts:22](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/MemoryDb.ts#L22)*
+*Defined in [engines/MemoryDb.ts:22](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/MemoryDb.ts#L22)*
 
 **Returns:** `void`
 
@@ -47,11 +47,11 @@ ___
 
 ▸ **del**(key: *`Uint8Array`*): `void`
 
-*Defined in [engines/MemoryDb.ts:56](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/MemoryDb.ts#L56)*
+*Defined in [engines/MemoryDb.ts:56](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/MemoryDb.ts#L56)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 
@@ -64,7 +64,7 @@ ___
 
 ▸ **drop**(): `void`
 
-*Defined in [engines/MemoryDb.ts:30](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/MemoryDb.ts#L30)*
+*Defined in [engines/MemoryDb.ts:30](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/MemoryDb.ts#L30)*
 
 **Returns:** `void`
 
@@ -75,7 +75,7 @@ ___
 
 ▸ **empty**(): `void`
 
-*Defined in [engines/MemoryDb.ts:34](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/MemoryDb.ts#L34)*
+*Defined in [engines/MemoryDb.ts:34](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/MemoryDb.ts#L34)*
 
 **Returns:** `void`
 
@@ -86,11 +86,11 @@ ___
 
 ▸ **get**(key: *`Uint8Array`*):  `Uint8Array` &#124; `null`
 
-*Defined in [engines/MemoryDb.ts:62](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/MemoryDb.ts#L62)*
+*Defined in [engines/MemoryDb.ts:62](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/MemoryDb.ts#L62)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 
@@ -103,11 +103,11 @@ ___
 
 ▸ **maintain**(fn: *`ProgressCb`*): `void`
 
-*Defined in [engines/MemoryDb.ts:42](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/MemoryDb.ts#L42)*
+*Defined in [engines/MemoryDb.ts:42](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/MemoryDb.ts#L42)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | fn | `ProgressCb` |
 
@@ -120,7 +120,7 @@ ___
 
 ▸ **open**(): `void`
 
-*Defined in [engines/MemoryDb.ts:26](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/MemoryDb.ts#L26)*
+*Defined in [engines/MemoryDb.ts:26](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/MemoryDb.ts#L26)*
 
 **Returns:** `void`
 
@@ -131,11 +131,11 @@ ___
 
 ▸ **put**(key: *`Uint8Array`*, value: *`Uint8Array`*): `void`
 
-*Defined in [engines/MemoryDb.ts:68](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/MemoryDb.ts#L68)*
+*Defined in [engines/MemoryDb.ts:68](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/MemoryDb.ts#L68)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 | value | `Uint8Array` |
@@ -149,11 +149,11 @@ ___
 
 ▸ **rename**(base: *`string`*, file: *`string`*): `void`
 
-*Defined in [engines/MemoryDb.ts:38](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/MemoryDb.ts#L38)*
+*Defined in [engines/MemoryDb.ts:38](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/MemoryDb.ts#L38)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | base | `string` |
 | file | `string` |
@@ -167,7 +167,7 @@ ___
 
 ▸ **size**(): `number`
 
-*Defined in [engines/MemoryDb.ts:50](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/engines/MemoryDb.ts#L50)*
+*Defined in [engines/MemoryDb.ts:50](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/engines/MemoryDb.ts#L50)*
 
 **Returns:** `number`
 

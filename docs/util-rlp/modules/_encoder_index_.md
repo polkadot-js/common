@@ -8,7 +8,7 @@
 
 ▸ **encoder**(input: *`any`*): `Uint8Array`
 
-*Defined in [encoder/index.ts:24](https://github.com/polkadot-js/common/blob/dc07e26/packages/util-rlp/src/encoder/index.ts#L24)*
+*Defined in [encoder/index.ts:24](https://github.com/polkadot-js/common/blob/75c09a9/packages/util-rlp/src/encoder/index.ts#L24)*
 
 *__name__*: encoder
 
@@ -28,7 +28,7 @@ encode('dog'); // => [0x83, 0x64, 0x6f, 0x67]
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | input | `any` |
 

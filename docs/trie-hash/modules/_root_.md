@@ -8,7 +8,7 @@
 
 ▸ **trieRoot**(pairs: *`Trie$Pairs`*): `Uint8Array`
 
-*Defined in [root.ts:30](https://github.com/polkadot-js/common/blob/dc07e26/packages/trie-hash/src/root.ts#L30)*
+*Defined in [root.ts:30](https://github.com/polkadot-js/common/blob/75c09a9/packages/trie-hash/src/root.ts#L30)*
 
 *__name__*: trieRoot
 
@@ -32,7 +32,7 @@ trieRoot([{
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | pairs | `Trie$Pairs` |
 

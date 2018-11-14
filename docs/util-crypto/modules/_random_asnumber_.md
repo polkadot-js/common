@@ -8,7 +8,7 @@
 
 ▸ **randomAsNumber**(): `number`
 
-*Defined in [random/asNumber.ts:27](https://github.com/polkadot-js/common/blob/dc07e26/packages/util-crypto/src/random/asNumber.ts#L27)*
+*Defined in [random/asNumber.ts:27](https://github.com/polkadot-js/common/blob/75c09a9/packages/util-crypto/src/random/asNumber.ts#L27)*
 
 *__name__*: randomAsNumber
 

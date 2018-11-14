@@ -8,7 +8,7 @@
 
 ▸ **hexHasPrefix**(value: * `string` &#124; `null` &#124; `undefined`*): `boolean`
 
-*Defined in [hex/hasPrefix.ts:22](https://github.com/polkadot-js/common/blob/dc07e26/packages/util/src/hex/hasPrefix.ts#L22)*
+*Defined in [hex/hasPrefix.ts:22](https://github.com/polkadot-js/common/blob/75c09a9/packages/util/src/hex/hasPrefix.ts#L22)*
 
 *__name__*: hexHasPrefix
 
@@ -28,7 +28,7 @@ console.log('has prefix', hexHasPrefix('0x1234')); // => true
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | value |  `string` &#124; `null` &#124; `undefined`|
 

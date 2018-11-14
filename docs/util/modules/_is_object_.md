@@ -8,7 +8,7 @@
 
 ▸ **isObject**(value: *`any`*): `boolean`
 
-*Defined in [is/object.ts:25](https://github.com/polkadot-js/common/blob/dc07e26/packages/util/src/is/object.ts#L25)*
+*Defined in [is/object.ts:25](https://github.com/polkadot-js/common/blob/75c09a9/packages/util/src/is/object.ts#L25)*
 
 *__name__*: isObject
 
@@ -29,7 +29,7 @@ isObject('something'); // => false
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | value | `any` |
 

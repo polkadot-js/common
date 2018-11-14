@@ -16,11 +16,11 @@
 
 ⊕ **new FileFlatDb**(base: *`string`*, file?: *`string`*, options?: *`BaseDbOptions`*): [FileFlatDb](_fileflatdb_index_.fileflatdb.md)
 
-*Defined in [FileFlatDb/index.ts:32](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/FileFlatDb/index.ts#L32)*
+*Defined in [FileFlatDb/index.ts:32](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/FileFlatDb/index.ts#L32)*
 
 **Parameters:**
 
-| Param | Type | Default value |
+| Name | Type | Default value |
 | ------ | ------ | ------ |
 | base | `string` | - |
 | `Default value` file | `string` |  defaults.DEFAULT_FILE |
@@ -38,7 +38,7 @@ ___
 
 ▸ **close**(): `void`
 
-*Defined in [FileFlatDb/index.ts:58](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/FileFlatDb/index.ts#L58)*
+*Defined in [FileFlatDb/index.ts:58](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/FileFlatDb/index.ts#L58)*
 
 **Returns:** `void`
 
@@ -49,11 +49,11 @@ ___
 
 ▸ **del**(key: *`Uint8Array`*): `void`
 
-*Defined in [FileFlatDb/index.ts:105](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/FileFlatDb/index.ts#L105)*
+*Defined in [FileFlatDb/index.ts:105](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/FileFlatDb/index.ts#L105)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 
@@ -66,7 +66,7 @@ ___
 
 ▸ **drop**(): `void`
 
-*Defined in [FileFlatDb/index.ts:68](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/FileFlatDb/index.ts#L68)*
+*Defined in [FileFlatDb/index.ts:68](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/FileFlatDb/index.ts#L68)*
 
 **Returns:** `void`
 
@@ -77,7 +77,7 @@ ___
 
 ▸ **empty**(): `void`
 
-*Defined in [FileFlatDb/index.ts:74](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/FileFlatDb/index.ts#L74)*
+*Defined in [FileFlatDb/index.ts:74](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/FileFlatDb/index.ts#L74)*
 
 **Returns:** `void`
 
@@ -88,11 +88,11 @@ ___
 
 ▸ **get**(key: *`Uint8Array`*):  `Uint8Array` &#124; `null`
 
-*Defined in [FileFlatDb/index.ts:109](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/FileFlatDb/index.ts#L109)*
+*Defined in [FileFlatDb/index.ts:109](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/FileFlatDb/index.ts#L109)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 
@@ -105,11 +105,11 @@ ___
 
 ▸ **maintain**(fn: *`ProgressCb`*): `void`
 
-*Defined in [FileFlatDb/index.ts:97](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/FileFlatDb/index.ts#L97)*
+*Defined in [FileFlatDb/index.ts:97](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/FileFlatDb/index.ts#L97)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | fn | `ProgressCb` |
 
@@ -122,7 +122,7 @@ ___
 
 ▸ **open**(): `void`
 
-*Defined in [FileFlatDb/index.ts:48](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/FileFlatDb/index.ts#L48)*
+*Defined in [FileFlatDb/index.ts:48](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/FileFlatDb/index.ts#L48)*
 
 **Returns:** `void`
 
@@ -133,11 +133,11 @@ ___
 
 ▸ **put**(key: *`Uint8Array`*, value: *`Uint8Array`*): `void`
 
-*Defined in [FileFlatDb/index.ts:127](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/FileFlatDb/index.ts#L127)*
+*Defined in [FileFlatDb/index.ts:127](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/FileFlatDb/index.ts#L127)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | key | `Uint8Array` |
 | value | `Uint8Array` |
@@ -151,11 +151,11 @@ ___
 
 ▸ **rename**(base: *`string`*, file: *`string`*): `void`
 
-*Defined in [FileFlatDb/index.ts:85](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/FileFlatDb/index.ts#L85)*
+*Defined in [FileFlatDb/index.ts:85](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/FileFlatDb/index.ts#L85)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | base | `string` |
 | file | `string` |
@@ -169,7 +169,7 @@ ___
 
 ▸ **size**(): `number`
 
-*Defined in [FileFlatDb/index.ts:81](https://github.com/polkadot-js/common/blob/dc07e26/packages/db/src/FileFlatDb/index.ts#L81)*
+*Defined in [FileFlatDb/index.ts:81](https://github.com/polkadot-js/common/blob/75c09a9/packages/db/src/FileFlatDb/index.ts#L81)*
 
 **Returns:** `number`
 
