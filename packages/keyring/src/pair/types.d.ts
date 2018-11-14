@@ -5,6 +5,6 @@
 import { KeyringPair$Meta } from '../types';
 
 export type PairState = {
-  address: string,
-  meta: KeyringPair$Meta
+  meta: KeyringPair$Meta,
+  publicKey: Uint8Array
 };
