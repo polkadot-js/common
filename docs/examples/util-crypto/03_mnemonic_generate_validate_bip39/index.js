@@ -1,12 +1,10 @@
-const { mnemonicGenerate } = require('@polkadot/util-crypto');
-const { mnemonicToSeed } = require('@polkadot/util-crypto');
-const { mnemonicValidate } = require('@polkadot/util-crypto');
-const { toSecret } = require('@polkadot/util-crypto');
-const { naclKeypairFromSeed } = require('@polkadot/util-crypto');
+const { mnemonicGenerate, mnemonicToSeed, mnemonicValidate, naclKeypairFromSeed } = require('@polkadot/util-crypto');
 
 async function main () {
   // Create mnemonic string for Alice using BIP39
   const mnemonicAlice = mnemonicGenerate();
+
+  console.log(`Generated mnemonic: ${mnemonicAlice}`);
 
   // Validate the mnemic string that was generated
   const isValidMnemonic = mnemonicValidate(mnemonicAlice);

@@ -8,7 +8,7 @@
 
 ▸ **asNibbles**(bytes: * `Uint8Array` &#124; `Array`<`number`> &#124; `null`*): `Uint8Array`
 
-*Defined in [util/asNibbles.ts:20](https://github.com/polkadot-js/common/blob/67f66a3/packages/trie-hash/src/util/asNibbles.ts#L20)*
+*Defined in [util/asNibbles.ts:20](https://github.com/polkadot-js/common/blob/dc07e26/packages/trie-hash/src/util/asNibbles.ts#L20)*
 
 *__name__*: asNibbles
 

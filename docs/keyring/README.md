@@ -16,9 +16,9 @@ yarn add @polkadot/keyring
 Classes and Functions can be imported as follows:
 
 ```js
-import Keyring from '@polkadot/keyring'; // Default export
-import { pair } from '@polkadot/keyring/pair';
-import { testKeyring } from '@polkadot/keyring/testing';
+import Keyring from '@polkadot/keyring';
+import pair from '@polkadot/keyring/pair';
+import testKeyring from '@polkadot/keyring/testing';
 ```
 
 Documentation and Available Utilities
