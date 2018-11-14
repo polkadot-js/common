@@ -16,7 +16,7 @@
 
 ⊕ **new LruDb**(backing: *`BaseDb`*, itemCount?: *`number`*): [LruDb](_engines_lrudb_.lrudb.md)
 
-*Defined in [engines/LruDb.ts:20](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L20)*
+*Defined in [engines/LruDb.ts:20](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L20)*
 
 **Parameters:**
 
@@ -37,7 +37,7 @@ ___
 
 ▸ **_getLru**(key: *`Uint8Array`*):  `CachedValue` &#124; `undefined`
 
-*Defined in [engines/LruDb.ts:87](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L87)*
+*Defined in [engines/LruDb.ts:87](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L87)*
 
 **Parameters:**
 
@@ -54,7 +54,7 @@ ___
 
 ▸ **close**(): `void`
 
-*Defined in [engines/LruDb.ts:27](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L27)*
+*Defined in [engines/LruDb.ts:27](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L27)*
 
 **Returns:** `void`
 
@@ -65,7 +65,7 @@ ___
 
 ▸ **del**(key: *`Uint8Array`*): `void`
 
-*Defined in [engines/LruDb.ts:64](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L64)*
+*Defined in [engines/LruDb.ts:64](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L64)*
 
 **Parameters:**
 
@@ -82,7 +82,7 @@ ___
 
 ▸ **drop**(): `void`
 
-*Defined in [engines/LruDb.ts:41](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L41)*
+*Defined in [engines/LruDb.ts:41](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L41)*
 
 **Returns:** `void`
 
@@ -93,7 +93,7 @@ ___
 
 ▸ **empty**(): `void`
 
-*Defined in [engines/LruDb.ts:45](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L45)*
+*Defined in [engines/LruDb.ts:45](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L45)*
 
 **Returns:** `void`
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **get**(key: *`Uint8Array`*):  `Uint8Array` &#124; `null`
 
-*Defined in [engines/LruDb.ts:71](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L71)*
+*Defined in [engines/LruDb.ts:71](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L71)*
 
 **Parameters:**
 
@@ -121,7 +121,7 @@ ___
 
 ▸ **maintain**(fn: *`ProgressCb`*): `void`
 
-*Defined in [engines/LruDb.ts:56](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L56)*
+*Defined in [engines/LruDb.ts:56](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L56)*
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **open**(): `void`
 
-*Defined in [engines/LruDb.ts:34](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L34)*
+*Defined in [engines/LruDb.ts:34](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L34)*
 
 **Returns:** `void`
 
@@ -149,7 +149,7 @@ ___
 
 ▸ **put**(key: *`Uint8Array`*, value: *`Uint8Array`*): `void`
 
-*Defined in [engines/LruDb.ts:91](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L91)*
+*Defined in [engines/LruDb.ts:91](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L91)*
 
 **Parameters:**
 
@@ -167,7 +167,7 @@ ___
 
 ▸ **rename**(base: *`string`*, file: *`string`*): `void`
 
-*Defined in [engines/LruDb.ts:52](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L52)*
+*Defined in [engines/LruDb.ts:52](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L52)*
 
 **Parameters:**
 
@@ -185,7 +185,7 @@ ___
 
 ▸ **size**(): `number`
 
-*Defined in [engines/LruDb.ts:60](https://github.com/polkadot-js/common/blob/67f66a3/packages/db/src/engines/LruDb.ts#L60)*
+*Defined in [engines/LruDb.ts:60](https://github.com/polkadot-js/common/blob/48008e2/packages/db/src/engines/LruDb.ts#L60)*
 
 **Returns:** `number`
 

@@ -8,7 +8,7 @@
 
 ▸ **decode**(encoded: * `string` &#124; `Uint8Array`*, prefix?: *`Prefix`*): `Uint8Array`
 
-*Defined in [address/decode.ts:15](https://github.com/polkadot-js/common/blob/67f66a3/packages/keyring/src/address/decode.ts#L15)*
+*Defined in [address/decode.ts:15](https://github.com/polkadot-js/common/blob/48008e2/packages/keyring/src/address/decode.ts#L15)*
 
 **Parameters:**
 
