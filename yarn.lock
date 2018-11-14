@@ -1352,12 +1352,10 @@
     typedoc-plugin-markdown "^1.1.18"
     typescript "^3.1.6"
 
-"@polkadot/ts@^0.1.36":
-  version "0.1.36"
-  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.36.tgz#a051dbb23d5a34c30153e2c47f459943d80dda12"
-  integrity sha512-hiSfAXPIpojFWoIeh8QUh1CsLIJgVW5AuJCODG82S05ZXliGnL2FAoVrw4Jw1mD7zgexRSZcSFpHaO4BrIU4Vg==
-  dependencies:
-    "@types/node" "^10.12.7"
+"@polkadot/ts@^0.1.38":
+  version "0.1.38"
+  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.38.tgz#468f7520415bc806cc7ebbbe1ae2fd63803a6aec"
+  integrity sha512-KTK4+YskDHUCldkOEyZi6hPftydER5qBOCR+SdjHq9oS8npVYlHqI3g1UUY1HJYIAJg2K3qokg3OnqDxid8cGw==
 
 "@types/base-x@*":
   version "1.0.29"
