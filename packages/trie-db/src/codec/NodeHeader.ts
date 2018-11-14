@@ -3,7 +3,7 @@
 // of the ISC license. See the LICENSE file for details.
 
 import { EnumType } from '@polkadot/types/codec';
-import { bool as Bool, u8 as U8 } from '@polkadot/types';
+import { bool as Bool, u8 as U8, u64 as U64 } from '@polkadot/types';
 import { isU8a } from '@polkadot/util/index';
 
 import { BRANCH_NODE_NO_VALUE, BRANCH_NODE_WITH_VALUE } from './constants';
@@ -38,6 +38,14 @@ class Branch extends Bool {
         : BRANCH_NODE_NO_VALUE
     );
   }
+}
+
+export class Extension extends U64 {
+
+}
+
+export class Leaf extends U64 {
+
 }
 
 export class Null extends U8 {
