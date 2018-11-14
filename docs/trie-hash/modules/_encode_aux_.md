@@ -8,7 +8,7 @@
 
 ▸ **encodeAux**(pairs: *`Trie$Pairs`*, preLength: *`number`*):  `Uint8Array` &#124; `any`[]
 
-*Defined in [encode/aux.ts:12](https://github.com/polkadot-js/common/blob/48008e2/packages/trie-hash/src/encode/aux.ts#L12)*
+*Defined in [encode/aux.ts:12](https://github.com/polkadot-js/common/blob/dc07e26/packages/trie-hash/src/encode/aux.ts#L12)*
 
 **Parameters:**
 
