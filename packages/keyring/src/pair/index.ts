@@ -49,19 +49,18 @@ import toJson from './toJson';
  */
 export default function pair ({ publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, defaultEncoded?: Uint8Array): KeyringPair {
   const state: PairState = {
-    address: encodeAddress(publicKey),
-    meta: { ...meta }
+    meta: { ...meta },
+    publicKey
   };
 
   return {
     address: (): string =>
-      state.address,
+      encodeAddress(state.publicKey),
     decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void => {
       const decoded = decode(passphrase, encoded || defaultEncoded);
 
-      publicKey = decoded.publicKey;
+      state.publicKey = decoded.publicKey;
       secretKey = decoded.secretKey;
-      state.address = encodeAddress(publicKey);
     },
     encodePkcs8: (passphrase?: string): Uint8Array =>
       encode(secretKey, passphrase),
