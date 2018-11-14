@@ -1357,6 +1357,15 @@
   resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.38.tgz#468f7520415bc806cc7ebbbe1ae2fd63803a6aec"
   integrity sha512-KTK4+YskDHUCldkOEyZi6hPftydER5qBOCR+SdjHq9oS8npVYlHqI3g1UUY1HJYIAJg2K3qokg3OnqDxid8cGw==
 
+"@polkadot/types@^0.31.117":
+  version "0.31.117"
+  resolved "https://registry.yarnpkg.com/@polkadot/types/-/types-0.31.117.tgz#a651355b7631457e3917a92e42cb0c89568b4855"
+  integrity sha512-wqQuTrJ9y/ggQdTOHqQz6y8qUghRvbmuXkmU0h/vgPd8YncR7XXJNnipVv6/JaSRQyoTSa9iYHNk2s0OA9iENA==
+  dependencies:
+    "@babel/runtime" "^7.1.5"
+    "@polkadot/keyring" "^0.32.21"
+    "@polkadot/util" "^0.32.21"
+
 "@types/base-x@*":
   version "1.0.29"
   resolved "http://registry.npmjs.org/@types/base-x/-/base-x-1.0.29.tgz#8a2d73e4a5c3121757a5f8870cfa4509655186b6"

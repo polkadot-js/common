@@ -5,9 +5,8 @@
 import { Node, NodeType, NodeNotEmpty } from '../types';
 
 import { isNull } from '@polkadot/util/index';
-import nodeDecode from '@polkadot/util-rlp/decode';
-import nodeEncode from '@polkadot/util-rlp/encode';
 
+import codec from '../codec';
 import { isBranchNode, isEmptyNode, isKvNode } from './is';
 import { decodeNibbles, isNibblesTerminated } from './nibbles';
 
@@ -35,8 +34,8 @@ export function decodeNode (encoded: Uint8Array | Node): Node {
     return encoded;
   }
 
-  const decoded = (nodeDecode(encoded) as NodeNotEmpty)
-    .map((value) =>
+  const node = codec.decode(encoded) as NodeNotEmpty;
+  const decoded = node.map((value) =>
     value && value.length
       ? value
       : null
@@ -46,5 +45,5 @@ export function decodeNode (encoded: Uint8Array | Node): Node {
 }
 
 export function encodeNode (node: Node): Uint8Array {
-  return nodeEncode(node);
+  return codec.encode(node);
 }
