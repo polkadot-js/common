@@ -8,7 +8,7 @@
 
 ▸ **sharedPrefixLength**(pairs: *`Trie$Pairs`*): `number`
 
-*Defined in [util/sharedPrefixLength.ts:13](https://github.com/polkadot-js/common/blob/8f6b01a/packages/trie-hash/src/util/sharedPrefixLength.ts#L13)*
+*Defined in [util/sharedPrefixLength.ts:13](https://github.com/polkadot-js/common/blob/67f66a3/packages/trie-hash/src/util/sharedPrefixLength.ts#L13)*
 
 *__name__*: sharedPrefixLength
 

@@ -8,7 +8,7 @@
 
 ▸ **encodeHexPrefix**(nibbles: * `Uint8Array` &#124; `Array`<`number`>*, isLeaf: *`boolean`*): `Uint8Array`
 
-*Defined in [encode/hexPrefix.ts:5](https://github.com/polkadot-js/common/blob/8f6b01a/packages/trie-hash/src/encode/hexPrefix.ts#L5)*
+*Defined in [encode/hexPrefix.ts:5](https://github.com/polkadot-js/common/blob/67f66a3/packages/trie-hash/src/encode/hexPrefix.ts#L5)*
 
 **Parameters:**
 
