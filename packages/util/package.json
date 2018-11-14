@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util#readme",
   "dependencies": {
-    "@babel/runtime": "^7.1.2",
-    "@types/bn.js": "^4.11.2",
+    "@babel/runtime": "^7.1.5",
+    "@types/bn.js": "^4.11.3",
     "@types/camelcase": "^4.1.0",
     "@types/deasync": "^0.1.0",
     "@types/ip-regex": "^2.0.0",
@@ -37,7 +37,7 @@
     "bn.js": "^4.11.8",
     "camelcase": "^5.0.0",
     "chalk": "^2.4.1",
-    "deasync": "^0.1.13",
+    "deasync": "^0.1.14",
     "ip-regex": "^3.0.0",
     "moment": "^2.22.2"
   }
