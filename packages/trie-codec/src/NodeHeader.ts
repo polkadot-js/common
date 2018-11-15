@@ -1,16 +1,11 @@
-// Copyright 2017-2018 @polkadot/trie-db authors & contributors
+// Copyright 2017-2018 @polkadot/trie-codec authors & contributors
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
 import { EnumType } from '@polkadot/types/codec';
 import { Null, bool as Bool, u64 as U64 } from '@polkadot/types';
 
-import { BRANCH_NODE_NO_VALUE, BRANCH_NODE_WITH_VALUE, EMPTY_TRIE, EXTENSION_NODE_BIG, EXTENSION_NODE_OFFSET, EXTENSION_NODE_SMALL_MAX, EXTENSION_NODE_THRESHOLD, LEAF_NODE_BIG, LEAF_NODE_OFFSET, LEAF_NODE_SMALL_MAX, LEAF_NODE_THRESHOLD } from './constants';
-
-const NODE_TYPE_NULL = 0;
-const NODE_TYPE_BRANCH = 1;
-const NODE_TYPE_EXT = 2;
-const NODE_TYPE_LEAF = 3;
+import { BRANCH_NODE_NO_VALUE, BRANCH_NODE_WITH_VALUE, EMPTY_TRIE, EXTENSION_NODE_BIG, EXTENSION_NODE_OFFSET, EXTENSION_NODE_SMALL_MAX, EXTENSION_NODE_THRESHOLD, LEAF_NODE_BIG, LEAF_NODE_OFFSET, LEAF_NODE_SMALL_MAX, LEAF_NODE_THRESHOLD, NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from './constants';
 
 export class Branch extends Bool {
 }
@@ -25,12 +20,12 @@ export default class NodeHeader extends EnumType<Null | Branch | Extension | Lea
   constructor (input: any) {
     const [index, value] = NodeHeader.decodeNodeHeader(input);
 
-    super([
-      Null, // 0
-      Branch, // 1
-      Extension, // 2
-      Leaf // 3
-    ], value, index);
+    super({
+      [NODE_TYPE_NULL]: Null,
+      [NODE_TYPE_BRANCH]: Branch,
+      [NODE_TYPE_EXT]: Extension,
+      [NODE_TYPE_LEAF]: Leaf
+    }, value, index);
   }
 
   private static decodeNodeHeader (input: Uint8Array): [number, Null | Branch | Extension | Leaf] {
