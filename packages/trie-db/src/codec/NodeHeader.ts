@@ -7,50 +7,16 @@ import { bool as Bool, u8 as U8, u64 as U64 } from '@polkadot/types';
 
 import { BRANCH_NODE_NO_VALUE, BRANCH_NODE_WITH_VALUE, EMPTY_TRIE, EXTENSION_NODE_BIG, EXTENSION_NODE_OFFSET, EXTENSION_NODE_SMALL_MAX, EXTENSION_NODE_THRESHOLD, LEAF_NODE_BIG, LEAF_NODE_OFFSET, LEAF_NODE_SMALL_MAX, LEAF_NODE_THRESHOLD } from './constants';
 
-class Branch extends Bool {
-  toU8a (isBare?: boolean): Uint8Array {
-    return new Uint8Array(
-      this.valueOf() === true
-        ? BRANCH_NODE_WITH_VALUE
-        : BRANCH_NODE_NO_VALUE
-    );
-  }
+export class Branch extends Bool {
 }
 
 export class Extension extends U64 {
-  toU8a (isBare?: boolean): Uint8Array {
-    const nibbleCount = this.toNumber();
-
-    if (nibbleCount < EXTENSION_NODE_THRESHOLD) {
-      return new Uint8Array([EXTENSION_NODE_OFFSET + nibbleCount]);
-    }
-
-    return new Uint8Array([
-      EXTENSION_NODE_BIG,
-      nibbleCount - EXTENSION_NODE_THRESHOLD
-    ]);
-  }
 }
 
 export class Leaf extends U64 {
-  toU8a (isBare?: boolean): Uint8Array {
-    const nibbleCount = this.toNumber();
-
-    if (nibbleCount < LEAF_NODE_THRESHOLD) {
-      return new Uint8Array([LEAF_NODE_OFFSET + nibbleCount]);
-    }
-
-    return new Uint8Array([
-      LEAF_NODE_BIG,
-      nibbleCount - LEAF_NODE_THRESHOLD
-    ]);
-  }
 }
 
 export class Null extends U8 {
-  constructor () {
-    super(0);
-  }
 }
 
 export default class NodeHeader extends EnumType<Null | Branch | Extension | Leaf> {
@@ -85,5 +51,48 @@ export default class NodeHeader extends EnumType<Null | Branch | Extension | Lea
     }
 
     throw new Error('Unreachable');
+  }
+
+  toU8a (isBare?: boolean): Uint8Array {
+    switch (this.toNumber()) {
+      case 0:
+        return new Uint8Array(1);
+
+      case 1:
+        return new Uint8Array(
+          (this.value.raw as Branch).valueOf() === true
+            ? BRANCH_NODE_WITH_VALUE
+            : BRANCH_NODE_NO_VALUE
+        );
+
+      case 2: {
+        const nibbleCount = (this.value.raw as Extension).toNumber();
+
+        if (nibbleCount < EXTENSION_NODE_THRESHOLD) {
+          return new Uint8Array([EXTENSION_NODE_OFFSET + nibbleCount]);
+        }
+
+        return new Uint8Array([
+          EXTENSION_NODE_BIG,
+          nibbleCount - EXTENSION_NODE_THRESHOLD
+        ]);
+      }
+
+      case 3: {
+        const nibbleCount = (this.value.raw as Leaf).toNumber();
+
+        if (nibbleCount < LEAF_NODE_THRESHOLD) {
+          return new Uint8Array([LEAF_NODE_OFFSET + nibbleCount]);
+        }
+
+        return new Uint8Array([
+          LEAF_NODE_BIG,
+          nibbleCount - LEAF_NODE_THRESHOLD
+        ]);
+      }
+
+      default:
+        throw new Error('Unreachable');
+    }
   }
 }
