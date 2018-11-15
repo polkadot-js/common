@@ -5,8 +5,8 @@
 import rlp from './rlp';
 
 type Codec = {
-  decode: (input?: Uint8Array) => Uint8Array | Array<any>,
-  encode: (input: any) => Uint8Array
+  decode: (input?: Uint8Array) => null | Uint8Array | Array<any>,
+  encode: (input: null | Uint8Array | Array<any>) => Uint8Array
 };
 
 const codec: Codec = rlp;

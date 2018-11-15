@@ -8,11 +8,11 @@ import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, Nod
 import MemoryDb from '@polkadot/db/Memory';
 import { isNull, logger , u8aConcat } from '@polkadot/util/index';
 import { keccakAsU8a as hashing } from '@polkadot/util-crypto/index';
+import { decodeNibbles, encodeNibbles } from '@polkadot/trie-codec/nibbles';
 import toNibbles from '@polkadot/trie-hash/util/asNibbles';
 
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';
 import { extractKey, keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';
-import { decodeNibbles, encodeNibbles } from './util/nibbles';
 import { getNodeType, decodeNode, encodeNode } from './util/node';
 import { EMPTY_HASH, EMPTY_U8A } from './constants';
 

@@ -2,36 +2,70 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+import { decodeNibbles, isNibblesTerminated } from '@polkadot/trie-codec/nibbles';
 import { EnumType } from '@polkadot/types/codec';
 import { Null, bool as Bool, u64 as U64 } from '@polkadot/types';
 
 import { BRANCH_NODE_NO_VALUE, BRANCH_NODE_WITH_VALUE, EMPTY_TRIE, EXTENSION_NODE_BIG, EXTENSION_NODE_OFFSET, EXTENSION_NODE_SMALL_MAX, EXTENSION_NODE_THRESHOLD, LEAF_NODE_BIG, LEAF_NODE_OFFSET, LEAF_NODE_SMALL_MAX, LEAF_NODE_THRESHOLD, NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from './constants';
 
-export class Branch extends Bool {
+export class BranchHeader extends Bool {
 }
 
-export class Extension extends U64 {
+export class NibbleHeader extends U64 {
 }
 
-export class Leaf extends U64 {
+export class ExtensionHeader extends NibbleHeader {
 }
 
-export default class NodeHeader extends EnumType<Null | Branch | Extension | Leaf> {
-  constructor (input: any) {
-    const [index, value] = NodeHeader.decodeNodeHeader(input);
+export class LeafHeader extends NibbleHeader {
+}
+
+export default class NodeHeader extends EnumType<Null | BranchHeader | ExtensionHeader | LeafHeader> {
+  constructor (input: null | Uint8Array | Array<null | Uint8Array>) {
+    const [index, value] = Array.isArray(input)
+      ? NodeHeader.decodeNodeHeaderArray(input)
+      : NodeHeader.decodeNodeHeaderU8a(input);
 
     super({
       [NODE_TYPE_NULL]: Null,
-      [NODE_TYPE_BRANCH]: Branch,
-      [NODE_TYPE_EXT]: Extension,
-      [NODE_TYPE_LEAF]: Leaf
+      [NODE_TYPE_BRANCH]: BranchHeader,
+      [NODE_TYPE_EXT]: ExtensionHeader,
+      [NODE_TYPE_LEAF]: LeafHeader
     }, value, index);
   }
 
-  private static decodeNodeHeader (input: Uint8Array): [number, Null | Branch | Extension | Leaf] {
-    const firstByte = input[0];
+  private static decodeNodeHeaderArray (input: Array<null | Uint8Array>): [number, BranchHeader | ExtensionHeader | LeafHeader] {
+    if (input.length === 2) {
+      const nibbles = decodeNibbles(input[0]);
+      const isTerminated = isNibblesTerminated(nibbles);
 
-    if (firstByte === EMPTY_TRIE) {
+      if (isTerminated) {
+        return [
+          NODE_TYPE_LEAF,
+          new LeafHeader(nibbles.length)
+        ];
+      } else {
+        return [
+          NODE_TYPE_EXT,
+          new ExtensionHeader(nibbles.length)
+        ];
+      }
+    } else if (input.length === 17) {
+      return [
+        NODE_TYPE_BRANCH,
+        new BranchHeader(!!input[16])
+      ];
+    }
+
+    throw new Error('Unreachable');
+  }
+
+  private static decodeNodeHeaderU8a (input: null | Uint8Array): [number, Null | BranchHeader | ExtensionHeader | LeafHeader] {
+    const firstByte = input
+      ? input[0]
+      : EMPTY_TRIE;
+
+    if (!input || firstByte === EMPTY_TRIE) {
       return [
         NODE_TYPE_NULL,
         new Null()
@@ -39,33 +73,55 @@ export default class NodeHeader extends EnumType<Null | Branch | Extension | Lea
     } else if (firstByte === BRANCH_NODE_NO_VALUE) {
       return [
         NODE_TYPE_BRANCH,
-        new Branch(false)
+        new BranchHeader(false)
       ];
     } else if (firstByte === BRANCH_NODE_WITH_VALUE) {
       return [
         NODE_TYPE_BRANCH,
-        new Branch(true)
+        new BranchHeader(true)
       ];
     } else if (firstByte >= EXTENSION_NODE_OFFSET && firstByte <= EXTENSION_NODE_SMALL_MAX) {
       return [
         NODE_TYPE_EXT,
-        new Extension(input[1] - EXTENSION_NODE_OFFSET)
+        new ExtensionHeader(input[1] - EXTENSION_NODE_OFFSET)
       ];
     } else if (firstByte === EXTENSION_NODE_BIG) {
       return [
         NODE_TYPE_EXT,
-        new Extension(input[1] + EXTENSION_NODE_THRESHOLD)
+        new ExtensionHeader(input[1] + EXTENSION_NODE_THRESHOLD)
       ];
     } else if (firstByte >= LEAF_NODE_OFFSET && firstByte <= LEAF_NODE_SMALL_MAX) {
       return [
         NODE_TYPE_LEAF,
-        new Leaf(firstByte - LEAF_NODE_OFFSET)
+        new LeafHeader(firstByte - LEAF_NODE_OFFSET)
       ];
     } else if (firstByte === LEAF_NODE_BIG) {
       return [
         NODE_TYPE_LEAF,
-        new Leaf(input[1] + LEAF_NODE_THRESHOLD)
+        new LeafHeader(input[1] + LEAF_NODE_THRESHOLD)
       ];
+    }
+
+    throw new Error('Unreachable');
+  }
+
+  get encodedLength (): number {
+    const nodeType = this.nodeType;
+
+    if (nodeType === NODE_TYPE_NULL || nodeType === NODE_TYPE_BRANCH) {
+      return 1;
+    } else if (nodeType === NODE_TYPE_EXT) {
+      const nibbleCount = (this.value.raw as ExtensionHeader).toNumber();
+
+      return nibbleCount < EXTENSION_NODE_THRESHOLD
+        ? 1
+        : 2;
+    } else if (nodeType === NODE_TYPE_LEAF) {
+      const nibbleCount = (this.value.raw as LeafHeader).toNumber();
+
+      return nibbleCount < LEAF_NODE_THRESHOLD
+        ? 1
+        : 2;
     }
 
     throw new Error('Unreachable');
@@ -76,20 +132,20 @@ export default class NodeHeader extends EnumType<Null | Branch | Extension | Lea
   }
 
   toU8a (isBare?: boolean): Uint8Array {
-    const index = this.toNumber();
+    const nodeType = this.nodeType;
 
-    if (index === NODE_TYPE_NULL) {
+    if (nodeType === NODE_TYPE_NULL) {
       return new Uint8Array([
         EMPTY_TRIE
       ]);
-    } else if (index === NODE_TYPE_BRANCH) {
+    } else if (nodeType === NODE_TYPE_BRANCH) {
       return new Uint8Array(
-        (this.value.raw as Branch).valueOf() === true
+        (this.value.raw as BranchHeader).valueOf() === true
           ? BRANCH_NODE_WITH_VALUE
           : BRANCH_NODE_NO_VALUE
       );
-    } else if (index === NODE_TYPE_EXT) {
-      const nibbleCount = (this.value.raw as Extension).toNumber();
+    } else if (nodeType === NODE_TYPE_EXT) {
+      const nibbleCount = (this.value.raw as ExtensionHeader).toNumber();
 
       if (nibbleCount < EXTENSION_NODE_THRESHOLD) {
         return new Uint8Array([EXTENSION_NODE_OFFSET + nibbleCount]);
@@ -99,8 +155,8 @@ export default class NodeHeader extends EnumType<Null | Branch | Extension | Lea
         EXTENSION_NODE_BIG,
         nibbleCount - EXTENSION_NODE_THRESHOLD
       ]);
-    } else if (index === NODE_TYPE_LEAF) {
-      const nibbleCount = (this.value.raw as Leaf).toNumber();
+    } else if (nodeType === NODE_TYPE_LEAF) {
+      const nibbleCount = (this.value.raw as LeafHeader).toNumber();
 
       if (nibbleCount < LEAF_NODE_THRESHOLD) {
         return new Uint8Array([LEAF_NODE_OFFSET + nibbleCount]);

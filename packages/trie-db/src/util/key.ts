@@ -2,12 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
+import { addNibblesTerminator, decodeNibbles, encodeNibbles, removeNibblesTerminator } from '@polkadot/trie-codec/nibbles';
 import { isNull } from '@polkadot/util/index';
 
 import { EncodedPath, Node } from '../types';
 
 import { isKvNode } from './is';
-import { addNibblesTerminator, decodeNibbles, encodeNibbles, removeNibblesTerminator } from './nibbles';
 
 export function extractKey (node: Node): Uint8Array {
   if (!isKvNode(node)) {

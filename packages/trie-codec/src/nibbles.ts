@@ -2,8 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import { NodeEncodedOrEmpty, NodeEncoded } from '../types';
-
 import fromNibbles from '@polkadot/trie-hash/util/fromNibbles';
 import toNibbles from '@polkadot/trie-hash/util/asNibbles';
 
@@ -40,7 +38,7 @@ export function removeNibblesTerminator (nibbles: Uint8Array): Uint8Array {
   return nibbles;
 }
 
-export function decodeNibbles (value: NodeEncodedOrEmpty): Uint8Array {
+export function decodeNibbles (value: null | Uint8Array): Uint8Array {
   const nibblesWithFlag = toNibbles(value);
   const [flag] = nibblesWithFlag;
 
@@ -53,7 +51,7 @@ export function decodeNibbles (value: NodeEncodedOrEmpty): Uint8Array {
     : rawNibbles;
 }
 
-export function encodeNibbles (nibbles: Uint8Array): NodeEncoded {
+export function encodeNibbles (nibbles: Uint8Array): Uint8Array {
   const flag = isNibblesTerminated(nibbles)
     ? HP_FLAG_2
     : HP_FLAG_0;
