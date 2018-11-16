@@ -17,8 +17,8 @@
  * asNibbles(new Uint8Array([0x41, 0x20]); // => Uint8Array([4, 1, 2, 0])
  * ```
  */
-export default function toNibbles (input: Uint8Array): Uint8Array {
-  if (input === null) {
+export default function toNibbles (input?: Uint8Array | null): Uint8Array {
+  if (!input) {
     return new Uint8Array();
   }
 

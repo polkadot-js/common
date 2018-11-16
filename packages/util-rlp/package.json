@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/polkadot-js/common/issues"
   },
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-hash#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-rlp#readme",
   "dependencies": {
     "@babel/runtime": "^7.1.5",
     "@polkadot/util": "^0.32.21"

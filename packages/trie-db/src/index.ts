@@ -7,8 +7,7 @@ import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, Nod
 
 import MemoryDb from '@polkadot/db/Memory';
 import { isNull, logger , u8aConcat } from '@polkadot/util/index';
-// import { keccakAsU8a as hashing } from '@polkadot/util-crypto/index';
-import { blake2AsU8a as hashing } from '@polkadot/util-crypto/index';
+import codec from '@polkadot/trie-codec/index';
 import { decodeNibbles, encodeNibbles } from '@polkadot/trie-codec/nibbles';
 import { toNibbles } from '@polkadot/trie-codec/util';
 
@@ -375,7 +374,7 @@ export default class Trie implements TrieDb {
     }
 
     return [
-      hashing(encoded),
+      codec.hashing(encoded),
       encoded
     ];
   }
@@ -556,7 +555,7 @@ export default class Trie implements TrieDb {
       this.rootHash = EMPTY_HASH;
     } else {
       const encoded = encodeNode(node);
-      const newHash = hashing(encoded);
+      const newHash = codec.hashing(encoded);
 
       this.db.put(newHash, encoded);
 

@@ -12,7 +12,7 @@
  * <BR>
  *
  * ```javascript
- * import { fromNibbles } from '@polkadot/trie-hash/util';
+ * import { fromNibbles } from '@polkadot/trie-codec/util';
  *
  * asNibbles(new Uint8Array([4, 1, 2, 0])); // => Uint8Array([0x41, 0x20]
  * ```

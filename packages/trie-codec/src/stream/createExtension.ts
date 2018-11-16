@@ -2,8 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { EMPTY_TRIE } from '../constants';
+import { fuseNibbles } from '../util';
 
-export default function createEmpty (): Uint8Array {
-  return Uint8Array.from([EMPTY_TRIE]);
+export default function createExtension (key: Uint8Array): Uint8Array {
+  return fuseNibbles(key, false);
 }

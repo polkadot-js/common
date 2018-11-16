@@ -9,17 +9,20 @@
 
 import decode from './decode';
 import encode from './encode';
+import hashing from './hashing';
 
 export { default as stream } from './stream';
 
 type Codec = {
   decode: (input?: Uint8Array | null) => null | Array<null | Uint8Array>,
-  encode: (input: null | Array<null | Uint8Array>) => Uint8Array
+  encode: (input: null | Array<null | Uint8Array>) => Uint8Array,
+  hashing: (input: Uint8Array) => Uint8Array
 };
 
 const codec: Codec = {
   decode,
-  encode
+  encode,
+  hashing
 };
 
 export default codec;

@@ -26,4 +26,35 @@ describe('unhashedTrie', () => {
       0xbb    // value data
     ]))
   });
+
+  it('encodes 2 disjointed tuple keys', () => {
+    expect(
+      unhashedTrie([
+        {
+          k: Uint8Array.from([0x48, 0x19]),
+          v: Uint8Array.from([0xfe])
+        },
+        {
+          k: Uint8Array.from([0x13, 0x14]),
+          v: Uint8Array.from([0xff])
+        }
+      ])
+    ).toEqual(Uint8Array.from([
+      0xfe,      // branch, no value
+      0x12,      // slots 1 & 4 are taken from 0-7
+      0x00,      // no slots from 8-15
+      0x05 << 2, // first slot: LEAF, 5 bytes long.
+      0x04,      // leaf with 3 nibbles
+      0x03,      // first nibble
+      0x14,      // second & third nibble
+      0x01 << 2, // 1 byte data
+      0xff,      // value data
+      0x05 << 2, // second slot: LEAF, 5 bytes long.
+      0x04,      // leaf with 3 nibbles
+      0x08,      // first nibble
+      0x19,      // second & third nibble
+      0x01 << 2, // 1 byte data
+      0xfe       // data
+    ]))
+  });
 });

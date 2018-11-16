@@ -4,10 +4,10 @@
 
 import { TriePair } from './types';
 
-import { blake2AsU8a as hashing } from '@polkadot/util-crypto/index';
+import codec from '@polkadot/trie-codec/index';
 
 import unhashedTrie from './unhashedTrie';
 
 export default function trieRoot (input: Array<TriePair>): Uint8Array {
-  return hashing(unhashedTrie(input));
+  return codec.hashing(unhashedTrie(input));
 }
