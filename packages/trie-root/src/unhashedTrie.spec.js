@@ -27,6 +27,35 @@ describe('unhashedTrie', () => {
     ]))
   });
 
+  it('encodes a branch', () => {
+    expect(
+      unhashedTrie([
+        {
+          k: Uint8Array.from([0xaa]),
+          v: Uint8Array.from([0x10])
+        },
+        {
+          k: Uint8Array.from([0xba]),
+          v: Uint8Array.from([0x11])
+        }
+      ])
+    ).toEqual(Uint8Array.from([
+      0xfe,
+      0x0,
+      0xc,
+      0x10,
+      0x2,
+      0xa,
+      0x4,
+      0x10,
+      0x10,
+      0x2,
+      0xa,
+      0x4,
+      0x11
+    ]));
+  });
+
   it('encodes 2 disjointed tuple keys', () => {
     expect(
       unhashedTrie([
