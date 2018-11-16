@@ -6,7 +6,7 @@ import toU8a from '@polkadot/util/u8a/toU8a';
 
 import Trie from './index';
 
-describe('snapshots', () => {
+describe.skip('snapshots', () => {
   it('creates a snapshot of the (relevant) trie data', () => {
     const root = new Uint8Array([43, 119, 232, 84, 123, 197, 94, 42, 149, 34, 124, 147, 159, 159, 157, 103, 149, 45, 225, 233, 112, 160, 23, 224, 145, 11, 229, 16, 176, 144, 175, 243]);
     const trie = new Trie();

@@ -7,7 +7,7 @@ import toU8a from '@polkadot/util/u8a/toU8a';
 
 import Trie from './index';
 
-describe('simple save and retrieve', () => {
+describe.skip('simple save and retrieve', () => {
   const trie = new Trie();
 
   it('starts with a valid root', () => {

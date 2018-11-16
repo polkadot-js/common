@@ -11,7 +11,7 @@ import getTests from '../../../test/getTests';
 const trietest = getTests('TrieTests/trietest.json');
 const trieanyorder = getTests('TrieTests/trieanyorder.json');
 
-describe('official tests', () => {
+describe.skip('official tests', () => {
   let trie;
 
   beforeEach(() => {

@@ -7,12 +7,12 @@ import { Bytes, u16 as U16 } from '@polkadot/types';
 import NodeHeader, { BranchHeader, NibbleHeader } from './NodeHeader';
 import { NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from './constants';
 
-export default function decode (input: Uint8Array): null | Array<null | Uint8Array> {
+export default function decode (input?: null | Uint8Array): null | Array<null | Uint8Array> {
   const header = new NodeHeader(input);
   const nodeType = header.nodeType;
   let offset = header.encodedLength;
 
-  if (nodeType === NODE_TYPE_NULL) {
+  if (!input || nodeType === NODE_TYPE_NULL) {
     return null;
   } else if (nodeType === NODE_TYPE_BRANCH) {
     const branch = header.value.raw as BranchHeader;

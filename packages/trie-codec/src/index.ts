@@ -2,13 +2,22 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import rlp from './rlp';
+// For RLP, this is what it used to be, currently we only support Substrate
+// encoding, i.e. using the Parity-defined codec for the Trie encoding
+// import decode from '@polkadot/util-rlp/decode';
+// import encode from '@polkadot/util-rlp/encode';
+
+import decode from './decode';
+import encode from './encode';
 
 type Codec = {
-  decode: (input?: Uint8Array) => null | Uint8Array | Array<any>,
-  encode: (input: null | Uint8Array | Array<any>) => Uint8Array
+  decode: (input?: Uint8Array | null) => null | Array<null | Uint8Array>,
+  encode: (input: null | Array<null | Uint8Array>) => Uint8Array
 };
 
-const codec: Codec = rlp;
+const codec: Codec = {
+  decode,
+  encode
+};
 
 export default codec;
