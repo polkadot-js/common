@@ -4,7 +4,7 @@
 
 import { Trie$Pairs } from './types';
 
-import asNibbles from './util/asNibbles';
+import { toNibbles } from '@polkadot/trie-codec/util';
 import genRoot from './util/genRoot';
 import pairsUniq from './util/pairsUniq';
 
@@ -30,7 +30,7 @@ import pairsUniq from './util/pairsUniq';
 export default function trieRoot (pairs: Trie$Pairs): Uint8Array {
   return genRoot(
     pairsUniq(pairs).map(({ k, v }) => ({
-      k: asNibbles(k),
+      k: toNibbles(k),
       v
     }))
   );

@@ -33,7 +33,7 @@ import sharedPrefixLength from '../util/sharedPrefixLength';
  *
  * @description Refer to [Merkle Patricia Trie specification](https://github.com/ethereum/wiki/wiki/Patricia-Tree#optimization)
  */
-export default function encode (pairs: Trie$Pairs, preLength: number): Array<any> {
+export default function encode (pairs: Trie$Pairs, preLength: number): Array<null | Uint8Array> {
   if (pairs.length === 0) {
     return [];
   }

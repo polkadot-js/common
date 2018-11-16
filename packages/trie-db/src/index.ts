@@ -10,7 +10,7 @@ import { isNull, logger , u8aConcat } from '@polkadot/util/index';
 // import { keccakAsU8a as hashing } from '@polkadot/util-crypto/index';
 import { blake2AsU8a as hashing } from '@polkadot/util-crypto/index';
 import { decodeNibbles, encodeNibbles } from '@polkadot/trie-codec/nibbles';
-import toNibbles from '@polkadot/trie-hash/util/asNibbles';
+import { toNibbles } from '@polkadot/trie-codec/util';
 
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';
 import { extractKey, keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';

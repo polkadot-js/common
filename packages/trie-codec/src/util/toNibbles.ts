@@ -1,10 +1,10 @@
-// Copyright 2017-2018 @polkadot/trie-hash authors & contributors
+// Copyright 2017-2018 @polkadot/trie-codec authors & contributors
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
 /**
  * @name asNibbles
- * @signature asNibbles (bytes: Uint8Array | Array<number>): Uint8Array
+ * @signature toNibbles (bytes: Uint8Array | Array<number>): Uint8Array
  * @summary Converts the input to Nibbles.
  * @description
  * From an `Uint8Array` input, calculate and return a list of nibbles that makes up the input.
@@ -17,7 +17,7 @@
  * asNibbles(new Uint8Array([0x41, 0x20]); // => Uint8Array([4, 1, 2, 0])
  * ```
  */
-export default function asNibbles (bytes: Uint8Array | Array<number> | null): Uint8Array {
+export default function toNibbles (bytes: Uint8Array | Array<number> | null): Uint8Array {
   if (bytes === null) {
     return new Uint8Array();
   }

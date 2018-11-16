@@ -2,8 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
-import fromNibbles from '@polkadot/trie-hash/util/fromNibbles';
-import toNibbles from '@polkadot/trie-hash/util/asNibbles';
+import { fromNibbles, toNibbles } from './util';
 
 const HP_FLAG_2 = 2;
 const HP_FLAG_0 = 0;

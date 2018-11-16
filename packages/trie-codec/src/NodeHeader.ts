@@ -34,8 +34,13 @@ export default class NodeHeader extends EnumType<Null | BranchHeader | Extension
     }, value, index);
   }
 
-  private static decodeNodeHeaderArray (input: Array<null | Uint8Array>): [number, BranchHeader | ExtensionHeader | LeafHeader] {
-    if (input.length === 2) {
+  private static decodeNodeHeaderArray (input: Array<null | Uint8Array>): [number, Null | BranchHeader | ExtensionHeader | LeafHeader] {
+    if (input.length === 0) {
+      return [
+        NODE_TYPE_NULL,
+        new Null()
+      ];
+    } else if (input.length === 2) {
       const nibbles = decodeNibbles(input[0]);
       const isTerminated = isNibblesTerminated(nibbles);
 

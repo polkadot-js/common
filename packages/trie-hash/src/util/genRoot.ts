@@ -4,8 +4,9 @@
 
 import { Trie$Pairs } from '../types';
 
-import { keccakAsU8a } from '@polkadot/util-crypto/index';
-import rlpEncode from '@polkadot/util-rlp/encode';
+// import { keccakAsU8a as hashing } from '@polkadot/util-crypto/index';
+import { blake2AsU8a as hashing } from '@polkadot/util-crypto/index';
+import codec from '@polkadot/trie-codec/index';
 
 import encode from '../encode';
 
@@ -17,11 +18,9 @@ import encode from '../encode';
 export default function genRoot (pairs: Trie$Pairs): Uint8Array {
   const encoded = encode(pairs, 0);
 
-  return keccakAsU8a(
-    rlpEncode(
-      encoded.length
-        ? encoded
-        : new Uint8Array([])
-    )
+  return hashing(
+    encoded.length
+      ? new Uint8Array()
+      : codec.encode(encoded)
   );
 }

@@ -2,8 +2,8 @@
 // of the ISC license. See the LICENSE file for details.
 
 import rlpEncode from '@polkadot/util-rlp/encode';
+import { toNibbles } from '@polkadot/trie-codec/util';
 
-import asNibbles from './util/asNibbles';
 import genRoot from './util/genRoot';
 import pairsUniq from './util/pairsUniq';
 
@@ -30,7 +30,7 @@ export default function trieRootOrdered (values: Array<Uint8Array>): Uint8Array 
   return genRoot(
     pairsUniq(
       values.map((v, index) => ({
-        k: asNibbles(
+        k: toNibbles(
           rlpEncode(index)
         ),
         v

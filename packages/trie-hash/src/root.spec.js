@@ -13,7 +13,7 @@ describe('trieRoot', () => {
       trieRoot([])
     ).toEqual(
       hexToU8a(
-        '0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421'
+        '0x03170a2e7597b7b7e3d84c05391d139a62b157e78786d8c082f29dcf4c111314'
       )
     );
   });

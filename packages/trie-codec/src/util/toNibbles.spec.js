@@ -1,15 +1,15 @@
-// Copyright 2017-2018 @polkadot/trie-hash authors & contributors
+// Copyright 2017-2018 @polkadot/trie-codec authors & contributors
 // This software may be modified and distributed under the terms
 // of the ISC license. See the LICENSE file for details.
 
 import stringToU8a from '@polkadot/util/string/toU8a';
 
-import asNibbles from './asNibbles';
+import toNibbles from './toNibbles';
 
-describe('asNibbles', () => {
+describe('toNibbles', () => {
   it('converts an array', () => {
     expect(
-      asNibbles([
+      toNibbles([
         0x31, 0x23, 0x45
       ])
     ).toEqual(
@@ -19,7 +19,7 @@ describe('asNibbles', () => {
 
   it('converts a single', () => {
     expect(
-      asNibbles(
+      toNibbles(
         stringToU8a('A')
       )
     ).toEqual(
