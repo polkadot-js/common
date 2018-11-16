@@ -1,6 +1,6 @@
 // Copyright 2017-2018 @polkadot/trie-codec authors & contributors
 // This software may be modified and distributed under the terms
-// of the ISC license. See the LICENSE file for details.
+// of the Apache-2.0 license. See the LICENSE file for details.
 
 /**
  * @name fromNibbles
@@ -17,13 +17,13 @@
  * asNibbles(new Uint8Array([4, 1, 2, 0])); // => Uint8Array([0x41, 0x20]
  * ```
  */
-export default function fromNibbles (nibbles: Uint8Array | Array<number>): Uint8Array {
-  const u8a = new Uint8Array(nibbles.length / 2);
+export default function fromNibbles (input: Uint8Array): Uint8Array {
+  const u8a = new Uint8Array(input.length / 2);
 
   for (let index = 0; index < u8a.length; index++) {
     const nibIndex = index * 2;
 
-    u8a[index] = (nibbles[nibIndex] << 4) + nibbles[nibIndex + 1];
+    u8a.set([(input[nibIndex] << 4) + input[nibIndex + 1]], 0);
   }
 
   return u8a;

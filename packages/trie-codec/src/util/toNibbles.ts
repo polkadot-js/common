@@ -1,10 +1,10 @@
 // Copyright 2017-2018 @polkadot/trie-codec authors & contributors
 // This software may be modified and distributed under the terms
-// of the ISC license. See the LICENSE file for details.
+// of the Apache-2.0 license. See the LICENSE file for details.
 
 /**
- * @name asNibbles
- * @signature toNibbles (bytes: Uint8Array | Array<number>): Uint8Array
+ * @name toNibbles
+ * @signature toNibbles (input: Uint8Array): Uint8Array
  * @summary Converts the input to Nibbles.
  * @description
  * From an `Uint8Array` input, calculate and return a list of nibbles that makes up the input.
@@ -12,23 +12,22 @@
  * <BR>
  *
  * ```javascript
- * import { asNibbles } from '@polkadot/trie-hash/util';
+ * import { asNibbles } from '@polkadot/trie-codec/util';
  *
  * asNibbles(new Uint8Array([0x41, 0x20]); // => Uint8Array([4, 1, 2, 0])
  * ```
  */
-export default function toNibbles (bytes: Uint8Array | Array<number> | null): Uint8Array {
-  if (bytes === null) {
+export default function toNibbles (input: Uint8Array): Uint8Array {
+  if (input === null) {
     return new Uint8Array();
   }
 
-  // HACK TypeScript gets a little bit confused as to what to apply, hence casting here although the reduces function for both types does exactly the same
-  return (bytes as number[]).reduce((nibbles, byte, index) => {
+  return input.reduce((nibbles, byte, index) => {
     nibbles.set(
       [byte >> 4, byte & 0b1111],
       index * 2
     );
 
     return nibbles;
-  }, new Uint8Array(bytes.length * 2));
+  }, new Uint8Array(input.length * 2));
 }

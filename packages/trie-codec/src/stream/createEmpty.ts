@@ -2,10 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import decode from '@polkadot/util-rlp/decode';
-import encode from '@polkadot/util-rlp/encode';
+import { EMPTY_TRIE } from '../constants';
 
-export default {
-  decode,
-  encode
-};
+export default function appendEmpty (): Uint8Array {
+  return Uint8Array.from([EMPTY_TRIE]);
+}

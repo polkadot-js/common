@@ -2,10 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import decode from '@polkadot/util-rlp/decode';
-import encode from '@polkadot/util-rlp/encode';
+import createEmpty from './createEmpty';
+import createLeaf from './createLeaf';
 
 export default {
-  decode,
-  encode
+  createEmpty,
+  createLeaf
 };

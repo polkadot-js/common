@@ -1,6 +1,6 @@
 // Copyright 2017-2018 @polkadot/trie-codec authors & contributors
 // This software may be modified and distributed under the terms
-// of the ISC license. See the LICENSE file for details.
+// of the Apache-2.0 license. See the LICENSE file for details.
 
 import { Bytes, u16 as U16 } from '@polkadot/types';
 
@@ -50,8 +50,8 @@ export default function decode (input?: null | Uint8Array): null | Array<null | 
       return result;
     });
   } else if (nodeType === NODE_TYPE_EXT || nodeType === NODE_TYPE_LEAF) {
-    const extension = header.value.raw as NibbleHeader;
-    const nibbleData = input.subarray(offset, (extension.toNumber() + 1) / 2);
+    const nibbles = header.value.raw as NibbleHeader;
+    const nibbleData = input.subarray(offset, (nibbles.toNumber() + 1) / 2);
 
     offset += nibbleData.length;
 

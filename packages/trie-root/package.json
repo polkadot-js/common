@@ -1,7 +1,7 @@
 {
-  "name": "@polkadot/trie-hash",
+  "name": "@polkadot/trie-root",
   "version": "0.32.21",
-  "description": "Creation of triehash values",
+  "description": "Generates trie roots from key-value pairs",
   "main": "index.js",
   "keywords": [
     "Polkadot"
@@ -11,7 +11,7 @@
     "Jaco Greeff <jacogr@gmail.com>"
   ],
   "contributors": [],
-  "license": "ISC",
+  "license": "Apache-2.0",
   "engines": {
     "node": ">=6.4"
   },
@@ -26,12 +26,9 @@
   "bugs": {
     "url": "https://github.com/polkadot-js/common/issues"
   },
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-hash#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-codec#readme",
   "dependencies": {
     "@babel/runtime": "^7.1.5",
-    "@polkadot/trie-codec": "^0.32.21",
-    "@polkadot/util": "^0.32.21",
-    "@polkadot/util-crypto": "^0.32.21",
-    "@polkadot/util-rlp": "^0.32.21"
+    "@polkadot/util": "^0.32.21"
   }
 }

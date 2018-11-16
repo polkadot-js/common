@@ -1,11 +1,8 @@
 // Copyright 2017-2018 @polkadot/trie-codec authors & contributors
 // This software may be modified and distributed under the terms
-// of the ISC license. See the LICENSE file for details.
+// of the Apache-2.0 license. See the LICENSE file for details.
 
-import fromNibbles from './fromNibbles';
-import toNibbles from './toNibbles';
-
-export {
-  fromNibbles,
-  toNibbles
-};
+export { default as fromNibbles } from './fromNibbles';
+export { default as fuseNibbles } from './fuseNibbles';
+export { default as sharedPrefixLength } from './sharedPrefixLength';
+export { default as toNibbles } from './toNibbles';

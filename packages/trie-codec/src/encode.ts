@@ -1,6 +1,6 @@
 // Copyright 2017-2018 @polkadot/trie-codec authors & contributors
 // This software may be modified and distributed under the terms
-// of the ISC license. See the LICENSE file for details.
+// of the Apache-2.0 license. See the LICENSE file for details.
 
 import { Bytes, u16 as U16 } from '@polkadot/types';
 import { u8aConcat } from '@polkadot/util/index';
@@ -10,7 +10,7 @@ import { NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF, NODE_TYPE_NULL } from 
 
 const EMPTY = new Uint8Array();
 
-export default function encode (input: null | Array<null | Uint8Array>): Uint8Array {
+export default function encode (input?: null | Array<null | Uint8Array>): Uint8Array {
   const header = new NodeHeader(input);
   const nodeType = header.nodeType;
   const u8aHeader = header.toU8a();
