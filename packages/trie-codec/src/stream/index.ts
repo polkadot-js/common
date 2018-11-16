@@ -8,6 +8,7 @@ import createExtension from './createExtension';
 import createLeaf from './createLeaf';
 import createSubstream from './createSubstream';
 import createValue from './createValue';
+import endBranch from './endBranch';
 
 export default {
   createBranch,
@@ -15,5 +16,6 @@ export default {
   createExtension,
   createLeaf,
   createSubstream,
-  createValue
+  createValue,
+  endBranch
 };

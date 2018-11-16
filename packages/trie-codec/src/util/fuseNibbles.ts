@@ -10,7 +10,7 @@ import fromNibbles from './fromNibbles';
 const MAX_FUSE_LENGTH = 255 + 126;
 
 export default function fuseNibbles (nibbles: Uint8Array, isLeaf: boolean): Uint8Array {
-  assert(nibbles.length < MAX_FUSE_LENGTH, `Input to fuseNibbles to large, found ${nibbles.length} >= ${MAX_FUSE_LENGTH}`);
+  assert(nibbles.length < MAX_FUSE_LENGTH, `Input to fuseNibbles too large, found ${nibbles.length} >= ${MAX_FUSE_LENGTH}`);
 
   const [firstByteSmall, bigThreshold] = isLeaf
     ? [LEAF_NODE_OFFSET, LEAF_NODE_BIG - LEAF_NODE_OFFSET]

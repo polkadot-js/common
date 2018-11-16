@@ -9,6 +9,8 @@ import { u8aConcat } from '@polkadot/util/index';
 const EMPTY = new Uint8Array();
 
 export default function buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number = 0): Uint8Array {
+  console.error('buildTrie', input, cursor);
+
   if (input.length === 0) {
     return stream.createEmpty();
   }
@@ -20,7 +22,7 @@ export default function buildTrie (input: Array<[Uint8Array, Uint8Array]>, curso
   }
 
   const sharedNibbleCount = input.reduce((min, [key], index) => {
-    return (index === 0)
+    return index === 0
       ? key.length
       : Math.min(min, sharedPrefixLength(key, firstKey));
   }, 0);
@@ -57,12 +59,11 @@ export default function buildTrie (input: Array<[Uint8Array, Uint8Array]>, curso
 
       if (count > 0) {
         result = stream.createSubstream(buildTrie(input.slice(begin, begin + count), cursor + 1));
-
         begin += count;
       }
 
       return result;
     }),
-    stream.createValue(value)
+    stream.endBranch(value)
   );
 }

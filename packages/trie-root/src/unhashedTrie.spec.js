@@ -27,6 +27,7 @@ describe('unhashedTrie', () => {
     ]))
   });
 
+  // 0x922fa0ab17d1f383b45047502151d09e9141a76ddf5b5e4f1af98c4afdd85864
   it('encodes a branch', () => {
     expect(
       unhashedTrie([
@@ -40,19 +41,89 @@ describe('unhashedTrie', () => {
         }
       ])
     ).toEqual(Uint8Array.from([
-      0xfe,
-      0x0,
-      0xc,
-      0x10,
-      0x2,
-      0xa,
-      0x4,
-      0x10,
-      0x10,
-      0x2,
-      0xa,
-      0x4,
-      0x11
+      0xfe, 0x0, 0xc, 0x10, 0x2, 0xa, 0x4, 0x10,
+      0x10, 0x2, 0xa, 0x4, 0x11
+    ]));
+  });
+
+  // 0x3f6764bc812ca86b84cf88b2045828fd605c8abbe1e9c657ff87adb715c644bf
+  it('encodes extension and branch', () => {
+    expect(
+      unhashedTrie([
+        {
+          k: Uint8Array.from([0xaa]),
+          v: Uint8Array.from([0x10])
+        },
+        {
+          k: Uint8Array.from([0xab]),
+          v: Uint8Array.from([0x11])
+        }
+      ])
+    ).toEqual(Uint8Array.from([
+      0x81, 0xa, 0x2c, 0xfe, 0x0, 0xc, 0xc, 0x1,
+      0x4, 0x10, 0xc, 0x1, 0x4, 0x11
+    ]))
+  });
+
+  // 0xc896ef26cd64107bd8bf33e9e0b0adbb29c54ac1bf8e9dc30153f13638095108
+  it('encodes extension and branch with value', () => {
+    expect(
+      unhashedTrie([
+        {
+          k: Uint8Array.from([0xaa]),
+          v: Uint8Array.from([0xa0])
+        },
+        {
+          k: Uint8Array.from([0xaa, 0xaa]),
+          v: Uint8Array.from([0xaa])
+        },
+        {
+          k: Uint8Array.from([0xaa, 0xbb]),
+          v: Uint8Array.from([0xab])
+        }
+      ])
+    ).toEqual(Uint8Array.from([
+      0x82, 0xaa, 0x3c, 0xff, 0x0, 0xc, 0x4, 0xa0,
+      0x10, 0x2, 0xa, 0x4, 0xaa, 0x10, 0x2, 0xb,
+      0x4, 0xab
+    ]));
+  });
+
+  // 0x519056dadff78abc057f6de56706d7b0ed01654b059df3dd9cfc135ef246dd22
+  it('encodes bigger extension and branch with value', () => {
+    expect(
+      unhashedTrie([
+        {
+          k: Uint8Array.from([0xaa]),
+          v: Uint8Array.from([0xa0])
+        },
+        {
+          k: Uint8Array.from([0xaa, 0xaa]),
+          v: Uint8Array.from([0xaa])
+        },
+        {
+          k: Uint8Array.from([0xaa, 0xbb]),
+          v: Uint8Array.from([0xab])
+        },
+        {
+          k: Uint8Array.from([0xbb]),
+          v: Uint8Array.from([0xb0])
+        },
+        {
+          k: Uint8Array.from([0xbb, 0xbb]),
+          v: Uint8Array.from([0xbb])
+        },
+        {
+          k: Uint8Array.from([0xbb, 0xcc]),
+          v: Uint8Array.from([0xbc])
+        },
+      ])
+    ).toEqual(Uint8Array.from([
+      0xfe, 0x0, 0xc, 0x48, 0x81, 0xa, 0x3c, 0xff, 0x0,
+      0xc, 0x4, 0xa0, 0x10, 0x2, 0xa, 0x4, 0xaa,
+      0x10, 0x2, 0xb, 0x4, 0xab, 0x48, 0x81, 0xb,
+      0x3c, 0xff, 0x0, 0x18, 0x4, 0xb0, 0x10, 0x2,
+      0xb, 0x4, 0xbb, 0x10, 0x2, 0xc, 0x4, 0xbc
     ]));
   });
 
