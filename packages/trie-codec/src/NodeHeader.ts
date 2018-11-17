@@ -21,7 +21,7 @@ export class LeafHeader extends NibbleHeader {
 }
 
 export default class NodeHeader extends EnumType<Null | BranchHeader | ExtensionHeader | LeafHeader> {
-  constructor (input?: null | Uint8Array | Array<null | Uint8Array>) {
+  constructor (input?: null | Uint8Array) {
     const [index, value] = Array.isArray(input)
       ? NodeHeader.decodeNodeHeaderArray(input)
       : NodeHeader.decodeNodeHeaderU8a(input);

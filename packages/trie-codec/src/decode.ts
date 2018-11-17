@@ -25,7 +25,7 @@ export default function decode (input?: null | Uint8Array): null | Array<null | 
     if (branch.valueOf() === true) {
       const bytes = new Bytes(input.subarray(offset));
 
-      value = bytes.toU8a(true);
+      value = bytes;
       offset += bytes.encodedLength;
     }
 
@@ -41,7 +41,7 @@ export default function decode (input?: null | Uint8Array): null | Array<null | 
       if ((index < 16) && (bitmap & potCursor)) {
         const bytes = new Bytes(input.subarray(offset));
 
-        result = bytes.toU8a(true);
+        result = bytes;
         offset += bytes.encodedLength;
       }
 
@@ -56,7 +56,7 @@ export default function decode (input?: null | Uint8Array): null | Array<null | 
     offset += nibbleData.length;
 
     // const nibble_slice = NibbleSlice::new_offset(nibble_data, nibble_count % 2);
-    const value = new Bytes(input.subarray(offset)).toU8a(true);
+    const value = new Bytes(input.subarray(offset));
 
     return [
       nibbleData,
