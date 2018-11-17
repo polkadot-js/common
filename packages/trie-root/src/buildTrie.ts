@@ -9,8 +9,6 @@ import { u8aConcat } from '@polkadot/util/index';
 const EMPTY = new Uint8Array();
 
 export default function buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number = 0): Uint8Array {
-  console.error('buildTrie', input, cursor);
-
   if (input.length === 0) {
     return stream.createEmpty();
   }
