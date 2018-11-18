@@ -23,7 +23,7 @@ export default function fromNibbles (input: Uint8Array): Uint8Array {
   for (let index = 0; index < u8a.length; index++) {
     const nibIndex = index * 2;
 
-    u8a.set([(input[nibIndex] << 4) + input[nibIndex + 1]], 0);
+    u8a.set([(input[nibIndex] << 4) + input[nibIndex + 1]], index);
   }
 
   return u8a;

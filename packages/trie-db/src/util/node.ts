@@ -46,5 +46,6 @@ export function decodeNode (encoded: Uint8Array | Node): Node {
 }
 
 export function encodeNode (node: Node): Uint8Array {
+  console.error('encodeNode', node);
   return codec.encode(node);
 }

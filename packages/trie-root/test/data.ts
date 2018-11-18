@@ -2,20 +2,20 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { TriePair } from './types';
+import { TriePair } from '../src/types';
 
 import { hexToU8a, stringToU8a } from '@polkadot/util/index';
 
 type Data = {
-  name: string,
+  desc: string,
   input: Array<TriePair>,
   output: Uint8Array,
   root: Uint8Array
 };
 
-const data: Array<Data> = [
-  {
-    name: 'a branch',
+const data: { [index: string]: Data } = {
+  simpleBranch: {
+    desc: 'a branch',
     input: [
       {
         k: Uint8Array.from([0xaa]),
@@ -31,8 +31,8 @@ const data: Array<Data> = [
     ]),
     root: hexToU8a('0x922fa0ab17d1f383b45047502151d09e9141a76ddf5b5e4f1af98c4afdd85864')
   },
-  {
-    name: 'extension and branch',
+  extensionBranch: {
+    desc: 'extension and branch',
     input: [
       {
         k: Uint8Array.from([0xaa]),
@@ -48,8 +48,8 @@ const data: Array<Data> = [
     ]),
     root: hexToU8a('0x3f6764bc812ca86b84cf88b2045828fd605c8abbe1e9c657ff87adb715c644bf')
   },
-  {
-    name: 'extension and branch with value',
+  extensionBranchValue: {
+    desc: 'extension and branch with value',
     input: [
       {
         k: Uint8Array.from([0xaa]),
@@ -70,8 +70,8 @@ const data: Array<Data> = [
     ]),
     root: hexToU8a('0xc896ef26cd64107bd8bf33e9e0b0adbb29c54ac1bf8e9dc30153f13638095108')
   },
-  {
-    name: 'bigger extension and branch with value',
+  bigExtensionBranchValue: {
+    desc: 'bigger extension and branch with value',
     input: [
       {
         k: Uint8Array.from([0xaa]),
@@ -105,8 +105,8 @@ const data: Array<Data> = [
     ]),
     root: hexToU8a('0x519056dadff78abc057f6de56706d7b0ed01654b059df3dd9cfc135ef246dd22')
   },
-  {
-    name: 'a single long leaf',
+  longLeaf: {
+    desc: 'a single long leaf',
     input: [
       {
         k: Uint8Array.from([0xaa]),
@@ -124,8 +124,8 @@ const data: Array<Data> = [
     ]),
     root: hexToU8a('0x28530359d763dccdd0a6720aacdea9d03c4d93fa8b7c83e650ab159f1fa4675f')
   },
-  {
-    name: 'two long leaves',
+  twoLongLeaves: {
+    desc: 'two long leaves',
     input: [
       {
         k: Uint8Array.from([0xaa]),
@@ -145,16 +145,16 @@ const data: Array<Data> = [
     ]),
     root: hexToU8a('0x413f72e84d4f48fba427592529cd048244bf816141f17d6b5947965765e67824')
   },
-  {
-    name: 'empty into [0]',
+  empty: {
+    desc: 'empty into [0]',
     input: [],
     output: Uint8Array.from([
       0
     ]),
     root: hexToU8a('0x03170a2e7597b7b7e3d84c05391d139a62b157e78786d8c082f29dcf4c111314')
   },
-  {
-    name: 'a single tuple',
+  singleValue: {
+    desc: 'a single tuple',
     input: [
       {
         k: Uint8Array.from([0xaa]),
@@ -169,8 +169,8 @@ const data: Array<Data> = [
     ]),
     root: hexToU8a('0xe778a32590ed4f3f39608b77af87fb59163a89bb9702f477375e1a574736d6f0')
   },
-  {
-    name: '2 disjointed tuple keys',
+  twoValues: {
+    desc: '2 disjointed tuple keys',
     input: [
       {
         k: Uint8Array.from([0x48, 0x19]),
@@ -200,6 +200,6 @@ const data: Array<Data> = [
     ]),
     root: hexToU8a('0x72813a09bf563fdb6af1d8326329950499fc33c30f3534893381517dc54640b2')
   }
-];
+};
 
 export default data;

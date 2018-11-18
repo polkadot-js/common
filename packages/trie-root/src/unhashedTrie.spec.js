@@ -3,11 +3,11 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import unhashedTrie from './unhashedTrie';
-import tests from './testdata';
+import testdata from '../test/data';
 
 describe('unhashedTrie', () => {
-  tests.forEach(({ name, input, output }) => {
-    it(`encodes ${name}`, () => {
+  Object.values(testdata).forEach(({ desc, input, output }) => {
+    it(`encodes ${desc}`, () => {
       expect(unhashedTrie(input)).toEqual(output);
     });
   });

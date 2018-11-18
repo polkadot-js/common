@@ -12,6 +12,12 @@ const NIBBLE_TERMINATOR = 16;
 const NEEDS_TERMINATOR = [HP_FLAG_2, HP_FLAG_2 + 1];
 const IS_ODD_LENGTH = [HP_FLAG_0 + 1, HP_FLAG_2 + 1];
 
+export function extractKey (node: Array<null | Uint8Array>): Uint8Array {
+  return removeNibblesTerminator(
+    decodeNibbles(node[0])
+  );
+}
+
 export function isNibblesTerminated (nibbles: Uint8Array): boolean {
   return nibbles[nibbles.length - 1] === NIBBLE_TERMINATOR;
 }
@@ -38,6 +44,7 @@ export function removeNibblesTerminator (nibbles: Uint8Array): Uint8Array {
 }
 
 export function decodeNibbles (value: null | Uint8Array): Uint8Array {
+  console.error('decodeNibbles', toNibbles(value));
   const nibblesWithFlag = toNibbles(value);
   const [flag] = nibblesWithFlag;
 

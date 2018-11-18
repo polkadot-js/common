@@ -21,7 +21,7 @@ export class LeafHeader extends NibbleHeader {
 }
 
 export default class NodeHeader extends EnumType<Null | BranchHeader | ExtensionHeader | LeafHeader> {
-  constructor (input?: null | Uint8Array) {
+  constructor (input?: null | Uint8Array | Array<null | Uint8Array>) {
     const [index, value] = Array.isArray(input)
       ? NodeHeader.decodeNodeHeaderArray(input)
       : NodeHeader.decodeNodeHeaderU8a(input);
@@ -47,7 +47,7 @@ export default class NodeHeader extends EnumType<Null | BranchHeader | Extension
       if (isTerminated) {
         return [
           NODE_TYPE_LEAF,
-          new LeafHeader(nibbles.length)
+          new LeafHeader(nibbles.length - 1)
         ];
       } else {
         return [

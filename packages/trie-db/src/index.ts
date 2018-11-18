@@ -8,11 +8,11 @@ import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, Nod
 import MemoryDb from '@polkadot/db/Memory';
 import { isNull, logger , u8aConcat } from '@polkadot/util/index';
 import codec from '@polkadot/trie-codec/index';
-import { decodeNibbles, encodeNibbles } from '@polkadot/trie-codec/nibbles';
+import { decodeNibbles, encodeNibbles, extractKey } from '@polkadot/trie-codec/nibbles';
 import { toNibbles } from '@polkadot/trie-codec/util';
 
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';
-import { extractKey, keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';
+import { keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';
 import { getNodeType, decodeNode, encodeNode } from './util/node';
 import { EMPTY_HASH, EMPTY_U8A } from './constants';
 
@@ -436,7 +436,7 @@ export default class Trie implements TrieDb {
   }
 
   private _put (node: Node, trieKey: Uint8Array, value: Uint8Array): NodeNotEmpty {
-    // l.debug(() => ['_put', { node, trieKey, value }]);
+    l.debug(() => ['_put', { node, trieKey, value }]);
 
     if (isEmptyNode(node)) {
       return [
@@ -549,13 +549,15 @@ export default class Trie implements TrieDb {
   }
 
   private _setRootNode (node: Node): void {
-    // l.debug(() => ['_setRootNode', { node }]);
+    l.debug(() => ['_setRootNode', { node }]);
 
     if (isEmptyNode(node)) {
       this.rootHash = EMPTY_HASH;
     } else {
       const encoded = encodeNode(node);
       const newHash = codec.hashing(encoded);
+
+      l.debug(() => ['_setRootNode', { encoded }]);
 
       this.db.put(newHash, encoded);
 
