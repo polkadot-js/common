@@ -30,9 +30,6 @@ export default function encode (input?: null | Array<null | Uint8Array>): Uint8A
       if ((index < 16) && value) {
         bitmap = bitmap | potCursor;
 
-        // fe12001404331404ff1404381904fe
-        // fe12001404031404ff1404081904fe
-
         if (Array.isArray(value)) {
           const [_key, _value] = value;
           const nibbles = removeNibblesTerminator(decodeNibbles(_key));
