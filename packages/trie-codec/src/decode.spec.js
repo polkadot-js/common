@@ -11,7 +11,7 @@ describe('decode', () => {
         0x05, 0x48, 0x19, 0x04, 0xfe
       ]))
     ).toEqual([
-      Uint8Array.from([0x20, 0x48, 0x19]),
+      Uint8Array.from([0x05, 0x48, 0x19]),
       Uint8Array.from([0xfe])
     ])
   });

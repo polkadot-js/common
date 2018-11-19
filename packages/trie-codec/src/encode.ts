@@ -13,6 +13,20 @@ import { fromNibbles } from './util';
 const EMPTY = new Uint8Array();
 const BRANCH_VALUE_INDEX = 16;
 
+// in the case of odd nibbles, the first byte is encoded as a single
+// byte from the nibble, with the remainder of the nibbles is converted
+// as nomral nibble combined bytes
+function encodeKey (input: null | Uint8Array): Uint8Array {
+  const nibbles = extractKey(input);
+
+  return nibbles.length % 2
+    ? u8aConcat(
+      Uint8Array.from([nibbles[0]]),
+      fromNibbles(nibbles.subarray(1))
+    )
+    : fromNibbles(nibbles);
+}
+
 function encodeValue (input: null | Uint8Array | Array<null | Uint8Array>): Uint8Array {
   if (!input) {
     return EMPTY;
@@ -52,6 +66,8 @@ export default function encode (input?: null | Array<null | Uint8Array>): Uint8A
       cursor = cursor << 1;
     });
 
+    console.error('bitmap', new Uint8Array([(bitmap % 256), Math.floor(bitmap / 256)]));
+
     return u8aConcat(
       u8aHeader,
       new Uint8Array([(bitmap % 256), Math.floor(bitmap / 256)]),
@@ -59,22 +75,11 @@ export default function encode (input?: null | Array<null | Uint8Array>): Uint8A
       valuesU8a
     );
   } else if (nodeType === NODE_TYPE_EXT || nodeType === NODE_TYPE_LEAF) {
-    const [_, value] = input;
-    const nibbles = extractKey(input);
-
-    // in the case of odd nibbles, the first byte is encoded as a single
-    // byte from the nibble, with the remainder of the nibbles is converted
-    // as nomral nibble combined bytes
-    const key = nibbles.length % 2
-      ? u8aConcat(
-        Uint8Array.from([nibbles[0]]),
-        fromNibbles(nibbles.subarray(1))
-      )
-      : fromNibbles(nibbles);
+    const [key, value] = input;
 
     return u8aConcat(
       u8aHeader,
-      key,
+      encodeKey(key),
       encodeValue(value)
     );
   }

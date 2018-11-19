@@ -8,7 +8,7 @@ import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, Nod
 import MemoryDb from '@polkadot/db/Memory';
 import { isNull, logger , u8aConcat } from '@polkadot/util/index';
 import codec from '@polkadot/trie-codec/index';
-import { decodeNibbles, encodeNibbles, extractKey } from '@polkadot/trie-codec/nibbles';
+import { decodeNibbles, encodeNibbles, extractNodeKey } from '@polkadot/trie-codec/nibbles';
 import { toNibbles } from '@polkadot/trie-codec/util';
 
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';
@@ -259,7 +259,7 @@ export default class Trie implements TrieDb {
   private _delKvNode (node: NodeNotEmpty, trieKey: Uint8Array): Node {
     // l.debug(() => ['_delKvNode', { node, trieKey }]);
 
-    const currentKey = extractKey(node);
+    const currentKey = extractNodeKey(node);
     const nodeType = getNodeType(node);
 
     if (!keyStartsWith(trieKey, currentKey)) {
@@ -330,7 +330,7 @@ export default class Trie implements TrieDb {
   private _getKvNode (node: NodeKv, trieKey: Uint8Array): NodeEncodedOrEmpty {
     // l.debug(() => ['_getKvNode', { node, trieKey }]);
 
-    const currentKey = extractKey(node);
+    const currentKey = extractNodeKey(node);
     const nodeType = getNodeType(node);
 
     // l.debug(() => [{ currentKey, trieKey, nodeType }]);
@@ -472,7 +472,7 @@ export default class Trie implements TrieDb {
   private _putKvNode (node: NodeKv, trieKey: Uint8Array, value: Uint8Array): NodeNotEmpty {
     // l.debug(() => ['_putKvNode', { node, trieKey, value }]);
 
-    const currentKey = extractKey(node);
+    const currentKey = extractNodeKey(node);
     const [commonPrefix, currentRemainder, trieRemainder] = consumeCommonPrefix(currentKey, trieKey);
     const isExtension = isExtensionNode(node);
     const isLeaf = isLeafNode(node);

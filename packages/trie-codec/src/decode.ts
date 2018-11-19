@@ -7,9 +7,10 @@ import { u8aConcat } from '@polkadot/util/index';
 
 import NodeHeader, { BranchHeader, NibbleHeader } from './NodeHeader';
 import { NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from './constants';
-import { toNibbles } from './util';
+import { addNibblesTerminator, encodeNibbles } from './nibbles';
+import { fuseNibbles, toNibbles, fromNibbles } from './util';
 
-export default function decode (input?: null | Uint8Array): null | Array<null | Uint8Array> {
+export default function decode (input?: null | Uint8Array): null | Array<null | Uint8Array | Array<null | Uint8Array>> {
   const header = new NodeHeader(input);
   const nodeType = header.nodeType;
   let offset = header.encodedLength;
@@ -55,22 +56,19 @@ export default function decode (input?: null | Uint8Array): null | Array<null | 
     const nibbleCount = (header.value as NibbleHeader).toNumber();
     const nibbleLength = Math.floor((nibbleCount + 1) / 2);
     const nibbleData = input.subarray(offset, offset + nibbleLength);
+    const nibbles = toNibbles(nibbleData);
 
-    console.error('nodeType', nodeType, nibbleCount, toNibbles(nibbleData));
+    console.error('nodeType', input, nodeType, nibbleCount, nibbles, addNibblesTerminator(nibbles), encodeNibbles(addNibblesTerminator(nibbles)));
 
     offset += nibbleData.length;
 
-    // const nibble_slice = NibbleSlice::new_offset(nibble_data, nibble_count % 2);
-    const bytes = new Bytes(input.subarray(offset));
-
     return [
-      u8aConcat(
+      encodeNibbles(
         nodeType === NODE_TYPE_LEAF
-          ? new Uint8Array([0x20])
-          : new Uint8Array(),
-        nibbleData
+          ? addNibblesTerminator(nibbles)
+          : nibbles
       ),
-      bytes.toU8a(true)
+      new Bytes(input.subarray(offset)).toU8a(true)
     ];
   }
 
