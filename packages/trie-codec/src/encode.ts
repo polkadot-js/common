@@ -7,14 +7,27 @@ import { u8aConcat } from '@polkadot/util/index';
 
 import NodeHeader from './NodeHeader';
 import { NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF, NODE_TYPE_NULL } from './constants';
-import { extractKey, decodeNibbles, removeNibblesTerminator } from './nibbles';
+import { extractKey } from './nibbles';
 import { fromNibbles } from './util';
 
 const EMPTY = new Uint8Array();
+const BRANCH_VALUE_INDEX = 16;
 
-// FIXME This overlaps with what is done in stream (which is used in trie-root), extract
-// the common checks and have the code to deal with encoding in a single place
+function encodeValue (input: null | Uint8Array | Array<null | Uint8Array>): Uint8Array {
+  if (!input) {
+    return EMPTY;
+  }
+
+  return Compact.addLengthPrefix(
+    Array.isArray(input)
+      ? encode(input)
+      : input
+  );
+}
+
 export default function encode (input?: null | Array<null | Uint8Array>): Uint8Array {
+  console.error('encode', input);
+
   const header = new NodeHeader(input);
   const nodeType = header.nodeType;
   const u8aHeader = header.toU8a();
@@ -24,63 +37,45 @@ export default function encode (input?: null | Array<null | Uint8Array>): Uint8A
   } else if (nodeType === NODE_TYPE_BRANCH) {
     let valuesU8a = EMPTY;
     let bitmap = 0;
-    let potCursor = 1;
+    let cursor = 1;
 
     input.forEach((value, index) => {
-      if ((index < 16) && value) {
-        bitmap = bitmap | potCursor;
+      if ((index < BRANCH_VALUE_INDEX) && value) {
+        bitmap = bitmap | cursor;
 
-        if (Array.isArray(value)) {
-          const [_key, _value] = value;
-          const nibbles = removeNibblesTerminator(decodeNibbles(_key));
-          const isOdd = (nibbles.length % 2) === 1;
-
-          valuesU8a = u8aConcat(
-            valuesU8a,
-            Compact.addLengthPrefix(
-              u8aConcat(
-                new NodeHeader(value).toU8a(),
-                isOdd
-                  ? u8aConcat(
-                    Uint8Array.from([nibbles[0]]),
-                    fromNibbles(nibbles.subarray(1))
-                  )
-                  : _key,
-                Compact.addLengthPrefix(_value)
-              )
-            )
-          );
-        } else {
-          valuesU8a = u8aConcat(
-            valuesU8a,
-            Compact.addLengthPrefix(value)
-          );
-        }
+        valuesU8a = u8aConcat(
+          valuesU8a,
+          encodeValue(value)
+        );
       }
 
-      potCursor = potCursor << 1;
+      cursor = cursor << 1;
     });
-
-    const value = input[16];
 
     return u8aConcat(
       u8aHeader,
       new Uint8Array([(bitmap % 256), Math.floor(bitmap / 256)]),
-      value
-        ? Compact.addLengthPrefix(value)
-        : EMPTY,
+      encodeValue(input[BRANCH_VALUE_INDEX]),
       valuesU8a
     );
   } else if (nodeType === NODE_TYPE_EXT || nodeType === NODE_TYPE_LEAF) {
     const [_, value] = input;
-    const key = fromNibbles(extractKey(input));
+    const nibbles = extractKey(input);
+
+    // in the case of odd nibbles, the first byte is encoded as a single
+    // byte from the nibble, with the remainder of the nibbles is converted
+    // as nomral nibble combined bytes
+    const key = nibbles.length % 2
+      ? u8aConcat(
+        Uint8Array.from([nibbles[0]]),
+        fromNibbles(nibbles.subarray(1))
+      )
+      : fromNibbles(nibbles);
 
     return u8aConcat(
       u8aHeader,
       key,
-      value
-        ? Compact.addLengthPrefix(value)
-        : EMPTY
+      encodeValue(value)
     );
   }
 

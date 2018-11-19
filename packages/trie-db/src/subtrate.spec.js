@@ -19,22 +19,15 @@ describe('substrate tests', () => {
     trie = new Trie();
   });
 
-  it('starts with an equivalent empty root', () => {
-    checkRoot(testdata.empty);
+  Object.values(testdata).forEach((test) => {
+    it(`hashes ${test.desc}`, () => {
+      putValues(test);
+      checkRoot(test);
+    });
   });
 
-  it('allows entry of a single value', () => {
-    putValues(testdata.singleValue);
-    checkRoot(testdata.singleValue);
-  });
-
-  it('allows entry of a single value (prepare for next)', () => {
-    putValues(testdata.singleValue2);
-    checkRoot(testdata.singleValue2);
-  });
-
-  it('allows 2 disjointed values', () => {
-    putValues(testdata.twoValues);
-    checkRoot(testdata.twoValues);
-  });
+  // it('does something', () => {
+  //   putValues(testdata.extensionBranch);
+  //   checkRoot(testdata.extensionBranch);
+  // });
 });
