@@ -5,7 +5,7 @@
 import { addNibblesTerminator, encodeNibbles } from '@polkadot/trie-codec/nibbles';
 import { isNull } from '@polkadot/util/index';
 
-import { EncodedPath, Node } from '../types';
+import { EncodedPath } from '../types';
 
 export function keyEquals (key: Uint8Array | null, test: Uint8Array | null): boolean {
   if (isNull(key) && isNull(test)) {

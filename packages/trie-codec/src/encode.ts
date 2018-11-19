@@ -3,12 +3,11 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { Compact } from '@polkadot/types/codec';
-import { Bytes } from '@polkadot/types';
 import { u8aConcat } from '@polkadot/util/index';
 
 import NodeHeader from './NodeHeader';
 import { NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF, NODE_TYPE_NULL } from './constants';
-import { extractKey } from './nibbles';
+import { extractKey, decodeNibbles, removeNibblesTerminator } from './nibbles';
 import { fromNibbles } from './util';
 
 const EMPTY = new Uint8Array();
@@ -29,21 +28,50 @@ export default function encode (input?: null | Array<null | Uint8Array>): Uint8A
 
     input.forEach((value, index) => {
       if ((index < 16) && value) {
-        bitmap = bitmap & potCursor;
+        bitmap = bitmap | potCursor;
 
-        valuesU8a = u8aConcat(
-          valuesU8a,
-          new Bytes(value)
-        );
+        // fe12001404331404ff1404381904fe
+        // fe12001404031404ff1404081904fe
+
+        if (Array.isArray(value)) {
+          const [_key, _value] = value;
+          const nibbles = removeNibblesTerminator(decodeNibbles(_key));
+          const isOdd = (nibbles.length % 2) === 1;
+
+          valuesU8a = u8aConcat(
+            valuesU8a,
+            Compact.addLengthPrefix(
+              u8aConcat(
+                new NodeHeader(value).toU8a(),
+                isOdd
+                  ? u8aConcat(
+                    Uint8Array.from([nibbles[0]]),
+                    fromNibbles(nibbles.subarray(1))
+                  )
+                  : _key,
+                Compact.addLengthPrefix(_value)
+              )
+            )
+          );
+        } else {
+          valuesU8a = u8aConcat(
+            valuesU8a,
+            Compact.addLengthPrefix(value)
+          );
+        }
       }
 
       potCursor = potCursor << 1;
     });
 
+    const value = input[16];
+
     return u8aConcat(
       u8aHeader,
       new Uint8Array([(bitmap % 256), Math.floor(bitmap / 256)]),
-      new Bytes(input[16] || EMPTY),
+      value
+        ? Compact.addLengthPrefix(value)
+        : EMPTY,
       valuesU8a
     );
   } else if (nodeType === NODE_TYPE_EXT || nodeType === NODE_TYPE_LEAF) {

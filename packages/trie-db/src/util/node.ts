@@ -42,10 +42,15 @@ export function decodeNode (encoded: Uint8Array | Node): Node {
       : null
   );
 
+  // console.error('decodeNode', encoded, '->', decoded);
+
   return decoded as NodeNotEmpty;
 }
 
 export function encodeNode (node: Node): Uint8Array {
-  console.error('encodeNode', node);
-  return codec.encode(node);
+  const encoded = codec.encode(node);
+
+  // console.error('encodeNode', node, '->', encoded);
+
+  return encoded;
 }

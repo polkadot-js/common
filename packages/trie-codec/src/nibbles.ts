@@ -44,7 +44,6 @@ export function removeNibblesTerminator (nibbles: Uint8Array): Uint8Array {
 }
 
 export function decodeNibbles (value: null | Uint8Array): Uint8Array {
-  console.error('decodeNibbles', toNibbles(value));
   const nibblesWithFlag = toNibbles(value);
   const [flag] = nibblesWithFlag;
 

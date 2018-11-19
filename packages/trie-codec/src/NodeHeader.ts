@@ -5,6 +5,7 @@
 import { decodeNibbles, isNibblesTerminated } from '@polkadot/trie-codec/nibbles';
 import { EnumType } from '@polkadot/types/codec';
 import { Null, bool as Bool, u64 as U64 } from '@polkadot/types';
+import { bnToU8a } from '@polkadot/util/index';
 
 import { BRANCH_NODE_NO_VALUE, BRANCH_NODE_WITH_VALUE, EMPTY_TRIE, EXTENSION_NODE_BIG, EXTENSION_NODE_OFFSET, EXTENSION_NODE_SMALL_MAX, EXTENSION_NODE_THRESHOLD, LEAF_NODE_BIG, LEAF_NODE_OFFSET, LEAF_NODE_SMALL_MAX, LEAF_NODE_THRESHOLD, NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from './constants';
 
@@ -18,6 +19,9 @@ export class ExtensionHeader extends NibbleHeader {
 }
 
 export class LeafHeader extends NibbleHeader {
+  toU8a (isBare?: true): Uint8Array {
+    return bnToU8a(this.subn(1), 64, true);
+  }
 }
 
 export default class NodeHeader extends EnumType<Null | BranchHeader | ExtensionHeader | LeafHeader> {
@@ -47,7 +51,7 @@ export default class NodeHeader extends EnumType<Null | BranchHeader | Extension
       if (isTerminated) {
         return [
           NODE_TYPE_LEAF,
-          new LeafHeader(nibbles.length - 1)
+          new LeafHeader(nibbles.length)
         ];
       } else {
         return [
@@ -88,7 +92,7 @@ export default class NodeHeader extends EnumType<Null | BranchHeader | Extension
     } else if (firstByte >= EXTENSION_NODE_OFFSET && firstByte <= EXTENSION_NODE_SMALL_MAX) {
       return [
         NODE_TYPE_EXT,
-        new ExtensionHeader(input[1] - EXTENSION_NODE_OFFSET)
+        new ExtensionHeader(firstByte - EXTENSION_NODE_OFFSET)
       ];
     } else if (firstByte === EXTENSION_NODE_BIG) {
       return [
@@ -116,13 +120,13 @@ export default class NodeHeader extends EnumType<Null | BranchHeader | Extension
     if (nodeType === NODE_TYPE_NULL || nodeType === NODE_TYPE_BRANCH) {
       return 1;
     } else if (nodeType === NODE_TYPE_EXT) {
-      const nibbleCount = (this.value.raw as ExtensionHeader).toNumber();
+      const nibbleCount = (this.value as ExtensionHeader).toNumber();
 
       return nibbleCount < EXTENSION_NODE_THRESHOLD
         ? 1
         : 2;
     } else if (nodeType === NODE_TYPE_LEAF) {
-      const nibbleCount = (this.value.raw as LeafHeader).toNumber();
+      const nibbleCount = (this.value as LeafHeader).toNumber();
 
       return nibbleCount < LEAF_NODE_THRESHOLD
         ? 1
@@ -144,13 +148,13 @@ export default class NodeHeader extends EnumType<Null | BranchHeader | Extension
         EMPTY_TRIE
       ]);
     } else if (nodeType === NODE_TYPE_BRANCH) {
-      return new Uint8Array(
-        (this.value.raw as BranchHeader).valueOf() === true
+      return new Uint8Array([
+        (this.value as BranchHeader).valueOf() === true
           ? BRANCH_NODE_WITH_VALUE
           : BRANCH_NODE_NO_VALUE
-      );
+      ]);
     } else if (nodeType === NODE_TYPE_EXT) {
-      const nibbleCount = (this.value.raw as ExtensionHeader).toNumber();
+      const nibbleCount = (this.value as ExtensionHeader).toNumber();
 
       if (nibbleCount < EXTENSION_NODE_THRESHOLD) {
         return new Uint8Array([EXTENSION_NODE_OFFSET + nibbleCount]);
@@ -161,7 +165,7 @@ export default class NodeHeader extends EnumType<Null | BranchHeader | Extension
         nibbleCount - EXTENSION_NODE_THRESHOLD
       ]);
     } else if (nodeType === NODE_TYPE_LEAF) {
-      const nibbleCount = (this.value.raw as LeafHeader).toNumber();
+      const nibbleCount = (this.value as LeafHeader).toNumber() - 1;
 
       if (nibbleCount < LEAF_NODE_THRESHOLD) {
         return new Uint8Array([LEAF_NODE_OFFSET + nibbleCount]);

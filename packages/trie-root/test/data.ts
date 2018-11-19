@@ -169,6 +169,19 @@ const data: { [index: string]: Data } = {
     ]),
     root: hexToU8a('0xe778a32590ed4f3f39608b77af87fb59163a89bb9702f477375e1a574736d6f0')
   },
+  singleValue2: {
+    desc: 'a single tuple (prepare for next)',
+    input: [
+      {
+        k: Uint8Array.from([0x48, 0x19]),
+        v: Uint8Array.from([0xfe])
+      }
+    ],
+    output: Uint8Array.from([
+      0x05, 0x48, 0x19, 0x04, 0xfe
+    ]),
+    root: hexToU8a('0xfb05396ab039474785c95dcb40339f52a45ea5d5bc8c1f76d7e4308b90124357')
+  },
   twoValues: {
     desc: '2 disjointed tuple keys',
     input: [
