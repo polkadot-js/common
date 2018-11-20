@@ -13,7 +13,7 @@ module.exports = Object.assign({}, config, {
     '<rootDir>/packages/keyring/build',
     '<rootDir>/packages/trie-codec/build',
     '<rootDir>/packages/trie-db/build',
-    '<rootDir>/packages/trie-hash/build',
+    '<rootDir>/packages/trie-root/build',
     '<rootDir>/packages/util/build',
     '<rootDir>/packages/util-crypto/build',
     '<rootDir>/packages/util-rlp/build'
