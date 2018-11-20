@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@polkadot/chainspec/*": [ "packages/chainspec/src/*" ],
       "@polkadot/db/*": [ "packages/db/src/*" ],
       "@polkadot/keyring/*": [ "packages/keyring/src/*" ],
       "@polkadot/trie-codec/*": [ "packages/trie-codec/src/*" ],

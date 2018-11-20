@@ -123,7 +123,7 @@ export default class Trie implements TrieDb {
   }
 
   put (key: Uint8Array, value: Uint8Array): void {
-    // l.debug(() => ['put', { key, value }]);
+    l.debug(() => ['put', { key, value }]);
 
     this._setRootNode(
       this._put(
@@ -559,7 +559,7 @@ export default class Trie implements TrieDb {
       const encoded = encodeNode(node);
       const rootHash = codec.hashing(encoded);
 
-      // l.debug(() => ['_setRootNode', { encoded, rootHash }]);
+      l.debug(() => ['_setRootNode', { encoded, rootHash }]);
 
       this.db.put(rootHash, encoded);
 
