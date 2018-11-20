@@ -4,14 +4,14 @@
 
 import { TriePair } from './types';
 
-import { Compact } from '@polkadot/types/codec';
+import { compactToU8a } from '@polkadot/util/index';
 
 import trieRoot from './trieRoot';
 
 export default function trieRootOrdered (input: Array<TriePair>): Uint8Array {
   return trieRoot(
     input.map(({ v }, index) => ({
-      k: Compact.encodeU8a(index, 32),
+      k: compactToU8a(index),
       v
     }))
   );

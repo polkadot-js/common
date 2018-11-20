@@ -3,42 +3,52 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { decodeNibbles, isNibblesTerminated } from '@polkadot/trie-codec/nibbles';
-import { EnumType } from '@polkadot/types/codec';
-import { Null, bool as Bool, u64 as U64 } from '@polkadot/types';
-import { bnToU8a } from '@polkadot/util/index';
 
 import { BRANCH_NODE_NO_VALUE, BRANCH_NODE_WITH_VALUE, EMPTY_TRIE, EXTENSION_NODE_BIG, EXTENSION_NODE_OFFSET, EXTENSION_NODE_SMALL_MAX, EXTENSION_NODE_THRESHOLD, LEAF_NODE_BIG, LEAF_NODE_OFFSET, LEAF_NODE_SMALL_MAX, LEAF_NODE_THRESHOLD, NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from './constants';
 
-export class BranchHeader extends Bool {
+// FIXME These are not actually extending from types, we may want to bring
+// that in if the dependency imports can be sorted out
+
+type NodeType = 0 | 1 | 2 | 3;
+
+export class Null {
 }
 
-export class NibbleHeader extends U64 {
+export class BranchHeader extends Boolean {
+}
+
+export class NibbleHeader {
+  private _value: number;
+
+  constructor (input: number) {
+    this._value = input;
+  }
+
+  toNumber (): number {
+    return this._value;
+  }
 }
 
 export class ExtensionHeader extends NibbleHeader {
 }
 
 export class LeafHeader extends NibbleHeader {
-  toU8a (isBare?: true): Uint8Array {
-    return bnToU8a(this.subn(1), 64, true);
-  }
 }
 
-export default class NodeHeader extends EnumType<Null | BranchHeader | ExtensionHeader | LeafHeader> {
+export default class NodeHeader {
+  private _nodeType: NodeType;
+  private _value: Null | BranchHeader | ExtensionHeader | LeafHeader;
+
   constructor (input?: null | Uint8Array | Array<null | Uint8Array>) {
-    const [index, value] = Array.isArray(input)
+    const [nodeType, value] = Array.isArray(input)
       ? NodeHeader.decodeNodeHeaderArray(input)
       : NodeHeader.decodeNodeHeaderU8a(input);
 
-    super({
-      [NODE_TYPE_NULL]: Null,
-      [NODE_TYPE_BRANCH]: BranchHeader,
-      [NODE_TYPE_EXT]: ExtensionHeader,
-      [NODE_TYPE_LEAF]: LeafHeader
-    }, value, index);
+    this._nodeType = nodeType;
+    this._value = value;
   }
 
-  private static decodeNodeHeaderArray (input: Array<null | Uint8Array>): [number, Null | BranchHeader | ExtensionHeader | LeafHeader] {
+  private static decodeNodeHeaderArray (input: Array<null | Uint8Array>): [NodeType, Null | BranchHeader | ExtensionHeader | LeafHeader] {
     if (input.length === 0) {
       return [
         NODE_TYPE_NULL,
@@ -69,7 +79,7 @@ export default class NodeHeader extends EnumType<Null | BranchHeader | Extension
     throw new Error('Unreachable');
   }
 
-  private static decodeNodeHeaderU8a (input?: null | Uint8Array): [number, Null | BranchHeader | ExtensionHeader | LeafHeader] {
+  private static decodeNodeHeaderU8a (input?: null | Uint8Array): [NodeType, Null | BranchHeader | ExtensionHeader | LeafHeader] {
     const firstByte = input
       ? input[0]
       : EMPTY_TRIE;
@@ -137,10 +147,14 @@ export default class NodeHeader extends EnumType<Null | BranchHeader | Extension
   }
 
   get nodeType (): number {
-    return this.toNumber();
+    return this._nodeType;
   }
 
-  toU8a (isBare?: boolean): Uint8Array {
+  get value (): Null | BranchHeader | ExtensionHeader | LeafHeader {
+    return this._value;
+  }
+
+  toU8a (): Uint8Array {
     const nodeType = this.nodeType;
 
     if (nodeType === NODE_TYPE_NULL) {
