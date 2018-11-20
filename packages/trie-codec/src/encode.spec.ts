@@ -68,7 +68,7 @@ describe('encoding', () => {
     ]));
   });
 
-  it.only('encodes a complex tree', () => {
+  it('encodes a complex tree (with hash)', () => {
     expect(
       encode([
         null,
@@ -77,10 +77,9 @@ describe('encoding', () => {
           hexToU8a('0x37b3872d47181b4a2dc15f0da43e7026'),
           hexToU8a('0xe803000000000000')
         ],
-        [
-          hexToU8a('0x200d322ac49d8708f151346c'),
-          hexToU8a('0xd9e58452d83a9d3b710e1ead35eb3269ab2353')
-        ],
+        Uint8Array.from([
+          23, 13, 50, 42, 196, 157, 135, 8, 241, 81, 52, 108, 104, 217, 229, 132, 82, 216, 58, 157, 59, 113, 14, 30, 173, 53, 235, 50, 105, 171, 35, 83
+        ]),
         null,
         null,
         null,

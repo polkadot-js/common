@@ -10,7 +10,7 @@ export { default as stream } from './stream';
 
 export type Codec = {
   decode: (input: null | Uint8Array) => Uint8Array | null | Array<null | Uint8Array | Array<null | Uint8Array>>,
-  encode: (input?: null | Array<null | Uint8Array>) => Uint8Array
+  encode: (input?: null | Uint8Array | Array<null | Uint8Array>) => Uint8Array
   hashing: (input: Uint8Array) => Uint8Array
 };
 
