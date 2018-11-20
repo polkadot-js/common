@@ -51,7 +51,7 @@ export default class NodeHeader extends EnumType<Null | BranchHeader | Extension
       if (isTerminated) {
         return [
           NODE_TYPE_LEAF,
-          new LeafHeader(nibbles.length)
+          new LeafHeader(nibbles.length - 1)
         ];
       } else {
         return [
@@ -165,7 +165,7 @@ export default class NodeHeader extends EnumType<Null | BranchHeader | Extension
         nibbleCount - EXTENSION_NODE_THRESHOLD
       ]);
     } else if (nodeType === NODE_TYPE_LEAF) {
-      const nibbleCount = (this.value as LeafHeader).toNumber() - 1;
+      const nibbleCount = (this.value as LeafHeader).toNumber();
 
       if (nibbleCount < LEAF_NODE_THRESHOLD) {
         return new Uint8Array([LEAF_NODE_OFFSET + nibbleCount]);

@@ -203,7 +203,7 @@ export default class Trie implements TrieDb {
   }
 
   private _getNode (hash: Uint8Array | null): Node {
-    l.debug(() => ['_getNode', { hash }]);
+    // l.debug(() => ['_getNode', { hash }]);
 
     if (!hash || hash.length === 0 || keyEquals(hash, EMPTY_HASH)) {
       return null;
@@ -438,7 +438,7 @@ export default class Trie implements TrieDb {
   }
 
   private _put (node: Node, trieKey: Uint8Array, value: Uint8Array): NodeNotEmpty {
-    l.debug(() => ['_put', { node, trieKey, value }]);
+    // l.debug(() => ['_put', { node, trieKey, value }]);
 
     if (isEmptyNode(node)) {
       return [
@@ -551,7 +551,7 @@ export default class Trie implements TrieDb {
   }
 
   private _setRootNode (node: Node): void {
-    l.debug(() => ['_setRootNode', { node }]);
+    // l.debug(() => ['_setRootNode', { node }]);
 
     if (isEmptyNode(node)) {
       this.rootHash = EMPTY_HASH;
@@ -559,7 +559,7 @@ export default class Trie implements TrieDb {
       const encoded = encodeNode(node);
       const rootHash = codec.hashing(encoded);
 
-      l.debug(() => ['_setRootNode', { encoded, rootHash }]);
+      // l.debug(() => ['_setRootNode', { encoded, rootHash }]);
 
       this.db.put(rootHash, encoded);
 

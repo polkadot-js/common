@@ -16,7 +16,7 @@ const BRANCH_VALUE_INDEX = 16;
 // in the case of odd nibbles, the first byte is encoded as a single
 // byte from the nibble, with the remainder of the nibbles is converted
 // as nomral nibble combined bytes
-function encodeKey (input: null | Uint8Array): Uint8Array {
+function encodeKey (input: null | Uint8Array, nodeType: number): Uint8Array {
   const nibbles = extractKey(input);
 
   return nibbles.length % 2
@@ -39,9 +39,7 @@ function encodeValue (input: null | Uint8Array | Array<null | Uint8Array>): Uint
   );
 }
 
-export default function encode (input?: null | Array<null | Uint8Array>): Uint8Array {
-  console.error('encode', input);
-
+function _encode (input?: null | Array<null | Uint8Array>): Uint8Array {
   const header = new NodeHeader(input);
   const nodeType = header.nodeType;
   const u8aHeader = header.toU8a();
@@ -51,9 +49,8 @@ export default function encode (input?: null | Array<null | Uint8Array>): Uint8A
   } else if (nodeType === NODE_TYPE_BRANCH) {
     let valuesU8a = EMPTY;
     let bitmap = 0;
-    let cursor = 1;
 
-    input.forEach((value, index) => {
+    input.reduce((cursor, value, index) => {
       if ((index < BRANCH_VALUE_INDEX) && value) {
         bitmap = bitmap | cursor;
 
@@ -63,10 +60,8 @@ export default function encode (input?: null | Array<null | Uint8Array>): Uint8A
         );
       }
 
-      cursor = cursor << 1;
-    });
-
-    console.error('bitmap', new Uint8Array([(bitmap % 256), Math.floor(bitmap / 256)]));
+      return cursor << 1;
+    }, 1);
 
     return u8aConcat(
       u8aHeader,
@@ -79,10 +74,18 @@ export default function encode (input?: null | Array<null | Uint8Array>): Uint8A
 
     return u8aConcat(
       u8aHeader,
-      encodeKey(key),
+      encodeKey(key, nodeType),
       encodeValue(value)
     );
   }
 
   throw new Error('Unreachable');
+}
+
+export default function encode (input?: null | Array<null | Uint8Array>): Uint8Array {
+  const encoded = _encode(input);
+
+  // console.error('encode', input, '->', encoded);
+
+  return encoded;
 }

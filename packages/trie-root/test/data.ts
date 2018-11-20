@@ -70,6 +70,32 @@ const data: { [index: string]: Data } = {
     ]),
     root: hexToU8a('0xc896ef26cd64107bd8bf33e9e0b0adbb29c54ac1bf8e9dc30153f13638095108')
   },
+  midExtensionBranchValue: {
+    desc: 'medium extension and branch with value',
+    input: [
+      {
+        k: Uint8Array.from([0xaa]),
+        v: Uint8Array.from([0xa0])
+      },
+      {
+        k: Uint8Array.from([0xaa, 0xaa]),
+        v: Uint8Array.from([0xaa])
+      },
+      {
+        k: Uint8Array.from([0xaa, 0xbb]),
+        v: Uint8Array.from([0xab])
+      },
+      {
+        k: Uint8Array.from([0xbb]),
+        v: Uint8Array.from([0xb0])
+      }
+    ],
+    output: Uint8Array.from([
+      0xfe, 0x00, 0x0c, 0x48, 0x81, 0x0a, 0x3c, 0xff, 0x00, 0x0c, 0x04, 0xa0, 0x10, 0x02, 0x0a, 0x04,
+      0xaa, 0x10, 0x02, 0x0b, 0x04, 0xab, 0x10, 0x02, 0x0b, 0x04, 0xb0
+    ]),
+    root: hexToU8a('0xd8272dfbf69d087664637b9c1773e20d82b1476c1c480e84f13cafbec4c5c92a')
+  },
   bigExtensionBranchValue: {
     desc: 'bigger extension and branch with value',
     input: [

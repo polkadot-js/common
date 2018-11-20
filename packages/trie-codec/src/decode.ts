@@ -3,34 +3,34 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { Bytes } from '@polkadot/types';
-import { u8aConcat } from '@polkadot/util/index';
 
 import NodeHeader, { BranchHeader, NibbleHeader } from './NodeHeader';
 import { NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from './constants';
 import { addNibblesTerminator, encodeNibbles } from './nibbles';
-import { fuseNibbles, toNibbles, fromNibbles } from './util';
+import { toNibbles } from './util';
 
-export default function decode (input?: null | Uint8Array): null | Array<null | Uint8Array | Array<null | Uint8Array>> {
+function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Uint8Array | Array<null | Uint8Array>> {
   const header = new NodeHeader(input);
   const nodeType = header.nodeType;
   let offset = header.encodedLength;
 
   if (!input || nodeType === NODE_TYPE_NULL) {
-    return null;
+    return input;
   } else if (nodeType === NODE_TYPE_BRANCH) {
     const branch = header.value as BranchHeader;
     const bitmap = input[offset] + (input[offset + 1] * 256);
     let value: null | Uint8Array = null;
-    let potCursor = 1;
 
     offset += 2;
 
     if (branch.valueOf() === true) {
       const bytes = new Bytes(input.subarray(offset));
 
-      value = bytes.toU8a(true);
+      value = bytes;
       offset += bytes.encodedLength;
     }
+
+    let cursor = 1;
 
     return [
       null, null, null, null,
@@ -39,16 +39,16 @@ export default function decode (input?: null | Uint8Array): null | Array<null | 
       null, null, null, null,
       value
     ].map((value, index) => {
-      let result: null | Uint8Array = value;
+      let result: null | Uint8Array | Array<null | Uint8Array> = value;
 
-      if ((index < 16) && (bitmap & potCursor)) {
+      if ((index < 16) && (bitmap & cursor)) {
         const bytes = new Bytes(input.subarray(offset));
 
-        result = bytes.toU8a(true);
+        result = decode(bytes) as any;
         offset += bytes.encodedLength;
       }
 
-      potCursor = potCursor << 1;
+      cursor = cursor << 1;
 
       return result;
     });
@@ -56,9 +56,9 @@ export default function decode (input?: null | Uint8Array): null | Array<null | 
     const nibbleCount = (header.value as NibbleHeader).toNumber();
     const nibbleLength = Math.floor((nibbleCount + 1) / 2);
     const nibbleData = input.subarray(offset, offset + nibbleLength);
-    const nibbles = toNibbles(nibbleData);
 
-    console.error('nodeType', input, nodeType, nibbleCount, nibbles, addNibblesTerminator(nibbles), encodeNibbles(addNibblesTerminator(nibbles)));
+    // for off, ignore the first nibble, data starts at offset 1
+    const nibbles = toNibbles(nibbleData).subarray(nibbleCount % 2);
 
     offset += nibbleData.length;
 
@@ -68,9 +68,17 @@ export default function decode (input?: null | Uint8Array): null | Array<null | 
           ? addNibblesTerminator(nibbles)
           : nibbles
       ),
-      new Bytes(input.subarray(offset)).toU8a(true)
+      new Bytes(input.subarray(offset))
     ];
   }
 
   throw new Error('Unreachable');
+}
+
+export default function decode (input: null | Uint8Array): Uint8Array | null | Array<null | Uint8Array | Array<null | Uint8Array>> {
+  const decoded = _decode(input);
+
+  // console.error('decode', input, '->', decoded);
+
+  return decoded;
 }

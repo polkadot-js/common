@@ -25,28 +25,4 @@ describe('substrate tests', () => {
       checkRoot(test);
     });
   });
-
-  // 0xfe12001404031404ff2404081904fe
-  // 0xfe12001404031404ff2404081904fe
-
-  // it('does twoValues', () => {
-  //   putValues(testdata.twoValues);
-  //   checkRoot(testdata.twoValues);
-  // });
-
-  // 0x810a24fe000c0410    0c010411
-  // 0x810a2cfe000c0c0104100c010411
-
-  // it('does extensionBranch', () => {
-  //   putValues(testdata.extensionBranch);
-  //   checkRoot(testdata.extensionBranch);
-  // });
-
-  // 0x82aa34fe000c10810a04aa10020b04ab
-  // 0x82aa3cff000c04a010020a04aa10020b04ab
-
-  // it('does extensionBranchValue', () => {
-  //   putValues(testdata.extensionBranchValue);
-  //   checkRoot(testdata.extensionBranchValue);
-  // });
 });
