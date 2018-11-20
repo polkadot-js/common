@@ -1,6 +1,6 @@
 // Copyright 2017-2018 @polkadot/util-crypto authors & contributors
 // This software may be modified and distributed under the terms
-// of the ISC license. See the LICENSE file for details.
+// of the Apache-2.0 license. See the LICENSE file for details.
 
 import nacl from 'tweetnacl';
 
@@ -20,5 +20,5 @@ import nacl from 'tweetnacl';
  * ```
  */
 export default function naclDecrypt (encrypted: Uint8Array, nonce: Uint8Array, secret: Uint8Array): Uint8Array | null {
-  return nacl.secretbox.open(encrypted, nonce, secret);
+  return nacl.secretbox.open(encrypted, nonce, secret) || null;
 }
