@@ -2,12 +2,14 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { compactStripLength } from '@polkadot/util/index';
+import { compactStripLength, logger } from '@polkadot/util/index';
 
 import NodeHeader, { BranchHeader, NibbleHeader } from './NodeHeader';
 import { NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from './constants';
 import { addNibblesTerminator, encodeNibbles } from './nibbles';
 import { toNibbles } from './util';
+
+const l = logger('trie/codec');
 
 function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Uint8Array | [Uint8Array, Uint8Array]> {
   const header = new NodeHeader(input);
@@ -62,7 +64,9 @@ function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Ui
 
     offset += nibbleData.length;
 
-    const [_, value] = compactStripLength(input.subarray(offset));
+    const [length, value] = compactStripLength(input.subarray(offset));
+
+    console.error('decoded', length, value);
 
     return [
       encodeNibbles(
@@ -80,7 +84,7 @@ function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Ui
 export default function decode (input: null | Uint8Array): Uint8Array | null | Array<null | Uint8Array | Array<null | Uint8Array>> {
   const decoded = _decode(input);
 
-  // console.error('decode', input, '->', decoded);
+  l.debug(() => ['decode', { input, decoded }]);
 
   return decoded;
 }

@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { hexToU8a } from '@polkadot/util/index';
+
 import decode from './decode';
 
 describe('decode', () => {
@@ -33,6 +35,41 @@ describe('decode', () => {
         Uint8Array.from([176])
       ],
       null, null, null, null, null
+    ]);
+  });
+
+  it.only('decodes a complex branch', () => {
+    expect(
+      decode(hexToU8a(
+        '0xfe8c00682007b3872d47181b4a2dc15f0da43e702620e80300000000000080170d322ac49d8708f151346c68d9e58452d83a9d3b710e1ead35eb3269ab235368200935e46f94f24b82716c0142e2271de9200087000000000000'
+      ))
+    ).toEqual([
+      null,
+      null,
+      [
+        hexToU8a('0x37b3872d47181b4a2dc15f0da43e7026'),
+        hexToU8a('0xe803000000000000')
+      ],
+      [
+        hexToU8a('0x200d322ac49d8708f151346c'),
+        hexToU8a('0xd9e58452d83a9d3b710e1ead35eb3269ab2353')
+      ],
+      null,
+      null,
+      null,
+      [
+        hexToU8a('0x3935e46f94f24b82716c0142e2271de9'),
+        hexToU8a('0x0087000000000000')
+      ],
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
     ]);
   });
 });
