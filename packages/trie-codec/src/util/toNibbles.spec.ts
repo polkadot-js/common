@@ -9,9 +9,9 @@ import toNibbles from './toNibbles';
 describe('toNibbles', () => {
   it('converts an array', () => {
     expect(
-      toNibbles([
+      toNibbles(Uint8Array.from([
         0x31, 0x23, 0x45
-      ])
+      ]))
     ).toEqual(
       new Uint8Array([3, 1, 2, 3, 4, 5])
     );

@@ -6,14 +6,14 @@ import { TriePair } from '../src/types';
 
 import { hexToU8a, stringToU8a } from '@polkadot/util/index';
 
-type Data = {
+export type TestData = {
   desc: string,
   input: Array<TriePair>,
   output: Uint8Array,
   root: Uint8Array
 };
 
-const data: { [index: string]: Data } = {
+const data: { [index: string]: TestData } = {
   simpleBranch: {
     desc: 'a branch',
     input: [

@@ -20,17 +20,18 @@ describe('encoding', () => {
         null,
         [
           Uint8Array.from([ 58 ]),
-          Uint8Array.from([ 170 ])],
+          Uint8Array.from([ 170 ])
+        ],
         null,
         null,
         null,
         null,
         null,
         Uint8Array.from([ 160 ])
-      ])
+      ] as any)
     ).toEqual(Uint8Array.from([
       255, 0, 4, 4, 160, 16, 2, 10, 4, 170
-    ]))
+    ]));
   });
 
   it('encodes a sub-tree', () => {
@@ -59,9 +60,9 @@ describe('encoding', () => {
         null,
         null,
         Uint8Array.from([ 160 ])
-      ])
+      ] as any)
     ).toEqual(Uint8Array.from([
       255, 0, 12, 4, 160, 16, 2, 10, 4, 170, 16, 2, 11, 4, 171
-    ]))
+    ]));
   });
 });

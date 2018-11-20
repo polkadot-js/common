@@ -2,14 +2,14 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { Bytes } from '@polkadot/types';
+import { compactStripLength } from '@polkadot/util/index';
 
 import NodeHeader, { BranchHeader, NibbleHeader } from './NodeHeader';
 import { NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from './constants';
 import { addNibblesTerminator, encodeNibbles } from './nibbles';
 import { toNibbles } from './util';
 
-function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Uint8Array | Array<null | Uint8Array>> {
+function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Uint8Array | [Uint8Array, Uint8Array]> {
   const header = new NodeHeader(input);
   const nodeType = header.nodeType;
   let offset = header.encodedLength;
@@ -24,10 +24,10 @@ function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Ui
     offset += 2;
 
     if (branch.valueOf() === true) {
-      const bytes = new Bytes(input.subarray(offset));
+      const [length, bytes] = compactStripLength(input.subarray(offset));
 
       value = bytes;
-      offset += bytes.encodedLength;
+      offset += length;
     }
 
     let cursor = 1;
@@ -39,13 +39,13 @@ function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Ui
       null, null, null, null,
       value
     ].map((value, index) => {
-      let result: null | Uint8Array | Array<null | Uint8Array> = value;
+      let result: null | Uint8Array | [Uint8Array, Uint8Array] = value;
 
       if ((index < 16) && (bitmap & cursor)) {
-        const bytes = new Bytes(input.subarray(offset));
+        const [length, bytes] = compactStripLength(input.subarray(offset));
 
         result = decode(bytes) as any;
-        offset += bytes.encodedLength;
+        offset += length;
       }
 
       cursor = cursor << 1;
@@ -62,13 +62,15 @@ function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Ui
 
     offset += nibbleData.length;
 
+    const [_, value] = compactStripLength(input.subarray(offset));
+
     return [
       encodeNibbles(
         nodeType === NODE_TYPE_LEAF
           ? addNibblesTerminator(nibbles)
           : nibbles
       ),
-      new Bytes(input.subarray(offset))
+      value
     ];
   }
 

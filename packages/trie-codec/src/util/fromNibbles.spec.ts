@@ -29,9 +29,9 @@ describe('fromNibbles', () => {
 
   it('converts an number of values (array)', () => {
     expect(
-      fromNibbles(
-        [3, 1, 2, 3, 4, 5, 7, 8]
-      )
+      fromNibbles(Uint8Array.from([
+        3, 1, 2, 3, 4, 5, 7, 8
+      ]))
     ).toEqual(
       new Uint8Array([0x31, 0x23, 0x45, 0x78])
     );

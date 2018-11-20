@@ -13,7 +13,7 @@ describe('decode', () => {
     ).toEqual([
       Uint8Array.from([0x20, 0x48, 0x19]),
       Uint8Array.from([0xfe])
-    ])
+    ]);
   });
 
   it('decodes a branch', () => {
@@ -25,11 +25,11 @@ describe('decode', () => {
     ).toEqual([
       null, null, null, null, null, null, null, null, null, null,
       [
-        Uint8Array.from([0, 10]),
+        Uint8Array.from([26]),
         Uint8Array.from([255, 0, 12, 4, 160, 16, 2, 10, 4, 170, 16, 2, 11, 4, 171])
       ],
       [
-        Uint8Array.from([32, 11]),
+        Uint8Array.from([59]),
         Uint8Array.from([176])
       ],
       null, null, null, null, null
