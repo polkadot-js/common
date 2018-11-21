@@ -63,7 +63,7 @@ function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Ui
     const nibbleLength = Math.floor((nibbleCount + 1) / 2);
     const nibbleData = input.subarray(offset, offset + nibbleLength);
 
-    // for off, ignore the first nibble, data starts at offset 1
+    // for odd, ignore the first nibble, data starts at offset 1
     const nibbles = toNibbles(nibbleData).subarray(nibbleCount % 2);
 
     offset += nibbleData.length;
