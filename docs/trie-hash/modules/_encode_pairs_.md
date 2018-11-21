@@ -8,7 +8,7 @@
 
 ▸ **encodePairs**(pairs: *`Trie$Pairs`*, preLength: *`number`*): `Array`<`any`>
 
-*Defined in [encode/pairs.ts:23](https://github.com/polkadot-js/common/blob/75c09a9/packages/trie-hash/src/encode/pairs.ts#L23)*
+*Defined in [encode/pairs.ts:23](https://github.com/polkadot-js/common/blob/3bc1b75/packages/trie-hash/src/encode/pairs.ts#L23)*
 
 **Parameters:**
 
