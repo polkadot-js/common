@@ -8,7 +8,7 @@
 
 ▸ **getSharedLength**(a: *`Uint8Array`*, b: *`Uint8Array`*): `number`
 
-*Defined in [util/sharedLength.ts:13](https://github.com/polkadot-js/common/blob/3bc1b75/packages/trie-hash/src/util/sharedLength.ts#L13)*
+*Defined in [util/sharedLength.ts:13](https://github.com/polkadot-js/common/blob/477be90/packages/trie-hash/src/util/sharedLength.ts#L13)*
 
 *__name__*: getSharedLength
 
