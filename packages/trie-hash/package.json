@@ -1,5 +1,5 @@
 {
-  "name": "@polkadot/trie-root",
+  "name": "@polkadot/trie-hash",
   "version": "0.33.0",
   "description": "Generates trie roots from key-value pairs",
   "main": "index.js",
@@ -26,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/polkadot-js/common/issues"
   },
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-codec#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-hash#readme",
   "dependencies": {
     "@babel/runtime": "^7.1.5",
     "@polkadot/util": "^0.33.0"

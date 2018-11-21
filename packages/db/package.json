@@ -29,7 +29,7 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/db#readme",
   "dependencies": {
     "@babel/runtime": "^7.1.5",
-    "@polkadot/trie-root": "^0.33.0",
+    "@polkadot/trie-hash": "^0.33.0",
     "@polkadot/util": "^0.33.0",
     "@types/mkdirp": "^0.5.2",
     "@types/snappy": "^6.0.0",

@@ -4,7 +4,7 @@
 
 import { u8aToHex } from '@polkadot/util/index';
 
-import testdata, { TestData } from '../../trie-root/test/data';
+import testdata, { TestData } from '../../trie-hash/test/data';
 import Trie from './index';
 
 describe('substrate tests', () => {

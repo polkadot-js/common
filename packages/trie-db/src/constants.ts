@@ -4,7 +4,7 @@
 
 import { Codec } from '@polkadot/trie-codec/types';
 
-import { trieRoot } from '@polkadot/trie-root/index';
+import { trieRoot } from '@polkadot/trie-hash/index';
 
 export type Constants = {
   EMPTY_NODE: Uint8Array,
