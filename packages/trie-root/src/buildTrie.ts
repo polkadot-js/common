@@ -2,13 +2,17 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { stream } from '@polkadot/trie-codec/index';
+import { Codec } from '@polkadot/trie-codec/types';
+
 import { sharedPrefixLength } from '@polkadot/trie-codec/util';
 import { u8aConcat } from '@polkadot/util/index';
 
+import { DEFAULT_CODEC, DEFAULT_STREAM } from './defaults';
+
 const EMPTY = new Uint8Array();
 
-function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number = 0): Uint8Array {
+// FIXME This is problematic, the stream implementation is Substrate-only
+function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number, codec: Codec, stream: any): Uint8Array {
   if (input.length === 0) {
     return stream.createEmpty();
   }
@@ -28,7 +32,9 @@ function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number = 0)
   if (sharedNibbleCount > cursor) {
     return u8aConcat(
       stream.createExtension(firstKey.subarray(cursor, sharedNibbleCount)),
-      stream.createSubstream(buildTrie(input, sharedNibbleCount))
+      stream.createSubstream(
+        buildTrie(input, sharedNibbleCount, codec, stream)
+      )
     );
   }
 
@@ -56,7 +62,9 @@ function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number = 0)
       let result = EMPTY;
 
       if (count > 0) {
-        result = stream.createSubstream(buildTrie(input.slice(begin, begin + count), cursor + 1));
+        result = stream.createSubstream(
+          buildTrie(input.slice(begin, begin + count), cursor + 1, codec, stream)
+        );
         begin += count;
       }
 
@@ -66,8 +74,8 @@ function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number = 0)
   );
 }
 
-export default function buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number = 0): Uint8Array {
-  const trie = _buildTrie(input, cursor);
+export default function buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number = 0, codec: Codec = DEFAULT_CODEC, stream: any = DEFAULT_STREAM): Uint8Array {
+  const trie = _buildTrie(input, cursor, codec, stream);
 
   return trie;
 }

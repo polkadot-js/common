@@ -15,7 +15,7 @@ import { isNull, logger , u8aConcat, u8aToHex } from '@polkadot/util/index';
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';
 import { keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';
 import { getNodeType, decodeNode, encodeNode } from './util/node';
-import { EMPTY_HASH, EMPTY_U8A } from './constants';
+import constants, { Constants } from './constants';
 
 const l = logger('trie/db');
 
@@ -31,14 +31,16 @@ const l = logger('trie/db');
 export default class Trie implements TrieDb {
   readonly db: TxDb;
   private codec: Codec;
+  private constants: Constants;
   private txRoot: Uint8Array;
   private rootHash: Uint8Array;
 
-  constructor (db: TxDb = new MemoryDb(), rootHash: Uint8Array = EMPTY_HASH, codec: Codec = substrateCodec) {
+  constructor (db: TxDb = new MemoryDb(), rootHash?: Uint8Array, codec: Codec = substrateCodec) {
     this.db = db;
     this.codec = codec;
-    this.rootHash = rootHash;
-    this.txRoot = rootHash;
+    this.constants = constants(codec);
+    this.rootHash = rootHash || this.constants.EMPTY_HASH;
+    this.txRoot = this.rootHash;
 
     l.log(`Created with ${codec.type} codec, root ${u8aToHex(rootHash, 64)}`);
   }
@@ -143,7 +145,7 @@ export default class Trie implements TrieDb {
     const rootNode = this.getNode();
 
     if (isNull(rootNode)) {
-      return EMPTY_U8A;
+      return constants(this.codec).EMPTY_U8A;
     }
 
     return this.rootHash;
@@ -210,7 +212,7 @@ export default class Trie implements TrieDb {
   private _getNode (hash: Uint8Array | null): Node {
     // l.debug(() => ['_getNode', { hash }]);
 
-    if (!hash || hash.length === 0 || keyEquals(hash, EMPTY_HASH)) {
+    if (!hash || hash.length === 0 || keyEquals(hash, this.constants.EMPTY_HASH)) {
       return null;
     } else if (hash.length < 32) {
       return decodeNode(this.codec, hash);
@@ -557,7 +559,7 @@ export default class Trie implements TrieDb {
     // l.debug(() => ['_setRootNode', { node }]);
 
     if (isEmptyNode(node)) {
-      this.rootHash = EMPTY_HASH;
+      this.rootHash = this.constants.EMPTY_HASH;
     } else {
       const encoded = encodeNode(this.codec, node);
       const rootHash = this.codec.hashing(encoded);
