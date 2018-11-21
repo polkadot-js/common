@@ -8,7 +8,7 @@
 
 ▸ **testKeyringPairs**(): `TestKeyringMap`
 
-*Defined in [testingPairs.ts:14](https://github.com/polkadot-js/common/blob/75c09a9/packages/keyring/src/testingPairs.ts#L14)*
+*Defined in [testingPairs.ts:14](https://github.com/polkadot-js/common/blob/3bc1b75/packages/keyring/src/testingPairs.ts#L14)*
 
 **Returns:** `TestKeyringMap`
 

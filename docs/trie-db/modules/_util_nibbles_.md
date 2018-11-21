@@ -8,7 +8,7 @@
 
 ▸ **addNibblesTerminator**(nibbles: *`Uint8Array`*): `Uint8Array`
 
-*Defined in [util/nibbles.ts:22](https://github.com/polkadot-js/common/blob/75c09a9/packages/trie-db/src/util/nibbles.ts#L22)*
+*Defined in [util/nibbles.ts:22](https://github.com/polkadot-js/common/blob/3bc1b75/packages/trie-db/src/util/nibbles.ts#L22)*
 
 **Parameters:**
 
@@ -25,7 +25,7 @@ ___
 
 ▸ **decodeNibbles**(value: *[NodeEncodedOrEmpty](_types_.md#nodeencodedorempty)*): `Uint8Array`
 
-*Defined in [util/nibbles.ts:43](https://github.com/polkadot-js/common/blob/75c09a9/packages/trie-db/src/util/nibbles.ts#L43)*
+*Defined in [util/nibbles.ts:43](https://github.com/polkadot-js/common/blob/3bc1b75/packages/trie-db/src/util/nibbles.ts#L43)*
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ ___
 
 ▸ **encodeNibbles**(nibbles: *`Uint8Array`*): [NodeEncoded](_types_.md#nodeencoded)
 
-*Defined in [util/nibbles.ts:56](https://github.com/polkadot-js/common/blob/75c09a9/packages/trie-db/src/util/nibbles.ts#L56)*
+*Defined in [util/nibbles.ts:56](https://github.com/polkadot-js/common/blob/3bc1b75/packages/trie-db/src/util/nibbles.ts#L56)*
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ ___
 
 ▸ **isNibblesTerminated**(nibbles: *`Uint8Array`*): `boolean`
 
-*Defined in [util/nibbles.ts:18](https://github.com/polkadot-js/common/blob/75c09a9/packages/trie-db/src/util/nibbles.ts#L18)*
+*Defined in [util/nibbles.ts:18](https://github.com/polkadot-js/common/blob/3bc1b75/packages/trie-db/src/util/nibbles.ts#L18)*
 
 **Parameters:**
 
@@ -76,7 +76,7 @@ ___
 
 ▸ **removeNibblesTerminator**(nibbles: *`Uint8Array`*): `Uint8Array`
 
-*Defined in [util/nibbles.ts:35](https://github.com/polkadot-js/common/blob/75c09a9/packages/trie-db/src/util/nibbles.ts#L35)*
+*Defined in [util/nibbles.ts:35](https://github.com/polkadot-js/common/blob/3bc1b75/packages/trie-db/src/util/nibbles.ts#L35)*
 
 **Parameters:**
 

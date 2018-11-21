@@ -8,7 +8,7 @@
 
 ▸ **naclKeypairFromString**(value: *`string`*): `KeypairType`
 
-*Defined in [nacl/keypair/fromString.ts:27](https://github.com/polkadot-js/common/blob/75c09a9/packages/util-crypto/src/nacl/keypair/fromString.ts#L27)*
+*Defined in [nacl/keypair/fromString.ts:27](https://github.com/polkadot-js/common/blob/3bc1b75/packages/util-crypto/src/nacl/keypair/fromString.ts#L27)*
 
 *__name__*: naclKeypairFromString
 
