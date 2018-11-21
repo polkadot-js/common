@@ -2,12 +2,16 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { compactStripLength } from '@polkadot/util/index';
+import { compactStripLength, logger } from '@polkadot/util/index';
 
 import NodeHeader, { BranchHeader, NibbleHeader } from './NodeHeader';
 import { NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from './constants';
 import { addNibblesTerminator, encodeNibbles } from './nibbles';
 import { toNibbles } from './util';
+
+const l = logger('trie/codec');
+
+l.noop();
 
 function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Uint8Array | [Uint8Array, Uint8Array]> {
   const header = new NodeHeader(input);

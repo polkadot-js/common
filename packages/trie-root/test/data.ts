@@ -43,9 +43,7 @@ const data: { [index: string]: TestData } = {
         v: Uint8Array.from([0x11])
       }
     ],
-    output: Uint8Array.from([
-      0x81, 0x0a, 0x2c, 0xfe, 0x00, 0x0c, 0x0c, 0x01, 0x04, 0x10, 0x0c, 0x01, 0x04, 0x11
-    ]),
+    output: hexToU8a('0x810a2cfe000c0c0104100c010411'),
     root: hexToU8a('0x3f6764bc812ca86b84cf88b2045828fd605c8abbe1e9c657ff87adb715c644bf')
   },
   extensionBranchValue: {

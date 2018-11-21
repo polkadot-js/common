@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { compactAddLength, u8aConcat, isU8a } from '@polkadot/util/index';
+import { compactAddLength, u8aConcat, isU8a, logger } from '@polkadot/util/index';
 
 import NodeHeader from './NodeHeader';
 import { NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF, NODE_TYPE_NULL } from './constants';
@@ -12,7 +12,9 @@ import { fromNibbles } from './util';
 const EMPTY = new Uint8Array();
 const BRANCH_VALUE_INDEX = 16;
 
-// const l = logger('trie/codec');
+const l = logger('trie/codec');
+
+l.noop();
 
 // in the case of odd nibbles, the first byte is encoded as a single
 // byte from the nibble, with the remainder of the nibbles is converted
@@ -30,24 +32,16 @@ function encodeKey (input: null | Uint8Array): Uint8Array {
     : fromNibbles(nibbles);
 }
 
-function encodeSub (input: Array<null | Uint8Array>): Uint8Array {
+function encodeValue (input: null | Uint8Array | Array<null | Uint8Array>): Uint8Array {
   if (!input) {
     return EMPTY;
   }
 
-  // l.debug(() => ['encodeSub', { input, encoded }]);
+  const encoded = encode(input);
 
-  return encodeValue(encode(input));
-}
+  // l.debug(() => ['encodeValue', { input, encoded }]);
 
-function encodeValue (input: null | Uint8Array): Uint8Array {
-  if (!input) {
-    return EMPTY;
-  }
-
-  // l.debug(() => ['encodeValue', { input }]);
-
-  return compactAddLength(input);
+  return compactAddLength(encoded);
 }
 
 function _encode (input?: null | Uint8Array | Array<null | Uint8Array>): Uint8Array {
@@ -71,7 +65,7 @@ function _encode (input?: null | Uint8Array | Array<null | Uint8Array>): Uint8Ar
 
         valuesU8a = u8aConcat(
           valuesU8a,
-          encodeSub(value as any)
+          encodeValue(value)
         );
       }
 

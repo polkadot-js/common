@@ -16,5 +16,6 @@ export type Logger = {
   debug: (...values: Logger$Data) => void,
   error: (...values: Logger$Data) => void,
   log: (...values: Logger$Data) => void,
+  noop: (...values: Logger$Data) => void,
   warn: (...values: Logger$Data) => void
 };

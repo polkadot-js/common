@@ -32,4 +32,10 @@ describe('substrate tests', () => {
       checkRoot(test);
     });
   });
+
+  // When we have a specific test failing and we want to debug it
+  // it('does extensionBranch', () => {
+  //   putValues(testdata.extensionBranch);
+  //   checkRoot(testdata.extensionBranch);
+  // });
 });
