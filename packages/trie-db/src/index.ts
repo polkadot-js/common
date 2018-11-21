@@ -42,7 +42,7 @@ export default class Trie implements TrieDb {
     this.rootHash = rootHash || this.constants.EMPTY_HASH;
     this.txRoot = this.rootHash;
 
-    l.log(`Created with ${codec.type} codec, root ${u8aToHex(rootHash, 64)}`);
+    l.log(`Created with ${codec.type} codec, root ${u8aToHex(this.rootHash, 64)}`);
   }
 
   private createCheckpoint (): Uint8Array {

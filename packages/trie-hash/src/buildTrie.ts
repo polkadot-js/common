@@ -11,7 +11,7 @@ import { DEFAULT_CODEC, DEFAULT_STREAM } from './defaults';
 
 const EMPTY = new Uint8Array();
 
-// FIXME This is problematic, the stream implementation is Substrate-only
+// FIXME This is problematic, the stream implementation is Substrate-only as is the branch here
 function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number, codec: Codec, stream: any): Uint8Array {
   if (input.length === 0) {
     return stream.createEmpty();
