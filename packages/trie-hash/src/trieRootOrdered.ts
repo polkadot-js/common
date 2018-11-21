@@ -29,9 +29,9 @@ import trieRoot from './trieRoot';
  * ]); // => 0xe766d5d51b89dc39d981b41bda63248d7abce4f0225eefd023792a540bcffee3
  * ```
  */
-export default function trieRootOrdered (input: Array<TriePair>, codec: Codec = DEFAULT_CODEC): Uint8Array {
+export default function trieRootOrdered (input: Array<Uint8Array>, codec: Codec = DEFAULT_CODEC): Uint8Array {
   return trieRoot(
-    input.map(({ v }, index) => ({
+    input.map((v, index) => ({
       k: compactToU8a(index),
       v
     })),

@@ -31,7 +31,7 @@ describe('encode', () => {
     );
   });
 
-  it('encodes basic ua6 (not at edge)', () => {
+  it('encodes basic u16 (not at edge)', () => {
     expect(
       compactToU8a(111, 32)
     ).toEqual(
@@ -49,7 +49,7 @@ describe('encode', () => {
 
   it('encodes basic u32 values (full)', () => {
     expect(
-      compactToU8a(0xfffffff9, 32)
+      compactToU8a(0xfffffff9)
     ).toEqual(
       new Uint8Array([3, 249, 255, 255, 255])
     );

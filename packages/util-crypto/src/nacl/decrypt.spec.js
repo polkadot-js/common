@@ -16,4 +16,10 @@ describe('naclDecrypt', () => {
       message
     );
   });
+
+  it('returns null on invalid', () => {
+    expect(
+      naclDecrypt(new Uint8Array(), new Uint8Array(24), new Uint8Array(32))
+    ).toEqual(null);
+  });
 });

@@ -9,7 +9,7 @@ import compactFromU8a from './fromU8a';
 describe('compactFromU8a', () => {
   it('decoded u8 value', () => {
     expect(
-      compactFromU8a(new Uint8Array([0b11111100]), 32)
+      compactFromU8a(new Uint8Array([0b11111100]))
     ).toEqual([1, new BN(63)]);
   });
 
