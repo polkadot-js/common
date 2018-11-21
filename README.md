@@ -1,5 +1,5 @@
 [![polkadotjs](https://img.shields.io/badge/polkadot-js-orange.svg?style=flat-square)](https://polkadot.js.org)
-![isc](https://img.shields.io/badge/license-ISC-lightgrey.svg?style=flat-square)
+![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)
 [![style](https://img.shields.io/badge/code%20style-semistandard-lightgrey.svg?style=flat-square)](https://github.com/Flet/semistandard)
 [![travis](https://img.shields.io/travis/polkadot-js/common.svg?style=flat-square)](https://travis-ci.org/polkadot-js/common)
 [![maintainability](https://img.shields.io/codeclimate/maintainability/polkadot-js/common.svg?style=flat-square)](https://codeclimate.com/github/polkadot-js/common/maintainability)
@@ -43,4 +43,4 @@ To get started -
 
 ## tutorials
 
-Looking for tutorials to get started? Look at [examples](https://polkadot.js.org/api/examples/keyring/) for guides on how to use the API.
+Looking for tutorials to get started? Look at [examples](https://polkadot.js.org/api/examples/keyring/) for guides on how to use the base utilities.
