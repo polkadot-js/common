@@ -7,6 +7,9 @@ import compactStripLength from './stripLength';
 import compactFromU8a from './fromU8a';
 import compactToU8a from './toU8a';
 
+/**
+ * @summary Encoding and decoding of parity-codec compact numbers
+ */
 export {
   compactAddLength,
   compactFromU8a,
