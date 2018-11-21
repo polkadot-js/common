@@ -2,9 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { Codec } from '@polkadot/trie-codec/types';
 import { Node, NodeType, NodeNotEmpty } from '../types';
 
-import codec from '@polkadot/trie-codec/index';
+// import codec from '@polkadot/trie-codec/index';
 import { decodeNibbles, isNibblesTerminated } from '@polkadot/trie-codec/nibbles';
 
 import { isNull } from '@polkadot/util/index';
@@ -28,7 +29,7 @@ export function getNodeType (node: Node): NodeType {
   throw new Error(`Unable to determine node type`);
 }
 
-export function decodeNode (encoded: Uint8Array | Node): Node {
+export function decodeNode (codec: Codec, encoded: Uint8Array | Node): Node {
   if (isNull(encoded) || encoded.length === 0) {
     return null;
   } else if (Array.isArray(encoded)) {
@@ -36,21 +37,14 @@ export function decodeNode (encoded: Uint8Array | Node): Node {
   }
 
   const node = codec.decode(encoded) as NodeNotEmpty;
-  const decoded = node.map((value) =>
+
+  return node.map((value) =>
     value && value.length
       ? value
       : null
-  );
-
-  // console.error('decodeNode', encoded, '->', decoded);
-
-  return decoded as NodeNotEmpty;
+  ) as NodeNotEmpty;
 }
 
-export function encodeNode (node: Node): Uint8Array {
-  const encoded = codec.encode(node);
-
-  // console.error('encodeNode', node, '->', encoded);
-
-  return encoded;
+export function encodeNode (codec: Codec, node: Node): Uint8Array {
+  return codec.encode(node);
 }

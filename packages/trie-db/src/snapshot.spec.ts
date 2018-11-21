@@ -4,13 +4,17 @@
 
 import toU8a from '@polkadot/util/u8a/toU8a';
 
+import ethereumCodec from './ethereumCodec';
 import Trie from './index';
 
-describe.skip('snapshots', () => {
+describe('snapshots', () => {
+  const createTrie = () =>
+    new Trie(undefined, undefined, ethereumCodec);
+
   it('creates a snapshot of the (relevant) trie data', () => {
     const root = new Uint8Array([43, 119, 232, 84, 123, 197, 94, 42, 149, 34, 124, 147, 159, 159, 157, 103, 149, 45, 225, 233, 112, 160, 23, 224, 145, 11, 229, 16, 176, 144, 175, 243]);
-    const trie = new Trie();
-    const back = new Trie();
+    const trie = createTrie();
+    const back = createTrie();
 
     trie.put(toU8a('test'), toU8a('one'));
     trie.put(toU8a('test'), toU8a('two'));
@@ -29,8 +33,8 @@ describe.skip('snapshots', () => {
 
   it('creates a snapshot of the (relevant) data', () => {
     const root = new Uint8Array([124, 157, 64, 253, 245, 26, 3, 63, 210, 140, 4, 56, 214, 180, 147, 0, 167, 60, 113, 206, 171, 136, 88, 84, 139, 142, 230, 40, 42, 113, 21, 242]);
-    const trie = new Trie();
-    const back = new Trie();
+    const trie = createTrie();
+    const back = createTrie();
 
     trie.put(toU8a('one'), toU8a('testing'));
     trie.put(toU8a('two'), toU8a('testing with a much longer value here'));

@@ -3,13 +3,14 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { TxDb, ProgressCb } from '@polkadot/db/types';
+import { Codec } from '@polkadot/trie-codec/types';
 import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
 
 import MemoryDb from '@polkadot/db/Memory';
-import { isNull, logger , u8aConcat } from '@polkadot/util/index';
-import codec from '@polkadot/trie-codec/index';
+import substrateCodec from '@polkadot/trie-codec/index';
 import { decodeNibbles, encodeNibbles, extractNodeKey } from '@polkadot/trie-codec/nibbles';
 import { toNibbles } from '@polkadot/trie-codec/util';
+import { isNull, logger , u8aConcat, u8aToHex } from '@polkadot/util/index';
 
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';
 import { keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';
@@ -29,13 +30,17 @@ const l = logger('trie/db');
  */
 export default class Trie implements TrieDb {
   readonly db: TxDb;
+  private codec: Codec;
   private txRoot: Uint8Array;
   private rootHash: Uint8Array;
 
-  constructor (db?: TxDb, rootHash: Uint8Array = EMPTY_HASH) {
-    this.db = db || new MemoryDb();
+  constructor (db: TxDb = new MemoryDb(), rootHash: Uint8Array = EMPTY_HASH, codec: Codec = substrateCodec) {
+    this.db = db;
+    this.codec = codec;
     this.rootHash = rootHash;
     this.txRoot = rootHash;
+
+    l.log(`Created with ${codec.type} codec, root ${u8aToHex(rootHash, 64)}`);
   }
 
   private createCheckpoint (): Uint8Array {
@@ -188,7 +193,7 @@ export default class Trie implements TrieDb {
     }
 
     keys++;
-    dest.db.put(root, encodeNode(node));
+    dest.db.put(root, encodeNode(this.codec, node));
     fn({ keys, percent });
 
     node.forEach((u8a) => {
@@ -208,12 +213,10 @@ export default class Trie implements TrieDb {
     if (!hash || hash.length === 0 || keyEquals(hash, EMPTY_HASH)) {
       return null;
     } else if (hash.length < 32) {
-      return decodeNode(hash);
+      return decodeNode(this.codec, hash);
     }
 
-    return decodeNode(
-      this.db.get(hash)
-    );
+    return decodeNode(this.codec, this.db.get(hash));
   }
 
   private _del (node: Node, trieKey: Uint8Array): Node {
@@ -364,7 +367,7 @@ export default class Trie implements TrieDb {
       ];
     }
 
-    const encoded = encodeNode(node);
+    const encoded = encodeNode(this.codec, node);
 
     if (encoded.length < 32) {
       return [
@@ -376,7 +379,7 @@ export default class Trie implements TrieDb {
     }
 
     return [
-      codec.hashing(encoded),
+      this.codec.hashing(encoded),
       encoded
     ];
   }
@@ -556,8 +559,8 @@ export default class Trie implements TrieDb {
     if (isEmptyNode(node)) {
       this.rootHash = EMPTY_HASH;
     } else {
-      const encoded = encodeNode(node);
-      const rootHash = codec.hashing(encoded);
+      const encoded = encodeNode(this.codec, node);
+      const rootHash = this.codec.hashing(encoded);
 
       // l.debug(() => ['_setRootNode', { encoded, rootHash }]);
 

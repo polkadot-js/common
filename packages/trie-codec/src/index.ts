@@ -2,22 +2,19 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { Codec } from './types';
+
 import decode from './decode';
 import encode from './encode';
 import hashing from './hashing';
 
 export { default as stream } from './stream';
 
-export type Codec = {
-  decode: (input: null | Uint8Array) => Uint8Array | null | Array<null | Uint8Array | Array<null | Uint8Array>>,
-  encode: (input?: null | Uint8Array | Array<null | Uint8Array>) => Uint8Array
-  hashing: (input: Uint8Array) => Uint8Array
-};
-
 const codec: Codec = {
   decode,
   encode,
-  hashing
+  hashing,
+  type: 'Substrate'
 };
 
 export default codec;

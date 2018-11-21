@@ -36,7 +36,7 @@ export default class MemoryDb implements BaseDb {
   }
 
   rename (base: string, file: string): void {
-    l.error('rename() is not implemented');
+    l.warn('rename() is not implemented');
   }
 
   maintain (fn: ProgressCb): void {
@@ -48,7 +48,7 @@ export default class MemoryDb implements BaseDb {
   }
 
   size (): number {
-    l.error('size() is not implemented');
+    l.warn('size() is not implemented');
 
     return 0;
   }
