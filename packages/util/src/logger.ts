@@ -87,6 +87,10 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
   );
 }
 
+function noop (...values: Logger$Data): void {
+  // noop
+}
+
 /**
  * @name Logger
  * @signature logger (type: string): Logger
@@ -118,9 +122,10 @@ export default function logger (_type: string): Logger {
   return {
     debug: isDebug
       ? (...values: Logger$Data): void => apply('debug', type, values)
-      : (...values: Logger$Data): void => void 0,
+      : noop,
     error: (...values: Logger$Data): void => apply('error', type, values),
     log: (...values: Logger$Data): void => apply('log', type, values),
+    noop,
     warn: (...values: Logger$Data): void => apply('warn', type, values)
   };
 }
