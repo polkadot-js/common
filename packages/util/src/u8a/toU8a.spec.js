@@ -33,6 +33,14 @@ describe('u8aToU8a', () => {
     );
   });
 
+  it('creates from Array', () => {
+    expect(
+      u8aToU8a([128, 0, 10, 11, 12])
+    ).toEqual(
+      new Uint8Array([128, 0, 10, 11, 12])
+    );
+  });
+
   it('returns a Uint8Array as-is (u8a input)', () => {
     expect(
       u8aToU8a(new Uint8Array([128, 0, 10]))
