@@ -107,7 +107,7 @@ function noop (...values: Logger$Data): void {
  * ```
  */
 export default function logger (_type: string): Logger {
-  const type = _type.toUpperCase().padStart(16);
+  const type = `${_type.toUpperCase()}:`.padStart(16);
   let isDebug;
 
   try {
