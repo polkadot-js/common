@@ -7,7 +7,7 @@ import u8aToHex from '@polkadot/util/u8a/toHex';
 
 import ethereumCodec from './ethereumCodec';
 import Trie from './index';
-import getTests from '../../../test/getTests';
+import getTests from '../../util-rlp/test/getTests';
 
 // const trietest = getTests('TrieTests/trietest.json');
 const trieanyorder = getTests('TrieTests/trieanyorder.json');
