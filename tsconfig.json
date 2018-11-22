@@ -3,9 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@polkadot/chainspec/*": [ "packages/chainspec/src/*" ],
       "@polkadot/db/*": [ "packages/db/src/*" ],
       "@polkadot/keyring/*": [ "packages/keyring/src/*" ],
-      "@polkadot/trie-db-old/*": [ "packages/trie-db-old/src/*" ],
+      "@polkadot/trie-codec/*": [ "packages/trie-codec/src/*" ],
       "@polkadot/trie-db/*": [ "packages/trie-db/src/*" ],
       "@polkadot/trie-hash/*": [ "packages/trie-hash/src/*" ],
       "@polkadot/util-crypto/*": [ "packages/util-crypto/src/*" ],

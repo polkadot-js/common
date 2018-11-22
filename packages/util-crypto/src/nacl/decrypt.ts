@@ -20,5 +20,5 @@ import nacl from 'tweetnacl';
  * ```
  */
 export default function naclDecrypt (encrypted: Uint8Array, nonce: Uint8Array, secret: Uint8Array): Uint8Array | null {
-  return nacl.secretbox.open(encrypted, nonce, secret);
+  return nacl.secretbox.open(encrypted, nonce, secret) || null;
 }

@@ -1,0 +1,34 @@
+{
+  "name": "@polkadot/trie-codec",
+  "version": "0.33.0",
+  "description": "This is an implementation of the codec for Substrate Trie",
+  "main": "index.js",
+  "keywords": [
+    "Polkadot"
+  ],
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "maintainers": [
+    "Jaco Greeff <jacogr@gmail.com>"
+  ],
+  "contributors": [],
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=6.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polkadot-js/common.git"
+  },
+  "bugs": {
+    "url": "https://github.com/polkadot-js/common/issues"
+  },
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-codec#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.1.5",
+    "@polkadot/util": "^0.33.0"
+  }
+}

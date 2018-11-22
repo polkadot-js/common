@@ -3,18 +3,19 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { TxDb, ProgressCb } from '@polkadot/db/types';
+import { Codec } from '@polkadot/trie-codec/types';
 import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
 
 import MemoryDb from '@polkadot/db/Memory';
-import { isNull, logger , u8aConcat } from '@polkadot/util/index';
-import { keccakAsU8a as hashing } from '@polkadot/util-crypto/index';
-import toNibbles from '@polkadot/trie-hash/util/asNibbles';
+import substrateCodec from '@polkadot/trie-codec/index';
+import { decodeNibbles, encodeNibbles, extractNodeKey } from '@polkadot/trie-codec/nibbles';
+import { toNibbles } from '@polkadot/trie-codec/util';
+import { isNull, logger , u8aConcat, u8aToHex } from '@polkadot/util/index';
 
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';
-import { extractKey, keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';
-import { decodeNibbles, encodeNibbles } from './util/nibbles';
+import { keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';
 import { getNodeType, decodeNode, encodeNode } from './util/node';
-import { EMPTY_HASH, EMPTY_U8A } from './constants';
+import constants, { Constants } from './constants';
 
 const l = logger('trie/db');
 
@@ -29,13 +30,19 @@ const l = logger('trie/db');
  */
 export default class Trie implements TrieDb {
   readonly db: TxDb;
+  private codec: Codec;
+  private constants: Constants;
   private txRoot: Uint8Array;
   private rootHash: Uint8Array;
 
-  constructor (db?: TxDb, rootHash: Uint8Array = EMPTY_HASH) {
-    this.db = db || new MemoryDb();
-    this.rootHash = rootHash;
-    this.txRoot = rootHash;
+  constructor (db: TxDb = new MemoryDb(), rootHash?: Uint8Array, codec: Codec = substrateCodec) {
+    this.db = db;
+    this.codec = codec;
+    this.constants = constants(codec);
+    this.rootHash = rootHash || this.constants.EMPTY_HASH;
+    this.txRoot = this.rootHash;
+
+    l.log(`Created with ${codec.type} codec, root ${u8aToHex(this.rootHash, 64)}`);
   }
 
   private createCheckpoint (): Uint8Array {
@@ -138,7 +145,7 @@ export default class Trie implements TrieDb {
     const rootNode = this.getNode();
 
     if (isNull(rootNode)) {
-      return EMPTY_U8A;
+      return constants(this.codec).EMPTY_U8A;
     }
 
     return this.rootHash;
@@ -188,7 +195,7 @@ export default class Trie implements TrieDb {
     }
 
     keys++;
-    dest.db.put(root, encodeNode(node));
+    dest.db.put(root, encodeNode(this.codec, node));
     fn({ keys, percent });
 
     node.forEach((u8a) => {
@@ -203,15 +210,15 @@ export default class Trie implements TrieDb {
   }
 
   private _getNode (hash: Uint8Array | null): Node {
-    if (!hash || hash.length === 0 || keyEquals(hash, EMPTY_HASH)) {
+    // l.debug(() => ['_getNode', { hash }]);
+
+    if (!hash || hash.length === 0 || keyEquals(hash, this.constants.EMPTY_HASH)) {
       return null;
     } else if (hash.length < 32) {
-      return decodeNode(hash);
+      return decodeNode(this.codec, hash);
     }
 
-    return decodeNode(
-      this.db.get(hash)
-    );
+    return decodeNode(this.codec, this.db.get(hash));
   }
 
   private _del (node: Node, trieKey: Uint8Array): Node {
@@ -257,7 +264,7 @@ export default class Trie implements TrieDb {
   private _delKvNode (node: NodeNotEmpty, trieKey: Uint8Array): Node {
     // l.debug(() => ['_delKvNode', { node, trieKey }]);
 
-    const currentKey = extractKey(node);
+    const currentKey = extractNodeKey(node);
     const nodeType = getNodeType(node);
 
     if (!keyStartsWith(trieKey, currentKey)) {
@@ -328,7 +335,7 @@ export default class Trie implements TrieDb {
   private _getKvNode (node: NodeKv, trieKey: Uint8Array): NodeEncodedOrEmpty {
     // l.debug(() => ['_getKvNode', { node, trieKey }]);
 
-    const currentKey = extractKey(node);
+    const currentKey = extractNodeKey(node);
     const nodeType = getNodeType(node);
 
     // l.debug(() => [{ currentKey, trieKey, nodeType }]);
@@ -362,7 +369,7 @@ export default class Trie implements TrieDb {
       ];
     }
 
-    const encoded = encodeNode(node);
+    const encoded = encodeNode(this.codec, node);
 
     if (encoded.length < 32) {
       return [
@@ -374,7 +381,7 @@ export default class Trie implements TrieDb {
     }
 
     return [
-      hashing(encoded),
+      this.codec.hashing(encoded),
       encoded
     ];
   }
@@ -470,7 +477,7 @@ export default class Trie implements TrieDb {
   private _putKvNode (node: NodeKv, trieKey: Uint8Array, value: Uint8Array): NodeNotEmpty {
     // l.debug(() => ['_putKvNode', { node, trieKey, value }]);
 
-    const currentKey = extractKey(node);
+    const currentKey = extractNodeKey(node);
     const [commonPrefix, currentRemainder, trieRemainder] = consumeCommonPrefix(currentKey, trieKey);
     const isExtension = isExtensionNode(node);
     const isLeaf = isLeafNode(node);
@@ -552,14 +559,16 @@ export default class Trie implements TrieDb {
     // l.debug(() => ['_setRootNode', { node }]);
 
     if (isEmptyNode(node)) {
-      this.rootHash = EMPTY_HASH;
+      this.rootHash = this.constants.EMPTY_HASH;
     } else {
-      const encoded = encodeNode(node);
-      const newHash = hashing(encoded);
+      const encoded = encodeNode(this.codec, node);
+      const rootHash = this.codec.hashing(encoded);
 
-      this.db.put(newHash, encoded);
+      // l.debug(() => ['_setRootNode', { encoded, rootHash }]);
 
-      this.rootHash = newHash;
+      this.db.put(rootHash, encoded);
+
+      this.rootHash = rootHash;
     }
   }
 }

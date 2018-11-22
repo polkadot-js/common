@@ -9,7 +9,7 @@ import { stringToU8a } from '@polkadot/util/index';
 import Keyring from './index';
 
 function padSeed (seed: string): Uint8Array {
-  return stringToU8a(seed.padEnd(32, ' '));
+  return stringToU8a(seed.padEnd(32));
 }
 
 const SEEDS: { [index: string ]: Uint8Array } = {

@@ -10,7 +10,7 @@ import { LRUMap } from 'lru_map';
 import mkdirp from 'mkdirp';
 import path from 'path';
 import snappy from 'snappy';
-import asNibbles from '@polkadot/trie-hash/util/asNibbles';
+import { toNibbles } from '@polkadot/trie-codec/util';
 import { assert, bufferToU8a, isUndefined, logger, u8aToBuffer, u8aToHex } from '@polkadot/util/index';
 
 import Compact from './Compact';
@@ -174,7 +174,7 @@ export default class FileFlatDb implements BaseDb {
 
     return {
       buffer,
-      nibbles: asNibbles(u8a)
+      nibbles: toNibbles(u8a)
     };
   }
 

@@ -2,24 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { addNibblesTerminator, encodeNibbles } from '@polkadot/trie-codec/nibbles';
 import { isNull } from '@polkadot/util/index';
 
-import { EncodedPath, Node } from '../types';
-
-import { isKvNode } from './is';
-import { addNibblesTerminator, decodeNibbles, encodeNibbles, removeNibblesTerminator } from './nibbles';
-
-export function extractKey (node: Node): Uint8Array {
-  if (!isKvNode(node)) {
-    throw new Error('Can only extract keys from KV branches');
-  }
-
-  const [prefixedKey] = node;
-
-  return removeNibblesTerminator(
-    decodeNibbles(prefixedKey)
-  );
-}
+import { EncodedPath } from '../types';
 
 export function keyEquals (key: Uint8Array | null, test: Uint8Array | null): boolean {
   if (isNull(key) && isNull(test)) {

@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-rlp",
-  "version": "0.32.23",
+  "version": "0.33.0",
   "description": "RLP encoding and decoding",
   "main": "index.js",
   "keywords": [
@@ -28,10 +28,10 @@
   "bugs": {
     "url": "https://github.com/polkadot-js/common/issues"
   },
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-hash#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-rlp#readme",
   "dependencies": {
     "@babel/runtime": "^7.1.5",
-    "@polkadot/util": "^0.32.23"
+    "@polkadot/util": "^0.33.0"
   },
   "devDependencies": {
     "ethereumjs-testing": "1.0.4"
