@@ -2,60 +2,59 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import toU8a from '@polkadot/util/u8a/toU8a';
+import { trieRoot } from '@polkadot/trie-hash/index';
+import { u8aToHex, u8aToU8a as toU8a } from '@polkadot/util/index';
 
-import ethereumCodec from './ethereumCodec';
 import Trie from './index';
 
-// FIXME These are not working, the trie-hash implementation is now substrate-specific
-describe.skip('snapshots', () => {
-  const createTrie = () =>
-    new Trie(undefined, undefined, ethereumCodec);
+describe('snapshots', () => {
+  let trie: Trie;
+  let back: Trie;
+
+  beforeEach(() => {
+    trie = new Trie();
+    back = new Trie();
+  });
 
   it('creates a snapshot of the (relevant) trie data', () => {
-    const root = new Uint8Array([43, 119, 232, 84, 123, 197, 94, 42, 149, 34, 124, 147, 159, 159, 157, 103, 149, 45, 225, 233, 112, 160, 23, 224, 145, 11, 229, 16, 176, 144, 175, 243]);
-    const trie = createTrie();
-    const back = createTrie();
+    const values = [
+      { k: toU8a('test'), v: toU8a('one') }
+    ];
+    const root = trieRoot(values);
 
-    trie.put(toU8a('test'), toU8a('one'));
-    trie.put(toU8a('test'), toU8a('two'));
-    trie.del(toU8a('test'));
-    trie.put(toU8a('test'), toU8a('one'));
+    trie.put(values[0].k, values[0].v);
+    trie.put(values[0].k, toU8a('two'));
+    trie.del(values[0].k);
+    trie.put(values[0].k, values[0].v);
     trie.put(toU8a('doge'), toU8a('coin'));
     trie.del(toU8a('doge'));
 
-    trie.snapshot(back, () => {
-      // noop
-    });
+    trie.snapshot(back, () => void 0);
 
-    expect(back.getRoot()).toEqual(root);
-    expect(trie.get(toU8a('test'))).toEqual(toU8a('one'));
+    expect(u8aToHex(back.getRoot())).toEqual(u8aToHex(root));
+    expect(trie.get(values[0].k)).toEqual(values[0].v);
   });
 
   it('creates a snapshot of the (relevant) data', () => {
-    const root = new Uint8Array([124, 157, 64, 253, 245, 26, 3, 63, 210, 140, 4, 56, 214, 180, 147, 0, 167, 60, 113, 206, 171, 136, 88, 84, 139, 142, 230, 40, 42, 113, 21, 242]);
-    const trie = createTrie();
-    const back = createTrie();
+    const values = [
+      { k: toU8a('one'), v: toU8a('testing') },
+      { k: toU8a('two'), v: toU8a('testing with a much longer value here') },
+      { k: toU8a('twzei'), v: toU8a('und Deutch') },
+      { k: toU8a('do'), v: toU8a('do it') },
+      { k: toU8a('dog'), v: toU8a('doggie') },
+      { k: toU8a('dogge'), v: toU8a('bigger dog') },
+      { k: toU8a('dodge'), v: toU8a('coin') }
+    ];
+    const root = trieRoot(values);
 
-    trie.put(toU8a('one'), toU8a('testing'));
-    trie.put(toU8a('two'), toU8a('testing with a much longer value here'));
-    trie.put(toU8a('twzei'), toU8a('und Deutch'));
-    trie.put(toU8a('do'), toU8a('do it'));
-    trie.put(toU8a('dog'), toU8a('doggie'));
-    trie.put(toU8a('dogge'), toU8a('bigger dog'));
-    trie.put(toU8a('dodge'), toU8a('coin'));
+    values.forEach(({ k, v }) =>
+      trie.put(k, v)
+    );
+    trie.snapshot(back, () => void 0);
 
-    trie.snapshot(back, () => {
-      // noop
-    });
-
-    expect(back.getRoot()).toEqual(root);
-    expect(back.get(toU8a('one'))).toEqual(toU8a('testing'));
-    expect(back.get(toU8a('two'))).toEqual(toU8a('testing with a much longer value here'));
-    expect(back.get(toU8a('twzei'))).toEqual(toU8a('und Deutch'));
-    expect(back.get(toU8a('do'))).toEqual(toU8a('do it'));
-    expect(back.get(toU8a('dog'))).toEqual(toU8a('doggie'));
-    expect(back.get(toU8a('dogge'))).toEqual(toU8a('bigger dog'));
-    expect(back.get(toU8a('dodge'))).toEqual(toU8a('coin'));
+    expect(u8aToHex(back.getRoot())).toEqual(u8aToHex(root));
+    values.forEach(({ k, v }) =>
+      expect(trie.get(k)).toEqual(v)
+    );
   });
 });
