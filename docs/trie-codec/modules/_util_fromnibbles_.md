@@ -6,9 +6,9 @@
 
 ##  fromNibbles
 
-▸ **fromNibbles**(nibbles: * `Uint8Array` &#124; `Array`<`number`>*): `Uint8Array`
+▸ **fromNibbles**(input: *`Uint8Array`*): `Uint8Array`
 
-*Defined in [util/fromNibbles.ts:20](https://github.com/polkadot-js/common/blob/477be90/packages/trie-hash/src/util/fromNibbles.ts#L20)*
+*Defined in [util/fromNibbles.ts:20](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-codec/src/util/fromNibbles.ts#L20)*
 
 *__name__*: fromNibbles
 
@@ -21,16 +21,16 @@
 *__example__*:   
 
 ```javascript
-import { fromNibbles } from '@polkadot/trie-hash/util';
+import { fromNibbles } from '@polkadot/trie-codec/util';
 
-asNibbles(new Uint8Array([4, 1, 2, 0])); // => Uint8Array([0x41, 0x20]
+fromNibbles(new Uint8Array([4, 1, 2, 0])); // => Uint8Array([0x41, 0x20]
 ```
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| nibbles |  `Uint8Array` &#124; `Array`<`number`>|
+| input | `Uint8Array` |
 
 **Returns:** `Uint8Array`
 

@@ -6,9 +6,9 @@
 
 ##  trieRoot
 
-▸ **trieRoot**(pairs: *`Trie$Pairs`*): `Uint8Array`
+▸ **trieRoot**(input: *`Array`<`TriePair`>*, codec?: *`Codec`*): `Uint8Array`
 
-*Defined in [root.ts:30](https://github.com/polkadot-js/common/blob/477be90/packages/trie-hash/src/root.ts#L30)*
+*Defined in [trieRoot.ts:30](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-hash/src/trieRoot.ts#L30)*
 
 *__name__*: trieRoot
 
@@ -32,9 +32,10 @@ trieRoot([{
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| pairs | `Trie$Pairs` |
+| Name | Type | Default value |
+| ------ | ------ | ------ |
+| input | `Array`<`TriePair`> | - |
+| `Default value` codec | `Codec` |  DEFAULT_CODEC |
 
 **Returns:** `Uint8Array`
 

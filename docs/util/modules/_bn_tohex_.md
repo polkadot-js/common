@@ -8,7 +8,7 @@
 
 ▸ **bnToHex**(value?: * `BN` &#124; `number`*, bitLength?: *`number`*): `string`
 
-*Defined in [bn/toHex.ts:28](https://github.com/polkadot-js/common/blob/477be90/packages/util/src/bn/toHex.ts#L28)*
+*Defined in [bn/toHex.ts:28](https://github.com/polkadot-js/common/blob/f82092e/packages/util/src/bn/toHex.ts#L28)*
 
 *__name__*: bnToHex
 

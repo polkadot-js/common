@@ -8,7 +8,7 @@
 
 ▸ **computeExtensionKey**(nibbles: *`Uint8Array`*): [EncodedPath](_types_.md#encodedpath)
 
-*Defined in [util/key.ts:50](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/util/key.ts#L50)*
+*Defined in [util/key.ts:36](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/util/key.ts#L36)*
 
 **Parameters:**
 
@@ -25,7 +25,7 @@ ___
 
 ▸ **computeLeafKey**(nibbles: *`Uint8Array`*): [EncodedPath](_types_.md#encodedpath)
 
-*Defined in [util/key.ts:54](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/util/key.ts#L54)*
+*Defined in [util/key.ts:40](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/util/key.ts#L40)*
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ ___
 
 ▸ **consumeCommonPrefix**(left: *`Uint8Array`*, right: *`Uint8Array`*): [`Uint8Array`, `Uint8Array`, `Uint8Array`]
 
-*Defined in [util/key.ts:70](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/util/key.ts#L70)*
+*Defined in [util/key.ts:56](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/util/key.ts#L56)*
 
 **Parameters:**
 
@@ -54,30 +54,13 @@ ___
 **Returns:** [`Uint8Array`, `Uint8Array`, `Uint8Array`]
 
 ___
-<a id="extractkey"></a>
-
-##  extractKey
-
-▸ **extractKey**(node: *[Node](_types_.md#node)*): `Uint8Array`
-
-*Defined in [util/key.ts:12](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/util/key.ts#L12)*
-
-**Parameters:**
-
-| Name | Type |
-| ------ | ------ |
-| node | [Node](_types_.md#node) |
-
-**Returns:** `Uint8Array`
-
-___
 <a id="getcommonprefixlength"></a>
 
 ##  getCommonPrefixLength
 
 ▸ **getCommonPrefixLength**(left: *`Uint8Array`*, right: *`Uint8Array`*): `number`
 
-*Defined in [util/key.ts:60](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/util/key.ts#L60)*
+*Defined in [util/key.ts:46](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/util/key.ts#L46)*
 
 **Parameters:**
 
@@ -95,7 +78,7 @@ ___
 
 ▸ **keyEquals**(key: * `Uint8Array` &#124; `null`*, test: * `Uint8Array` &#124; `null`*): `boolean`
 
-*Defined in [util/key.ts:24](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/util/key.ts#L24)*
+*Defined in [util/key.ts:10](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/util/key.ts#L10)*
 
 **Parameters:**
 
@@ -113,7 +96,7 @@ ___
 
 ▸ **keyStartsWith**(key: * `Uint8Array` &#124; `null`*, partial: * `Uint8Array` &#124; `null`*): `boolean`
 
-*Defined in [util/key.ts:34](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/util/key.ts#L34)*
+*Defined in [util/key.ts:20](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/util/key.ts#L20)*
 
 **Parameters:**
 

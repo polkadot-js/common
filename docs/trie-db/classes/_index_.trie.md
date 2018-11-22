@@ -25,16 +25,17 @@ Overview
 
 ##  constructor
 
-⊕ **new Trie**(db?: *`TxDb`*, rootHash?: *`Uint8Array`*): [Trie](_index_.trie.md)
+⊕ **new Trie**(db?: *`TxDb`*, rootHash?: *`Uint8Array`*, codec?: *`Codec`*): [Trie](_index_.trie.md)
 
-*Defined in [index.ts:33](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L33)*
+*Defined in [index.ts:36](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L36)*
 
 **Parameters:**
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
-| `Optional` db | `TxDb` | - |
-| `Default value` rootHash | `Uint8Array` |  EMPTY_HASH |
+| `Default value` db | `TxDb` |  new MemoryDb() |
+| `Optional` rootHash | `Uint8Array` | - |
+| `Default value` codec | `Codec` |  substrateCodec |
 
 **Returns:** [Trie](_index_.trie.md)
 
@@ -50,7 +51,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[db](../interfaces/_types_.triedb.md#db)*
 
-*Defined in [index.ts:31](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L31)*
+*Defined in [index.ts:32](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L32)*
 
 ___
 
@@ -64,7 +65,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[close](../interfaces/_types_.triedb.md#close)*
 
-*Defined in [index.ts:81](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L81)*
+*Defined in [index.ts:88](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L88)*
 
 **Returns:** `void`
 
@@ -77,7 +78,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[del](../interfaces/_types_.triedb.md#del)*
 
-*Defined in [index.ts:105](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L105)*
+*Defined in [index.ts:112](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L112)*
 
 **Parameters:**
 
@@ -96,7 +97,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[drop](../interfaces/_types_.triedb.md#drop)*
 
-*Defined in [index.ts:89](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L89)*
+*Defined in [index.ts:96](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L96)*
 
 **Returns:** `void`
 
@@ -109,7 +110,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[empty](../interfaces/_types_.triedb.md#empty)*
 
-*Defined in [index.ts:85](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L85)*
+*Defined in [index.ts:92](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L92)*
 
 **Returns:** `void`
 
@@ -122,7 +123,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[get](../interfaces/_types_.triedb.md#get)*
 
-*Defined in [index.ts:116](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L116)*
+*Defined in [index.ts:123](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L123)*
 
 **Parameters:**
 
@@ -139,7 +140,7 @@ ___
 
 ▸ **getNode**(hash?: *`Uint8Array`*): [Node](../modules/_types_.md#node)
 
-*Defined in [index.ts:147](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L147)*
+*Defined in [index.ts:154](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L154)*
 
 **Parameters:**
 
@@ -158,7 +159,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[getRoot](../interfaces/_types_.triedb.md#getroot)*
 
-*Defined in [index.ts:137](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L137)*
+*Defined in [index.ts:144](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L144)*
 
 **Returns:** `Uint8Array`
 
@@ -171,7 +172,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[maintain](../interfaces/_types_.triedb.md#maintain)*
 
-*Defined in [index.ts:93](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L93)*
+*Defined in [index.ts:100](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L100)*
 
 **Parameters:**
 
@@ -190,7 +191,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[open](../interfaces/_types_.triedb.md#open)*
 
-*Defined in [index.ts:77](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L77)*
+*Defined in [index.ts:84](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L84)*
 
 **Returns:** `void`
 
@@ -203,7 +204,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[put](../interfaces/_types_.triedb.md#put)*
 
-*Defined in [index.ts:125](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L125)*
+*Defined in [index.ts:132](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L132)*
 
 **Parameters:**
 
@@ -223,7 +224,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[rename](../interfaces/_types_.triedb.md#rename)*
 
-*Defined in [index.ts:97](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L97)*
+*Defined in [index.ts:104](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L104)*
 
 **Parameters:**
 
@@ -243,7 +244,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[setRoot](../interfaces/_types_.triedb.md#setroot)*
 
-*Defined in [index.ts:151](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L151)*
+*Defined in [index.ts:158](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L158)*
 
 **Parameters:**
 
@@ -262,7 +263,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[size](../interfaces/_types_.triedb.md#size)*
 
-*Defined in [index.ts:101](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L101)*
+*Defined in [index.ts:108](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L108)*
 
 **Returns:** `number`
 
@@ -275,7 +276,7 @@ ___
 
 *Implementation of [TrieDb](../interfaces/_types_.triedb.md).[snapshot](../interfaces/_types_.triedb.md#snapshot)*
 
-*Defined in [index.ts:156](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L156)*
+*Defined in [index.ts:163](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L163)*
 
 **Parameters:**
 
@@ -293,7 +294,7 @@ ___
 
 ▸ **transaction**(fn: *`function`*): `boolean`
 
-*Defined in [index.ts:57](https://github.com/polkadot-js/common/blob/477be90/packages/trie-db/src/index.ts#L57)*
+*Defined in [index.ts:64](https://github.com/polkadot-js/common/blob/f82092e/packages/trie-db/src/index.ts#L64)*
 
 **Parameters:**
 

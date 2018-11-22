@@ -8,7 +8,7 @@
 
 ▸ **format**(value: *`any`*): `any`
 
-*Defined in [logger.ts:36](https://github.com/polkadot-js/common/blob/477be90/packages/util/src/logger.ts#L36)*
+*Defined in [logger.ts:36](https://github.com/polkadot-js/common/blob/f82092e/packages/util/src/logger.ts#L36)*
 
 **Parameters:**
 
@@ -25,7 +25,7 @@ ___
 
 ▸ **logger**(_type: *`string`*): `Logger`
 
-*Defined in [logger.ts:109](https://github.com/polkadot-js/common/blob/477be90/packages/util/src/logger.ts#L109)*
+*Defined in [logger.ts:109](https://github.com/polkadot-js/common/blob/f82092e/packages/util/src/logger.ts#L109)*
 
 *__name__*: Logger
 
