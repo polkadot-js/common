@@ -68,7 +68,7 @@ function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Ui
 
     offset += nibbleData.length;
 
-    const [_, value] = compactStripLength(input.subarray(offset));
+    const [, value] = compactStripLength(input.subarray(offset));
 
     return [
       encodeNibbles(

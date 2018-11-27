@@ -24,7 +24,6 @@ const l = logger('db/flat');
 export default class FileFlatDb implements BaseDb {
   private _fd: number;
   private _fileSize: number = 0;
-  private _base: string;
   private _path: string;
   private _file: string;
   private _isCompressed: boolean;
@@ -33,7 +32,6 @@ export default class FileFlatDb implements BaseDb {
 
   constructor (base: string, file: string = defaults.DEFAULT_FILE, options: BaseDbOptions = {}) {
     this._fd = -1;
-    this._base = base;
     this._file = file;
     this._path = path.join(base, file);
     this._lruBranch = new LRUMap(LRU_BRANCH_COUNT);
@@ -87,7 +85,6 @@ export default class FileFlatDb implements BaseDb {
 
     const oldPath = this._path;
 
-    this._base = base;
     this._file = file;
     this._path = path.join(base, file);
 
