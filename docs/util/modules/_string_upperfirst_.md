@@ -8,7 +8,7 @@
 
 ▸ **stringUpperFirst**(_value: *`string`*): `string`
 
-*Defined in [string/upperFirst.ts:23](https://github.com/polkadot-js/common/blob/f82092e/packages/util/src/string/upperFirst.ts#L23)*
+*Defined in [string/upperFirst.ts:23](https://github.com/polkadot-js/common/blob/148f956/packages/util/src/string/upperFirst.ts#L23)*
 
 *__name__*: stringUpperFirst
 
