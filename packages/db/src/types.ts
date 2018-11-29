@@ -11,7 +11,7 @@ export type ProgressValue = {
 export type ProgressCb = (progress: ProgressValue) => void;
 
 export type BaseDbOptions = {
-  isCompressed?: boolean,
+  isCompressed?: boolean
 };
 
 export interface BaseDb {
