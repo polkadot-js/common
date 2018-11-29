@@ -6,7 +6,7 @@ import { Prefix } from './address/types';
 
 export type KeyringPair$Meta = {
   [index: string]: any
-}
+};
 
 export type KeyringPair$Json = {
   address: string,
@@ -34,25 +34,25 @@ export type KeyringPair = {
 };
 
 export interface KeyringPairs {
-  add: (pair: KeyringPair) => KeyringPair,
-  all: () => Array<KeyringPair>,
-  get: (address: string | Uint8Array) => KeyringPair,
-  remove: (address: string | Uint8Array) => void
+  add: (pair: KeyringPair) => KeyringPair;
+  all: () => Array<KeyringPair>;
+  get: (address: string | Uint8Array) => KeyringPair;
+  remove: (address: string | Uint8Array) => void;
 }
 
 export interface KeyringInstance {
-  decodeAddress (encoded: string | Uint8Array): Uint8Array,
-  encodeAddress (key: Uint8Array | string): string,
-  setAddressPrefix (prefix: Prefix): void,
+  decodeAddress (encoded: string | Uint8Array): Uint8Array;
+  encodeAddress (key: Uint8Array | string): string;
+  setAddressPrefix (prefix: Prefix): void;
 
-  addPair (pair: KeyringPair): KeyringPair,
-  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta): KeyringPair,
-  addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta): KeyringPair,
-  addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair,
-  addFromJson (pair: KeyringPair$Json): KeyringPair,
-  getPair (address: string | Uint8Array): KeyringPair,
-  getPairs (): Array<KeyringPair>,
-  getPublicKeys (): Array<Uint8Array>,
-  removePair (address: string | Uint8Array): void,
-  toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json
+  addPair (pair: KeyringPair): KeyringPair;
+  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta): KeyringPair;
+  addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta): KeyringPair;
+  addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair;
+  addFromJson (pair: KeyringPair$Json): KeyringPair;
+  getPair (address: string | Uint8Array): KeyringPair;
+  getPairs (): Array<KeyringPair>;
+  getPublicKeys (): Array<Uint8Array>;
+  removePair (address: string | Uint8Array): void;
+  toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json;
 }

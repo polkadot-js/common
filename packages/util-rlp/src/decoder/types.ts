@@ -5,6 +5,6 @@
 export type DecodeOutput = {
   decoded: Uint8Array | Array<any>,
   remainder: Uint8Array
-}
+};
 
 export type DecodeFunc = (input: Uint8Array) => DecodeOutput;
