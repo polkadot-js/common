@@ -8,7 +8,7 @@
 
 ▸ **hexToU8a**(_value?: * `string` &#124; `null`*, bitLength?: *`number`*): `Uint8Array`
 
-*Defined in [hex/toU8a.ts:25](https://github.com/polkadot-js/common/blob/e5cab29/packages/util/src/hex/toU8a.ts#L25)*
+*Defined in [hex/toU8a.ts:25](https://github.com/polkadot-js/common/blob/24cd64c/packages/util/src/hex/toU8a.ts#L25)*
 
 *__name__*: hexToU8a
 

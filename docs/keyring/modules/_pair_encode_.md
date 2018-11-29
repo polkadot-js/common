@@ -8,7 +8,7 @@
 
 ▸ **encode**(secretKey: *`Uint8Array`*, passphrase?: * `undefined` &#124; `string`*): `Uint8Array`
 
-*Defined in [pair/encode.ts:10](https://github.com/polkadot-js/common/blob/e5cab29/packages/keyring/src/pair/encode.ts#L10)*
+*Defined in [pair/encode.ts:10](https://github.com/polkadot-js/common/blob/24cd64c/packages/keyring/src/pair/encode.ts#L10)*
 
 **Parameters:**
 
