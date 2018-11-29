@@ -6,11 +6,11 @@
 
 ##  everybody
 
-▸ **everybody**(): `KeyringPair`
+▸ **everybody**(): [KeyringPair](_types_.md#keyringpair)
 
-*Defined in [pair/nobody.ts:25](https://github.com/polkadot-js/common/blob/dc996ef/packages/keyring/src/pair/nobody.ts#L25)*
+*Defined in [pair/nobody.ts:25](https://github.com/polkadot-js/common/blob/e3b45e7/packages/keyring/src/pair/nobody.ts#L25)*
 
-**Returns:** `KeyringPair`
+**Returns:** [KeyringPair](_types_.md#keyringpair)
 
 ___
 

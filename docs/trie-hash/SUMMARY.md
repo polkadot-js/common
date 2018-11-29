@@ -6,5 +6,6 @@
 * [&quot;trieRoot.spec&quot;](modules/_trieroot_spec_.md)
 * [&quot;trieRootOrdered&quot;](modules/_trierootordered_.md)
 * [&quot;trieRootOrdered.spec&quot;](modules/_trierootordered_spec_.md)
+* [&quot;types&quot;](modules/_types_.md)
 * [&quot;unhashedTrie&quot;](modules/_unhashedtrie_.md)
 * [&quot;unhashedTrie.spec&quot;](modules/_unhashedtrie_spec_.md)

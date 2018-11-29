@@ -6,7 +6,7 @@
 
 # Implements
 
-* `KeyringPairs`
+* [KeyringPairs](../interfaces/_types_.keyringpairs.md)
 
 # Constructors
 
@@ -16,7 +16,7 @@
 
 ⊕ **new Pairs**(): [Pairs](_pairs_.pairs.md)
 
-*Defined in [pairs.ts:17](https://github.com/polkadot-js/common/blob/dc996ef/packages/keyring/src/pairs.ts#L17)*
+*Defined in [pairs.ts:17](https://github.com/polkadot-js/common/blob/e3b45e7/packages/keyring/src/pairs.ts#L17)*
 
 **Returns:** [Pairs](_pairs_.pairs.md)
 
@@ -28,37 +28,37 @@ ___
 
 ##  add
 
-▸ **add**(pair: *`KeyringPair`*): `KeyringPair`
+▸ **add**(pair: *[KeyringPair](../modules/_types_.md#keyringpair)*): [KeyringPair](../modules/_types_.md#keyringpair)
 
-*Defined in [pairs.ts:23](https://github.com/polkadot-js/common/blob/dc996ef/packages/keyring/src/pairs.ts#L23)*
+*Defined in [pairs.ts:23](https://github.com/polkadot-js/common/blob/e3b45e7/packages/keyring/src/pairs.ts#L23)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| pair | `KeyringPair` |
+| pair | [KeyringPair](../modules/_types_.md#keyringpair) |
 
-**Returns:** `KeyringPair`
+**Returns:** [KeyringPair](../modules/_types_.md#keyringpair)
 
 ___
 <a id="all"></a>
 
 ##  all
 
-▸ **all**(): `Array`<`KeyringPair`>
+▸ **all**(): `Array`<[KeyringPair](../modules/_types_.md#keyringpair)>
 
-*Defined in [pairs.ts:30](https://github.com/polkadot-js/common/blob/dc996ef/packages/keyring/src/pairs.ts#L30)*
+*Defined in [pairs.ts:30](https://github.com/polkadot-js/common/blob/e3b45e7/packages/keyring/src/pairs.ts#L30)*
 
-**Returns:** `Array`<`KeyringPair`>
+**Returns:** `Array`<[KeyringPair](../modules/_types_.md#keyringpair)>
 
 ___
 <a id="get"></a>
 
 ##  get
 
-▸ **get**(address: * `string` &#124; `Uint8Array`*): `KeyringPair`
+▸ **get**(address: * `string` &#124; `Uint8Array`*): [KeyringPair](../modules/_types_.md#keyringpair)
 
-*Defined in [pairs.ts:34](https://github.com/polkadot-js/common/blob/dc996ef/packages/keyring/src/pairs.ts#L34)*
+*Defined in [pairs.ts:34](https://github.com/polkadot-js/common/blob/e3b45e7/packages/keyring/src/pairs.ts#L34)*
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ ___
 | ------ | ------ |
 | address |  `string` &#124; `Uint8Array`|
 
-**Returns:** `KeyringPair`
+**Returns:** [KeyringPair](../modules/_types_.md#keyringpair)
 
 ___
 <a id="remove"></a>
@@ -75,7 +75,7 @@ ___
 
 ▸ **remove**(address: * `string` &#124; `Uint8Array`*): `void`
 
-*Defined in [pairs.ts:49](https://github.com/polkadot-js/common/blob/dc996ef/packages/keyring/src/pairs.ts#L49)*
+*Defined in [pairs.ts:49](https://github.com/polkadot-js/common/blob/e3b45e7/packages/keyring/src/pairs.ts#L49)*
 
 **Parameters:**
 

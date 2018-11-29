@@ -6,16 +6,16 @@
 
 ##  encode
 
-▸ **encode**(_key: * `Uint8Array` &#124; `string`*, prefix?: *`Prefix`*): `string`
+▸ **encode**(_key: * `Uint8Array` &#124; `string`*, prefix?: *[Prefix](_address_types_.md#prefix)*): `string`
 
-*Defined in [address/encode.ts:15](https://github.com/polkadot-js/common/blob/dc996ef/packages/keyring/src/address/encode.ts#L15)*
+*Defined in [address/encode.ts:15](https://github.com/polkadot-js/common/blob/e3b45e7/packages/keyring/src/address/encode.ts#L15)*
 
 **Parameters:**
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
 | _key |  `Uint8Array` &#124; `string`| - |
-| `Default value` prefix | `Prefix` |  defaults.prefix |
+| `Default value` prefix | [Prefix](_address_types_.md#prefix) |  defaults.prefix |
 
 **Returns:** `string`
 

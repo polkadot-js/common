@@ -17,3 +17,6 @@
   * [MemoryDb](classes/_engines_memorydb_.memorydb.md)
 * [&quot;engines/TransactionDb&quot;](modules/_engines_transactiondb_.md)
   * [TransactionDb](classes/_engines_transactiondb_.transactiondb.md)
+* [&quot;types&quot;](modules/_types_.md)
+  * [BaseDb](interfaces/_types_.basedb.md)
+  * [TxDb](interfaces/_types_.txdb.md)

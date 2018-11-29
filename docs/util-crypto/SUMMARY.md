@@ -28,6 +28,7 @@
 * [&quot;random/index&quot;](modules/_random_index_.md)
 * [&quot;sha512/asU8a&quot;](modules/_sha512_asu8a_.md)
 * [&quot;sha512/index&quot;](modules/_sha512_index_.md)
+* [&quot;types&quot;](modules/_types_.md)
 * [&quot;xxhash/asHex&quot;](modules/_xxhash_ashex_.md)
 * [&quot;xxhash/asU8a&quot;](modules/_xxhash_asu8a_.md)
 * [&quot;xxhash/index&quot;](modules/_xxhash_index_.md)

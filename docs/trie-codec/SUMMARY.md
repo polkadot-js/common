@@ -21,6 +21,7 @@
 * [&quot;stream/createValue&quot;](modules/_stream_createvalue_.md)
 * [&quot;stream/endBranch&quot;](modules/_stream_endbranch_.md)
 * [&quot;stream/index&quot;](modules/_stream_index_.md)
+* [&quot;types&quot;](modules/_types_.md)
 * [&quot;util/fromNibbles&quot;](modules/_util_fromnibbles_.md)
 * [&quot;util/fromNibbles.spec&quot;](modules/_util_fromnibbles_spec_.md)
 * [&quot;util/fuseNibbles&quot;](modules/_util_fusenibbles_.md)

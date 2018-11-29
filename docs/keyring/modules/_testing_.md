@@ -6,9 +6,9 @@
 
 ##  testKeyring
 
-▸ **testKeyring**(): `KeyringInstance`
+▸ **testKeyring**(): [KeyringInstance](../interfaces/_types_.keyringinstance.md)
 
-*Defined in [testing.ts:57](https://github.com/polkadot-js/common/blob/dc996ef/packages/keyring/src/testing.ts#L57)*
+*Defined in [testing.ts:57](https://github.com/polkadot-js/common/blob/e3b45e7/packages/keyring/src/testing.ts#L57)*
 
 *__name__*: testKeyring
 
@@ -33,7 +33,7 @@ const addressAlice = keyring.alice.address();
 const publicKeyAlice = keyring.alice.publicKey();
 ```
 
-**Returns:** `KeyringInstance`
+**Returns:** [KeyringInstance](../interfaces/_types_.keyringinstance.md)
 
 ___
 

@@ -6,18 +6,18 @@
 
 ##  decodeString
 
-▸ **decodeString**(decode: *`DecodeFunc`*, input: *`Uint8Array`*): `DecodeOutput`
+▸ **decodeString**(decode: *[DecodeFunc](_decoder_types_.md#decodefunc)*, input: *`Uint8Array`*): [DecodeOutput](_decoder_types_.md#decodeoutput)
 
-*Defined in [decoder/string.ts:9](https://github.com/polkadot-js/common/blob/dc996ef/packages/util-rlp/src/decoder/string.ts#L9)*
+*Defined in [decoder/string.ts:9](https://github.com/polkadot-js/common/blob/e3b45e7/packages/util-rlp/src/decoder/string.ts#L9)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| decode | `DecodeFunc` |
+| decode | [DecodeFunc](_decoder_types_.md#decodefunc) |
 | input | `Uint8Array` |
 
-**Returns:** `DecodeOutput`
+**Returns:** [DecodeOutput](_decoder_types_.md#decodeoutput)
 
 ___
 

@@ -6,9 +6,9 @@
 
 ##  pair
 
-▸ **pair**(__namedParameters: *`object`*, meta?: *`KeyringPair$Meta`*, defaultEncoded?: *`Uint8Array`*): `KeyringPair`
+▸ **pair**(__namedParameters: *`object`*, meta?: *[KeyringPair$Meta](_types_.md#keyringpair_meta)*, defaultEncoded?: *`Uint8Array`*): [KeyringPair](_types_.md#keyringpair)
 
-*Defined in [pair/index.ts:50](https://github.com/polkadot-js/common/blob/dc996ef/packages/keyring/src/pair/index.ts#L50)*
+*Defined in [pair/index.ts:50](https://github.com/polkadot-js/common/blob/e3b45e7/packages/keyring/src/pair/index.ts#L50)*
 
 *__name__*: pair
 
@@ -33,10 +33,10 @@ It has properties whose values are functions that may be called to perform accou
 | Name | Type | Default value |
 | ------ | ------ | ------ |
 | __namedParameters | `object` | - |
-| `Default value` meta | `KeyringPair$Meta` |  {} |
+| `Default value` meta | [KeyringPair$Meta](_types_.md#keyringpair_meta) |  {} |
 | `Optional` defaultEncoded | `Uint8Array` | - |
 
-**Returns:** `KeyringPair`
+**Returns:** [KeyringPair](_types_.md#keyringpair)
 
 ___
 

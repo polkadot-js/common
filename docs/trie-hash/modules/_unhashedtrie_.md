@@ -6,15 +6,15 @@
 
 ##  unhashedTrie
 
-▸ **unhashedTrie**(input: *`Array`<`TriePair`>*, codec?: *`Codec`*): `Uint8Array`
+▸ **unhashedTrie**(input: *`Array`<[TriePair](_types_.md#triepair)>*, codec?: *`Codec`*): `Uint8Array`
 
-*Defined in [unhashedTrie.ts:14](https://github.com/polkadot-js/common/blob/dc996ef/packages/trie-hash/src/unhashedTrie.ts#L14)*
+*Defined in [unhashedTrie.ts:14](https://github.com/polkadot-js/common/blob/e3b45e7/packages/trie-hash/src/unhashedTrie.ts#L14)*
 
 **Parameters:**
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
-| input | `Array`<`TriePair`> | - |
+| input | `Array`<[TriePair](_types_.md#triepair)> | - |
 | `Default value` codec | `Codec` |  DEFAULT_CODEC |
 
 **Returns:** `Uint8Array`

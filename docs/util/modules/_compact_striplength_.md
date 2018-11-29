@@ -6,9 +6,9 @@
 
 ##  compactStripLength
 
-▸ **compactStripLength**(input: *`Uint8Array`*, bitLength?: *`BitLength`*): [`number`, `Uint8Array`]
+▸ **compactStripLength**(input: *`Uint8Array`*, bitLength?: *[BitLength](_compact_types_.md#bitlength)*): [`number`, `Uint8Array`]
 
-*Defined in [compact/stripLength.ts:22](https://github.com/polkadot-js/common/blob/dc996ef/packages/util/src/compact/stripLength.ts#L22)*
+*Defined in [compact/stripLength.ts:22](https://github.com/polkadot-js/common/blob/e3b45e7/packages/util/src/compact/stripLength.ts#L22)*
 
 *__name__*: compactStripLength
 
@@ -27,7 +27,7 @@ console.log(compactStripLength(new Uint8Array([2 << 2, 0xde, 0xad]))); // [2, Ui
 | Name | Type | Default value |
 | ------ | ------ | ------ |
 | input | `Uint8Array` | - |
-| `Default value` bitLength | `BitLength` |  DEFAULT_BITLENGTH |
+| `Default value` bitLength | [BitLength](_compact_types_.md#bitlength) |  DEFAULT_BITLENGTH |
 
 **Returns:** [`number`, `Uint8Array`]
 

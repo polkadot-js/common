@@ -6,9 +6,9 @@
 
 ##  naclKeypairFromString
 
-▸ **naclKeypairFromString**(value: *`string`*): `KeypairType`
+▸ **naclKeypairFromString**(value: *`string`*): [KeypairType](_types_.md#keypairtype)
 
-*Defined in [nacl/keypair/fromString.ts:27](https://github.com/polkadot-js/common/blob/dc996ef/packages/util-crypto/src/nacl/keypair/fromString.ts#L27)*
+*Defined in [nacl/keypair/fromString.ts:27](https://github.com/polkadot-js/common/blob/e3b45e7/packages/util-crypto/src/nacl/keypair/fromString.ts#L27)*
 
 *__name__*: naclKeypairFromString
 
@@ -32,7 +32,7 @@ naclKeypairFromString('test'); // => { secretKey: [...], publicKey: [...] }
 | ------ | ------ |
 | value | `string` |
 
-**Returns:** `KeypairType`
+**Returns:** [KeypairType](_types_.md#keypairtype)
 
 ___
 

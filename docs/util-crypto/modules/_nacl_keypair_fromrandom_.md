@@ -6,9 +6,9 @@
 
 ##  naclKeypairFromRandom
 
-▸ **naclKeypairFromRandom**(): `KeypairType`
+▸ **naclKeypairFromRandom**(): [KeypairType](_types_.md#keypairtype)
 
-*Defined in [nacl/keypair/fromRandom.ts:24](https://github.com/polkadot-js/common/blob/dc996ef/packages/util-crypto/src/nacl/keypair/fromRandom.ts#L24)*
+*Defined in [nacl/keypair/fromRandom.ts:24](https://github.com/polkadot-js/common/blob/e3b45e7/packages/util-crypto/src/nacl/keypair/fromRandom.ts#L24)*
 
 *__name__*: naclKeypairFromRandom
 
@@ -26,7 +26,7 @@ import { naclKeypairFromRandom } from '@polkadot/util-crypto';
 naclKeypairFromRandom(); // => { secretKey: [...], publicKey: [...] }
 ```
 
-**Returns:** `KeypairType`
+**Returns:** [KeypairType](_types_.md#keypairtype)
 
 ___
 

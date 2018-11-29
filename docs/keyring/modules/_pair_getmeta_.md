@@ -6,17 +6,17 @@
 
 ##  getMeta
 
-▸ **getMeta**(state: *`PairState`*): `KeyringPair$Meta`
+▸ **getMeta**(state: *[PairState](_pair_types_.md#pairstate)*): [KeyringPair$Meta](_types_.md#keyringpair_meta)
 
-*Defined in [pair/getMeta.ts:8](https://github.com/polkadot-js/common/blob/dc996ef/packages/keyring/src/pair/getMeta.ts#L8)*
+*Defined in [pair/getMeta.ts:8](https://github.com/polkadot-js/common/blob/e3b45e7/packages/keyring/src/pair/getMeta.ts#L8)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| state | `PairState` |
+| state | [PairState](_pair_types_.md#pairstate) |
 
-**Returns:** `KeyringPair$Meta`
+**Returns:** [KeyringPair$Meta](_types_.md#keyringpair_meta)
 
 ___
 

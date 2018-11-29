@@ -6,7 +6,7 @@
 
 # Implements
 
-* `BaseDb`
+* [BaseDb](../interfaces/_types_.basedb.md)
 
 # Constructors
 
@@ -14,15 +14,15 @@
 
 ##  constructor
 
-⊕ **new MemoryDb**(options?: *`BaseDbOptions`*): [MemoryDb](_engines_memorydb_.memorydb.md)
+⊕ **new MemoryDb**(options?: *[BaseDbOptions](../modules/_types_.md#basedboptions)*): [MemoryDb](_engines_memorydb_.memorydb.md)
 
-*Defined in [engines/MemoryDb.ts:16](https://github.com/polkadot-js/common/blob/dc996ef/packages/db/src/engines/MemoryDb.ts#L16)*
+*Defined in [engines/MemoryDb.ts:16](https://github.com/polkadot-js/common/blob/e3b45e7/packages/db/src/engines/MemoryDb.ts#L16)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` options | `BaseDbOptions` |
+| `Optional` options | [BaseDbOptions](../modules/_types_.md#basedboptions) |
 
 **Returns:** [MemoryDb](_engines_memorydb_.memorydb.md)
 
@@ -36,7 +36,9 @@ ___
 
 ▸ **close**(): `void`
 
-*Defined in [engines/MemoryDb.ts:22](https://github.com/polkadot-js/common/blob/dc996ef/packages/db/src/engines/MemoryDb.ts#L22)*
+*Implementation of [BaseDb](../interfaces/_types_.basedb.md).[close](../interfaces/_types_.basedb.md#close)*
+
+*Defined in [engines/MemoryDb.ts:22](https://github.com/polkadot-js/common/blob/e3b45e7/packages/db/src/engines/MemoryDb.ts#L22)*
 
 **Returns:** `void`
 
@@ -47,7 +49,9 @@ ___
 
 ▸ **del**(key: *`Uint8Array`*): `void`
 
-*Defined in [engines/MemoryDb.ts:56](https://github.com/polkadot-js/common/blob/dc996ef/packages/db/src/engines/MemoryDb.ts#L56)*
+*Implementation of [BaseDb](../interfaces/_types_.basedb.md).[del](../interfaces/_types_.basedb.md#del)*
+
+*Defined in [engines/MemoryDb.ts:56](https://github.com/polkadot-js/common/blob/e3b45e7/packages/db/src/engines/MemoryDb.ts#L56)*
 
 **Parameters:**
 
@@ -64,7 +68,9 @@ ___
 
 ▸ **drop**(): `void`
 
-*Defined in [engines/MemoryDb.ts:30](https://github.com/polkadot-js/common/blob/dc996ef/packages/db/src/engines/MemoryDb.ts#L30)*
+*Implementation of [BaseDb](../interfaces/_types_.basedb.md).[drop](../interfaces/_types_.basedb.md#drop)*
+
+*Defined in [engines/MemoryDb.ts:30](https://github.com/polkadot-js/common/blob/e3b45e7/packages/db/src/engines/MemoryDb.ts#L30)*
 
 **Returns:** `void`
 
@@ -75,7 +81,9 @@ ___
 
 ▸ **empty**(): `void`
 
-*Defined in [engines/MemoryDb.ts:34](https://github.com/polkadot-js/common/blob/dc996ef/packages/db/src/engines/MemoryDb.ts#L34)*
+*Implementation of [BaseDb](../interfaces/_types_.basedb.md).[empty](../interfaces/_types_.basedb.md#empty)*
+
+*Defined in [engines/MemoryDb.ts:34](https://github.com/polkadot-js/common/blob/e3b45e7/packages/db/src/engines/MemoryDb.ts#L34)*
 
 **Returns:** `void`
 
@@ -86,7 +94,9 @@ ___
 
 ▸ **get**(key: *`Uint8Array`*):  `Uint8Array` &#124; `null`
 
-*Defined in [engines/MemoryDb.ts:62](https://github.com/polkadot-js/common/blob/dc996ef/packages/db/src/engines/MemoryDb.ts#L62)*
+*Implementation of [BaseDb](../interfaces/_types_.basedb.md).[get](../interfaces/_types_.basedb.md#get)*
+
+*Defined in [engines/MemoryDb.ts:62](https://github.com/polkadot-js/common/blob/e3b45e7/packages/db/src/engines/MemoryDb.ts#L62)*
 
 **Parameters:**
 
@@ -101,15 +111,17 @@ ___
 
 ##  maintain
 
-▸ **maintain**(fn: *`ProgressCb`*): `void`
+▸ **maintain**(fn: *[ProgressCb](../modules/_types_.md#progresscb)*): `void`
 
-*Defined in [engines/MemoryDb.ts:42](https://github.com/polkadot-js/common/blob/dc996ef/packages/db/src/engines/MemoryDb.ts#L42)*
+*Implementation of [BaseDb](../interfaces/_types_.basedb.md).[maintain](../interfaces/_types_.basedb.md#maintain)*
+
+*Defined in [engines/MemoryDb.ts:42](https://github.com/polkadot-js/common/blob/e3b45e7/packages/db/src/engines/MemoryDb.ts#L42)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| fn | `ProgressCb` |
+| fn | [ProgressCb](../modules/_types_.md#progresscb) |
 
 **Returns:** `void`
 
@@ -120,7 +132,9 @@ ___
 
 ▸ **open**(): `void`
 
-*Defined in [engines/MemoryDb.ts:26](https://github.com/polkadot-js/common/blob/dc996ef/packages/db/src/engines/MemoryDb.ts#L26)*
+*Implementation of [BaseDb](../interfaces/_types_.basedb.md).[open](../interfaces/_types_.basedb.md#open)*
+
+*Defined in [engines/MemoryDb.ts:26](https://github.com/polkadot-js/common/blob/e3b45e7/packages/db/src/engines/MemoryDb.ts#L26)*
 
 **Returns:** `void`
 
@@ -131,7 +145,9 @@ ___
 
 ▸ **put**(key: *`Uint8Array`*, value: *`Uint8Array`*): `void`
 
-*Defined in [engines/MemoryDb.ts:68](https://github.com/polkadot-js/common/blob/dc996ef/packages/db/src/engines/MemoryDb.ts#L68)*
+*Implementation of [BaseDb](../interfaces/_types_.basedb.md).[put](../interfaces/_types_.basedb.md#put)*
+
+*Defined in [engines/MemoryDb.ts:68](https://github.com/polkadot-js/common/blob/e3b45e7/packages/db/src/engines/MemoryDb.ts#L68)*
 
 **Parameters:**
 
@@ -149,7 +165,9 @@ ___
 
 ▸ **rename**(base: *`string`*, file: *`string`*): `void`
 
-*Defined in [engines/MemoryDb.ts:38](https://github.com/polkadot-js/common/blob/dc996ef/packages/db/src/engines/MemoryDb.ts#L38)*
+*Implementation of [BaseDb](../interfaces/_types_.basedb.md).[rename](../interfaces/_types_.basedb.md#rename)*
+
+*Defined in [engines/MemoryDb.ts:38](https://github.com/polkadot-js/common/blob/e3b45e7/packages/db/src/engines/MemoryDb.ts#L38)*
 
 **Parameters:**
 
@@ -167,7 +185,9 @@ ___
 
 ▸ **size**(): `number`
 
-*Defined in [engines/MemoryDb.ts:50](https://github.com/polkadot-js/common/blob/dc996ef/packages/db/src/engines/MemoryDb.ts#L50)*
+*Implementation of [BaseDb](../interfaces/_types_.basedb.md).[size](../interfaces/_types_.basedb.md#size)*
+
+*Defined in [engines/MemoryDb.ts:50](https://github.com/polkadot-js/common/blob/e3b45e7/packages/db/src/engines/MemoryDb.ts#L50)*
 
 **Returns:** `number`
 
