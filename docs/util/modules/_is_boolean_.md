@@ -8,7 +8,7 @@
 
 ▸ **isBoolean**(value: *`any`*): `boolean`
 
-*Defined in [is/boolean.ts:20](https://github.com/polkadot-js/common/blob/24cd64c/packages/util/src/is/boolean.ts#L20)*
+*Defined in [is/boolean.ts:20](https://github.com/polkadot-js/common/blob/dc996ef/packages/util/src/is/boolean.ts#L20)*
 
 *__name__*: isBoolean
 
