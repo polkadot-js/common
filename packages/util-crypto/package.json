@@ -30,7 +30,7 @@
   "dependencies": {
     "@babel/runtime": "^7.1.5",
     "@polkadot/util": "^0.33.6",
-    "@types/bip39": "^2.4.0",
+    "@types/bip39": "^2.4.1",
     "bip39": "^2.5.0",
     "blakejs": "^1.1.0",
     "js-sha3": "^0.8.0",
