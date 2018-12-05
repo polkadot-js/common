@@ -8,7 +8,7 @@
 
 **Ƭ Chainspec**: *`object`*
 
-*Defined in [types.ts:5](https://github.com/polkadot-js/common/blob/ccfed2a/packages/chainspec/src/types.ts#L5)*
+*Defined in [types.ts:5](https://github.com/polkadot-js/common/blob/016a7b8/packages/chainspec/src/types.ts#L5)*
 
 #### Type declaration
 

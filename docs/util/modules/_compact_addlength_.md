@@ -8,7 +8,7 @@
 
 ▸ **compactAddLength**(input: *`Uint8Array`*, bitLength?: *[BitLength](_compact_types_.md#bitlength)*): `Uint8Array`
 
-*Defined in [compact/addLength.ts:23](https://github.com/polkadot-js/common/blob/ccfed2a/packages/util/src/compact/addLength.ts#L23)*
+*Defined in [compact/addLength.ts:23](https://github.com/polkadot-js/common/blob/016a7b8/packages/util/src/compact/addLength.ts#L23)*
 
 *__name__*: compactAddLength
 

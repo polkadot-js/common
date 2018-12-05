@@ -8,7 +8,7 @@
 
 ▸ **u8aToU8a**(value?: * `Array`<`number`> &#124; `Buffer` &#124; `Uint8Array` &#124; `string` &#124; `null`*): `Uint8Array`
 
-*Defined in [u8a/toU8a.ts:28](https://github.com/polkadot-js/common/blob/ccfed2a/packages/util/src/u8a/toU8a.ts#L28)*
+*Defined in [u8a/toU8a.ts:28](https://github.com/polkadot-js/common/blob/016a7b8/packages/util/src/u8a/toU8a.ts#L28)*
 
 *__name__*: u8aToU8a
 
