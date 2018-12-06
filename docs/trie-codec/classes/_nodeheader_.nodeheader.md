@@ -12,7 +12,7 @@
 
 ⊕ **new NodeHeader**(input?: * `null` &#124; `Uint8Array` &#124; `Array`< `null` &#124; `Uint8Array`>*): [NodeHeader](_nodeheader_.nodeheader.md)
 
-*Defined in [NodeHeader.ts:40](https://github.com/polkadot-js/common/blob/016a7b8/packages/trie-codec/src/NodeHeader.ts#L40)*
+*Defined in [NodeHeader.ts:40](https://github.com/polkadot-js/common/blob/2be211c/packages/trie-codec/src/NodeHeader.ts#L40)*
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ ___
 
 getencodedLength(): `number`
 
-*Defined in [NodeHeader.ts:127](https://github.com/polkadot-js/common/blob/016a7b8/packages/trie-codec/src/NodeHeader.ts#L127)*
+*Defined in [NodeHeader.ts:127](https://github.com/polkadot-js/common/blob/2be211c/packages/trie-codec/src/NodeHeader.ts#L127)*
 
 **Returns:** `number`
 
@@ -43,7 +43,7 @@ ___
 
 getnodeType(): `number`
 
-*Defined in [NodeHeader.ts:149](https://github.com/polkadot-js/common/blob/016a7b8/packages/trie-codec/src/NodeHeader.ts#L149)*
+*Defined in [NodeHeader.ts:149](https://github.com/polkadot-js/common/blob/2be211c/packages/trie-codec/src/NodeHeader.ts#L149)*
 
 **Returns:** `number`
 
@@ -54,7 +54,7 @@ ___
 
 getvalue():  [Null](_nodeheader_.null.md) &#124; [BranchHeader](_nodeheader_.branchheader.md) &#124; [ExtensionHeader](_nodeheader_.extensionheader.md) &#124; [LeafHeader](_nodeheader_.leafheader.md)
 
-*Defined in [NodeHeader.ts:153](https://github.com/polkadot-js/common/blob/016a7b8/packages/trie-codec/src/NodeHeader.ts#L153)*
+*Defined in [NodeHeader.ts:153](https://github.com/polkadot-js/common/blob/2be211c/packages/trie-codec/src/NodeHeader.ts#L153)*
 
 **Returns:**  [Null](_nodeheader_.null.md) &#124; [BranchHeader](_nodeheader_.branchheader.md) &#124; [ExtensionHeader](_nodeheader_.extensionheader.md) &#124; [LeafHeader](_nodeheader_.leafheader.md)
 
@@ -68,7 +68,7 @@ ___
 
 ▸ **toU8a**(): `Uint8Array`
 
-*Defined in [NodeHeader.ts:157](https://github.com/polkadot-js/common/blob/016a7b8/packages/trie-codec/src/NodeHeader.ts#L157)*
+*Defined in [NodeHeader.ts:157](https://github.com/polkadot-js/common/blob/2be211c/packages/trie-codec/src/NodeHeader.ts#L157)*
 
 **Returns:** `Uint8Array`
 
