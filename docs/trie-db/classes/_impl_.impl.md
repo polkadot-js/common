@@ -13,7 +13,9 @@ Overview
 
 # Hierarchy
 
-**Impl**
+ [Checkpoint](_checkpoint_.checkpoint.md)
+
+**↳ Impl**
 
 ↳  [Trie](_index_.trie.md)
 
@@ -25,7 +27,9 @@ Overview
 
 ⊕ **new Impl**(db: *`TxDb`*, rootHash?: *`Uint8Array`*, codec?: *`Codec`*): [Impl](_impl_.impl.md)
 
-*Defined in [Impl.ts:34](https://github.com/polkadot-js/common/blob/3de334c/packages/trie-db/src/Impl.ts#L34)*
+*Overrides [Checkpoint](_checkpoint_.checkpoint.md).[constructor](_checkpoint_.checkpoint.md#constructor)*
+
+*Defined in [Impl.ts:33](https://github.com/polkadot-js/common/blob/fbd6c1e/packages/trie-db/src/Impl.ts#L33)*
 
 **Parameters:**
 
@@ -47,7 +51,7 @@ ___
 
 **● db**: *`TxDb`*
 
-*Defined in [Impl.ts:30](https://github.com/polkadot-js/common/blob/3de334c/packages/trie-db/src/Impl.ts#L30)*
+*Defined in [Impl.ts:31](https://github.com/polkadot-js/common/blob/fbd6c1e/packages/trie-db/src/Impl.ts#L31)*
 
 ___
 
