@@ -17,14 +17,8 @@ const data: { [index: string]: TestData } = {
   simpleBranch: {
     desc: 'a branch',
     input: [
-      {
-        k: Uint8Array.from([0xaa]),
-        v: Uint8Array.from([0x10])
-      },
-      {
-        k: Uint8Array.from([0xba]),
-        v: Uint8Array.from([0x11])
-      }
+      { k: Uint8Array.from([0xaa]), v: Uint8Array.from([0x10]) },
+      { k: Uint8Array.from([0xba]), v: Uint8Array.from([0x11]) }
     ],
     output: Uint8Array.from([
       0xfe, 0x00, 0x0c, 0x10, 0x02, 0x0a, 0x04, 0x10, 0x10, 0x02, 0x0a, 0x04, 0x11
@@ -34,14 +28,8 @@ const data: { [index: string]: TestData } = {
   extensionBranch: {
     desc: 'extension and branch',
     input: [
-      {
-        k: Uint8Array.from([0xaa]),
-        v: Uint8Array.from([0x10])
-      },
-      {
-        k: Uint8Array.from([0xab]),
-        v: Uint8Array.from([0x11])
-      }
+      { k: Uint8Array.from([0xaa]), v: Uint8Array.from([0x10]) },
+      { k: Uint8Array.from([0xab]), v: Uint8Array.from([0x11]) }
     ],
     output: hexToU8a('0x810a2cfe000c0c0104100c010411'),
     root: hexToU8a('0x3f6764bc812ca86b84cf88b2045828fd605c8abbe1e9c657ff87adb715c644bf')
@@ -49,18 +37,9 @@ const data: { [index: string]: TestData } = {
   extensionBranchValue: {
     desc: 'extension and branch with value',
     input: [
-      {
-        k: Uint8Array.from([0xaa]),
-        v: Uint8Array.from([0xa0])
-      },
-      {
-        k: Uint8Array.from([0xaa, 0xaa]),
-        v: Uint8Array.from([0xaa])
-      },
-      {
-        k: Uint8Array.from([0xaa, 0xbb]),
-        v: Uint8Array.from([0xab])
-      }
+      { k: Uint8Array.from([0xaa]), v: Uint8Array.from([0xa0]) },
+      { k: Uint8Array.from([0xaa, 0xaa]), v: Uint8Array.from([0xaa]) },
+      { k: Uint8Array.from([0xaa, 0xbb]), v: Uint8Array.from([0xab]) }
     ],
     output: Uint8Array.from([
       0x82, 0xaa, 0x3c, 0xff, 0x00, 0x0c, 0x04, 0xa0, 0x10, 0x02, 0x0a, 0x04, 0xaa, 0x10, 0x02, 0x0b,
@@ -71,22 +50,10 @@ const data: { [index: string]: TestData } = {
   midExtensionBranchValue: {
     desc: 'medium extension and branch with value',
     input: [
-      {
-        k: Uint8Array.from([0xaa]),
-        v: Uint8Array.from([0xa0])
-      },
-      {
-        k: Uint8Array.from([0xaa, 0xaa]),
-        v: Uint8Array.from([0xaa])
-      },
-      {
-        k: Uint8Array.from([0xaa, 0xbb]),
-        v: Uint8Array.from([0xab])
-      },
-      {
-        k: Uint8Array.from([0xbb]),
-        v: Uint8Array.from([0xb0])
-      }
+      { k: Uint8Array.from([0xaa]), v: Uint8Array.from([0xa0]) },
+      { k: Uint8Array.from([0xaa, 0xaa]), v: Uint8Array.from([0xaa]) },
+      { k: Uint8Array.from([0xaa, 0xbb]), v: Uint8Array.from([0xab]) },
+      { k: Uint8Array.from([0xbb]), v: Uint8Array.from([0xb0]) }
     ],
     output: Uint8Array.from([
       0xfe, 0x00, 0x0c, 0x48, 0x81, 0x0a, 0x3c, 0xff, 0x00, 0x0c, 0x04, 0xa0, 0x10, 0x02, 0x0a, 0x04,
@@ -97,30 +64,12 @@ const data: { [index: string]: TestData } = {
   bigExtensionBranchValue: {
     desc: 'bigger extension and branch with value',
     input: [
-      {
-        k: Uint8Array.from([0xaa]),
-        v: Uint8Array.from([0xa0])
-      },
-      {
-        k: Uint8Array.from([0xaa, 0xaa]),
-        v: Uint8Array.from([0xaa])
-      },
-      {
-        k: Uint8Array.from([0xaa, 0xbb]),
-        v: Uint8Array.from([0xab])
-      },
-      {
-        k: Uint8Array.from([0xbb]),
-        v: Uint8Array.from([0xb0])
-      },
-      {
-        k: Uint8Array.from([0xbb, 0xbb]),
-        v: Uint8Array.from([0xbb])
-      },
-      {
-        k: Uint8Array.from([0xbb, 0xcc]),
-        v: Uint8Array.from([0xbc])
-      }
+      { k: Uint8Array.from([0xaa]), v: Uint8Array.from([0xa0]) },
+      { k: Uint8Array.from([0xaa, 0xaa]), v: Uint8Array.from([0xaa]) },
+      { k: Uint8Array.from([0xaa, 0xbb]), v: Uint8Array.from([0xab]) },
+      { k: Uint8Array.from([0xbb]), v: Uint8Array.from([0xb0]) },
+      { k: Uint8Array.from([0xbb, 0xbb]), v: Uint8Array.from([0xbb]) },
+      { k: Uint8Array.from([0xbb, 0xcc]), v: Uint8Array.from([0xbc]) }
     ],
     output: Uint8Array.from([
       0xfe, 0x00, 0x0c, 0x48, 0x81, 0x0a, 0x3c, 0xff, 0x00, 0x0c, 0x04, 0xa0, 0x10, 0x02, 0x0a, 0x04,
@@ -172,18 +121,13 @@ const data: { [index: string]: TestData } = {
   empty: {
     desc: 'empty into [0]',
     input: [],
-    output: Uint8Array.from([
-      0
-    ]),
+    output: Uint8Array.from([0]),
     root: hexToU8a('0x03170a2e7597b7b7e3d84c05391d139a62b157e78786d8c082f29dcf4c111314')
   },
   singleValue: {
     desc: 'a single tuple',
     input: [
-      {
-        k: Uint8Array.from([0xaa]),
-        v: Uint8Array.from([0xbb])
-      }
+      { k: Uint8Array.from([0xaa]), v: Uint8Array.from([0xbb]) }
     ],
     output: Uint8Array.from([
       0x03,   // leaf (0x01) with (+) key of 2 nibbles (0x02)
@@ -196,10 +140,7 @@ const data: { [index: string]: TestData } = {
   singleValue2: {
     desc: 'a single tuple (prepare for next)',
     input: [
-      {
-        k: Uint8Array.from([0x48, 0x19]),
-        v: Uint8Array.from([0xfe])
-      }
+      { k: Uint8Array.from([0x48, 0x19]), v: Uint8Array.from([0xfe]) }
     ],
     output: Uint8Array.from([
       0x05, 0x48, 0x19, 0x04, 0xfe
@@ -209,14 +150,8 @@ const data: { [index: string]: TestData } = {
   twoValues: {
     desc: '2 disjointed tuple keys',
     input: [
-      {
-        k: Uint8Array.from([0x48, 0x19]),
-        v: Uint8Array.from([0xfe])
-      },
-      {
-        k: Uint8Array.from([0x13, 0x14]),
-        v: Uint8Array.from([0xff])
-      }
+      { k: Uint8Array.from([0x48, 0x19]), v: Uint8Array.from([0xfe]) },
+      { k: Uint8Array.from([0x13, 0x14]), v: Uint8Array.from([0xff]) }
     ],
     output: Uint8Array.from([
       0xfe,      // branch, no value
