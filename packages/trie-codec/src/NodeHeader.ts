@@ -85,40 +85,19 @@ export default class NodeHeader {
       : EMPTY_TRIE;
 
     if (!input || firstByte === EMPTY_TRIE) {
-      return [
-        NODE_TYPE_NULL,
-        new Null()
-      ];
+      return [NODE_TYPE_NULL, new Null()];
     } else if (firstByte === BRANCH_NODE_NO_VALUE) {
-      return [
-        NODE_TYPE_BRANCH,
-        new BranchHeader(false)
-      ];
+      return [NODE_TYPE_BRANCH, new BranchHeader(false)];
     } else if (firstByte === BRANCH_NODE_WITH_VALUE) {
-      return [
-        NODE_TYPE_BRANCH,
-        new BranchHeader(true)
-      ];
+      return [NODE_TYPE_BRANCH, new BranchHeader(true)];
     } else if (firstByte >= EXTENSION_NODE_OFFSET && firstByte <= EXTENSION_NODE_SMALL_MAX) {
-      return [
-        NODE_TYPE_EXT,
-        new ExtensionHeader(firstByte - EXTENSION_NODE_OFFSET)
-      ];
+      return [NODE_TYPE_EXT, new ExtensionHeader(firstByte - EXTENSION_NODE_OFFSET)];
     } else if (firstByte === EXTENSION_NODE_BIG) {
-      return [
-        NODE_TYPE_EXT,
-        new ExtensionHeader(input[1] + EXTENSION_NODE_THRESHOLD)
-      ];
+      return [NODE_TYPE_EXT, new ExtensionHeader(input[1] + EXTENSION_NODE_THRESHOLD)];
     } else if (firstByte >= LEAF_NODE_OFFSET && firstByte <= LEAF_NODE_SMALL_MAX) {
-      return [
-        NODE_TYPE_LEAF,
-        new LeafHeader(firstByte - LEAF_NODE_OFFSET)
-      ];
+      return [NODE_TYPE_LEAF, new LeafHeader(firstByte - LEAF_NODE_OFFSET)];
     } else if (firstByte === LEAF_NODE_BIG) {
-      return [
-        NODE_TYPE_LEAF,
-        new LeafHeader(input[1] + LEAF_NODE_THRESHOLD)
-      ];
+      return [NODE_TYPE_LEAF, new LeafHeader(input[1] + LEAF_NODE_THRESHOLD)];
     }
 
     throw new Error('Unreachable');
@@ -158,9 +137,7 @@ export default class NodeHeader {
     const nodeType = this.nodeType;
 
     if (nodeType === NODE_TYPE_NULL) {
-      return new Uint8Array([
-        EMPTY_TRIE
-      ]);
+      return new Uint8Array([EMPTY_TRIE]);
     } else if (nodeType === NODE_TYPE_BRANCH) {
       return new Uint8Array([
         (this.value as BranchHeader).valueOf() === true
@@ -174,10 +151,7 @@ export default class NodeHeader {
         return new Uint8Array([EXTENSION_NODE_OFFSET + nibbleCount]);
       }
 
-      return new Uint8Array([
-        EXTENSION_NODE_BIG,
-        nibbleCount - EXTENSION_NODE_THRESHOLD
-      ]);
+      return new Uint8Array([EXTENSION_NODE_BIG, nibbleCount - EXTENSION_NODE_THRESHOLD]);
     } else if (nodeType === NODE_TYPE_LEAF) {
       const nibbleCount = (this.value as LeafHeader).toNumber();
 
@@ -185,10 +159,7 @@ export default class NodeHeader {
         return new Uint8Array([LEAF_NODE_OFFSET + nibbleCount]);
       }
 
-      return new Uint8Array([
-        LEAF_NODE_BIG,
-        nibbleCount - LEAF_NODE_THRESHOLD
-      ]);
+      return new Uint8Array([LEAF_NODE_BIG, nibbleCount - LEAF_NODE_THRESHOLD]);
     }
 
     throw new Error('Unreachable');

@@ -10,6 +10,8 @@ const ENTRY_NUM = 16; // nibbles, 256 for bytes (where serialize would be noop)
 const ENTRY_SIZE = 1 + UINT_SIZE;
 const BRANCH_SIZE = ENTRY_NUM * ENTRY_SIZE;
 const DEFAULT_FILE = 'store.db';
+const LRU_BRANCH_COUNT = 16384; // * 96 = bytes
+const LRU_DATA_COUNT = 8192;
 
 export default {
   BRANCH_SIZE,
@@ -18,5 +20,7 @@ export default {
   ENTRY_SIZE,
   KEY_SIZE,
   KEY_TOTAL_SIZE,
+  LRU_BRANCH_COUNT,
+  LRU_DATA_COUNT,
   UINT_SIZE
 };

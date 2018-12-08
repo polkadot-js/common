@@ -44,6 +44,41 @@ function encodeValue (input: null | Uint8Array | Array<null | Uint8Array>): Uint
   return compactAddLength(encoded);
 }
 
+function _encodeBranch (header: NodeHeader, input: Array<null | Uint8Array>): Uint8Array {
+  let valuesU8a = EMPTY;
+  let bitmap = 0;
+
+  input.reduce((cursor, value, index) => {
+    if ((index < BRANCH_VALUE_INDEX) && value) {
+      bitmap = bitmap | cursor;
+
+      valuesU8a = u8aConcat(
+        valuesU8a,
+        encodeValue(value)
+      );
+    }
+
+    return cursor << 1;
+  }, 1);
+
+  return u8aConcat(
+    header.toU8a(),
+    new Uint8Array([(bitmap % 256), Math.floor(bitmap / 256)]),
+    encodeValue(input[BRANCH_VALUE_INDEX]),
+    valuesU8a
+  );
+}
+
+function _encodeKv (header: NodeHeader, input: Array<null | Uint8Array>): Uint8Array {
+  const [key, value] = input;
+
+  return u8aConcat(
+    header.toU8a(),
+    encodeKey(key),
+    encodeValue(value)
+  );
+}
+
 function _encode (input?: null | Uint8Array | Array<null | Uint8Array>): Uint8Array {
   if (isU8a(input)) {
     return input;
@@ -51,41 +86,13 @@ function _encode (input?: null | Uint8Array | Array<null | Uint8Array>): Uint8Ar
 
   const header = new NodeHeader(input);
   const nodeType = header.nodeType;
-  const u8aHeader = header.toU8a();
 
   if (!input || nodeType === NODE_TYPE_NULL) {
-    return u8aHeader;
+    return header.toU8a();
   } else if (nodeType === NODE_TYPE_BRANCH) {
-    let valuesU8a = EMPTY;
-    let bitmap = 0;
-
-    input.reduce((cursor, value, index) => {
-      if ((index < BRANCH_VALUE_INDEX) && value) {
-        bitmap = bitmap | cursor;
-
-        valuesU8a = u8aConcat(
-          valuesU8a,
-          encodeValue(value)
-        );
-      }
-
-      return cursor << 1;
-    }, 1);
-
-    return u8aConcat(
-      u8aHeader,
-      new Uint8Array([(bitmap % 256), Math.floor(bitmap / 256)]),
-      encodeValue(input[BRANCH_VALUE_INDEX]),
-      valuesU8a
-    );
+    return _encodeBranch(header, input);
   } else if (nodeType === NODE_TYPE_EXT || nodeType === NODE_TYPE_LEAF) {
-    const [key, value] = input;
-
-    return u8aConcat(
-      u8aHeader,
-      encodeKey(key),
-      encodeValue(value)
-    );
+    return _encodeKv(header, input);
   }
 
   throw new Error('Unreachable');
