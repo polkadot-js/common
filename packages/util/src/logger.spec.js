@@ -3,6 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { logger } from './index';
+import { format } from './logger';
 
 describe('logger', () => {
   let dateMatch;
@@ -37,6 +38,16 @@ describe('logger', () => {
   afterEach(() => {
     process.env = oldEnv;
     jest.restoreAllMocks();
+  });
+
+  describe('format', () => {
+    it('returns null as-is', () => {
+      expect(format(null)).toEqual(null);
+    });
+
+    it('returns undefined as-is', () => {
+      expect(format(undefined)).toEqual(undefined);
+    });
   });
 
   it('logs to console.log with .log', () => {
