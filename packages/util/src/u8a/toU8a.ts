@@ -35,11 +35,9 @@ export default function u8aToU8a (value?: Array<number> | Buffer | Uint8Array | 
   }
 
   if (isString(value)) {
-    if (isHex(value)) {
-      return hexToU8a(value);
-    }
-
-    return stringToU8a(value);
+    return isHex(value)
+      ? hexToU8a(value)
+      : stringToU8a(value);
   }
 
   if (Array.isArray(value)) {

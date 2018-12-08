@@ -50,30 +50,16 @@ export default class NodeHeader {
 
   private static decodeNodeHeaderArray (input: Array<null | Uint8Array>): [NodeType, Null | BranchHeader | ExtensionHeader | LeafHeader] {
     if (input.length === 0) {
-      return [
-        NODE_TYPE_NULL,
-        new Null()
-      ];
+      return [NODE_TYPE_NULL, new Null()];
     } else if (input.length === 2) {
       const nibbles = decodeNibbles(input[0]);
       const isTerminated = isNibblesTerminated(nibbles);
 
-      if (isTerminated) {
-        return [
-          NODE_TYPE_LEAF,
-          new LeafHeader(nibbles.length - 1)
-        ];
-      } else {
-        return [
-          NODE_TYPE_EXT,
-          new ExtensionHeader(nibbles.length)
-        ];
-      }
+      return isTerminated
+        ? [NODE_TYPE_LEAF, new LeafHeader(nibbles.length - 1)]
+        : [NODE_TYPE_EXT, new ExtensionHeader(nibbles.length)];
     } else if (input.length === 17) {
-      return [
-        NODE_TYPE_BRANCH,
-        new BranchHeader(!!input[16])
-      ];
+      return [NODE_TYPE_BRANCH, new BranchHeader(!!input[16])];
     }
 
     throw new Error('Unreachable');
@@ -147,19 +133,15 @@ export default class NodeHeader {
     } else if (nodeType === NODE_TYPE_EXT) {
       const nibbleCount = (this.value as ExtensionHeader).toNumber();
 
-      if (nibbleCount < EXTENSION_NODE_THRESHOLD) {
-        return new Uint8Array([EXTENSION_NODE_OFFSET + nibbleCount]);
-      }
-
-      return new Uint8Array([EXTENSION_NODE_BIG, nibbleCount - EXTENSION_NODE_THRESHOLD]);
+      return (nibbleCount < EXTENSION_NODE_THRESHOLD)
+        ? new Uint8Array([EXTENSION_NODE_OFFSET + nibbleCount])
+        : new Uint8Array([EXTENSION_NODE_BIG, nibbleCount - EXTENSION_NODE_THRESHOLD]);
     } else if (nodeType === NODE_TYPE_LEAF) {
       const nibbleCount = (this.value as LeafHeader).toNumber();
 
-      if (nibbleCount < LEAF_NODE_THRESHOLD) {
-        return new Uint8Array([LEAF_NODE_OFFSET + nibbleCount]);
-      }
-
-      return new Uint8Array([LEAF_NODE_BIG, nibbleCount - LEAF_NODE_THRESHOLD]);
+      return (nibbleCount < LEAF_NODE_THRESHOLD)
+        ? new Uint8Array([LEAF_NODE_OFFSET + nibbleCount])
+        : new Uint8Array([LEAF_NODE_BIG, nibbleCount - LEAF_NODE_THRESHOLD]);
     }
 
     throw new Error('Unreachable');

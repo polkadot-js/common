@@ -13,6 +13,7 @@ import { isNull, logger , u8aConcat, u8aToHex } from '@polkadot/util/index';
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';
 import { keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';
 import { getNodeType, decodeNode, encodeNode } from './util/node';
+import Checkpoint from './Checkpoint';
 import constants, { Constants } from './constants';
 
 const l = logger('trie/db');
@@ -26,37 +27,21 @@ const l = logger('trie/db');
  * @summary Re-implementation of a Patricia Trie
  * @example See [Polkadot-JS Common Trie-DB Examples](https://polkadot.js.org/api/common/examples/trie-db/)
  */
-export default class Impl {
+export default class Impl extends Checkpoint {
   readonly db: TxDb;
   protected codec: Codec;
   protected constants: Constants;
-  protected txRoot: Uint8Array;
-  protected rootHash: Uint8Array;
 
   constructor (db: TxDb, rootHash?: Uint8Array, codec: Codec = substrateCodec) {
+    const _constants = constants(codec);
+
+    super(rootHash || _constants.EMPTY_HASH);
+
     this.db = db;
     this.codec = codec;
-    this.constants = constants(codec);
-    this.rootHash = rootHash || this.constants.EMPTY_HASH;
-    this.txRoot = this.rootHash;
+    this.constants = _constants;
 
     l.log(`Created with ${codec.type} codec, root ${u8aToHex(this.rootHash, 64)}`);
-  }
-
-  protected createCheckpoint (): Uint8Array {
-    this.txRoot = this.rootHash;
-
-    return this.txRoot;
-  }
-
-  protected commitCheckpoint (): Uint8Array {
-    return this.rootHash;
-  }
-
-  protected revertCheckpoint (): Uint8Array {
-    this.rootHash = this.txRoot;
-
-    return this.rootHash;
   }
 
   protected _snapshot (dest: TrieDb, fn: ProgressCb, root: Uint8Array, keys: number, percent: number, depth: number): number {
@@ -291,10 +276,7 @@ export default class Impl {
     // l.debug(() => ['_put', { node, trieKey, value }]);
 
     if (isEmptyNode(node)) {
-      return [
-        computeLeafKey(trieKey),
-        value
-      ];
+      return [computeLeafKey(trieKey), value];
     } else if (isKvNode(node)) {
       return this._putKvNode(node, trieKey, value);
     } else if (isBranchNode(node)) {
@@ -332,10 +314,7 @@ export default class Impl {
 
     if (currentRemainder.length === 0 && trieRemainder.length === 0) {
       if (isLeaf) {
-        return [
-          node[0],
-          value
-        ];
+        return [node[0], value];
       }
 
       const subNode = this._getNode(node[1]);

@@ -9,6 +9,12 @@ import { NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from 
 import { addNibblesTerminator, encodeNibbles } from './nibbles';
 import { toNibbles } from './util';
 
+const EMPTY_BRANCH: Array<Uint8Array | null> = [
+  null, null, null, null,
+  null, null, null, null,
+  null, null, null, null,
+  null, null, null, null
+];
 const l = logger('trie/codec');
 
 l.noop();
@@ -30,13 +36,7 @@ function _decodeBranch (header: NodeHeader, input: Uint8Array): Array<null | Uin
 
   let cursor = 1;
 
-  return [
-    null, null, null, null,
-    null, null, null, null,
-    null, null, null, null,
-    null, null, null, null,
-    value
-  ].map((value, index) => {
+  return EMPTY_BRANCH.concat(value).map((value, index) => {
     let result: null | Uint8Array | [Uint8Array, Uint8Array] = value;
 
     if ((index < 16) && (bitmap & cursor)) {

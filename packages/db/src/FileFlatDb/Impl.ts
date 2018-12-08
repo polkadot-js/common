@@ -105,7 +105,7 @@ export default class Impl extends Cache {
   }
 
   protected _writeValue (keyAt: number, keyValue: Buffer, value: Buffer): Value {
-    l.debug(() => ['writeValue', { keyAt, keyValue, value }]);
+    // l.debug(() => ['writeValue', { keyAt, keyValue, value }]);
 
     const current = this._extractValueInfo(keyValue);
     const valueAt = value.length > current.valueLength
@@ -123,7 +123,7 @@ export default class Impl extends Cache {
   }
 
   protected _writeNewKey (key: NibbleBuffer): Key {
-    l.debug(() => ['writeNewKey', { key }]);
+    // l.debug(() => ['writeNewKey', { key }]);
 
     const keyValue = Buffer.alloc(defaults.KEY_TOTAL_SIZE);
 
@@ -147,7 +147,7 @@ export default class Impl extends Cache {
   }
 
   protected _writeNewBranch (branch: Buffer, branchAt: number, entryIndex: number, key: NibbleBuffer, prevAt: number, prevKey: NibbleBuffer, matchIndex: number, depth: number): Key {
-    l.debug(() => ['writeNewBranch', { branch, branchAt, entryIndex, key, prevAt, prevKey, matchIndex, depth }]);
+    // l.debug(() => ['writeNewBranch', { branch, branchAt, entryIndex, key, prevAt, prevKey, matchIndex, depth }]);
 
     const { keyAt, keyValue } = this.writeNewKey(key);
     const keyIndex = key.nibbles[matchIndex] * defaults.ENTRY_SIZE;
@@ -178,11 +178,7 @@ export default class Impl extends Cache {
     branch.writeUIntBE(newBranchAt, entryIndex + 1, defaults.UINT_SIZE);
     fs.writeSync(this._fd, branch, entryIndex, defaults.ENTRY_SIZE, branchAt + entryIndex);
 
-    return {
-      key,
-      keyAt,
-      keyValue
-    };
+    return { key, keyAt, keyValue };
   }
 
   protected writeNewBranch (branch: Buffer, branchAt: number, entryIndex: number, key: NibbleBuffer, prevAt: number, prevValue: NibbleBuffer, matchIndex: number, depth: number): Key {

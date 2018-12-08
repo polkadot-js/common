@@ -11,9 +11,7 @@ import isBn from './is/bn';
 import isBuffer from './is/buffer';
 import isFunction from './is/function';
 import isObject from './is/object';
-import isNull from './is/null';
 import isU8a from './is/u8a';
-import isUndefined from './is/undefined';
 import u8aToHex from './u8a/toHex';
 
 type ConsoleType = 'error' | 'log' | 'warn';
@@ -33,13 +31,15 @@ const chalked = {
   warn: chalk.yellow
 };
 
-export function format (value: any): any {
-  if (isNull(value)) {
-    return null;
-  } else if (isUndefined(value)) {
-    return undefined;
-  }
+function formatObject (value: { [index: string]: any }): any {
+  return Object.keys(value).reduce((result, key) => {
+    result[key] = format(value[key]);
 
+    return result;
+  }, {} as { [index: string]: any });
+}
+
+export function format (value: any): any {
   if (Array.isArray(value)) {
     return value.map(format);
   }
@@ -56,12 +56,8 @@ export function format (value: any): any {
     return u8aToHex(value);
   }
 
-  if (isObject(value) && value.constructor === Object) {
-    return Object.keys(value).reduce((result, key) => {
-      result[key] = format(value[key]);
-
-      return result;
-    }, {} as { [index: string]: any });
+  if (value && isObject(value) && value.constructor === Object) {
+    return formatObject(value);
   }
 
   return value;
