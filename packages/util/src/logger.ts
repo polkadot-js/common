@@ -33,13 +33,15 @@ const chalked = {
   warn: chalk.yellow
 };
 
-export function format (value: any): any {
-  if (isNull(value)) {
-    return null;
-  } else if (isUndefined(value)) {
-    return undefined;
-  }
+function formatObject (value: { [index: string]: any }): any {
+  return Object.keys(value).reduce((result, key) => {
+    result[key] = format(value[key]);
 
+    return result;
+  }, {} as { [index: string]: any });
+}
+
+export function format (value: any): any {
   if (Array.isArray(value)) {
     return value.map(format);
   }
@@ -57,11 +59,7 @@ export function format (value: any): any {
   }
 
   if (isObject(value) && value.constructor === Object) {
-    return Object.keys(value).reduce((result, key) => {
-      result[key] = format(value[key]);
-
-      return result;
-    }, {} as { [index: string]: any });
+    return formatObject(value);
   }
 
   return value;
