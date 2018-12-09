@@ -4,7 +4,7 @@
 
 import { TxDb, ProgressCb } from '@polkadot/db/types';
 import { Codec } from '@polkadot/trie-codec/types';
-import { TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
+import { EncodedPath, TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
 
 import substrateCodec from '@polkadot/trie-codec/index';
 import { decodeNibbles, encodeNibbles, extractNodeKey } from '@polkadot/trie-codec/nibbles';
@@ -15,6 +15,11 @@ import { keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeC
 import { getNodeType, decodeNode, encodeNode } from './util/node';
 import Checkpoint from './Checkpoint';
 import constants, { Constants } from './constants';
+
+const BLANK_BRANCH: Array<EncodedPath> = [
+  null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null
+];
 
 const l = logger('trie/db');
 
@@ -113,11 +118,9 @@ export default class Impl extends Checkpoint {
 
     node[trieKey[0]] = encodedSubNode;
 
-    if (isNull(encodedSubNode)) {
-      return this._normaliseBranchNode(node);
-    }
-
-    return node;
+    return isNull(encodedSubNode)
+      ? this._normaliseBranchNode(node)
+      : node;
   }
 
   protected _delKvNode (node: NodeNotEmpty, trieKey: Uint8Array): Node {
@@ -128,9 +131,7 @@ export default class Impl extends Checkpoint {
 
     if (!keyStartsWith(trieKey, currentKey)) {
       return node;
-    }
-
-    if (nodeType === NodeType.LEAF) {
+    } else if (nodeType === NodeType.LEAF) {
       return keyEquals(trieKey, currentKey)
         ? null
         : node;
@@ -194,11 +195,9 @@ export default class Impl extends Checkpoint {
     // l.debug(() => [{ currentKey, trieKey, nodeType }]);
 
     if (nodeType === NodeType.LEAF) {
-      if (keyEquals(trieKey, currentKey)) {
-        return node[1];
-      }
-
-      return null;
+      return keyEquals(trieKey, currentKey)
+        ? node[1]
+        : null;
     } else if (nodeType === NodeType.EXTENSION) {
       if (keyStartsWith(trieKey, currentKey)) {
         const subNode = this._getNode(node[1]);
@@ -221,13 +220,9 @@ export default class Impl extends Checkpoint {
 
     const encoded = encodeNode(this.codec, node);
 
-    if (encoded.length < 32) {
-      // FIXME typings...
-      // @ts-ignore Ok, this is not correct - this comes back as an embedded node, which mean that our definitions here are completely wrong (or what we think it is, does not align with what it should be as per the spec and implementation)
-      return [node, null];
-    }
-
-    return [this.codec.hashing(encoded), encoded];
+    return (encoded.length < 32)
+      ? [node as any, null]
+      : [this.codec.hashing(encoded), encoded];
   }
 
   protected _normaliseBranchNode (node: NodeNotEmpty): Node {
@@ -239,9 +234,7 @@ export default class Impl extends Checkpoint {
 
     if (mapped.length >= 2) {
       return node;
-    }
-
-    if (node[16]) {
+    } else if (node[16]) {
       return [computeLeafKey(new Uint8Array()), node[16]];
     }
 
@@ -330,19 +323,11 @@ export default class Impl extends Checkpoint {
         const subKey = computeLeafKey(trieRemainder.subarray(1));
         const subNode: NodeKv = [subKey, value];
 
-        newNode = [
-          null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null,
-          node[1]
-        ];
+        newNode = BLANK_BRANCH.concat(node[1]) as NodeNotEmpty;
         newNode[subPosition] = this._persistNode(subNode);
       }
     } else {
-      newNode = [
-        null, null, null, null, null, null, null, null,
-        null, null, null, null, null, null, null, null,
-        null
-      ];
+      newNode = BLANK_BRANCH.concat(null) as NodeNotEmpty;
 
       if (currentRemainder.length === 1 && isExtension) {
         newNode[currentRemainder[0]] = node[1];
@@ -351,17 +336,11 @@ export default class Impl extends Checkpoint {
           ? computeExtensionKey(currentRemainder.subarray(1))
           : computeLeafKey(currentRemainder.subarray(1));
 
-        newNode[currentRemainder[0]] = this._persistNode([
-          computedKey,
-          node[1]
-        ]);
+        newNode[currentRemainder[0]] = this._persistNode([computedKey, node[1]]);
       }
 
       if (trieRemainder.length) {
-        newNode[trieRemainder[0]] = this._persistNode([
-          computeLeafKey(trieRemainder.subarray(1)),
-          value
-        ]);
+        newNode[trieRemainder[0]] = this._persistNode([computeLeafKey(trieRemainder.subarray(1)), value]);
       } else {
         newNode[16] = value;
       }
@@ -370,10 +349,7 @@ export default class Impl extends Checkpoint {
     // l.debug(() => ['newNode', newNode]);
 
     if (commonPrefix.length) {
-      return [
-        computeExtensionKey(commonPrefix),
-        this._persistNode(newNode)
-      ];
+      return [computeExtensionKey(commonPrefix), this._persistNode(newNode)];
     }
 
     return newNode;
