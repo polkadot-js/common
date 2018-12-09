@@ -29,7 +29,7 @@ Overview
 
 *Overrides [Checkpoint](_checkpoint_.checkpoint.md).[constructor](_checkpoint_.checkpoint.md#constructor)*
 
-*Defined in [Impl.ts:33](https://github.com/polkadot-js/common/blob/fbd6c1e/packages/trie-db/src/Impl.ts#L33)*
+*Defined in [Impl.ts:38](https://github.com/polkadot-js/common/blob/cab0713/packages/trie-db/src/Impl.ts#L38)*
 
 **Parameters:**
 
@@ -51,7 +51,7 @@ ___
 
 **● db**: *`TxDb`*
 
-*Defined in [Impl.ts:31](https://github.com/polkadot-js/common/blob/fbd6c1e/packages/trie-db/src/Impl.ts#L31)*
+*Defined in [Impl.ts:36](https://github.com/polkadot-js/common/blob/cab0713/packages/trie-db/src/Impl.ts#L36)*
 
 ___
 

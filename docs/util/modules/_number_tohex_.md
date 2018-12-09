@@ -8,7 +8,7 @@
 
 ▸ **numberToHex**(value?: * `undefined` &#124; `number`*, bitLength?: *`number`*): `string`
 
-*Defined in [number/toHex.ts:25](https://github.com/polkadot-js/common/blob/fbd6c1e/packages/util/src/number/toHex.ts#L25)*
+*Defined in [number/toHex.ts:25](https://github.com/polkadot-js/common/blob/cab0713/packages/util/src/number/toHex.ts#L25)*
 
 *__name__*: numberToHex
 
