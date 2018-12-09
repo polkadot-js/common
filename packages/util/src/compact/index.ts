@@ -2,11 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import compactAddLength from './addLength';
-import compactStripLength from './stripLength';
-import compactFromU8a from './fromU8a';
-import compactToU8a from './toU8a';
-
 /**
  * @description
  * Encoding and decoding of parity-codec compact numbers. The codec is created
@@ -27,9 +22,8 @@ import compactToU8a from './toU8a';
  *
  * Note: we use *LOW BITS* of the LSB in LE encoding to encode the 2 bit key.
  */
-export {
-  compactAddLength,
-  compactFromU8a,
-  compactStripLength,
-  compactToU8a
-};
+
+export { default as compactAddLength } from './addLength';
+export { default as compactStripLength } from './stripLength';
+export { default as compactFromU8a } from './fromU8a';
+export { default as compactToU8a } from './toU8a';

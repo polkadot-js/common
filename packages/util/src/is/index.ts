@@ -2,39 +2,22 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import isBn from './bn';
-import isBuffer from './buffer';
-import isBoolean from './boolean';
-import isError from './error';
-import isFunction from './function';
-import isHex from './hex';
-import isInstanceOf from './instanceOf';
-import isIp from './ip';
-import isNull from './null';
-import isNumber from './number';
-import isObject from './object';
-import isObservable from './observable';
-import isString from './string';
-import isU8a from './u8a';
-import isUndefined from './undefined';
-
 /**
  * @summary Type checking utilities
  */
-export {
-  isBn,
-  isBoolean,
-  isBuffer,
-  isError,
-  isFunction,
-  isHex,
-  isInstanceOf,
-  isIp,
-  isObject,
-  isObservable,
-  isNull,
-  isNumber,
-  isString,
-  isU8a,
-  isUndefined
-};
+
+export { default as isBn } from './bn';
+export { default as isBuffer } from './buffer';
+export { default as isBoolean } from './boolean';
+export { default as isError } from './error';
+export { default as isFunction } from './function';
+export { default as isHex } from './hex';
+export { default as isInstanceOf } from './instanceOf';
+export { default as isIp } from './ip';
+export { default as isNull } from './null';
+export { default as isNumber } from './number';
+export { default as isObject } from './object';
+export { default as isObservable } from './observable';
+export { default as isString } from './string';
+export { default as isU8a } from './u8a';
+export { default as isUndefined } from './undefined';

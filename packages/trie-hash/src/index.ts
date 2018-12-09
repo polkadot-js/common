@@ -2,13 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import trieRoot from './trieRoot';
-import trieRootOrdered from './trieRootOrdered';
-
 /**
  * @summary Utility methods to create [Trie hashes](https://github.com/ethereum/wiki/wiki/Patricia-Tree)
  */
-export {
-  trieRoot,
-  trieRootOrdered
-};
+
+export { default as trieRoot } from './trieRoot';
+export { default as trieRootOrdered } from './trieRootOrdered';

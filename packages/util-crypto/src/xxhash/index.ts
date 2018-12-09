@@ -2,13 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import xxhashAsHex from './asHex';
-import xxhashAsU8a from './asU8a';
-
 /**
  * @summary Create xxhash64 values with specified bitlengths
  */
-export {
-  xxhashAsHex,
-  xxhashAsU8a
-};
+
+export { default as xxhashAsHex } from './asHex';
+export { default as xxhashAsU8a } from './asU8a';
