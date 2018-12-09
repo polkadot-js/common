@@ -2,23 +2,14 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import hexAddPrefix from './addPrefix';
-import hexFixLength from './fixLength';
-import hexHasPrefix from './hasPrefix';
-import hexStripPrefix from './stripPrefix';
-import hexToBn from './toBn';
-import hexToNumber from './toNumber';
-import hexToU8a from './toU8a';
-
 /**
  * @summary Internal utilities to create and test for hex values
  */
-export {
-  hexAddPrefix,
-  hexFixLength,
-  hexHasPrefix,
-  hexStripPrefix,
-  hexToBn,
-  hexToNumber,
-  hexToU8a
-};
+
+export { default as hexAddPrefix } from './addPrefix';
+export { default as hexFixLength } from './fixLength';
+export { default as hexHasPrefix } from './hasPrefix';
+export { default as hexStripPrefix } from './stripPrefix';
+export { default as hexToBn } from './toBn';
+export { default as hexToNumber } from './toNumber';
+export { default as hexToU8a } from './toU8a';

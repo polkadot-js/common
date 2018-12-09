@@ -2,25 +2,15 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import naclDecrypt from './decrypt';
-import naclEncrypt from './encrypt';
-import naclKeypairFromRandom from './keypair/fromRandom';
-import naclKeypairFromSecret from './keypair/fromSecret';
-import naclKeypairFromSeed from './keypair/fromSeed';
-import naclKeypairFromString from './keypair/fromString';
-import naclSign from './sign';
-import naclVerify from './verify';
-
 /**
  * @summary Implements [NaCl](http://nacl.cr.yp.to/) secret-key authenticated encryption, public-key authenticated encryption, hashing, and public-key signatures
  */
-export {
-  naclDecrypt,
-  naclEncrypt,
-  naclKeypairFromRandom,
-  naclKeypairFromSecret,
-  naclKeypairFromSeed,
-  naclKeypairFromString,
-  naclSign,
-  naclVerify
-};
+
+export { default as naclDecrypt } from './decrypt';
+export { default as naclEncrypt } from './encrypt';
+export { default as naclKeypairFromRandom } from './keypair/fromRandom';
+export { default as naclKeypairFromSecret } from './keypair/fromSecret';
+export { default as naclKeypairFromSeed } from './keypair/fromSeed';
+export { default as naclKeypairFromString } from './keypair/fromString';
+export { default as naclSign } from './sign';
+export { default as naclVerify } from './verify';

@@ -2,15 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import randomAsHex from './asHex';
-import randomAsNumber from './asNumber';
-import randomAsU8a from './asU8a';
-
 /**
  * @summary Returns a sequence of secure random bytes in a variety of formats
  */
-export {
-  randomAsHex,
-  randomAsNumber,
-  randomAsU8a
-};
+
+export { default as randomAsHex } from './asHex';
+export { default as randomAsNumber } from './asNumber';
+export { default as randomAsU8a } from './asU8a';
