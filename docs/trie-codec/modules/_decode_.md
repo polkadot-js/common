@@ -8,7 +8,7 @@
 
 ▸ **decode**(input: * `null` &#124; `Uint8Array`*):  `Uint8Array` &#124; `null` &#124; `Array`< `null` &#124; `Uint8Array` &#124; `Array`< `null` &#124; `Uint8Array`>>
 
-*Defined in [decode.ts:95](https://github.com/polkadot-js/common/blob/cab0713/packages/trie-codec/src/decode.ts#L95)*
+*Defined in [decode.ts:95](https://github.com/polkadot-js/common/blob/caec22d/packages/trie-codec/src/decode.ts#L95)*
 
 **Parameters:**
 
