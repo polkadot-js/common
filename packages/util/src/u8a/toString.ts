@@ -4,7 +4,13 @@
 
 import '../string/polyfill/textDecoder';
 
-const decoder = new TextDecoder('utf-8');
+let decoder: TextDecoder | undefined;
+
+try {
+  decoder = new TextDecoder('utf-8');
+} catch (error) {
+  // ignore
+}
 
 /**
  * @name u8aToString
@@ -24,7 +30,11 @@ const decoder = new TextDecoder('utf-8');
 export default function u8aToString (value?: Uint8Array): string {
   if (!value || !value.length) {
     return '';
+  } else if (decoder) {
+    return decoder.decode(value);
   }
 
-  return decoder.decode(value);
+  return value.reduce((str, code) => {
+    return str + String.fromCharCode(code);
+  }, '');
 }
