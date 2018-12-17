@@ -4,7 +4,13 @@
 
 import './polyfill/textEncoder';
 
-const encoder = new TextEncoder();
+let encoder: TextEncoder | undefined;
+
+try {
+  encoder = new TextEncoder();
+} catch (error) {
+  // noop
+}
 
 /**
  * @name stringToU8a
@@ -24,7 +30,15 @@ const encoder = new TextEncoder();
 export default function stringToU8a (value?: string): Uint8Array {
   if (!value) {
     return new Uint8Array([]);
+  } else if (encoder) {
+    return encoder.encode(value);
   }
 
-  return encoder.encode(value);
+  const u8a = new Uint8Array(value.length);
+
+  for (let i = 0; i < value.length; i++) {
+    u8a[i] = value.charCodeAt(i);
+  }
+
+  return u8a;
 }
