@@ -4,6 +4,22 @@
 
 // tslint:disable-next-line
 if (typeof TextEncoder === 'undefined') {
-  // @ts-ignore
-  global.TextEncoder = require('util').TextEncoder;
+  try {
+    // @ts-ignore For the Node.js case
+    global.TextEncoder = require('util').TextEncoder;
+  } catch (error) {
+    // @ts-ignore For the old browser case
+    global.TextEncoder = {
+      // Very naive ascii-only encoder
+      encode: (str: string) => {
+        const u8a = new Uint8Array(str.length);
+
+        for (let i = 0; i < str.length; i++) {
+          u8a[i] = str.charCodeAt(i);
+        }
+
+        return u8a;
+      }
+    };
+  }
 }
