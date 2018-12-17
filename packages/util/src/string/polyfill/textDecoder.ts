@@ -4,6 +4,18 @@
 
 // tslint:disable-next-line
 if (typeof TextDecoder === 'undefined') {
-  // @ts-ignore
-  global.TextDecoder = require('util').TextDecoder;
+  try {
+    // @ts-ignore For the Node.js case
+    global.TextDecoder = require('util').TextDecoder;
+  } catch (error) {
+    // @ts-ignore For the old browser case
+    global.TextDecoder = {
+      // Very naive ascii-only decoder
+      decode: (u8a: Uint8Array) => {
+        return u8a.reduce((str, code) => {
+          return str + String.fromCharCode(code);
+        }, '');
+      }
+    };
+  }
 }
