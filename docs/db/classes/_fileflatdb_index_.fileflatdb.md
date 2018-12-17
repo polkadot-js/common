@@ -20,7 +20,7 @@
 
 *Overrides [Cache](_fileflatdb_cache_.cache.md).[constructor](_fileflatdb_cache_.cache.md#constructor)*
 
-*Defined in [FileFlatDb/index.ts:18](https://github.com/polkadot-js/common/blob/caec22d/packages/db/src/FileFlatDb/index.ts#L18)*
+*Defined in [FileFlatDb/index.ts:18](https://github.com/polkadot-js/common/blob/cd7f644/packages/db/src/FileFlatDb/index.ts#L18)*
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[close](../interfaces/_types_.basedb.md#close)*
 
-*Defined in [FileFlatDb/index.ts:31](https://github.com/polkadot-js/common/blob/caec22d/packages/db/src/FileFlatDb/index.ts#L31)*
+*Defined in [FileFlatDb/index.ts:31](https://github.com/polkadot-js/common/blob/cd7f644/packages/db/src/FileFlatDb/index.ts#L31)*
 
 **Returns:** `void`
 
@@ -57,7 +57,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[del](../interfaces/_types_.basedb.md#del)*
 
-*Defined in [FileFlatDb/index.ts:74](https://github.com/polkadot-js/common/blob/caec22d/packages/db/src/FileFlatDb/index.ts#L74)*
+*Defined in [FileFlatDb/index.ts:74](https://github.com/polkadot-js/common/blob/cd7f644/packages/db/src/FileFlatDb/index.ts#L74)*
 
 **Parameters:**
 
@@ -76,7 +76,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[drop](../interfaces/_types_.basedb.md#drop)*
 
-*Defined in [FileFlatDb/index.ts:39](https://github.com/polkadot-js/common/blob/caec22d/packages/db/src/FileFlatDb/index.ts#L39)*
+*Defined in [FileFlatDb/index.ts:39](https://github.com/polkadot-js/common/blob/cd7f644/packages/db/src/FileFlatDb/index.ts#L39)*
 
 **Returns:** `void`
 
@@ -89,7 +89,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[empty](../interfaces/_types_.basedb.md#empty)*
 
-*Defined in [FileFlatDb/index.ts:45](https://github.com/polkadot-js/common/blob/caec22d/packages/db/src/FileFlatDb/index.ts#L45)*
+*Defined in [FileFlatDb/index.ts:45](https://github.com/polkadot-js/common/blob/cd7f644/packages/db/src/FileFlatDb/index.ts#L45)*
 
 **Returns:** `void`
 
@@ -102,7 +102,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[get](../interfaces/_types_.basedb.md#get)*
 
-*Defined in [FileFlatDb/index.ts:78](https://github.com/polkadot-js/common/blob/caec22d/packages/db/src/FileFlatDb/index.ts#L78)*
+*Defined in [FileFlatDb/index.ts:78](https://github.com/polkadot-js/common/blob/cd7f644/packages/db/src/FileFlatDb/index.ts#L78)*
 
 **Parameters:**
 
@@ -121,7 +121,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[maintain](../interfaces/_types_.basedb.md#maintain)*
 
-*Defined in [FileFlatDb/index.ts:66](https://github.com/polkadot-js/common/blob/caec22d/packages/db/src/FileFlatDb/index.ts#L66)*
+*Defined in [FileFlatDb/index.ts:66](https://github.com/polkadot-js/common/blob/cd7f644/packages/db/src/FileFlatDb/index.ts#L66)*
 
 **Parameters:**
 
@@ -140,7 +140,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[open](../interfaces/_types_.basedb.md#open)*
 
-*Defined in [FileFlatDb/index.ts:23](https://github.com/polkadot-js/common/blob/caec22d/packages/db/src/FileFlatDb/index.ts#L23)*
+*Defined in [FileFlatDb/index.ts:23](https://github.com/polkadot-js/common/blob/cd7f644/packages/db/src/FileFlatDb/index.ts#L23)*
 
 **Returns:** `void`
 
@@ -153,7 +153,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[put](../interfaces/_types_.basedb.md#put)*
 
-*Defined in [FileFlatDb/index.ts:96](https://github.com/polkadot-js/common/blob/caec22d/packages/db/src/FileFlatDb/index.ts#L96)*
+*Defined in [FileFlatDb/index.ts:96](https://github.com/polkadot-js/common/blob/cd7f644/packages/db/src/FileFlatDb/index.ts#L96)*
 
 **Parameters:**
 
@@ -173,7 +173,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[rename](../interfaces/_types_.basedb.md#rename)*
 
-*Defined in [FileFlatDb/index.ts:55](https://github.com/polkadot-js/common/blob/caec22d/packages/db/src/FileFlatDb/index.ts#L55)*
+*Defined in [FileFlatDb/index.ts:55](https://github.com/polkadot-js/common/blob/cd7f644/packages/db/src/FileFlatDb/index.ts#L55)*
 
 **Parameters:**
 
@@ -193,7 +193,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[size](../interfaces/_types_.basedb.md#size)*
 
-*Defined in [FileFlatDb/index.ts:51](https://github.com/polkadot-js/common/blob/caec22d/packages/db/src/FileFlatDb/index.ts#L51)*
+*Defined in [FileFlatDb/index.ts:51](https://github.com/polkadot-js/common/blob/cd7f644/packages/db/src/FileFlatDb/index.ts#L51)*
 
 **Returns:** `number`
 
