@@ -20,7 +20,7 @@
 
 *Overrides [File](_fileflatdb_file_.file.md).[constructor](_fileflatdb_file_.file.md#constructor)*
 
-*Defined in [FileFlatDb/Cache.ts:15](https://github.com/polkadot-js/common/blob/30bf357/packages/db/src/FileFlatDb/Cache.ts#L15)*
+*Defined in [FileFlatDb/Cache.ts:15](https://github.com/polkadot-js/common/blob/3ee9e13/packages/db/src/FileFlatDb/Cache.ts#L15)*
 
 **Parameters:**
 
