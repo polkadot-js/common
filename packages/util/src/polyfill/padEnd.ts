@@ -13,15 +13,3 @@ if (!String.prototype.padEnd) {
     return result;
   };
 }
-
-if (!String.prototype.padStart) {
-  String.prototype.padStart = function padStart (length: number, char: string = ' ') {
-    let result: string = String(this);
-
-    while (result.length < length) {
-      result = char + result;
-    }
-
-    return result;
-  };
-}
