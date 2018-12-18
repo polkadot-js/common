@@ -22,7 +22,7 @@
 
 **Ƭ Key**: *`object`*
 
-*Defined in [FileFlatDb/types.ts:16](https://github.com/polkadot-js/common/blob/7188f6b/packages/db/src/FileFlatDb/types.ts#L16)*
+*Defined in [FileFlatDb/types.ts:16](https://github.com/polkadot-js/common/blob/6d8e788/packages/db/src/FileFlatDb/types.ts#L16)*
 
 #### Type declaration
 
@@ -33,7 +33,7 @@ ___
 
 **Ƭ NibbleBuffer**: *`object`*
 
-*Defined in [FileFlatDb/types.ts:11](https://github.com/polkadot-js/common/blob/7188f6b/packages/db/src/FileFlatDb/types.ts#L11)*
+*Defined in [FileFlatDb/types.ts:11](https://github.com/polkadot-js/common/blob/6d8e788/packages/db/src/FileFlatDb/types.ts#L11)*
 
 #### Type declaration
 
@@ -44,7 +44,7 @@ ___
 
 **Ƭ Value**: *`object`*
 
-*Defined in [FileFlatDb/types.ts:22](https://github.com/polkadot-js/common/blob/7188f6b/packages/db/src/FileFlatDb/types.ts#L22)*
+*Defined in [FileFlatDb/types.ts:22](https://github.com/polkadot-js/common/blob/6d8e788/packages/db/src/FileFlatDb/types.ts#L22)*
 
 #### Type declaration
 
