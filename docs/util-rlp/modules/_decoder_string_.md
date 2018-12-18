@@ -8,7 +8,7 @@
 
 ▸ **decodeString**(decode: *[DecodeFunc](_decoder_types_.md#decodefunc)*, input: *`Uint8Array`*): [DecodeOutput](_decoder_types_.md#decodeoutput)
 
-*Defined in [decoder/string.ts:9](https://github.com/polkadot-js/common/blob/3ee9e13/packages/util-rlp/src/decoder/string.ts#L9)*
+*Defined in [decoder/string.ts:9](https://github.com/polkadot-js/common/blob/7188f6b/packages/util-rlp/src/decoder/string.ts#L9)*
 
 **Parameters:**
 

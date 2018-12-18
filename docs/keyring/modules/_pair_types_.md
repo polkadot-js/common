@@ -8,7 +8,7 @@
 
 **Ƭ PairState**: *`object`*
 
-*Defined in [pair/types.ts:7](https://github.com/polkadot-js/common/blob/3ee9e13/packages/keyring/src/pair/types.ts#L7)*
+*Defined in [pair/types.ts:7](https://github.com/polkadot-js/common/blob/7188f6b/packages/keyring/src/pair/types.ts#L7)*
 
 #### Type declaration
 
