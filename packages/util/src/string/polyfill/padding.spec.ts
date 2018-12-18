@@ -23,6 +23,8 @@ describe('padding', () => {
 
   it('does padding', () => {
     expect('test'.padEnd(8, 'A')).toEqual('testAAAA');
+    expect('test'.padEnd(8)).toEqual('test    ');
     expect('test'.padStart(8, 'A')).toEqual('AAAAtest');
+    expect('test'.padStart(8)).toEqual('    test');
   });
 });
