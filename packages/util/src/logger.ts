@@ -4,6 +4,8 @@
 
 import { Logger, Logger$Data } from './types';
 
+import './string/polyfill/padding';
+
 import chalk from 'chalk';
 import moment from 'moment';
 
