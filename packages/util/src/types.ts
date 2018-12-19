@@ -19,3 +19,8 @@ export type Logger = {
   noop: (...values: Logger$Data) => void,
   warn: (...values: Logger$Data) => void
 };
+
+export interface ToBnOptions {
+  isLe?: boolean;
+  isNegative?: boolean;
+}
