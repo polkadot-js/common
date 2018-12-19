@@ -6,6 +6,7 @@ import BN from 'bn.js';
 
 import hexToBn from '../hex/toBn';
 import u8aToHex from './toHex';
+import { ToBnOptions } from '../types';
 
 /**
  * @name u8aToBn
@@ -22,9 +23,9 @@ import u8aToHex from './toHex';
  * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```
  */
-export default function u8aToBn (value: Uint8Array, isLe: boolean): BN {
+export default function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = true): BN {
   return hexToBn(
     u8aToHex(value),
-    isLe
+    options
   );
 }

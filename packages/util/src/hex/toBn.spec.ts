@@ -23,6 +23,12 @@ describe('hexToBn', () => {
     ).toBe(0);
   });
 
+  it('should convert with Big Endian by default', () => {
+    expect(
+      hexToBn('0x0100').toNumber()
+    ).toBe(256);
+  });
+
   it('converts 0x values to BN(0) (LE)', () => {
     expect(
       hexToBn('0x', { isLe: true }).toNumber()
