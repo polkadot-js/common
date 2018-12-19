@@ -6,13 +6,13 @@
 
 ##  hexToBn
 
-▸ **hexToBn**(_value?: * `undefined` &#124; `string`*, isLe?: *`boolean`*): `BN`
+▸ **hexToBn**(_value?: * `string` &#124; `number` &#124; `null`*, _options?: * [ToBnOptions](../interfaces/_types_.tobnoptions.md) &#124; `boolean`*): `BN`
 
-*Defined in [hex/toBn.ts:30](https://github.com/polkadot-js/common/blob/6d8e788/packages/util/src/hex/toBn.ts#L30)*
+*Defined in [hex/toBn.ts:36](https://github.com/polkadot-js/common/blob/0e30c48/packages/util/src/hex/toBn.ts#L36)*
 
 *__name__*: hexToBn
 
-*__signature__*: hexToBn (value?: string, isLe: boolean = false): BN
+*__signature__*: hexToBn (value?: string, \_options: ToBnOptions | boolean = { isLe: false, isNegative: false }): BN
 
 *__summary__*: Creates a BN.js bignumber object from a hex string.
 
@@ -28,10 +28,10 @@ hexToBn('0x123480001f'); // => BN(0x123480001f)
 
 **Parameters:**
 
-| Name | Type | Default value |
-| ------ | ------ | ------ |
-| `Optional` _value |  `undefined` &#124; `string`| - |
-| `Default value` isLe | `boolean` | false |
+| Name | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| `Optional` _value |  `string` &#124; `number` &#124; `null`| - |  The value to convert |
+| `Default value` _options |  [ToBnOptions](../interfaces/_types_.tobnoptions.md) &#124; `boolean`|  { isLe: false, isNegative: false } |  Options to pass while converting |
 
 **Returns:** `BN`
 

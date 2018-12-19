@@ -5,6 +5,7 @@
 ### Interfaces
 
 * [ExtErrorInterface](../interfaces/_types_.exterrorinterface.md)
+* [ToBnOptions](../interfaces/_types_.tobnoptions.md)
 
 ### Type aliases
 
@@ -21,7 +22,7 @@
 
 **Ƭ Logger**: *`object`*
 
-*Defined in [types.ts:15](https://github.com/polkadot-js/common/blob/6d8e788/packages/util/src/types.ts#L15)*
+*Defined in [types.ts:15](https://github.com/polkadot-js/common/blob/0e30c48/packages/util/src/types.ts#L15)*
 
 #### Type declaration
 
@@ -32,7 +33,7 @@ ___
 
 **Ƭ Logger$Data**: *`Array`< `any` &#124; `Logger$Data$Fn`>*
 
-*Defined in [types.ts:13](https://github.com/polkadot-js/common/blob/6d8e788/packages/util/src/types.ts#L13)*
+*Defined in [types.ts:13](https://github.com/polkadot-js/common/blob/0e30c48/packages/util/src/types.ts#L13)*
 
 ___
 

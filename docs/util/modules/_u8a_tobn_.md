@@ -6,13 +6,13 @@
 
 ##  u8aToBn
 
-▸ **u8aToBn**(value: *`Uint8Array`*, isLe: *`boolean`*): `BN`
+▸ **u8aToBn**(value: *`Uint8Array`*, options?: * [ToBnOptions](../interfaces/_types_.tobnoptions.md) &#124; `boolean`*): `BN`
 
-*Defined in [u8a/toBn.ts:25](https://github.com/polkadot-js/common/blob/6d8e788/packages/util/src/u8a/toBn.ts#L25)*
+*Defined in [u8a/toBn.ts:30](https://github.com/polkadot-js/common/blob/0e30c48/packages/util/src/u8a/toBn.ts#L30)*
 
 *__name__*: u8aToBn
 
-*__signature__*: u8aToHex (value?: Uint8Array, isLe: boolean = false): BN
+*__signature__*: u8aToHex (value?: Uint8Array, options: ToBnOptions | boolean = true): BN
 
 *__summary__*: Creates a BN from a Uint8Array object.
 
@@ -28,10 +28,10 @@ u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| value | `Uint8Array` |
-| isLe | `boolean` |
+| Name | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| value | `Uint8Array` | - |  The value to convert |
+| `Default value` options |  [ToBnOptions](../interfaces/_types_.tobnoptions.md) &#124; `boolean`| true |  Options to pass while converting |
 
 **Returns:** `BN`
 
