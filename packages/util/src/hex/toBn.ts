@@ -16,7 +16,7 @@ function reverse (value: string): string {
 
 /**
  * @name hexToBn
- * @signature hexToBn (value?: string, isLe: boolean = false): BN
+ * @signature hexToBn (value?: string, _options: ToBnOptions | boolean = { isLe: false, isNegative: false }): BN
  * @summary Creates a BN.js bignumber object from a hex string.
  * @description
  * `null` inputs returns a `BN(0)` result. Hex input values return the actual value converted to a BN. Anything that is not a hex string (including the `0x` prefix) throws an error.
