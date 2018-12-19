@@ -14,6 +14,10 @@ import { ToBnOptions } from '../types';
  * @summary Creates a BN from a Uint8Array object.
  * @description
  * `UInt8Array` input values return the actual BN. `null` or `undefined` values returns an `0x0` value.
+ * @param value The value to convert
+ * @param options Options to pass while converting
+ * @param options.isLe Convert using Little Endian
+ * @param options.isNegative Convert using two's complement
  * @example
  * <BR>
  *
