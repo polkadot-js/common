@@ -58,7 +58,7 @@ describe('bnToU8a', () => {
   it('handles backwards compatibility', () => {
     expect(
       bnToU8a(new BN(1234), 32, false)
-    ).toBe(
+    ).toEqual(
       bnToU8a(new BN(1234), { bitLength: 32, isLe: false })
     );
   });
