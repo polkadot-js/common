@@ -54,4 +54,12 @@ describe('bnToU8a', () => {
       bnToU8a(new BN(-1234), { isNegative: true, bitLength: 32 })
     ).toEqual(new Uint8Array([46, 251, 255, 255]));
   });
+
+  it('handles backwards compatibility', () => {
+    expect(
+      bnToU8a(new BN(1234), 32, false)
+    ).toBe(
+      bnToU8a(new BN(1234), { bitLength: 32, isLe: false })
+    );
+  });
 });
