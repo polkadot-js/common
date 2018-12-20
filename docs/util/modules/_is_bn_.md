@@ -8,7 +8,7 @@
 
 ▸ **isBn**(value: *`any`*): `boolean`
 
-*Defined in [is/bn.ts:23](https://github.com/polkadot-js/common/blob/0e30c48/packages/util/src/is/bn.ts#L23)*
+*Defined in [is/bn.ts:23](https://github.com/polkadot-js/common/blob/3988773/packages/util/src/is/bn.ts#L23)*
 
 *__name__*: isBn
 
