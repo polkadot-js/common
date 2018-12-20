@@ -6,9 +6,11 @@
 
 ##  bnToU8a
 
-▸ **bnToU8a**(value: * `BN` &#124; `number`*, bitLength: *`number`*, isLe: *`boolean`*): `Uint8Array`
+▸ **bnToU8a**(value: * `BN` &#124; `number` &#124; `null`*, options?: *`Options`*): `Uint8Array`
 
-*Defined in [bn/toU8a.ts:26](https://github.com/polkadot-js/common/blob/3988773/packages/util/src/bn/toU8a.ts#L26)*
+▸ **bnToU8a**(value: * `BN` &#124; `number` &#124; `null`*, bitLength?: * `undefined` &#124; `number`*, isLe?: * `undefined` &#124; `false` &#124; `true`*): `Uint8Array`
+
+*Defined in [bn/toU8a.ts:30](https://github.com/polkadot-js/common/blob/74744e6/packages/util/src/bn/toU8a.ts#L30)*
 
 *__name__*: bnToU8a
 
@@ -30,9 +32,20 @@ bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
 
 | Name | Type |
 | ------ | ------ |
-| value |  `BN` &#124; `number`|
-| bitLength | `number` |
-| isLe | `boolean` |
+| value |  `BN` &#124; `number` &#124; `null`|
+| `Optional` options | `Options` |
+
+**Returns:** `Uint8Array`
+
+*Defined in [bn/toU8a.ts:31](https://github.com/polkadot-js/common/blob/74744e6/packages/util/src/bn/toU8a.ts#L31)*
+
+**Parameters:**
+
+| Name | Type |
+| ------ | ------ |
+| value |  `BN` &#124; `number` &#124; `null`|
+| `Optional` bitLength |  `undefined` &#124; `number`|
+| `Optional` isLe |  `undefined` &#124; `false` &#124; `true`|
 
 **Returns:** `Uint8Array`
 

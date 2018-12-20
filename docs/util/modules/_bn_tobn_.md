@@ -6,9 +6,9 @@
 
 ##  bnToBn
 
-▸ **bnToBn**(value?: * `BN` &#124; `number`*): `BN`
+▸ **bnToBn**(value?: * `BN` &#124; `number` &#124; `null`*): `BN`
 
-*Defined in [bn/toBn.ts:24](https://github.com/polkadot-js/common/blob/3988773/packages/util/src/bn/toBn.ts#L24)*
+*Defined in [bn/toBn.ts:24](https://github.com/polkadot-js/common/blob/74744e6/packages/util/src/bn/toBn.ts#L24)*
 
 *__name__*: bnToBn
 
@@ -32,7 +32,7 @@ bnToBn(new BN(0x1234)); // => BN(0x1234)
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` value |  `BN` &#124; `number`|
+| `Optional` value |  `BN` &#124; `number` &#124; `null`|
 
 **Returns:** `BN`
 
