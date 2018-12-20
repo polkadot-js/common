@@ -36,4 +36,30 @@ describe('bnToU8a', () => {
       bnToU8a(new BN(0x123456), 32, true)
     ).toEqual(new Uint8Array([0x56, 0x34, 0x12, 0x00]));
   });
+
+  it('converts negative numbers', () => {
+    expect(
+      bnToU8a(new BN(-1234), { isNegative: true })
+    ).toEqual(new Uint8Array([46, 251]));
+  });
+
+  it('converts negative numbers (BE)', () => {
+    expect(
+      bnToU8a(new BN(-1234), { isNegative: true, isLe: false })
+    ).toEqual(new Uint8Array([251, 46]));
+  });
+
+  it('converts negative numbers (bitLength)', () => {
+    expect(
+      bnToU8a(new BN(-1234), { isNegative: true, bitLength: 32 })
+    ).toEqual(new Uint8Array([46, 251, 255, 255]));
+  });
+
+  it('handles backwards compatibility', () => {
+    expect(
+      bnToU8a(new BN(1234), 32, false)
+    ).toEqual(
+      bnToU8a(new BN(1234), { bitLength: 32, isLe: false })
+    );
+  });
 });

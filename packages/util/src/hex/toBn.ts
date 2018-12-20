@@ -34,22 +34,27 @@ function reverse (value: string): string {
  * ```
  */
 export default function hexToBn (
-  _value?: string | number | null,
-  _options: ToBnOptions | boolean = { isLe: false, isNegative: false }
+  value?: string | number | null,
+  options: ToBnOptions | boolean = { isLe: false, isNegative: false }
 ): BN {
-  if (!_value) {
+  if (!value) {
     return new BN(0);
   }
 
-  const options: ToBnOptions = isBoolean(_options)
-    ? { isLe: _options, isNegative: false }
-    : _options;
+  const _options: ToBnOptions = {
+    isLe: false,
+    isNegative: false,
+    // Backwards-compatibility
+    ...(isBoolean(options) ? { isLe: options } : options)
+  };
 
-  const value = hexStripPrefix(_value as string);
+  const _value = hexStripPrefix(value as string);
 
   // FIXME: Use BN's 3rd argument `isLe` once this issue is fixed
   // https://github.com/indutny/bn.js/issues/208
-  const bn = new BN((options.isLe ? reverse(value) : value) || '00', 16);
+  const bn = new BN((_options.isLe ? reverse(_value) : _value) || '00', 16);
 
-  return options.isNegative ? bn.fromTwos(8) : bn;
+  // fromTwos takes as parameter the number of bits, which is the hex length
+  // multiplied by 4.
+  return _options.isNegative ? bn.fromTwos(_value.length * 4) : bn;
 }

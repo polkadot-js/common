@@ -4,9 +4,13 @@
 
 import BN from 'bn.js';
 
-import hexToU8a from '../hex/toU8a';
+import isNumber from '../is/number';
 import bnToBn from './toBn';
-import bnToHex from './toHex';
+import { ToBnOptions } from '../types';
+
+interface Options extends ToBnOptions {
+  bitLength?: number;
+}
 
 /**
  * @name bnToU8a
@@ -23,25 +27,36 @@ import bnToHex from './toHex';
  * bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
  * ```
  */
-export default function bnToU8a (value: BN | number, bitLength: number, isLe: boolean): Uint8Array {
-  const byteLength = Math.ceil(bitLength / 8);
+export default function bnToU8a (value: BN | number | null, options?: Options): Uint8Array;
+export default function bnToU8a (value: BN | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
+export default function bnToU8a (
+  value: BN | number | null,
+  arg1: number | Options = { bitLength: -1, isLe: true, isNegative: false },
+  arg2?: boolean
+): Uint8Array {
+  const _options: Options = {
+    isLe: true,
+    isNegative: false,
+    bitLength: -1,
+    ...isNumber(arg1) ? { bitLength: arg1, isLe: arg2 } : arg1
+  };
+
+  const valueBn = bnToBn(value);
+  let byteLength = _options.bitLength === -1
+    ? Math.ceil(valueBn.bitLength() / 8)
+    : Math.ceil(_options.bitLength! / 8);
 
   if (!value) {
-    return bitLength === -1
+    return _options.bitLength === -1
       ? new Uint8Array([])
       : new Uint8Array(byteLength);
   }
 
-  if (bitLength === -1) {
-    return hexToU8a(
-      bnToHex(bnToBn(value), bitLength)
-    );
-  }
-
   const output = new Uint8Array(byteLength);
+  const bn = _options.isNegative ? valueBn.toTwos(byteLength * 8) : valueBn;
 
   output.set(
-    bnToBn(value).toArray(isLe ? 'le' : 'be', byteLength),
+    bn.toArray(_options.isLe ? 'le' : 'be', byteLength),
     0
   );
 
