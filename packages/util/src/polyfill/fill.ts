@@ -42,3 +42,8 @@ if (!Array.prototype.fill) {
     return A;
   };
 }
+
+if (!Uint8Array.prototype.fill) {
+  // @ts-ignore
+  Uint8Array.prototype.fill = Array.prototype.fill;
+}
