@@ -45,13 +45,13 @@ describe('bnToU8a', () => {
 
   it('converts negative numbers (BE)', () => {
     expect(
-      bnToU8a(new BN(-1234), { isLe: false })
+      bnToU8a(new BN(-1234), { isNegative: true, isLe: false })
     ).toEqual(new Uint8Array([251, 46]));
   });
 
   it('converts negative numbers (bitLength)', () => {
     expect(
-      bnToU8a(new BN(-1234), { bitLength: 32 })
+      bnToU8a(new BN(-1234), { isNegative: true, bitLength: 32 })
     ).toEqual(new Uint8Array([46, 251, 255, 255]));
   });
 });
