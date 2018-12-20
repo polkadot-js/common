@@ -44,6 +44,7 @@ export default function hexToBn (
   const _options: ToBnOptions = {
     isLe: false,
     isNegative: false,
+    // Backwards-compatibility
     ...(isBoolean(options) ? { isLe: options } : options)
   };
 

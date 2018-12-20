@@ -4,10 +4,16 @@
 
 import BN from 'bn.js';
 
-import hexFixLength from '../hex/fixLength';
-import bnToBn from './toBn';
+import isNumber from '../is/number';
+import bnToU8a from './toU8a';
+import { ToBnOptions } from '../types';
+import { u8aToHex } from '../u8a';
 
 const ZERO_STR = '0x00';
+
+interface Options extends ToBnOptions {
+  bitLength?: number;
+}
 
 /**
  * @name bnToHex
@@ -25,10 +31,20 @@ const ZERO_STR = '0x00';
  * bnToHex(new BN(0x123456)); // => '0x123456'
  * ```
  */
-export default function bnToHex (value?: BN | number, bitLength: number = -1): string {
+export default function bnToHex (
+  value?: BN | number | null,
+  options: number | Options = { bitLength: -1, isLe: false, isNegative: false }
+): string {
   if (!value) {
     return ZERO_STR;
   }
 
-  return hexFixLength(bnToBn(value).toString(16), bitLength, true);
+  const _options = {
+    isLe: false,
+    isNegative: false,
+    // Backwards-compatibility
+    ...(isNumber(options) ? { bitLength: options } : options)
+  };
+
+  return u8aToHex(bnToU8a(value, _options));
 }

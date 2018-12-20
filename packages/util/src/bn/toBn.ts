@@ -21,7 +21,7 @@ import BN from 'bn.js';
  * bnToBn(new BN(0x1234)); // => BN(0x1234)
  * ```
  */
-export default function bnToBn (value?: BN | number): BN {
+export default function bnToBn (value?: BN | number | null): BN {
   if (!value) {
     return new BN(0);
   }
