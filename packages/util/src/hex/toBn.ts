@@ -51,5 +51,7 @@ export default function hexToBn (
   // https://github.com/indutny/bn.js/issues/208
   const bn = new BN((options.isLe ? reverse(value) : value) || '00', 16);
 
-  return options.isNegative ? bn.fromTwos(8) : bn;
+  // fromTwos takes as parameter the number of bits, which is the hex length
+  // multiplied by 4.
+  return options.isNegative ? bn.fromTwos(value.length * 4) : bn;
 }

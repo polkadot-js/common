@@ -43,14 +43,14 @@ describe('hexToBn', () => {
 
   it('handles negative numbers (LE)', () => {
     expect(
-      hexToBn('0xd600', { isLe: true, isNegative: true }).toNumber()
-    ).toBe(-42);
+      hexToBn('0x2efb', { isLe: true, isNegative: true }).toNumber()
+    ).toBe(-1234);
   });
 
   it('handles negative numbers (BE)', () => {
     expect(
-      hexToBn('0x00d6', { isLe: false, isNegative: true }).toNumber()
-    ).toBe(-42);
+      hexToBn('0xfb2e', { isLe: false, isNegative: true }).toNumber()
+    ).toBe(-1234);
   });
 
   it('handles starting zeros correctly (BE)', () => {

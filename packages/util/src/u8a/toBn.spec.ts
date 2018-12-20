@@ -42,19 +42,19 @@ describe('u8aToBn', () => {
   it('handles negative numbers (little-endian)', () => {
     expect(
       u8aToBn(
-        new Uint8Array([214, 0]),
+        new Uint8Array([46, 251]),
         { isLe: true, isNegative: true }
       ).toNumber()
-    ).toBe(-42);
+    ).toBe(-1234);
   });
 
   it('handles negative numbers (big-endian)', () => {
     expect(
       u8aToBn(
-        new Uint8Array([0, 214]),
+        new Uint8Array([251, 46]),
         { isLe: false, isNegative: true }
       ).toNumber()
-    ).toBe(-42);
+    ).toBe(-1234);
   });
 
   it('handles overflows correctly (little-endian)', () => {
