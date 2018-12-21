@@ -35,7 +35,11 @@ export default function compactFromU8a (_input: Uint8Array | string, bitLength: 
     return [4, u8aToBn(input.slice(0, 4), true).shrn(2)];
   }
 
-  const offset = 1 + (bitLength / 8);
+  const length = new BN(input[0])
+    .shrn(2) // clear flag
+    .addn(4) // add 4 for base length
+    .toNumber();
+  const offset = 1 + length;
 
   return [offset, u8aToBn(input.subarray(1, offset), true)];
 }

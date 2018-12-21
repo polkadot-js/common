@@ -39,7 +39,12 @@ export default function compactToU8a (_value: BN | number, bitLength: BitLength 
 
   return u8aConcat(
     new Uint8Array([
-      0b11
+      // FIXME For optimal encoding, detemine actual used bit (do not just use max)
+      new BN(bitLength / 8)
+        .subn(4) // at least 4
+        .shln(2) // clear low
+        .addn(0b11) // add flag
+        .toNumber()
     ]),
     bnToU8a(value, bitLength, true)
   );
