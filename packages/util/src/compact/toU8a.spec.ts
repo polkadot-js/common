@@ -9,7 +9,7 @@ import compactToU8a from './toU8a';
 describe('encode', () => {
   it('encodes short u8', () => {
     expect(
-      compactToU8a(18, 8)
+      compactToU8a(18)
     ).toEqual(
       new Uint8Array([18 << 2])
     );
@@ -17,7 +17,7 @@ describe('encode', () => {
 
   it('encodes max u8 values', () => {
     expect(
-      compactToU8a(new BN(63), 16)
+      compactToU8a(new BN(63))
     ).toEqual(
       new Uint8Array([0b11111100])
     );
@@ -25,7 +25,7 @@ describe('encode', () => {
 
   it('encodes basic u16 value', () => {
     expect(
-      compactToU8a(511, 32)
+      compactToU8a(511)
     ).toEqual(
       new Uint8Array([0b11111101, 0b00000111])
     );
@@ -33,7 +33,7 @@ describe('encode', () => {
 
   it('encodes basic u16 (not at edge)', () => {
     expect(
-      compactToU8a(111, 32)
+      compactToU8a(111)
     ).toEqual(
       new Uint8Array([0xbd, 0x01])
     );
@@ -41,7 +41,7 @@ describe('encode', () => {
 
   it('encodes basic u32 values (short)', () => {
     expect(
-      compactToU8a(0xffff, 32)
+      compactToU8a(0xffff)
     ).toEqual(
       new Uint8Array([254, 255, 3, 0])
     );
@@ -52,6 +52,16 @@ describe('encode', () => {
       compactToU8a(0xfffffff9)
     ).toEqual(
       new Uint8Array([3 + ((4 - 4) << 2), 249, 255, 255, 255])
+    );
+  });
+
+  it('encodes a large value', () => {
+    expect(
+      compactToU8a(
+        new BN('5af3107a4000', 16)
+      )
+    ).toEqual(
+      new Uint8Array([3 + ((6 - 4) << 2), 0x00, 0x40, 0x7a, 0x10, 0xf3, 0x5a])
     );
   });
 });
