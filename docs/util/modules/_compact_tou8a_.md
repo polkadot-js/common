@@ -6,9 +6,9 @@
 
 ##  compactToU8a
 
-▸ **compactToU8a**(_value: * `BN` &#124; `number`*, bitLength?: *[BitLength](_compact_types_.md#bitlength)*): `Uint8Array`
+▸ **compactToU8a**(_value: * `BN` &#124; `number`*): `Uint8Array`
 
-*Defined in [compact/toU8a.ts:29](https://github.com/polkadot-js/common/blob/5585a16/packages/util/src/compact/toU8a.ts#L29)*
+*Defined in [compact/toU8a.ts:26](https://github.com/polkadot-js/common/blob/f011334/packages/util/src/compact/toU8a.ts#L26)*
 
 *__name__*: compactToU8a
 
@@ -24,10 +24,9 @@ console.log(compactToU8a(511, 32)); // Uint8Array([0b11111101, 0b00000111])
 
 **Parameters:**
 
-| Name | Type | Default value |
-| ------ | ------ | ------ |
-| _value |  `BN` &#124; `number`| - |
-| `Default value` bitLength | [BitLength](_compact_types_.md#bitlength) |  DEFAULT_BITLENGTH |
+| Name | Type |
+| ------ | ------ |
+| _value |  `BN` &#124; `number`|
 
 **Returns:** `Uint8Array`
 
