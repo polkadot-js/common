@@ -51,7 +51,7 @@ describe('encode', () => {
     expect(
       compactToU8a(0xfffffff9)
     ).toEqual(
-      new Uint8Array([3, 249, 255, 255, 255])
+      new Uint8Array([3 + ((4 - 4) << 2), 249, 255, 255, 255])
     );
   });
 });
