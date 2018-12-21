@@ -4,6 +4,7 @@
 
 import BN from 'bn.js';
 
+import assert from '../assert';
 import { bnToBn, bnToU8a } from '../bn';
 import { u8aConcat } from '../u8a';
 
@@ -34,16 +35,19 @@ export default function compactToU8a (_value: BN | number): Uint8Array {
     return bnToU8a(value.shln(2).addn(0b10), 32, true);
   }
 
-  const bitLength = value.bitLength();
+  // Number of bytes needed to represent `value`
+  const bytesNeeded = Math.ceil(value.bitLength() / 8);
+
+  assert(bytesNeeded >= 4, 'Previous tests match anyting less than 2^30; qed');
 
   return u8aConcat(
     new Uint8Array([
-      new BN(Math.ceil(bitLength / 8))
-        .subn(4) // 4 bytes as a base
+      new BN(bytesNeeded)
+        .subn(4) // how many bytes more than 4 do we need?
         .shln(2) // clear low
         .addn(0b11) // add flag
         .toNumber()
     ]),
-    bnToU8a(value, bitLength, true)
+    bnToU8a(value)
   );
 }

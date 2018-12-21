@@ -75,13 +75,13 @@ describe('encode', () => {
       { value: new BN('16384'), expected: '02 00 01 00' },
       { value: new BN('1073741823'), expected: 'fe ff ff ff' },
       { value: new BN('1073741824'), expected: '03 00 00 00 40' },
-      { value: new BN(`${1}${'0'.repeat(31)}`, 2).subn(1), expected: '03 ff ff ff ff' },
-      { value: new BN(`${1}${'0'.repeat(31)}`, 2), expected: '07 00 00 00 00 01' },
-      { value: new BN(`${1}${'0'.repeat(39)}`, 2), expected: '0b 00 00 00 00 00 01' },
-      { value: new BN(`${1}${'0'.repeat(47)}`, 2), expected: '0f 00 00 00 00 00 00 01' },
-      { value: new BN(`${1}${'0'.repeat(55)}`, 2).subn(1), expected: '0f ff ff ff ff ff ff ff' },
-      { value: new BN(`${1}${'0'.repeat(55)}`, 2), expected: '13 00 00 00 00 00 00 00 01' },
-      { value: new BN(`${1}${'0'.repeat(63)}`, 2).subn(1), expected: '13 ff ff ff ff ff ff ff ff' }
+      { value: new BN(`${1}${'0'.repeat(32)}`, 2).subn(1), expected: '03 ff ff ff ff' },
+      { value: new BN(`${1}${'0'.repeat(32)}`, 2), expected: '07 00 00 00 00 01' },
+      { value: new BN(`${1}${'0'.repeat(40)}`, 2), expected: '0b 00 00 00 00 00 01' },
+      { value: new BN(`${1}${'0'.repeat(48)}`, 2), expected: '0f 00 00 00 00 00 00 01' },
+      { value: new BN(`${1}${'0'.repeat(56)}`, 2).subn(1), expected: '0f ff ff ff ff ff ff ff' },
+      { value: new BN(`${1}${'0'.repeat(56)}`, 2), expected: '13 00 00 00 00 00 00 00 01' },
+      { value: new BN(`${1}${'0'.repeat(64)}`, 2).subn(1), expected: '13 ff ff ff ff ff ff ff ff' }
     ];
 
     function testEncode (value: BN, expected: string) {
