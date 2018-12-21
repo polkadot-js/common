@@ -8,7 +8,7 @@
 
 ▸ **hexToNumber**(value?: * `undefined` &#124; `string`*): `number`
 
-*Defined in [hex/toNumber.ts:22](https://github.com/polkadot-js/common/blob/f011334/packages/util/src/hex/toNumber.ts#L22)*
+*Defined in [hex/toNumber.ts:22](https://github.com/polkadot-js/common/blob/0c8547d/packages/util/src/hex/toNumber.ts#L22)*
 
 *__name__*: hexToNumber
 

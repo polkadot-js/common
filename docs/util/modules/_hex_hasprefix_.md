@@ -8,7 +8,7 @@
 
 ▸ **hexHasPrefix**(value: * `string` &#124; `null` &#124; `undefined`*): `boolean`
 
-*Defined in [hex/hasPrefix.ts:22](https://github.com/polkadot-js/common/blob/f011334/packages/util/src/hex/hasPrefix.ts#L22)*
+*Defined in [hex/hasPrefix.ts:22](https://github.com/polkadot-js/common/blob/0c8547d/packages/util/src/hex/hasPrefix.ts#L22)*
 
 *__name__*: hexHasPrefix
 

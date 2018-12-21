@@ -8,7 +8,7 @@
 
 ▸ **toNibbles**(input?: * `Uint8Array` &#124; `null`*): `Uint8Array`
 
-*Defined in [util/toNibbles.ts:20](https://github.com/polkadot-js/common/blob/f011334/packages/trie-codec/src/util/toNibbles.ts#L20)*
+*Defined in [util/toNibbles.ts:20](https://github.com/polkadot-js/common/blob/0c8547d/packages/trie-codec/src/util/toNibbles.ts#L20)*
 
 *__name__*: toNibbles
 
