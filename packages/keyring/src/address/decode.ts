@@ -21,7 +21,7 @@ export default function decode (encoded: string | Uint8Array, prefix: Prefix = d
   const error = (message: string) =>
     `Decoding ${encoded}: ${message}`;
 
-  assert(defaults.allowedPrefix.includes(decoded[0] as Prefix), error('Invalid decoded address prefix'));
+  // assert(defaults.allowedPrefix.includes(decoded[0] as Prefix), error('Invalid decoded address prefix'));
   assert(defaults.allowedEncodedLengths.includes(decoded.length), error('Invalid decoded address length'));
 
   // TODO Unless it is an "use everywhere" prefix, throw an error
