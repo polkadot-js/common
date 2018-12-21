@@ -56,7 +56,6 @@ describe('encode', () => {
   });
 
   it('encodes a large value', () => {
-    console.error('', 0x0b >> 2);
     expect(
       compactToU8a(
         new BN('5af3107a4000', 16)
