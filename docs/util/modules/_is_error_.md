@@ -8,7 +8,7 @@
 
 ▸ **isError**(value: *`any`*): `boolean`
 
-*Defined in [is/error.ts:22](https://github.com/polkadot-js/common/blob/74744e6/packages/util/src/is/error.ts#L22)*
+*Defined in [is/error.ts:22](https://github.com/polkadot-js/common/blob/5585a16/packages/util/src/is/error.ts#L22)*
 
 *__name__*: isError
 
