@@ -2,10 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { BitLength } from './types';
-
 import { u8aConcat } from '../u8a';
-import { DEFAULT_BITLENGTH } from './defaults';
 import compactToU8a from './toU8a';
 
 /**
@@ -20,9 +17,9 @@ import compactToU8a from './toU8a';
  * console.log(compactAddLength(new Uint8Array([0xde, 0xad, 0xbe, 0xef]))); // Uint8Array([4 << 2, 0xde, 0xad, 0xbe, 0xef])
  * ```
  */
-export default function compactAddLength (input: Uint8Array, bitLength: BitLength = DEFAULT_BITLENGTH): Uint8Array {
+export default function compactAddLength (input: Uint8Array): Uint8Array {
   return u8aConcat(
-    compactToU8a(input.length, bitLength),
+    compactToU8a(input.length),
     input
   );
 }
