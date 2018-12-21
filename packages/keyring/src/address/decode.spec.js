@@ -63,7 +63,7 @@ describe('decode', () => {
     ).toEqual(new Uint8Array([42, 44, 10, 0, 0, 0, 0, 0]));
   });
 
-  it('allows invalid prefix (in list)', () => {
+  it.skip('allows invalid prefix (in list)', () => {
     expect(
       () => decode('6GfvWUvHvU8otbZ7sFhXH4eYeMcKdUkL61P3nFy52efEPVUx')
     ).toThrow(/address prefix/);
