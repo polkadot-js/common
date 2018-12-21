@@ -16,7 +16,7 @@
 
 *Inherited from [NibbleHeader](_nodeheader_.nibbleheader.md).[constructor](_nodeheader_.nibbleheader.md#constructor)*
 
-*Defined in [NodeHeader.ts:21](https://github.com/polkadot-js/common/blob/0c8547d/packages/trie-codec/src/NodeHeader.ts#L21)*
+*Defined in [NodeHeader.ts:21](https://github.com/polkadot-js/common/blob/9fc3354/packages/trie-codec/src/NodeHeader.ts#L21)*
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ ___
 
 *Inherited from [NibbleHeader](_nodeheader_.nibbleheader.md).[toNumber](_nodeheader_.nibbleheader.md#tonumber)*
 
-*Defined in [NodeHeader.ts:27](https://github.com/polkadot-js/common/blob/0c8547d/packages/trie-codec/src/NodeHeader.ts#L27)*
+*Defined in [NodeHeader.ts:27](https://github.com/polkadot-js/common/blob/9fc3354/packages/trie-codec/src/NodeHeader.ts#L27)*
 
 **Returns:** `number`
 
