@@ -4,6 +4,7 @@
 
 import BN from 'bn.js';
 
+import hexToU8a from '../hex/toU8a';
 import compactFromU8a from './fromU8a';
 
 describe('compactFromU8a', () => {
@@ -35,5 +36,13 @@ describe('compactFromU8a', () => {
     expect(
       compactFromU8a(new Uint8Array([3 + ((4 - 4) << 2), 249, 255, 255, 255]), 64)
     ).toEqual([5, new BN(0xfffffff9)]);
+  });
+
+  it('decodes an actual value', () => {
+    expect(
+      compactFromU8a(
+        hexToU8a('0x0b00407a10f35a')
+      )
+    ).toEqual([7, new BN('5af3107a4000', 16)]);
   });
 });
