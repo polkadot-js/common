@@ -35,19 +35,21 @@ export default function compactToU8a (_value: BN | number): Uint8Array {
     return bnToU8a(value.shln(2).addn(0b10), 32, true);
   }
 
-  // Number of bytes needed to represent `value`
-  const bytesNeeded = Math.ceil(value.bitLength() / 8);
+  const u8a = bnToU8a(value);
+  let length = u8a.length;
 
-  assert(bytesNeeded >= 4, 'Previous tests match anyting less than 2^30; qed');
+  // adjust to the minimum number of bytes
+  while (u8a[length - 1] === 0) {
+    length--;
+  }
+
+  assert(length >= 4, 'Previous tests match anyting less than 2^30; qed');
 
   return u8aConcat(
     new Uint8Array([
-      new BN(bytesNeeded)
-        .subn(4) // how many bytes more than 4 do we need?
-        .shln(2) // clear low
-        .addn(0b11) // add flag
-        .toNumber()
+      // substract 4 as minimum (also catered for in decoding)
+      ((length - 4) << 2) + 0b11
     ]),
-    bnToU8a(value)
+    u8a.subarray(0, length)
   );
 }
