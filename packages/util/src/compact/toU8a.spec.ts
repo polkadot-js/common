@@ -58,7 +58,7 @@ describe('encode', () => {
   it('encodes a large value', () => {
     expect(
       compactToU8a(
-        new BN('5af3107a4000', 16)
+        new BN('00005af3107a4000', 16)
       )
     ).toEqual(
       new Uint8Array([3 + ((6 - 4) << 2), 0x00, 0x40, 0x7a, 0x10, 0xf3, 0x5a])
