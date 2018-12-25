@@ -18,7 +18,7 @@
 
 **BRANCH**:  = 1
 
-*Defined in [FileFlatDb/types.ts:7](https://github.com/polkadot-js/common/blob/9fc3354/packages/db/src/FileFlatDb/types.ts#L7)*
+*Defined in [FileFlatDb/types.ts:7](https://github.com/polkadot-js/common/blob/7b9ca4a/packages/db/src/FileFlatDb/types.ts#L7)*
 
 ___
 <a id="empty"></a>
@@ -27,7 +27,7 @@ ___
 
 **EMPTY**:  = 0
 
-*Defined in [FileFlatDb/types.ts:6](https://github.com/polkadot-js/common/blob/9fc3354/packages/db/src/FileFlatDb/types.ts#L6)*
+*Defined in [FileFlatDb/types.ts:6](https://github.com/polkadot-js/common/blob/7b9ca4a/packages/db/src/FileFlatDb/types.ts#L6)*
 
 ___
 <a id="leaf"></a>
@@ -36,7 +36,7 @@ ___
 
 **LEAF**:  = 2
 
-*Defined in [FileFlatDb/types.ts:8](https://github.com/polkadot-js/common/blob/9fc3354/packages/db/src/FileFlatDb/types.ts#L8)*
+*Defined in [FileFlatDb/types.ts:8](https://github.com/polkadot-js/common/blob/7b9ca4a/packages/db/src/FileFlatDb/types.ts#L8)*
 
 ___
 

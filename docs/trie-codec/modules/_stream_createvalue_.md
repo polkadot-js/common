@@ -8,7 +8,7 @@
 
 ▸ **createValue**(value: * `null` &#124; `Uint8Array`*): `Uint8Array`
 
-*Defined in [stream/createValue.ts:9](https://github.com/polkadot-js/common/blob/9fc3354/packages/trie-codec/src/stream/createValue.ts#L9)*
+*Defined in [stream/createValue.ts:9](https://github.com/polkadot-js/common/blob/7b9ca4a/packages/trie-codec/src/stream/createValue.ts#L9)*
 
 **Parameters:**
 

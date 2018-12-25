@@ -8,7 +8,7 @@
 
 ▸ **encode**(input?: * `null` &#124; `Uint8Array` &#124; `Array`< `null` &#124; `Uint8Array`>*): `Uint8Array`
 
-*Defined in [encode.ts:101](https://github.com/polkadot-js/common/blob/9fc3354/packages/trie-codec/src/encode.ts#L101)*
+*Defined in [encode.ts:101](https://github.com/polkadot-js/common/blob/7b9ca4a/packages/trie-codec/src/encode.ts#L101)*
 
 **Parameters:**
 
