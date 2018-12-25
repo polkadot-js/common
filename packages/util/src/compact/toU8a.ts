@@ -47,10 +47,8 @@ export default function compactToU8a (_value: BN | number): Uint8Array {
 
   return u8aConcat(
     new Uint8Array([
-      new BN(length - 4)
-        .shln(2) // clear low
-        .addn(0b11) // add flag
-        .toNumber()
+      // substract 4 as minimum (also catered for in decoding)
+      ((length - 4) << 2) + 0b11
     ]),
     u8a.subarray(0, length)
   );
