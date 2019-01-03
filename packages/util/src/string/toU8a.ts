@@ -2,12 +2,24 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-let encoder: TextEncoder | undefined;
+let encoder: { encode: (value: string) => Uint8Array };
+
+function polyfilledEncode (value: string): Uint8Array {
+  const u8a = new Uint8Array(value.length);
+
+  for (let i = 0; i < value.length; i++) {
+    u8a[i] = value.charCodeAt(i);
+  }
+
+  return u8a;
+}
 
 try {
   encoder = new TextEncoder();
 } catch (error) {
-  // noop
+  encoder = {
+    encode: polyfilledEncode
+  };
 }
 
 /**
@@ -28,15 +40,7 @@ try {
 export default function stringToU8a (value?: string): Uint8Array {
   if (!value) {
     return new Uint8Array([]);
-  } else if (encoder) {
-    return encoder.encode(value);
   }
 
-  const u8a = new Uint8Array(value.length);
-
-  for (let i = 0; i < value.length; i++) {
-    u8a[i] = value.charCodeAt(i);
-  }
-
-  return u8a;
+  return encoder.encode(value);
 }

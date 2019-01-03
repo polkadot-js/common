@@ -2,12 +2,20 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-let decoder: TextDecoder | undefined;
+let decoder: { decode: (value: Uint8Array) => string };
+
+function polyfilledDecode (value: Uint8Array): string {
+  return value.reduce((str, code) => {
+    return str + String.fromCharCode(code);
+  }, '');
+}
 
 try {
   decoder = new TextDecoder('utf-8');
 } catch (error) {
-  // ignore
+  decoder = {
+    decode: polyfilledDecode
+  };
 }
 
 /**
@@ -28,11 +36,7 @@ try {
 export default function u8aToString (value?: Uint8Array): string {
   if (!value || !value.length) {
     return '';
-  } else if (decoder) {
-    return decoder.decode(value);
   }
 
-  return value.reduce((str, code) => {
-    return str + String.fromCharCode(code);
-  }, '');
+  return decoder.decode(value);
 }
