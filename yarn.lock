@@ -9076,10 +9076,10 @@ typedoc-plugin-markdown@^1.1.19:
   dependencies:
     turndown "^5.0.1"
 
-typedoc-plugin-no-inherit@^1.0.2:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-no-inherit/-/typedoc-plugin-no-inherit-1.1.0.tgz#735ac343bfe25ba7d230aa9490fc37020677dc91"
-  integrity sha512-FOFA3fydaN3IxrLG4uKWzoDRT5BrFIxAI3VemoBWxRk7XL4zKL7XAy/wGEUZ89onYFY8VPJpfle3ZJJm1j/bAg==
+typedoc-plugin-no-inherit@1.0.2, typedoc-plugin-no-inherit@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-no-inherit/-/typedoc-plugin-no-inherit-1.0.2.tgz#d2dff762395eb66d38f47a99dab8d2a1e7838b11"
+  integrity sha512-+fRnc8sWLzO2wjPuJT09vUOBmGt7pDE5JJuyJ2FVG79rCBUHUChUt/8/j6yQEBwo6jWMr9yjKjaltKz4SDUrrA==
 
 typedoc@^0.13.0:
   version "0.13.0"
