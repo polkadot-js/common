@@ -6,9 +6,9 @@
 
 ##  u8aToU8a
 
-▸ **u8aToU8a**(value?: * `Array`<`number`> &#124; `Buffer` &#124; `Uint8Array` &#124; `string` &#124; `null`*): `Uint8Array`
+▸ **u8aToU8a**(value?: *`Array`<`number`> | `Buffer` | `Uint8Array` | `string` | `null`*): `Uint8Array`
 
-*Defined in [u8a/toU8a.ts:28](https://github.com/polkadot-js/common/blob/d47b865/packages/util/src/u8a/toU8a.ts#L28)*
+*Defined in [u8a/toU8a.ts:28](https://github.com/polkadot-js/common/blob/89030f4/packages/util/src/u8a/toU8a.ts#L28)*
 
 *__name__*: u8aToU8a
 
@@ -31,7 +31,7 @@ u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` value |  `Array`<`number`> &#124; `Buffer` &#124; `Uint8Array` &#124; `string` &#124; `null`|
+| `Optional` value | `Array`<`number`> | `Buffer` | `Uint8Array` | `string` | `null` |
 
 **Returns:** `Uint8Array`
 

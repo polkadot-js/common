@@ -6,10 +6,9 @@
 
 ##  Prefix
 
-**Ƭ Prefix**: * `0` &#124; `1` &#124; `3` &#124; `42` &#124; `43` &#124; `68` &#124; `69`
-*
+**Ƭ Prefix**: *`0` | `1` | `3` | `42` | `43` | `68` | `69`*
 
-*Defined in [address/types.ts:5](https://github.com/polkadot-js/common/blob/d47b865/packages/keyring/src/address/types.ts#L5)*
+*Defined in [address/types.ts:5](https://github.com/polkadot-js/common/blob/89030f4/packages/keyring/src/address/types.ts#L5)*
 
 ___
 

@@ -6,9 +6,9 @@
 
 ##  decoder
 
-▸ **decoder**(input?: * `null` &#124; `Uint8Array`*):  `Uint8Array` &#124; `Array`<`any`>
+▸ **decoder**(input?: *`null` | `Uint8Array`*): `Uint8Array` | `Array`<`any`>
 
-*Defined in [decoder/index.ts:24](https://github.com/polkadot-js/common/blob/d47b865/packages/util-rlp/src/decoder/index.ts#L24)*
+*Defined in [decoder/index.ts:24](https://github.com/polkadot-js/common/blob/89030f4/packages/util-rlp/src/decoder/index.ts#L24)*
 
 *__name__*: decoder
 
@@ -30,9 +30,9 @@ decode(new Uint8Array([0x83, 0x64, 0x6f, 0x67])); // => 'dog' as Uint8Array
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` input |  `null` &#124; `Uint8Array`|
+| `Optional` input | `null` | `Uint8Array` |
 
-**Returns:**  `Uint8Array` &#124; `Array`<`any`>
+**Returns:** `Uint8Array` | `Array`<`any`>
 
 ___
 

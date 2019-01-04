@@ -6,9 +6,9 @@
 
 ##  hexStripPrefix
 
-▸ **hexStripPrefix**(value: * `string` &#124; `null` &#124; `undefined`*): `string`
+▸ **hexStripPrefix**(value: *`string` | `null` | `undefined`*): `string`
 
-*Defined in [hex/stripPrefix.ts:24](https://github.com/polkadot-js/common/blob/d47b865/packages/util/src/hex/stripPrefix.ts#L24)*
+*Defined in [hex/stripPrefix.ts:24](https://github.com/polkadot-js/common/blob/89030f4/packages/util/src/hex/stripPrefix.ts#L24)*
 
 *__name__*: hexStripPrefix
 
@@ -30,7 +30,7 @@ console.log('stripped', hexStripPrefix('0x1234')); // => 1234
 
 | Name | Type |
 | ------ | ------ |
-| value |  `string` &#124; `null` &#124; `undefined`|
+| value | `string` | `null` | `undefined` |
 
 **Returns:** `string`
 

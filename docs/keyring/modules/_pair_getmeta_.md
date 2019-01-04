@@ -8,7 +8,7 @@
 
 ▸ **getMeta**(state: *[PairState](_pair_types_.md#pairstate)*): [KeyringPair$Meta](_types_.md#keyringpair_meta)
 
-*Defined in [pair/getMeta.ts:8](https://github.com/polkadot-js/common/blob/d47b865/packages/keyring/src/pair/getMeta.ts#L8)*
+*Defined in [pair/getMeta.ts:8](https://github.com/polkadot-js/common/blob/89030f4/packages/keyring/src/pair/getMeta.ts#L8)*
 
 **Parameters:**
 

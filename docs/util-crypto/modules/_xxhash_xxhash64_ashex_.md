@@ -6,9 +6,9 @@
 
 ##  xxhash64AsHex
 
-▸ **xxhash64AsHex**(data: * `Buffer` &#124; `Uint8Array` &#124; `string`*, seed: *`number`*): `string`
+▸ **xxhash64AsHex**(data: *`Buffer` | `Uint8Array` | `string`*, seed: *`number`*): `string`
 
-*Defined in [xxhash/xxhash64/asHex.ts:24](https://github.com/polkadot-js/common/blob/d47b865/packages/util-crypto/src/xxhash/xxhash64/asHex.ts#L24)*
+*Defined in [xxhash/xxhash64/asHex.ts:24](https://github.com/polkadot-js/common/blob/89030f4/packages/util-crypto/src/xxhash/xxhash64/asHex.ts#L24)*
 
 *__name__*: xxhash64AsHex
 
@@ -30,7 +30,7 @@ xxhash64AsHex('abcd', 0xabcd)); // => 0xe29f70f8b8c96df7
 
 | Name | Type |
 | ------ | ------ |
-| data |  `Buffer` &#124; `Uint8Array` &#124; `string`|
+| data | `Buffer` | `Uint8Array` | `string` |
 | seed | `number` |
 
 **Returns:** `string`

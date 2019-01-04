@@ -6,17 +6,17 @@
 
 ##  decode
 
-▸ **decode**(input: * `null` &#124; `Uint8Array`*):  `Uint8Array` &#124; `null` &#124; `Array`< `null` &#124; `Uint8Array` &#124; `Array`< `null` &#124; `Uint8Array`>>
+▸ **decode**(input: *`null` | `Uint8Array`*): `Uint8Array` | `null` | `Array`<`null` | `Uint8Array` | `Array`<`null` | `Uint8Array`>>
 
-*Defined in [decode.ts:95](https://github.com/polkadot-js/common/blob/d47b865/packages/trie-codec/src/decode.ts#L95)*
+*Defined in [decode.ts:95](https://github.com/polkadot-js/common/blob/89030f4/packages/trie-codec/src/decode.ts#L95)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| input |  `null` &#124; `Uint8Array`|
+| input | `null` | `Uint8Array` |
 
-**Returns:**  `Uint8Array` &#124; `null` &#124; `Array`< `null` &#124; `Uint8Array` &#124; `Array`< `null` &#124; `Uint8Array`>>
+**Returns:** `Uint8Array` | `null` | `Array`<`null` | `Uint8Array` | `Array`<`null` | `Uint8Array`>>
 
 ___
 

@@ -6,9 +6,9 @@
 
 ##  numberToHex
 
-▸ **numberToHex**(value?: * `undefined` &#124; `number`*, bitLength?: *`number`*): `string`
+▸ **numberToHex**(value?: *`undefined` | `number`*, bitLength?: *`number`*): `string`
 
-*Defined in [number/toHex.ts:25](https://github.com/polkadot-js/common/blob/d47b865/packages/util/src/number/toHex.ts#L25)*
+*Defined in [number/toHex.ts:25](https://github.com/polkadot-js/common/blob/89030f4/packages/util/src/number/toHex.ts#L25)*
 
 *__name__*: numberToHex
 
@@ -31,7 +31,7 @@ numberToHex(0x1234, 32); // => 0x00001234
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
-| `Optional` value |  `undefined` &#124; `number`| - |
+| `Optional` value | `undefined` | `number` | - |
 | `Default value` bitLength | `number` |  -1 |
 
 **Returns:** `string`

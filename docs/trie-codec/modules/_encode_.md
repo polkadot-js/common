@@ -6,15 +6,15 @@
 
 ##  encode
 
-▸ **encode**(input?: * `null` &#124; `Uint8Array` &#124; `Array`< `null` &#124; `Uint8Array`>*): `Uint8Array`
+▸ **encode**(input?: *`null` | `Uint8Array` | `Array`<`null` | `Uint8Array`>*): `Uint8Array`
 
-*Defined in [encode.ts:101](https://github.com/polkadot-js/common/blob/d47b865/packages/trie-codec/src/encode.ts#L101)*
+*Defined in [encode.ts:101](https://github.com/polkadot-js/common/blob/89030f4/packages/trie-codec/src/encode.ts#L101)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` input |  `null` &#124; `Uint8Array` &#124; `Array`< `null` &#124; `Uint8Array`>|
+| `Optional` input | `null` | `Uint8Array` | `Array`<`null` | `Uint8Array`> |
 
 **Returns:** `Uint8Array`
 

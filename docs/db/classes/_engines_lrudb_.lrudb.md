@@ -16,7 +16,7 @@
 
 ⊕ **new LruDb**(backing: *[BaseDb](../interfaces/_types_.basedb.md)*, itemCount?: *`number`*): [LruDb](_engines_lrudb_.lrudb.md)
 
-*Defined in [engines/LruDb.ts:20](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L20)*
+*Defined in [engines/LruDb.ts:20](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L20)*
 
 **Parameters:**
 
@@ -35,9 +35,9 @@ ___
 
 ##  _getLru
 
-▸ **_getLru**(key: *`Uint8Array`*):  `CachedValue` &#124; `undefined`
+▸ **_getLru**(key: *`Uint8Array`*): `CachedValue` | `undefined`
 
-*Defined in [engines/LruDb.ts:87](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L87)*
+*Defined in [engines/LruDb.ts:87](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L87)*
 
 **Parameters:**
 
@@ -45,7 +45,7 @@ ___
 | ------ | ------ |
 | key | `Uint8Array` |
 
-**Returns:**  `CachedValue` &#124; `undefined`
+**Returns:** `CachedValue` | `undefined`
 
 ___
 <a id="close"></a>
@@ -56,7 +56,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[close](../interfaces/_types_.basedb.md#close)*
 
-*Defined in [engines/LruDb.ts:27](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L27)*
+*Defined in [engines/LruDb.ts:27](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L27)*
 
 **Returns:** `void`
 
@@ -69,7 +69,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[del](../interfaces/_types_.basedb.md#del)*
 
-*Defined in [engines/LruDb.ts:64](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L64)*
+*Defined in [engines/LruDb.ts:64](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L64)*
 
 **Parameters:**
 
@@ -88,7 +88,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[drop](../interfaces/_types_.basedb.md#drop)*
 
-*Defined in [engines/LruDb.ts:41](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L41)*
+*Defined in [engines/LruDb.ts:41](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L41)*
 
 **Returns:** `void`
 
@@ -101,7 +101,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[empty](../interfaces/_types_.basedb.md#empty)*
 
-*Defined in [engines/LruDb.ts:45](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L45)*
+*Defined in [engines/LruDb.ts:45](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L45)*
 
 **Returns:** `void`
 
@@ -110,11 +110,11 @@ ___
 
 ##  get
 
-▸ **get**(key: *`Uint8Array`*):  `Uint8Array` &#124; `null`
+▸ **get**(key: *`Uint8Array`*): `Uint8Array` | `null`
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[get](../interfaces/_types_.basedb.md#get)*
 
-*Defined in [engines/LruDb.ts:71](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L71)*
+*Defined in [engines/LruDb.ts:71](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L71)*
 
 **Parameters:**
 
@@ -122,7 +122,7 @@ ___
 | ------ | ------ |
 | key | `Uint8Array` |
 
-**Returns:**  `Uint8Array` &#124; `null`
+**Returns:** `Uint8Array` | `null`
 
 ___
 <a id="maintain"></a>
@@ -133,7 +133,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[maintain](../interfaces/_types_.basedb.md#maintain)*
 
-*Defined in [engines/LruDb.ts:56](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L56)*
+*Defined in [engines/LruDb.ts:56](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L56)*
 
 **Parameters:**
 
@@ -152,7 +152,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[open](../interfaces/_types_.basedb.md#open)*
 
-*Defined in [engines/LruDb.ts:34](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L34)*
+*Defined in [engines/LruDb.ts:34](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L34)*
 
 **Returns:** `void`
 
@@ -165,7 +165,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[put](../interfaces/_types_.basedb.md#put)*
 
-*Defined in [engines/LruDb.ts:91](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L91)*
+*Defined in [engines/LruDb.ts:91](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L91)*
 
 **Parameters:**
 
@@ -185,7 +185,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[rename](../interfaces/_types_.basedb.md#rename)*
 
-*Defined in [engines/LruDb.ts:52](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L52)*
+*Defined in [engines/LruDb.ts:52](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L52)*
 
 **Parameters:**
 
@@ -205,7 +205,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[size](../interfaces/_types_.basedb.md#size)*
 
-*Defined in [engines/LruDb.ts:60](https://github.com/polkadot-js/common/blob/d47b865/packages/db/src/engines/LruDb.ts#L60)*
+*Defined in [engines/LruDb.ts:60](https://github.com/polkadot-js/common/blob/89030f4/packages/db/src/engines/LruDb.ts#L60)*
 
 **Returns:** `number`
 

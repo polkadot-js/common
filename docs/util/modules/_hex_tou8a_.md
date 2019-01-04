@@ -6,9 +6,9 @@
 
 ##  hexToU8a
 
-▸ **hexToU8a**(_value?: * `string` &#124; `null`*, bitLength?: *`number`*): `Uint8Array`
+▸ **hexToU8a**(_value?: *`string` | `null`*, bitLength?: *`number`*): `Uint8Array`
 
-*Defined in [hex/toU8a.ts:25](https://github.com/polkadot-js/common/blob/d47b865/packages/util/src/hex/toU8a.ts#L25)*
+*Defined in [hex/toU8a.ts:25](https://github.com/polkadot-js/common/blob/89030f4/packages/util/src/hex/toU8a.ts#L25)*
 
 *__name__*: hexToU8a
 
@@ -31,7 +31,7 @@ hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
-| `Optional` _value |  `string` &#124; `null`| - |
+| `Optional` _value | `string` | `null` | - |
 | `Default value` bitLength | `number` |  -1 |
 
 **Returns:** `Uint8Array`

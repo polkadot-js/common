@@ -6,9 +6,9 @@
 
 ##  assert
 
-▸ **assert**(test: *`any`*, message: * `string` &#124; `MessageFn`*, code?: *`number`*, data?: *`any`*): `boolean`
+▸ **assert**(test: *`any`*, message: *`string` | `MessageFn`*, code?: *`number`*, data?: *`any`*): `boolean`
 
-*Defined in [assert.ts:27](https://github.com/polkadot-js/common/blob/d47b865/packages/util/src/assert.ts#L27)*
+*Defined in [assert.ts:27](https://github.com/polkadot-js/common/blob/89030f4/packages/util/src/assert.ts#L27)*
 
 *__name__*: assert
 
@@ -33,7 +33,7 @@ assert(false, () => 'message'); // ExtError with 'message'
 | Name | Type | Default value |
 | ------ | ------ | ------ |
 | test | `any` | - |
-| message |  `string` &#124; `MessageFn`| - |
+| message | `string` | `MessageFn` | - |
 | `Default value` code | `number` |  ExtError.CODES.ASSERT |
 | `Optional` data | `any` | - |
 
