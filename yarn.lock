@@ -1277,10 +1277,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@polkadot/dev@^0.23.4":
-  version "0.23.4"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.23.4.tgz#ee21ced1dfa4e26e0e2b83fc04ee2faa9b318c34"
-  integrity sha512-d/queQd2MpXjf72Ux6x07gZbPLYFd7sQVLJrYNNO3N3W3HiED/rAZffWrx8NR0jz1FvY6ouJdjMR/HmpUqbHiw==
+"@polkadot/dev@^0.23.5":
+  version "0.23.5"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.23.5.tgz#a5e1c4718771e06d99133f8a976a290d2518363b"
+  integrity sha512-Ejmy+kCFgAgLO5gGjH89vdTOD9AvZqwaZZB1uso1hoJ7NWBhvvZikWsCz+dMX6vr77ip6gFu16MLz70H8yYLdw==
   dependencies:
     "@babel/cli" "^7.2.3"
     "@babel/core" "^7.2.2"
@@ -1313,7 +1313,7 @@
     rimraf "^2.6.3"
     tslint "^5.12.0"
     tslint-config-standard "^8.0.1"
-    typedoc "^0.14.0"
+    typedoc "^0.13.0"
     typedoc-plugin-markdown "^1.1.20"
     typedoc-plugin-no-inherit "^1.1.0"
     typescript "^3.2.2"
@@ -4318,10 +4318,10 @@ he@^1.1.1:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
-highlight.js@9.12.0:
-  version "9.12.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
-  integrity sha1-5tnb5Xy+/mB1HwKvM2GVhwyQwB4=
+highlight.js@^9.0.0:
+  version "9.13.1"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.13.1.tgz#054586d53a6863311168488a0f58d6c505ce641e"
+  integrity sha512-Sc28JNQNDzaH6PORtRLMvif9RSn1mYuOoX3omVjnb0+HbpPygU2ALBI0R/wsiqCb4/fcp07Gdo8g+fhtFrQl6A==
 
 hoek@2.x.x:
   version "2.16.3"
@@ -9094,10 +9094,10 @@ typedoc-plugin-no-inherit@^1.1.0:
   resolved "https://registry.yarnpkg.com/typedoc-plugin-no-inherit/-/typedoc-plugin-no-inherit-1.1.0.tgz#735ac343bfe25ba7d230aa9490fc37020677dc91"
   integrity sha512-FOFA3fydaN3IxrLG4uKWzoDRT5BrFIxAI3VemoBWxRk7XL4zKL7XAy/wGEUZ89onYFY8VPJpfle3ZJJm1j/bAg==
 
-typedoc@^0.14.0:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.14.0.tgz#f7de2f3f1109b92eeafd6cbff269e28a86c8079e"
-  integrity sha512-9DOYWO6O02YGZfbNOrELtmpQF4Eba/6AfNQNt46iRuIokoEq1Axdz9Ae/XjgdoXsM2ShGlDZsAO36BwRVz/Nmw==
+typedoc@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.13.0.tgz#9efdf352bd54873955cd161bd4b75f24a8c59dde"
+  integrity sha512-jQWtvPcV+0fiLZAXFEe70v5gqjDO6pJYJz4mlTtmGJeW2KRoIU/BEfktma6Uj8Xii7UakuZjbxFewl3UYOkU/w==
   dependencies:
     "@types/fs-extra" "^5.0.3"
     "@types/handlebars" "^4.0.38"
@@ -9108,16 +9108,16 @@ typedoc@^0.14.0:
     "@types/shelljs" "^0.8.0"
     fs-extra "^7.0.0"
     handlebars "^4.0.6"
-    highlight.js "9.12.0"
+    highlight.js "^9.0.0"
     lodash "^4.17.10"
     marked "^0.4.0"
     minimatch "^3.0.0"
     progress "^2.0.0"
     shelljs "^0.8.2"
     typedoc-default-themes "^0.5.0"
-    typescript "3.2.x"
+    typescript "3.1.x"
 
-typescript@3.2.x, typescript@^3.2.2:
+typescript@3.1.x, typescript@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.2.tgz#fe8101c46aa123f8353523ebdcf5730c2ae493e5"
   integrity sha512-VCj5UiSyHBjwfYacmDuc/NOk4QQixbE+Wn7MFJuS0nRuPQbof132Pw4u53dm264O8LPc2MVsc7RJNml5szurkg==
