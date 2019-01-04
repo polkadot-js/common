@@ -1277,10 +1277,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@polkadot/dev@^0.23.5":
-  version "0.23.5"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.23.5.tgz#a5e1c4718771e06d99133f8a976a290d2518363b"
-  integrity sha512-Ejmy+kCFgAgLO5gGjH89vdTOD9AvZqwaZZB1uso1hoJ7NWBhvvZikWsCz+dMX6vr77ip6gFu16MLz70H8yYLdw==
+"@polkadot/dev@^0.23.6":
+  version "0.23.6"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.23.6.tgz#20067425bfa66d0e35e32286be1aa127b522a440"
+  integrity sha512-yeb+yhz9/CbKMdimPR3Q7Gtlft+3FZnhtfl4y1FC02APgzArgX/RQ+o/Aju/wVgl1Eh2lZWS8TQkdtJux+H4mA==
   dependencies:
     "@babel/cli" "^7.2.3"
     "@babel/core" "^7.2.2"
@@ -1301,7 +1301,6 @@
     coveralls "^3.0.1"
     cpx "^1.5.0"
     gitbook-cli "^2.3.2"
-    gitbook-plugin-asciidoc-include "^0.1.9"
     gitbook-plugin-include-codeblock "^3.2.2"
     gitbook-plugin-insert-logo-link "^1.0.1"
     gitbook-plugin-mermaid-gb3 "^2.1.0"
@@ -1314,14 +1313,14 @@
     tslint "^5.12.0"
     tslint-config-standard "^8.0.1"
     typedoc "^0.13.0"
-    typedoc-plugin-markdown "^1.1.20"
-    typedoc-plugin-no-inherit "^1.1.0"
+    typedoc-plugin-markdown "^1.1.19"
+    typedoc-plugin-no-inherit "^1.0.2"
     typescript "^3.2.2"
 
-"@polkadot/ts@^0.1.45":
-  version "0.1.45"
-  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.45.tgz#d1a8e5eaf50403ea36f864272f555d0c25b3dc7d"
-  integrity sha512-yZ9lKafhRLr7pBWdO8GnyFaDoHkAQqcEnv+9GtGPlga00Rh/yhnLq9ln4cMdxEBAhm95Lo3dVXNdO0a0Y+ERhg==
+"@polkadot/ts@^0.1.46":
+  version "0.1.46"
+  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.46.tgz#3c2015dbb0e0481f14f4b3b4f73bacb642f28da8"
+  integrity sha512-lA0ACnAzL6QlGZjDNz5GYKAhpES8Sky8RMVRwbH/TKAEBYIj95cmEx2gNW5CcHQOvzow39q1OvkuiiGgnRnRRA==
 
 "@types/base-x@*":
   version "3.0.0"
@@ -3985,13 +3984,6 @@ gitbook-cli@^2.3.2:
     semver "5.3.0"
     tmp "0.0.31"
     user-home "2.0.0"
-
-gitbook-plugin-asciidoc-include@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/gitbook-plugin-asciidoc-include/-/gitbook-plugin-asciidoc-include-0.1.9.tgz#ba7736576d882c1bfa1a1d2b639d8d594bc972af"
-  integrity sha1-unc2V22ILBv6Gh0rY52NWUvJcq8=
-  dependencies:
-    q "1.4.1"
 
 gitbook-plugin-include-codeblock@^3.2.2:
   version "3.2.2"
@@ -7558,11 +7550,6 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-q@1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/q/-/q-1.4.1.tgz#55705bcd93c5f3673530c2c2cbc0c2b3addc286e"
-  integrity sha1-VXBbzZPF82c1MMLCy8DCs63cKG4=
-
 q@1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.0.tgz#dd01bac9d06d30e6f219aecb8253ee9ebdc308f1"
@@ -9082,14 +9069,14 @@ typedoc-default-themes@^0.5.0:
   resolved "https://registry.yarnpkg.com/typedoc-default-themes/-/typedoc-default-themes-0.5.0.tgz#6dc2433e78ed8bea8e887a3acde2f31785bd6227"
   integrity sha1-bcJDPnjti+qOiHo6zeLzF4W9Yic=
 
-typedoc-plugin-markdown@^1.1.20:
+typedoc-plugin-markdown@^1.1.19:
   version "1.1.20"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-1.1.20.tgz#a3eb91994f3f8b67d5df4d938653982bf2b85209"
   integrity sha512-2rDLrzb0Wb0w0+iQ7LEGWccvRvluHTfPzj+wiggUaOYq3WaUfjA2KVFlAOECIuPiLoMiVgwSAp2YOLCYNp1C5A==
   dependencies:
     turndown "^5.0.1"
 
-typedoc-plugin-no-inherit@^1.1.0:
+typedoc-plugin-no-inherit@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-no-inherit/-/typedoc-plugin-no-inherit-1.1.0.tgz#735ac343bfe25ba7d230aa9490fc37020677dc91"
   integrity sha512-FOFA3fydaN3IxrLG4uKWzoDRT5BrFIxAI3VemoBWxRk7XL4zKL7XAy/wGEUZ89onYFY8VPJpfle3ZJJm1j/bAg==
