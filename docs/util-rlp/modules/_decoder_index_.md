@@ -8,7 +8,7 @@
 
 ▸ **decoder**(input?: *`null` | `Uint8Array`*): `Uint8Array` | `Array`<`any`>
 
-*Defined in [decoder/index.ts:24](https://github.com/polkadot-js/common/blob/5d6dd86/packages/util-rlp/src/decoder/index.ts#L24)*
+*Defined in [decoder/index.ts:24](https://github.com/polkadot-js/common/blob/2d4097d/packages/util-rlp/src/decoder/index.ts#L24)*
 
 *__name__*: decoder
 
