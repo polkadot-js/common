@@ -8,7 +8,7 @@
 
 ▸ **xxhash64AsRaw**(data: *`Buffer` | `Uint8Array` | `string`*, seed: *`number`*): `string`
 
-*Defined in [xxhash/xxhash64/asRaw.ts:22](https://github.com/polkadot-js/common/blob/4c658e8/packages/util-crypto/src/xxhash/xxhash64/asRaw.ts#L22)*
+*Defined in [xxhash/xxhash64/asRaw.ts:22](https://github.com/polkadot-js/common/blob/5d6dd86/packages/util-crypto/src/xxhash/xxhash64/asRaw.ts#L22)*
 
 *__name__*: xxhash64AsRaw
 

@@ -8,7 +8,7 @@
 
 **Ƭ KeypairType**: *`SignKeyPair`*
 
-*Defined in [types.ts:7](https://github.com/polkadot-js/common/blob/4c658e8/packages/util-crypto/src/types.ts#L7)*
+*Defined in [types.ts:7](https://github.com/polkadot-js/common/blob/5d6dd86/packages/util-crypto/src/types.ts#L7)*
 
 ___
 
