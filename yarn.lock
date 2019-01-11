@@ -1277,10 +1277,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@polkadot/dev@^0.23.7":
-  version "0.23.7"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.23.7.tgz#4a32050214fe13e7fdaa5aa1cc9fd0ccd310211b"
-  integrity sha512-6US2N28NBSfUt67zEZn+5CJ6DCFcklGqwHEykN6Xr+S9HsX+en9oK4NTzfgewjNP9FlKLjDjl7EwIJgIOERmwA==
+"@polkadot/dev@^0.23.8":
+  version "0.23.8"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.23.8.tgz#c0507eb3eee0e1c916b69c8790dfbfa47a0fd324"
+  integrity sha512-s/dK2wZvUdjFZWUJ7Q83ShSlcSrUA+3iM5QZ7mN2k9JGJAI9NxQ22EjMwNreOGneJikzHNQRVbMCcwhh5tiZwA==
   dependencies:
     "@babel/cli" "^7.2.3"
     "@babel/core" "^7.2.2"
@@ -1317,10 +1317,10 @@
     typedoc-plugin-no-inherit "^1.1.1"
     typescript "^3.2.2"
 
-"@polkadot/ts@^0.1.47":
-  version "0.1.47"
-  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.47.tgz#89a7e44ce3274feb446e8102f16499ec6a5b5720"
-  integrity sha512-UE8Wru0BOk+h0RiDAxo1P5dpk9mZyK1VIJiKKM2vfzQqMCPfKnSuQXXXkNzJ/4dqjRJ6ilYwFkzXQwemJWF0+w==
+"@polkadot/ts@^0.1.48":
+  version "0.1.48"
+  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.48.tgz#451a10a6f3d81ede25f646725a347f88c956d147"
+  integrity sha512-jbP1RfydMcggVQOqa6hf5BQTJHzXExC5hLZfDS/9s3I86UW0Gysh84mMSBxEPJeXKhs6hUsiOgqK/VvgqC/DVg==
 
 "@types/base-x@*":
   version "3.0.0"
