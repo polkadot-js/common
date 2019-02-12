@@ -1,0 +1,16 @@
+{
+  "name": "@polkadot/schnorrkel",
+  "description": "Re-pacakged version for paritytech/schnorrkel to allow for use inside node as well as the browser",
+  "collaborators": [
+    "kianenigma <Kian.peymani@gmail.com>"
+  ],
+  "version": "0.33.36",
+  "files": [
+    "schnorrkel_js_bg.wasm",
+    "schnorrkel_js.js",
+    "schnorrkel_js_bg.js",
+    "schnorrkel_js.d.ts"
+  ],
+  "main": "schnorrkel_js.js",
+  "types": "schnorrkel_js.d.ts"
+}

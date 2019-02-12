@@ -8,7 +8,7 @@ module.exports = Object.assign({}, config, {
     '@polkadot/trie-(codec|db|hash)(.*)$': '<rootDir>/packages/trie-$1/src/$2',
     '@polkadot/util-(crypto|rlp)(.*)$': '<rootDir>/packages/util-$1/src/$2',
     '@polkadot/util(.*)$': '<rootDir>/packages/util/src/$1',
-    '@polkadot/schnorrkel': '<rootDir>/packages/schnorrkel/schnorrkel_js.js',
+    '@polkadot/schnorrkel(.*)$': '<rootDir>/packages/schnorrkel/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/packages/db/build',

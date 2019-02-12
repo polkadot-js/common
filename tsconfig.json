@@ -12,7 +12,7 @@
       "@polkadot/util-crypto/*": [ "packages/util-crypto/src/*" ],
       "@polkadot/util-rlp/*": [ "packages/util-rlp/src/*" ],
       "@polkadot/util/*": [ "packages/util/src/*" ],
-      "@polkadot/schnorrkel": [ "packages/schnorrkel/schnorrkel_js.js" ]
+      "@polkadot/schnorrkel/*": [ "packages/schnorrkel/*" ]
     },
     "typeRoots": [
       "./node_modules/@polkadot/ts",
