@@ -3,9 +3,10 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { KeypairType } from '@polkadot/util-crypto/types';
-import { KeyringPair, KeyringPair$Json, KeyringPair$JsonVersion, KeyringPair$Meta, PairType } from '../types';
+import { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncoding, KeyringPair$Meta, PairType } from '../types';
 import { PairState } from './types';
 
+import { assert } from '@polkadot/util/index';
 import { naclSign, naclVerify, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto/index';
 
 import { encodeAddress } from '../address';
@@ -47,7 +48,7 @@ import toJson from './toJson';
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function pair (type: PairType, { publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null, encodedVersion: KeyringPair$JsonVersion): KeyringPair {
+export default function pair (type: PairType, { publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null, encoding: KeyringPair$JsonEncoding | null): KeyringPair {
   const state: PairState = {
     meta: { ...meta },
     publicKey
@@ -58,7 +59,9 @@ export default function pair (type: PairType, { publicKey, secretKey }: KeypairT
     address: (): string =>
       encodeAddress(state.publicKey),
     decodePkcs8: (passphrase?: string): void => {
-      const decoded = decode(encodedVersion, passphrase, encoded as Uint8Array);
+      assert(encoded && encoding, 'Cannot decode pair where encoding is not specified');
+
+      const decoded = decode((encoding as KeyringPair$JsonEncoding).version, passphrase, encoded as Uint8Array);
 
       state.publicKey = decoded.publicKey;
       secretKey = decoded.secretKey;

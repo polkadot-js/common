@@ -12,14 +12,16 @@ export type KeyringPair$Meta = {
 
 export type KeyringPair$JsonVersion = '0' | '1';
 
+export type KeyringPair$JsonEncoding = {
+  content: 'pkcs8' | 'none',
+  type: 'xsalsa20-poly1305' | 'none',
+  version: KeyringPair$JsonVersion
+};
+
 export type KeyringPair$Json = {
   address: string,
   encoded: string,
-  encoding: {
-    content: 'pkcs8' | 'none',
-    type: 'xsalsa20-poly1305' | 'none',
-    version: KeyringPair$JsonVersion
-  },
+  encoding: KeyringPair$JsonEncoding,
   meta: KeyringPair$Meta
 };
 
@@ -50,9 +52,9 @@ export interface KeyringInstance {
   setAddressPrefix (prefix: Prefix): void;
 
   addPair (pair: KeyringPair): KeyringPair;
-  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta): KeyringPair;
-  addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta): KeyringPair;
-  addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair;
+  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta, encoded: Uint8Array | null, encoding: null): KeyringPair;
+  addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta): KeyringPair;
+  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta): KeyringPair;
   addFromJson (pair: KeyringPair$Json): KeyringPair;
   getPair (address: string | Uint8Array): KeyringPair;
   getPairs (): Array<KeyringPair>;

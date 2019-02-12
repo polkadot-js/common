@@ -38,21 +38,6 @@ const SEEDS: { [index: string ]: Uint8Array } = {
  * @summary Create an instance of Keyring pre-populated with locked test accounts
  * @description The test accounts (i.e. alice, bob, dave, eve, ferdie)
  * are available on the dev chain and each test account is initialised with DOT funds.
- * @example
- * <BR>
- *
- * ```javascript
- * import testKeyring from '@polkadot/keyring/testing';
- *
- * // Create an instance of Keyring that includes test accounts
- * const keyring = testingPairs();
- *
- * // Retrieve the address of one of the test accounts
- * const addressAlice = keyring.alice.address();
- *
- * // Retrieve the public key of one of the test accounts
- * const publicKeyAlice = keyring.alice.publicKey();
- * ```
  */
 export default function testKeyring (type: PairType): KeyringInstance {
   const keyring = new Keyring(type);
