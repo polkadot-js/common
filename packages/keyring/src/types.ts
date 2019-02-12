@@ -4,9 +4,13 @@
 
 import { Prefix } from './address/types';
 
+export type PairType = 'ed25519' | 'sr25519';
+
 export type KeyringPair$Meta = {
   [index: string]: any
 };
+
+export type KeyringPair$JsonVersion = '0' | '1';
 
 export type KeyringPair$Json = {
   address: string,
@@ -14,7 +18,7 @@ export type KeyringPair$Json = {
   encoding: {
     content: 'pkcs8' | 'none',
     type: 'xsalsa20-poly1305' | 'none',
-    version: '0'
+    version: KeyringPair$JsonVersion
   },
   meta: KeyringPair$Meta
 };

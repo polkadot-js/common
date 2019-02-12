@@ -3,10 +3,10 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { KeypairType } from '@polkadot/util-crypto/types';
-import { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
+import { KeyringPair, KeyringPair$Json, KeyringPair$Meta, PairType } from '../types';
 import { PairState } from './types';
 
-import { naclSign, naclVerify } from '@polkadot/util-crypto/index';
+import { naclSign, naclVerify, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto/index';
 
 import { encodeAddress } from '../address';
 import decode from './decode';
@@ -47,7 +47,7 @@ import toJson from './toJson';
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function pair ({ publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, defaultEncoded?: Uint8Array): KeyringPair {
+export default function pair (type: PairType, { publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, defaultEncoded?: Uint8Array): KeyringPair {
   const state: PairState = {
     meta: { ...meta },
     publicKey
@@ -76,10 +76,14 @@ export default function pair ({ publicKey, secretKey }: KeypairType, meta: Keyri
     setMeta: (meta: KeyringPair$Meta): void =>
       setMeta(state, meta),
     sign: (message: Uint8Array): Uint8Array =>
-      naclSign(message, secretKey),
+      type === 'sr25519'
+        ? schnorrkelSign(message, { publicKey, secretKey })
+        : naclSign(message, secretKey),
     toJson: (passphrase?: string): KeyringPair$Json =>
       toJson(state, encode(secretKey, passphrase), !!passphrase),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
-      naclVerify(message, signature, publicKey)
+      type === 'sr25519'
+        ? schnorrkelVerify(message, signature, publicKey)
+        : naclVerify(message, signature, publicKey)
   };
 }

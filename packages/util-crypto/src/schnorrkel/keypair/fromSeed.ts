@@ -6,7 +6,6 @@ import { KeypairType } from '../../types';
 
 import schnorrkel from '@polkadot/schnorrkel';
 
-const PUB_LEN = 32;
 const SEC_LEN = 64;
 
 /**
@@ -17,7 +16,7 @@ export default function schnorrkelKeypairFromSeed (seed: Uint8Array): KeypairTyp
   const full = schnorrkel.keypair_from_seed(seed);
 
   return {
-    publicKey: full.slice(SEC_LEN, SEC_LEN + PUB_LEN),
+    publicKey: full.slice(SEC_LEN),
     secretKey: full.slice(0, SEC_LEN)
   };
 }

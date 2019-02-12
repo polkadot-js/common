@@ -2,14 +2,14 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeyringPair$Json } from '../types';
+import { KeyringPair$Json, KeyringPair$JsonVersion } from '../types';
 import { PairState } from './types';
 
 import { u8aToHex } from '@polkadot/util/index';
 
 import { encodeAddress } from '../address';
 
-export default function toJson ({ publicKey, meta }: PairState, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
+export default function toJson ({ publicKey, meta }: PairState, encoded: Uint8Array, isEncrypted: boolean, version: KeyringPair$JsonVersion): KeyringPair$Json {
   return {
     address: encodeAddress(publicKey),
     encoded: u8aToHex(encoded),
@@ -18,7 +18,7 @@ export default function toJson ({ publicKey, meta }: PairState, encoded: Uint8Ar
       type: isEncrypted
         ? 'xsalsa20-poly1305'
         : 'none',
-      version: '0'
+      version
     },
     meta
   };
