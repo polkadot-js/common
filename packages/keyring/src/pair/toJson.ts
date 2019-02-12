@@ -9,7 +9,7 @@ import { u8aToHex } from '@polkadot/util/index';
 
 import { encodeAddress } from '../address';
 
-export default function toJson ({ publicKey, meta }: PairState, encoded: Uint8Array, isEncrypted: boolean, version: KeyringPair$JsonVersion): KeyringPair$Json {
+export default function toJson (version: KeyringPair$JsonVersion, { publicKey, meta }: PairState, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
   return {
     address: encodeAddress(publicKey),
     encoded: u8aToHex(encoded),

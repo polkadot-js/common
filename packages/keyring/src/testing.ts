@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeyringInstance } from './types';
+import { KeyringInstance, PairType } from './types';
 
 import { stringToU8a } from '@polkadot/util/index';
 
@@ -54,8 +54,8 @@ const SEEDS: { [index: string ]: Uint8Array } = {
  * const publicKeyAlice = keyring.alice.publicKey();
  * ```
  */
-export default function testKeyring (): KeyringInstance {
-  const keyring = new Keyring();
+export default function testKeyring (type: PairType): KeyringInstance {
+  const keyring = new Keyring(type);
 
   Object
     .keys(SEEDS)

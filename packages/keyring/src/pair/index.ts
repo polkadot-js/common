@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { KeypairType } from '@polkadot/util-crypto/types';
-import { KeyringPair, KeyringPair$Json, KeyringPair$Meta, PairType } from '../types';
+import { KeyringPair, KeyringPair$Json, KeyringPair$JsonVersion, KeyringPair$Meta, PairType } from '../types';
 import { PairState } from './types';
 
 import { naclSign, naclVerify, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto/index';
@@ -47,23 +47,24 @@ import toJson from './toJson';
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function pair (type: PairType, { publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, defaultEncoded?: Uint8Array): KeyringPair {
+export default function pair (type: PairType, { publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null, encodedVersion: KeyringPair$JsonVersion): KeyringPair {
   const state: PairState = {
     meta: { ...meta },
     publicKey
   };
+  const version = type === 'sr25519' ? '1' : '0';
 
   return {
     address: (): string =>
       encodeAddress(state.publicKey),
-    decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void => {
-      const decoded = decode(passphrase, encoded || defaultEncoded);
+    decodePkcs8: (passphrase?: string): void => {
+      const decoded = decode(encodedVersion, passphrase, encoded as Uint8Array);
 
       state.publicKey = decoded.publicKey;
       secretKey = decoded.secretKey;
     },
     encodePkcs8: (passphrase?: string): Uint8Array =>
-      encode(secretKey, passphrase),
+      encode(version, secretKey, passphrase),
     getMeta: (): KeyringPair$Meta =>
       getMeta(state),
     isLocked: (): boolean =>
@@ -80,7 +81,7 @@ export default function pair (type: PairType, { publicKey, secretKey }: KeypairT
         ? schnorrkelSign(message, { publicKey, secretKey })
         : naclSign(message, secretKey),
     toJson: (passphrase?: string): KeyringPair$Json =>
-      toJson(state, encode(secretKey, passphrase), !!passphrase),
+      toJson(version, state, encode(version, secretKey, passphrase), !!passphrase),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       type === 'sr25519'
         ? schnorrkelVerify(message, signature, publicKey)

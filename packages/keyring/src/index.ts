@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, PairType } from './types';
+import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, PairType, KeyringPair$JsonVersion } from './types';
 
 import { hexToU8a } from '@polkadot/util/index';
 import { mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed } from '@polkadot/util-crypto/index';
@@ -60,9 +60,9 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from them that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array): KeyringPair {
-    // @ts-ignore no secretKey - cannot unlock
-    return this.addPair(createPair({ publicKey: this.decodeAddress(address) }, meta, defaultEncoded));
+  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, version: KeyringPair$JsonVersion = '0'): KeyringPair {
+    // @ts-ignore no secretKey - unless in the encoded data
+    return this.addPair(createPair({ publicKey: this.decodeAddress(address) }, meta, encoded, version));
   }
 
   /**
@@ -73,8 +73,8 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromJson ({ address, encoded, meta }: KeyringPair$Json): KeyringPair {
-    return this.addFromAddress(address, meta, hexToU8a(encoded));
+  addFromJson ({ address, encoded, meta, encoding: { version } }: KeyringPair$Json): KeyringPair {
+    return this.addFromAddress(address, meta, hexToU8a(encoded), version);
   }
 
   /**
@@ -86,7 +86,7 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta): KeyringPair {
+  addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta = {}): KeyringPair {
     return this.addFromSeed(mnemonicToSeed(mnemonic), meta);
   }
 
@@ -113,12 +113,13 @@ export default class Keyring implements KeyringInstance {
    * const pairAlice = keyring.addFromSeed(stringToU8a(ALICE_SEED));
    * ```
    */
-  addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair {
+  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}): KeyringPair {
     const keypair = this._type === 'sr25519'
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
+    const version = this._type === 'sr25519' ? '1' : '0';
 
-    return this.addPair(createPair(this._type, keypair, meta));
+    return this.addPair(createPair(this._type, keypair, meta, null, version));
   }
 
   /**

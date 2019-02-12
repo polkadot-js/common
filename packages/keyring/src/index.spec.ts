@@ -12,10 +12,10 @@ describe('keypair', () => {
   const publicKeyTwo = new Uint8Array([215, 90, 152, 1, 130, 177, 10, 183, 213, 75, 254, 211, 201, 100, 7, 58, 14, 225, 114, 243, 218, 166, 35, 37, 175, 2, 26, 104, 247, 7, 81, 26]);
   const seedOne = stringToU8a('12345678901234567890123456789012');
   const seedTwo = hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60');
-  let keypair;
+  let keypair: Keyring;
 
   beforeEach(() => {
-    keypair = new Keyring();
+    keypair = new Keyring('ed25519');
 
     keypair.addFromSeed(seedOne);
     setPrefix(42);
