@@ -2,6 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { SignKeyPair } from 'tweetnacl';
-
-export type KeypairType = SignKeyPair;
+export type KeypairType = {
+  publicKey: Uint8Array;
+  secretKey: Uint8Array;
+};
