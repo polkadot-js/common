@@ -2,12 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeypairType } from '@polkadot/util-crypto/types';
-import { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncoding, KeyringPair$Meta, PairType } from '../types';
-import { PairState } from './types';
+import { KeyringPair, KeyringPair$Json, KeyringPair$Meta, PairType } from '../types';
+import { PairInfo, PairState } from './types';
 
-import { assert } from '@polkadot/util/index';
-import { naclSign, naclVerify, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto/index';
+import { naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto/index';
 
 import { encodeAddress } from '../address';
 import decode from './decode';
@@ -48,26 +46,28 @@ import toJson from './toJson';
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function pair (type: PairType, { publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null, encoding: KeyringPair$JsonEncoding | null): KeyringPair {
+export default function pair (type: PairType, { publicKey, secretKey, seed }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null): KeyringPair {
   const state: PairState = {
     meta: { ...meta },
     publicKey
   };
-  const version = type === 'sr25519' ? '1' : '0';
 
   return {
     address: (): string =>
       encodeAddress(state.publicKey),
     decodePkcs8: (passphrase?: string): void => {
-      assert(encoded && encoding, 'Cannot decode pair where encoding is not specified');
-
-      const decoded = decode((encoding as KeyringPair$JsonEncoding).version, passphrase, encoded as Uint8Array);
+      const decoded = decode(passphrase, encoded);
 
       state.publicKey = decoded.publicKey;
-      secretKey = decoded.secretKey;
+      seed = decoded.seed;
+      secretKey = (
+        type === 'sr25519'
+          ? schnorrkelFromSeed(seed)
+          : naclFromSeed(seed)
+      ).secretKey;
     },
     encodePkcs8: (passphrase?: string): Uint8Array =>
-      encode(version, secretKey, passphrase),
+      encode(publicKey, seed, passphrase),
     getMeta: (): KeyringPair$Meta =>
       getMeta(state),
     isLocked: (): boolean =>
@@ -84,7 +84,7 @@ export default function pair (type: PairType, { publicKey, secretKey }: KeypairT
         ? schnorrkelSign(message, { publicKey, secretKey })
         : naclSign(message, secretKey),
     toJson: (passphrase?: string): KeyringPair$Json =>
-      toJson(version, state, encode(version, secretKey, passphrase), !!passphrase),
+      toJson(state, encode(publicKey, seed, passphrase), !!passphrase),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       type === 'sr25519'
         ? schnorrkelVerify(message, signature, publicKey)

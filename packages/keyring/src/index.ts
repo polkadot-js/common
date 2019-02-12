@@ -100,9 +100,8 @@ export default class Keyring implements KeyringInstance {
     const keypair = this._type === 'sr25519'
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
-    const version = this._type === 'sr25519' ? '1' : '0';
 
-    return this.addPair(createPair(this._type, keypair, meta, null, null));
+    return this.addPair(createPair(this._type, { ...keypair, seed }, meta, null));
   }
 
   /**

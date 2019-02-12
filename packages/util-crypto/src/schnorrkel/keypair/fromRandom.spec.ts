@@ -5,21 +5,15 @@
 import { schnorrkelKeypairFromRandom } from '../index';
 
 describe('schnorrkelKeypairFromRandom', () => {
-  let keypair;
-
-  beforeEach(() => {
-    keypair = schnorrkelKeypairFromRandom();
-  });
-
   it('generates a valid publicKey', () => {
     expect(
-      keypair.publicKey
+      schnorrkelKeypairFromRandom().publicKey
     ).toHaveLength(32);
   });
 
   it('generates a valid secretKey', () => {
     expect(
-      keypair.secretKey
+      schnorrkelKeypairFromRandom().secretKey
     ).toHaveLength(64);
   });
 });
