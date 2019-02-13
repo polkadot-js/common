@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, PairType } from './types';
+import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions, PairType } from './types';
 
-import { hexToU8a } from '@polkadot/util/index';
+import { hexToU8a, assert } from '@polkadot/util/index';
 import { mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed } from '@polkadot/util-crypto/index';
 
 import { decodeAddress, encodeAddress, setAddressPrefix } from './address';
@@ -31,9 +31,13 @@ export default class Keyring implements KeyringInstance {
   private _pairs: Pairs;
   private _type: PairType;
 
-  constructor (type: PairType) {
+  constructor (options: KeyringOptions) {
+    assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
+
     this._pairs = new Pairs();
-    this._type = type;
+    this._type = options.type as PairType;
+
+    setAddressPrefix(options.addressPrefix || 42);
   }
 
   decodeAddress = decodeAddress;

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeyringInstance, PairType } from './types';
+import { KeyringInstance, KeyringOptions } from './types';
 
 import { stringToU8a } from '@polkadot/util/index';
 
@@ -39,8 +39,8 @@ const SEEDS: { [index: string ]: Uint8Array } = {
  * @description The test accounts (i.e. alice, bob, dave, eve, ferdie)
  * are available on the dev chain and each test account is initialised with DOT funds.
  */
-export default function testKeyring (type: PairType): KeyringInstance {
-  const keyring = new Keyring(type);
+export default function testKeyring (options: KeyringOptions): KeyringInstance {
+  const keyring = new Keyring(options);
 
   Object
     .keys(SEEDS)

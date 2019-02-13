@@ -6,6 +6,11 @@ import { Prefix } from './address/types';
 
 export type PairType = 'ed25519' | 'sr25519';
 
+export type KeyringOptions = {
+  addressPrefix?: Prefix,
+  type?: PairType
+};
+
 export type KeyringPair$Meta = {
   [index: string]: any
 };

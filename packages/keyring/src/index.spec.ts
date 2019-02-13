@@ -16,7 +16,7 @@ describe('keypair', () => {
     let keypair: Keyring;
 
     beforeEach(() => {
-      keypair = new Keyring('ed25519');
+      keypair = new Keyring({ type: 'ed25519' });
 
       keypair.addFromSeed(seedOne, {});
       setPrefix(42);
