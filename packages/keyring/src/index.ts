@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, PairType, KeyringPair$JsonEncoding } from './types';
+import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, PairType } from './types';
 
 import { hexToU8a } from '@polkadot/util/index';
 import { mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed } from '@polkadot/util-crypto/index';
