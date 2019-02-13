@@ -6,13 +6,11 @@
 
 ##  pair
 
-▸ **pair**(__namedParameters: *`object`*, meta?: *[KeyringPair$Meta](_types_.md#keyringpair_meta)*, defaultEncoded?: *`Uint8Array`*): [KeyringPair](_types_.md#keyringpair)
+▸ **pair**(type: *[PairType](_types_.md#pairtype)*, __namedParameters: *`object`*, meta?: *[KeyringPair$Meta](_types_.md#keyringpair_meta)*, encoded: *`Uint8Array` | `null`*): [KeyringPair](_types_.md#keyringpair)
 
-*Defined in [pair/index.ts:50](https://github.com/polkadot-js/common/blob/5cb5390/packages/keyring/src/pair/index.ts#L50)*
+*Defined in [pair/index.ts:47](https://github.com/polkadot-js/common/blob/2aba82e/packages/keyring/src/pair/index.ts#L47)*
 
 *__name__*: pair
-
-*__signature__*: pair ({ publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, defaultEncoded?: Uint8Array): KeyringPair
 
 *__summary__*: Creates a keyring pair object
 
@@ -32,9 +30,10 @@ It has properties whose values are functions that may be called to perform accou
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
+| type | [PairType](_types_.md#pairtype) | - |
 | __namedParameters | `object` | - |
 | `Default value` meta | [KeyringPair$Meta](_types_.md#keyringpair_meta) |  {} |
-| `Optional` defaultEncoded | `Uint8Array` | - |
+| encoded | `Uint8Array` | `null` | - |
 
 **Returns:** [KeyringPair](_types_.md#keyringpair)
 

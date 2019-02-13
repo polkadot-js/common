@@ -6,9 +6,9 @@
 
 ##  naclSign
 
-▸ **naclSign**(message: *`Uint8Array`*, secretKey: *`Uint8Array`*): `Uint8Array`
+▸ **naclSign**(message: *`Uint8Array`*, __namedParameters: *`object`*): `Uint8Array`
 
-*Defined in [nacl/sign.ts:22](https://github.com/polkadot-js/common/blob/5cb5390/packages/util-crypto/src/nacl/sign.ts#L22)*
+*Defined in [nacl/sign.ts:25](https://github.com/polkadot-js/common/blob/2aba82e/packages/util-crypto/src/nacl/sign.ts#L25)*
 
 *__name__*: naclSign
 
@@ -31,7 +31,7 @@ naclSign([...], [...]); // => [...]
 | Name | Type |
 | ------ | ------ |
 | message | `Uint8Array` |
-| secretKey | `Uint8Array` |
+| __namedParameters | `object` |
 
 **Returns:** `Uint8Array`
 

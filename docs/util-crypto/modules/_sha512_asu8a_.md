@@ -8,7 +8,7 @@
 
 ▸ **sha512AsU8a**(data: *`Uint8Array`*): `Uint8Array`
 
-*Defined in [sha512/asU8a.ts:22](https://github.com/polkadot-js/common/blob/5cb5390/packages/util-crypto/src/sha512/asU8a.ts#L22)*
+*Defined in [sha512/asU8a.ts:22](https://github.com/polkadot-js/common/blob/2aba82e/packages/util-crypto/src/sha512/asU8a.ts#L22)*
 
 *__name__*: sha512AsU8a
 

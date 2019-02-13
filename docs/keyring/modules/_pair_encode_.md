@@ -6,15 +6,16 @@
 
 ##  encode
 
-▸ **encode**(secretKey: *`Uint8Array`*, passphrase?: *`undefined` | `string`*): `Uint8Array`
+▸ **encode**(publicKey: *`Uint8Array`*, seed?: *`Uint8Array` | `null`*, passphrase?: *`undefined` | `string`*): `Uint8Array`
 
-*Defined in [pair/encode.ts:10](https://github.com/polkadot-js/common/blob/5cb5390/packages/keyring/src/pair/encode.ts#L10)*
+*Defined in [pair/encode.ts:10](https://github.com/polkadot-js/common/blob/2aba82e/packages/keyring/src/pair/encode.ts#L10)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| secretKey | `Uint8Array` |
+| publicKey | `Uint8Array` |
+| `Optional` seed | `Uint8Array` | `null` |
 | `Optional` passphrase | `undefined` | `string` |
 
 **Returns:** `Uint8Array`

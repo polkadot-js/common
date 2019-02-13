@@ -2,13 +2,13 @@
 
 # Type aliases
 
-<a id="pairstate"></a>
+<a id="pairinfo"></a>
 
-##  PairState
+##  PairInfo
 
-**Ƭ PairState**: *`object`*
+**Ƭ PairInfo**: *`object`*
 
-*Defined in [pair/types.ts:7](https://github.com/polkadot-js/common/blob/5cb5390/packages/keyring/src/pair/types.ts#L7)*
+*Defined in [pair/types.ts:5](https://github.com/polkadot-js/common/blob/2aba82e/packages/keyring/src/pair/types.ts#L5)*
 
 #### Type declaration
 

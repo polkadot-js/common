@@ -6,9 +6,9 @@
 
 ##  testKeyring
 
-▸ **testKeyring**(): [KeyringInstance](../interfaces/_types_.keyringinstance.md)
+▸ **testKeyring**(options: *[KeyringOptions](_types_.md#keyringoptions)*): [KeyringInstance](../interfaces/_types_.keyringinstance.md)
 
-*Defined in [testing.ts:57](https://github.com/polkadot-js/common/blob/5cb5390/packages/keyring/src/testing.ts#L57)*
+*Defined in [testing.ts:42](https://github.com/polkadot-js/common/blob/2aba82e/packages/keyring/src/testing.ts#L42)*
 
 *__name__*: testKeyring
 
@@ -18,20 +18,11 @@
 
 *__description__*: The test accounts (i.e. alice, bob, dave, eve, ferdie) are available on the dev chain and each test account is initialised with DOT funds.
 
-*__example__*:   
+**Parameters:**
 
-```javascript
-import testKeyring from '@polkadot/keyring/testing';
-
-// Create an instance of Keyring that includes test accounts
-const keyring = testingPairs();
-
-// Retrieve the address of one of the test accounts
-const addressAlice = keyring.alice.address();
-
-// Retrieve the public key of one of the test accounts
-const publicKeyAlice = keyring.alice.publicKey();
-```
+| Name | Type |
+| ------ | ------ |
+| options | [KeyringOptions](_types_.md#keyringoptions) |
 
 **Returns:** [KeyringInstance](../interfaces/_types_.keyringinstance.md)
 

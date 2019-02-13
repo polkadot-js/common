@@ -6,18 +6,18 @@
 
 ##  decode
 
-▸ **decode**(passphrase?: *`undefined` | `string`*, _encrypted?: *`Uint8Array`*): `object`
+▸ **decode**(passphrase?: *`undefined` | `string`*, _encrypted?: *`Uint8Array` | `null`*): `DecodeResult`
 
-*Defined in [pair/decode.ts:15](https://github.com/polkadot-js/common/blob/5cb5390/packages/keyring/src/pair/decode.ts#L15)*
+*Defined in [pair/decode.ts:19](https://github.com/polkadot-js/common/blob/2aba82e/packages/keyring/src/pair/decode.ts#L19)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
 | `Optional` passphrase | `undefined` | `string` |
-| `Optional` _encrypted | `Uint8Array` |
+| `Optional` _encrypted | `Uint8Array` | `null` |
 
-**Returns:** `object`
+**Returns:** `DecodeResult`
 
 ___
 
