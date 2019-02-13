@@ -45,6 +45,13 @@ export default class Keyring implements KeyringInstance {
   setAddressPrefix = setAddressPrefix;
 
   /**
+   * @description Returns the type of the keyring, either ed25519 of sr25519
+   */
+  get type (): PairType {
+    return this._type;
+  }
+
+  /**
    * @name addPair
    * @signature addPair (pair: KeyringPair): KeyringPair
    * @summary Stores an account, given a keyring pair, as a Key/Value (public key, pair) in Keyring Pair Dictionary
