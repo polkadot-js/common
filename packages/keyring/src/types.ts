@@ -52,6 +52,8 @@ export interface KeyringPairs {
 }
 
 export interface KeyringInstance {
+  type: PairType;
+
   decodeAddress (encoded: string | Uint8Array): Uint8Array;
   encodeAddress (key: Uint8Array | string): string;
   setAddressPrefix (prefix: Prefix): void;
