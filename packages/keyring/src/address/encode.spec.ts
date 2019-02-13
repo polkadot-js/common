@@ -6,7 +6,7 @@
 import testingPairs from '../testingPairs';
 import encode from './encode';
 
-const keyring = testingPairs();
+const keyring = testingPairs({ type: 'ed25519' });
 
 describe('encode', () => {
   it('encodes an address to a valid value', () => {

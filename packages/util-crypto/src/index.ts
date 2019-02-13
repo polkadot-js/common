@@ -7,5 +7,6 @@ export * from './keccak';
 export * from './mnemonic';
 export * from './nacl';
 export * from './random';
+export * from './schnorrkel';
 export * from './sha512';
 export * from './xxhash';

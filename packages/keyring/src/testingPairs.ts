@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeyringPair } from './types';
+import { KeyringPair, KeyringOptions } from './types';
 
 import createKeyring from './testing';
 import nobody from './pair/nobody';
@@ -11,8 +11,8 @@ type TestKeyringMap = {
   [index: string]: KeyringPair
 };
 
-export default function testKeyringPairs (): TestKeyringMap {
-  const keyring = createKeyring();
+export default function testKeyringPairs (options: KeyringOptions): TestKeyringMap {
+  const keyring = createKeyring(options);
   const pairs = keyring.getPairs();
 
   return pairs.reduce((result, pair) => {

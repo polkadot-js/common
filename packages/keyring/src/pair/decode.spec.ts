@@ -4,7 +4,7 @@
 
 import testingPairs from '../testingPairs';
 
-const keyring = testingPairs();
+const keyring = testingPairs({ type: 'ed25519' });
 
 describe('decode', () => {
   it('fails when no data provided', () => {
@@ -14,9 +14,11 @@ describe('decode', () => {
   });
 
   it('returns correct publicKey from encoded', () => {
+    const PASS = 'testing';
+
     expect(
       () => keyring.alice.decodePkcs8(
-        'testing', keyring.alice.encodePkcs8('testing')
+        PASS, keyring.alice.encodePkcs8(PASS)
       )
     ).not.toThrow();
   });

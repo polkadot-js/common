@@ -4,7 +4,7 @@
 
 import testingPairs from '../testingPairs';
 
-const keyring = testingPairs();
+const keyring = testingPairs({ type: 'ed25519' });
 
 describe('toJson', () => {
   it('creates an unencoded output with no passphrase', () => {
@@ -16,7 +16,7 @@ describe('toJson', () => {
       encoding: {
         content: 'pkcs8',
         type: 'none',
-        version: '0'
+        version: '1'
       },
       meta: {
         name: 'alice',
@@ -34,7 +34,7 @@ describe('toJson', () => {
       encoding: {
         content: 'pkcs8',
         type: 'xsalsa20-poly1305',
-        version: '0'
+        version: '1'
       }
     });
   });

@@ -3,21 +3,18 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { KeypairType } from '@polkadot/util-crypto/types';
-import { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
-import { PairState } from './types';
+import { KeyringPair, KeyringPair$Json, KeyringPair$Meta, PairType } from '../types';
+import { PairInfo } from './types';
 
-import { naclSign, naclVerify } from '@polkadot/util-crypto/index';
+import { naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto/index';
 
 import { encodeAddress } from '../address';
 import decode from './decode';
 import encode from './encode';
-import getMeta from './getMeta';
-import setMeta from './setMeta';
 import toJson from './toJson';
 
 /**
  * @name pair
- * @signature pair ({ publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, defaultEncoded?: Uint8Array): KeyringPair
  * @summary Creates a keyring pair object
  * @description Creates a keyring pair object with provided account public key, metadata, and encoded arguments.
  * The keyring pair stores the account state including the encoded address and associated metadata.
@@ -47,25 +44,37 @@ import toJson from './toJson';
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function pair ({ publicKey, secretKey }: KeypairType, meta: KeyringPair$Meta = {}, defaultEncoded?: Uint8Array): KeyringPair {
-  const state: PairState = {
-    meta: { ...meta },
-    publicKey
-  };
+export default function pair (type: PairType, { publicKey, seed }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null): KeyringPair {
+  const fromSeed = (seed: Uint8Array) =>
+    type === 'sr25519'
+      ? schnorrkelFromSeed(seed)
+      : naclFromSeed(seed);
+  const sign = (message: Uint8Array, pair: Partial<KeypairType>) =>
+    type === 'sr25519'
+      ? schnorrkelSign(message, pair)
+      : naclSign(message, pair);
+  const verify = (message: Uint8Array, signature: Uint8Array) =>
+    type === 'sr25519'
+      ? schnorrkelVerify(message, signature, publicKey)
+      : naclVerify(message, signature, publicKey);
+  let secretKey: Uint8Array | undefined = seed
+    ? fromSeed(seed).secretKey
+    : undefined;
 
   return {
     address: (): string =>
-      encodeAddress(state.publicKey),
-    decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void => {
-      const decoded = decode(passphrase, encoded || defaultEncoded);
+      encodeAddress(publicKey),
+    decodePkcs8: (passphrase?: string, _encoded?: Uint8Array | null): void => {
+      const decoded = decode(passphrase, _encoded || encoded);
 
-      state.publicKey = decoded.publicKey;
-      secretKey = decoded.secretKey;
+      publicKey = decoded.publicKey;
+      seed = decoded.seed;
+      secretKey = fromSeed(seed).secretKey;
     },
     encodePkcs8: (passphrase?: string): Uint8Array =>
-      encode(secretKey, passphrase),
+      encode(publicKey, seed, passphrase),
     getMeta: (): KeyringPair$Meta =>
-      getMeta(state),
+      meta,
     isLocked: (): boolean =>
       (!secretKey || secretKey.length === 0),
     lock: (): void => {
@@ -73,13 +82,14 @@ export default function pair ({ publicKey, secretKey }: KeypairType, meta: Keyri
     },
     publicKey: (): Uint8Array =>
       publicKey,
-    setMeta: (meta: KeyringPair$Meta): void =>
-      setMeta(state, meta),
+    setMeta: (_meta: KeyringPair$Meta): void => {
+      meta = meta;
+    },
     sign: (message: Uint8Array): Uint8Array =>
-      naclSign(message, secretKey),
+      sign(message, { publicKey, secretKey }),
     toJson: (passphrase?: string): KeyringPair$Json =>
-      toJson(state, encode(secretKey, passphrase), !!passphrase),
+      toJson({ meta, publicKey }, encode(publicKey, seed, passphrase), !!passphrase),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
-      naclVerify(message, signature, publicKey)
+      verify(message, signature)
   };
 }

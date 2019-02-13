@@ -2,10 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
+import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions, PairType } from './types';
 
-import { hexToU8a } from '@polkadot/util/index';
-import { mnemonicToSeed , naclKeypairFromSeed } from '@polkadot/util-crypto/index';
+import { assert, hexToU8a, isNumber } from '@polkadot/util/index';
+import { mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed } from '@polkadot/util-crypto/index';
 
 import { decodeAddress, encodeAddress, setAddressPrefix } from './address';
 import createPair from './pair';
@@ -26,14 +26,18 @@ import Pairs from './pairs';
  * dictionary is achieved using `removePair`. Retrieval of all the stored pairs via `getPairs` or perform
  * lookup of a pair for a given account address or public key using `getPair`. JSON metadata associated with
  * an account may be obtained using `toJson` accompanied by the account passphrase.
- * @example See [Polkadot-JS Common Keyring Examples](https://polkadot.js.org/api/common/examples/keyring/) and the [Polkadot-JS Apps ui-keyring package](https://github.com/polkadot-js/apps/tree/master/packages/ui-keyring)
- * where it is implemented.
  */
 export default class Keyring implements KeyringInstance {
   private _pairs: Pairs;
+  private _type: PairType;
 
-  constructor () {
+  constructor (options: KeyringOptions) {
+    assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
+
     this._pairs = new Pairs();
+    this._type = options.type as PairType;
+
+    setAddressPrefix(isNumber(options.addressPrefix) ? options.addressPrefix : 42);
   }
 
   decodeAddress = decodeAddress;
@@ -58,9 +62,8 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from them that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array): KeyringPair {
-    // @ts-ignore no secretKey - cannot unlock
-    return this.addPair(createPair({ publicKey: this.decodeAddress(address) }, meta, defaultEncoded));
+  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta, encoded: Uint8Array | null): KeyringPair {
+    return this.addPair(createPair(this._type, { publicKey: this.decodeAddress(address) }, meta, encoded));
   }
 
   /**
@@ -70,8 +73,6 @@ export default class Keyring implements KeyringInstance {
    * @description Allows user to provide a json object argument that contains account information (that may be obtained from the json file
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
-   * @example
-   * Refer to an actual implementation in [Polkadot-JS ui-keyring > account > save](https://github.com/polkadot-js/apps/blob/master/packages/ui-keyring/src/account/save.ts#L15)
    */
   addFromJson ({ address, encoded, meta }: KeyringPair$Json): KeyringPair {
     return this.addFromAddress(address, meta, hexToU8a(encoded));
@@ -86,7 +87,7 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta): KeyringPair {
+  addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta): KeyringPair {
     return this.addFromSeed(mnemonicToSeed(mnemonic), meta);
   }
 
@@ -97,26 +98,13 @@ export default class Keyring implements KeyringInstance {
    * @description Stores in a keyring pair dictionary the public key of the pair as a key and the pair as the associated value.
    * Allows user to provide the account seed as an argument, and then generates a keyring pair from it that it passes to
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
-   * @example
-   * <BR>
-   *
-   * ```javascript
-   * import Keyring from '@polkadot/keyring';
-   * import stringToU8a from '@polkadot/util/string/toU8a';
-   *
-   * const ALICE_SEED = 'Alice'.padEnd(32, ' ');
-   *
-   * // Create an instance of the Keyring
-   * const keyring = new Keyring();
-   *
-   * // Add Alice to our keyring pair dictionary (with the known seed for the account)
-   * const pairAlice = keyring.addFromSeed(stringToU8a(ALICE_SEED));
-   * ```
-   *
-   * Refer to an actual implementation in [Polkadot-JS ui-keyring > account > create](https://github.com/polkadot-js/apps/blob/master/packages/ui-keyring/src/account/create.ts#L11)
    */
-  addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair {
-    return this.addPair(createPair(naclKeypairFromSeed(seed), meta));
+  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta): KeyringPair {
+    const keypair = this._type === 'sr25519'
+      ? schnorrkelFromSeed(seed)
+      : naclFromSeed(seed);
+
+    return this.addPair(createPair(this._type, { ...keypair, seed }, meta, null));
   }
 
   /**
@@ -125,31 +113,6 @@ export default class Keyring implements KeyringInstance {
    * @summary Retrieves an account keyring pair from the Keyring Pair Dictionary, given an account address
    * @description Returns a keyring pair value from the keyring pair dictionary by performing
    * a key lookup using the provided account address or public key (after decoding it).
-   * @example
-   * <BR>
-   *
-   * ```javascript
-   * import Keyring from '@polkadot/keyring';
-   * import stringToU8a from '@polkadot/util/string/toU8a';
-   *
-   * const ALICE_SEED = 'Alice'.padEnd(32, ' ');
-   *
-   * // Create an instance of the Keyring
-   * const keyring = new Keyring();
-   *
-   * // Add Alice to our keyring pair dictionary (with the known seed for the account)
-   * const pairAlice = keyring.addFromSeed(stringToU8a(ALICE_SEED));
-   *
-   * // Retrieve the same pair that is stored in the keyring pair dictionary by
-   * // providing the account address as an argument, and also the public key as an argument.
-   * // The pairs that are returned should both be the same value as `pairAlice` above
-   * const pairAliceRetrievedWithAddress = keyring.getPair(pairAlice.address());
-   * const pairAliceRetrievedWithPublicKey = keyring.getPair(pairAlice.publicKey());
-   *
-   * // Check if all returned pairs are the same
-   * console.log(`Are all pairs the same? : ` +
-   *   `${pairAlice === pairAliceRetrievedWithAddress === pairAliceRetrievedWithPublicKey}`);
-   * ```
    */
   getPair (address: string | Uint8Array): KeyringPair {
     return this._pairs.get(address);
@@ -160,28 +123,6 @@ export default class Keyring implements KeyringInstance {
    * @signature getPairs (): Array<KeyringPair>
    * @summary Retrieves all account keyring pairs from the Keyring Pair Dictionary
    * @description Returns an array list of all the keyring pair values that are stored in the keyring pair dictionary.
-   * @example
-   * <BR>
-   *
-   * ```javascript
-   * import testKeyring from '@polkadot/keyring/testing';
-   *
-   * // Create an instance of Keyring that includes test accounts
-   * const keyring = testingPairs();
-   *
-   * keyring
-   *   .getPairs()
-   *   .forEach((pair) => {
-   *     const address = pair.address();
-   *
-   *     keyring.addPair(address, {
-   *       address,
-   *       meta: pair.getMeta()
-   *     });
-   *   });
-   * ```
-   *
-   * Refer to an actual implementation in [Polkadot-JS ui-keyring > loadAll](https://github.com/polkadot-js/apps/blob/master/packages/ui-keyring/src/loadAll.ts)
    */
   getPairs (): Array<KeyringPair> {
     return this._pairs.all();
@@ -205,8 +146,6 @@ export default class Keyring implements KeyringInstance {
    * @name removePair
    * @signature removePair (address: string | Uint8Array): void
    * @description Deletes the provided input address or public key from the stored Keyring Pair Dictionary.
-   * @example
-   * Refer to an actual implementation in [Polkadot-JS ui-keyring > account > forget](https://github.com/polkadot-js/apps/blob/master/packages/ui-keyring/src/account/forget.ts)
    */
   removePair (address: string | Uint8Array): void {
     this._pairs.remove(address);
@@ -220,8 +159,6 @@ export default class Keyring implements KeyringInstance {
    * when valid address or public key and when the account passphrase is provided if the account secret
    * is not already unlocked and available in memory. Note that in [Polkadot-JS Apps](https://github.com/polkadot-js/apps) the user
    * may backup their account to a JSON file that contains this information.
-   * @example
-   * Refer to an actual implementation in [Polkadot-JS ui-keyring > account > save](https://github.com/polkadot-js/apps/blob/master/packages/ui-keyring/src/account/save.ts#L9)
    */
   toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json {
     return this._pairs.get(address).toJson(passphrase);

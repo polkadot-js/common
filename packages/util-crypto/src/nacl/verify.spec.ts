@@ -7,8 +7,8 @@ import { stringToU8a } from '@polkadot/util/index';
 import { naclVerify, naclKeypairFromSeed } from './index';
 
 describe('naclSign', () => {
-  let publicKey;
-  let signature;
+  let publicKey: Uint8Array;
+  let signature: Uint8Array;
 
   beforeEach(() => {
     publicKey = naclKeypairFromSeed(

@@ -8,7 +8,7 @@ import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
 const PKCS8_LENGTH = PKCS8_DIVIDER.length + PKCS8_HEADER.length + 64;
 const ENCODED_LENGTH = 125;
 
-const keyring = testingPairs();
+const keyring = testingPairs({ type: 'ed25519' });
 
 describe('encode', () => {
   it('returns PKCS8 when no passphrase supplied', () => {
