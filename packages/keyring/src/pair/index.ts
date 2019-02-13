@@ -82,7 +82,7 @@ export default function pair (type: PairType, { publicKey, secretKey, seed }: Pa
     sign: (message: Uint8Array): Uint8Array =>
       type === 'sr25519'
         ? schnorrkelSign(message, { publicKey, secretKey })
-        : naclSign(message, secretKey),
+        : naclSign(message, { secretKey }),
     toJson: (passphrase?: string): KeyringPair$Json =>
       toJson(state, encode(publicKey, seed, passphrase), !!passphrase),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
