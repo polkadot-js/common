@@ -11,8 +11,7 @@
       "@polkadot/trie-hash/*": [ "packages/trie-hash/src/*" ],
       "@polkadot/util-crypto/*": [ "packages/util-crypto/src/*" ],
       "@polkadot/util-rlp/*": [ "packages/util-rlp/src/*" ],
-      "@polkadot/util/*": [ "packages/util/src/*" ],
-      "@polkadot/schnorrkel/*": [ "packages/schnorrkel/*" ]
+      "@polkadot/util/*": [ "packages/util/src/*" ]
     },
     "typeRoots": [
       "./node_modules/@polkadot/ts",

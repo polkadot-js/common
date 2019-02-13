@@ -2,16 +2,19 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import './polyfill';
-
 import { KeypairType } from '../types';
 
-import schnorrkel from '@polkadot/schnorrkel';
+import { assert } from '@polkadot/util/index';
+
+import * as schnorrkel from './schnorrkel-js';
 
 /**
  * @name schnorrkelSign
  * @description Returns message signature of `message`, using the supplied pair
  */
-export default function schnorrkelSign (message: Uint8Array, { publicKey, secretKey }: KeypairType): Uint8Array {
-  return schnorrkel.sign(publicKey, secretKey, message);
+export default function schnorrkelSign (message: Uint8Array, { publicKey, secretKey }: Partial<KeypairType>): Uint8Array {
+  assert(publicKey && publicKey.length === 32, 'Expected valid publicKey, 32-bytes');
+  assert(secretKey && secretKey.length === 64, 'Expected valid secretKey, 364-bytes');
+
+  return schnorrkel.sign(publicKey as Uint8Array, secretKey as Uint8Array, message);
 }

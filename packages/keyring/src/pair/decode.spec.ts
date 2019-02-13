@@ -14,9 +14,11 @@ describe('decode', () => {
   });
 
   it('returns correct publicKey from encoded', () => {
+    const PASS = 'testing';
+
     expect(
       () => keyring.alice.decodePkcs8(
-        'testing', keyring.alice.encodePkcs8('testing')
+        PASS, keyring.alice.encodePkcs8(PASS)
       )
     ).not.toThrow();
   });

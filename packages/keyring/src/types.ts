@@ -52,7 +52,7 @@ export interface KeyringInstance {
   setAddressPrefix (prefix: Prefix): void;
 
   addPair (pair: KeyringPair): KeyringPair;
-  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta, encoded: Uint8Array | null, encoding: null): KeyringPair;
+  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta, encoded: Uint8Array | null): KeyringPair;
   addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta): KeyringPair;
   addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta): KeyringPair;
   addFromJson (pair: KeyringPair$Json): KeyringPair;

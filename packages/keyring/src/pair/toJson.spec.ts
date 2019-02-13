@@ -16,7 +16,7 @@ describe('toJson', () => {
       encoding: {
         content: 'pkcs8',
         type: 'none',
-        version: '0'
+        version: '1'
       },
       meta: {
         name: 'alice',
@@ -34,7 +34,7 @@ describe('toJson', () => {
       encoding: {
         content: 'pkcs8',
         type: 'xsalsa20-poly1305',
-        version: '0'
+        version: '1'
       }
     });
   });

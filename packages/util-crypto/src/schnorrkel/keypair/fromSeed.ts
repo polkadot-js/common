@@ -2,11 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import '../polyfill';
-
 import { KeypairType } from '../../types';
 
-import schnorrkel from '@polkadot/schnorrkel';
+import * as schnorrkel from '../schnorrkel-js';
 
 const SEC_LEN = 64;
 const PUB_LEN = 32;

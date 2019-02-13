@@ -55,8 +55,8 @@ export default function pair (type: PairType, { publicKey, secretKey, seed }: Pa
   return {
     address: (): string =>
       encodeAddress(state.publicKey),
-    decodePkcs8: (passphrase?: string): void => {
-      const decoded = decode(passphrase, encoded);
+    decodePkcs8: (passphrase?: string, _encoded?: Uint8Array | null): void => {
+      const decoded = decode(passphrase, _encoded || encoded);
 
       state.publicKey = decoded.publicKey;
       seed = decoded.seed;

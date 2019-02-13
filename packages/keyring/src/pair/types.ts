@@ -2,7 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringPair$Meta } from '../types';
 
 export type PairState = {
@@ -10,6 +9,8 @@ export type PairState = {
   publicKey: Uint8Array
 };
 
-export type PairInfo = KeypairType & {
-  seed: Uint8Array
+export type PairInfo = {
+  publicKey: Uint8Array,
+  secretKey?: Uint8Array,
+  seed?: Uint8Array
 };

@@ -58,9 +58,8 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from them that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta, encoded: Uint8Array | null, encoding: KeyringPair$JsonEncoding | null): KeyringPair {
-    // @ts-ignore no secretKey - unless in the encoded data
-    return this.addPair(createPair({ publicKey: this.decodeAddress(address) }, meta, encoded, encoding));
+  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta, encoded: Uint8Array | null): KeyringPair {
+    return this.addPair(createPair(this._type, { publicKey: this.decodeAddress(address) }, meta, encoded));
   }
 
   /**
@@ -71,8 +70,8 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromJson ({ address, encoded, meta, encoding }: KeyringPair$Json): KeyringPair {
-    return this.addFromAddress(address, meta, hexToU8a(encoded), encoding);
+  addFromJson ({ address, encoded, meta }: KeyringPair$Json): KeyringPair {
+    return this.addFromAddress(address, meta, hexToU8a(encoded));
   }
 
   /**
