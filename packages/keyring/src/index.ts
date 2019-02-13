@@ -4,7 +4,7 @@
 
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions, PairType } from './types';
 
-import { hexToU8a, assert } from '@polkadot/util/index';
+import { assert, hexToU8a, isNumber } from '@polkadot/util/index';
 import { mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed } from '@polkadot/util-crypto/index';
 
 import { decodeAddress, encodeAddress, setAddressPrefix } from './address';
@@ -37,7 +37,7 @@ export default class Keyring implements KeyringInstance {
     this._pairs = new Pairs();
     this._type = options.type as PairType;
 
-    setAddressPrefix(options.addressPrefix || 42);
+    setAddressPrefix(isNumber(options.addressPrefix) ? options.addressPrefix : 42);
   }
 
   decodeAddress = decodeAddress;
