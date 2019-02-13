@@ -8,7 +8,7 @@
 
 ▸ **xxhash64AsValue**(data: *`Buffer` | `Uint8Array` | `string`*, seed: *`number`*): `number`
 
-*Defined in [xxhash/xxhash64/asValue.ts:23](https://github.com/polkadot-js/common/blob/294c255/packages/util-crypto/src/xxhash/xxhash64/asValue.ts#L23)*
+*Defined in [xxhash/xxhash64/asValue.ts:23](https://github.com/polkadot-js/common/blob/06cc692/packages/util-crypto/src/xxhash/xxhash64/asValue.ts#L23)*
 
 *__name__*: xxhash64AsValue
 

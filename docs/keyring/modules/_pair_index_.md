@@ -8,7 +8,7 @@
 
 ▸ **pair**(type: *[PairType](_types_.md#pairtype)*, __namedParameters: *`object`*, meta?: *[KeyringPair$Meta](_types_.md#keyringpair_meta)*, encoded: *`Uint8Array` | `null`*): [KeyringPair](_types_.md#keyringpair)
 
-*Defined in [pair/index.ts:47](https://github.com/polkadot-js/common/blob/294c255/packages/keyring/src/pair/index.ts#L47)*
+*Defined in [pair/index.ts:47](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/pair/index.ts#L47)*
 
 *__name__*: pair
 

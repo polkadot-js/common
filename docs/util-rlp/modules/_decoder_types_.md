@@ -8,7 +8,7 @@
 
 **Ƭ DecodeFunc**: *`function`*
 
-*Defined in [decoder/types.ts:10](https://github.com/polkadot-js/common/blob/294c255/packages/util-rlp/src/decoder/types.ts#L10)*
+*Defined in [decoder/types.ts:10](https://github.com/polkadot-js/common/blob/06cc692/packages/util-rlp/src/decoder/types.ts#L10)*
 
 #### Type declaration
 ▸(input: *`Uint8Array`*): [DecodeOutput](_decoder_types_.md#decodeoutput)
@@ -28,7 +28,7 @@ ___
 
 **Ƭ DecodeOutput**: *`object`*
 
-*Defined in [decoder/types.ts:5](https://github.com/polkadot-js/common/blob/294c255/packages/util-rlp/src/decoder/types.ts#L5)*
+*Defined in [decoder/types.ts:5](https://github.com/polkadot-js/common/blob/06cc692/packages/util-rlp/src/decoder/types.ts#L5)*
 
 #### Type declaration
 
