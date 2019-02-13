@@ -8,7 +8,7 @@
 
 ▸ **blake2bAsU8a**(data: *`Uint8Array`*, bitLength?: *`number`*, key?: *`Uint8Array` | `null`*): `Uint8Array`
 
-*Defined in [blake2/blake2b/asU8a.ts:23](https://github.com/polkadot-js/common/blob/2aba82e/packages/util-crypto/src/blake2/blake2b/asU8a.ts#L23)*
+*Defined in [blake2/blake2b/asU8a.ts:23](https://github.com/polkadot-js/common/blob/294c255/packages/util-crypto/src/blake2/blake2b/asU8a.ts#L23)*
 
 *__name__*: blake2bAsU8a
 
