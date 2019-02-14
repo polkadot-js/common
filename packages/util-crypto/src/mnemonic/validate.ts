@@ -6,7 +6,6 @@ import { validateMnemonic } from 'bip39';
 
 /**
  * @name mnemonicValidate
- * @signature mnemonicValidate (mnemonic: string): boolean
  * @summary Validates a mnemonic input using [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki).
  * @example
  * <BR>

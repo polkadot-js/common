@@ -6,7 +6,6 @@ import isInstanceOf from './instanceOf';
 
 /**
  * @name isBuffer
- * @signature isBuffer (value: any): boolean
  * @summary Tests for a `Buffer` object instance.
  * @description
  * Checks to see if the input object is an instance of `Buffer`.

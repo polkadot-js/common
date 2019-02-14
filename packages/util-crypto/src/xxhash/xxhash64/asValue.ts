@@ -7,7 +7,6 @@ import { isBuffer, isString, u8aToBuffer } from '@polkadot/util/index';
 
 /**
  * @name xxhash64AsValue
- * @signature xxhash64AsValue (data: Buffer | Uint8Array | string, seed: number): number
  * @summary Creates a hex number from the input.
  * @description
  * From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a hex number

@@ -3,7 +3,6 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import mkdirp from 'mkdirp';
-import os from 'os';
 import path from 'path';
 import rimraf from 'rimraf';
 
@@ -42,11 +41,11 @@ const VAL_F = new Uint8Array([0x42, 1, 2, 3, 4, 5, 6, 0x69]);
 
 // NOTE Skipped, doesn't seem to be too happy on CI (cwd issues?)
 describe.skip('FileFlatDb (basics)', () => {
-  const testGet = (key, value) =>
-    expect(store.get(key)).toEqual(value);
-
   const location = path.join(process.cwd(), '--test-FileFlatDb');
-  let store;
+  let store: FileFlatDb;
+
+  const testGet = (key: Uint8Array, value: Uint8Array) =>
+    expect(store.get(key)).toEqual(value);
 
   beforeAll(() => {
     mkdirp.sync(location);

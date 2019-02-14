@@ -8,7 +8,6 @@ import encodeU8a from './u8a';
 
 /**
  * @name encoder
- * @signature encoder (input: any): Uint8Array
  * @summary Encodes the input value into RLP.
  * @description
  * From an input, calculate the RLP and return the result as a `Uint8Array`.

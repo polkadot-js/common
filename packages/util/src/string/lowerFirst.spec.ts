@@ -17,15 +17,15 @@ describe('stringLowerFirst', () => {
     ).toBe('abc');
   });
 
-  it('returns undefined as undefined', () => {
+  it('returns undefined as empty', () => {
     expect(
       stringLowerFirst()
-    ).toBe(undefined);
+    ).toBe('');
   });
 
-  it('returns null as null', () => {
+  it('returns null as empty', () => {
     expect(
       stringLowerFirst(null)
-    ).toBe(null);
+    ).toBe('');
   });
 });

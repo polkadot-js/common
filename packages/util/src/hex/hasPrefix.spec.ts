@@ -25,7 +25,7 @@ describe('hexHasPrefix', () => {
 
   it('returns false when non-string value supplied', () => {
     expect(
-      hexHasPrefix(false)
+      hexHasPrefix(false as any)
     ).toEqual(false);
   });
 });

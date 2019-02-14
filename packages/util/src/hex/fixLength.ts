@@ -7,7 +7,6 @@ import hexStripPrefix from './stripPrefix';
 
 /**
  * @name hexFixLength
- * @signature hexFixLength (value: string, bitLength: number = -1, withPadding: boolean = false): string
  * @summary Shifts a hex string to a specific bitLength
  * @description
  * Returns a `0x` prefixed string with the specified number of bits contained in the return value. (If bitLength is -1, length checking is not done). Values with more bits are trimmed to the specified length. Input values with less bits are returned as-is by default. When `withPadding` is set, shorter values are padded with `0`.

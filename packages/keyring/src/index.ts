@@ -53,7 +53,6 @@ export default class Keyring implements KeyringInstance {
 
   /**
    * @name addPair
-   * @signature addPair (pair: KeyringPair): KeyringPair
    * @summary Stores an account, given a keyring pair, as a Key/Value (public key, pair) in Keyring Pair Dictionary
    */
   addPair (pair: KeyringPair): KeyringPair {
@@ -62,7 +61,6 @@ export default class Keyring implements KeyringInstance {
 
   /**
    * @name addFromAddress
-   * @signature addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array): KeyringPair
    * @summary Stores an account, given an account address, as a Key/Value (public key, pair) in Keyring Pair Dictionary
    * @description Allows user to explicitely provide separate inputs including account address or public key, and optionally
    * the associated account metadata, and the default encoded value as arguments (that may be obtained from the json file
@@ -75,7 +73,6 @@ export default class Keyring implements KeyringInstance {
 
   /**
    * @name addFromJson
-   * @signature addFromJson ({ address, encoded, meta }: KeyringPair$Json): KeyringPair
    * @summary Stores an account, given JSON data, as a Key/Value (public key, pair) in Keyring Pair Dictionary
    * @description Allows user to provide a json object argument that contains account information (that may be obtained from the json file
    * of an account backup), and then generates a keyring pair from it that it passes to
@@ -87,7 +84,6 @@ export default class Keyring implements KeyringInstance {
 
   /**
    * @name addFromMnemonic
-   * @signature addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta): KeyringPair
    * @summary Stores an account, given a mnemonic, as a Key/Value (public key, pair) in Keyring Pair Dictionary
    * @description Allows user to provide a mnemonic (seed phrase that is provided when account is originally created)
    * argument and a metadata argument that contains account information (that may be obtained from the json file
@@ -100,7 +96,6 @@ export default class Keyring implements KeyringInstance {
 
   /**
    * @name addFromSeed
-   * @signature addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair
    * @summary Stores an account, given seed data, as a Key/Value (public key, pair) in Keyring Pair Dictionary
    * @description Stores in a keyring pair dictionary the public key of the pair as a key and the pair as the associated value.
    * Allows user to provide the account seed as an argument, and then generates a keyring pair from it that it passes to
@@ -116,7 +111,6 @@ export default class Keyring implements KeyringInstance {
 
   /**
    * @name getPair
-   * @signature getPair (address: string | Uint8Array): KeyringPair
    * @summary Retrieves an account keyring pair from the Keyring Pair Dictionary, given an account address
    * @description Returns a keyring pair value from the keyring pair dictionary by performing
    * a key lookup using the provided account address or public key (after decoding it).
@@ -127,7 +121,6 @@ export default class Keyring implements KeyringInstance {
 
   /**
    * @name getPairs
-   * @signature getPairs (): Array<KeyringPair>
    * @summary Retrieves all account keyring pairs from the Keyring Pair Dictionary
    * @description Returns an array list of all the keyring pair values that are stored in the keyring pair dictionary.
    */
@@ -137,7 +130,6 @@ export default class Keyring implements KeyringInstance {
 
   /**
    * @name getPublicKeys
-   * @signature getPublicKeys (): Array<Uint8Array>
    * @summary Retrieves Public Keys of all Keyring Pairs stored in the Keyring Pair Dictionary
    * @description Returns an array list of all the public keys associated with each of the keyring pair values that are stored in the keyring pair dictionary.
    */
@@ -151,7 +143,6 @@ export default class Keyring implements KeyringInstance {
 
   /**
    * @name removePair
-   * @signature removePair (address: string | Uint8Array): void
    * @description Deletes the provided input address or public key from the stored Keyring Pair Dictionary.
    */
   removePair (address: string | Uint8Array): void {
@@ -160,7 +151,6 @@ export default class Keyring implements KeyringInstance {
 
   /**
    * @name toJson
-   * @signature toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json
    * @summary Returns a JSON object associated with the input argument that contains metadata assocated with an account
    * @description Returns a JSON object containing the metadata associated with an account
    * when valid address or public key and when the account passphrase is provided if the account secret

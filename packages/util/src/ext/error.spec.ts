@@ -59,7 +59,7 @@ describe('ExtError', () => {
   });
 
   describe('stack traces', () => {
-    let captureStackTrace;
+    let captureStackTrace: any;
 
     beforeEach(() => {
       captureStackTrace = Error.captureStackTrace;
@@ -89,7 +89,7 @@ describe('ExtError', () => {
     });
 
     it('captures via stack when captureStackTrace not available', () => {
-      Error.captureStackTrace = null;
+      Error.captureStackTrace = null as any; // grrr
 
       expect(
         new ExtError().stack.length

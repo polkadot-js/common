@@ -4,7 +4,6 @@
 
 /**
  * @name bufferToU8a
- * @signature bufferToU8a (value?: Buffer): string
  * @summary Creates a Uint8Array value from a Buffer object.
  * @description
  * `null` inputs returns an empty result, `Buffer` values return the actual value as a `Uint8Array`. Anything that is not a `Buffer` object throws an error.
@@ -17,7 +16,7 @@
  * bufferToU8a(Buffer.from([1, 2, 3]));
  * ```
  */
-export default function bufferToU8a (buffer?: Buffer | number[]): Uint8Array {
+export default function bufferToU8a (buffer?: Buffer | number[] | null): Uint8Array {
   if (!buffer) {
     return new Uint8Array([]);
   }

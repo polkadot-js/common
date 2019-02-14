@@ -8,7 +8,6 @@ import hexStripPrefix from './stripPrefix';
 
 /**
  * @name hexToU8a
- * @signature hexToU8a (value?: string, bitLength: number = -1): Uint8Array
  * @summary Creates a Buffer object from a hex string.
  * @description
  * `null` inputs returns an empty `Uint8Array` result. Hex input values return the actual bytes value converted to a Uint8Array. Anything that is not a hex string (including the `0x` prefix) throws an error.

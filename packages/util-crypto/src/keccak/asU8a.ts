@@ -6,7 +6,6 @@ import { keccak256 } from 'js-sha3';
 
 /**
  * @name keccakAsU8a
- * @signature keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array
  * @summary Creates a keccak Uint8Array from the input.
  * @description
  * From either a `string` or a `Buffer` input, create the keccak and return the result as a `Uint8Array`.

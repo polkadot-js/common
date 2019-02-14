@@ -6,7 +6,6 @@ import xxhash64AsValue from './asValue';
 
 /**
  * @name xxhash64AsRaw
- * @signature xxhash64AsRaw (data: Buffer | Uint8Array | string, seed: number): string
  * @summary Creates a xxhash non-prefixed hex from the input.
  * @description
  * From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a non-prefixed hex string.

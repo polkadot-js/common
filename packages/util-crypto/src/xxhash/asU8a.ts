@@ -6,7 +6,6 @@ import xxhash64AsBn from './xxhash64/asBn';
 
 /**
  * @name xxhashAsU8a
- * @signature xxhashAsU8a (data: Buffer | Uint8Array | string, bitLength: number = 64): Uint8Array
  * @summary Creates a xxhash64 u8a from the input.
  * @description
  * From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash64 and return the result as a `Uint8Array` with the specified `bitLength`.

@@ -6,7 +6,6 @@ import u8aToU8a from './toU8a';
 
 /**
  * @name u8aConcat
- * @signature u8aConcat (...values: Array<Uint8Array | string>): Uint8Array
  * @summary Creates a concatenated Uint8Array from the inputs.
  * @description
  * Concatenates the input arrays into a single `UInt8Array`.

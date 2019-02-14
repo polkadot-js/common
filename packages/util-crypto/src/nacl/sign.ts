@@ -9,7 +9,6 @@ import { assert } from '@polkadot/util/index';
 
 /**
  * @name naclSign
- * @signature naclSign (message: Uint8Array, secretKey: Uint8Array): Uint8Array
  * @summary Signs a message using the supplied secretKey
  * @description
  * Returns message signature of `message`, using the `secretKey`.

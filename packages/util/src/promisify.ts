@@ -4,7 +4,6 @@
 
 /**
  * @name promisify
- * @signature function promisify (this: ?Object, fn: Function, ...params: Array<any>): Promise<any>
  * @summary Wraps an async callback into a `Promise`
  * @description
  * Wraps the supplied async function `fn` that has a standard JS callback `(error: Error, result: any)` into a `Promise`, passing the supplied parameters. When `error` is set, the Promise is rejected, else the Promise resolves with the `result` value.

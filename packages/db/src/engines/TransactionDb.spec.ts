@@ -71,7 +71,7 @@ describe('TransactionDb', () => {
           db.put(key, value);
 
           throw new Error('test');
-        })
+        });
       }
     ).toThrow(/test/);
     expect(memory.get(key)).toEqual(null);

@@ -7,7 +7,6 @@ import isUndefined from '../is/undefined';
 
 /**
  * @name arrayFilter
- * @signature arrayFilter (array: Array<any>, allowNulls: boolean = true): Array<any>
  * @summary Filters undefined and (optionally) null values from an array
  * @description
  * Returns a new array with all `undefined` values removed. Optionally, when `allowNulls = false`, it removes the `null` values as well

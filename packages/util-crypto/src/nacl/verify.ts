@@ -6,7 +6,6 @@ import nacl from 'tweetnacl';
 
 /**
  * @name naclSign
- * @signature naclVerify (message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array): boolean
  * @summary Verifies the signature on the supplied message.
  * @description
  * Verifies the `signature` on `message` with the supplied `plublicKey`. Returns `true` on sucess, `false` otherwise.

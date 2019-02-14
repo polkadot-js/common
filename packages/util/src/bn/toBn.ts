@@ -6,7 +6,6 @@ import BN from 'bn.js';
 
 /**
  * @name bnToBn
- * @signature bnToBn (value?: BN : number): BN
  * @summary Creates a BN value from a BN.js bignumber or number input.
  * @description
  * `null` inputs returns a `0x0` result, BN values returns the value, numnbers returns a BN representation.

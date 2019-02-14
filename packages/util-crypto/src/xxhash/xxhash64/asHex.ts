@@ -8,7 +8,6 @@ import xxhash64AsRaw from './asRaw';
 
 /**
  * @name xxhash64AsHex
- * @signature xxhash64AsHex (data: Buffer | Uint8Array | string, seed: number): string
  * @summary Creates a xxhash hex from the input.
  * @description
  * From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a hex string.
