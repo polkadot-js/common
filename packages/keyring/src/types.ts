@@ -4,11 +4,11 @@
 
 import { Prefix } from './address/types';
 
-export type PairType = 'ed25519' | 'sr25519';
+export type KeyringPairType = 'ed25519' | 'sr25519';
 
 export type KeyringOptions = {
   addressPrefix?: Prefix,
-  type?: PairType
+  type?: KeyringPairType
 };
 
 export type KeyringPair$Meta = {
@@ -18,7 +18,7 @@ export type KeyringPair$Meta = {
 export type KeyringPair$JsonVersion = '0' | '1';
 
 export type KeyringPair$JsonEncoding = {
-  content: 'pkcs8' | 'none',
+  content: ['pkcs8', KeyringPairType],
   type: 'xsalsa20-poly1305' | 'none',
   version: KeyringPair$JsonVersion
 };
@@ -30,19 +30,22 @@ export type KeyringPair$Json = {
   meta: KeyringPair$Meta
 };
 
-export type KeyringPair = {
-  address: () => string,
-  decodePkcs8: (passphrase?: string, encoded?: Uint8Array) => void,
-  encodePkcs8: (passphrase?: string) => Uint8Array,
-  getMeta: () => KeyringPair$Meta,
-  isLocked: () => boolean,
-  lock: () => void,
-  publicKey: () => Uint8Array,
-  setMeta: (meta: KeyringPair$Meta) => void,
-  sign (message: Uint8Array): Uint8Array,
-  toJson (passphrase?: string): KeyringPair$Json,
-  verify (message: Uint8Array, signature: Uint8Array): boolean
-};
+export interface KeyringPair {
+  readonly type: KeyringPairType;
+
+  address: () => string;
+  decodePkcs8: (passphrase?: string, encoded?: Uint8Array) => void;
+  encodePkcs8: (passphrase?: string) => Uint8Array;
+  getMeta: () => KeyringPair$Meta;
+  isLocked: () => boolean;
+  lock: () => void;
+  publicKey: () => Uint8Array;
+  setMeta: (meta: KeyringPair$Meta) => void;
+  sign (message: Uint8Array): Uint8Array;
+  toJson (passphrase?: string): KeyringPair$Json;
+  toType (type: KeyringPairType): KeyringPair;
+  verify (message: Uint8Array, signature: Uint8Array): boolean;
+}
 
 export interface KeyringPairs {
   add: (pair: KeyringPair) => KeyringPair;
@@ -52,16 +55,16 @@ export interface KeyringPairs {
 }
 
 export interface KeyringInstance {
-  type: PairType;
+  readonly type: KeyringPairType;
 
   decodeAddress (encoded: string | Uint8Array): Uint8Array;
   encodeAddress (key: Uint8Array | string): string;
   setAddressPrefix (prefix: Prefix): void;
 
   addPair (pair: KeyringPair): KeyringPair;
-  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta, encoded: Uint8Array | null): KeyringPair;
-  addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta): KeyringPair;
-  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta): KeyringPair;
+  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta, encoded: Uint8Array | null, type?: KeyringPairType): KeyringPair;
+  addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
+  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
   addFromJson (pair: KeyringPair$Json): KeyringPair;
   getPair (address: string | Uint8Array): KeyringPair;
   getPairs (): Array<KeyringPair>;

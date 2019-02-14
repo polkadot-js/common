@@ -4,7 +4,8 @@
 
 import { stringToU8a } from '@polkadot/util/index';
 
-import pairFromRandom from './keypair/fromRandom';
+import randomAsU8a from '../random/asU8a';
+import pairFromSeed from './keypair/fromSeed';
 import sign from './sign';
 import verify from './verify';
 
@@ -12,13 +13,13 @@ const MESSAGE = stringToU8a('this is a message');
 
 describe('sign and verify', () => {
   it('has 64-byte signatures', () => {
-    const pair = pairFromRandom();
+    const pair = pairFromSeed(randomAsU8a());
 
     expect(sign(MESSAGE, pair)).toHaveLength(64);
   });
 
   it('can sign and verify a message', () => {
-    const pair = pairFromRandom();
+    const pair = pairFromSeed(randomAsU8a());
     const signature = sign(MESSAGE, pair);
 
     expect(verify(MESSAGE, signature, pair.publicKey)).toBe(true);
