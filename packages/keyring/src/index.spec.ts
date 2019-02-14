@@ -66,6 +66,18 @@ describe('keypair', () => {
 
       expect(pair.verify(MESSAGE, signature)).toBe(true);
     });
+
+    it('converts, signs and verifies', () => {
+      const MESSAGE = stringToU8a('this is a message');
+      const pair = keypair.getPair(publicKeyOne).toType('sr25519');
+      const signature = pair.sign(MESSAGE);
+
+      expect(pair.type).toBe('sr25519');
+      expect(pair.publicKey()).toEqual(
+        new Uint8Array([116, 28, 8, 160, 111, 65, 197, 150, 96, 143, 103, 116, 37, 155, 217, 4, 51, 4, 173, 250, 93, 62, 234, 98, 118, 11, 217, 190, 151, 99, 77, 99])
+      );
+      expect(pair.verify(MESSAGE, signature)).toBe(true);
+    });
   });
 
   describe('sr25519', () => {
@@ -124,6 +136,18 @@ describe('keypair', () => {
       const pair = keypair.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE);
 
+      expect(pair.verify(MESSAGE, signature)).toBe(true);
+    });
+
+    it('converts, signs and verifies', () => {
+      const MESSAGE = stringToU8a('this is a message');
+      const pair = keypair.getPair(publicKeyOne).toType('ed25519');
+      const signature = pair.sign(MESSAGE);
+
+      expect(pair.type).toBe('ed25519');
+      expect(pair.publicKey()).toEqual(
+        new Uint8Array([47, 140, 97, 41, 216, 22, 207, 81, 195, 116, 188, 127, 8, 195, 230, 62, 209, 86, 207, 120, 174, 251, 74, 101, 80, 217, 123, 135, 153, 121, 119, 238])
+      );
       expect(pair.verify(MESSAGE, signature)).toBe(true);
     });
   });
