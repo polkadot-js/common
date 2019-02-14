@@ -29,6 +29,7 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
     "@babel/runtime": "^7.2.0",
+    "@parity/schnorrkel-js": "^0.1.1",
     "@polkadot/util": "^0.34.4",
     "@types/bip39": "^2.4.1",
     "@types/webassembly-js-api": "^0.0.2",
