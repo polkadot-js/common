@@ -11,7 +11,6 @@ import trieRoot from './trieRoot';
 
 /**
  * @name trieRootOrdered
- * @signature trieRootOrdered (values: Array<Uint8Array>): Uint8Array
  * @summary Creates a trie hash from the supplied values.
  * @description
  * From an `Array<Uint8Array>` input, calculate the ordered triehash and return the result as a `Uint8Array`.

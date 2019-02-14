@@ -17,7 +17,6 @@ interface Options extends ToBnOptions {
 
 /**
  * @name bnToHex
- * @signature bnToHex (value?: BN, bitLength: number = -1): string
  * @summary Creates a hex value from a BN.js bignumber object.
  * @description
  * `null` inputs returns a `0x` result, BN values return the actual value as a `0x` prefixed hex value. Anything that is not a BN object throws an error. With `bitLength` set, it fixes the number to the specified length.

@@ -19,7 +19,6 @@ describe('isHex', () => {
     ).toEqual(true);
   });
 
-
   it('returns true on hex values with String', () => {
     expect(
       isHex(new String(`0x${test}`))

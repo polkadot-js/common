@@ -6,7 +6,6 @@ import BN from 'bn.js';
 
 /**
  * @name isBn
- * @signature isBN (value: any): boolean
  * @summary Tests for a `BN` object instance.
  * @description
  * Checks to see if the input object is an instance of `BN` (bn.js).

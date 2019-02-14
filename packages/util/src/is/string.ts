@@ -4,7 +4,6 @@
 
 /**
  * @name isString
- * @signature isString (value: any): boolean
  * @summary Tests for a string.
  * @description
  * Checks to see if the input value is a JavaScript string.

@@ -6,7 +6,6 @@ import toSecret from './toSecret';
 
 /**
  * @name toSeed
- * @signature toSeed (mnemonic: string): Uint8Array
  * @summary Creates a valid seed from a mnemonic input
  * @example
  * <BR>

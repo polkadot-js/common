@@ -11,7 +11,6 @@ const BN_53 = new BN(0b11111111111111111111111111111111111111111111111111111);
 
 /**
  * @name randomAsNumber
- * @signature randomAsNumber (): number
  * @summary Creates a random number from random bytes.
  * @description
  * Returns a random number generated from the secure bytes.

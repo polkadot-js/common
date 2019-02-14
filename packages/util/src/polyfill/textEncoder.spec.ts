@@ -3,27 +3,27 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 describe('TextEncoder', () => {
-  let origTE;
+  let origTE: TextEncoder;
 
   beforeEach(() => {
-    origTE = global.TextEncoder;
+    origTE = (global as any).TextEncoder;
   });
 
   afterEach(() => {
-    global.TextEncoder = origTE;
+    (global as any).TextEncoder = origTE;
   });
 
   it('polyfills with no exceptions (without TextEncoder)', () => {
-    global.TextEncoder = null;
+    (global as any).TextEncoder = null;
 
     expect(require('./textEncoder')).toBeDefined();
-    expect(global.TextEncoder).toBeDefined();
+    expect((global as any).TextEncoder).toBeDefined();
   });
 
   it('polyfills with no exceptions (with TextEncoder)', () => {
-    global.TextEncoder = require('util').TextEncoder;
+    (global as any).TextEncoder = require('util').TextEncoder;
 
     expect(require('./textEncoder')).toBeDefined();
-    expect(global.TextEncoder).toBeDefined();
+    expect((global as any).TextEncoder).toBeDefined();
   });
 });

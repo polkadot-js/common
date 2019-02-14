@@ -6,7 +6,6 @@ import nacl from 'tweetnacl';
 
 /**
  * @name sha512AsU8a
- * @signature sha512AsU8a (data: Uint8Array): Uint8Array
  * @summary Creates sha-512 hash of the input.
  * @description
  * Returns a sha-512 `Uint8Array` from the supplied data.

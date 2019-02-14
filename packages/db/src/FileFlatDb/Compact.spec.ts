@@ -2,11 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import mkdirp from 'mkdirp';
-import os from 'os';
-import path from 'path';
-import rimraf from 'rimraf';
-
 import FileFlatDb from './index';
 
 describe.skip('FileFlatDb (compacting)', () => {
@@ -14,7 +9,9 @@ describe.skip('FileFlatDb (compacting)', () => {
 
   it('compacts without failing', () => {
     expect(
-      combined.maintain(() => {})
+      combined.maintain(() => {
+        // noop
+      })
     ).not.toBe(0);
   });
 });

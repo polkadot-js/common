@@ -8,7 +8,6 @@ import internalDecode from './decode';
 
 /**
  * @name decoder
- * @signature decoder (input?: Uint8Array): Uint8Array | Array<*>
  * @summary Decodes the input RLP.
  * @description
  * From an input, decode the RLP and return the result as a `Uint8Array` or `Array`.

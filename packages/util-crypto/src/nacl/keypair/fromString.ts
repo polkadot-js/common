@@ -11,7 +11,6 @@ import fromSeed from './fromSeed';
 
 /**
  * @name naclKeypairFromString
- * @signature naclKeypairFromString (value: string): { secretKey: Uint8Array, publicKey: Uint8Array }
  * @summary Creates a new public/secret keypair from a string.
  * @description
  * Returns a object containing a `publicKey` & `secretKey` generated from the supplied string. The string is hashed and the value used as the input seed.

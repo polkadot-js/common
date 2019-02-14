@@ -6,7 +6,6 @@ import nacl from 'tweetnacl';
 
 /**
  * @name randomAsU8a
- * @signature randomAsU8a (length?: number = 32): Uint8Array
  * @summary Creates a Uint8Array filled with random bytes.
  * @description
  * Returns a `Uint8Array` with the specified (optional) length filled with random bytes.

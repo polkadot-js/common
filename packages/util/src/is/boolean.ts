@@ -4,7 +4,6 @@
 
 /**
  * @name isBoolean
- * @signature isBoolean (value: any): boolean
  * @summary Tests for a boolean value.
  * @description
  * Checks to see if the input value is a JavaScript boolean.

@@ -10,7 +10,6 @@ import unhashedTrie from './unhashedTrie';
 
 /**
  * @name trieRoot
- * @signature trieRoot (pairs: Trie$Pairs): Uint8Array
  * @summary Creates a trie hash from the supplied pairs.
  * @description
  * From an `Array<{k: Uint8Array, v: Uint8Array}>` input, calculate the triehash and return the result as a `Uint8Array`.

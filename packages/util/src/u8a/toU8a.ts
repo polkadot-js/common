@@ -11,7 +11,6 @@ import stringToU8a from '../string/toU8a';
 
 /**
  * @name u8aToU8a
- * @signature u8aToU8a (value?: Array<number> | Buffer | Uint8Array | string | null): Uint8Array
  * @summary Creates a Uint8Array value from a Uint8Array bignumber or hex input.
  * @description
  * `null` inputs returns a `[]` result, Uint8Array values returns the value, hex strings returns a Uint8Array representation.

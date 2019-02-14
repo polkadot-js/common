@@ -8,7 +8,6 @@ import xxhash64AsRaw from './asRaw';
 
 /**
  * @name xxhash64AsBn
- * @signature xxhash64AsBn (data: Buffer | Uint8Array | string, seed: number): BN
  * @summary Creates a xxhash BN from the input.
  * @description
  * From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a BN.

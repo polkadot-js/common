@@ -4,7 +4,6 @@
 
 /**
  * @name isInstanceOf
- * @signature isInstanceOf (value: any, clazz: Class<any>): boolean
  * @summary Tests for a instance of a class.
  * @description
  * Checks to see if the input value is an instance of the test class.

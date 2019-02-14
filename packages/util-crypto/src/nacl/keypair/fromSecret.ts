@@ -8,7 +8,6 @@ import nacl from 'tweetnacl';
 
 /**
  * @name naclKeypairFromSecret
- * @signature naclKeypairFromSecret (secret: Uint8Array): { secretKey: Uint8Array, publicKey: Uint8Array }
  * @summary Creates a new public/secret keypair from a secret.
  * @description
  * Returns a object containing a `publicKey` & `secretKey` generated from the supplied secret.

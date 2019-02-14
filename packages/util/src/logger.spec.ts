@@ -6,12 +6,12 @@ import { logger } from './index';
 import { format } from './logger';
 
 describe('logger', () => {
-  let dateMatch;
-  let prefixMatch;
-  let l;
-  let ln;
-  let spy;
-  let oldEnv;
+  let dateMatch: any;
+  let prefixMatch: any;
+  let l: any;
+  let ln: any;
+  let spy: any;
+  let oldEnv: any;
 
   beforeEach(() => {
     oldEnv = process.env;
@@ -28,8 +28,7 @@ describe('logger', () => {
       log: jest.fn(),
       warn: jest.fn()
     };
-    global.console = spy;
-
+    (global as any).console = spy;
 
     dateMatch = expect.stringMatching(/20[0-9]{2}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/);
     prefixMatch = expect.stringMatching(/TEST:/);
@@ -143,7 +142,7 @@ describe('logger', () => {
   });
 
   it('does not debug log when no process.env', () => {
-    process.env = void 0;
+    process.env = void 0 as any;
 
     l = logger('test');
     l.debug('test');

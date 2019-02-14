@@ -5,7 +5,7 @@
 import { stringCamelCase } from './index';
 
 describe('stringCamelCase', () => {
-  it("works correctly", () => {
+  it('works correctly', () => {
     expect(
       stringCamelCase('Snake_case')
     ).toBe('snakeCase');

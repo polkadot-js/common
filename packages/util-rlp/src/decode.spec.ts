@@ -21,7 +21,7 @@ describe('decode', () => {
 
   it('returns empty list for empty inputs', () => {
     expect(
-      decode([])
+      decode(new Uint8Array())
     ).toEqual(
       new Uint8Array([])
     );

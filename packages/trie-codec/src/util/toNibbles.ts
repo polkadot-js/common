@@ -4,7 +4,6 @@
 
 /**
  * @name toNibbles
- * @signature toNibbles (input: Uint8Array): Uint8Array
  * @summary Converts the input to Nibbles.
  * @description
  * From an `Uint8Array` input, calculate and return a list of nibbles that makes up the input.

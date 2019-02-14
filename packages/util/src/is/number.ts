@@ -4,7 +4,6 @@
 
 /**
  * @name isNumber
- * @signature isNumber (value: any): boolean
  * @summary Tests for a JavaScript number.
  * @description
  * Checks to see if the input value is a valid number.

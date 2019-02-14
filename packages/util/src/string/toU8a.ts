@@ -24,7 +24,6 @@ try {
 
 /**
  * @name stringToU8a
- * @signature stringToU8a (value?: string): UInt8Array
  * @summary Creates a Uint8Array object from a utf-8 string.
  * @description
  * String input values return the actual encoded `UInt8Array`. `null` or `undefined` values returns an empty encoded array.

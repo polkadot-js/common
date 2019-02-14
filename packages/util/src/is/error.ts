@@ -6,7 +6,6 @@ import isInstanceOf from './instanceOf';
 
 /**
  * @name isError
- * @signature isError (value: any): boolean
  * @summary Tests for a `Error` object instance.
  * @description
  * Checks to see if the input object is an instance of `Error`.

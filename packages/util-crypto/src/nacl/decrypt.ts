@@ -6,7 +6,6 @@ import nacl from 'tweetnacl';
 
 /**
  * @name naclDecrypt
- * @signature naclDecrypt (message: Uint8Array, nonce: Uint8Array, secret: Uint8Array): Uint8Array
  * @summary Decrypts a message using the supplied secretKey and nonce
  * @description
  * Returns an decrypted message, using the `secret` and `nonce`.

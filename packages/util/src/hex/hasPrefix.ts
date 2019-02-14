@@ -6,7 +6,6 @@ import isHex from '../is/hex';
 
 /**
  * @name hexHasPrefix
- * @signature hexHasPrefix (value: ?string): boolean
  * @summary Tests for the existence of a `0x` prefix.
  * @description
  * Checks for a valid hex input value and if the start matched `0x`
@@ -19,6 +18,6 @@ import isHex from '../is/hex';
  * console.log('has prefix', hexHasPrefix('0x1234')); // => true
  * ```
  */
-export default function hexHasPrefix (value: string | null | undefined): boolean {
+export default function hexHasPrefix (value?: string | null): boolean {
   return !!(value && isHex(value, -1, true) && value.substr(0, 2) === '0x');
 }

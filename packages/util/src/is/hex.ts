@@ -8,7 +8,6 @@ const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
 
 /**
  * @name isHex
- * @signature isHex (value: any, bitLength: number = -1): boolean
  * @summary Tests for a hex string.
  * @description
  * Checks to see if the input value is a `0x` prefixed hex string. Optionally (`bitLength` !== -1) checks to see if the bitLength is correct.

@@ -8,7 +8,6 @@ const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
 
 /**
  * @name hexStripPrefix
- * @signature hexStripPrefix (value: ?string): string
  * @summary Strips any leading `0x` prefix.
  * @description
  * Tests for the existence of a `0x` prefix, and returns the value without the prefix. Un-prefixed values are returned as-is.
@@ -21,7 +20,7 @@ const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
  * console.log('stripped', hexStripPrefix('0x1234')); // => 1234
  * ```
  */
-export default function hexStripPrefix (value: string | null | undefined): string {
+export default function hexStripPrefix (value?: string | null): string {
   if (!value) {
     return '';
   }

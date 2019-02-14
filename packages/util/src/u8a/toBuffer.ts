@@ -4,7 +4,6 @@
 
 /**
  * @name u8aToBuffer
- * @signature u8aToBuffer (value?: UInt8Array): Buffer
  * @summary Creates a Buffer object from a hex string.
  * @description
  * `null` inputs returns an empty `Buffer` result. `UInt8Array` input values return the actual bytes value converted to a `Buffer`. Anything that is not a `UInt8Array` throws an error.
@@ -17,7 +16,7 @@
  * console.log('Buffer', u8aToBuffer('0x123480001f'));
  * ```
  */
-export default function u8aToBuffer (value?: Uint8Array): Buffer {
+export default function u8aToBuffer (value?: Uint8Array | null): Buffer {
   if (!value) {
     return Buffer.from([]);
   }

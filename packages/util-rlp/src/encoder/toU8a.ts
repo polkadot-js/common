@@ -36,7 +36,7 @@ const encoders: Array<Encoder> = [
   { check: isString, fn: convertString }
 ];
 
-export default function toU8a (value: any): Uint8Array {
+export default function toU8a (value?: any): Uint8Array {
   const encoder = encoders.find(({ check }) => check(value));
 
   assert(encoder, 'invalid type');

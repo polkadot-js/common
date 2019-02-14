@@ -8,7 +8,6 @@ type ObjectIndexed = {
 
 /**
  * @name isObject
- * @signature isObject (value: any): boolean
  * @summary Tests for an `object`.
  * @description
  * Checks to see if the input value is a JavaScript object.
