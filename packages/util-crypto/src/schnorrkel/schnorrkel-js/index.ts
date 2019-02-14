@@ -4,5 +4,4 @@
 
 import './polyfill';
 
-// export * from '@parity/schnorrkel-js/schnorrkel_js';
-export * from './schnorrkel_js';
+export * from '@parity/schnorrkel-js';
