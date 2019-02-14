@@ -68,7 +68,7 @@ describe('keypair', () => {
     });
   });
 
-  describe.only('sr25519', () => {
+  describe('sr25519', () => {
     const publicKeyOne = new Uint8Array([116, 28, 8, 160, 111, 65, 197, 150, 96, 143, 103, 116, 37, 155, 217, 4, 51, 4, 173, 250, 93, 62, 234, 98, 118, 11, 217, 190, 151, 99, 77, 99]);
     const publicKeyTwo = hexToU8a('0x44a996beb1eef7bdcab976ab6d2ca26104834164ecf28fb375600576fcc6eb0f');
     const seedOne = stringToU8a('12345678901234567890123456789012');
@@ -81,7 +81,7 @@ describe('keypair', () => {
       keypair.addFromSeed(seedOne, {});
     });
 
-    it.only('adds the pair', () => {
+    it('adds the pair', () => {
       expect(
         keypair.addFromSeed(seedTwo, {}).publicKey()
       ).toEqual(publicKeyTwo);
