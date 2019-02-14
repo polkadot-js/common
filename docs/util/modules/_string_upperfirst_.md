@@ -6,13 +6,11 @@
 
 ##  stringUpperFirst
 
-▸ **stringUpperFirst**(_value: *`string`*): `string`
+▸ **stringUpperFirst**(value?: *`string` | `null`*): `string`
 
-*Defined in [string/upperFirst.ts:23](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/string/upperFirst.ts#L23)*
+*Defined in [string/upperFirst.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/string/upperFirst.ts#L19)*
 
 *__name__*: stringUpperFirst
-
-*__signature__*: stringUpperFirst (\_value: string): string
 
 *__summary__*: Lowercase the first letter of a string
 
@@ -30,7 +28,7 @@ stringUpperFirst('abc'); // => 'Abc'
 
 | Name | Type |
 | ------ | ------ |
-| _value | `string` |
+| `Optional` value | `string` | `null` |
 
 **Returns:** `string`
 

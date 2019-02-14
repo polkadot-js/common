@@ -6,13 +6,11 @@
 
 ##  isU8a
 
-▸ **isU8a**(value: *`any`*): `boolean`
+▸ **isU8a**(value?: *`any`*): `boolean`
 
-*Defined in [is/u8a.ts:22](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/is/u8a.ts#L22)*
+*Defined in [is/u8a.ts:21](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/is/u8a.ts#L21)*
 
 *__name__*: isU8a
-
-*__signature__*: isU8a (value: any): boolean
 
 *__summary__*: Tests for a `Uint8Array` object instance.
 
@@ -30,7 +28,7 @@ console.log('isU8a', isU8a([])); // => false
 
 | Name | Type |
 | ------ | ------ |
-| value | `any` |
+| `Optional` value | `any` |
 
 **Returns:** `boolean`
 

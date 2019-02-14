@@ -8,11 +8,9 @@
 
 ▸ **isString**(value: *`any`*): `boolean`
 
-*Defined in [is/string.ts:20](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/is/string.ts#L20)*
+*Defined in [is/string.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/is/string.ts#L19)*
 
 *__name__*: isString
-
-*__signature__*: isString (value: any): boolean
 
 *__summary__*: Tests for a string.
 

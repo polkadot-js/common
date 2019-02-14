@@ -8,11 +8,9 @@
 
 ▸ **isBranchNode**(node: *[Node](_types_.md#node)*): `boolean`
 
-*Defined in [util/is.ts:57](https://github.com/polkadot-js/common/blob/06cc692/packages/trie-db/src/util/is.ts#L57)*
+*Defined in [util/is.ts:52](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/trie-db/src/util/is.ts#L52)*
 
 *__name__*: isBranchNode
-
-*__signature__*: isBranchNode (node: Node): node is NodeKv
 
 *__summary__*: Returns true if node is an Branch 17-item node
 
@@ -33,11 +31,9 @@ ___
 
 ▸ **isEmptyNode**(node: *[Node](_types_.md#node)*): `boolean`
 
-*Defined in [util/is.ts:17](https://github.com/polkadot-js/common/blob/06cc692/packages/trie-db/src/util/is.ts#L17)*
+*Defined in [util/is.ts:16](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/trie-db/src/util/is.ts#L16)*
 
 *__name__*: isEmptyNode
-
-*__signature__*: isEmptyNode (node: Node): node is NodeEmpty
 
 *__summary__*: Returns true if node is NULL
 
@@ -58,11 +54,9 @@ ___
 
 ▸ **isExtensionNode**(node: *[Node](_types_.md#node)*): `boolean`
 
-*Defined in [util/is.ts:37](https://github.com/polkadot-js/common/blob/06cc692/packages/trie-db/src/util/is.ts#L37)*
+*Defined in [util/is.ts:34](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/trie-db/src/util/is.ts#L34)*
 
 *__name__*: isExtensionNode
-
-*__signature__*: isExtensionNode (node: Node): node is NodeKv
 
 *__summary__*: Returns true if node is an Extension 2-item node
 
@@ -83,11 +77,9 @@ ___
 
 ▸ **isKvNode**(node: *[Node](_types_.md#node)*): `boolean`
 
-*Defined in [util/is.ts:27](https://github.com/polkadot-js/common/blob/06cc692/packages/trie-db/src/util/is.ts#L27)*
+*Defined in [util/is.ts:25](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/trie-db/src/util/is.ts#L25)*
 
 *__name__*: isKvNode
-
-*__signature__*: isKvNode (node: Node): node is NodeKv
 
 *__summary__*: Returns true if node is not empty and contains a single key/value pair
 
@@ -108,11 +100,9 @@ ___
 
 ▸ **isLeafNode**(node: *[Node](_types_.md#node)*): `boolean`
 
-*Defined in [util/is.ts:47](https://github.com/polkadot-js/common/blob/06cc692/packages/trie-db/src/util/is.ts#L47)*
+*Defined in [util/is.ts:43](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/trie-db/src/util/is.ts#L43)*
 
 *__name__*: isLeafNode
-
-*__signature__*: isLeafNode (node: Node): node is NodeKv
 
 *__summary__*: Returns true if node is an Leaf 2-item node
 

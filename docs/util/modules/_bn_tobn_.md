@@ -8,11 +8,9 @@
 
 ▸ **bnToBn**(value?: *`BN` | `number` | `null`*): `BN`
 
-*Defined in [bn/toBn.ts:24](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/bn/toBn.ts#L24)*
+*Defined in [bn/toBn.ts:23](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/bn/toBn.ts#L23)*
 
 *__name__*: bnToBn
-
-*__signature__*: bnToBn (value?: BN : number): BN
 
 *__summary__*: Creates a BN value from a BN.js bignumber or number input.
 

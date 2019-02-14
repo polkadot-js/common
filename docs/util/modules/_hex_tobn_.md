@@ -8,11 +8,9 @@
 
 ▸ **hexToBn**(value?: *`string` | `number` | `null`*, options?: *[ToBnOptions](../interfaces/_types_.tobnoptions.md) | `boolean`*): `BN`
 
-*Defined in [hex/toBn.ts:36](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/hex/toBn.ts#L36)*
+*Defined in [hex/toBn.ts:35](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/hex/toBn.ts#L35)*
 
 *__name__*: hexToBn
-
-*__signature__*: hexToBn (value?: string, \_options: ToBnOptions | boolean = { isLe: false, isNegative: false }): BN
 
 *__summary__*: Creates a BN.js bignumber object from a hex string.
 

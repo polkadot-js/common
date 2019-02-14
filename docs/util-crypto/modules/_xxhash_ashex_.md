@@ -8,11 +8,9 @@
 
 ▸ **xxhashAsHex**(data: *`Buffer` | `Uint8Array` | `string`*, bitLength?: *`number`*): `string`
 
-*Defined in [xxhash/asHex.ts:24](https://github.com/polkadot-js/common/blob/06cc692/packages/util-crypto/src/xxhash/asHex.ts#L24)*
+*Defined in [xxhash/asHex.ts:23](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util-crypto/src/xxhash/asHex.ts#L23)*
 
 *__name__*: xxhashAsHex
-
-*__signature__*: xxhashAsHex (data: Buffer | Uint8Array | string, bitLength: number = 64): string
 
 *__summary__*: Creates a xxhash64 hex from the input.
 

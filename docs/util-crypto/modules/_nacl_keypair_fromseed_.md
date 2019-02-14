@@ -8,11 +8,9 @@
 
 ▸ **naclKeypairFromSeed**(seed: *`Uint8Array`*): [KeypairType](_types_.md#keypairtype)
 
-*Defined in [nacl/keypair/fromSeed.ts:24](https://github.com/polkadot-js/common/blob/06cc692/packages/util-crypto/src/nacl/keypair/fromSeed.ts#L24)*
+*Defined in [nacl/keypair/fromSeed.ts:23](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util-crypto/src/nacl/keypair/fromSeed.ts#L23)*
 
 *__name__*: naclKeypairFromSeed
-
-*__signature__*: naclKeypairFromSeed (seed: Uint8Array): { secretKey: Uint8Array, publicKey: Uint8Array }
 
 *__summary__*: Creates a new public/secret keypair from a seed.
 

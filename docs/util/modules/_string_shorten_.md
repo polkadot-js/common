@@ -6,13 +6,11 @@
 
 ##  stringShorten
 
-▸ **stringShorten**(_value: *`any`*, prefixLength?: *`number`*): `string`
+▸ **stringShorten**(_value?: *`any`*, prefixLength?: *`number`*): `string`
 
-*Defined in [string/shorten.ts:20](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/string/shorten.ts#L20)*
+*Defined in [string/shorten.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/string/shorten.ts#L19)*
 
 *__name__*: stringShorten
-
-*__signature__*: stringShorten (value: any, prefixLength: number = 8): string
 
 *__summary__*: Returns a string with maximum length
 
@@ -30,7 +28,7 @@ stringShorten('1234567890', 2); // => 12..90
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
-| _value | `any` | - |
+| `Optional` _value | `any` | - |
 | `Default value` prefixLength | `number` | 6 |
 
 **Returns:** `string`

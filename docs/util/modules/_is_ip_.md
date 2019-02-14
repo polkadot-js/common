@@ -8,11 +8,9 @@
 
 ▸ **isIp**(value: *`string`*, type?: *`IpTypes`*): `boolean`
 
-*Defined in [is/ip.ts:27](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/is/ip.ts#L27)*
+*Defined in [is/ip.ts:26](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/is/ip.ts#L26)*
 
 *__name__*: isIp
-
-*__signature__*: isIp (value: string, type?: 'v4' | 'v6'): boolean
 
 *__summary__*: Tests if the value is a valid IP address
 

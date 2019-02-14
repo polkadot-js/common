@@ -8,7 +8,7 @@
 
 **Ƭ PairInfo**: *`object`*
 
-*Defined in [pair/types.ts:5](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/pair/types.ts#L5)*
+*Defined in [pair/types.ts:5](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/pair/types.ts#L5)*
 
 #### Type declaration
 

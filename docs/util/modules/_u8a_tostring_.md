@@ -6,13 +6,11 @@
 
 ##  u8aToString
 
-▸ **u8aToString**(value?: *`Uint8Array`*): `string`
+▸ **u8aToString**(value?: *`Uint8Array` | `null`*): `string`
 
-*Defined in [u8a/toString.ts:36](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/u8a/toString.ts#L36)*
+*Defined in [u8a/toString.ts:35](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/u8a/toString.ts#L35)*
 
 *__name__*: u8aToString
-
-*__signature__*: u8aToString (value?: UInt8Array): string
 
 *__summary__*: Creates a utf-8 string from a Uint8Array object.
 
@@ -30,7 +28,7 @@ u8aToString(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f])); // hello
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` value | `Uint8Array` |
+| `Optional` value | `Uint8Array` | `null` |
 
 **Returns:** `string`
 

@@ -8,11 +8,9 @@
 
 ▸ **isInstanceOf**(value: *`any`*, clazz: *`any`*): `boolean`
 
-*Defined in [is/instanceOf.ts:20](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/is/instanceOf.ts#L20)*
+*Defined in [is/instanceOf.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/is/instanceOf.ts#L19)*
 
 *__name__*: isInstanceOf
-
-*__signature__*: isInstanceOf (value: any, clazz: Class): boolean
 
 *__summary__*: Tests for a instance of a class.
 

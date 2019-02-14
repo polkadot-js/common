@@ -8,11 +8,9 @@
 
 ▸ **mnemonicGenerate**(): `string`
 
-*Defined in [mnemonic/generate.ts:20](https://github.com/polkadot-js/common/blob/06cc692/packages/util-crypto/src/mnemonic/generate.ts#L20)*
+*Defined in [mnemonic/generate.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util-crypto/src/mnemonic/generate.ts#L19)*
 
 *__name__*: mnemonicGenerate
-
-*__signature__*: mnemonicGenerate (): string
 
 *__summary__*: Creates a valid mnemonic string using using [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki).
 

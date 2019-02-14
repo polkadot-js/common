@@ -27,7 +27,7 @@ Overview
 
 ⊕ **new Keyring**(options: *[KeyringOptions](../modules/_types_.md#keyringoptions)*): [Keyring](_index_.keyring.md)
 
-*Defined in [index.ts:32](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L32)*
+*Defined in [index.ts:32](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L32)*
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[decodeAddress](../interfaces/_types_.keyringinstance.md#decodeaddress)*
 
-*Defined in [index.ts:43](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L43)*
+*Defined in [index.ts:43](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L43)*
 
 ___
 <a id="encodeaddress"></a>
@@ -60,7 +60,7 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[encodeAddress](../interfaces/_types_.keyringinstance.md#encodeaddress)*
 
-*Defined in [index.ts:44](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L44)*
+*Defined in [index.ts:44](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L44)*
 
 ___
 <a id="setaddressprefix"></a>
@@ -71,7 +71,7 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[setAddressPrefix](../interfaces/_types_.keyringinstance.md#setaddressprefix)*
 
-*Defined in [index.ts:45](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L45)*
+*Defined in [index.ts:45](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L45)*
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 gettype(): [PairType](../modules/_types_.md#pairtype)
 
-*Defined in [index.ts:50](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L50)*
+*Defined in [index.ts:50](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L50)*
 
 *__description__*: Returns the type of the keyring, either ed25519 of sr25519
 
@@ -101,11 +101,9 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[addFromAddress](../interfaces/_types_.keyringinstance.md#addfromaddress)*
 
-*Defined in [index.ts:72](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L72)*
+*Defined in [index.ts:70](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L70)*
 
 *__name__*: addFromAddress
-
-*__signature__*: addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, defaultEncoded?: Uint8Array): KeyringPair
 
 *__summary__*: Stores an account, given an account address, as a Key/Value (public key, pair) in Keyring Pair Dictionary
 
@@ -128,11 +126,9 @@ ___
 
 ▸ **addFromJson**(__namedParameters: *`object`*): [KeyringPair](../modules/_types_.md#keyringpair)
 
-*Defined in [index.ts:84](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L84)*
+*Defined in [index.ts:81](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L81)*
 
 *__name__*: addFromJson
-
-*__signature__*: addFromJson ({ address, encoded, meta }: KeyringPair$Json): KeyringPair
 
 *__summary__*: Stores an account, given JSON data, as a Key/Value (public key, pair) in Keyring Pair Dictionary
 
@@ -155,11 +151,9 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[addFromMnemonic](../interfaces/_types_.keyringinstance.md#addfrommnemonic)*
 
-*Defined in [index.ts:97](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L97)*
+*Defined in [index.ts:93](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L93)*
 
 *__name__*: addFromMnemonic
-
-*__signature__*: addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta): KeyringPair
 
 *__summary__*: Stores an account, given a mnemonic, as a Key/Value (public key, pair) in Keyring Pair Dictionary
 
@@ -183,11 +177,9 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[addFromSeed](../interfaces/_types_.keyringinstance.md#addfromseed)*
 
-*Defined in [index.ts:109](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L109)*
+*Defined in [index.ts:104](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L104)*
 
 *__name__*: addFromSeed
-
-*__signature__*: addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta): KeyringPair
 
 *__summary__*: Stores an account, given seed data, as a Key/Value (public key, pair) in Keyring Pair Dictionary
 
@@ -211,11 +203,9 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[addPair](../interfaces/_types_.keyringinstance.md#addpair)*
 
-*Defined in [index.ts:59](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L59)*
+*Defined in [index.ts:58](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L58)*
 
 *__name__*: addPair
-
-*__signature__*: addPair (pair: KeyringPair): KeyringPair
 
 *__summary__*: Stores an account, given a keyring pair, as a Key/Value (public key, pair) in Keyring Pair Dictionary
 
@@ -236,11 +226,9 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[getPair](../interfaces/_types_.keyringinstance.md#getpair)*
 
-*Defined in [index.ts:124](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L124)*
+*Defined in [index.ts:118](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L118)*
 
 *__name__*: getPair
-
-*__signature__*: getPair (address: string | Uint8Array): KeyringPair
 
 *__summary__*: Retrieves an account keyring pair from the Keyring Pair Dictionary, given an account address
 
@@ -263,11 +251,9 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[getPairs](../interfaces/_types_.keyringinstance.md#getpairs)*
 
-*Defined in [index.ts:134](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L134)*
+*Defined in [index.ts:127](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L127)*
 
 *__name__*: getPairs
-
-*__signature__*: getPairs (): Array
 
 *__summary__*: Retrieves all account keyring pairs from the Keyring Pair Dictionary
 
@@ -284,11 +270,9 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[getPublicKeys](../interfaces/_types_.keyringinstance.md#getpublickeys)*
 
-*Defined in [index.ts:144](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L144)*
+*Defined in [index.ts:136](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L136)*
 
 *__name__*: getPublicKeys
-
-*__signature__*: getPublicKeys (): Array
 
 *__summary__*: Retrieves Public Keys of all Keyring Pairs stored in the Keyring Pair Dictionary
 
@@ -305,11 +289,9 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[removePair](../interfaces/_types_.keyringinstance.md#removepair)*
 
-*Defined in [index.ts:157](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L157)*
+*Defined in [index.ts:148](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L148)*
 
 *__name__*: removePair
-
-*__signature__*: removePair (address: string | Uint8Array): void
 
 *__description__*: Deletes the provided input address or public key from the stored Keyring Pair Dictionary.
 
@@ -330,11 +312,9 @@ ___
 
 *Implementation of [KeyringInstance](../interfaces/_types_.keyringinstance.md).[toJson](../interfaces/_types_.keyringinstance.md#tojson)*
 
-*Defined in [index.ts:170](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/index.ts#L170)*
+*Defined in [index.ts:160](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/index.ts#L160)*
 
 *__name__*: toJson
-
-*__signature__*: toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json
 
 *__summary__*: Returns a JSON object associated with the input argument that contains metadata assocated with an account
 

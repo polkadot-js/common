@@ -8,11 +8,9 @@
 
 ▸ **randomAsNumber**(): `number`
 
-*Defined in [random/asNumber.ts:27](https://github.com/polkadot-js/common/blob/06cc692/packages/util-crypto/src/random/asNumber.ts#L27)*
+*Defined in [random/asNumber.ts:26](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util-crypto/src/random/asNumber.ts#L26)*
 
 *__name__*: randomAsNumber
-
-*__signature__*: randomAsNumber (): number
 
 *__summary__*: Creates a random number from random bytes.
 

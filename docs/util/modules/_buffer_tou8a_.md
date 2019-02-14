@@ -6,13 +6,11 @@
 
 ##  bufferToU8a
 
-▸ **bufferToU8a**(buffer?: *`Buffer` | `number`[]*): `Uint8Array`
+▸ **bufferToU8a**(buffer?: *`Buffer` | `number`[] | `null`*): `Uint8Array`
 
-*Defined in [buffer/toU8a.ts:20](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/buffer/toU8a.ts#L20)*
+*Defined in [buffer/toU8a.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/buffer/toU8a.ts#L19)*
 
 *__name__*: bufferToU8a
-
-*__signature__*: bufferToU8a (value?: Buffer): string
 
 *__summary__*: Creates a Uint8Array value from a Buffer object.
 
@@ -30,7 +28,7 @@ bufferToU8a(Buffer.from([1, 2, 3]));
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` buffer | `Buffer` | `number`[] |
+| `Optional` buffer | `Buffer` | `number`[] | `null` |
 
 **Returns:** `Uint8Array`
 

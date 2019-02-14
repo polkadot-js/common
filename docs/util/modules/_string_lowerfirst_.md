@@ -6,13 +6,11 @@
 
 ##  stringLowerFirst
 
-▸ **stringLowerFirst**(_value: *`string`*): `string`
+▸ **stringLowerFirst**(value?: *`string` | `null`*): `string`
 
-*Defined in [string/lowerFirst.ts:23](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/string/lowerFirst.ts#L23)*
+*Defined in [string/lowerFirst.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/string/lowerFirst.ts#L19)*
 
 *__name__*: stringLowerFirst
-
-*__signature__*: stringLowerFirst (\_value: string): string
 
 *__summary__*: Lowercase the first letter of a string
 
@@ -30,7 +28,7 @@ stringLowerFirst('ABC'); // => 'aBC'
 
 | Name | Type |
 | ------ | ------ |
-| _value | `string` |
+| `Optional` value | `string` | `null` |
 
 **Returns:** `string`
 

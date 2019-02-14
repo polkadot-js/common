@@ -8,11 +8,9 @@
 
 ▸ **hexToU8a**(_value?: *`string` | `null`*, bitLength?: *`number`*): `Uint8Array`
 
-*Defined in [hex/toU8a.ts:25](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/hex/toU8a.ts#L25)*
+*Defined in [hex/toU8a.ts:24](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/hex/toU8a.ts#L24)*
 
 *__name__*: hexToU8a
-
-*__signature__*: hexToU8a (value?: string, bitLength: number = -1): Uint8Array
 
 *__summary__*: Creates a Buffer object from a hex string.
 

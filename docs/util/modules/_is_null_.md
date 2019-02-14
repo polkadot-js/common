@@ -6,13 +6,11 @@
 
 ##  isNull
 
-▸ **isNull**(value: *`any`*): `boolean`
+▸ **isNull**(value?: *`any`*): `boolean`
 
-*Defined in [is/null.ts:20](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/is/null.ts#L20)*
+*Defined in [is/null.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/is/null.ts#L19)*
 
 *__name__*: isNull
-
-*__signature__*: isNull (value: any): boolean
 
 *__summary__*: Tests for a `null` values.
 
@@ -30,7 +28,7 @@ console.log('isNull', isNull(null)); // => true
 
 | Name | Type |
 | ------ | ------ |
-| value | `any` |
+| `Optional` value | `any` |
 
 **Returns:** `boolean`
 

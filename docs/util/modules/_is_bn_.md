@@ -8,11 +8,9 @@
 
 ▸ **isBn**(value: *`any`*): `boolean`
 
-*Defined in [is/bn.ts:23](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/is/bn.ts#L23)*
+*Defined in [is/bn.ts:22](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/is/bn.ts#L22)*
 
 *__name__*: isBn
-
-*__signature__*: isBN (value: any): boolean
 
 *__summary__*: Tests for a `BN` object instance.
 

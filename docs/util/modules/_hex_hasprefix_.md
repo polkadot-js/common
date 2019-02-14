@@ -6,13 +6,11 @@
 
 ##  hexHasPrefix
 
-▸ **hexHasPrefix**(value: *`string` | `null` | `undefined`*): `boolean`
+▸ **hexHasPrefix**(value?: *`string` | `null`*): `boolean`
 
-*Defined in [hex/hasPrefix.ts:22](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/hex/hasPrefix.ts#L22)*
+*Defined in [hex/hasPrefix.ts:21](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/hex/hasPrefix.ts#L21)*
 
 *__name__*: hexHasPrefix
-
-*__signature__*: hexHasPrefix (value: ?string): boolean
 
 *__summary__*: Tests for the existence of a `0x` prefix.
 
@@ -30,7 +28,7 @@ console.log('has prefix', hexHasPrefix('0x1234')); // => true
 
 | Name | Type |
 | ------ | ------ |
-| value | `string` | `null` | `undefined` |
+| `Optional` value | `string` | `null` |
 
 **Returns:** `boolean`
 

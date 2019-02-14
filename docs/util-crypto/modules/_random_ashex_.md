@@ -8,11 +8,9 @@
 
 ▸ **randomAsHex**(length?: *`number`*): `string`
 
-*Defined in [random/asHex.ts:24](https://github.com/polkadot-js/common/blob/06cc692/packages/util-crypto/src/random/asHex.ts#L24)*
+*Defined in [random/asHex.ts:23](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util-crypto/src/random/asHex.ts#L23)*
 
 *__name__*: randomAsHex
-
-*__signature__*: randomAsHex (length?: number = 32): string
 
 *__summary__*: Creates a hex string filled with random bytes.
 

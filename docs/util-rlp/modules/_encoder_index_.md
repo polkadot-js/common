@@ -8,11 +8,9 @@
 
 ▸ **encoder**(input: *`any`*): `Uint8Array`
 
-*Defined in [encoder/index.ts:24](https://github.com/polkadot-js/common/blob/06cc692/packages/util-rlp/src/encoder/index.ts#L24)*
+*Defined in [encoder/index.ts:23](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util-rlp/src/encoder/index.ts#L23)*
 
 *__name__*: encoder
-
-*__signature__*: encoder (input: any): Uint8Array
 
 *__summary__*: Encodes the input value into RLP.
 

@@ -8,11 +8,9 @@
 
 ▸ **fromNibbles**(input: *`Uint8Array`*): `Uint8Array`
 
-*Defined in [util/fromNibbles.ts:20](https://github.com/polkadot-js/common/blob/06cc692/packages/trie-codec/src/util/fromNibbles.ts#L20)*
+*Defined in [util/fromNibbles.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/trie-codec/src/util/fromNibbles.ts#L19)*
 
 *__name__*: fromNibbles
-
-*__signature__*: fromNibbles (nibbles: Uint8Array): Uint8Array
 
 *__summary__*: Converts the input to Nibbles.
 

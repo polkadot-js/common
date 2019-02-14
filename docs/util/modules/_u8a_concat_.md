@@ -8,11 +8,9 @@
 
 ▸ **u8aConcat**(..._list: *`Array`<`Uint8Array` | `string`>*): `Uint8Array`
 
-*Defined in [u8a/concat.ts:25](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/u8a/concat.ts#L25)*
+*Defined in [u8a/concat.ts:24](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/u8a/concat.ts#L24)*
 
 *__name__*: u8aConcat
-
-*__signature__*: u8aConcat (...values: Array<Uint8Array | string>): Uint8Array
 
 *__summary__*: Creates a concatenated Uint8Array from the inputs.
 

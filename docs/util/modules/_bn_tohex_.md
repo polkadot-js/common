@@ -8,11 +8,9 @@
 
 ▸ **bnToHex**(value?: *`BN` | `number` | `null`*, options?: *`number` | `Options`*): `string`
 
-*Defined in [bn/toHex.ts:34](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/bn/toHex.ts#L34)*
+*Defined in [bn/toHex.ts:33](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/bn/toHex.ts#L33)*
 
 *__name__*: bnToHex
-
-*__signature__*: bnToHex (value?: BN, bitLength: number = -1): string
 
 *__summary__*: Creates a hex value from a BN.js bignumber object.
 

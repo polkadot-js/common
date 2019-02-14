@@ -8,11 +8,9 @@
 
 ▸ **u8aToU8a**(value?: *`Array`<`number`> | `Buffer` | `Uint8Array` | `string` | `null`*): `Uint8Array`
 
-*Defined in [u8a/toU8a.ts:28](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/u8a/toU8a.ts#L28)*
+*Defined in [u8a/toU8a.ts:27](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/u8a/toU8a.ts#L27)*
 
 *__name__*: u8aToU8a
-
-*__signature__*: u8aToU8a (value?: Array | Buffer | Uint8Array | string | null): Uint8Array
 
 *__summary__*: Creates a Uint8Array value from a Uint8Array bignumber or hex input.
 

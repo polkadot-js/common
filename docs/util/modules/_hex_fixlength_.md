@@ -8,11 +8,9 @@
 
 ▸ **hexFixLength**(value: *`string`*, bitLength?: *`number`*, withPadding?: *`boolean`*): `string`
 
-*Defined in [hex/fixLength.ts:25](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/hex/fixLength.ts#L25)*
+*Defined in [hex/fixLength.ts:24](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/hex/fixLength.ts#L24)*
 
 *__name__*: hexFixLength
-
-*__signature__*: hexFixLength (value: string, bitLength: number = -1, withPadding: boolean = false): string
 
 *__summary__*: Shifts a hex string to a specific bitLength
 

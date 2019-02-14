@@ -8,11 +8,9 @@
 
 ▸ **isNumber**(value: *`any`*): `boolean`
 
-*Defined in [is/number.ts:20](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/is/number.ts#L20)*
+*Defined in [is/number.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/is/number.ts#L19)*
 
 *__name__*: isNumber
-
-*__signature__*: isNumber (value: any): boolean
 
 *__summary__*: Tests for a JavaScript number.
 

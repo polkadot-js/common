@@ -10,11 +10,9 @@
 
 ▸ **bnToU8a**(value: *`BN` | `number` | `null`*, bitLength?: *`undefined` | `number`*, isLe?: *`undefined` | `false` | `true`*): `Uint8Array`
 
-*Defined in [bn/toU8a.ts:30](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/bn/toU8a.ts#L30)*
+*Defined in [bn/toU8a.ts:29](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/bn/toU8a.ts#L29)*
 
 *__name__*: bnToU8a
-
-*__signature__*: bnToU8a (value?: BN | number, bitLength: number = -1, isLE: boolean = false): Uint8Array
 
 *__summary__*: Creates a Uint8Array object from a BN.
 
@@ -37,7 +35,7 @@ bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
 
 **Returns:** `Uint8Array`
 
-*Defined in [bn/toU8a.ts:31](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/bn/toU8a.ts#L31)*
+*Defined in [bn/toU8a.ts:30](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/bn/toU8a.ts#L30)*
 
 **Parameters:**
 

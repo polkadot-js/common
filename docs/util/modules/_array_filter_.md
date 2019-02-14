@@ -8,11 +8,9 @@
 
 ▸ **arrayFilter**(array: *`Array`<`any`>*, allowNulls?: *`boolean`*): `Array`<`any`>
 
-*Defined in [array/filter.ts:24](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/array/filter.ts#L24)*
+*Defined in [array/filter.ts:23](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/array/filter.ts#L23)*
 
 *__name__*: arrayFilter
-
-*__signature__*: arrayFilter (array: Array, allowNulls: boolean = true): Array
 
 *__summary__*: Filters undefined and (optionally) null values from an array
 

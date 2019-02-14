@@ -8,11 +8,9 @@
 
 ▸ **testKeyring**(options: *[KeyringOptions](_types_.md#keyringoptions)*): [KeyringInstance](../interfaces/_types_.keyringinstance.md)
 
-*Defined in [testing.ts:42](https://github.com/polkadot-js/common/blob/06cc692/packages/keyring/src/testing.ts#L42)*
+*Defined in [testing.ts:41](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/keyring/src/testing.ts#L41)*
 
 *__name__*: testKeyring
-
-*__signature__*: testKeyring (): KeyringInstance
 
 *__summary__*: Create an instance of Keyring pre-populated with locked test accounts
 

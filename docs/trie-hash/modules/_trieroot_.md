@@ -8,11 +8,9 @@
 
 ▸ **trieRoot**(input: *`Array`<[TriePair](_types_.md#triepair)>*, codec?: *`Codec`*): `Uint8Array`
 
-*Defined in [trieRoot.ts:30](https://github.com/polkadot-js/common/blob/06cc692/packages/trie-hash/src/trieRoot.ts#L30)*
+*Defined in [trieRoot.ts:29](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/trie-hash/src/trieRoot.ts#L29)*
 
 *__name__*: trieRoot
-
-*__signature__*: trieRoot (pairs: Trie$Pairs): Uint8Array
 
 *__summary__*: Creates a trie hash from the supplied pairs.
 

@@ -6,13 +6,11 @@
 
 ##  hexAddPrefix
 
-▸ **hexAddPrefix**(value: *`string` | `null` | `undefined`*): `string`
+▸ **hexAddPrefix**(value?: *`string` | `null`*): `string`
 
-*Defined in [hex/addPrefix.ts:22](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/hex/addPrefix.ts#L22)*
+*Defined in [hex/addPrefix.ts:21](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/hex/addPrefix.ts#L21)*
 
 *__name__*: hexAddPrefix
-
-*__signature__*: hexAddPrefix (value: ?string): string
 
 *__summary__*: Adds the `0x` prefix to string values.
 
@@ -30,7 +28,7 @@ console.log('With prefix', hexAddPrefix('0a0b12')); // => 0x0a0b12
 
 | Name | Type |
 | ------ | ------ |
-| value | `string` | `null` | `undefined` |
+| `Optional` value | `string` | `null` |
 
 **Returns:** `string`
 

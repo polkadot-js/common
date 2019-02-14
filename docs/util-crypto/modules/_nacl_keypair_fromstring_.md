@@ -8,11 +8,9 @@
 
 ▸ **naclKeypairFromString**(value: *`string`*): [KeypairType](_types_.md#keypairtype)
 
-*Defined in [nacl/keypair/fromString.ts:27](https://github.com/polkadot-js/common/blob/06cc692/packages/util-crypto/src/nacl/keypair/fromString.ts#L27)*
+*Defined in [nacl/keypair/fromString.ts:26](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util-crypto/src/nacl/keypair/fromString.ts#L26)*
 
 *__name__*: naclKeypairFromString
-
-*__signature__*: naclKeypairFromString (value: string): { secretKey: Uint8Array, publicKey: Uint8Array }
 
 *__summary__*: Creates a new public/secret keypair from a string.
 

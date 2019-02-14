@@ -8,11 +8,9 @@
 
 ▸ **isHex**(value: *`any`*, bitLength?: *`number`*, ignoreLength?: *`boolean`*): `boolean`
 
-*Defined in [is/hex.ts:25](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/is/hex.ts#L25)*
+*Defined in [is/hex.ts:24](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/is/hex.ts#L24)*
 
 *__name__*: isHex
-
-*__signature__*: isHex (value: any, bitLength: number = -1): boolean
 
 *__summary__*: Tests for a hex string.
 

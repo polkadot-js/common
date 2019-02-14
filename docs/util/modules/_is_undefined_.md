@@ -6,13 +6,11 @@
 
 ##  isUndefined
 
-▸ **isUndefined**(value: *`any`*): `boolean`
+▸ **isUndefined**(value?: *`any`*): `boolean`
 
-*Defined in [is/undefined.ts:20](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/is/undefined.ts#L20)*
+*Defined in [is/undefined.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/is/undefined.ts#L19)*
 
 *__name__*: isUndefined
-
-*__signature__*: isUndefined (value: any): boolean
 
 *__summary__*: Tests for a `undefined` values.
 
@@ -30,7 +28,7 @@ console.log('isUndefined', isUndefined(void(0))); // => true
 
 | Name | Type |
 | ------ | ------ |
-| value | `any` |
+| `Optional` value | `any` |
 
 **Returns:** `boolean`
 

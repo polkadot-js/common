@@ -8,11 +8,9 @@
 
 ▸ **isBuffer**(value: *`any`*): `boolean`
 
-*Defined in [is/buffer.ts:22](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/is/buffer.ts#L22)*
+*Defined in [is/buffer.ts:21](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/is/buffer.ts#L21)*
 
 *__name__*: isBuffer
-
-*__signature__*: isBuffer (value: any): boolean
 
 *__summary__*: Tests for a `Buffer` object instance.
 

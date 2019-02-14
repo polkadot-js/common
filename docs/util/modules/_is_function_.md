@@ -8,11 +8,9 @@
 
 ▸ **isFunction**(value: *`any`*): `boolean`
 
-*Defined in [is/function.ts:20](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/is/function.ts#L20)*
+*Defined in [is/function.ts:19](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/is/function.ts#L19)*
 
 *__name__*: isFunction
-
-*__signature__*: isFunction (value: any): boolean
 
 *__summary__*: Tests for a `function`.
 

@@ -6,13 +6,11 @@
 
 ##  hexToNumber
 
-▸ **hexToNumber**(value?: *`undefined` | `string`*): `number`
+▸ **hexToNumber**(value?: *`string` | `null`*): `number`
 
-*Defined in [hex/toNumber.ts:22](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/hex/toNumber.ts#L22)*
+*Defined in [hex/toNumber.ts:21](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/hex/toNumber.ts#L21)*
 
 *__name__*: hexToNumber
-
-*__signature__*: hexToNumber (value?: string): number
 
 *__summary__*: Creates a Number value from a Buffer object.
 
@@ -30,7 +28,7 @@ hexToNumber('0x1234'); // => 0x1234
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` value | `undefined` | `string` |
+| `Optional` value | `string` | `null` |
 
 **Returns:** `number`
 

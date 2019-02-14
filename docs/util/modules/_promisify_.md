@@ -8,11 +8,9 @@
 
 ▸ **promisify**(self: *`any`*, fn: *`Function`*, ...params: *`Array`<`any`>*): `Promise`<`any`>
 
-*Defined in [promisify.ts:21](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/promisify.ts#L21)*
+*Defined in [promisify.ts:20](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/promisify.ts#L20)*
 
 *__name__*: promisify
-
-*__signature__*: function promisify (this: ?Object, fn: Function, ...params: Array): Promise
 
 *__summary__*: Wraps an async callback into a `Promise`
 

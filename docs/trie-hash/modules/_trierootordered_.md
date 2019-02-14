@@ -8,11 +8,9 @@
 
 ▸ **trieRootOrdered**(input: *`Array`<`Uint8Array`>*, codec?: *`Codec`*): `Uint8Array`
 
-*Defined in [trieRootOrdered.ts:31](https://github.com/polkadot-js/common/blob/06cc692/packages/trie-hash/src/trieRootOrdered.ts#L31)*
+*Defined in [trieRootOrdered.ts:30](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/trie-hash/src/trieRootOrdered.ts#L30)*
 
 *__name__*: trieRootOrdered
-
-*__signature__*: trieRootOrdered (values: Array): Uint8Array
 
 *__summary__*: Creates a trie hash from the supplied values.
 

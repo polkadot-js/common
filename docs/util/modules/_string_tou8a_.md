@@ -8,11 +8,9 @@
 
 ▸ **stringToU8a**(value?: *`undefined` | `string`*): `Uint8Array`
 
-*Defined in [string/toU8a.ts:40](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/string/toU8a.ts#L40)*
+*Defined in [string/toU8a.ts:39](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/string/toU8a.ts#L39)*
 
 *__name__*: stringToU8a
-
-*__signature__*: stringToU8a (value?: string): UInt8Array
 
 *__summary__*: Creates a Uint8Array object from a utf-8 string.
 

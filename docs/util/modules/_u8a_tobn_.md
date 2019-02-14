@@ -8,11 +8,9 @@
 
 ▸ **u8aToBn**(value: *`Uint8Array`*, options?: *[ToBnOptions](../interfaces/_types_.tobnoptions.md) | `boolean`*): `BN`
 
-*Defined in [u8a/toBn.ts:30](https://github.com/polkadot-js/common/blob/06cc692/packages/util/src/u8a/toBn.ts#L30)*
+*Defined in [u8a/toBn.ts:29](https://github.com/polkadot-js/common/blob/1e6eb2c/packages/util/src/u8a/toBn.ts#L29)*
 
 *__name__*: u8aToBn
-
-*__signature__*: u8aToHex (value?: Uint8Array, options: ToBnOptions | boolean = { isLe: true, isNegative: false }): BN
 
 *__summary__*: Creates a BN from a Uint8Array object.
 
