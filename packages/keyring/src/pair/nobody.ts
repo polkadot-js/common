@@ -15,7 +15,7 @@ const json: KeyringPair$Json = {
   address,
   encoded: '',
   encoding: {
-    content: 'none',
+    content: ['pkcs8', 'ed25519'],
     type: 'none',
     version: '0'
   },
@@ -24,6 +24,7 @@ const json: KeyringPair$Json = {
 
 export default function everybody (): KeyringPair {
   return {
+    type: 'ed25519',
     address: (): string =>
       address,
     decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void =>
@@ -45,6 +46,8 @@ export default function everybody (): KeyringPair {
       new Uint8Array(64),
     toJson: (passphrase?: string): KeyringPair$Json =>
       json,
+    toType: (): KeyringPair =>
+      everybody(),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       false
   };

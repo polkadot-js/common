@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions, PairType } from './types';
+import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions, KeyringPairType } from './types';
 
 import { assert, hexToU8a, isNumber } from '@polkadot/util/index';
 import { mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed } from '@polkadot/util-crypto/index';
@@ -29,13 +29,13 @@ import Pairs from './pairs';
  */
 export default class Keyring implements KeyringInstance {
   private _pairs: Pairs;
-  private _type: PairType;
+  private _type: KeyringPairType;
 
   constructor (options: KeyringOptions) {
     assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
 
     this._pairs = new Pairs();
-    this._type = options.type as PairType;
+    this._type = options.type as KeyringPairType;
 
     setAddressPrefix(isNumber(options.addressPrefix) ? options.addressPrefix : 42);
   }
@@ -47,7 +47,7 @@ export default class Keyring implements KeyringInstance {
   /**
    * @description Returns the type of the keyring, either ed25519 of sr25519
    */
-  get type (): PairType {
+  get type (): KeyringPairType {
     return this._type;
   }
 
@@ -67,8 +67,8 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from them that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta, encoded: Uint8Array | null): KeyringPair {
-    return this.addPair(createPair(this._type, { publicKey: this.decodeAddress(address) }, meta, encoded));
+  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta, encoded: Uint8Array | null, type: KeyringPairType = this.type): KeyringPair {
+    return this.addPair(createPair(type, { publicKey: this.decodeAddress(address) }, meta, encoded));
   }
 
   /**
@@ -78,8 +78,11 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromJson ({ address, encoded, meta }: KeyringPair$Json): KeyringPair {
-    return this.addFromAddress(address, meta, hexToU8a(encoded));
+  addFromJson ({ address, encoded, encoding: { type, version }, meta }: KeyringPair$Json): KeyringPair {
+    const keytype = version === '0' || !Array.isArray(type)
+      ? this.type
+      : type[1];
+    return this.addFromAddress(address, meta, hexToU8a(encoded), keytype);
   }
 
   /**
@@ -90,8 +93,8 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta): KeyringPair {
-    return this.addFromSeed(mnemonicToSeed(mnemonic), meta);
+  addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta, type: KeyringPairType = this.type): KeyringPair {
+    return this.addFromSeed(mnemonicToSeed(mnemonic), meta, type);
   }
 
   /**
@@ -101,12 +104,12 @@ export default class Keyring implements KeyringInstance {
    * Allows user to provide the account seed as an argument, and then generates a keyring pair from it that it passes to
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta): KeyringPair {
-    const keypair = this._type === 'sr25519'
+  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta, type: KeyringPairType = this.type): KeyringPair {
+    const keypair = type === 'sr25519'
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
 
-    return this.addPair(createPair(this._type, { ...keypair, seed }, meta, null));
+    return this.addPair(createPair(type, { ...keypair, seed }, meta, null));
   }
 
   /**

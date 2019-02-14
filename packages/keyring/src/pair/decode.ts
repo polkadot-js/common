@@ -4,6 +4,7 @@
 
 import { assert, stringToU8a, u8aFixLength } from '@polkadot/util/index';
 import { naclDecrypt } from '@polkadot/util-crypto/index';
+import { PairInfo } from './types';
 
 import { KEY_LENGTH, NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
 
@@ -11,8 +12,7 @@ const SEED_OFFSET = PKCS8_HEADER.length;
 const DIV_OFFSET = SEED_OFFSET + KEY_LENGTH;
 const PUBLIC_OFFSET = DIV_OFFSET + PKCS8_DIVIDER.length;
 
-type DecodeResult = {
-  publicKey: Uint8Array,
+type DecodeResult = PairInfo & {
   seed: Uint8Array
 };
 

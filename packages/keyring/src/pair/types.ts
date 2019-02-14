@@ -4,5 +4,5 @@
 
 export type PairInfo = {
   publicKey: Uint8Array,
-  seed?: Uint8Array
+  seed?: Uint8Array | null
 };
