@@ -8,7 +8,7 @@
 
 **Ƭ Constants**: *`object`*
 
-*Defined in [constants.ts:9](https://github.com/polkadot-js/common/blob/0710c73/packages/trie-db/src/constants.ts#L9)*
+*Defined in [constants.ts:9](https://github.com/polkadot-js/common/blob/c3fafbe/packages/trie-db/src/constants.ts#L9)*
 
 #### Type declaration
 
@@ -22,7 +22,7 @@ ___
 
 ▸ **default**(codec: *`Codec`*): `object`
 
-*Defined in [constants.ts:14](https://github.com/polkadot-js/common/blob/0710c73/packages/trie-db/src/constants.ts#L14)*
+*Defined in [constants.ts:14](https://github.com/polkadot-js/common/blob/c3fafbe/packages/trie-db/src/constants.ts#L14)*
 
 **Parameters:**
 

@@ -28,4 +28,5 @@
 * [&quot;testingPairs.spec&quot;](modules/_testingpairs_spec_.md)
 * [&quot;types&quot;](modules/_types_.md)
   * [KeyringInstance](interfaces/_types_.keyringinstance.md)
+  * [KeyringPair](interfaces/_types_.keyringpair.md)
   * [KeyringPairs](interfaces/_types_.keyringpairs.md)

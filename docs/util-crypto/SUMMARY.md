@@ -47,8 +47,6 @@
 * [&quot;random/asU8a.spec&quot;](modules/_random_asu8a_spec_.md)
 * [&quot;random/index&quot;](modules/_random_index_.md)
 * [&quot;schnorrkel/index&quot;](modules/_schnorrkel_index_.md)
-* [&quot;schnorrkel/keypair/fromRandom&quot;](modules/_schnorrkel_keypair_fromrandom_.md)
-* [&quot;schnorrkel/keypair/fromRandom.spec&quot;](modules/_schnorrkel_keypair_fromrandom_spec_.md)
 * [&quot;schnorrkel/keypair/fromSeed&quot;](modules/_schnorrkel_keypair_fromseed_.md)
 * [&quot;schnorrkel/keypair/fromSeed.spec&quot;](modules/_schnorrkel_keypair_fromseed_spec_.md)
 * [&quot;schnorrkel/schnorrkel-js/index&quot;](modules/_schnorrkel_schnorrkel_js_index_.md)

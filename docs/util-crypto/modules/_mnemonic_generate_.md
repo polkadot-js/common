@@ -8,7 +8,7 @@
 
 ▸ **mnemonicGenerate**(): `string`
 
-*Defined in [mnemonic/generate.ts:19](https://github.com/polkadot-js/common/blob/0710c73/packages/util-crypto/src/mnemonic/generate.ts#L19)*
+*Defined in [mnemonic/generate.ts:19](https://github.com/polkadot-js/common/blob/c3fafbe/packages/util-crypto/src/mnemonic/generate.ts#L19)*
 
 *__name__*: mnemonicGenerate
 

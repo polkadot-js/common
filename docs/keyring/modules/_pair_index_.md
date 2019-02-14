@@ -2,13 +2,13 @@
 
 # Functions
 
-<a id="pair"></a>
+<a id="createpair"></a>
 
-##  pair
+##  createPair
 
-▸ **pair**(type: *[PairType](_types_.md#pairtype)*, __namedParameters: *`object`*, meta?: *[KeyringPair$Meta](_types_.md#keyringpair_meta)*, encoded: *`Uint8Array` | `null`*): [KeyringPair](_types_.md#keyringpair)
+▸ **createPair**(type: *[KeyringPairType](_types_.md#keyringpairtype)*, __namedParameters: *`object`*, meta?: *[KeyringPair$Meta](_types_.md#keyringpair_meta)*, encoded: *`Uint8Array` | `null`*): [KeyringPair](../interfaces/_types_.keyringpair.md)
 
-*Defined in [pair/index.ts:47](https://github.com/polkadot-js/common/blob/0710c73/packages/keyring/src/pair/index.ts#L47)*
+*Defined in [pair/index.ts:62](https://github.com/polkadot-js/common/blob/c3fafbe/packages/keyring/src/pair/index.ts#L62)*
 
 *__name__*: pair
 
@@ -30,12 +30,12 @@ It has properties whose values are functions that may be called to perform accou
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
-| type | [PairType](_types_.md#pairtype) | - |
+| type | [KeyringPairType](_types_.md#keyringpairtype) | - |
 | __namedParameters | `object` | - |
 | `Default value` meta | [KeyringPair$Meta](_types_.md#keyringpair_meta) |  {} |
 | encoded | `Uint8Array` | `null` | - |
 
-**Returns:** [KeyringPair](_types_.md#keyringpair)
+**Returns:** [KeyringPair](../interfaces/_types_.keyringpair.md)
 
 ___
 
