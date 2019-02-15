@@ -6,9 +6,9 @@
 
 ##  keccakAsU8a
 
-▸ **keccakAsU8a**(value: *`Buffer` | `Uint8Array` | `string`*): `Uint8Array`
+▸ **keccakAsU8a**(value: *`Buffer` \| `Uint8Array` \| `string`*): `Uint8Array`
 
-*Defined in [keccak/asU8a.ts:21](https://github.com/polkadot-js/common/blob/9f9ceff/packages/util-crypto/src/keccak/asU8a.ts#L21)*
+*Defined in [keccak/asU8a.ts:21](https://github.com/polkadot-js/common/blob/2efc5f7/packages/util-crypto/src/keccak/asU8a.ts#L21)*
 
 *__name__*: keccakAsU8a
 
@@ -28,7 +28,7 @@ keccakAsU8a('123'); // => Uint8Array
 
 | Name | Type |
 | ------ | ------ |
-| value | `Buffer` | `Uint8Array` | `string` |
+| value | `Buffer` \| `Uint8Array` \| `string` |
 
 **Returns:** `Uint8Array`
 

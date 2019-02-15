@@ -14,7 +14,7 @@
 
 **● Boolean**: *`BooleanConstructor`*
 
-*Defined in /home/travis/build/polkadot-js/common/node_modules/typescript/lib/lib.es5.d.ts:530*
+*Defined in /home/travis/build/polkadot-js/common/node_modules/typescript/lib/lib.es5.d.ts:540*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 *Inherited from Boolean.valueOf*
 
-*Defined in /home/travis/build/polkadot-js/common/node_modules/typescript/lib/lib.es5.d.ts:521*
+*Defined in /home/travis/build/polkadot-js/common/node_modules/typescript/lib/lib.es5.d.ts:531*
 
 Returns the primitive value of the specified object.
 

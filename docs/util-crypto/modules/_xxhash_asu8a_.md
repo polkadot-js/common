@@ -6,9 +6,9 @@
 
 ##  xxhashAsU8a
 
-▸ **xxhashAsU8a**(data: *`Buffer` | `Uint8Array` | `string`*, bitLength?: *`number`*): `Uint8Array`
+▸ **xxhashAsU8a**(data: *`Buffer` \| `Uint8Array` \| `string`*, bitLength?: *`number`*): `Uint8Array`
 
-*Defined in [xxhash/asU8a.ts:21](https://github.com/polkadot-js/common/blob/9f9ceff/packages/util-crypto/src/xxhash/asU8a.ts#L21)*
+*Defined in [xxhash/asU8a.ts:21](https://github.com/polkadot-js/common/blob/2efc5f7/packages/util-crypto/src/xxhash/asU8a.ts#L21)*
 
 *__name__*: xxhashAsU8a
 
@@ -28,7 +28,7 @@ xxhashAsU8a('abc'); // => 0x44bc2cf5ad770999
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
-| data | `Buffer` | `Uint8Array` | `string` | - |
+| data | `Buffer` \| `Uint8Array` \| `string` | - |
 | `Default value` bitLength | `number` | 64 |
 
 **Returns:** `Uint8Array`

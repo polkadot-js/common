@@ -6,9 +6,9 @@
 
 ##  hexToNumber
 
-▸ **hexToNumber**(value?: *`string` | `null`*): `number`
+▸ **hexToNumber**(value?: *`string` \| `null`*): `number`
 
-*Defined in [hex/toNumber.ts:21](https://github.com/polkadot-js/common/blob/9f9ceff/packages/util/src/hex/toNumber.ts#L21)*
+*Defined in [hex/toNumber.ts:21](https://github.com/polkadot-js/common/blob/2efc5f7/packages/util/src/hex/toNumber.ts#L21)*
 
 *__name__*: hexToNumber
 
@@ -28,7 +28,7 @@ hexToNumber('0x1234'); // => 0x1234
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` value | `string` | `null` |
+| `Optional` value | `string` \| `null` |
 
 **Returns:** `number`
 

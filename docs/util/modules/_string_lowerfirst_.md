@@ -6,9 +6,9 @@
 
 ##  stringLowerFirst
 
-▸ **stringLowerFirst**(value?: *`string` | `null`*): `string`
+▸ **stringLowerFirst**(value?: *`string` \| `null`*): `string`
 
-*Defined in [string/lowerFirst.ts:19](https://github.com/polkadot-js/common/blob/9f9ceff/packages/util/src/string/lowerFirst.ts#L19)*
+*Defined in [string/lowerFirst.ts:19](https://github.com/polkadot-js/common/blob/2efc5f7/packages/util/src/string/lowerFirst.ts#L19)*
 
 *__name__*: stringLowerFirst
 
@@ -28,7 +28,7 @@ stringLowerFirst('ABC'); // => 'aBC'
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` value | `string` | `null` |
+| `Optional` value | `string` \| `null` |
 
 **Returns:** `string`
 

@@ -6,16 +6,16 @@
 
 ##  encode
 
-▸ **encode**(__namedParameters: *`object`*, passphrase?: *`undefined` | `string`*): `Uint8Array`
+▸ **encode**(__namedParameters: *`object`*, passphrase?: *`undefined` \| `string`*): `Uint8Array`
 
-*Defined in [pair/encode.ts:12](https://github.com/polkadot-js/common/blob/9f9ceff/packages/keyring/src/pair/encode.ts#L12)*
+*Defined in [pair/encode.ts:12](https://github.com/polkadot-js/common/blob/2efc5f7/packages/keyring/src/pair/encode.ts#L12)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
 | __namedParameters | `object` |
-| `Optional` passphrase | `undefined` | `string` |
+| `Optional` passphrase | `undefined` \| `string` |
 
 **Returns:** `Uint8Array`
 

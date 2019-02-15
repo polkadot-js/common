@@ -6,9 +6,9 @@
 
 ##  stringUpperFirst
 
-▸ **stringUpperFirst**(value?: *`string` | `null`*): `string`
+▸ **stringUpperFirst**(value?: *`string` \| `null`*): `string`
 
-*Defined in [string/upperFirst.ts:19](https://github.com/polkadot-js/common/blob/9f9ceff/packages/util/src/string/upperFirst.ts#L19)*
+*Defined in [string/upperFirst.ts:19](https://github.com/polkadot-js/common/blob/2efc5f7/packages/util/src/string/upperFirst.ts#L19)*
 
 *__name__*: stringUpperFirst
 
@@ -28,7 +28,7 @@ stringUpperFirst('abc'); // => 'Abc'
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` value | `string` | `null` |
+| `Optional` value | `string` \| `null` |
 
 **Returns:** `string`
 

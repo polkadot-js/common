@@ -6,9 +6,9 @@
 
 ##  bnToHex
 
-▸ **bnToHex**(value?: *`BN` | `number` | `null`*, options?: *`number` | `Options`*): `string`
+▸ **bnToHex**(value?: *`BN` \| `number` \| `null`*, options?: *`number` \| `Options`*): `string`
 
-*Defined in [bn/toHex.ts:33](https://github.com/polkadot-js/common/blob/9f9ceff/packages/util/src/bn/toHex.ts#L33)*
+*Defined in [bn/toHex.ts:33](https://github.com/polkadot-js/common/blob/2efc5f7/packages/util/src/bn/toHex.ts#L33)*
 
 *__name__*: bnToHex
 
@@ -29,8 +29,8 @@ bnToHex(new BN(0x123456)); // => '0x123456'
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
-| `Optional` value | `BN` | `number` | `null` | - |
-| `Default value` options | `number` | `Options` |  { bitLength: -1, isLe: false, isNegative: false } |
+| `Optional` value | `BN` \| `number` \| `null` | - |
+| `Default value` options | `number` \| `Options` |  { bitLength: -1, isLe: false, isNegative: false } |
 
 **Returns:** `string`
 

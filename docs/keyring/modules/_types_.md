@@ -27,7 +27,7 @@
 
 **Ƭ KeyringOptions**: *`object`*
 
-*Defined in [types.ts:9](https://github.com/polkadot-js/common/blob/9f9ceff/packages/keyring/src/types.ts#L9)*
+*Defined in [types.ts:9](https://github.com/polkadot-js/common/blob/2efc5f7/packages/keyring/src/types.ts#L9)*
 
 #### Type declaration
 
@@ -38,7 +38,7 @@ ___
 
 **Ƭ KeyringPair$Json**: *`object`*
 
-*Defined in [types.ts:26](https://github.com/polkadot-js/common/blob/9f9ceff/packages/keyring/src/types.ts#L26)*
+*Defined in [types.ts:26](https://github.com/polkadot-js/common/blob/2efc5f7/packages/keyring/src/types.ts#L26)*
 
 #### Type declaration
 
@@ -49,7 +49,7 @@ ___
 
 **Ƭ KeyringPair$JsonEncoding**: *`object`*
 
-*Defined in [types.ts:20](https://github.com/polkadot-js/common/blob/9f9ceff/packages/keyring/src/types.ts#L20)*
+*Defined in [types.ts:20](https://github.com/polkadot-js/common/blob/2efc5f7/packages/keyring/src/types.ts#L20)*
 
 #### Type declaration
 
@@ -58,9 +58,9 @@ ___
 
 ##  KeyringPair$JsonVersion
 
-**Ƭ KeyringPair$JsonVersion**: *"0" | "1"*
+**Ƭ KeyringPair$JsonVersion**: *"0" \| "1"*
 
-*Defined in [types.ts:18](https://github.com/polkadot-js/common/blob/9f9ceff/packages/keyring/src/types.ts#L18)*
+*Defined in [types.ts:18](https://github.com/polkadot-js/common/blob/2efc5f7/packages/keyring/src/types.ts#L18)*
 
 ___
 <a id="keyringpair_meta"></a>
@@ -69,7 +69,7 @@ ___
 
 **Ƭ KeyringPair$Meta**: *`object`*
 
-*Defined in [types.ts:14](https://github.com/polkadot-js/common/blob/9f9ceff/packages/keyring/src/types.ts#L14)*
+*Defined in [types.ts:14](https://github.com/polkadot-js/common/blob/2efc5f7/packages/keyring/src/types.ts#L14)*
 
 #### Type declaration
 
@@ -80,9 +80,9 @@ ___
 
 ##  KeyringPairType
 
-**Ƭ KeyringPairType**: *"ed25519" | "sr25519"*
+**Ƭ KeyringPairType**: *"ed25519" \| "sr25519"*
 
-*Defined in [types.ts:7](https://github.com/polkadot-js/common/blob/9f9ceff/packages/keyring/src/types.ts#L7)*
+*Defined in [types.ts:7](https://github.com/polkadot-js/common/blob/2efc5f7/packages/keyring/src/types.ts#L7)*
 
 ___
 

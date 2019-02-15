@@ -6,9 +6,9 @@
 
 ##  blake2AsHex
 
-▸ **blake2AsHex**(data: *`Uint8Array` | `string`*, bitLength?: *`number`*): `string`
+▸ **blake2AsHex**(data: *`Uint8Array` \| `string`*, bitLength?: *`number`*): `string`
 
-*Defined in [blake2/asHex.ts:21](https://github.com/polkadot-js/common/blob/9f9ceff/packages/util-crypto/src/blake2/asHex.ts#L21)*
+*Defined in [blake2/asHex.ts:21](https://github.com/polkadot-js/common/blob/2efc5f7/packages/util-crypto/src/blake2/asHex.ts#L21)*
 
 *__name__*: blake2AsHex
 
@@ -28,7 +28,7 @@ blake2AsHex('abc'); // => 0xba80a53f981c4d0d
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
-| data | `Uint8Array` | `string` | - |
+| data | `Uint8Array` \| `string` | - |
 | `Default value` bitLength | `number` | 256 |
 
 **Returns:** `string`

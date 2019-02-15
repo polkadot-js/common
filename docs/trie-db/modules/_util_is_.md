@@ -8,7 +8,7 @@
 
 ▸ **isBranchNode**(node: *[Node](_types_.md#node)*): `boolean`
 
-*Defined in [util/is.ts:52](https://github.com/polkadot-js/common/blob/9f9ceff/packages/trie-db/src/util/is.ts#L52)*
+*Defined in [util/is.ts:52](https://github.com/polkadot-js/common/blob/2efc5f7/packages/trie-db/src/util/is.ts#L52)*
 
 *__name__*: isBranchNode
 
@@ -31,7 +31,7 @@ ___
 
 ▸ **isEmptyNode**(node: *[Node](_types_.md#node)*): `boolean`
 
-*Defined in [util/is.ts:16](https://github.com/polkadot-js/common/blob/9f9ceff/packages/trie-db/src/util/is.ts#L16)*
+*Defined in [util/is.ts:16](https://github.com/polkadot-js/common/blob/2efc5f7/packages/trie-db/src/util/is.ts#L16)*
 
 *__name__*: isEmptyNode
 
@@ -54,7 +54,7 @@ ___
 
 ▸ **isExtensionNode**(node: *[Node](_types_.md#node)*): `boolean`
 
-*Defined in [util/is.ts:34](https://github.com/polkadot-js/common/blob/9f9ceff/packages/trie-db/src/util/is.ts#L34)*
+*Defined in [util/is.ts:34](https://github.com/polkadot-js/common/blob/2efc5f7/packages/trie-db/src/util/is.ts#L34)*
 
 *__name__*: isExtensionNode
 
@@ -77,7 +77,7 @@ ___
 
 ▸ **isKvNode**(node: *[Node](_types_.md#node)*): `boolean`
 
-*Defined in [util/is.ts:25](https://github.com/polkadot-js/common/blob/9f9ceff/packages/trie-db/src/util/is.ts#L25)*
+*Defined in [util/is.ts:25](https://github.com/polkadot-js/common/blob/2efc5f7/packages/trie-db/src/util/is.ts#L25)*
 
 *__name__*: isKvNode
 
@@ -100,7 +100,7 @@ ___
 
 ▸ **isLeafNode**(node: *[Node](_types_.md#node)*): `boolean`
 
-*Defined in [util/is.ts:43](https://github.com/polkadot-js/common/blob/9f9ceff/packages/trie-db/src/util/is.ts#L43)*
+*Defined in [util/is.ts:43](https://github.com/polkadot-js/common/blob/2efc5f7/packages/trie-db/src/util/is.ts#L43)*
 
 *__name__*: isLeafNode
 

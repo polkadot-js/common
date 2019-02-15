@@ -5,6 +5,7 @@
 
 Overview
 --------
+
 *__name__*: Trie
 
 *__summary__*: Re-implementation of a Patricia Trie
@@ -29,7 +30,7 @@ Overview
 
 *Overrides [Checkpoint](_checkpoint_.checkpoint.md).[constructor](_checkpoint_.checkpoint.md#constructor)*
 
-*Defined in [Impl.ts:38](https://github.com/polkadot-js/common/blob/9f9ceff/packages/trie-db/src/Impl.ts#L38)*
+*Defined in [Impl.ts:38](https://github.com/polkadot-js/common/blob/2efc5f7/packages/trie-db/src/Impl.ts#L38)*
 
 **Parameters:**
 
@@ -51,7 +52,7 @@ ___
 
 **● db**: *`TxDb`*
 
-*Defined in [Impl.ts:36](https://github.com/polkadot-js/common/blob/9f9ceff/packages/trie-db/src/Impl.ts#L36)*
+*Defined in [Impl.ts:36](https://github.com/polkadot-js/common/blob/2efc5f7/packages/trie-db/src/Impl.ts#L36)*
 
 ___
 

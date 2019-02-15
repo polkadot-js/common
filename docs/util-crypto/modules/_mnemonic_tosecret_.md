@@ -8,7 +8,7 @@
 
 ▸ **toSecret**(mnemonic: *`string`*): `Uint8Array`
 
-*Defined in [mnemonic/toSecret.ts:8](https://github.com/polkadot-js/common/blob/9f9ceff/packages/util-crypto/src/mnemonic/toSecret.ts#L8)*
+*Defined in [mnemonic/toSecret.ts:8](https://github.com/polkadot-js/common/blob/2efc5f7/packages/util-crypto/src/mnemonic/toSecret.ts#L8)*
 
 **Parameters:**
 
