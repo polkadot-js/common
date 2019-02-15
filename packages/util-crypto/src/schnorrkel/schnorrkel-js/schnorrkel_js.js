@@ -1,4 +1,5 @@
 /* tslint:disable */
+const schnorrkelWasm = require('./schnorrkel_js_bg');
 var wasm;
 
 let cachegetUint8Memory = null;
@@ -257,7 +258,7 @@ module.exports.isReady = function () {
     return !!wasm;
 }
 
-const wasmPromise = require('./schnorrkel_js_bg')(module.exports);
+const wasmPromise = schnorrkelWasm(module.exports);
 
 module.exports.waitReady = function () {
     return wasmPromise.then(() => true);
