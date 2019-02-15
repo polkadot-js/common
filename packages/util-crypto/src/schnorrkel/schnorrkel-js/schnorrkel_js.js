@@ -230,7 +230,8 @@ module.exports.__wbg_getRandomValues_95cef5eed1acafda = function(arg0, arg1, arg
 
 module.exports.__wbg_require_86edd37cfda5f13d = function(arg0, arg1) {
     let varg0 = getStringFromWasm(arg0, arg1);
-    return addHeapObject(require(varg0));
+    // return addHeapObject(require(varg0));
+    throw new Error(`Invalid require from WASM for ${varg0}`);
 };
 
 module.exports.__wbg_randomFillSync_571502126f344d60 = function(arg0, arg1, arg2) {
