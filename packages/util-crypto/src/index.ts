@@ -17,12 +17,10 @@ export function cryptoWaitReady (): Promise<boolean> {
   // this is a bit convoluted, but since we can do the same for libsodium,
   // prepare for multiples, easy to adapt without thinking
   return Promise
-    .all([
-      schnorrkelWaitReady()
-    ])
+    .all([schnorrkelWaitReady()])
     .then(() => true)
     .catch((error) => {
-      console.error('Unable to initialise @polkadot/util-crypto');
+      console.error('Unable to initialize @polkadot/util-crypto');
 
       throw error;
     });
