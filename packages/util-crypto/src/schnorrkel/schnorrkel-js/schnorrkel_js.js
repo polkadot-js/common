@@ -253,4 +253,4 @@ module.exports.__wbindgen_jsval_eq = function(a, b) {
     return getObject(a) === getObject(b) ? 1 : 0;
 };
 
-wasm = require('./schnorrkel_js_bg');
+wasm = require('./schnorrkel_js_bg')(module.exports);
