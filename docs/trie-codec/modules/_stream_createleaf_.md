@@ -8,7 +8,7 @@
 
 ▸ **createLeaf**(key: *`Uint8Array`*, value: *`Uint8Array`*): `Uint8Array`
 
-*Defined in [stream/createLeaf.ts:10](https://github.com/polkadot-js/common/blob/74b37cf/packages/trie-codec/src/stream/createLeaf.ts#L10)*
+*Defined in [stream/createLeaf.ts:10](https://github.com/polkadot-js/common/blob/dd77c3c/packages/trie-codec/src/stream/createLeaf.ts#L10)*
 
 **Parameters:**
 

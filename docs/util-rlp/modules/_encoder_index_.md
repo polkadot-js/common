@@ -8,7 +8,7 @@
 
 ▸ **encoder**(input: *`any`*): `Uint8Array`
 
-*Defined in [encoder/index.ts:23](https://github.com/polkadot-js/common/blob/74b37cf/packages/util-rlp/src/encoder/index.ts#L23)*
+*Defined in [encoder/index.ts:23](https://github.com/polkadot-js/common/blob/dd77c3c/packages/util-rlp/src/encoder/index.ts#L23)*
 
 *__name__*: encoder
 
