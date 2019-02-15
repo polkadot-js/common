@@ -6,12 +6,17 @@ import { stringToU8a } from '@polkadot/util/index';
 
 import randomAsU8a from '../random/asU8a';
 import pairFromSeed from './keypair/fromSeed';
+import schnorrkelWaitReady from './ready';
 import sign from './sign';
 import verify from './verify';
 
 const MESSAGE = stringToU8a('this is a message');
 
 describe('sign and verify', () => {
+  beforeEach(async () => {
+    return schnorrkelWaitReady();
+  });
+
   it('has 64-byte signatures', () => {
     const pair = pairFromSeed(randomAsU8a());
 

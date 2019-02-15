@@ -3,6 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { hexToU8a, stringToU8a } from '@polkadot/util/index';
+import { cryptoWaitReady } from '@polkadot/util-crypto/index';
 
 import Keyring from './index';
 import setPrefix from './address/setPrefix';
@@ -15,7 +16,9 @@ describe('keypair', () => {
     const seedTwo = hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60');
     let keypair: Keyring;
 
-    beforeEach(() => {
+    beforeEach(async () => {
+      await cryptoWaitReady();
+
       keypair = new Keyring({ type: 'ed25519' });
 
       keypair.addFromSeed(seedOne, {});
@@ -87,7 +90,9 @@ describe('keypair', () => {
     const seedTwo = hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60');
     let keypair: Keyring;
 
-    beforeEach(() => {
+    beforeEach(async () => {
+      await cryptoWaitReady();
+
       keypair = new Keyring({ type: 'sr25519' });
 
       keypair.addFromSeed(seedOne, {});
