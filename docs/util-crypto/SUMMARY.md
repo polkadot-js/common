@@ -49,6 +49,7 @@
 * [&quot;schnorrkel/index&quot;](modules/_schnorrkel_index_.md)
 * [&quot;schnorrkel/keypair/fromSeed&quot;](modules/_schnorrkel_keypair_fromseed_.md)
 * [&quot;schnorrkel/keypair/fromSeed.spec&quot;](modules/_schnorrkel_keypair_fromseed_spec_.md)
+* [&quot;schnorrkel/ready&quot;](modules/_schnorrkel_ready_.md)
 * [&quot;schnorrkel/schnorrkel-js/index&quot;](modules/_schnorrkel_schnorrkel_js_index_.md)
 * [&quot;schnorrkel/schnorrkel-js/polyfill&quot;](modules/_schnorrkel_schnorrkel_js_polyfill_.md)
 * [&quot;schnorrkel/sign&quot;](modules/_schnorrkel_sign_.md)

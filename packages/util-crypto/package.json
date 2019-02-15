@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-crypto",
-  "version": "0.34.8",
+  "version": "0.34.9",
   "description": "A collection of useful crypto utilities for @polkadot",
   "main": "index.js",
   "keywords": [
@@ -30,7 +30,7 @@
   "dependencies": {
     "@babel/runtime": "^7.2.0",
     "@parity/schnorrkel-js": "^0.1.2",
-    "@polkadot/util": "^0.34.8",
+    "@polkadot/util": "^0.34.9",
     "@types/bip39": "^2.4.1",
     "@types/webassembly-js-api": "^0.0.2",
     "bip39": "^2.5.0",
