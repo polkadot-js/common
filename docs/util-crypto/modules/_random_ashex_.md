@@ -8,7 +8,7 @@
 
 ▸ **randomAsHex**(length?: *`number`*): `string`
 
-*Defined in [random/asHex.ts:23](https://github.com/polkadot-js/common/blob/2efc5f7/packages/util-crypto/src/random/asHex.ts#L23)*
+*Defined in [random/asHex.ts:23](https://github.com/polkadot-js/common/blob/50721f2/packages/util-crypto/src/random/asHex.ts#L23)*
 
 *__name__*: randomAsHex
 
