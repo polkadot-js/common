@@ -1,6 +1,5 @@
 /* tslint:disable */
-const schnorrkelWasm = require('./schnorrkel_js_bg');
-var wasm;
+let wasm; const wasmImports = {};
 
 let cachegetUint8Memory = null;
 function getUint8Memory() {
@@ -175,12 +174,12 @@ module.exports.keypair_from_seed = function(arg0) {
 
 };
 
-// const TextDecoder = require('util').TextDecoder;
+const { u8aToString } = require('@polkadot/util');
 
-let cachedTextDecoder = new TextDecoder('utf-8');
+// let cachedTextDecoder = new TextDecoder('utf-8');
 
 function getStringFromWasm(ptr, len) {
-    return cachedTextDecoder.decode(getUint8Memory().subarray(ptr, ptr + len));
+    return u8aToString(getUint8Memory().subarray(ptr, ptr + len));
 }
 
 const heap = new Array(32);
@@ -199,8 +198,6 @@ function addHeapObject(obj) {
     heap[idx] = obj;
     return idx;
 }
-
-const wasmImports = {};
 
 wasmImports.__wbg_new_886f15c1b20b061b = function(arg0, arg1) {
     let varg0 = getStringFromWasm(arg0, arg1);
@@ -232,7 +229,6 @@ wasmImports.__wbg_getRandomValues_95cef5eed1acafda = function(arg0, arg1, arg2) 
 
 wasmImports.__wbg_require_86edd37cfda5f13d = function(arg0, arg1) {
     let varg0 = getStringFromWasm(arg0, arg1);
-    // return addHeapObject(require(varg0));
     throw new Error(`Invalid require from WASM for ${varg0}`);
 };
 
@@ -257,20 +253,12 @@ wasmImports.__wbindgen_jsval_eq = function(a, b) {
     return getObject(a) === getObject(b) ? 1 : 0;
 };
 
-module.exports.isReady = function () {
-    return !!wasm;
-}
+const createPromise = require('./schnorrkel_js_bg');
 
-const wasmPromise = schnorrkelWasm(wasmImports);
+const wasmPromise = createPromise(wasmImports);
 
-module.exports.waitReady = function () {
-    return wasmPromise.then(() => true);
-}
+module.exports.isReady = function () { return !!wasm; }
+module.exports.waitReady = function () { return wasmPromise.then(() => true); }
 
-wasmPromise.then((_wasm) => {
-    wasm = _wasm
-}).catch((error) => {
-    console.error('Error creating schnorrkel_js WASM');
+wasmPromise.then((_wasm) => { wasm = _wasm });
 
-    throw error;
-});
