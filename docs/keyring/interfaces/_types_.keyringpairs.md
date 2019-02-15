@@ -16,7 +16,7 @@
 
 **● add**: *`function`*
 
-*Defined in [types.ts:51](https://github.com/polkadot-js/common/blob/420f807/packages/keyring/src/types.ts#L51)*
+*Defined in [types.ts:51](https://github.com/polkadot-js/common/blob/49b0c84/packages/keyring/src/types.ts#L51)*
 
 #### Type declaration
 ▸(pair: *[KeyringPair](_types_.keyringpair.md)*): [KeyringPair](_types_.keyringpair.md)
@@ -36,7 +36,7 @@ ___
 
 **● all**: *`function`*
 
-*Defined in [types.ts:52](https://github.com/polkadot-js/common/blob/420f807/packages/keyring/src/types.ts#L52)*
+*Defined in [types.ts:52](https://github.com/polkadot-js/common/blob/49b0c84/packages/keyring/src/types.ts#L52)*
 
 #### Type declaration
 ▸(): `Array`<[KeyringPair](_types_.keyringpair.md)>
@@ -50,7 +50,7 @@ ___
 
 **● get**: *`function`*
 
-*Defined in [types.ts:53](https://github.com/polkadot-js/common/blob/420f807/packages/keyring/src/types.ts#L53)*
+*Defined in [types.ts:53](https://github.com/polkadot-js/common/blob/49b0c84/packages/keyring/src/types.ts#L53)*
 
 #### Type declaration
 ▸(address: *`string` | `Uint8Array`*): [KeyringPair](_types_.keyringpair.md)
@@ -70,7 +70,7 @@ ___
 
 **● remove**: *`function`*
 
-*Defined in [types.ts:54](https://github.com/polkadot-js/common/blob/420f807/packages/keyring/src/types.ts#L54)*
+*Defined in [types.ts:54](https://github.com/polkadot-js/common/blob/49b0c84/packages/keyring/src/types.ts#L54)*
 
 #### Type declaration
 ▸(address: *`string` | `Uint8Array`*): `void`

@@ -22,7 +22,7 @@
 
 **Ƭ Logger**: *`object`*
 
-*Defined in [types.ts:15](https://github.com/polkadot-js/common/blob/420f807/packages/util/src/types.ts#L15)*
+*Defined in [types.ts:15](https://github.com/polkadot-js/common/blob/49b0c84/packages/util/src/types.ts#L15)*
 
 #### Type declaration
 
@@ -33,7 +33,7 @@ ___
 
 **Ƭ Logger$Data**: *`Array`<`any` | `Logger$Data$Fn`>*
 
-*Defined in [types.ts:13](https://github.com/polkadot-js/common/blob/420f807/packages/util/src/types.ts#L13)*
+*Defined in [types.ts:13](https://github.com/polkadot-js/common/blob/49b0c84/packages/util/src/types.ts#L13)*
 
 ___
 

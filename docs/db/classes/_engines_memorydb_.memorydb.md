@@ -16,7 +16,7 @@
 
 ⊕ **new MemoryDb**(options?: *[BaseDbOptions](../modules/_types_.md#basedboptions)*): [MemoryDb](_engines_memorydb_.memorydb.md)
 
-*Defined in [engines/MemoryDb.ts:16](https://github.com/polkadot-js/common/blob/420f807/packages/db/src/engines/MemoryDb.ts#L16)*
+*Defined in [engines/MemoryDb.ts:16](https://github.com/polkadot-js/common/blob/49b0c84/packages/db/src/engines/MemoryDb.ts#L16)*
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[close](../interfaces/_types_.basedb.md#close)*
 
-*Defined in [engines/MemoryDb.ts:22](https://github.com/polkadot-js/common/blob/420f807/packages/db/src/engines/MemoryDb.ts#L22)*
+*Defined in [engines/MemoryDb.ts:22](https://github.com/polkadot-js/common/blob/49b0c84/packages/db/src/engines/MemoryDb.ts#L22)*
 
 **Returns:** `void`
 
@@ -51,7 +51,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[del](../interfaces/_types_.basedb.md#del)*
 
-*Defined in [engines/MemoryDb.ts:56](https://github.com/polkadot-js/common/blob/420f807/packages/db/src/engines/MemoryDb.ts#L56)*
+*Defined in [engines/MemoryDb.ts:56](https://github.com/polkadot-js/common/blob/49b0c84/packages/db/src/engines/MemoryDb.ts#L56)*
 
 **Parameters:**
 
@@ -70,7 +70,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[drop](../interfaces/_types_.basedb.md#drop)*
 
-*Defined in [engines/MemoryDb.ts:30](https://github.com/polkadot-js/common/blob/420f807/packages/db/src/engines/MemoryDb.ts#L30)*
+*Defined in [engines/MemoryDb.ts:30](https://github.com/polkadot-js/common/blob/49b0c84/packages/db/src/engines/MemoryDb.ts#L30)*
 
 **Returns:** `void`
 
@@ -83,7 +83,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[empty](../interfaces/_types_.basedb.md#empty)*
 
-*Defined in [engines/MemoryDb.ts:34](https://github.com/polkadot-js/common/blob/420f807/packages/db/src/engines/MemoryDb.ts#L34)*
+*Defined in [engines/MemoryDb.ts:34](https://github.com/polkadot-js/common/blob/49b0c84/packages/db/src/engines/MemoryDb.ts#L34)*
 
 **Returns:** `void`
 
@@ -96,7 +96,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[get](../interfaces/_types_.basedb.md#get)*
 
-*Defined in [engines/MemoryDb.ts:62](https://github.com/polkadot-js/common/blob/420f807/packages/db/src/engines/MemoryDb.ts#L62)*
+*Defined in [engines/MemoryDb.ts:62](https://github.com/polkadot-js/common/blob/49b0c84/packages/db/src/engines/MemoryDb.ts#L62)*
 
 **Parameters:**
 
@@ -115,7 +115,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[maintain](../interfaces/_types_.basedb.md#maintain)*
 
-*Defined in [engines/MemoryDb.ts:42](https://github.com/polkadot-js/common/blob/420f807/packages/db/src/engines/MemoryDb.ts#L42)*
+*Defined in [engines/MemoryDb.ts:42](https://github.com/polkadot-js/common/blob/49b0c84/packages/db/src/engines/MemoryDb.ts#L42)*
 
 **Parameters:**
 
@@ -134,7 +134,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[open](../interfaces/_types_.basedb.md#open)*
 
-*Defined in [engines/MemoryDb.ts:26](https://github.com/polkadot-js/common/blob/420f807/packages/db/src/engines/MemoryDb.ts#L26)*
+*Defined in [engines/MemoryDb.ts:26](https://github.com/polkadot-js/common/blob/49b0c84/packages/db/src/engines/MemoryDb.ts#L26)*
 
 **Returns:** `void`
 
@@ -147,7 +147,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[put](../interfaces/_types_.basedb.md#put)*
 
-*Defined in [engines/MemoryDb.ts:68](https://github.com/polkadot-js/common/blob/420f807/packages/db/src/engines/MemoryDb.ts#L68)*
+*Defined in [engines/MemoryDb.ts:68](https://github.com/polkadot-js/common/blob/49b0c84/packages/db/src/engines/MemoryDb.ts#L68)*
 
 **Parameters:**
 
@@ -167,7 +167,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[rename](../interfaces/_types_.basedb.md#rename)*
 
-*Defined in [engines/MemoryDb.ts:38](https://github.com/polkadot-js/common/blob/420f807/packages/db/src/engines/MemoryDb.ts#L38)*
+*Defined in [engines/MemoryDb.ts:38](https://github.com/polkadot-js/common/blob/49b0c84/packages/db/src/engines/MemoryDb.ts#L38)*
 
 **Parameters:**
 
@@ -187,7 +187,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[size](../interfaces/_types_.basedb.md#size)*
 
-*Defined in [engines/MemoryDb.ts:50](https://github.com/polkadot-js/common/blob/420f807/packages/db/src/engines/MemoryDb.ts#L50)*
+*Defined in [engines/MemoryDb.ts:50](https://github.com/polkadot-js/common/blob/49b0c84/packages/db/src/engines/MemoryDb.ts#L50)*
 
 **Returns:** `number`
 
