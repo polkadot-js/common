@@ -16,7 +16,19 @@ export * from './xxhash';
 export function cryptoWaitReady (): Promise<boolean> {
   // this is a bit convoluted, but since we can do the same for libsodium,
   // prepare for multiples, easy to adapt without thinking
-  return Promise.all([
-    schnorrkelWaitReady()
-  ]).then(() => true);
+  return Promise
+    .all([
+      schnorrkelWaitReady()
+    ])
+    .then(() => true)
+    .catch((error) => {
+      console.error('Unable to initialise @polkadot/util-crypto');
+
+      throw error;
+    });
 }
+
+// start init process immediately
+cryptoWaitReady().catch(() => {
+  // noop, logged above, can't do much more
+});

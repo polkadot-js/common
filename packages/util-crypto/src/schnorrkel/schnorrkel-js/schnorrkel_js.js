@@ -266,5 +266,7 @@ module.exports.waitReady = function () {
 wasmPromise.then((_wasm) => {
     wasm = _wasm
 }).catch((error) => {
-    console.error('Error creating schnorrkel_js WASM', error);
+    console.error('Error creating schnorrkel_js WASM');
+
+    throw error;
 });
