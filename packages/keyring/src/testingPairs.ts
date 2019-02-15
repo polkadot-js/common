@@ -11,7 +11,7 @@ type TestKeyringMap = {
   [index: string]: KeyringPair
 };
 
-export default function testKeyringPairs (options: KeyringOptions): TestKeyringMap {
+export default function testKeyringPairs (options?: KeyringOptions): TestKeyringMap {
   const keyring = createKeyring(options);
   const pairs = keyring.getPairs();
 
