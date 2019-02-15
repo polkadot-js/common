@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/keyring#readme",
   "dependencies": {
-    "@babel/runtime": "^7.2.0",
+    "@babel/runtime": "^7.3.1",
     "@polkadot/util": "^0.34.12",
     "@polkadot/util-crypto": "^0.34.12",
     "@types/bs58": "^4.0.0",

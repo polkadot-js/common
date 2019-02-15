@@ -25,9 +25,9 @@ export default function xxhash64AsValue (data: Buffer | Uint8Array | string, see
     return xxhashjs.h64(data, seed);
   }
 
+  // @ts-ignore conversion works, yields correct result
   return xxhashjs.h64(
-    // @ts-ignore conversion works, yields correct result
     u8aToBuffer(data),
     seed
-  );
+  ) as any;
 }

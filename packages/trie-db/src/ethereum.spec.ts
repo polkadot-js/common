@@ -43,7 +43,7 @@ describe.skip('official tests', () => {
 
       it(name, () => {
         keys.map((key) =>
-          trie.put(toU8a(key), toU8a((input as any)[key]))
+          trie.put(toU8a(key), toU8a(input[key]))
         );
 
         expect(
