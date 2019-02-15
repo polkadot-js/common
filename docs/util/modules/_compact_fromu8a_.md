@@ -8,7 +8,7 @@
 
 ▸ **compactFromU8a**(_input: *`Uint8Array` | `string`*, bitLength?: *[BitLength](_compact_types_.md#bitlength)*): [`number`, `BN`]
 
-*Defined in [compact/fromU8a.ts:26](https://github.com/polkadot-js/common/blob/dd77c3c/packages/util/src/compact/fromU8a.ts#L26)*
+*Defined in [compact/fromU8a.ts:26](https://github.com/polkadot-js/common/blob/9f9ceff/packages/util/src/compact/fromU8a.ts#L26)*
 
 *__name__*: compactFromU8a
 
