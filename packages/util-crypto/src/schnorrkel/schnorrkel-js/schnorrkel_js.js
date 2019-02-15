@@ -253,4 +253,20 @@ module.exports.__wbindgen_jsval_eq = function(a, b) {
     return getObject(a) === getObject(b) ? 1 : 0;
 };
 
-wasm = require('./schnorrkel_js_bg')(module.exports);
+module.exports.isReady = function () {
+    return !!wasm;
+}
+
+const wasmPromise = require('./schnorrkel_js_bg')(module.exports);
+
+module.exports.waitReady = function () {
+    return wasmPromise.then(() => true);
+}
+
+wasmPromise.then((_wasm) => {
+    wasm = _wasm
+}).catch((error) => {
+    console.error('Error creating schnorrkel_js WASM');
+
+    throw error;
+});

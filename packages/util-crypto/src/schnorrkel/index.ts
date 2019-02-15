@@ -3,5 +3,6 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 export { default as schnorrkelKeypairFromSeed } from './keypair/fromSeed';
+export { schnorrkelIsReady, default as schnorrkelWaitReady } from './ready';
 export { default as schnorrkelSign } from './sign';
 export { default as schnorrkelVerify } from './verify';
