@@ -31,7 +31,7 @@ export default class Keyring implements KeyringInstance {
   private _pairs: Pairs;
   private _type: KeyringPairType;
 
-  constructor (options: KeyringOptions) {
+  constructor (options: KeyringOptions = { type: 'ed25519' }) {
     assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
 
     this._pairs = new Pairs();
