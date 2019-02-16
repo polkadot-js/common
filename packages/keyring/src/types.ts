@@ -55,6 +55,8 @@ export interface KeyringPairs {
 }
 
 export interface KeyringInstance {
+  readonly pairs: Array<KeyringPair>;
+  readonly publicKeys: Array<Uint8Array>;
   readonly type: KeyringPairType;
 
   decodeAddress (encoded: string | Uint8Array): Uint8Array;

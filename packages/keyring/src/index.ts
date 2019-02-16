@@ -45,6 +45,20 @@ export default class Keyring implements KeyringInstance {
   setAddressPrefix = setAddressPrefix;
 
   /**
+   * @description retrieve the pairs (alias for getPairs)
+   */
+  get pairs (): Array<KeyringPair> {
+    return this.getPairs();
+  }
+
+  /**
+   * @description retrieve the publicKeys (alias for getPiblicKeys)
+   */
+  get publicKeys (): Array<Uint8Array> {
+    return this.getPublicKeys();
+  }
+
+  /**
    * @description Returns the type of the keyring, either ed25519 of sr25519
    */
   get type (): KeyringPairType {
