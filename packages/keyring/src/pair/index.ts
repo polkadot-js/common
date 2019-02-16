@@ -91,8 +91,8 @@ export default function createPair (type: KeyringPairType, { publicKey, seed }: 
     },
     publicKey: (): Uint8Array =>
       publicKey,
-    setMeta: (_meta: KeyringPair$Meta): void => {
-      meta = meta;
+    setMeta: (additional: KeyringPair$Meta): void => {
+      meta = { ...meta, ...additional };
     },
     sign: (message: Uint8Array): Uint8Array =>
       sign(type, message, { publicKey, secretKey }),

@@ -42,4 +42,14 @@ describe('pair', () => {
       )
     ).toEqual(false);
   });
+
+  it('allows setting/getting of meta', () => {
+    keyring.bob.setMeta({ foo: 'bar', something: 'else' });
+
+    expect(keyring.bob.getMeta()).toMatchObject({ foo: 'bar', something: 'else' });
+
+    keyring.bob.setMeta({ something: 'thing' });
+
+    expect(keyring.bob.getMeta()).toMatchObject({ foo: 'bar', something: 'thing' });
+  });
 });
