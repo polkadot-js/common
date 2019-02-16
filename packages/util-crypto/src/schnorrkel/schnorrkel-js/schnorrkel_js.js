@@ -255,9 +255,9 @@ wasmImports.__wbindgen_jsval_eq = function(a, b) {
 
 const createPromise = require('./schnorrkel_js_bg');
 
-const wasmPromise = createPromise(wasmImports);
+const wasmPromise = createPromise(wasmImports).catch(() => null);
 
 module.exports.isReady = function () { return !!wasm; }
 module.exports.waitReady = function () { return wasmPromise.then(() => !!wasm); }
 
-wasmPromise.then((_wasm) => { wasm = _wasm }).catch(() => {});
+wasmPromise.then((_wasm) => { wasm = _wasm });

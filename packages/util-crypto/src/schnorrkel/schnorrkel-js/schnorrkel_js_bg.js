@@ -6,7 +6,15 @@ module.exports = async function createExportPromise (wasmImports) {
     './schnorrkel_js': wasmImports
   };
 
-  return WebAssembly
-    .instantiate(bytes, imports)
-    .then((wasm) => wasm.instance.exports);
+  if (!WebAssembly) {
+    return null;
+  }
+
+  try {
+    const { instance } = await WebAssembly.instantiate(bytes, imports);
+
+    return instance.exports;
+  } catch (error) {
+    return null;
+  }
 }
