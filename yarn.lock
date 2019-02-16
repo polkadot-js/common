@@ -1370,11 +1370,6 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@parity/schnorrkel-js@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@parity/schnorrkel-js/-/schnorrkel-js-0.1.2.tgz#08c9663299cbe43d292599a1312a761b2426900f"
-  integrity sha512-eQSCY6kb16Lhnlgdz1FbADo1PEI3Xgp0ApGpNydf0yBEQ6AMVo1YN/4zMA3lFjqnurv9NsAy11OJApailUNneQ==
-
 "@polkadot/dev@^0.24.2":
   version "0.24.2"
   resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.24.2.tgz#3cde72bff3f005c6d268b59bf72163f1670c7cfe"
