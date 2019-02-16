@@ -59,7 +59,7 @@ const verify = (type: KeyringPairType, message: Uint8Array, signature: Uint8Arra
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function createPair (type: KeyringPairType, { publicKey, seed }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null): KeyringPair {
+export default function createPair (type: KeyringPairType, { publicKey, seed }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
   let secretKey: Uint8Array | undefined;
 
   if (seed) {

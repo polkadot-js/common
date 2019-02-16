@@ -62,9 +62,9 @@ export interface KeyringInstance {
   setAddressPrefix (prefix: Prefix): void;
 
   addPair (pair: KeyringPair): KeyringPair;
-  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta, encoded: Uint8Array | null, type?: KeyringPairType): KeyringPair;
-  addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
-  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
+  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, encoded?: Uint8Array | null, type?: KeyringPairType): KeyringPair;
+  addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
+  addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
   addFromJson (pair: KeyringPair$Json): KeyringPair;
   getPair (address: string | Uint8Array): KeyringPair;
   getPairs (): Array<KeyringPair>;
