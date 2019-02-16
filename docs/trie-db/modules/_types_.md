@@ -31,7 +31,7 @@
 
 **Ƭ EncodedPath**: *`Uint8Array` \| `null`*
 
-*Defined in [types.ts:28](https://github.com/polkadot-js/common/blob/9864646/packages/trie-db/src/types.ts#L28)*
+*Defined in [types.ts:28](https://github.com/polkadot-js/common/blob/bc2b134/packages/trie-db/src/types.ts#L28)*
 
 ___
 <a id="node"></a>
@@ -40,7 +40,7 @@ ___
 
 **Ƭ Node**: *[NodeEmpty](_types_.md#nodeempty) \| [NodeNotEmpty](_types_.md#nodenotempty)*
 
-*Defined in [types.ts:34](https://github.com/polkadot-js/common/blob/9864646/packages/trie-db/src/types.ts#L34)*
+*Defined in [types.ts:34](https://github.com/polkadot-js/common/blob/bc2b134/packages/trie-db/src/types.ts#L34)*
 
 ___
 <a id="nodebranch"></a>
@@ -49,7 +49,7 @@ ___
 
 **Ƭ NodeBranch**: *[[NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty)]*
 
-*Defined in [types.ts:20](https://github.com/polkadot-js/common/blob/9864646/packages/trie-db/src/types.ts#L20)*
+*Defined in [types.ts:20](https://github.com/polkadot-js/common/blob/bc2b134/packages/trie-db/src/types.ts#L20)*
 
 ___
 <a id="nodeempty"></a>
@@ -58,7 +58,7 @@ ___
 
 **Ƭ NodeEmpty**: *`null`*
 
-*Defined in [types.ts:14](https://github.com/polkadot-js/common/blob/9864646/packages/trie-db/src/types.ts#L14)*
+*Defined in [types.ts:14](https://github.com/polkadot-js/common/blob/bc2b134/packages/trie-db/src/types.ts#L14)*
 
 ___
 <a id="nodeencoded"></a>
@@ -67,7 +67,7 @@ ___
 
 **Ƭ NodeEncoded**: *`Uint8Array`*
 
-*Defined in [types.ts:16](https://github.com/polkadot-js/common/blob/9864646/packages/trie-db/src/types.ts#L16)*
+*Defined in [types.ts:16](https://github.com/polkadot-js/common/blob/bc2b134/packages/trie-db/src/types.ts#L16)*
 
 ___
 <a id="nodeencodedorempty"></a>
@@ -76,7 +76,7 @@ ___
 
 **Ƭ NodeEncodedOrEmpty**: *[NodeEncoded](_types_.md#nodeencoded) \| [NodeEmpty](_types_.md#nodeempty)*
 
-*Defined in [types.ts:18](https://github.com/polkadot-js/common/blob/9864646/packages/trie-db/src/types.ts#L18)*
+*Defined in [types.ts:18](https://github.com/polkadot-js/common/blob/bc2b134/packages/trie-db/src/types.ts#L18)*
 
 ___
 <a id="nodekv"></a>
@@ -85,7 +85,7 @@ ___
 
 **Ƭ NodeKv**: *[[EncodedPath](_types_.md#encodedpath), [NodeEncodedOrEmpty](_types_.md#nodeencodedorempty)]*
 
-*Defined in [types.ts:30](https://github.com/polkadot-js/common/blob/9864646/packages/trie-db/src/types.ts#L30)*
+*Defined in [types.ts:30](https://github.com/polkadot-js/common/blob/bc2b134/packages/trie-db/src/types.ts#L30)*
 
 ___
 <a id="nodenotempty"></a>
@@ -94,7 +94,7 @@ ___
 
 **Ƭ NodeNotEmpty**: *[NodeKv](_types_.md#nodekv) \| [NodeBranch](_types_.md#nodebranch)*
 
-*Defined in [types.ts:32](https://github.com/polkadot-js/common/blob/9864646/packages/trie-db/src/types.ts#L32)*
+*Defined in [types.ts:32](https://github.com/polkadot-js/common/blob/bc2b134/packages/trie-db/src/types.ts#L32)*
 
 ___
 

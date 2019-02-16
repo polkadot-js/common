@@ -12,7 +12,7 @@
 
 ⊕ **new Compact**(file: *`string`*): [Compact](_fileflatdb_compact_.compact.md)
 
-*Defined in [FileFlatDb/Compact.ts:17](https://github.com/polkadot-js/common/blob/9864646/packages/db/src/FileFlatDb/Compact.ts#L17)*
+*Defined in [FileFlatDb/Compact.ts:17](https://github.com/polkadot-js/common/blob/bc2b134/packages/db/src/FileFlatDb/Compact.ts#L17)*
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ ___
 
 ▸ **maintain**(fn: *[ProgressCb](../modules/_types_.md#progresscb)*): `void`
 
-*Defined in [FileFlatDb/Compact.ts:24](https://github.com/polkadot-js/common/blob/9864646/packages/db/src/FileFlatDb/Compact.ts#L24)*
+*Defined in [FileFlatDb/Compact.ts:24](https://github.com/polkadot-js/common/blob/bc2b134/packages/db/src/FileFlatDb/Compact.ts#L24)*
 
 **Parameters:**
 

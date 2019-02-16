@@ -8,7 +8,7 @@
 
 ▸ **syncify**(promise: *`Promise`<`any`>*): `any`
 
-*Defined in [syncify.ts:11](https://github.com/polkadot-js/common/blob/9864646/packages/util/src/syncify.ts#L11)*
+*Defined in [syncify.ts:11](https://github.com/polkadot-js/common/blob/bc2b134/packages/util/src/syncify.ts#L11)*
 
 **Parameters:**
 
