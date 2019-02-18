@@ -6,4 +6,4 @@ import '@polkadot/util/polyfill';
 import './polyfill';
 
 // export * from '@parity/schnorrkel-js';
-export * from './schnorrkel_js';
+export * from '@polkadot/schnorrkel-js';
