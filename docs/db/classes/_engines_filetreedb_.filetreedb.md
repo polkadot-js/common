@@ -16,7 +16,7 @@
 
 ⊕ **new FileTreeDb**(location: *`string`*): [FileTreeDb](_engines_filetreedb_.filetreedb.md)
 
-*Defined in [engines/FileTreeDb.ts:21](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L21)*
+*Defined in [engines/FileTreeDb.ts:21](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L21)*
 
 **Parameters:**
 
@@ -36,7 +36,7 @@ ___
 
 **● _location**: *`string`*
 
-*Defined in [engines/FileTreeDb.ts:21](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L21)*
+*Defined in [engines/FileTreeDb.ts:21](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L21)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[close](../interfaces/_types_.basedb.md#close)*
 
-*Defined in [engines/FileTreeDb.ts:46](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L46)*
+*Defined in [engines/FileTreeDb.ts:46](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L46)*
 
 **Returns:** `void`
 
@@ -63,7 +63,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[del](../interfaces/_types_.basedb.md#del)*
 
-*Defined in [engines/FileTreeDb.ts:76](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L76)*
+*Defined in [engines/FileTreeDb.ts:76](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L76)*
 
 **Parameters:**
 
@@ -82,7 +82,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[drop](../interfaces/_types_.basedb.md#drop)*
 
-*Defined in [engines/FileTreeDb.ts:50](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L50)*
+*Defined in [engines/FileTreeDb.ts:50](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L50)*
 
 **Returns:** `void`
 
@@ -95,7 +95,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[empty](../interfaces/_types_.basedb.md#empty)*
 
-*Defined in [engines/FileTreeDb.ts:54](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L54)*
+*Defined in [engines/FileTreeDb.ts:54](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L54)*
 
 **Returns:** `void`
 
@@ -108,7 +108,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[get](../interfaces/_types_.basedb.md#get)*
 
-*Defined in [engines/FileTreeDb.ts:86](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L86)*
+*Defined in [engines/FileTreeDb.ts:86](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L86)*
 
 **Parameters:**
 
@@ -127,7 +127,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[maintain](../interfaces/_types_.basedb.md#maintain)*
 
-*Defined in [engines/FileTreeDb.ts:68](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L68)*
+*Defined in [engines/FileTreeDb.ts:68](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L68)*
 
 **Parameters:**
 
@@ -146,7 +146,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[open](../interfaces/_types_.basedb.md#open)*
 
-*Defined in [engines/FileTreeDb.ts:42](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L42)*
+*Defined in [engines/FileTreeDb.ts:42](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L42)*
 
 **Returns:** `void`
 
@@ -159,7 +159,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[put](../interfaces/_types_.basedb.md#put)*
 
-*Defined in [engines/FileTreeDb.ts:100](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L100)*
+*Defined in [engines/FileTreeDb.ts:100](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L100)*
 
 **Parameters:**
 
@@ -179,7 +179,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[rename](../interfaces/_types_.basedb.md#rename)*
 
-*Defined in [engines/FileTreeDb.ts:58](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L58)*
+*Defined in [engines/FileTreeDb.ts:58](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L58)*
 
 **Parameters:**
 
@@ -199,7 +199,7 @@ ___
 
 *Implementation of [BaseDb](../interfaces/_types_.basedb.md).[size](../interfaces/_types_.basedb.md#size)*
 
-*Defined in [engines/FileTreeDb.ts:62](https://github.com/polkadot-js/common/blob/63daf66/packages/db/src/engines/FileTreeDb.ts#L62)*
+*Defined in [engines/FileTreeDb.ts:62](https://github.com/polkadot-js/common/blob/830c98d/packages/db/src/engines/FileTreeDb.ts#L62)*
 
 **Returns:** `number`
 

@@ -8,7 +8,7 @@
 
 ▸ **encodeU8a**(encoder: *[EncodeFunc](_encoder_types_.md#encodefunc)*, input: *`Uint8Array`*): `Uint8Array`
 
-*Defined in [encoder/u8a.ts:11](https://github.com/polkadot-js/common/blob/63daf66/packages/util-rlp/src/encoder/u8a.ts#L11)*
+*Defined in [encoder/u8a.ts:11](https://github.com/polkadot-js/common/blob/830c98d/packages/util-rlp/src/encoder/u8a.ts#L11)*
 
 **Parameters:**
 
