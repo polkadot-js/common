@@ -8,7 +8,7 @@
 
 ▸ **isInstanceOf**(value: *`any`*, clazz: *`any`*): `boolean`
 
-*Defined in [is/instanceOf.ts:19](https://github.com/polkadot-js/common/blob/e19d377/packages/util/src/is/instanceOf.ts#L19)*
+*Defined in [is/instanceOf.ts:19](https://github.com/polkadot-js/common/blob/c5e0fac/packages/util/src/is/instanceOf.ts#L19)*
 
 *__name__*: isInstanceOf
 

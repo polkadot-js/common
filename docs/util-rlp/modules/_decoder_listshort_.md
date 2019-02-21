@@ -8,7 +8,7 @@
 
 ▸ **decodeListShort**(decode: *[DecodeFunc](_decoder_types_.md#decodefunc)*, input: *`Uint8Array`*): [DecodeOutput](_decoder_types_.md#decodeoutput)
 
-*Defined in [decoder/listShort.ts:7](https://github.com/polkadot-js/common/blob/e19d377/packages/util-rlp/src/decoder/listShort.ts#L7)*
+*Defined in [decoder/listShort.ts:7](https://github.com/polkadot-js/common/blob/c5e0fac/packages/util-rlp/src/decoder/listShort.ts#L7)*
 
 **Parameters:**
 

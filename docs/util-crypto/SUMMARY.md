@@ -56,6 +56,8 @@
 * [&quot;schnorrkel/signVerify.spec&quot;](modules/_schnorrkel_signverify_spec_.md)
 * [&quot;schnorrkel/test-polyfill&quot;](modules/_schnorrkel_test_polyfill_.md)
 * [&quot;schnorrkel/verify&quot;](modules/_schnorrkel_verify_.md)
+* [&quot;secp256k1/index&quot;](modules/_secp256k1_index_.md)
+* [&quot;secp256k1/recover&quot;](modules/_secp256k1_recover_.md)
 * [&quot;sha512/asU8a&quot;](modules/_sha512_asu8a_.md)
 * [&quot;sha512/asU8a.spec&quot;](modules/_sha512_asu8a_spec_.md)
 * [&quot;sha512/index&quot;](modules/_sha512_index_.md)
