@@ -8,7 +8,7 @@
 
 ▸ **cryptoWaitReady**(): `Promise`<`boolean`>
 
-*Defined in [index.ts:17](https://github.com/polkadot-js/common/blob/c5e0fac/packages/util-crypto/src/index.ts#L17)*
+*Defined in [index.ts:17](https://github.com/polkadot-js/common/blob/0f57902/packages/util-crypto/src/index.ts#L17)*
 
 **Returns:** `Promise`<`boolean`>
 

@@ -8,7 +8,7 @@
 
 ▸ **hexStripPrefix**(value?: *`string` \| `null`*): `string`
 
-*Defined in [hex/stripPrefix.ts:23](https://github.com/polkadot-js/common/blob/c5e0fac/packages/util/src/hex/stripPrefix.ts#L23)*
+*Defined in [hex/stripPrefix.ts:23](https://github.com/polkadot-js/common/blob/0f57902/packages/util/src/hex/stripPrefix.ts#L23)*
 
 *__name__*: hexStripPrefix
 

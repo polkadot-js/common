@@ -6,9 +6,9 @@
 
 ##  mnemonicGenerate
 
-▸ **mnemonicGenerate**(): `string`
+▸ **mnemonicGenerate**(strength?: *`Strength`*): `string`
 
-*Defined in [mnemonic/generate.ts:19](https://github.com/polkadot-js/common/blob/c5e0fac/packages/util-crypto/src/mnemonic/generate.ts#L19)*
+*Defined in [mnemonic/generate.ts:21](https://github.com/polkadot-js/common/blob/0f57902/packages/util-crypto/src/mnemonic/generate.ts#L21)*
 
 *__name__*: mnemonicGenerate
 
@@ -21,6 +21,12 @@ import { mnemonicGenerate } from '@polkadot/util-crypto';
 
 const mnemonic = mnemonicGenerate(); // => string
 ```
+
+**Parameters:**
+
+| Name | Type |
+| ------ | ------ |
+| `Optional` strength | `Strength` |
 
 **Returns:** `string`
 
