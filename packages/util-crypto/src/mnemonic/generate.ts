@@ -4,6 +4,8 @@
 
 import { generateMnemonic } from 'bip39';
 
+type Strength = 12 | 24;
+
 /**
  * @name mnemonicGenerate
  * @summary Creates a valid mnemonic string using using [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki).
@@ -16,6 +18,6 @@ import { generateMnemonic } from 'bip39';
  * const mnemonic = mnemonicGenerate(); // => string
  * ```
  */
-export default function mnemonicGenerate (): string {
-  return generateMnemonic();
+export default function mnemonicGenerate (strength?: Strength): string {
+  return generateMnemonic(strength);
 }
