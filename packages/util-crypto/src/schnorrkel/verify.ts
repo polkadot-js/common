@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import * as schnorrkel from './schnorrkel-js';
+import schnorrkel from '@polkadot/schnorrkel-js';
 
 /**
  * @name schnorrkelVerify

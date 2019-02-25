@@ -4,7 +4,7 @@
 
 import { KeypairType } from '../../types';
 
-import * as schnorrkel from '../schnorrkel-js';
+import schnorrkel from '@polkadot/schnorrkel-js';
 
 const SEC_LEN = 64;
 const PUB_LEN = 32;

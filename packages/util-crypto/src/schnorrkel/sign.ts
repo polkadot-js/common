@@ -6,7 +6,7 @@ import { KeypairType } from '../types';
 
 import { assert } from '@polkadot/util/index';
 
-import * as schnorrkel from './schnorrkel-js';
+import schnorrkel from '@polkadot/schnorrkel-js';
 
 /**
  * @name schnorrkelSign
@@ -14,7 +14,7 @@ import * as schnorrkel from './schnorrkel-js';
  */
 export default function schnorrkelSign (message: Uint8Array, { publicKey, secretKey }: Partial<KeypairType>): Uint8Array {
   assert(publicKey && publicKey.length === 32, 'Expected valid publicKey, 32-bytes');
-  assert(secretKey && secretKey.length === 64, 'Expected valid secretKey, 364-bytes');
+  assert(secretKey && secretKey.length === 64, 'Expected valid secretKey, 64-bytes');
 
   return schnorrkel.sign(publicKey as Uint8Array, secretKey as Uint8Array, message);
 }
