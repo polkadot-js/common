@@ -24,7 +24,7 @@ const BLANK_BRANCH: Array<EncodedPath> = [
 const l = logger('trie/db');
 
 /**
- * # @polkadot/common/trie-db
+ * # @polkadot/trie-db
  *
  * ## Overview
  *
