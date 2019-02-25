@@ -21,6 +21,6 @@ install:
   # - export LDFLAGS="-L${ROCKSDB} -lrocksdb -lstdc++ -lm -lz"
   # - export LD_LIBRARY_PATH="${ROCKSDB}:/usr/local/lib"
   - yarn
-  - yarn global add gitbook-cli
+  - npm install gitbook-cli --no-save
 script:
   - yarn polkadot-dev-build-travis
