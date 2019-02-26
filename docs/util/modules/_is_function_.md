@@ -8,7 +8,7 @@
 
 ▸ **isFunction**(value: *`any`*): `boolean`
 
-*Defined in [is/function.ts:19](https://github.com/polkadot-js/common/blob/c0d646b/packages/util/src/is/function.ts#L19)*
+*Defined in [is/function.ts:19](https://github.com/polkadot-js/common/blob/4b1681d/packages/util/src/is/function.ts#L19)*
 
 *__name__*: isFunction
 

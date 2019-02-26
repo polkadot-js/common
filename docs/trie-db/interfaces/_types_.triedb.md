@@ -14,7 +14,7 @@
 
 **● db**: *`TxDb`*
 
-*Defined in [types.ts:37](https://github.com/polkadot-js/common/blob/c0d646b/packages/trie-db/src/types.ts#L37)*
+*Defined in [types.ts:37](https://github.com/polkadot-js/common/blob/4b1681d/packages/trie-db/src/types.ts#L37)*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 *Inherited from BaseDb.close*
 
-*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:18](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L18)*
+*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:18](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L18)*
 
 **Returns:** `void`
 
@@ -41,7 +41,7 @@ ___
 
 *Inherited from BaseDb.del*
 
-*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:26](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L26)*
+*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:26](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L26)*
 
 **Parameters:**
 
@@ -60,7 +60,7 @@ ___
 
 *Inherited from BaseDb.drop*
 
-*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:20](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L20)*
+*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:20](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L20)*
 
 **Returns:** `void`
 
@@ -73,7 +73,7 @@ ___
 
 *Inherited from BaseDb.empty*
 
-*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:21](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L21)*
+*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:21](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L21)*
 
 **Returns:** `void`
 
@@ -86,7 +86,7 @@ ___
 
 *Inherited from BaseDb.get*
 
-*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:27](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L27)*
+*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:27](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L27)*
 
 **Parameters:**
 
@@ -103,7 +103,7 @@ ___
 
 ▸ **getRoot**(): `Uint8Array`
 
-*Defined in [types.ts:39](https://github.com/polkadot-js/common/blob/c0d646b/packages/trie-db/src/types.ts#L39)*
+*Defined in [types.ts:39](https://github.com/polkadot-js/common/blob/4b1681d/packages/trie-db/src/types.ts#L39)*
 
 **Returns:** `Uint8Array`
 
@@ -116,7 +116,7 @@ ___
 
 *Inherited from BaseDb.maintain*
 
-*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:22](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L22)*
+*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:22](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L22)*
 
 **Parameters:**
 
@@ -135,7 +135,7 @@ ___
 
 *Inherited from BaseDb.open*
 
-*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:19](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L19)*
+*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:19](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L19)*
 
 **Returns:** `void`
 
@@ -148,7 +148,7 @@ ___
 
 *Inherited from BaseDb.put*
 
-*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:28](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L28)*
+*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:28](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L28)*
 
 **Parameters:**
 
@@ -168,7 +168,7 @@ ___
 
 *Inherited from BaseDb.rename*
 
-*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:23](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L23)*
+*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:23](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L23)*
 
 **Parameters:**
 
@@ -186,7 +186,7 @@ ___
 
 ▸ **setRoot**(rootHash: *`Uint8Array`*): `void`
 
-*Defined in [types.ts:40](https://github.com/polkadot-js/common/blob/c0d646b/packages/trie-db/src/types.ts#L40)*
+*Defined in [types.ts:40](https://github.com/polkadot-js/common/blob/4b1681d/packages/trie-db/src/types.ts#L40)*
 
 **Parameters:**
 
@@ -205,7 +205,7 @@ ___
 
 *Inherited from BaseDb.size*
 
-*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:24](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L24)*
+*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:24](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L24)*
 
 **Returns:** `number`
 
@@ -216,7 +216,7 @@ ___
 
 ▸ **snapshot**(dest: *[TrieDb](_types_.triedb.md)*, fn: *`ProgressCb`*): `number`
 
-*Defined in [types.ts:41](https://github.com/polkadot-js/common/blob/c0d646b/packages/trie-db/src/types.ts#L41)*
+*Defined in [types.ts:41](https://github.com/polkadot-js/common/blob/4b1681d/packages/trie-db/src/types.ts#L41)*
 
 **Parameters:**
 
@@ -236,7 +236,7 @@ ___
 
 *Inherited from TxDb.transaction*
 
-*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:32](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L32)*
+*Defined in [/home/travis/build/polkadot-js/common/packages/db/src/types.ts:32](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L32)*
 
 **Parameters:**
 

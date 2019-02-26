@@ -8,7 +8,7 @@
 
 ▸ **schnorrkelIsReady**(): `boolean`
 
-*Defined in [schnorrkel/ready.ts:11](https://github.com/polkadot-js/common/blob/c0d646b/packages/util-crypto/src/schnorrkel/ready.ts#L11)*
+*Defined in [schnorrkel/ready.ts:11](https://github.com/polkadot-js/common/blob/4b1681d/packages/util-crypto/src/schnorrkel/ready.ts#L11)*
 
 **Returns:** `boolean`
 
@@ -19,7 +19,7 @@ ___
 
 ▸ **schnorrkelWaitReady**(): `Promise`<`boolean`>
 
-*Defined in [schnorrkel/ready.ts:7](https://github.com/polkadot-js/common/blob/c0d646b/packages/util-crypto/src/schnorrkel/ready.ts#L7)*
+*Defined in [schnorrkel/ready.ts:7](https://github.com/polkadot-js/common/blob/4b1681d/packages/util-crypto/src/schnorrkel/ready.ts#L7)*
 
 **Returns:** `Promise`<`boolean`>
 

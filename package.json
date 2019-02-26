@@ -1,5 +1,5 @@
 {
-  "version": "0.34.25",
+  "version": "0.34.26",
   "private": true,
   "engines": {
     "node": "^10.13.0",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
-    "@polkadot/dev": "^0.25.2",
+    "@polkadot/dev": "^0.25.3",
     "@polkadot/ts": "^0.1.53"
   }
 }

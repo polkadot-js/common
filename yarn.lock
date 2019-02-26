@@ -1437,10 +1437,10 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@polkadot/dev@^0.25.2":
-  version "0.25.2"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.25.2.tgz#781974d77d04a893493de6643fa2d2aa4258ded2"
-  integrity sha512-HSfGAJjV8735TlCiXppbWzygB5YlrKgbuHF3DnNbusmZUGXWbZTM9zhSWDr49Jyqt2Q7NqjxpCbZXWzgzWCIMA==
+"@polkadot/dev@^0.25.3":
+  version "0.25.3"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.25.3.tgz#9b4d192a693df07f8b675d46eac91b9162f4e68b"
+  integrity sha512-oFuLQvvBn1TIMJUfWjWd1X6367BJ+y4nxrfhmEHTZndkmlFu3Jihtb3inWbB5ns2EWE9tkYO2dRjb8KSWK0zGg==
   dependencies:
     "@babel/cli" "^7.2.3"
     "@babel/core" "^7.3.3"
