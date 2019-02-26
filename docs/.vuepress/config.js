@@ -22,9 +22,9 @@ module.exports = {
           ['/examples/keyring/02_load_accounts/', 'Load Accounts']
         ]
       },
-      '/util/',
-      '/util-crypto/',
-      '/keyring/',
+      ['/util/', '@polkadot/util'],
+      ['/util-crypto/', '@polkadot/util-crypto'],
+      ['/keyring/', '@polkadot/keyring'],
       '/CONTRIBUTING.md'
     ]
   }
