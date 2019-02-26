@@ -1,6 +1,6 @@
 module.exports = {
   name: 'Polkadot JS Common',
-  exclude: [],
+  exclude: '**/*+(e2e|spec).ts',
   excludeExternals: true,
   excludeNotExported: true,
   excludeProtected: true,

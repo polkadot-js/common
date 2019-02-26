@@ -2,4 +2,4 @@
 
 The following example shows how to load all accounts from the keyring as pairs and convert them into JSON format.
 
-[include](index.js)
+<<< @/docs/examples/keyring/02_load_accounts/index.js

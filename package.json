@@ -13,7 +13,7 @@
     "typescript": "^3.3.3333"
   },
   "scripts": {
-    "build": "polkadot-dev-build-ts && vuepress build docs",
+    "build": "polkadot-dev-build-ts && polkadot-dev-build-docs",
     "check": "tslint --project . && tsc --noEmit --pretty",
     "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
@@ -21,8 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
-    "@polkadot/dev": "^0.24.6",
-    "@polkadot/ts": "^0.1.53",
-    "vuepress": "^1.0.0-alpha.39"
+    "@polkadot/dev": "^0.25.1",
+    "@polkadot/ts": "^0.1.53"
   }
 }

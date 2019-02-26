@@ -5,12 +5,27 @@ module.exports = {
   themeConfig: {
     displayAllHeaders: true,
     lastUpdated: 'Last Updated',
+    markdown: {
+      lineNumbers: true
+    },
     nav: [
       { text: 'GitHub', link: 'https://github.com/polkadot-js/common' }
     ],
     sidebar: [
-      '/util',
-      '/keyring'
+      {
+        title: 'Examples (keyring)',
+        path: '/examples/keyring/',
+        collapsable: false,
+        sidebarDepth: 1,
+        children: [
+          ['/examples/keyring/01_create_account/', 'Create account'],
+          ['/examples/keyring/02_load_accounts/', 'Load Accounts']
+        ]
+      },
+      '/util/',
+      '/util-crypto/',
+      '/keyring/',
+      '/CONTRIBUTING.md'
     ]
   }
 };
