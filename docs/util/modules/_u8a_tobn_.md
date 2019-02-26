@@ -8,7 +8,7 @@
 
 ▸ **u8aToBn**(value: *`Uint8Array`*, options?: *[ToBnOptions](../interfaces/_types_.tobnoptions.md) \| `boolean`*): `BN`
 
-*Defined in [u8a/toBn.ts:29](https://github.com/polkadot-js/common/blob/c0d646b/packages/util/src/u8a/toBn.ts#L29)*
+*Defined in [u8a/toBn.ts:29](https://github.com/polkadot-js/common/blob/4b1681d/packages/util/src/u8a/toBn.ts#L29)*
 
 *__name__*: u8aToBn
 

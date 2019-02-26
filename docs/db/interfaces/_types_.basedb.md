@@ -20,7 +20,7 @@
 
 ▸ **close**(): `void`
 
-*Defined in [types.ts:18](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L18)*
+*Defined in [types.ts:18](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L18)*
 
 **Returns:** `void`
 
@@ -31,7 +31,7 @@ ___
 
 ▸ **del**(key: *`Uint8Array`*): `void`
 
-*Defined in [types.ts:26](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L26)*
+*Defined in [types.ts:26](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L26)*
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ ___
 
 ▸ **drop**(): `void`
 
-*Defined in [types.ts:20](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L20)*
+*Defined in [types.ts:20](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L20)*
 
 **Returns:** `void`
 
@@ -59,7 +59,7 @@ ___
 
 ▸ **empty**(): `void`
 
-*Defined in [types.ts:21](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L21)*
+*Defined in [types.ts:21](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L21)*
 
 **Returns:** `void`
 
@@ -70,7 +70,7 @@ ___
 
 ▸ **get**(key: *`Uint8Array`*): `Uint8Array` \| `null`
 
-*Defined in [types.ts:27](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L27)*
+*Defined in [types.ts:27](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L27)*
 
 **Parameters:**
 
@@ -87,7 +87,7 @@ ___
 
 ▸ **maintain**(fn: *[ProgressCb](../modules/_types_.md#progresscb)*): `void`
 
-*Defined in [types.ts:22](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L22)*
+*Defined in [types.ts:22](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L22)*
 
 **Parameters:**
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **open**(): `void`
 
-*Defined in [types.ts:19](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L19)*
+*Defined in [types.ts:19](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L19)*
 
 **Returns:** `void`
 
@@ -115,7 +115,7 @@ ___
 
 ▸ **put**(key: *`Uint8Array`*, value: *`Uint8Array`*): `void`
 
-*Defined in [types.ts:28](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L28)*
+*Defined in [types.ts:28](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L28)*
 
 **Parameters:**
 
@@ -133,7 +133,7 @@ ___
 
 ▸ **rename**(base: *`string`*, file: *`string`*): `void`
 
-*Defined in [types.ts:23](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L23)*
+*Defined in [types.ts:23](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L23)*
 
 **Parameters:**
 
@@ -151,7 +151,7 @@ ___
 
 ▸ **size**(): `number`
 
-*Defined in [types.ts:24](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/types.ts#L24)*
+*Defined in [types.ts:24](https://github.com/polkadot-js/common/blob/4b1681d/packages/db/src/types.ts#L24)*
 
 **Returns:** `number`
 
