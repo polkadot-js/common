@@ -1,7 +1,7 @@
 
 
-@polkadot/common/trie-db
-========================
+@polkadot/trie-db
+=================
 
 Overview
 --------
@@ -18,8 +18,6 @@ Overview
 
 **↳ Impl**
 
-↳  [Trie](_index_.trie.md)
-
 # Constructors
 
 <a id="constructor"></a>
@@ -30,7 +28,7 @@ Overview
 
 *Overrides [Checkpoint](_checkpoint_.checkpoint.md).[constructor](_checkpoint_.checkpoint.md#constructor)*
 
-*Defined in [Impl.ts:38](https://github.com/polkadot-js/common/blob/6610403/packages/trie-db/src/Impl.ts#L38)*
+*Defined in [Impl.ts:38](https://github.com/polkadot-js/common/blob/c0d646b/packages/trie-db/src/Impl.ts#L38)*
 
 **Parameters:**
 
@@ -52,7 +50,7 @@ ___
 
 **● db**: *`TxDb`*
 
-*Defined in [Impl.ts:36](https://github.com/polkadot-js/common/blob/6610403/packages/trie-db/src/Impl.ts#L36)*
+*Defined in [Impl.ts:36](https://github.com/polkadot-js/common/blob/c0d646b/packages/trie-db/src/Impl.ts#L36)*
 
 ___
 

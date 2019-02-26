@@ -6,8 +6,6 @@
 
 **↳ Impl**
 
-↳  [FileFlatDb](_fileflatdb_index_.fileflatdb.md)
-
 # Constructors
 
 <a id="constructor"></a>
@@ -20,7 +18,7 @@
 
 *Overrides [File](_fileflatdb_file_.file.md).[constructor](_fileflatdb_file_.file.md#constructor)*
 
-*Defined in [FileFlatDb/Cache.ts:15](https://github.com/polkadot-js/common/blob/6610403/packages/db/src/FileFlatDb/Cache.ts#L15)*
+*Defined in [FileFlatDb/Cache.ts:15](https://github.com/polkadot-js/common/blob/c0d646b/packages/db/src/FileFlatDb/Cache.ts#L15)*
 
 **Parameters:**
 
