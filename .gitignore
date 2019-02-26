@@ -1,6 +1,7 @@
 _book/
 build/
 coverage/
+docs/.vuepress/dist/
 node_modules/
 tmp/
 .DS_Store
