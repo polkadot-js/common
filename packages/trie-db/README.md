@@ -18,16 +18,6 @@ Classes can be imported as follows:
 import Trie from '@polkadot/trie-db'; // Default export
 ```
 
-## Documentation and Available Utilities
+## Utilities
 
-Below is a list of currently exposed methods published at the [Polkadot-JS Common Documentation Portal](https://polkadot.js.org/common/trie-db/).
-
-- [trie-db](https://polkadot.js.org/common/trie-db/README.md)
-  - Classes
-    - [Trie](https://polkadot.js.org/common/trie-db/classes/_index_.trie.md)
-  - Functions
-    - Util
-      - [is](https://polkadot.js.org/common/trie-db/modules/_util_is_.md)
-      - [key](https://polkadot.js.org/common/trie-db/modules/_util_key_.md)
-      - [nibbles](https://polkadot.js.org/common/trie-db/modules/_util_nibbles_.md)
-      - [node](https://polkadot.js.org/common/trie-db/modules/_util_node_.md)
+[Utilities](SUMMARY.md)

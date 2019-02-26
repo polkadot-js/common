@@ -16,6 +16,6 @@ Classes and Functions can be imported as follows:
 import Keyring from '@polkadot/keyring';
 ```
 
-## Available Utilities
+## Utilities
 
-[Available utilities](SUMMARY.md)
+[Utilities](SUMMARY.md)

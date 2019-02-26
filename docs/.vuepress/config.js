@@ -2,12 +2,12 @@ module.exports = {
   base: '/common/',
   title: 'polkadot-js/common',
   description: 'Utilities and libraries in-use accross @polkadot projects',
+  markdown: {
+    lineNumbers: true
+  },
   themeConfig: {
     displayAllHeaders: true,
     lastUpdated: 'Last Updated',
-    markdown: {
-      lineNumbers: true
-    },
     nav: [
       { text: 'GitHub', link: 'https://github.com/polkadot-js/common' }
     ],

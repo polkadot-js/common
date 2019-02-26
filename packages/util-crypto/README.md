@@ -16,6 +16,6 @@ Functions can be imported as follows:
 import { mnemonicGenerate } from '@polkadot/util-crypto';
 ```
 
-## Available Utilities
+## Utilities
 
-[Available utilities](SUMMARY.md)
+[Utilities](SUMMARY.md)
