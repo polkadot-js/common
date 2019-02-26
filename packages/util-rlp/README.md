@@ -17,25 +17,6 @@ import { decode } from '@polkadot/util-rlp';
 import { encode } from '@polkadot/util-rlp';
 ```
 
-## Documentation and Available Utilities
+## Utilities
 
-No methods are exposed in the [Polkadot-JS Common Documentation Portal](https://polkadot.js.org/common/util-rlp/) because RLP will not be included in PoC-3 of Polkadot.
-
-However, the key functions that are available include:
-
-- util-rlp
-  - Functions
-    - Decoder
-      - decode
-      - decodeListLong
-      - decodeListShort
-      - decodeNumber
-      - decodeSingle
-      - decodeString
-      - safeParseInt
-    - Encoder
-      - encode
-      - encodeArray
-      - encodeLength
-      - encodeU8a
-      - toU8a
+[Utilities](SUMMARY.md)

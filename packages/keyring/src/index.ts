@@ -12,7 +12,7 @@ import createPair from './pair';
 import Pairs from './pairs';
 
 /**
- * # @polkadot/common/keyring
+ * # @polkadot/keyring
  *
  * ## Overview
  *

@@ -17,7 +17,6 @@ Classes and Functions can be imported as follows:
 
 ```js
 import Keyring from '@polkadot/keyring';
-import pair from '@polkadot/keyring/pair';
 import testKeyring from '@polkadot/keyring/testing';
 ```
 
@@ -26,10 +25,9 @@ Documentation and Available Utilities
 
 Below is a list of currently exposed methods published at the [Polkadot-JS Common Documentation Portal](https://polkadot.js.org/common/keyring/).
 
-*   [keyring](https://polkadot.js.org/common/keyring/README.md)
+*   [keyring](README.md)
     *   Classes
-        *   [Keyring](https://polkadot.js.org/common/keyring/classes/_index_.keyring.md)
-    *   Functions
-        *   [pair](https://polkadot.js.org/common/keyring/modules/_pair_index_.md)
-        *   [testKeyring](https://polkadot.js.org/common/keyring/modules/_testing_.md)
-
+        *   [Keyring](classes/_index_.keyring.md)
+    *   Interfaces
+        *   [pair](modules/_pair_index_.md)
+        *   [testKeyring](modules/_testing_.md)
