@@ -133,6 +133,10 @@ export default class TransactionDb implements TxDb {
 
     assert(this.txStarted, 'Cannot commit when not in transaction');
 
+    if (this.backing.txStart) {
+      this.backing.txStart();
+    }
+
     Object.values(this.txOverlay).forEach(({ key, value }) => {
       if (isNull(value)) {
         this.backing.del(key);
@@ -140,6 +144,10 @@ export default class TransactionDb implements TxDb {
         this.backing.put(key, value);
       }
     });
+
+    if (this.backing.txCommit) {
+      this.backing.txCommit();
+    }
 
     this.txOverlay = {};
     this.txStarted = false;

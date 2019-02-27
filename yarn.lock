@@ -7603,7 +7603,7 @@ mute-stream@~0.0.4:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
-nan@^2.12.1, nan@^2.2.1, nan@^2.9.2:
+nan@^2.12.0, nan@^2.12.1, nan@^2.2.1, nan@^2.9.2:
   version "2.12.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.12.1.tgz#7b1aa193e9aa86057e3c7bbd0ac448e770925552"
   integrity sha512-JY7V6lRkStKcKTvHO5NVSQRv+RV+FIL5pvDoLiAtSL9pKlC5x9PKQcZDsq7m4FO4d57mkhC6Z+QhAh3Jdk5JFw==
@@ -7755,6 +7755,14 @@ node-libs-browser@^2.0.0:
     url "^0.11.0"
     util "^0.11.0"
     vm-browserify "0.0.4"
+
+node-lmdb@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/node-lmdb/-/node-lmdb-0.6.2.tgz#2adc8b3907b067b25a3cfd2ea093253aada54ebd"
+  integrity sha512-j9K0qVBSZ1YqP2hg++zxvxKL8mDYAhaprlH2VdfCI2Y+Pfr11kFXLfZ9lXs/H5gMq+Xy39zSR2Kh/DWU8+bUUQ==
+  dependencies:
+    bindings "^1.2.1"
+    nan "^2.12.0"
 
 node-modules-regexp@^1.0.0:
   version "1.0.0"

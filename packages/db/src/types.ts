@@ -23,6 +23,10 @@ export interface BaseDb {
   rename (base: string, file: string): void;
   size (): number;
 
+  txCommit?: () => void;
+  txRevert?: () => void;
+  txStart?: () => void;
+
   del (key: Uint8Array): void;
   get (key: Uint8Array): Uint8Array | null;
   put (key: Uint8Array, value: Uint8Array): void;
