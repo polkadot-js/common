@@ -16,5 +16,5 @@ export type Chainspec = {
     [index: string]: any
   },
   protocolId: string | null,
-  telemetryUrl?: string
+  telemetryUrl: string | null
 };
