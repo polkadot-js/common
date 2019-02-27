@@ -12,9 +12,9 @@ export type Chainspec = {
   },
   genesisRoot: string,
   name: string,
-  properties: {
+  properties: null | {
     [index: string]: any
   },
   protocolId: string | null,
-  telemetryUrl: string
+  telemetryUrl?: string 
 };
