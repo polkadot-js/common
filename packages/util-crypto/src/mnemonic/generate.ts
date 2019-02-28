@@ -4,7 +4,16 @@
 
 import { generateMnemonic } from 'bip39';
 
-type Strength = 12 | 24;
+type WordCount = 12 | 15 | 18 | 21 | 24;
+
+// mapping of words to the actual strength (as expected)
+const STRENGTH_MAP = {
+  12: 16 * 8,
+  15: 20 * 8,
+  18: 24 * 8,
+  21: 28 * 8,
+  24: 32 * 8
+};
 
 /**
  * @name mnemonicGenerate
@@ -18,6 +27,6 @@ type Strength = 12 | 24;
  * const mnemonic = mnemonicGenerate(); // => string
  * ```
  */
-export default function mnemonicGenerate (strength?: Strength): string {
-  return generateMnemonic(strength);
+export default function mnemonicGenerate (numWords: WordCount = 12): string {
+  return generateMnemonic(STRENGTH_MAP[numWords]);
 }

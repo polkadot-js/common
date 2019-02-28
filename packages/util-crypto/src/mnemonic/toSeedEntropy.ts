@@ -1,0 +1,17 @@
+// Copyright 2017-2019 @polkadot/util-crypto authors & contributors
+// This software may be modified and distributed under the terms
+// of the Apache-2.0 license. See the LICENSE file for details.
+
+import { pbkdf2Sync } from 'pbkdf2';
+import { bufferToU8a, stringToU8a, u8aToBuffer } from '@polkadot/util/index';
+
+import toEntropy from './toEntropy';
+
+export default function toSeedEntropy (mnemonic: string, password: string = ''): Uint8Array {
+  const entropy = u8aToBuffer(toEntropy(mnemonic));
+  const salt = u8aToBuffer(stringToU8a(`mnemonic${password}`));
+
+  return bufferToU8a(
+    pbkdf2Sync(entropy, salt, 2048, 64, 'sha512')
+  ).slice(0, 32);
+}
