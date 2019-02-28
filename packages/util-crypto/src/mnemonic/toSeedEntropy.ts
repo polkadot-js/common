@@ -11,6 +11,7 @@ export default function toSeedEntropy (mnemonic: string, password: string = ''):
   const entropy = u8aToBuffer(toEntropy(mnemonic));
   const salt = u8aToBuffer(stringToU8a(`mnemonic${password}`));
 
+  // return the first 32 bytes as the seed
   return bufferToU8a(
     pbkdf2Sync(entropy, salt, 2048, 64, 'sha512')
   ).slice(0, 32);
