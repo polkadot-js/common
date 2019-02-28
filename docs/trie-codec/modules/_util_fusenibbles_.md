@@ -8,7 +8,7 @@
 
 ▸ **fuseNibbles**(nibbles: *`Uint8Array`*, isLeaf: *`boolean`*): `Uint8Array`
 
-*Defined in [util/fuseNibbles.ts:12](https://github.com/polkadot-js/common/blob/e397016/packages/trie-codec/src/util/fuseNibbles.ts#L12)*
+*Defined in [util/fuseNibbles.ts:12](https://github.com/polkadot-js/common/blob/dc0563d/packages/trie-codec/src/util/fuseNibbles.ts#L12)*
 
 **Parameters:**
 
