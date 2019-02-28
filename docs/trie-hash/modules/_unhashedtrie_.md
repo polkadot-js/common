@@ -8,7 +8,7 @@
 
 ▸ **unhashedTrie**(input: *`Array`<[TriePair](_types_.md#triepair)>*, codec?: *`Codec`*): `Uint8Array`
 
-*Defined in [unhashedTrie.ts:14](https://github.com/polkadot-js/common/blob/dc0563d/packages/trie-hash/src/unhashedTrie.ts#L14)*
+*Defined in [unhashedTrie.ts:14](https://github.com/polkadot-js/common/blob/db4b221/packages/trie-hash/src/unhashedTrie.ts#L14)*
 
 **Parameters:**
 

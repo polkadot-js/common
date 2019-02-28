@@ -6,9 +6,9 @@
 
 ##  mnemonicGenerate
 
-▸ **mnemonicGenerate**(strength?: *`Strength`*): `string`
+▸ **mnemonicGenerate**(numWords?: *`WordCount`*): `string`
 
-*Defined in [mnemonic/generate.ts:21](https://github.com/polkadot-js/common/blob/dc0563d/packages/util-crypto/src/mnemonic/generate.ts#L21)*
+*Defined in [mnemonic/generate.ts:30](https://github.com/polkadot-js/common/blob/db4b221/packages/util-crypto/src/mnemonic/generate.ts#L30)*
 
 *__name__*: mnemonicGenerate
 
@@ -24,9 +24,9 @@ const mnemonic = mnemonicGenerate(); // => string
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| `Optional` strength | `Strength` |
+| Name | Type | Default value |
+| ------ | ------ | ------ |
+| `Default value` numWords | `WordCount` | 12 |
 
 **Returns:** `string`
 
