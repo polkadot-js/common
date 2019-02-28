@@ -1,6 +1,0 @@
-* [&quot;buildTrie&quot;](modules/_buildtrie_.md)
-* [&quot;defaults&quot;](modules/_defaults_.md)
-* [&quot;trieRoot&quot;](modules/_trieroot_.md)
-* [&quot;trieRootOrdered&quot;](modules/_trierootordered_.md)
-* [&quot;types&quot;](modules/_types_.md)
-* [&quot;unhashedTrie&quot;](modules/_unhashedtrie_.md)
