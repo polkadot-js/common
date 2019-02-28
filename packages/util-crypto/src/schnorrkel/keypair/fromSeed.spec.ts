@@ -4,9 +4,11 @@
 
 import '../test-polyfill';
 
-import { stringToU8a } from '@polkadot/util/index';
+import { stringToU8a, u8aToHex } from '@polkadot/util/index';
 
+import { mnemonicToSeedEntropy } from '../../mnemonic';
 import { schnorrkelKeypairFromSeed, schnorrkelWaitReady } from '../index';
+import tests from './testing';
 
 describe('schnorrkelKeypairFromSeed', () => {
   const TEST = stringToU8a('12345678901234567890123456789012');
@@ -23,5 +25,16 @@ describe('schnorrkelKeypairFromSeed', () => {
     expect(
       schnorrkelKeypairFromSeed(TEST)
     ).toEqual(RESULT);
+  });
+
+  tests.forEach(([mnemonic, , , secret], index) => {
+    it(`creates valid against known (${index})`, () => {
+      const seed = mnemonicToSeedEntropy(mnemonic, 'Substrate');
+      const pair = schnorrkelKeypairFromSeed(seed);
+
+      expect(
+        u8aToHex(pair.secretKey)
+      ).toEqual(secret);
+    });
   });
 });
