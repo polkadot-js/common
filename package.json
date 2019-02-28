@@ -20,8 +20,8 @@
     "test": "jest --coverage"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.3",
-    "@polkadot/dev": "^0.25.5",
+    "@babel/core": "^7.3.4",
+    "@polkadot/dev": "^0.25.7",
     "@polkadot/ts": "^0.1.53"
   }
 }

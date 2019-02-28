@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/db#readme",
   "dependencies": {
-    "@babel/runtime": "^7.3.1",
+    "@babel/runtime": "^7.3.4",
     "@polkadot/trie-hash": "^0.34.31",
     "@polkadot/util": "^0.34.31",
     "@types/mkdirp": "^0.5.2",
