@@ -16,7 +16,6 @@
     "build": "polkadot-dev-build-ts && polkadot-dev-build-docs",
     "check": "tslint --project . && tsc --noEmit --pretty",
     "clean": "polkadot-dev-clean-build",
-    "deploy:ghpages": "gh-pages --dist build-docs/",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "jest --coverage"
   },
