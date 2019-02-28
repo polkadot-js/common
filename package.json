@@ -16,12 +16,14 @@
     "build": "polkadot-dev-build-ts && polkadot-dev-build-docs",
     "check": "tslint --project . && tsc --noEmit --pretty",
     "clean": "polkadot-dev-clean-build",
+    "deploy:ghpages": "gh-pages --dist build-docs/",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "jest --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
-    "@polkadot/dev": "^0.25.7",
-    "@polkadot/ts": "^0.1.53"
+    "@polkadot/dev": "^0.25.11",
+    "@polkadot/ts": "^0.1.54",
+    "gh-pages": "^2.0.1"
   }
 }
