@@ -1,15 +1,26 @@
 module.exports = {
   base: '/common/',
   title: 'polkadot-js/common',
-  description: 'Utilities and libraries in-use accross @polkadot projects',
+  description: 'Common utilities and libraries that are in use accross all @polkadot projects',
   markdown: {
     lineNumbers: true
   },
   themeConfig: {
     displayAllHeaders: true,
     nav: [
-      { text: 'GitHub', link: 'https://github.com/polkadot-js/common' }
+      { text: 'Polkadot/Substrate Apps', link: 'https://polkadot.js.org/apps/' },
+      { text: 'Project family', link: 'https://polkadot.js.org/' },
+      {
+        text: 'Documentation',
+        items: [
+          { text: 'API Reference', link: 'https://polkadot.js.org/api/' },
+          { text: 'Utility Reference (this)', link: 'https://polkadot.js.org/common/' },
+          { text: 'UI Libs Reference', link: 'https://polkadot.js.org/ui/' },
+        ]
+      },
+      { text: 'GitHub Repo', link: 'https://github.com/polkadot-js/common' }
     ],
+    search: false,
     sidebar: [
       {
         title: 'Examples (keyring)',
