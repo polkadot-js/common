@@ -9,6 +9,7 @@ module.exports = {
     displayAllHeaders: true,
     nav: [
       { text: 'Polkadot/Substrate Apps', link: 'https://polkadot.js.org/apps/' },
+      { text: 'Project family', link: 'https://polkadot.js.org/' },
       {
         text: 'Documentation',
         items: [
