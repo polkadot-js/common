@@ -18,7 +18,7 @@ module.exports = {
           { text: 'UI Libs Reference', link: 'https://polkadot.js.org/ui/' },
         ]
       },
-      { text: 'GitHub Repo', link: 'https://github.com/polkadot-js/common' }
+      { text: 'GitHub', link: 'https://github.com/polkadot-js/common' }
     ],
     search: false,
     sidebar: [
