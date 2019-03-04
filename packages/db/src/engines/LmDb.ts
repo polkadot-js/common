@@ -38,7 +38,6 @@ export default class LmDb implements BaseDb {
   open (): void {
     this._dbi = this._env.openDbi({
       create: true,
-      name: 'lmdb',
       keyIsBuffer: true
     });
   }
