@@ -33,6 +33,7 @@ export default class LmDb implements BaseDb {
   close (): void {
     this._dbi.close();
     this._dbi = null;
+    this._env.close();
   }
 
   open (): void {
