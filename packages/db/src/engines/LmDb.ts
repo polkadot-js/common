@@ -4,12 +4,13 @@
 
 import { BaseDb, BaseDbOptions, ProgressCb } from '../types';
 
+import fs from 'fs';
 import mkdirp from 'mkdirp';
 import lmdb from 'node-lmdb';
 import path from 'path';
 import { bufferToU8a, u8aToBuffer } from '@polkadot/util/index';
 
-const MAPSIZE = 2 * 1024 * 1024 * 1024; // 2GB
+const BASE_MAPSIZE = 2 * 1024 * 1024 * 1024; // 2GB
 
 export default class LmDb implements BaseDb {
   private _env: any;
@@ -26,8 +27,28 @@ export default class LmDb implements BaseDb {
 
     this._env.open({
       path: this._path,
-      mapSize: MAPSIZE
+      mapSize: this.getMapSize() * BASE_MAPSIZE
     });
+  }
+
+  private getMapSize (): number {
+    const size = this.size();
+    const max = Math.ceil(size / BASE_MAPSIZE);
+    const use = size / (max * BASE_MAPSIZE);
+
+    return (use > 0.75)
+      ? max + 1
+      : max;
+  }
+
+  private growMapSize (): void {
+    const info = this._env.info();
+    const next = this.getMapSize();
+    const current = Math.ceil(info.mapSize / BASE_MAPSIZE);
+
+    if (current < next) {
+      this._env.resize(next * BASE_MAPSIZE);
+    }
   }
 
   close (): void {
@@ -64,7 +85,7 @@ export default class LmDb implements BaseDb {
   }
 
   size (): number {
-    return 0;
+    return fs.statSync(path.join(this._path, 'data.mdb')).size;
   }
 
   txCommit (): void {
@@ -78,6 +99,8 @@ export default class LmDb implements BaseDb {
   }
 
   txStart (): void {
+    this.growMapSize();
+
     this._txn = this._env.beginTxn();
   }
 
