@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util",
-  "version": "0.34.41",
+  "version": "0.35.0",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
   "keywords": [
@@ -37,7 +37,6 @@
     "camelcase": "^5.0.0",
     "chalk": "^2.4.2",
     "core-js": "^2.6.5",
-    "deasync": "^0.1.14",
     "ip-regex": "^4.0.0",
     "moment": "^2.24.0"
   }
