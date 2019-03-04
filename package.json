@@ -1,5 +1,5 @@
 {
-  "version": "0.34.28",
+  "version": "0.34.37",
   "private": true,
   "engines": {
     "node": "^10.13.0",
@@ -20,8 +20,9 @@
     "test": "jest --coverage"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.3",
+    "@babel/core": "^7.3.4",
     "@polkadot/dev": "^0.25.11",
-    "@polkadot/ts": "^0.1.55"
+    "@polkadot/ts": "^0.1.55",
+    "gh-pages": "^2.0.1"
   }
 }

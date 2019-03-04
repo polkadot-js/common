@@ -6,7 +6,7 @@ import generate from './generate';
 import validate from './validate';
 
 describe('mnemonicGenerate', () => {
-  it('generates a valid mnemonic', () => {
+  it('generates a valid mnemonic (default strength)', () => {
     const mnemonic = generate();
 
     console.error(mnemonic);
@@ -14,5 +14,17 @@ describe('mnemonicGenerate', () => {
     expect(
       validate(mnemonic)
     ).toEqual(true);
+  });
+
+  [12, 15, 18, 21, 24].forEach((num) => {
+    it(`generates a valid mnemonic (${num} words)`, () => {
+      const mnemonic = generate(num as any);
+      const isValid = validate(mnemonic);
+
+      console.error(mnemonic);
+
+      expect(mnemonic.split(' ')).toHaveLength(num);
+      expect(isValid).toEqual(true);
+    });
   });
 });

@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-crypto",
-  "version": "0.34.28",
+  "version": "0.34.37",
   "description": "A collection of useful crypto utilities for @polkadot",
   "main": "index.js",
   "keywords": [
@@ -28,10 +28,11 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
-    "@babel/runtime": "^7.3.1",
+    "@babel/runtime": "^7.3.4",
     "@polkadot/schnorrkel-js": "^0.1.2-3",
-    "@polkadot/util": "^0.34.28",
+    "@polkadot/util": "^0.34.37",
     "@types/bip39": "^2.4.2",
+    "@types/pbkdf2": "^3.0.0",
     "@types/secp256k1": "^3.5.0",
     "@types/webassembly-js-api": "^0.0.2",
     "@types/xxhashjs": "^0.2.0",
