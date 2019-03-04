@@ -1434,10 +1434,10 @@
   resolved "https://registry.yarnpkg.com/@polkadot/schnorrkel-js/-/schnorrkel-js-0.1.2-3.tgz#9117ac5126b465a1cf53c2b6bb68a17efc7e0390"
   integrity sha512-1LgF4wtER3q5uqY67CdOsQQ/SBqT6v0ZKQIS3cOTVByF16WtApD6U324uCJyMdie+GZFv0xr/40I4Ni2It+8jw==
 
-"@polkadot/ts@^0.1.54":
-  version "0.1.54"
-  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.54.tgz#cac6a12809f886fb7698bfbf3ffb27b793f7745d"
-  integrity sha512-wYiJZ62v0IyG7jO6nQ7XsxHiYJH1i0x3BuHPiV/LiAq4QSX0LVv0q3SbN7hwrEDb4kmHtHkKpF9iXV8fKLFH2w==
+"@polkadot/ts@^0.1.55":
+  version "0.1.55"
+  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.55.tgz#6bd5840035e8bde0e53932b136253e90398313b7"
+  integrity sha512-OWB9GTS3BUVY1VU5JtDnN02RytchS+nN5WJg/aLhGR1BMU4DNqef7rgDonhJEaEbZzlQ/j+S+colK/0MYzQ9Bw==
 
 "@types/base-x@*":
   version "3.0.0"
@@ -7151,20 +7151,10 @@ markdown-it-chain@^1.3.0:
   dependencies:
     webpack-chain "^4.9.0"
 
-markdown-it-container@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/markdown-it-container/-/markdown-it-container-2.0.0.tgz#0019b43fd02eefece2f1960a2895fba81a404695"
-  integrity sha1-ABm0P9Au7+zi8ZYKKJX7qBpARpU=
-
 markdown-it-emoji@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/markdown-it-emoji/-/markdown-it-emoji-1.4.0.tgz#9bee0e9a990a963ba96df6980c4fddb05dfb4dcc"
   integrity sha1-m+4OmpkKljupbfaYDE/dsF37Tcw=
-
-markdown-it-table-of-contents@^0.4.0:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/markdown-it-table-of-contents/-/markdown-it-table-of-contents-0.4.3.tgz#6453925a76e49b9b3d9569a0d89f1c2168b46982"
-  integrity sha512-x/OdaRzLYxAjmB+jIVlXuE3nX7tZTLDQxm58RkgjTLyQ+I290jYQvPS9cJjVN6SM3U6K6CHKYNgUtPNZmLblYQ==
 
 markdown-it@^8.4.1:
   version "8.4.2"
@@ -7559,7 +7549,7 @@ mute-stream@~0.0.4:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
-nan@^2.12.1, nan@^2.2.1, nan@^2.9.2:
+nan@^2.12.0, nan@^2.12.1, nan@^2.2.1, nan@^2.9.2:
   version "2.12.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.12.1.tgz#7b1aa193e9aa86057e3c7bbd0ac448e770925552"
   integrity sha512-JY7V6lRkStKcKTvHO5NVSQRv+RV+FIL5pvDoLiAtSL9pKlC5x9PKQcZDsq7m4FO4d57mkhC6Z+QhAh3Jdk5JFw==
@@ -7711,6 +7701,14 @@ node-libs-browser@^2.0.0:
     url "^0.11.0"
     util "^0.11.0"
     vm-browserify "0.0.4"
+
+node-lmdb@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/node-lmdb/-/node-lmdb-0.6.2.tgz#2adc8b3907b067b25a3cfd2ea093253aada54ebd"
+  integrity sha512-j9K0qVBSZ1YqP2hg++zxvxKL8mDYAhaprlH2VdfCI2Y+Pfr11kFXLfZ9lXs/H5gMq+Xy39zSR2Kh/DWU8+bUUQ==
+  dependencies:
+    bindings "^1.2.1"
+    nan "^2.12.0"
 
 node-modules-regexp@^1.0.0:
   version "1.0.0"

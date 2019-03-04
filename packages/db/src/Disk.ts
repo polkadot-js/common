@@ -5,6 +5,7 @@
 import { BaseDbOptions } from './types';
 
 import FileFlatDb from './FileFlatDb';
+import LmDb from './engines/LmDb';
 import LruDb from './engines/LruDb';
 import TransactionDb from './engines/TransactionDb';
 
@@ -67,7 +68,9 @@ export default class DiskDb extends TransactionDb {
   constructor (base: string, name: string, options?: BaseDbOptions) {
     super(
       new LruDb(
-        new FileFlatDb(base, name, options)
+        options && options.isNative
+          ? new FileFlatDb(base, name, options)
+          : new LmDb(base, name, options)
       )
     );
   }

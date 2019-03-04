@@ -11,7 +11,8 @@ export type ProgressValue = {
 export type ProgressCb = (progress: ProgressValue) => void;
 
 export type BaseDbOptions = {
-  isCompressed?: boolean
+  isCompressed?: boolean,
+  isNative?: boolean
 };
 
 export interface BaseDb {
@@ -22,6 +23,10 @@ export interface BaseDb {
   maintain (fn: ProgressCb): void;
   rename (base: string, file: string): void;
   size (): number;
+
+  txCommit?: () => void;
+  txRevert?: () => void;
+  txStart?: () => void;
 
   del (key: Uint8Array): void;
   get (key: Uint8Array): Uint8Array | null;

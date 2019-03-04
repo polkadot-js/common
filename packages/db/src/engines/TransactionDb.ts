@@ -126,6 +126,10 @@ export default class TransactionDb implements TxDb {
 
     this.txOverlay = {};
     this.txStarted = true;
+
+    if (this.backing.txStart) {
+      this.backing.txStart();
+    }
   }
 
   private commitTx (): void {
@@ -143,6 +147,10 @@ export default class TransactionDb implements TxDb {
 
     this.txOverlay = {};
     this.txStarted = false;
+
+    if (this.backing.txCommit) {
+      this.backing.txCommit();
+    }
   }
 
   private revertTx (): void {
@@ -152,5 +160,9 @@ export default class TransactionDb implements TxDb {
 
     this.txOverlay = {};
     this.txStarted = false;
+
+    if (this.backing.txRevert) {
+      this.backing.txRevert();
+    }
   }
 }
