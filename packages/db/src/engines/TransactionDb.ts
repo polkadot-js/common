@@ -106,7 +106,6 @@ export default class TransactionDb implements TxDb {
 
   put (key: Uint8Array, value: Uint8Array): void {
     // l.debug(() => ['put', u8aToHex(key), u8aToHex(value)]);
-    assert(this.txStarted, 'Cannot commit when not in transaction');
 
     if (this.txStarted) {
       this.txOverlay[key.toString()] = {
