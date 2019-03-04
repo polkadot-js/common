@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-rlp",
-  "version": "0.34.39",
+  "version": "0.34.40",
   "description": "RLP encoding and decoding",
   "main": "index.js",
   "keywords": [
@@ -31,7 +31,7 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-rlp#readme",
   "dependencies": {
     "@babel/runtime": "^7.3.4",
-    "@polkadot/util": "^0.34.39"
+    "@polkadot/util": "^0.34.40"
   },
   "devDependencies": {
     "ethereumjs-testing": "1.0.4"
