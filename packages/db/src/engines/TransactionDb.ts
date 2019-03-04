@@ -26,7 +26,7 @@ export default class TransactionDb implements TxDb {
     this.txStarted = false;
   }
 
-  transaction<T = boolean> (fn: () => T): T {
+  transaction<T> (fn: () => T): T {
     l.debug(() => ['transaction']);
 
     try {
