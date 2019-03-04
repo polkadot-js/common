@@ -94,4 +94,22 @@ export default class LruDb implements BaseDb {
     this.backing.put(key, value);
     this.lru.set(keyStr, { value });
   }
+
+  txCommit (): void {
+    if (this.backing.txCommit) {
+      this.backing.txCommit();
+    }
+  }
+
+  txRevert (): void {
+    if (this.backing.txRevert) {
+      this.backing.txRevert();
+    }
+  }
+
+  txStart (): void {
+    if (this.backing.txStart) {
+      this.backing.txStart();
+    }
+  }
 }
