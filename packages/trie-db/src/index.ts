@@ -31,7 +31,7 @@ export default class Trie extends Impl implements TrieDb {
     l.log(`Created with ${this.codec.type} codec, root ${u8aToHex(this.rootHash, 64)}`);
   }
 
-  transaction (fn: () => boolean): boolean {
+  transaction<T> (fn: () => T): T {
     try {
       this.createCheckpoint();
 

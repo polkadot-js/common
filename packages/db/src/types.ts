@@ -34,5 +34,5 @@ export interface BaseDb {
 }
 
 export interface TxDb extends BaseDb {
-  transaction (fn: () => boolean): boolean;
+  transaction <T> (fn: () => T): T;
 }
