@@ -9,20 +9,24 @@ import lmdb from 'node-lmdb';
 import path from 'path';
 import { bufferToU8a, u8aToBuffer } from '@polkadot/util/index';
 
+const MAPSIZE = 2 * 1024 * 1024 * 1024; // 2GB
+
 export default class LmDb implements BaseDb {
   private _env: any;
   private _dbi: any | null;
   private _path: string;
-  private _txn: any;
+  private _txn: any | null;
 
   constructor (base: string, name: string, options?: BaseDbOptions) {
     this._env = new lmdb.Env();
     this._path = path.join(base, name);
+    this._txn = null;
 
     mkdirp.sync(this._path);
 
     this._env.open({
-      path: this._path
+      path: this._path,
+      mapSize: MAPSIZE
     });
   }
 
@@ -34,11 +38,9 @@ export default class LmDb implements BaseDb {
   open (): void {
     this._dbi = this._env.openDbi({
       create: true,
-      name: null,
+      name: 'lmdb',
       keyIsBuffer: true
     });
-
-    this.txStart();
   }
 
   drop (): void {
@@ -67,14 +69,12 @@ export default class LmDb implements BaseDb {
 
   txCommit (): void {
     this._txn.commit();
-
-    this.txStart();
+    this._txn = null;
   }
 
   txRevert (): void {
     this._txn.abort();
-
-    this.txStart();
+    this._txn = null;
   }
 
   txStart (): void {
@@ -85,12 +85,24 @@ export default class LmDb implements BaseDb {
     this._txn.del(this._dbi, u8aToBuffer(key));
   }
 
-  get (key: Uint8Array): Uint8Array | null {
-    const value = this._txn.getBinary(this._dbi, u8aToBuffer(key));
+  get (_key: Uint8Array): Uint8Array | null {
+    const key = u8aToBuffer(_key);
+    const value = this._txn
+      ? this._txn.getBinary(this._dbi, key)
+      : this.txnGet(key);
 
     return value
       ? bufferToU8a(value)
       : null;
+  }
+
+  private txnGet (key: Buffer): Buffer {
+    const txn = this._env.beginTxn();
+    const value = txn.getBinary(this._dbi, key);
+
+    txn.abort();
+
+    return value;
   }
 
   put (key: Uint8Array, value: Uint8Array): void {
