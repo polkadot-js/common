@@ -4,25 +4,41 @@
 
 import { BaseDb, BaseDbOptions, ProgressCb } from '../types';
 
+import mkdirp from 'mkdirp';
 import lmdb from 'node-lmdb';
+import path from 'path';
+import { bufferToU8a, u8aToBuffer } from '@polkadot/util/index';
 
 export default class LmDb implements BaseDb {
-  private _env: lmdb.Env;
-  private _dbi: lmdb.Dbi;
-  private _txn;
+  private _env: any;
+  private _dbi: any | null;
+  private _path: string;
+  private _txn: any;
 
   constructor (base: string, name: string, options?: BaseDbOptions) {
     this._env = new lmdb.Env();
+    this._path = path.join(base, name);
+
+    mkdirp.sync(this._path);
+
+    this._env.open({
+      path: this._path
+    });
   }
 
   close (): void {
-    this._lmdb.close();
+    this._dbi.close();
+    this._dbi = null;
   }
 
   open (): void {
-    this._lmdb.open({
+    this._dbi = this._env.openDbi({
+      create: true,
+      name: null,
       keyIsBuffer: true
     });
+
+    this.txStart();
   }
 
   drop (): void {
@@ -51,10 +67,14 @@ export default class LmDb implements BaseDb {
 
   txCommit (): void {
     this._txn.commit();
+
+    this.txStart();
   }
 
   txRevert (): void {
     this._txn.abort();
+
+    this.txStart();
   }
 
   txStart (): void {
@@ -62,14 +82,18 @@ export default class LmDb implements BaseDb {
   }
 
   del (key: Uint8Array): void {
-    this._txn.
+    this._txn.del(this._dbi, u8aToBuffer(key));
   }
 
   get (key: Uint8Array): Uint8Array | null {
+    const value = this._txn.getBinary(this._dbi, u8aToBuffer(key));
 
+    return value
+      ? bufferToU8a(value)
+      : null;
   }
 
   put (key: Uint8Array, value: Uint8Array): void {
-
+    this._txn.putBinary(this._dbi, u8aToBuffer(key), u8aToBuffer(value));
   }
 }
