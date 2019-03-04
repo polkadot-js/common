@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/db",
-  "version": "0.34.38",
+  "version": "0.34.39",
   "description": "Implementation of a basic sync in-memory and on-disk databases with overlays",
   "main": "index.js",
   "keywords": [
@@ -29,8 +29,8 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/db#readme",
   "dependencies": {
     "@babel/runtime": "^7.3.4",
-    "@polkadot/trie-hash": "^0.34.38",
-    "@polkadot/util": "^0.34.38",
+    "@polkadot/trie-hash": "^0.34.39",
+    "@polkadot/util": "^0.34.39",
     "@types/mkdirp": "^0.5.2",
     "@types/rimraf": "^2.0.2",
     "@types/snappy": "^6.0.0",
