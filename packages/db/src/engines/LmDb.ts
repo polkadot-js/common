@@ -38,19 +38,19 @@ export default class LmDb implements BaseDb {
     });
   }
 
-  private getMapSize (): number {
+  private getNextMapSize (): number {
     const dbsize = this.size();
-    const max = Math.ceil(dbsize / GB) * GB;
-    const remaining = (max - dbsize) / GB;
+    const mapSize = this._env.info().mapSize;
+    const remaining = (mapSize - dbsize) / GB;
 
     return (remaining < 0.25)
-      ? max + 1
-      : max;
+      ? (mapSize + GB)
+      : mapSize;
   }
 
   private growMapSize (): void {
     const info = this._env.info();
-    const next = this.getMapSize();
+    const next = this.getNextMapSize();
 
     if (next > info.mapSize) {
       l.debug(() => `Growing mapsize to ${(next / GB).toFixed(1)}GB`);
