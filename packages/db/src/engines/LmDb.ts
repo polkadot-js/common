@@ -10,7 +10,7 @@ import lmdb from 'node-lmdb';
 import path from 'path';
 import { bufferToU8a, u8aToBuffer } from '@polkadot/util/index';
 
-const BASE_MAPSIZE = 2 * 1024 * 1024 * 1024; // 2GB
+const BASE_MAPSIZE = 1 * 1024 * 1024 * 1024; // 1GB increments
 
 export default class LmDb implements BaseDb {
   private _env: any;
@@ -25,18 +25,21 @@ export default class LmDb implements BaseDb {
 
     mkdirp.sync(this._path);
 
+    const dbsize = this.size(true);
+    const mapSize = Math.ceil(1 + (dbsize / BASE_MAPSIZE)) * BASE_MAPSIZE;
+
     this._env.open({
       path: this._path,
-      mapSize: this.getMapSize() * BASE_MAPSIZE
+      mapSize
     });
   }
 
   private getMapSize (): number {
-    const size = this.size();
-    const max = Math.ceil(size / BASE_MAPSIZE);
-    const use = size / (max * BASE_MAPSIZE);
+    const dbsize = this.size();
+    const max = Math.ceil(dbsize / BASE_MAPSIZE) * BASE_MAPSIZE;
+    const remaining = (max - dbsize) / BASE_MAPSIZE;
 
-    return (use > 0.75)
+    return (remaining < 0.25)
       ? max + 1
       : max;
   }
@@ -44,10 +47,9 @@ export default class LmDb implements BaseDb {
   private growMapSize (): void {
     const info = this._env.info();
     const next = this.getMapSize();
-    const current = Math.ceil(info.mapSize / BASE_MAPSIZE);
 
-    if (current < next) {
-      this._env.resize(next * BASE_MAPSIZE);
+    if (next > info.mapSize) {
+      this._env.resize(next);
     }
   }
 
@@ -84,8 +86,12 @@ export default class LmDb implements BaseDb {
     // nothing
   }
 
-  size (): number {
-    return fs.statSync(path.join(this._path, 'data.mdb')).size;
+  size (withExistsSync: boolean = false): number {
+    const db = path.join(this._path, 'data.mdb');
+
+    return !withExistsSync || fs.existsSync(db)
+      ? fs.statSync(db).size
+      : 0;
   }
 
   txCommit (): void {

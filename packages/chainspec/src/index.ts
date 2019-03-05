@@ -3,4 +3,4 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 export { default as alexander } from './alexander';
-export { default as drieddanta } from './drieddanta';
+export { default as driedDanta } from './dried-danta';
