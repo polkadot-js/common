@@ -8,9 +8,11 @@ import fs from 'fs';
 import mkdirp from 'mkdirp';
 import lmdb from 'node-lmdb';
 import path from 'path';
-import { bufferToU8a, u8aToBuffer } from '@polkadot/util/index';
+import { bufferToU8a, logger, u8aToBuffer } from '@polkadot/util/index';
 
-const BASE_MAPSIZE = 1 * 1024 * 1024 * 1024; // 1GB increments
+const GB = 1 * 1024 * 1024 * 1024;
+
+const l = logger('db/lmdb');
 
 export default class LmDb implements BaseDb {
   private _env: any;
@@ -26,7 +28,9 @@ export default class LmDb implements BaseDb {
     mkdirp.sync(this._path);
 
     const dbsize = this.size(true);
-    const mapSize = Math.ceil(1 + (dbsize / BASE_MAPSIZE)) * BASE_MAPSIZE;
+    const mapSize = Math.ceil(1 + (dbsize / GB)) * GB;
+
+    l.debug(() => `Current mapsize set to ${(mapSize / GB).toFixed(1)}GB`);
 
     this._env.open({
       path: this._path,
@@ -36,8 +40,8 @@ export default class LmDb implements BaseDb {
 
   private getMapSize (): number {
     const dbsize = this.size();
-    const max = Math.ceil(dbsize / BASE_MAPSIZE) * BASE_MAPSIZE;
-    const remaining = (max - dbsize) / BASE_MAPSIZE;
+    const max = Math.ceil(dbsize / GB) * GB;
+    const remaining = (max - dbsize) / GB;
 
     return (remaining < 0.25)
       ? max + 1
@@ -49,6 +53,8 @@ export default class LmDb implements BaseDb {
     const next = this.getMapSize();
 
     if (next > info.mapSize) {
+      l.debug(() => `Growing mapsize to ${(next / GB).toFixed(1)}GB`);
+
       this._env.resize(next);
     }
   }
