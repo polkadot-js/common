@@ -6,7 +6,7 @@ import '../test-polyfill';
 
 import { stringToU8a, u8aToHex } from '@polkadot/util/index';
 
-import { mnemonicToSeedEntropy } from '../../mnemonic';
+import { mnemonicToMiniSecret } from '../../mnemonic';
 import { schnorrkelKeypairFromSeed, schnorrkelWaitReady } from '../index';
 import tests from './testing';
 
@@ -29,7 +29,7 @@ describe('schnorrkelKeypairFromSeed', () => {
 
   tests.forEach(([mnemonic, , , secret], index) => {
     it(`creates valid against known (${index})`, () => {
-      const seed = mnemonicToSeedEntropy(mnemonic, 'Substrate');
+      const seed = mnemonicToMiniSecret(mnemonic, 'Substrate');
       const pair = schnorrkelKeypairFromSeed(seed);
 
       expect(

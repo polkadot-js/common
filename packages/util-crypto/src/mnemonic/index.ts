@@ -8,6 +8,6 @@
 
 export { default as mnemonicGenerate } from './generate';
 export { default as mnemonicToEntropy } from './toEntropy';
+export { default as mnemonicToMiniSecret } from './toMiniSecret';
 export { default as mnemonicToSeed } from './toSeed';
-export { default as mnemonicToSeedEntropy } from './toSeedEntropy';
 export { default as mnemonicValidate } from './validate';

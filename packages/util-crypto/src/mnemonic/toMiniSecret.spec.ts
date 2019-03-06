@@ -4,14 +4,14 @@
 
 import { u8aToHex } from '@polkadot/util/index';
 
-import toSeedEntropy from './toSeedEntropy';
+import mnemonicToMiniSecret from './toMiniSecret';
 import tests from '../schnorrkel/keypair/testing';
 
-describe('mnemonicToSeedEntropy', () => {
+describe('mnemonicToMiniSecret', () => {
   tests.forEach(([mnemonic, , seed], index) => {
     it(`Created correct seed for ${index}`, () => {
       expect(
-        u8aToHex(toSeedEntropy(mnemonic, 'Substrate'))
+        u8aToHex(mnemonicToMiniSecret(mnemonic, 'Substrate'))
       ).toEqual(
         // mini returned here, only check first 32-bytes (64 hex + 2 prefix)
         seed.substr(0, 66)
