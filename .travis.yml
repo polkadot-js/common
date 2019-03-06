@@ -4,8 +4,8 @@ node_js:
 env:
   - GH_PAGES_SRC="build-docs"
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install -y librocksdb-dev librocksdb
+  # - sudo apt-get update
+  # - sudo apt-get install -y librocksdb-dev librocksdb
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$(yarn global bin):$PATH
 cache:
@@ -13,17 +13,17 @@ cache:
   directories:
     - node_modules
 install:
-  # - export ROCKSDB=$HOME/rocksdb-master
-  # - pushd $HOME
-  # - curl -sLO https://github.com/facebook/rocksdb/archive/master.zip
-  # - unzip master.zip
-  # - cd rocksdb-master
-  # - make shared_lib
-  # - popd
-  # - export CFLAGS="-I${ROCKSDB}/include/"
-  # - export CXXFLAGS="-I${ROCKSDB}/include/"
-  # - export LDFLAGS="-L${ROCKSDB} -lrocksdb -lstdc++ -lm -lz"
-  # - export LD_LIBRARY_PATH="${ROCKSDB}:/usr/local/lib"
+  - export ROCKSDB=$HOME/rocksdb-master
+  - pushd $HOME
+  - curl -sLO https://github.com/facebook/rocksdb/archive/master.zip
+  - unzip master.zip
+  - cd rocksdb-master
+  - make shared_lib
+  - popd
+  - export CFLAGS="-I${ROCKSDB}/include/"
+  - export CXXFLAGS="-I${ROCKSDB}/include/"
+  - export LDFLAGS="-L${ROCKSDB} -lrocksdb -lstdc++ -lm -lz"
+  - export LD_LIBRARY_PATH="${ROCKSDB}:/usr/local/lib"
   - yarn
 script:
   - yarn polkadot-dev-build-travis
