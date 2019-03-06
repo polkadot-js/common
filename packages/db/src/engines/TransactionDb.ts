@@ -126,16 +126,16 @@ export default class TransactionDb implements TxDb {
 
     this.txOverlay = {};
     this.txStarted = true;
-
-    if (this.backing.txStart) {
-      this.backing.txStart();
-    }
   }
 
   private commitTx (): void {
     l.debug(() => ['commitTx', Object.keys(this.txOverlay).length, 'keys']);
 
     assert(this.txStarted, 'Cannot commit when not in transaction');
+
+    if (this.backing.txStart) {
+      this.backing.txStart();
+    }
 
     Object.values(this.txOverlay).forEach(({ key, value }) => {
       if (isNull(value)) {
@@ -145,12 +145,12 @@ export default class TransactionDb implements TxDb {
       }
     });
 
-    this.txOverlay = {};
-    this.txStarted = false;
-
     if (this.backing.txCommit) {
       this.backing.txCommit();
     }
+
+    this.txOverlay = {};
+    this.txStarted = false;
   }
 
   private revertTx (): void {
@@ -160,9 +160,5 @@ export default class TransactionDb implements TxDb {
 
     this.txOverlay = {};
     this.txStarted = false;
-
-    if (this.backing.txRevert) {
-      this.backing.txRevert();
-    }
   }
 }

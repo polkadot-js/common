@@ -7,7 +7,7 @@ import { bufferToU8a, stringToU8a, u8aToBuffer } from '@polkadot/util/index';
 
 import toEntropy from './toEntropy';
 
-export default function toSeedEntropy (mnemonic: string, password: string = ''): Uint8Array {
+export default function toMiniSecret (mnemonic: string, password: string = ''): Uint8Array {
   const entropy = u8aToBuffer(toEntropy(mnemonic));
   const salt = u8aToBuffer(stringToU8a(`mnemonic${password}`));
 
