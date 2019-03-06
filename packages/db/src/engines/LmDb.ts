@@ -14,16 +14,26 @@ const GB = 1 * 1024 * 1024 * 1024;
 
 const l = logger('db/lmdb');
 
+// NOTE we manage 2 transaction types, one for read and one for write. For
+// triedbs we assume that the transaction _only_ contains writes (managed by
+// the transaction overlay). At the same time have a read that we keep open
+// so we don't need to re-create the transaction, otherwise wastefull.
+//
+// There is reasoning behind this madness, reads cannot overlap with writes,
+// so the database grows more than needed while making actual reads interleaved
+// with writes. So manage these completely seperately.
 export default class LmDb implements BaseDb {
   private _env: any;
   private _dbi: any | null;
   private _path: string;
-  private _txn: any | null;
+  private _rtxn: any | null;
+  private _wtxn: any | null;
 
   constructor (base: string, name: string, options?: BaseDbOptions) {
     this._env = new lmdb.Env();
     this._path = path.join(base, name);
-    this._txn = null;
+    this._rtxn = null;
+    this._wtxn = null;
 
     mkdirp.sync(this._path);
 
@@ -60,6 +70,8 @@ export default class LmDb implements BaseDb {
   }
 
   close (): void {
+    this.exitRead();
+
     this._dbi.close();
     this._dbi = null;
     this._env.close();
@@ -70,6 +82,8 @@ export default class LmDb implements BaseDb {
       create: true,
       keyIsBuffer: true
     });
+
+    this.enterRead();
   }
 
   drop (): void {
@@ -100,47 +114,49 @@ export default class LmDb implements BaseDb {
       : 0;
   }
 
+  private enterRead (): void {
+    this._rtxn = this._env.beginTxn({ readOnly: true });
+  }
+
+  private exitRead (): void {
+    this._rtxn.abort();
+    this._rtxn = null;
+  }
+
   txCommit (): void {
-    this._txn.commit();
-    this._txn = null;
+    this._wtxn.commit();
+    this._wtxn = null;
+    this.enterRead();
   }
 
   txRevert (): void {
-    this._txn.abort();
-    this._txn = null;
+    this._wtxn.abort();
+    this._wtxn = null;
+    this.enterRead();
   }
 
   txStart (): void {
+    this.exitRead();
+
+    // grow between transactions
     this.growMapSize();
 
-    this._txn = this._env.beginTxn();
+    this._wtxn = this._env.beginTxn();
   }
 
   del (key: Uint8Array): void {
-    this._txn.del(this._dbi, u8aToBuffer(key));
+    this._wtxn.del(this._dbi, u8aToBuffer(key));
   }
 
   get (_key: Uint8Array): Uint8Array | null {
-    const key = u8aToBuffer(_key);
-    const value = this._txn
-      ? this._txn.getBinary(this._dbi, key)
-      : this.txnGet(key);
+    const value = this._rtxn.getBinary(this._dbi, u8aToBuffer(_key));
 
     return value
       ? bufferToU8a(value)
       : null;
   }
 
-  private txnGet (key: Buffer): Buffer {
-    const txn = this._env.beginTxn();
-    const value = txn.getBinary(this._dbi, key);
-
-    txn.abort();
-
-    return value;
-  }
-
   put (key: Uint8Array, value: Uint8Array): void {
-    this._txn.putBinary(this._dbi, u8aToBuffer(key), u8aToBuffer(value));
+    this._wtxn.putBinary(this._dbi, u8aToBuffer(key), u8aToBuffer(value));
   }
 }
