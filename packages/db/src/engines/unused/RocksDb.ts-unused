@@ -2,6 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+// At this point, it doesn't seem to write anything to disk, so subsequent startups
+// has an empty database - again. Something is wrong in the config and with
+// life being too short...
+
 // "rocksdb-node": "jacogr/rocksdb-node#00ebfdbf0462ee615f4f48f1db403fd4df8471ea",
 
 import { BaseDb, ProgressCb } from '../types';
