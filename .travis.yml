@@ -4,8 +4,8 @@ node_js:
 env:
   - GH_PAGES_SRC="build-docs"
 before_install:
-  # - sudo apt-get update
-  # - sudo apt-get install -y librocksdb-dev librocksdb
+  - sudo apt-get update
+  - sudo apt-get install libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$(yarn global bin):$PATH
 cache:
@@ -16,7 +16,7 @@ install:
   - export ROCKSDB=$HOME/rocksdb-master
   - pushd $HOME
   - curl -sLO https://github.com/facebook/rocksdb/archive/master.zip
-  - unzip master.zip
+  - unzip -q master.zip
   - cd rocksdb-master
   - make shared_lib
   - popd
