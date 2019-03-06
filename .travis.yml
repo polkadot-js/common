@@ -5,8 +5,7 @@ env:
   - GH_PAGES_SRC="build-docs"
 before_install:
   - sudo apt-get update
-  - sudo apt-get install libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev
-  # libzstd-dev
+  - sudo apt-get install curl g++-8 libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev mingw-w64 zlib1g-dev
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$(yarn global bin):$PATH
 cache:
