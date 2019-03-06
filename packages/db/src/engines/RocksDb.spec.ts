@@ -2,10 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import mkdirp from 'mkdirp';
 import os from 'os';
 import path from 'path';
-import stringToU8a from '@polkadot/util/string/toU8a';
+import rimraf from 'rimraf';
+import { stringToU8a } from '@polkadot/util/index';
 
 import RocksDb from './RocksDb';
 
@@ -13,7 +13,7 @@ describe.skip('RocksDb', () => {
   const base = path.join(os.tmpdir(), '--test--');
   const name = 'RocksDb';
   const location = path.join(base, name);
-  let db;
+  let db: any;
 
   beforeAll(() => {
     db = new RocksDb(base, name);

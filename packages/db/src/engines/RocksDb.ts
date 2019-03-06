@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-"rocksdb-node": "jacogr/rocksdb-node#00ebfdbf0462ee615f4f48f1db403fd4df8471ea",
+// "rocksdb-node": "jacogr/rocksdb-node#00ebfdbf0462ee615f4f48f1db403fd4df8471ea",
 
 import { BaseDb, ProgressCb } from '../types';
 
@@ -10,13 +10,7 @@ import rocksdb, { RocksDb } from 'rocksdb-node';
 import mkdirp from 'mkdirp';
 import path from 'path';
 // import snappy from 'snappy';
-import logger from '@polkadot/util/logger';
-import bufferToU8a from '@polkadot/util/buffer/toU8a';
-import u8aToBuffer from '@polkadot/util/u8a/toBuffer';
-import u8aToHex from '@polkadot/util/u8a/toHex';
-
-// import assert from '@polkadot/util/assert';
-// import u8aToHex from '@polkadot/util/u8a/toHex';
+import { bufferToU8a, logger, u8aToBuffer, u8aToHex } from '@polkadot/util/index';
 
 const l = logger('db/rocksdb');
 
@@ -37,6 +31,14 @@ export default class Rocks implements BaseDb {
     this.db.close();
   }
 
+  drop (): void {
+    throw new Error('unimplemented');
+  }
+
+  empty (): void {
+    throw new Error('unimplemented');
+  }
+
   open (): void {
     l.debug(() => ['open']);
   }
@@ -47,6 +49,10 @@ export default class Rocks implements BaseDb {
       keys: 0,
       percent: 100
     });
+  }
+
+  rename (base: string, file: string): void {
+    // nothing
   }
 
   del (key: Uint8Array): void {
@@ -77,8 +83,12 @@ export default class Rocks implements BaseDb {
     );
   }
 
+  size (): number {
+    return 0;
+  }
+
   private _deserializeValue (value: Buffer): Uint8Array | null {
-    return value
+    return value && value.length
       ? bufferToU8a(value)
       // ? bufferToU8a(
       //   snappy.uncompressSync(value)
