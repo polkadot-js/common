@@ -21,13 +21,11 @@ export function cryptoWaitReady (): Promise<boolean> {
     .all([schnorrkelWaitReady()])
     .then(() => true)
     .catch((error) => {
-      console.error('Unable to initialize @polkadot/util-crypto');
+      console.error('Unable to initialize @polkadot/util-crypto', error);
 
-      throw error;
+      return false;
     });
 }
 
 // start init process immediately
-cryptoWaitReady().catch(() => {
-  // noop, logged above, can't do much more
-});
+cryptoWaitReady();
