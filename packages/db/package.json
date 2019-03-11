@@ -37,7 +37,6 @@
     "lru_map": "^0.3.3",
     "mkdirp": "^0.5.1",
     "node-lmdb": "^0.6.2",
-    "rocksdb-node": "jacogr/rocksdb-node#00ebfdbf0462ee615f4f48f1db403fd4df8471ea",
     "snappy": "^6.1.2"
   }
 }
