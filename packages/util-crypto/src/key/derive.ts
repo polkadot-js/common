@@ -34,8 +34,6 @@ export default function keyDerive (suri: string): DeriveResult {
     });
   }
 
-  console.error('phrase', matches, path);
-
   return {
     password,
     path,
