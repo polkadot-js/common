@@ -14,6 +14,7 @@ export { default as isFunction } from './function';
 export { default as isHex } from './hex';
 export { default as isInstanceOf } from './instanceOf';
 export { default as isIp } from './ip';
+export { default as isJsonObject } from './jsonObject';
 export { default as isNull } from './null';
 export { default as isNumber } from './number';
 export { default as isObject } from './object';
