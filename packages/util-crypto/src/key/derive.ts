@@ -24,10 +24,9 @@ export default function keyDerive (suri: string): DeriveResult {
   assert(!isNull(matches), `Unable to match '${suri}' to a secret URI`);
 
   const [, phrase, , junctions, , , password] = matches as Array<any>;
+  const parts = junctions.match(RE_JUNCTION);
   const path: Array<DeriveJunction> = [];
-
-  let parts = junctions.match(RE_JUNCTION);
-
+  
   if (parts) {
     parts.forEach((value: string) => {
       path.push(DeriveJunction.from(value.substr(1)));
