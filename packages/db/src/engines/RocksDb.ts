@@ -21,6 +21,7 @@ const l = logger('db/rocksdb');
 const OPEN_OPTIONS = {
   allow_mmap_reads: true,
   allow_mmap_writes: true,
+  bytes_per_sync: 1 * 1024 * 1024, // 1MB default
   create_if_missing: true
 };
 
