@@ -18,6 +18,12 @@ import { bufferToU8a, logger, u8aToBuffer, u8aToHex } from '@polkadot/util/index
 
 const l = logger('db/rocksdb');
 
+const OPEN_OPTIONS = {
+  allow_mmap_reads: true,
+  allow_mmap_writes: true,
+  create_if_missing: true
+};
+
 export default class Rocks implements BaseDb {
   private db: RocksDb;
 
@@ -26,7 +32,7 @@ export default class Rocks implements BaseDb {
 
     mkdirp.sync(location);
 
-    this.db = rocksdb.open({ create_if_missing: true }, location);
+    this.db = rocksdb.open(OPEN_OPTIONS, location);
   }
 
   close (): void {

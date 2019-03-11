@@ -3,21 +3,22 @@ node_js:
   - "10"
 env:
   - GH_PAGES_SRC="build-docs"
-# compiler:
-#   - clang
-#   - gcc
-# addons:
-#   apt:
-#     sources:
-#       - ubuntu-toolchain-r-test
-#     packages:
-#       - curl
-#       - g++-8
-#       - libbz2-dev
-#       - libgflags-dev
-#       - libsnappy-dev
-#       - mingw-w64
-#       - zlib1g-dev
+# compiler & addons are both used for RocksDb
+compiler:
+  - clang
+  - gcc
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - curl
+      - g++-8
+      - libbz2-dev
+      - libgflags-dev
+      - libsnappy-dev
+      - mingw-w64
+      - zlib1g-dev
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$(yarn global bin):$PATH
@@ -26,17 +27,17 @@ cache:
   directories:
     - node_modules
 install:
-  # - export ROCKSDB=$HOME/rocksdb-master
-  # - pushd $HOME
-  # - curl -sLO https://github.com/facebook/rocksdb/archive/master.zip
-  # - unzip -q master.zip
-  # - cd rocksdb-master
-  # - make shared_lib
-  # - popd
-  # - export CFLAGS="-I${ROCKSDB}/include/"
-  # - export CXXFLAGS="-I${ROCKSDB}/include/"
-  # - export LDFLAGS="-L${ROCKSDB} -lrocksdb -lstdc++ -lm -lz"
-  # - export LD_LIBRARY_PATH="${ROCKSDB}:/usr/local/lib"
+  - export ROCKSDB=$HOME/rocksdb-master
+  - pushd $HOME
+  - curl -sLO https://github.com/facebook/rocksdb/archive/master.zip
+  - unzip -q master.zip
+  - cd rocksdb-master
+  - make shared_lib
+  - popd
+  - export CFLAGS="-I${ROCKSDB}/include/"
+  - export CXXFLAGS="-I${ROCKSDB}/include/"
+  - export LDFLAGS="-L${ROCKSDB} -lrocksdb -lstdc++ -lm -lz"
+  - export LD_LIBRARY_PATH="${ROCKSDB}:/usr/local/lib"
   - yarn
 script:
   - yarn polkadot-dev-build-travis
