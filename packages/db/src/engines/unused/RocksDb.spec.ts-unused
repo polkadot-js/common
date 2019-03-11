@@ -7,7 +7,7 @@ import path from 'path';
 import rimraf from 'rimraf';
 import { stringToU8a } from '@polkadot/util/index';
 
-import RocksDb from './RocksDb';
+import RocksDb from '../RocksDb';
 
 describe.skip('RocksDb', () => {
   const base = path.join(os.tmpdir(), '--test--');
