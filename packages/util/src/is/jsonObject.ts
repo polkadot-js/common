@@ -11,7 +11,7 @@ type ObjectIndexed = {
  * @summary Tests for a valid JSON `object`.
  * @description
  * Checks to see if the input value is a valid JSON object.
- * It returns false if the input is valid JSON, but not an Javascript object.
+ * It returns false if the input is JSON parsable, but not an Javascript object.
  * @example
  * <BR>
  *
@@ -25,8 +25,8 @@ type ObjectIndexed = {
  *   "Test": "5678"
  *  }
  * }); // => true
- * isJsonObject(1234); // valid JSON, but not an object =>  false
- * isJsonObject(null); // valid JSON, but not an object => false
+ * isJsonObject(1234); // JSON parsable, but not an object =>  false
+ * isJsonObject(null); // JSON parsable, but not an object => false
  * isJsonObject('not an object'); // => false
  * ```
  */

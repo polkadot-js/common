@@ -25,13 +25,13 @@ describe('isJsonObject', () => {
     ).toEqual(true);
   });
 
-  it('returns false on valid JSON but typeof number', () => {
+  it('returns false on JSON parsable value typeof number', () => {
     expect(
       isJsonObject(1234)
     ).toEqual(false);
   });
 
-  it('returns false on valid JSON but null', () => {
+  it('returns false on JSON parsable value null', () => {
     expect(
       isJsonObject(null)
     ).toEqual(false);
