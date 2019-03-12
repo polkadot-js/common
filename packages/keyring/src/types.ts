@@ -2,13 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { KeypairType } from '@polkadot/util-crypto/types';
 import { Prefix } from './address/types';
-
-export type KeyringPairType = 'ed25519' | 'sr25519';
 
 export type KeyringOptions = {
   addressPrefix?: Prefix,
-  type?: KeyringPairType
+  type?: KeypairType
 };
 
 export type KeyringPair$Meta = {
@@ -18,7 +17,7 @@ export type KeyringPair$Meta = {
 export type KeyringPair$JsonVersion = '0' | '1';
 
 export type KeyringPair$JsonEncoding = {
-  content: ['pkcs8', KeyringPairType],
+  content: ['pkcs8', KeypairType],
   type: 'xsalsa20-poly1305' | 'none',
   version: KeyringPair$JsonVersion
 };
@@ -31,7 +30,7 @@ export type KeyringPair$Json = {
 };
 
 export interface KeyringPair {
-  readonly type: KeyringPairType;
+  readonly type: KeypairType;
 
   address: () => string;
   decodePkcs8: (passphrase?: string, encoded?: Uint8Array) => void;
@@ -43,7 +42,7 @@ export interface KeyringPair {
   setMeta: (meta: KeyringPair$Meta) => void;
   sign (message: Uint8Array): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;
-  toType (type: KeyringPairType): KeyringPair;
+  toType (type: KeypairType): KeyringPair;
   verify (message: Uint8Array, signature: Uint8Array): boolean;
 }
 
@@ -59,18 +58,18 @@ export interface KeyringInstance {
   readonly isSr25519: boolean;
   readonly pairs: Array<KeyringPair>;
   readonly publicKeys: Array<Uint8Array>;
-  readonly type: KeyringPairType;
+  readonly type: KeypairType;
 
   decodeAddress (encoded: string | Uint8Array): Uint8Array;
   encodeAddress (key: Uint8Array | string): string;
   setAddressPrefix (prefix: Prefix): void;
 
   addPair (pair: KeyringPair): KeyringPair;
-  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, encoded?: Uint8Array | null, type?: KeyringPairType): KeyringPair;
+  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, encoded?: Uint8Array | null, type?: KeypairType): KeyringPair;
   addFromJson (pair: KeyringPair$Json): KeyringPair;
-  addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
-  addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
-  addFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
+  addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
+  addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
+  addFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
   getPair (address: string | Uint8Array): KeyringPair;
   getPairs (): Array<KeyringPair>;
   getPublicKeys (): Array<Uint8Array>;

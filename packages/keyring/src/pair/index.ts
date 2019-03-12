@@ -2,8 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeypairType } from '@polkadot/util-crypto/types';
-import { KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringPairType } from '../types';
+import { Keypair, KeypairType } from '@polkadot/util-crypto/types';
+import { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
 import { PairInfo } from './types';
 
 import { naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto/index';
@@ -13,20 +13,20 @@ import decode from './decode';
 import encode from './encode';
 import toJson from './toJson';
 
-const isSr25519 = (type: KeyringPairType): boolean =>
+const isSr25519 = (type: KeypairType): boolean =>
   type === 'sr25519';
 
-const fromSeed = (type: KeyringPairType, seed: Uint8Array) =>
+const fromSeed = (type: KeypairType, seed: Uint8Array) =>
   isSr25519(type)
     ? schnorrkelFromSeed(seed)
     : naclFromSeed(seed);
 
-const sign = (type: KeyringPairType, message: Uint8Array, pair: Partial<KeypairType>) =>
+const sign = (type: KeypairType, message: Uint8Array, pair: Partial<Keypair>) =>
   isSr25519(type)
     ? schnorrkelSign(message, pair)
     : naclSign(message, pair);
 
-const verify = (type: KeyringPairType, message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array) =>
+const verify = (type: KeypairType, message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array) =>
   isSr25519(type)
     ? schnorrkelVerify(message, signature, publicKey)
     : naclVerify(message, signature, publicKey);
@@ -62,7 +62,7 @@ const verify = (type: KeyringPairType, message: Uint8Array, signature: Uint8Arra
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function createPair (type: KeyringPairType, { publicKey, seed }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
+export default function createPair (type: KeypairType, { publicKey, seed }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
   let secretKey: Uint8Array | undefined;
 
   if (seed) {
@@ -101,7 +101,7 @@ export default function createPair (type: KeyringPairType, { publicKey, seed }: 
       sign(type, message, { publicKey, secretKey }),
     toJson: (passphrase?: string): KeyringPair$Json =>
       toJson(type, { meta, publicKey }, encode({ publicKey, seed }, passphrase), !!passphrase),
-    toType: (type: KeyringPairType): KeyringPair =>
+    toType: (type: KeypairType): KeyringPair =>
       createPair(type, { publicKey, seed }, meta, null),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       verify(type, message, signature, publicKey)

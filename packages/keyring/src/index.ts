@@ -2,7 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions, KeyringPairType } from './types';
+import { KeypairType } from '@polkadot/util-crypto/types';
+import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions } from './types';
 
 import { assert, hexToU8a, isNumber, isHex, stringToU8a } from '@polkadot/util/index';
 import { keyExtract, mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, mnemonicToMiniSecret, keyFromPath } from '@polkadot/util-crypto/index';
@@ -29,7 +30,7 @@ import Pairs from './pairs';
  */
 export default class Keyring implements KeyringInstance {
   private _pairs: Pairs;
-  private _type: KeyringPairType;
+  private _type: KeypairType;
 
   constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
@@ -77,7 +78,7 @@ export default class Keyring implements KeyringInstance {
   /**
    * @description Returns the type of the keyring, either ed25519 of sr25519
    */
-  get type (): KeyringPairType {
+  get type (): KeypairType {
     return this._type;
   }
 
@@ -97,7 +98,7 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from them that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeyringPairType = this.type): KeyringPair {
+  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.type): KeyringPair {
     return this.addPair(createPair(type, { publicKey: this.decodeAddress(address) }, meta, encoded));
   }
 
@@ -123,7 +124,7 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta = {}, type: KeyringPairType = this.type): KeyringPair {
+  addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
     return this.addFromSeed(mnemonicToSeed(mnemonic), meta, type);
   }
 
@@ -134,7 +135,7 @@ export default class Keyring implements KeyringInstance {
    * Allows user to provide the account seed as an argument, and then generates a keyring pair from it that it passes to
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeyringPairType = this.type): KeyringPair {
+  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
     const keypair = this.isSr25519
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
@@ -147,7 +148,7 @@ export default class Keyring implements KeyringInstance {
    * @summary Creates an account via an suri
    * @description Extracts the phrase, path and password from a SURI format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed). The secret can be a hex string, mnemonic phrase or a string (to be padded)
    */
-  addFromUri (suri: string, meta: KeyringPair$Meta = {}, type: KeyringPairType = this.type): KeyringPair {
+  addFromUri (suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
     const { password, phrase, path } = keyExtract(suri);
     let seed;
 
@@ -164,7 +165,7 @@ export default class Keyring implements KeyringInstance {
       }
     }
 
-    return this.addFromSeed(keyFromPath(seed, path), meta, type);
+    return this.addFromSeed(keyFromPath(seed, path, type), meta, type);
   }
 
   /**

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeypairType } from '../../types';
+import { Keypair } from '../../types';
 
 import nacl from 'tweetnacl';
 
@@ -20,6 +20,6 @@ import nacl from 'tweetnacl';
  * naclKeypairFromSeed(...); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export default function naclKeypairFromSeed (seed: Uint8Array): KeypairType {
+export default function naclKeypairFromSeed (seed: Uint8Array): Keypair {
   return nacl.sign.keyPair.fromSeed(seed);
 }

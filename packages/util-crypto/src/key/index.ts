@@ -8,3 +8,4 @@
 export { default as keyExtract } from './extract';
 export { default as keyFromPath } from './fromPath';
 export { default as keyHdkdEd25519 } from './hdkdEd25519';
+export { default as keyHdkdSr25519 } from './hdkdEd25519';
