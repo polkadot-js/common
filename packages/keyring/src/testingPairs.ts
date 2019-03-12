@@ -11,8 +11,8 @@ type TestKeyringMap = {
   [index: string]: KeyringPair
 };
 
-export default function testKeyringPairs (options?: KeyringOptions): TestKeyringMap {
-  const keyring = createKeyring(options);
+export default function testKeyringPairs (options?: KeyringOptions, isHdKd: boolean = false): TestKeyringMap {
+  const keyring = createKeyring(options, isHdKd);
   const pairs = keyring.getPairs();
 
   return pairs.reduce((result, pair) => {

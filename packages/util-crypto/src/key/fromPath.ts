@@ -7,7 +7,7 @@ import { assert } from '@polkadot/util/index';
 import DeriveJunction from './DeriveJunction';
 import keyHdkdEd15519 from './hdkdEd25519';
 
-export default function keyDerive (seed: Uint8Array, path: Array<DeriveJunction>): Uint8Array {
+export default function keyFromPath (seed: Uint8Array, path: Array<DeriveJunction>): Uint8Array {
   return path.reduce((seed, entry) => {
     assert(entry.isHard, 'A soft key was found in the path (and is unsupported)');
 

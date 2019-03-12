@@ -31,11 +31,13 @@ export default class Keyring implements KeyringInstance {
   private _pairs: Pairs;
   private _type: KeyringPairType;
 
-  constructor (options: KeyringOptions = { type: 'ed25519' }) {
+  constructor (options: KeyringOptions = {}) {
+    options.type = options.type || 'ed25519';
+
     assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
 
     this._pairs = new Pairs();
-    this._type = options.type as KeyringPairType;
+    this._type = options.type;
 
     setAddressPrefix(isNumber(options.addressPrefix) ? options.addressPrefix : 42);
   }
@@ -43,6 +45,20 @@ export default class Keyring implements KeyringInstance {
   decodeAddress = decodeAddress;
   encodeAddress = encodeAddress;
   setAddressPrefix = setAddressPrefix;
+
+  /**
+   * @description True for Ed25519 keyring
+   */
+  get isEd25519 (): boolean {
+    return this.type === 'ed25519';
+  }
+
+  /**
+   * @description True for Ed25519 keyring
+   */
+  get isSr25519 (): boolean {
+    return this.type === 'sr25519';
+  }
 
   /**
    * @description retrieve the pairs (alias for getPairs)
@@ -119,7 +135,7 @@ export default class Keyring implements KeyringInstance {
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
   addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeyringPairType = this.type): KeyringPair {
-    const keypair = type === 'sr25519'
+    const keypair = this.isSr25519
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
 
