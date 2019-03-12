@@ -1,3 +1,7 @@
+# 0.36.1
+
+- Add `fromUri` to keyring along with hard & soft key derivation.
+
 # 0.35.1
 
 - Remove NodeJs-only `syncify` function, not exported by the package (with binary dependency for Node)
