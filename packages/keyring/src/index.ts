@@ -4,8 +4,8 @@
 
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions, KeyringPairType } from './types';
 
-import { assert, hexToU8a, isNumber } from '@polkadot/util/index';
-import { mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed } from '@polkadot/util-crypto/index';
+import { assert, hexToU8a, isNumber, isHex, stringToU8a } from '@polkadot/util/index';
+import { keyExtract, mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, mnemonicToMiniSecret, keyFromPath } from '@polkadot/util-crypto/index';
 
 import { decodeAddress, encodeAddress, setAddressPrefix } from './address';
 import createPair from './pair';
@@ -125,6 +125,31 @@ export default class Keyring implements KeyringInstance {
    */
   addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta = {}, type: KeyringPairType = this.type): KeyringPair {
     return this.addFromSeed(mnemonicToSeed(mnemonic), meta, type);
+  }
+
+  /**
+   * @name addFromUri
+   * @summary Creates an account via an suri
+   * @description Extracts the phrase, path and password from a SURI format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed). The secret can be a hex string, mnemonic phrase or a string (to be padded)
+   */
+  addFromUri (suri: string, meta: KeyringPair$Meta = {}, type: KeyringPairType = this.type): KeyringPair {
+    const { password, phrase, path } = keyExtract(suri);
+    let seed;
+
+    if (isHex(phrase, 256)) {
+      seed = hexToU8a(phrase);
+    } else {
+      const str = phrase as string;
+      const parts = str.split(' ');
+
+      if ([12, 15, 18, 21, 24].includes(parts.length)) {
+        seed = mnemonicToMiniSecret(phrase, password);
+      } else {
+        seed = stringToU8a(str.padEnd(32));
+      }
+    }
+
+    return this.addFromSeed(keyFromPath(seed, path), meta, type);
   }
 
   /**

@@ -13,18 +13,21 @@ import decode from './decode';
 import encode from './encode';
 import toJson from './toJson';
 
+const isSr25519 = (type: KeyringPairType): boolean =>
+  type === 'sr25519';
+
 const fromSeed = (type: KeyringPairType, seed: Uint8Array) =>
-  type === 'sr25519'
+  isSr25519(type)
     ? schnorrkelFromSeed(seed)
     : naclFromSeed(seed);
 
 const sign = (type: KeyringPairType, message: Uint8Array, pair: Partial<KeypairType>) =>
-  type === 'sr25519'
+  isSr25519(type)
     ? schnorrkelSign(message, pair)
     : naclSign(message, pair);
 
 const verify = (type: KeyringPairType, message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array) =>
-  type === 'sr25519'
+  isSr25519(type)
     ? schnorrkelVerify(message, signature, publicKey)
     : naclVerify(message, signature, publicKey);
 
