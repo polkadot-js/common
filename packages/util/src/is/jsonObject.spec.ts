@@ -12,7 +12,6 @@ const jsonObject = `{
   }`;
 
 describe('isJsonObject', () => {
-
   it('returns true on empty objects', () => {
     expect(
       isJsonObject({})

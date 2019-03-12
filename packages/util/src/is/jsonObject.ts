@@ -30,14 +30,16 @@ type ObjectIndexed = {
  * isJsonObject('not an object'); // => false
  * ```
  */
+
 export default function isJsonObject (value: any): value is ObjectIndexed {
 
   value = typeof value !== 'string'
-  ? JSON.stringify(value)
-  : value;
+    ? JSON.stringify(value)
+    : value;
 
   try {
     value = JSON.parse(value);
+
     return (typeof value === 'object' && value !== null);
   } catch (e) {
     return false;
