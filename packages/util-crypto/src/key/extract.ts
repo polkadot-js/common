@@ -16,9 +16,9 @@ const RE_CAPTURE = /^(\w+( \w+)*)((\/\/?[^\/]+)*)(\/\/\/(.*))?$/;
 const RE_JUNCTION = /\/(\/?)([^/]+)/g;
 
 /**
- * @description Manages a suri format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed).
+ * @description Extracts the phrase, path and password from a SURI format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed).
  */
-export default function keyDerive (suri: string): DeriveResult {
+export default function keyExtract (suri: string): DeriveResult {
   const matches = suri.match(RE_CAPTURE);
 
   assert(!isNull(matches), `Unable to match '${suri}' to a secret URI`);
@@ -26,7 +26,7 @@ export default function keyDerive (suri: string): DeriveResult {
   const [, phrase, , junctions, , , password] = matches as Array<any>;
   const parts = junctions.match(RE_JUNCTION);
   const path: Array<DeriveJunction> = [];
-  
+
   if (parts) {
     parts.forEach((value: string) => {
       path.push(DeriveJunction.from(value.substr(1)));

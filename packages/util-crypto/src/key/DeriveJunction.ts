@@ -71,6 +71,7 @@ export default class DeriveJunction {
       return this.soft(blake2AsU8a(value));
     }
 
+    this._data.fill(0);
     this._data.set(value, 0);
 
     return this;
