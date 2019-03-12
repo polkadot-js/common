@@ -2,26 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Meta } from './types';
-
-import { stringToU8a } from '@polkadot/util/index';
-import { keyExtract, keyFromPath, mnemonicToMiniSecret } from '@polkadot/util-crypto/index';
+import { KeyringInstance, KeyringOptions } from './types';
 
 import Keyring from './index';
 
 const DEV_PHRASE = 'bottom drive obey lake curtain smoke basket hold race lonely fit walk';
 const SEEDS = ['Alice', 'Bob', 'Charlie', 'Dave', 'Eve', 'Ferdie'];
-
-function generateHdKd (keyring: KeyringInstance, entry: string, meta: KeyringPair$Meta): KeyringPair {
-  const { password, path, phrase } = keyExtract(`${DEV_PHRASE}//${entry}`);
-  const seed = mnemonicToMiniSecret(phrase, password);
-
-  return keyring.addFromSeed(keyFromPath(seed, path), meta);
-}
-
-function generateLegacy (keyring: KeyringInstance, entry: string, meta: KeyringPair$Meta): KeyringPair {
-  return keyring.addFromSeed(stringToU8a(entry.padEnd(32)), meta);
-}
 
 /**
  * @name testKeyring
@@ -33,14 +19,13 @@ export default function testKeyring (options?: KeyringOptions, isHdKd: boolean =
   const keyring = new Keyring(options);
 
   SEEDS.forEach((entry) => {
-    const name = entry.toLowerCase();
-    const meta = {
+    const phrase = isHdKd
+      ? `${DEV_PHRASE}//${entry}`
+      : entry;
+    const pair = keyring.addFromUri(phrase, {
       isTesting: true,
-      name
-    };
-    const pair = isHdKd
-      ? generateHdKd(keyring, entry, meta)
-      : generateLegacy(keyring, entry, meta);
+      name: entry.toLowerCase()
+    });
 
     pair.lock = () => {
       // we don't have lock/unlock functionality here

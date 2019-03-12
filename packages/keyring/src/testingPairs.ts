@@ -18,9 +18,8 @@ export default function testKeyringPairs (options?: KeyringOptions, isHdKd: bool
   return pairs.reduce((result, pair) => {
     const { name } = pair.getMeta();
 
-    // @ts-ignore dunno what the complaint here is about...
     result[name as string] = pair;
 
     return result;
-  }, { 'nobody': nobody() });
+  }, { 'nobody': nobody() } as TestKeyringMap);
 }

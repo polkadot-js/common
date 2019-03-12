@@ -9,6 +9,7 @@ import addressEncode from '../address/encode';
 const publicKey = new Uint8Array(32);
 const address = addressEncode(publicKey);
 const meta = {
+  isTesting: true,
   name: 'nobody'
 };
 const json: KeyringPair$Json = {

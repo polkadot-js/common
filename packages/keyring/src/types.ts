@@ -55,6 +55,8 @@ export interface KeyringPairs {
 }
 
 export interface KeyringInstance {
+  readonly isEd25519: boolean;
+  readonly isSr25519: boolean;
   readonly pairs: Array<KeyringPair>;
   readonly publicKeys: Array<Uint8Array>;
   readonly type: KeyringPairType;
@@ -65,9 +67,10 @@ export interface KeyringInstance {
 
   addPair (pair: KeyringPair): KeyringPair;
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, encoded?: Uint8Array | null, type?: KeyringPairType): KeyringPair;
+  addFromJson (pair: KeyringPair$Json): KeyringPair;
   addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
   addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
-  addFromJson (pair: KeyringPair$Json): KeyringPair;
+  addFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeyringPairType): KeyringPair;
   getPair (address: string | Uint8Array): KeyringPair;
   getPairs (): Array<KeyringPair>;
   getPublicKeys (): Array<Uint8Array>;

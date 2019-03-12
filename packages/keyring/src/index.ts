@@ -128,6 +128,21 @@ export default class Keyring implements KeyringInstance {
   }
 
   /**
+   * @name addFromSeed
+   * @summary Stores an account, given seed data, as a Key/Value (public key, pair) in Keyring Pair Dictionary
+   * @description Stores in a keyring pair dictionary the public key of the pair as a key and the pair as the associated value.
+   * Allows user to provide the account seed as an argument, and then generates a keyring pair from it that it passes to
+   * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
+   */
+  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeyringPairType = this.type): KeyringPair {
+    const keypair = this.isSr25519
+      ? schnorrkelFromSeed(seed)
+      : naclFromSeed(seed);
+
+    return this.addPair(createPair(type, { ...keypair, seed }, meta, null));
+  }
+
+  /**
    * @name addFromUri
    * @summary Creates an account via an suri
    * @description Extracts the phrase, path and password from a SURI format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed). The secret can be a hex string, mnemonic phrase or a string (to be padded)
@@ -150,21 +165,6 @@ export default class Keyring implements KeyringInstance {
     }
 
     return this.addFromSeed(keyFromPath(seed, path), meta, type);
-  }
-
-  /**
-   * @name addFromSeed
-   * @summary Stores an account, given seed data, as a Key/Value (public key, pair) in Keyring Pair Dictionary
-   * @description Stores in a keyring pair dictionary the public key of the pair as a key and the pair as the associated value.
-   * Allows user to provide the account seed as an argument, and then generates a keyring pair from it that it passes to
-   * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
-   */
-  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeyringPairType = this.type): KeyringPair {
-    const keypair = this.isSr25519
-      ? schnorrkelFromSeed(seed)
-      : naclFromSeed(seed);
-
-    return this.addPair(createPair(type, { ...keypair, seed }, meta, null));
   }
 
   /**
