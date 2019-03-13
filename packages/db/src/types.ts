@@ -34,5 +34,6 @@ export interface BaseDb {
 }
 
 export interface TxDb extends BaseDb {
+  transactionAsync <T> (fn: () => Promise<T>): Promise<T>;
   transaction <T> (fn: () => T): T;
 }

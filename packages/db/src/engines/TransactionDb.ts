@@ -26,6 +26,28 @@ export default class TransactionDb implements TxDb {
     this.txStarted = false;
   }
 
+  async transactionAsync<T> (fn: () => Promise<T>): Promise<T> {
+    l.debug(() => ['transactionAsync']);
+
+    try {
+      this.createTx();
+
+      const result = await fn();
+
+      if (result) {
+        this.commitTx();
+      } else {
+        this.revertTx();
+      }
+
+      return result;
+    } catch (error) {
+      this.revertTx();
+
+      throw error;
+    }
+  }
+
   transaction<T> (fn: () => T): T {
     l.debug(() => ['transaction']);
 
