@@ -13,7 +13,7 @@ type DeriveResult = {
 };
 
 const RE_CAPTURE = /^(\w+( \w+)*)((\/\/?[^\/]+)*)(\/\/\/(.*))?$/;
-const RE_JUNCTION = /\/(\/?)([^/]+)/g;
+const RE_JUNCTION = /\/(\/?)([^\/]+)/g;
 
 /**
  * @description Extracts the phrase, path and password from a SURI format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed).

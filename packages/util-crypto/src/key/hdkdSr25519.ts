@@ -10,8 +10,8 @@ import DeriveJunction from './DeriveJunction';
 const HDKD = stringToU8a('SchnorrRistrettoHDKD');
 
 // FIXME This should pull in from schnorrkel and do the magic there
-export default function keyHdkdSr25519 (seed: Uint8Array, { data }: DeriveJunction): Uint8Array {
+export default function keyHdkdSr25519 (seed: Uint8Array, { chainCode }: DeriveJunction): Uint8Array {
   return blake2AsU8a(
-    u8aConcat(HDKD, seed, data)
+    u8aConcat(HDKD, seed, chainCode)
   );
 }

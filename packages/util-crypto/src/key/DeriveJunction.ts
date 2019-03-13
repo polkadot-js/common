@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import BN from 'bn.js';
-import { bnToHex, hexToU8a, isBn, isHex, isNumber, isString, stringToU8a } from '@polkadot/util/index';
+import { bnToHex, compactAddLength, hexToU8a, isBn, isHex, isNumber, isString, stringToU8a } from '@polkadot/util/index';
 
 import blake2AsU8a from '../blake2/asU8a';
 
@@ -16,7 +16,7 @@ const BN_OPTIONS = {
 };
 
 export default class DeriveJunction {
-  private _data: Uint8Array = new Uint8Array(32);
+  private _chainCode: Uint8Array = new Uint8Array(32);
   private _isHard: boolean = false;
 
   static from (value: string): DeriveJunction {
@@ -36,8 +36,8 @@ export default class DeriveJunction {
       : result;
   }
 
-  get data (): Uint8Array {
-    return this._data;
+  get chainCode (): Uint8Array {
+    return this._chainCode;
   }
 
   get isHard (): boolean {
@@ -64,15 +64,15 @@ export default class DeriveJunction {
     } else if (isString(value)) {
       return isHex(value)
         ? this.soft(hexToU8a(value))
-        : this.soft(stringToU8a(value));
+        : this.soft(compactAddLength(stringToU8a(value)));
     }
 
     if (value.length > JUNCTION_ID_LEN) {
       return this.soft(blake2AsU8a(value));
     }
 
-    this._data.fill(0);
-    this._data.set(value, 0);
+    this._chainCode.fill(0);
+    this._chainCode.set(value, 0);
 
     return this;
   }
