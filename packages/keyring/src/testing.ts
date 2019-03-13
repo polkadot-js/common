@@ -25,7 +25,7 @@ export default function testKeyring (options?: KeyringOptions, isHdKd: boolean =
     const pair = keyring.addFromUri(phrase, {
       isTesting: true,
       name: entry.toLowerCase()
-    });
+    }, isHdKd ? 'sr25519' : 'ed25519');
 
     pair.lock = () => {
       // we don't have lock/unlock functionality here
