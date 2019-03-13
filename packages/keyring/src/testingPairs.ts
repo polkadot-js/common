@@ -11,16 +11,15 @@ type TestKeyringMap = {
   [index: string]: KeyringPair
 };
 
-export default function testKeyringPairs (options?: KeyringOptions): TestKeyringMap {
-  const keyring = createKeyring(options);
+export default function testKeyringPairs (options?: KeyringOptions, isHdKd: boolean = false): TestKeyringMap {
+  const keyring = createKeyring(options, isHdKd);
   const pairs = keyring.getPairs();
 
   return pairs.reduce((result, pair) => {
     const { name } = pair.getMeta();
 
-    // @ts-ignore dunno what the complaint here is about...
     result[name as string] = pair;
 
     return result;
-  }, { 'nobody': nobody() });
+  }, { 'nobody': nobody() } as TestKeyringMap);
 }

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeypairType } from '../../types';
+import { Keypair } from '../../types';
 
 import { stringToU8a } from '@polkadot/util/index';
 
@@ -23,7 +23,7 @@ import fromSeed from './fromSeed';
  * naclKeypairFromString('test'); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export default function naclKeypairFromString (value: string): KeypairType {
+export default function naclKeypairFromString (value: string): Keypair {
   return fromSeed(
     blake2AsU8a(
       stringToU8a(value),

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { KeypairType } from '../../types';
+import { Keypair } from '../../types';
 
 import nacl from 'tweetnacl';
 
@@ -20,6 +20,6 @@ import nacl from 'tweetnacl';
  * naclKeypairFromRandom(); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export default function naclKeypairFromRandom (): KeypairType {
+export default function naclKeypairFromRandom (): Keypair {
   return nacl.sign.keyPair();
 }

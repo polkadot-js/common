@@ -2,10 +2,26 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import testingPairs from './testingPairs';
+
 describe('testing', () => {
   it('creates without failing', () => {
     expect(
-      require('./testingPairs')
-    ).toBeDefined();
+      Object.keys(testingPairs())
+    ).toHaveLength(1 + 6);
+  });
+
+  describe('ed25519', () => {
+    it('has the correct address for Alice (non-HDKD)', () => {
+      expect(
+        testingPairs({ type: 'ed25519' }, false).alice.address()
+      ).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaDtZ');
+    });
+
+    it('has the correct address for Alice (HDKD)', () => {
+      expect(
+        testingPairs({ type: 'ed25519' }, true).alice.address()
+      ).toEqual('5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TmTd');
+    });
   });
 });

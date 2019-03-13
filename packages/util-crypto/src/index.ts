@@ -6,6 +6,7 @@ import { schnorrkelWaitReady } from './schnorrkel';
 
 export * from './blake2';
 export * from './keccak';
+export * from './key';
 export * from './mnemonic';
 export * from './nacl';
 export * from './random';
