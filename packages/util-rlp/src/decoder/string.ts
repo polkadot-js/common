@@ -4,7 +4,7 @@
 
 import { DecodeFunc, DecodeOutput } from './types';
 
-import { assert } from '@polkadot/util/index';
+import { assert } from '@polkadot/util';
 
 export default function decodeString (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
   const firstByte = input[0];

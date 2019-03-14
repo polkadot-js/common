@@ -2,10 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { u8aToHex } from '@polkadot/util/index';
+import { u8aToHex } from '@polkadot/util';
 
 import testdata, { TestData } from '../../trie-hash/test/data';
-import Trie from './index';
+import Trie from '.';
 
 describe('substrate tests', () => {
   let trie: Trie;

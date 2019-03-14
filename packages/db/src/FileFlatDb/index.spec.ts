@@ -6,7 +6,7 @@ import mkdirp from 'mkdirp';
 import path from 'path';
 import rimraf from 'rimraf';
 
-import FileFlatDb from './index';
+import FileFlatDb from '.';
 
 const KEY_A = new Uint8Array([
   0x10, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

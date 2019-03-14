@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { addNibblesTerminator, encodeNibbles } from '@polkadot/trie-codec/nibbles';
-import { isNull } from '@polkadot/util/index';
+import { isNull } from '@polkadot/util';
 
 import { EncodedPath } from '../types';
 

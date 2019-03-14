@@ -4,7 +4,7 @@
 
 import { DecodeFunc, DecodeOutput } from './types';
 
-import { assert } from '@polkadot/util/index';
+import { assert } from '@polkadot/util';
 
 import decodeListLong from './listLong';
 import decodeListShort from './listShort';

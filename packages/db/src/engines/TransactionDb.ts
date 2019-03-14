@@ -4,7 +4,7 @@
 
 import { BaseDb, TxDb, ProgressCb } from '../types';
 
-import { assert, isNull, logger } from '@polkadot/util/index';
+import { assert, isNull, logger } from '@polkadot/util';
 
 type Overlay = {
   [index: string]: {
@@ -24,6 +24,28 @@ export default class TransactionDb implements TxDb {
     this.backing = backing;
     this.txOverlay = {};
     this.txStarted = false;
+  }
+
+  async transactionAsync<T> (fn: () => Promise<T>): Promise<T> {
+    l.debug(() => ['transactionAsync']);
+
+    try {
+      this.createTx();
+
+      const result = await fn();
+
+      if (result) {
+        this.commitTx();
+      } else {
+        this.revertTx();
+      }
+
+      return result;
+    } catch (error) {
+      this.revertTx();
+
+      throw error;
+    }
   }
 
   transaction<T> (fn: () => T): T {

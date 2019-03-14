@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { xxhash64AsRaw } from './index';
+import { xxhash64AsRaw } from '.';
 
 describe('xxhash64AsRaw', () => {
   it('creates the correct non-prefixed hex output', () => {

@@ -4,7 +4,7 @@
 
 import { BaseDb, BaseDbOptions, ProgressCb } from '../types';
 
-import { logger } from '@polkadot/util/index';
+import { logger } from '@polkadot/util';
 
 type Storage = {
   [index: string]: Uint8Array

@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import BN from 'bn.js';
-import { hexToBn } from '@polkadot/util/index';
+import { hexToBn } from '@polkadot/util';
 
 import randomAsHex from './asHex';
 

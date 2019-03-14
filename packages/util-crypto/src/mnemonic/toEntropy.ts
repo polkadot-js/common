@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { mnemonicToEntropy } from 'bip39';
-import { hexAddPrefix, hexToU8a } from '@polkadot/util/index';
+import { hexAddPrefix, hexToU8a } from '@polkadot/util';
 
 export default function toEntropy (mnemonic: string): Uint8Array {
   return hexToU8a(

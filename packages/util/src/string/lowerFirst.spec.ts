@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { stringLowerFirst } from './index';
+import { stringLowerFirst } from '.';
 
 describe('stringLowerFirst', () => {
   it("lowers the first letter if it's a capital letter", () => {

@@ -4,7 +4,7 @@
 
 import BN from 'bn.js';
 
-import { isBn } from './index';
+import { isBn } from '.';
 
 describe('isBN', () => {
   it('returns true when a BN value', () => {

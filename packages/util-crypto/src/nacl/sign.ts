@@ -5,7 +5,7 @@
 import { Keypair } from '../types';
 
 import nacl from 'tweetnacl';
-import { assert } from '@polkadot/util/index';
+import { assert } from '@polkadot/util';
 
 /**
  * @name naclSign

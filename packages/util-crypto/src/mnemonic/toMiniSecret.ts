@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { pbkdf2Sync } from 'pbkdf2';
-import { bufferToU8a, stringToU8a, u8aToBuffer } from '@polkadot/util/index';
+import { bufferToU8a, stringToU8a, u8aToBuffer } from '@polkadot/util';
 
 import toEntropy from './toEntropy';
 

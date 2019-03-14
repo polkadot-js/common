@@ -4,7 +4,7 @@
 
 import { TriePair } from '../src/types';
 
-import { hexToU8a, stringToU8a } from '@polkadot/util/index';
+import { hexToU8a, stringToU8a } from '@polkadot/util';
 
 export type TestData = {
   desc: string,

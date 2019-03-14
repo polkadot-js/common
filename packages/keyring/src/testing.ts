@@ -4,7 +4,7 @@
 
 import { KeyringInstance, KeyringOptions } from './types';
 
-import Keyring from './index';
+import Keyring from '.';
 
 const DEV_PHRASE = 'bottom drive obey lake curtain smoke basket hold race lonely fit walk';
 const SEEDS = ['Alice', 'Bob', 'Charlie', 'Dave', 'Eve', 'Ferdie'];

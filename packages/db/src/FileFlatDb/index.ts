@@ -7,7 +7,7 @@ import { Key, NibbleBuffer, Value } from './types';
 
 import fs from 'fs';
 import path from 'path';
-import { logger } from '@polkadot/util/index';
+import { logger } from '@polkadot/util';
 
 import defaults from './defaults';
 import Compact from './Compact';

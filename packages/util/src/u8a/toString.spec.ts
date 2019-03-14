@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { u8aToString } from '../index';
+import { u8aToString } from '..';
 
 describe('u8aToString', () => {
   it('decodes to an empty string for undefined', () => {

@@ -4,8 +4,8 @@
 
 import { Codec } from '@polkadot/trie-codec/types';
 
-import { blake2AsU8a } from '@polkadot/util-crypto/index';
-import { decode, encode } from '@polkadot/util-rlp/index';
+import { blake2AsU8a } from '@polkadot/util-crypto';
+import { decode, encode } from '@polkadot/util-rlp';
 
 const codec: Codec = {
   decode,

@@ -4,7 +4,7 @@
 
 import { Codec } from '@polkadot/trie-codec/types';
 
-import { compactToU8a } from '@polkadot/util/index';
+import { compactToU8a } from '@polkadot/util';
 
 import { DEFAULT_CODEC } from './defaults';
 import trieRoot from './trieRoot';
