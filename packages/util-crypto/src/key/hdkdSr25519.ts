@@ -2,16 +2,22 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { stringToU8a, u8aConcat } from '@polkadot/util';
+import { Keypair } from '../types';
 
-import blake2AsU8a from '../blake2/asU8a';
+import schnorrkelKeypairFromSeed from '../schnorrkel/keypair/fromSeed';
+import schnorrkelDerivePrivate from '../schnorrkel/derivePrivate';
+import schnorrkelDerivePublic from '../schnorrkel/derivePublic';
 import DeriveJunction from './DeriveJunction';
 
-const HDKD = stringToU8a('SchnorrRistrettoHDKD');
+export default function keyHdkdSr25519 ({ secretKey, publicKey }: Keypair, { chainCode, isSoft }: DeriveJunction): Keypair {
+  if (isSoft) {
+    return {
+      publicKey: schnorrkelDerivePublic(publicKey, chainCode),
+      secretKey
+    };
+  }
 
-// FIXME This should pull in from schnorrkel and do the magic there
-export default function keyHdkdSr25519 (seed: Uint8Array, { chainCode }: DeriveJunction): Uint8Array {
-  return blake2AsU8a(
-    u8aConcat(HDKD, seed, chainCode)
+  return schnorrkelKeypairFromSeed(
+    schnorrkelDerivePrivate(secretKey, chainCode)
   );
 }
