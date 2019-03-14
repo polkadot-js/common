@@ -4,7 +4,7 @@
 
 import hexToU8a from '@polkadot/util/hex/toU8a';
 
-import { blake2bAsHex } from './index';
+import { blake2bAsHex } from '.';
 
 describe('blake2bAsHex', () => {
   it('creates the correct hash', () => {

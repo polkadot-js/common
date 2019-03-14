@@ -4,7 +4,7 @@
 
 import { Keypair } from '../types';
 
-import { assert } from '@polkadot/util/index';
+import { assert } from '@polkadot/util';
 
 import schnorrkel from '@polkadot/schnorrkel-js';
 

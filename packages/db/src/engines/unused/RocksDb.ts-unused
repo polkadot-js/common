@@ -14,7 +14,7 @@ import rocksdb, { RocksDb } from 'rocksdb-node';
 import mkdirp from 'mkdirp';
 import path from 'path';
 // import snappy from 'snappy';
-import { bufferToU8a, logger, u8aToBuffer, u8aToHex } from '@polkadot/util/index';
+import { bufferToU8a, logger, u8aToBuffer, u8aToHex } from '@polkadot/util';
 
 const l = logger('db/rocksdb');
 

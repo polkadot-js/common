@@ -4,7 +4,7 @@
 
 import { Keypair } from '../../types';
 
-import { naclKeypairFromRandom } from '../index';
+import { naclKeypairFromRandom } from '..';
 
 describe('naclKeypairFromRandom', () => {
   let keypair: Keypair;

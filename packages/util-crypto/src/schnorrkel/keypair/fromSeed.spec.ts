@@ -4,10 +4,10 @@
 
 import '../test-polyfill';
 
-import { stringToU8a, u8aToHex } from '@polkadot/util/index';
+import { stringToU8a, u8aToHex } from '@polkadot/util';
 
 import { mnemonicToMiniSecret } from '../../mnemonic';
-import { schnorrkelKeypairFromSeed, schnorrkelWaitReady } from '../index';
+import { schnorrkelKeypairFromSeed, schnorrkelWaitReady } from '..';
 import tests from './testing';
 
 describe('schnorrkelKeypairFromSeed', () => {

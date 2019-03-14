@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { compactAddLength, u8aConcat, isU8a, logger } from '@polkadot/util/index';
+import { compactAddLength, u8aConcat, isU8a, logger } from '@polkadot/util';
 
 import NodeHeader from './NodeHeader';
 import { NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF, NODE_TYPE_NULL } from './constants';

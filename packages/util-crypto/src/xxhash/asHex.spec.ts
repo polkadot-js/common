@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { xxhashAsHex } from './index';
+import { xxhashAsHex } from '.';
 
 describe('xxhashAsHex', () => {
   it('returns a 64-bit value by default', () => {

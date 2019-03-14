@@ -5,7 +5,7 @@
 import { Codec } from '@polkadot/trie-codec/types';
 
 import { sharedPrefixLength } from '@polkadot/trie-codec/util';
-import { u8aConcat } from '@polkadot/util/index';
+import { u8aConcat } from '@polkadot/util';
 
 import { DEFAULT_CODEC, DEFAULT_STREAM } from './defaults';
 

@@ -4,10 +4,10 @@
 
 import '@polkadot/util-crypto/schnorrkel/test-polyfill';
 
-import { hexToU8a, stringToU8a } from '@polkadot/util/index';
-import { cryptoWaitReady } from '@polkadot/util-crypto/index';
+import { hexToU8a, stringToU8a } from '@polkadot/util';
+import { cryptoWaitReady } from '@polkadot/util-crypto';
 
-import Keyring from './index';
+import Keyring from '.';
 import setPrefix from './address/setPrefix';
 
 describe('keypair', () => {

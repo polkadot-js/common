@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { naclDecrypt, naclEncrypt } from './index';
+import { naclDecrypt, naclEncrypt } from '.';
 
 describe('naclDecrypt', () => {
   it('decrypts a encrypted message', () => {

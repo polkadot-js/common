@@ -4,10 +4,10 @@
 
 // From https://github.com/paritytech/substrate/wiki/Secret-URI-Test-Vectors
 
-import { u8aToHex } from '@polkadot/util/index';
-import { cryptoWaitReady } from '@polkadot/util-crypto/index';
+import { u8aToHex } from '@polkadot/util';
+import { cryptoWaitReady } from '@polkadot/util-crypto';
 
-import Keyring from './index';
+import Keyring from '.';
 
 const PHRASE = 'bottom drive obey lake curtain smoke basket hold race lonely fit walk';
 

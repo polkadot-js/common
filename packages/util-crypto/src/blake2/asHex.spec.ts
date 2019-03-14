@@ -4,7 +4,7 @@
 
 import hexToU8a from '@polkadot/util/hex/toU8a';
 
-import { blake2AsHex } from './index';
+import { blake2AsHex } from '.';
 
 describe('blake2AsHex', () => {
   it('returns a 64-bit value (specified)', () => {

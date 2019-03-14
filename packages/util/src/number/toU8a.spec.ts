@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { numberToU8a } from './index';
+import { numberToU8a } from '.';
 
 describe('numberToU8a', () => {
   it('converts 0 to empty', () => {

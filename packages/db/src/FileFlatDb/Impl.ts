@@ -5,7 +5,7 @@
 import { Key, NibbleBuffer, Slot, Value } from './types';
 
 import fs from 'fs';
-import { logger } from '@polkadot/util/index';
+import { logger } from '@polkadot/util';
 
 import Cache from './Cache';
 import defaults from './defaults';

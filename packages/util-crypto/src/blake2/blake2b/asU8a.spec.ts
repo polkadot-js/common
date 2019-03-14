@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { blake2bAsU8a } from './index';
+import { blake2bAsU8a } from '.';
 
 describe('blake2bAsU8a', () => {
   it('creates the correct hash (default length)', () => {

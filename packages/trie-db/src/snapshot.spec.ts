@@ -2,10 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { trieRoot } from '@polkadot/trie-hash/index';
-import { u8aToHex, u8aToU8a as toU8a } from '@polkadot/util/index';
+import { trieRoot } from '@polkadot/trie-hash';
+import { u8aToHex, u8aToU8a as toU8a } from '@polkadot/util';
 
-import Trie from './index';
+import Trie from '.';
 
 describe('snapshots', () => {
   let trie: Trie;

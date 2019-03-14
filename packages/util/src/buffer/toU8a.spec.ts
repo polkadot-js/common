@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { bufferToU8a } from './index';
+import { bufferToU8a } from '.';
 
 describe('bufferToU8a', () => {
   it('returns an empty buffer when null provided', () => {

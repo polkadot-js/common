@@ -2,8 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { alexander, driedDanta } from '@polkadot/chainspec/index';
-import { hexToU8a, u8aToHex } from '@polkadot/util/index';
+import { alexander, driedDanta } from '@polkadot/chainspec';
+import { hexToU8a, u8aToHex } from '@polkadot/util';
 
 import trieRoot from './trieRoot';
 

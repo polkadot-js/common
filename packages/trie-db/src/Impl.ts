@@ -6,9 +6,9 @@ import { TxDb, ProgressCb } from '@polkadot/db/types';
 import { Codec } from '@polkadot/trie-codec/types';
 import { EncodedPath, TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
 
-import substrateCodec from '@polkadot/trie-codec/index';
+import substrateCodec from '@polkadot/trie-codec';
 import { decodeNibbles, encodeNibbles, extractNodeKey } from '@polkadot/trie-codec/nibbles';
-import { isNull, logger , u8aConcat, u8aToHex } from '@polkadot/util/index';
+import { isNull, logger , u8aConcat, u8aToHex } from '@polkadot/util';
 
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';
 import { keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';

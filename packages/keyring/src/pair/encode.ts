@@ -4,8 +4,8 @@
 
 import { PairInfo } from './types';
 
-import { stringToU8a, u8aConcat, u8aFixLength, assert } from '@polkadot/util/index';
-import { naclEncrypt } from '@polkadot/util-crypto/index';
+import { stringToU8a, u8aConcat, u8aFixLength, assert } from '@polkadot/util';
+import { naclEncrypt } from '@polkadot/util-crypto';
 
 import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
 

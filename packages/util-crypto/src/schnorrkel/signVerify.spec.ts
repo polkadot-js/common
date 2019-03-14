@@ -4,7 +4,7 @@
 
 import './test-polyfill';
 
-import { stringToU8a } from '@polkadot/util/index';
+import { stringToU8a } from '@polkadot/util';
 
 import randomAsU8a from '../random/asU8a';
 import pairFromSeed from './keypair/fromSeed';

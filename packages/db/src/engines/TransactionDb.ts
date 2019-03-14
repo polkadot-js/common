@@ -4,7 +4,7 @@
 
 import { BaseDb, TxDb, ProgressCb } from '../types';
 
-import { assert, isNull, logger } from '@polkadot/util/index';
+import { assert, isNull, logger } from '@polkadot/util';
 
 type Overlay = {
   [index: string]: {

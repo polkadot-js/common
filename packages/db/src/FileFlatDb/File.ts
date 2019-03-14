@@ -7,7 +7,7 @@ import { BaseDbOptions } from '../types';
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 import path from 'path';
-import { assert, isUndefined } from '@polkadot/util/index';
+import { assert, isUndefined } from '@polkadot/util';
 
 import Serialize from './Serialize';
 import defaults from './defaults';
