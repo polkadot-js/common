@@ -1,3 +1,7 @@
+# 0.37.1
+
+- Swap to publishing -beta.x on merge (non-breaking testing)
+
 # 0.36.1
 
 - Add `fromUri` to keyring along with hard & soft key derivation.
