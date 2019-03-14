@@ -6,7 +6,10 @@ import { KeyringInstance, KeyringOptions } from './types';
 
 import Keyring from '.';
 
-const DEV_PHRASE = 'bottom drive obey lake curtain smoke basket hold race lonely fit walk';
+// As per substrate
+// const DEV_PHRASE = 'bottom drive obey lake curtain smoke basket hold race lonely fit walk';
+// created from the above
+const DEV_SEED = '0xfac7959dbfe72f052e5a0c3c8d6530f202b02fd8f9f5ca3580ec8deb7797479e';
 const SEEDS = ['Alice', 'Bob', 'Charlie', 'Dave', 'Eve', 'Ferdie'];
 
 /**
@@ -20,7 +23,7 @@ export default function testKeyring (options?: KeyringOptions, isDerived: boolea
 
   SEEDS.forEach((entry) => {
     const phrase = isDerived
-      ? `${DEV_PHRASE}//${entry}`
+      ? `${DEV_SEED}//${entry}`
       : entry;
     const pair = keyring.addFromUri(phrase, {
       isTesting: true,
