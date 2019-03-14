@@ -97,8 +97,6 @@ export default function createPair (type: KeypairType, { publicKey, seed }: Pair
       sign(type, message, { publicKey, secretKey }),
     toJson: (passphrase?: string): KeyringPair$Json =>
       toJson(type, { meta, publicKey }, encode({ publicKey, seed }, passphrase), !!passphrase),
-    toType: (type: KeypairType): KeyringPair =>
-      createPair(type, { publicKey, seed }, meta, null),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       verify(type, message, signature, publicKey)
   };

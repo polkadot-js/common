@@ -4,7 +4,7 @@
 
 import testingPairs from '../testingPairs';
 
-const keyring = testingPairs({ type: 'ed25519' });
+const keyring = testingPairs({ type: 'ed25519' }, false);
 
 describe('decode', () => {
   it('fails when no data provided', () => {

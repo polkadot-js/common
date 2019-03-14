@@ -6,5 +6,6 @@ export { default as schnorrkelDerivePrivate } from './derivePrivate';
 export { default as schnorrkelDerivePublic } from './derivePublic';
 export { default as schnorrkelKeypairFromSeed } from './keypair/fromSeed';
 export { schnorrkelIsReady, default as schnorrkelWaitReady } from './ready';
+export { default as schnorrkelSecretFromSeed } from './secretFromSeed';
 export { default as schnorrkelSign } from './sign';
 export { default as schnorrkelVerify } from './verify';

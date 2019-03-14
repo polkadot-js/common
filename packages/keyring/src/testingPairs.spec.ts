@@ -10,7 +10,7 @@ describe('testing', () => {
     await cryptoWaitReady();
   });
 
-  it('creates without failing', () => {
+  it.skip('creates without failing', () => {
     expect(
       Object.keys(testingPairs())
     ).toHaveLength(1 + 6);

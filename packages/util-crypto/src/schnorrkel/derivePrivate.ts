@@ -10,6 +10,6 @@ const HDKD = compactAddLength(stringToU8a('SchnorrRistrettoHDKD'));
 
 export default function derivePrivate (secretKey: Uint8Array, chainCode: Uint8Array): Uint8Array {
   return blake2AsU8a(
-    u8aConcat(HDKD, secretKey, chainCode)
+    u8aConcat(HDKD, compactAddLength(secretKey), chainCode)
   );
 }

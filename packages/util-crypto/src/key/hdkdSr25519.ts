@@ -7,6 +7,7 @@ import { Seedpair } from '../types';
 import schnorrkelKeypairFromSeed from '../schnorrkel/keypair/fromSeed';
 import schnorrkelDerivePrivate from '../schnorrkel/derivePrivate';
 import schnorrkelDerivePublic from '../schnorrkel/derivePublic';
+import schnorrkelSecretFromSeed from '../schnorrkel/secretFromSeed';
 import DeriveJunction from './DeriveJunction';
 
 export default function keyHdkdSr25519 ({ seed, publicKey }: Seedpair, { chainCode, isSoft }: DeriveJunction): Seedpair {
@@ -17,7 +18,8 @@ export default function keyHdkdSr25519 ({ seed, publicKey }: Seedpair, { chainCo
     };
   }
 
-  const derived = schnorrkelDerivePrivate(seed, chainCode);
+  const secretKey = schnorrkelSecretFromSeed(seed);
+  const derived = schnorrkelDerivePrivate(secretKey, chainCode);
 
   return {
     publicKey: schnorrkelKeypairFromSeed(derived).publicKey,

@@ -42,7 +42,6 @@ export interface KeyringPair {
   setMeta: (meta: KeyringPair$Meta) => void;
   sign (message: Uint8Array): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;
-  toType (type: KeypairType): KeyringPair;
   verify (message: Uint8Array, signature: Uint8Array): boolean;
 }
 

@@ -4,7 +4,7 @@
 
 import testingPairs from '../testingPairs';
 
-const keyring = testingPairs({ type: 'ed25519' });
+const keyring = testingPairs({ type: 'ed25519' }, false);
 
 describe('toJson', () => {
   it('creates an unencoded output with no passphrase', () => {
