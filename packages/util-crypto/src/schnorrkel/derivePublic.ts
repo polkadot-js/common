@@ -5,5 +5,5 @@
 import schnorrkel from '@polkadot/schnorrkel-js';
 
 export default function derivePublic (publicKey: Uint8Array, chainCode: Uint8Array): Uint8Array {
-  return schnorrkel.derivePublicSimple(publicKey, chainCode);
+  return schnorrkel.softDerivePublic(publicKey, chainCode);
 }

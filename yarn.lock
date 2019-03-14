@@ -1429,10 +1429,10 @@
     typescript "^3.3.3333"
     vuepress "^1.0.0-alpha.40"
 
-"@polkadot/schnorrkel-js@^0.2.0-2":
-  version "0.2.0-2"
-  resolved "https://registry.yarnpkg.com/@polkadot/schnorrkel-js/-/schnorrkel-js-0.2.0-2.tgz#d6affb6df1c896da43caa1f08535008ff30ec922"
-  integrity sha512-qmRRPF4UPfUNiNsXhjra3WdZmgWpR449ZPMj/UH0vS7J/ZK2zGiYCYmScdbmOISHnnsI9NJR6sIR1CVuFARrCw==
+"@polkadot/schnorrkel-js@^0.2.0-3":
+  version "0.2.0-3"
+  resolved "https://registry.yarnpkg.com/@polkadot/schnorrkel-js/-/schnorrkel-js-0.2.0-3.tgz#17b8f49f6c3b60dc2f64dc98d664447881d5a100"
+  integrity sha512-D+ITK9rfYLWnrDtvFJSXUujmWbxIUeyjy75QY/Vf9V2lDRO1WhF6ttW6H2NRvlPxxY6Qc5jebLYBZ7Put7AIpA==
 
 "@polkadot/ts@^0.1.56":
   version "0.1.56"
