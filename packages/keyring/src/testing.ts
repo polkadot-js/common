@@ -15,17 +15,17 @@ const SEEDS = ['Alice', 'Bob', 'Charlie', 'Dave', 'Eve', 'Ferdie'];
  * @description The test accounts (i.e. alice, bob, dave, eve, ferdie)
  * are available on the dev chain and each test account is initialised with DOT funds.
  */
-export default function testKeyring (options?: KeyringOptions, isHdKd: boolean = false): KeyringInstance {
+export default function testKeyring (options?: KeyringOptions, isDerived: boolean = true): KeyringInstance {
   const keyring = new Keyring(options);
 
   SEEDS.forEach((entry) => {
-    const phrase = isHdKd
+    const phrase = isDerived
       ? `${DEV_PHRASE}//${entry}`
       : entry;
     const pair = keyring.addFromUri(phrase, {
       isTesting: true,
       name: entry.toLowerCase()
-    });
+    }, isDerived ? 'sr25519' : 'ed25519');
 
     pair.lock = () => {
       // we don't have lock/unlock functionality here

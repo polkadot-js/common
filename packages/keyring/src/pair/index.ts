@@ -66,10 +66,7 @@ export default function createPair (type: KeypairType, { publicKey, seed }: Pair
   let secretKey: Uint8Array | undefined;
 
   if (seed) {
-    const pair = fromSeed(type, seed);
-
-    publicKey = pair.publicKey;
-    secretKey = pair.secretKey;
+    secretKey = fromSeed(type, seed).secretKey;
   }
 
   return {
@@ -80,8 +77,7 @@ export default function createPair (type: KeypairType, { publicKey, seed }: Pair
       const decoded = decode(passphrase, _encoded || encoded);
 
       publicKey = decoded.publicKey;
-      seed = decoded.seed;
-      secretKey = fromSeed(type, seed).secretKey;
+      secretKey = fromSeed(type, decoded.seed).secretKey;
     },
     encodePkcs8: (passphrase?: string): Uint8Array =>
       encode({ publicKey, seed }, passphrase),
@@ -101,8 +97,6 @@ export default function createPair (type: KeypairType, { publicKey, seed }: Pair
       sign(type, message, { publicKey, secretKey }),
     toJson: (passphrase?: string): KeyringPair$Json =>
       toJson(type, { meta, publicKey }, encode({ publicKey, seed }, passphrase), !!passphrase),
-    toType: (type: KeypairType): KeyringPair =>
-      createPair(type, { publicKey, seed }, meta, null),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       verify(type, message, signature, publicKey)
   };

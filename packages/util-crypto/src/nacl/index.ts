@@ -5,8 +5,8 @@
 /**
  * @summary Implements [NaCl](http://nacl.cr.yp.to/) secret-key authenticated encryption, public-key authenticated encryption, hashing, and public-key signatures
  */
-
 export { default as naclDecrypt } from './decrypt';
+export { default as derivePrivate } from './derivePrivate';
 export { default as naclEncrypt } from './encrypt';
 export { default as naclKeypairFromRandom } from './keypair/fromRandom';
 export { default as naclKeypairFromSecret } from './keypair/fromSecret';

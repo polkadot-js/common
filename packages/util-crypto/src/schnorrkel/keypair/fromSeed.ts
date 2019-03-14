@@ -14,7 +14,7 @@ const PUB_LEN = 32;
  * @description Returns a object containing a `publicKey` & `secretKey` generated from the supplied seed.
  */
 export default function schnorrkelKeypairFromSeed (seed: Uint8Array): Keypair {
-  const full = schnorrkel.keypair_from_seed(seed);
+  const full = schnorrkel.keypairFromSeed(seed);
 
   return {
     publicKey: full.slice(SEC_LEN, SEC_LEN + PUB_LEN),

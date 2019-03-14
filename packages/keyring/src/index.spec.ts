@@ -11,6 +11,10 @@ import Keyring from '.';
 import setPrefix from './address/setPrefix';
 
 describe('keypair', () => {
+  beforeEach(async () => {
+    await cryptoWaitReady();
+  });
+
   describe('ed25519', () => {
     const publicKeyOne = new Uint8Array([47, 140, 97, 41, 216, 22, 207, 81, 195, 116, 188, 127, 8, 195, 230, 62, 209, 86, 207, 120, 174, 251, 74, 101, 80, 217, 123, 135, 153, 121, 119, 238]);
     const publicKeyTwo = new Uint8Array([215, 90, 152, 1, 130, 177, 10, 183, 213, 75, 254, 211, 201, 100, 7, 58, 14, 225, 114, 243, 218, 166, 35, 37, 175, 2, 26, 104, 247, 7, 81, 26]);
@@ -71,18 +75,6 @@ describe('keypair', () => {
 
       expect(pair.verify(MESSAGE, signature)).toBe(true);
     });
-
-    it('converts, signs and verifies', () => {
-      const MESSAGE = stringToU8a('this is a message');
-      const pair = keypair.getPair(publicKeyOne).toType('sr25519');
-      const signature = pair.sign(MESSAGE);
-
-      expect(pair.type).toBe('sr25519');
-      expect(pair.publicKey()).toEqual(
-        new Uint8Array([116, 28, 8, 160, 111, 65, 197, 150, 96, 143, 103, 116, 37, 155, 217, 4, 51, 4, 173, 250, 93, 62, 234, 98, 118, 11, 217, 190, 151, 99, 77, 99])
-      );
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
-    });
   });
 
   describe('sr25519', () => {
@@ -92,9 +84,7 @@ describe('keypair', () => {
     const seedTwo = hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60');
     let keypair: Keyring;
 
-    beforeEach(async () => {
-      await cryptoWaitReady();
-
+    beforeEach(() => {
       keypair = new Keyring({ type: 'sr25519' });
 
       keypair.addFromSeed(seedOne, {});
@@ -143,18 +133,6 @@ describe('keypair', () => {
       const pair = keypair.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE);
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
-    });
-
-    it('converts, signs and verifies', () => {
-      const MESSAGE = stringToU8a('this is a message');
-      const pair = keypair.getPair(publicKeyOne).toType('ed25519');
-      const signature = pair.sign(MESSAGE);
-
-      expect(pair.type).toBe('ed25519');
-      expect(pair.publicKey()).toEqual(
-        new Uint8Array([47, 140, 97, 41, 216, 22, 207, 81, 195, 116, 188, 127, 8, 195, 230, 62, 209, 86, 207, 120, 174, 251, 74, 101, 80, 217, 123, 135, 153, 121, 119, 238])
-      );
       expect(pair.verify(MESSAGE, signature)).toBe(true);
     });
   });

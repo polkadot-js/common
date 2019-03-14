@@ -7,4 +7,9 @@ export type Keypair = {
   secretKey: Uint8Array;
 };
 
+export type Seedpair = {
+  publicKey: Uint8Array;
+  seed: Uint8Array;
+};
+
 export type KeypairType = 'ed25519' | 'sr25519';

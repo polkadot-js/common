@@ -47,8 +47,6 @@ export default function everybody (): KeyringPair {
       new Uint8Array(64),
     toJson: (passphrase?: string): KeyringPair$Json =>
       json,
-    toType: (): KeyringPair =>
-      everybody(),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       false
   };

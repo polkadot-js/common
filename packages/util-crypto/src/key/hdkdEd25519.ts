@@ -2,17 +2,21 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { assert, compactAddLength, stringToU8a, u8aConcat } from '@polkadot/util';
+import { Seedpair } from '../types';
 
-import blake2AsU8a from '../blake2/asU8a';
+import { assert } from '@polkadot/util';
+
+import naclDerivePrivate from '../nacl/derivePrivate';
+import naclKeypairFromSeed from '../nacl/keypair/fromSeed';
 import DeriveJunction from './DeriveJunction';
 
-const HDKD = compactAddLength(stringToU8a('Ed25519HDKD'));
-
-export default function keyHdkdEd25519 (seed: Uint8Array, { chainCode, isHard }: DeriveJunction): Uint8Array {
+export default function keyHdkdEd25519 ({ seed }: Seedpair, { chainCode, isHard }: DeriveJunction): Seedpair {
   assert(isHard, 'A soft key was found in the path (and is unsupported)');
 
-  return blake2AsU8a(
-    u8aConcat(HDKD, seed, chainCode)
-  );
+  const derived = naclDerivePrivate(seed, chainCode);
+
+  return {
+    publicKey: naclKeypairFromSeed(derived).publicKey,
+    seed: derived
+  };
 }

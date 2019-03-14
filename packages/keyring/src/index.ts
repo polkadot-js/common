@@ -165,7 +165,13 @@ export default class Keyring implements KeyringInstance {
       }
     }
 
-    return this.addFromSeed(keyFromPath(seed, path, type), meta, type);
+    const { publicKey } = this.isSr25519
+      ? schnorrkelFromSeed(seed)
+      : naclFromSeed(seed);
+
+    return this.addPair(
+      createPair(type, keyFromPath({ publicKey, seed }, path, type), meta, null)
+    );
   }
 
   /**
