@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import secp256k1 from 'secp256k1';
-import { bufferToU8a, u8aToBuffer } from '@polkadot/util/index';
+import { bufferToU8a, u8aToBuffer } from '@polkadot/util';
 
 /**
  * @name secp256k1Recover

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { hexToU8a } from './index';
+import { hexToU8a } from '.';
 
 describe('hexToU8a', () => {
   it('returns an empty Uint8Array when null provided', () => {

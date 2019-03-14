@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { u8aConcat } from '@polkadot/util/index';
+import { u8aConcat } from '@polkadot/util';
 
 import { BRANCH_NODE_NO_VALUE, BRANCH_NODE_WITH_VALUE } from '../constants';
 import createValue from './createValue';

@@ -4,7 +4,7 @@
 
 import isFunction from '../is/function';
 
-import { bnFromHex } from './index';
+import { bnFromHex } from '.';
 
 describe('bnFromHex', () => {
   it('exists as a function', () => {

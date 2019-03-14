@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { u8aToBn } from './index';
+import { u8aToBn } from '.';
 
 describe('u8aToBn', () => {
   it('converts little-endian by default', () => {

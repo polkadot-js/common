@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the MPL-2.0 license. See the LICENSE file for details.
 
-import { hexToU8a, u8aToHex } from '@polkadot/util/index';
+import { hexToU8a, u8aToHex } from '@polkadot/util';
 
-import { decode, encode } from './index';
+import { decode, encode } from '.';
 
 import getTests from '../test/getTests';
 

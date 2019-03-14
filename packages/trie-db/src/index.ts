@@ -8,7 +8,7 @@ import { TrieDb, Node } from './types';
 
 import MemoryDb from '@polkadot/db/Memory';
 import { toNibbles } from '@polkadot/trie-codec/util';
-import { isNull, logger, u8aToHex } from '@polkadot/util/index';
+import { isNull, logger, u8aToHex } from '@polkadot/util';
 
 import Impl from './Impl';
 import constants from './constants';

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { isNull } from './index';
+import { isNull } from '.';
 
 describe('isNull', () => {
   it('returns true when a null value', () => {

@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import BN from 'bn.js';
-import { bnToHex, compactAddLength, hexToU8a, isBn, isHex, isNumber, isString, stringToU8a } from '@polkadot/util/index';
+import { bnToHex, compactAddLength, hexToU8a, isBn, isHex, isNumber, isString, stringToU8a } from '@polkadot/util';
 
 import blake2AsU8a from '../blake2/asU8a';
 

@@ -6,7 +6,7 @@ import { Codec } from '@polkadot/trie-codec/types';
 import { Node, NodeType, NodeNotEmpty } from '../types';
 
 import { decodeNibbles, isNibblesTerminated } from '@polkadot/trie-codec/nibbles';
-import { isNull } from '@polkadot/util/index';
+import { isNull } from '@polkadot/util';
 
 import { isBranchNode, isEmptyNode, isKvNode } from './is';
 

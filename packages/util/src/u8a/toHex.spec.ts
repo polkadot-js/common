@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { u8aToHex } from './index';
+import { u8aToHex } from '.';
 
 describe('u8aToHex', () => {
   it('returns empty as 0x', () => {

@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { mnemonicToSeed } from 'bip39';
-import { bufferToU8a } from '@polkadot/util/index';
+import { bufferToU8a } from '@polkadot/util';
 
 export default function toSecret (mnemonic: string): Uint8Array {
   return bufferToU8a(

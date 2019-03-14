@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the MPL-2.0 license. See the LICENSE file for details.
 
-import { assert, u8aToHex } from '@polkadot/util/index';
+import { assert, u8aToHex } from '@polkadot/util';
 
 import internalDecode from './decode';
 

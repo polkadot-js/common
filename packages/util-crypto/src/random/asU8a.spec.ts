@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { isU8a } from '@polkadot/util/index';
+import { isU8a } from '@polkadot/util';
 
-import { randomAsU8a } from './index';
+import { randomAsU8a } from '.';
 
 describe('randomAsU8a', () => {
   it('generates a Uint8Array', () => {

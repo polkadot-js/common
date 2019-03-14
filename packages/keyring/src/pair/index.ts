@@ -6,7 +6,7 @@ import { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
 import { PairInfo } from './types';
 
-import { naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto/index';
+import { naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto';
 
 import { encodeAddress } from '../address';
 import decode from './decode';

@@ -2,9 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { hexToU8a, stringToU8a } from '@polkadot/util/index';
+import { hexToU8a, stringToU8a } from '@polkadot/util';
 
-import { keccakAsU8a } from './index';
+import { keccakAsU8a } from '.';
 
 describe('keccakAsU8a', () => {
   const input = 'test value';

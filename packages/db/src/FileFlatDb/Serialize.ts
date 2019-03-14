@@ -6,7 +6,7 @@ import { NibbleBuffer } from './types';
 
 import snappy from 'snappy';
 import { toNibbles } from '@polkadot/trie-codec/util';
-import { assert, bufferToU8a, u8aToBuffer, u8aToHex } from '@polkadot/util/index';
+import { assert, bufferToU8a, u8aToBuffer, u8aToHex } from '@polkadot/util';
 
 import defaults from './defaults';
 

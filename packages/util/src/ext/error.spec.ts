@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import isError from '../is/error';
-import { ExtError } from './index';
+import { ExtError } from '.';
 
 describe('ExtError', () => {
   describe('constructor', () => {

@@ -7,7 +7,7 @@ import u8aToHex from '@polkadot/util/u8a/toHex';
 import toU8a from '@polkadot/util/u8a/toU8a';
 
 import ethereumCodec from './ethereumCodec';
-import Trie from './index';
+import Trie from '.';
 
 // FIXME These are not working, the trie-hash implementation is now substrate-specific
 describe.skip('Ethereum', () => {

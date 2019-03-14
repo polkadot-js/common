@@ -4,7 +4,7 @@
 
 import { EncodeFunc } from './types';
 
-import { u8aConcat } from '@polkadot/util/index';
+import { u8aConcat } from '@polkadot/util';
 
 import encodeLength from './length';
 

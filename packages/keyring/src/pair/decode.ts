@@ -2,8 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { assert, stringToU8a, u8aFixLength } from '@polkadot/util/index';
-import { naclDecrypt } from '@polkadot/util-crypto/index';
+import { assert, stringToU8a, u8aFixLength } from '@polkadot/util';
+import { naclDecrypt } from '@polkadot/util-crypto';
 import { PairInfo } from './types';
 
 import { KEY_LENGTH, NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';

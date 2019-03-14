@@ -4,7 +4,7 @@
 
 import BN from 'bn.js';
 
-import { bnToBn } from './index';
+import { bnToBn } from '.';
 
 describe('bnToBn', () => {
   it('converts null values to 0x00', () => {

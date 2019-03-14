@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the MPL-2.0 license. See the LICENSE file for details.
 
-import { assert, bnToU8a, bufferToU8a, hexHasPrefix, hexToU8a, isBn, isBuffer, isNull, isNumber, isString, isU8a, isUndefined, numberToU8a, stringToU8a } from '@polkadot/util/index';
+import { assert, bnToU8a, bufferToU8a, hexHasPrefix, hexToU8a, isBn, isBuffer, isNull, isNumber, isString, isU8a, isUndefined, numberToU8a, stringToU8a } from '@polkadot/util';
 
 type Encoder = {
   check: (value: any) => boolean,

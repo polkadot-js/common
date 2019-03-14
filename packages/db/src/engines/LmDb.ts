@@ -8,7 +8,7 @@ import fs from 'fs';
 import mkdirp from 'mkdirp';
 import lmdb from 'node-lmdb';
 import path from 'path';
-import { bufferToU8a, logger, u8aToBuffer } from '@polkadot/util/index';
+import { bufferToU8a, logger, u8aToBuffer } from '@polkadot/util';
 
 const GB = 1 * 1024 * 1024 * 1024;
 

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { promisify } from './index';
+import { promisify } from '.';
 
 describe('promisify', () => {
   it('handles functions with no parameters (resolve)', () => {

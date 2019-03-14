@@ -4,7 +4,7 @@
 
 import BN from 'bn.js';
 
-import { bnToHex } from './index';
+import { bnToHex } from '.';
 
 describe('bnToHex', () => {
   it('converts null values to 0x00', () => {

@@ -6,7 +6,7 @@ import { Codec } from '@polkadot/trie-codec/types';
 import { TriePair } from './types';
 
 import { toNibbles } from '@polkadot/trie-codec/util';
-import { u8aToHex } from '@polkadot/util/index';
+import { u8aToHex } from '@polkadot/util';
 
 import buildTrie from './buildTrie';
 import { DEFAULT_CODEC } from './defaults';
