@@ -80,7 +80,7 @@ export default function createPair (type: KeypairType, { publicKey, seed }: Pair
       secretKey = fromSeed(type, decoded.seed).secretKey;
     },
     encodePkcs8: (passphrase?: string): Uint8Array =>
-      encode({ publicKey, seed: seed }, passphrase),
+      encode({ publicKey, seed }, passphrase),
     getMeta: (): KeyringPair$Meta =>
       meta,
     isLocked: (): boolean =>
