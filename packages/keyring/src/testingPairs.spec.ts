@@ -11,21 +11,21 @@ describe('testingPairs', () => {
     await cryptoWaitReady();
   });
 
-  // it('creates without failing', () => {
-  //   expect(
-  //     Object.keys(testingPairs())
-  //   ).toHaveLength(1 + 6);
-  // });
+  it('creates without failing', () => {
+    expect(
+      Object.keys(testingPairs())
+    ).toHaveLength(1 + 6);
+  });
 
-  // it('has the correct address for Alice (non-HDKD)', () => {
-  //   expect(
-  //     testingPairs({ type: 'ed25519' }, false).alice.address()
-  //   ).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaDtZ');
-  // });
+  it('has the correct address for Alice (non-HDKD)', () => {
+    expect(
+      testingPairs({ type: 'ed25519' }, false).alice.address()
+    ).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaDtZ');
+  });
 
   it('has the correct address for Alice (HDKD)', () => {
     expect(
       testingPairs({ type: 'ed25519' }, true).alice.address()
-    ).toEqual('5E1pF3pJWjhkkcfSgsw8GbrVFt7FQJqJinWT8eKGDC5GH9xs');
+    ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKv3gB');
   });
 });

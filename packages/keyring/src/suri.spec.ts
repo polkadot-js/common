@@ -28,33 +28,33 @@ const TESTS = [
     uri: `${PHRASE}/foo`
   },
   {
-    pk: '0xfcd8958e6b3ad5c45e122b9a4bf1dffdb69d24a07af59d4bd9e27c532dc43057',
-    ss: '5HnEGDAaEp4bxa6tmtavBsNapAkZ5vyooHZZWM8KtAPVBHNu',
+    pk: '0x547d4a55642ec7ebadc0bd29b6e570b8c926059b3c0655d4948075e9a7e6f31e',
+    ss: '5DyV6fZuvPemWrUqBgWwTSgoV86w6xms3KhkFU6cQcWxTwuv',
     uri: `${PHRASE}//foo`
   },
   {
-    pk: '0x26f9e9c2c194787460145bdef9626823e7af240bdbb8e0989083476ea20ad035',
-    ss: '5Cwov7Jv4KNXUFtEUeC48uApBbDksafCLxqcXoywoS61jWum',
+    pk: '0x3841947ffcde6f5fef26fb68b59bb8665637e30e32ec2051f99cf6b9c674fe09',
+    ss: '5DLU27is5iViNopQb2KxsTyPx6j4vCu8X3sk3j3NNLkPCsLj',
     uri: `${PHRASE}//foo/bar`
   },
   {
-    pk: '0x6ce53bcbaae734fa07e740b9694a818d277e7cda436953c2326ca66500498373',
-    ss: '5EXV8Dn5WmuoZdjHRVGasRTCUnSjRKRPn8JYb2M2TpwfsNHK',
+    pk: '0xdc142f7476a7b0aa262aeccf207f1d18daa90762db393006741e8a31f39dbc53',
+    ss: '5H3GPTqDSpjkfDwbHy12PD6BWm8jvGSX4xYC8UMprHpTPhQg',
     uri: `${PHRASE}/foo//bar`
   },
   {
-    pk: '0x7a95f4e9fe84c8cde02da06f518805aa58dcb998820d0e7a43590d6bae6dd52b',
-    ss: '5EqSFCEzyLtviPMBdnMNF4NBNsJeHuXdS323Q6jpcVdBTzRs',
+    pk: '0xa2e56b06407a6d1e819d2fc33fa0ec604b29c2e868b70b3696bb049b8725934b',
+    ss: '5FkHmNgbg64MwStgCyDi2Uw3ufFu11mqQgmWT9uwK4Lgi3SE',
     uri: `${PHRASE}//foo/bar//42/69`
   },
   {
-    pk: '0x1e9a84784e7e90ca04feb76ca35c241884112257011ce75c6d82b1cff1b0b222',
-    ss: '5CkqCG9e974XQe2dbF9kUNvMonspAUu9wD8U6xCJ52gW8qYB',
+    pk: '0x0e0d24e3e1ff2c07f269c99e2e0df8681fda1851ac42fc846ca2daaa90cd8f14',
+    ss: '5CP8S23JBNXYNpJsL7ESPJBNnUZE6itcfM4EnDxEhaVEUAWL',
     uri: `${PHRASE}//foo/bar//42/69///password`
   },
   {
-    pk: '0x56443a3a9173a22315838b38410cfe9d67feadfcea71e4894e3f9fd15ec1117f',
-    ss: '5E1pF3pJWjhkkcfSgsw8GbrVFt7FQJqJinWT8eKGDC5GH9xs',
+    pk: '0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d',
+    ss: '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKv3gB',
     uri: `${PHRASE}//Alice`
   }
 ];
