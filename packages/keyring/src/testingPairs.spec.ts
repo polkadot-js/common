@@ -2,15 +2,16 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { cryptoWaitReady } from '@polkadot/util-crypto/index';
+import { cryptoWaitReady } from '@polkadot/util-crypto';
+
 import testingPairs from './testingPairs';
 
-describe('testing', () => {
+describe('testingPairs', () => {
   beforeEach(async () => {
     await cryptoWaitReady();
   });
 
-  it.skip('creates without failing', () => {
+  it('creates without failing', () => {
     expect(
       Object.keys(testingPairs())
     ).toHaveLength(1 + 6);
@@ -25,6 +26,6 @@ describe('testing', () => {
   it('has the correct address for Alice (HDKD)', () => {
     expect(
       testingPairs({ type: 'ed25519' }, true).alice.address()
-    ).toEqual('5CfbEZ9EvFsdZ2yHPt5BsSsGpM9mZPkahsZm6WeZE87mJKKT');
+    ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKv3gB');
   });
 });

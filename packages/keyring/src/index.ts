@@ -33,7 +33,7 @@ export default class Keyring implements KeyringInstance {
   private _type: KeypairType;
 
   constructor (options: KeyringOptions = {}) {
-    options.type = options.type || 'ed25519';
+    options.type = options.type || 'sr25519';
 
     assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
 
@@ -46,20 +46,6 @@ export default class Keyring implements KeyringInstance {
   decodeAddress = decodeAddress;
   encodeAddress = encodeAddress;
   setAddressPrefix = setAddressPrefix;
-
-  /**
-   * @description True for Ed25519 keyring
-   */
-  get isEd25519 (): boolean {
-    return this.type === 'ed25519';
-  }
-
-  /**
-   * @description True for Ed25519 keyring
-   */
-  get isSr25519 (): boolean {
-    return this.type === 'sr25519';
-  }
 
   /**
    * @description retrieve the pairs (alias for getPairs)
@@ -136,11 +122,11 @@ export default class Keyring implements KeyringInstance {
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
   addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
-    const keypair = this.isSr25519
+    const keypair = type === 'sr25519'
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
 
-    return this.addPair(createPair(type, { ...keypair, seed }, meta, null));
+    return this.addPair(createPair(type, keypair, meta, null));
   }
 
   /**
@@ -165,13 +151,12 @@ export default class Keyring implements KeyringInstance {
       }
     }
 
-    const { publicKey } = this.isSr25519
+    const keypair = type === 'sr25519'
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
+    const derived = keyFromPath(keypair, path, type);
 
-    return this.addPair(
-      createPair(type, keyFromPath({ publicKey, seed }, path, type), meta, null)
-    );
+    return this.addPair(createPair(type, derived, meta, null));
   }
 
   /**

@@ -62,13 +62,7 @@ const verify = (type: KeypairType, message: Uint8Array, signature: Uint8Array, p
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function createPair (type: KeypairType, { publicKey, seed }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
-  let secretKey: Uint8Array | undefined;
-
-  if (seed) {
-    secretKey = fromSeed(type, seed).secretKey;
-  }
-
+export default function createPair (type: KeypairType, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
   return {
     type,
     address: (): string =>
@@ -76,11 +70,18 @@ export default function createPair (type: KeypairType, { publicKey, seed }: Pair
     decodePkcs8: (passphrase?: string, _encoded?: Uint8Array | null): void => {
       const decoded = decode(passphrase, _encoded || encoded);
 
-      publicKey = decoded.publicKey;
-      secretKey = fromSeed(type, decoded.seed).secretKey;
+      if (decoded.secretKey.length === 64) {
+        publicKey = decoded.publicKey;
+        secretKey = decoded.secretKey;
+      } else {
+        const pair = fromSeed(type, decoded.secretKey);
+
+        publicKey = pair.publicKey;
+        secretKey = pair.secretKey;
+      }
     },
     encodePkcs8: (passphrase?: string): Uint8Array =>
-      encode({ publicKey, seed }, passphrase),
+      encode({ publicKey, secretKey }, passphrase),
     getMeta: (): KeyringPair$Meta =>
       meta,
     isLocked: (): boolean =>
@@ -96,7 +97,7 @@ export default function createPair (type: KeypairType, { publicKey, seed }: Pair
     sign: (message: Uint8Array): Uint8Array =>
       sign(type, message, { publicKey, secretKey }),
     toJson: (passphrase?: string): KeyringPair$Json =>
-      toJson(type, { meta, publicKey }, encode({ publicKey, seed }, passphrase), !!passphrase),
+      toJson(type, { meta, publicKey }, encode({ publicKey, secretKey }, passphrase), !!passphrase),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       verify(type, message, signature, publicKey)
   };

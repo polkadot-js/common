@@ -28,39 +28,41 @@ const TESTS = [
     uri: `${PHRASE}/foo`
   },
   {
-    pk: '0x545ecfd16d2ccbece3c3d8e284ba21b624d53a010d19673285a02aca92a62724',
-    ss: '5DyL3XpLxWKJgeUYkFFhepm9DWFMHjvW6JKyVst6F6bX1DQw',
+    pk: '0x547d4a55642ec7ebadc0bd29b6e570b8c926059b3c0655d4948075e9a7e6f31e',
+    ss: '5DyV6fZuvPemWrUqBgWwTSgoV86w6xms3KhkFU6cQcWxTwuv',
     uri: `${PHRASE}//foo`
   },
   {
-    pk: '0xc6755aae1c6a172dc06a8bcf46d119a56ec04b22d7c673255dfc6fb5d7afd250',
-    ss: '5GYvCYSJxHTNRMqtkLX5AGpTYjSiaHeCdVgBQJWp6Jb1eWZR',
+    pk: '0x3841947ffcde6f5fef26fb68b59bb8665637e30e32ec2051f99cf6b9c674fe09',
+    ss: '5DLU27is5iViNopQb2KxsTyPx6j4vCu8X3sk3j3NNLkPCsLj',
     uri: `${PHRASE}//foo/bar`
   },
   {
-    pk: '0xbed7420abfb5398eaa5c1e5ce484bf200c735ee0606ed97048dae9a6e7b1aa59',
-    ss: '5GNvuAdKoC5mHzmSSctsZAC4WkrhZC5W7FBB4G3N5XMCBhMD',
+    pk: '0xdc142f7476a7b0aa262aeccf207f1d18daa90762db393006741e8a31f39dbc53',
+    ss: '5H3GPTqDSpjkfDwbHy12PD6BWm8jvGSX4xYC8UMprHpTPhQg',
     uri: `${PHRASE}/foo//bar`
   },
   {
-    pk: '0xd0c0cb1e54a54222058552d7bf94a8abaaafd778adae57a30a9bba5afb01f17a',
-    ss: '5GnR66wpdL4hnArhDRyyBCqchgVYXVMQDDSZQWegfSSnAEFh',
+    pk: '0xa2e56b06407a6d1e819d2fc33fa0ec604b29c2e868b70b3696bb049b8725934b',
+    ss: '5FkHmNgbg64MwStgCyDi2Uw3ufFu11mqQgmWT9uwK4Lgi3SE',
     uri: `${PHRASE}//foo/bar//42/69`
   },
   {
-    pk: '0x12dccbb4d851a7bc36bb4f5f6f84a1caaf04c542509b1e3b84f1f47445c1bf08',
-    ss: '5CVSJt82L8jYodrwYKCoP6LtC6V2VYPHYMHtHzjhdNr1KDdu',
+    pk: '0x0e0d24e3e1ff2c07f269c99e2e0df8681fda1851ac42fc846ca2daaa90cd8f14',
+    ss: '5CP8S23JBNXYNpJsL7ESPJBNnUZE6itcfM4EnDxEhaVEUAWL',
     uri: `${PHRASE}//foo/bar//42/69///password`
+  },
+  {
+    pk: '0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d',
+    ss: '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKv3gB',
+    uri: `${PHRASE}//Alice`
   }
 ];
 
-// TODO Enable once we have proper schnorrkel support
-describe.skip('keyring.addFromUri', () => {
-  let keyring: Keyring;
+describe('keyring.addFromUri', () => {
+  const keyring = new Keyring({ type: 'sr25519' });
 
   beforeEach(async () => {
-    keyring = new Keyring({ type: 'sr25519' });
-
     await cryptoWaitReady();
   });
 

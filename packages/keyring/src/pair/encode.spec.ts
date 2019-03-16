@@ -3,10 +3,10 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import testingPairs from '../testingPairs';
-import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
+import { PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH } from './defaults';
 
-const PKCS8_LENGTH = PKCS8_DIVIDER.length + PKCS8_HEADER.length + 64;
-const ENCODED_LENGTH = 125;
+const PKCS8_LENGTH = PKCS8_DIVIDER.length + PKCS8_HEADER.length + PUB_LENGTH + SEC_LENGTH;
+const ENCODED_LENGTH = 157;
 
 const keyring = testingPairs({ type: 'ed25519' }, false);
 

@@ -6,14 +6,12 @@ import { assert, stringToU8a, u8aFixLength } from '@polkadot/util';
 import { naclDecrypt } from '@polkadot/util-crypto';
 import { PairInfo } from './types';
 
-import { KEY_LENGTH, NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
+import { NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH } from './defaults';
 
 const SEED_OFFSET = PKCS8_HEADER.length;
-const DIV_OFFSET = SEED_OFFSET + KEY_LENGTH;
-const PUBLIC_OFFSET = DIV_OFFSET + PKCS8_DIVIDER.length;
 
 type DecodeResult = PairInfo & {
-  seed: Uint8Array
+  secretKey: Uint8Array
 };
 
 export default function decode (passphrase?: string, _encrypted?: Uint8Array | null): DecodeResult {
@@ -34,15 +32,24 @@ export default function decode (passphrase?: string, _encrypted?: Uint8Array | n
 
   assert(header.toString() === PKCS8_HEADER.toString(), 'Invalid Pkcs8 header found in body');
 
-  const divider = encoded.subarray(DIV_OFFSET, DIV_OFFSET + PKCS8_DIVIDER.length);
+  let secretKey = encoded.subarray(SEED_OFFSET, SEED_OFFSET + SEC_LENGTH);
+  let divOffset = SEED_OFFSET + SEC_LENGTH;
+  let divider = encoded.subarray(divOffset, divOffset + PKCS8_DIVIDER.length);
+
+  // old-style, we have the seed here
+  if (divider.toString() !== PKCS8_DIVIDER.toString()) {
+    divOffset = SEED_OFFSET + SEED_LENGTH;
+    secretKey = encoded.subarray(SEED_OFFSET, divOffset);
+    divider = encoded.subarray(divOffset, divOffset + PKCS8_DIVIDER.length);
+  }
 
   assert(divider.toString() === PKCS8_DIVIDER.toString(), 'Invalid Pkcs8 divider found in body');
 
-  const seed = encoded.subarray(SEED_OFFSET, SEED_OFFSET + KEY_LENGTH);
-  const publicKey = encoded.subarray(PUBLIC_OFFSET, PUBLIC_OFFSET + KEY_LENGTH);
+  const pubOffset = divOffset + PKCS8_DIVIDER.length;
+  const publicKey = encoded.subarray(pubOffset, pubOffset + PUB_LENGTH);
 
   return {
     publicKey,
-    seed
+    secretKey
   };
 }

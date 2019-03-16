@@ -4,9 +4,10 @@
 
 import { Keypair } from '../types';
 
-import { assert } from '@polkadot/util';
+import './polyfill';
 
 import schnorrkel from '@polkadot/schnorrkel-js';
+import { assert } from '@polkadot/util';
 
 /**
  * @name schnorrkelSign
