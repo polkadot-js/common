@@ -1393,10 +1393,10 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@polkadot/dev@^0.26.1":
-  version "0.26.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.26.1.tgz#609bd1f43860a7172e45be76a529af24c598f546"
-  integrity sha512-m1BBk8QlQRGxFouwWNdK4kDHPUQEIbSCAB3VUiHstFeR+zto5II7zytX7wKHRH8Bn7U5CiW3PWpJ85MR4oodDA==
+"@polkadot/dev@^0.27.1":
+  version "0.27.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.27.1.tgz#63ef2439bac8131d368ba80bf7dc8d09c0e2e927"
+  integrity sha512-EN60509R89FNJsoNWH87G3buCd717Mx3wrexLLkd+IURl52shFjv12HqpSdW09mMwxhUZMOmmqwYoFdRnkOFag==
   dependencies:
     "@babel/cli" "^7.2.3"
     "@babel/core" "^7.3.4"
@@ -1429,10 +1429,10 @@
     typescript "^3.3.3333"
     vuepress "^1.0.0-alpha.40"
 
-"@polkadot/schnorrkel-js@^0.2.0-3":
-  version "0.2.0-3"
-  resolved "https://registry.yarnpkg.com/@polkadot/schnorrkel-js/-/schnorrkel-js-0.2.0-3.tgz#17b8f49f6c3b60dc2f64dc98d664447881d5a100"
-  integrity sha512-D+ITK9rfYLWnrDtvFJSXUujmWbxIUeyjy75QY/Vf9V2lDRO1WhF6ttW6H2NRvlPxxY6Qc5jebLYBZ7Put7AIpA==
+"@polkadot/schnorrkel-js@^0.2.0-10":
+  version "0.2.0-10"
+  resolved "https://registry.yarnpkg.com/@polkadot/schnorrkel-js/-/schnorrkel-js-0.2.0-10.tgz#ac596ede93fc7cb09866af00769e70952e77bbcc"
+  integrity sha512-5dvfYipNIaxDjT2KAR1tZS6p2kKumI4gNTevC4cgjdBQ8BwAptr1yJgHffZRnFDozqjrBVqyzyqQvulVhn4Jfg==
 
 "@polkadot/ts@^0.1.56":
   version "0.1.56"

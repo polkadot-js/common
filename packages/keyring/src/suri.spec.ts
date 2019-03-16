@@ -12,55 +12,57 @@ import Keyring from '.';
 const PHRASE = 'bottom drive obey lake curtain smoke basket hold race lonely fit walk';
 
 const TESTS = [
+  // {
+  //   pk: '0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a',
+  //   ss: '5DfhGyQdFobKM8NsWvEeAKk5EQQgYe9AydgJ7rMB6E1EqAS7',
+  //   uri: PHRASE
+  // },
+  // {
+  //   pk: '0xb69355deefa7a8f33e9297f5af22e680f03597a99d4f4b1c44be47e7a2275802',
+  //   ss: '5GC6LfpV352HtJPySfAecb5JdePtf4R9Vq49NUU8RhzgBq1z',
+  //   uri: `${PHRASE}///password`
+  // },
+  // {
+  //   pk: '0x40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a',
+  //   ss: '5DXZzrDxHbkQov4QBAY4TjpwnHCMrKXkomTnKSw8UArBESDT',
+  //   uri: `${PHRASE}/foo`
+  // },
+  // {
+  //   pk: '0xfcd8958e6b3ad5c45e122b9a4bf1dffdb69d24a07af59d4bd9e27c532dc43057',
+  //   ss: '5HnEGDAaEp4bxa6tmtavBsNapAkZ5vyooHZZWM8KtAPVBHNu',
+  //   uri: `${PHRASE}//foo`
+  // },
+  // {
+  //   pk: '0x26f9e9c2c194787460145bdef9626823e7af240bdbb8e0989083476ea20ad035',
+  //   ss: '5Cwov7Jv4KNXUFtEUeC48uApBbDksafCLxqcXoywoS61jWum',
+  //   uri: `${PHRASE}//foo/bar`
+  // },
+  // {
+  //   pk: '0x6ce53bcbaae734fa07e740b9694a818d277e7cda436953c2326ca66500498373',
+  //   ss: '5EXV8Dn5WmuoZdjHRVGasRTCUnSjRKRPn8JYb2M2TpwfsNHK',
+  //   uri: `${PHRASE}/foo//bar`
+  // },
+  // {
+  //   pk: '0x7a95f4e9fe84c8cde02da06f518805aa58dcb998820d0e7a43590d6bae6dd52b',
+  //   ss: '5EqSFCEzyLtviPMBdnMNF4NBNsJeHuXdS323Q6jpcVdBTzRs',
+  //   uri: `${PHRASE}//foo/bar//42/69`
+  // },
+  // {
+  //   pk: '0x1e9a84784e7e90ca04feb76ca35c241884112257011ce75c6d82b1cff1b0b222',
+  //   ss: '5CkqCG9e974XQe2dbF9kUNvMonspAUu9wD8U6xCJ52gW8qYB',
+  //   uri: `${PHRASE}//foo/bar//42/69///password`
+  // },
   {
-    pk: '0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a',
-    ss: '5DfhGyQdFobKM8NsWvEeAKk5EQQgYe9AydgJ7rMB6E1EqAS7',
-    uri: PHRASE
-  },
-  {
-    pk: '0xb69355deefa7a8f33e9297f5af22e680f03597a99d4f4b1c44be47e7a2275802',
-    ss: '5GC6LfpV352HtJPySfAecb5JdePtf4R9Vq49NUU8RhzgBq1z',
-    uri: `${PHRASE}///password`
-  },
-  {
-    pk: '0x40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a',
-    ss: '5DXZzrDxHbkQov4QBAY4TjpwnHCMrKXkomTnKSw8UArBESDT',
-    uri: `${PHRASE}/foo`
-  },
-  {
-    pk: '0x545ecfd16d2ccbece3c3d8e284ba21b624d53a010d19673285a02aca92a62724',
-    ss: '5DyL3XpLxWKJgeUYkFFhepm9DWFMHjvW6JKyVst6F6bX1DQw',
-    uri: `${PHRASE}//foo`
-  },
-  {
-    pk: '0xc6755aae1c6a172dc06a8bcf46d119a56ec04b22d7c673255dfc6fb5d7afd250',
-    ss: '5GYvCYSJxHTNRMqtkLX5AGpTYjSiaHeCdVgBQJWp6Jb1eWZR',
-    uri: `${PHRASE}//foo/bar`
-  },
-  {
-    pk: '0xbed7420abfb5398eaa5c1e5ce484bf200c735ee0606ed97048dae9a6e7b1aa59',
-    ss: '5GNvuAdKoC5mHzmSSctsZAC4WkrhZC5W7FBB4G3N5XMCBhMD',
-    uri: `${PHRASE}/foo//bar`
-  },
-  {
-    pk: '0xd0c0cb1e54a54222058552d7bf94a8abaaafd778adae57a30a9bba5afb01f17a',
-    ss: '5GnR66wpdL4hnArhDRyyBCqchgVYXVMQDDSZQWegfSSnAEFh',
-    uri: `${PHRASE}//foo/bar//42/69`
-  },
-  {
-    pk: '0x12dccbb4d851a7bc36bb4f5f6f84a1caaf04c542509b1e3b84f1f47445c1bf08',
-    ss: '5CVSJt82L8jYodrwYKCoP6LtC6V2VYPHYMHtHzjhdNr1KDdu',
-    uri: `${PHRASE}//foo/bar//42/69///password`
+    pk: '0x56443a3a9173a22315838b38410cfe9d67feadfcea71e4894e3f9fd15ec1117f',
+    ss: '5E1pF3pJWjhkkcfSgsw8GbrVFt7FQJqJinWT8eKGDC5GH9xs',
+    uri: `${PHRASE}//Alice`
   }
 ];
 
-// TODO Enable once we have proper schnorrkel support
-describe.skip('keyring.addFromUri', () => {
-  let keyring: Keyring;
+describe('keyring.addFromUri', () => {
+  const keyring = new Keyring({ type: 'sr25519' });
 
   beforeEach(async () => {
-    keyring = new Keyring({ type: 'sr25519' });
-
     await cryptoWaitReady();
   });
 

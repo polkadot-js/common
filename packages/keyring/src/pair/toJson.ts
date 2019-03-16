@@ -22,7 +22,7 @@ export default function toJson (type: KeypairType, { publicKey, meta }: PairStat
       type: isEncrypted
         ? 'xsalsa20-poly1305'
         : 'none',
-      version: '1'
+      version: '2'
     },
     meta
   };

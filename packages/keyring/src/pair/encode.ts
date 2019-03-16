@@ -9,12 +9,12 @@ import { naclEncrypt } from '@polkadot/util-crypto';
 
 import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
 
-export default function encode ({ publicKey, seed }: PairInfo, passphrase?: string): Uint8Array {
-  assert(seed, 'Expected a valid seed to be passed to encode');
+export default function encode ({ publicKey, secretKey }: PairInfo, passphrase?: string): Uint8Array {
+  assert(secretKey, 'Expected a valid secretKey to be passed to encode');
 
   const encoded = u8aConcat(
     PKCS8_HEADER,
-    seed as Uint8Array,
+    secretKey as Uint8Array,
     PKCS8_DIVIDER,
     publicKey
   );

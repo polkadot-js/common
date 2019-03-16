@@ -14,7 +14,7 @@ export type KeyringPair$Meta = {
   [index: string]: any
 };
 
-export type KeyringPair$JsonVersion = '0' | '1';
+export type KeyringPair$JsonVersion = '0' | '1' | '2';
 
 export type KeyringPair$JsonEncoding = {
   content: ['pkcs8', KeypairType],
@@ -53,8 +53,6 @@ export interface KeyringPairs {
 }
 
 export interface KeyringInstance {
-  readonly isEd25519: boolean;
-  readonly isSr25519: boolean;
   readonly pairs: Array<KeyringPair>;
   readonly publicKeys: Array<Uint8Array>;
   readonly type: KeypairType;

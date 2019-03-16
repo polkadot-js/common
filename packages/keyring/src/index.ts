@@ -48,20 +48,6 @@ export default class Keyring implements KeyringInstance {
   setAddressPrefix = setAddressPrefix;
 
   /**
-   * @description True for Ed25519 keyring
-   */
-  get isEd25519 (): boolean {
-    return this.type === 'ed25519';
-  }
-
-  /**
-   * @description True for Ed25519 keyring
-   */
-  get isSr25519 (): boolean {
-    return this.type === 'sr25519';
-  }
-
-  /**
    * @description retrieve the pairs (alias for getPairs)
    */
   get pairs (): Array<KeyringPair> {
@@ -136,11 +122,11 @@ export default class Keyring implements KeyringInstance {
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
   addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
-    const keypair = this.isSr25519
+    const keypair = type === 'sr25519'
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
 
-    return this.addPair(createPair(type, { ...keypair, seed }, meta, null));
+    return this.addPair(createPair(type, keypair, meta, null));
   }
 
   /**
@@ -165,13 +151,12 @@ export default class Keyring implements KeyringInstance {
       }
     }
 
-    const { publicKey } = this.isSr25519
+    const keypair = type === 'sr25519'
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
+    const derived = keyFromPath(keypair, path, type);
 
-    return this.addPair(
-      createPair(type, keyFromPath({ publicKey, seed }, path, type), meta, null)
-    );
+    return this.addPair(createPair(type, derived, meta, null));
   }
 
   /**
