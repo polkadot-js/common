@@ -6,8 +6,8 @@ import { Keypair } from '../types';
 
 import './polyfill';
 
-import schnorrkel from '@polkadot/schnorrkel-js';
 import { assert } from '@polkadot/util';
+import schnorrkel from '@polkadot/wasm-schnorrkel';
 
 /**
  * @name schnorrkelSign

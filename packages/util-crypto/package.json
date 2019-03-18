@@ -29,8 +29,8 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
     "@babel/runtime": "^7.3.4",
-    "@polkadot/schnorrkel-js": "^0.2.0-12",
     "@polkadot/util": "^0.38.0-beta.4",
+    "@polkadot/wasm-schnorrkel": "^0.1.0-beta.3",
     "@types/bip39": "^2.4.2",
     "@types/pbkdf2": "^3.0.0",
     "@types/secp256k1": "^3.5.0",
