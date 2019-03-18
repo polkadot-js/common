@@ -1,7 +1,7 @@
 # 0.38.1
 
 - Align with current substrate master for sr25519 keys and hard/soft derivation
-- Swap default keyring to sr25519
+- Swap default dev keys to derived (sr25519)
 
 # 0.37.1
 

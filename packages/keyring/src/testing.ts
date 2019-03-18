@@ -51,8 +51,6 @@ const PAIRS = [
  * are available on the dev chain and each test account is initialised with DOT funds.
  */
 export default function testKeyring (options: KeyringOptions = {}, isDerived: boolean = true): KeyringInstance {
-  options.type = options.type || (isDerived ? 'sr25519' : 'ed25519');
-
   const keyring = new Keyring(options);
 
   SEEDS.forEach((entry, index) => {
