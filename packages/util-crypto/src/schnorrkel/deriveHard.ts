@@ -6,7 +6,7 @@ import { Keypair } from '../types';
 
 import './polyfill';
 
-import schnorrkel from '@polkadot/schnorrkel-js';
+import schnorrkel from '@polkadot/wasm-schnorrkel';
 
 import keypairFromU8a from './keypair/fromU8a';
 import keypairToU8a from './keypair/toU8a';
