@@ -95,11 +95,11 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromJson ({ address, encoded, encoding: { type, version }, meta }: KeyringPair$Json): KeyringPair {
-    const keytype = version === '0' || !Array.isArray(type)
+  addFromJson ({ address, encoded, encoding: { content, version }, meta }: KeyringPair$Json): KeyringPair {
+    const type = version === '0' || !Array.isArray(content)
       ? this.type
-      : type[1];
-    return this.addFromAddress(address, meta, hexToU8a(encoded), keytype);
+      : content[1];
+    return this.addFromAddress(address, meta, hexToU8a(encoded), type);
   }
 
   /**
