@@ -3,8 +3,13 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import validate from './validate';
+import { cryptoWaitReady } from '..';
 
 describe('mnemonicValidate', () => {
+  beforeEach(async () => {
+    await cryptoWaitReady();
+  });
+
   it('returns true on valid', () => {
     expect(
       validate('seed sock milk update focus rotate barely fade car face mechanic mercy')

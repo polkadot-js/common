@@ -4,8 +4,13 @@
 
 import generate from './generate';
 import validate from './validate';
+import { cryptoWaitReady } from '..';
 
 describe('mnemonicGenerate', () => {
+  beforeEach(async () => {
+    await cryptoWaitReady();
+  });
+
   it('generates a valid mnemonic (default strength)', () => {
     const mnemonic = generate();
 

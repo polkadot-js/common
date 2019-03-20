@@ -6,8 +6,13 @@ import { u8aToHex } from '@polkadot/util';
 
 import toEntropy from './toEntropy';
 import tests from '../schnorrkel/keypair/testing';
+import { cryptoWaitReady } from '..';
 
 describe('mnemonicToEntropy', () => {
+  beforeEach(async () => {
+    await cryptoWaitReady();
+  });
+
   tests.forEach(([mnemonic, entropy], index) => {
     it(`Created correct entropy for ${index}`, () => {
       expect(u8aToHex(toEntropy(mnemonic))).toEqual(entropy);

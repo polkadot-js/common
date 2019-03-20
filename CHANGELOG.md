@@ -1,3 +1,7 @@
+# 0.39.1
+
+- Pull in bip39 generation functions from @poladkot/wasm-crypto with a fallback to the pure JS versions
+
 # 0.38.1
 
 - Align with current substrate master for sr25519 keys and hard/soft derivation

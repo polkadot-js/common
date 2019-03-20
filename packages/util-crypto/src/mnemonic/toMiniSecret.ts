@@ -2,12 +2,19 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import '../polyfill';
+
 import { pbkdf2Sync } from 'pbkdf2';
 import { bufferToU8a, stringToU8a, u8aToBuffer } from '@polkadot/util';
+import { bip39ToMiniSecret, isReady } from '@polkadot/wasm-crypto';
 
 import toEntropy from './toEntropy';
 
 export default function toMiniSecret (mnemonic: string, password: string = ''): Uint8Array {
+  if (isReady()) {
+    return bip39ToMiniSecret(mnemonic, password);
+  }
+
   const entropy = u8aToBuffer(toEntropy(mnemonic));
   const salt = u8aToBuffer(stringToU8a(`mnemonic${password}`));
 
