@@ -6,8 +6,13 @@ import { u8aToHex } from '@polkadot/util';
 
 import mnemonicToMiniSecret from './toMiniSecret';
 import tests from '../schnorrkel/keypair/testing';
+import { cryptoWaitReady } from '..';
 
 describe('mnemonicToMiniSecret', () => {
+  beforeEach(async () => {
+    await cryptoWaitReady();
+  });
+
   tests.forEach(([mnemonic, , seed], index) => {
     it(`Created correct seed for ${index}`, () => {
       expect(

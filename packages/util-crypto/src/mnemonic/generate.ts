@@ -2,7 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import '../polyfill';
+
 import { generateMnemonic } from 'bip39';
+import { bip39Generate, isReady } from '@polkadot/wasm-crypto';
 
 type WordCount = 12 | 15 | 18 | 21 | 24;
 
@@ -28,5 +31,7 @@ const STRENGTH_MAP = {
  * ```
  */
 export default function mnemonicGenerate (numWords: WordCount = 12): string {
-  return generateMnemonic(STRENGTH_MAP[numWords]);
+  return isReady()
+    ? bip39Generate(numWords)
+    : generateMnemonic(STRENGTH_MAP[numWords]);
 }

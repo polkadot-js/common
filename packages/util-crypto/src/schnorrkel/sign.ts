@@ -4,7 +4,7 @@
 
 import { Keypair } from '../types';
 
-import './polyfill';
+import '../polyfill';
 
 import { assert } from '@polkadot/util';
 import schnorrkel from '@polkadot/wasm-schnorrkel';

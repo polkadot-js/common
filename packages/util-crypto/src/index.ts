@@ -2,6 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import './polyfill';
+
+import { wasmWaitReady } from './ready';
 import { schnorrkelWaitReady } from './schnorrkel';
 
 export * from './blake2';
@@ -19,7 +22,10 @@ export function cryptoWaitReady (): Promise<boolean> {
   // this is a bit convoluted, but since we can do the same for libsodium,
   // prepare for multiples, easy to adapt without thinking
   return Promise
-    .all([schnorrkelWaitReady()])
+    .all([
+      wasmWaitReady(),
+      schnorrkelWaitReady()
+    ])
     .then(() => true)
     .catch((error) => {
       console.error('Unable to initialize @polkadot/util-crypto', error);

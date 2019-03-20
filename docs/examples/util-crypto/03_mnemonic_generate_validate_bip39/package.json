@@ -1,5 +1,5 @@
 {
-  "name": "02_sign_verify_message_nacl",
+  "name": "03_mnemonic_generate_validate_bip39",
   "version": "0.1.0",
   "description": "Example showing how to sign and verify a message using NaCl",
   "main": "index.js",

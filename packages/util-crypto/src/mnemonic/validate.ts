@@ -2,7 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import '../polyfill';
+
 import { validateMnemonic } from 'bip39';
+import { bip39Validate, isReady } from '@polkadot/wasm-crypto';
 
 /**
  * @name mnemonicValidate
@@ -18,5 +21,7 @@ import { validateMnemonic } from 'bip39';
  * ```
  */
 export default function mnemonicValidate (mnemonic: string): boolean {
-  return validateMnemonic(mnemonic);
+  return isReady()
+    ? bip39Validate(mnemonic)
+    : validateMnemonic(mnemonic);
 }
