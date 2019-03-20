@@ -1543,10 +1543,10 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@polkadot/dev@^0.28.0-beta.1":
-  version "0.28.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.28.0-beta.1.tgz#4df4debb85dd0e6bdd83cabfb77996ee0fac80ac"
-  integrity sha512-8gX48H6skU5qHNpebn1F8tI1Hwrf5khqB2brLvOZggTl5COX3io25ndjxd+VMoVrEWcLIxs2Yr44id4rQjzh0A==
+"@polkadot/dev@^0.28.1":
+  version "0.28.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.28.1.tgz#c9b53a5948252c4f11686a13cd5990d84687f9a6"
+  integrity sha512-x2Yh/KFaTfiQNOs2A1cBJyZRAA5sk/hKerghfj2BubnWm9M+Qx112aoApKUL+s0KMOyKU3ZQjiGSuGyGn6TtqA==
   dependencies:
     "@babel/cli" "^7.2.3"
     "@babel/core" "^7.4.0"
@@ -1584,15 +1584,15 @@
   resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.56.tgz#ffd6e9c95704a7fb90b918193b9dc5c440114b27"
   integrity sha512-wnt4zXxZXyz6WaubTO/I+nUElwV2DogFzdl6CrKfVn2PTWp8uHN06W9s40FH57ORtmQfDr9rLRP8Nq+oIyElbg==
 
-"@polkadot/wasm-crypto@^0.2.0-beta.4":
-  version "0.2.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto/-/wasm-crypto-0.2.0-beta.4.tgz#e4cf0a236723d1fccb38de85af3b255d93eca300"
-  integrity sha512-Fw5KjYQdx2xjhHVkt1+eQqzeGUnXzlvG/eNypgW09dIsGcxUy2B0y7zt3bZihTt2NPJQWMH4D46XADtO2+1O+w==
+"@polkadot/wasm-crypto@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto/-/wasm-crypto-0.2.1.tgz#ba5eedf02f762d38fd705c57cba31db7f6e7eb1c"
+  integrity sha512-qk2q3B1QWt69g0ToUAQbRWTPhDPpDyS7GDGsPToSs18pbPwn31462EFuP9CvzIV2eDVifJnmwQeD2A0bx+ogMQ==
 
-"@polkadot/wasm-schnorrkel@^0.2.0-beta.4":
-  version "0.2.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@polkadot/wasm-schnorrkel/-/wasm-schnorrkel-0.2.0-beta.4.tgz#b1e7a5883067f8bcf6c1dbc8ab8169bd7f1de824"
-  integrity sha512-XLc3PXLe2W5lKNHMGATeEssT/DaM2Zwm9J+NEbiLeZP/WQ4PwEJKl4T58kguNA7n9cId0DP5EVVDvNt47w2q9A==
+"@polkadot/wasm-schnorrkel@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-schnorrkel/-/wasm-schnorrkel-0.2.1.tgz#d5cdcb3058d29272abc1d0988049415d0c341b3f"
+  integrity sha512-iFqy9jiiBJMkIgouklfOVm55DRNFe4UkhWX3CKoF3XfFSDJsW/QF0StXNMy+StRyKV1IXJ6SWDt5VLBvAU7SEg==
 
 "@types/babel__core@^7.1.0":
   version "7.1.0"
