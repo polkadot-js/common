@@ -1,3 +1,8 @@
+# 0.40.1
+
+- Add additional derivation path extraction mechanisms to util-crypto
+- Add createFromUri function to keypair (creates, does not add it)
+
 # 0.39.1
 
 - Pull in bip39 generation functions from @poladkot/wasm-crypto with a fallback to the pure JS versions
