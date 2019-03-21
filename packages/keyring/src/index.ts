@@ -6,7 +6,7 @@ import { KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions } from './types';
 
 import { assert, hexToU8a, isNumber, isHex, stringToU8a } from '@polkadot/util';
-import { keyExtract, mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, mnemonicToMiniSecret, keyFromPath } from '@polkadot/util-crypto';
+import { keyExtractSuri, mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, mnemonicToMiniSecret, keyFromPath } from '@polkadot/util-crypto';
 
 import { decodeAddress, encodeAddress, setAddressPrefix } from './address';
 import createPair from './pair';
@@ -135,7 +135,18 @@ export default class Keyring implements KeyringInstance {
    * @description Extracts the phrase, path and password from a SURI format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed). The secret can be a hex string, mnemonic phrase or a string (to be padded)
    */
   addFromUri (suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
-    const { password, phrase, path } = keyExtract(suri);
+    return this.addPair(
+      this.createFromUri(suri, meta, type)
+    );
+  }
+
+  /**
+   * @name createFromUri
+   * @summry Creates a Keypair from an suri
+   * @description This creates a pair from the suri, but does not add it to the keyring
+   */
+  createFromUri (suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+    const { password, phrase, path } = keyExtractSuri(suri);
     let seed;
 
     if (isHex(phrase, 256)) {
@@ -156,7 +167,7 @@ export default class Keyring implements KeyringInstance {
       : naclFromSeed(seed);
     const derived = keyFromPath(keypair, path, type);
 
-    return this.addPair(createPair(type, derived, meta, null));
+    return createPair(type, derived, meta, null);
   }
 
   /**

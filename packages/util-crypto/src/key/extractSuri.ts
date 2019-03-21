@@ -5,33 +5,26 @@
 import { assert, isNull } from '@polkadot/util';
 
 import DeriveJunction from './DeriveJunction';
+import keyExtractPath from './extractPath';
 
-type DeriveResult = {
+type ExtractResult = {
   password?: string,
   path: Array<DeriveJunction>,
   phrase: string
 };
 
 const RE_CAPTURE = /^(\w+( \w+)*)((\/\/?[^\/]+)*)(\/\/\/(.*))?$/;
-const RE_JUNCTION = /\/(\/?)([^\/]+)/g;
 
 /**
  * @description Extracts the phrase, path and password from a SURI format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed).
  */
-export default function keyExtract (suri: string): DeriveResult {
+export default function keyExtract (suri: string): ExtractResult {
   const matches = suri.match(RE_CAPTURE);
 
   assert(!isNull(matches), `Unable to match '${suri}' to a secret URI`);
 
-  const [, phrase, , junctions, , , password] = matches as Array<any>;
-  const parts = junctions.match(RE_JUNCTION);
-  const path: Array<DeriveJunction> = [];
-
-  if (parts) {
-    parts.forEach((value: string) => {
-      path.push(DeriveJunction.from(value.substr(1)));
-    });
-  }
+  const [, phrase, , derivePath, , , password] = matches as Array<string>;
+  const { path } = keyExtractPath(derivePath);
 
   return {
     password,

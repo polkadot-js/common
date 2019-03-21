@@ -2,12 +2,18 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import keyExtract from './extract';
+import keyExtractSuri from './extractSuri';
 
-describe('keyExtract', () => {
+describe('keyExtractSuri', () => {
+  it('does not extract from invalid suri', () => {
+    expect(
+      () => keyExtractSuri('//2')
+    ).toThrow(/to a secret URI/);
+  });
+
   it('derives on "hello world"', () => {
     expect(
-      keyExtract('hello world')
+      keyExtractSuri('hello world')
     ).toEqual({
       path: [],
       phrase: 'hello world'
@@ -16,7 +22,7 @@ describe('keyExtract', () => {
 
   it('derives on "hello world/1', () => {
     expect(
-      keyExtract('hello world/1')
+      keyExtractSuri('hello world/1')
     ).toEqual({
       path: [
         { _isHard: false, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
@@ -27,7 +33,7 @@ describe('keyExtract', () => {
 
   it('derives on "hello world/DOT', () => {
     expect(
-      keyExtract('hello world/DOT')
+      keyExtractSuri('hello world/DOT')
     ).toEqual({
       path: [
         { _isHard: false, _chainCode: Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
@@ -38,7 +44,7 @@ describe('keyExtract', () => {
 
   it('derives on "hello world//1', () => {
     expect(
-      keyExtract('hello world//1')
+      keyExtractSuri('hello world//1')
     ).toEqual({
       path: [
         { _isHard: true, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
@@ -49,7 +55,7 @@ describe('keyExtract', () => {
 
   it('derives on "hello world//DOT', () => {
     expect(
-      keyExtract('hello world//DOT')
+      keyExtractSuri('hello world//DOT')
     ).toEqual({
       path: [
         { _isHard: true, _chainCode: Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
@@ -60,7 +66,7 @@ describe('keyExtract', () => {
 
   it('derives on "hello world//1/DOT', () => {
     expect(
-      keyExtract('hello world//1/DOT')
+      keyExtractSuri('hello world//1/DOT')
     ).toEqual({
       path: [
         { _isHard: true, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) },
@@ -72,7 +78,7 @@ describe('keyExtract', () => {
 
   it('derives on "hello world//DOT/1', () => {
     expect(
-      keyExtract('hello world//DOT/1')
+      keyExtractSuri('hello world//DOT/1')
     ).toEqual({
       path: [
         { _isHard: true, _chainCode: Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) },
@@ -84,7 +90,7 @@ describe('keyExtract', () => {
 
   it('derives on "hello world///password"', () => {
     expect(
-      keyExtract('hello world///password')
+      keyExtractSuri('hello world///password')
     ).toEqual({
       password: 'password',
       path: [],
@@ -94,7 +100,7 @@ describe('keyExtract', () => {
 
   it('derives on "hello world//1/DOT///password"', () => {
     expect(
-      keyExtract('hello world//1/DOT///password')
+      keyExtractSuri('hello world//1/DOT///password')
     ).toEqual({
       path: [
         { _isHard: true, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) },
@@ -107,7 +113,7 @@ describe('keyExtract', () => {
 
   it('derives on "hello world/1//DOT///password"', () => {
     expect(
-      keyExtract('hello world/1//DOT///password')
+      keyExtractSuri('hello world/1//DOT///password')
     ).toEqual({
       path: [
         { _isHard: false, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) },
@@ -120,7 +126,7 @@ describe('keyExtract', () => {
 
   it('derives on actual Alice', () => {
     expect(
-      keyExtract('bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice')
+      keyExtractSuri('bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice')
     ).toEqual({
       path: [
         { _isHard: true, _chainCode: Uint8Array.from([20, 65, 108, 105, 99, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
