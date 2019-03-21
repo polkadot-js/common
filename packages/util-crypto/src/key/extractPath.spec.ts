@@ -44,4 +44,10 @@ describe('keyExtractPath', () => {
       () => keyExtractPath('1/2')
     ).toThrow(/does not match input/);
   });
+
+  it('does not extract from invalid paths', () => {
+    expect(
+      () => keyExtractPath('hello')
+    ).toThrow(/does not match input/);
+  });
 });

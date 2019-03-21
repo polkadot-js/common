@@ -18,16 +18,17 @@ type ExtractResult = {
 export default function keyExtractPath (derivePath: string): ExtractResult {
   const parts = derivePath.match(RE_JUNCTION);
   const path: Array<DeriveJunction> = [];
+  let constructed = '';
 
   if (parts) {
-    const constructed = parts.join('');
-
-    assert(constructed === derivePath, `Re-constructed path "${constructed}" does not match input`);
+    constructed = parts.join('');
 
     parts.forEach((value: string) => {
       path.push(DeriveJunction.from(value.substr(1)));
     });
   }
+
+  assert(constructed === derivePath, `Re-constructed path "${constructed}" does not match input`);
 
   return {
     parts,
