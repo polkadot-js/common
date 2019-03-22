@@ -3,9 +3,10 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { stringToU8a, u8aToHex } from '@polkadot/util';
+import schnorrkel from '@polkadot/wasm-schnorrkel';
 
 import { mnemonicToMiniSecret } from '../../mnemonic';
-import { schnorrkelKeypairFromSeed, schnorrkelWaitReady } from '..';
+import { schnorrkelKeypairFromSeed } from '..';
 import tests from './testing';
 
 describe('schnorrkelKeypairFromSeed', () => {
@@ -16,7 +17,7 @@ describe('schnorrkelKeypairFromSeed', () => {
   };
 
   beforeEach(async () => {
-    return schnorrkelWaitReady();
+    return schnorrkel.waitReady();
   });
 
   it('generates a valid publicKey/secretKey pair (u8a)', () => {

@@ -2,7 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import blake2bAsHex from './blake2b/asHex';
+import { u8aToHex } from '@polkadot/util';
+
+import blake2AsU8a from './asU8a';
 
 /**
  * @name blake2AsHex
@@ -19,5 +21,7 @@ import blake2bAsHex from './blake2b/asHex';
  * ```
  */
 export default function blake2AsHex (data: Uint8Array | string, bitLength: number = 256): string {
-  return blake2bAsHex(data, bitLength);
+  return u8aToHex(
+    blake2AsU8a(data, bitLength)
+  );
 }

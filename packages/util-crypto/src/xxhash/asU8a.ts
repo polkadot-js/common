@@ -2,6 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { u8aToU8a } from '@polkadot/util';
+import { isReady, twox } from '@polkadot/wasm-crypto';
+
 import xxhash64AsBn from './xxhash64/asBn';
 
 /**
@@ -19,9 +22,13 @@ import xxhash64AsBn from './xxhash64/asBn';
  * ```
  */
 export default function xxhashAsU8a (data: Buffer | Uint8Array | string, bitLength: number = 64): Uint8Array {
-  const byteLength = Math.ceil(bitLength / 8);
   const iterations = Math.ceil(bitLength / 64);
-  const u8a = new Uint8Array(byteLength);
+
+  if (isReady()) {
+    return twox(u8aToU8a(data), iterations);
+  }
+
+  const u8a = new Uint8Array(Math.ceil(bitLength / 8));
 
   for (let seed = 0; seed < iterations; seed++) {
     u8a.set(xxhash64AsBn(data, seed).toArray('le', 8), seed * 8);

@@ -3,17 +3,14 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import secp256k1 from 'secp256k1';
-import { bufferToU8a, u8aToBuffer } from '@polkadot/util';
+import { u8aToBuffer, u8aToU8a } from '@polkadot/util';
 
 /**
  * @name secp256k1Recover
  * @description Recovers a publicKey from the supplied signature
  */
-export default function secp256k1Recover (_message: Uint8Array, _signature: Uint8Array, recovery: number): Uint8Array {
-  const message = u8aToBuffer(_message);
-  const signature = u8aToBuffer(_signature);
-
-  return bufferToU8a(
-    secp256k1.recover(message, signature, recovery)
+export default function secp256k1Recover (message: Uint8Array, signature: Uint8Array, recovery: number): Uint8Array {
+  return u8aToU8a(
+    secp256k1.recover(u8aToBuffer(message), u8aToBuffer(signature), recovery)
   );
 }

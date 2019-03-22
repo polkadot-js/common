@@ -2,7 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { keccak256 } from 'js-sha3';
+import jssha3 from 'js-sha3';
+import { u8aToU8a } from '@polkadot/util';
+import { isReady, keccak256 } from '@polkadot/wasm-crypto';
 
 /**
  * @name keccakAsU8a
@@ -19,7 +21,9 @@ import { keccak256 } from 'js-sha3';
  * ```
  */
 export default function keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array {
-  return new Uint8Array(
-    keccak256.update(value).arrayBuffer()
-  );
+  return isReady()
+    ? keccak256(u8aToU8a(value))
+    : new Uint8Array(
+      jssha3.keccak256.update(value).arrayBuffer()
+    );
 }
