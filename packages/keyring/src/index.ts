@@ -9,6 +9,7 @@ import { assert, hexToU8a, isNumber, isHex, stringToU8a } from '@polkadot/util';
 import { keyExtractSuri, mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, mnemonicToMiniSecret, keyFromPath } from '@polkadot/util-crypto';
 
 import { decodeAddress, encodeAddress, setAddressPrefix } from './address';
+import { DEV_PHRASE } from './defaults';
 import createPair from './pair';
 import Pairs from './pairs';
 
@@ -145,7 +146,10 @@ export default class Keyring implements KeyringInstance {
    * @summry Creates a Keypair from an suri
    * @description This creates a pair from the suri, but does not add it to the keyring
    */
-  createFromUri (suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+  createFromUri (_suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+    const suri = _suri.indexOf('//') === 0
+      ? `${DEV_PHRASE}${_suri}`
+      : _suri;
     const { password, phrase, path } = keyExtractSuri(suri);
     let seed;
 

@@ -10,9 +10,6 @@ import createPair from './pair';
 import Keyring from '.';
 
 // As per substrate
-// const DEV_PHRASE = 'bottom drive obey lake curtain smoke basket hold race lonely fit walk';
-// created from the above
-// const DEV_SEED = '0xfac7959dbfe72f052e5a0c3c8d6530f202b02fd8f9f5ca3580ec8deb7797479e';
 const SEEDS = ['Alice', 'Bob', 'Charlie', 'Dave', 'Eve', 'Ferdie'];
 // NOTE This is not great, but a testing keyring is for testing - what happens is that in most cases
 // the keyring is initialises before anythign else. Since the sr25519 crypto is async, this creates
