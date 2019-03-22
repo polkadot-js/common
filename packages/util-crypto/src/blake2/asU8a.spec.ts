@@ -2,11 +2,16 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import hexToU8a from '@polkadot/util/hex/toU8a';
+import { hexToU8a } from '@polkadot/util';
+import { waitReady } from '@polkadot/wasm-crypto';
 
 import { blake2AsU8a } from '.';
 
 describe('blake2AsU8a', () => {
+  beforeEach(async () => {
+    await waitReady();
+  });
+
   it('returns a 64-bit value by default', () => {
     expect(
       blake2AsU8a('abc')

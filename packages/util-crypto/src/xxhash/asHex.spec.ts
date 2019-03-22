@@ -2,9 +2,15 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { waitReady } from '@polkadot/wasm-crypto';
+
 import { xxhashAsHex } from '.';
 
 describe('xxhashAsHex', () => {
+  beforeEach(async () => {
+    await waitReady();
+  });
+
   it('returns a 64-bit value by default', () => {
     expect(
       xxhashAsHex('abc')

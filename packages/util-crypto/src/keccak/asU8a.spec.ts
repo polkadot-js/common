@@ -3,10 +3,15 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
+import { waitReady } from '@polkadot/wasm-crypto';
 
 import { keccakAsU8a } from '.';
 
 describe('keccakAsU8a', () => {
+  beforeEach(async () => {
+    await waitReady();
+  });
+
   const input = 'test value';
   const output = hexToU8a(
     '0x2d07364b5c231c56ce63d49430e085ea3033c750688ba532b24029124c26ca5e'

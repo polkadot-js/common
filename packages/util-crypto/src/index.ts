@@ -4,8 +4,9 @@
 
 import './polyfill';
 
-import { wasmWaitReady } from './ready';
-import { schnorrkelWaitReady } from './schnorrkel';
+import wasmCrypto from '@polkadot/wasm-crypto';
+import wasmEd25519 from '@polkadot/wasm-dalek-ed25519';
+import wasmSr25519 from '@polkadot/wasm-schnorrkel';
 
 export * from './blake2';
 export * from './keccak';
@@ -23,8 +24,9 @@ export function cryptoWaitReady (): Promise<boolean> {
   // prepare for multiples, easy to adapt without thinking
   return Promise
     .all([
-      wasmWaitReady(),
-      schnorrkelWaitReady()
+      wasmCrypto.waitReady(),
+      wasmEd25519.waitReady(),
+      wasmSr25519.waitReady()
     ])
     .then(() => true)
     .catch((error) => {

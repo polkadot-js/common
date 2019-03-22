@@ -5,6 +5,7 @@
 import { Keypair } from '../../types';
 
 import nacl from 'tweetnacl';
+import { isReady, keypairFromSeed } from '@polkadot/wasm-dalek-ed25519';
 
 /**
  * @name naclKeypairFromSeed
@@ -21,5 +22,14 @@ import nacl from 'tweetnacl';
  * ```
  */
 export default function naclKeypairFromSeed (seed: Uint8Array): Keypair {
+  if (isReady()) {
+    const full = keypairFromSeed(seed);
+
+    return {
+      publicKey: full.slice(32),
+      secretKey: full.slice(0, 64)
+    };
+  }
+
   return nacl.sign.keyPair.fromSeed(seed);
 }

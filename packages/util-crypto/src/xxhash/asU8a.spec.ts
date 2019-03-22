@@ -3,10 +3,15 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { hexToU8a } from '@polkadot/util';
+import { waitReady } from '@polkadot/wasm-crypto';
 
 import { xxhashAsU8a } from '.';
 
 describe('xxhashAsU8a', () => {
+  beforeEach(async () => {
+    await waitReady();
+  });
+
   it('returns a 64-bit value by default', () => {
     expect(
       xxhashAsU8a('abc')

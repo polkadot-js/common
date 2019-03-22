@@ -2,7 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import blake2bAsU8a from './blake2b/asU8a';
+import blakejs from 'blakejs';
+import { u8aToU8a } from '@polkadot/util';
+import { blake2b, isReady } from '@polkadot/wasm-crypto';
 
 /**
  * @name blake2AsU8a
@@ -18,6 +20,10 @@ import blake2bAsU8a from './blake2b/asU8a';
  * blake2AsU8a('abc'); // => [0xba, 0x80, 0xa53, 0xf98, 0x1c, 0x4d, 0x0d]
  * ```
  */
-export default function blake2AsU8a (data: Uint8Array | string, bitLength: number = 256, key?: Uint8Array): Uint8Array {
-  return blake2bAsU8a(data, bitLength, key);
+export default function blake2AsU8a (data: Uint8Array | string, bitLength: number = 256, key: Uint8Array | null = null): Uint8Array {
+  const byteLength = Math.ceil(bitLength / 8);
+
+  return isReady()
+    ? blake2b(u8aToU8a(data), u8aToU8a(key), byteLength)
+    : blakejs.blake2b(data, key, byteLength);
 }

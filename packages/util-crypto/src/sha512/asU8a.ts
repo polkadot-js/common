@@ -3,6 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import nacl from 'tweetnacl';
+import { isReady, sha512 } from '@polkadot/wasm-crypto';
 
 /**
  * @name sha512AsU8a
@@ -19,5 +20,7 @@ import nacl from 'tweetnacl';
  * ```
  */
 export default function sha512AsU8a (data: Uint8Array): Uint8Array {
-  return nacl.hash(data);
+  return isReady()
+    ? sha512(data)
+    : nacl.hash(data);
 }
