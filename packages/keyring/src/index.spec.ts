@@ -21,8 +21,6 @@ describe('keypair', () => {
     let keypair: Keyring;
 
     beforeEach(async () => {
-      await cryptoWaitReady();
-
       keypair = new Keyring({ type: 'ed25519' });
 
       keypair.addFromSeed(seedOne, {});
@@ -86,6 +84,12 @@ describe('keypair', () => {
       keypair = new Keyring({ type: 'sr25519' });
 
       keypair.addFromSeed(seedOne, {});
+    });
+
+    it('creates with dev phrase when only path specified', () => {
+      expect(
+        keypair.createFromUri('//Alice').address()
+      ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKv3gB');
     });
 
     it('adds the pair', () => {
