@@ -32,6 +32,14 @@ describe('keypair', () => {
       ).toEqual(publicKeyTwo);
     });
 
+    it('creates a ed25519 pair via mneminicToSeed', () => {
+      expect(
+        keypair.addFromUri(
+          'seed sock milk update focus rotate barely fade car face mechanic mercy'
+        ).address()
+      ).toEqual('5DkQP32jP4DVJLWWBRBoZF2tpWjqFrcrTBo6H5NcSk7MxFyP');
+    });
+
     it('adds from a mnemonic', () => {
       setPrefix(68);
 

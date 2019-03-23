@@ -147,6 +147,7 @@ export default class Keyring implements KeyringInstance {
    * @description This creates a pair from the suri, but does not add it to the keyring
    */
   createFromUri (_suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+    // here we only aut-add the dev phrase if we have a hard-derived path
     const suri = _suri.indexOf('//') === 0
       ? `${DEV_PHRASE}${_suri}`
       : _suri;
@@ -160,8 +161,14 @@ export default class Keyring implements KeyringInstance {
       const parts = str.split(' ');
 
       if ([12, 15, 18, 21, 24].includes(parts.length)) {
+        // FIXME This keeps compat with older versions, but breaks compat with subkey
+        // seed = type === 'sr25519'
+        //   ? mnemonicToMiniSecret(phrase, password)
+        //   : mnemonicToSeed(phrase, password);
         seed = mnemonicToMiniSecret(phrase, password);
       } else {
+        assert(str.length <= 32, 'specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
+
         seed = stringToU8a(str.padEnd(32));
       }
     }
