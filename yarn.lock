@@ -1584,20 +1584,20 @@
   resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.56.tgz#ffd6e9c95704a7fb90b918193b9dc5c440114b27"
   integrity sha512-wnt4zXxZXyz6WaubTO/I+nUElwV2DogFzdl6CrKfVn2PTWp8uHN06W9s40FH57ORtmQfDr9rLRP8Nq+oIyElbg==
 
-"@polkadot/wasm-crypto@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto/-/wasm-crypto-0.3.1.tgz#d605d18557076f01b00610844ba41bf12298e502"
-  integrity sha512-G1QEKC8o6SkKc65xjgMzujoA9rEQpMp/RZCVqrrmevgBhxTSohVsbXsBO3ooNtQLdq0DfFqUH13FatV0RxVdHQ==
+"@polkadot/wasm-crypto@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto/-/wasm-crypto-0.4.1.tgz#a8b6620d3ca5922fb2e0e404f6770322cda3251d"
+  integrity sha512-AlZXTq2b8P8xQ5poelRSL+C/VAWAy8HiLCUJGh2mMMr6WPSGlOsEh7lsJ/QG6n+skuk+FnHOkA5jMjVG42cBfA==
 
-"@polkadot/wasm-dalek-ed25519@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/wasm-dalek-ed25519/-/wasm-dalek-ed25519-0.3.1.tgz#52b86a3fabbbdeb60273b51685d089d5be2bfe6a"
-  integrity sha512-TvFMpE0y2RTCDRcVAer/94bCT4X8qHTU/K5GEhiqHtsLNZ9igJeSn27PRHUF3rzq1YgwCLvG6/wQ+4p+4DWTlQ==
+"@polkadot/wasm-dalek-ed25519@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-dalek-ed25519/-/wasm-dalek-ed25519-0.4.1.tgz#320ec00569c0639d0e14ab1320e8416990cd31a5"
+  integrity sha512-Z6yDNxJ/ftKwM9KfmuNnyeDoBUCObXOSWopeC7UzcH66TdvlTwOAGBi82o6wzFjXyiBz6Xjlq1L8bMiFPhd0MQ==
 
-"@polkadot/wasm-schnorrkel@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/wasm-schnorrkel/-/wasm-schnorrkel-0.3.1.tgz#08287848f769dee4955517348905888bd289f277"
-  integrity sha512-2J/lNZe7oDWvzUbsEfvKfiiAvBIBbIsppeBGahwSg2Y+cLweQgThXGizPpQoPo0tHxgMKdTi6jhPu7tLzCW/cA==
+"@polkadot/wasm-schnorrkel@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-schnorrkel/-/wasm-schnorrkel-0.4.1.tgz#a35c8de0845923143d17649a5d682cee21d6bbf2"
+  integrity sha512-rxcCnBlUO266k2KcECadnukzvBYoxnxNtWwfj4bdXjzNGrZ3nQlPWby3Rer8xlyOvhXILLAz/dRth1tRxtBkjA==
 
 "@types/babel__core@^7.1.0":
   version "7.1.0"
