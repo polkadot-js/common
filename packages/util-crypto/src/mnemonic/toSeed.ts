@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { bip39ToSeed, isReady } from '@polkadot/wasm-crypto';
+
 import toSecret from './toSecret';
 
 /**
@@ -21,6 +23,8 @@ import toSecret from './toSecret';
  * }
  * ```
  */
-export default function toSeed (mnemonic: string): Uint8Array {
-  return toSecret(mnemonic).subarray(0, 32);
+export default function toSeed (mnemonic: string, password: string = ''): Uint8Array {
+  return isReady()
+    ? bip39ToSeed(mnemonic, password)
+    : toSecret(mnemonic, password).subarray(0, 32);
 }

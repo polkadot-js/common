@@ -5,8 +5,8 @@
 import { mnemonicToSeed } from 'bip39';
 import { bufferToU8a } from '@polkadot/util';
 
-export default function toSecret (mnemonic: string): Uint8Array {
+export default function toSecret (mnemonic: string, password?: string): Uint8Array {
   return bufferToU8a(
-    mnemonicToSeed(mnemonic)
+    mnemonicToSeed(mnemonic, password)
   );
 }

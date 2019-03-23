@@ -160,7 +160,9 @@ export default class Keyring implements KeyringInstance {
       const parts = str.split(' ');
 
       if ([12, 15, 18, 21, 24].includes(parts.length)) {
-        seed = mnemonicToMiniSecret(phrase, password);
+        seed = type === 'sr25519'
+          ? mnemonicToMiniSecret(phrase, password)
+          : mnemonicToSeed(phrase, password);
       } else {
         seed = stringToU8a(str.padEnd(32));
       }
