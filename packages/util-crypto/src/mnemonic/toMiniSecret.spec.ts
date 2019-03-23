@@ -13,6 +13,12 @@ describe('mnemonicToMiniSecret', () => {
     await cryptoWaitReady();
   });
 
+  it('generates a valid seed', () => {
+    expect(
+      u8aToHex(mnemonicToMiniSecret('seed sock milk update focus rotate barely fade car face mechanic mercy'))
+    ).toEqual('0x4d1ab2a57929edfd018aaa974e62ed557e3f54b4104acabedf73c8f5a1dbb029');
+  });
+
   tests.forEach(([mnemonic, , seed], index) => {
     it(`Created correct seed for ${index}`, () => {
       expect(
