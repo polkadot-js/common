@@ -67,11 +67,11 @@ import TransactionDb from './engines/TransactionDb';
 export default class DiskDb extends TransactionDb {
   constructor (base: string, name: string, options?: BaseDbOptions) {
     super(
-      new LruDb(
-        options && options.isNative
-          ? new FileFlatDb(base, name, options)
-          : new LmDb(base, name, options)
-      )
+      options && options.isNative
+        ? new LruDb(
+          new FileFlatDb(base, name, options)
+        )
+        : new LmDb(base, name, options)
     );
   }
 }
