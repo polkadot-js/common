@@ -1,7 +1,7 @@
 # 0.40.1
 
 - Add additional derivation path extraction mechanisms to util-crypto
-- Add createFromUri function to keypair (creates, does not add it)
+- Add createFromUri function to keypair (creates keypair, does not add it)
 - Allow all crypto hashing & ed25519 to use WASM (as available, JS fallbacks)
 
 # 0.39.1
