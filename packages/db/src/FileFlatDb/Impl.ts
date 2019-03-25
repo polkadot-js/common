@@ -41,15 +41,15 @@ export default class Impl extends Cache {
 
     l.debug(() => ['findKey/isLeaf', { keyAt, branch, branchAt, entryIndex, keyValue }]);
 
-    while (matchIndex < defaults.KEY_SIZE) {
-      if (prevKey.nibbles[matchIndex] !== key.nibbles[matchIndex]) {
+    while (matchIndex < defaults.KEY_PARTS_LENGTH) {
+      if (prevKey.parts[matchIndex] !== key.parts[matchIndex]) {
         break;
       }
 
       matchIndex++;
     }
 
-    if (matchIndex !== defaults.KEY_SIZE) {
+    if (matchIndex !== defaults.KEY_PARTS_LENGTH) {
       return doCreate
         ? this.writeNewBranch(branch, branchAt, entryIndex, key, keyAt, prevKey, matchIndex, matchIndex - keyIndex - 1)
         : null;
@@ -63,7 +63,7 @@ export default class Impl extends Cache {
   }
 
   protected _findKey (key: NibbleBuffer, doCreate: boolean, keyIndex: number, branchAt: number): Key | null {
-    const entryIndex = key.nibbles[keyIndex] * defaults.ENTRY_SIZE;
+    const entryIndex = key.parts[keyIndex] * defaults.ENTRY_SIZE;
     const branch = this._getCachedBranch(branchAt);
 
     l.debug(() => ['findKey', { key, doCreate, keyIndex, branchAt, branch, entryIndex }]);
@@ -150,8 +150,8 @@ export default class Impl extends Cache {
     // l.debug(() => ['writeNewBranch', { branch, branchAt, entryIndex, key, prevAt, prevKey, matchIndex, depth }]);
 
     const { keyAt, keyValue } = this.writeNewKey(key);
-    const keyIndex = key.nibbles[matchIndex] * defaults.ENTRY_SIZE;
-    const prevIndex = prevKey.nibbles[matchIndex] * defaults.ENTRY_SIZE;
+    const keyIndex = key.parts[matchIndex] * defaults.ENTRY_SIZE;
+    const prevIndex = prevKey.parts[matchIndex] * defaults.ENTRY_SIZE;
     const buffers: Array<Buffer> = [];
     let newBranchAt = this._fileSize;
     let newBranch = Buffer.alloc(defaults.BRANCH_SIZE);
@@ -163,7 +163,7 @@ export default class Impl extends Cache {
     buffers.push(newBranch);
 
     for (let offset = 1; depth > 0; depth--, offset++) {
-      const branchIndex = key.nibbles[matchIndex - offset] * defaults.ENTRY_SIZE;
+      const branchIndex = key.parts[matchIndex - offset] * defaults.ENTRY_SIZE;
 
       newBranch = Buffer.alloc(defaults.BRANCH_SIZE);
       newBranch.set([Slot.BRANCH], branchIndex);
