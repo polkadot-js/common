@@ -33,18 +33,23 @@ export default class Serialize {
     assert(u8a.length <= defaults.KEY_SIZE, `${u8aToHex(u8a)} too large, expected <= 32 bytes`);
 
     let buffer;
+    let full;
 
     if (u8a.length === defaults.KEY_SIZE) {
-      buffer = u8aToBuffer(u8a);
+      full = u8a;
     } else {
-      buffer = Buffer.alloc(defaults.KEY_SIZE);
+      full = new Uint8Array(defaults.KEY_SIZE);
 
-      buffer.set(u8a, 0);
+      full.set(u8a, 0);
     }
+
+    buffer = u8aToBuffer(full);
 
     return {
       buffer,
-      nibbles: toNibbles(u8a)
+      parts: defaults.KEY_IS_NIBBLES
+        ? toNibbles(full)
+        : full
     };
   }
 }
