@@ -1,3 +1,7 @@
+# 0.41.0
+
+- Extensions to the client-specific database interfaces (non-breaking for API and util users)
+
 # 0.40.1
 
 - Add additional derivation path extraction mechanisms to util-crypto
