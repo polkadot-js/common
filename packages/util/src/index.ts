@@ -9,6 +9,7 @@ import './polyfill';
  */
 
 export { default as assert } from './assert';
+export { default as assertSingletonPackage } from './assertSingletonPackage';
 export { default as logger } from './logger';
 export { default as promisify } from './promisify';
 
