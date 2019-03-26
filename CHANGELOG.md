@@ -1,4 +1,9 @@
-# 0.41.0
+# 0.42.1
+
+- Add assertSingletonPackage to util
+- Ensure that only a single keyring instance is loaded (uses above)
+
+# 0.41.1
 
 - Extensions to the client-specific database interfaces (non-breaking for API and util users)
 
