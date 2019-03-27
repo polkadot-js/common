@@ -10,9 +10,12 @@ import assert from './assert';
  * @summary Checks that a specific package is only imported once
  */
 export default function assertSingletonPackage (name: string): void {
-  const _global: any = isUndefined(window) ? global : window;
+  // tslint:disable-next-line
+  const _global: any = typeof window !== 'undefined'
+    ? window
+    : global;
 
-  if (isUndefined(_global.__polkadotjs)) {
+  if (!_global.__polkadotjs) {
     _global.__polkadotjs = {};
   }
 
