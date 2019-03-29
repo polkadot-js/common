@@ -6,12 +6,16 @@
 import testingPairs from '../testingPairs';
 import decode from './decode';
 
-const keyring = testingPairs({ type: 'ed25519' }, false);
-
 describe('decode', () => {
+  let keyring: any;
+
+  beforeAll(async () => {
+    keyring = testingPairs({ type: 'sr25519' });
+  });
+
   it('decodes an address', () => {
     expect(
-      decode('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaDtZ')
+      decode('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY')
     ).toEqual(
       keyring.alice.publicKey()
     );
@@ -35,31 +39,31 @@ describe('decode', () => {
 
   it('decodes a short address', () => {
     expect(
-      decode('F7L6')
+      decode('F7NZ')
     ).toEqual(new Uint8Array([1]));
   });
 
   it('decodes a 1-byte accountId (with prefix)', () => {
     expect(
-      decode('Pqt7', 68)
+      decode('PqtB', false, 68)
     ).toEqual(new Uint8Array([1]));
   });
 
   it('decodes a 2-byte accountId', () => {
     expect(
-      decode('2jpAJz', 68)
+      decode('2jpAFn', false, 68)
     ).toEqual(new Uint8Array([0, 1]));
   });
 
   it('encodes a 4-byte address', () => {
     expect(
-      decode('as7QnGQ7', 68)
+      decode('as7QnGMf', false, 68)
     ).toEqual(new Uint8Array([1, 2, 3, 4]));
   });
 
-  it('decodes a 8-byte accountId', () => {
+  it('decodes a 8-byte address', () => {
     expect(
-      decode('4q7qY5RBG7Z4xX', 68)
+      decode('4q7qY5RBG7Z4wv', false, 68)
     ).toEqual(new Uint8Array([42, 44, 10, 0, 0, 0, 0, 0]));
   });
 

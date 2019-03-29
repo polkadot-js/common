@@ -15,6 +15,6 @@ describe('setPrefix', () => {
       encode(
         new Uint8Array([1])
       )
-    ).toEqual('Pqt7');
+    ).toEqual('PqtB');
   });
 });

@@ -57,13 +57,13 @@ export interface KeyringInstance {
   readonly publicKeys: Array<Uint8Array>;
   readonly type: KeypairType;
 
-  decodeAddress (encoded: string | Uint8Array): Uint8Array;
+  decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: boolean): Uint8Array;
   encodeAddress (key: Uint8Array | string): string;
   setAddressPrefix (prefix: Prefix): void;
 
   addPair (pair: KeyringPair): KeyringPair;
-  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, encoded?: Uint8Array | null, type?: KeypairType): KeyringPair;
-  addFromJson (pair: KeyringPair$Json): KeyringPair;
+  addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, encoded?: Uint8Array | null, type?: KeypairType, ignoreChecksum?: boolean): KeyringPair;
+  addFromJson (pair: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair;
   addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
   addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
   addFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
