@@ -31,26 +31,6 @@ export default class Trie extends Impl implements TrieDb {
     l.log(`Created with ${this.codec.type} codec, root ${u8aToHex(this.rootHash, 64)}`);
   }
 
-  async transactionAsync<T> (fn: () => Promise<T>): Promise<T> {
-    try {
-      this.createCheckpoint();
-
-      const result = await this.db.transactionAsync(fn);
-
-      if (result) {
-        this.commitCheckpoint();
-      } else {
-        this.revertCheckpoint();
-      }
-
-      return result;
-    } catch (error) {
-      this.revertCheckpoint();
-
-      throw error;
-    }
-  }
-
   transaction<T> (fn: () => T): T {
     try {
       this.createCheckpoint();

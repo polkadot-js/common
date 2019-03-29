@@ -10,8 +10,8 @@ const ONE_K = 1024;
 // 16 for nibbles (key -> asNibbles), 256 for bytes (key -> asU8a)
 // There is a tradeof here:
 //   - with nibbles there are more writes and more read branching traversals
-//   - with bytes there are less writes, however more (initial) disk space
-const ENTRY_NUM: 16 | 256 = 256;
+//   - with bytes there are less writes, however more disk space
+const ENTRY_NUM: 16 | 256 = 16;
 const ENTRY_SIZE = 1 + UINT_SIZE;
 
 // the size of a branch entry, 96 for nibbles, 1,536 for bytes

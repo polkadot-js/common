@@ -12,6 +12,7 @@ export type ProgressCb = (progress: ProgressValue) => void;
 
 export type BaseDbOptions = {
   isCompressed?: boolean,
+  isLru?: boolean,
   isNative?: boolean
 };
 
@@ -34,6 +35,5 @@ export interface BaseDb {
 }
 
 export interface TxDb extends BaseDb {
-  transactionAsync <T> (fn: () => Promise<T>): Promise<T>;
   transaction <T> (fn: () => T): T;
 }
