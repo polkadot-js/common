@@ -11,7 +11,7 @@ describe('toJson', () => {
     expect(
       keyring.alice.toJson()
     ).toMatchObject({
-      address: '5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaDtZ',
+      address: '5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua',
       encoded: '0x3053020101300506032b657004220420416c696365202020202020202020202020202020202020202020202020202020d172a74cda4c865912c32ba0a80a57ae69abae410e5ccb59dee84e2f4432db4fa123032100d172a74cda4c865912c32ba0a80a57ae69abae410e5ccb59dee84e2f4432db4f',
       encoding: {
         content: ['pkcs8', 'ed25519'],
@@ -30,7 +30,7 @@ describe('toJson', () => {
 
     expect(json.encoded).toHaveLength(316);
     expect(json).toMatchObject({
-      address: '5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaDtZ',
+      address: '5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua',
       encoding: {
         content: ['pkcs8', 'ed25519'],
         type: 'xsalsa20-poly1305',

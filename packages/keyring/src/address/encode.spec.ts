@@ -12,7 +12,7 @@ describe('encode', () => {
   it('encodes an address to a valid value', () => {
     expect(
       keyring.alice.address()
-    ).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaDtZ');
+    ).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua');
   });
 
   it('fails when non-valid publicKey provided', () => {
@@ -28,7 +28,7 @@ describe('encode', () => {
       encode(
         new Uint8Array([1])
       )
-    ).toEqual('F7L6');
+    ).toEqual('F7NZ');
   });
 
   it('encodes a 1-byte address (with prefix)', () => {
@@ -36,7 +36,7 @@ describe('encode', () => {
       encode(
         new Uint8Array([1]), 68
       )
-    ).toEqual('Pqt7');
+    ).toEqual('PqtB');
   });
 
   it('encodes a 2-byte address', () => {
@@ -44,7 +44,7 @@ describe('encode', () => {
       encode(
         new Uint8Array([0, 1]), 68
       )
-    ).toEqual('2jpAJz');
+    ).toEqual('2jpAFn');
   });
 
   it('encodes a 4-byte address', () => {
@@ -52,7 +52,7 @@ describe('encode', () => {
       encode(
         new Uint8Array([1, 2, 3, 4]), 68
       )
-    ).toEqual('as7QnGQ7');
+    ).toEqual('as7QnGMf');
   });
 
   it('enodes a 8-byte address', () => {
@@ -60,6 +60,6 @@ describe('encode', () => {
       encode(
         new Uint8Array([42, 44, 10, 0, 0, 0, 0, 0]), 68
       )
-    ).toEqual('4q7qY5RBG7Z4xX');
+    ).toEqual('4q7qY5RBG7Z4wv');
   });
 });

@@ -8,11 +8,11 @@ import { Prefix } from './types';
 
 import bs58 from 'bs58';
 import { assert, bufferToU8a, isHex, isU8a, u8aToU8a } from '@polkadot/util';
-import { blake2AsU8a } from '@polkadot/util-crypto';
 
 import defaults from './defaults';
+import sshash from './sshash';
 
-export default function decode (encoded: string | Uint8Array, prefix: Prefix = defaults.prefix): Uint8Array {
+export default function decode (encoded: string | Uint8Array, ignoreChecksum?: boolean, prefix: Prefix = defaults.prefix): Uint8Array {
   if (isU8a(encoded) || isHex(encoded)) {
     return u8aToU8a(encoded);
   }
@@ -35,12 +35,12 @@ export default function decode (encoded: string | Uint8Array, prefix: Prefix = d
   const endPos = decoded.length - (isPublicKey ? 2 : 1);
 
   // calculate the hash and do the checksum byte checks
-  const hash = blake2AsU8a(decoded.subarray(0, endPos), 512);
+  const hash = sshash(decoded.subarray(0, endPos));
   const checks = isPublicKey
     ? decoded[decoded.length - 2] === hash[0] && decoded[decoded.length - 1] === hash[1]
     : decoded[decoded.length - 1] === hash[0];
 
-  assert(checks, error('Invalid decoded address checksum'));
+  assert(ignoreChecksum || checks, error('Invalid decoded address checksum'));
 
   return decoded.slice(1, endPos);
 }

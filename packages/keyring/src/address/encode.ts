@@ -8,9 +8,9 @@ import { Prefix } from './types';
 
 import bs58 from 'bs58';
 import { assert, u8aConcat, u8aToBuffer, u8aToU8a } from '@polkadot/util';
-import { blake2AsU8a } from '@polkadot/util-crypto';
 
 import defaults from './defaults';
+import sshash from './sshash';
 
 export default function encode (_key: Uint8Array | string, prefix: Prefix = defaults.prefix): string {
   const key = u8aToU8a(_key);
@@ -19,9 +19,8 @@ export default function encode (_key: Uint8Array | string, prefix: Prefix = defa
 
   const isPublicKey = key.length === 32;
 
-  // generate an input with the prefix and calculate hash
   const input = u8aConcat(new Uint8Array([prefix]), key);
-  const hash = blake2AsU8a(input, 512);
+  const hash = sshash(input);
 
   return bs58.encode(
     u8aToBuffer(
