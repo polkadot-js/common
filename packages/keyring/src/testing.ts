@@ -10,7 +10,7 @@ import createPair from './pair';
 import Keyring from '.';
 
 // As per substrate
-const SEEDS = ['Alice', 'Bob', 'Charlie', 'Dave', 'Eve', 'Ferdie'];
+const SEEDS = ['Alice', 'Alice//stash', 'Bob', 'Charlie', 'Dave', 'Eve', 'Ferdie'];
 // NOTE This is not great, but a testing keyring is for testing - what happens is that in most cases
 // the keyring is initialises before anythign else. Since the sr25519 crypto is async, this creates
 // problems with adding the keys
@@ -18,6 +18,10 @@ const PAIRS = [
   [
     hexToU8a('0x98319d4ff8a9508c4bb0cf0b5a78d760a0b2082c02775e6e82370816fedfff48925a225d97aa00682d6a59b95b18780c10d7032336e88f3442b42361f4a66011'),
     hexToU8a('0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d')
+  ],
+  [
+    hexToU8a('0xe8da6c9d810e020f5e3c7f5af2dea314cbeaa0d72bc6421e92c0808a0c584a6046ab28e97c3ffc77fe12b5a4d37e8cd4afbfebbf2391ffc7cb07c0f38c023efd'),
+    hexToU8a('0xbe5ddb1579b72e84524fc29e78609e3caf42e85aa118ebfe0b0ad404b5bdd25f')
   ],
   [
     hexToU8a('0x081ff694633e255136bdb456c20a5fc8fed21f8b964c11bb17ff534ce80ebd5941ae88f85d0c1bfc37be41c904e1dfc01de8c8067b0d6d5df25dd1ac0894a325'),
@@ -53,7 +57,7 @@ export default function testKeyring (options: KeyringOptions = {}, isDerived: bo
   SEEDS.forEach((entry, index) => {
     const meta = {
       isTesting: true,
-      name: entry.toLowerCase()
+      name: entry.replace('//', '_').toLowerCase()
     };
     const pair = !isDerived
       ? keyring.addFromUri(entry, meta, options.type)
