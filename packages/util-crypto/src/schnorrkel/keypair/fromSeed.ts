@@ -6,7 +6,7 @@ import { Keypair } from '../../types';
 
 import '../../polyfill';
 
-import schnorrkel from '@polkadot/wasm-schnorrkel';
+import { sr25519KeypairFromSeed } from '@polkadot/wasm-crypto';
 
 import keypairFromU8a from './fromU8a';
 
@@ -16,6 +16,6 @@ import keypairFromU8a from './fromU8a';
  */
 export default function schnorrkelKeypairFromSeed (seed: Uint8Array): Keypair {
   return keypairFromU8a(
-    schnorrkel.keypairFromSeed(seed)
+    sr25519KeypairFromSeed(seed)
   );
 }

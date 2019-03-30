@@ -5,8 +5,6 @@
 import './polyfill';
 
 import wasmCrypto from '@polkadot/wasm-crypto';
-import wasmEd25519 from '@polkadot/wasm-dalek-ed25519';
-import wasmSr25519 from '@polkadot/wasm-schnorrkel';
 
 export * from './blake2';
 export * from './keccak';
@@ -20,14 +18,8 @@ export * from './sha512';
 export * from './xxhash';
 
 export function cryptoWaitReady (): Promise<boolean> {
-  // this is a bit convoluted, but since we can do the same for libsodium,
-  // prepare for multiples, easy to adapt without thinking
-  return Promise
-    .all([
-      wasmCrypto.waitReady(),
-      wasmEd25519.waitReady(),
-      wasmSr25519.waitReady()
-    ])
+  return wasmCrypto
+    .waitReady()
     .then(() => true)
     .catch((error) => {
       console.error('Unable to initialize @polkadot/util-crypto', error);

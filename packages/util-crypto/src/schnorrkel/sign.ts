@@ -7,7 +7,7 @@ import { Keypair } from '../types';
 import '../polyfill';
 
 import { assert } from '@polkadot/util';
-import schnorrkel from '@polkadot/wasm-schnorrkel';
+import { sr25519Sign } from '@polkadot/wasm-crypto';
 
 /**
  * @name schnorrkelSign
@@ -17,5 +17,5 @@ export default function schnorrkelSign (message: Uint8Array, { publicKey, secret
   assert(publicKey && publicKey.length === 32, 'Expected valid publicKey, 32-bytes');
   assert(secretKey && secretKey.length === 64, 'Expected valid secretKey, 64-bytes');
 
-  return schnorrkel.sign(publicKey as Uint8Array, secretKey as Uint8Array, message);
+  return sr25519Sign(publicKey as Uint8Array, secretKey as Uint8Array, message);
 }

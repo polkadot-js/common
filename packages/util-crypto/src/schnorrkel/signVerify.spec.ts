@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { stringToU8a } from '@polkadot/util';
-import schnorrkel from '@polkadot/wasm-schnorrkel';
+import { waitReady } from '@polkadot/wasm-crypto';
 
 import randomAsU8a from '../random/asU8a';
 import pairFromSeed from './keypair/fromSeed';
@@ -14,7 +14,7 @@ const MESSAGE = stringToU8a('this is a message');
 
 describe('sign and verify', () => {
   beforeEach(async () => {
-    return schnorrkel.waitReady();
+    return waitReady();
   });
 
   it('has 64-byte signatures', () => {
