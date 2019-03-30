@@ -6,7 +6,7 @@ import { Keypair } from '../types';
 
 import nacl from 'tweetnacl';
 import { assert } from '@polkadot/util';
-import { isReady, sign } from '@polkadot/wasm-dalek-ed25519';
+import { isReady, ed25519Sign } from '@polkadot/wasm-crypto';
 
 /**
  * @name naclSign
@@ -26,6 +26,6 @@ export default function naclSign (message: Uint8Array, { publicKey, secretKey }:
   assert(secretKey, 'Expected valid secretKey');
 
   return isReady()
-    ? sign(publicKey as Uint8Array, (secretKey as Uint8Array).subarray(0, 32), message)
+    ? ed25519Sign(publicKey as Uint8Array, (secretKey as Uint8Array).subarray(0, 32), message)
     : nacl.sign.detached(message, secretKey as Uint8Array);
 }

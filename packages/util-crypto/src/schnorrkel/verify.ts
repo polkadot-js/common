@@ -4,12 +4,12 @@
 
 import '../polyfill';
 
-import schnorrkel from '@polkadot/wasm-schnorrkel';
+import { sr25519Verify } from '@polkadot/wasm-crypto';
 
 /**
  * @name schnorrkelVerify
  * @description Verifies the signature of `message`, using the supplied pair
  */
 export default function schnorrkelVerify (message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array): boolean {
-  return schnorrkel.verify(signature, message, publicKey);
+  return sr25519Verify(signature, message, publicKey);
 }

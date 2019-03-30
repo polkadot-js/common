@@ -1,6 +1,7 @@
 # 0.76.1
 
 - Swap DB interfaces to optional LRU, removing transactionAsync (client-only changes)
+- Swap out `wasm-schnorrkel` & `wasm-ed25519` for combined version with `wasm-crypto`
 
 # 0.75.1
 

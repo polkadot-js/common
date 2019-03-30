@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { stringToU8a } from '@polkadot/util';
-import ed25519 from '@polkadot/wasm-dalek-ed25519';
+import { waitReady } from '@polkadot/wasm-crypto';
 
 import { naclVerify, naclKeypairFromSeed } from '.';
 
@@ -12,7 +12,7 @@ describe('naclSign', () => {
   let signature: Uint8Array;
 
   beforeEach(async () => {
-    await ed25519.waitReady();
+    await waitReady();
 
     publicKey = naclKeypairFromSeed(
       stringToU8a('12345678901234567890123456789012')

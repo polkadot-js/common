@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { stringToU8a } from '@polkadot/util';
-import ed25519 from '@polkadot/wasm-dalek-ed25519';
+import { waitReady } from '@polkadot/wasm-crypto';
 
 import { naclKeypairFromSeed } from '..';
 
@@ -28,7 +28,7 @@ describe('naclKeypairFromSeed', () => {
   };
 
   beforeEach(async () => {
-    await ed25519.waitReady();
+    await waitReady();
   });
 
   it('generates a valid publicKey/secretKey pair (u8a)', () => {
