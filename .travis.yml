@@ -3,6 +3,10 @@ node_js:
   - "10"
 env:
   - GH_PAGES_SRC="build-docs"
+cache:
+  yarn: true
+  directories:
+    - node_modules
 # compiler & addons are both used for RocksDb
 # compiler:
 #   - clang
@@ -22,22 +26,24 @@ env:
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$(yarn global bin):$PATH
-cache:
-  yarn: true
-  directories:
-    - node_modules
-install:
-  # - export ROCKSDB=$HOME/rocksdb-master
-  # - pushd $HOME
-  # - curl -sLO https://github.com/facebook/rocksdb/archive/master.zip
-  # - unzip -q master.zip
-  # - cd rocksdb-master
-  # - make shared_lib
-  # - popd
-  # - export CFLAGS="-I${ROCKSDB}/include/"
-  # - export CXXFLAGS="-I${ROCKSDB}/include/"
-  # - export LDFLAGS="-L${ROCKSDB} -lrocksdb -lstdc++ -lm -lz"
-  # - export LD_LIBRARY_PATH="${ROCKSDB}:/usr/local/lib"
-  - yarn
+# install:
+#   - export ROCKSDB=$HOME/rocksdb-master
+#   - pushd $HOME
+#   - curl -sLO https://github.com/facebook/rocksdb/archive/master.zip
+#   - unzip -q master.zip
+#   - cd rocksdb-master
+#   - make shared_lib
+#   - popd
+#   - export CFLAGS="-I${ROCKSDB}/include/"
+#   - export CXXFLAGS="-I${ROCKSDB}/include/"
+#   - export LDFLAGS="-L${ROCKSDB} -lrocksdb -lstdc++ -lm -lz"
+#   - export LD_LIBRARY_PATH="${ROCKSDB}:/usr/local/lib"
+#   - yarn
 script:
-  - yarn polkadot-dev-build-travis
+  - yarn polkadot-dev-travis-build
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: yarn polkadot-dev-travis-deploy
+  on:
+    branch: master
