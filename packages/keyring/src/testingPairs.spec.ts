@@ -14,7 +14,7 @@ describe('testingPairs', () => {
   it('creates without failing', () => {
     expect(
       Object.keys(testingPairs())
-    ).toHaveLength(1 + 6);
+    ).toHaveLength(1 + 7);
   });
 
   it('has the correct address for Alice (non-HDKD)', () => {

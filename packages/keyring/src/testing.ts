@@ -57,7 +57,7 @@ export default function testKeyring (options: KeyringOptions = {}, isDerived: bo
   SEEDS.forEach((entry, index) => {
     const meta = {
       isTesting: true,
-      name: entry.toLowerCase()
+      name: entry.replace('//', '_').toLowerCase()
     };
     const pair = !isDerived
       ? keyring.addFromUri(entry, meta, options.type)
