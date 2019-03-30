@@ -1,3 +1,7 @@
+# 0.76.1
+
+- Swap DB interfaces to optional LRU, removing transactionAsync (client-only changes)
+
 # 0.75.1
 
 - Start journey to 1.0
