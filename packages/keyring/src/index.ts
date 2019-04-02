@@ -127,7 +127,7 @@ export default class Keyring implements KeyringInstance {
    * Allows user to provide the account seed as an argument, and then generates a keyring pair from it that it passes to
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type, doWarning: boolean = true): KeyringPair {
+  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
     const keypair = type === 'sr25519'
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
