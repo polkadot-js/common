@@ -45,7 +45,7 @@ describe('keypair', () => {
 
       expect(
         keypair.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {}).address()
-      ).toEqual('7pDZKLEixRnF6Q5jzr7DsCEiNPt3d6Rknc14SyUcnRwTQ8Jw');
+      ).toEqual('7sPsxWPE5DzAyPT3VuoJYw5NTGscx9QYN9oddQx4kALKC3hH');
     });
 
     it('allows publicKeys retrieval', () => {
@@ -111,7 +111,7 @@ describe('keypair', () => {
 
       expect(
         keypair.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {}).address()
-      ).toEqual('7nmZ1fkYHpnEz6tqR9cLkmwYRbqda9wPsiDq56JhgmNXq6uW');
+      ).toEqual('7qQGarA4PWjPPVHG4USn1yuuVZvEHN7XZz8o7EbAp48jayZQ');
     });
 
     it('allows publicKeys retrieval', () => {
