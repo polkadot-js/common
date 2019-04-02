@@ -20,5 +20,6 @@ export { default as isNumber } from './number';
 export { default as isObject } from './object';
 export { default as isObservable } from './observable';
 export { default as isString } from './string';
+export { default as isTestChain } from './testChain';
 export { default as isU8a } from './u8a';
 export { default as isUndefined } from './undefined';
