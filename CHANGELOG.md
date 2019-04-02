@@ -1,5 +1,6 @@
 # 0.76.1
 
+- Fix `addFromMnemonic` to generate using new-style derivation.
 - Pull in formatBalance, formatDecimal, formatElapsed, formatNumber, calcSi, findSi & isTestChain util fuinctions from the originals in @polkadot/ui-util
 - Swap DB interfaces to optional LRU, removing transactionAsync (client-only changes)
 - Swap out `wasm-schnorrkel` & `wasm-ed25519` for combined version with `wasm-crypto`

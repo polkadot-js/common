@@ -6,7 +6,7 @@ import { KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions } from './types';
 
 import { assert, assertSingletonPackage, hexToU8a, isNumber, isHex, stringToU8a } from '@polkadot/util';
-import { keyExtractSuri, mnemonicToSeed , naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, mnemonicToMiniSecret, keyFromPath } from '@polkadot/util-crypto';
+import { keyExtractSuri, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, mnemonicToMiniSecret, keyFromPath } from '@polkadot/util-crypto';
 
 import { decodeAddress, encodeAddress, setAddressPrefix } from './address';
 import { DEV_PHRASE } from './defaults';
@@ -104,6 +104,7 @@ export default class Keyring implements KeyringInstance {
     const type = version === '0' || !Array.isArray(content)
       ? this.type
       : content[1];
+
     return this.addFromAddress(address, meta, hexToU8a(encoded), type, ignoreChecksum);
   }
 
@@ -116,7 +117,7 @@ export default class Keyring implements KeyringInstance {
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
   addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
-    return this.addFromSeed(mnemonicToSeed(mnemonic), meta, type);
+    return this.addFromUri(mnemonic, meta, type);
   }
 
   /**
@@ -126,7 +127,7 @@ export default class Keyring implements KeyringInstance {
    * Allows user to provide the account seed as an argument, and then generates a keyring pair from it that it passes to
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type, doWarning: boolean = true): KeyringPair {
     const keypair = type === 'sr25519'
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
