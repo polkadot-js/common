@@ -31,12 +31,6 @@
     "@babel/runtime": "^7.4.3",
     "@polkadot/trie-hash": "^0.76.0-beta.6",
     "@polkadot/util": "^0.76.0-beta.6",
-    "@types/mkdirp": "^0.5.2",
-    "@types/rimraf": "^2.0.2",
-    "@types/snappy": "^6.0.0",
-    "lru_map": "^0.3.3",
-    "mkdirp": "^0.5.1",
-    "node-lmdb": "^0.6.2",
-    "snappy": "^6.1.2"
+    "lru_map": "^0.3.3"
   }
 }
