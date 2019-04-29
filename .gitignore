@@ -12,6 +12,7 @@ tmp/
 .env.test.local
 .env.production.local
 .npmrc
+cc-test-reporter
 lerna-debug.log*
 npm-debug.log*
 package-lock.json
