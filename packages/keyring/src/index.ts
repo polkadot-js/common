@@ -58,7 +58,7 @@ export default class Keyring implements KeyringInstance {
   }
 
   /**
-   * @description retrieve the publicKeys (alias for getPiblicKeys)
+   * @description retrieve the publicKeys (alias for getPublicKeys)
    */
   get publicKeys (): Array<Uint8Array> {
     return this.getPublicKeys();
