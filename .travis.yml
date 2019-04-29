@@ -2,16 +2,24 @@ language: node_js
 node_js:
   - "10"
 env:
-  - GH_PAGES_SRC="build-docs"
+  global:
+    - CC_TEST_REPORTER_ID=27a299582eb7fd9580e27897a6ecda1c82a1cd24bcfe2f2ebda1ca70238509b4
+    - GH_PAGES_SRC="build-docs"
 cache:
   yarn: true
   directories:
     - node_modules
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
   - export PATH=$HOME/.yarn/bin:$(yarn global bin):$PATH
+before_script:
+  - ./cc-test-reporter before-build
 script:
   - yarn polkadot-dev-travis-build
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 deploy:
   skip_cleanup: true
   provider: script

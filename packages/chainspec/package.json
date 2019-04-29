@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/chainspec",
-  "version": "0.77.0-beta.0",
+  "version": "0.90.0-beta.0",
   "description": "Contains chain specifications for known chains",
   "main": "index.js",
   "keywords": [
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/chainspec#readme",
   "dependencies": {
-    "@babel/runtime": "^7.4.3",
-    "@polkadot/util": "^0.77.0-beta.0"
+    "@babel/runtime": "^7.4.4",
+    "@polkadot/util": "^0.90.0-beta.0"
   }
 }
