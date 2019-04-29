@@ -1,3 +1,7 @@
+# 0.90.1
+
+- Moving towards 1.0
+
 # 0.76.1
 
 - Fix `addFromMnemonic` to generate using new-style derivation.
