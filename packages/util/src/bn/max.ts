@@ -28,5 +28,5 @@ export default function max (
     'Must provide two or more BN arguments'
   );
 
-  return items.reduce((acc: BN, val: BN) => BN.max(acc, val), new BN(0));
+  return items.reduce((acc: BN, val: BN) => BN.max(acc, val), items[0]);
 }

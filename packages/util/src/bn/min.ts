@@ -27,5 +27,5 @@ export default function min (
     'Must provide two or more BN arguments'
   );
 
-  return items.reduce((acc: BN, val: BN) => BN.min(acc, val), new BN('1e500'));
+  return items.reduce((acc: BN, val: BN) => BN.min(acc, val), items[0]);
 }
