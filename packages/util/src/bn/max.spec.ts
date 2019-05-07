@@ -12,10 +12,4 @@ describe('bnMax', () => {
       bnMax(new BN(1), new BN(2), new BN(3))
     ).toEqual(new BN(3));
   });
-
-  it('returns null for no arguments', () => {
-    expect(
-      bnMax()
-    ).toEqual(null);
-  });
 });

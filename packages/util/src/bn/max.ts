@@ -4,6 +4,8 @@
 
 import BN from 'bn.js';
 
+import assert from '../assert';
+
 /**
  * @name max
  * @summary Finds and returns the highest value in an array of BNs.
@@ -19,12 +21,11 @@ import BN from 'bn.js';
  */
 export default function max (
   ...items: BN[]
-): BN | null {
-  if (!items || !items.length) {
-    return null;
-  }
+): BN {
+  assert(
+    items && items.length >= 2,
+    'Must provide two or more BN arguments'
+  );
 
-  return items.reduce((acc: BN, val: BN) => {
-    return (val.gt(acc) ? val : acc);
-  }, new BN(0));
+  return items.reduce((acc: BN, val: BN) => BN.max(acc, val), new BN(0));
 }

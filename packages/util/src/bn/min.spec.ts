@@ -12,10 +12,4 @@ describe('bnMin', () => {
       bnMin(new BN(1), new BN(2), new BN(3))
     ).toEqual(new BN(1));
   });
-
-  it('returns null for no arguments', () => {
-    expect(
-      bnMin()
-    ).toEqual(null);
-  });
 });
