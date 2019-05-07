@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import BN from 'bn.js';
+
 export interface ExtErrorInterface {
   code: number;
   data: any;
@@ -24,3 +26,8 @@ export interface ToBnOptions {
   isLe?: boolean;
   isNegative?: boolean;
 }
+
+export type BnList = {
+  0: BN,
+  1: BN
+} & Array<BN>;

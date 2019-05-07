@@ -4,7 +4,7 @@
 
 import BN from 'bn.js';
 
-import assert from '../assert';
+import { BnList } from '../types';
 
 /**
  * @name min
@@ -20,12 +20,7 @@ import assert from '../assert';
  * ```
  */
 export default function min (
-  ...items: BN[]
+  ...items: BnList
 ): BN {
-  assert(
-    items && items.length >= 2,
-    'Must provide two or more BN arguments'
-  );
-
   return items.reduce((acc: BN, val: BN) => BN.min(acc, val), new BN('1e500'));
 }
