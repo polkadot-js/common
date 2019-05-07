@@ -4,6 +4,7 @@
 
 import BN from 'bn.js';
 
+import assert from '../assert';
 import { BnList } from '../types';
 
 /**
@@ -22,5 +23,10 @@ import { BnList } from '../types';
 export default function max (
   ...items: BnList
 ): BN {
+  assert(
+    items && items.length >= 2,
+    'Must provide two or more BN arguments'
+  );
+
   return items.reduce((acc: BN, val: BN) => BN.max(acc, val), new BN(0));
 }
