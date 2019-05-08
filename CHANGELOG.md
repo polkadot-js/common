@@ -1,6 +1,7 @@
 # 0.90.1
 
 - Moving towards 1.0
+- Added bnMin & bnMax functions
 
 # 0.76.1
 
