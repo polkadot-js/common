@@ -5,7 +5,6 @@
 import BN from 'bn.js';
 
 import assert from '../assert';
-import { BnList } from '../types';
 
 /**
  * @name max

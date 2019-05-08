@@ -5,7 +5,7 @@
 import BN from 'bn.js';
 
 import assert from '../assert';
-import { BnList } from '../types';
+
 /**
  * @name min
  * @summary Finds and returns the smallest value in an array of BNs.
