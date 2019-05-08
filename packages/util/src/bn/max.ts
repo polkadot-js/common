@@ -5,7 +5,6 @@
 import BN from 'bn.js';
 
 import assert from '../assert';
-import { BnList } from '../types';
 
 /**
  * @name max
@@ -21,7 +20,7 @@ import { BnList } from '../types';
  * ```
  */
 export default function max (
-  ...items: BnList
+  ...items: BN[]
 ): BN {
   assert(
     items && items.length >= 2,
