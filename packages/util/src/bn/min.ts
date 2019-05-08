@@ -20,7 +20,7 @@ import { BnList } from '../types';
  * ```
  */
 export default function min (
-  ...items: BnList
+  ...items: BN[]
 ): BN {
   assert(
     items && items.length >= 2,
