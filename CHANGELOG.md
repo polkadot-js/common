@@ -1,6 +1,12 @@
+# 0.91.1
+
+- ed25519/sr25519 sign & verify functions can now take the message input as Uint8Array/string/hex and verify allows for the signature/publicKey to be specified as Uint8Array/hex
+- Update `@polkadot/wasm` to include a maintenace bump for the `w3f/schnorrkel` libraries
+
 # 0.90.1
 
 - Moving towards 1.0
+- Added bnMin & bnMax functions
 
 # 0.76.1
 

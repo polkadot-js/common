@@ -26,3 +26,8 @@ export interface ToBnOptions {
   isLe?: boolean;
   isNegative?: boolean;
 }
+
+export type BnList = {
+  0: BN,
+  1: BN
+} & Array<BN>;
