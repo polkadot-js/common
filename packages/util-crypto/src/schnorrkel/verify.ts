@@ -11,10 +11,10 @@ import { sr25519Verify } from '@polkadot/wasm-crypto';
  * @name schnorrkelVerify
  * @description Verifies the signature of `message`, using the supplied pair
  */
-export default function schnorrkelVerify (_message: Uint8Array | string, _signature: Uint8Array | string, _publicKey: Uint8Array | string): boolean {
-  const message = u8aToU8a(_message);
-  const signature = u8aToU8a(_signature);
-  const publicKey = u8aToU8a(_publicKey);
+export default function schnorrkelVerify (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string): boolean {
+  const messageU8a = u8aToU8a(message);
+  const signatureU8a = u8aToU8a(signature);
+  const publicKeyU8a = u8aToU8a(publicKey);
 
-  return sr25519Verify(signature, message, publicKey);
+  return sr25519Verify(signatureU8a, messageU8a, publicKeyU8a);
 }

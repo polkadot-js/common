@@ -13,11 +13,11 @@ import { sr25519Sign } from '@polkadot/wasm-crypto';
  * @name schnorrkelSign
  * @description Returns message signature of `message`, using the supplied pair
  */
-export default function schnorrkelSign (_message: Uint8Array | string, { publicKey, secretKey }: Partial<Keypair>): Uint8Array {
+export default function schnorrkelSign (message: Uint8Array | string, { publicKey, secretKey }: Partial<Keypair>): Uint8Array {
   assert(publicKey && publicKey.length === 32, 'Expected valid publicKey, 32-bytes');
   assert(secretKey && secretKey.length === 64, 'Expected valid secretKey, 64-bytes');
 
-  const message = u8aToU8a(_message);
+  const messageU8a = u8aToU8a(message);
 
-  return sr25519Sign(publicKey as Uint8Array, secretKey as Uint8Array, message);
+  return sr25519Sign(publicKey as Uint8Array, secretKey as Uint8Array, messageU8a);
 }
