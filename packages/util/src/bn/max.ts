@@ -23,8 +23,8 @@ export default function max (
   ...items: BN[]
 ): BN {
   assert(
-    items && items.length >= 2,
-    'Must provide two or more BN arguments'
+    items && items.length >= 1,
+    'Must provide one or more BN arguments'
   );
 
   return items.reduce((acc: BN, val: BN) => BN.max(acc, val), items[0]);
