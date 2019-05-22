@@ -12,9 +12,6 @@
   ],
   "contributors": [],
   "license": "Apache-2.0",
-  "engines": {
-    "node": ">=6.4"
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
@@ -28,7 +25,7 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
-    "@babel/runtime": "^7.4.4",
+    "@babel/runtime": "^7.4.5",
     "@polkadot/util": "^0.91.0-beta.1",
     "@polkadot/wasm-crypto": "^0.10.1",
     "@types/bip39": "^2.4.2",
@@ -39,7 +36,7 @@
     "bip39": "^2.5.0",
     "blakejs": "^1.1.0",
     "js-sha3": "^0.8.0",
-    "secp256k1": "^3.6.2",
+    "secp256k1": "^3.7.0",
     "tweetnacl": "^1.0.1",
     "xxhashjs": "^0.2.2"
   }

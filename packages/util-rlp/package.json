@@ -14,9 +14,6 @@
     "martin becze <mjbecze@gmail.com>"
   ],
   "license": "MPL-2.0",
-  "engines": {
-    "node": ">=6.4"
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
@@ -30,7 +27,7 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-rlp#readme",
   "dependencies": {
-    "@babel/runtime": "^7.4.4",
+    "@babel/runtime": "^7.4.5",
     "@polkadot/util": "^0.91.0-beta.1"
   },
   "devDependencies": {
