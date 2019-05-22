@@ -33,7 +33,7 @@
     "@types/secp256k1": "^3.5.0",
     "@types/webassembly-js-api": "^0.0.2",
     "@types/xxhashjs": "^0.2.1",
-    "bip39": "^3.0.2",
+    "bip39": "^2.5.0",
     "blakejs": "^1.1.0",
     "js-sha3": "^0.8.0",
     "secp256k1": "^3.7.0",
