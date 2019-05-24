@@ -33,7 +33,7 @@ let defaultUnit = DEFAULT_UNIT;
 function _formatBalance (input?: number | string | BN, withSi: boolean = true, decimals: number = defaultDecimals): string {
   const text = (input || 0).toString();
 
-  assert(/^\d+$/.test(text), `Non-integer input value supplied to balanceFormat`);
+  assert(/^\d+$/.test(text), `Non-integer input value '${text}' supplied to balanceFormat`);
 
   if (text.length === 0 || text === '0') {
     return '0';
