@@ -4,10 +4,10 @@
 
 import BN from 'bn.js';
 
-import isUndefined from '../is/undefined';
-import { SI, SI_MID, SiDef, calcSi, findSi } from './si';
-import formatDecimal from './formatDecimal';
 import assert from '../assert';
+import isUndefined from '../is/undefined';
+import formatDecimal from './formatDecimal';
+import { SI, SI_MID, SiDef, calcSi, findSi } from './si';
 
 type Defaults = {
   decimals: number,
