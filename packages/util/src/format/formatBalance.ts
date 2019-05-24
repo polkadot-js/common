@@ -31,13 +31,13 @@ let defaultUnit = DEFAULT_UNIT;
 
 // Formats a string/number with <prefix>.<postfix><type> notation
 function _formatBalance (input?: number | string | BN, withSi: boolean = true, decimals: number = defaultDecimals): string {
-  const text = (input || 0).toString();
-
-  assert(/^\d+$/.test(text), `Non-integer input value '${text}' supplied to balanceFormat`);
+  const text = (input || '').toString();
 
   if (text.length === 0 || text === '0') {
     return '0';
   }
+  
+  assert(/^\d+$/.test(text), `Non-integer input value '${text}' supplied to balanceFormat`);
 
   // NOTE We start at midpoint (8) minus 1 - this means that values display as
   // 123.456 instead of 0.123k (so always 6 relevant). Additionally we us ceil
