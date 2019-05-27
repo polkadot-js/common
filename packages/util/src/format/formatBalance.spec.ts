@@ -9,6 +9,12 @@ import formatBalance from './formatBalance';
 describe('formatBalance', () => {
   const TESTVAL = new BN('123456789000');
 
+  it('does not allow float inputs', () => {
+    expect(
+      () => formatBalance(0.01234)
+    ).toThrow(/integer input value/);
+  });
+
   it('formats empty to 0', () => {
     expect(formatBalance()).toEqual('0');
     expect(formatBalance('0')).toEqual('0');

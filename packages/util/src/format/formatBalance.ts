@@ -4,9 +4,10 @@
 
 import BN from 'bn.js';
 
+import assert from '../assert';
 import isUndefined from '../is/undefined';
-import { SI, SI_MID, SiDef, calcSi, findSi } from './si';
 import formatDecimal from './formatDecimal';
+import { SI, SI_MID, SiDef, calcSi, findSi } from './si';
 
 type Defaults = {
   decimals: number,
@@ -35,6 +36,8 @@ function _formatBalance (input?: number | string | BN, withSi: boolean = true, d
   if (text.length === 0 || text === '0') {
     return '0';
   }
+
+  assert(/^\d+$/.test(text), `Non-integer input value '${text}' supplied to balanceFormat`);
 
   // NOTE We start at midpoint (8) minus 1 - this means that values display as
   // 123.456 instead of 0.123k (so always 6 relevant). Additionally we us ceil
