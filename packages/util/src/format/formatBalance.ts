@@ -36,7 +36,7 @@ function _formatBalance (input?: number | string | BN, withSi: boolean = true, d
   if (text.length === 0 || text === '0') {
     return '0';
   }
-  
+
   assert(/^\d+$/.test(text), `Non-integer input value '${text}' supplied to balanceFormat`);
 
   // NOTE We start at midpoint (8) minus 1 - this means that values display as
