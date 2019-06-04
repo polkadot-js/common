@@ -12,9 +12,7 @@ export default function formatDecimal (value: string): string {
     ? value.substr(1).match(NUMBER_REGEX)
     : value.match(NUMBER_REGEX);
 
-  return `${isNegative ? '-' : ''}${
-    matched
-      ? matched.join(',')
-      : value
-  }`;
+  return matched
+    ? `${isNegative ? '-' : ''}${matched.join(',')}`
+    : value;
 }
