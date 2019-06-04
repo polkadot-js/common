@@ -1,3 +1,9 @@
+# 0.92.1
+
+- Only allow integer input values into formatBalance
+- Allow formatBalance, formatDecimal & formatNumber to cater for negative numbers
+- Add 'Bob//stash' to testing keyring
+
 # 0.91.1
 
 - ed25519/sr25519 sign & verify functions can now take the message input as Uint8Array/string/hex and verify allows for the signature/publicKey to be specified as Uint8Array/hex

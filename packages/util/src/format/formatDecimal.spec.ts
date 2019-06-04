@@ -16,4 +16,8 @@ describe('formatDecimal', () => {
   it('returns input for non-decimal', () => {
     expect(formatDecimal('test')).toEqual('test');
   });
+
+  it('formats negative numbers', () => {
+    expect(formatDecimal('-123456')).toEqual('-123,456');
+  });
 });
