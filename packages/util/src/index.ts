@@ -13,6 +13,7 @@ export { default as assertSingletonPackage } from './assertSingletonPackage';
 export { default as logger } from './logger';
 export { default as promisify } from './promisify';
 
+export * from './address';
 export * from './array';
 export * from './bn';
 export * from './buffer';

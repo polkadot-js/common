@@ -2,11 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { hexToU8a, stringToU8a } from '@polkadot/util';
+import { hexToU8a, setAddressPrefix, stringToU8a } from '@polkadot/util';
 import { cryptoWaitReady } from '@polkadot/util-crypto';
 
 import Keyring from '.';
-import setPrefix from './address/setPrefix';
 
 describe('keypair', () => {
   beforeEach(async () => {
@@ -41,7 +40,7 @@ describe('keypair', () => {
     });
 
     it('adds from a mnemonic', () => {
-      setPrefix(68);
+      setAddressPrefix(68);
 
       expect(
         keypair.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {}).address()
@@ -107,7 +106,7 @@ describe('keypair', () => {
     });
 
     it('adds from a mnemonic', () => {
-      setPrefix(68);
+      setAddressPrefix(68);
 
       expect(
         keypair.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {}).address()

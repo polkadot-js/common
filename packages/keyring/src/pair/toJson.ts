@@ -5,9 +5,7 @@
 import { KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringPair$Json, KeyringPair$Meta } from '../types';
 
-import { u8aToHex } from '@polkadot/util';
-
-import { encodeAddress } from '../address';
+import { encodeAddress, u8aToHex } from '@polkadot/util';
 
 type PairStateJson = KeyringPair$Meta & {
   publicKey: Uint8Array

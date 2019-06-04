@@ -2,9 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { assertSingletonPackage } from '@polkadot/util';
+import { assertSingletonPackage, decodeAddress, encodeAddress, setAddressPrefix } from '@polkadot/util';
 
-import { decodeAddress, encodeAddress, setAddressPrefix } from './address';
 import { default as Keyring } from './keyring';
 
 assertSingletonPackage('@polkadot/keyring');

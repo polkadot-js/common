@@ -2,8 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { Prefix } from '@polkadot/util/address/types';
 import { KeypairType } from '@polkadot/util-crypto/types';
-import { Prefix } from './address/types';
 
 export type KeyringOptions = {
   addressPrefix?: Prefix,
