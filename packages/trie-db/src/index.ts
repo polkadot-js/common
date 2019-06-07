@@ -130,21 +130,28 @@ export default class Trie extends Impl implements TrieDb {
     // return this._setRootNode(rootNode);
   }
 
-  snapshot (dest: TrieDb, fn?: ProgressCb): number {
-    const start = Date.now();
+  entries (): Array<[Uint8Array, Uint8Array]> {
+    l.debug(() => 'retreiving trie entries');
 
+    const start = Date.now();
+    const entries = this._entries(this.rootHash);
+    const elapsed = (Date.now() - start) / 1000;
+
+    l.debug(() => `entries retrieved in ${elapsed.toFixed(2)}s, ${(entries.length / 1000).toFixed(2)}k keys`);
+
+    return entries;
+  }
+
+  snapshot (dest: TrieDb, fn?: ProgressCb): number {
     l.debug(() => 'creating current state snapshot');
 
+    const start = Date.now();
     const keys = this._snapshot(dest, fn, this.rootHash, 0, 0, 0);
     const elapsed = (Date.now() - start) / 1000;
 
     dest.setRoot(this.rootHash);
 
-    const newSize = dest.db.size();
-    const percentage = 100 * (newSize / this.db.size());
-    const sizeMB = newSize / (1024 * 1024);
-
-    l.debug(() => `snapshot created in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys, ${sizeMB.toFixed(2)}MB (${percentage.toFixed(2)}%)`);
+    l.debug(() => `snapshot created in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys`);
 
     fn && fn({
       isCompleted: true,

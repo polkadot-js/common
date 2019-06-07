@@ -8,6 +8,16 @@ import { u8aToHex, u8aToU8a as toU8a } from '@polkadot/util';
 import Trie from '.';
 
 describe('snapshots', () => {
+  const values = [
+    { k: toU8a('test'), v: toU8a('one') },
+    { k: toU8a('one'), v: toU8a('testing') },
+    { k: toU8a('two'), v: toU8a('testing with a much longer value here') },
+    { k: toU8a('twzei'), v: toU8a('und Deutch') },
+    { k: toU8a('do'), v: toU8a('do it') },
+    { k: toU8a('dog'), v: toU8a('doggie') },
+    { k: toU8a('dogge'), v: toU8a('bigger dog') },
+    { k: toU8a('dodge'), v: toU8a('coin') }
+  ];
   let trie: Trie;
   let back: Trie;
 
@@ -17,10 +27,7 @@ describe('snapshots', () => {
   });
 
   it('creates a snapshot of the (relevant) trie data', () => {
-    const values = [
-      { k: toU8a('test'), v: toU8a('one') }
-    ];
-    const root = trieRoot(values);
+    const root = trieRoot([values[0]]);
 
     trie.put(values[0].k, values[0].v);
     trie.put(values[0].k, toU8a('two'));
@@ -32,29 +39,35 @@ describe('snapshots', () => {
     trie.snapshot(back, () => void 0);
 
     expect(u8aToHex(back.getRoot())).toEqual(u8aToHex(root));
-    expect(trie.get(values[0].k)).toEqual(values[0].v);
+    expect(back.get(values[0].k)).toEqual(values[0].v);
   });
 
   it('creates a snapshot of the (relevant) data', () => {
-    const values = [
-      { k: toU8a('one'), v: toU8a('testing') },
-      { k: toU8a('two'), v: toU8a('testing with a much longer value here') },
-      { k: toU8a('twzei'), v: toU8a('und Deutch') },
-      { k: toU8a('do'), v: toU8a('do it') },
-      { k: toU8a('dog'), v: toU8a('doggie') },
-      { k: toU8a('dogge'), v: toU8a('bigger dog') },
-      { k: toU8a('dodge'), v: toU8a('coin') }
-    ];
     const root = trieRoot(values);
 
-    values.forEach(({ k, v }) =>
-      trie.put(k, v)
-    );
+    values.forEach(({ k, v }) => trie.put(k, v));
     trie.snapshot(back, () => void 0);
 
     expect(u8aToHex(back.getRoot())).toEqual(u8aToHex(root));
+
     values.forEach(({ k, v }) =>
-      expect(trie.get(k)).toEqual(v)
+      expect(back.get(k)).toEqual(v)
+    );
+  });
+
+  it('retrieves entries, which can re-create', () => {
+    const root = trieRoot(values);
+
+    values.forEach(({ k, v }) => trie.put(k, v));
+
+    const entries = trie.entries();
+
+    entries.forEach(([key, encoded]) => back.db.put(key, encoded));
+
+    back.setRoot(root);
+
+    values.forEach(({ k, v }) =>
+      expect(back.get(k)).toEqual(v)
     );
   });
 });

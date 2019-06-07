@@ -38,5 +38,6 @@ export interface TrieDb extends TxDb {
 
   getRoot (): Uint8Array;
   setRoot (rootHash: Uint8Array): void;
-  snapshot (dest: TrieDb, fn: ProgressCb): number;
+  entries (): Array<[Uint8Array, Uint8Array]>;
+  snapshot (dest: TrieDb, fn?: ProgressCb): number;
 }

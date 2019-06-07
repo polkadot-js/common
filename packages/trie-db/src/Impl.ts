@@ -45,19 +45,38 @@ export default class Impl extends Checkpoint {
     this.constants = _constants;
   }
 
+  protected _entries (root: Uint8Array, entries: Array<[Uint8Array, Uint8Array]> = []): Array<[Uint8Array, Uint8Array]> {
+    // l.debug(() => ['snapshot', { root }]);
+
+    const [encoded, node] = this._getNodeRaw(root);
+
+    if (isNull(encoded) || isNull(node)) {
+      return entries;
+    }
+
+    entries.push([root, encoded]);
+
+    node.forEach((u8a) => {
+      if (u8a && u8a.length === 32) {
+        this._entries(u8a, entries);
+      }
+    });
+
+    return entries;
+  }
+
   protected _snapshot (dest: TrieDb, fn: ProgressCb | undefined, root: Uint8Array, keys: number, percent: number, depth: number): number {
     // l.debug(() => ['snapshot', { root }]);
 
-    const node = this._getNode(root);
+    const [encoded, node] = this._getNodeRaw(root);
 
-    if (isNull(node)) {
+    if (isNull(encoded) || isNull(node)) {
       return keys;
     }
 
-    keys++;
-    dest.db.put(root, encodeNode(this.codec, node));
+    dest.db.put(root, encoded);
 
-    fn && fn({ keys, percent });
+    fn && fn({ keys: ++keys, percent });
 
     node.forEach((u8a) => {
       if (u8a && u8a.length === 32) {
@@ -68,6 +87,20 @@ export default class Impl extends Checkpoint {
     });
 
     return keys;
+  }
+
+  protected _getNodeRaw (hash: Uint8Array | null): [Uint8Array | null, Node] {
+    // l.debug(() => ['_getNode', { hash }]);
+
+    if (!hash || hash.length === 0 || keyEquals(hash, this.constants.EMPTY_HASH)) {
+      return [null, null];
+    } else if (hash.length < 32) {
+      return [hash, decodeNode(this.codec, hash)];
+    }
+
+    const raw = this.db.get(hash);
+
+    return [raw, decodeNode(this.codec, raw)];
   }
 
   protected _getNode (hash: Uint8Array | null): Node {
