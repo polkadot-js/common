@@ -8,7 +8,7 @@ import { EncodedPath, TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, Node
 
 import substrateCodec from '@polkadot/trie-codec';
 import { decodeNibbles, encodeNibbles, extractNodeKey } from '@polkadot/trie-codec/nibbles';
-import { isNull, logger , u8aConcat, u8aToHex } from '@polkadot/util';
+import { isNull , u8aConcat } from '@polkadot/util';
 
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';
 import { keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';
@@ -20,8 +20,6 @@ const BLANK_BRANCH: Array<EncodedPath> = [
   null, null, null, null, null, null, null, null,
   null, null, null, null, null, null, null, null
 ];
-
-const l = logger('trie/db');
 
 /**
  * # @polkadot/trie-db
@@ -45,11 +43,9 @@ export default class Impl extends Checkpoint {
     this.db = db;
     this.codec = codec;
     this.constants = _constants;
-
-    l.log(`Created with ${codec.type} codec, root ${u8aToHex(this.rootHash, 64)}`);
   }
 
-  protected _snapshot (dest: TrieDb, fn: ProgressCb, root: Uint8Array, keys: number, percent: number, depth: number): number {
+  protected _snapshot (dest: TrieDb, fn: ProgressCb | undefined, root: Uint8Array, keys: number, percent: number, depth: number): number {
     // l.debug(() => ['snapshot', { root }]);
 
     const node = this._getNode(root);
@@ -60,7 +56,8 @@ export default class Impl extends Checkpoint {
 
     keys++;
     dest.db.put(root, encodeNode(this.codec, node));
-    fn({ keys, percent });
+
+    fn && fn({ keys, percent });
 
     node.forEach((u8a) => {
       if (u8a && u8a.length === 32) {
