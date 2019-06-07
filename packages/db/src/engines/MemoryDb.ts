@@ -48,9 +48,9 @@ export default class MemoryDb implements BaseDb {
   }
 
   size (): number {
-    l.warn('size() is not implemented');
-
-    return 0;
+    return Object
+      .entries(this.storage)
+      .reduce((size, value) => size + value.length, 0);
   }
 
   del (key: Uint8Array): void {

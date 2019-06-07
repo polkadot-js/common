@@ -28,7 +28,7 @@ export default class Trie extends Impl implements TrieDb {
   constructor (db: TxDb = new MemoryDb(), rootHash?: Uint8Array, codec?: Codec) {
     super(db, rootHash, codec);
 
-    l.log(`Created with ${this.codec.type} codec, root ${u8aToHex(this.rootHash, 64)}`);
+    l.debug(() => `Created with ${this.codec.type} codec, root ${u8aToHex(this.rootHash, 64)}`);
   }
 
   transaction<T> (fn: () => T): T {
@@ -130,10 +130,10 @@ export default class Trie extends Impl implements TrieDb {
     // return this._setRootNode(rootNode);
   }
 
-  snapshot (dest: TrieDb, fn: ProgressCb): number {
+  snapshot (dest: TrieDb, fn?: ProgressCb): number {
     const start = Date.now();
 
-    l.log('creating current state snapshot');
+    l.debug(() => 'creating current state snapshot');
 
     const keys = this._snapshot(dest, fn, this.rootHash, 0, 0, 0);
     const elapsed = (Date.now() - start) / 1000;
@@ -144,9 +144,9 @@ export default class Trie extends Impl implements TrieDb {
     const percentage = 100 * (newSize / this.db.size());
     const sizeMB = newSize / (1024 * 1024);
 
-    l.log(`snapshot created in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys, ${sizeMB.toFixed(2)}MB (${percentage.toFixed(2)}%)`);
+    l.debug(() => `snapshot created in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys, ${sizeMB.toFixed(2)}MB (${percentage.toFixed(2)}%)`);
 
-    fn({
+    fn && fn({
       isCompleted: true,
       keys,
       percent: 100
