@@ -4,7 +4,7 @@
 
 import { TxDb, ProgressCb } from '@polkadot/db/types';
 import { Codec } from '@polkadot/trie-codec/types';
-import { TrieDb, Node } from './types';
+import { TrieDb, Node, TrieEntry } from './types';
 
 import MemoryDb from '@polkadot/db/Memory';
 import { toNibbles } from '@polkadot/trie-codec/util';
@@ -121,16 +121,20 @@ export default class Trie extends Impl implements TrieDb {
     return this.rootHash;
   }
 
-  getNode (hash?: Uint8Array): Node {
-    return this._getNode(hash || this.rootHash);
-  }
-
   setRoot (rootHash: Uint8Array): void {
     this.rootHash = rootHash;
     // return this._setRootNode(rootNode);
   }
 
-  entries (): Array<[Uint8Array, Uint8Array]> {
+  getEntry (hash?: Uint8Array): TrieEntry | null {
+    return this._entry(hash || this.rootHash);
+  }
+
+  getNode (hash?: Uint8Array): Node {
+    return this._getNode(hash || this.rootHash);
+  }
+
+  entries (): Array<TrieEntry> {
     l.debug(() => 'retreiving trie entries');
 
     const start = Date.now();

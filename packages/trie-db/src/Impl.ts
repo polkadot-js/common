@@ -4,7 +4,7 @@
 
 import { TxDb, ProgressCb } from '@polkadot/db/types';
 import { Codec } from '@polkadot/trie-codec/types';
-import { EncodedPath, TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
+import { EncodedPath, TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType, TrieEntry } from './types';
 
 import substrateCodec from '@polkadot/trie-codec';
 import { decodeNibbles, encodeNibbles, extractNodeKey } from '@polkadot/trie-codec/nibbles';
@@ -45,22 +45,26 @@ export default class Impl extends Checkpoint {
     this.constants = _constants;
   }
 
-  protected _entries (root: Uint8Array, entries: Array<[Uint8Array, Uint8Array]> = []): Array<[Uint8Array, Uint8Array]> {
-    // l.debug(() => ['snapshot', { root }]);
-
+  protected _entry (root: Uint8Array): TrieEntry | null {
     const [encoded, node] = this._getNodeRaw(root);
 
     if (isNull(encoded) || isNull(node)) {
+      return null;
+    }
+
+    return [root, encoded, node.filter((u8a) => u8a && u8a.length === 32) as Array<Uint8Array>];
+  }
+
+  protected _entries (root: Uint8Array, entries: Array<TrieEntry> = []): Array<TrieEntry> {
+    // l.debug(() => ['entries', { root }]);
+    const entry = this._entry(root);
+
+    if (!entry) {
       return entries;
     }
 
-    entries.push([root, encoded]);
-
-    node.forEach((u8a) => {
-      if (u8a && u8a.length === 32) {
-        this._entries(u8a, entries);
-      }
-    });
+    entries.push(entry);
+    entry[2].forEach((u8a) => this._entries(u8a, entries));
 
     return entries;
   }

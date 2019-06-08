@@ -62,7 +62,10 @@ describe('snapshots', () => {
 
     const entries = trie.entries();
 
-    entries.forEach(([key, encoded]) => back.db.put(key, encoded));
+    entries.forEach(([key, encoded, children]) => {
+      back.db.put(key, encoded);
+      console.log(u8aToHex(key), ...children.map((child) => `\n\t${u8aToHex(child)}`));
+    });
 
     back.setRoot(root);
 
