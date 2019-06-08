@@ -4,7 +4,7 @@
 
 import { TxDb, ProgressCb } from '@polkadot/db/types';
 import { Codec } from '@polkadot/trie-codec/types';
-import { TrieDb, Node } from './types';
+import { TrieDb, Node, TrieEntry } from './types';
 
 import MemoryDb from '@polkadot/db/Memory';
 import { toNibbles } from '@polkadot/trie-codec/util';
@@ -121,30 +121,41 @@ export default class Trie extends Impl implements TrieDb {
     return this.rootHash;
   }
 
-  getNode (hash?: Uint8Array): Node {
-    return this._getNode(hash || this.rootHash);
-  }
-
   setRoot (rootHash: Uint8Array): void {
     this.rootHash = rootHash;
     // return this._setRootNode(rootNode);
   }
 
-  snapshot (dest: TrieDb, fn?: ProgressCb): number {
-    const start = Date.now();
+  getEntry (hash?: Uint8Array): TrieEntry | null {
+    return this._entry(hash || this.rootHash);
+  }
 
+  getNode (hash?: Uint8Array): Node {
+    return this._getNode(hash || this.rootHash);
+  }
+
+  entries (): Array<TrieEntry> {
+    l.debug(() => 'retreiving trie entries');
+
+    const start = Date.now();
+    const entries = this._entries(this.rootHash);
+    const elapsed = (Date.now() - start) / 1000;
+
+    l.debug(() => `entries retrieved in ${elapsed.toFixed(2)}s, ${(entries.length / 1000).toFixed(2)}k keys`);
+
+    return entries;
+  }
+
+  snapshot (dest: TrieDb, fn?: ProgressCb): number {
     l.debug(() => 'creating current state snapshot');
 
+    const start = Date.now();
     const keys = this._snapshot(dest, fn, this.rootHash, 0, 0, 0);
     const elapsed = (Date.now() - start) / 1000;
 
     dest.setRoot(this.rootHash);
 
-    const newSize = dest.db.size();
-    const percentage = 100 * (newSize / this.db.size());
-    const sizeMB = newSize / (1024 * 1024);
-
-    l.debug(() => `snapshot created in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys, ${sizeMB.toFixed(2)}MB (${percentage.toFixed(2)}%)`);
+    l.debug(() => `snapshot created in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys`);
 
     fn && fn({
       isCompleted: true,

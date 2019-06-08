@@ -4,7 +4,7 @@
 
 import { TxDb, ProgressCb } from '@polkadot/db/types';
 import { Codec } from '@polkadot/trie-codec/types';
-import { EncodedPath, TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType } from './types';
+import { EncodedPath, TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, NodeNotEmpty, NodeType, TrieEntry } from './types';
 
 import substrateCodec from '@polkadot/trie-codec';
 import { decodeNibbles, encodeNibbles, extractNodeKey } from '@polkadot/trie-codec/nibbles';
@@ -45,19 +45,42 @@ export default class Impl extends Checkpoint {
     this.constants = _constants;
   }
 
+  protected _entry (root: Uint8Array): TrieEntry | null {
+    const [encoded, node] = this._getNodeRaw(root);
+
+    if (isNull(encoded) || isNull(node)) {
+      return null;
+    }
+
+    return [root, encoded, node.filter((u8a) => u8a && u8a.length === 32) as Array<Uint8Array>];
+  }
+
+  protected _entries (root: Uint8Array, entries: Array<TrieEntry> = []): Array<TrieEntry> {
+    // l.debug(() => ['entries', { root }]);
+    const entry = this._entry(root);
+
+    if (!entry) {
+      return entries;
+    }
+
+    entries.push(entry);
+    entry[2].forEach((u8a) => this._entries(u8a, entries));
+
+    return entries;
+  }
+
   protected _snapshot (dest: TrieDb, fn: ProgressCb | undefined, root: Uint8Array, keys: number, percent: number, depth: number): number {
     // l.debug(() => ['snapshot', { root }]);
 
-    const node = this._getNode(root);
+    const [encoded, node] = this._getNodeRaw(root);
 
-    if (isNull(node)) {
+    if (isNull(encoded) || isNull(node)) {
       return keys;
     }
 
-    keys++;
-    dest.db.put(root, encodeNode(this.codec, node));
+    dest.db.put(root, encoded);
 
-    fn && fn({ keys, percent });
+    fn && fn({ keys: ++keys, percent });
 
     node.forEach((u8a) => {
       if (u8a && u8a.length === 32) {
@@ -68,6 +91,20 @@ export default class Impl extends Checkpoint {
     });
 
     return keys;
+  }
+
+  protected _getNodeRaw (hash: Uint8Array | null): [Uint8Array | null, Node] {
+    // l.debug(() => ['_getNode', { hash }]);
+
+    if (!hash || hash.length === 0 || keyEquals(hash, this.constants.EMPTY_HASH)) {
+      return [null, null];
+    } else if (hash.length < 32) {
+      return [hash, decodeNode(this.codec, hash)];
+    }
+
+    const raw = this.db.get(hash);
+
+    return [raw, decodeNode(this.codec, raw)];
   }
 
   protected _getNode (hash: Uint8Array | null): Node {
