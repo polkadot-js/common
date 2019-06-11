@@ -11,14 +11,14 @@ const keyring = testingPairs({ type: 'ed25519' }, false);
 describe('encode', () => {
   it('encodes an address to a valid value', () => {
     expect(
-      keyring.alice.address()
+      keyring.alice.address
     ).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua');
   });
 
   it('fails when non-valid publicKey provided', () => {
     expect(
       () => encode(
-        keyring.alice.publicKey().slice(0, 30)
+        keyring.alice.publicKey.slice(0, 30)
       )
     ).toThrow(/Expected a valid key/);
   });

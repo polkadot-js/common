@@ -11,7 +11,7 @@ describe('pair', () => {
 
   it('has a publicKey', () => {
     expect(
-      keyring.alice.publicKey()
+      keyring.alice.publicKey
     ).toEqual(
       new Uint8Array([209, 114, 167, 76, 218, 76, 134, 89, 18, 195, 43, 160, 168, 10, 87, 174, 105, 171, 174, 65, 14, 92, 203, 89, 222, 232, 78, 47, 68, 50, 219, 79])
     );
@@ -46,10 +46,10 @@ describe('pair', () => {
   it('allows setting/getting of meta', () => {
     keyring.bob.setMeta({ foo: 'bar', something: 'else' });
 
-    expect(keyring.bob.getMeta()).toMatchObject({ foo: 'bar', something: 'else' });
+    expect(keyring.bob.meta).toMatchObject({ foo: 'bar', something: 'else' });
 
     keyring.bob.setMeta({ something: 'thing' });
 
-    expect(keyring.bob.getMeta()).toMatchObject({ foo: 'bar', something: 'thing' });
+    expect(keyring.bob.meta).toMatchObject({ foo: 'bar', something: 'thing' });
   });
 });

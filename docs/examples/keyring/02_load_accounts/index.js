@@ -21,7 +21,7 @@ async function main () {
   keyring
     .getPairs()
     .forEach((pair, index) => {
-      const address = pair.address();
+      const { address } = pair;
 
       console.log(`\nAccount with index #${index} has json: `,
         JSON.stringify(keyring.toJson(address), null, 2));

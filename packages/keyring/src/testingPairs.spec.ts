@@ -19,13 +19,13 @@ describe('testingPairs', () => {
 
   it('has the correct address for Alice (non-HDKD)', () => {
     expect(
-      testingPairs({ type: 'ed25519' }, false).alice.address()
+      testingPairs({ type: 'ed25519' }, false).alice.address
     ).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua');
   });
 
   it('has the correct address for Alice (HDKD)', () => {
     expect(
-      testingPairs({ type: 'ed25519' }, true).alice.address()
+      testingPairs({ type: 'ed25519' }, true).alice.address
     ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY');
   });
 });

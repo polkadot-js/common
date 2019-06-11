@@ -26,21 +26,17 @@ const json: KeyringPair$Json = {
 export default function everybody (): KeyringPair {
   return {
     type: 'ed25519',
-    address: (): string =>
-      address,
+    address,
     decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void =>
       undefined,
     encodePkcs8: (passphrase?: string): Uint8Array =>
       new Uint8Array(0),
-    getMeta: (): KeyringPair$Meta =>
-      meta,
-    isLocked: (): boolean =>
-      true,
+    meta,
+    isLocked: true,
     lock: (): void => {
       // no locking, it is always locked
     },
-    publicKey: (): Uint8Array =>
-      publicKey,
+    publicKey,
     setMeta: (meta: KeyringPair$Meta): void =>
       undefined,
     sign: (message: Uint8Array): Uint8Array =>

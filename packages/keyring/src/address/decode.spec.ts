@@ -17,7 +17,7 @@ describe('decode', () => {
     expect(
       decode('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY')
     ).toEqual(
-      keyring.alice.publicKey()
+      keyring.alice.publicKey
     );
   });
 

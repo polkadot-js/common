@@ -70,8 +70,8 @@ describe('keyring.addFromUri', () => {
     it(`creates ${uri}`, () => {
       const pair = keyring.addFromUri(uri);
 
-      expect(u8aToHex(pair.publicKey())).toEqual(pk);
-      expect(pair.address()).toEqual(ss);
+      expect(u8aToHex(pair.publicKey)).toEqual(pk);
+      expect(pair.address).toEqual(ss);
     });
   });
 });

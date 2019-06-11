@@ -212,7 +212,7 @@ export default class Keyring implements KeyringInstance {
     return this._pairs
       .all()
       .map(({ publicKey }) =>
-        publicKey()
+        publicKey
       );
   }
 

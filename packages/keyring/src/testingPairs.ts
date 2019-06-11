@@ -16,7 +16,7 @@ export default function testKeyringPairs (options?: KeyringOptions, isDerived: b
   const pairs = keyring.getPairs();
 
   return pairs.reduce((result, pair) => {
-    const { name } = pair.getMeta();
+    const { name } = pair.meta;
 
     result[name as string] = pair;
 
