@@ -3,6 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import testingPairs from '../testingPairs';
+import { setAddressPrefix } from '../address';
 
 const keyring = testingPairs({ type: 'ed25519' }, false);
 
@@ -51,5 +52,17 @@ describe('pair', () => {
     keyring.bob.setMeta({ something: 'thing' });
 
     expect(keyring.bob.meta).toMatchObject({ foo: 'bar', something: 'thing' });
+  });
+
+  it('allows encoding of address with different prefixes', () => {
+    expect(keyring.alice.address).toEqual(
+      '5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua'
+    );
+
+    setAddressPrefix(68);
+
+    expect(keyring.alice.address).toEqual(
+      '7sGUeMak588SPY2YMmmuKUuLz7u2WQpf74F9dCFtSLB2td9d'
+    );
   });
 });

@@ -65,7 +65,9 @@ const verify = (type: KeypairType, message: Uint8Array, signature: Uint8Array, p
 export default function createPair (type: KeypairType, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
   return {
     type,
-    address: encodeAddress(publicKey),
+    get address () {
+      return encodeAddress(publicKey);
+    },
     decodePkcs8: (passphrase?: string, _encoded?: Uint8Array | null): void => {
       const decoded = decode(passphrase, _encoded || encoded);
 
