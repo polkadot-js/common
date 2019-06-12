@@ -6,6 +6,7 @@ import './polyfill';
 
 import wasmCrypto from '@polkadot/wasm-crypto';
 
+export * from './address';
 export * from './blake2';
 export * from './keccak';
 export * from './key';

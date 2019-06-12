@@ -3,8 +3,8 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { assertSingletonPackage } from '@polkadot/util';
+import { decodeAddress, encodeAddress, setAddressPrefix } from '@polkadot/util-crypto';
 
-import { decodeAddress, encodeAddress, setAddressPrefix } from './address';
 import { default as Keyring } from './keyring';
 
 assertSingletonPackage('@polkadot/keyring');
