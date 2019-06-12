@@ -1,4 +1,4 @@
-// Copyright 2017-2019 @polkadot/util authors & contributors
+// Copyright 2017-2019 @polkadot/util-crypto authors & contributors
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
@@ -7,12 +7,8 @@ import { Prefix } from './types';
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L6
 
 import bs58 from 'bs58';
+import { assert, bufferToU8a, isHex, isU8a, u8aToU8a } from '@polkadot/util';
 
-import assert from '../assert';
-import bufferToU8a from '../buffer/toU8a';
-import isHex from '../is/hex';
-import isU8a from '../is/u8a';
-import u8aToU8a from '../u8a/toU8a';
 import defaults from './defaults';
 import sshash from './sshash';
 

@@ -135,7 +135,7 @@ export default class Trie extends Impl implements TrieDb {
   }
 
   entries (): Array<TrieEntry> {
-    l.debug(() => 'retreiving trie entries');
+    l.debug(() => 'retrieving trie entries');
 
     const start = Date.now();
     const entries = this._entries(this.rootHash);

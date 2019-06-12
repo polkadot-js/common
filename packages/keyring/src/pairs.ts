@@ -4,7 +4,8 @@
 
 import { KeyringPairs, KeyringPair } from './types';
 
-import { assert, decodeAddress, isHex, isU8a, u8aToHex, u8aToU8a } from '@polkadot/util';
+import { assert, isHex, isU8a, u8aToHex, u8aToU8a } from '@polkadot/util';
+import { decodeAddress } from '@polkadot/util-crypto';
 
 type KeyringPairMap = {
   // @ts-ignore we use coercion :(

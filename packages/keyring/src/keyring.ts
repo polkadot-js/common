@@ -5,8 +5,8 @@
 import { KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions } from './types';
 
-import { assert, decodeAddress, encodeAddress, hexToU8a, isNumber, isHex, setAddressPrefix, stringToU8a } from '@polkadot/util';
-import { keyExtractSuri, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, mnemonicToMiniSecret, keyFromPath } from '@polkadot/util-crypto';
+import { assert, hexToU8a, isNumber, isHex, stringToU8a } from '@polkadot/util';
+import { decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, mnemonicToMiniSecret, setAddressPrefix } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
 import createPair from './pair';
