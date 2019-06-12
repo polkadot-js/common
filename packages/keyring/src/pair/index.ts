@@ -89,7 +89,9 @@ export default function createPair (type: KeypairType, { publicKey, secretKey }:
     lock: (): void => {
       secretKey = new Uint8Array(0);
     },
-    publicKey,
+    get publicKey () {
+      return publicKey;
+    },
     setMeta: (additional: KeyringPair$Meta): void => {
       meta = { ...meta, ...additional };
     },
