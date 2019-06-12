@@ -5,6 +5,7 @@
 import { setAddressPrefix } from '@polkadot/util-crypto';
 
 import testingPairs from '../testingPairs';
+import createPair from '.';
 
 const keyring = testingPairs({ type: 'ed25519' }, false);
 
@@ -65,5 +66,15 @@ describe('pair', () => {
     expect(keyring.alice.address).toEqual(
       '7sGUeMak588SPY2YMmmuKUuLz7u2WQpf74F9dCFtSLB2td9d'
     );
+  });
+
+  it('allows getting public key after decoding', () => {
+    const PASS = 'testing';
+    const encoded = keyring.alice.encodePkcs8(PASS);
+
+    const pair = createPair('sr25519', { publicKey: keyring.alice.publicKey });
+    pair.decodePkcs8(PASS, encoded);
+
+    expect(pair.isLocked).toEqual(false);
   });
 });

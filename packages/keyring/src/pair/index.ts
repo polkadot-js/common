@@ -85,7 +85,9 @@ export default function createPair (type: KeypairType, { publicKey, secretKey }:
     get meta () {
       return meta;
     },
-    isLocked: (!secretKey || secretKey.length === 0),
+    get isLocked () {
+      return !secretKey || secretKey.length === 0;
+    },
     lock: (): void => {
       secretKey = new Uint8Array(0);
     },
