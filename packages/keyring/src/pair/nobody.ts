@@ -4,10 +4,10 @@
 
 import { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
 
-import addressEncode from '../address/encode';
+import { encodeAddress } from '@polkadot/util-crypto';
 
 const publicKey = new Uint8Array(32);
-const address = addressEncode(publicKey);
+const address = encodeAddress(publicKey);
 const meta = {
   isTesting: true,
   name: 'nobody'
