@@ -31,10 +31,18 @@ let defaultUnit = DEFAULT_UNIT;
 
 // Formats a string/number with <prefix>.<postfix><type> notation
 function _formatBalance (input?: number | string | BN, withSi: boolean = true, decimals: number = defaultDecimals): string {
-  const text = (input || '').toString();
+  let text = (input || '').toString();
 
   if (text.length === 0 || text === '0') {
     return '0';
+  }
+
+  // strip the negative sign so we can work with clean groupings, re-add this in the
+  // end when we return the result (from here on we work with positive numbers)
+  const isNegative = text[0] === '-';
+
+  if (isNegative) {
+    text = text.substr(1);
   }
 
   assert(/^\d+$/.test(text), `Non-integer input value '${text}' supplied to balanceFormat`);
@@ -54,7 +62,7 @@ function _formatBalance (input?: number | string | BN, withSi: boolean = true, d
     )
     : '';
 
-  return `${formatDecimal(prefix || '0')}.${postfix}${units}`;
+  return `${isNegative ? '-' : ''}${formatDecimal(prefix || '0')}.${postfix}${units}`;
 }
 
 const formatBalance = _formatBalance as BalanceFormatter;

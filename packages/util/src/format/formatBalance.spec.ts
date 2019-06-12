@@ -68,6 +68,20 @@ describe('formatBalance', () => {
     ).toEqual('123.456 Unit');
   });
 
+  it('formats -123,456,789,000 (decimals=15)', () => {
+    expect(
+      formatBalance(new BN('-123456789000'), true, 15)
+    ).toEqual('-123.456µ Unit');
+  });
+
+  describe('calcSi', () => {
+    it('exposes calcSi on formatBalance', () => {
+      expect(
+        formatBalance.calcSi('12345').value
+      ).toEqual('k');
+    });
+  });
+
   describe('findSi', () => {
     it('finds the SI value', () => {
       expect(
