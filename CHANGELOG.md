@@ -3,6 +3,7 @@
 - Only allow integer input values into formatBalance
 - Allow formatBalance, formatDecimal & formatNumber to cater for negative numbers
 - Add 'Bob//stash' to testing keyring
+- Move decodeAddress, encodeAddress & setAddressPrefix functions into `@polkadot/util-crypto` from `@polkadot/keyring`. External interfaces should not be affected at this point since it is also (still) esxported and exposed on keyring
 
 # 0.91.1
 

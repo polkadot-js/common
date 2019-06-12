@@ -21,8 +21,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
-    "@polkadot/dev": "^0.30.0-beta.11",
-    "@polkadot/ts": "^0.1.59",
+    "@polkadot/dev": "^0.30.0-beta.13",
+    "@polkadot/ts": "^0.1.60",
     "gh-pages": "^2.0.1"
   }
 }
