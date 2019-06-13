@@ -6,23 +6,20 @@ import { BaseDb, TxDb, ProgressCb } from '../types';
 
 import { assert, isNull, logger } from '@polkadot/util';
 
-type Overlay = {
-  [index: string]: {
-    key: Uint8Array,
-    value: Uint8Array | null
-  }
+type OverlayItem = {
+  key: Uint8Array,
+  value: Uint8Array | null
 };
 
 const l = logger('db/transact');
 
 export default class TransactionDb implements TxDb {
   private backing: BaseDb;
-  private txOverlay: Overlay;
+  private txOverlay: Map<string, OverlayItem> = new Map();
   private txStarted: boolean;
 
   constructor (backing: BaseDb) {
     this.backing = backing;
-    this.txOverlay = {};
     this.txStarted = false;
   }
 
@@ -80,10 +77,7 @@ export default class TransactionDb implements TxDb {
 
   del (key: Uint8Array): void {
     if (this.txStarted) {
-      this.txOverlay[key.toString()] = {
-        key,
-        value: null
-      };
+      this.txOverlay.set(key.toString(), { key, value: null });
       return;
     }
 
@@ -94,7 +88,7 @@ export default class TransactionDb implements TxDb {
     // l.debug(() => ['get', u8aToHex(key)]);
 
     if (this.txStarted) {
-      const value = this.txOverlay[key.toString()];
+      const value = this.txOverlay.get(key.toString());
 
       if (value) {
         return value.value;
@@ -108,10 +102,7 @@ export default class TransactionDb implements TxDb {
     // l.debug(() => ['put', u8aToHex(key), u8aToHex(value)]);
 
     if (this.txStarted) {
-      this.txOverlay[key.toString()] = {
-        key,
-        value
-      };
+      this.txOverlay.set(key.toString(), { key, value });
 
       return;
     }
@@ -124,7 +115,7 @@ export default class TransactionDb implements TxDb {
 
     assert(!this.txStarted, 'Cannot create a transaction when one is already active');
 
-    this.txOverlay = {};
+    this.txOverlay.clear();
     this.txStarted = true;
   }
 
@@ -137,7 +128,7 @@ export default class TransactionDb implements TxDb {
       this.backing.txStart();
     }
 
-    Object.values(this.txOverlay).forEach(({ key, value }) => {
+    this.txOverlay.forEach(({ key, value }) => {
       if (isNull(value)) {
         this.backing.del(key);
       } else {
@@ -149,7 +140,7 @@ export default class TransactionDb implements TxDb {
       this.backing.txCommit();
     }
 
-    this.txOverlay = {};
+    this.txOverlay.clear();
     this.txStarted = false;
   }
 
@@ -158,7 +149,7 @@ export default class TransactionDb implements TxDb {
 
     assert(this.txStarted, 'Cannot revert when not in transaction');
 
-    this.txOverlay = {};
+    this.txOverlay.clear();
     this.txStarted = false;
   }
 }

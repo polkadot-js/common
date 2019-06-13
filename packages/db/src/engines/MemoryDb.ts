@@ -2,22 +2,14 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { BaseDb, BaseDbOptions, ProgressCb } from '../types';
+import { BaseDb, ProgressCb } from '../types';
 
 import { logger } from '@polkadot/util';
-
-type Storage = {
-  [index: string]: Uint8Array
-};
 
 const l = logger('db/memory');
 
 export default class MemoryDb implements BaseDb {
-  private storage: Storage;
-
-  constructor (options?: BaseDbOptions) {
-    this.storage = {};
-  }
+  private _storage: Map<string, Uint8Array> = new Map();
 
   close (): void {
     this.empty();
@@ -32,7 +24,7 @@ export default class MemoryDb implements BaseDb {
   }
 
   empty (): void {
-    this.storage = {};
+    this._storage.clear();
   }
 
   rename (base: string, file: string): void {
@@ -42,32 +34,36 @@ export default class MemoryDb implements BaseDb {
   maintain (fn: ProgressCb): void {
     fn({
       isCompleted: true,
-      keys: Object.keys(this.storage).length,
+      keys: this._storage.size,
       percent: 100
     });
   }
 
   size (): number {
-    return Object
-      .entries(this.storage)
-      .reduce((size, value) => size + value.length, 0);
+    let size = 0;
+
+    this._storage.forEach((value) =>
+      size += value.length
+    );
+
+    return size;
   }
 
   del (key: Uint8Array): void {
     // l.debug(() => ['del', { key }]);
 
-    delete this.storage[key.toString()];
+    this._storage.delete(key.toString());
   }
 
   get (key: Uint8Array): Uint8Array | null {
     // l.debug(() => ['get', { key }]);
 
-    return this.storage[key.toString()] || null;
+    return this._storage.get(key.toString()) || null;
   }
 
   put (key: Uint8Array, value: Uint8Array): void {
     // l.debug(() => ['put', { key, value }]);
 
-    this.storage[key.toString()] = value;
+    this._storage.set(key.toString(), value);
   }
 }
