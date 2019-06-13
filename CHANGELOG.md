@@ -1,5 +1,9 @@
 # 0.92.1
 
+- Breaking: External pair interface for keyring has changes. Instead of
+  - `getMeta` use the `meta` getter, i.e. `console.log(pair.meta.name)`
+  - `address` use the `address` getter, i.e. `console.log(pair.address)`
+  - `publicKey` use the `publicKey` getter, i.e. `console.log(pair.publicKey)`
 - Only allow integer input values into formatBalance
 - Allow formatBalance, formatDecimal & formatNumber to cater for negative numbers
 - Add 'Bob//stash' to testing keyring

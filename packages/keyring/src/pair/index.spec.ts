@@ -2,7 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { setAddressPrefix } from '@polkadot/util-crypto';
+
 import testingPairs from '../testingPairs';
+import createPair from '.';
 
 const keyring = testingPairs({ type: 'ed25519' }, false);
 
@@ -11,7 +14,7 @@ describe('pair', () => {
 
   it('has a publicKey', () => {
     expect(
-      keyring.alice.publicKey()
+      keyring.alice.publicKey
     ).toEqual(
       new Uint8Array([209, 114, 167, 76, 218, 76, 134, 89, 18, 195, 43, 160, 168, 10, 87, 174, 105, 171, 174, 65, 14, 92, 203, 89, 222, 232, 78, 47, 68, 50, 219, 79])
     );
@@ -46,10 +49,32 @@ describe('pair', () => {
   it('allows setting/getting of meta', () => {
     keyring.bob.setMeta({ foo: 'bar', something: 'else' });
 
-    expect(keyring.bob.getMeta()).toMatchObject({ foo: 'bar', something: 'else' });
+    expect(keyring.bob.meta).toMatchObject({ foo: 'bar', something: 'else' });
 
     keyring.bob.setMeta({ something: 'thing' });
 
-    expect(keyring.bob.getMeta()).toMatchObject({ foo: 'bar', something: 'thing' });
+    expect(keyring.bob.meta).toMatchObject({ foo: 'bar', something: 'thing' });
+  });
+
+  it('allows encoding of address with different prefixes', () => {
+    expect(keyring.alice.address).toEqual(
+      '5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua'
+    );
+
+    setAddressPrefix(68);
+
+    expect(keyring.alice.address).toEqual(
+      '7sGUeMak588SPY2YMmmuKUuLz7u2WQpf74F9dCFtSLB2td9d'
+    );
+  });
+
+  it('allows getting public key after decoding', () => {
+    const PASS = 'testing';
+    const encoded = keyring.alice.encodePkcs8(PASS);
+
+    const pair = createPair('sr25519', { publicKey: keyring.alice.publicKey });
+    pair.decodePkcs8(PASS, encoded);
+
+    expect(pair.isLocked).toEqual(false);
   });
 });

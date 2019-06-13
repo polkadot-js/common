@@ -46,7 +46,7 @@ const verify = (type: KeypairType, message: Uint8Array, signature: Uint8Array, p
  * - `encodePkcs8` function when provided with the correct passphrase associated with the account pair
  * and when the secret key is in memory (when the account pair is not locked) it returns an encoded
  * public key of the account.
- * - `getMeta` returns the metadata that is stored in the state of the pair, either when it was originally
+ * - `meta` is the metadata that is stored in the state of the pair, either when it was originally
  * created or set via `setMeta`.
  * - `publicKey` returns the public key stored in memory for the pair.
  * - `sign` may be used to return a signature by signing a provided message with the secret
@@ -64,8 +64,9 @@ const verify = (type: KeypairType, message: Uint8Array, signature: Uint8Array, p
 export default function createPair (type: KeypairType, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
   return {
     type,
-    address: (): string =>
-      encodeAddress(publicKey),
+    get address () {
+      return encodeAddress(publicKey);
+    },
     decodePkcs8: (passphrase?: string, _encoded?: Uint8Array | null): void => {
       const decoded = decode(passphrase, _encoded || encoded);
 
@@ -81,15 +82,18 @@ export default function createPair (type: KeypairType, { publicKey, secretKey }:
     },
     encodePkcs8: (passphrase?: string): Uint8Array =>
       encode({ publicKey, secretKey }, passphrase),
-    getMeta: (): KeyringPair$Meta =>
-      meta,
-    isLocked: (): boolean =>
-      (!secretKey || secretKey.length === 0),
+    get meta () {
+      return meta;
+    },
+    get isLocked () {
+      return !secretKey || secretKey.length === 0;
+    },
     lock: (): void => {
       secretKey = new Uint8Array(0);
     },
-    publicKey: (): Uint8Array =>
-      publicKey,
+    get publicKey () {
+      return publicKey;
+    },
     setMeta: (additional: KeyringPair$Meta): void => {
       meta = { ...meta, ...additional };
     },

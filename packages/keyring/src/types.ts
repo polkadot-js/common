@@ -32,13 +32,13 @@ export type KeyringPair$Json = {
 export interface KeyringPair {
   readonly type: KeypairType;
 
-  address: () => string;
+  address: string;
   decodePkcs8: (passphrase?: string, encoded?: Uint8Array) => void;
   encodePkcs8: (passphrase?: string) => Uint8Array;
-  getMeta: () => KeyringPair$Meta;
-  isLocked: () => boolean;
+  meta: KeyringPair$Meta;
+  isLocked: boolean;
   lock: () => void;
-  publicKey: () => Uint8Array;
+  publicKey: Uint8Array;
   setMeta: (meta: KeyringPair$Meta) => void;
   sign (message: Uint8Array): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;

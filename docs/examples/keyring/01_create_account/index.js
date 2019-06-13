@@ -13,7 +13,7 @@ async function main () {
   const pairAlice = keyring.addFromSeed(stringToU8a(ALICE_SEED));
 
   console.log(`Created keyring pair for Alice with address: ` +
-              `${keyring.getPair(pairAlice.address()).address()}`);
+              `${keyring.getPair(pairAlice.address).address}`);
 }
 
 main().catch(console.error).finally(_ => process.exit());

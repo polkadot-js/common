@@ -21,7 +21,7 @@ export default class Pairs implements KeyringPairs {
 
   add (pair: KeyringPair): KeyringPair {
     // @ts-ignore we use coercion :(
-    this._map[pair.publicKey()] = pair;
+    this._map[pair.publicKey] = pair;
 
     return pair;
   }
