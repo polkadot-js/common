@@ -13,7 +13,7 @@ Various useful utility functions that are used across all projects in the [@polk
 
 ## overview
 
-It is split up into a number of internal packages, namely utilities -
+This repository is split up into a number of internal packages, namely utilities -
 
 - [keyring](packages/keyring/) Keyring management
 - [util](packages/util/) General utilities
