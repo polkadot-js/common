@@ -1,13 +1,16 @@
-# 0.92.1
+# 0.93.1
 
-- Breaking: External pair interface for keyring has changes. Instead of
+- Breaking: External pair interface for keyring has been changed. Instead of
   - `getMeta` use the `meta` getter, i.e. `console.log(pair.meta.name)`
   - `address` use the `address` getter, i.e. `console.log(pair.address)`
   - `publicKey` use the `publicKey` getter, i.e. `console.log(pair.publicKey)`
-- Only allow integer input values into formatBalance
-- Allow formatBalance, formatDecimal & formatNumber to cater for negative numbers
-- Add 'Bob//stash' to testing keyring
-- Move decodeAddress, encodeAddress & setAddressPrefix functions into `@polkadot/util-crypto` from `@polkadot/keyring`. External interfaces should not be affected at this point since it is also (still) esxported and exposed on keyring
+- `Move decodeAddress`, `encodeAddress` & `setAddressPrefix` functions into `@polkadot/util-crypto` from `@polkadot/keyring`. External interfaces should not be affected at this point since it is also (still) exported and exposed on keyring
+
+# 0.92.1
+
+- Only allow integer input values into `formatBalance`
+- Allow `formatBalance`, `formatDecimal` & `formatNumber` to cater for negative numbers
+- Add 'Bob//stash' to testing keyring, joining the existing 'Alice//stash'
 
 # 0.91.1
 
@@ -22,9 +25,9 @@
 # 0.76.1
 
 - Fix `addFromMnemonic` to generate using new-style derivation.
-- Pull in formatBalance, formatDecimal, formatElapsed, formatNumber, calcSi, findSi & isTestChain util fuinctions from the originals in @polkadot/ui-util
-- Swap DB interfaces to optional LRU, removing transactionAsync (client-only changes)
+- Pull in `formatBalance`, `formatDecimal`, `formatElapsed`, `formatNumber`, `calcSi`, `findSi` & `isTestChain` utility functions from the originals in `@polkadot/ui-util`
 - Swap out `wasm-schnorrkel` & `wasm-ed25519` for combined version with `wasm-crypto`
+- Swap DB interfaces to optional LRU, removing `transactionAsync` (client-only changes)
 
 # 0.75.1
 
@@ -32,7 +35,7 @@
 
 # 0.42.1
 
-- Add assertSingletonPackage to util
+- Add `assertSingletonPackage` to util
 - Ensure that only a single keyring instance is loaded (uses above)
 
 # 0.41.1
@@ -47,7 +50,7 @@
 
 # 0.39.1
 
-- Pull in bip39 generation functions from @poladkot/wasm-crypto with a fallback to the pure JS versions
+- Pull in bip39 generation functions from `@poladkot/wasm-crypto` with a fallback to the pure JS versions
 
 # 0.38.1
 
