@@ -5,7 +5,7 @@
 import { compactAddLength, u8aConcat, isU8a, logger } from '@polkadot/util';
 
 import NodeHeader from './NodeHeader';
-import { BITMAP, NodeEnum } from './constants';
+import { BITMAP, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF, NODE_TYPE_NULL } from './constants';
 import { extractKey } from './nibbles';
 import { fromNibbles } from './util';
 
@@ -79,11 +79,11 @@ export default function encode (input?: null | Uint8Array | Array<null | Uint8Ar
   const header = new NodeHeader(input);
   const nodeType = header.nodeType;
 
-  if (!input || nodeType === NodeEnum.NULL) {
+  if (!input || nodeType === NODE_TYPE_NULL) {
     return header.toU8a();
-  } else if (nodeType === NodeEnum.BRANCH) {
+  } else if (nodeType === NODE_TYPE_BRANCH) {
     return _encodeBranch(header, input);
-  } else if (nodeType === NodeEnum.EXT || nodeType === NodeEnum.LEAF) {
+  } else if (nodeType === NODE_TYPE_EXT || nodeType === NODE_TYPE_LEAF) {
     return _encodeKv(header, input);
   }
 

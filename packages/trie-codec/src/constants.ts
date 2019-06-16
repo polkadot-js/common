@@ -33,9 +33,7 @@ export const EXTENSION_NODE_THRESHOLD = EXTENSION_NODE_BIG - EXTENSION_NODE_OFFS
 export const LEAF_NODE_SMALL_MAX = LEAF_NODE_BIG - 1;
 export const EXTENSION_NODE_SMALL_MAX = EXTENSION_NODE_BIG - 1;
 
-export enum NodeEnum {
-  NULL = 0,
-  BRANCH = 1,
-  EXT = 2,
-  LEAF = 3
-}
+export const NODE_TYPE_NULL = 0;
+export const NODE_TYPE_BRANCH = 1;
+export const NODE_TYPE_EXT = 2;
+export const NODE_TYPE_LEAF = 3;

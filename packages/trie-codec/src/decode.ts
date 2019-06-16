@@ -5,7 +5,7 @@
 import { compactStripLength, logger } from '@polkadot/util';
 
 import NodeHeader, { BranchHeader, NibbleHeader } from './NodeHeader';
-import { BITMAP, NodeEnum } from './constants';
+import { BITMAP, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF, NODE_TYPE_NULL } from './constants';
 import { addNibblesTerminator, encodeNibbles } from './nibbles';
 import { toNibbles } from './util';
 
@@ -65,7 +65,7 @@ function _decodeKv (header: NodeHeader, input: Uint8Array): Array<null | Uint8Ar
 
   return [
     encodeNibbles(
-      header.nodeType === NodeEnum.LEAF
+      header.nodeType === NODE_TYPE_LEAF
         ? addNibblesTerminator(nibbles)
         : nibbles
     ),
@@ -77,11 +77,11 @@ export default function decode (input: null | Uint8Array): Uint8Array | null | A
   const header = new NodeHeader(input);
   const nodeType = header.nodeType;
 
-  if (!input || nodeType === NodeEnum.NULL) {
+  if (!input || nodeType === NODE_TYPE_NULL) {
     return input;
-  } else if (nodeType === NodeEnum.BRANCH) {
+  } else if (nodeType === NODE_TYPE_BRANCH) {
     return _decodeBranch(header, input);
-  } else if (nodeType === NodeEnum.EXT || nodeType === NodeEnum.LEAF) {
+  } else if (nodeType === NODE_TYPE_EXT || nodeType === NODE_TYPE_LEAF) {
     return _decodeKv(header, input);
   }
 
