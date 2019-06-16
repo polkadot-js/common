@@ -21,12 +21,15 @@ export default function toNibbles (input?: Uint8Array | null): Uint8Array {
     return new Uint8Array();
   }
 
-  return input.reduce((nibbles, byte, index) => {
-    nibbles.set(
-      [byte >> 4, byte & 0b1111],
-      index * 2
-    );
+  const result = new Uint8Array(input.length * 2);
 
-    return nibbles;
-  }, new Uint8Array(input.length * 2));
+  for (let index = 0; index < input.length; index++) {
+    const nibIndex = index << 1;
+    const byte = input[index];
+
+    result[nibIndex] = byte >> 4;
+    result[nibIndex + 1] = byte & 0b1111;
+  }
+
+  return result;
 }

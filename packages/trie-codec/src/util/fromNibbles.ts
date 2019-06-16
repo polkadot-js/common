@@ -20,9 +20,9 @@ export default function fromNibbles (input: Uint8Array): Uint8Array {
   const u8a = new Uint8Array(input.length / 2);
 
   for (let index = 0; index < u8a.length; index++) {
-    const nibIndex = index * 2;
+    const nibIndex = index << 1;
 
-    u8a.set([(input[nibIndex] << 4) + input[nibIndex + 1]], index);
+    u8a[index] = (input[nibIndex] << 4) + input[nibIndex + 1];
   }
 
   return u8a;

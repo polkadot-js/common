@@ -5,7 +5,7 @@
 import { compactStripLength, logger } from '@polkadot/util';
 
 import NodeHeader, { BranchHeader, NibbleHeader } from './NodeHeader';
-import { NODE_TYPE_NULL, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF } from './constants';
+import { BITMAP, NODE_TYPE_BRANCH, NODE_TYPE_EXT, NODE_TYPE_LEAF, NODE_TYPE_NULL } from './constants';
 import { addNibblesTerminator, encodeNibbles } from './nibbles';
 import { toNibbles } from './util';
 
@@ -27,19 +27,17 @@ function _decodeBranch (header: NodeHeader, input: Uint8Array): Array<null | Uin
 
   offset += 2;
 
-  if (branch.valueOf() === true) {
+  if (branch === true) {
     const [length, bytes] = compactStripLength(input.subarray(offset));
 
     value = bytes;
     offset += length;
   }
 
-  let cursor = 1;
-
   return EMPTY_BRANCH.concat(value).map((value, index) => {
     let result: null | Uint8Array | [Uint8Array, Uint8Array] = value;
 
-    if ((index < 16) && (bitmap & cursor)) {
+    if ((index < 16) && (bitmap & BITMAP[index])) {
       const [length, bytes] = compactStripLength(input.subarray(offset));
 
       result = bytes.length === 32
@@ -48,15 +46,13 @@ function _decodeBranch (header: NodeHeader, input: Uint8Array): Array<null | Uin
       offset += length;
     }
 
-    cursor = cursor << 1;
-
     return result;
   });
 }
 
 function _decodeKv (header: NodeHeader, input: Uint8Array): Array<null | Uint8Array | [Uint8Array, Uint8Array]> {
   let offset = header.encodedLength;
-  const nibbleCount = (header.value as NibbleHeader).toNumber();
+  const nibbleCount = (header.value as NibbleHeader);
   const nibbleLength = Math.floor((nibbleCount + 1) / 2);
   const nibbleData = input.subarray(offset, offset + nibbleLength);
 
@@ -77,7 +73,7 @@ function _decodeKv (header: NodeHeader, input: Uint8Array): Array<null | Uint8Ar
   ];
 }
 
-function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Uint8Array | [Uint8Array, Uint8Array]> {
+export default function decode (input: null | Uint8Array): Uint8Array | null | Array<null | Uint8Array | [Uint8Array, Uint8Array]> {
   const header = new NodeHeader(input);
   const nodeType = header.nodeType;
 
@@ -92,10 +88,10 @@ function _decode (input: null | Uint8Array): Uint8Array | null | Array<null | Ui
   throw new Error('Unreachable');
 }
 
-export default function decode (input: null | Uint8Array): Uint8Array | null | Array<null | Uint8Array | Array<null | Uint8Array>> {
-  const decoded = _decode(input);
+// export default function decode (input: null | Uint8Array): Uint8Array | null | Array<null | Uint8Array | Array<null | Uint8Array>> {
+//   const decoded = _decode(input);
 
-  // l.debug(() => ['decode', { input, decoded }]);
+//   // l.debug(() => ['decode', { input, decoded }]);
 
-  return decoded;
-}
+//   return decoded;
+// }
