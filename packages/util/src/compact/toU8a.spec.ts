@@ -39,6 +39,14 @@ describe('encode', () => {
     );
   });
 
+  it('encodes basic u32 values (< 2^30)', () => {
+    expect(
+      compactToU8a(0x1fff)
+    ).toEqual(
+      new Uint8Array([253, 127])
+    );
+  });
+
   it('encodes basic u32 values (short)', () => {
     expect(
       compactToU8a(0xffff)
