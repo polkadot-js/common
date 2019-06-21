@@ -4,28 +4,25 @@
 
 import { u8aConcat } from '@polkadot/util';
 
-import { BRANCH_NODE_NO_VALUE, BRANCH_NODE_WITH_VALUE } from '../constants';
+import { BITMAP, BRANCH_NODE_NO_VALUE, BRANCH_NODE_WITH_VALUE } from '../constants';
 import createValue from './createValue';
 
 export default function createBranch (value: Uint8Array | null, hasChildren: Array<boolean>): Uint8Array {
-  let cursor = 1;
-  const bitmap = hasChildren.reduce((bitmap, value) => {
-    if (value) {
-      bitmap = bitmap | cursor;
+  let bitmap = 0;
+
+  for (let i = 0; i < hasChildren.length; i++) {
+    if (hasChildren[i]) {
+      bitmap |= BITMAP[i];
     }
-
-    cursor = cursor << 1;
-
-    return bitmap;
-  }, 0);
+  }
 
   return u8aConcat(
     Uint8Array.from([
       value
         ? BRANCH_NODE_WITH_VALUE
         : BRANCH_NODE_NO_VALUE,
-      (bitmap % 256),
-      Math.floor(bitmap / 256)
+      (bitmap & 0xff),
+      (bitmap >> 8)
     ]),
     createValue(value)
   );

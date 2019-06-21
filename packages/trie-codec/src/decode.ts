@@ -22,8 +22,8 @@ l.noop();
 function _decodeBranch (header: NodeHeader, input: Uint8Array): Array<null | Uint8Array | [Uint8Array, Uint8Array]> {
   let offset = header.encodedLength;
   const branch = header.value as BranchHeader;
-  const bitmap = input[offset] + (input[offset + 1] * 256);
-  let value: null | Uint8Array = null;
+  const bitmap = input[offset] + (input[offset + 1] << 8);
+  let value: null | Uint8Array;
 
   offset += 2;
 
@@ -32,6 +32,8 @@ function _decodeBranch (header: NodeHeader, input: Uint8Array): Array<null | Uin
 
     value = bytes;
     offset += length;
+  } else {
+    value = null;
   }
 
   return EMPTY_BRANCH.concat(value).map((value, index) => {
@@ -42,7 +44,7 @@ function _decodeBranch (header: NodeHeader, input: Uint8Array): Array<null | Uin
 
       result = bytes.length === 32
         ? bytes
-        : decode(bytes) as any;
+        : decode(bytes) as Uint8Array;
       offset += length;
     }
 
@@ -51,17 +53,14 @@ function _decodeBranch (header: NodeHeader, input: Uint8Array): Array<null | Uin
 }
 
 function _decodeKv (header: NodeHeader, input: Uint8Array): Array<null | Uint8Array | [Uint8Array, Uint8Array]> {
-  let offset = header.encodedLength;
+  const offset = header.encodedLength;
   const nibbleCount = (header.value as NibbleHeader);
-  const nibbleLength = Math.floor((nibbleCount + 1) / 2);
+  const nibbleLength = (nibbleCount + 1) >> 1;
   const nibbleData = input.subarray(offset, offset + nibbleLength);
 
   // for odd, ignore the first nibble, data starts at offset 1
   const nibbles = toNibbles(nibbleData).subarray(nibbleCount % 2);
-
-  offset += nibbleData.length;
-
-  const [, value] = compactStripLength(input.subarray(offset));
+  const [, value] = compactStripLength(input.subarray(offset + nibbleData.length));
 
   return [
     encodeNibbles(
