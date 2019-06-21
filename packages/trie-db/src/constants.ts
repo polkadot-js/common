@@ -13,7 +13,7 @@ export type Constants = {
   EMPTY_U8A: Uint8Array
 };
 
-export default function (codec: Codec) {
+export default function (codec: Codec): Constants {
   const EMPTY_NODE = new Uint8Array();
   const EMPTY_U8A = trieRoot([], codec);
   const EMPTY_HASH = codec.hashing(EMPTY_U8A);

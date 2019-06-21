@@ -40,33 +40,33 @@ function encodeValue (input: null | Uint8Array | Array<null | Uint8Array>): Uint
 }
 
 function _encodeBranch (header: NodeHeader, input: Array<null | Uint8Array>): Uint8Array {
-  let valuesU8a = EMPTY;
+  let values: Array<Uint8Array> = [];
   let bitmap = 0;
 
   for (let index = 0; index < BRANCH_VALUE_INDEX; index++) {
     const value = input[index];
 
     if (value) {
-      bitmap = bitmap | BITMAP[index];
+      bitmap |= BITMAP[index];
 
-      valuesU8a = u8aConcat(valuesU8a, encodeValue(value));
+      values.push(encodeValue(value));
     }
   }
 
   return u8aConcat(
     header.toU8a(),
-    new Uint8Array([(bitmap % 256), Math.floor(bitmap / 256)]),
+    new Uint8Array([(bitmap & 0xff), (bitmap >> 8)]),
     encodeValue(input[BRANCH_VALUE_INDEX]),
-    valuesU8a
+    ...values
   );
 }
 
 function _encodeKv (header: NodeHeader, input: Array<null | Uint8Array>): Uint8Array {
-  const [key, value] = input;
+  const [path, value] = input;
 
   return u8aConcat(
     header.toU8a(),
-    encodeKey(key),
+    encodeKey(path),
     encodeValue(value)
   );
 }
