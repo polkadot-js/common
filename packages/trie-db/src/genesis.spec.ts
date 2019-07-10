@@ -7,9 +7,9 @@ import { hexToU8a, u8aToHex } from '@polkadot/util';
 
 import Trie from '.';
 
-describe('genesis roots', () => {
+describe('genesis roots', (): void => {
   [alexander, driedDanta].forEach(({ genesis: { raw }, genesisRoot, name }) => {
-    it(`has the correct root for ${name}`, () => {
+    it(`has the correct root for ${name}`, (): void => {
       const trie = new Trie();
 
       Object.keys(raw).forEach((key) => {

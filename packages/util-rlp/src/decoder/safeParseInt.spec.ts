@@ -5,16 +5,16 @@
 
 import safeParseInt from './safeParseInt';
 
-describe('safeParseInt', () => {
-  it('does not allow 0 in first position', () => {
+describe('safeParseInt', (): void => {
+  it('does not allow 0 in first position', (): void => {
     expect(
-      () => safeParseInt(
+      (): number => safeParseInt(
         new Uint8Array([0])
       )
     ).toThrow(/invalid rlp, extra zeros found/);
   });
 
-  it('converts a value to the correct number', () => {
+  it('converts a value to the correct number', (): void => {
     expect(
       safeParseInt(
         new Uint8Array([0x12, 0x34, 0x56])

@@ -7,7 +7,7 @@ import { u8aToHex, u8aToU8a as toU8a } from '@polkadot/util';
 
 import Trie from '.';
 
-describe('snapshots', () => {
+describe('snapshots', (): void => {
   const values = [
     { k: toU8a('test'), v: toU8a('one') },
     { k: toU8a('one'), v: toU8a('testing') },
@@ -21,12 +21,12 @@ describe('snapshots', () => {
   let trie: Trie;
   let back: Trie;
 
-  beforeEach(() => {
+  beforeEach((): void => {
     trie = new Trie();
     back = new Trie();
   });
 
-  it('creates a snapshot of the (relevant) trie data', () => {
+  it('creates a snapshot of the (relevant) trie data', (): void => {
     const root = trieRoot([values[0]]);
 
     trie.put(values[0].k, values[0].v);
@@ -42,7 +42,7 @@ describe('snapshots', () => {
     expect(back.get(values[0].k)).toEqual(values[0].v);
   });
 
-  it('creates a snapshot of the (relevant) data', () => {
+  it('creates a snapshot of the (relevant) data', (): void => {
     const root = trieRoot(values);
 
     values.forEach(({ k, v }) => trie.put(k, v));
@@ -55,7 +55,7 @@ describe('snapshots', () => {
     );
   });
 
-  it('retrieves entries, which can re-create', () => {
+  it('retrieves entries, which can re-create', (): void => {
     const root = trieRoot(values);
 
     values.forEach(({ k, v }) => trie.put(k, v));

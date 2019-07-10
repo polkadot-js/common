@@ -7,9 +7,9 @@ import { hexToU8a, u8aToHex } from '@polkadot/util';
 
 import trieRoot from './trieRoot';
 
-describe('genesis roots', () => {
+describe('genesis roots', (): void => {
   [alexander, driedDanta].forEach(({ genesis: { raw }, genesisRoot, name }) => {
-    it(`has the correct root for ${name}`, () => {
+    it(`has the correct root for ${name}`, (): void => {
       expect(
         u8aToHex(
           trieRoot(

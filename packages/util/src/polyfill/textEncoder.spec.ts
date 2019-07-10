@@ -2,28 +2,34 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-describe('TextEncoder', () => {
+describe('TextEncoder', (): void => {
   let origTE: TextEncoder;
 
-  beforeEach(() => {
+  beforeEach((): void => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     origTE = (global as any).TextEncoder;
   });
 
-  afterEach(() => {
+  afterEach((): void => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (global as any).TextEncoder = origTE;
   });
 
-  it('polyfills with no exceptions (without TextEncoder)', () => {
+  it('polyfills with no exceptions (without TextEncoder)', (): void => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (global as any).TextEncoder = null;
 
     expect(require('./textEncoder')).toBeDefined();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((global as any).TextEncoder).toBeDefined();
   });
 
-  it('polyfills with no exceptions (with TextEncoder)', () => {
+  it('polyfills with no exceptions (with TextEncoder)', (): void => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (global as any).TextEncoder = require('util').TextEncoder;
 
     expect(require('./textEncoder')).toBeDefined();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((global as any).TextEncoder).toBeDefined();
   });
 });

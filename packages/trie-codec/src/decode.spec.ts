@@ -6,8 +6,8 @@ import { hexToU8a } from '@polkadot/util';
 
 import decode from './decode';
 
-describe('decode', () => {
-  it('decodes a leaf', () => {
+describe('decode', (): void => {
+  it('decodes a leaf', (): void => {
     expect(
       decode(Uint8Array.from([
         0x05, 0x48, 0x19, 0x04, 0xfe
@@ -18,7 +18,7 @@ describe('decode', () => {
     ]);
   });
 
-  it('decodes a branch', () => {
+  it('decodes a branch', (): void => {
     expect(
       decode(Uint8Array.from([
         0xfe, 0x00, 0x0c, 0x48, 0x81, 0x0a, 0x3c, 0xff, 0x00, 0x0c, 0x04, 0xa0, 0x10, 0x02, 0x0a, 0x04,
@@ -38,7 +38,7 @@ describe('decode', () => {
     ]);
   });
 
-  it('decodes a complex branch', () => {
+  it('decodes a complex branch', (): void => {
     expect(
       decode(hexToU8a(
         '0xfe8c00682007b3872d47181b4a2dc15f0da43e702620e80300000000000080170d322ac49d8708f151346c68d9e58452d83a9d3b710e1ead35eb3269ab235368200935e46f94f24b82716c0142e2271de9200087000000000000'

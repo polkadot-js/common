@@ -4,26 +4,26 @@
 
 import { stringShorten } from '.';
 
-describe('stringShorten', () => {
-  it('returns the value as-is when <= maxLength', () => {
+describe('stringShorten', (): void => {
+  it('returns the value as-is when <= maxLength', (): void => {
     expect(
       stringShorten('0123456789', 4)
     ).toEqual('0123456789');
   });
 
-  it('returns the shortened value when > maxLength', () => {
+  it('returns the shortened value when > maxLength', (): void => {
     expect(
       stringShorten('0123456789', 3)
     ).toEqual('012..789');
   });
 
-  it('returns undefined as undefined', () => {
+  it('returns undefined as undefined', (): void => {
     expect(
       stringShorten()
     ).toEqual('undefined');
   });
 
-  it('returns non-string values as strings', () => {
+  it('returns non-string values as strings', (): void => {
     expect(
       stringShorten(12345678, 2)
     ).toEqual('12..78');

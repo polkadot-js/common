@@ -20,7 +20,7 @@ import internalDecode from './decode';
  * decode(new Uint8Array([0x83, 0x64, 0x6f, 0x67])); // => 'dog' as Uint8Array
  * ```
  */
-export default function decoder (input?: null | Uint8Array): Uint8Array | Array<any> {
+export default function decoder (input?: null | Uint8Array): Uint8Array | Uint8Array[] {
   try {
     if (!input || input.length === 0) {
       return new Uint8Array([]);
@@ -30,7 +30,7 @@ export default function decoder (input?: null | Uint8Array): Uint8Array | Array<
 
     assert(remainder.length === 0, 'invalid remainder');
 
-    return decoded;
+    return decoded as Uint8Array;
   } catch (error) {
     console.error(`RLP failed on input ${u8aToHex(input)}`);
 

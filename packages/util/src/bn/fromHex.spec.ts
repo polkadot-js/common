@@ -6,8 +6,8 @@ import isFunction from '../is/function';
 
 import { bnFromHex } from '.';
 
-describe('bnFromHex', () => {
-  it('exists as a function', () => {
+describe('bnFromHex', (): void => {
+  it('exists as a function', (): void => {
     expect(
       isFunction(bnFromHex)
     ).toEqual(true);

@@ -4,10 +4,12 @@
 
 import { assert, bnToU8a, bufferToU8a, hexHasPrefix, hexToU8a, isBn, isBuffer, isNull, isNumber, isString, isU8a, isUndefined, numberToU8a, stringToU8a } from '@polkadot/util';
 
-type Encoder = {
-  check: (value: any) => boolean,
-  fn: (value: any) => Uint8Array
-};
+interface Encoder {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  check: (value: any) => boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  fn: (value: any) => Uint8Array;
+}
 
 function newEmpty (): Uint8Array {
   return new Uint8Array([]);
@@ -25,19 +27,21 @@ function convertU8a (value: Uint8Array): Uint8Array {
   return value;
 }
 
-const encoders: Array<Encoder> = [
+const encoders: Encoder[] = [
   { check: isNull, fn: newEmpty },
   { check: isUndefined, fn: newEmpty },
   // NOTE: Buffer before U8a
   { check: isBuffer, fn: bufferToU8a },
   { check: isU8a, fn: convertU8a },
-  { check: isBn, fn: (value: any) => bnToU8a(value, -1, false) },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  { check: isBn, fn: (value: any): Uint8Array => bnToU8a(value, -1, false) },
   { check: isNumber, fn: numberToU8a },
   { check: isString, fn: convertString }
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function toU8a (value?: any): Uint8Array {
-  const encoder = encoders.find(({ check }) => check(value));
+  const encoder = encoders.find(({ check }): boolean => check(value));
 
   assert(encoder, 'invalid type');
 

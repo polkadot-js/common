@@ -10,9 +10,9 @@ import getTests from '../test/getTests';
 
 const rlptests = getTests('RLPTests/rlptest.json');
 
-describe('encode', () => {
-  rlptests.forEach(({ name, input, output }) => {
-    it(`passes official ${name}`, () => {
+describe('encode', (): void => {
+  rlptests.forEach(({ name, input, output }): void => {
+    it(`passes official ${name}`, (): void => {
       expect(
         u8aToHex(
           encode(input)

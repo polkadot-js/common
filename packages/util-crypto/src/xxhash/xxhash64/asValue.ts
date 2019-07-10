@@ -29,5 +29,5 @@ export default function xxhash64AsValue (data: Buffer | Uint8Array | string, see
   return xxhashjs.h64(
     u8aToBuffer(data),
     seed
-  ) as any;
+  ) as number;
 }

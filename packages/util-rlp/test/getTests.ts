@@ -7,17 +7,17 @@ import { getSingleFile } from 'ethereumjs-testing';
 
 import bnToU8a from '@polkadot/util/bn/toU8a';
 
-type Tests = Array<{
-  name: string,
-  input: any,
-  output?: string,
-  root: string
-}>;
+interface Test {
+  name: string;
+  input: string | Uint8Array;
+  output?: string;
+  root: string;
+}
 
-export default function getTests (file: string): Tests {
+export default function getTests (file: string): Test[] {
   const tests = getSingleFile(file);
 
-  return Object.keys(tests).map((name) => ({
+  return Object.keys(tests).map((name): Test => ({
     name,
     input: tests[name].in[0] !== '#'
       ? tests[name].in

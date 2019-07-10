@@ -4,24 +4,24 @@
 
 import formatDecimal from './formatDecimal';
 
-describe('formatDecimal', () => {
-  it('formats decimals in number groupings', () => {
+describe('formatDecimal', (): void => {
+  it('formats decimals in number groupings', (): void => {
     expect(formatDecimal('12345')).toEqual('12,345');
   });
 
-  it('formats decimal-only in number groupings', () => {
+  it('formats decimal-only in number groupings', (): void => {
     expect(formatDecimal('test6789')).toEqual('6,789');
   });
 
-  it('returns input for non-decimal', () => {
+  it('returns input for non-decimal', (): void => {
     expect(formatDecimal('test')).toEqual('test');
   });
 
-  it('returns non-sensical negative text', () => {
+  it('returns non-sensical negative text', (): void => {
     expect(formatDecimal('-test')).toEqual('-test');
   });
 
-  it('formats negative numbers', () => {
+  it('formats negative numbers', (): void => {
     expect(formatDecimal('-123456')).toEqual('-123,456');
   });
 });

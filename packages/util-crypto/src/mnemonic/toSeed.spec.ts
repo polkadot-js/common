@@ -6,8 +6,8 @@ import { u8aToHex } from '@polkadot/util';
 
 import toSeed from './toSeed';
 
-describe('mnemonicToSeed', () => {
-  it('generates a valid seed', () => {
+describe('mnemonicToSeed', (): void => {
+  it('generates a valid seed', (): void => {
     expect(
       u8aToHex(toSeed('seed sock milk update focus rotate barely fade car face mechanic mercy'))
     ).toEqual('0x3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027');

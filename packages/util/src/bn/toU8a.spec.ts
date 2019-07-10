@@ -6,56 +6,56 @@ import BN from 'bn.js';
 
 import { bnToU8a } from '.';
 
-describe('bnToU8a', () => {
-  it('converts null values to 0x00', () => {
+describe('bnToU8a', (): void => {
+  it('converts null values to 0x00', (): void => {
     expect(
       bnToU8a(null, -1, false)
     ).toEqual(new Uint8Array([]));
   });
 
-  it('converts null values to 0x00000000 (bitLength)', () => {
+  it('converts null values to 0x00000000 (bitLength)', (): void => {
     expect(
       bnToU8a(null, 32, false)
     ).toEqual(new Uint8Array([0, 0, 0, 0]));
   });
 
-  it('converts BN values to a prefixed hex representation', () => {
+  it('converts BN values to a prefixed hex representation', (): void => {
     expect(
       bnToU8a(new BN(0x123456), -1, false)
     ).toEqual(new Uint8Array([0x12, 0x34, 0x56]));
   });
 
-  it('converts BN values to a prefixed hex representation (bitLength)', () => {
+  it('converts BN values to a prefixed hex representation (bitLength)', (): void => {
     expect(
       bnToU8a(new BN(0x123456), 32, false)
     ).toEqual(new Uint8Array([0x00, 0x12, 0x34, 0x56]));
   });
 
-  it('converts using little endian (as set)', () => {
+  it('converts using little endian (as set)', (): void => {
     expect(
       bnToU8a(new BN(0x123456), 32, true)
     ).toEqual(new Uint8Array([0x56, 0x34, 0x12, 0x00]));
   });
 
-  it('converts negative numbers', () => {
+  it('converts negative numbers', (): void => {
     expect(
       bnToU8a(new BN(-1234), { isNegative: true })
     ).toEqual(new Uint8Array([46, 251]));
   });
 
-  it('converts negative numbers (BE)', () => {
+  it('converts negative numbers (BE)', (): void => {
     expect(
       bnToU8a(new BN(-1234), { isNegative: true, isLe: false })
     ).toEqual(new Uint8Array([251, 46]));
   });
 
-  it('converts negative numbers (bitLength)', () => {
+  it('converts negative numbers (bitLength)', (): void => {
     expect(
       bnToU8a(new BN(-1234), { isNegative: true, bitLength: 32 })
     ).toEqual(new Uint8Array([46, 251, 255, 255]));
   });
 
-  it('handles backwards compatibility', () => {
+  it('handles backwards compatibility', (): void => {
     expect(
       bnToU8a(new BN(1234), 32, false)
     ).toEqual(

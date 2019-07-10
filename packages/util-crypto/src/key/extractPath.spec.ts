@@ -4,8 +4,8 @@
 
 import keyExtractPath from './extractPath';
 
-describe('keyExtractPath', () => {
-  it('extracts properly from soft', () => {
+describe('keyExtractPath', (): void => {
+  it('extracts properly from soft', (): void => {
     expect(
       keyExtractPath('/1')
     ).toEqual({
@@ -16,7 +16,7 @@ describe('keyExtractPath', () => {
     });
   });
 
-  it('extracts properly from hard', () => {
+  it('extracts properly from hard', (): void => {
     expect(
       keyExtractPath('//1')
     ).toEqual({
@@ -27,7 +27,7 @@ describe('keyExtractPath', () => {
     });
   });
 
-  it('extracts properly from hard/soft', () => {
+  it('extracts properly from hard/soft', (): void => {
     expect(
       keyExtractPath('//1/2')
     ).toEqual({
@@ -39,13 +39,13 @@ describe('keyExtractPath', () => {
     });
   });
 
-  it('does not extract from invalid paths', () => {
+  it('does not extract from invalid paths', (): void => {
     expect(
       () => keyExtractPath('1/2')
     ).toThrow(/does not match input/);
   });
 
-  it('does not extract from invalid paths', () => {
+  it('does not extract from invalid paths', (): void => {
     expect(
       () => keyExtractPath('hello')
     ).toThrow(/does not match input/);

@@ -8,13 +8,13 @@ import toEntropy from './toEntropy';
 import tests from '../schnorrkel/keypair/testing';
 import { cryptoWaitReady } from '..';
 
-describe('mnemonicToEntropy', () => {
-  beforeEach(async () => {
+describe('mnemonicToEntropy', (): void => {
+  beforeEach(async (): Promise<void> => {
     await cryptoWaitReady();
   });
 
-  tests.forEach(([mnemonic, entropy], index) => {
-    it(`Created correct entropy for ${index}`, () => {
+  tests.forEach(([mnemonic, entropy], index): void => {
+    it(`Created correct entropy for ${index}`, (): void => {
       expect(u8aToHex(toEntropy(mnemonic))).toEqual(entropy);
     });
   });

@@ -4,26 +4,26 @@
 
 import { stringUpperFirst } from '.';
 
-describe('stringUpperFirst', () => {
-  it("uppers the first letter if it's a capital letter", () => {
+describe('stringUpperFirst', (): void => {
+  it("uppers the first letter if it's a capital letter", (): void => {
     expect(
       stringUpperFirst('ABC')
     ).toBe('ABC');
   });
 
-  it("uppers the first letter if it's a lowercase letter", () => {
+  it("uppers the first letter if it's a lowercase letter", (): void => {
     expect(
       stringUpperFirst('abc')
     ).toBe('Abc');
   });
 
-  it('returns undefined as empty', () => {
+  it('returns undefined as empty', (): void => {
     expect(
       stringUpperFirst()
     ).toBe('');
   });
 
-  it('returns null as empty', () => {
+  it('returns null as empty', (): void => {
     expect(
       stringUpperFirst(null)
     ).toBe('');

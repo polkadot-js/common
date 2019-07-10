@@ -6,14 +6,14 @@ import testingPairs from '../testingPairs';
 
 const keyring = testingPairs({ type: 'ed25519' }, false);
 
-describe('decode', () => {
-  it('fails when no data provided', () => {
+describe('decode', (): void => {
+  it('fails when no data provided', (): void => {
     expect(
       () => keyring.alice.decodePkcs8()
     ).toThrow(/No encrypted data available/);
   });
 
-  it('returns correct publicKey from encoded', () => {
+  it('returns correct publicKey from encoded', (): void => {
     const PASS = 'testing';
 
     expect(

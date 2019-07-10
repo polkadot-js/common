@@ -4,14 +4,14 @@
 
 import { isNull } from '.';
 
-describe('isNull', () => {
-  it('returns true when a null value', () => {
+describe('isNull', (): void => {
+  it('returns true when a null value', (): void => {
     expect(
       isNull(null)
     ).toEqual(true);
   });
 
-  it('returns false on non-null values', () => {
+  it('returns false on non-null values', (): void => {
     expect(
       isNull()
     ).toEqual(false);

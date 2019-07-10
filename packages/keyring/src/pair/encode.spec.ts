@@ -10,14 +10,14 @@ const ENCODED_LENGTH = 157;
 
 const keyring = testingPairs({ type: 'ed25519' }, false);
 
-describe('encode', () => {
-  it('returns PKCS8 when no passphrase supplied', () => {
+describe('encode', (): void => {
+  it('returns PKCS8 when no passphrase supplied', (): void => {
     expect(
       keyring.alice.encodePkcs8()
     ).toHaveLength(PKCS8_LENGTH);
   });
 
-  it('returns encoded PKCS8 when passphrase supplied', () => {
+  it('returns encoded PKCS8 when passphrase supplied', (): void => {
     expect(
       keyring.alice.encodePkcs8('testing')
     ).toHaveLength(ENCODED_LENGTH);

@@ -7,15 +7,15 @@ import { KeyringPair, KeyringOptions } from './types';
 import createKeyring from './testing';
 import nobody from './pair/nobody';
 
-type TestKeyringMap = {
-  [index: string]: KeyringPair
-};
+export interface TestKeyringMap {
+  [index: string]: KeyringPair;
+}
 
 export default function testKeyringPairs (options?: KeyringOptions, isDerived: boolean = true): TestKeyringMap {
   const keyring = createKeyring(options, isDerived);
   const pairs = keyring.getPairs();
 
-  return pairs.reduce((result, pair) => {
+  return pairs.reduce((result, pair): TestKeyringMap => {
     const { name } = pair.meta;
 
     result[name as string] = pair;

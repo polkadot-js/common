@@ -7,7 +7,7 @@ import { waitReady } from '@polkadot/wasm-crypto';
 
 import { naclKeypairFromSeed } from '..';
 
-describe('naclKeypairFromSeed', () => {
+describe('naclKeypairFromSeed', (): void => {
   // NOTE: Aligned with Rust test, b"12345678901234567890123456789012"
   const TEST = stringToU8a('12345678901234567890123456789012');
   const RESULT = {
@@ -27,11 +27,11 @@ describe('naclKeypairFromSeed', () => {
     ])
   };
 
-  beforeEach(async () => {
+  beforeEach(async (): Promise<void> => {
     await waitReady();
   });
 
-  it('generates a valid publicKey/secretKey pair (u8a)', () => {
+  it('generates a valid publicKey/secretKey pair (u8a)', (): void => {
     expect(
       naclKeypairFromSeed(TEST)
     ).toEqual(RESULT);

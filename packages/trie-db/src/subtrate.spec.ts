@@ -7,7 +7,7 @@ import { u8aToHex } from '@polkadot/util';
 import testdata, { TestData } from '../../trie-hash/test/data';
 import Trie from '.';
 
-describe('substrate tests', () => {
+describe('substrate tests', (): void => {
   let trie: Trie;
 
   const checkRoot = ({ root }: TestData) =>
@@ -22,19 +22,19 @@ describe('substrate tests', () => {
       trie.put(k, v)
     );
 
-  beforeEach(() => {
+  beforeEach((): void => {
     trie = new Trie();
   });
 
   Object.values(testdata).forEach((test) => {
-    it(`hashes ${test.desc}`, () => {
+    it(`hashes ${test.desc}`, (): void => {
       putValues(test);
       checkRoot(test);
     });
   });
 
   // When we have a specific test failing and we want to debug it
-  // it('does extensionBranch', () => {
+  // it('does extensionBranch', (): void => {
   //   putValues(testdata.extensionBranch);
   //   checkRoot(testdata.extensionBranch);
   // });

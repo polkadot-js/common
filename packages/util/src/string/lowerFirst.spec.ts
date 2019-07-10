@@ -4,26 +4,26 @@
 
 import { stringLowerFirst } from '.';
 
-describe('stringLowerFirst', () => {
-  it("lowers the first letter if it's a capital letter", () => {
+describe('stringLowerFirst', (): void => {
+  it("lowers the first letter if it's a capital letter", (): void => {
     expect(
       stringLowerFirst('ABC')
     ).toBe('aBC');
   });
 
-  it("lowers the first letter if it's a lowercase letter", () => {
+  it("lowers the first letter if it's a lowercase letter", (): void => {
     expect(
       stringLowerFirst('abc')
     ).toBe('abc');
   });
 
-  it('returns undefined as empty', () => {
+  it('returns undefined as empty', (): void => {
     expect(
       stringLowerFirst()
     ).toBe('');
   });
 
-  it('returns null as empty', () => {
+  it('returns null as empty', (): void => {
     expect(
       stringLowerFirst(null)
     ).toBe('');

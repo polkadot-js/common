@@ -5,9 +5,9 @@
 import isError from '../is/error';
 import { ExtError } from '.';
 
-describe('ExtError', () => {
-  describe('constructor', () => {
-    it('constructs an Error that is still an Error', () => {
+describe('ExtError', (): void => {
+  describe('constructor', (): void => {
+    it('constructs an Error that is still an Error', (): void => {
       expect(
         isError(
           new ExtError()
@@ -16,40 +16,40 @@ describe('ExtError', () => {
     });
   });
 
-  describe('static', () => {
-    it('exposes the .CODES as a static', () => {
+  describe('static', (): void => {
+    it('exposes the .CODES as a static', (): void => {
       expect(
         Object.keys(ExtError.CODES)
       ).not.toEqual(0);
     });
   });
 
-  describe('constructor properties', () => {
-    it('sets the .message property', () => {
+  describe('constructor properties', (): void => {
+    it('sets the .message property', (): void => {
       expect(
         new ExtError('test message').message
       ).toEqual('test message');
     });
 
-    it("sets the .message to '' when not set", () => {
+    it("sets the .message to '' when not set", (): void => {
       expect(
         new ExtError().message
       ).toEqual('');
     });
 
-    it('sets the .code property', () => {
+    it('sets the .code property', (): void => {
       expect(
         new ExtError('test message', 1234).code
       ).toEqual(1234);
     });
 
-    it('sets the .code to UKNOWN when not set', () => {
+    it('sets the .code to UKNOWN when not set', (): void => {
       expect(
         new ExtError('test message').code
       ).toEqual(ExtError.CODES.UNKNOWN);
     });
 
-    it('sets the .data property', () => {
+    it('sets the .data property', (): void => {
       const data = { some: { value: 'here' } };
 
       expect(
@@ -58,10 +58,10 @@ describe('ExtError', () => {
     });
   });
 
-  describe('stack traces', () => {
+  describe('stack traces', (): void => {
     let captureStackTrace: any;
 
-    beforeEach(() => {
+    beforeEach((): void => {
       captureStackTrace = Error.captureStackTrace;
 
       Error.captureStackTrace = function (error) {
@@ -78,17 +78,17 @@ describe('ExtError', () => {
       };
     });
 
-    afterEach(() => {
+    afterEach((): void => {
       Error.captureStackTrace = captureStackTrace;
     });
 
-    it('captures via captureStackTrace when available', () => {
+    it('captures via captureStackTrace when available', (): void => {
       expect(
         new ExtError().stack
       ).toEqual('some stack returned');
     });
 
-    it('captures via stack when captureStackTrace not available', () => {
+    it('captures via stack when captureStackTrace not available', (): void => {
       Error.captureStackTrace = null as any; // grrr
 
       expect(

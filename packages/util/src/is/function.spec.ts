@@ -4,14 +4,14 @@
 
 import { isFunction } from '.';
 
-describe('isFunction', () => {
-  it('returns true on valid functions', () => {
+describe('isFunction', (): void => {
+  it('returns true on valid functions', (): void => {
     expect(
       isFunction(isFunction)
     ).toEqual(true);
   });
 
-  it('returns false on invalid functions', () => {
+  it('returns false on invalid functions', (): void => {
     expect(
       isFunction('notAFunction')
     ).toEqual(false);

@@ -7,11 +7,11 @@ import toU8a from '@polkadot/util/string/toU8a';
 import MemoryDb from './MemoryDb';
 import TransactionDb from './TransactionDb';
 
-describe('TransactionDb', () => {
+describe('TransactionDb', (): void => {
   const memory = new MemoryDb();
   const db = new TransactionDb(memory);
 
-  it('passed through values immediately when not in transaction', () => {
+  it('passed through values immediately when not in transaction', (): void => {
     const key = toU8a('test0');
     const value = toU8a('value0');
 
@@ -20,12 +20,12 @@ describe('TransactionDb', () => {
     expect(memory.get(key)).toEqual(value);
   });
 
-  it('commits when transaction passes (result = true, put)', () => {
+  it('commits when transaction passes (result = true, put)', (): void => {
     const key = toU8a('test1');
     const value = toU8a('value1');
 
     expect(
-      db.transaction(() => {
+      db.transaction((): boolean => {
         db.put(key, value);
 
         return true;
@@ -34,11 +34,11 @@ describe('TransactionDb', () => {
     expect(memory.get(key)).toEqual(value);
   });
 
-  it('commits when transaction passes (result = true, del)', () => {
+  it('commits when transaction passes (result = true, del)', (): void => {
     const key = toU8a('test0');
 
     expect(
-      db.transaction(() => {
+      db.transaction((): boolean => {
         db.del(key);
 
         return true;
@@ -47,12 +47,12 @@ describe('TransactionDb', () => {
     expect(memory.get(key)).toEqual(null);
   });
 
-  it('does not commit when transaction fails (result = false)', () => {
+  it('does not commit when transaction fails (result = false)', (): void => {
     const key = toU8a('test2');
     const value = toU8a('value2');
 
     expect(
-      db.transaction(() => {
+      db.transaction((): boolean => {
         db.put(key, value);
 
         return false;
@@ -61,13 +61,13 @@ describe('TransactionDb', () => {
     expect(memory.get(key)).toEqual(null);
   });
 
-  it('does not commit when transaction throws', () => {
+  it('does not commit when transaction throws', (): void => {
     const key = toU8a('test2');
     const value = toU8a('value2');
 
     expect(
-      () => {
-        db.transaction(() => {
+      (): void => {
+        db.transaction((): void => {
           db.put(key, value);
 
           throw new Error('test');
@@ -77,11 +77,11 @@ describe('TransactionDb', () => {
     expect(memory.get(key)).toEqual(null);
   });
 
-  it('inside the transaction, the value is set', () => {
+  it('inside the transaction, the value is set', (): void => {
     const key = toU8a('test2');
     const value = toU8a('value2');
 
-    db.transaction(() => {
+    db.transaction((): boolean => {
       db.put(key, value);
 
       expect(db.get(key)).toEqual(value);

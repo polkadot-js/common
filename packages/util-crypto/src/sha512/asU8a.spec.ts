@@ -6,12 +6,12 @@ import { waitReady } from '@polkadot/wasm-crypto';
 
 import { sha512AsU8a } from '.';
 
-describe('sha512AsU8a', () => {
-  beforeEach(async () => {
+describe('sha512AsU8a', (): void => {
+  beforeEach(async (): Promise<void> => {
     await waitReady();
   });
 
-  it('creates a sha-512 hash', () => {
+  it('creates a sha-512 hash', (): void => {
     expect(
       sha512AsU8a(
         Uint8Array.from([0x61, 0x62, 0x63, 0x64])

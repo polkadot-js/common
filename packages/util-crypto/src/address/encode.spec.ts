@@ -8,22 +8,22 @@ import encode from './encode';
 
 const keyring = testingPairs({ type: 'ed25519' }, false);
 
-describe('encode', () => {
-  it('encodes an address to a valid value', () => {
+describe('encode', (): void => {
+  it('encodes an address to a valid value', (): void => {
     expect(
       keyring.alice.address
     ).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua');
   });
 
-  it('fails when non-valid publicKey provided', () => {
+  it('fails when non-valid publicKey provided', (): void => {
     expect(
-      () => encode(
+      (): string => encode(
         keyring.alice.publicKey.slice(0, 30)
       )
     ).toThrow(/Expected a valid key/);
   });
 
-  it('encodes a 1-byte address', () => {
+  it('encodes a 1-byte address', (): void => {
     expect(
       encode(
         new Uint8Array([1])
@@ -31,7 +31,7 @@ describe('encode', () => {
     ).toEqual('F7NZ');
   });
 
-  it('encodes a 1-byte address (with prefix)', () => {
+  it('encodes a 1-byte address (with prefix)', (): void => {
     expect(
       encode(
         new Uint8Array([1]), 68
@@ -39,7 +39,7 @@ describe('encode', () => {
     ).toEqual('PqtB');
   });
 
-  it('encodes a 2-byte address', () => {
+  it('encodes a 2-byte address', (): void => {
     expect(
       encode(
         new Uint8Array([0, 1]), 68
@@ -47,7 +47,7 @@ describe('encode', () => {
     ).toEqual('2jpAFn');
   });
 
-  it('encodes a 4-byte address', () => {
+  it('encodes a 4-byte address', (): void => {
     expect(
       encode(
         new Uint8Array([1, 2, 3, 4]), 68
@@ -55,7 +55,7 @@ describe('encode', () => {
     ).toEqual('as7QnGMf');
   });
 
-  it('enodes a 8-byte address', () => {
+  it('enodes a 8-byte address', (): void => {
     expect(
       encode(
         new Uint8Array([42, 44, 10, 0, 0, 0, 0, 0]), 68

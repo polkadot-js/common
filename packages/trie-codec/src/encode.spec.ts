@@ -6,8 +6,8 @@ import { hexToU8a } from '@polkadot/util';
 
 import encode from './encode';
 
-describe('encoding', () => {
-  it('encode a small sub-tree', () => {
+describe('encoding', (): void => {
+  it('encode a small sub-tree', (): void => {
     expect(
       encode([
         null,
@@ -36,7 +36,7 @@ describe('encoding', () => {
     ]));
   });
 
-  it('encodes a sub-tree', () => {
+  it('encodes a sub-tree', (): void => {
     expect(
       encode([
         null,
@@ -68,7 +68,7 @@ describe('encoding', () => {
     ]));
   });
 
-  it('encodes a complex tree (with hash)', () => {
+  it('encodes a complex tree (with hash)', (): void => {
     expect(
       encode([
         null,

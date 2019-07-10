@@ -7,9 +7,9 @@ import { u8aToHex } from '@polkadot/util';
 import trieRoot from './trieRoot';
 import testdata from '../test/data';
 
-describe('trieRoot', () => {
+describe('trieRoot', (): void => {
   Object.values(testdata).forEach(({ desc, input, root }) => {
-    it(`hashes ${desc}`, () => {
+    it(`hashes ${desc}`, (): void => {
       expect(
         u8aToHex(trieRoot(input))
       ).toEqual(

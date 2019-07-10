@@ -4,8 +4,8 @@
 
 import { promisify } from '.';
 
-describe('promisify', () => {
-  it('handles functions with no parameters (resolve)', () => {
+describe('promisify', (): void => {
+  it('handles functions with no parameters (resolve)', (): void => {
     const fn = (cb: Function) => cb(null, [true, 'test', 1]);
 
     return promisify(null, fn).then((result) => {
@@ -13,7 +13,7 @@ describe('promisify', () => {
     });
   });
 
-  it('handles functions with no parameters (reject)', () => {
+  it('handles functions with no parameters (reject)', (): void => {
     const fn = (cb: Function) => cb(new Error('test reject'));
 
     return promisify(null, fn).catch((error) => {
@@ -21,7 +21,7 @@ describe('promisify', () => {
     });
   });
 
-  it('handles functions with parameters (resolve)', () => {
+  it('handles functions with parameters (resolve)', (): void => {
     const fn = (a: any, b: any, c: any, cb: Function) => cb(null, [a, b, c]);
 
     return promisify(null, fn, 2, false, null).then((result) => {
@@ -29,7 +29,7 @@ describe('promisify', () => {
     });
   });
 
-  it('handles functions with parameters (reject)', () => {
+  it('handles functions with parameters (reject)', (): void => {
     const fn = (a: any, b: any, c: any, cb: Function) => cb(new Error(`test reject: ${a},${b},${c}`));
 
     return promisify(null, fn, 3, 'string', true).catch((error) => {
@@ -37,7 +37,7 @@ describe('promisify', () => {
     });
   });
 
-  it('applies the correct this argument', () => {
+  it('applies the correct this argument', (): void => {
     const self = { something: 'something' };
 
     return promisify(self, function (cb: Function) {

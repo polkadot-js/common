@@ -30,6 +30,6 @@ export function cryptoWaitReady (): Promise<boolean> {
 }
 
 // start init process immediately
-cryptoWaitReady().catch(() => {
+cryptoWaitReady().catch((): void => {
   // shouldn't happen, logged above
 });

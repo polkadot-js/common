@@ -7,5 +7,5 @@ import { assert } from '@polkadot/util';
 export default function safeParseInt (input: Uint8Array): number {
   assert(input[0] > 0, 'invalid rlp, extra zeros found');
 
-  return input.reduce((result, value) => (result * 256) + value, 0);
+  return input.reduce((result, value): number => (result * 256) + value, 0);
 }

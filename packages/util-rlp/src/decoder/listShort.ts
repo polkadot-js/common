@@ -5,14 +5,14 @@
 import { DecodeFunc, DecodeOutput } from './types';
 
 export default function decodeListShort (decode: DecodeFunc, input: Uint8Array): DecodeOutput {
-  const decoded: Array<any | Uint8Array> = [];
+  const decoded: Uint8Array[] = [];
   const length = input[0] - 0xbf;
   let innerRemainder = input.slice(1, length);
 
   while (innerRemainder.length) {
     const d = decode(innerRemainder);
 
-    decoded.push(d.decoded);
+    decoded.push(d.decoded as Uint8Array);
     innerRemainder = d.remainder;
   }
 

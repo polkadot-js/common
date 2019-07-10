@@ -4,14 +4,14 @@
 
 import { isUndefined } from '.';
 
-describe('isUndefined', () => {
-  it('returns true on undefined values', () => {
+describe('isUndefined', (): void => {
+  it('returns true on undefined values', (): void => {
     expect(
       isUndefined()
     ).toEqual(true);
   });
 
-  it('returns false on defined values', () => {
+  it('returns false on defined values', (): void => {
     expect(
       isUndefined(null)
     ).toEqual(false);

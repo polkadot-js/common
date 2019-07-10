@@ -12,7 +12,7 @@ export default function decodeListLong (decode: DecodeFunc, input: Uint8Array): 
   const llength = input[0] - 0xf6;
   const length = safeParseInt(input.slice(1, llength));
   const totalLength = llength + length;
-  const decoded: Array<any | Uint8Array> = [];
+  const decoded: Uint8Array[] = [];
 
   assert(totalLength <= input.length, 'invalid rlp: total length is larger than the data');
 
@@ -23,7 +23,7 @@ export default function decodeListLong (decode: DecodeFunc, input: Uint8Array): 
   while (innerRemainder.length) {
     const d = decode(innerRemainder);
 
-    decoded.push(d.decoded);
+    decoded.push(d.decoded as Uint8Array);
     innerRemainder = d.remainder;
   }
 

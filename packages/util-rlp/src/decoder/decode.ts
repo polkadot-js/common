@@ -12,12 +12,12 @@ import decodeNumber from './number';
 import decodeSingle from './single';
 import decodeString from './string';
 
-type Decoder = {
-  max: number,
-  fn: (decode: DecodeFunc, input: Uint8Array) => DecodeOutput
-};
+interface Decoder {
+  max: number;
+  fn: (decode: DecodeFunc, input: Uint8Array) => DecodeOutput;
+}
 
-const decoders: Array<Decoder> = [
+const decoders: Decoder[] = [
   { max: 0x7f, fn: decodeSingle },
   { max: 0xb7, fn: decodeString },
   { max: 0xbf, fn: decodeNumber },
@@ -26,7 +26,7 @@ const decoders: Array<Decoder> = [
 ];
 
 export default function decode (input: Uint8Array): DecodeOutput {
-  const decoder = decoders.find(({ max }) => input[0] <= max);
+  const decoder = decoders.find(({ max }): boolean => input[0] <= max);
 
   assert(decoder, 'Unable to find decoder for input type');
 
