@@ -820,7 +820,7 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.5.2":
+"@babel/runtime@^7.0.0":
   version "7.5.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.5.2.tgz#98f584f4d03be5d8142c77107ffaedee4d5956f1"
   integrity sha512-9M29wrrP7//JBGX70+IrDuD1w4iOYhUGpJNMQJVNAXue+cFeFlMTqBECouIziXPUphlgrfjcfiEpGX4t0WGK4g==
@@ -1837,10 +1837,10 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@polkadot/dev@^0.30.0-beta.19":
-  version "0.30.0-beta.19"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.30.0-beta.19.tgz#886a332ac42cc66b4c36fb0e96646bf952f2a821"
-  integrity sha512-QTChxrcwxaPrbKqgI7dIAHhb9p9rVlw36qiQryzdTNylOeMqflhpT8ChFA347wKTWiqh733xyhEZhj8YTN9Hfg==
+"@polkadot/dev@^0.30.0-beta.20":
+  version "0.30.0-beta.20"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.30.0-beta.20.tgz#f72b91702b106c9bf6451eb59241fcecbd1761e9"
+  integrity sha512-1S4IbH4T7Zn9HJCv1lI4mbGMBfwdBAuMfIcnSBoeFEtMl+pit2xy7fq8/bo2TwKZpDDitxvbx8pacjDzLfPXhA==
   dependencies:
     "@babel/cli" "^7.5.0"
     "@babel/core" "^7.5.4"

@@ -18,7 +18,7 @@ export default class TransactionDb implements TxDb {
   private txOverlay: Map<string, OverlayItem> = new Map();
   private txStarted: boolean;
 
-  constructor (backing: BaseDb) {
+  public constructor (backing: BaseDb) {
     this.backing = backing;
     this.txStarted = false;
   }

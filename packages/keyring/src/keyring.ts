@@ -35,7 +35,7 @@ export default class Keyring implements KeyringInstance {
   public encodeAddress = encodeAddress;
   public setAddressPrefix = setAddressPrefix;
 
-  constructor (options: KeyringOptions = {}) {
+  public constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
 
     assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);

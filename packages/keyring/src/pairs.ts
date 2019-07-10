@@ -15,7 +15,7 @@ interface KeyringPairMap {
 export default class Pairs implements KeyringPairs {
   private _map: KeyringPairMap;
 
-  constructor () {
+  public constructor () {
     this._map = {};
   }
 

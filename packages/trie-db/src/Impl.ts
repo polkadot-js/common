@@ -40,7 +40,7 @@ export default class Impl extends Checkpoint {
   protected codec: Codec;
   protected constants: Constants;
 
-  constructor (db: TxDb, rootHash?: Uint8Array, codec: Codec = substrateCodec) {
+  public constructor (db: TxDb, rootHash?: Uint8Array, codec: Codec = substrateCodec) {
     const _constants = constants(codec);
 
     super(rootHash || _constants.EMPTY_HASH);

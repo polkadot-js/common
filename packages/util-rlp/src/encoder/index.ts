@@ -20,7 +20,7 @@ import encodeU8a from './u8a';
  * encode('dog'); // => [0x83, 0x64, 0x6f, 0x67]
  * ```
  */
-export default function encoder (input: string | Uint8Array | Uint8Array[]): Uint8Array {
+export default function encoder (input?: null | Uint8Array | (null | Uint8Array)[] | string): Uint8Array {
   if (input instanceof Array) {
     return encodeArray(encoder, input);
   }

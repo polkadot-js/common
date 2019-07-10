@@ -25,10 +25,10 @@ describe('assert', (): void => {
 
   it('throws a valid constructed ExtError', (): void => {
     try {
-      assert(false, 'error', -666, { some: 'data' });
+      assert(false, 'error', -666, 'data');
     } catch (error) {
       expect(error.code).toEqual(-666);
-      expect(error.data).toEqual({ some: 'data' });
+      expect(error.data).toEqual('data');
       expect(error.message).toEqual('error');
     }
   });

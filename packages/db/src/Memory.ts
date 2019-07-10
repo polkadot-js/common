@@ -62,7 +62,7 @@ import TransactionDb from './engines/TransactionDb';
  * ```
  */
 export default class Memory extends TransactionDb {
-  constructor () {
+  public constructor () {
     super(new MemoryDb());
   }
 }

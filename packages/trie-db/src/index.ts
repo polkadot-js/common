@@ -25,7 +25,7 @@ const l = logger('trie/db');
  * @example See [Polkadot-JS Common Trie-DB Examples](https://polkadot.js.org/api/common/examples/trie-db/)
  */
 export default class Trie extends Impl implements TrieDb {
-  constructor (db: TxDb = new MemoryDb(), rootHash?: Uint8Array, codec?: Codec) {
+  public constructor (db: TxDb = new MemoryDb(), rootHash?: Uint8Array, codec?: Codec) {
     super(db, rootHash, codec);
 
     l.debug((): string => `Created with ${this.codec.type} codec, root ${u8aToHex(this.rootHash, 64)}`);
