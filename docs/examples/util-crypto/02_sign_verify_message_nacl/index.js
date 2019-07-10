@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { stringToU8a, u8aToHex } = require('@polkadot/util');
 const { naclEncrypt, naclKeypairFromSeed, naclSign, naclVerify, randomAsU8a } = require('@polkadot/util-crypto');
 
@@ -13,7 +14,7 @@ async function main () {
   const messagePreEncryption = stringToU8a('please send me DOTs');
   const noncePreEncryption = randomAsU8a(24);
 
-  const { encrypted, nonce } = naclEncrypt(messagePreEncryption, secret, noncePreEncryption);
+  const { encrypted } = naclEncrypt(messagePreEncryption, secret, noncePreEncryption);
 
   // Sign the message with a valid signature
   const messageSignature = naclSign(encrypted, secretKey);

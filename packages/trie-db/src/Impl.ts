@@ -8,7 +8,7 @@ import { EncodedPath, TrieDb, Node, NodeBranch, NodeEncodedOrEmpty, NodeKv, Node
 
 import substrateCodec from '@polkadot/trie-codec';
 import { decodeNibbles, encodeNibbles, extractNodeKey } from '@polkadot/trie-codec/nibbles';
-import { isNull , u8aConcat } from '@polkadot/util';
+import { isNull, u8aConcat } from '@polkadot/util';
 
 import { isBranchNode, isEmptyNode, isExtensionNode, isKvNode, isLeafNode } from './util/is';
 import { keyEquals, keyStartsWith, computeExtensionKey, computeLeafKey, consumeCommonPrefix } from './util/key';
