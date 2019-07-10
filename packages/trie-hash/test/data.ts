@@ -6,12 +6,12 @@ import { TriePair } from '../src/types';
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
 
-export type TestData = {
-  desc: string,
-  input: Array<TriePair>,
-  output: Uint8Array,
-  root: Uint8Array
-};
+export interface TestData {
+  desc: string;
+  input: TriePair[];
+  output: Uint8Array;
+  root: Uint8Array;
+}
 
 const data: { [index: string]: TestData } = {
   simpleBranch: {
@@ -130,10 +130,10 @@ const data: { [index: string]: TestData } = {
       { k: Uint8Array.from([0xaa]), v: Uint8Array.from([0xbb]) }
     ],
     output: Uint8Array.from([
-      0x03,   // leaf (0x01) with (+) key of 2 nibbles (0x02)
-      0xaa,   // key data
+      0x03, // leaf (0x01) with (+) key of 2 nibbles (0x02)
+      0xaa, // key data
       1 << 2, // length of value in bytes as Compact
-      0xbb    // value data
+      0xbb // value data
     ]),
     root: hexToU8a('0xe778a32590ed4f3f39608b77af87fb59163a89bb9702f477375e1a574736d6f0')
   },
@@ -154,21 +154,21 @@ const data: { [index: string]: TestData } = {
       { k: Uint8Array.from([0x13, 0x14]), v: Uint8Array.from([0xff]) }
     ],
     output: Uint8Array.from([
-      0xfe,      // branch, no value
-      0x12,      // slots 1 & 4 are taken from 0-7
-      0x00,      // no slots from 8-15
+      0xfe, // branch, no value
+      0x12, // slots 1 & 4 are taken from 0-7
+      0x00, // no slots from 8-15
       0x05 << 2, // first slot: LEAF, 5 bytes long.
-      0x04,      // leaf with 3 nibbles
-      0x03,      // first nibble
-      0x14,      // second & third nibble
+      0x04, // leaf with 3 nibbles
+      0x03, // first nibble
+      0x14, // second & third nibble
       0x01 << 2, // 1 byte data
-      0xff,      // value data
+      0xff, // value data
       0x05 << 2, // second slot: LEAF, 5 bytes long.
-      0x04,      // leaf with 3 nibbles
-      0x08,      // first nibble
-      0x19,      // second & third nibble
+      0x04, // leaf with 3 nibbles
+      0x08, // first nibble
+      0x19, // second & third nibble
       0x01 << 2, // 1 byte data
-      0xfe       // data
+      0xfe // data
     ]),
     root: hexToU8a('0x72813a09bf563fdb6af1d8326329950499fc33c30f3534893381517dc54640b2')
   },

@@ -3,6 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { Codec } from '@polkadot/trie-codec/types';
+import { TriePair } from './types';
 
 import { compactToU8a } from '@polkadot/util';
 
@@ -27,9 +28,9 @@ import trieRoot from './trieRoot';
  * ]); // => 0xe766d5d51b89dc39d981b41bda63248d7abce4f0225eefd023792a540bcffee3
  * ```
  */
-export default function trieRootOrdered (input: Array<Uint8Array>, codec: Codec = DEFAULT_CODEC): Uint8Array {
+export default function trieRootOrdered (input: Uint8Array[], codec: Codec = DEFAULT_CODEC): Uint8Array {
   return trieRoot(
-    input.map((v, index) => ({
+    input.map((v, index): TriePair => ({
       k: compactToU8a(index),
       v
     })),

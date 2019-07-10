@@ -26,4 +26,4 @@ async function main () {
   console.log(`Was the message correctly signed? ${isValidSignature}`);
 }
 
-main().catch(console.error).finally(_ => process.exit());
+main().catch(console.error).finally(() => process.exit());

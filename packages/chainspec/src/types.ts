@@ -4,20 +4,21 @@
 
 export type Telemetry = [string, number];
 
-export type Chainspec = {
-  bootNodes: Array<string>,
-  id: string,
+export interface Chainspec {
+  bootNodes: string[];
+  id: string;
   genesis: {
     raw: {
-      [index: string]: string
-    }
-  },
-  genesisRoot?: string,
-  name: string,
+      [index: string]: string;
+    };
+  };
+  genesisRoot?: string;
+  name: string;
   properties: null | {
-    [index: string]: any
-  },
-  protocolId: string | null,
-  telemetryUrl?: string | null,
-  telemetryEndpoints?: Array<Telemetry>
-};
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [index: string]: any;
+  };
+  protocolId: string | null;
+  telemetryUrl?: string | null;
+  telemetryEndpoints?: Telemetry[];
+}

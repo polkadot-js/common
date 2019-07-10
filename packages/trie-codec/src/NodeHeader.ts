@@ -20,7 +20,7 @@ export default class NodeHeader {
   private _nodeType: NodeType;
   private _value: Null | BranchHeader | ExtensionHeader | LeafHeader;
 
-  constructor (input?: null | Uint8Array | Array<null | Uint8Array>) {
+  constructor (input?: null | Uint8Array | (null | Uint8Array)[]) {
     const [nodeType, value] = Array.isArray(input)
       ? NodeHeader.decodeNodeHeaderArray(input)
       : NodeHeader.decodeNodeHeaderU8a(input);
@@ -29,7 +29,7 @@ export default class NodeHeader {
     this._value = value;
   }
 
-  private static decodeNodeHeaderArray (input: Array<null | Uint8Array>): [NodeType, Null | BranchHeader | ExtensionHeader | LeafHeader] {
+  private static decodeNodeHeaderArray (input: (null | Uint8Array)[]): [NodeType, Null | BranchHeader | ExtensionHeader | LeafHeader] {
     if (input.length === 0) {
       return [NODE_TYPE_NULL, null];
     } else if (input.length === 2) {
@@ -70,7 +70,7 @@ export default class NodeHeader {
     throw new Error('Unreachable');
   }
 
-  get encodedLength (): number {
+  public get encodedLength (): number {
     switch (this.nodeType) {
       case NODE_TYPE_NULL:
       case NODE_TYPE_BRANCH:
@@ -91,15 +91,15 @@ export default class NodeHeader {
     }
   }
 
-  get nodeType (): number {
+  public get nodeType (): number {
     return this._nodeType;
   }
 
-  get value (): Null | BranchHeader | ExtensionHeader | LeafHeader {
+  public get value (): Null | BranchHeader | ExtensionHeader | LeafHeader {
     return this._value;
   }
 
-  toU8a (): Uint8Array {
+  public toU8a (): Uint8Array {
     switch (this.nodeType) {
       case NODE_TYPE_NULL:
         return new Uint8Array([EMPTY_TRIE]);

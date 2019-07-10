@@ -25,7 +25,7 @@ type Falsy = null | undefined | false | 0 | ''; // No NaN type
  * assert(false, () => 'message'); // ExtError with 'message'
  * ```
  */
-export default function assert<T> (test: Falsy | T, message: string | MessageFn, code: number = ExtError.CODES.ASSERT, data?: any): test is T {
+export default function assert<T> (test: Falsy | T, message: string | MessageFn, code: number = ExtError.CODES.ASSERT, data?: string | number): test is T {
   if (test) {
     return true;
   }

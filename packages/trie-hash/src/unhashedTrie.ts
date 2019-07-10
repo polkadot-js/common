@@ -11,7 +11,7 @@ import { u8aToHex } from '@polkadot/util';
 import buildTrie from './buildTrie';
 import { DEFAULT_CODEC } from './defaults';
 
-export default function unhashedTrie (input: Array<TriePair>, codec: Codec = DEFAULT_CODEC): Uint8Array {
+export default function unhashedTrie (input: TriePair[], codec: Codec = DEFAULT_CODEC): Uint8Array {
   const map = input.reduce((result, pair) => {
     result[u8aToHex(pair.k)] = pair;
 

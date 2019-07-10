@@ -15,17 +15,17 @@ import toJson from './toJson';
 const isSr25519 = (type: KeypairType): boolean =>
   type === 'sr25519';
 
-const fromSeed = (type: KeypairType, seed: Uint8Array) =>
+const fromSeed = (type: KeypairType, seed: Uint8Array): Keypair =>
   isSr25519(type)
     ? schnorrkelFromSeed(seed)
     : naclFromSeed(seed);
 
-const sign = (type: KeypairType, message: Uint8Array, pair: Partial<Keypair>) =>
+const sign = (type: KeypairType, message: Uint8Array, pair: Partial<Keypair>): Uint8Array =>
   isSr25519(type)
     ? schnorrkelSign(message, pair)
     : naclSign(message, pair);
 
-const verify = (type: KeypairType, message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array) =>
+const verify = (type: KeypairType, message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array): boolean =>
   isSr25519(type)
     ? schnorrkelVerify(message, signature, publicKey)
     : naclVerify(message, signature, publicKey);
@@ -64,7 +64,7 @@ const verify = (type: KeypairType, message: Uint8Array, signature: Uint8Array, p
 export default function createPair (type: KeypairType, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
   return {
     type,
-    get address () {
+    get address (): string {
       return encodeAddress(publicKey);
     },
     decodePkcs8: (passphrase?: string, _encoded?: Uint8Array | null): void => {
@@ -82,16 +82,16 @@ export default function createPair (type: KeypairType, { publicKey, secretKey }:
     },
     encodePkcs8: (passphrase?: string): Uint8Array =>
       encode({ publicKey, secretKey }, passphrase),
-    get meta () {
+    get meta (): KeyringPair$Meta {
       return meta;
     },
-    get isLocked () {
+    get isLocked (): boolean {
       return !secretKey || secretKey.length === 0;
     },
     lock: (): void => {
       secretKey = new Uint8Array(0);
     },
-    get publicKey () {
+    get publicKey (): Uint8Array {
       return publicKey;
     },
     setMeta: (additional: KeyringPair$Meta): void => {

@@ -8,7 +8,7 @@ import trieRoot from './trieRoot';
 import testdata from '../test/data';
 
 describe('trieRoot', (): void => {
-  Object.values(testdata).forEach(({ desc, input, root }) => {
+  Object.values(testdata).forEach(({ desc, input, root }): void => {
     it(`hashes ${desc}`, (): void => {
       expect(
         u8aToHex(trieRoot(input))

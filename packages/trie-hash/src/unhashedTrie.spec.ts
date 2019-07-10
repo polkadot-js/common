@@ -8,7 +8,7 @@ import unhashedTrie from './unhashedTrie';
 import testdata from '../test/data';
 
 describe('unhashedTrie', (): void => {
-  Object.values(testdata).forEach(({ desc, input, output }) => {
+  Object.values(testdata).forEach(({ desc, input, output }): void => {
     it(`encodes ${desc}`, (): void => {
       expect(
         u8aToHex(unhashedTrie(input))

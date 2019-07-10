@@ -31,6 +31,9 @@ import Pairs from './pairs';
 export default class Keyring implements KeyringInstance {
   private _pairs: Pairs;
   private _type: KeypairType;
+  public decodeAddress = decodeAddress;
+  public encodeAddress = encodeAddress;
+  public setAddressPrefix = setAddressPrefix;
 
   constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
@@ -43,28 +46,24 @@ export default class Keyring implements KeyringInstance {
     setAddressPrefix(isNumber(options.addressPrefix) ? options.addressPrefix : 42);
   }
 
-  decodeAddress = decodeAddress;
-  encodeAddress = encodeAddress;
-  setAddressPrefix = setAddressPrefix;
-
   /**
    * @description retrieve the pairs (alias for getPairs)
    */
-  get pairs (): Array<KeyringPair> {
+  public get pairs (): KeyringPair[] {
     return this.getPairs();
   }
 
   /**
    * @description retrieve the publicKeys (alias for getPublicKeys)
    */
-  get publicKeys (): Array<Uint8Array> {
+  public get publicKeys (): Uint8Array[] {
     return this.getPublicKeys();
   }
 
   /**
    * @description Returns the type of the keyring, either ed25519 of sr25519
    */
-  get type (): KeypairType {
+  public get type (): KeypairType {
     return this._type;
   }
 
@@ -72,7 +71,7 @@ export default class Keyring implements KeyringInstance {
    * @name addPair
    * @summary Stores an account, given a keyring pair, as a Key/Value (public key, pair) in Keyring Pair Dictionary
    */
-  addPair (pair: KeyringPair): KeyringPair {
+  public addPair (pair: KeyringPair): KeyringPair {
     return this._pairs.add(pair);
   }
 
@@ -84,7 +83,7 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from them that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.type, ignoreChecksum?: boolean): KeyringPair {
+  public addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.type, ignoreChecksum?: boolean): KeyringPair {
     const publicKey = this.decodeAddress(address, ignoreChecksum);
 
     return this.addPair(createPair(type, { publicKey }, meta, encoded));
@@ -97,7 +96,7 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromJson ({ address, encoded, encoding: { content, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
+  public addFromJson ({ address, encoded, encoding: { content, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
     const type = version === '0' || !Array.isArray(content)
       ? this.type
       : content[1];
@@ -113,7 +112,7 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+  public addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
     return this.addFromUri(mnemonic, meta, type);
   }
 
@@ -124,7 +123,7 @@ export default class Keyring implements KeyringInstance {
    * Allows user to provide the account seed as an argument, and then generates a keyring pair from it that it passes to
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+  public addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
     const keypair = type === 'sr25519'
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
@@ -137,7 +136,7 @@ export default class Keyring implements KeyringInstance {
    * @summary Creates an account via an suri
    * @description Extracts the phrase, path and password from a SURI format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed). The secret can be a hex string, mnemonic phrase or a string (to be padded)
    */
-  addFromUri (suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+  public addFromUri (suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
     return this.addPair(
       this.createFromUri(suri, meta, type)
     );
@@ -148,7 +147,7 @@ export default class Keyring implements KeyringInstance {
    * @summry Creates a Keypair from an suri
    * @description This creates a pair from the suri, but does not add it to the keyring
    */
-  createFromUri (_suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+  public createFromUri (_suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
     // here we only aut-add the dev phrase if we have a hard-derived path
     const suri = _suri.indexOf('//') === 0
       ? `${DEV_PHRASE}${_suri}`
@@ -189,7 +188,7 @@ export default class Keyring implements KeyringInstance {
    * @description Returns a keyring pair value from the keyring pair dictionary by performing
    * a key lookup using the provided account address or public key (after decoding it).
    */
-  getPair (address: string | Uint8Array): KeyringPair {
+  public getPair (address: string | Uint8Array): KeyringPair {
     return this._pairs.get(address);
   }
 
@@ -198,7 +197,7 @@ export default class Keyring implements KeyringInstance {
    * @summary Retrieves all account keyring pairs from the Keyring Pair Dictionary
    * @description Returns an array list of all the keyring pair values that are stored in the keyring pair dictionary.
    */
-  getPairs (): Array<KeyringPair> {
+  public getPairs (): KeyringPair[] {
     return this._pairs.all();
   }
 
@@ -207,10 +206,10 @@ export default class Keyring implements KeyringInstance {
    * @summary Retrieves Public Keys of all Keyring Pairs stored in the Keyring Pair Dictionary
    * @description Returns an array list of all the public keys associated with each of the keyring pair values that are stored in the keyring pair dictionary.
    */
-  getPublicKeys (): Array<Uint8Array> {
+  public getPublicKeys (): Uint8Array[] {
     return this._pairs
       .all()
-      .map(({ publicKey }) =>
+      .map(({ publicKey }): Uint8Array =>
         publicKey
       );
   }
@@ -219,7 +218,7 @@ export default class Keyring implements KeyringInstance {
    * @name removePair
    * @description Deletes the provided input address or public key from the stored Keyring Pair Dictionary.
    */
-  removePair (address: string | Uint8Array): void {
+  public removePair (address: string | Uint8Array): void {
     this._pairs.remove(address);
   }
 
@@ -231,7 +230,7 @@ export default class Keyring implements KeyringInstance {
    * is not already unlocked and available in memory. Note that in [Polkadot-JS Apps](https://github.com/polkadot-js/apps) the user
    * may backup their account to a JSON file that contains this information.
    */
-  toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json {
+  public toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json {
     return this._pairs.get(address).toJson(passphrase);
   }
 }

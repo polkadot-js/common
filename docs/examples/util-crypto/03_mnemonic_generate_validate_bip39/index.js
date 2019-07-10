@@ -21,4 +21,4 @@ async function main () {
   // Encrypt, Sign and Validate the message. See Example 'Sign & Verify Message'
 }
 
-main().catch(console.error).finally(_ => process.exit());
+main().catch(console.error).finally(() => process.exit());

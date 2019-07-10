@@ -20,4 +20,4 @@ async function main () {
   console.log(`Does the decrypted message match the original message? ${isMatch}`);
 }
 
-main().catch(console.error).finally(_ => process.exit());
+main().catch(console.error).finally(() => process.exit());

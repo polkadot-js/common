@@ -26,7 +26,7 @@ import unhashedTrie from './unhashedTrie';
  * }]); // => 0xd23786fb4a010da3ce639d66d5e904a11dbc02746d1ce25029e53290cabf28ab
  * ```
  */
-export default function trieRoot (input: Array<TriePair>, codec: Codec = DEFAULT_CODEC): Uint8Array {
+export default function trieRoot (input: TriePair[], codec: Codec = DEFAULT_CODEC): Uint8Array {
   return codec.hashing(
     unhashedTrie(input, codec)
   );

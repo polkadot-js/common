@@ -5,7 +5,7 @@
 import { assertSingletonPackage } from '@polkadot/util';
 import { decodeAddress, encodeAddress, setAddressPrefix } from '@polkadot/util-crypto';
 
-import { default as Keyring } from './keyring';
+import Keyring from './keyring';
 
 assertSingletonPackage('@polkadot/keyring');
 

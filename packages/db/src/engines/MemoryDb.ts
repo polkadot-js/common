@@ -11,27 +11,28 @@ const l = logger('db/memory');
 export default class MemoryDb implements BaseDb {
   private _storage: Map<string, Uint8Array> = new Map();
 
-  close (): void {
+  public close (): void {
     this.empty();
   }
 
-  open (): void {
+  public open (): void {
     this.empty();
   }
 
-  drop (): void {
+  public drop (): void {
     this.empty();
   }
 
-  empty (): void {
+  public empty (): void {
     this._storage.clear();
   }
 
-  rename (base: string, file: string): void {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public rename (base: string, file: string): void {
     l.warn('rename() is not implemented');
   }
 
-  maintain (fn: ProgressCb): void {
+  public maintain (fn: ProgressCb): void {
     fn({
       isCompleted: true,
       keys: this._storage.size,
@@ -39,29 +40,29 @@ export default class MemoryDb implements BaseDb {
     });
   }
 
-  size (): number {
+  public size (): number {
     let size = 0;
 
-    this._storage.forEach((value) =>
-      size += value.length
-    );
+    this._storage.forEach((value): void => {
+      size += value.length;
+    });
 
     return size;
   }
 
-  del (key: Uint8Array): void {
+  public del (key: Uint8Array): void {
     // l.debug(() => ['del', { key }]);
 
     this._storage.delete(key.toString());
   }
 
-  get (key: Uint8Array): Uint8Array | null {
+  public get (key: Uint8Array): Uint8Array | null {
     // l.debug(() => ['get', { key }]);
 
     return this._storage.get(key.toString()) || null;
   }
 
-  put (key: Uint8Array, value: Uint8Array): void {
+  public put (key: Uint8Array, value: Uint8Array): void {
     // l.debug(() => ['put', { key, value }]);
 
     this._storage.set(key.toString(), value);

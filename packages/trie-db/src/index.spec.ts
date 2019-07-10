@@ -11,7 +11,7 @@ import Trie from '.';
 
 // FIXME These are not working, the trie-hash implementation is now substrate-specific
 describe.skip('Ethereum', (): void => {
-  const createTrie = () =>
+  const createTrie = (): Trie =>
     new Trie(undefined, undefined, ethereumCodec);
 
   describe('simple save and retrieve', (): void => {

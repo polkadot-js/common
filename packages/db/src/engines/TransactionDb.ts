@@ -6,10 +6,10 @@ import { BaseDb, TxDb, ProgressCb } from '../types';
 
 import { assert, isNull, logger } from '@polkadot/util';
 
-type OverlayItem = {
-  key: Uint8Array,
-  value: Uint8Array | null
-};
+interface OverlayItem {
+  key: Uint8Array;
+  value: Uint8Array | null;
+}
 
 const l = logger('db/transact');
 
@@ -23,8 +23,8 @@ export default class TransactionDb implements TxDb {
     this.txStarted = false;
   }
 
-  transaction<T> (fn: () => T): T {
-    l.debug(() => ['transaction']);
+  public transaction<T> (fn: () => T): T {
+    l.debug((): string[] => ['transaction']);
 
     try {
       this.createTx();
@@ -45,37 +45,37 @@ export default class TransactionDb implements TxDb {
     }
   }
 
-  close (): void {
+  public close (): void {
     this.backing.close();
   }
 
-  open (): void {
+  public open (): void {
     this.backing.open();
   }
 
-  drop (): void {
+  public drop (): void {
     this.backing.drop();
   }
 
-  empty (): void {
+  public empty (): void {
     this.backing.empty();
   }
 
-  rename (base: string, file: string): void {
+  public rename (base: string, file: string): void {
     this.backing.rename(base, file);
   }
 
-  maintain (fn: ProgressCb): void {
+  public maintain (fn: ProgressCb): void {
     assert(this.txStarted === false, 'Cannot maintain inside an open transaction');
 
     this.backing.maintain(fn);
   }
 
-  size (): number {
+  public size (): number {
     return this.backing.size();
   }
 
-  del (key: Uint8Array): void {
+  public del (key: Uint8Array): void {
     if (this.txStarted) {
       this.txOverlay.set(key.toString(), { key, value: null });
       return;
@@ -84,7 +84,7 @@ export default class TransactionDb implements TxDb {
     this.backing.del(key);
   }
 
-  get (key: Uint8Array): Uint8Array | null {
+  public get (key: Uint8Array): Uint8Array | null {
     // l.debug(() => ['get', u8aToHex(key)]);
 
     if (this.txStarted) {
@@ -98,7 +98,7 @@ export default class TransactionDb implements TxDb {
     return this.backing.get(key);
   }
 
-  put (key: Uint8Array, value: Uint8Array): void {
+  public put (key: Uint8Array, value: Uint8Array): void {
     // l.debug(() => ['put', u8aToHex(key), u8aToHex(value)]);
 
     if (this.txStarted) {
@@ -111,7 +111,7 @@ export default class TransactionDb implements TxDb {
   }
 
   private createTx (): void {
-    l.debug(() => ['createTx']);
+    l.debug((): string[] => ['createTx']);
 
     assert(!this.txStarted, 'Cannot create a transaction when one is already active');
 
@@ -120,7 +120,7 @@ export default class TransactionDb implements TxDb {
   }
 
   private commitTx (): void {
-    l.debug(() => ['commitTx', Object.keys(this.txOverlay).length, 'keys']);
+    l.debug((): [string, number, string] => ['commitTx', Object.keys(this.txOverlay).length, 'keys']);
 
     assert(this.txStarted, 'Cannot commit when not in transaction');
 
@@ -128,7 +128,7 @@ export default class TransactionDb implements TxDb {
       this.backing.txStart();
     }
 
-    this.txOverlay.forEach(({ key, value }) => {
+    this.txOverlay.forEach(({ key, value }): void => {
       if (isNull(value)) {
         this.backing.del(key);
       } else {
@@ -145,7 +145,7 @@ export default class TransactionDb implements TxDb {
   }
 
   private revertTx (): void {
-    l.debug(() => ['revertTx']);
+    l.debug((): string[] => ['revertTx']);
 
     assert(this.txStarted, 'Cannot revert when not in transaction');
 

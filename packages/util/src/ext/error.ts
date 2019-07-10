@@ -8,7 +8,7 @@ import isFunction from '../is/function';
 
 const UNKNOWN = -99999;
 
-function extend (that: any, name: string, value: any): void {
+function extend (that: ExtError, name: string, value?: string | number): void {
   Object.defineProperty(that, name, {
     configurable: true,
     enumerable: false,
@@ -32,17 +32,17 @@ function extend (that: any, name: string, value: any): void {
  */
 export default class ExtError extends Error implements ExtErrorInterface {
   // @ts-ignore we are assigning it via extend
-  code: number;
+  public code: number;
   // @ts-ignore we are assigning it via extend
-  data: any;
+  public data: number | string | undefined;
   // @ts-ignore we are assigning it via extend
-  message: string;
+  public message: string;
   // @ts-ignore we are assigning it via extend
-  name: string;
+  public name: string;
   // @ts-ignore we are assigning it via extend
-  stack: string;
+  public stack: string;
 
-  constructor (message: string = '', code: number = UNKNOWN, data?: any) {
+  constructor (message: string = '', code: number = UNKNOWN, data?: number | string) {
     super();
 
     extend(this, 'message', String(message));
@@ -57,7 +57,7 @@ export default class ExtError extends Error implements ExtErrorInterface {
     }
   }
 
-  static CODES = {
+  public static CODES = {
     ASSERT: -90009,
     UNKNOWN,
     INVALID_JSONRPC: -99998,

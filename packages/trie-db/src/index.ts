@@ -28,10 +28,10 @@ export default class Trie extends Impl implements TrieDb {
   constructor (db: TxDb = new MemoryDb(), rootHash?: Uint8Array, codec?: Codec) {
     super(db, rootHash, codec);
 
-    l.debug(() => `Created with ${this.codec.type} codec, root ${u8aToHex(this.rootHash, 64)}`);
+    l.debug((): string => `Created with ${this.codec.type} codec, root ${u8aToHex(this.rootHash, 64)}`);
   }
 
-  transaction<T> (fn: () => T): T {
+  public transaction<T> (fn: () => T): T {
     try {
       this.createCheckpoint();
 
@@ -51,35 +51,35 @@ export default class Trie extends Impl implements TrieDb {
     }
   }
 
-  open (): void {
+  public open (): void {
     this.db.open();
   }
 
-  close (): void {
+  public close (): void {
     this.db.close();
   }
 
-  empty (): void {
+  public empty (): void {
     this.db.empty();
   }
 
-  drop (): void {
+  public drop (): void {
     this.db.drop();
   }
 
-  maintain (fn: ProgressCb): void {
+  public maintain (fn: ProgressCb): void {
     this.db.maintain(fn);
   }
 
-  rename (base: string, file: string): void {
+  public rename (base: string, file: string): void {
     this.db.rename(base, file);
   }
 
-  size (): number {
+  public size (): number {
     return this.db.size();
   }
 
-  del (key: Uint8Array) {
+  public del (key: Uint8Array): void {
     // l.debug(() => ['del', { key }]);
 
     this._setRootNode(
@@ -90,7 +90,7 @@ export default class Trie extends Impl implements TrieDb {
     );
   }
 
-  get (key: Uint8Array): Uint8Array | null {
+  public get (key: Uint8Array): Uint8Array | null {
     // l.debug(() => ['get', { key }]);
 
     return this._get(
@@ -99,7 +99,7 @@ export default class Trie extends Impl implements TrieDb {
     );
   }
 
-  put (key: Uint8Array, value: Uint8Array): void {
+  public put (key: Uint8Array, value: Uint8Array): void {
     // l.debug(() => ['put', { key, value }]);
 
     this._setRootNode(
@@ -111,7 +111,7 @@ export default class Trie extends Impl implements TrieDb {
     );
   }
 
-  getRoot (): Uint8Array {
+  public getRoot (): Uint8Array {
     const rootNode = this.getNode();
 
     if (isNull(rootNode)) {
@@ -121,33 +121,33 @@ export default class Trie extends Impl implements TrieDb {
     return this.rootHash;
   }
 
-  setRoot (rootHash: Uint8Array): void {
+  public setRoot (rootHash: Uint8Array): void {
     this.rootHash = rootHash;
     // return this._setRootNode(rootNode);
   }
 
-  getEntry (hash?: Uint8Array): TrieEntry | null {
+  public getEntry (hash?: Uint8Array): TrieEntry | null {
     return this._entry(hash || this.rootHash);
   }
 
-  getNode (hash?: Uint8Array): Node {
+  public getNode (hash?: Uint8Array): Node {
     return this._getNode(hash || this.rootHash);
   }
 
-  entries (): Array<TrieEntry> {
-    l.debug(() => 'retrieving trie entries');
+  public entries (): TrieEntry[] {
+    l.debug((): string => 'retrieving trie entries');
 
     const start = Date.now();
     const entries = this._entries(this.rootHash);
     const elapsed = (Date.now() - start) / 1000;
 
-    l.debug(() => `entries retrieved in ${elapsed.toFixed(2)}s, ${(entries.length / 1000).toFixed(2)}k keys`);
+    l.debug((): string => `entries retrieved in ${elapsed.toFixed(2)}s, ${(entries.length / 1000).toFixed(2)}k keys`);
 
     return entries;
   }
 
-  snapshot (dest: TrieDb, fn?: ProgressCb): number {
-    l.debug(() => 'creating current state snapshot');
+  public snapshot (dest: TrieDb, fn?: ProgressCb): number {
+    l.debug((): string => 'creating current state snapshot');
 
     const start = Date.now();
     const keys = this._snapshot(dest, fn, this.rootHash, 0, 0, 0);
@@ -155,7 +155,7 @@ export default class Trie extends Impl implements TrieDb {
 
     dest.setRoot(this.rootHash);
 
-    l.debug(() => `snapshot created in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys`);
+    l.debug((): string => `snapshot created in ${elapsed.toFixed(2)}s, ${(keys / 1000).toFixed(2)}k keys`);
 
     fn && fn({
       isCompleted: true,

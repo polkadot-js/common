@@ -11,7 +11,7 @@ import { NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED
 const SEED_OFFSET = PKCS8_HEADER.length;
 
 type DecodeResult = PairInfo & {
-  secretKey: Uint8Array
+  secretKey: Uint8Array;
 };
 
 export default function decode (passphrase?: string, _encrypted?: Uint8Array | null): DecodeResult {
@@ -20,10 +20,10 @@ export default function decode (passphrase?: string, _encrypted?: Uint8Array | n
   const encrypted = (_encrypted as Uint8Array);
   const encoded = passphrase
     ? (naclDecrypt(
-        encrypted.subarray(NONCE_LENGTH),
-        encrypted.subarray(0, NONCE_LENGTH),
-        u8aFixLength(stringToU8a(passphrase), 256, true)
-      ) as Uint8Array)
+      encrypted.subarray(NONCE_LENGTH),
+      encrypted.subarray(0, NONCE_LENGTH),
+      u8aFixLength(stringToU8a(passphrase), 256, true)
+    ) as Uint8Array)
     : encrypted;
 
   assert(encoded, `Unable to unencrypt using the supplied passphrase`);

@@ -10,23 +10,25 @@ import Trie from '.';
 describe('substrate tests', (): void => {
   let trie: Trie;
 
-  const checkRoot = ({ root }: TestData) =>
+  const checkRoot = ({ root }: TestData): void => {
     expect(
       u8aToHex(trie.getRoot())
     ).toEqual(
       u8aToHex(root)
     );
+  };
 
-  const putValues = ({ input }: TestData) =>
-    input.forEach(({ k, v }) =>
-      trie.put(k, v)
-    );
+  const putValues = ({ input }: TestData): void => {
+    input.forEach(({ k, v }): void => {
+      trie.put(k, v);
+    });
+  };
 
   beforeEach((): void => {
     trie = new Trie();
   });
 
-  Object.values(testdata).forEach((test) => {
+  Object.values(testdata).forEach((test): void => {
     it(`hashes ${test.desc}`, (): void => {
       putValues(test);
       checkRoot(test);

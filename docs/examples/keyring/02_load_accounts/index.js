@@ -23,9 +23,8 @@ async function main () {
     .forEach((pair, index) => {
       const { address } = pair;
 
-      console.log(`\nAccount with index #${index} has json: `,
-        JSON.stringify(keyring.toJson(address), null, 2));
+      console.log(`\nAccount with index #${index} has json: `, JSON.stringify(keyring.toJson(address), null, 2));
     });
 }
 
-main().catch(console.error).finally(_ => process.exit());
+main().catch(console.error).finally(() => process.exit());

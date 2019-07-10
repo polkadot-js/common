@@ -50,7 +50,7 @@ describe('ExtError', (): void => {
     });
 
     it('sets the .data property', (): void => {
-      const data = { some: { value: 'here' } };
+      const data = 'here';
 
       expect(
         new ExtError('test message', 1234, data).data

@@ -16,7 +16,7 @@ import { getNodeType, decodeNode, encodeNode } from './util/node';
 import Checkpoint from './Checkpoint';
 import constants, { Constants } from './constants';
 
-const BLANK_BRANCH: Array<EncodedPath> = [
+const BLANK_BRANCH: EncodedPath[] = [
   null, null, null, null, null, null, null, null,
   null, null, null, null, null, null, null, null
 ];
@@ -31,7 +31,7 @@ const BLANK_BRANCH: Array<EncodedPath> = [
  * @example See [Polkadot-JS Common Trie-DB Examples](https://polkadot.js.org/api/common/examples/trie-db/)
  */
 export default class Impl extends Checkpoint {
-  readonly db: TxDb;
+  public readonly db: TxDb;
   protected codec: Codec;
   protected constants: Constants;
 
@@ -52,10 +52,10 @@ export default class Impl extends Checkpoint {
       return null;
     }
 
-    return [root, encoded, node.filter((u8a) => u8a && u8a.length === 32) as Array<Uint8Array>];
+    return [root, encoded, node.filter((u8a): boolean => !!u8a && u8a.length === 32) as Uint8Array[]];
   }
 
-  protected _entries (root: Uint8Array, entries: Array<TrieEntry> = []): Array<TrieEntry> {
+  protected _entries (root: Uint8Array, entries: TrieEntry[] = []): TrieEntry[] {
     // l.debug(() => ['entries', { root }]);
     const entry = this._entry(root);
 
@@ -64,7 +64,9 @@ export default class Impl extends Checkpoint {
     }
 
     entries.push(entry);
-    entry[2].forEach((u8a) => this._entries(u8a, entries));
+    entry[2].forEach((u8a): void => {
+      this._entries(u8a, entries);
+    });
 
     return entries;
   }
@@ -82,7 +84,7 @@ export default class Impl extends Checkpoint {
 
     fn && fn({ keys: ++keys, percent });
 
-    node.forEach((u8a) => {
+    node.forEach((u8a): void => {
       if (u8a && u8a.length === 32) {
         keys = this._snapshot(dest, fn, u8a, keys, percent, depth + 1);
       }
@@ -255,6 +257,7 @@ export default class Impl extends Checkpoint {
     const encoded = encodeNode(this.codec, node);
 
     return (encoded.length < 32)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ? [node as any, null]
       : [this.codec.hashing(encoded), encoded];
   }

@@ -30,6 +30,7 @@ describe('encoding', (): void => {
         null,
         null,
         Uint8Array.from([ 160 ])
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ] as any)
     ).toEqual(Uint8Array.from([
       255, 0, 4, 4, 160, 16, 2, 10, 4, 170
@@ -62,6 +63,7 @@ describe('encoding', (): void => {
         null,
         null,
         Uint8Array.from([ 160 ])
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ] as any)
     ).toEqual(Uint8Array.from([
       255, 0, 12, 4, 160, 16, 2, 10, 4, 170, 16, 2, 11, 4, 171
@@ -96,6 +98,7 @@ describe('encoding', (): void => {
         null,
         null,
         null
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ] as any)
     ).toEqual(hexToU8a(
       '0xfe8c00682007b3872d47181b4a2dc15f0da43e702620e80300000000000080170d322ac49d8708f151346c68d9e58452d83a9d3b710e1ead35eb3269ab235368200935e46f94f24b82716c0142e2271de9200087000000000000'

@@ -7,7 +7,7 @@ import { u8aConcat } from '@polkadot/util';
 import { BITMAP, BRANCH_NODE_NO_VALUE, BRANCH_NODE_WITH_VALUE } from '../constants';
 import createValue from './createValue';
 
-export default function createBranch (value: Uint8Array | null, hasChildren: Array<boolean>): Uint8Array {
+export default function createBranch (value: Uint8Array | null, hasChildren: boolean[]): Uint8Array {
   let bitmap = 0;
 
   for (let i = 0; i < hasChildren.length; i++) {

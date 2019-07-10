@@ -7,16 +7,6 @@ import { isNull } from '@polkadot/util';
 
 import { EncodedPath } from '../types';
 
-export function keyEquals (key: Uint8Array | null, test: Uint8Array | null): boolean {
-  if (isNull(key) && isNull(test)) {
-    return true;
-  } else if (isNull(key) || isNull(test) || (key.length !== test.length)) {
-    return false;
-  }
-
-  return keyStartsWith(key, test);
-}
-
 export function keyStartsWith (key: Uint8Array | null, partial: Uint8Array | null): boolean {
   if (isNull(key) && isNull(partial)) {
     return true;
@@ -31,6 +21,16 @@ export function keyStartsWith (key: Uint8Array | null, partial: Uint8Array | nul
   }
 
   return true;
+}
+
+export function keyEquals (key: Uint8Array | null, test: Uint8Array | null): boolean {
+  if (isNull(key) && isNull(test)) {
+    return true;
+  } else if (isNull(key) || isNull(test) || (key.length !== test.length)) {
+    return false;
+  }
+
+  return keyStartsWith(key, test);
 }
 
 export function computeExtensionKey (nibbles: Uint8Array): EncodedPath {
