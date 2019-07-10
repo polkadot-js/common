@@ -16,6 +16,11 @@ import { getNodeType, decodeNode, encodeNode } from './util/node';
 import Checkpoint from './Checkpoint';
 import constants, { Constants } from './constants';
 
+interface Normalized {
+  index: number;
+  value: EncodedPath;
+}
+
 const BLANK_BRANCH: EncodedPath[] = [
   null, null, null, null, null, null, null, null,
   null, null, null, null, null, null, null, null
@@ -266,8 +271,8 @@ export default class Impl extends Checkpoint {
     // l.debug(() => ['_normaliseBranchNode', { node }]);
 
     const mapped = node
-      .map((value, index) => ({ index, value }))
-      .filter(({ value }) => !!value && value.length !== 0);
+      .map((value, index): Normalized => ({ index, value }))
+      .filter(({ value }): boolean => !!value && value.length !== 0);
 
     if (mapped.length >= 2) {
       return node;

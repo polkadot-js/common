@@ -14,6 +14,7 @@ export interface TestKeyringMap {
 export default function testKeyringPairs (options?: KeyringOptions, isDerived: boolean = true): TestKeyringMap {
   const keyring = createKeyring(options, isDerived);
   const pairs = keyring.getPairs();
+  const map: TestKeyringMap = { 'nobody': nobody() };
 
   return pairs.reduce((result, pair): TestKeyringMap => {
     const { name } = pair.meta;
@@ -21,5 +22,5 @@ export default function testKeyringPairs (options?: KeyringOptions, isDerived: b
     result[name as string] = pair;
 
     return result;
-  }, { 'nobody': nobody() } as TestKeyringMap);
+  }, map);
 }

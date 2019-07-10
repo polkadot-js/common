@@ -12,16 +12,17 @@ import buildTrie from './buildTrie';
 import { DEFAULT_CODEC } from './defaults';
 
 export default function unhashedTrie (input: TriePair[], codec: Codec = DEFAULT_CODEC): Uint8Array {
-  const map = input.reduce((result, pair) => {
-    result[u8aToHex(pair.k)] = pair;
+  const map: { [index: string]: TriePair } = {};
 
-    return result;
-  }, ({} as { [index: string]: TriePair }));
+  input.forEach((pair): void => {
+    map[u8aToHex(pair.k)] = pair;
+  });
+
   const pairs = Object
     .keys(map)
     .sort()
-    .map((key) => map[key])
-    .map(({ k, v }) => ([toNibbles(k), v] as [Uint8Array, Uint8Array]));
+    .map((key): TriePair => map[key])
+    .map(({ k, v }): [Uint8Array, Uint8Array] => ([toNibbles(k), v] as [Uint8Array, Uint8Array]));
 
   return buildTrie(pairs, 0, codec);
 }
