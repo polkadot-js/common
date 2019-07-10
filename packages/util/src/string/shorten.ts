@@ -16,6 +16,7 @@
  * stringShorten('1234567890', 2); // => 12..90
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function stringShorten (_value?: any, prefixLength: number = 6): string {
   const value = `${_value}`;
 

@@ -12,13 +12,14 @@ import { assert, bufferToU8a, isHex, isU8a, u8aToU8a } from '@polkadot/util';
 import defaults from './defaults';
 import sshash from './sshash';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function decode (encoded: string | Uint8Array, ignoreChecksum?: boolean, prefix: Prefix = defaults.prefix): Uint8Array {
   if (isU8a(encoded) || isHex(encoded)) {
     return u8aToU8a(encoded);
   }
 
   const decoded = bufferToU8a(bs58.decode(encoded));
-  const error = (message: string) =>
+  const error = (message: string): string =>
     `Decoding ${encoded}: ${message}`;
 
   // assert(defaults.allowedPrefix.includes(decoded[0] as Prefix), error('Invalid decoded address prefix'));

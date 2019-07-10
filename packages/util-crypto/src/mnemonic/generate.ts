@@ -7,7 +7,7 @@ import '../polyfill';
 import { generateMnemonic } from 'bip39';
 import { bip39Generate, isReady } from '@polkadot/wasm-crypto';
 
-type WordCount = 12 | 15 | 18 | 21 | 24;
+export type WordCount = 12 | 15 | 18 | 21 | 24;
 
 // mapping of words to the actual strength (as expected)
 const STRENGTH_MAP = {

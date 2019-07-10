@@ -59,15 +59,16 @@ describe('ExtError', (): void => {
   });
 
   describe('stack traces', (): void => {
-    let captureStackTrace: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let captureStackTrace: (targetObject: Record<string, any>, constructorOpt?: Function | undefined) => void;
 
     beforeEach((): void => {
       captureStackTrace = Error.captureStackTrace;
 
-      Error.captureStackTrace = function (error) {
+      Error.captureStackTrace = function (error): void {
         Object.defineProperty(error, 'stack', {
           configurable: true,
-          get: function getStack () {
+          get: function getStack (): string {
             const value = 'some stack returned';
 
             Object.defineProperty(this, 'stack', { value });
@@ -89,7 +90,8 @@ describe('ExtError', (): void => {
     });
 
     it('captures via stack when captureStackTrace not available', (): void => {
-      Error.captureStackTrace = null as any; // grrr
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      Error.captureStackTrace = null as any;
 
       expect(
         new ExtError().stack.length

@@ -16,6 +16,7 @@
  * console.log('isString', isString('test')); // => true
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/ban-types
 export default function isString (value: any): value is string | String {
   return typeof value === 'string' || value instanceof String;
 }

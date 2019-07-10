@@ -9,17 +9,17 @@ import isUndefined from '../is/undefined';
 import formatDecimal from './formatDecimal';
 import { SI, SI_MID, SiDef, calcSi, findSi } from './si';
 
-type Defaults = {
-  decimals: number,
-  unit: string
-};
+interface Defaults {
+  decimals: number;
+  unit: string;
+}
 
 interface BalanceFormatter {
   (input?: number | string | BN, withSi?: boolean, decimals?: number): string;
   calcSi (text: string, decimals?: number): SiDef;
   findSi (type: string): SiDef;
   getDefaults (): Defaults;
-  getOptions (decimals?: number): Array<SiDef>;
+  getOptions (decimals?: number): SiDef[];
   setDefaults (defaults: Partial<Defaults>): void;
 }
 
@@ -79,8 +79,8 @@ formatBalance.getDefaults = (): Defaults => {
 };
 
 // get allowable options to display in a dropdown
-formatBalance.getOptions = (decimals: number = defaultDecimals): Array<SiDef> => {
-  return SI.filter(({ power }) =>
+formatBalance.getOptions = (decimals: number = defaultDecimals): SiDef[] => {
+  return SI.filter(({ power }): boolean =>
     power < 0
       ? (decimals + power) >= 0
       : true

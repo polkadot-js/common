@@ -3,7 +3,8 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 if (!Array.prototype.fill) {
-  Array.prototype.fill = function fill (value: any, start: number = 0, end?: number) {
+  // eslint-disable-next-line no-extend-native,@typescript-eslint/no-explicit-any
+  Array.prototype.fill = function fill (value: any, start: number = 0, end?: number): any[] {
     // Steps 1-2.
     if (!this) {
       throw new TypeError('this is null or not defined');
@@ -45,5 +46,6 @@ if (!Array.prototype.fill) {
 
 if (!Uint8Array.prototype.fill) {
   // @ts-ignore
+  // eslint-disable-next-line no-extend-native
   Uint8Array.prototype.fill = Array.prototype.fill;
 }

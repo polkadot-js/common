@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import keyExtractPath from './extractPath';
+import keyExtractPath, { ExtractResult } from './extractPath';
 
 describe('keyExtractPath', (): void => {
   it('extracts properly from soft', (): void => {
@@ -41,13 +41,13 @@ describe('keyExtractPath', (): void => {
 
   it('does not extract from invalid paths', (): void => {
     expect(
-      () => keyExtractPath('1/2')
+      (): ExtractResult => keyExtractPath('1/2')
     ).toThrow(/does not match input/);
   });
 
   it('does not extract from invalid paths', (): void => {
     expect(
-      () => keyExtractPath('hello')
+      (): ExtractResult => keyExtractPath('hello')
     ).toThrow(/does not match input/);
   });
 });

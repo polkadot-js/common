@@ -2,12 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import keyExtractSuri from './extractSuri';
+import keyExtractSuri, { ExtractResult } from './extractSuri';
 
 describe('keyExtractSuri', (): void => {
   it('does not extract from invalid suri', (): void => {
     expect(
-      () => keyExtractSuri('//2')
+      (): ExtractResult => keyExtractSuri('//2')
     ).toThrow(/to a secret URI/);
   });
 

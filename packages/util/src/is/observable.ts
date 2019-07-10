@@ -5,9 +5,10 @@
 import isFunction from './function';
 import isObject from './object';
 
-type Observable = {
-  next: (...paarams: any[]) => any
-};
+interface Observable {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  next: (...params: any[]) => any;
+}
 
 /**
  * @name isBObservable
@@ -23,6 +24,7 @@ type Observable = {
  * console.log('isObservable', isObservable(...));
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function isObservable (value: any): value is Observable {
   return isObject(value) && isFunction((value as Observable).next);
 }

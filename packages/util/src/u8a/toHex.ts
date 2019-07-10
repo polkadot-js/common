@@ -38,7 +38,7 @@ export default function u8aToHex (value?: Uint8Array | null, bitLength: number =
   // based on comments in https://stackoverflow.com/questions/40031688/javascript-arraybuffer-to-hex and
   // implementation in http://jsben.ch/Vjx2V - optimisation here suggests that a forEach loop is faster
   // than reduce as well (clocking at in 90% of the reduce speed with tweaking in the playpen above)
-  return value.reduce((result, value) => {
+  return value.reduce((result, value): string => {
     return result + ALPHABET[value >> 4] + ALPHABET[value & 15];
   }, prefix);
 }

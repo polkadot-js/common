@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import generate from './generate';
+import generate, { WordCount } from './generate';
 import validate from './validate';
 import { cryptoWaitReady } from '..';
 
@@ -21,7 +21,7 @@ describe('mnemonicGenerate', (): void => {
     ).toEqual(true);
   });
 
-  [12, 15, 18, 21, 24].forEach((num: number): void => {
+  ([12, 15, 18, 21, 24] as WordCount[]).forEach((num: WordCount): void => {
     it(`generates a valid mnemonic (${num} words)`, (): void => {
       const mnemonic = generate(num);
       const isValid = validate(mnemonic);

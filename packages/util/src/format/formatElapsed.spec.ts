@@ -2,8 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { Compact } from './types';
-
 import BN from 'bn.js';
 
 import formatElapsed from './formatElapsed';
@@ -26,7 +24,10 @@ describe('formatElapsed', (): void => {
 
   it('formats a Compact', (): void => {
     expect(
-      formatElapsed(now, { unwrap: () => new BN(start + (5.3 * 60000)) } as Compact)
+      formatElapsed(now, {
+        toBn: (): BN => new BN(0),
+        unwrap: (): BN => new BN(start + (5.3 * 60000))
+      })
     ).toEqual('5m');
   });
 

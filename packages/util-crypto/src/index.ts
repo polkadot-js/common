@@ -21,8 +21,8 @@ export * from './xxhash';
 export function cryptoWaitReady (): Promise<boolean> {
   return wasmCrypto
     .waitReady()
-    .then(() => true)
-    .catch((error) => {
+    .then((): boolean => true)
+    .catch((error): boolean => {
       console.error('Unable to initialize @polkadot/util-crypto', error);
 
       return false;

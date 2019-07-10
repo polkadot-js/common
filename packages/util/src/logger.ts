@@ -31,14 +31,21 @@ const chalked = {
   warn: chalk.yellow
 };
 
-function formatObject (value: { [index: string]: any }): any {
-  return Object.keys(value).reduce((result, key) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function formatObject (value: Record<string, any>): any {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const result: Record<string, any> = {};
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return Object.keys(value).reduce((result, key): Record<string, any> => {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     result[key] = format(value[key]);
 
     return result;
-  }, {} as { [index: string]: any });
+  }, result);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function format (value: any): any {
   if (Array.isArray(value)) {
     return value.map(format);
@@ -83,6 +90,7 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function noop (...values: Logger$Data): void {
   // noop
 }
@@ -109,7 +117,7 @@ export default function logger (_type: string): Logger {
     const isTest = process.env.NODE_ENV === 'test';
     const debugList = (process.env.DEBUG || '').split(',');
 
-    isDebug = isTest || !!debugList.find((entry) => _type.indexOf(entry) === 0);
+    isDebug = isTest || !!debugList.find((entry): boolean => _type.indexOf(entry) === 0);
   } catch (error) {
     isDebug = false;
   }

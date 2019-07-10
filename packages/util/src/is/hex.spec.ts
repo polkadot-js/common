@@ -21,7 +21,7 @@ describe('isHex', (): void => {
 
   it('returns true on hex values with String', (): void => {
     expect(
-      isHex(new String(`0x${test}`))
+      isHex(String(`0x${test}`))
     ).toEqual(true);
   });
 

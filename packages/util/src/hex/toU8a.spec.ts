@@ -29,7 +29,7 @@ describe('hexToU8a', (): void => {
 
   it('fails when non-hex value provided', (): void => {
     expect(
-      () => hexToU8a('notahex')
+      (): Uint8Array => hexToU8a('notahex')
     ).toThrow(/hex value to convert/);
   });
 });

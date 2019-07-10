@@ -11,7 +11,7 @@ describe('formatBalance', (): void => {
 
   it('does not allow float inputs', (): void => {
     expect(
-      () => formatBalance(0.01234)
+      (): string => formatBalance(0.01234)
     ).toThrow(/integer input value/);
   });
 

@@ -19,7 +19,7 @@ describe('isString', (): void => {
 
   it('returns true on String object', (): void => {
     expect(
-      isString(new String('foo'))
+      isString(String('foo'))
     ).toEqual(true);
   });
 

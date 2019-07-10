@@ -16,6 +16,7 @@
  * isFunction(() => false); // => true
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function isFunction (value: any): value is Function {
   return typeof value === 'function';
 }

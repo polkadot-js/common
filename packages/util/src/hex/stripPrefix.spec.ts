@@ -25,7 +25,7 @@ describe('hexStripPrefix', (): void => {
 
   it('throws when invalid hex', (): void => {
     expect(
-      () => hexStripPrefix('0x0x01ab')
+      (): string => hexStripPrefix('0x0x01ab')
     ).toThrow(/Invalid hex/);
   });
 });

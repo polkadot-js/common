@@ -4,7 +4,9 @@
 
 // React Native does not have Object.setPrototypeOf
 if (!Object.setPrototypeOf) {
-  Object.setPrototypeOf = function (obj: any, proto: any) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Object.setPrototypeOf = function (obj: any, proto: object | null): void {
+    // eslint-disable-next-line no-proto
     obj.__proto__ = proto;
 
     return obj;

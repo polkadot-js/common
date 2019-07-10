@@ -7,7 +7,7 @@ import { isObservable } from '.';
 describe('isObservable', (): void => {
   it('returns true on valid observables', (): void => {
     expect(
-      isObservable({ next: () => true })
+      isObservable({ next: (): boolean => true })
     ).toEqual(true);
   });
 

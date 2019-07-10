@@ -6,21 +6,23 @@ import BN from 'bn.js';
 
 export interface ExtErrorInterface {
   code: number;
-  data: any;
+  data: string | number;
   message: string;
   stack: string;
 }
 
-type Logger$Data$Fn = () => Array<any>;
-export type Logger$Data = Array<any | Logger$Data$Fn>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Logger$Data$Fn = () => any[];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Logger$Data = (any | Logger$Data$Fn)[];
 
-export type Logger = {
-  debug: (...values: Logger$Data) => void,
-  error: (...values: Logger$Data) => void,
-  log: (...values: Logger$Data) => void,
-  noop: (...values: Logger$Data) => void,
-  warn: (...values: Logger$Data) => void
-};
+export interface Logger {
+  debug: (...values: Logger$Data) => void;
+  error: (...values: Logger$Data) => void;
+  log: (...values: Logger$Data) => void;
+  noop: (...values: Logger$Data) => void;
+  warn: (...values: Logger$Data) => void;
+}
 
 export interface ToBnOptions {
   isLe?: boolean;
@@ -28,6 +30,6 @@ export interface ToBnOptions {
 }
 
 export type BnList = {
-  0: BN,
-  1: BN
-} & Array<BN>;
+  0: BN;
+  1: BN;
+} & BN[];

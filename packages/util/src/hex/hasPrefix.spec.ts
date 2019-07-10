@@ -25,6 +25,7 @@ describe('hexHasPrefix', (): void => {
 
   it('returns false when non-string value supplied', (): void => {
     expect(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       hexHasPrefix(false as any)
     ).toEqual(false);
   });

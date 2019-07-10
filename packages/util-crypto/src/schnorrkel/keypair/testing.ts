@@ -5,7 +5,7 @@
 // mnemonic, entropy, seed, secret (expanded)
 type Test = [string, string, string, string];
 
-const tests: Array<Test> = [
+const tests: Test[] = [
   [
     'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about',
     '0x00000000000000000000000000000000',

@@ -14,7 +14,7 @@ export default function formatNumber (_value?: Compact | BN | number | null): st
     return '0';
   }
 
-  const value = (_value as any).toBn
+  const value = (_value as Compact).toBn
     ? (_value as Compact).toBn()
     : bnToBn(_value as BN);
 

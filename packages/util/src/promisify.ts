@@ -17,10 +17,11 @@
  * await promisify(null, (cb) => cb(new Error('error!'))); // rejects with `error!`
  * ```
  */
-export default function promisify (self: any, fn: Function, ...params: Array<any>): Promise<any> {
-  return new Promise((resolve, reject) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function promisify <T> (self: any, fn: Function, ...params: any[]): Promise<T> {
+  return new Promise((resolve, reject): void => {
     fn.apply(self, params.concat([
-      (error: Error | null, result: any): void => {
+      (error: Error | null, result: T): void => {
         if (error) {
           reject(error);
         } else {

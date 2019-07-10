@@ -24,7 +24,7 @@ import stringToU8a from '../string/toU8a';
  * u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
  * ```
  */
-export default function u8aToU8a (value?: Array<number> | Buffer | Uint8Array | string | null): Uint8Array {
+export default function u8aToU8a (value?: number[] | Buffer | Uint8Array | string | null): Uint8Array {
   if (!value) {
     return new Uint8Array();
   }
