@@ -8,16 +8,12 @@ export interface Chainspec {
   bootNodes: string[];
   id: string;
   genesis: {
-    raw: {
-      [index: string]: string;
-    };
+    raw: Record<string, string>;
   };
   genesisRoot?: string;
   name: string;
-  properties: null | {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [index: string]: any;
-  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  properties: null | Record<string, any>;
   protocolId: string | null;
   telemetryUrl?: string | null;
   telemetryEndpoints?: Telemetry[];
