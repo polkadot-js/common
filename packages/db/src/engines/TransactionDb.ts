@@ -15,7 +15,9 @@ const l = logger('db/transact');
 
 export default class TransactionDb implements TxDb {
   private backing: BaseDb;
+
   private txOverlay: Map<string, OverlayItem> = new Map();
+
   private txStarted: boolean;
 
   public constructor (backing: BaseDb) {

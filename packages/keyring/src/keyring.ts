@@ -30,9 +30,13 @@ import Pairs from './pairs';
  */
 export default class Keyring implements KeyringInstance {
   private _pairs: Pairs;
+
   private _type: KeypairType;
+
   public decodeAddress = decodeAddress;
+
   public encodeAddress = encodeAddress;
+
   public setAddressPrefix = setAddressPrefix;
 
   public constructor (options: KeyringOptions = {}) {

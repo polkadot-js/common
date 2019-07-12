@@ -9,11 +9,19 @@ import { hexToU8a } from '@polkadot/util';
 import createPair from './pair';
 import Keyring from '.';
 
+interface PairDef {
+  name?: string;
+  publicKey: Uint8Array;
+  seed: string;
+  secretKey?: Uint8Array;
+  type?: 'ed25519' | 'sr25519';
+}
+
 // NOTE This is not great since we have the secretKey here explicitly, but a testing
 // keyring is for testing - what happens is that in most cases the keyring is initialises
 // before anything else. Since the sr25519 crypto is async, this creates problems with
 // adding the keys when only the keyring is used.
-const PAIRS = [
+const PAIRS: PairDef[] = [
   {
     seed: 'Alice',
     secretKey: hexToU8a('0x98319d4ff8a9508c4bb0cf0b5a78d760a0b2082c02775e6e82370816fedfff48925a225d97aa00682d6a59b95b18780c10d7032336e88f3442b42361f4a66011'),
@@ -23,6 +31,13 @@ const PAIRS = [
     seed: 'Alice//stash',
     secretKey: hexToU8a('0xe8da6c9d810e020f5e3c7f5af2dea314cbeaa0d72bc6421e92c0808a0c584a6046ab28e97c3ffc77fe12b5a4d37e8cd4afbfebbf2391ffc7cb07c0f38c023efd'),
     publicKey: hexToU8a('0xbe5ddb1579b72e84524fc29e78609e3caf42e85aa118ebfe0b0ad404b5bdd25f')
+  },
+  {
+    name: 'alice_session',
+    type: 'ed25519',
+    seed: 'Alice',
+    secretKey: hexToU8a('0xabf8e5bdbe30c65656c0a3cbd181ff8a56294a69dfedd27982aace4a7690911588dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee'),
+    publicKey: hexToU8a('0x88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee')
   },
   {
     seed: 'Bob',
@@ -65,18 +80,16 @@ const PAIRS = [
 export default function testKeyring (options: KeyringOptions = {}, isDerived: boolean = true): KeyringInstance {
   const keyring = new Keyring(options);
 
-  PAIRS.forEach(({ publicKey, secretKey, seed }): void => {
+  PAIRS.forEach(({ name, publicKey, secretKey, seed, type }): void => {
     const meta = {
       isTesting: true,
-      name: seed.replace('//', '_').toLowerCase()
+      name: name || seed.replace('//', '_').toLowerCase()
     };
 
-    // NOTE When adding via seed, non-derived and new-style, needs a `//` prefix
-    // (Here derived basically indicated old-style, i.e. pre derivation)
-    const pair = !isDerived
+    const pair = !isDerived && !name
       ? keyring.addFromUri(seed, meta, options.type)
       : keyring.addPair(
-        createPair('sr25519', { publicKey, secretKey }, meta)
+        createPair(type || 'sr25519', { publicKey, secretKey }, meta)
       );
 
     pair.lock = (): void => {

@@ -18,6 +18,7 @@ export type LeafHeader = NibbleHeader;
 
 export default class NodeHeader {
   private _nodeType: NodeType;
+
   private _value: Null | BranchHeader | ExtensionHeader | LeafHeader;
 
   public constructor (input?: null | Uint8Array | (null | Uint8Array)[]) {

@@ -37,7 +37,7 @@ describe('u8aToHex', (): void => {
   it('handles starting zeros correctly', (): void => {
     expect(
       u8aToHex(
-        new Uint8Array([ 0, 1, 0, 0, 0, 0, 0, 0 ])
+        new Uint8Array([0, 1, 0, 0, 0, 0, 0, 0])
       )
     ).toEqual('0x0001000000000000');
   });

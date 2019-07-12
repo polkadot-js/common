@@ -33,12 +33,16 @@ function extend (that: ExtError, name: string, value?: string | number): void {
 export default class ExtError extends Error implements ExtErrorInterface {
   // @ts-ignore we are assigning it via extend
   public code: number;
+
   // @ts-ignore we are assigning it via extend
   public data: number | string | undefined;
+
   // @ts-ignore we are assigning it via extend
   public message: string;
   // @ts-ignore we are assigning it via extend
+
   public name: string;
+
   // @ts-ignore we are assigning it via extend
   public stack: string;
 

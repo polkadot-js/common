@@ -17,6 +17,7 @@ const l = logger('db/lru');
 
 export default class LruDb implements BaseDb {
   private backing: BaseDb;
+
   private lru: LRUMap<string, CachedValue>;
 
   public constructor (backing: BaseDb, itemCount: number = DEFAULT_ITEM_COUNT) {

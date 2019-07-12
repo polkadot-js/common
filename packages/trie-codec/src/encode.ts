@@ -41,7 +41,7 @@ function encodeValue (input: null | Uint8Array | (null | Uint8Array)[]): Uint8Ar
 }
 
 function _encodeBranch (header: NodeHeader, input: (null | Uint8Array)[]): Uint8Array {
-  let values: Uint8Array[] = [];
+  const values: Uint8Array[] = [];
   let bitmap = 0;
 
   for (let index = 0; index < BRANCH_VALUE_INDEX; index++) {

@@ -37,7 +37,9 @@ const BLANK_BRANCH: EncodedPath[] = [
  */
 export default class Impl extends Checkpoint {
   public readonly db: TxDb;
+
   protected codec: Codec;
+
   protected constants: Constants;
 
   public constructor (db: TxDb, rootHash?: Uint8Array, codec: Codec = substrateCodec) {

@@ -41,7 +41,7 @@ function bnToU8a (
   };
 
   const valueBn = bnToBn(value);
-  let byteLength = _options.bitLength === -1
+  const byteLength = _options.bitLength === -1
     ? Math.ceil(valueBn.bitLength() / 8)
     : Math.ceil((_options.bitLength || 0) / 8);
 

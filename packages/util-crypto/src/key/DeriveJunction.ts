@@ -17,6 +17,7 @@ const BN_OPTIONS = {
 
 export default class DeriveJunction {
   private _chainCode: Uint8Array = new Uint8Array(32);
+
   private _isHard: boolean = false;
 
   public static from (value: string): DeriveJunction {

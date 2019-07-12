@@ -52,7 +52,7 @@ describe('keypair', (): void => {
 
       expect(
         keypair.getPublicKeys()
-      ).toEqual([ publicKeyOne, publicKeyTwo ]);
+      ).toEqual([publicKeyOne, publicKeyTwo]);
     });
 
     it('allows retrieval of a specific item', (): void => {
@@ -118,7 +118,7 @@ describe('keypair', (): void => {
 
       expect(
         keypair.getPublicKeys()
-      ).toEqual([ publicKeyOne, publicKeyTwo ]);
+      ).toEqual([publicKeyOne, publicKeyTwo]);
     });
 
     it('allows retrieval of a specific item', (): void => {

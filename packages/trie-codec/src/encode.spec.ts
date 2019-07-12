@@ -21,15 +21,15 @@ describe('encoding', (): void => {
         null,
         null,
         [
-          Uint8Array.from([ 58 ]),
-          Uint8Array.from([ 170 ])
+          Uint8Array.from([58]),
+          Uint8Array.from([170])
         ],
         null,
         null,
         null,
         null,
         null,
-        Uint8Array.from([ 160 ])
+        Uint8Array.from([160])
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ] as any)
     ).toEqual(Uint8Array.from([
@@ -51,18 +51,18 @@ describe('encoding', (): void => {
         null,
         null,
         [
-          Uint8Array.from([ 58 ]),
-          Uint8Array.from([ 170 ])
+          Uint8Array.from([58]),
+          Uint8Array.from([170])
         ],
         [
-          Uint8Array.from([ 59 ]),
-          Uint8Array.from([ 171 ])
+          Uint8Array.from([59]),
+          Uint8Array.from([171])
         ],
         null,
         null,
         null,
         null,
-        Uint8Array.from([ 160 ])
+        Uint8Array.from([160])
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ] as any)
     ).toEqual(Uint8Array.from([
