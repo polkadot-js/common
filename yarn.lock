@@ -1837,10 +1837,10 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@polkadot/dev@^0.30.0-beta.20":
-  version "0.30.0-beta.20"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.30.0-beta.20.tgz#f72b91702b106c9bf6451eb59241fcecbd1761e9"
-  integrity sha512-1S4IbH4T7Zn9HJCv1lI4mbGMBfwdBAuMfIcnSBoeFEtMl+pit2xy7fq8/bo2TwKZpDDitxvbx8pacjDzLfPXhA==
+"@polkadot/dev@^0.30.0-beta.21":
+  version "0.30.0-beta.21"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.30.0-beta.21.tgz#f94369c48bf5d5d3ea5543fad9d317e5e37fd288"
+  integrity sha512-tCfjoSnhkCBEbDO5M0Tt1vTctlXlzFUj9NbjrVx9k4Lgy5b1l1KpuJZCVpUD8MRTUhUgEciYobECP7eSkJMStA==
   dependencies:
     "@babel/cli" "^7.5.0"
     "@babel/core" "^7.5.4"
@@ -1865,7 +1865,7 @@
     cpx "^1.5.0"
     eslint "^6.0.1"
     eslint-config-semistandard "^13.0.0"
-    eslint-config-standard "^12.0.0"
+    eslint-config-standard "^13.0.0"
     eslint-plugin-import "^2.18.0"
     eslint-plugin-node "^9.1.0"
     eslint-plugin-promise "^4.2.1"
@@ -1884,10 +1884,10 @@
     typescript "^3.5.3"
     vuepress "^1.0.2"
 
-"@polkadot/ts@^0.1.61":
-  version "0.1.61"
-  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.61.tgz#a1348029e6908a598ca86f1c88440607627e61c7"
-  integrity sha512-/mul0xp4aG40u5a8oi1MKmCWksjCnzGA3agCOxvGUSflhnJoElrXtGDWvh0Ld8tixr3VXNAjJxrliYvnhCncxA==
+"@polkadot/ts@^0.1.62":
+  version "0.1.62"
+  resolved "https://registry.yarnpkg.com/@polkadot/ts/-/ts-0.1.62.tgz#aed5e951f1b8ee49efecb360302abdede155140b"
+  integrity sha512-sx1L7Z9WwqfltQ+e8im32xGcX89G2QdgpKNwMg/dur/RMnPBkVF0A0o4H4jFSEdMiBg+dasbfJkbnxvgjWlV2A==
   dependencies:
     "@types/chrome" "^0.0.86"
 
@@ -4975,10 +4975,10 @@ eslint-config-semistandard@^13.0.0:
   resolved "https://registry.yarnpkg.com/eslint-config-semistandard/-/eslint-config-semistandard-13.0.0.tgz#52ecf19081e1b6b1ccc839d049f6429ca6252ad7"
   integrity sha512-ZuImKnf/9LeZjr6dtRJ0zEdQbjBwXu0PJR3wXJXoQeMooICMrYPyD70O1tIA9Ng+wutgLjB7UXvZOKYPvzHg+w==
 
-eslint-config-standard@^12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-12.0.0.tgz#638b4c65db0bd5a41319f96bba1f15ddad2107d9"
-  integrity sha512-COUz8FnXhqFitYj4DTqHzidjIL/t4mumGZto5c7DrBpvWoie+Sn3P4sLEzUGeYhRElWuFEf8K1S1EfvD1vixCQ==
+eslint-config-standard@^13.0.0:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-13.0.1.tgz#c9c6ffe0cfb8a51535bc5c7ec9f70eafb8c6b2c0"
+  integrity sha512-zLKp4QOgq6JFgRm1dDCVv1Iu0P5uZ4v5Wa4DTOkg2RFMxdCX/9Qf7lz9ezRj2dBRa955cWQF/O/LWEiYWAHbTw==
 
 eslint-import-resolver-node@^0.3.2:
   version "0.3.2"
