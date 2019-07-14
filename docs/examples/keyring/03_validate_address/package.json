@@ -1,5 +1,5 @@
 {
-  "name": "11_validate_address",
+  "name": "03_validate_address",
   "version": "0.1.0",
   "description": "Example showing how to validate a polkadot address",
   "main": "index.js",
@@ -10,8 +10,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@polkadot/api": "0.80.1",
-    "@polkadot/keyring": "^0.93.1"
+    "@polkadot/keyring": "*"
   },
   "devDependencies": {
     "rimraf": "^2.6.2"
