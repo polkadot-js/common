@@ -7,9 +7,9 @@ import { u8aToHex } from '@polkadot/util';
 import unhashedTrie from './unhashedTrie';
 import testdata from '../test/data';
 
-describe('unhashedTrie', () => {
-  Object.values(testdata).forEach(({ desc, input, output }) => {
-    it(`encodes ${desc}`, () => {
+describe('unhashedTrie', (): void => {
+  Object.values(testdata).forEach(({ desc, input, output }): void => {
+    it(`encodes ${desc}`, (): void => {
       expect(
         u8aToHex(unhashedTrie(input))
       ).toEqual(

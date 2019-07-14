@@ -4,8 +4,8 @@
 
 import { assert } from '.';
 
-describe('index', () => {
-  it('exports ok', () => {
+describe('index', (): void => {
+  it('exports ok', (): void => {
     expect(assert).toBeDefined();
   });
 });

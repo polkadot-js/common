@@ -21,6 +21,7 @@ const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
  * isHex('0x1234', 8); // => false
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/ban-types
 export default function isHex (value: any, bitLength: number = -1, ignoreLength: boolean = false): value is string | String {
   const isValidHex = value === '0x' || (isString(value) && HEX_REGEX.test(value.toString()));
 

@@ -18,6 +18,7 @@ import isInstanceOf from './instanceOf';
  * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function isBuffer (value: any): value is Buffer {
   return isInstanceOf(value, Buffer);
 }

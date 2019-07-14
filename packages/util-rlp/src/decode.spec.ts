@@ -10,8 +10,8 @@ import getTests from '../test/getTests';
 
 const rlptests = getTests('RLPTests/rlptest.json');
 
-describe('decode', () => {
-  it('returns empty list for undefined inputs', () => {
+describe('decode', (): void => {
+  it('returns empty list for undefined inputs', (): void => {
     expect(
       decode()
     ).toEqual(
@@ -19,7 +19,7 @@ describe('decode', () => {
     );
   });
 
-  it('returns empty list for empty inputs', () => {
+  it('returns empty list for empty inputs', (): void => {
     expect(
       decode(new Uint8Array())
     ).toEqual(
@@ -27,8 +27,8 @@ describe('decode', () => {
     );
   });
 
-  rlptests.forEach(({ name, output }) => {
-    it(`passes official ${name}`, () => {
+  rlptests.forEach(({ name, output }): void => {
+    it(`passes official ${name}`, (): void => {
       expect(
         u8aToHex(
           encode(

@@ -4,8 +4,8 @@
 
 import { randomAsNumber } from '.';
 
-describe('randomAsNumber', () => {
-  it('generates subsequent non-matching numbers', () => {
+describe('randomAsNumber', (): void => {
+  it('generates subsequent non-matching numbers', (): void => {
     expect(
       randomAsNumber()
     ).not.toEqual(

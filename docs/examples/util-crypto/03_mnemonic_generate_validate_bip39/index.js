@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires,@typescript-eslint/no-unused-vars */
 const { mnemonicGenerate, mnemonicToSeed, mnemonicValidate, naclKeypairFromSeed } = require('@polkadot/util-crypto');
 
 async function main () {
@@ -21,4 +22,4 @@ async function main () {
   // Encrypt, Sign and Validate the message. See Example 'Sign & Verify Message'
 }
 
-main().catch(console.error).finally(_ => process.exit());
+main().catch(console.error).finally(() => process.exit());

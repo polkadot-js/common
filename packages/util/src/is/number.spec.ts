@@ -4,14 +4,14 @@
 
 import { isNumber } from '.';
 
-describe('isNumber', () => {
-  it('returns true on valid numbers', () => {
+describe('isNumber', (): void => {
+  it('returns true on valid numbers', (): void => {
     expect(
       isNumber(2)
     ).toEqual(true);
   });
 
-  it('returns false on invalid numbers', () => {
+  it('returns false on invalid numbers', (): void => {
     expect(
       isNumber('2')
     ).toEqual(false);

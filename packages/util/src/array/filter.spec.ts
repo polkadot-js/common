@@ -4,14 +4,14 @@
 
 import { arrayFilter } from '.';
 
-describe('filterArray', () => {
-  it('filters arrays, removing undefined', () => {
+describe('filterArray', (): void => {
+  it('filters arrays, removing undefined', (): void => {
     expect(
       arrayFilter([0, '', null, false, void 0, NaN])
     ).toEqual([0, '', null, false, NaN]);
   });
 
-  it('filters arrays, removing undefined & null (allowNull = false)', () => {
+  it('filters arrays, removing undefined & null (allowNull = false)', (): void => {
     expect(
       arrayFilter([0, '', null, false, void 0, NaN], false)
     ).toEqual([0, '', false, NaN]);

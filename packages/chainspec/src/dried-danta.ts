@@ -4,25 +4,26 @@
 
 import { Chainspec } from './types';
 
+// eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
 export default {
-  'name': 'Dried Danta',
-  'id': 'dried-danta',
-  'properties': {
-    'tokenDecimals': 15,
-    'tokenSymbol': 'DAN'
+  name: 'Dried Danta',
+  id: 'dried-danta',
+  properties: {
+    tokenDecimals: 15,
+    tokenSymbol: 'DAN'
   },
-  'bootNodes': [
+  bootNodes: [
     '/ip4/104.211.54.233/tcp/30333/p2p/QmWxNqJeKEBWjJXeX8s882ZdphuVPgUV43THfGAJn7UBWB',
     '/ip4/104.211.48.51/tcp/30333/p2p/QmXd7MQAuXkQK1r3ejSbaXKgjXmT2FvbJ3yNfLZpsQ2t8S',
     '/ip4/104.211.48.247/tcp/30333/p2p/QmV2zjgFRfxbgYZQC9qFr4aHsQt7tDBJRAdgqqxqTq1Kta',
     '/ip4/40.114.120.164/tcp/30333/p2p/QmQbPCeurXuKhzCw6Ar6ovizNKATMTnkkqFJKgZzbF2MJs'
   ],
-  'telemetryUrl': 'wss://telemetry.polkadot.io/submit/',
-  'protocolId': null,
-  'consensusEngine': null,
-  'genesisRoot': '0x29bbc626c6d5739cc9272a4e3b438bbc8dd18d7872e532137ccea03423ae8986',
-  'genesis': {
-    'raw': {
+  telemetryUrl: 'wss://telemetry.polkadot.io/submit/',
+  protocolId: null,
+  consensusEngine: null,
+  genesisRoot: '0x29bbc626c6d5739cc9272a4e3b438bbc8dd18d7872e532137ccea03423ae8986',
+  genesis: {
+    raw: {
       '0xf718f07ec955fb94f1b3069713461089': '0x0010a5d4e80000000000000000000000',
       '0xdee5bbb035d9ebc2c9338b5aedf744d7': '0x4038000000000000',
       '0xdfaac108e0d4bc78fc9419a7fcfa84dc': '0x1082c39b31a2b79a90f8e66e7a77fdb85a4ed5517f2ae39f6a80565e8ecae85cf54de37a07567ebcbf8c64568428a835269a566723687058e017b6d69db00a77e7063d7787ebca768b7445dfebe7d62cbb1625ff4dba288ea34488da266dd6dca58101764f45778d4980dadaceee6e8af2517d3ab91ac9bec9cd1714fa5994081c',

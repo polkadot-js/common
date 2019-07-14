@@ -4,10 +4,10 @@
 
 import MemoryDb from './MemoryDb';
 
-describe('MemoryDb', () => {
+describe('MemoryDb', (): void => {
   const memory = new MemoryDb();
 
-  it('gets the combioned size of the entry values', () => {
+  it('gets the combioned size of the entry values', (): void => {
     memory.put(new Uint8Array([1]), new Uint8Array([1, 2, 3]));
     memory.put(new Uint8Array([2]), new Uint8Array([1, 2, 3]));
     memory.put(new Uint8Array([3]), new Uint8Array([1, 2, 3]));
@@ -15,13 +15,13 @@ describe('MemoryDb', () => {
     expect(memory.size()).toEqual(9);
   });
 
-  it('does not throw on the stubs', (done) => {
+  it('does not throw on the stubs', (done): void => {
     memory.close();
     memory.open();
     memory.drop();
     memory.empty();
     memory.rename('foo', 'bar');
 
-    memory.maintain(() => done());
+    memory.maintain((): void => done());
   });
 });

@@ -15,7 +15,7 @@ export default function fuseNibbles (nibbles: Uint8Array, isLeaf: boolean): Uint
   const [firstByteSmall, bigThreshold] = isLeaf
     ? [LEAF_NODE_OFFSET, LEAF_NODE_BIG - LEAF_NODE_OFFSET]
     : [EXTENSION_NODE_OFFSET, EXTENSION_NODE_BIG - EXTENSION_NODE_OFFSET];
-  const result: Array<Uint8Array> = [
+  const result: Uint8Array[] = [
     Uint8Array.from([firstByteSmall + Math.min(nibbles.length, bigThreshold)])
   ];
   const oddFlag = nibbles.length % 2;

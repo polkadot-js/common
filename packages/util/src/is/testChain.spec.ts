@@ -4,21 +4,21 @@
 
 import isTestChain from './testChain';
 
-describe('isTestChain', () => {
-  it('enables test environment when chain specification matches text of dev or loc(al)', () => {
+describe('isTestChain', (): void => {
+  it('enables test environment when chain specification matches text of dev or loc(al)', (): void => {
     const validTestModeChainSpecsWithDev = ['Development'];
     const validTestModeChainSpecsWithLoc = ['Local Testnet'];
 
-    validTestModeChainSpecsWithDev.concat(validTestModeChainSpecsWithLoc).forEach((s) =>
-      expect(isTestChain(s)).toEqual(true)
-    );
+    validTestModeChainSpecsWithDev.concat(validTestModeChainSpecsWithLoc).forEach((s): void => {
+      expect(isTestChain(s)).toEqual(true);
+    });
   });
 
-  it('disables keyring test mode when chain specification is not a test mode or undefined or number type', () => {
+  it('disables keyring test mode when chain specification is not a test mode or undefined or number type', (): void => {
     const invalidTestModeChainSpecs = ['dev', 'local', 'development', 'PoC-1 Testnet', 'Staging Testnet', 'future PoC-2 Testnet', 'a pocadot?', undefined];
 
-    invalidTestModeChainSpecs.forEach((s) =>
-      expect(isTestChain(s)).toEqual(false)
-    );
+    invalidTestModeChainSpecs.forEach((s): void => {
+      expect(isTestChain(s)).toEqual(false);
+    });
   });
 });

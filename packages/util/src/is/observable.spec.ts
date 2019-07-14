@@ -4,20 +4,20 @@
 
 import { isObservable } from '.';
 
-describe('isObservable', () => {
-  it('returns true on valid observables', () => {
+describe('isObservable', (): void => {
+  it('returns true on valid observables', (): void => {
     expect(
-      isObservable({ next: () => true })
+      isObservable({ next: (): boolean => true })
     ).toEqual(true);
   });
 
-  it('returns false on invalid objects', () => {
+  it('returns false on invalid objects', (): void => {
     expect(
       isObservable('notAnObservable')
     ).toEqual(false);
   });
 
-  it('returns false on invalid next functions', () => {
+  it('returns false on invalid next functions', (): void => {
     expect(
       isObservable({ next: true })
     ).toEqual(false);

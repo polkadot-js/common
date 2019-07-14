@@ -2,16 +2,16 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import keyExtractSuri from './extractSuri';
+import keyExtractSuri, { ExtractResult } from './extractSuri';
 
-describe('keyExtractSuri', () => {
-  it('does not extract from invalid suri', () => {
+describe('keyExtractSuri', (): void => {
+  it('does not extract from invalid suri', (): void => {
     expect(
-      () => keyExtractSuri('//2')
+      (): ExtractResult => keyExtractSuri('//2')
     ).toThrow(/to a secret URI/);
   });
 
-  it('derives on "hello world"', () => {
+  it('derives on "hello world"', (): void => {
     expect(
       keyExtractSuri('hello world')
     ).toEqual({
@@ -20,7 +20,7 @@ describe('keyExtractSuri', () => {
     });
   });
 
-  it('derives on "hello world/1', () => {
+  it('derives on "hello world/1', (): void => {
     expect(
       keyExtractSuri('hello world/1')
     ).toEqual({
@@ -31,7 +31,7 @@ describe('keyExtractSuri', () => {
     });
   });
 
-  it('derives on "hello world/DOT', () => {
+  it('derives on "hello world/DOT', (): void => {
     expect(
       keyExtractSuri('hello world/DOT')
     ).toEqual({
@@ -42,7 +42,7 @@ describe('keyExtractSuri', () => {
     });
   });
 
-  it('derives on "hello world//1', () => {
+  it('derives on "hello world//1', (): void => {
     expect(
       keyExtractSuri('hello world//1')
     ).toEqual({
@@ -53,7 +53,7 @@ describe('keyExtractSuri', () => {
     });
   });
 
-  it('derives on "hello world//DOT', () => {
+  it('derives on "hello world//DOT', (): void => {
     expect(
       keyExtractSuri('hello world//DOT')
     ).toEqual({
@@ -64,7 +64,7 @@ describe('keyExtractSuri', () => {
     });
   });
 
-  it('derives on "hello world//1/DOT', () => {
+  it('derives on "hello world//1/DOT', (): void => {
     expect(
       keyExtractSuri('hello world//1/DOT')
     ).toEqual({
@@ -76,7 +76,7 @@ describe('keyExtractSuri', () => {
     });
   });
 
-  it('derives on "hello world//DOT/1', () => {
+  it('derives on "hello world//DOT/1', (): void => {
     expect(
       keyExtractSuri('hello world//DOT/1')
     ).toEqual({
@@ -88,7 +88,7 @@ describe('keyExtractSuri', () => {
     });
   });
 
-  it('derives on "hello world///password"', () => {
+  it('derives on "hello world///password"', (): void => {
     expect(
       keyExtractSuri('hello world///password')
     ).toEqual({
@@ -98,7 +98,7 @@ describe('keyExtractSuri', () => {
     });
   });
 
-  it('derives on "hello world//1/DOT///password"', () => {
+  it('derives on "hello world//1/DOT///password"', (): void => {
     expect(
       keyExtractSuri('hello world//1/DOT///password')
     ).toEqual({
@@ -111,7 +111,7 @@ describe('keyExtractSuri', () => {
     });
   });
 
-  it('derives on "hello world/1//DOT///password"', () => {
+  it('derives on "hello world/1//DOT///password"', (): void => {
     expect(
       keyExtractSuri('hello world/1//DOT///password')
     ).toEqual({
@@ -124,7 +124,7 @@ describe('keyExtractSuri', () => {
     });
   });
 
-  it('derives on actual Alice', () => {
+  it('derives on actual Alice', (): void => {
     expect(
       keyExtractSuri('bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice')
     ).toEqual({

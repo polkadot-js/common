@@ -4,26 +4,26 @@
 
 import { isString } from '.';
 
-describe('isString', () => {
-  it('returns true on valid strings', () => {
+describe('isString', (): void => {
+  it('returns true on valid strings', (): void => {
     expect(
       isString('123')
     ).toEqual(true);
   });
 
-  it('returns true on empty strings', () => {
+  it('returns true on empty strings', (): void => {
     expect(
       isString('')
     ).toEqual(true);
   });
 
-  it('returns true on String object', () => {
+  it('returns true on String object', (): void => {
     expect(
-      isString(new String('foo'))
+      isString(String('foo'))
     ).toEqual(true);
   });
 
-  it('returns false on invalid numbers', () => {
+  it('returns false on invalid numbers', (): void => {
     expect(
       isString(2)
     ).toEqual(false);

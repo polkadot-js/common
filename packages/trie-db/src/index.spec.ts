@@ -10,14 +10,14 @@ import ethereumCodec from './ethereumCodec';
 import Trie from '.';
 
 // FIXME These are not working, the trie-hash implementation is now substrate-specific
-describe.skip('Ethereum', () => {
-  const createTrie = () =>
+describe.skip('Ethereum', (): void => {
+  const createTrie = (): Trie =>
     new Trie(undefined, undefined, ethereumCodec);
 
-  describe('simple save and retrieve', () => {
+  describe('simple save and retrieve', (): void => {
     const trie = createTrie();
 
-    it('starts with a valid root', () => {
+    it('starts with a valid root', (): void => {
       expect(
         trie.getRoot()
       ).toEqual(
@@ -27,7 +27,7 @@ describe.skip('Ethereum', () => {
       );
     });
 
-    it('save a value', () => {
+    it('save a value', (): void => {
       trie.put(toU8a('test'), toU8a('one'));
 
       expect(
@@ -39,13 +39,13 @@ describe.skip('Ethereum', () => {
       );
     });
 
-    it('should get a value', () => {
+    it('should get a value', (): void => {
       expect(
         trie.get(toU8a('test'))
       ).toEqual(toU8a('one'));
     });
 
-    it('should update a value', () => {
+    it('should update a value', (): void => {
       trie.put(toU8a('test'), toU8a('two'));
 
       expect(
@@ -60,7 +60,7 @@ describe.skip('Ethereum', () => {
       );
     });
 
-    it('should delete a value', () => {
+    it('should delete a value', (): void => {
       trie.del(toU8a('test'));
 
       expect(
@@ -75,7 +75,7 @@ describe.skip('Ethereum', () => {
       );
     });
 
-    it('should recreate a value', () => {
+    it('should recreate a value', (): void => {
       trie.put(toU8a('test'), toU8a('one'));
 
       expect(
@@ -87,13 +87,13 @@ describe.skip('Ethereum', () => {
       );
     });
 
-    it('should get updated a value', () => {
+    it('should get updated a value', (): void => {
       expect(
         trie.get(toU8a('test'))
       ).toEqual(toU8a('one'));
     });
 
-    it('should create a branch here', () => {
+    it('should create a branch here', (): void => {
       trie.put(toU8a('doge'), toU8a('coin'));
 
       expect(
@@ -103,13 +103,13 @@ describe.skip('Ethereum', () => {
       );
     });
 
-    it('should get a value that is in a branch', () => {
+    it('should get a value that is in a branch', (): void => {
       expect(
         trie.get(toU8a('doge'))
       ).toEqual(toU8a('coin'));
     });
 
-    it('should delete from a branch', () => {
+    it('should delete from a branch', (): void => {
       trie.del(toU8a('doge'));
 
       expect(
@@ -125,12 +125,12 @@ describe.skip('Ethereum', () => {
     });
   });
 
-  describe('storing longer values', () => {
+  describe('storing longer values', (): void => {
     const trie = createTrie();
     const longString = 'this will be a really really really long value';
     const longStringRoot = '0xb173e2db29e79c78963cff5196f8a983fbe0171388972106b114ef7f5c24dfa3';
 
-    it('should store a longer string', () => {
+    it('should store a longer string', (): void => {
       trie.put(toU8a('done'), toU8a(longString));
 
       expect(
@@ -140,29 +140,29 @@ describe.skip('Ethereum', () => {
       ]));
     });
 
-    it('should retrieve a longer value (first pass)', () => {
+    it('should retrieve a longer value (first pass)', (): void => {
       expect(
         trie.get(toU8a('done'))
       ).toEqual(toU8a(longString));
     });
 
-    it('should store subsequent values', () => {
+    it('should store subsequent values', (): void => {
       trie.put(toU8a('doge'), toU8a('coin'));
 
       expect(longStringRoot).toEqual(u8aToHex(trie.getRoot()));
     });
 
-    it('should retrieve a longer value (second pass)', () => {
+    it('should retrieve a longer value (second pass)', (): void => {
       expect(
         trie.get(toU8a('done'))
       ).toEqual(toU8a(longString));
     });
 
-    it('should retrieve subsequent values', () => {
+    it('should retrieve subsequent values', (): void => {
       expect(trie.get(toU8a('doge'))).toEqual(toU8a('coin'));
     });
 
-    it('should when being modified delete the old value', () => {
+    it('should when being modified delete the old value', (): void => {
       trie.put(toU8a('done'), toU8a('test'));
 
       expect(
@@ -173,14 +173,14 @@ describe.skip('Ethereum', () => {
     });
   });
 
-  describe('testing Extentions and branches', () => {
+  describe('testing Extentions and branches', (): void => {
     const trie = createTrie();
 
-    it('should store a value', () => {
+    it('should store a value', (): void => {
       trie.put(toU8a('doge'), toU8a('coin'));
     });
 
-    it('should create extention to store this value', () => {
+    it('should create extention to store this value', (): void => {
       trie.put(toU8a('do'), toU8a('verb'));
 
       expect(
@@ -188,7 +188,7 @@ describe.skip('Ethereum', () => {
       ).toEqual(trie.getRoot());
     });
 
-    it('should store this value under the extention ', () => {
+    it('should store this value under the extention ', (): void => {
       trie.put(toU8a('done'), toU8a('finished'));
 
       expect(
@@ -197,10 +197,10 @@ describe.skip('Ethereum', () => {
     });
   });
 
-  describe.skip('testing Extentions and branches - reverse', () => {
+  describe.skip('testing Extentions and branches - reverse', (): void => {
     const trie = createTrie();
 
-    it('should create extention to store this value', () => {
+    it('should create extention to store this value', (): void => {
       trie.put(toU8a('do'), toU8a('verb'));
 
       const value = trie.get(toU8a('do'));
@@ -208,11 +208,11 @@ describe.skip('Ethereum', () => {
       expect(value).toEqual(toU8a('verb'));
     });
 
-    it('should store a value', () => {
+    it('should store a value', (): void => {
       trie.put(toU8a('doge'), toU8a('coin'));
     });
 
-    it('should store this value under the extention ', () => {
+    it('should store this value under the extention ', (): void => {
       trie.put(toU8a('done'), toU8a('finished'));
 
       expect(
@@ -221,10 +221,10 @@ describe.skip('Ethereum', () => {
     });
   });
 
-  describe('testing deletions cases', () => {
+  describe('testing deletions cases', (): void => {
     const trie = createTrie();
 
-    it('should delete from a branch->branch-branch', () => {
+    it('should delete from a branch->branch-branch', (): void => {
       trie.put(new Uint8Array([11, 11, 11]), toU8a('first'));
       trie.put(new Uint8Array([12, 22, 22]), toU8a('create the first branch'));
       trie.put(new Uint8Array([12, 34, 44]), toU8a('create the last branch'));
@@ -235,7 +235,7 @@ describe.skip('Ethereum', () => {
       expect(null).toEqual(value);
     });
 
-    it('should delete from a branch->branch-extension', () => {
+    it('should delete from a branch->branch-extension', (): void => {
       trie.put(new Uint8Array([11, 11, 11]), toU8a('first'));
       trie.put(new Uint8Array([12, 22, 22]), toU8a('create the first branch'));
       trie.put(new Uint8Array([12, 33, 33]), toU8a('create the middle branch'));
@@ -247,7 +247,7 @@ describe.skip('Ethereum', () => {
       expect(null).toEqual(value);
     });
 
-    it('should delete from a extension->branch-extension', () => {
+    it('should delete from a extension->branch-extension', (): void => {
       trie.put(new Uint8Array([11, 11, 11]), toU8a('first'));
       trie.put(new Uint8Array([12, 22, 22]), toU8a('create the first branch'));
       trie.put(new Uint8Array([12, 33, 33]), toU8a('create the middle branch'));
@@ -259,7 +259,7 @@ describe.skip('Ethereum', () => {
       expect(null).toEqual(value);
     });
 
-    it('should delete from a extension->branch-branch', () => {
+    it('should delete from a extension->branch-branch', (): void => {
       trie.put(new Uint8Array([11, 11, 11]), toU8a('first'));
       trie.put(new Uint8Array([12, 22, 22]), toU8a('create the first branch'));
       trie.put(new Uint8Array([12, 33, 33]), toU8a('create the middle branch'));

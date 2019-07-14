@@ -6,8 +6,8 @@ import BN from 'bn.js';
 
 import toU8a from './toU8a';
 
-describe('toU8a', () => {
-  it('returns a Uint8Array input as-is', () => {
+describe('toU8a', (): void => {
+  it('returns a Uint8Array input as-is', (): void => {
     expect(
       toU8a(new Uint8Array([1, 2, 3]))
     ).toEqual(
@@ -15,7 +15,7 @@ describe('toU8a', () => {
     );
   });
 
-  it('converts Buffers (uses as Uint8Array)', () => {
+  it('converts Buffers (uses as Uint8Array)', (): void => {
     expect(
       toU8a(Buffer.from([0x12, 0x34, 0x56]))
     ).toEqual(
@@ -23,7 +23,7 @@ describe('toU8a', () => {
     );
   });
 
-  it('returns undefined as empty', () => {
+  it('returns undefined as empty', (): void => {
     expect(
       toU8a()
     ).toEqual(
@@ -31,7 +31,7 @@ describe('toU8a', () => {
     );
   });
 
-  it('returns null as empty', () => {
+  it('returns null as empty', (): void => {
     expect(
       toU8a(null)
     ).toEqual(
@@ -39,7 +39,7 @@ describe('toU8a', () => {
     );
   });
 
-  it('converts hex strings', () => {
+  it('converts hex strings', (): void => {
     expect(
       toU8a('0x123456')
     ).toEqual(
@@ -47,7 +47,7 @@ describe('toU8a', () => {
     );
   });
 
-  it('converts UTF-8 strings', () => {
+  it('converts UTF-8 strings', (): void => {
     expect(
       toU8a('Привет, мир!')
     ).toEqual(
@@ -55,7 +55,7 @@ describe('toU8a', () => {
     );
   });
 
-  it('converts numbers', () => {
+  it('converts numbers', (): void => {
     expect(
       toU8a(0x123456)
     ).toEqual(
@@ -63,7 +63,7 @@ describe('toU8a', () => {
     );
   });
 
-  it('converts BN', () => {
+  it('converts BN', (): void => {
     expect(
       toU8a(new BN(0x123456))
     ).toEqual(
@@ -71,9 +71,9 @@ describe('toU8a', () => {
     );
   });
 
-  it('throws on unknown type', () => {
+  it('throws on unknown type', (): void => {
     expect(
-      () => toU8a(true)
+      (): Uint8Array => toU8a(true)
     ).toThrow(/invalid type/);
   });
 });

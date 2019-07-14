@@ -6,8 +6,8 @@ import stringToU8a from '@polkadot/util/string/toU8a';
 
 import fromNibbles from './fromNibbles';
 
-describe('fromNibbles', () => {
-  it('converts a single', () => {
+describe('fromNibbles', (): void => {
+  it('converts a single', (): void => {
     expect(
       fromNibbles(
         new Uint8Array([4, 1])
@@ -17,7 +17,7 @@ describe('fromNibbles', () => {
     );
   });
 
-  it('converts an number of values', () => {
+  it('converts an number of values', (): void => {
     expect(
       fromNibbles(
         new Uint8Array([3, 1, 2, 3, 4, 5])
@@ -27,7 +27,7 @@ describe('fromNibbles', () => {
     );
   });
 
-  it('converts an number of values (array)', () => {
+  it('converts an number of values (array)', (): void => {
     expect(
       fromNibbles(Uint8Array.from([
         3, 1, 2, 3, 4, 5, 7, 8

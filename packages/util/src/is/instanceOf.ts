@@ -16,6 +16,7 @@
  * console.log('isInstanceOf', isInstanceOf(new Array(0), Array)); // => true
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function isInstanceOf (value: any, clazz: any): boolean {
   return value instanceof clazz;
 }

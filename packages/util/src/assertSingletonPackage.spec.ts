@@ -4,18 +4,18 @@
 
 import { assertSingletonPackage } from '.';
 
-describe('assertSingletonPackage', () => {
+describe('assertSingletonPackage', (): void => {
   const NAME = 'assertSingletonPackage';
 
-  it('should not throw the first time', () => {
+  it('should not throw the first time', (): void => {
     expect(
-      () => assertSingletonPackage(NAME)
+      (): void => assertSingletonPackage(NAME)
     ).not.toThrow();
   });
 
-  it('should throw the second time', () => {
+  it('should throw the second time', (): void => {
     expect(
-      () => assertSingletonPackage(NAME)
+      (): void => assertSingletonPackage(NAME)
     ).toThrow(/Multiple versions of assertSingletonPackage detected/);
   });
 });

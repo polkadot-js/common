@@ -4,8 +4,8 @@
 
 import { naclKeypairFromString } from '..';
 
-describe('naclKeypairFromSeed', () => {
-  it('generates a valid publicKey/secretKey pair', () => {
+describe('naclKeypairFromSeed', (): void => {
+  it('generates a valid publicKey/secretKey pair', (): void => {
     expect(
       naclKeypairFromString('test')
     ).toEqual({

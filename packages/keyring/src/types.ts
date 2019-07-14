@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/class-name-casing */
 // Copyright 2017-2019 @polkadot/keyring authors & contributors
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
@@ -5,29 +6,30 @@
 import { Prefix } from '@polkadot/util-crypto/address/types';
 import { KeypairType } from '@polkadot/util-crypto/types';
 
-export type KeyringOptions = {
-  addressPrefix?: Prefix,
-  type?: KeypairType
-};
+export interface KeyringOptions {
+  addressPrefix?: Prefix;
+  type?: KeypairType;
+}
 
-export type KeyringPair$Meta = {
-  [index: string]: any
-};
+export interface KeyringPair$Meta {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [index: string]: any;
+}
 
 export type KeyringPair$JsonVersion = '0' | '1' | '2';
 
-export type KeyringPair$JsonEncoding = {
-  content: ['pkcs8', KeypairType],
-  type: 'xsalsa20-poly1305' | 'none',
-  version: KeyringPair$JsonVersion
-};
+export interface KeyringPair$JsonEncoding {
+  content: ['pkcs8', KeypairType];
+  type: 'xsalsa20-poly1305' | 'none';
+  version: KeyringPair$JsonVersion;
+}
 
-export type KeyringPair$Json = {
-  address: string,
-  encoded: string,
-  encoding: KeyringPair$JsonEncoding,
-  meta: KeyringPair$Meta
-};
+export interface KeyringPair$Json {
+  address: string;
+  encoded: string;
+  encoding: KeyringPair$JsonEncoding;
+  meta: KeyringPair$Meta;
+}
 
 export interface KeyringPair {
   readonly type: KeypairType;
@@ -47,14 +49,14 @@ export interface KeyringPair {
 
 export interface KeyringPairs {
   add: (pair: KeyringPair) => KeyringPair;
-  all: () => Array<KeyringPair>;
+  all: () => KeyringPair[];
   get: (address: string | Uint8Array) => KeyringPair;
   remove: (address: string | Uint8Array) => void;
 }
 
 export interface KeyringInstance {
-  readonly pairs: Array<KeyringPair>;
-  readonly publicKeys: Array<Uint8Array>;
+  readonly pairs: KeyringPair[];
+  readonly publicKeys: Uint8Array[];
   readonly type: KeypairType;
 
   decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: boolean): Uint8Array;
@@ -69,8 +71,8 @@ export interface KeyringInstance {
   addFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
   createFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
   getPair (address: string | Uint8Array): KeyringPair;
-  getPairs (): Array<KeyringPair>;
-  getPublicKeys (): Array<Uint8Array>;
+  getPairs (): KeyringPair[];
+  getPublicKeys (): Uint8Array[];
   removePair (address: string | Uint8Array): void;
   toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json;
 }

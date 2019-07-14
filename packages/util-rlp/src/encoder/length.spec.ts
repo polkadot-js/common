@@ -4,8 +4,8 @@
 
 import encodeLength from './length';
 
-describe('encodeLength', () => {
-  it('returns offset + length where <= 55', () => {
+describe('encodeLength', (): void => {
+  it('returns offset + length where <= 55', (): void => {
     expect(
       encodeLength(5, 6)
     ).toEqual(
@@ -13,7 +13,7 @@ describe('encodeLength', () => {
     );
   });
 
-  it('encodes > 55 length properly (short)', () => {
+  it('encodes > 55 length properly (short)', (): void => {
     expect(
       encodeLength(56, 6)
     ).toEqual(
@@ -21,7 +21,7 @@ describe('encodeLength', () => {
     );
   });
 
-  it('encodes > 55 length properly (long)', () => {
+  it('encodes > 55 length properly (long)', (): void => {
     expect(
       encodeLength(512, 6)
     ).toEqual(

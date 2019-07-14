@@ -4,25 +4,26 @@
 
 import { Chainspec } from './types';
 
+// eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
 export default {
-  'name': 'Alexander',
-  'id': 'alexander',
-  'bootNodes': [
+  name: 'Alexander',
+  id: 'alexander',
+  bootNodes: [
     '/ip4/104.211.54.233/tcp/30363/p2p/QmUghPWmHR8pQbZyBMeYzvPcH7VRcTiBibcyBG7wMKHaSZ',
     '/ip4/104.211.48.51/tcp/30363/p2p/QmYWrEtg4iQYwV9PG37PhfLHLATQJUTYiZRyoUvSYny9ba',
     '/ip4/104.211.48.247/tcp/30363/p2p/QmYT3p4qGj1jwb7hDx1A6cDzAPtaHp3VR34vmw5BsXXB8D',
     '/ip4/40.117.153.33/tcp/30363/p2p/QmPiGU1jwL9UDw2FMyMQFr9FdpF9hURKxkfy6PWw6aLsur'
   ],
-  'telemetryUrl': 'wss://telemetry.polkadot.io/submit/',
-  'protocolId': 'dot',
-  'consensusEngine': null,
-  'properties': {
-    'tokenDecimals': 15,
-    'tokenSymbol': 'DOT'
+  telemetryUrl: 'wss://telemetry.polkadot.io/submit/',
+  protocolId: 'dot',
+  consensusEngine: null,
+  properties: {
+    tokenDecimals: 15,
+    tokenSymbol: 'DOT'
   },
-  'genesisRoot': '0xb7d6370bd450b32ca9f7ee8a9c914083bd08367c26586b03dca26672e6fa2707',
-  'genesis': {
-    'raw': {
+  genesisRoot: '0xb7d6370bd450b32ca9f7ee8a9c914083bd08367c26586b03dca26672e6fa2707',
+  genesis: {
+    raw: {
       '0x2ec6e5652282d579398fb8fdfa531ef6': '0x0000000000000000',
       '0x4664fb5d4e16f894df23cadb3faaa9a6': '0x04000000',
       '0xfc2dc4b8bb0b9ca8f01a73a726f7c7f5': '0x00e1000000000000',

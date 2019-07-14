@@ -4,8 +4,8 @@
 
 import { stringCamelCase } from '.';
 
-describe('stringCamelCase', () => {
-  it('works correctly', () => {
+describe('stringCamelCase', (): void => {
+  it('works correctly', (): void => {
     expect(
       stringCamelCase('Snake_case')
     ).toBe('snakeCase');

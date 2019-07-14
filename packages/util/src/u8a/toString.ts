@@ -5,7 +5,7 @@
 let decoder: { decode: (value: Uint8Array) => string };
 
 function polyfilledDecode (value: Uint8Array): string {
-  return value.reduce((str, code) => {
+  return value.reduce((str, code): string => {
     return str + String.fromCharCode(code);
   }, '');
 }

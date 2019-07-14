@@ -4,58 +4,58 @@
 
 import { isHex } from '.';
 
-describe('isHex', () => {
+describe('isHex', (): void => {
   const test = '1234abcd';
 
-  it('returns true on 0x hex values', () => {
+  it('returns true on 0x hex values', (): void => {
     expect(
       isHex('0x')
     ).toEqual(true);
   });
 
-  it('returns true on hex values', () => {
+  it('returns true on hex values', (): void => {
     expect(
       isHex(`0x${test}`)
     ).toEqual(true);
   });
 
-  it('returns true on hex values with String', () => {
+  it('returns true on hex values with String', (): void => {
     expect(
-      isHex(new String(`0x${test}`))
+      isHex(String(`0x${test}`))
     ).toEqual(true);
   });
 
-  it('returns false on hex values (non % 2)', () => {
+  it('returns false on hex values (non % 2)', (): void => {
     expect(
       isHex(`0x${test}0`)
     ).toEqual(false);
   });
 
-  it('returns true on uppercase values', () => {
+  it('returns true on uppercase values', (): void => {
     expect(
       isHex(`0x${test.toUpperCase()}`)
     ).toEqual(true);
   });
 
-  it('return false on hex values unprefixed', () => {
+  it('return false on hex values unprefixed', (): void => {
     expect(
       isHex(test)
     ).toEqual(false);
   });
 
-  it('returns false on non-string values', () => {
+  it('returns false on non-string values', (): void => {
     expect(
       isHex(false)
     ).toEqual(false);
   });
 
-  it('returns true when valid hex and bitLength matches', () => {
+  it('returns true when valid hex and bitLength matches', (): void => {
     expect(
       isHex('0x1234', 16)
     ).toEqual(true);
   });
 
-  it('returns true when valid hex and bitLength does not match', () => {
+  it('returns true when valid hex and bitLength does not match', (): void => {
     expect(
       isHex('0x1234', 8)
     ).toEqual(false);

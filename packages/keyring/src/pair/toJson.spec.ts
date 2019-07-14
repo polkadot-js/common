@@ -6,8 +6,8 @@ import testingPairs from '../testingPairs';
 
 const keyring = testingPairs({ type: 'ed25519' }, false);
 
-describe('toJson', () => {
-  it('creates an unencoded output with no passphrase', () => {
+describe('toJson', (): void => {
+  it('creates an unencoded output with no passphrase', (): void => {
     expect(
       keyring.alice.toJson()
     ).toMatchObject({
@@ -25,7 +25,7 @@ describe('toJson', () => {
     });
   });
 
-  it('creates an encoded output with passphrase', () => {
+  it('creates an encoded output with passphrase', (): void => {
     const json = keyring.alice.toJson('testing');
 
     expect(json.encoded).toHaveLength(316);

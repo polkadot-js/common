@@ -20,8 +20,9 @@ import isUndefined from '../is/undefined';
  * arrayFilter([0, void 0, true, null, false, ''], false); // [0, true, false, '']
  * ```
  */
-export default function arrayFilter (array: Array<any>, allowNulls: boolean = true): Array<any> {
-  return array.filter((value) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function arrayFilter (array: any[], allowNulls: boolean = true): any[] {
+  return array.filter((value): boolean => {
     return !isUndefined(value) && (allowNulls || !isNull(value));
   });
 }

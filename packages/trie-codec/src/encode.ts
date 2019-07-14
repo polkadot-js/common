@@ -29,18 +29,19 @@ function encodeKey (input: null | Uint8Array): Uint8Array {
     : fromNibbles(nibbles);
 }
 
-function encodeValue (input: null | Uint8Array | Array<null | Uint8Array>): Uint8Array {
+function encodeValue (input: null | Uint8Array | (null | Uint8Array)[]): Uint8Array {
   if (!input) {
     return EMPTY;
   }
 
   // l.debug(() => ['encodeValue', { input, encoded }]);
 
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   return compactAddLength(encode(input));
 }
 
-function _encodeBranch (header: NodeHeader, input: Array<null | Uint8Array>): Uint8Array {
-  let values: Array<Uint8Array> = [];
+function _encodeBranch (header: NodeHeader, input: (null | Uint8Array)[]): Uint8Array {
+  const values: Uint8Array[] = [];
   let bitmap = 0;
 
   for (let index = 0; index < BRANCH_VALUE_INDEX; index++) {
@@ -61,7 +62,7 @@ function _encodeBranch (header: NodeHeader, input: Array<null | Uint8Array>): Ui
   );
 }
 
-function _encodeKv (header: NodeHeader, input: Array<null | Uint8Array>): Uint8Array {
+function _encodeKv (header: NodeHeader, input: (null | Uint8Array)[]): Uint8Array {
   const [path, value] = input;
 
   return u8aConcat(
@@ -71,7 +72,7 @@ function _encodeKv (header: NodeHeader, input: Array<null | Uint8Array>): Uint8A
   );
 }
 
-export default function encode (input?: null | Uint8Array | Array<null | Uint8Array>): Uint8Array {
+export default function encode (input?: null | Uint8Array | (null | Uint8Array)[]): Uint8Array {
   if (isU8a(input)) {
     return input;
   }

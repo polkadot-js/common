@@ -7,9 +7,9 @@ import { BaseDb, ProgressCb } from '../types';
 import { LRUMap } from 'lru_map';
 import { logger } from '@polkadot/util';
 
-type CachedValue = {
-  value: Uint8Array | null
-};
+interface CachedValue {
+  value: Uint8Array | null;
+}
 
 const DEFAULT_ITEM_COUNT = 4096;
 
@@ -17,58 +17,59 @@ const l = logger('db/lru');
 
 export default class LruDb implements BaseDb {
   private backing: BaseDb;
+
   private lru: LRUMap<string, CachedValue>;
 
-  constructor (backing: BaseDb, itemCount: number = DEFAULT_ITEM_COUNT) {
+  public constructor (backing: BaseDb, itemCount: number = DEFAULT_ITEM_COUNT) {
     this.backing = backing;
     this.lru = new LRUMap(itemCount);
   }
 
-  close (): void {
-    l.debug(() => ['close']);
+  public close (): void {
+    l.debug((): string[] => ['close']);
 
     this.lru.clear();
     this.backing.close();
   }
 
-  open (): void {
-    l.debug(() => ['open']);
+  public open (): void {
+    l.debug((): string[] => ['open']);
 
     this.lru.clear();
     this.backing.open();
   }
 
-  drop (): void {
+  public drop (): void {
     this.backing.drop();
   }
 
-  empty (): void {
-    l.debug(() => ['empty']);
+  public empty (): void {
+    l.debug((): string[] => ['empty']);
 
     this.lru.clear();
     this.backing.empty();
   }
 
-  rename (base: string, file: string): void {
+  public rename (base: string, file: string): void {
     this.backing.rename(base, file);
   }
 
-  maintain (fn: ProgressCb): void {
+  public maintain (fn: ProgressCb): void {
     this.backing.maintain(fn);
   }
 
-  size (): number {
+  public size (): number {
     return this.backing.size();
   }
 
-  del (key: Uint8Array): void {
+  public del (key: Uint8Array): void {
     const keyStr = key.toString();
 
     this.backing.del(key);
     this.lru.set(keyStr, { value: null });
   }
 
-  get (key: Uint8Array): Uint8Array | null {
+  public get (key: Uint8Array): Uint8Array | null {
     const keyStr = key.toString();
     const cached = this.lru.get(keyStr);
 
@@ -84,30 +85,30 @@ export default class LruDb implements BaseDb {
   }
 
   // Convenience methods used in tests
-  _getLru (key: Uint8Array): CachedValue | undefined {
+  public _getLru (key: Uint8Array): CachedValue | undefined {
     return this.lru.get(key.toString());
   }
 
-  put (key: Uint8Array, value: Uint8Array): void {
+  public put (key: Uint8Array, value: Uint8Array): void {
     const keyStr = key.toString();
 
     this.backing.put(key, value);
     this.lru.set(keyStr, { value });
   }
 
-  txCommit (): void {
+  public txCommit (): void {
     if (this.backing.txCommit) {
       this.backing.txCommit();
     }
   }
 
-  txRevert (): void {
+  public txRevert (): void {
     if (this.backing.txRevert) {
       this.backing.txRevert();
     }
   }
 
-  txStart (): void {
+  public txStart (): void {
     if (this.backing.txStart) {
       this.backing.txStart();
     }

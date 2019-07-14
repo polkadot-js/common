@@ -6,12 +6,12 @@ import { Codec } from '@polkadot/trie-codec/types';
 
 import { trieRoot } from '@polkadot/trie-hash';
 
-export type Constants = {
-  EMPTY_NODE: Uint8Array,
-  EMPTY_HASH: Uint8Array,
-  EMPTY_HASH_STR: string,
-  EMPTY_U8A: Uint8Array
-};
+export interface Constants {
+  EMPTY_NODE: Uint8Array;
+  EMPTY_HASH: Uint8Array;
+  EMPTY_HASH_STR: string;
+  EMPTY_U8A: Uint8Array;
+}
 
 export default function (codec: Codec): Constants {
   const EMPTY_NODE = new Uint8Array();

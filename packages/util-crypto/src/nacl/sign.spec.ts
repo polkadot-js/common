@@ -7,12 +7,12 @@ import { waitReady } from '@polkadot/wasm-crypto';
 
 import { naclSign, naclKeypairFromSeed } from '.';
 
-describe('naclSign', () => {
-  beforeEach(async () => {
+describe('naclSign', (): void => {
+  beforeEach(async (): Promise<void> => {
     await waitReady();
   });
 
-  it('returns a valid signature for the message', () => {
+  it('returns a valid signature for the message', (): void => {
     expect(
       naclSign(
         new Uint8Array([0x61, 0x62, 0x63, 0x64]),

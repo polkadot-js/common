@@ -5,25 +5,25 @@
 import DeriveJunction from './DeriveJunction';
 import { assert } from '@polkadot/util';
 
-const RE_JUNCTION = /\/(\/?)([^\/]+)/g;
+const RE_JUNCTION = /\/(\/?)([^/]+)/g;
 
-type ExtractResult = {
-  parts: null | Array<string>,
-  path: Array<DeriveJunction>
-};
+export interface ExtractResult {
+  parts: null | string[];
+  path: DeriveJunction[];
+}
 
 /**
  * @description Extract derivation juntions from the supplied path
  */
 export default function keyExtractPath (derivePath: string): ExtractResult {
   const parts = derivePath.match(RE_JUNCTION);
-  const path: Array<DeriveJunction> = [];
+  const path: DeriveJunction[] = [];
   let constructed = '';
 
   if (parts) {
     constructed = parts.join('');
 
-    parts.forEach((value: string) => {
+    parts.forEach((value: string): void => {
       path.push(DeriveJunction.from(value.substr(1)));
     });
   }

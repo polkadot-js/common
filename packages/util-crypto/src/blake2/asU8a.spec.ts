@@ -7,12 +7,12 @@ import { waitReady } from '@polkadot/wasm-crypto';
 
 import { blake2AsU8a } from '.';
 
-describe('blake2AsU8a', () => {
-  beforeEach(async () => {
+describe('blake2AsU8a', (): void => {
+  beforeEach(async (): Promise<void> => {
     await waitReady();
   });
 
-  it('returns a 64-bit value by default', () => {
+  it('returns a 64-bit value by default', (): void => {
     expect(
       blake2AsU8a('abc')
     ).toEqual(
@@ -20,7 +20,7 @@ describe('blake2AsU8a', () => {
     );
   });
 
-  it('returns a 128-bit value (as specified)', () => {
+  it('returns a 128-bit value (as specified)', (): void => {
     expect(
       blake2AsU8a('abc', 128)
     ).toEqual(
@@ -28,7 +28,7 @@ describe('blake2AsU8a', () => {
     );
   });
 
-  it('returns a 256-bit value (as specified)', () => {
+  it('returns a 256-bit value (as specified)', (): void => {
     expect(
       blake2AsU8a('abc', 256)
     ).toEqual(
@@ -36,7 +36,7 @@ describe('blake2AsU8a', () => {
     );
   });
 
-  it('returns a 512-bit value (as specified)', () => {
+  it('returns a 512-bit value (as specified)', (): void => {
     expect(
       blake2AsU8a('abc', 512)
     ).toEqual(

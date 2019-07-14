@@ -4,14 +4,14 @@
 
 import { isError } from '.';
 
-describe('isError', () => {
-  it('returns true when an Error value', () => {
+describe('isError', (): void => {
+  it('returns true when an Error value', (): void => {
     expect(
       isError(new Error('testing'))
     ).toEqual(true);
   });
 
-  it('returns false on non-Error values', () => {
+  it('returns false on non-Error values', (): void => {
     expect(
       isError(0)
     ).toEqual(false);

@@ -4,8 +4,8 @@
 
 import compactStripLength from './stripLength';
 
-describe('compactStripLength', () => {
-  it('correctly removes the length prefix', () => {
+describe('compactStripLength', (): void => {
+  it('correctly removes the length prefix', (): void => {
     expect(
       compactStripLength(Uint8Array.from([2 << 2, 12, 13]))
     ).toEqual([

@@ -4,31 +4,31 @@
 
 import { assert } from '.';
 
-describe('assert', () => {
-  it('should not throw an error when test is true', () => {
+describe('assert', (): void => {
+  it('should not throw an error when test is true', (): void => {
     expect(
       assert(true, 'nothing should be thrown')
     ).toEqual(true);
   });
 
-  it('should throw an error when test is not true', () => {
+  it('should throw an error when test is not true', (): void => {
     expect(
-      () => assert(false, 'error thrown')
+      (): boolean => assert(false, 'error thrown')
     ).toThrow(/error thrown/);
   });
 
-  it('should throw an error when message: () => string', () => {
+  it('should throw an error when message: () => string', (): void => {
     expect(
-      () => assert(false, () => 'message from function')
+      (): boolean => assert(false, (): string => 'message from function')
     ).toThrow(/message from function/);
   });
 
-  it('throws a valid constructed ExtError', () => {
+  it('throws a valid constructed ExtError', (): void => {
     try {
-      assert(false, 'error', -666, { some: 'data' });
+      assert(false, 'error', -666, 'data');
     } catch (error) {
       expect(error.code).toEqual(-666);
-      expect(error.data).toEqual({ some: 'data' });
+      expect(error.data).toEqual('data');
       expect(error.message).toEqual('error');
     }
   });

@@ -7,12 +7,12 @@ import { waitReady } from '@polkadot/wasm-crypto';
 
 import { xxhashAsU8a } from '.';
 
-describe('xxhashAsU8a', () => {
-  beforeEach(async () => {
+describe('xxhashAsU8a', (): void => {
+  beforeEach(async (): Promise<void> => {
     await waitReady();
   });
 
-  it('returns a 64-bit value by default', () => {
+  it('returns a 64-bit value by default', (): void => {
     expect(
       xxhashAsU8a('abc')
     ).toEqual(
@@ -20,7 +20,7 @@ describe('xxhashAsU8a', () => {
     );
   });
 
-  it('returns a 128-bit value (as specified)', () => {
+  it('returns a 128-bit value (as specified)', (): void => {
     expect(
       xxhashAsU8a('abc', 128)
     ).toEqual(
@@ -28,7 +28,7 @@ describe('xxhashAsU8a', () => {
     );
   });
 
-  it('returns a 256-bit value (as specified)', () => {
+  it('returns a 256-bit value (as specified)', (): void => {
     expect(
       xxhashAsU8a('abc', 256)
     ).toEqual(

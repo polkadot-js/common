@@ -6,14 +6,14 @@ import BN from 'bn.js';
 
 import { isBn } from '.';
 
-describe('isBN', () => {
-  it('returns true when a BN value', () => {
+describe('isBN', (): void => {
+  it('returns true when a BN value', (): void => {
     expect(
       isBn(new BN(123))
     ).toEqual(true);
   });
 
-  it('returns false on non-BN values', () => {
+  it('returns false on non-BN values', (): void => {
     expect(
       isBn(0)
     ).toEqual(false);

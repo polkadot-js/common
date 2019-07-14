@@ -4,8 +4,8 @@
 
 import { naclEncrypt } from '.';
 
-describe('naclEncrypt', () => {
-  it('encrypts a message', () => {
+describe('naclEncrypt', (): void => {
+  it('encrypts a message', (): void => {
     const secret = new Uint8Array(32);
     const message = new Uint8Array([1, 2, 3, 4, 5, 4, 3, 2, 1]);
 

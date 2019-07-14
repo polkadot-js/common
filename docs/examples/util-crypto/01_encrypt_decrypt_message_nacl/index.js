@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { naclEncrypt, naclDecrypt } = require('@polkadot/util-crypto');
 
 async function main () {
@@ -20,4 +21,4 @@ async function main () {
   console.log(`Does the decrypted message match the original message? ${isMatch}`);
 }
 
-main().catch(console.error).finally(_ => process.exit());
+main().catch(console.error).finally(() => process.exit());

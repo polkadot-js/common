@@ -4,8 +4,8 @@
 
 import { xxhash64AsRaw } from '.';
 
-describe('xxhash64AsRaw', () => {
-  it('creates the correct non-prefixed hex output', () => {
+describe('xxhash64AsRaw', (): void => {
+  it('creates the correct non-prefixed hex output', (): void => {
     expect(
       xxhash64AsRaw('abcd', 0xabcd)
     ).toEqual('e29f70f8b8c96df7');

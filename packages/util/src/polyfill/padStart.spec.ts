@@ -2,22 +2,24 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-describe('String padStart', () => {
+describe('String padStart', (): void => {
   let stringStart: (length: number, fill?: string) => string;
 
-  beforeEach(() => {
+  beforeEach((): void => {
     stringStart = String.prototype.padStart;
 
+    // eslint-disable-next-line no-extend-native,@typescript-eslint/no-explicit-any
     String.prototype.padStart = null as any;
 
     require('./padStart');
   });
 
-  afterEach(() => {
+  afterEach((): void => {
+    // eslint-disable-next-line no-extend-native
     String.prototype.padStart = stringStart;
   });
 
-  it('does padding', () => {
+  it('does padding', (): void => {
     expect('test'.padStart(8, 'A')).toEqual('AAAAtest');
     expect('test'.padStart(8)).toEqual('    test');
   });

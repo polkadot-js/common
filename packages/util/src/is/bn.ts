@@ -19,6 +19,7 @@ import BN from 'bn.js';
  * console.log('isBn', isBn(new BN(1))); // => true
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function isBn (value: any): value is BN {
   return BN.isBN(value);
 }

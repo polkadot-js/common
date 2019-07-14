@@ -7,8 +7,8 @@ import { waitReady } from '@polkadot/wasm-crypto';
 
 import { keccakAsU8a } from '.';
 
-describe('keccakAsU8a', () => {
-  beforeEach(async () => {
+describe('keccakAsU8a', (): void => {
+  beforeEach(async (): Promise<void> => {
     await waitReady();
   });
 
@@ -17,13 +17,13 @@ describe('keccakAsU8a', () => {
     '0x2d07364b5c231c56ce63d49430e085ea3033c750688ba532b24029124c26ca5e'
   );
 
-  it('returns an hex representation (string)', () => {
+  it('returns an hex representation (string)', (): void => {
     expect(
       keccakAsU8a(input)
     ).toEqual(output);
   });
 
-  it('returns an hex representation (Buffer)', () => {
+  it('returns an hex representation (Buffer)', (): void => {
     expect(
       keccakAsU8a(
         Buffer.from(input)
@@ -31,7 +31,7 @@ describe('keccakAsU8a', () => {
     ).toEqual(output);
   });
 
-  it('returns an hex representation (Uint8Array)', () => {
+  it('returns an hex representation (Uint8Array)', (): void => {
     expect(
       keccakAsU8a(
         stringToU8a(input)

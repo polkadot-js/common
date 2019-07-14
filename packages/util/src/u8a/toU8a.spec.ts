@@ -4,14 +4,14 @@
 
 import { u8aToU8a } from '.';
 
-describe('u8aToU8a', () => {
-  it('returns an empty Uint8Array when null provided', () => {
+describe('u8aToU8a', (): void => {
+  it('returns an empty Uint8Array when null provided', (): void => {
     expect(
       u8aToU8a(null)
     ).toHaveLength(0);
   });
 
-  it('returns a Uint8Array (hex input)', () => {
+  it('returns a Uint8Array (hex input)', (): void => {
     expect(
       u8aToU8a('0x80000a')
     ).toEqual(
@@ -19,13 +19,13 @@ describe('u8aToU8a', () => {
     );
   });
 
-  it('returns Uint8Array (string input)', () => {
+  it('returns Uint8Array (string input)', (): void => {
     expect(
       u8aToU8a('abcde fghij')
     ).toEqual(new Uint8Array([97, 98, 99, 100, 101, 32, 102, 103, 104, 105, 106]));
   });
 
-  it('returns a Uint8Array (buffer input)', () => {
+  it('returns a Uint8Array (buffer input)', (): void => {
     expect(
       u8aToU8a(Buffer.from('80000a', 'hex'))
     ).toEqual(
@@ -33,7 +33,7 @@ describe('u8aToU8a', () => {
     );
   });
 
-  it('creates from Array', () => {
+  it('creates from Array', (): void => {
     expect(
       u8aToU8a([128, 0, 10, 11, 12])
     ).toEqual(
@@ -41,7 +41,7 @@ describe('u8aToU8a', () => {
     );
   });
 
-  it('returns a Uint8Array as-is (u8a input)', () => {
+  it('returns a Uint8Array as-is (u8a input)', (): void => {
     expect(
       u8aToU8a(new Uint8Array([128, 0, 10]))
     ).toEqual(

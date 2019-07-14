@@ -34,7 +34,7 @@ export type NodeNotEmpty = NodeKv | NodeBranch;
 export type Node = NodeEmpty | NodeNotEmpty;
 
 // root, encoded, childroots
-export type TrieEntry = [Uint8Array, Uint8Array, Array<Uint8Array>];
+export type TrieEntry = [Uint8Array, Uint8Array, Uint8Array[]];
 
 export interface TrieDb extends TxDb {
   readonly db: TxDb;
@@ -45,6 +45,6 @@ export interface TrieDb extends TxDb {
   getEntry (root?: Uint8Array): TrieEntry | null;
   getNode (hash?: Uint8Array): Node;
 
-  entries (): Array<TrieEntry>;
+  entries (): TrieEntry[];
   snapshot (dest: TrieDb, fn?: ProgressCb): number;
 }

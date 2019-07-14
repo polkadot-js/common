@@ -4,14 +4,14 @@
 
 import { stringToU8a } from '..';
 
-describe('stringToU8a', () => {
-  it('decodes to an empty string for undefined', () => {
+describe('stringToU8a', (): void => {
+  it('decodes to an empty string for undefined', (): void => {
     expect(
       stringToU8a()
     ).toEqual(new Uint8Array([]));
   });
 
-  it('encodes the string correctly', () => {
+  it('encodes the string correctly', (): void => {
     expect(
       stringToU8a('Привет, мир!')
     ).toEqual(

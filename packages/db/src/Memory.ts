@@ -2,8 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { BaseDbOptions } from './types';
-
 import MemoryDb from './engines/MemoryDb';
 import TransactionDb from './engines/TransactionDb';
 
@@ -47,7 +45,7 @@ import TransactionDb from './engines/TransactionDb';
  * memoryDb.del(key);
  *
  * // Transaction to Store key/value pair in transaction db
- * const isTxSuccess = txDb.transaction(() => {
+ * const isTxSuccess = txDb.transaction((): void => {
  *   txDb.put(key, value);
  *
  *   // Boolean to indicate whether transaction was successful or not
@@ -64,7 +62,7 @@ import TransactionDb from './engines/TransactionDb';
  * ```
  */
 export default class Memory extends TransactionDb {
-  constructor (options?: BaseDbOptions) {
+  public constructor () {
     super(new MemoryDb());
   }
 }

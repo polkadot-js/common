@@ -2,19 +2,19 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-export type ProgressValue = {
-  isCompleted?: boolean,
-  keys: number,
-  percent: number
-};
+export interface ProgressValue {
+  isCompleted?: boolean;
+  keys: number;
+  percent: number;
+}
 
 export type ProgressCb = (progress: ProgressValue) => void;
 
-export type BaseDbOptions = {
-  isCompressed?: boolean,
-  isLru?: boolean,
-  isNative?: boolean
-};
+export interface BaseDbOptions {
+  isCompressed?: boolean;
+  isLru?: boolean;
+  isNative?: boolean;
+}
 
 export interface BaseDb {
   close (): void;

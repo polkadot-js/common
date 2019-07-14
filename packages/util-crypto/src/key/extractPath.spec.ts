@@ -2,10 +2,10 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import keyExtractPath from './extractPath';
+import keyExtractPath, { ExtractResult } from './extractPath';
 
-describe('keyExtractPath', () => {
-  it('extracts properly from soft', () => {
+describe('keyExtractPath', (): void => {
+  it('extracts properly from soft', (): void => {
     expect(
       keyExtractPath('/1')
     ).toEqual({
@@ -16,7 +16,7 @@ describe('keyExtractPath', () => {
     });
   });
 
-  it('extracts properly from hard', () => {
+  it('extracts properly from hard', (): void => {
     expect(
       keyExtractPath('//1')
     ).toEqual({
@@ -27,7 +27,7 @@ describe('keyExtractPath', () => {
     });
   });
 
-  it('extracts properly from hard/soft', () => {
+  it('extracts properly from hard/soft', (): void => {
     expect(
       keyExtractPath('//1/2')
     ).toEqual({
@@ -39,15 +39,15 @@ describe('keyExtractPath', () => {
     });
   });
 
-  it('does not extract from invalid paths', () => {
+  it('does not extract from invalid paths', (): void => {
     expect(
-      () => keyExtractPath('1/2')
+      (): ExtractResult => keyExtractPath('1/2')
     ).toThrow(/does not match input/);
   });
 
-  it('does not extract from invalid paths', () => {
+  it('does not extract from invalid paths', (): void => {
     expect(
-      () => keyExtractPath('hello')
+      (): ExtractResult => keyExtractPath('hello')
     ).toThrow(/does not match input/);
   });
 });

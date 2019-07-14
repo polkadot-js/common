@@ -4,8 +4,8 @@
 
 import { u8aConcat } from '.';
 
-describe('u8aConcat', () => {
-  it('concatenates arrays', () => {
+describe('u8aConcat', (): void => {
+  it('concatenates arrays', (): void => {
     expect(
       u8aConcat(
         new Uint8Array([1, 2, 3, 4]),
@@ -17,7 +17,7 @@ describe('u8aConcat', () => {
     );
   });
 
-  it('concatenates arrays & hex values', () => {
+  it('concatenates arrays & hex values', (): void => {
     expect(
       u8aConcat(
         new Uint8Array([1, 2, 3, 4]),

@@ -12,18 +12,18 @@ import verify from './verify';
 
 const MESSAGE = stringToU8a('this is a message');
 
-describe('sign and verify', () => {
-  beforeEach(async () => {
-    return waitReady();
+describe('sign and verify', (): void => {
+  beforeEach(async (): Promise<void> => {
+    await waitReady();
   });
 
-  it('has 64-byte signatures', () => {
+  it('has 64-byte signatures', (): void => {
     const pair = pairFromSeed(randomAsU8a());
 
     expect(sign(MESSAGE, pair)).toHaveLength(64);
   });
 
-  it('can sign and verify a message', () => {
+  it('can sign and verify a message', (): void => {
     const pair = pairFromSeed(randomAsU8a());
     const signature = sign(MESSAGE, pair);
 

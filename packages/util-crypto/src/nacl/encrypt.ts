@@ -6,10 +6,10 @@ import nacl from 'tweetnacl';
 
 import randomAsU8a from '../random/asU8a';
 
-type Encrypted = {
-  encrypted: Uint8Array,
-  nonce: Uint8Array
-};
+interface Encrypted {
+  encrypted: Uint8Array;
+  nonce: Uint8Array;
+}
 
 /**
  * @name naclEncrypt

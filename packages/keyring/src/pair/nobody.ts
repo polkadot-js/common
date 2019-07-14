@@ -27,8 +27,10 @@ export default function everybody (): KeyringPair {
   return {
     type: 'ed25519',
     address,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void =>
       undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     encodePkcs8: (passphrase?: string): Uint8Array =>
       new Uint8Array(0),
     meta,
@@ -37,12 +39,16 @@ export default function everybody (): KeyringPair {
       // no locking, it is always locked
     },
     publicKey,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     setMeta: (meta: KeyringPair$Meta): void =>
       undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     sign: (message: Uint8Array): Uint8Array =>
       new Uint8Array(64),
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     toJson: (passphrase?: string): KeyringPair$Json =>
       json,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       false
   };

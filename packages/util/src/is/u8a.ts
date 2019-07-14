@@ -18,6 +18,7 @@ import isInstanceOf from './instanceOf';
  * console.log('isU8a', isU8a([])); // => false
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function isU8a (value?: any): value is Uint8Array {
   return isInstanceOf(value, Uint8Array);
 }

@@ -26,9 +26,9 @@ interface Options extends ToBnOptions {
  * bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
  * ```
  */
-export default function bnToU8a (value: BN | number | null, options?: Options): Uint8Array;
-export default function bnToU8a (value: BN | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
-export default function bnToU8a (
+function bnToU8a (value: BN | number | null, options?: Options): Uint8Array;
+function bnToU8a (value: BN | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
+function bnToU8a (
   value: BN | number | null,
   arg1: number | Options = { bitLength: -1, isLe: true, isNegative: false },
   arg2?: boolean
@@ -41,9 +41,9 @@ export default function bnToU8a (
   };
 
   const valueBn = bnToBn(value);
-  let byteLength = _options.bitLength === -1
+  const byteLength = _options.bitLength === -1
     ? Math.ceil(valueBn.bitLength() / 8)
-    : Math.ceil(_options.bitLength! / 8);
+    : Math.ceil((_options.bitLength || 0) / 8);
 
   if (!value) {
     return _options.bitLength === -1
@@ -61,3 +61,5 @@ export default function bnToU8a (
 
   return output;
 }
+
+export default bnToU8a;

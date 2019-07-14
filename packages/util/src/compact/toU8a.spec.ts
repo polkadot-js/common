@@ -6,8 +6,8 @@ import BN from 'bn.js';
 
 import compactToU8a from './toU8a';
 
-describe('encode', () => {
-  it('encodes short u8', () => {
+describe('encode', (): void => {
+  it('encodes short u8', (): void => {
     expect(
       compactToU8a(18)
     ).toEqual(
@@ -15,7 +15,7 @@ describe('encode', () => {
     );
   });
 
-  it('encodes max u8 values', () => {
+  it('encodes max u8 values', (): void => {
     expect(
       compactToU8a(new BN(63))
     ).toEqual(
@@ -23,7 +23,7 @@ describe('encode', () => {
     );
   });
 
-  it('encodes basic u16 value', () => {
+  it('encodes basic u16 value', (): void => {
     expect(
       compactToU8a(511)
     ).toEqual(
@@ -31,7 +31,7 @@ describe('encode', () => {
     );
   });
 
-  it('encodes basic u16 (not at edge)', () => {
+  it('encodes basic u16 (not at edge)', (): void => {
     expect(
       compactToU8a(111)
     ).toEqual(
@@ -39,7 +39,7 @@ describe('encode', () => {
     );
   });
 
-  it('encodes basic u32 values (< 2^30)', () => {
+  it('encodes basic u32 values (< 2^30)', (): void => {
     expect(
       compactToU8a(0x1fff)
     ).toEqual(
@@ -47,7 +47,7 @@ describe('encode', () => {
     );
   });
 
-  it('encodes basic u32 values (short)', () => {
+  it('encodes basic u32 values (short)', (): void => {
     expect(
       compactToU8a(0xffff)
     ).toEqual(
@@ -55,7 +55,7 @@ describe('encode', () => {
     );
   });
 
-  it('encodes basic u32 values (full)', () => {
+  it('encodes basic u32 values (full)', (): void => {
     expect(
       compactToU8a(0xfffffff9)
     ).toEqual(
@@ -63,7 +63,7 @@ describe('encode', () => {
     );
   });
 
-  it('encodes a large value', () => {
+  it('encodes a large value', (): void => {
     expect(
       compactToU8a(
         new BN('00005af3107a4000', 16)
@@ -73,7 +73,7 @@ describe('encode', () => {
     );
   });
 
-  describe('from Rust', () => {
+  describe('from Rust', (): void => {
     // Copied from https://github.com/paritytech/parity-codec/blob/master/src/codec.rs
     const testCases = [
       { value: new BN('0'), expected: '00' },
@@ -92,19 +92,18 @@ describe('encode', () => {
       { value: new BN(`${1}${'0'.repeat(64)}`, 2).subn(1), expected: '13 ff ff ff ff ff ff ff ff' }
     ];
 
-    function testEncode (value: BN, expected: string) {
-      it(`encodes ${value.toString()}`, () => {
+    function testEncode (value: BN, expected: string): void {
+      it(`encodes ${value.toString()}`, (): void => {
         expect(
           compactToU8a(value)
         ).toEqual(
           Uint8Array.from(
-            expected.split(' ').map(s => parseInt(s, 16))
+            expected.split(' ').map((s): number => parseInt(s, 16))
           )
         );
       });
     }
 
-    testCases.forEach((({ value, expected }) => testEncode(value, expected)));
+    testCases.forEach(({ value, expected }): void => testEncode(value, expected));
   });
-
 });

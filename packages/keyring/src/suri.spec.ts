@@ -59,15 +59,15 @@ const TESTS = [
   }
 ];
 
-describe('keyring.addFromUri', () => {
+describe('keyring.addFromUri', (): void => {
   const keyring = new Keyring({ type: 'sr25519' });
 
-  beforeEach(async () => {
+  beforeEach(async (): Promise<void> => {
     await cryptoWaitReady();
   });
 
-  TESTS.forEach(({ pk, ss, uri }) => {
-    it(`creates ${uri}`, () => {
+  TESTS.forEach(({ pk, ss, uri }): void => {
+    it(`creates ${uri}`, (): void => {
       const pair = keyring.addFromUri(uri);
 
       expect(u8aToHex(pair.publicKey)).toEqual(pk);

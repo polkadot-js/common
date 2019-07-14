@@ -4,9 +4,10 @@
 
 export default class Checkpoint {
   protected txRoot: Uint8Array;
+
   protected rootHash: Uint8Array;
 
-  constructor (rootHash: Uint8Array) {
+  public constructor (rootHash: Uint8Array) {
     this.rootHash = rootHash;
     this.txRoot = rootHash;
   }

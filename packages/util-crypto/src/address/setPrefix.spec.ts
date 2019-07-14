@@ -5,12 +5,12 @@
 import encode from './encode';
 import setPrefix from './setPrefix';
 
-describe('setPrefix', () => {
-  beforeEach(() => {
+describe('setPrefix', (): void => {
+  beforeEach((): void => {
     setPrefix(68);
   });
 
-  it('sets and allows encoding using', () => {
+  it('sets and allows encoding using', (): void => {
     expect(
       encode(
         new Uint8Array([1])

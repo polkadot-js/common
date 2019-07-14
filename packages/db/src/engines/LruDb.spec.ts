@@ -7,11 +7,11 @@ import toU8a from '@polkadot/util/u8a/toU8a';
 import LruDb from './LruDb';
 import MemoryDb from './MemoryDb';
 
-describe('LruDb', () => {
+describe('LruDb', (): void => {
   const memory = new MemoryDb();
   const db = new LruDb(memory);
 
-  it('retrieves an item from the backing when not available (caching it)', () => {
+  it('retrieves an item from the backing when not available (caching it)', (): void => {
     const key = toU8a('test1');
     const value = toU8a('value1');
 
@@ -21,7 +21,7 @@ describe('LruDb', () => {
     expect(db._getLru(key)).toEqual({ value });
   });
 
-  it('replaces an item (caching and backing)', () => {
+  it('replaces an item (caching and backing)', (): void => {
     const key = toU8a('test1');
     const value = toU8a('test');
 
@@ -32,7 +32,7 @@ describe('LruDb', () => {
     expect(db._getLru(key)).toEqual({ value });
   });
 
-  it('retrieves item from LRU when available', () => {
+  it('retrieves item from LRU when available', (): void => {
     const key = toU8a('test1');
     const value = toU8a('test');
 
@@ -41,7 +41,7 @@ describe('LruDb', () => {
     expect(db.get(key)).toEqual(value);
   });
 
-  it('puts item both in LRU and backing', () => {
+  it('puts item both in LRU and backing', (): void => {
     const key = toU8a('test0');
     const value = toU8a('value0');
 
@@ -51,7 +51,7 @@ describe('LruDb', () => {
     expect(db._getLru(key)).toEqual({ value });
   });
 
-  it('deletes an item from both backing and db', () => {
+  it('deletes an item from both backing and db', (): void => {
     const key = toU8a('test0');
 
     db.del(key);

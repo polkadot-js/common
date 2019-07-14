@@ -9,7 +9,7 @@ import blake2AsU8a from '../blake2/asU8a';
 
 const RE_NUMBER = /^\d+$/;
 
-const JUNCTION_ID_LEN: number = 32;
+const JUNCTION_ID_LEN = 32;
 const BN_OPTIONS = {
   bitLength: 256,
   isLe: true
@@ -17,9 +17,10 @@ const BN_OPTIONS = {
 
 export default class DeriveJunction {
   private _chainCode: Uint8Array = new Uint8Array(32);
+
   private _isHard: boolean = false;
 
-  static from (value: string): DeriveJunction {
+  public static from (value: string): DeriveJunction {
     const [code, isHard] = value[0] === '/'
       ? [value.substr(1), true]
       : [value, false];
@@ -36,29 +37,29 @@ export default class DeriveJunction {
       : result;
   }
 
-  get chainCode (): Uint8Array {
+  public get chainCode (): Uint8Array {
     return this._chainCode;
   }
 
-  get isHard (): boolean {
+  public get isHard (): boolean {
     return this._isHard;
   }
 
-  get isSoft (): boolean {
+  public get isSoft (): boolean {
     return !this._isHard;
   }
 
-  hard (value: number | BN | string | Uint8Array): DeriveJunction {
+  public hard (value: number | BN | string | Uint8Array): DeriveJunction {
     return this.soft(value).harden();
   }
 
-  harden (): DeriveJunction {
+  public harden (): DeriveJunction {
     this._isHard = true;
 
     return this;
   }
 
-  soft (value: number | BN | string | Uint8Array): DeriveJunction {
+  public soft (value: number | BN | string | Uint8Array): DeriveJunction {
     if (isNumber(value) || isBn(value)) {
       return this.soft(bnToHex(value, BN_OPTIONS));
     } else if (isString(value)) {
@@ -77,7 +78,7 @@ export default class DeriveJunction {
     return this;
   }
 
-  soften (): DeriveJunction {
+  public soften (): DeriveJunction {
     this._isHard = false;
 
     return this;

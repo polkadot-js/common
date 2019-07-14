@@ -7,31 +7,31 @@ import { cryptoWaitReady, setAddressPrefix } from '@polkadot/util-crypto';
 
 import Keyring from '.';
 
-describe('keypair', () => {
-  beforeEach(async () => {
+describe('keypair', (): void => {
+  beforeEach(async (): Promise<void> => {
     await cryptoWaitReady();
   });
 
-  describe('ed25519', () => {
+  describe('ed25519', (): void => {
     const publicKeyOne = new Uint8Array([47, 140, 97, 41, 216, 22, 207, 81, 195, 116, 188, 127, 8, 195, 230, 62, 209, 86, 207, 120, 174, 251, 74, 101, 80, 217, 123, 135, 153, 121, 119, 238]);
     const publicKeyTwo = new Uint8Array([215, 90, 152, 1, 130, 177, 10, 183, 213, 75, 254, 211, 201, 100, 7, 58, 14, 225, 114, 243, 218, 166, 35, 37, 175, 2, 26, 104, 247, 7, 81, 26]);
     const seedOne = stringToU8a('12345678901234567890123456789012');
     const seedTwo = hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60');
     let keypair: Keyring;
 
-    beforeEach(async () => {
+    beforeEach(async (): Promise<void> => {
       keypair = new Keyring({ type: 'ed25519' });
 
       keypair.addFromSeed(seedOne, {});
     });
 
-    it('adds the pair', () => {
+    it('adds the pair', (): void => {
       expect(
         keypair.addFromSeed(seedTwo, {}).publicKey
       ).toEqual(publicKeyTwo);
     });
 
-    it('creates a ed25519 pair via mnemonicToSeed', () => {
+    it('creates a ed25519 pair via mnemonicToSeed', (): void => {
       expect(
         keypair.addFromUri(
           'seed sock milk update focus rotate barely fade car face mechanic mercy'
@@ -39,7 +39,7 @@ describe('keypair', () => {
       ).toEqual('5DkQP32jP4DVJLWWBRBoZF2tpWjqFrcrTBo6H5NcSk7MxKCC');
     });
 
-    it('adds from a mnemonic', () => {
+    it('adds from a mnemonic', (): void => {
       setAddressPrefix(68);
 
       expect(
@@ -47,21 +47,21 @@ describe('keypair', () => {
       ).toEqual('7sPsxWPE5DzAyPT3VuoJYw5NTGscx9QYN9oddQx4kALKC3hH');
     });
 
-    it('allows publicKeys retrieval', () => {
+    it('allows publicKeys retrieval', (): void => {
       keypair.addFromSeed(seedTwo, {});
 
       expect(
         keypair.getPublicKeys()
-      ).toEqual([ publicKeyOne, publicKeyTwo ]);
+      ).toEqual([publicKeyOne, publicKeyTwo]);
     });
 
-    it('allows retrieval of a specific item', () => {
+    it('allows retrieval of a specific item', (): void => {
       expect(
         keypair.getPair(publicKeyOne).publicKey
       ).toEqual(publicKeyOne);
     });
 
-    it('allows adding from JSON', () => {
+    it('allows adding from JSON', (): void => {
       expect(
         keypair.addFromJson(
           JSON.parse('{"address":"5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua","encoded":"0xb4a14995d25ab609f3686e9fa45f1fb237cd833f33f00d4b12c51858ca070d96972e47d73aae5eeb0fc06f923826cf0943fdb02c2c2ee30ef52a7912663053940d1da4da66b3a3f520ae07422c1c94b2d95690fca9d1f4a997623bb2923a8833280e19e7f72c3c5cfa343974e60e2b3dc53b404fdaf330756daad5e4e3","encoding":{"content":"pkcs8","type":"xsalsa20-poly1305","version":"0"},"meta":{"isTesting":true,"name":"alice"}}')
@@ -71,7 +71,7 @@ describe('keypair', () => {
       );
     });
 
-    it('signs and verifies', () => {
+    it('signs and verifies', (): void => {
       const MESSAGE = stringToU8a('this is a message');
       const pair = keypair.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE);
@@ -80,32 +80,32 @@ describe('keypair', () => {
     });
   });
 
-  describe('sr25519', () => {
+  describe('sr25519', (): void => {
     const publicKeyOne = new Uint8Array([116, 28, 8, 160, 111, 65, 197, 150, 96, 143, 103, 116, 37, 155, 217, 4, 51, 4, 173, 250, 93, 62, 234, 98, 118, 11, 217, 190, 151, 99, 77, 99]);
     const publicKeyTwo = hexToU8a('0x44a996beb1eef7bdcab976ab6d2ca26104834164ecf28fb375600576fcc6eb0f');
     const seedOne = stringToU8a('12345678901234567890123456789012');
     const seedTwo = hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60');
     let keypair: Keyring;
 
-    beforeEach(() => {
+    beforeEach((): void => {
       keypair = new Keyring({ type: 'sr25519' });
 
       keypair.addFromSeed(seedOne, {});
     });
 
-    it('creates with dev phrase when only path specified', () => {
+    it('creates with dev phrase when only path specified', (): void => {
       expect(
         keypair.createFromUri('//Alice').address
       ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY');
     });
 
-    it('adds the pair', () => {
+    it('adds the pair', (): void => {
       expect(
         keypair.addFromSeed(seedTwo, {}).publicKey
       ).toEqual(publicKeyTwo);
     });
 
-    it('adds from a mnemonic', () => {
+    it('adds from a mnemonic', (): void => {
       setAddressPrefix(68);
 
       expect(
@@ -113,21 +113,21 @@ describe('keypair', () => {
       ).toEqual('7qQGarA4PWjPPVHG4USn1yuuVZvEHN7XZz8o7EbAp48jayZQ');
     });
 
-    it('allows publicKeys retrieval', () => {
+    it('allows publicKeys retrieval', (): void => {
       keypair.addFromSeed(seedTwo, {});
 
       expect(
         keypair.getPublicKeys()
-      ).toEqual([ publicKeyOne, publicKeyTwo ]);
+      ).toEqual([publicKeyOne, publicKeyTwo]);
     });
 
-    it('allows retrieval of a specific item', () => {
+    it('allows retrieval of a specific item', (): void => {
       expect(
         keypair.getPair(publicKeyOne).publicKey
       ).toEqual(publicKeyOne);
     });
 
-    it('allows adding from JSON', () => {
+    it('allows adding from JSON', (): void => {
       expect(
         keypair.addFromJson(
           JSON.parse('{"address":"5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua","encoded":"0xb4a14995d25ab609f3686e9fa45f1fb237cd833f33f00d4b12c51858ca070d96972e47d73aae5eeb0fc06f923826cf0943fdb02c2c2ee30ef52a7912663053940d1da4da66b3a3f520ae07422c1c94b2d95690fca9d1f4a997623bb2923a8833280e19e7f72c3c5cfa343974e60e2b3dc53b404fdaf330756daad5e4e3","encoding":{"content":"pkcs8","type":"xsalsa20-poly1305","version":"0"},"meta":{"isTesting":true,"name":"alice"}}')
@@ -137,7 +137,7 @@ describe('keypair', () => {
       );
     });
 
-    it('signs and verifies', () => {
+    it('signs and verifies', (): void => {
       const MESSAGE = stringToU8a('this is a message');
       const pair = keypair.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE);

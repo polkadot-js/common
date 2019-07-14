@@ -4,8 +4,8 @@
 
 import { xxhash64AsBn } from '.';
 
-describe('xxhash64AsBn', () => {
-  it('creates the correct BN output', () => {
+describe('xxhash64AsBn', (): void => {
+  it('creates the correct BN output', (): void => {
     expect(
       xxhash64AsBn('abcd', 0xabcd).toString(16)
     ).toEqual('e29f70f8b8c96df7');

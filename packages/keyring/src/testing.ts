@@ -80,7 +80,7 @@ const PAIRS: PairDef[] = [
 export default function testKeyring (options: KeyringOptions = {}, isDerived: boolean = true): KeyringInstance {
   const keyring = new Keyring(options);
 
-  PAIRS.forEach(({ name, publicKey, secretKey, seed, type }) => {
+  PAIRS.forEach(({ name, publicKey, secretKey, seed, type }): void => {
     const meta = {
       isTesting: true,
       name: name || seed.replace('//', '_').toLowerCase()
@@ -92,7 +92,7 @@ export default function testKeyring (options: KeyringOptions = {}, isDerived: bo
         createPair(type || 'sr25519', { publicKey, secretKey }, meta)
       );
 
-    pair.lock = () => {
+    pair.lock = (): void => {
       // we don't have lock/unlock functionality here
     };
   });

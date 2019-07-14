@@ -5,18 +5,18 @@
 import validate from './validate';
 import { cryptoWaitReady } from '..';
 
-describe('mnemonicValidate', () => {
-  beforeEach(async () => {
+describe('mnemonicValidate', (): void => {
+  beforeEach(async (): Promise<void> => {
     await cryptoWaitReady();
   });
 
-  it('returns true on valid', () => {
+  it('returns true on valid', (): void => {
     expect(
       validate('seed sock milk update focus rotate barely fade car face mechanic mercy')
     ).toEqual(true);
   });
 
-  it('returns false on invalid', () => {
+  it('returns false on invalid', (): void => {
     expect(
       validate('wine photo extra cushion basket dwarf humor cloud truck job boat submit')
     ).toEqual(false);

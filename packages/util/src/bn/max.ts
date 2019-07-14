@@ -19,13 +19,8 @@ import assert from '../assert';
  * max([new BN(1), new BN(3), new BN(2)]).toString(); // => '3'
  * ```
  */
-export default function max (
-  ...items: BN[]
-): BN {
-  assert(
-    items && items.length >= 1,
-    'Must provide one or more BN arguments'
-  );
+export default function max (...items: BN[]): BN {
+  assert(items && items.length >= 1, 'Must provide one or more BN arguments');
 
-  return items.reduce((acc: BN, val: BN) => BN.max(acc, val), items[0]);
+  return items.reduce((acc: BN, val: BN): BN => BN.max(acc, val), items[0]);
 }

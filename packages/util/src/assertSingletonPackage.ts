@@ -5,15 +5,21 @@
 import isUndefined from './is/undefined';
 import assert from './assert';
 
+interface PjsChecks {
+  __polkadotjs: Record<string, boolean>;
+}
+
+type PjsGlobal = NodeJS.Global & PjsChecks;
+type PjsWindow = Window & PjsChecks;
+
 /**
  * @name assertSingletonPackage
  * @summary Checks that a specific package is only imported once
  */
 export default function assertSingletonPackage (name: string): void {
-  // tslint:disable-next-line
-  const _global: any = typeof window !== 'undefined'
-    ? window
-    : global;
+  const _global = typeof window !== 'undefined'
+    ? window as PjsWindow
+    : global as PjsGlobal;
 
   if (!_global.__polkadotjs) {
     _global.__polkadotjs = {};

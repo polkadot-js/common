@@ -4,8 +4,8 @@
 
 import { u8aFixLength } from '.';
 
-describe('u8aFixLength', () => {
-  it('returns bitLength === -1 as-is', () => {
+describe('u8aFixLength', (): void => {
+  it('returns bitLength === -1 as-is', (): void => {
     expect(
       u8aFixLength(
         new Uint8Array([0x12, 0x34, 0x56, 0x78])
@@ -13,19 +13,19 @@ describe('u8aFixLength', () => {
     ).toEqual(new Uint8Array([0x12, 0x34, 0x56, 0x78]));
   });
 
-  it('does not change when bitlength === length', () => {
+  it('does not change when bitlength === length', (): void => {
     expect(
       u8aFixLength(new Uint8Array([0x12, 0x34, 0x56, 0x78]), 32)
     ).toEqual(new Uint8Array([0x12, 0x34, 0x56, 0x78]));
   });
 
-  it('trims values when bitLength > length', () => {
+  it('trims values when bitLength > length', (): void => {
     expect(
       u8aFixLength(new Uint8Array([0x12, 0x34, 0x56, 0x78]), 16)
     ).toEqual(new Uint8Array([0x12, 0x34]));
   });
 
-  it('adds zeros when bitLength < length (withPadded)', () => {
+  it('adds zeros when bitLength < length (withPadded)', (): void => {
     expect(
       u8aFixLength(new Uint8Array([0x12, 0x34]), 32)
     ).toEqual(new Uint8Array([0, 0, 0x12, 0x34]));

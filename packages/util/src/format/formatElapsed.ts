@@ -8,7 +8,7 @@ import BN from 'bn.js';
 
 function getValue (value?: BN | Compact | Date | number | null): number {
   if (value) {
-    if ((value as any).unwrap) {
+    if ((value as Compact).unwrap) {
       return getValue((value as Compact).unwrap());
     } else if (value instanceof Date) {
       return getValue(value.getTime());

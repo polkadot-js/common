@@ -12,7 +12,8 @@ import { DEFAULT_CODEC, DEFAULT_STREAM } from './defaults';
 const EMPTY = new Uint8Array();
 
 // FIXME This is problematic, the stream implementation is Substrate-only as is the branch here
-function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number, codec: Codec, stream: any): Uint8Array {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function _buildTrie (input: [Uint8Array, Uint8Array][], cursor: number, codec: Codec, stream: any): Uint8Array {
   if (input.length === 0) {
     return stream.createEmpty();
   }
@@ -23,7 +24,7 @@ function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number, cod
     return stream.createLeaf(firstKey.subarray(cursor), firstValue);
   }
 
-  const sharedNibbleCount = input.reduce((min, [key], index) => {
+  const sharedNibbleCount = input.reduce((min, [key], index): number => {
     return index === 0
       ? key.length
       : Math.min(min, sharedPrefixLength(key, firstKey));
@@ -33,6 +34,7 @@ function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number, cod
     return u8aConcat(
       stream.createExtension(firstKey.subarray(cursor, sharedNibbleCount)),
       stream.createSubstream(
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         buildTrie(input, sharedNibbleCount, codec, stream)
       )
     );
@@ -47,8 +49,8 @@ function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number, cod
 
   for (let index = 0; index < 16; index++) {
     sharedNibbleCounts[index] = input
-      .filter((_, index) => index >= begin)
-      .filter(([key]) => key[cursor] === index)
+      .filter((_, index): boolean => index >= begin)
+      .filter(([key]): boolean => key[cursor] === index)
       .length;
 
     begin += sharedNibbleCounts[index];
@@ -57,12 +59,13 @@ function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number, cod
   begin = start;
 
   return u8aConcat(
-    stream.createBranch(value, sharedNibbleCounts.map((value) => value > 0)),
-    ...sharedNibbleCounts.map((count) => {
+    stream.createBranch(value, sharedNibbleCounts.map((value): boolean => value > 0)),
+    ...sharedNibbleCounts.map((count): Uint8Array => {
       let result = EMPTY;
 
       if (count > 0) {
         result = stream.createSubstream(
+          // eslint-disable-next-line @typescript-eslint/no-use-before-define
           buildTrie(input.slice(begin, begin + count), cursor + 1, codec, stream)
         );
         begin += count;
@@ -74,7 +77,8 @@ function _buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number, cod
   );
 }
 
-export default function buildTrie (input: Array<[Uint8Array, Uint8Array]>, cursor: number = 0, codec: Codec = DEFAULT_CODEC, stream: any = DEFAULT_STREAM): Uint8Array {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function buildTrie (input: [Uint8Array, Uint8Array][], cursor: number = 0, codec: Codec = DEFAULT_CODEC, stream: any = DEFAULT_STREAM): Uint8Array {
   const trie = _buildTrie(input, cursor, codec, stream);
 
   return trie;

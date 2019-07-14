@@ -11,38 +11,38 @@ const jsonObject = `{
     }
   }`;
 
-describe('isJsonObject', () => {
-  it('returns true on empty objects', () => {
+describe('isJsonObject', (): void => {
+  it('returns true on empty objects', (): void => {
     expect(
       isJsonObject({})
     ).toEqual(true);
   });
 
-  it('returns true on JSON objects', () => {
+  it('returns true on JSON objects', (): void => {
     expect(
       isJsonObject(jsonObject)
     ).toEqual(true);
   });
 
-  it('returns false on JSON parsable value typeof number', () => {
+  it('returns false on JSON parsable value typeof number', (): void => {
     expect(
       isJsonObject(1234)
     ).toEqual(false);
   });
 
-  it('returns false on JSON parsable value null', () => {
+  it('returns false on JSON parsable value null', (): void => {
     expect(
       isJsonObject(null)
     ).toEqual(false);
   });
 
-  it('returns false on invalid objects', () => {
+  it('returns false on invalid objects', (): void => {
     expect(
       isJsonObject('notAnObject')
     ).toEqual(false);
   });
 
-  it('returns false on invalid JSON', () => {
+  it('returns false on invalid JSON', (): void => {
     expect(
       isJsonObject(`{"abc", "def"}`)
     ).toEqual(false);

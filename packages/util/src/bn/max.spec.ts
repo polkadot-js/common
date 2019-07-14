@@ -6,8 +6,8 @@ import BN from 'bn.js';
 
 import { bnMax } from '.';
 
-describe('bnMax', () => {
-  it('finds BN maximum', () => {
+describe('bnMax', (): void => {
+  it('finds BN maximum', (): void => {
     expect(
       bnMax(new BN(1), new BN(2), new BN(3))
     ).toEqual(new BN(3));

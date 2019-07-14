@@ -6,8 +6,8 @@ import stringToU8a from '@polkadot/util/string/toU8a';
 
 import toNibbles from './toNibbles';
 
-describe('toNibbles', () => {
-  it('converts an array', () => {
+describe('toNibbles', (): void => {
+  it('converts an array', (): void => {
     expect(
       toNibbles(Uint8Array.from([
         0x31, 0x23, 0x45
@@ -17,7 +17,7 @@ describe('toNibbles', () => {
     );
   });
 
-  it('converts a single', () => {
+  it('converts a single', (): void => {
     expect(
       toNibbles(
         stringToU8a('A')

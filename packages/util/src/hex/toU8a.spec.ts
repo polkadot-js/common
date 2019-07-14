@@ -4,14 +4,14 @@
 
 import { hexToU8a } from '.';
 
-describe('hexToU8a', () => {
-  it('returns an empty Uint8Array when null provided', () => {
+describe('hexToU8a', (): void => {
+  it('returns an empty Uint8Array when null provided', (): void => {
     expect(
       hexToU8a(null)
     ).toHaveLength(0);
   });
 
-  it('returns a Uint8Array with the correct values', () => {
+  it('returns a Uint8Array with the correct values', (): void => {
     expect(
       hexToU8a('0x80000a')
     ).toEqual(
@@ -19,7 +19,7 @@ describe('hexToU8a', () => {
     );
   });
 
-  it('returns a Uint8Array with the correct values (bitLengfth)', () => {
+  it('returns a Uint8Array with the correct values (bitLengfth)', (): void => {
     expect(
       hexToU8a('0x80000a', 32)
     ).toEqual(
@@ -27,9 +27,9 @@ describe('hexToU8a', () => {
     );
   });
 
-  it('fails when non-hex value provided', () => {
+  it('fails when non-hex value provided', (): void => {
     expect(
-      () => hexToU8a('notahex')
+      (): Uint8Array => hexToU8a('notahex')
     ).toThrow(/hex value to convert/);
   });
 });

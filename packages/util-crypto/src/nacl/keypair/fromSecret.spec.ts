@@ -4,7 +4,7 @@
 
 import { naclKeypairFromSecret } from '..';
 
-describe('naclKeypairFromSecret', () => {
+describe('naclKeypairFromSecret', (): void => {
   const secretKey = new Uint8Array([
     18, 52, 86, 120, 144, 18, 52, 86,
     120, 144, 18, 52, 86, 120, 144, 18,
@@ -16,7 +16,7 @@ describe('naclKeypairFromSecret', () => {
     216, 214, 0, 41, 45, 138, 13, 53
   ]);
 
-  it('generates a valid publicKey/secretKey pair', () => {
+  it('generates a valid publicKey/secretKey pair', (): void => {
     expect(
       naclKeypairFromSecret(secretKey)
     ).toEqual({

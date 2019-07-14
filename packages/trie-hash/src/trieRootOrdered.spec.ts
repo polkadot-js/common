@@ -6,8 +6,8 @@ import { stringToU8a, u8aToHex } from '@polkadot/util';
 
 import { trieRootOrdered } from '.';
 
-describe('trieRootOrdered', () => {
-  it('encodes values', () => {
+describe('trieRootOrdered', (): void => {
+  it('encodes values', (): void => {
     expect(
       u8aToHex(
         trieRootOrdered([

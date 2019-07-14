@@ -36,7 +36,7 @@ export function decodeNode (codec: Codec, encoded: Uint8Array | Node): Node {
 
   const node = codec.decode(encoded) as NodeNotEmpty;
 
-  return node.map((value) =>
+  return node.map((value): Uint8Array | null =>
     value && value.length
       ? value
       : null

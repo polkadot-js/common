@@ -5,9 +5,9 @@
 import isError from '../is/error';
 import { ExtError } from '.';
 
-describe('ExtError', () => {
-  describe('constructor', () => {
-    it('constructs an Error that is still an Error', () => {
+describe('ExtError', (): void => {
+  describe('constructor', (): void => {
+    it('constructs an Error that is still an Error', (): void => {
       expect(
         isError(
           new ExtError()
@@ -16,41 +16,41 @@ describe('ExtError', () => {
     });
   });
 
-  describe('static', () => {
-    it('exposes the .CODES as a static', () => {
+  describe('static', (): void => {
+    it('exposes the .CODES as a static', (): void => {
       expect(
         Object.keys(ExtError.CODES)
       ).not.toEqual(0);
     });
   });
 
-  describe('constructor properties', () => {
-    it('sets the .message property', () => {
+  describe('constructor properties', (): void => {
+    it('sets the .message property', (): void => {
       expect(
         new ExtError('test message').message
       ).toEqual('test message');
     });
 
-    it("sets the .message to '' when not set", () => {
+    it("sets the .message to '' when not set", (): void => {
       expect(
         new ExtError().message
       ).toEqual('');
     });
 
-    it('sets the .code property', () => {
+    it('sets the .code property', (): void => {
       expect(
         new ExtError('test message', 1234).code
       ).toEqual(1234);
     });
 
-    it('sets the .code to UKNOWN when not set', () => {
+    it('sets the .code to UKNOWN when not set', (): void => {
       expect(
         new ExtError('test message').code
       ).toEqual(ExtError.CODES.UNKNOWN);
     });
 
-    it('sets the .data property', () => {
-      const data = { some: { value: 'here' } };
+    it('sets the .data property', (): void => {
+      const data = 'here';
 
       expect(
         new ExtError('test message', 1234, data).data
@@ -58,16 +58,17 @@ describe('ExtError', () => {
     });
   });
 
-  describe('stack traces', () => {
-    let captureStackTrace: any;
+  describe('stack traces', (): void => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let captureStackTrace: (targetObject: Record<string, any>, constructorOpt?: Function | undefined) => void;
 
-    beforeEach(() => {
+    beforeEach((): void => {
       captureStackTrace = Error.captureStackTrace;
 
-      Error.captureStackTrace = function (error) {
+      Error.captureStackTrace = function (error): void {
         Object.defineProperty(error, 'stack', {
           configurable: true,
-          get: function getStack () {
+          get: function getStack (): string {
             const value = 'some stack returned';
 
             Object.defineProperty(this, 'stack', { value });
@@ -78,18 +79,19 @@ describe('ExtError', () => {
       };
     });
 
-    afterEach(() => {
+    afterEach((): void => {
       Error.captureStackTrace = captureStackTrace;
     });
 
-    it('captures via captureStackTrace when available', () => {
+    it('captures via captureStackTrace when available', (): void => {
       expect(
         new ExtError().stack
       ).toEqual('some stack returned');
     });
 
-    it('captures via stack when captureStackTrace not available', () => {
-      Error.captureStackTrace = null as any; // grrr
+    it('captures via stack when captureStackTrace not available', (): void => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      Error.captureStackTrace = null as any;
 
       expect(
         new ExtError().stack.length

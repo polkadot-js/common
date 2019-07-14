@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { encodeAddress, decodeAddress } = require('@polkadot/keyring');
 const { isHex, hexToU8a } = require('@polkadot/util');
 
@@ -13,4 +14,5 @@ const isValidAddressPolkadotAddress = () => {
 };
 
 const isValid = isValidAddressPolkadotAddress();
+
 console.log(isValid);

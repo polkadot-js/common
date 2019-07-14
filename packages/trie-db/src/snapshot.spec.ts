@@ -7,7 +7,7 @@ import { u8aToHex, u8aToU8a as toU8a } from '@polkadot/util';
 
 import Trie from '.';
 
-describe('snapshots', () => {
+describe('snapshots', (): void => {
   const values = [
     { k: toU8a('test'), v: toU8a('one') },
     { k: toU8a('one'), v: toU8a('testing') },
@@ -21,12 +21,12 @@ describe('snapshots', () => {
   let trie: Trie;
   let back: Trie;
 
-  beforeEach(() => {
+  beforeEach((): void => {
     trie = new Trie();
     back = new Trie();
   });
 
-  it('creates a snapshot of the (relevant) trie data', () => {
+  it('creates a snapshot of the (relevant) trie data', (): void => {
     const root = trieRoot([values[0]]);
 
     trie.put(values[0].k, values[0].v);
@@ -36,41 +36,45 @@ describe('snapshots', () => {
     trie.put(toU8a('doge'), toU8a('coin'));
     trie.del(toU8a('doge'));
 
-    trie.snapshot(back, () => void 0);
+    trie.snapshot(back, (): undefined => void 0);
 
     expect(u8aToHex(back.getRoot())).toEqual(u8aToHex(root));
     expect(back.get(values[0].k)).toEqual(values[0].v);
   });
 
-  it('creates a snapshot of the (relevant) data', () => {
+  it('creates a snapshot of the (relevant) data', (): void => {
     const root = trieRoot(values);
 
-    values.forEach(({ k, v }) => trie.put(k, v));
-    trie.snapshot(back, () => void 0);
+    values.forEach(({ k, v }): void => {
+      trie.put(k, v);
+    });
+    trie.snapshot(back, (): undefined => void 0);
 
     expect(u8aToHex(back.getRoot())).toEqual(u8aToHex(root));
 
-    values.forEach(({ k, v }) =>
-      expect(back.get(k)).toEqual(v)
-    );
+    values.forEach(({ k, v }): void => {
+      expect(back.get(k)).toEqual(v);
+    });
   });
 
-  it('retrieves entries, which can re-create', () => {
+  it('retrieves entries, which can re-create', (): void => {
     const root = trieRoot(values);
 
-    values.forEach(({ k, v }) => trie.put(k, v));
+    values.forEach(({ k, v }): void => {
+      trie.put(k, v);
+    });
 
     const entries = trie.entries();
 
-    entries.forEach(([key, encoded, children]) => {
+    entries.forEach(([key, encoded, children]): void => {
       back.db.put(key, encoded);
-      console.log(u8aToHex(key), ...children.map((child) => `\n\t${u8aToHex(child)}`));
+      console.log(u8aToHex(key), ...children.map((child): string => `\n\t${u8aToHex(child)}`));
     });
 
     back.setRoot(root);
 
-    values.forEach(({ k, v }) =>
-      expect(back.get(k)).toEqual(v)
-    );
+    values.forEach(({ k, v }): void => {
+      expect(back.get(k)).toEqual(v);
+    });
   });
 });

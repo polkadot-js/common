@@ -6,20 +6,20 @@ import BN from 'bn.js';
 
 import { bnToBn } from '.';
 
-describe('bnToBn', () => {
-  it('converts null values to 0x00', () => {
+describe('bnToBn', (): void => {
+  it('converts null values to 0x00', (): void => {
     expect(
       bnToBn(null)
     ).toEqual(new BN(0));
   });
 
-  it('converts BN values to BN', () => {
+  it('converts BN values to BN', (): void => {
     expect(
       bnToBn(new BN(128))
     ).toEqual(new BN(128));
   });
 
-  it('converts number values to BN', () => {
+  it('converts number values to BN', (): void => {
     expect(
       bnToBn(128)
     ).toEqual(new BN(128));
