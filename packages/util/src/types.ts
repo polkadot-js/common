@@ -6,7 +6,7 @@ import BN from 'bn.js';
 
 export interface ExtErrorInterface {
   code: number;
-  data: string | number;
+  data?: string | number;
   message: string;
   stack: string;
 }

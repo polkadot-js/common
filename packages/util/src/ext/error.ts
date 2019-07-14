@@ -34,8 +34,7 @@ export default class ExtError extends Error implements ExtErrorInterface {
   // @ts-ignore we are assigning it via extend
   public code: number;
 
-  // @ts-ignore we are assigning it via extend
-  public data: number | string | undefined;
+  public data?: number | string;
 
   // @ts-ignore we are assigning it via extend
   public message: string;
