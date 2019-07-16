@@ -5,5 +5,6 @@
 type PrefixPolkadot = 0;
 type PrefixKusama = 2;
 type PrefixSubstrate = 42;
+type DeprecatedPrefixBBQ = 68;
 
-export type Prefix = PrefixPolkadot | PrefixKusama | PrefixSubstrate;
+export type Prefix = PrefixPolkadot | PrefixKusama | PrefixSubstrate | DeprecatedPrefixBBQ;
