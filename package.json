@@ -17,7 +17,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx . && tsc --noEmit --pretty",
     "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "test:one": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
