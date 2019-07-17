@@ -5,13 +5,12 @@
 import { Prefix } from './types';
 
 import bs58 from 'bs58';
-import { bufferToU8a } from '@polkadot/util';
 
 import defaults from './defaults';
 import sshash from './sshash';
 
 export default function check (address: string, prefix: Prefix): [boolean, string | null] {
-  const decoded = bufferToU8a(bs58.decode(address));
+  const decoded = bs58.decode(address);
 
   if (decoded[0] as Prefix !== prefix) {
     return [false, `Prefix mismatch, expected ${prefix}, found ${decoded[0]}`];
