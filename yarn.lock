@@ -1860,10 +1860,10 @@
   dependencies:
     "@types/chrome" "^0.0.86"
 
-"@polkadot/wasm-crypto@^0.13.0-beta.1":
-  version "0.13.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto/-/wasm-crypto-0.13.0-beta.1.tgz#1584cffbb7c58a387002f16b2f451941da0895ec"
-  integrity sha512-Iv7pecXE6Jb2DPBCe1aqh76FgWVYI1r3qWrwHVXVogpnwg21+mZLkDIVqTRgqn5YLBYQzWnSP2SNeA8TGhVo1w==
+"@polkadot/wasm-crypto@^0.13.0-beta.2":
+  version "0.13.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto/-/wasm-crypto-0.13.0-beta.2.tgz#e481ac4b27ae19b4ee7ba9b529972dff825c213f"
+  integrity sha512-o0Z9kRIrV2Di7ErlZ5Dxq03vLWVJ7Txb2mxh63Fy9P/zmPiBcbiKFF6yIQoIu6yC0cAtkdkLOEJoMTSDvqUTkg==
 
 "@types/babel__core@^7.1.0":
   version "7.1.2"
