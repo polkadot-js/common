@@ -1,3 +1,11 @@
+# 0.94.1
+
+- Add `checkAddress(address, prefix)` to `@polkadot/util-crypto` that validates an ss-58 address
+- Add support for the Kusama network (as a valid checked prefix)
+- Add an `asm.js` fallback for the React Native environment (via `@polkadot/wasm-crypto`)
+- The ed25519 key for Alice (representing the session), now appears in the test keyrings
+- Fix missing dependencies for keyring (after address moves in 0.93.1)
+
 # 0.93.1
 
 - Breaking: External pair interface for keyring has been changed. Instead of
