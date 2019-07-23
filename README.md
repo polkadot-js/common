@@ -23,7 +23,7 @@ This repository is split up into a number of internal packages, namely utilities
 Various useful trie and database interfaces -
 
 - [db](packages/db/) Sync memory and disk database interfaces
-- [trie-db](packages/trie-db/) Merkle Patricia Tree implementation adapcted for Polkadot
+- [trie-db](packages/trie-db/) Merkle Patricia Tree implementation adapted for Polkadot
 - [trie-hash](packages/trie-hash/) Calculate hashes (either ordered or unordered) from a set of inputs
 
 ## development
