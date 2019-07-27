@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { Compact } from './types';
+
 import BN from 'bn.js';
 
 import assert from '../assert';
@@ -15,7 +17,7 @@ interface Defaults {
 }
 
 interface BalanceFormatter {
-  (input?: number | string | BN, withSi?: boolean, decimals?: number): string;
+  (input?: number | string | BN | Compact, withSi?: boolean, decimals?: number): string;
   calcSi (text: string, decimals?: number): SiDef;
   findSi (type: string): SiDef;
   getDefaults (): Defaults;
@@ -30,8 +32,14 @@ let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
 // Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance (input?: number | string | BN, withSi: boolean = true, decimals: number = defaultDecimals): string {
-  let text = (input || '').toString();
+function _formatBalance (input?: number | string | BN | Compact, withSi: boolean = true, decimals: number = defaultDecimals): string {
+  let text = (
+    input
+      ? (input as Compact).toBn
+        ? (input as Compact).toBn().toString()
+        : input.toString()
+      : ''
+  ).toString();
 
   if (text.length === 0 || text === '0') {
     return '0';

@@ -1,3 +1,7 @@
+# 0.95.0-beta.x
+
+- `formatBalance` now allows for `Compact` inputs
+
 # 0.94.1
 
 - Add `checkAddress(address, prefix)` to `@polkadot/util-crypto` that validates an ss-58 address
