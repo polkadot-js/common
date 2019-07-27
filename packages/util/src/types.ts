@@ -4,6 +4,10 @@
 
 import BN from 'bn.js';
 
+export interface ToBn {
+  toBn: () => BN;
+}
+
 export interface ExtErrorInterface {
   code: number;
   data?: string | number;

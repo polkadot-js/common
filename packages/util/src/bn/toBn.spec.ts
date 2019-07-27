@@ -9,19 +9,40 @@ import { bnToBn } from '.';
 describe('bnToBn', (): void => {
   it('converts null values to 0x00', (): void => {
     expect(
-      bnToBn(null)
-    ).toEqual(new BN(0));
+      bnToBn(null).toNumber()
+    ).toEqual(0);
   });
 
   it('converts BN values to BN', (): void => {
     expect(
-      bnToBn(new BN(128))
-    ).toEqual(new BN(128));
+      bnToBn(new BN(128)).toNumber()
+    ).toEqual(128);
   });
 
   it('converts number values to BN', (): void => {
     expect(
-      bnToBn(128)
-    ).toEqual(new BN(128));
+      bnToBn(128).toNumber()
+    ).toEqual(128);
+  });
+
+  it('converts string to BN', (): void => {
+    expect(
+      bnToBn('123').toNumber()
+    ).toEqual(123);
+  });
+
+  it('converts hex to BN', (): void => {
+    expect(
+      bnToBn('0x0123').toNumber()
+    ).toEqual(0x123);
+  });
+
+  it('converts Compact to BN', (): void => {
+    expect(
+      bnToBn({
+        toBn: (): BN => new BN(1234),
+        something: 'test'
+      }).toNumber()
+    ).toEqual(1234);
   });
 });

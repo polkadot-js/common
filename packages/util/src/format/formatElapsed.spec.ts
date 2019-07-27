@@ -25,8 +25,7 @@ describe('formatElapsed', (): void => {
   it('formats a Compact', (): void => {
     expect(
       formatElapsed(now, {
-        toBn: (): BN => new BN(0),
-        unwrap: (): BN => new BN(start + (5.3 * 60000))
+        toBn: (): BN => new BN(start + (5.3 * 60000))
       })
     ).toEqual('5m');
   });

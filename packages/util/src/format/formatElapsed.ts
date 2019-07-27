@@ -2,14 +2,16 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { Compact } from './types';
+import { ToBn } from '../types';
 
 import BN from 'bn.js';
 
-function getValue (value?: BN | Compact | Date | number | null): number {
+import isToBn from '../is/toBn';
+
+function getValue <ExtToBn extends ToBn> (value?: BN | ExtToBn | Date | number | null): number {
   if (value) {
-    if ((value as Compact).unwrap) {
-      return getValue((value as Compact).unwrap());
+    if (isToBn(value)) {
+      return getValue(value.toBn());
     } else if (value instanceof Date) {
       return getValue(value.getTime());
     } else if (value instanceof BN) {
@@ -20,7 +22,7 @@ function getValue (value?: BN | Compact | Date | number | null): number {
   return (value as number) || 0;
 }
 
-export default function formatElapsed (now?: Date | null, value?: BN | Compact | Date | number | null): string {
+export default function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: BN | ExtToBn | Date | number | null): string {
   const tsNow = (now && now.getTime()) || 0;
   const tsValue = getValue(value);
   let display = '0.0s';
