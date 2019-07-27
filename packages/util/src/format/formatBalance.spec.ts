@@ -9,12 +9,6 @@ import formatBalance from './formatBalance';
 describe('formatBalance', (): void => {
   const TESTVAL = new BN('123456789000');
 
-  it('does not allow float inputs', (): void => {
-    expect(
-      (): string => formatBalance(0.01234)
-    ).toThrow(/integer input value/);
-  });
-
   it('formats empty to 0', (): void => {
     expect(formatBalance()).toEqual('0');
     expect(formatBalance('0')).toEqual('0');
@@ -29,7 +23,8 @@ describe('formatBalance', (): void => {
   it('formats 123,456,789,000 (decimals=15, Compact)', (): void => {
     const compact = {
       toBn: (): BN => TESTVAL,
-      unwrap: (): BN => TESTVAL
+      unwrap: (): BN => TESTVAL,
+      something: 'else'
     };
     expect(
       formatBalance(compact, true, 15)

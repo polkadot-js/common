@@ -32,10 +32,7 @@ function reverse (value: string): string {
  * hexToBn('0x123480001f'); // => BN(0x123480001f)
  * ```
  */
-export default function hexToBn (
-  value?: string | number | null,
-  options: ToBnOptions | boolean = { isLe: false, isNegative: false }
-): BN {
+export default function hexToBn (value?: string | number | null, options: ToBnOptions | boolean = { isLe: false, isNegative: false }): BN {
   if (!value) {
     return new BN(0);
   }

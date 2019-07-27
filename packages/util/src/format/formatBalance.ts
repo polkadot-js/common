@@ -2,11 +2,11 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { Compact } from './types';
+import { ToBn } from '../types';
 
 import BN from 'bn.js';
 
-import assert from '../assert';
+import bnToBn from '../bn/toBn';
 import isUndefined from '../is/undefined';
 import formatDecimal from './formatDecimal';
 import { SI, SI_MID, SiDef, calcSi, findSi } from './si';
@@ -17,7 +17,7 @@ interface Defaults {
 }
 
 interface BalanceFormatter {
-  (input?: number | string | BN | Compact, withSi?: boolean, decimals?: number): string;
+  <ExtToBn extends ToBn> (input?: number | string | BN | ExtToBn, withSi?: boolean, decimals?: number): string;
   calcSi (text: string, decimals?: number): SiDef;
   findSi (type: string): SiDef;
   getDefaults (): Defaults;
@@ -32,14 +32,8 @@ let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
 // Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance (input?: number | string | BN | Compact, withSi: boolean = true, decimals: number = defaultDecimals): string {
-  let text = (
-    input
-      ? (input as Compact).toBn
-        ? (input as Compact).toBn().toString()
-        : input.toString()
-      : ''
-  ).toString();
+function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | ExtToBn, withSi: boolean = true, decimals: number = defaultDecimals): string {
+  let text = bnToBn(input).toString();
 
   if (text.length === 0 || text === '0') {
     return '0';
@@ -52,8 +46,6 @@ function _formatBalance (input?: number | string | BN | Compact, withSi: boolean
   if (isNegative) {
     text = text.substr(1);
   }
-
-  assert(/^\d+$/.test(text), `Non-integer input value '${text}' supplied to balanceFormat`);
 
   // NOTE We start at midpoint (8) minus 1 - this means that values display as
   // 123.456 instead of 0.123k (so always 6 relevant). Additionally we us ceil
