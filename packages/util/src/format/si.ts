@@ -31,7 +31,8 @@ export const SI: SiDef[] = [
 ];
 
 export function calcSi (text: string, decimals: number): SiDef {
-  return SI[(SI_MID - 1) + Math.ceil((text.length - decimals) / 3)] || SI[SI.length - 1];
+  const siDefIndex = (SI_MID - 1) + Math.ceil((text.length - decimals) / 3);
+  return SI[siDefIndex] || SI[siDefIndex < 0 ? 0 : SI.length - 1];
 }
 
 // Given a SI type (e.g. k, m, Y) find the SI definition
