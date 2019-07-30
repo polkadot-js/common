@@ -20,6 +20,12 @@ describe('formatBalance', (): void => {
     ).toEqual('123.456µ Unit');
   });
 
+  it('formats 123,456,789,000 (decimals=36)', (): void => {
+    expect(
+      formatBalance(TESTVAL, true, 36)
+    ).toEqual('0.123y Unit');
+  });
+
   it('formats 123,456,789,000 (decimals=15, Compact)', (): void => {
     const compact = {
       toBn: (): BN => TESTVAL,
