@@ -1,6 +1,7 @@
-# 0.95.0-beta.x
+# 1.0.0
 
 - `formatBalance` now allows for `Compact` inputs
+- `formaBalance` now allows correct formatting of very large decimals
 
 # 0.94.1
 
