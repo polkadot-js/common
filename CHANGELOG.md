@@ -1,4 +1,4 @@
-# 1.1.x
+# 1.1.1
 
 - `assertSingletonPackage` now warns via console.warn, but does not throw. This does allow the info to come accross while still allowing the app developers using multiple libraries time to fix.
 
