@@ -1,4 +1,8 @@
-# 1.0.0
+# 1.1.x
+
+- `assertSingletonPackage` now warns via console.warn, but does not throw. This does allow the info to come accross while still allowing the app developers using multiple libraries time to fix.
+
+# 1.0.1
 
 - `formatBalance` now allows for `Compact` inputs
 - `formaBalance` now allows correct formatting of very large decimals
