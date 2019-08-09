@@ -3,7 +3,6 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import isUndefined from './is/undefined';
-import assert from './assert';
 
 interface PjsChecks {
   __polkadotjs: Record<string, boolean>;
@@ -25,7 +24,9 @@ export default function assertSingletonPackage (name: string): void {
     _global.__polkadotjs = {};
   }
 
-  assert(isUndefined(_global.__polkadotjs[name]), `Multiple versions of ${name} detected, ensure that there is only version one in your dependency tree`);
+  if (!isUndefined(_global.__polkadotjs[name])) {
+    console.warn(`Multiple versions of ${name} detected, ensure that there is only one version in your dependency tree`);
+  }
 
   _global.__polkadotjs[name] = true;
 }

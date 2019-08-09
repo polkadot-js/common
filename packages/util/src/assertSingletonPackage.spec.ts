@@ -7,15 +7,19 @@ import { assertSingletonPackage } from '.';
 describe('assertSingletonPackage', (): void => {
   const NAME = 'assertSingletonPackage';
 
-  it('should not throw the first time', (): void => {
-    expect(
-      (): void => assertSingletonPackage(NAME)
-    ).not.toThrow();
+  it('should not log the first time', (): void => {
+    const spy = jest.spyOn(console, 'warn');
+
+    assertSingletonPackage(NAME);
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockRestore();
   });
 
-  it('should throw the second time', (): void => {
-    expect(
-      (): void => assertSingletonPackage(NAME)
-    ).toThrow(/Multiple versions of assertSingletonPackage detected/);
+  it('should log the second time', (): void => {
+    const spy = jest.spyOn(console, 'warn');
+
+    assertSingletonPackage(NAME);
+    expect(spy).toHaveBeenCalledWith('Multiple versions of assertSingletonPackage detected, ensure that there is only one version in your dependency tree');
+    spy.mockRestore();
   });
 });
