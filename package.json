@@ -17,7 +17,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx . && tsc --noEmit --pretty",
     "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "jest --coverage",
+    "test": "jest --coverage --runInBand",
     "test:one": "jest"
   },
   "devDependencies": {
