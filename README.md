@@ -1,4 +1,4 @@
-[![polkadotjs](https://img.shields.io/badge/polkadot-js-orange?label=&logo=&style=for-the-badge)](https://polkadot.js.org)
+[![polkadotjs](https://img.shields.io/badge/polkadot-js-orange?logo=&style=for-the-badge)](https://polkadot.js.org)
 ![license](https://img.shields.io/badge/License-Apache%202.0-blue?label=&logo=apache&style=for-the-badge)
 [![npm](https://img.shields.io/npm/v/@polkadot/util?label=&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@polkadot/util)
 [![beta](https://img.shields.io/npm/v/@polkadot/util/beta?label=&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@polkadot/util)
