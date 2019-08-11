@@ -1,12 +1,9 @@
-[![polkadotjs](https://img.shields.io/badge/polkadot-js-orange?logo=&style=for-the-badge)](https://polkadot.js.org)
-![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=for-the-badge)
-[![npm](https://img.shields.io/npm/v/@polkadot/util?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@polkadot/util)
-[![beta](https://img.shields.io/npm/v/@polkadot/util/beta?label=beta&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@polkadot/util)
-[![travisci](https://img.shields.io/travis/com/polkadot-js/common?logo=travis&style=for-the-badge)](https://travis-ci.com/polkadot-js/common)
-[![circleci](https://img.shields.io/circleci/build/github/polkadot-js/common/master?logo=circleci&style=for-the-badge)](https://circleci.com/gh/polkadot-js/common)
-[![maintainability](https://img.shields.io/codeclimate/maintainability/polkadot-js/common?logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/polkadot-js/common)
-[![coverage](https://img.shields.io/codeclimate/coverage/polkadot-js/common?logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/polkadot-js/common)
-[![greenkeeper](https://img.shields.io/badge/greenkeeper-enabled-brightgreen?logo=greenkeeper&style=for-the-badge)](https://greenkeeper.io/)
+[![polkadotjs](https://img.shields.io/badge/polkadot-js-orange?logo=&style=flat-square)](https://polkadot.js.org)
+![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=flat-square)
+[![npm](https://img.shields.io/npm/v/@polkadot/util?logo=npm&style=flat-square)](https://www.npmjs.com/package/@polkadot/util)
+[![beta](https://img.shields.io/npm/v/@polkadot/util/beta?label=beta&logo=npm&style=flat-square)](https://www.npmjs.com/package/@polkadot/util)
+[![maintainability](https://img.shields.io/codeclimate/maintainability/polkadot-js/common?logo=code-climate&style=flat-square)](https://codeclimate.com/github/polkadot-js/common)
+[![coverage](https://img.shields.io/codeclimate/coverage/polkadot-js/common?logo=code-climate&style=flat-square)](https://codeclimate.com/github/polkadot-js/common)
 
 # @polkadot/common
 
