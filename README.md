@@ -2,7 +2,7 @@
 ![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=flat-square)
 [![npm](https://img.shields.io/npm/v/@polkadot/util?logo=npm&style=flat-square)](https://www.npmjs.com/package/@polkadot/util)
 [![beta](https://img.shields.io/npm/v/@polkadot/util/beta?label=beta&logo=npm&style=flat-square)](https://www.npmjs.com/package/@polkadot/util)
-[![maintainability](https://img.shields.io/codeclimate/maintainability/polkadot-js/common?logo=code-climate&style=flat-square)](https://codeclimate.com/github/polkadot-js/common)
+[![maintainability](https://img.shields.io/codeclimate/maintainability-percentage/polkadot-js/common?logo=code-climate&style=flat-square)](https://codeclimate.com/github/polkadot-js/common)
 [![coverage](https://img.shields.io/codeclimate/coverage/polkadot-js/common?logo=code-climate&style=flat-square)](https://codeclimate.com/github/polkadot-js/common)
 
 # @polkadot/common
