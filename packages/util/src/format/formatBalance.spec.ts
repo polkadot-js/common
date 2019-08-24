@@ -17,13 +17,13 @@ describe('formatBalance', (): void => {
   it('formats 123,456,789,000 (decimals=15)', (): void => {
     expect(
       formatBalance(TESTVAL, true, 15)
-    ).toEqual('123.456µ Unit');
+    ).toEqual('123.456 µUnit');
   });
 
   it('formats 123,456,789,000 (decimals=36)', (): void => {
     expect(
       formatBalance(TESTVAL, true, 36)
-    ).toEqual('0.123y Unit');
+    ).toEqual('0.123 yUnit');
   });
 
   it('formats 123,456,789,000 (decimals=15, Compact)', (): void => {
@@ -34,13 +34,13 @@ describe('formatBalance', (): void => {
     };
     expect(
       formatBalance(compact, true, 15)
-    ).toEqual('123.456µ Unit');
+    ).toEqual('123.456 µUnit');
   });
 
   it('formats 123,456,789,000 (decimals=12)', (): void => {
     expect(
       formatBalance(TESTVAL, true, 12)
-    ).toEqual('123.456m Unit');
+    ).toEqual('123.456 mUnit');
   });
 
   it('formats 123,456,789,000 (decimals=12, no SI)', (): void => {
@@ -58,7 +58,7 @@ describe('formatBalance', (): void => {
   it('formats 123,456,789,000 (decimals=6)', (): void => {
     expect(
       formatBalance(TESTVAL, true, 6)
-    ).toEqual('123.456k Unit');
+    ).toEqual('123.456 kUnit');
   });
 
   it('formats 123,456,789,000 * 10 (decimals=12)', (): void => {
@@ -82,7 +82,7 @@ describe('formatBalance', (): void => {
   it('formats -123,456,789,000 (decimals=15)', (): void => {
     expect(
       formatBalance(new BN('-123456789000'), true, 15)
-    ).toEqual('-123.456µ Unit');
+    ).toEqual('-123.456 µUnit');
   });
 
   describe('calcSi', (): void => {
@@ -120,7 +120,7 @@ describe('formatBalance', (): void => {
 
       expect(
         formatBalance(TESTVAL)
-      ).toEqual('123.456m Unit');
+      ).toEqual('123.456 mUnit');
     });
 
     it('formats 123,456,789,000 (defaultUnit=TEST)', (): void => {
@@ -128,7 +128,7 @@ describe('formatBalance', (): void => {
 
       expect(
         formatBalance(TESTVAL)
-      ).toEqual('123.456m TEST');
+      ).toEqual('123.456 mTEST');
     });
   });
 

@@ -59,7 +59,7 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | E
     ? (
       si.value === '-'
         ? ` ${si.text}`
-        : `${si.value} ${SI[SI_MID].text}`
+        : ` ${si.value}${SI[SI_MID].text}`
     )
     : '';
 
