@@ -147,7 +147,7 @@ describe('logger', (): void => {
 
   it('does not debug log when no process.env', (): void => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    process.env = void 0 as any;
+    process.env = undefined as any;
 
     l = logger('test');
     l.debug('test');

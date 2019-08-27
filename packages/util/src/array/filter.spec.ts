@@ -7,13 +7,13 @@ import { arrayFilter } from '.';
 describe('filterArray', (): void => {
   it('filters arrays, removing undefined', (): void => {
     expect(
-      arrayFilter([0, '', null, false, void 0, NaN])
+      arrayFilter([0, '', null, false, undefined, NaN])
     ).toEqual([0, '', null, false, NaN]);
   });
 
   it('filters arrays, removing undefined & null (allowNull = false)', (): void => {
     expect(
-      arrayFilter([0, '', null, false, void 0, NaN], false)
+      arrayFilter([0, '', null, false, undefined, NaN], false)
     ).toEqual([0, '', false, NaN]);
   });
 });

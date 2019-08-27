@@ -24,7 +24,7 @@ export function getNodeType (node: Node): NodeType {
     return NodeType.BRANCH;
   }
 
-  throw new Error(`Unable to determine node type`);
+  throw new Error('Unable to determine node type');
 }
 
 export function decodeNode (codec: Codec, encoded: Uint8Array | Node): Node {
