@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/trie-codec",
-  "version": "1.2.0-beta.1",
+  "version": "1.2.0-beta.2",
   "description": "This is an implementation of the codec for Substrate Trie",
   "main": "index.js",
   "keywords": [
@@ -26,6 +26,6 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/trie-codec#readme",
   "dependencies": {
     "@babel/runtime": "^7.5.5",
-    "@polkadot/util": "^1.2.0-beta.1"
+    "@polkadot/util": "^1.2.0-beta.2"
   }
 }
