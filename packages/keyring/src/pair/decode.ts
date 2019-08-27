@@ -15,7 +15,7 @@ type DecodeResult = PairInfo & {
 };
 
 export default function decode (passphrase?: string, _encrypted?: Uint8Array | null): DecodeResult {
-  assert(_encrypted, `No encrypted data available to decode`);
+  assert(_encrypted, 'No encrypted data available to decode');
 
   const encrypted = (_encrypted as Uint8Array);
   const encoded = passphrase
@@ -26,7 +26,7 @@ export default function decode (passphrase?: string, _encrypted?: Uint8Array | n
     ) as Uint8Array)
     : encrypted;
 
-  assert(encoded, `Unable to unencrypt using the supplied passphrase`);
+  assert(encoded, 'Unable to unencrypt using the supplied passphrase');
 
   const header = encoded.subarray(0, PKCS8_HEADER.length);
 

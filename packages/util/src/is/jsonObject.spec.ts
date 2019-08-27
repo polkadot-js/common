@@ -44,7 +44,7 @@ describe('isJsonObject', (): void => {
 
   it('returns false on invalid JSON', (): void => {
     expect(
-      isJsonObject(`{"abc", "def"}`)
+      isJsonObject('{"abc", "def"}')
     ).toEqual(false);
   });
 });

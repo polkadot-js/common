@@ -36,7 +36,7 @@ describe('snapshots', (): void => {
     trie.put(toU8a('doge'), toU8a('coin'));
     trie.del(toU8a('doge'));
 
-    trie.snapshot(back, (): undefined => void 0);
+    trie.snapshot(back, (): void => {});
 
     expect(u8aToHex(back.getRoot())).toEqual(u8aToHex(root));
     expect(back.get(values[0].k)).toEqual(values[0].v);
@@ -48,7 +48,7 @@ describe('snapshots', (): void => {
     values.forEach(({ k, v }): void => {
       trie.put(k, v);
     });
-    trie.snapshot(back, (): undefined => void 0);
+    trie.snapshot(back, (): void => {});
 
     expect(u8aToHex(back.getRoot())).toEqual(u8aToHex(root));
 
