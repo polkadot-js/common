@@ -4,7 +4,10 @@
 
 import isUndefined from './is/undefined';
 
-interface PjsChecks {
+// eslint-disable-next-line no-undef
+type This = typeof globalThis;
+
+interface PjsChecks extends This {
   __polkadotjs: Record<string, boolean>;
 }
 
