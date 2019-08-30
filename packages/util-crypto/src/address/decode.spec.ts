@@ -8,7 +8,7 @@ import decode from './decode';
 describe('decode', (): void => {
   let keyring: TestKeyringMap;
 
-  beforeAll(async (): Promise<void> => {
+  beforeAll((): void => {
     keyring = testingPairs({ type: 'sr25519' });
   });
 

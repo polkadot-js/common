@@ -43,9 +43,8 @@ describe.skip('official tests', (): void => {
 
       it(name, (): void => {
         keys.forEach((key: string): void => {
-          // @ts-ignore
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          trie.put(toU8a(key), toU8a(input[key as any]));
+          trie.put(toU8a(key), toU8a(input[key as any] as string));
         });
 
         expect(

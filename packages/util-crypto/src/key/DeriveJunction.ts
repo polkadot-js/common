@@ -18,10 +18,10 @@ const BN_OPTIONS = {
 export default class DeriveJunction {
   private _chainCode: Uint8Array = new Uint8Array(32);
 
-  private _isHard: boolean = false;
+  private _isHard = false;
 
   public static from (value: string): DeriveJunction {
-    const [code, isHard] = value[0] === '/'
+    const [code, isHard] = value.startsWith('/')
       ? [value.substr(1), true]
       : [value, false];
     const result = new DeriveJunction();

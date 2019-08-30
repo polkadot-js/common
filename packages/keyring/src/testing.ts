@@ -77,7 +77,7 @@ const PAIRS: PairDef[] = [
  * @description The test accounts (i.e. alice, bob, dave, eve, ferdie)
  * are available on the dev chain and each test account is initialised with DOT funds.
  */
-export default function testKeyring (options: KeyringOptions = {}, isDerived: boolean = true): KeyringInstance {
+export default function testKeyring (options: KeyringOptions = {}, isDerived = true): KeyringInstance {
   const keyring = new Keyring(options);
 
   PAIRS.forEach(({ name, publicKey, secretKey, seed, type }): void => {

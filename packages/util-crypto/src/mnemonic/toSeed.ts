@@ -23,7 +23,7 @@ import { bip39ToSeed, isReady } from '@polkadot/wasm-crypto';
  * }
  * ```
  */
-export default function toSeed (mnemonic: string, password: string = ''): Uint8Array {
+export default function toSeed (mnemonic: string, password = ''): Uint8Array {
   return isReady()
     ? bip39ToSeed(mnemonic, password)
     : bufferToU8a(mnemonicToSeed(mnemonic, password)).subarray(0, 32);

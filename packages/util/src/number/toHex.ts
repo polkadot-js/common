@@ -21,7 +21,7 @@ import isUndefined from '../is/undefined';
  * numberToHex(0x1234, 32); // => 0x00001234
  * ```
  */
-export default function numberToHex (value?: number | null, bitLength: number = -1): string {
+export default function numberToHex (value?: number | null, bitLength = -1): string {
   if (isUndefined(value) || isNull(value) || isNaN(value)) {
     return '0x';
   }

@@ -19,6 +19,7 @@ describe('TextDecoder', (): void => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (global as any).TextDecoder = null;
 
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     expect(require('./textDecoder')).toBeDefined();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((global as any).TextDecoder).toBeDefined();
@@ -28,6 +29,7 @@ describe('TextDecoder', (): void => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (global as any).TextDecoder = require('util').TextDecoder;
 
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     expect(require('./textDecoder')).toBeDefined();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((global as any).TextDecoder).toBeDefined();

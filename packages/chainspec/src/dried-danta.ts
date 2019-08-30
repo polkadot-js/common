@@ -4,7 +4,6 @@
 
 import { Chainspec } from './types';
 
-// eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
 export default {
   name: 'Dried Danta',
   id: 'dried-danta',

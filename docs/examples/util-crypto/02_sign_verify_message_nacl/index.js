@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { stringToU8a, u8aToHex } = require('@polkadot/util');
 const { naclEncrypt, naclKeypairFromSeed, naclSign, naclVerify, randomAsU8a } = require('@polkadot/util-crypto');

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { naclEncrypt, naclDecrypt } = require('@polkadot/util-crypto');
 

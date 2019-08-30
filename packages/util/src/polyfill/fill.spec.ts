@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable no-extend-native */
+/* eslint-disable @typescript-eslint/unbound-method */
 // Copyright 2017-2019 @polkadot/util authors & contributors
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
@@ -12,19 +15,15 @@ describe('Array.fill', (): void => {
     u8aFill = Uint8Array.prototype.fill;
 
     // @ts-ignore
-    // eslint-disable-next-line no-extend-native
     Array.prototype.fill = null;
     // @ts-ignore
-    // eslint-disable-next-line no-extend-native
     Uint8Array.prototype.fill = null;
 
     require('./fill');
   });
 
   afterEach((): void => {
-    // eslint-disable-next-line no-extend-native
     Array.prototype.fill = arrayFill;
-    // eslint-disable-next-line no-extend-native
     Uint8Array.prototype.fill = u8aFill;
   });
 

@@ -24,12 +24,9 @@ type IpTypes = 'v4' | 'v6';
  * ```
  */
 export default function isIp (value: string, type?: IpTypes): boolean {
-  // FIXME @types/ip-regex defintions are outdated
   if (type === 'v4') {
-    // @ts-ignore
     return ipRegex.v4({ exact: true }).test(value);
   } else if (type === 'v6') {
-    // @ts-ignore
     return ipRegex.v6({ exact: true }).test(value);
   }
 

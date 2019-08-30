@@ -21,7 +21,7 @@ import hexStripPrefix from './stripPrefix';
  * console.log('fixed', hexFixLength('0x0012', 8)); // => 0x12
  * ```
  */
-export default function hexFixLength (value: string, bitLength: number = -1, withPadding: boolean = false): string {
+export default function hexFixLength (value: string, bitLength = -1, withPadding = false): string {
   const strLength = Math.ceil(bitLength / 4);
   const hexLength = strLength + 2;
 

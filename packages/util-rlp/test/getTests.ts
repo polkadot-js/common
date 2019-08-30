@@ -19,9 +19,9 @@ export default function getTests (file: string): Test[] {
 
   return Object.keys(tests).map((name): Test => ({
     name,
-    input: tests[name].in[0] !== '#'
-      ? tests[name].in
-      : bnToU8a(new BN(tests[name].in.slice(1)), { isLe: false }),
+    input: tests[name].in.startsWith('#')
+      ? bnToU8a(new BN(tests[name].in.slice(1)), { isLe: false })
+      : tests[name].in,
     output: tests[name].out
       ? `0x${tests[name].out.toLowerCase()}`
       : undefined,

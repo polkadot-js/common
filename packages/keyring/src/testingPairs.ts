@@ -11,7 +11,7 @@ export interface TestKeyringMap {
   [index: string]: KeyringPair;
 }
 
-export default function testKeyringPairs (options?: KeyringOptions, isDerived: boolean = true): TestKeyringMap {
+export default function testKeyringPairs (options?: KeyringOptions, isDerived = true): TestKeyringMap {
   const keyring = createKeyring(options, isDerived);
   const pairs = keyring.getPairs();
   const map: TestKeyringMap = { nobody: nobody() };
