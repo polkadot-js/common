@@ -19,7 +19,8 @@ export default function getTests (file: string): Test[] {
 
   return Object.keys(tests).map((name): Test => ({
     name,
-    input: tests[name].in.startsWith('#')
+    // eslint-disable-next-line @typescript-eslint/prefer-string-starts-ends-with
+    input: tests[name].in[0] === '#'
       ? bnToU8a(new BN(tests[name].in.slice(1)), { isLe: false })
       : tests[name].in,
     output: tests[name].out
