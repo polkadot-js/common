@@ -21,7 +21,7 @@ import xxhash64AsBn from './xxhash64/asBn';
  * xxhashAsU8a('abc'); // => 0x44bc2cf5ad770999
  * ```
  */
-export default function xxhashAsU8a (data: Buffer | Uint8Array | string, bitLength: number = 64): Uint8Array {
+export default function xxhashAsU8a (data: Buffer | Uint8Array | string, bitLength = 64): Uint8Array {
   const iterations = Math.ceil(bitLength / 64);
 
   if (isReady()) {

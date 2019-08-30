@@ -78,7 +78,7 @@ function _buildTrie (input: [Uint8Array, Uint8Array][], cursor: number, codec: C
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function buildTrie (input: [Uint8Array, Uint8Array][], cursor: number = 0, codec: Codec = DEFAULT_CODEC, stream: any = DEFAULT_STREAM): Uint8Array {
+export default function buildTrie (input: [Uint8Array, Uint8Array][], cursor = 0, codec: Codec = DEFAULT_CODEC, stream: any = DEFAULT_STREAM): Uint8Array {
   const trie = _buildTrie(input, cursor, codec, stream);
 
   return trie;

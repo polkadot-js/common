@@ -19,7 +19,7 @@ import numberToHex from './toHex';
  * numberToU8a(0x1234); // => [0x12, 0x34]
  * ```
  */
-export default function numberToU8a (value?: number | null, bitLength: number = -1): Uint8Array {
+export default function numberToU8a (value?: number | null, bitLength = -1): Uint8Array {
   if (!value || isNaN(value)) {
     return new Uint8Array([]);
   }

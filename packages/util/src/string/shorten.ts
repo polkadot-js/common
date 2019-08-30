@@ -17,7 +17,7 @@
  * ```
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function stringShorten (_value?: any, prefixLength: number = 6): string {
+export default function stringShorten (_value?: any, prefixLength = 6): string {
   const value = `${_value}`;
 
   if (value.length <= 2 + 2 * prefixLength) {

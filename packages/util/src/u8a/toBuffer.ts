@@ -21,6 +21,5 @@ export default function u8aToBuffer (value?: Uint8Array | null): Buffer {
     return Buffer.from([]);
   }
 
-  // @ts-ignore yes, from also works with u8a
   return Buffer.from(value);
 }

@@ -21,13 +21,11 @@ import { isBuffer, isString, u8aToBuffer } from '@polkadot/util';
  */
 export default function xxhash64AsValue (data: Buffer | Uint8Array | string, seed: number): number {
   if (isBuffer(data) || isString(data)) {
-    // @ts-ignore Buffer is ArrayBuffer underlying
-    return xxhashjs.h64(data, seed);
+    return xxhashjs.h64(data, seed) as unknown as number;
   }
 
-  // @ts-ignore conversion works, yields correct result
   return xxhashjs.h64(
     u8aToBuffer(data),
     seed
-  ) as number;
+  ) as unknown as number;
 }

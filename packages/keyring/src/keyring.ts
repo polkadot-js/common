@@ -153,7 +153,7 @@ export default class Keyring implements KeyringInstance {
    */
   public createFromUri (_suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
     // here we only aut-add the dev phrase if we have a hard-derived path
-    const suri = _suri.indexOf('//') === 0
+    const suri = _suri.startsWith('//')
       ? `${DEV_PHRASE}${_suri}`
       : _suri;
     const { password, phrase, path } = keyExtractSuri(suri);

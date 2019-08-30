@@ -31,28 +31,32 @@ function extend (that: ExtError, name: string, value?: string | number): void {
  * ```
  */
 export default class ExtError extends Error implements ExtErrorInterface {
-  // @ts-ignore we are assigning it via extend
   public code: number;
 
   public data?: number | string;
 
-  // @ts-ignore we are assigning it via extend
   public message: string;
-  // @ts-ignore we are assigning it via extend
 
   public name: string;
 
-  // @ts-ignore we are assigning it via extend
   public stack: string;
 
-  public constructor (message: string = '', code: number = UNKNOWN, data?: number | string) {
+  public constructor (message = '', code: number = UNKNOWN, data?: number | string) {
     super();
+
+    // These are actually done via extend below to clean them up
+    this.code = code;
+    this.data = data;
+    this.name = name;
+    this.message = message;
+    this.stack = '';
 
     extend(this, 'message', String(message));
     extend(this, 'name', this.constructor.name);
     extend(this, 'data', data);
     extend(this, 'code', code);
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     if (isFunction(Error.captureStackTrace)) {
       Error.captureStackTrace(this, this.constructor);
     } else {

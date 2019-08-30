@@ -31,7 +31,6 @@ describe('promisify', (): void => {
     const fn = (a: number, b: boolean, cb: (error: Error | null, result?: [number, boolean]) => void): void =>
       cb(null, [a, b]);
 
-    // @ts-ignore
     return promisify(null, fn, 2, false).then((result: [number, boolean]): void => {
       expect(result).toEqual([2, false]);
     });
@@ -41,19 +40,8 @@ describe('promisify', (): void => {
     const fn = (a: number, b: boolean, c: string, cb: (error: Error | null, result?: [number, boolean, string]) => void): void =>
       cb(new Error(`test reject: ${a},${b},${c}`));
 
-    // @ts-ignore
     return promisify(null, fn, 3, 'string', true).catch((error: Error): void => {
       expect(error.message).toEqual('test reject: 3,string,true');
-    });
-  });
-
-  it('applies the correct this argument', (): Promise<void> => {
-    const self = { something: 'something' };
-
-    return promisify(self, function (cb: (error: Error | null) => void): void {
-      // @ts-ignore
-      expect(this).toEqual(self);
-      cb(null);
     });
   });
 });

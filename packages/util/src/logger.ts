@@ -80,13 +80,10 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
   const chalk = (value: string): string =>
     chalked[log](value);
 
-  // @ts-ignore Not sure how to coax TS here...
-  console[logTo[log]].apply(
-    console, [
-      chalk(moment().format('YYYY-MM-DD HH:mm:ss')), chalk(type)
-    ].concat(
-      values.map(format)
-    )
+  console[logTo[log] as 'log'](
+    chalk(moment().format('YYYY-MM-DD HH:mm:ss')),
+    chalk(type),
+    ...values.map(format)
   );
 }
 
@@ -117,7 +114,7 @@ export default function logger (_type: string): Logger {
     const isTest = process.env.NODE_ENV === 'test';
     const debugList = (process.env.DEBUG || '').split(',');
 
-    isDebug = isTest || !!debugList.find((entry): boolean => _type.indexOf(entry) === 0);
+    isDebug = isTest || !!debugList.find((entry): boolean => _type.startsWith(entry));
   } catch (error) {
     isDebug = false;
   }

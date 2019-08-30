@@ -20,7 +20,7 @@ import xxhashAsU8a from './asU8a';
  * xxhashAsHex('abc'); // => 0x44bc2cf5ad770999
  * ```
  */
-export default function xxhashAsHex (data: Buffer | Uint8Array | string, bitLength: number = 64): string {
+export default function xxhashAsHex (data: Buffer | Uint8Array | string, bitLength = 64): string {
   return u8aToHex(
     xxhashAsU8a(data, bitLength)
   );

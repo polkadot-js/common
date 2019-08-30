@@ -37,5 +37,5 @@ export default function bnToBn <ExtToBn extends ToBn> (value?: ExtToBn | BN | st
     ? value
     : isToBn(value)
       ? value.toBn()
-      : new BN(value as number);
+      : new BN(value);
 }

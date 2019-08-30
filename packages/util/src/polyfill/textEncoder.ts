@@ -4,8 +4,8 @@
 
 if (typeof TextEncoder === 'undefined') {
   try {
-    // @ts-ignore For the Node.js case
-    global.TextEncoder = require('util').TextEncoder;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (global as any).TextEncoder = require('util').TextEncoder;
   } catch (error) {
     // noop
   }

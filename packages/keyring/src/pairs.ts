@@ -7,10 +7,7 @@ import { KeyringPairs, KeyringPair } from './types';
 import { assert, isHex, isU8a, u8aToHex, u8aToU8a } from '@polkadot/util';
 import { decodeAddress } from '@polkadot/util-crypto';
 
-interface KeyringPairMap {
-  // @ts-ignore we use coercion :(
-  [index: Uint8Array]: KeyringPair;
-}
+type KeyringPairMap = Record<string, KeyringPair>;
 
 export default class Pairs implements KeyringPairs {
   private _map: KeyringPairMap;
@@ -20,8 +17,7 @@ export default class Pairs implements KeyringPairs {
   }
 
   public add (pair: KeyringPair): KeyringPair {
-    // @ts-ignore we use coercion :(
-    this._map[pair.publicKey] = pair;
+    this._map[pair.publicKey.toString()] = pair;
 
     return pair;
   }
@@ -31,8 +27,7 @@ export default class Pairs implements KeyringPairs {
   }
 
   public get (address: string | Uint8Array): KeyringPair {
-    // @ts-ignore we use coercion :(
-    const pair = this._map[decodeAddress(address)];
+    const pair = this._map[decodeAddress(address).toString()];
 
     assert(pair, (): string => {
       const formatted: string = isU8a(address) || isHex(address)
@@ -46,7 +41,6 @@ export default class Pairs implements KeyringPairs {
   }
 
   public remove (address: string | Uint8Array): void {
-    // @ts-ignore we use coercion :(
-    delete this._map[decodeAddress(address)];
+    delete this._map[decodeAddress(address).toString()];
   }
 }

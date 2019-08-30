@@ -32,7 +32,7 @@ let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
 // Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | ExtToBn, withSi: boolean = true, decimals: number = defaultDecimals): string {
+function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | ExtToBn, withSi = true, decimals: number = defaultDecimals): string {
   let text = bnToBn(input).toString();
 
   if (text.length === 0 || text === '0') {
@@ -41,7 +41,7 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | E
 
   // strip the negative sign so we can work with clean groupings, re-add this in the
   // end when we return the result (from here on we work with positive numbers)
-  const isNegative = text[0] === '-';
+  const isNegative = text[0].startsWith('-');
 
   if (isNegative) {
     text = text.substr(1);
@@ -68,10 +68,14 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | E
 
 const formatBalance = _formatBalance as BalanceFormatter;
 
+// eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.calcSi = (text: string, decimals: number = defaultDecimals): SiDef =>
   calcSi(text, decimals);
+
+// eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.findSi = findSi;
 
+// eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.getDefaults = (): Defaults => {
   return {
     decimals: defaultDecimals,
@@ -80,6 +84,7 @@ formatBalance.getDefaults = (): Defaults => {
 };
 
 // get allowable options to display in a dropdown
+// eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.getOptions = (decimals: number = defaultDecimals): SiDef[] => {
   return SI.filter(({ power }): boolean =>
     power < 0
@@ -89,6 +94,7 @@ formatBalance.getOptions = (decimals: number = defaultDecimals): SiDef[] => {
 };
 
 // Sets the default decimals to use for formatting (ui-wide)
+// eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.setDefaults = ({ decimals, unit }: Partial<Defaults>): void => {
   defaultDecimals = isUndefined(decimals) ? defaultDecimals : decimals;
   defaultUnit = isUndefined(unit) ? defaultUnit : unit;

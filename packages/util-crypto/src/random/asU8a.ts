@@ -18,6 +18,6 @@ import nacl from 'tweetnacl';
  * randomAsU8a(); // => Uint8Array([...])
  * ```
  */
-export default function randomAsU8a (length: number = 32): Uint8Array {
+export default function randomAsU8a (length = 32): Uint8Array {
   return nacl.randomBytes(length);
 }

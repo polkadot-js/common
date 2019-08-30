@@ -30,6 +30,5 @@ export default function decode (input: Uint8Array): DecodeOutput {
 
   assert(decoder, 'Unable to find decoder for input type');
 
-  // @ts-ignore assert catches invalids, which _should_ not happen...
-  return decoder.fn(decode, input);
+  return (decoder as Decoder).fn(decode, input);
 }

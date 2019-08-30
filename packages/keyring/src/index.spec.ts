@@ -19,7 +19,7 @@ describe('keypair', (): void => {
     const seedTwo = hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60');
     let keypair: Keyring;
 
-    beforeEach(async (): Promise<void> => {
+    beforeEach((): void => {
       keypair = new Keyring({ type: 'ed25519' });
 
       keypair.addFromSeed(seedOne, {});
