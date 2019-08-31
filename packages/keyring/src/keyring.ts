@@ -90,7 +90,7 @@ export default class Keyring implements KeyringInstance {
   public addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.type, ignoreChecksum?: boolean): KeyringPair {
     const publicKey = this.decodeAddress(address, ignoreChecksum);
 
-    return this.addPair(createPair(type, { publicKey }, meta, encoded));
+    return this.addPair(createPair(type, { publicKey, secretKey: new Uint8Array(64) }, meta, encoded));
   }
 
   /**
