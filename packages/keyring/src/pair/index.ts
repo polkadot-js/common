@@ -12,8 +12,8 @@ import decode from './decode';
 import encode from './encode';
 import toJson from './toJson';
 
-function isAllZero (u8a: Uint8Array): boolean {
-  return u8a.reduce((count, u8): number => count + (u8 ? 0 : 1), 0) === u8a.length;
+function isEmpty (u8a: Uint8Array): boolean {
+  return u8a.reduce((count, u8): number => count + u8, 0) > 0;
 }
 
 const isSr25519 = (type: KeypairType): boolean =>
@@ -90,7 +90,7 @@ export default function createPair (type: KeypairType, { publicKey, secretKey }:
       return meta;
     },
     get isLocked (): boolean {
-      return !secretKey || secretKey.length === 0 || !isAllZero(secretKey);
+      return !secretKey || secretKey.length === 0 || !isEmpty(secretKey);
     },
     lock: (): void => {
       secretKey = new Uint8Array(0);
