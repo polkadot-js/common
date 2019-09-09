@@ -1,3 +1,8 @@
+# 1.2.1
+
+- Keyring `addFromAddress` can now be used to store external accounts, for example those provided by external signers
+- Maintainability updates
+
 # 1.1.1
 
 - `assertSingletonPackage` now warns via console.warn, but does not throw. This does allow the info to come accross while still allowing the app developers using multiple libraries time to fix.
