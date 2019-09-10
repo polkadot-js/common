@@ -47,8 +47,8 @@ export default class ExtError extends Error implements ExtErrorInterface {
     // These are actually done via extend below to clean them up
     this.code = code;
     this.data = data;
-    this.name = name;
-    this.message = message;
+    this.name = this.constructor.name;
+    this.message = String(message);
     this.stack = '';
 
     extend(this, 'message', String(message));
