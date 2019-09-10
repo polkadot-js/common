@@ -17,7 +17,6 @@ export * from './array';
 export * from './bn';
 export * from './buffer';
 export * from './compact';
-export * from './ext';
 export * from './format';
 export * from './hex';
 export * from './is';

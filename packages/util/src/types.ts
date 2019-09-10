@@ -8,13 +8,6 @@ export interface ToBn {
   toBn: () => BN;
 }
 
-export interface ExtErrorInterface {
-  code: number;
-  data?: string | number;
-  message: string;
-  stack: string;
-}
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Logger$Data$Fn = () => any[];
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

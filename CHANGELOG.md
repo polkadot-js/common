@@ -1,3 +1,7 @@
+# 1.3.0-beta.x
+
+- Remove `ExtError`, always prefer the standard JS `Error` object for errors. This would bre a breaking change for any appliactions using `ExtError`
+
 # 1.2.1
 
 - Keyring `addFromAddress` can now be used to store external accounts, for example those provided by external signers

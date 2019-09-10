@@ -22,14 +22,4 @@ describe('assert', (): void => {
       (): boolean => assert(false, (): string => 'message from function')
     ).toThrow(/message from function/);
   });
-
-  it('throws a valid constructed ExtError', (): void => {
-    try {
-      assert(false, 'error', -666, 'data');
-    } catch (error) {
-      expect(error.code).toEqual(-666);
-      expect(error.data).toEqual('data');
-      expect(error.message).toEqual('error');
-    }
-  });
 });
