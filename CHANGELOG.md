@@ -1,6 +1,6 @@
-# 1.3.0-beta.x
+# 1.3.1
 
-- Remove `ExtError`, always prefer the standard JS `Error` object for errors. This would bre a breaking change for any appliactions using `ExtError`
+- Remove the `ExtError` class, always prefer the standard JS `Error` object for errors. This would bre a breaking change for any appliactions using `ExtError`
 
 # 1.2.1
 
