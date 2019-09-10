@@ -8,7 +8,7 @@ import { KeypairType } from '@polkadot/util-crypto/types';
 
 export interface KeyringOptions {
   addressPrefix?: Prefix;
-  type?: KeypairType;
+  defaultType?: KeypairType;
 }
 
 export interface KeyringPair$Meta {

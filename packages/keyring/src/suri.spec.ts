@@ -60,7 +60,7 @@ const TESTS = [
 ];
 
 describe('keyring.addFromUri', (): void => {
-  const keyring = new Keyring({ type: 'sr25519' });
+  const keyring = new Keyring({ defaultType: 'sr25519' });
 
   beforeEach(async (): Promise<void> => {
     await cryptoWaitReady();

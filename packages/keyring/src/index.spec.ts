@@ -20,7 +20,7 @@ describe('keypair', (): void => {
     let keypair: Keyring;
 
     beforeEach((): void => {
-      keypair = new Keyring({ type: 'ed25519' });
+      keypair = new Keyring({ defaultType: 'ed25519' });
 
       keypair.addFromSeed(seedOne, {});
     });
@@ -88,7 +88,7 @@ describe('keypair', (): void => {
     let keypair: Keyring;
 
     beforeEach((): void => {
-      keypair = new Keyring({ type: 'sr25519' });
+      keypair = new Keyring({ defaultType: 'sr25519' });
 
       keypair.addFromSeed(seedOne, {});
     });

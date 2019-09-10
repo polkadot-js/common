@@ -31,7 +31,7 @@ import Pairs from './pairs';
 export default class Keyring implements KeyringInstance {
   private _pairs: Pairs;
 
-  private _type: KeypairType;
+  private _defaultType: KeypairType;
 
   public decodeAddress = decodeAddress;
 
@@ -40,12 +40,12 @@ export default class Keyring implements KeyringInstance {
   public setAddressPrefix = setAddressPrefix;
 
   public constructor (options: KeyringOptions = {}) {
-    options.type = options.type || 'ed25519';
+    options.defaultType = options.defaultType || 'ed25519';
 
-    assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
+    assert(options && ['ed25519', 'sr25519'].includes(options.defaultType || 'undefined'), `Expected a default keyring type of either 'ed25519' or 'sr25519', found '${options.defaultType}`);
 
     this._pairs = new Pairs();
-    this._type = options.type;
+    this._defaultType = options.defaultType;
 
     setAddressPrefix(isNumber(options.addressPrefix) ? options.addressPrefix : 42);
   }
@@ -65,10 +65,10 @@ export default class Keyring implements KeyringInstance {
   }
 
   /**
-   * @description Returns the type of the keyring, either ed25519 of sr25519
+   * @description Returns the default type of the keyring, either ed25519 of sr25519
    */
-  public get type (): KeypairType {
-    return this._type;
+  public get defaultType (): KeypairType {
+    return this._defaultType;
   }
 
   /**
@@ -102,7 +102,7 @@ export default class Keyring implements KeyringInstance {
    */
   public addFromJson ({ address, encoded, encoding: { content, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
     const type = version === '0' || !Array.isArray(content)
-      ? this.type
+      ? this.defaultType
       : content[1];
 
     return this.addFromAddress(address, meta, hexToU8a(encoded), type, ignoreChecksum);
@@ -116,7 +116,7 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  public addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+  public addFromMnemonic (mnemonic: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.defaultType): KeyringPair {
     return this.addFromUri(mnemonic, meta, type);
   }
 
@@ -127,7 +127,7 @@ export default class Keyring implements KeyringInstance {
    * Allows user to provide the account seed as an argument, and then generates a keyring pair from it that it passes to
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  public addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+  public addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.defaultType): KeyringPair {
     const keypair = type === 'sr25519'
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
@@ -140,7 +140,7 @@ export default class Keyring implements KeyringInstance {
    * @summary Creates an account via an suri
    * @description Extracts the phrase, path and password from a SURI format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed). The secret can be a hex string, mnemonic phrase or a string (to be padded)
    */
-  public addFromUri (suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+  public addFromUri (suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.defaultType): KeyringPair {
     return this.addPair(
       this.createFromUri(suri, meta, type)
     );
@@ -151,7 +151,7 @@ export default class Keyring implements KeyringInstance {
    * @summry Creates a Keypair from an suri
    * @description This creates a pair from the suri, but does not add it to the keyring
    */
-  public createFromUri (_suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+  public createFromUri (_suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.defaultType): KeyringPair {
     // here we only aut-add the dev phrase if we have a hard-derived path
     const suri = _suri.startsWith('//')
       ? `${DEV_PHRASE}${_suri}`
