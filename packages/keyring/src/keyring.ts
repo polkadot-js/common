@@ -87,7 +87,7 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from them that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  public addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.type, ignoreChecksum?: boolean): KeyringPair {
+  public addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.defaultType, ignoreChecksum?: boolean): KeyringPair {
     const publicKey = this.decodeAddress(address, ignoreChecksum);
 
     return this.addPair(createPair(type, { publicKey, secretKey: new Uint8Array(64) }, meta, encoded));

@@ -87,7 +87,7 @@ export default function testKeyring (options: KeyringOptions = {}, isDerived = t
     };
 
     const pair = !isDerived && !name
-      ? keyring.addFromUri(seed, meta, options.type)
+      ? keyring.addFromUri(seed, meta, options.defaultType)
       : keyring.addPair(
         createPair(type || 'sr25519', { publicKey, secretKey }, meta)
       );

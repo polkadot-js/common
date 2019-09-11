@@ -7,7 +7,7 @@ import { setAddressPrefix } from '@polkadot/util-crypto';
 import testingPairs from '../testingPairs';
 import createPair from '.';
 
-const keyring = testingPairs({ type: 'ed25519' }, false);
+const keyring = testingPairs({ defaultType: 'ed25519' }, false);
 
 describe('pair', (): void => {
   const SIGNATURE = new Uint8Array([80, 191, 198, 147, 225, 207, 75, 88, 126, 39, 129, 109, 191, 38, 72, 181, 75, 254, 81, 143, 244, 79, 237, 38, 236, 141, 28, 252, 134, 26, 169, 234, 79, 33, 153, 158, 151, 34, 175, 188, 235, 20, 35, 135, 83, 120, 139, 211, 233, 130, 1, 208, 201, 215, 73, 80, 56, 98, 185, 196, 11, 8, 193, 14]);

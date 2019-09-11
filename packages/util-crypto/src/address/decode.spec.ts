@@ -9,7 +9,7 @@ describe('decode', (): void => {
   let keyring: TestKeyringMap;
 
   beforeAll((): void => {
-    keyring = testingPairs({ type: 'sr25519' });
+    keyring = testingPairs({ defaultType: 'sr25519' });
   });
 
   it('decodes an address', (): void => {
