@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
-import { cryptoWaitReady, setAddressPrefix } from '@polkadot/util-crypto';
+import { cryptoWaitReady, setSS58Format } from '@polkadot/util-crypto';
 
 import Keyring from '.';
 
@@ -25,6 +25,10 @@ describe('keypair', (): void => {
       keypair.addFromSeed(seedOne, {});
     });
 
+    afterEach((): void => {
+      setSS58Format(42);
+    });
+
     it('adds the pair', (): void => {
       expect(
         keypair.addFromSeed(seedTwo, {}).publicKey
@@ -40,7 +44,7 @@ describe('keypair', (): void => {
     });
 
     it('adds from a mnemonic', (): void => {
-      setAddressPrefix(68);
+      setSS58Format(68);
 
       expect(
         keypair.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {}).address
@@ -93,6 +97,10 @@ describe('keypair', (): void => {
       keypair.addFromSeed(seedOne, {});
     });
 
+    afterEach((): void => {
+      setSS58Format(42);
+    });
+
     it('creates with dev phrase when only path specified', (): void => {
       expect(
         keypair.createFromUri('//Alice').address
@@ -106,7 +114,7 @@ describe('keypair', (): void => {
     });
 
     it('adds from a mnemonic', (): void => {
-      setAddressPrefix(68);
+      setSS58Format(68);
 
       expect(
         keypair.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {}).address

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { setAddressPrefix } from '@polkadot/util-crypto';
+import { setSS58Format } from '@polkadot/util-crypto';
 
 import testingPairs from '../testingPairs';
 import createPair from '.';
@@ -61,7 +61,7 @@ describe('pair', (): void => {
       '5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua'
     );
 
-    setAddressPrefix(68);
+    setSS58Format(68);
 
     expect(keyring.alice.address).toEqual(
       '7sGUeMak588SPY2YMmmuKUuLz7u2WQpf74F9dCFtSLB2td9d'

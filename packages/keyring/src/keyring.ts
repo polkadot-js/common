@@ -49,7 +49,7 @@ export default class Keyring implements KeyringInstance {
     this._type = options.type;
 
     if (isNumber(options.ss58Format)) {
-      this.setSS58Format(options.ss58Format);
+      setSS58Format(options.ss58Format);
     }
   }
 
