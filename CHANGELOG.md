@@ -1,3 +1,7 @@
+# 1.4.0-beta.x
+
+- Added `stringToHex` and `hexToString` conversion utilities
+
 # 1.3.1
 
 - Remove the `ExtError` class, always prefer the standard JS `Error` object for errors. This would bre a breaking change for any appliactions using `ExtError`
