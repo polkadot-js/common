@@ -7,13 +7,9 @@ import decodeAddress from './decode';
 import encodeAddress from './encode';
 import setSS58Format from './setSS58Format';
 
-const setAddressPrefix = setSS58Format;
-
 export {
   checkAddress,
   decodeAddress,
   encodeAddress,
-  // @deprecated use setSS58Format instead
-  setAddressPrefix,
   setSS58Format
 };

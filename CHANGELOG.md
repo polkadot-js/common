@@ -1,9 +1,9 @@
 # 1.4.1
 
+- **Breaking change** To set the `ss58Format`, you should now use `setSS58Format` as opposed to the old `setAddressPrefix`
+- Renamed `keyring.setAddressPrefix` to `keyring.setSS58Format`
+- Deprecated `addressPrefix` on the keyring options, added the `ss58Format` as a replacement (aligning with chain properties - the old version is still accepted)
 - Swap to [Babel 7.6.0](https://babeljs.io/) for all compilation, for latest improvements in code generation
-- Deprecated `addressPrefix` on the keyring options, add the `ss58Format` as a replacement (aligning with chain properties)
-- Rename `keyring.setAddressPrefix` to `keyring.setSS58Format`
-- To set the `ss58Format`, it is now encouraged to use `setSS58Format` as opposed to the old name `setAddressPrefix`
 
 # 1.3.1
 
