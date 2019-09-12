@@ -3,11 +3,11 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import encode from './encode';
-import setPrefix from './setPrefix';
+import setSS58Format from './setSS58Format';
 
-describe('setPrefix', (): void => {
+describe('setSS58Format', (): void => {
   beforeEach((): void => {
-    setPrefix(68);
+    setSS58Format(68);
   });
 
   it('sets and allows encoding using', (): void => {

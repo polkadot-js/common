@@ -6,6 +6,6 @@ import { Prefix } from './types';
 
 import defaults from './defaults';
 
-export default function setPrefix (prefix: Prefix): void {
+export default function setSS58Format (prefix: Prefix): void {
   defaults.prefix = prefix;
 }

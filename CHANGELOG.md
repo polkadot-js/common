@@ -1,6 +1,13 @@
+# 1.4.1
+
+- Swap to [Babel 7.6.0](https://babeljs.io/) for all compilation, for latest improvements in code generation
+- Deprecated `addressPrefix` on the keyring options, add the `ss58Format` as a replacement (aligning with chain properties)
+- Rename `keyring.setAddressPrefix` to `keyring.setSS58Format`
+- To set the `ss58Format`, it is now encouraged to use `setSS58Format` as opposed to the old name `setAddressPrefix`
+
 # 1.3.1
 
-- Remove the `ExtError` class, always prefer the standard JS `Error` object for errors. This would bre a breaking change for any appliactions using `ExtError`
+- Remove the `ExtError` class, always prefer the standard JS `Error` object for errors. This would bre a breaking change for any applications using `ExtError`
 
 # 1.2.1
 

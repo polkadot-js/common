@@ -5,11 +5,15 @@
 import checkAddress from './check';
 import decodeAddress from './decode';
 import encodeAddress from './encode';
-import setAddressPrefix from './setPrefix';
+import setSS58Format from './setSS58Format';
+
+const setAddressPrefix = setSS58Format;
 
 export {
   checkAddress,
   decodeAddress,
   encodeAddress,
-  setAddressPrefix
+  // @deprecated use setSS58Format instead
+  setAddressPrefix,
+  setSS58Format
 };
