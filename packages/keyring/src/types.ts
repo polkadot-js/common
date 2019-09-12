@@ -7,7 +7,9 @@ import { Prefix } from '@polkadot/util-crypto/address/types';
 import { KeypairType } from '@polkadot/util-crypto/types';
 
 export interface KeyringOptions {
+  // @deprecated
   addressPrefix?: Prefix;
+  ss58Format?: Prefix;
   type?: KeypairType;
 }
 
@@ -61,7 +63,7 @@ export interface KeyringInstance {
 
   decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: boolean): Uint8Array;
   encodeAddress (key: Uint8Array | string): string;
-  setAddressPrefix (prefix: Prefix): void;
+  setSS58Format (prefix: Prefix): void;
 
   addPair (pair: KeyringPair): KeyringPair;
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, encoded?: Uint8Array | null, type?: KeypairType, ignoreChecksum?: boolean): KeyringPair;

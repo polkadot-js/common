@@ -14,6 +14,12 @@ describe('encode', (): void => {
     ).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua');
   });
 
+  it('can re-encode an address', (): void => {
+    expect(
+      encode('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', 68)
+    ).toEqual('7sL6eNJj5ZGV5cn3hhV2deRUsivXfBfMH76wCALCqWj1EKzv');
+  });
+
   it('fails when non-valid publicKey provided', (): void => {
     expect(
       (): string => encode(
