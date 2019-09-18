@@ -1,3 +1,8 @@
+# 1.5.1
+
+- Fix typings on  the Keyring-exposed encode & decodeAddress
+- Allow ss58Format = 0 to not fallback to addressPrefix
+
 # 1.4.1
 
 - **Breaking change** To set the `ss58Format`, you should now use `setSS58Format` as opposed to the old `setAddressPrefix`

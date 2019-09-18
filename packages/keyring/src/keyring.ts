@@ -41,7 +41,9 @@ export default class Keyring implements KeyringInstance {
 
   public constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
-    options.ss58Format = options.ss58Format || options.addressPrefix;
+    options.ss58Format = isNumber(options.ss58Format)
+      ? options.addressPrefix
+      : options.ss58Format;
 
     assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
 

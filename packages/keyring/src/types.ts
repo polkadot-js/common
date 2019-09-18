@@ -61,9 +61,9 @@ export interface KeyringInstance {
   readonly publicKeys: Uint8Array[];
   readonly type: KeypairType;
 
-  decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: boolean): Uint8Array;
-  encodeAddress (key: Uint8Array | string): string;
-  setSS58Format (prefix: Prefix): void;
+  decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: boolean, ss58Format?: Prefix): Uint8Array;
+  encodeAddress (key: Uint8Array | string, ss58Format?: Prefix): string;
+  setSS58Format (ss58Format: Prefix): void;
 
   addPair (pair: KeyringPair): KeyringPair;
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, encoded?: Uint8Array | null, type?: KeypairType, ignoreChecksum?: boolean): KeyringPair;
