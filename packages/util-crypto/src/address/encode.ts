@@ -13,7 +13,7 @@ import decode from './decode';
 import defaults from './defaults';
 import sshash from './sshash';
 
-export default function encode (_key: Uint8Array | string, prefix: Prefix = defaults.prefix): string {
+export default function encode (_key: Uint8Array | string, ss58Format: Prefix = defaults.prefix): string {
   // decode it, this means we can re-encode an address
   const key = decode(_key);
 
@@ -21,7 +21,7 @@ export default function encode (_key: Uint8Array | string, prefix: Prefix = defa
 
   const isPublicKey = key.length === 32;
 
-  const input = u8aConcat(new Uint8Array([prefix]), key);
+  const input = u8aConcat(new Uint8Array([ss58Format]), key);
   const hash = sshash(input);
 
   return bs58.encode(
