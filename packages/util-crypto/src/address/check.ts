@@ -12,7 +12,7 @@ import sshash from './sshash';
 export default function check (address: string, prefix: Prefix): [boolean, string | null] {
   const decoded = bs58.decode(address);
 
-  if (decoded[0] as Prefix !== prefix) {
+  if (decoded[0] !== prefix) {
     return [false, `Prefix mismatch, expected ${prefix}, found ${decoded[0]}`];
   } else if (!defaults.allowedEncodedLengths.includes(decoded.length)) {
     return [false, 'Invalid decoded address length'];

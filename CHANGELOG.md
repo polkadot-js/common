@@ -1,7 +1,8 @@
 # 1.5.1
 
-- Fix typings on  the Keyring-exposed encode & decodeAddress
-- Allow ss58Format = 0 to not fallback to addressPrefix
+- Fix typings on the Keyring-exposed encode & decodeAddress
+- Allow ss58Format = 0 as a valid value
+- Loosen type definitions for allowed ss58format values (still checked against allowed array)
 
 # 1.4.1
 
