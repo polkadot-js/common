@@ -7,6 +7,7 @@ on:
 jobs:
   merge:
     name: Merge
+    if: "! contains(github.event.head_commit.message, '[CI Skip]')"
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,6 +22,7 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         GH_PAT: ${{ secrets.GH_PAT }}
+        GH_TOKEN: ${{ secrets.GH_PAT }}
         GH_PAGES_SRC: build-docs
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
