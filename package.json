@@ -9,7 +9,7 @@
   ],
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "build": "yarn build:split:code && yarn build:split:docs",
@@ -23,7 +23,7 @@
     "test:one": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
+    "@babel/core": "^7.6.4",
     "@polkadot/dev": "^0.32.0-beta.9",
     "@polkadot/ts": "^0.1.80",
     "gh-pages": "^2.1.1"
