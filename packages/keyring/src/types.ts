@@ -33,6 +33,10 @@ export interface KeyringPair$Json {
   meta: KeyringPair$Meta;
 }
 
+export interface SignOptions {
+  withType?: boolean;
+}
+
 export interface KeyringPair {
   readonly type: KeypairType;
 
@@ -44,7 +48,7 @@ export interface KeyringPair {
   lock: () => void;
   publicKey: Uint8Array;
   setMeta: (meta: KeyringPair$Meta) => void;
-  sign (message: Uint8Array): Uint8Array;
+  sign (message: Uint8Array, options?: SignOptions): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;
   verify (message: Uint8Array, signature: Uint8Array): boolean;
 }

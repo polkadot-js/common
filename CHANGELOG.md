@@ -1,3 +1,7 @@
+# 1.6.0-beta.x
+
+- `pair.sign(message)` now takes an optional second options parameter, currently defined as `{ withType: boolean }`. Here `withType` instructs the signing to prepend the type of signature (ed2551, sr25519 or ecdsa). This is used for the new Polkadot/Substrate MultiSignature format.
+
 # 1.5.1
 
 - Fix typings on the Keyring-exposed encode & decodeAddress
