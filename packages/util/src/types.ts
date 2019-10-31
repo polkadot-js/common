@@ -8,6 +8,12 @@ export interface ToBn {
   toBn: () => BN;
 }
 
+export interface SiDef {
+  power: number;
+  text: string;
+  value: string;
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Logger$Data$Fn = () => any[];
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
