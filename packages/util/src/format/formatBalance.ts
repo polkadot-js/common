@@ -2,14 +2,14 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { ToBn } from '../types';
+import { SiDef, ToBn } from '../types';
 
 import BN from 'bn.js';
 
 import bnToBn from '../bn/toBn';
 import isUndefined from '../is/undefined';
 import formatDecimal from './formatDecimal';
-import { SI, SI_MID, SiDef, calcSi, findSi } from './si';
+import { SI, SI_MID, calcSi, findSi } from './si';
 
 interface Defaults {
   decimals: number;
