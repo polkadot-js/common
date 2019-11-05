@@ -26,11 +26,6 @@ export const SI: SiDef[] = [
   { power: 24, value: 'Y', text: 'Yotta' }
 ];
 
-export function calcSi (text: string, decimals: number): SiDef {
-  const siDefIndex = (SI_MID - 1) + Math.ceil((text.length - decimals) / 3);
-  return SI[siDefIndex] || SI[siDefIndex < 0 ? 0 : SI.length - 1];
-}
-
 // Given a SI type (e.g. k, m, Y) find the SI definition
 export function findSi (type: string): SiDef {
   // use a loop here, better RN support (which doesn't have [].find)
@@ -41,4 +36,14 @@ export function findSi (type: string): SiDef {
   }
 
   return SI[SI_MID];
+}
+
+export function calcSi (text: string, decimals: number, forceUnit?: string): SiDef {
+  if (forceUnit) {
+    return findSi(forceUnit);
+  }
+
+  const siDefIndex = (SI_MID - 1) + Math.ceil((text.length - decimals) / 3);
+
+  return SI[siDefIndex] || SI[siDefIndex < 0 ? 0 : SI.length - 1];
 }
