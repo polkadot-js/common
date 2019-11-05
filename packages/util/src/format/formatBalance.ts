@@ -7,6 +7,7 @@ import { SiDef, ToBn } from '../types';
 import BN from 'bn.js';
 
 import bnToBn from '../bn/toBn';
+import isBoolean from '../is/boolean';
 import isUndefined from '../is/undefined';
 import formatDecimal from './formatDecimal';
 import { SI, SI_MID, calcSi, findSi } from './si';
@@ -16,8 +17,10 @@ interface Defaults {
   unit: string;
 }
 
+type Options = boolean | { forceUnit?: string; withSi?: boolean };
+
 interface BalanceFormatter {
-  <ExtToBn extends ToBn> (input?: number | string | BN | ExtToBn, withSi?: boolean, decimals?: number): string;
+  <ExtToBn extends ToBn> (input?: number | string | BN | ExtToBn, options?: Options, decimals?: number): string;
   calcSi (text: string, decimals?: number): SiDef;
   findSi (type: string): SiDef;
   getDefaults (): Defaults;
@@ -32,7 +35,7 @@ let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
 // Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | ExtToBn, withSi = true, decimals: number = defaultDecimals): string {
+function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | ExtToBn, options: Options = true, decimals: number = defaultDecimals): string {
   let text = bnToBn(input).toString();
 
   if (text.length === 0 || text === '0') {
@@ -47,10 +50,15 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | E
     text = text.substr(1);
   }
 
+  // extract options - the boolean case is for backwards-compat
+  const { forceUnit = undefined, withSi = true } = isBoolean(options)
+    ? { withSi: options }
+    : options;
+
   // NOTE We start at midpoint (8) minus 1 - this means that values display as
   // 123.456 instead of 0.123k (so always 6 relevant). Additionally we us ceil
   // so there are at most 3 decimal before the decimal seperator
-  const si = calcSi(text, decimals);
+  const si = calcSi(text, decimals, forceUnit);
   const mid = text.length - (decimals + si.power);
   const prefix = text.substr(0, mid);
   const padding = mid < 0 ? 0 - mid : 0;
