@@ -24,12 +24,15 @@ const json: KeyringPair$Json = {
 };
 
 export default function everybody (): KeyringPair {
-  return {
+  const pair: KeyringPair = {
     type: 'ed25519',
     address,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void =>
       undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair =>
+      pair,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     encodePkcs8: (passphrase?: string): Uint8Array =>
       new Uint8Array(0),
@@ -52,4 +55,6 @@ export default function everybody (): KeyringPair {
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       false
   };
+
+  return pair;
 }

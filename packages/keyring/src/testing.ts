@@ -21,7 +21,7 @@ interface PairDef {
 // keyring is for testing - what happens is that in most cases the keyring is initialises
 // before anything else. Since the sr25519 crypto is async, this creates problems with
 // adding the keys when only the keyring is used.
-const PAIRS: PairDef[] = [
+export const PAIRS: PairDef[] = [
   {
     seed: 'Alice',
     secretKey: hexToU8a('0x98319d4ff8a9508c4bb0cf0b5a78d760a0b2082c02775e6e82370816fedfff48925a225d97aa00682d6a59b95b18780c10d7032336e88f3442b42361f4a66011'),

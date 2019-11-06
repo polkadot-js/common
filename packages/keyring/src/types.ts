@@ -38,15 +38,16 @@ export interface SignOptions {
 }
 
 export interface KeyringPair {
+  readonly address: string;
+  readonly meta: KeyringPair$Meta;
+  readonly isLocked: boolean;
+  readonly publicKey: Uint8Array;
   readonly type: KeypairType;
 
-  address: string;
   decodePkcs8: (passphrase?: string, encoded?: Uint8Array) => void;
+  derive: (suri: string, meta?: KeyringPair$Meta) => KeyringPair;
   encodePkcs8: (passphrase?: string) => Uint8Array;
-  meta: KeyringPair$Meta;
-  isLocked: boolean;
   lock: () => void;
-  publicKey: Uint8Array;
   setMeta: (meta: KeyringPair$Meta) => void;
   sign (message: Uint8Array, options?: SignOptions): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;
