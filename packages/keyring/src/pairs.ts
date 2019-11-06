@@ -12,7 +12,7 @@ type KeyringPairMap = Record<string, KeyringPair>;
 export default class Pairs implements KeyringPairs {
   private _map: KeyringPairMap;
 
-  public constructor () {
+  constructor () {
     this._map = {};
   }
 

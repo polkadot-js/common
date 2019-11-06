@@ -20,7 +20,7 @@ export default class TransactionDb implements TxDb {
 
   private txStarted: boolean;
 
-  public constructor (backing: BaseDb) {
+  constructor (backing: BaseDb) {
     this.backing = backing;
     this.txStarted = false;
   }

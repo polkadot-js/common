@@ -20,7 +20,7 @@ export default class LruDb implements BaseDb {
 
   private lru: LRUMap<string, CachedValue>;
 
-  public constructor (backing: BaseDb, itemCount: number = DEFAULT_ITEM_COUNT) {
+  constructor (backing: BaseDb, itemCount: number = DEFAULT_ITEM_COUNT) {
     this.backing = backing;
     this.lru = new LRUMap(itemCount);
   }

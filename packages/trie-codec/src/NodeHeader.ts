@@ -21,7 +21,7 @@ export default class NodeHeader {
 
   private _value: Null | BranchHeader | ExtensionHeader | LeafHeader;
 
-  public constructor (input?: null | Uint8Array | (null | Uint8Array)[]) {
+  constructor (input?: null | Uint8Array | (null | Uint8Array)[]) {
     const [nodeType, value] = Array.isArray(input)
       ? NodeHeader.decodeNodeHeaderArray(input)
       : NodeHeader.decodeNodeHeaderU8a(input);

@@ -39,7 +39,7 @@ export default class Keyring implements KeyringInstance {
 
   public setSS58Format = setSS58Format;
 
-  public constructor (options: KeyringOptions = {}) {
+  constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
     options.ss58Format = isNumber(options.ss58Format)
       ? options.addressPrefix
