@@ -6,8 +6,8 @@ import { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types';
 import { PairInfo } from './types';
 
-import { u8aConcat } from '@polkadot/util';
-import { encodeAddress, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto';
+import { u8aConcat, assert } from '@polkadot/util';
+import { encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto';
 
 import decode from './decode';
 import encode from './encode';
@@ -87,9 +87,20 @@ const verify = (type: KeypairType, message: Uint8Array, signature: Uint8Array, p
  */
 export default function createPair (type: KeypairType, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
   return {
-    type,
     get address (): string {
       return encodeAddress(publicKey);
+    },
+    get meta (): KeyringPair$Meta {
+      return meta;
+    },
+    get isLocked (): boolean {
+      return !secretKey || secretKey.length === 0 || isEmpty(secretKey);
+    },
+    get publicKey (): Uint8Array {
+      return publicKey;
+    },
+    get type (): KeypairType {
+      return type;
     },
     decodePkcs8: (passphrase?: string, _encoded?: Uint8Array | null): void => {
       const decoded = decode(passphrase, _encoded || encoded);
@@ -104,19 +115,18 @@ export default function createPair (type: KeypairType, { publicKey, secretKey }:
         secretKey = pair.secretKey;
       }
     },
+    derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair => {
+      assert(secretKey, 'Cannot derive on a locked keypair');
+
+      const { path } = keyExtractSuri(suri);
+      const derived = keyFromPath({ publicKey, secretKey: secretKey as Uint8Array }, path, type);
+
+      return createPair(type, derived, meta, null);
+    },
     encodePkcs8: (passphrase?: string): Uint8Array =>
       encode({ publicKey, secretKey }, passphrase),
-    get meta (): KeyringPair$Meta {
-      return meta;
-    },
-    get isLocked (): boolean {
-      return !secretKey || secretKey.length === 0 || isEmpty(secretKey);
-    },
     lock: (): void => {
       secretKey = new Uint8Array(0);
-    },
-    get publicKey (): Uint8Array {
-      return publicKey;
     },
     setMeta: (additional: KeyringPair$Meta): void => {
       meta = { ...meta, ...additional };
