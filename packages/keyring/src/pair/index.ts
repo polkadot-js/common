@@ -7,7 +7,7 @@ import { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '..
 import { PairInfo } from './types';
 
 import { u8aConcat, assert } from '@polkadot/util';
-import { encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto';
+import { encodeAddress, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto';
 
 import decode from './decode';
 import encode from './encode';
@@ -118,7 +118,7 @@ export default function createPair (type: KeypairType, { publicKey, secretKey }:
     derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair => {
       assert(secretKey, 'Cannot derive on a locked keypair');
 
-      const { path } = keyExtractSuri(suri);
+      const { path } = keyExtractPath(suri);
       const derived = keyFromPath({ publicKey, secretKey: secretKey as Uint8Array }, path, type);
 
       return createPair(type, derived, meta, null);
