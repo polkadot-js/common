@@ -6,9 +6,7 @@ import { assert } from '.';
 
 describe('assert', (): void => {
   it('should not throw an error when test is true', (): void => {
-    expect(
-      assert(true, 'nothing should be thrown')
-    ).toEqual(true);
+    assert(true, 'nothing should be thrown');
   });
 
   it('should throw an error when test is not true', (): void => {
