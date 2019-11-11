@@ -28,6 +28,6 @@ export default function naclSign (message: Uint8Array | string, { publicKey, sec
   const messageU8a = u8aToU8a(message);
 
   return isReady()
-    ? ed25519Sign(publicKey as Uint8Array, (secretKey as Uint8Array).subarray(0, 32), messageU8a)
-    : nacl.sign.detached(messageU8a, secretKey as Uint8Array);
+    ? ed25519Sign(publicKey as Uint8Array, secretKey.subarray(0, 32), messageU8a)
+    : nacl.sign.detached(messageU8a, secretKey);
 }

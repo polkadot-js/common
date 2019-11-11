@@ -119,7 +119,7 @@ export default function createPair (type: KeypairType, { publicKey, secretKey }:
       assert(secretKey, 'Cannot derive on a locked keypair');
 
       const { path } = keyExtractPath(suri);
-      const derived = keyFromPath({ publicKey, secretKey: secretKey as Uint8Array }, path, type);
+      const derived = keyFromPath({ publicKey, secretKey: secretKey }, path, type);
 
       return createPair(type, derived, meta, null);
     },

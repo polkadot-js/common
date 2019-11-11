@@ -45,5 +45,5 @@ export default function toU8a (value?: any): Uint8Array {
 
   assert(encoder, 'invalid type');
 
-  return (encoder as Encoder).fn(value);
+  return encoder.fn(value);
 }

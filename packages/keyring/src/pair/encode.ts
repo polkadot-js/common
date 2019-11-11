@@ -14,7 +14,7 @@ export default function encode ({ publicKey, secretKey }: PairInfo, passphrase?:
 
   const encoded = u8aConcat(
     PKCS8_HEADER,
-    secretKey as Uint8Array,
+    secretKey,
     PKCS8_DIVIDER,
     publicKey
   );

@@ -14,10 +14,9 @@ type DecodeResult = PairInfo & {
   secretKey: Uint8Array;
 };
 
-export default function decode (passphrase?: string, _encrypted?: Uint8Array | null): DecodeResult {
-  assert(_encrypted, 'No encrypted data available to decode');
+export default function decode (passphrase?: string, encrypted?: Uint8Array | null): DecodeResult {
+  assert(encrypted, 'No encrypted data available to decode');
 
-  const encrypted = (_encrypted as Uint8Array);
   const encoded = passphrase
     ? (naclDecrypt(
       encrypted.subarray(NONCE_LENGTH),
