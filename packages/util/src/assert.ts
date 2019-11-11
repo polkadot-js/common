@@ -24,13 +24,11 @@ type MessageFn = () => string;
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function assert (condition: any, message: string | MessageFn): asserts condition {
-  if (condition) {
-    return;
+  if (!condition) {
+    throw new Error(
+      isFunction(message)
+        ? message()
+        : message
+    );
   }
-
-  throw new Error(
-    isFunction(message)
-      ? message()
-      : message
-  );
 }
