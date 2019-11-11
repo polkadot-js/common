@@ -6,20 +6,18 @@ import { assert } from '.';
 
 describe('assert', (): void => {
   it('should not throw an error when test is true', (): void => {
-    expect(
-      assert(true, 'nothing should be thrown')
-    ).toEqual(true);
+    assert(true, 'nothing should be thrown');
   });
 
   it('should throw an error when test is not true', (): void => {
     expect(
-      (): boolean => assert(false, 'error thrown')
+      (): void => assert(false, 'error thrown')
     ).toThrow(/error thrown/);
   });
 
   it('should throw an error when message: () => string', (): void => {
     expect(
-      (): boolean => assert(false, (): string => 'message from function')
+      (): void => assert(false, (): string => 'message from function')
     ).toThrow(/message from function/);
   });
 });

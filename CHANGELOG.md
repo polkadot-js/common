@@ -1,3 +1,9 @@
+# 1.7.0-beta.x
+
+- `formatBalance` signature now allows to force unit displays
+- Keypair now allows for derive on a pair, with `pair.derive(...)`
+- `assert` now acts like a real asserts, with no return - signature adapted for new TS 3.7
+
 # 1.6.1
 
 - `pair.sign(message)` now takes an optional second `options?: SignOptions` parameter, where `SignOptions` is currently defined as `{ withType: boolean }`. Here `withType` instructs the signing to prepend the type of signature (ed2551, sr25519 or ecdsa). This is used for the new Polkadot/Substrate MultiSignature format.

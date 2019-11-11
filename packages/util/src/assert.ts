@@ -6,8 +6,6 @@ import isFunction from './is/function';
 
 type MessageFn = () => string;
 
-type Falsy = null | undefined | false | 0 | ''; // No NaN type
-
 /**
  * @name assert
  * @summary Checks for a valid test, if not Error is thrown.
@@ -19,19 +17,18 @@ type Falsy = null | undefined | false | 0 | ''; // No NaN type
  * ```javascript
  * const { assert } from '@polkadot/util';
  *
- * assert(true, 'True should be true'); // true returned
+ * assert(true, 'True should be true'); // passes
  * assert(false, 'False should not be true'); // Error thrown
  * assert(false, () => 'message'); // Error with 'message'
  * ```
  */
-export default function assert<T> (test: Falsy | T, message: string | MessageFn): test is T {
-  if (test) {
-    return true;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function assert (condition: any, message: string | MessageFn): asserts condition {
+  if (!condition) {
+    throw new Error(
+      isFunction(message)
+        ? message()
+        : message
+    );
   }
-
-  if (isFunction(message)) {
-    message = message();
-  }
-
-  throw new Error(message);
 }
