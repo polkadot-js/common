@@ -1,4 +1,4 @@
-# 1.7.0-beta.x
+# 1.7.1
 
 - `formatBalance` signature now allows to force unit displays
 - Keypair now allows for derive on a pair, with `pair.derive(...)`
