@@ -9,7 +9,7 @@
   ],
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.3"
   },
   "scripts": {
     "build": "polkadot-dev-build-ts",
@@ -22,8 +22,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
-    "@polkadot/dev": "^0.32.0-beta.15",
-    "@polkadot/ts": "^0.1.86",
+    "@polkadot/dev": "^0.32.0-beta.16",
+    "@polkadot/ts": "^0.1.87",
     "gh-pages": "^2.1.1"
   }
 }
