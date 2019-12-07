@@ -21,9 +21,9 @@
     "test:one": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.4",
-    "@polkadot/dev": "^0.32.0-beta.16",
-    "@polkadot/ts": "^0.1.87",
+    "@babel/core": "^7.7.5",
+    "@polkadot/dev": "^0.32.0-beta.17",
+    "@polkadot/ts": "^0.1.88",
     "gh-pages": "^2.1.1"
   }
 }
