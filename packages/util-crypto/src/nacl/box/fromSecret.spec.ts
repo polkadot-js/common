@@ -9,7 +9,7 @@ describe('naclBoxKeypairFromSecret', (): void => {
     18, 52, 86, 120, 144, 18, 52, 86,
     120, 144, 18, 52, 86, 120, 144, 18,
     18, 52, 86, 120, 144, 18, 52, 86,
-    120, 144, 18, 52, 86, 120, 144, 18,
+    120, 144, 18, 52, 86, 120, 144, 18
   ]);
 
   it('generates a valid publicKey/secretKey pair', (): void => {
