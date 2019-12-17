@@ -14,3 +14,6 @@ export { default as naclKeypairFromSeed } from './keypair/fromSeed';
 export { default as naclKeypairFromString } from './keypair/fromString';
 export { default as naclSign } from './sign';
 export { default as naclVerify } from './verify';
+export { default as naclBoxKeypairFromSecret } from './box/fromSecret';
+export { default as naclOpen } from './open';
+export { default as naclSeal } from './seal';
