@@ -1,3 +1,7 @@
+# 1.8.1
+
+- Add cross-client encryption/decryption support (Thanks to https://github.com/hskang9)
+
 # 1.7.1
 
 - `formatBalance` signature now allows to force unit displays
