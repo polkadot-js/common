@@ -1909,10 +1909,10 @@
   dependencies:
     "@types/chrome" "^0.0.91"
 
-"@polkadot/wasm-crypto@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.npmjs.org/@polkadot/wasm-crypto/-/wasm-crypto-0.14.1.tgz#f4923bba22d7c68a4be3575ba27790947b212633"
-  integrity sha512-Xng7L2Z8TNZa/5g6pot4O06Jf0ohQRZdvfl8eQL+E/L2mcqJYC1IjkMxJBSBuQEV7hisWzh9mHOy5WCcgPk29Q==
+"@polkadot/wasm-crypto@^0.20.0-beta.1":
+  version "0.20.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto/-/wasm-crypto-0.20.0-beta.1.tgz#f60bcda641e69124dbc7353f72db8a4207a4431b"
+  integrity sha512-t3XUiyk74eMccDsoOBPkxiP/sfZjU8fsB6CHD/wABbrDfLZwYfLnzQ5u8ci3qUAoV4X1/f3H+PYoR2h9AqS+MA==
 
 "@types/babel__core@^7.1.0":
   version "7.1.3"
