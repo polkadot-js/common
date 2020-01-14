@@ -14,7 +14,7 @@ describe('testingPairs', (): void => {
   it('creates without failing', (): void => {
     expect(
       Object.keys(testingPairs())
-    ).toHaveLength(2 + 1 + 7);
+    ).toHaveLength(2 + 0 + 7); // stash, session, pairs
   });
 
   it('has the correct address for Alice (non-HDKD)', (): void => {
@@ -27,11 +27,5 @@ describe('testingPairs', (): void => {
     expect(
       testingPairs({ type: 'ed25519' }).alice.address
     ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY');
-  });
-
-  it('has the correct address for Alice_session (HDKD)', (): void => {
-    expect(
-      testingPairs({ type: 'ed25519' }).alice_session.address
-    ).toEqual('5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu');
   });
 });
