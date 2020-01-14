@@ -28,10 +28,4 @@ describe('testingPairs', (): void => {
       testingPairs({ type: 'ed25519' }).alice.address
     ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY');
   });
-
-  it('has the correct address for Alice_session (HDKD)', (): void => {
-    expect(
-      testingPairs({ type: 'ed25519' }).alice_session.address
-    ).toEqual('5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu');
-  });
 });
