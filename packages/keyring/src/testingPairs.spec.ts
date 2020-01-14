@@ -14,7 +14,7 @@ describe('testingPairs', (): void => {
   it('creates without failing', (): void => {
     expect(
       Object.keys(testingPairs())
-    ).toHaveLength(2 + 1 + 7);
+    ).toHaveLength(2 + 0 + 7); // stash, session, pairs
   });
 
   it('has the correct address for Alice (non-HDKD)', (): void => {
