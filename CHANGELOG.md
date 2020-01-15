@@ -1,3 +1,9 @@
+# 2.0.0-beta.x
+
+- Update schnorrkel to 0.8.5 (Full Substrate 2.x support)
+- Remove Alice session (ed2551) account from testing keyring (not applicable to Substrate 2.x)
+- Remove `chainspec`, `db`, `trie-codec`, `trie-db` and `trie-hash` packages (moved to client)
+
 # 1.8.1
 
 - Add cross-client encryption/decryption support (Thanks to https://github.com/hskang9)

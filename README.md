@@ -16,13 +16,6 @@ This repository is split up into a number of internal packages, namely utilities
 - [keyring](packages/keyring/) Keyring management
 - [util](packages/util/) General utilities
 - [util-crypto](packages/util-crypto/) Crypto and hashing utilities
-- [util-rlp](packages/util-rlp/) RLP encoding & decoding
-
-Various useful trie and database interfaces -
-
-- [db](packages/db/) Sync memory and disk database interfaces
-- [trie-db](packages/trie-db/) Merkle Patricia Tree implementation adapted for Polkadot
-- [trie-hash](packages/trie-hash/) Calculate hashes (either ordered or unordered) from a set of inputs
 
 ## development
 
