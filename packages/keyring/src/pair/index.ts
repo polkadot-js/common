@@ -22,37 +22,40 @@ function isEmpty (u8a: Uint8Array): boolean {
   return u8a.reduce((count, u8): number => count + u8, 0) === 0;
 }
 
-const isSr25519 = (type: KeypairType): boolean =>
-  type === 'sr25519';
+function isSr25519 (type: KeypairType): boolean {
+  return type === 'sr25519';
+}
 
-const fromSeed = (type: KeypairType, seed: Uint8Array): Keypair =>
-  isSr25519(type)
+function fromSeed (type: KeypairType, seed: Uint8Array): Keypair {
+  return isSr25519(type)
     ? schnorrkelFromSeed(seed)
     : naclFromSeed(seed);
+}
 
-const sign = (type: KeypairType, message: Uint8Array, pair: Partial<Keypair>, { withType = false }: SignOptions = {}): Uint8Array => {
-  const typeSr25519 = isSr25519(type);
+function multiSignaturePrefix (type: KeypairType): Uint8Array {
+  return isSr25519(type)
+    ? SIG_TYPE_SR25519
+    : SIG_TYPE_ED25519;
+}
 
+function sign (type: KeypairType, message: Uint8Array, pair: Partial<Keypair>, { withType = false }: SignOptions = {}): Uint8Array {
   return u8aConcat(
     // for multi-signatures, i.e. with indicator, append the signature type as per
     // the MultiSignature enum
     withType
-      ? (
-        typeSr25519
-          ? SIG_TYPE_SR25519
-          : SIG_TYPE_ED25519
-      )
+      ? multiSignaturePrefix(type)
       : SIG_TYPE_NONE,
-    typeSr25519
+    isSr25519(type)
       ? schnorrkelSign(message, pair)
       : naclSign(message, pair)
   );
-};
+}
 
-const verify = (type: KeypairType, message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array): boolean =>
-  isSr25519(type)
+function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array): boolean {
+  return isSr25519(type)
     ? schnorrkelVerify(message, signature, publicKey)
     : naclVerify(message, signature, publicKey);
+}
 
 /**
  * @name pair
