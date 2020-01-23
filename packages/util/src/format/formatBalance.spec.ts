@@ -17,13 +17,13 @@ describe('formatBalance', (): void => {
 
     it('formats 123,456,789,000 (decimals=15)', (): void => {
       expect(
-        formatBalance(TESTVAL, true, 15)
+        formatBalance(TESTVAL, { withSi: true }, 15)
       ).toEqual('123.456µ Unit');
     });
 
     it('formats 123,456,789,000 (decimals=36)', (): void => {
       expect(
-        formatBalance(TESTVAL, true, 36)
+        formatBalance(TESTVAL, { withSi: true }, 36)
       ).toEqual('0.123y Unit');
     });
 
@@ -34,55 +34,73 @@ describe('formatBalance', (): void => {
         something: 'else'
       };
       expect(
-        formatBalance(compact, true, 15)
+        formatBalance(compact, { withSi: true }, 15)
       ).toEqual('123.456µ Unit');
     });
 
     it('formats 123,456,789,000 (decimals=12)', (): void => {
       expect(
-        formatBalance(TESTVAL, true, 12)
+        formatBalance(TESTVAL, { withSi: true }, 12)
       ).toEqual('123.456m Unit');
-    });
-
-    it('formats 123,456,789,000 (decimals=12, no SI)', (): void => {
-      expect(
-        formatBalance(TESTVAL, false, 12)
-      ).toEqual('123.456');
     });
 
     it('formats 123,456,789,000 (decimals=9)', (): void => {
       expect(
-        formatBalance(TESTVAL, true, 9)
+        formatBalance(TESTVAL, { withSi: true }, 9)
+      ).toEqual('123.456 Unit');
+    });
+
+    it('formats 123,456,789,000 (decimals=12, no SI)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { withSi: false }, 12)
+      ).toEqual('123.456');
+    });
+
+    it('formats 123,456,789,000 (decimals=12, full SI)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { withSiFull: true }, 12)
+      ).toEqual('123.456 milli Unit');
+    });
+
+    it('formats 123,456,789,000 (decimals=12, full SI, no unit)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { withSiFull: true, withUnit: false }, 12)
+      ).toEqual('123.456 milli');
+    });
+
+    it('formats 123,456,789,000 (decimals=9, full SI)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { withSiFull: true }, 9)
       ).toEqual('123.456 Unit');
     });
 
     it('formats 123,456,789,000 (decimals=6)', (): void => {
       expect(
-        formatBalance(TESTVAL, true, 6)
+        formatBalance(TESTVAL, { withSi: true }, 6)
       ).toEqual('123.456k Unit');
     });
 
     it('formats 123,456,789,000 * 10 (decimals=12)', (): void => {
       expect(
-        formatBalance(TESTVAL.muln(10), true, 12)
+        formatBalance(TESTVAL.muln(10), { withSi: true }, 12)
       ).toEqual('1.234 Unit');
     });
 
     it('formats 123,456,789,000 * 100 (decimals=12)', (): void => {
       expect(
-        formatBalance(TESTVAL.muln(100), true, 12)
+        formatBalance(TESTVAL.muln(100), { withSi: true }, 12)
       ).toEqual('12.345 Unit');
     });
 
     it('formats 123,456,789,000 * 1000 (decimals=12)', (): void => {
       expect(
-        formatBalance(TESTVAL.muln(1000), true, 12)
+        formatBalance(TESTVAL.muln(1000), { withSi: true }, 12)
       ).toEqual('123.456 Unit');
     });
 
     it('formats -123,456,789,000 (decimals=15)', (): void => {
       expect(
-        formatBalance(new BN('-123456789000'), true, 15)
+        formatBalance(new BN('-123456789000'), { withSi: true }, 15)
       ).toEqual('-123.456µ Unit');
     });
   });
