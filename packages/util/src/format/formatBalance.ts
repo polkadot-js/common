@@ -17,7 +17,12 @@ interface Defaults {
   unit: string;
 }
 
-type Options = boolean | { forceUnit?: string; withSi?: boolean };
+interface Options {
+  forceUnit?: string;
+  withSi?: boolean;
+  withSiFull?: boolean;
+  withUnit?: boolean;
+}
 
 interface BalanceFormatter {
   <ExtToBn extends ToBn> (input?: number | string | BN | ExtToBn, options?: Options, decimals?: number): string;
@@ -35,7 +40,7 @@ let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
 // Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | ExtToBn, options: Options = true, decimals: number = defaultDecimals): string {
+function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | ExtToBn, options: Options | boolean = true, decimals: number = defaultDecimals): string {
   let text = bnToBn(input).toString();
 
   if (text.length === 0 || text === '0') {
@@ -51,7 +56,7 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | E
   }
 
   // extract options - the boolean case is for backwards-compat
-  const { forceUnit = undefined, withSi = true } = isBoolean(options)
+  const { forceUnit = undefined, withSi = true, withSiFull = false, withUnit = true } = isBoolean(options)
     ? { withSi: options }
     : options;
 
@@ -63,11 +68,11 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | E
   const prefix = text.substr(0, mid);
   const padding = mid < 0 ? 0 - mid : 0;
   const postfix = `${`${new Array(padding + 1).join('0')}${text}`.substr(mid < 0 ? 0 : mid)}000`.substr(0, 3);
-  const units = withSi
+  const units = withSi || withSiFull
     ? (
       si.value === '-'
         ? ` ${si.text}`
-        : `${si.value} ${SI[SI_MID].text}`
+        : `${withSiFull ? ` ${si.text}` : si.value}${withUnit ? ` ${SI[SI_MID].text}` : ''}`
     )
     : '';
 
