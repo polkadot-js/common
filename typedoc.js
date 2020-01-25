@@ -10,7 +10,7 @@ module.exports = {
   out: 'docs',
   module: 'commonjs',
   moduleResolution: 'node',
-  // mdEngine: 'gitbook',
+  mdEngine: 'gitbook',
   stripInternal: 'true',
   theme: 'markdown'
 };
