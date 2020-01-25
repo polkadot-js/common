@@ -1951,10 +1951,10 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@polkadot/dev@^0.32.16":
-  version "0.32.16"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.32.16.tgz#0b544d76cd7dea1370d08aaebce54181e0d9b00f"
-  integrity sha512-FTNdA8F1S9fcv7KRXYHSh/dTI3ZPdl2b7nEKpJ/7iYkewIqFxhfpTnoHVrIfb6ppszAPkMvINs7YX5Qt5m6MNQ==
+"@polkadot/dev@^0.32.17":
+  version "0.32.17"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.32.17.tgz#55b3f43a9e4f819c967aff965a3834114bda975e"
+  integrity sha512-9/ehuPS4wQNYYfFvMg6j37+UU7JwkIjiLb6DeKMS3mbg854/z4sqkdsV2iJpefuc+LFrvQA35t72+nLG9b76jQ==
   dependencies:
     "@babel/cli" "^7.8.3"
     "@babel/core" "^7.8.3"
