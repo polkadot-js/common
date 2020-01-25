@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
-    "@babel/runtime": "^7.7.7",
+    "@babel/runtime": "^7.8.3",
     "@polkadot/util": "^2.0.0-beta.5",
-    "@polkadot/wasm-crypto": "^0.20.0-beta.1",
+    "@polkadot/wasm-crypto": "^0.20.0-beta.2",
     "@types/bip39": "^2.4.2",
     "@types/bs58": "^4.0.0",
     "@types/pbkdf2": "^3.0.0",
@@ -39,7 +39,7 @@
     "bs58": "^4.0.1",
     "js-sha3": "^0.8.0",
     "secp256k1": "^3.8.0",
-    "tweetnacl": "^1.0.1",
+    "tweetnacl": "^1.0.2",
     "xxhashjs": "^0.2.2"
   }
 }
