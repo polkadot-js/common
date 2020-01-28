@@ -26,6 +26,9 @@
     "url": "https://github.com/polkadot-js/common/issues"
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/keyring#readme",
+  "browser": {
+    "../package.json": "./package.json"
+  },
   "dependencies": {
     "@babel/runtime": "^7.8.3",
     "@polkadot/util": "^2.0.0-beta.7",
