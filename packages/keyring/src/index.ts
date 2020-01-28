@@ -2,12 +2,20 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { assertSingletonPackage } from '@polkadot/util';
+import { detectPackage } from '@polkadot/util';
 import { decodeAddress, encodeAddress, setSS58Format } from '@polkadot/util-crypto';
 
 import Keyring from './keyring';
 
-assertSingletonPackage('@polkadot/keyring');
+let pkgJson;
+
+try {
+  pkgJson = require('./package.json');
+} catch (error) {
+  pkgJson = require('../package.json');
+}
+
+detectPackage(pkgJson);
 
 export default Keyring;
 
