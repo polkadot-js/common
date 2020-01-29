@@ -2,15 +2,19 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import secp256k1 from 'secp256k1';
-import { u8aToBuffer, u8aToU8a } from '@polkadot/util';
+import elliptic from 'elliptic';
+
+const EC = elliptic.ec;
+const ec = new EC('secp256k1');
 
 /**
  * @name secp256k1Recover
  * @description Recovers a publicKey from the supplied signature
  */
 export default function secp256k1Recover (message: Uint8Array, signature: Uint8Array, recovery: number): Uint8Array {
-  return u8aToU8a(
-    secp256k1.recover(u8aToBuffer(message), u8aToBuffer(signature), recovery)
+  return new Uint8Array(
+    ec
+      .recoverPubKey(message, { r: signature.slice(0, 32), s: signature.slice(32, 64) }, recovery)
+      .encode(null, true)
   );
 }
