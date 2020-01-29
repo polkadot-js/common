@@ -17,4 +17,3 @@ describe('secp256k1Recover', (): void => {
     expect(u8aToHex(res.subarray(12))).toEqual(pubKey);
   });
 });
-
