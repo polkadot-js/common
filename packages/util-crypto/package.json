@@ -27,18 +27,17 @@
   "dependencies": {
     "@babel/runtime": "^7.8.3",
     "@polkadot/util": "^2.0.0-beta.9",
-    "@polkadot/wasm-crypto": "^0.20.0-beta.2",
-    "@types/bip39": "^2.4.2",
+    "@polkadot/wasm-crypto": "^0.20.0-beta.4",
     "@types/bs58": "^4.0.0",
+    "@types/elliptic": "^6.4.12",
     "@types/pbkdf2": "^3.0.0",
-    "@types/secp256k1": "^3.5.0",
     "@types/xxhashjs": "^0.2.1",
-    "base-x": "3.0.5",
-    "bip39": "^2.5.0",
+    "base-x": "^3.0.7",
+    "bip39": "^3.0.2",
     "blakejs": "^1.1.0",
     "bs58": "^4.0.1",
+    "elliptic": "^6.5.2",
     "js-sha3": "^0.8.0",
-    "secp256k1": "^3.8.0",
     "tweetnacl": "^1.0.2",
     "xxhashjs": "^0.2.2"
   }
