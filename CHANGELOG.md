@@ -1,6 +1,6 @@
-# 2.0.0-beta.x
+# 2.0.1
 
-- Update schnorrkel to 0.8.5 (Full Substrate 2.x support, no 1.x support)
+- Update w3f/schnorrkel to 0.8.5 (Full Substrate 2.x support, no 1.x support)
 - Remove Alice session (ed2551) account from testing keyring (not applicable to Substrate 2.x)
 - Remove `chainspec`, `db`, `trie-codec`, `trie-db` and `trie-hash` packages (moved to client)
 - Renamed `assertSingletonPackage` to `detectPackage` with inclusion of version listing
