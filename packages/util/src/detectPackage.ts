@@ -3,38 +3,47 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import assert from './assert';
+import isString from './is/string';
 
 // eslint-disable-next-line no-undef
 type This = typeof globalThis;
-
-interface PjsChecks extends This {
-  __polkadotjs: Record<string, string[]>;
-}
 
 interface PackageJson {
   name: string;
   version: string;
 }
 
+interface VersionPath {
+  path: string;
+  version: string;
+}
+
+interface PjsChecks extends This {
+  __polkadotjs: Record<string, VersionPath[]>;
+}
+
 type PjsGlobal = NodeJS.Global & PjsChecks;
 type PjsWindow = Window & PjsChecks;
 
 /** @internal */
-function flattenVersions (versions: string[]): string {
-  return versions
-    .reduce((deduped: string[], version): string[] => {
-      return deduped.includes(version)
-        ? deduped
-        : deduped.concat(version);
-    }, [])
-    .join(', ');
+function flattenVersions (_all: (VersionPath | string)[]): string {
+  const all: VersionPath[] = _all.map((version: VersionPath | string): VersionPath =>
+    isString(version)
+      ? { path: '', version }
+      : version
+  );
+  const verLength = all.reduce((max, { version }): number => Math.max(max, version.length), 0);
+
+  return all
+    .map(({ path, version }): string => `\t${version.padEnd(verLength)}\t${path}`)
+    .join('\n');
 }
 
 /**
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
  */
-export default function detectPackage (from: string, { name, version }: PackageJson): void {
+export default function detectPackage (path: string, { name, version }: PackageJson): void {
   const _global = typeof window !== 'undefined'
     ? window as PjsWindow
     : global as PjsGlobal;
@@ -45,11 +54,11 @@ export default function detectPackage (from: string, { name, version }: PackageJ
 
   assert(name.startsWith('@polkadot'), `Invalid package descriptor ${name}`);
 
-  _global.__polkadotjs[name] = [...(_global.__polkadotjs[name] || []), version];
+  _global.__polkadotjs[name] = [...(_global.__polkadotjs[name] || []), { path, version }];
 
   if (_global.__polkadotjs[name].length !== 1) {
     const versions = flattenVersions(_global.__polkadotjs[name]);
 
-    console.warn(`${from}: Multiple instances of ${name} detected: ${versions}. Ensure that there is only one package in your dependency tree`);
+    console.warn(`Multiple instances of ${name} detected, ensure that there is only one package in your dependency tree.\n${versions}`);
   }
 }

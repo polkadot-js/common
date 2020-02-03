@@ -1,3 +1,7 @@
+# 2.1.1-beta.x
+
+- Update version detection with pathname & version de-dupe
+
 # 2.0.1
 
 - Update w3f/schnorrkel to 0.8.5 (Full Substrate 2.x support, no 1.x support)
