@@ -23,7 +23,7 @@ describe('assertSingletonPackage', (): void => {
     it('should log the second time', (): void => {
       const spy = jest.spyOn(console, 'warn');
 
-      detectPackage('/Users/jaco/Projects/polkadot-js/api/node_modules/@polkadot/keyring', { name: '@polkadot/util', version: VER_2 });
+      detectPackage(TEST_PATH, { name: '@polkadot/util', version: VER_2 });
       expect(spy).toHaveBeenCalledWith(TEST_RESULT);
       spy.mockRestore();
     });
@@ -31,7 +31,7 @@ describe('assertSingletonPackage', (): void => {
     it('filters duplicate versions', (): void => {
       const spy = jest.spyOn(console, 'warn');
 
-      detectPackage('/Users/jaco/Projects/polkadot-js/api/node_modules/@polkadot/keyring', { name: '@polkadot/util', version: VER_2 });
+      detectPackage(TEST_PATH, { name: '@polkadot/util', version: VER_2 });
       expect(spy).toHaveBeenCalledWith(TEST_RESULT);
       spy.mockRestore();
     });
