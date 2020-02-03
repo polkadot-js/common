@@ -4,20 +4,36 @@
 
 import { detectPackage } from '.';
 
+const VER_1 = 'a.b.c-1st';
+const VER_2 = 'a.b.c-2nd';
+
 describe('assertSingletonPackage', (): void => {
   it('should not log the first time', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackage({ name: '@polkadot/util', version: 'a.b.c-1st' });
+    detectPackage(__dirname, { name: '@polkadot/util', version: VER_1 });
     expect(spy).not.toHaveBeenCalled();
     spy.mockRestore();
   });
 
-  it('should log the second time', (): void => {
-    const spy = jest.spyOn(console, 'warn');
+  describe('logging', (): void => {
+    const TEST_PATH = '/Users/jaco/Projects/polkadot-js/api/node_modules/@polkadot/util';
+    const TEST_RESULT = `${TEST_PATH}: Multiple instances of @polkadot/util detected: ${VER_1}, ${VER_2}. Ensure that there is only one package in your dependency tree`;
 
-    detectPackage({ name: '@polkadot/util', version: 'a.b.c-2nd' });
-    expect(spy).toHaveBeenCalledWith('Multiple versions of @polkadot/util detected: a.b.c-1st, a.b.c-2nd. Ensure that there is only one version in your dependency tree');
-    spy.mockRestore();
+    it('should log the second time', (): void => {
+      const spy = jest.spyOn(console, 'warn');
+
+      detectPackage('/Users/jaco/Projects/polkadot-js/api/node_modules/@polkadot/keyring', { name: '@polkadot/util', version: VER_2 });
+      expect(spy).toHaveBeenCalledWith(TEST_RESULT);
+      spy.mockRestore();
+    });
+
+    it('filters duplicate versions', (): void => {
+      const spy = jest.spyOn(console, 'warn');
+
+      detectPackage('/Users/jaco/Projects/polkadot-js/api/node_modules/@polkadot/keyring', { name: '@polkadot/util', version: VER_2 });
+      expect(spy).toHaveBeenCalledWith(TEST_RESULT);
+      spy.mockRestore();
+    });
   });
 });

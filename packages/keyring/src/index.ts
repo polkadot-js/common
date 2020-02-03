@@ -15,7 +15,7 @@ try {
   pkgJson = require('../package.json');
 }
 
-detectPackage(pkgJson);
+detectPackage(__dirname, pkgJson);
 
 export default Keyring;
 
