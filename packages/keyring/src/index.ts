@@ -7,7 +7,7 @@ import { decodeAddress, encodeAddress, setSS58Format } from '@polkadot/util-cryp
 
 import Keyring from './keyring';
 
-let dirname = 'node_modules';
+let dirname;
 let pkgJson;
 
 try {
@@ -22,7 +22,7 @@ try {
   pkgJson = require('../package.json');
 }
 
-detectPackage(dirname, pkgJson);
+detectPackage(pkgJson, dirname);
 
 export default Keyring;
 
