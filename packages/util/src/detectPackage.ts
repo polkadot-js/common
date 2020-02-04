@@ -14,7 +14,7 @@ interface PackageJson {
 }
 
 interface VersionPath {
-  path: string;
+  path?: string;
   version: string;
 }
 
@@ -25,17 +25,21 @@ interface PjsChecks extends This {
 type PjsGlobal = NodeJS.Global & PjsChecks;
 type PjsWindow = Window & PjsChecks;
 
+function expandPath (path?: string): string {
+  return (!path || path.length < 5) ? '<unknown path>' : path;
+}
+
 /** @internal */
 function flattenVersions (_all: (VersionPath | string)[]): string {
   const all: VersionPath[] = _all.map((version: VersionPath | string): VersionPath =>
     isString(version)
-      ? { path: '', version }
+      ? { version }
       : version
   );
   const verLength = all.reduce((max, { version }): number => Math.max(max, version.length), 0);
 
   return all
-    .map(({ path, version }): string => `\t${version.padEnd(verLength)}\t${path}`)
+    .map(({ path, version }): string => `\t${version.padEnd(verLength)}\t${expandPath(path)}`)
     .join('\n');
 }
 
@@ -43,7 +47,7 @@ function flattenVersions (_all: (VersionPath | string)[]): string {
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
  */
-export default function detectPackage (path: string, { name, version }: PackageJson): void {
+export default function detectPackage ({ name, version }: PackageJson, path?: string): void {
   const _global = typeof window !== 'undefined'
     ? window as PjsWindow
     : global as PjsGlobal;
