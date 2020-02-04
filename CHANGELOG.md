@@ -1,6 +1,6 @@
-# 2.1.1-beta.x
+# 2.1.1
 
-- Update version detection with pathname & version de-dupe
+- Update `detectPackage(<package.json>, __dirname?)` with calling folder
 
 # 2.0.1
 
