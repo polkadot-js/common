@@ -1,3 +1,7 @@
+# 2.2.0-beta.x
+
+- Add resolved for jest requires (tests from src)
+
 # 2.1.1
 
 - Update `detectPackage(<package.json>, __dirname?)` with calling folder
