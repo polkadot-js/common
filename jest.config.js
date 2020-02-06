@@ -17,5 +17,6 @@ module.exports = Object.assign({}, config, {
     '<rootDir>/packages/util/build',
     '<rootDir>/packages/util-crypto/build',
     '<rootDir>/packages/util-rlp/build'
-  ]
+  ],
+  resolver: './jest.resolver.js'
 });
