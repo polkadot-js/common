@@ -1,4 +1,4 @@
-# 2.2.0-beta.x
+# 2.2.1
 
 - Add resolved for jest requires (tests from src)
 
