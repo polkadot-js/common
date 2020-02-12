@@ -1,6 +1,10 @@
+# 2.3.0-beta.x
+
+- Cleanup dependencies to pave the way for using yarn2 (Explicit instead of implicit)
+
 # 2.2.1
 
-- Add resolved for jest requires (tests from src)
+- Add resolver for jest requires (tests from src)
 
 # 2.1.1
 
