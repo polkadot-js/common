@@ -2016,10 +2016,10 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@polkadot/dev@^0.40.12":
-  version "0.40.12"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.40.12.tgz#a692cd274fbc568a5fbcf20ad0c37745a5945aa0"
-  integrity sha512-dDXSX7tPELJRC+Xc51rlOrbgvH0UdM+aS0ZfQXgKchRP772oqRiVeZfYzh553FIhqUlXhAjesU2L03GRkFzddA==
+"@polkadot/dev@^0.40.14":
+  version "0.40.14"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.40.14.tgz#ca8e6076dd782d386c2937df144c94f0809b3b64"
+  integrity sha512-xTxgowR6rNyxVH2t2qBe/9v9M4XKxiepFpvg/J1ZNrEHR/c/SFKZKZIj8lMFSoJKKTcdsWrhNlN1oUWTy869pQ==
   dependencies:
     "@babel/cli" "^7.8.4"
     "@babel/core" "^7.8.4"
