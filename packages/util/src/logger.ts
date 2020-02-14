@@ -5,7 +5,6 @@
 import { Logger, Logger$Data } from './types';
 
 import chalk from 'chalk';
-import moment from 'moment';
 
 import isBn from './is/bn';
 import isBuffer from './is/buffer';
@@ -70,6 +69,20 @@ export function format (value: any): any {
   return value;
 }
 
+function currentDateString (): string {
+  const date = new Date();
+
+  const year = date.getFullYear().toString();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+
+  const hour = date.getHours().toString().padStart(2, '0');
+  const minute = date.getMinutes().toString().padStart(2, '0');
+  const second = date.getSeconds().toString().padStart(2, '0');
+
+  return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+}
+
 function apply (log: LogType, type: string, values: Logger$Data): void {
   if (values.length === 1 && isFunction(values[0])) {
     const fnResult = (values[0] as Function)();
@@ -81,7 +94,7 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
     chalked[log](value);
 
   console[logTo[log] as 'log'](
-    chalk(moment().format('YYYY-MM-DD HH:mm:ss')),
+    chalk(currentDateString()),
     chalk(type),
     ...values.map(format)
   );
