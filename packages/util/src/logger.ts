@@ -69,9 +69,7 @@ export function format (value: any): any {
   return value;
 }
 
-function currentDateString (): string {
-  const date = new Date();
-
+function formatDate (date: Date): string {
   const year = date.getFullYear().toString();
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const day = date.getDate().toString().padStart(2, '0');
@@ -94,7 +92,7 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
     chalked[log](value);
 
   console[logTo[log] as 'log'](
-    chalk(currentDateString()),
+    chalk(formatDate(new Date())),
     chalk(type),
     ...values.map(format)
   );
