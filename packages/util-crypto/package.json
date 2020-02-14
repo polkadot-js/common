@@ -28,10 +28,6 @@
     "@babel/runtime": "^7.8.4",
     "@polkadot/util": "^2.3.0-beta.5",
     "@polkadot/wasm-crypto": "^0.20.1",
-    "@types/bs58": "^4.0.0",
-    "@types/elliptic": "^6.4.12",
-    "@types/pbkdf2": "^3.0.0",
-    "@types/xxhashjs": "^0.2.1",
     "base-x": "^3.0.7",
     "bip39": "^3.0.2",
     "blakejs": "^1.1.0",
@@ -42,5 +38,11 @@
     "pbkdf2": "^3.0.9",
     "tweetnacl": "^1.0.3",
     "xxhashjs": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/bs58": "^4.0.0",
+    "@types/elliptic": "^6.4.12",
+    "@types/pbkdf2": "^3.0.0",
+    "@types/xxhashjs": "^0.2.1"
   }
 }
