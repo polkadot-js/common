@@ -8,15 +8,9 @@ module.exports = Object.assign({}, config, {
     '@polkadot/util(.*)$': '<rootDir>/packages/util/src/$1'
   },
   modulePathIgnorePatterns: [
-    '<rootDir>/packages/db/build',
-    '<rootDir>/packages/chainspec/build',
     '<rootDir>/packages/keyring/build',
-    '<rootDir>/packages/trie-codec/build',
-    '<rootDir>/packages/trie-db/build',
-    '<rootDir>/packages/trie-hash/build',
     '<rootDir>/packages/util/build',
-    '<rootDir>/packages/util-crypto/build',
-    '<rootDir>/packages/util-rlp/build'
+    '<rootDir>/packages/util-crypto/build'
   ],
   resolver: './jest.resolver.js'
 });
