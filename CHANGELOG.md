@@ -1,9 +1,9 @@
-# 2.3.0-beta.x
+# 2.3.1 Feb 15, 2020
 
-- Remove dependency on moment.js, with internal format function (Thanks to https://github.com/AndreasGassmann)
+- Remove dependency on moment.js with `formatDate` function (Thanks to https://github.com/AndreasGassmann)
 - Move TypeScript `@types/*` to dev deps (Thanks to https://github.com/AndreasGassmann)
-- Move to `@polkadot/wasm-crypto` 1.0
-- Cleanup dependencies to pave the way for using yarn2 (Explicit instead of implicit)
+- Update to `@polkadot/wasm-crypto` 1.0
+- Cleanup dependencies to pave the way for using yarnpkg 2 (Explicit instead of implicit)
 
 # 2.2.1 Feb 06, 2020
 
