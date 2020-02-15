@@ -1,6 +1,7 @@
 # 2.3.0-beta.x
 
 - Move TypeScript `@types/*` to dev deps (Thanks to https://github.com/AndreasGassmann)
+- Move to `@polkadot/wasm-crypto` 1.0
 - Cleanup dependencies to pave the way for using yarn2 (Explicit instead of implicit)
 
 # 2.2.1 Feb 06, 2020
