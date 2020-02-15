@@ -3,6 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 export { default as formatBalance } from './formatBalance';
+export { default as formatDate } from './formatDate';
 export { default as formatDecimal } from './formatDecimal';
 export { default as formatElapsed } from './formatElapsed';
 export { default as formatNumber } from './formatNumber';

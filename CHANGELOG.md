@@ -1,5 +1,6 @@
 # 2.3.0-beta.x
 
+- Remove dependency on moment.js, with internal format function (Thanks to https://github.com/AndreasGassmann)
 - Move TypeScript `@types/*` to dev deps (Thanks to https://github.com/AndreasGassmann)
 - Move to `@polkadot/wasm-crypto` 1.0
 - Cleanup dependencies to pave the way for using yarn2 (Explicit instead of implicit)

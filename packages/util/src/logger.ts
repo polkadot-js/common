@@ -6,6 +6,7 @@ import { Logger, Logger$Data } from './types';
 
 import chalk from 'chalk';
 
+import formatDate from './format/formatDate';
 import isBn from './is/bn';
 import isBuffer from './is/buffer';
 import isFunction from './is/function';
@@ -67,18 +68,6 @@ export function format (value: any): any {
   }
 
   return value;
-}
-
-function formatDate (date: Date): string {
-  const year = date.getFullYear().toString();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-
-  const hour = date.getHours().toString().padStart(2, '0');
-  const minute = date.getMinutes().toString().padStart(2, '0');
-  const second = date.getSeconds().toString().padStart(2, '0');
-
-  return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
 }
 
 function apply (log: LogType, type: string, values: Logger$Data): void {
