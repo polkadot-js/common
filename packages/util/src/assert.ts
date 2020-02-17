@@ -22,8 +22,7 @@ type MessageFn = () => string;
  * assert(false, () => 'message'); // Error with 'message'
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function assert (condition: any, message: string | MessageFn): asserts condition {
+export default function assert (condition: boolean | object | string | number | undefined | null, message: string | MessageFn): asserts condition {
   if (!condition) {
     throw new Error(
       isFunction(message)

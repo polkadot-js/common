@@ -1,3 +1,8 @@
+# 2.4.0-beta.x
+
+- Ensure that the `formatBalance` no unit overrides apply when no SI is applicable
+- Adjust `formatBalance` to take `withUnit: string | boolean` where string is an actual unit, e.g. `KSM`
+
 # 2.3.1 Feb 15, 2020
 
 - Remove dependency on moment.js with `formatDate` function (Thanks to https://github.com/AndreasGassmann)
