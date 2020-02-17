@@ -46,11 +46,8 @@ export default class Keyring implements KeyringInstance {
     assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
 
     this._pairs = new Pairs();
+    this._ss58 = options.ss58Format;
     this._type = options.type;
-
-    if (isNumber(options.ss58Format)) {
-      this._ss58 = options.ss58Format;
-    }
   }
 
   /**
