@@ -88,10 +88,10 @@ function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, 
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function createPair (type: KeypairType, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
+export default function createPair (type: KeypairType, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, toSS58: (key: Uint8Array | string) => string = encodeAddress): KeyringPair {
   return {
     get address (): string {
-      return encodeAddress(publicKey);
+      return toSS58(publicKey);
     },
     get meta (): KeyringPair$Meta {
       return meta;
@@ -124,7 +124,7 @@ export default function createPair (type: KeypairType, { publicKey, secretKey }:
       const { path } = keyExtractPath(suri);
       const derived = keyFromPath({ publicKey, secretKey: secretKey }, path, type);
 
-      return createPair(type, derived, meta, null);
+      return createPair(type, derived, meta, null, encodeAddress);
     },
     encodePkcs8: (passphrase?: string): Uint8Array =>
       encode({ publicKey, secretKey }, passphrase),

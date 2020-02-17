@@ -2,6 +2,7 @@
 
 - Ensure that the `formatBalance` no unit overrides apply when no SI is applicable
 - Adjust `formatBalance` to take `withUnit: string | boolean` where string is an actual unit, e.g. `KSM`
+- The `.setSS58Format` on keyring will now just operate on the keyring, not globally. The global `setSS58Format` in `@polkadot/util-crypto` is deprecated.
 
 # 2.3.1 Feb 15, 2020
 
