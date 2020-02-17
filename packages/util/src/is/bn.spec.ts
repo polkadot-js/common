@@ -15,7 +15,7 @@ describe('isBN', (): void => {
 
   it('returns false on non-BN values', (): void => {
     expect(
-      isBn(0)
+      isBn(0 as unknown as object)
     ).toEqual(false);
   });
 });
