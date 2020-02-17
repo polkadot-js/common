@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
-import { cryptoWaitReady, setSS58Format } from '@polkadot/util-crypto';
+import { cryptoWaitReady, setSS58Format, encodeAddress } from '@polkadot/util-crypto';
 
 import Keyring from '.';
 
@@ -17,57 +17,55 @@ describe('keypair', (): void => {
     const publicKeyTwo = new Uint8Array([215, 90, 152, 1, 130, 177, 10, 183, 213, 75, 254, 211, 201, 100, 7, 58, 14, 225, 114, 243, 218, 166, 35, 37, 175, 2, 26, 104, 247, 7, 81, 26]);
     const seedOne = stringToU8a('12345678901234567890123456789012');
     const seedTwo = hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60');
-    let keypair: Keyring;
+    let keyring: Keyring;
 
     beforeEach((): void => {
-      keypair = new Keyring({ type: 'ed25519' });
+      keyring = new Keyring({ ss58Format: 42, type: 'ed25519' });
 
-      keypair.addFromSeed(seedOne, {});
-    });
-
-    afterEach((): void => {
-      setSS58Format(42);
+      keyring.addFromSeed(seedOne, {});
     });
 
     it('adds the pair', (): void => {
       expect(
-        keypair.addFromSeed(seedTwo, {}).publicKey
+        keyring.addFromSeed(seedTwo, {}).publicKey
       ).toEqual(publicKeyTwo);
     });
 
     it('creates a ed25519 pair via mnemonicToSeed', (): void => {
       expect(
-        keypair.addFromUri(
+        keyring.addFromUri(
           'seed sock milk update focus rotate barely fade car face mechanic mercy'
         ).address
       ).toEqual('5DkQP32jP4DVJLWWBRBoZF2tpWjqFrcrTBo6H5NcSk7MxKCC');
     });
 
-    it('adds from a mnemonic', (): void => {
-      setSS58Format(68);
+    it('adds from a mnemonic, with correct ss58', (): void => {
+      setSS58Format(20); // this would not be used
+      keyring.setSS58Format(68); // this would be used
 
-      expect(
-        keypair.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {}).address
-      ).toEqual('7sPsxWPE5DzAyPT3VuoJYw5NTGscx9QYN9oddQx4kALKC3hH');
+      const pair = keyring.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {});
+
+      expect(pair.address).toEqual('7sPsxWPE5DzAyPT3VuoJYw5NTGscx9QYN9oddQx4kALKC3hH');
+      expect(encodeAddress(pair.publicKey)).toEqual('35cDYtPsdG1HUa2n2MaARgJyRz1WKMBZK1DL6c5cX7nugQh1');
     });
 
     it('allows publicKeys retrieval', (): void => {
-      keypair.addFromSeed(seedTwo, {});
+      keyring.addFromSeed(seedTwo, {});
 
       expect(
-        keypair.getPublicKeys()
+        keyring.getPublicKeys()
       ).toEqual([publicKeyOne, publicKeyTwo]);
     });
 
     it('allows retrieval of a specific item', (): void => {
       expect(
-        keypair.getPair(publicKeyOne).publicKey
+        keyring.getPair(publicKeyOne).publicKey
       ).toEqual(publicKeyOne);
     });
 
     it('allows adding from JSON', (): void => {
       expect(
-        keypair.addFromJson(
+        keyring.addFromJson(
           JSON.parse('{"address":"5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua","encoded":"0xb4a14995d25ab609f3686e9fa45f1fb237cd833f33f00d4b12c51858ca070d96972e47d73aae5eeb0fc06f923826cf0943fdb02c2c2ee30ef52a7912663053940d1da4da66b3a3f520ae07422c1c94b2d95690fca9d1f4a997623bb2923a8833280e19e7f72c3c5cfa343974e60e2b3dc53b404fdaf330756daad5e4e3","encoding":{"content":"pkcs8","type":"xsalsa20-poly1305","version":"0"},"meta":{"isTesting":true,"name":"alice"}}')
         ).publicKey
       ).toEqual(
@@ -77,7 +75,7 @@ describe('keypair', (): void => {
 
     it('signs and verifies', (): void => {
       const MESSAGE = stringToU8a('this is a message');
-      const pair = keypair.getPair(publicKeyOne);
+      const pair = keyring.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE);
 
       expect(pair.verify(MESSAGE, signature)).toBe(true);
@@ -89,55 +87,51 @@ describe('keypair', (): void => {
     const publicKeyTwo = hexToU8a('0x44a996beb1eef7bdcab976ab6d2ca26104834164ecf28fb375600576fcc6eb0f');
     const seedOne = stringToU8a('12345678901234567890123456789012');
     const seedTwo = hexToU8a('0x9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60');
-    let keypair: Keyring;
+    let keyring: Keyring;
 
     beforeEach((): void => {
-      keypair = new Keyring({ type: 'sr25519' });
+      keyring = new Keyring({ ss58Format: 42, type: 'sr25519' });
 
-      keypair.addFromSeed(seedOne, {});
-    });
-
-    afterEach((): void => {
-      setSS58Format(42);
+      keyring.addFromSeed(seedOne, {});
     });
 
     it('creates with dev phrase when only path specified', (): void => {
       expect(
-        keypair.createFromUri('//Alice').address
+        keyring.createFromUri('//Alice').address
       ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY');
     });
 
     it('adds the pair', (): void => {
       expect(
-        keypair.addFromSeed(seedTwo, {}).publicKey
+        keyring.addFromSeed(seedTwo, {}).publicKey
       ).toEqual(publicKeyTwo);
     });
 
     it('adds from a mnemonic', (): void => {
-      setSS58Format(68);
+      keyring.setSS58Format(68);
 
       expect(
-        keypair.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {}).address
+        keyring.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {}).address
       ).toEqual('7qQGarA4PWjPPVHG4USn1yuuVZvEHN7XZz8o7EbAp48jayZQ');
     });
 
     it('allows publicKeys retrieval', (): void => {
-      keypair.addFromSeed(seedTwo, {});
+      keyring.addFromSeed(seedTwo, {});
 
       expect(
-        keypair.getPublicKeys()
+        keyring.getPublicKeys()
       ).toEqual([publicKeyOne, publicKeyTwo]);
     });
 
     it('allows retrieval of a specific item', (): void => {
       expect(
-        keypair.getPair(publicKeyOne).publicKey
+        keyring.getPair(publicKeyOne).publicKey
       ).toEqual(publicKeyOne);
     });
 
     it('allows adding from JSON', (): void => {
       expect(
-        keypair.addFromJson(
+        keyring.addFromJson(
           JSON.parse('{"address":"5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua","encoded":"0xb4a14995d25ab609f3686e9fa45f1fb237cd833f33f00d4b12c51858ca070d96972e47d73aae5eeb0fc06f923826cf0943fdb02c2c2ee30ef52a7912663053940d1da4da66b3a3f520ae07422c1c94b2d95690fca9d1f4a997623bb2923a8833280e19e7f72c3c5cfa343974e60e2b3dc53b404fdaf330756daad5e4e3","encoding":{"content":"pkcs8","type":"xsalsa20-poly1305","version":"0"},"meta":{"isTesting":true,"name":"alice"}}')
         ).publicKey
       ).toEqual(
@@ -147,7 +141,7 @@ describe('keypair', (): void => {
 
     it('signs and verifies', (): void => {
       const MESSAGE = stringToU8a('this is a message');
-      const pair = keypair.getPair(publicKeyOne);
+      const pair = keyring.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE);
 
       expect(pair.verify(MESSAGE, signature)).toBe(true);

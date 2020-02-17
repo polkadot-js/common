@@ -82,7 +82,7 @@ export default function testKeyring (options: KeyringOptions = {}, isDerived = t
     const pair = !isDerived && !name
       ? keyring.addFromUri(seed, meta, options.type)
       : keyring.addPair(
-        createPair(type || 'sr25519', { publicKey, secretKey }, meta)
+        createPair({ toSS58: keyring.encodeAddress, type: type || 'sr25519' }, { publicKey, secretKey }, meta)
       );
 
     pair.lock = (): void => {

@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { cryptoWaitReady, setSS58Format } from '@polkadot/util-crypto';
+import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkadot/util-crypto';
 
 import { PAIRS } from '../testing';
 import testingPairs from '../testingPairs';
@@ -79,14 +79,14 @@ describe('pair', (): void => {
     const PASS = 'testing';
     const encoded = keyring.alice.encodePkcs8(PASS);
 
-    const pair = createPair('sr25519', { publicKey: keyring.alice.publicKey });
+    const pair = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.alice.publicKey });
     pair.decodePkcs8(PASS, encoded);
 
     expect(pair.isLocked).toEqual(false);
   });
 
   it('allows derivation on the pair', (): void => {
-    const alice = createPair('sr25519', { publicKey: PAIRS[0].publicKey, secretKey: PAIRS[0].secretKey }, {});
+    const alice = createPair({ toSS58, type: 'sr25519' }, { publicKey: PAIRS[0].publicKey, secretKey: PAIRS[0].secretKey }, {});
     const stash = alice.derive('//stash');
     const soft = alice.derive('//funding/0');
 

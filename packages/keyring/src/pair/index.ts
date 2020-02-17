@@ -7,11 +7,16 @@ import { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '..
 import { PairInfo } from './types';
 
 import { u8aConcat, assert } from '@polkadot/util';
-import { encodeAddress, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto';
+import { keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto';
 
 import decode from './decode';
 import encode from './encode';
 import toJson from './toJson';
+
+interface Setup {
+  toSS58: (publicKey: Uint8Array) => string;
+  type: KeypairType;
+}
 
 const SIG_TYPE_NONE = new Uint8Array();
 const SIG_TYPE_ED25519 = new Uint8Array([0]);
@@ -88,10 +93,10 @@ function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, 
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function createPair (type: KeypairType, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
+export default function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
   return {
     get address (): string {
-      return encodeAddress(publicKey);
+      return toSS58(publicKey);
     },
     get meta (): KeyringPair$Meta {
       return meta;
@@ -124,7 +129,7 @@ export default function createPair (type: KeypairType, { publicKey, secretKey }:
       const { path } = keyExtractPath(suri);
       const derived = keyFromPath({ publicKey, secretKey: secretKey }, path, type);
 
-      return createPair(type, derived, meta, null);
+      return createPair({ toSS58, type }, derived, meta, null);
     },
     encodePkcs8: (passphrase?: string): Uint8Array =>
       encode({ publicKey, secretKey }, passphrase),
