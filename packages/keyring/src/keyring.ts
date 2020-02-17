@@ -93,7 +93,7 @@ export default class Keyring implements KeyringInstance {
   public addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.type, ignoreChecksum?: boolean): KeyringPair {
     const publicKey = this.decodeAddress(address, ignoreChecksum);
 
-    return this.addPair(createPair(type, { publicKey, secretKey: new Uint8Array(64) }, meta, encoded, this.encodeAddress));
+    return this.addPair(createPair({ toSS58: this.encodeAddress, type }, { publicKey, secretKey: new Uint8Array(64) }, meta, encoded));
   }
 
   /**
@@ -135,7 +135,7 @@ export default class Keyring implements KeyringInstance {
       ? schnorrkelFromSeed(seed)
       : naclFromSeed(seed);
 
-    return this.addPair(createPair(type, keypair, meta, null, this.encodeAddress));
+    return this.addPair(createPair({ toSS58: this.encodeAddress, type }, keypair, meta, null));
   }
 
   /**
@@ -186,7 +186,7 @@ export default class Keyring implements KeyringInstance {
       : naclFromSeed(seed);
     const derived = keyFromPath(keypair, path, type);
 
-    return createPair(type, derived, meta, null, this.encodeAddress);
+    return createPair({ toSS58: this.encodeAddress, type }, derived, meta, null);
   }
 
   /**
