@@ -5,7 +5,7 @@
 import { KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions } from './types';
 
-import { assert, hexToU8a, isNumber, isHex, stringToU8a } from '@polkadot/util';
+import { assert, hexToU8a, isHex, stringToU8a } from '@polkadot/util';
 import { decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
@@ -39,9 +39,6 @@ export default class Keyring implements KeyringInstance {
 
   constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
-    options.ss58Format = isNumber(options.ss58Format)
-      ? options.ss58Format
-      : options.addressPrefix;
 
     assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
 

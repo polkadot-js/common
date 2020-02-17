@@ -7,8 +7,6 @@ import { Prefix } from '@polkadot/util-crypto/address/types';
 import { KeypairType } from '@polkadot/util-crypto/types';
 
 export interface KeyringOptions {
-  // @deprecated
-  addressPrefix?: Prefix;
   ss58Format?: Prefix;
   type?: KeypairType;
 }
