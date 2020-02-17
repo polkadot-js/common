@@ -21,7 +21,7 @@ interface Options {
   forceUnit?: string;
   withSi?: boolean;
   withSiFull?: boolean;
-  withUnit?: boolean;
+  withUnit?: boolean | string;
 }
 
 interface BalanceFormatter {
@@ -71,8 +71,10 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | E
   const units = withSi || withSiFull
     ? (
       si.value === '-'
-        ? ` ${si.text}`
-        : `${withSiFull ? ` ${si.text}` : si.value}${withUnit ? ` ${SI[SI_MID].text}` : ''}`
+        ? withUnit
+          ? ` ${isBoolean(withUnit) ? si.text : withUnit}`
+          : ''
+        : `${withSiFull ? ` ${si.text}` : si.value}${withUnit ? ` ${isBoolean(withUnit) ? SI[SI_MID].text : withUnit}` : ''}`
     )
     : '';
 

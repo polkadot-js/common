@@ -50,6 +50,18 @@ describe('formatBalance', (): void => {
       ).toEqual('123.456 Unit');
     });
 
+    it('formats 123,456,789,000 (decimals=9, no unit)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { withSi: true, withUnit: false }, 9)
+      ).toEqual('123.456');
+    });
+
+    it('formats 123,456,789,000 (decimals=9, unit given)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { withSi: true, withUnit: 'FOO' }, 9)
+      ).toEqual('123.456 FOO');
+    });
+
     it('formats 123,456,789,000 (decimals=12, no SI)', (): void => {
       expect(
         formatBalance(TESTVAL, { withSi: false }, 12)
@@ -78,6 +90,12 @@ describe('formatBalance', (): void => {
       expect(
         formatBalance(TESTVAL, { withSi: true }, 6)
       ).toEqual('123.456k Unit');
+    });
+
+    it('formats 123,456,789,000 (decimals=6, unit specified)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { withSi: true, withUnit: 'BAR' }, 6)
+      ).toEqual('123.456k BAR');
     });
 
     it('formats 123,456,789,000 * 10 (decimals=12)', (): void => {

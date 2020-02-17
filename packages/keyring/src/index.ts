@@ -7,13 +7,8 @@ import { decodeAddress, encodeAddress, setSS58Format } from '@polkadot/util-cryp
 
 import Keyring from './keyring';
 
-// eslint-disable-next-line no-useless-catch
-try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  detectPackage(require('./package.json'), __dirname);
-} catch (error) {
-  throw error;
-}
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+detectPackage(require('./package.json'), __dirname);
 
 export default Keyring;
 
