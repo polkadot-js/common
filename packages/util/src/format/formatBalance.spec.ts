@@ -17,13 +17,19 @@ describe('formatBalance', (): void => {
 
     it('formats 123,456,789,000 (decimals=15)', (): void => {
       expect(
+        formatBalance(TESTVAL, { withSi: true, decimals: 15 })
+      ).toEqual('123.456µ Unit');
+    });
+
+    it('formats 123,456,789,000 (decimals=15, old style)', (): void => {
+      expect(
         formatBalance(TESTVAL, { withSi: true }, 15)
       ).toEqual('123.456µ Unit');
     });
 
-    it('formats 123,456,789,000 (decimals=36)', (): void => {
+    it('formats 123,456,789,000 (decimals=36, option)', (): void => {
       expect(
-        formatBalance(TESTVAL, { withSi: true }, 36)
+        formatBalance(TESTVAL, { withSi: true, decimals: 36 })
       ).toEqual('0.123y Unit');
     });
 
@@ -34,13 +40,13 @@ describe('formatBalance', (): void => {
         something: 'else'
       };
       expect(
-        formatBalance(compact, { withSi: true }, 15)
+        formatBalance(compact, { withSi: true, decimals: 15 })
       ).toEqual('123.456µ Unit');
     });
 
     it('formats 123,456,789,000 (decimals=12)', (): void => {
       expect(
-        formatBalance(TESTVAL, { withSi: true }, 12)
+        formatBalance(TESTVAL, { withSi: true, decimals: 12 })
       ).toEqual('123.456m Unit');
     });
 

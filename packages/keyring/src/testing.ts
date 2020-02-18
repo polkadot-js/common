@@ -73,7 +73,7 @@ export const PAIRS: PairDef[] = [
 export default function testKeyring (options: KeyringOptions = {}, isDerived = true): KeyringInstance {
   const keyring = new Keyring(options);
 
-  PAIRS.forEach(({ name, publicKey, secretKey, seed, type }): void => {
+  PAIRS.forEach(({ name, publicKey, secretKey, seed, type = 'sr25519' }): void => {
     const meta = {
       isTesting: true,
       name: name || seed.replace('//', '_').toLowerCase()
@@ -82,7 +82,7 @@ export default function testKeyring (options: KeyringOptions = {}, isDerived = t
     const pair = !isDerived && !name
       ? keyring.addFromUri(seed, meta, options.type)
       : keyring.addPair(
-        createPair({ toSS58: keyring.encodeAddress, type: type || 'sr25519' }, { publicKey, secretKey }, meta)
+        createPair({ toSS58: keyring.encodeAddress, type }, { publicKey, secretKey }, meta)
       );
 
     pair.lock = (): void => {
