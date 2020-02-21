@@ -26,13 +26,9 @@ interface Options extends ToBnOptions {
  * bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
  * ```
  */
-function bnToU8a (value: BN | number | null, options?: Options): Uint8Array;
-function bnToU8a (value: BN | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
-function bnToU8a (
-  value: BN | number | null,
-  arg1: number | Options = { bitLength: -1, isLe: true, isNegative: false },
-  arg2?: boolean
-): Uint8Array {
+function bnToU8a (value: BN | BigInt | number | null, options?: Options): Uint8Array;
+function bnToU8a (value: BN | BigInt | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
+function bnToU8a (value: BN | BigInt | number | null, arg1: number | Options = { bitLength: -1, isLe: true, isNegative: false }, arg2?: boolean): Uint8Array {
   const _options: Options = {
     isLe: true,
     isNegative: false,

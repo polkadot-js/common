@@ -30,10 +30,7 @@ interface Options extends ToBnOptions {
  * bnToHex(new BN(0x123456)); // => '0x123456'
  * ```
  */
-export default function bnToHex (
-  value?: BN | number | null,
-  options: number | Options = { bitLength: -1, isLe: false, isNegative: false }
-): string {
+export default function bnToHex (value?: BN | BigInt | number | null, options: number | Options = { bitLength: -1, isLe: false, isNegative: false }): string {
   if (!value) {
     return ZERO_STR;
   }
