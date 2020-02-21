@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "resolutions": {
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.2"
   },
   "scripts": {
     "build": "polkadot-dev-build-ts",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
-    "@polkadot/dev": "^0.40.19",
+    "@polkadot/dev": "^0.40.22",
     "@polkadot/ts": "^0.2.3"
   }
 }

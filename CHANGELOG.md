@@ -1,3 +1,7 @@
+# 2.5.1-beta.x
+
+- Add `isBigInt` to allow `BigInt` checks. Also add support in `bnToBn`
+
 # 2.4.1 Feb 18, 2020
 
 - Ensure that `formatBalance` does not apply unit overrides apply when no SI is applicable

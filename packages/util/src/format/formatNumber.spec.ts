@@ -25,6 +25,12 @@ describe('formatNumber', (): void => {
     ).toEqual('12,345');
   });
 
+  it('formats BigInt numbers', (): void => {
+    expect(
+      formatNumber(123_456_789n)
+    ).toEqual('123,456,789');
+  });
+
   it('formats Compact<BN>', (): void => {
     expect(
       formatNumber({

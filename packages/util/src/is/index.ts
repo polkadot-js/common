@@ -5,7 +5,7 @@
 /**
  * @summary Type checking utilities
  */
-
+export { default as isBigInt } from './bigInt';
 export { default as isBn } from './bn';
 export { default as isBuffer } from './buffer';
 export { default as isBoolean } from './boolean';
