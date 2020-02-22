@@ -19,7 +19,7 @@ import { Constructor } from '../types';
  * console.log('isChildClass', isChildClass(BN, Uint8Array); // => false
  * ```
  */
-export default function isChildClass <P extends Constructor> (Parent: P, Child?: Constructor | null | unknown | never): Child is P {
+export default function isChildClass <P extends Constructor> (Parent: P, Child?: Constructor | null | unknown): Child is P {
   // https://stackoverflow.com/questions/30993434/check-if-a-constructor-inherits-another-in-es6/30993664
   return Child
     // eslint-disable-next-line no-prototype-builtins
