@@ -16,9 +16,9 @@ const BN_OPTIONS = {
 };
 
 export default class DeriveJunction {
-  private _chainCode: Uint8Array = new Uint8Array(32);
+  readonly #chainCode: Uint8Array = new Uint8Array(32);
 
-  private _isHard = false;
+  #isHard = false;
 
   public static from (value: string): DeriveJunction {
     const [code, isHard] = value.startsWith('/')
@@ -38,15 +38,15 @@ export default class DeriveJunction {
   }
 
   public get chainCode (): Uint8Array {
-    return this._chainCode;
+    return this.#chainCode;
   }
 
   public get isHard (): boolean {
-    return this._isHard;
+    return this.#isHard;
   }
 
   public get isSoft (): boolean {
-    return !this._isHard;
+    return !this.#isHard;
   }
 
   public hard (value: number | BN | string | Uint8Array): DeriveJunction {
@@ -54,7 +54,7 @@ export default class DeriveJunction {
   }
 
   public harden (): DeriveJunction {
-    this._isHard = true;
+    this.#isHard = true;
 
     return this;
   }
@@ -72,14 +72,14 @@ export default class DeriveJunction {
       return this.soft(blake2AsU8a(value));
     }
 
-    this._chainCode.fill(0);
-    this._chainCode.set(value, 0);
+    this.#chainCode.fill(0);
+    this.#chainCode.set(value, 0);
 
     return this;
   }
 
   public soften (): DeriveJunction {
-    this._isHard = false;
+    this.#isHard = false;
 
     return this;
   }
