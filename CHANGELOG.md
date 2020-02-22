@@ -2,6 +2,7 @@
 
 - Add `isBigInt(value)` to allow `BigInt` checks. Also add support in `bnToBn`, and anything that uses this conversion for numbers
 - Add `isChildClass(Parent, Child?)` to check if a class extends the parent
+- (internal) Use `#<varname>` insead of `private _<varname>` for private class variables
 
 # 2.4.1 Feb 18, 2020
 

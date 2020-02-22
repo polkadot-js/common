@@ -10,24 +10,20 @@ import { decodeAddress } from '@polkadot/util-crypto';
 type KeyringPairMap = Record<string, KeyringPair>;
 
 export default class Pairs implements KeyringPairs {
-  private _map: KeyringPairMap;
-
-  constructor () {
-    this._map = {};
-  }
+  readonly #map: KeyringPairMap = {};
 
   public add (pair: KeyringPair): KeyringPair {
-    this._map[pair.publicKey.toString()] = pair;
+    this.#map[pair.publicKey.toString()] = pair;
 
     return pair;
   }
 
   public all (): KeyringPair[] {
-    return Object.values(this._map);
+    return Object.values(this.#map);
   }
 
   public get (address: string | Uint8Array): KeyringPair {
-    const pair = this._map[decodeAddress(address).toString()];
+    const pair = this.#map[decodeAddress(address).toString()];
 
     assert(pair, (): string => {
       const formatted: string = isU8a(address) || isHex(address)
@@ -41,6 +37,6 @@ export default class Pairs implements KeyringPairs {
   }
 
   public remove (address: string | Uint8Array): void {
-    delete this._map[decodeAddress(address).toString()];
+    delete this.#map[decodeAddress(address).toString()];
   }
 }

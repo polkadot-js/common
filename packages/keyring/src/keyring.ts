@@ -29,11 +29,11 @@ import Pairs from './pairs';
  * an account may be obtained using `toJson` accompanied by the account passphrase.
  */
 export default class Keyring implements KeyringInstance {
-  private _pairs: Pairs;
+  readonly #pairs: Pairs;
 
-  private _ss58?: number;
+  readonly #type: KeypairType;
 
-  private _type: KeypairType;
+  #ss58?: number;
 
   public decodeAddress = decodeAddress;
 
@@ -42,9 +42,9 @@ export default class Keyring implements KeyringInstance {
 
     assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
 
-    this._pairs = new Pairs();
-    this._ss58 = options.ss58Format;
-    this._type = options.type;
+    this.#pairs = new Pairs();
+    this.#ss58 = options.ss58Format;
+    this.#type = options.type;
   }
 
   /**
@@ -65,7 +65,7 @@ export default class Keyring implements KeyringInstance {
    * @description Returns the type of the keyring, either ed25519 of sr25519
    */
   public get type (): KeypairType {
-    return this._type;
+    return this.#type;
   }
 
   /**
@@ -73,7 +73,7 @@ export default class Keyring implements KeyringInstance {
    * @summary Stores an account, given a keyring pair, as a Key/Value (public key, pair) in Keyring Pair Dictionary
    */
   public addPair (pair: KeyringPair): KeyringPair {
-    return this._pairs.add(pair);
+    return this.#pairs.add(pair);
   }
 
   /**
@@ -188,7 +188,7 @@ export default class Keyring implements KeyringInstance {
    * @description Encodes the input into an ss58 representation
    */
   public encodeAddress = (key: Uint8Array | string, ss58Format?: number): string => {
-    return encodeAddress(key, ss58Format || this._ss58);
+    return encodeAddress(key, ss58Format || this.#ss58);
   }
 
   /**
@@ -198,7 +198,7 @@ export default class Keyring implements KeyringInstance {
    * a key lookup using the provided account address or public key (after decoding it).
    */
   public getPair (address: string | Uint8Array): KeyringPair {
-    return this._pairs.get(address);
+    return this.#pairs.get(address);
   }
 
   /**
@@ -207,7 +207,7 @@ export default class Keyring implements KeyringInstance {
    * @description Returns an array list of all the keyring pair values that are stored in the keyring pair dictionary.
    */
   public getPairs (): KeyringPair[] {
-    return this._pairs.all();
+    return this.#pairs.all();
   }
 
   /**
@@ -216,7 +216,7 @@ export default class Keyring implements KeyringInstance {
    * @description Returns an array list of all the public keys associated with each of the keyring pair values that are stored in the keyring pair dictionary.
    */
   public getPublicKeys (): Uint8Array[] {
-    return this._pairs
+    return this.#pairs
       .all()
       .map(({ publicKey }): Uint8Array =>
         publicKey
@@ -228,7 +228,7 @@ export default class Keyring implements KeyringInstance {
    * @description Deletes the provided input address or public key from the stored Keyring Pair Dictionary.
    */
   public removePair (address: string | Uint8Array): void {
-    this._pairs.remove(address);
+    this.#pairs.remove(address);
   }
 
   /**
@@ -236,7 +236,7 @@ export default class Keyring implements KeyringInstance {
    * @description Sets the ss58 format for the keyring
    */
   public setSS58Format (ss58: number): void {
-    this._ss58 = ss58;
+    this.#ss58 = ss58;
   }
 
   /**
@@ -248,6 +248,6 @@ export default class Keyring implements KeyringInstance {
    * may backup their account to a JSON file that contains this information.
    */
   public toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json {
-    return this._pairs.get(address).toJson(passphrase);
+    return this.#pairs.get(address).toJson(passphrase);
   }
 }
