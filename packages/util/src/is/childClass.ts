@@ -15,7 +15,8 @@ import { Constructor } from '../types';
  * ```javascript
  * import { isChildClass } from '@polkadot/util';
  *
- * console.log('isChildClass', isBuffer(Buffer, Buffer); // => true
+ * console.log('isChildClass', isChildClass(BN, BN); // => true
+ * console.log('isChildClass', isChildClass(BN, Uint8Array); // => false
  * ```
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
