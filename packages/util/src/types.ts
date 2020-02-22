@@ -4,6 +4,12 @@
 
 import BN from 'bn.js';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface Constructor<T = any> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  new(...value: any[]): T;
+}
+
 export interface ToBn {
   toBn: () => BN;
 }

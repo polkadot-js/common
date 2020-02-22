@@ -9,6 +9,7 @@ export { default as isBigInt } from './bigInt';
 export { default as isBn } from './bn';
 export { default as isBuffer } from './buffer';
 export { default as isBoolean } from './boolean';
+export { default as isChildClass } from './childClass';
 export { default as isError } from './error';
 export { default as isFunction } from './function';
 export { default as isHex } from './hex';
