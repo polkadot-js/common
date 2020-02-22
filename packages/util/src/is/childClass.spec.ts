@@ -24,4 +24,14 @@ describe('isChildClass', (): void => {
       isChildClass(BN)
     ).toEqual(false);
   });
+
+  it('does TS magic, determining type', (): void => {
+    const T = (class extends BN {}) as unknown;
+
+    if (isChildClass(BN, T)) {
+      expect(new T(12345).toNumber()).toEqual(12345);
+    } else {
+      throw new Error('Not a child class');
+    }
+  });
 });
