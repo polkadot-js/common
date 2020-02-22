@@ -20,10 +20,10 @@ import { Constructor } from '../types';
  * ```
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function isChildClass <T = any> (Parent: Constructor<T>, Child?: Constructor | null): Child is Constructor<T> {
+export default function isChildClass <P extends Constructor> (Parent: P, Child?: Constructor | null | unknown): Child is P {
   // https://stackoverflow.com/questions/30993434/check-if-a-constructor-inherits-another-in-es6/30993664
   return Child
     // eslint-disable-next-line no-prototype-builtins
-    ? Parent === Child || Parent.isPrototypeOf(Child)
+    ? Parent === Child || Parent.isPrototypeOf(Child as Constructor)
     : false;
 }
