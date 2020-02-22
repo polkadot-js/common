@@ -12,126 +12,115 @@ describe('keyExtractSuri', (): void => {
   });
 
   it('derives on "hello world"', (): void => {
-    expect(
-      keyExtractSuri('hello world')
-    ).toEqual({
-      path: [],
-      phrase: 'hello world'
-    });
+    const test = keyExtractSuri('hello world');
+
+    expect(test.phrase).toEqual('hello world');
+    expect(test.path.length).toEqual(0);
   });
 
   it('derives on "hello world/1', (): void => {
-    expect(
-      keyExtractSuri('hello world/1')
-    ).toEqual({
-      path: [
-        { _isHard: false, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ],
-      phrase: 'hello world'
-    });
+    const test = keyExtractSuri('hello world/1');
+
+    expect(test.password).not.toBeDefined();
+    expect(test.phrase).toEqual('hello world');
+    expect(test.path.length).toEqual(1);
+    expect(test.path[0].isHard).toEqual(false);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
   it('derives on "hello world/DOT', (): void => {
-    expect(
-      keyExtractSuri('hello world/DOT')
-    ).toEqual({
-      path: [
-        { _isHard: false, _chainCode: Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ],
-      phrase: 'hello world'
-    });
+    const test = keyExtractSuri('hello world/DOT');
+
+    expect(test.password).not.toBeDefined();
+    expect(test.phrase).toEqual('hello world');
+    expect(test.path.length).toEqual(1);
+    expect(test.path[0].isHard).toEqual(false);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
   it('derives on "hello world//1', (): void => {
-    expect(
-      keyExtractSuri('hello world//1')
-    ).toEqual({
-      path: [
-        { _isHard: true, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ],
-      phrase: 'hello world'
-    });
+    const test = keyExtractSuri('hello world//1');
+
+    expect(test.password).not.toBeDefined();
+    expect(test.phrase).toEqual('hello world');
+    expect(test.path.length).toEqual(1);
+    expect(test.path[0].isHard).toEqual(true);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
   it('derives on "hello world//DOT', (): void => {
-    expect(
-      keyExtractSuri('hello world//DOT')
-    ).toEqual({
-      path: [
-        { _isHard: true, _chainCode: Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ],
-      phrase: 'hello world'
-    });
+    const test = keyExtractSuri('hello world//DOT');
+
+    expect(test.password).not.toBeDefined();
+    expect(test.phrase).toEqual('hello world');
+    expect(test.path.length).toEqual(1);
+    expect(test.path[0].isHard).toEqual(true);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
   it('derives on "hello world//1/DOT', (): void => {
-    expect(
-      keyExtractSuri('hello world//1/DOT')
-    ).toEqual({
-      path: [
-        { _isHard: true, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) },
-        { _isHard: false, _chainCode: Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ],
-      phrase: 'hello world'
-    });
+    const test = keyExtractSuri('hello world//1/DOT');
+
+    expect(test.password).not.toBeDefined();
+    expect(test.phrase).toEqual('hello world');
+    expect(test.path.length).toEqual(2);
+    expect(test.path[0].isHard).toEqual(true);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
+    expect(test.path[1].isHard).toEqual(false);
+    expect(test.path[1].chainCode).toEqual(Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
   it('derives on "hello world//DOT/1', (): void => {
-    expect(
-      keyExtractSuri('hello world//DOT/1')
-    ).toEqual({
-      path: [
-        { _isHard: true, _chainCode: Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) },
-        { _isHard: false, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ],
-      phrase: 'hello world'
-    });
+    const test = keyExtractSuri('hello world//DOT/1');
+
+    expect(test.password).not.toBeDefined();
+    expect(test.phrase).toEqual('hello world');
+    expect(test.path.length).toEqual(2);
+    expect(test.path[0].isHard).toEqual(true);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
+    expect(test.path[1].isHard).toEqual(false);
+    expect(test.path[1].chainCode).toEqual(Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
   it('derives on "hello world///password"', (): void => {
-    expect(
-      keyExtractSuri('hello world///password')
-    ).toEqual({
-      password: 'password',
-      path: [],
-      phrase: 'hello world'
-    });
+    const test = keyExtractSuri('hello world///password');
+
+    expect(test.password).toEqual('password');
+    expect(test.phrase).toEqual('hello world');
+    expect(test.path.length).toEqual(0);
   });
 
   it('derives on "hello world//1/DOT///password"', (): void => {
-    expect(
-      keyExtractSuri('hello world//1/DOT///password')
-    ).toEqual({
-      path: [
-        { _isHard: true, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) },
-        { _isHard: false, _chainCode: Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ],
-      password: 'password',
-      phrase: 'hello world'
-    });
+    const test = keyExtractSuri('hello world//1/DOT///password');
+
+    expect(test.password).toEqual('password');
+    expect(test.phrase).toEqual('hello world');
+    expect(test.path.length).toEqual(2);
+    expect(test.path[0].isHard).toEqual(true);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
+    expect(test.path[1].isHard).toEqual(false);
+    expect(test.path[1].chainCode).toEqual(Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
   it('derives on "hello world/1//DOT///password"', (): void => {
-    expect(
-      keyExtractSuri('hello world/1//DOT///password')
-    ).toEqual({
-      path: [
-        { _isHard: false, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) },
-        { _isHard: true, _chainCode: Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ],
-      password: 'password',
-      phrase: 'hello world'
-    });
+    const test = keyExtractSuri('hello world/1//DOT///password');
+
+    expect(test.password).toEqual('password');
+    expect(test.phrase).toEqual('hello world');
+    expect(test.path.length).toEqual(2);
+    expect(test.path[0].isHard).toEqual(false);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
+    expect(test.path[1].isHard).toEqual(true);
+    expect(test.path[1].chainCode).toEqual(Uint8Array.from([12, 68, 79, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
   it('derives on actual Alice', (): void => {
-    expect(
-      keyExtractSuri('bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice')
-    ).toEqual({
-      path: [
-        { _isHard: true, _chainCode: Uint8Array.from([20, 65, 108, 105, 99, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ],
-      phrase: 'bottom drive obey lake curtain smoke basket hold race lonely fit walk'
-    });
+    const test = keyExtractSuri('bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice');
+
+    expect(test.password).not.toBeDefined();
+    expect(test.phrase).toEqual('bottom drive obey lake curtain smoke basket hold race lonely fit walk');
+    expect(test.path.length).toEqual(1);
+    expect(test.path[0].isHard).toEqual(true);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([20, 65, 108, 105, 99, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 });

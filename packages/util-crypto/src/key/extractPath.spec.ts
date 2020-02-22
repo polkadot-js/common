@@ -6,37 +6,32 @@ import keyExtractPath, { ExtractResult } from './extractPath';
 
 describe('keyExtractPath', (): void => {
   it('extracts properly from soft', (): void => {
-    expect(
-      keyExtractPath('/1')
-    ).toEqual({
-      parts: ['/1'],
-      path: [
-        { _isHard: false, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ]
-    });
+    const test = keyExtractPath('/1');
+
+    expect(test.parts).toEqual(['/1']);
+    expect(test.path.length).toEqual(1);
+    expect(test.path[0].isHard).toEqual(false);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
   it('extracts properly from hard', (): void => {
-    expect(
-      keyExtractPath('//1')
-    ).toEqual({
-      parts: ['//1'],
-      path: [
-        { _isHard: true, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ]
-    });
+    const test = keyExtractPath('//1');
+
+    expect(test.parts).toEqual(['//1']);
+    expect(test.path.length).toEqual(1);
+    expect(test.path[0].isHard).toEqual(true);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
   it('extracts properly from hard/soft', (): void => {
-    expect(
-      keyExtractPath('//1/2')
-    ).toEqual({
-      parts: ['//1', '/2'],
-      path: [
-        { _isHard: true, _chainCode: Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) },
-        { _isHard: false, _chainCode: Uint8Array.from([2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) }
-      ]
-    });
+    const test = keyExtractPath('//1/2');
+
+    expect(test.parts).toEqual(['//1', '/2']);
+    expect(test.path.length).toEqual(2);
+    expect(test.path[0].isHard).toEqual(true);
+    expect(test.path[0].chainCode).toEqual(Uint8Array.from([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
+    expect(test.path[1].isHard).toEqual(false);
+    expect(test.path[1].chainCode).toEqual(Uint8Array.from([2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
   it('does not extract from invalid paths', (): void => {
