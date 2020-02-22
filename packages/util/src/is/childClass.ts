@@ -18,7 +18,8 @@ import { Constructor } from '../types';
  * console.log('isChildClass', isBuffer(Buffer, Buffer); // => true
  * ```
  */
-export default function isChildClass (Parent: Constructor, Child?: Constructor | null): boolean {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function isChildClass <T = any> (Parent: Constructor<T>, Child?: Constructor | null): Child is Constructor<T> {
   // https://stackoverflow.com/questions/30993434/check-if-a-constructor-inherits-another-in-es6/30993664
   return Child
     // eslint-disable-next-line no-prototype-builtins
