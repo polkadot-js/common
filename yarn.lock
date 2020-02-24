@@ -2046,10 +2046,10 @@
   dependencies:
     "@types/chrome" "^0.0.95"
 
-"@polkadot/wasm-crypto@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto/-/wasm-crypto-1.0.1.tgz#80a2a6e8d63a7decdd1163cc49b263ccef4ad36d"
-  integrity sha512-l6izEdPXl4V8SBU9m3ct5PkHcdKZVDJMb10CFPNuNXT5OXMRaDs+Rlt/EHKjh8wbv8s9EOqy42BSHO8Qqrcg/g==
+"@polkadot/wasm-crypto@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto/-/wasm-crypto-1.1.1.tgz#f3bf66ce96f02c674287fe59b059964a0c5804d0"
+  integrity sha512-LMZA+KDnE2qKD7Un9/OJKuCmsf63vvhjGqM/lcb+2FZu5TpfjP1AMeTurDOt1ip3+qEukd5FkfUHXQIiFJLVBQ==
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
