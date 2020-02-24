@@ -1,3 +1,7 @@
+# 2.6.0-beta.x
+
+- Add `signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrublicKey: Uint8Array | string): VerifyResult` to verify any signature, regardless of type. Returns validity & detected crypto type.
+
 # 2.5.1 Feb 22, 2020
 
 - **Breaking change** (TypeScript only) The `*.d.ts` files now contain TypeScript 3.8 features, `#private`, which is not usable in older versions
