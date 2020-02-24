@@ -33,9 +33,7 @@ try {
  * ```
  */
 export default function u8aToString (value?: Uint8Array | null): string {
-  if (!value || !value.length) {
-    return '';
-  }
-
-  return decoder.decode(value);
+  return !value?.length
+    ? ''
+    : decoder.decode(value);
 }

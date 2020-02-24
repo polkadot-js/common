@@ -16,18 +16,18 @@ const VERIFIERS: [KeypairType, (message: Uint8Array | string, signature: Uint8Ar
 ];
 
 function verifyDetect (result: VerifyResult, message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array): VerifyResult {
-  VERIFIERS.find(([crypto, verifier]): boolean => {
+  result.isValid = VERIFIERS.some(([crypto, verify]): boolean => {
     try {
-      result.isValid = verifier(message, signature, publicKey);
-
-      if (result.isValid) {
+      if (verify(message, signature, publicKey)) {
         result.crypto = crypto;
+
+        return true;
       }
     } catch (error) {
-      // do nothing, result still set to false
+      // do nothing, result.isValid still set to false
     }
 
-    return result.isValid;
+    return false;
   });
 
   return result;
@@ -47,7 +47,7 @@ function verifyMultisig (result: VerifyResult, message: Uint8Array | string, sig
       ? naclVerify(message, signature.subarray(1), publicKey)
       : schnorrkelVerify(message, signature.subarray(1), publicKey);
   } catch (error) {
-    // ignore, result still set to false
+    // ignore, result.isValid still set to false
   }
 
   return result;
