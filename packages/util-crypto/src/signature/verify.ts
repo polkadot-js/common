@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { VerifyResult } from '../types';
+import { KeypairType, VerifyResult } from '../types';
 
 import { assert, u8aToU8a } from '@polkadot/util';
 
@@ -10,28 +10,25 @@ import addressDecode from '../address/decode';
 import naclVerify from '../nacl/verify';
 import schnorrkelVerify from '../schnorrkel/verify';
 
+const VERIFIERS: [KeypairType, (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string) => boolean][] = [
+  ['ed25519', naclVerify],
+  ['sr25519', schnorrkelVerify]
+];
+
 function verifyDetect (result: VerifyResult, message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array): VerifyResult {
-  try {
-    result.isValid = naclVerify(message, signature, publicKey);
-
-    if (result.isValid) {
-      result.crypto = 'ed25519';
-    }
-  } catch (error) {
-    // do nothing, already set to false
-  }
-
-  if (!result.isValid) {
+  VERIFIERS.find(([crypto, verifier]): boolean => {
     try {
-      result.isValid = schnorrkelVerify(message, signature, publicKey);
+      result.isValid = verifier(message, signature, publicKey);
 
       if (result.isValid) {
-        result.crypto = 'sr25519';
+        result.crypto = crypto;
       }
     } catch (error) {
-      // do nothing, already set to false
+      // do nothing, result still set to false
     }
-  }
+
+    return result.isValid;
+  });
 
   return result;
 }
@@ -50,7 +47,7 @@ function verifyMultisig (result: VerifyResult, message: Uint8Array | string, sig
       ? naclVerify(message, signature.subarray(1), publicKey)
       : schnorrkelVerify(message, signature.subarray(1), publicKey);
   } catch (error) {
-    // ignore
+    // ignore, result still set to false
   }
 
   return result;
