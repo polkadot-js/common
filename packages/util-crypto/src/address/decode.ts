@@ -9,8 +9,8 @@ import { Prefix } from './types';
 import bs58 from 'bs58';
 import { assert, bufferToU8a, isHex, isU8a, u8aToU8a } from '@polkadot/util';
 
+import checkChecksum from './checkChecksum';
 import defaults from './defaults';
-import sshash from './sshash';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function decode (encoded: string | Uint8Array, ignoreChecksum?: boolean, ss58Format: Prefix = 99): Uint8Array {
@@ -30,18 +30,9 @@ export default function decode (encoded: string | Uint8Array, ignoreChecksum?: b
   //   console.log(`WARN: Expected ${prefix}, found ${decoded[0]}`);
   // }
 
-  const isPublicKey = decoded.length === 35;
+  const [isValid, endPos] = checkChecksum(decoded);
 
-  // non-publicKeys has 1 byte checksums, else default to 2
-  const endPos = decoded.length - (isPublicKey ? 2 : 1);
-
-  // calculate the hash and do the checksum byte checks
-  const hash = sshash(decoded.subarray(0, endPos));
-  const checks = isPublicKey
-    ? decoded[decoded.length - 2] === hash[0] && decoded[decoded.length - 1] === hash[1]
-    : decoded[decoded.length - 1] === hash[0];
-
-  assert(ignoreChecksum || checks, error('Invalid decoded address checksum'));
+  assert(ignoreChecksum || isValid, error('Invalid decoded address checksum'));
 
   return decoded.slice(1, endPos);
 }
