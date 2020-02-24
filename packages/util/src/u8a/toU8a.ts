@@ -27,21 +27,15 @@ import stringToU8a from '../string/toU8a';
 export default function u8aToU8a (value?: number[] | Buffer | Uint8Array | string | null): Uint8Array {
   if (!value) {
     return new Uint8Array();
-  }
-
-  if (isBuffer(value)) {
+  } else if (isBuffer(value)) {
     return bufferToU8a(value);
-  }
-
-  if (isString(value)) {
+  } else if (isString(value)) {
     return isHex(value)
       ? hexToU8a(value)
       : stringToU8a(value);
   }
 
-  if (Array.isArray(value)) {
-    return Uint8Array.from(value);
-  }
-
-  return value;
+  return Array.isArray(value)
+    ? Uint8Array.from(value)
+    : value;
 }

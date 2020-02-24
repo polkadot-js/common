@@ -13,3 +13,8 @@ export interface Seedpair {
 }
 
 export type KeypairType = 'ed25519' | 'sr25519';
+
+export interface VerifyResult {
+  crypto: 'none' | KeypairType;
+  isValid: boolean;
+}

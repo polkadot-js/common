@@ -17,9 +17,7 @@
  * ```
  */
 export default function u8aToBuffer (value?: Uint8Array | null): Buffer {
-  if (!value) {
-    return Buffer.from([]);
-  }
-
-  return Buffer.from(value);
+  return !value
+    ? Buffer.from([])
+    : Buffer.from(value);
 }

@@ -23,9 +23,7 @@ export default function u8aFixLength (value: Uint8Array, bitLength = -1, atStart
 
   if (bitLength === -1 || value.length === byteLength) {
     return value;
-  }
-
-  if (value.length > byteLength) {
+  } else if (value.length > byteLength) {
     return value.subarray(0, byteLength);
   }
 
