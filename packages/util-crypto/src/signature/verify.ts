@@ -56,13 +56,13 @@ function verifyMultisig (result: VerifyResult, message: Uint8Array | string, sig
   return result;
 }
 
-export default function signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrublicKey: Uint8Array | string): VerifyResult {
+export default function signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrPublicKey: Uint8Array | string): VerifyResult {
   const signatureU8a = u8aToU8a(signature);
 
   assert([64, 65].includes(signatureU8a.length), `Invalid signature length, expected 64 or 65 bytes, found ${signatureU8a.length}`);
 
   const result: VerifyResult = { crypto: 'none', isValid: false };
-  const publicKey = addressDecode(addressOrublicKey);
+  const publicKey = addressDecode(addressOrPublicKey);
 
   return signatureU8a.length === 65
     ? verifyMultisig(result, message, signatureU8a, publicKey)
