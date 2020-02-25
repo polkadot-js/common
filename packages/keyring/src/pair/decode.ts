@@ -14,19 +14,7 @@ type DecodeResult = PairInfo & {
   secretKey: Uint8Array;
 };
 
-export default function decode (passphrase?: string, encrypted?: Uint8Array | null): DecodeResult {
-  assert(encrypted, 'No encrypted data available to decode');
-
-  const encoded = passphrase
-    ? (naclDecrypt(
-      encrypted.subarray(NONCE_LENGTH),
-      encrypted.subarray(0, NONCE_LENGTH),
-      u8aFixLength(stringToU8a(passphrase), 256, true)
-    ) as Uint8Array)
-    : encrypted;
-
-  assert(encoded, 'Unable to unencrypt using the supplied passphrase');
-
+function decodePkcs8 (encoded: Uint8Array): DecodeResult {
   const header = encoded.subarray(0, PKCS8_HEADER.length);
 
   assert(header.toString() === PKCS8_HEADER.toString(), 'Invalid Pkcs8 header found in body');
@@ -51,4 +39,20 @@ export default function decode (passphrase?: string, encrypted?: Uint8Array | nu
     publicKey,
     secretKey
   };
+}
+
+export default function decode (passphrase?: string, encrypted?: Uint8Array | null): DecodeResult {
+  assert(encrypted, 'No encrypted data available to decode');
+
+  const encoded = passphrase
+    ? naclDecrypt(
+      encrypted.subarray(NONCE_LENGTH),
+      encrypted.subarray(0, NONCE_LENGTH),
+      u8aFixLength(stringToU8a(passphrase), 256, true)
+    )
+    : encrypted;
+
+  assert(encoded, 'Unable to unencrypt using the supplied passphrase');
+
+  return decodePkcs8(encoded);
 }

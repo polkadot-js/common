@@ -23,7 +23,7 @@ export default function u8aToHex (value?: Uint8Array | null, bitLength = -1, isP
     ? '0x'
     : '';
 
-  if (!value || !value.length) {
+  if (!value?.length) {
     return prefix;
   }
 

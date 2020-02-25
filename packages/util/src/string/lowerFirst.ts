@@ -17,9 +17,7 @@
  * ```
  */
 export default function stringLowerFirst (value?: string | null): string {
-  if (!value) {
-    return '';
-  }
-
-  return value.charAt(0).toLowerCase() + value.slice(1);
+  return value
+    ? value.charAt(0).toLowerCase() + value.slice(1)
+    : '';
 }
