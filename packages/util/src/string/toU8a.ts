@@ -37,9 +37,7 @@ try {
  * ```
  */
 export default function stringToU8a (value?: string): Uint8Array {
-  if (!value) {
-    return new Uint8Array([]);
-  }
-
-  return encoder.encode(value);
+  return value
+    ? encoder.encode(value)
+    : new Uint8Array([]);
 }

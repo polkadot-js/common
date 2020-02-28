@@ -13,9 +13,9 @@ import hexToBn from '../hex/toBn';
 
 /**
  * @name bnToBn
- * @summary Creates a BN value from a BN.js bignumber or number input.
+ * @summary Creates a BN value from a BN, BigInt, string (base 10 or hex) or number input.
  * @description
- * `null` inputs returns a `0x0` result, BN values returns the value, numnbers returns a BN representation.
+ * `null` inputs returns a `0x0` result, BN values returns the value, numbers returns a BN representation.
  * @example
  * <BR>
  *

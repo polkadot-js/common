@@ -19,9 +19,7 @@ import hexToBn from './toBn';
  * ```
  */
 export default function hexToNumber (value?: string | null): number {
-  if (!value) {
-    return NaN;
-  }
-
-  return hexToBn(value).toNumber();
+  return value
+    ? hexToBn(value).toNumber()
+    : NaN;
 }

@@ -26,9 +26,5 @@ export default function numberToHex (value?: number | null, bitLength = -1): str
     return '0x';
   }
 
-  return hexFixLength(
-    (value || 0).toString(16),
-    bitLength,
-    true
-  );
+  return hexFixLength(value.toString(16), bitLength, true);
 }

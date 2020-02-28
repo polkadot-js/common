@@ -25,19 +25,11 @@ export default function hexFixLength (value: string, bitLength = -1, withPadding
   const strLength = Math.ceil(bitLength / 4);
   const hexLength = strLength + 2;
 
-  if (bitLength === -1 || value.length === hexLength || (!withPadding && value.length < hexLength)) {
-    return hexAddPrefix(
-      hexStripPrefix(value)
-    );
-  }
-
-  if (value.length > hexLength) {
-    return hexAddPrefix(
-      hexStripPrefix(value).slice(-1 * strLength)
-    );
-  }
-
   return hexAddPrefix(
-    `${'0'.repeat(strLength)}${hexStripPrefix(value)}`.slice(-1 * strLength)
+    (bitLength === -1 || value.length === hexLength || (!withPadding && value.length < hexLength))
+      ? hexStripPrefix(value)
+      : (value.length > hexLength)
+        ? hexStripPrefix(value).slice(-1 * strLength)
+        : `${'0'.repeat(strLength)}${hexStripPrefix(value)}`.slice(-1 * strLength)
   );
 }
