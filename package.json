@@ -1,9 +1,8 @@
 {
-  "version": "2.6.0-beta.1",
+  "repository": "https://github.com/polkadot-js/common",
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "license": "Apache-2",
   "private": true,
-  "engines": {
-    "yarn": "^1.10.1"
-  },
   "workspaces": [
     "packages/*"
   ],
@@ -21,7 +20,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
-    "@polkadot/dev": "^0.50.14",
+    "@polkadot/dev": "^0.50.15",
     "@polkadot/ts": "^0.3.3"
   }
 }
