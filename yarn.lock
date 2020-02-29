@@ -2736,9 +2736,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.50.11":
-  version: 0.50.11
-  resolution: "@polkadot/dev@npm:0.50.11"
+"@polkadot/dev@npm:^0.50.14":
+  version: 0.50.14
+  resolution: "@polkadot/dev@npm:0.50.14"
   dependencies:
     "@babel/cli": ^7.8.4
     "@babel/core": ^7.8.6
@@ -2820,7 +2820,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.js
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.js
     polkadot-exec-webpack: scripts/polkadot-exe-webpackc.js
-  checksum: 2/9f6d26e3c1cae1ceb3ddd02a01b18a9a4bf5b0c5a39a91c031888ce30382c0aacfc95dc8d3d1bb6fafc35d8aac12d9d67cc1efca36bdc1804702c8a77c695f42
+  checksum: 2/601c6144f3e8b854b81550bd8c1eefa20696162780ec9d9b05b7b5fb01a3ef84492716fb7ba24ba7b5b6eabb824e603e22a95fcc5843d3137e29effeb3ddcba4
   languageName: node
   linkType: hard
 
@@ -2829,8 +2829,8 @@ __metadata:
   resolution: "@polkadot/keyring@workspace:packages/keyring"
   dependencies:
     "@babel/runtime": ^7.8.4
-    "@polkadot/util": 2.6.0-beta.5
-    "@polkadot/util-crypto": 2.6.0-beta.5
+    "@polkadot/util": 2.6.0-beta.6
+    "@polkadot/util-crypto": 2.6.0-beta.6
   languageName: unknown
   linkType: soft
 
@@ -2843,12 +2843,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/util-crypto@2.6.0-beta.5, @polkadot/util-crypto@workspace:packages/util-crypto":
+"@polkadot/util-crypto@2.6.0-beta.6, @polkadot/util-crypto@workspace:packages/util-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.8.4
-    "@polkadot/util": 2.6.0-beta.5
+    "@polkadot/util": 2.6.0-beta.6
     "@polkadot/wasm-crypto": ^1.1.1
     "@types/bn.js": ^4.11.6
     "@types/bs58": ^4.0.0
@@ -2868,7 +2868,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/util@2.6.0-beta.5, @polkadot/util@workspace:packages/util":
+"@polkadot/util@2.6.0-beta.6, @polkadot/util@workspace:packages/util":
   version: 0.0.0-use.local
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
@@ -15160,7 +15160,7 @@ resolve@1.1.7:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.8.4
-    "@polkadot/dev": ^0.50.11
+    "@polkadot/dev": ^0.50.14
     "@polkadot/ts": ^0.3.3
   languageName: unknown
   linkType: soft
