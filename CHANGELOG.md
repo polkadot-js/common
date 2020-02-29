@@ -1,4 +1,4 @@
-# 2.6.0-beta.x
+# 2.6.1 Feb 29, 2020
 
 - **Breaking change** Following on the 2.0 release, `@polkadot/wasm` was updated to 1.1+. sr25510 now only verifies 0.8+ signatures, closing the loop on dropping Substrate 1.x-era support
 - Add `signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrPublicKey: Uint8Array | string): VerifyResult` to verify any signature, regardless of type. Returns validity & detected crypto type.
