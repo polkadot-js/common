@@ -1,10 +1,10 @@
-# 2.6.0-beta.x
+# 2.6.1 Feb 29, 2020
 
 - **Breaking change** Following on the 2.0 release, `@polkadot/wasm` was updated to 1.1+. sr25510 now only verifies 0.8+ signatures, closing the loop on dropping Substrate 1.x-era support
 - Add `signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrPublicKey: Uint8Array | string): VerifyResult` to verify any signature, regardless of type. Returns validity & detected crypto type.
 - Add `cryptoIsReady (): boolean` function to check status of initialization
 - Add `addressCheckChecksum (decoded: Uint8Array)` as an helper to extract and verify the ss58 checksum
-- Swap to yarn 2
+- Swap to yarn 2, allow use in yan 2 projects
 
 # 2.5.1 Feb 22, 2020
 
