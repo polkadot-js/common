@@ -2521,9 +2521,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.50.18":
-  version: 0.50.18
-  resolution: "@polkadot/dev@npm:0.50.18"
+"@polkadot/dev@npm:^0.50.19":
+  version: 0.50.19
+  resolution: "@polkadot/dev@npm:0.50.19"
   dependencies:
     "@babel/cli": ^7.8.4
     "@babel/core": ^7.8.6
@@ -2606,7 +2606,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.js
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.js
     polkadot-exec-webpack: scripts/polkadot-exe-webpackc.js
-  checksum: 2/5fc7649b98b5e2197d4d0585fb606c86448636da5d395b2ed33b54783d8c8d175938ac938a2d2d12bf833e88694dc97a40c68d5f1a033814fb49c83d8ff8e234
+  checksum: 2/29f8ca6b49bd10adc4226d496ff9f8b9ad1bb1f62dad29a0cb571506460fc206be1819421ab7acc3d486d3b3e2392e203d3ce034ff92f6763a7a610854617de6
   languageName: node
   linkType: hard
 
@@ -14930,7 +14930,7 @@ resolve@1.1.7:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.8.6
-    "@polkadot/dev": ^0.50.18
+    "@polkadot/dev": ^0.50.19
     "@polkadot/ts": ^0.3.6
   languageName: unknown
   linkType: soft
