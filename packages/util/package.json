@@ -31,5 +31,8 @@
     "camelcase": "^5.3.1",
     "chalk": "^3.0.0",
     "ip-regex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.3"
   }
 }
