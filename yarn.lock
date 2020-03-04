@@ -2521,9 +2521,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.50.19":
-  version: 0.50.19
-  resolution: "@polkadot/dev@npm:0.50.19"
+"@polkadot/dev@npm:^0.50.23":
+  version: 0.50.23
+  resolution: "@polkadot/dev@npm:0.50.23"
   dependencies:
     "@babel/cli": ^7.8.4
     "@babel/core": ^7.8.6
@@ -2587,11 +2587,8 @@ __metadata:
     yargs: ^15.2.0
   bin:
     polkadot-ci-ghact-build: scripts/polkadot-ci-ghact-build.js
-    polkadot-ci-ghact-build.sh: scripts/polkadot-ci-ghact-build.sh
     polkadot-ci-ghact-docs: scripts/polkadot-ci-ghact-docs.js
-    polkadot-ci-ghact-docs.sh: scripts/polkadot-ci-ghact-docs.sh
     polkadot-ci-ghpages-force: scripts/polkadot-ci-ghpages-force.js
-    polkadot-ci-ghpages-force.sh: scripts/polkadot-ci-ghpages-force.sh
     polkadot-dev-build-docs: scripts/polkadot-dev-build-docs.js
     polkadot-dev-build-ts: scripts/polkadot-dev-build-ts.js
     polkadot-dev-circular: scripts/polkadot-dev-circular.js
@@ -2606,7 +2603,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.js
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.js
     polkadot-exec-webpack: scripts/polkadot-exe-webpackc.js
-  checksum: 2/29f8ca6b49bd10adc4226d496ff9f8b9ad1bb1f62dad29a0cb571506460fc206be1819421ab7acc3d486d3b3e2392e203d3ce034ff92f6763a7a610854617de6
+  checksum: 2/11eba574e176a09de316f705c44002db9bc04367b95250978e23caad6de6498f33888a7c8b51b8fe62998dcb9d67eb9a9c7dec71f201a6cfaff6be6274ba07ed
   languageName: node
   linkType: hard
 
@@ -14930,7 +14927,7 @@ resolve@1.1.7:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.8.6
-    "@polkadot/dev": ^0.50.19
+    "@polkadot/dev": ^0.50.23
     "@polkadot/ts": ^0.3.6
   languageName: unknown
   linkType: soft
