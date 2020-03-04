@@ -7,6 +7,7 @@
     "packages/*"
   ],
   "resolutions": {
+    "babel-core": "^7.0.0-bridge.0",
     "typescript": "^3.8.3"
   },
   "scripts": {
@@ -20,7 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
-    "@polkadot/dev": "^0.50.15",
+    "@polkadot/dev": "^0.50.17",
     "@polkadot/ts": "^0.3.6"
   }
 }
