@@ -26,7 +26,7 @@ type PjsGlobal = NodeJS.Global & PjsChecks;
 type PjsWindow = Window & PjsChecks;
 
 function expandPath (path?: string): string {
-  return (!path || path.length < 5) ? '<unknown path>' : path;
+  return (!path || path.length < 5) ? '<unknown>' : path;
 }
 
 /** @internal */
@@ -47,7 +47,7 @@ function flattenVersions (_all: (VersionPath | string)[]): string {
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
  */
-export default function detectPackage ({ name, version }: PackageJson, path?: string): void {
+export default function detectPackage ({ name, version }: PackageJson, path?: string | false): void {
   const _global = typeof window !== 'undefined'
     ? window as PjsWindow
     : global as PjsGlobal;
@@ -58,7 +58,7 @@ export default function detectPackage ({ name, version }: PackageJson, path?: st
 
   assert(name.startsWith('@polkadot'), `Invalid package descriptor ${name}`);
 
-  _global.__polkadotjs[name] = [...(_global.__polkadotjs[name] || []), { path, version }];
+  _global.__polkadotjs[name] = [...(_global.__polkadotjs[name] || []), { path: path || '', version }];
 
   if (_global.__polkadotjs[name].length !== 1) {
     const versions = flattenVersions(_global.__polkadotjs[name]);
