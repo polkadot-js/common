@@ -2531,9 +2531,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.50.29":
-  version: 0.50.29
-  resolution: "@polkadot/dev@npm:0.50.29"
+"@polkadot/dev@npm:^0.50.30":
+  version: 0.50.30
+  resolution: "@polkadot/dev@npm:0.50.30"
   dependencies:
     "@babel/cli": ^7.8.4
     "@babel/core": ^7.8.7
@@ -2596,7 +2596,7 @@ __metadata:
     vuepress: ^1.3.1
     webpack: ^4.42.0
     webpack-cli: ^3.3.11
-    yargs: ^15.2.0
+    yargs: ^15.3.0
   bin:
     polkadot-ci-ghact-build: scripts/polkadot-ci-ghact-build.js
     polkadot-ci-ghact-docs: scripts/polkadot-ci-ghact-docs.js
@@ -2615,7 +2615,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.js
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.js
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.js
-  checksum: 2/0075b72b53f2ce648ef75145c7dd39d343d7ff86f6808461552ec73c7acbcf87e93b408638e78731c0f56cd2d699088265184ebb522397427c90e3762e6cddef
+  checksum: 2/4eb99659a5fec5bbdfeb196bfd79c14ecdd629a0cd207bb17ee86a5ef2928b8fb94a0b6cb3e4152e1364343c9bea5eb7e81a841c22aff04ea17d6e59dc2419b3
   languageName: node
   linkType: hard
 
@@ -14958,7 +14958,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.8.7
-    "@polkadot/dev": ^0.50.29
+    "@polkadot/dev": ^0.50.30
     "@polkadot/ts": ^0.3.7
   languageName: unknown
   linkType: soft
@@ -18056,7 +18056,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:^15.0.0, yargs@npm:^15.2.0":
+"yargs@npm:^15.0.0, yargs@npm:^15.3.0":
   version: 15.3.0
   resolution: "yargs@npm:15.3.0"
   dependencies:
