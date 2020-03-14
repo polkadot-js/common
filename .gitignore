@@ -25,4 +25,3 @@ yarn-error.log*
 store.db
 store.db.compacted
 .idea
-.vscode
