@@ -2630,12 +2630,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/ts@npm:^0.3.8":
-  version: 0.3.10
-  resolution: "@polkadot/ts@npm:0.3.10"
+"@polkadot/ts@npm:^0.3.11":
+  version: 0.3.11
+  resolution: "@polkadot/ts@npm:0.3.11"
   dependencies:
     "@types/chrome": ^0.0.100
-  checksum: 2/f3469cc60371ce60d92c028e25c39f5c3cd89868bf2e2d57acaac81483fddf019fb8e078ae1516adb495a600ac367c43817fe420e2f50e2b9294edfcb57bb9fd
+  checksum: 2/1d99c03b83d5de42b294b72cb4cc5fbb665174dd4e7abb451ad43bd8ae3a20ef8893601964d4ca1806b86180eac9f806d73852acac07f49094dccbd0d53d7a33
   languageName: node
   linkType: hard
 
@@ -14959,7 +14959,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.8.7
     "@polkadot/dev": ^0.51.3
-    "@polkadot/ts": ^0.3.8
+    "@polkadot/ts": ^0.3.11
   languageName: unknown
   linkType: soft
 
@@ -17979,13 +17979,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs-parser@npm:^18.1.0":
-  version: 18.1.0
-  resolution: "yargs-parser@npm:18.1.0"
+"yargs-parser@npm:^18.1.1":
+  version: 18.1.1
+  resolution: "yargs-parser@npm:18.1.1"
   dependencies:
     camelcase: ^5.0.0
     decamelize: ^1.2.0
-  checksum: 2/7997373a42b8512628787b52371b1e1f635c20f7b6273c217d8b4a1befa9778573279c702612ebcf4c05fae3846bf11d440f05fef7f09ebd5e45e0539a31544a
+  checksum: 2/8d857933ccbf63c542b46b57bc3c8fef28fcc209bfd386963c5d7922d459a159564c7a7f1d18948ae59dd945e83d9d39b7818e7aac5b7b94ef980f39bb3fb766
   languageName: node
   linkType: hard
 
@@ -18048,8 +18048,8 @@ __metadata:
   linkType: hard
 
 "yargs@npm:^15.0.0, yargs@npm:^15.3.0":
-  version: 15.3.0
-  resolution: "yargs@npm:15.3.0"
+  version: 15.3.1
+  resolution: "yargs@npm:15.3.1"
   dependencies:
     cliui: ^6.0.0
     decamelize: ^1.2.0
@@ -18061,8 +18061,8 @@ __metadata:
     string-width: ^4.2.0
     which-module: ^2.0.0
     y18n: ^4.0.0
-    yargs-parser: ^18.1.0
-  checksum: 2/4fdf0dfa72c6e1db152e435040c53ab7acbb9e9b24b6c977f019eea0dce14075a9db949bb4b565e30c9a0acae9ac4b16f549ccea9bee594bb32ae1fc25f49996
+    yargs-parser: ^18.1.1
+  checksum: 2/6504a0bb4e6f5933ebaaa52307943a9cdb44da6200cd1ca8794aaa1d18b70f0acd2f49f46630b07bd4d2aa12cb1fe666b186d367c36fa1b4998f7ce8bdc9ffdf
   languageName: node
   linkType: hard
 
