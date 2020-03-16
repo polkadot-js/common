@@ -2531,9 +2531,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.50.31":
-  version: 0.50.35
-  resolution: "@polkadot/dev@npm:0.50.35"
+"@polkadot/dev@npm:^0.51.3":
+  version: 0.51.3
+  resolution: "@polkadot/dev@npm:0.51.3"
   dependencies:
     "@babel/cli": ^7.8.4
     "@babel/core": ^7.8.7
@@ -2611,11 +2611,12 @@ __metadata:
     polkadot-dev-yarn-only: scripts/polkadot-dev-yarn-only.js
     polkadot-exec-eslint: scripts/polkadot-exec-eslint.js
     polkadot-exec-ghpages: scripts/polkadot-exec-ghpages.js
+    polkadot-exec-lerna: scripts/polkadot-exec-lerna.js
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.js
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.js
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.js
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.js
-  checksum: 2/b083a64079ee709c1d2601d7abb296f0f0230977a804014768e52202d23f8d63668cb6f16d0eb3e53935ecc420dc9f7410f4b91aa26fe14acc86a42c83a04686
+  checksum: 2/4b445a2ae46d007e6c9ff78508e446a48fc3a2f260e88aedb35a83b99082f91e79b685ee68f769ef35418c0d942b47a3e8562914ae5b13b71479f1ae59a1dfd7
   languageName: node
   linkType: hard
 
@@ -2624,8 +2625,8 @@ __metadata:
   resolution: "@polkadot/keyring@workspace:packages/keyring"
   dependencies:
     "@babel/runtime": ^7.8.7
-    "@polkadot/util": 2.7.0-beta.2
-    "@polkadot/util-crypto": 2.7.0-beta.2
+    "@polkadot/util": 2.7.0-beta.3
+    "@polkadot/util-crypto": 2.7.0-beta.3
   languageName: unknown
   linkType: soft
 
@@ -2638,12 +2639,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/util-crypto@2.7.0-beta.2, @polkadot/util-crypto@workspace:packages/util-crypto":
+"@polkadot/util-crypto@2.7.0-beta.3, @polkadot/util-crypto@workspace:packages/util-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.8.7
-    "@polkadot/util": 2.7.0-beta.2
+    "@polkadot/util": 2.7.0-beta.3
     "@polkadot/wasm-crypto": ^1.2.1
     "@types/bn.js": ^4.11.6
     "@types/bs58": ^4.0.1
@@ -2663,7 +2664,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/util@2.7.0-beta.2, @polkadot/util@workspace:packages/util":
+"@polkadot/util@2.7.0-beta.3, @polkadot/util@workspace:packages/util":
   version: 0.0.0-use.local
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
@@ -14957,7 +14958,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.8.7
-    "@polkadot/dev": ^0.50.31
+    "@polkadot/dev": ^0.51.3
     "@polkadot/ts": ^0.3.8
   languageName: unknown
   linkType: soft
