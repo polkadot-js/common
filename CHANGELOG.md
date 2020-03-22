@@ -1,6 +1,6 @@
 # 2.7.0-beta.x
 
-- Allow for optional wasm-crypto, specifically via `@polkadot/util-crypto/initNone`
+- Allow for optional wasm-crypto, specifically via `@polkadot/util-crypto/noWasm`
 - Misc. CI infrastructure cleanups
 
 # 2.6.1 Feb 29, 2020
