@@ -7,6 +7,12 @@ import BN from 'bn.js';
 import { bnSqrt } from '.';
 
 describe('bnSqrt', (): void => {
+  it('fails on < 0 roots', (): void => {
+    expect(
+      () => bnSqrt(new BN(-1))
+    ).toThrow(/negative numbers is not supported/);
+  });
+
   it('finds the sqrt (exact)', (): void => {
     expect(
       bnSqrt(new BN(256).mul(new BN(256)))

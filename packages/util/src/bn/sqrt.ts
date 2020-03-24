@@ -6,6 +6,7 @@ import BN from 'bn.js';
 
 import assert from '../assert';
 
+// https://golb.hplar.ch/2018/09/javascript-bigint.html
 function newtonIteration (n: BN, x0: BN): BN {
   const x1 = n.div(x0).add(x0).shrn(1);
 
@@ -30,7 +31,6 @@ function newtonIteration (n: BN, x0: BN): BN {
  * ```
  */
 export default function sqrt (value: BN): BN {
-  // https://golb.hplar.ch/2018/09/javascript-bigint.html
   assert(value.gten(0), 'square root of negative numbers is not supported');
 
   return value.ltn(2)
