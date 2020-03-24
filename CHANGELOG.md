@@ -1,3 +1,8 @@
+# 2.7.0-beta.x
+
+- Allow for optional wasm-crypto, specifically via `@polkadot/util-crypto/noWasm`
+- Misc. CI infrastructure cleanups
+
 # 2.6.1 Feb 29, 2020
 
 - **Breaking change** Following on the 2.0 release, `@polkadot/wasm` was updated to 1.1+. sr25510 now only verifies 0.8+ signatures, closing the loop on dropping Substrate 1.x-era support

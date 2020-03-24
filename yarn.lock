@@ -1310,6 +1310,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.9.2":
+  version: 7.9.2
+  resolution: "@babel/runtime@npm:7.9.2"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 2/50c65b4972e62ca260ff6f3f99cf2395585d7f7bcd947ee87d082c2926cb4f0c93c815d5e9071162e689a4d2ba4143ffd5b005893be860088689c963f34e50c8
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.7.4, @babel/template@npm:^7.8.3, @babel/template@npm:^7.8.6":
   version: 7.8.6
   resolution: "@babel/template@npm:7.8.6"
@@ -2583,9 +2592,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.51.6":
-  version: 0.51.6
-  resolution: "@polkadot/dev@npm:0.51.6"
+"@polkadot/dev@npm:^0.51.7":
+  version: 0.51.7
+  resolution: "@polkadot/dev@npm:0.51.7"
   dependencies:
     "@babel/cli": ^7.8.4
     "@babel/core": ^7.9.0
@@ -2665,7 +2674,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.js
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.js
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.js
-  checksum: 2/05d32b22a912e1b283b3dbabd7a73764058b1f6731b6f0a999cad23426311ef8f7a5a27ad2dd405909a5e356a5abbc15d41bd2ed9af2339d86866c6394736bfa
+  checksum: 2/e4c7a2e512343f627e068fc12b696ed4a2dd95c1e608885738b6bcbf979d9aac85940699e7d696cee49e5a3adb66e7ed2635bd260f6fe18b018d7b6df5ca71f9
   languageName: node
   linkType: hard
 
@@ -2673,7 +2682,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/keyring@workspace:packages/keyring"
   dependencies:
-    "@babel/runtime": ^7.9.0
+    "@babel/runtime": ^7.9.2
     "@polkadot/util": 2.7.0-beta.6
     "@polkadot/util-crypto": 2.7.0-beta.6
   languageName: unknown
@@ -2692,7 +2701,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
-    "@babel/runtime": ^7.9.0
+    "@babel/runtime": ^7.9.2
     "@polkadot/util": 2.7.0-beta.6
     "@polkadot/wasm-crypto": ^1.2.1
     "@types/bn.js": ^4.11.6
@@ -2717,7 +2726,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
-    "@babel/runtime": ^7.9.0
+    "@babel/runtime": ^7.9.2
     "@types/bn.js": ^4.11.6
     bn.js: ^5.1.1
     camelcase: ^5.3.1
@@ -14975,7 +14984,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.9.0
-    "@polkadot/dev": ^0.51.6
+    "@polkadot/dev": ^0.51.7
     "@polkadot/ts": ^0.3.14
     "@types/jest": ^25.1.4
   languageName: unknown
