@@ -24,4 +24,10 @@ describe('bnSqrt', (): void => {
       bnSqrt(new BN(266))
     ).toEqual(new BN(16));
   });
+
+  it('find the sqrt for 1', (): void => {
+    expect(
+      bnSqrt(new BN(1))
+    ).toEqual(new BN(1));
+  });
 });
