@@ -7,16 +7,16 @@ import BN from 'bn.js';
 import assert from '../assert';
 
 /**
- * @name max
+ * @name bnMax
  * @summary Finds and returns the highest value in an array of BNs.
  * @example
  * <BR>
  *
  * ```javascript
  * import BN from 'bn.js';
- * import { max } from '@polkadot/util';
+ * import { bnMax } from '@polkadot/util';
  *
- * max([new BN(1), new BN(3), new BN(2)]).toString(); // => '3'
+ * bnMax([new BN(1), new BN(3), new BN(2)]).toString(); // => '3'
  * ```
  */
 export default function max (...items: BN[]): BN {

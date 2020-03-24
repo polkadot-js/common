@@ -9,6 +9,7 @@
 export { default as bnFromHex } from './fromHex';
 export { default as bnMax } from './max';
 export { default as bnMin } from './min';
+export { default as bnSqrt } from './sqrt';
 export { default as bnToBn } from './toBn';
 export { default as bnToHex } from './toHex';
 export { default as bnToU8a } from './toU8a';
