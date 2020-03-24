@@ -1,5 +1,6 @@
 # 2.7.0-beta.x
 
+- Add `bnSqrt` to calculate the integer sqrt via Newton iteration
 - Allow for optional wasm-crypto, specifically via `@polkadot/util-crypto/noWasm`
 - Misc. CI infrastructure cleanups
 
