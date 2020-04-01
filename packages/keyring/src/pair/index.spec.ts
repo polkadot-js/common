@@ -93,4 +93,12 @@ describe('pair', (): void => {
     expect(stash.publicKey).toEqual(PAIRS[1].publicKey);
     expect(soft.address).toEqual('5ECQNn7UueWHPFda5qUi4fTmTtyCnPvGnuoyVVSj5CboJh9J');
   });
+
+  it('fails to sign when locked', (): void => {
+    const pair = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.alice.publicKey });
+    expect(pair.isLocked).toEqual(true);
+    expect((): Uint8Array =>
+      pair.sign(new Uint8Array([0]))
+    ).toThrow('Cannot sign with a locked key pair');
+  });
 });
