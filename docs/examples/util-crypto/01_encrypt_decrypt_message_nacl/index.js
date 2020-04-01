@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable @typescript-eslint/unbound-method */
-/* eslint-disable @typescript-eslint/no-var-requires */
-const { naclEncrypt, naclDecrypt } = require('@polkadot/util-crypto');
+
+const { naclDecrypt, naclEncrypt } = require('@polkadot/util-crypto');
 
 async function main () {
   const secret = new Uint8Array(32);

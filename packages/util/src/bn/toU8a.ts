@@ -30,9 +30,9 @@ function bnToU8a (value: BN | BigInt | number | null, options?: Options): Uint8A
 function bnToU8a (value: BN | BigInt | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
 function bnToU8a (value: BN | BigInt | number | null, arg1: number | Options = { bitLength: -1, isLe: true, isNegative: false }, arg2?: boolean): Uint8Array {
   const _options: Options = {
+    bitLength: -1,
     isLe: true,
     isNegative: false,
-    bitLength: -1,
     ...isNumber(arg1) ? { bitLength: arg1, isLe: arg2 } : arg1
   };
 

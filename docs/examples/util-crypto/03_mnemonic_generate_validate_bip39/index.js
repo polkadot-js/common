@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/require-await */
-/* eslint-disable @typescript-eslint/no-var-requires,@typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 const { mnemonicGenerate, mnemonicToSeed, mnemonicValidate, naclKeypairFromSeed } = require('@polkadot/util-crypto');
 
 async function main () {
@@ -19,7 +20,7 @@ async function main () {
   const seedAlice = mnemonicToSeed(mnemonicAlice);
 
   // Generate new public/secret keypair for Alice from the supplied seed
-  const { secretKey, publicKey } = naclKeypairFromSeed(seedAlice);
+  const { publicKey, secretKey } = naclKeypairFromSeed(seedAlice);
 
   // Encrypt, Sign and Validate the message. See Example 'Sign & Verify Message'
 }

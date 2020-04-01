@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable @typescript-eslint/unbound-method */
-/* eslint-disable @typescript-eslint/no-var-requires */
+
 const { stringToU8a, u8aToHex } = require('@polkadot/util');
 const { naclEncrypt, naclKeypairFromSeed, naclSign, naclVerify, randomAsU8a } = require('@polkadot/util-crypto');
 
@@ -9,7 +9,7 @@ async function main () {
   const seedAlice = 'Alice'.padEnd(32, ' ');
 
   // Generate new public/secret keypair for Alice from the supplied seed
-  const { secretKey, publicKey } = naclKeypairFromSeed(stringToU8a(seedAlice));
+  const { publicKey, secretKey } = naclKeypairFromSeed(stringToU8a(seedAlice));
 
   // Encrypt message. Create Uint8Array's filled with random bytes of specified length
   const secret = randomAsU8a(32);

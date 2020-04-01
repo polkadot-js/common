@@ -14,7 +14,7 @@ describe('naclOpen', (): void => {
     const senderBox = naclBoxKeypairFromSecret(sender.secretKey);
     const receiverBox = naclBoxKeypairFromSecret(receiver.secretKey);
 
-    const { sealed, nonce } = naclSeal(message, senderBox.secretKey, receiverBox.publicKey);
+    const { nonce, sealed } = naclSeal(message, senderBox.secretKey, receiverBox.publicKey);
     expect(
       naclOpen(sealed, nonce, senderBox.publicKey, receiverBox.secretKey)
     ).toEqual(
@@ -37,7 +37,7 @@ describe('naclOpen', (): void => {
     // Sender encrypts message to send with the public key the receiver sent and send it to receiver
     const senderIdBoxKey = naclBoxKeypairFromSecret(senderIdKey.secretKey);
     const message = new Uint8Array([1, 2, 3, 4, 5, 4, 3, 2, 1]);
-    const { sealed, nonce } = naclSeal(message, senderIdBoxKey.secretKey, receiverIdBoxKey.publicKey);
+    const { nonce, sealed } = naclSeal(message, senderIdBoxKey.secretKey, receiverIdBoxKey.publicKey);
     console.log(`Sender sends encrypted message to receiver ${sealed}, ${nonce}`);
 
     // Receiver opens encrypted message from the sender

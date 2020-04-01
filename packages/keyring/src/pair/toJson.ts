@@ -12,7 +12,7 @@ type PairStateJson = KeyringPair$Meta & {
   publicKey: Uint8Array;
 };
 
-export default function toJson (type: KeypairType, { publicKey, meta }: PairStateJson, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
+export default function toJson (type: KeypairType, { meta, publicKey }: PairStateJson, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
   return {
     address: encodeAddress(publicKey),
     encoded: u8aToHex(encoded),

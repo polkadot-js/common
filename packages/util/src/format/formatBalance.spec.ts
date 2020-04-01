@@ -17,13 +17,13 @@ describe('formatBalance', (): void => {
 
     it('formats 123,456,789,000 (decimals=15)', (): void => {
       expect(
-        formatBalance(TESTVAL, { withSi: true, decimals: 15 })
+        formatBalance(TESTVAL, { decimals: 15, withSi: true })
       ).toEqual('123.456µ Unit');
     });
 
     it('formats BigInt numbers', (): void => {
       expect(
-        formatBalance(123_456_789_000n, { withSi: true, decimals: 15 })
+        formatBalance(123_456_789_000n, { decimals: 15, withSi: true })
       ).toEqual('123.456µ Unit');
     });
 
@@ -35,24 +35,24 @@ describe('formatBalance', (): void => {
 
     it('formats 123,456,789,000 (decimals=36, option)', (): void => {
       expect(
-        formatBalance(TESTVAL, { withSi: true, decimals: 36 })
+        formatBalance(TESTVAL, { decimals: 136, withSi: true })
       ).toEqual('0.123y Unit');
     });
 
     it('formats 123,456,789,000 (decimals=15, Compact)', (): void => {
       const compact = {
+        something: 'else',
         toBn: (): BN => TESTVAL,
-        unwrap: (): BN => TESTVAL,
-        something: 'else'
+        unwrap: (): BN => TESTVAL
       };
       expect(
-        formatBalance(compact, { withSi: true, decimals: 15 })
+        formatBalance(compact, { decimals: 15, withSi: true })
       ).toEqual('123.456µ Unit');
     });
 
     it('formats 123,456,789,000 (decimals=12)', (): void => {
       expect(
-        formatBalance(TESTVAL, { withSi: true, decimals: 12 })
+        formatBalance(TESTVAL, { decimals: 12, withSi: true })
       ).toEqual('123.456m Unit');
     });
 
@@ -173,13 +173,13 @@ describe('formatBalance', (): void => {
     it('finds the SI value', (): void => {
       expect(
         formatBalance.findSi('k')
-      ).toEqual({ power: 3, value: 'k', text: 'Kilo' });
+      ).toEqual({ power: 3, text: 'Kilo', value: 'k' });
     });
 
     it('returns default on not found', (): void => {
       expect(
         formatBalance.findSi('blah')
-      ).toEqual({ power: 0, value: '-', text: 'Unit' });
+      ).toEqual({ power: 0, text: 'Unit', value: '-' });
     });
   });
 
@@ -214,15 +214,15 @@ describe('formatBalance', (): void => {
     expect(
       formatBalance.getOptions()
     ).toEqual([
-      { power: 0, value: '-', text: 'TEST' },
-      { power: 3, value: 'k', text: 'Kilo' },
-      { power: 6, value: 'M', text: 'Mega' },
-      { power: 9, value: 'G', text: 'Giga' },
-      { power: 12, value: 'T', text: 'Tera' },
-      { power: 15, value: 'P', text: 'Peta' },
-      { power: 18, value: 'E', text: 'Exa' },
-      { power: 21, value: 'Z', text: 'Zeta' },
-      { power: 24, value: 'Y', text: 'Yotta' }
+      { power: 0, text: 'TEST', value: '-' },
+      { power: 3, text: 'Kilo', value: 'k' },
+      { power: 6, text: 'Mega', value: 'M' },
+      { power: 9, text: 'Giga', value: 'G' },
+      { power: 12, text: 'Tera', value: 'T' },
+      { power: 15, text: 'Peta', value: 'P' },
+      { power: 18, text: 'Exa', value: 'E' },
+      { power: 21, text: 'Zeta', value: 'Z' },
+      { power: 24, text: 'Yotta', value: 'Y' }
     ]);
   });
 });

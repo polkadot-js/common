@@ -25,7 +25,6 @@ const json: KeyringPair$Json = {
 
 export default function everybody (): KeyringPair {
   const pair: KeyringPair = {
-    type: 'ed25519',
     address,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void =>
@@ -36,11 +35,11 @@ export default function everybody (): KeyringPair {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     encodePkcs8: (passphrase?: string): Uint8Array =>
       new Uint8Array(0),
-    meta,
     isLocked: true,
     lock: (): void => {
       // no locking, it is always locked
     },
+    meta,
     publicKey,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     setMeta: (meta: KeyringPair$Meta): void =>
@@ -51,6 +50,7 @@ export default function everybody (): KeyringPair {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     toJson: (passphrase?: string): KeyringPair$Json =>
       json,
+    type: 'ed25519',
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       false

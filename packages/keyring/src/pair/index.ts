@@ -98,11 +98,11 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     get address (): string {
       return toSS58(publicKey);
     },
-    get meta (): KeyringPair$Meta {
-      return meta;
-    },
     get isLocked (): boolean {
       return !secretKey || secretKey.length === 0 || isEmpty(secretKey);
+    },
+    get meta (): KeyringPair$Meta {
+      return meta;
     },
     get publicKey (): Uint8Array {
       return publicKey;
@@ -110,6 +110,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     get type (): KeypairType {
       return type;
     },
+    // eslint-disable-next-line sort-keys
     decodePkcs8: (passphrase?: string, _encoded?: Uint8Array | null): void => {
       const decoded = decode(passphrase, _encoded || encoded);
 
