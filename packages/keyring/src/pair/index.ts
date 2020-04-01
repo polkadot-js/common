@@ -62,7 +62,8 @@ function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, 
     : naclVerify(message, signature, publicKey);
 }
 
-function isLocked (secretKey?: Uint8Array): secretKey is Uint8Array {
+// Not 100% correct, since it can be a Uint8Array, but an invalid one - just say "undefined" is anything non-valid
+function isLocked (secretKey?: Uint8Array): secretKey is undefined {
   return !secretKey || secretKey.length === 0 || isEmpty(secretKey);
 }
 
@@ -102,11 +103,11 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     get address (): string {
       return toSS58(publicKey);
     },
-    get meta (): KeyringPair$Meta {
-      return meta;
-    },
     get isLocked (): boolean {
       return isLocked(secretKey);
+    },
+    get meta (): KeyringPair$Meta {
+      return meta;
     },
     get publicKey (): Uint8Array {
       return publicKey;
@@ -114,6 +115,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     get type (): KeypairType {
       return type;
     },
+    // eslint-disable-next-line sort-keys
     decodePkcs8: (passphrase?: string, _encoded?: Uint8Array | null): void => {
       const decoded = decode(passphrase, _encoded || encoded);
 
@@ -131,7 +133,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
       assert(!isLocked(secretKey), 'Cannot derive on a locked keypair');
 
       const { path } = keyExtractPath(suri);
-      const derived = keyFromPath({ publicKey, secretKey: secretKey! }, path, type);
+      const derived = keyFromPath({ publicKey, secretKey }, path, type);
 
       return createPair({ toSS58, type }, derived, meta, null);
     },

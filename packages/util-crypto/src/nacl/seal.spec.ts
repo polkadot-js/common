@@ -16,8 +16,8 @@ describe('naclSeal', (): void => {
     expect(
       naclSeal(message, senderBoxSecret, receiverBoxPublic, new Uint8Array(24))
     ).toEqual({
-      sealed: new Uint8Array([137, 195, 104, 255, 67, 199, 40, 235, 148, 177, 180, 73, 239, 131, 215, 80, 61, 191, 167, 213, 152, 138, 5, 47, 135]),
-      nonce: new Uint8Array(24)
+      nonce: new Uint8Array(24),
+      sealed: new Uint8Array([137, 195, 104, 255, 67, 199, 40, 235, 148, 177, 180, 73, 239, 131, 215, 80, 61, 191, 167, 213, 152, 138, 5, 47, 135])
     });
   });
 });

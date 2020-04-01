@@ -19,8 +19,8 @@ describe('toJson', (): void => {
         version: '2'
       },
       meta: {
-        name: 'alice',
-        isTesting: true
+        isTesting: true,
+        name: 'alice'
       }
     });
   });

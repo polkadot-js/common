@@ -76,20 +76,20 @@ describe('encode', (): void => {
   describe('from Rust', (): void => {
     // Copied from https://github.com/paritytech/parity-codec/blob/master/src/codec.rs
     const testCases = [
-      { value: new BN('0'), expected: '00' },
-      { value: new BN('63'), expected: 'fc' },
-      { value: new BN('64'), expected: '01 01' },
-      { value: new BN('16383'), expected: 'fd ff' },
-      { value: new BN('16384'), expected: '02 00 01 00' },
-      { value: new BN('1073741823'), expected: 'fe ff ff ff' },
-      { value: new BN('1073741824'), expected: '03 00 00 00 40' },
-      { value: new BN(`${1}${'0'.repeat(32)}`, 2).subn(1), expected: '03 ff ff ff ff' },
-      { value: new BN(`${1}${'0'.repeat(32)}`, 2), expected: '07 00 00 00 00 01' },
-      { value: new BN(`${1}${'0'.repeat(40)}`, 2), expected: '0b 00 00 00 00 00 01' },
-      { value: new BN(`${1}${'0'.repeat(48)}`, 2), expected: '0f 00 00 00 00 00 00 01' },
-      { value: new BN(`${1}${'0'.repeat(56)}`, 2).subn(1), expected: '0f ff ff ff ff ff ff ff' },
-      { value: new BN(`${1}${'0'.repeat(56)}`, 2), expected: '13 00 00 00 00 00 00 00 01' },
-      { value: new BN(`${1}${'0'.repeat(64)}`, 2).subn(1), expected: '13 ff ff ff ff ff ff ff ff' }
+      { expected: '00', value: new BN('0') },
+      { expected: 'fc', value: new BN('63') },
+      { expected: '01 01', value: new BN('64') },
+      { expected: 'fd ff', value: new BN('16383') },
+      { expected: '02 00 01 00', value: new BN('16384') },
+      { expected: 'fe ff ff ff', value: new BN('1073741823') },
+      { expected: '03 00 00 00 40', value: new BN('1073741824') },
+      { expected: '03 ff ff ff ff', value: new BN(`${1}${'0'.repeat(32)}`, 2).subn(1) },
+      { expected: '07 00 00 00 00 01', value: new BN(`${1}${'0'.repeat(32)}`, 2) },
+      { expected: '0b 00 00 00 00 00 01', value: new BN(`${1}${'0'.repeat(40)}`, 2) },
+      { expected: '0f 00 00 00 00 00 00 01', value: new BN(`${1}${'0'.repeat(48)}`, 2) },
+      { expected: '0f ff ff ff ff ff ff ff', value: new BN(`${1}${'0'.repeat(56)}`, 2).subn(1) },
+      { expected: '13 00 00 00 00 00 00 00 01', value: new BN(`${1}${'0'.repeat(56)}`, 2) },
+      { expected: '13 ff ff ff ff ff ff ff ff', value: new BN(`${1}${'0'.repeat(64)}`, 2).subn(1) }
     ];
 
     function testEncode (value: BN, expected: string): void {
@@ -104,6 +104,6 @@ describe('encode', (): void => {
       });
     }
 
-    testCases.forEach(({ value, expected }): void => testEncode(value, expected));
+    testCases.forEach(({ expected, value }): void => testEncode(value, expected));
   });
 });

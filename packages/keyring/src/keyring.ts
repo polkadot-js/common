@@ -153,7 +153,7 @@ export default class Keyring implements KeyringInstance {
     const suri = _suri.startsWith('//')
       ? `${DEV_PHRASE}${_suri}`
       : _suri;
-    const { password, phrase, path } = keyExtractSuri(suri);
+    const { password, path, phrase } = keyExtractSuri(suri);
     let seed;
 
     if (isHex(phrase, 256)) {

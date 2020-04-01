@@ -46,8 +46,8 @@ describe('bnToBn', (): void => {
   it('converts Compact to BN', (): void => {
     expect(
       bnToBn({
-        toBn: (): BN => new BN(1234),
-        something: 'test'
+        something: 'test',
+        toBn: (): BN => new BN(1234)
       }).toNumber()
     ).toEqual(1234);
   });
