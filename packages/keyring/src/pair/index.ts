@@ -62,6 +62,10 @@ function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, 
     : naclVerify(message, signature, publicKey);
 }
 
+function isLocked (secretKey: Uint8Array): boolean {
+  return !secretKey || secretKey.length === 0 || isEmpty(secretKey);
+}
+
 /**
  * @name pair
  * @summary Creates a keyring pair object
@@ -102,7 +106,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
       return meta;
     },
     get isLocked (): boolean {
-      return !secretKey || secretKey.length === 0 || isEmpty(secretKey);
+      return isLocked(secretKey);
     },
     get publicKey (): Uint8Array {
       return publicKey;
@@ -124,8 +128,9 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
       }
     },
     derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair => {
-      assert(secretKey, 'Cannot derive on a locked keypair');
-
+      if (isLocked(secretKey)) {
+        throw new Error('Cannot derive on a locked keypair');
+      }
       const { path } = keyExtractPath(suri);
       const derived = keyFromPath({ publicKey, secretKey: secretKey }, path, type);
 
@@ -139,8 +144,12 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     setMeta: (additional: KeyringPair$Meta): void => {
       meta = { ...meta, ...additional };
     },
-    sign: (message: Uint8Array, options?: SignOptions): Uint8Array =>
-      sign(type, message, { publicKey, secretKey }, options),
+    sign: (message: Uint8Array, options?: SignOptions): Uint8Array => {
+      if (isLocked(secretKey)) {
+        throw new Error('Cannot sign with a locked key pair');
+      }
+      return sign(type, message, { publicKey, secretKey }, options)
+    },
     toJson: (passphrase?: string): KeyringPair$Json =>
       toJson(type, { meta, publicKey }, encode({ publicKey, secretKey }, passphrase), !!passphrase),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
