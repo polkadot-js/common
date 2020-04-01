@@ -35,7 +35,7 @@ describe('formatBalance', (): void => {
 
     it('formats 123,456,789,000 (decimals=36, option)', (): void => {
       expect(
-        formatBalance(TESTVAL, { decimals: 136, withSi: true })
+        formatBalance(TESTVAL, { decimals: 36, withSi: true })
       ).toEqual('0.123y Unit');
     });
 
