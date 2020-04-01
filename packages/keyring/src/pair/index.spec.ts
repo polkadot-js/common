@@ -95,12 +95,9 @@ describe('pair', (): void => {
   });
 
   it('fails to sign when locked', (): void => {
-    const PASS = 'testing';
-    const encoded = keyring.alice.encodePkcs8(PASS);
-
     const pair = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.alice.publicKey });
     expect(pair.isLocked).toEqual(true);
-    expect((): Uint8Array => 
+    expect((): Uint8Array =>
       pair.sign(new Uint8Array([0]))
     ).toThrow('Cannot sign with a locked key pair');
   });

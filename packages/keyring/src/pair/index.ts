@@ -6,7 +6,7 @@ import { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types';
 import { PairInfo } from './types';
 
-import { u8aConcat, assert } from '@polkadot/util';
+import { u8aConcat } from '@polkadot/util';
 import { keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify } from '@polkadot/util-crypto';
 
 import decode from './decode';
@@ -62,7 +62,7 @@ function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, 
     : naclVerify(message, signature, publicKey);
 }
 
-function isLocked (secretKey: Uint8Array): boolean {
+function isLocked (secretKey?: Uint8Array): boolean {
   return !secretKey || secretKey.length === 0 || isEmpty(secretKey);
 }
 
@@ -128,7 +128,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
       }
     },
     derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair => {
-      if (isLocked(secretKey)) {
+      if (!secretKey || isLocked(secretKey)) {
         throw new Error('Cannot derive on a locked keypair');
       }
       const { path } = keyExtractPath(suri);
@@ -148,7 +148,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
       if (isLocked(secretKey)) {
         throw new Error('Cannot sign with a locked key pair');
       }
-      return sign(type, message, { publicKey, secretKey }, options)
+      return sign(type, message, { publicKey, secretKey }, options);
     },
     toJson: (passphrase?: string): KeyringPair$Json =>
       toJson(type, { meta, publicKey }, encode({ publicKey, secretKey }, passphrase), !!passphrase),
