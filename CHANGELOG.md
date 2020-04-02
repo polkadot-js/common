@@ -1,3 +1,7 @@
+# 2.8.0-beta.x
+
+- Keypair will now throw an error when attempting to sign/derive using a locked pair (Thanks to https://github.com/h4x3rotab)
+
 # 2.7.1 Mar 31, 2020
 
 - Add `bnSqrt` to calculate the integer sqrt via Newton iteration

@@ -147,6 +147,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     },
     sign: (message: Uint8Array, options?: SignOptions): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
+
       return sign(type, message, { publicKey, secretKey }, options);
     },
     toJson: (passphrase?: string): KeyringPair$Json =>

@@ -80,6 +80,7 @@ describe('pair', (): void => {
     const encoded = keyring.alice.encodePkcs8(PASS);
 
     const pair = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.alice.publicKey });
+
     pair.decodePkcs8(PASS, encoded);
 
     expect(pair.isLocked).toEqual(false);
@@ -96,6 +97,7 @@ describe('pair', (): void => {
 
   it('fails to sign when locked', (): void => {
     const pair = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.alice.publicKey });
+
     expect(pair.isLocked).toEqual(true);
     expect((): Uint8Array =>
       pair.sign(new Uint8Array([0]))
