@@ -13,6 +13,7 @@ describe('naclSeal', (): void => {
     const receiverBox = naclBoxKeypairFromSecret(receiver.secretKey);
     const senderBoxSecret = senderBox.secretKey;
     const receiverBoxPublic = receiverBox.publicKey;
+
     expect(
       naclSeal(message, senderBoxSecret, receiverBoxPublic, new Uint8Array(24))
     ).toEqual({

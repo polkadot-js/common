@@ -45,6 +45,7 @@ describe('formatBalance', (): void => {
         toBn: (): BN => TESTVAL,
         unwrap: (): BN => TESTVAL
       };
+
       expect(
         formatBalance(compact, { decimals: 15, withSi: true })
       ).toEqual('123.456µ Unit');
