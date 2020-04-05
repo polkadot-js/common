@@ -2579,9 +2579,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.52.5":
-  version: 0.52.5
-  resolution: "@polkadot/dev@npm:0.52.5"
+"@polkadot/dev@npm:^0.52.6":
+  version: 0.52.6
+  resolution: "@polkadot/dev@npm:0.52.6"
   dependencies:
     "@babel/cli": ^7.8.4
     "@babel/core": ^7.9.0
@@ -2611,7 +2611,6 @@ __metadata:
     babel-plugin-module-resolver: ^4.0.0
     babel-plugin-styled-components: ^1.10.7
     browserslist: ^4.11.1
-    chalk: ^4.0.0
     coveralls: ^3.0.11
     cpx: ^1.5.0
     eslint: ^6.8.0
@@ -2663,7 +2662,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.js
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.js
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.js
-  checksum: 2/8c8c97b50705c232912f63fcca4f647b0664311c4c52760c273dd9ef5598a532d2ed844de7e3fd9d1609cb64c90bfd8976dc74a38e5863837a9665038bc98a0d
+  checksum: 2/fbd6fd561d8017da10563fb32e7b873fd84fc019b301ac9269fe6cc4ddb7ab96dbc295c175e87e6c9af492aeff512fa505dce8babe6269804a57d1560b32a948
   languageName: node
   linkType: hard
 
@@ -2677,12 +2676,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/ts@npm:^0.3.15":
-  version: 0.3.15
-  resolution: "@polkadot/ts@npm:0.3.15"
+"@polkadot/ts@npm:^0.3.17":
+  version: 0.3.17
+  resolution: "@polkadot/ts@npm:0.3.17"
   dependencies:
     "@types/chrome": ^0.0.103
-  checksum: 2/356befe29caaa3f3b0e0a4ae6a2c842bee370213965fc1f3d060b0a99f75d7c02b56845faa78411533a6eccda25d07054740ce7a3589eef3fa5997d56004d19d
+  checksum: 2/a8cd05606e085eb31662ee5f6d693349e37c3224b4d0c7859a111cfe34ededa301073bc562ca56352d133fc7820dd5757185f9baf6b569b15c53f4483052be69
   languageName: node
   linkType: hard
 
@@ -2719,7 +2718,7 @@ __metadata:
     "@types/bn.js": ^4.11.6
     bn.js: ^5.1.1
     camelcase: ^5.3.1
-    chalk: ^3.0.0
+    chalk: ^4.0.0
     ip-regex: ^4.1.0
   languageName: unknown
   linkType: soft
@@ -5865,13 +5864,13 @@ __metadata:
   linkType: hard
 
 "cross-spawn@npm:^7.0.0":
-  version: 7.0.1
-  resolution: "cross-spawn@npm:7.0.1"
+  version: 7.0.2
+  resolution: "cross-spawn@npm:7.0.2"
   dependencies:
     path-key: ^3.1.0
     shebang-command: ^2.0.0
     which: ^2.0.1
-  checksum: 2/c37c136bda1342fe8dbd40a99d9c434ef510fb9741da4d386d0f2fe3d707166fc92d8d8e815f636e7fea93cc32ecd3636bc1e5adcabdee0b4587b6d52b27f002
+  checksum: 2/31ad173414e82588537fb00b7c14533c8cfcfbfc87b4eb61c8d12aeb77c89c9afd0f0ef0f5bbe8a5204f888b127c7d8fb42ad22eeab5ac93502aa5f119a09846
   languageName: node
   linkType: hard
 
@@ -6894,9 +6893,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.390":
-  version: 1.3.396
-  resolution: "electron-to-chromium@npm:1.3.396"
-  checksum: 2/a2f091cc6ef32730d4171c32c78428754ea120f4bb70c90580c8c80107d783077f3c0acd061342226677b1963c57bbe319adf620eb1542eff71d72ac59d03a04
+  version: 1.3.397
+  resolution: "electron-to-chromium@npm:1.3.397"
+  checksum: 2/622ccf64598ca7f0923ad3e31ff479560a82b6c3e18a3b1f373598a43eea95efd03776b9459755546952816ce890f6b61fef5aa065a8aaa751ca9fd8692a4abc
   languageName: node
   linkType: hard
 
@@ -10796,13 +10795,13 @@ __metadata:
   linkType: hard
 
 "json5@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "json5@npm:2.1.2"
+  version: 2.1.3
+  resolution: "json5@npm:2.1.3"
   dependencies:
     minimist: ^1.2.5
   bin:
     json5: lib/cli.js
-  checksum: 2/ca20dbb73c4ccb7c9cd8ec5d9c6f005294e25868d435825f147dde58a8f1fc5fe9397d3afcd12d26f765fe14d4b35add81f1bc5fece33c6b1c8d1a69625a43e8
+  checksum: 2/957e4937106cf59975aa0281e68911534d65c8a25be5b4d3559aa55eba351ccab516a943a60ba33e461e4b8af749939986e311de910cbcfd197410b57d971741
   languageName: node
   linkType: hard
 
@@ -14613,9 +14612,9 @@ __metadata:
   linkType: hard
 
 "regexpp@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "regexpp@npm:3.0.0"
-  checksum: 2/9528ff2d4d4c85c80ae866c558d8b61ae7da69dad240f4a8d69e73be51a04d466e5c6808e06837737eaf8ec499d41126ab397693ab5d0a1039376855ce331566
+  version: 3.1.0
+  resolution: "regexpp@npm:3.1.0"
+  checksum: 2/69d0ce6b449cf35d3732d6341a1e70850360ffc619f8eef10629871c462e614853fffb80d3f00fc17cd0bb5b8f34b0cde5be4b434e72c0eb3fbba2360c8b5ac4
   languageName: node
   linkType: hard
 
@@ -15018,8 +15017,8 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.9.0
-    "@polkadot/dev": ^0.52.5
-    "@polkadot/ts": ^0.3.15
+    "@polkadot/dev": ^0.52.6
+    "@polkadot/ts": ^0.3.17
     "@types/jest": ^25.2.1
   languageName: unknown
   linkType: soft
