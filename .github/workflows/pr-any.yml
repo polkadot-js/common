@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
     - name: ${{ matrix.step }}
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
