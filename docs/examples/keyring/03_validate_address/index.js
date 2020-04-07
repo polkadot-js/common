@@ -1,3 +1,5 @@
+/* eslint-disable header/header */
+
 const { decodeAddress, encodeAddress } = require('@polkadot/keyring');
 const { hexToU8a, isHex } = require('@polkadot/util');
 

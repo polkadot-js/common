@@ -1,6 +1,7 @@
+/* eslint-disable header/header */
 /* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable @typescript-eslint/unbound-method */
-/* eslint-disable @typescript-eslint/no-var-requires */
+
 // Import Keyring class and utility function
 const Keyring = require('@polkadot/keyring').default;
 const stringToU8a = require('@polkadot/util/string/toU8a').default;
