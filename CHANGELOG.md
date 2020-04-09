@@ -1,6 +1,7 @@
-# 2.8.0-beta.x
+# 2.8.1 Apr 9, 2020
 
 - Keypair will now throw an error when attempting to sign/derive using a locked pair (Thanks to https://github.com/h4x3rotab)
+- Cleanup `isDevelopment` regex to cater for chains such as `Westend Development`
 
 # 2.7.1 Mar 31, 2020
 
