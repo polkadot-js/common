@@ -1,6 +1,7 @@
-# 2.8.0-beta.x
+# 2.8.1 Apr 9, 2020
 
 - Keypair will now throw an error when attempting to sign/derive using a locked pair (Thanks to https://github.com/h4x3rotab)
+- Cleanup `isDevelopment` regex to cater for chains such as `Westend Development`
 
 # 2.7.1 Mar 31, 2020
 
@@ -14,7 +15,7 @@
 - Add `signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrPublicKey: Uint8Array | string): VerifyResult` to verify any signature, regardless of type. Returns validity & detected crypto type.
 - Add `cryptoIsReady (): boolean` function to check status of initialization
 - Add `addressCheckChecksum (decoded: Uint8Array)` as an helper to extract and verify the ss58 checksum
-- Swap to yarn 2, allow use in yan 2 projects
+- Swap to yarn 2, allow use in yarn 2 projects
 
 # 2.5.1 Feb 22, 2020
 
@@ -36,7 +37,7 @@
 - Remove dependency on moment.js with `formatDate` function (Thanks to https://github.com/AndreasGassmann)
 - Move TypeScript `@types/*` to dev deps (Thanks to https://github.com/AndreasGassmann)
 - Update to `@polkadot/wasm-crypto` 1.0
-- Cleanup dependencies to pave the way for using yarnpkg 2 (Explicit instead of implicit)
+- Cleanup dependencies to pave the way for using yarn 2 (Explicit instead of implicit)
 
 # 2.2.1 Feb 06, 2020
 
