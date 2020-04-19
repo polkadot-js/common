@@ -12,7 +12,7 @@ export interface Seedpair {
   seed: Uint8Array;
 }
 
-export type KeypairType = 'ed25519' | 'sr25519';
+export type KeypairType = 'ed25519' | 'sr25519' | 'ecdsa';
 
 export interface VerifyResult {
   crypto: 'none' | KeypairType;

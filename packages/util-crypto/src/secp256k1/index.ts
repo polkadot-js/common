@@ -3,3 +3,4 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 export { default as secp256k1Recover } from './recover';
+export { default as secp256k1Verify } from './verify';
