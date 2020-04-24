@@ -1,3 +1,7 @@
+# 2.9.0-beta.x
+
+- Added `createKeyMulti` & `createKeySub` to create utility sub & multi keys
+
 # 2.8.1 Apr 9, 2020
 
 - Keypair will now throw an error when attempting to sign/derive using a locked pair (Thanks to https://github.com/h4x3rotab)
