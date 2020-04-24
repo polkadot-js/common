@@ -1,6 +1,8 @@
 # 2.9.0-beta.x
 
 - Added `createKeyMulti` & `createKeySub` to create utility sub & multi keys
+- Added `u8aSorted` to sort `Uint8Arrays`
+- Added `sortAddresses` to sort addresses based on their internal representation
 
 # 2.8.1 Apr 9, 2020
 
