@@ -9,6 +9,7 @@ import createKeySub from './keySub';
 import decodeAddress from './decode';
 import encodeAddress from './encode';
 import setSS58Format from './setSS58Format';
+import sortAddresses from './sort';
 
 export {
   checkAddress,
@@ -17,5 +18,6 @@ export {
   createKeySub,
   decodeAddress,
   encodeAddress,
-  setSS58Format
+  setSS58Format,
+  sortAddresses
 };
