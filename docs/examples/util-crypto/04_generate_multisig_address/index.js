@@ -2,7 +2,7 @@ import { createKeyMulti, encodeAddress } from '@polkadot/util-crypto';
 
 function main() {
 	// Input the addresses that will make up the multisig account. This utility
-	// will sort them for you but when you submit to a substrate node, you must
+	// will sort them for you but when you submit to a Substrate node, you must
 	// sort them yourself.
 	const addresses = [
 		'1nUC7afqmo7zwRFWxDjrUQu9skk6fk99pafb4SiyGSRc8z3',
