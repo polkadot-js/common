@@ -16,6 +16,7 @@ describe('sign and verify', (): void => {
     const address = '0x59f587c045d4d4e9aa1016eae43770fc0551df8a385027723342753a876aeef0';
     const sig = '0x92fcacf0946bbd10b31dfe16d567ed1d3014e81007dd9e5256e19c0f07eacc1643b151ca29e449a765e16a7ce59b88d800467d6b3412d30ea8ad22307a59664b00';
     const msg = stringToU8a('secp256k1');
+
     expect(verify(msg, sig, address)).toBe(true);
   });
 

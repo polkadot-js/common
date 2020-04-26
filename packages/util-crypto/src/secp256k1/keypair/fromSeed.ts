@@ -16,8 +16,9 @@ const ec = new EC('secp256k1');
 export default function secp256k1KeypairFromSeed (seed: Uint8Array): Keypair {
   assert(seed.length === 32, 'Expected valid 32-byte private key as a seed: ' + seed);
   const key = ec.keyFromPrivate(seed);
+
   return {
-    publicKey: new Uint8Array(key.getPublic().encodeCompressed(null)),
-    secretKey: hexToU8a('0x'+key.getPrivate('hex')) 
+    publicKey: new Uint8Array(key.getPublic().encodeCompressed('array')),
+    secretKey: hexToU8a('0x' + key.getPrivate('hex'))
   };
 }

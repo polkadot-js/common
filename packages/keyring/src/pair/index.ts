@@ -7,7 +7,7 @@ import { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '..
 import { PairInfo } from './types';
 
 import { assert, u8aConcat } from '@polkadot/util';
-import { keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1FromSeed, secp256k1Sign, secp256k1Verify, blake2AsU8a } from '@polkadot/util-crypto';
+import { keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Verify, blake2AsU8a } from '@polkadot/util-crypto';
 
 import decode from './decode';
 import encode from './encode';
@@ -18,10 +18,10 @@ interface Setup {
   type: KeypairType;
 }
 
-const SIG_TYPE_NONE    = new Uint8Array();
+const SIG_TYPE_NONE = new Uint8Array();
 const SIG_TYPE_ED25519 = new Uint8Array([0]);
 const SIG_TYPE_SR25519 = new Uint8Array([1]);
-const SIG_TYPE_ECDSA   = new Uint8Array([2]);
+const SIG_TYPE_ECDSA = new Uint8Array([2]);
 
 function isEmpty (u8a: Uint8Array): boolean {
   return u8a.reduce((count, u8): number => count + u8, 0) === 0;
@@ -29,25 +29,25 @@ function isEmpty (u8a: Uint8Array): boolean {
 
 function fromSeed (type: KeypairType, seed: Uint8Array): Keypair {
   return {
-    'ed25519': () => naclFromSeed(seed),
-    'sr25519': () => schnorrkelFromSeed(seed),
-    'ecdsa':   () => secp256k1FromSeed(seed)
+    ecdsa: (): Keypair => secp256k1FromSeed(seed),
+    ed25519: (): Keypair => naclFromSeed(seed),
+    sr25519: (): Keypair => schnorrkelFromSeed(seed)
   }[type]();
 }
 
 function multiSignaturePrefix (type: KeypairType): Uint8Array {
   return {
-    'sr25519': SIG_TYPE_SR25519,
-    'ed25519': SIG_TYPE_ED25519,
-    'ecdsa':   SIG_TYPE_ECDSA
+    ecdsa: SIG_TYPE_ECDSA,
+    ed25519: SIG_TYPE_ED25519,
+    sr25519: SIG_TYPE_SR25519
   }[type];
 }
 
 function sign (type: KeypairType, message: Uint8Array, pair: Partial<Keypair>, { withType = false }: SignOptions = {}): Uint8Array {
   const signature = {
-    'ed25519': () => naclSign(message, pair),
-    'sr25519': () => schnorrkelSign(message, pair),
-    'ecdsa':   () => secp256k1Sign(message, pair)
+    ecdsa: (): Uint8Array => secp256k1Sign(message, pair),
+    ed25519: (): Uint8Array => naclSign(message, pair),
+    sr25519: (): Uint8Array => schnorrkelSign(message, pair)
   }[type]();
 
   return u8aConcat(
@@ -62,18 +62,18 @@ function sign (type: KeypairType, message: Uint8Array, pair: Partial<Keypair>, {
 
 function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array): boolean {
   return {
-    'ed25519': () => naclVerify(message, signature, publicKey),
-    'sr25519': () => schnorrkelVerify(message, signature, publicKey),
-    'ecdsa':   () => secp256k1Verify(message, signature, blake2AsU8a(publicKey, 256)),
+    ecdsa: (): boolean => secp256k1Verify(message, signature, blake2AsU8a(publicKey, 256)),
+    ed25519: (): boolean => naclVerify(message, signature, publicKey),
+    sr25519: (): boolean => schnorrkelVerify(message, signature, publicKey)
   }[type]();
 }
 
 function getAddress (type: KeypairType, publicKey: Uint8Array): Uint8Array {
-    if (type === 'ecdsa') {
-      return blake2AsU8a(publicKey, 256);
-    } else {
-      return publicKey;
-    }
+  if (type === 'ecdsa' && publicKey.length > 32) {
+    return blake2AsU8a(publicKey, 256);
+  } else {
+    return publicKey;
+  }
 }
 
 // Not 100% correct, since it can be a Uint8Array, but an invalid one - just say "undefined" is anything non-valid
@@ -112,14 +112,10 @@ function isLocked (secretKey?: Uint8Array): secretKey is undefined {
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, address: Uint8Array | null = null): KeyringPair {
+export default function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
   return {
     get address (): string {
-        if (address) {
-          return toSS58(address);
-        } else {
-          return toSS58(getAddress(type, publicKey));
-        }
+      return toSS58(getAddress(type, publicKey));
     },
     get isLocked (): boolean {
       return isLocked(secretKey);
@@ -169,7 +165,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
       return sign(type, message, { publicKey, secretKey }, options);
     },
     toJson: (passphrase?: string): KeyringPair$Json =>
-      toJson(type, { meta, address: toSS58(getAddress(type, publicKey)) }, encode({ publicKey, secretKey }, passphrase), !!passphrase),
+      toJson(type, { address: toSS58(getAddress(type, publicKey)), meta }, encode({ publicKey, secretKey }, passphrase), !!passphrase),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       verify(type, message, signature, publicKey)
   };

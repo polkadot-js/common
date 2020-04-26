@@ -17,7 +17,7 @@ const VERIFIERS: [KeypairType, (message: Uint8Array | string, signature: Uint8Ar
   ['ecdsa', secp256k1Verify]
 ];
 
-const CRYPTO_TYPES: [KeypairType] = [
+const CRYPTO_TYPES: KeypairType[] = [
   'ed25519',
   'sr25519',
   'ecdsa'
@@ -44,20 +44,15 @@ function verifyDetect (result: VerifyResult, message: Uint8Array | string, signa
 function verifyMultisig (result: VerifyResult, message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array): VerifyResult {
   assert([0, 1, 2].includes(signature[0]), `Unknown crypto type, expected signature prefix [0..2], found ${signature[0]}`);
 
-  result.crypto = CRYPTO_TYPES[signature[0]];
+  result.crypto = CRYPTO_TYPES[signature[0]] || 'none';
 
   try {
-    switch (result.crypto) {
-      case 'ed25519':
-        result.isValid = naclVerify(message, signature.subarray(1), publicKey);
-        break;
-      case 'sr25519':
-        result.isValid = schnorrkelVerify(message, signature.subarray(1), publicKey);
-        break;
-      case 'ecdsa':
-        result.isValid = secp256k1Verify(message, signature.subarray(1), publicKey);
-        break;
-    }
+    result.isValid = {
+      ecdsa: (): boolean => secp256k1Verify(message, signature.subarray(1), publicKey),
+      ed25519: (): boolean => naclVerify(message, signature.subarray(1), publicKey),
+      none: (): boolean => { throw Error('no verify for `none` crypto type'); },
+      sr25519: (): boolean => schnorrkelVerify(message, signature.subarray(1), publicKey)
+    }[result.crypto]();
   } catch (error) {
     // ignore, result.isValid still set to false
   }
@@ -74,6 +69,7 @@ export default function signatureVerify (message: Uint8Array | string, signature
   const publicKey = addressDecode(addressOrPublicKey);
 
   const multisig = [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length);
+
   if (multisig) {
     return verifyMultisig(result, message, signatureU8a, publicKey);
   } else {

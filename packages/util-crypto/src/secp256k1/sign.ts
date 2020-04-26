@@ -15,12 +15,14 @@ const ec = new EC('secp256k1');
  * @description Returns message signature of `message`, using the supplied pair
  */
 export default function secp256k1Sign (message: Uint8Array | string, { secretKey }: Partial<Keypair>): Uint8Array {
-  assert(secretKey?.length === 32, 'Expected valid secp256k1 secretKey, 32-bytes: ' + secretKey.length);
+  assert(secretKey?.length === 32, 'Expected valid secp256k1 secretKey, 32-bytes');
 
   const messageHash = blake2AsU8a(u8aToU8a(message), 256);
   const key = ec.keyFromPrivate(secretKey);
   const ecsig = key.sign(messageHash);
+  const rParam = new Uint8Array(ecsig.r.toArray());
+  const sParam = new Uint8Array(ecsig.s.toArray());
+  const recoveryParam = Uint8Array.of(ecsig.recoveryParam || 0);
 
-  let signature = u8aConcat(ecsig.r.toArray(), ecsig.s.toArray());
-  return u8aConcat(signature, Uint8Array.of(ecsig.recoveryParam));
+  return u8aConcat(rParam, sParam, recoveryParam);
 }
