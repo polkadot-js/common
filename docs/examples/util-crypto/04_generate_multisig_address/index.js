@@ -18,7 +18,6 @@ const threshold = 2;
 const index = 0;
 
 function main () {
-
   // Address as a byte array.
   const multiAddress = createKeyMulti(addresses, threshold);
 
@@ -28,11 +27,15 @@ function main () {
   console.log(`\nMultisig Address: ${Ss58Address}`);
 
   // Take addresses and remove the sender.
-  const otherSignatories = addresses.filter(who => who !== addresses[index]);
+  const otherSignatories = addresses.filter((who) => who !== addresses[index]);
 
   // Sort them by public key.
   const otherSignatoriesSorted = sortAddresses(otherSignatories).map(
-    function(e) { e = encodeAddress(e, SS58Prefix); return e; }
+    function (e) {
+      e = encodeAddress(e, SS58Prefix);
+
+      return e;
+    }
   );
 
   console.log(`\nOther Signatories: ${otherSignatoriesSorted}\n`);
