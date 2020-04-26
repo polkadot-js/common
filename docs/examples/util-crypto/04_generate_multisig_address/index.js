@@ -30,13 +30,7 @@ function main () {
   const otherSignatories = addresses.filter((who) => who !== addresses[index]);
 
   // Sort them by public key.
-  const otherSignatoriesSorted = sortAddresses(otherSignatories).map(
-    function (e) {
-      e = encodeAddress(e, SS58Prefix);
-
-      return e;
-    }
-  );
+  const otherSignatoriesSorted = sortAddresses(otherSignatories, SS58Prefix);
 
   console.log(`\nOther Signatories: ${otherSignatoriesSorted}\n`);
 
