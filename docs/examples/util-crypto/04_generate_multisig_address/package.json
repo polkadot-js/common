@@ -1,0 +1,14 @@
+{
+  "name": "04_generate_multisig_address",
+  "version": "0.1.0",
+  "description": "Example showing how to generate a multisig address for Substrate's Utility pallet",
+  "main": "index.js",
+  "author": "joepetrowski",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@polkadot/util-crypto": "^2.9.0-beta.1"
+  }
+}
