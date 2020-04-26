@@ -22,6 +22,5 @@ export default function secp256k1Sign (message: Uint8Array | string, { secretKey
   const ecsig = key.sign(messageHash);
 
   let signature = u8aConcat(ecsig.r.toArray(), ecsig.s.toArray());
-  signature = u8aConcat(signature, Uint8Array.of(ecsig.recoveryParam));
-  return signature;
+  return u8aConcat(signature, Uint8Array.of(ecsig.recoveryParam));
 }

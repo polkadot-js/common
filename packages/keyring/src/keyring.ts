@@ -6,7 +6,8 @@ import { KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions } from './types';
 
 import { assert, hexToU8a, isHex, stringToU8a } from '@polkadot/util';
-import { decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
+import { blake2AsU8a } from  '@polkadot/util-crypto';
+import { decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
 import createPair from './pair';
@@ -40,7 +41,7 @@ export default class Keyring implements KeyringInstance {
   constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
 
-    assert(options && ['ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519' or 'sr25519', found '${options.type}`);
+    assert(options && ['ed25519', 'sr25519', 'ecdsa'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519', 'sr25519' or 'ecdsa', found '${options.type}`);
 
     this.#pairs = new Pairs();
     this.#ss58 = options.ss58Format;
@@ -62,7 +63,7 @@ export default class Keyring implements KeyringInstance {
   }
 
   /**
-   * @description Returns the type of the keyring, either ed25519 of sr25519
+   * @description Returns the type of the keyring, ed25519, sr25519 or ecdsa
    */
   public get type (): KeypairType {
     return this.#type;
@@ -85,9 +86,11 @@ export default class Keyring implements KeyringInstance {
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
   public addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.type, ignoreChecksum?: boolean): KeyringPair {
-    const publicKey = this.decodeAddress(address, ignoreChecksum);
+    address = this.decodeAddress(address, ignoreChecksum);
+    const publicKey = type === 'ecdsa'
+                    ? new Uint8Array() : address;
 
-    return this.addPair(createPair({ toSS58: this.encodeAddress, type }, { publicKey, secretKey: new Uint8Array(64) }, meta, encoded));
+    return this.addPair(createPair({ toSS58: this.encodeAddress, type }, { publicKey, secretKey: new Uint8Array() }, meta, encoded, address));
   }
 
   /**
@@ -125,9 +128,11 @@ export default class Keyring implements KeyringInstance {
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
   public addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
-    const keypair = type === 'sr25519'
-      ? schnorrkelFromSeed(seed)
-      : naclFromSeed(seed);
+    const keypair = {
+        'ed25519': () => naclFromSeed(seed),
+        'sr25519': () => schnorrkelFromSeed(seed),
+        'ecdsa': () => secp256k1FromSeed(seed)
+    }[type]();
 
     return this.addPair(createPair({ toSS58: this.encodeAddress, type }, keypair, meta, null));
   }
@@ -175,9 +180,11 @@ export default class Keyring implements KeyringInstance {
       }
     }
 
-    const keypair = type === 'sr25519'
-      ? schnorrkelFromSeed(seed)
-      : naclFromSeed(seed);
+    const keypair = {
+        'sr25519': () => schnorrkelFromSeed(seed),
+        'ed25519': () => naclFromSeed(seed),
+        'ecdsa':   () => secp256k1FromSeed(seed)
+    }[type]();
     const derived = keyFromPath(keypair, path, type);
 
     return createPair({ toSS58: this.encodeAddress, type }, derived, meta, null);
@@ -187,8 +194,8 @@ export default class Keyring implements KeyringInstance {
    * @name encodeAddress
    * @description Encodes the input into an ss58 representation
    */
-  public encodeAddress = (key: Uint8Array | string, ss58Format?: number): string => {
-    return encodeAddress(key, ss58Format || this.#ss58);
+  public encodeAddress = (address: Uint8Array | string, ss58Format?: number): string => {
+    return encodeAddress(address, ss58Format || this.#ss58);
   }
 
   /**

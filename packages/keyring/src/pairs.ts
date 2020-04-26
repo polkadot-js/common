@@ -5,7 +5,7 @@
 import { KeyringPairs, KeyringPair } from './types';
 
 import { assert, isHex, isU8a, u8aToHex, u8aToU8a } from '@polkadot/util';
-import { decodeAddress } from '@polkadot/util-crypto';
+import { decodeAddress, blake2AsU8a } from '@polkadot/util-crypto';
 
 type KeyringPairMap = Record<string, KeyringPair>;
 
@@ -13,7 +13,7 @@ export default class Pairs implements KeyringPairs {
   readonly #map: KeyringPairMap = {};
 
   public add (pair: KeyringPair): KeyringPair {
-    this.#map[pair.publicKey.toString()] = pair;
+    this.#map[decodeAddress(pair.address).toString()] = pair;
 
     return pair;
   }

@@ -147,4 +147,70 @@ describe('keypair', (): void => {
       expect(pair.verify(MESSAGE, signature)).toBe(true);
     });
   });
+
+  describe('ecdsa', (): void => {
+    const seedOne = 'potato act energy ahead stone taxi receive fame gossip equip chest round';
+    const seedTwo = hexToU8a('0x3c74be003bd9a876be439949ccf2b292bd966c94959a689173b295b326cd6da7');
+    const publicKeyOne = hexToU8a('0x02c6b6c664db5ef505477bba1cf2f1789c98796b9bb5fa21abd0ac4589bed980e7');
+    const publicKeyTwo = hexToU8a('0x021da683b913fb28c979ba3e5f1881415cef4b1f58a5d05ed3610a2995e7b4943c');
+    const addressKeyOne = hexToU8a('0x0cfd0dd2c59a9987b9848919163931b6a42283ffd3d91e92c98b522525a7038f'); 
+    const addressKeyTwo = hexToU8a('0x5528364d9c121156a8386bdb99e3b358ed4f99ce93c47b35b30a14feb55a3d99');
+    let keyring: Keyring;
+
+    beforeEach((): void => {
+      keyring = new Keyring({ ss58Format: 42, type: 'ecdsa' });
+
+      keyring.addFromMnemonic(seedOne, {});
+    });
+
+    it('creates with dev phrase when only path specified', (): void => {
+      expect(
+        keyring.createFromUri('//Alice').address
+      ).toEqual('5C7C2Z5sWbytvHpuLTvzKunnnRwQxft1jiqrLD5rhucQ5S9X');
+    });
+
+    it('adds the pair', (): void => {
+      expect(
+        keyring.addFromSeed(seedTwo, {}).publicKey
+      ).toEqual(publicKeyTwo);
+    });
+
+    it('adds from a mnemonic', (): void => {
+      keyring.setSS58Format(68);
+
+      expect(
+        keyring.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card').address
+      ).toEqual('7ooxHV3mz4nnWbK8v7Mxcb71QMpof268eL1A2VrYWUNWJk8P');
+    });
+
+    it('allows publicKeys retrieval', (): void => {
+      keyring.addFromSeed(seedTwo, {});
+
+      expect(
+        keyring.getPublicKeys()
+      ).toEqual([publicKeyOne, publicKeyTwo]);
+    });
+
+    it('allows retrieval of a specific item', (): void => {
+      expect(
+        keyring.getPair(addressKeyOne).publicKey
+      ).toEqual(publicKeyOne);
+    });
+
+    it('allows adding from JSON', (): void => {
+      expect(
+        keyring.addFromJson(
+          JSON.parse('{"address":"5DzMsaYFhmpRdErWrP6K6PD7UXzYoeETToSBUrZSvxasqWRz","encoded":"0xa192d39b42bc1601bf61df31039a554228593fadf870bc837b658a5114627aca199fff596260c95fe8994c66a47636cf0270aa08f402ba5541038753960d00e6c3af5e239ec58fb1eef3db7d6bc266f4853bdfe4ed17122d9092d879014d53980d2ee57f6f55a88c38836447d8645008e8815379626addc8f81f80cd49a2","encoding":{"content":"pkcs8","type":"xsalsa20-poly1305","version":"2"},"meta":{}}')
+        ).address
+      ).toEqual("5DzMsaYFhmpRdErWrP6K6PD7UXzYoeETToSBUrZSvxasqWRz");
+    });
+
+    it('signs and verifies', (): void => {
+      const MESSAGE = stringToU8a('this is a message');
+      const pair = keyring.getPair(addressKeyOne);
+      const signature = pair.sign(MESSAGE);
+
+      expect(pair.verify(MESSAGE, signature)).toBe(true);
+    });
+  });
 });
