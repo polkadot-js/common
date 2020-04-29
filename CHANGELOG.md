@@ -1,5 +1,6 @@
 # 2.9.0-beta.x
 
+- Add support for ECDSA keypairs (Thanks to https://github.com/akru)
 - Added `createKeyMulti` & `createKeySub` to create utility sub & multi keys
 - Added `u8aSorted` to sort `Uint8Arrays`
 - Added `sortAddresses` to sort addresses based on their internal representation
