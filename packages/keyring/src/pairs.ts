@@ -13,7 +13,7 @@ export default class Pairs implements KeyringPairs {
   readonly #map: KeyringPairMap = {};
 
   public add (pair: KeyringPair): KeyringPair {
-    this.#map[pair.publicKey.toString()] = pair;
+    this.#map[decodeAddress(pair.address).toString()] = pair;
 
     return pair;
   }

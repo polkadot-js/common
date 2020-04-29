@@ -10,3 +10,4 @@ export { default as keyExtractSuri } from './extractSuri';
 export { default as keyFromPath } from './fromPath';
 export { default as keyHdkdEd25519 } from './hdkdEd25519';
 export { default as keyHdkdSr25519 } from './hdkdEd25519';
+export { default as keyHdkdEcdsa } from './hdkdEcdsa';

@@ -7,13 +7,16 @@ import { KeypairType, Keypair } from '../types';
 import DeriveJunction from './DeriveJunction';
 import keyHdkdEd15519 from './hdkdEd25519';
 import keyHdkdSr15519 from './hdkdSr25519';
+import keyHdkdEcdsa from './hdkdEcdsa';
 
 export default function keyFromPath (pair: Keypair, path: DeriveJunction[], type: KeypairType): Keypair {
-  const isEd25519 = type === 'ed25519';
+  const keyHdkd = {
+    ecdsa: keyHdkdEcdsa,
+    ed25519: keyHdkdEd15519,
+    sr25519: keyHdkdSr15519
+  }[type];
 
   return path.reduce((pair, junction): Keypair => {
-    return isEd25519
-      ? keyHdkdEd15519(pair, junction)
-      : keyHdkdSr15519(pair, junction);
+    return keyHdkd(pair, junction);
   }, pair);
 }
