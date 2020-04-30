@@ -1,4 +1,4 @@
-# 2.9.1 Apr 23, 2020
+# 2.9.1 Apr 30, 2020
 
 - Add support for ECDSA keypairs (Thanks to https://github.com/akru)
 - Added `createKeyMulti` & `createKeySub` to create utility sub & multi keys
