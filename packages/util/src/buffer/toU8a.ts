@@ -17,9 +17,5 @@
  * ```
  */
 export default function bufferToU8a (buffer?: Buffer | number[] | null): Uint8Array {
-  if (!buffer) {
-    return new Uint8Array([]);
-  }
-
-  return new Uint8Array(buffer);
+  return new Uint8Array(buffer || []);
 }

@@ -19,7 +19,7 @@ describe('isUint8Array', (): void => {
 
   it('returns true on Uint8Array values', (): void => {
     expect(
-      isU8a(new Uint8Array([]))
+      isU8a(new Uint8Array())
     ).toEqual(true);
   });
 });

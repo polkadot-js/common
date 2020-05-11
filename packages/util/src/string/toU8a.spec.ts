@@ -8,7 +8,7 @@ describe('stringToU8a', (): void => {
   it('decodes to an empty string for undefined', (): void => {
     expect(
       stringToU8a()
-    ).toEqual(new Uint8Array([]));
+    ).toEqual(new Uint8Array());
   });
 
   it('encodes the string correctly', (): void => {

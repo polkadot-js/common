@@ -4,8 +4,23 @@
 
 if (typeof TextEncoder === 'undefined') {
   try {
+    const UTE = require('util').TextEncoder;
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (global as any).TextEncoder = require('util').TextEncoder;
+    (global as any).TextEncoder = class TextEncoder {
+      #encoder: TextEncoder;
+
+      constructor () {
+        this.#encoder = new UTE();
+      }
+
+      // For a Jest 26.0.1 environment, Buffer !== Uint8Array
+      encode (value: string): Uint8Array {
+        const encoded = this.#encoder.encode(value);
+
+        return Uint8Array.from(encoded);
+      }
+    };
   } catch (error) {
     // noop
   }
