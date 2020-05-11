@@ -1,3 +1,7 @@
+# 2.10.0-beta.x
+
+- Make the `TextEncoder` polyfill handle non-compliant Buffer implementations (newer versions of Jest)
+
 # 2.9.1 Apr 30, 2020
 
 - Add support for ECDSA keypairs (Thanks to https://github.com/akru)

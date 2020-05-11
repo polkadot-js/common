@@ -33,7 +33,7 @@ describe('u8aToBn', (): void => {
   it('converts empty', (): void => {
     expect(
       u8aToBn(
-        new Uint8Array([]),
+        new Uint8Array(),
         { isLe: true }
       ).toString(16)
     ).toBe('0');

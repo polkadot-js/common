@@ -13,7 +13,7 @@ describe('u8aToString', (): void => {
 
   it('decodes to an empty string for empty buffer', (): void => {
     expect(
-      u8aToString(new Uint8Array([]))
+      u8aToString(new Uint8Array())
     ).toEqual('');
   });
 

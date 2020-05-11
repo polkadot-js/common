@@ -43,7 +43,7 @@ function bnToU8a (value: BN | BigInt | number | null, arg1: number | Options = {
 
   if (!value) {
     return _options.bitLength === -1
-      ? new Uint8Array([])
+      ? new Uint8Array()
       : new Uint8Array(byteLength);
   }
 

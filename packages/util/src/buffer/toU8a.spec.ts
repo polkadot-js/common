@@ -8,7 +8,7 @@ describe('bufferToU8a', (): void => {
   it('returns an empty buffer when null provided', (): void => {
     expect(
       bufferToU8a(null)
-    ).toEqual(new Uint8Array([]));
+    ).toEqual(new Uint8Array());
   });
 
   it('returns a Uint8Buffer with the correct values', (): void => {

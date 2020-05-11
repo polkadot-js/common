@@ -10,7 +10,7 @@ describe('bnToU8a', (): void => {
   it('converts null values to 0x00', (): void => {
     expect(
       bnToU8a(null, -1, false)
-    ).toEqual(new Uint8Array([]));
+    ).toEqual(new Uint8Array());
   });
 
   it('converts null values to 0x00000000 (bitLength)', (): void => {

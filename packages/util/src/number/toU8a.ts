@@ -21,7 +21,7 @@ import numberToHex from './toHex';
  */
 export default function numberToU8a (value?: number | null, bitLength = -1): Uint8Array {
   if (!value || isNaN(value)) {
-    return new Uint8Array([]);
+    return new Uint8Array();
   }
 
   return hexToU8a(

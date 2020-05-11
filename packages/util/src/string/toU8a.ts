@@ -39,5 +39,5 @@ try {
 export default function stringToU8a (value?: string): Uint8Array {
   return value
     ? encoder.encode(value)
-    : new Uint8Array([]);
+    : new Uint8Array();
 }
