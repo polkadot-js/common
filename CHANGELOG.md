@@ -1,6 +1,7 @@
 # 2.10.0-beta.x
 
 - Make the `TextEncoder` polyfill handle non-compliant Buffer implementations (newer versions of Jest)
+- `DeriveJunction` now also allows for BigInt values (aligning with number types elsewhere)
 
 # 2.9.1 Apr 30, 2020
 
