@@ -2,8 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import BN from 'bn.js';
-import { bnToHex, compactAddLength, hexToU8a, isBn, isHex, isNumber, isString, stringToU8a } from '@polkadot/util';
+import type BN from 'bn.js';
+
+import { bnToHex, compactAddLength, hexToU8a, isBigInt, isBn, isHex, isNumber, isString, stringToU8a } from '@polkadot/util';
 
 import blake2AsU8a from '../blake2/asU8a';
 
@@ -21,10 +22,10 @@ export default class DeriveJunction {
   #isHard = false;
 
   public static from (value: string): DeriveJunction {
+    const result = new DeriveJunction();
     const [code, isHard] = value.startsWith('/')
       ? [value.substr(1), true]
       : [value, false];
-    const result = new DeriveJunction();
 
     result.soft(
       RE_NUMBER.test(code)
@@ -49,7 +50,7 @@ export default class DeriveJunction {
     return !this.#isHard;
   }
 
-  public hard (value: number | BN | string | Uint8Array): DeriveJunction {
+  public hard (value: number | string | BigInt | BN | Uint8Array): DeriveJunction {
     return this.soft(value).harden();
   }
 
@@ -59,8 +60,8 @@ export default class DeriveJunction {
     return this;
   }
 
-  public soft (value: number | BN | string | Uint8Array): DeriveJunction {
-    if (isNumber(value) || isBn(value)) {
+  public soft (value: number | string | BigInt | BN | Uint8Array): DeriveJunction {
+    if (isNumber(value) || isBn(value) || isBigInt(value)) {
       return this.soft(bnToHex(value, BN_OPTIONS));
     } else if (isString(value)) {
       return isHex(value)
