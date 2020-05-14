@@ -1,7 +1,9 @@
-# 2.10.0-beta.x
+# 2.10.1 May 14, 2020
 
+- Add Kulupu ss58 prefix as an allowed value (Thanks to https://github.com/sorpaas)
 - Make the `TextEncoder` polyfill handle non-compliant Buffer implementations (newer versions of Jest)
 - `DeriveJunction` now also allows for BigInt values (aligning with number types elsewhere)
+- Small code-flow optimizations
 
 # 2.9.1 Apr 30, 2020
 
