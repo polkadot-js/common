@@ -10,10 +10,7 @@ export interface KeyringOptions {
   type?: KeypairType;
 }
 
-export interface KeyringPair$Meta {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [index: string]: any;
-}
+export type KeyringPair$Meta = Record<string, boolean | number | string>;
 
 export type KeyringPair$JsonVersion = '0' | '1' | '2';
 

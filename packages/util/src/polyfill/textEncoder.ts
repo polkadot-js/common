@@ -4,10 +4,11 @@
 
 if (typeof TextEncoder === 'undefined') {
   try {
-    const UTE = require('util').TextEncoder;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-var-requires
+    const { TextEncoder: UTE } = require('util') as { TextEncoder: { new(): TextEncoder } };
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (global as any).TextEncoder = class TextEncoder {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access
+    (global as any).TextEncoder = class {
       #encoder: TextEncoder;
 
       constructor () {

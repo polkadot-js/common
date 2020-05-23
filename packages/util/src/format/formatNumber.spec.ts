@@ -27,7 +27,7 @@ describe('formatNumber', (): void => {
 
   it('formats BigInt numbers', (): void => {
     expect(
-      formatNumber(123_456_789n)
+      formatNumber(123456789n)
     ).toEqual('123,456,789');
   });
 

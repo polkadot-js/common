@@ -22,7 +22,7 @@ describe('promisify', (): void => {
       .then((): void => {
         throw new Error('Received unexpected result');
       })
-      .catch((error): void => {
+      .catch((error: Error): void => {
         expect(error.message).toEqual('test reject');
       });
   });
@@ -38,7 +38,7 @@ describe('promisify', (): void => {
 
   it('handles functions with parameters (reject)', (): Promise<void> => {
     const fn = (a: number, b: boolean, c: string, cb: (error: Error | null, result?: [number, boolean, string]) => void): void =>
-      cb(new Error(`test reject: ${a},${b},${c}`));
+      cb(new Error(`test reject: ${a},${b.toString()},${c}`));
 
     return promisify(null, fn, 3, 'string', true).catch((error: Error): void => {
       expect(error.message).toEqual('test reject: 3,string,true');

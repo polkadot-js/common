@@ -18,7 +18,6 @@ import isInstanceOf from './instanceOf';
  * console.log('isError', isError(new Error('message'))); // => true
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function isError (value: any): value is Error {
+export default function isError (value: unknown): value is Error {
   return isInstanceOf(value, Error);
 }

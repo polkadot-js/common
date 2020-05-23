@@ -8,10 +8,8 @@ import { logger } from '.';
 import { format } from './logger';
 
 describe('logger', (): void => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let dateMatch: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let prefixMatch: any;
+  let dateMatch: unknown;
+  let prefixMatch: unknown;
   let l: Logger;
   let ln: Logger;
   let spy: Partial<Console>;
@@ -34,7 +32,9 @@ describe('logger', (): void => {
     };
     global.console = spy as Console;
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     dateMatch = expect.stringMatching(/20[0-9]{2}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     prefixMatch = expect.stringMatching(/TEST:/);
   });
 
@@ -146,8 +146,7 @@ describe('logger', (): void => {
   });
 
   it('does not debug log when no process.env', (): void => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    process.env = undefined as any;
+    process.env = undefined as unknown as NodeJS.ProcessEnv;
 
     l = logger('test');
     l.debug('test');

@@ -4,8 +4,11 @@
 
 if (typeof TextDecoder === 'undefined') {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (global as any).TextDecoder = require('util').TextDecoder;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-var-requires
+    const { TextDecoder: UTD } = require('util') as { TextDecoder: { new(): TextDecoder } };
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access
+    (global as any).TextDecoder = UTD;
   } catch (error) {
     // noop
   }

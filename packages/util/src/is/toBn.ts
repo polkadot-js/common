@@ -6,7 +6,6 @@ import { ToBn } from '../types';
 
 import isFunction from './function';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function isToBn (value?: any): value is ToBn {
+export default function isToBn (value?: unknown): value is ToBn {
   return !!value && isFunction((value as ToBn).toBn);
 }

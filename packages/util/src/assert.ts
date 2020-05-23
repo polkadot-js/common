@@ -22,7 +22,7 @@ type MessageFn = () => string;
  * assert(false, () => 'message'); // Error with 'message'
  * ```
  */
-export default function assert (condition: boolean | object | string | number | undefined | null, message: string | MessageFn): asserts condition {
+export default function assert (condition: unknown, message: string | MessageFn): asserts condition {
   if (!condition) {
     throw new Error(
       isFunction(message)

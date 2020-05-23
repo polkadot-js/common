@@ -19,6 +19,6 @@ import BN from 'bn.js';
  * console.log('isBn', isBn(new BN(1))); // => true
  * ```
  */
-export default function isBn (value: object | string | number | undefined | null): value is BN {
+export default function isBn (value: unknown): value is BN {
   return BN.isBN(value);
 }

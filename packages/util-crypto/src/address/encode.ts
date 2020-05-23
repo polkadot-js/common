@@ -17,7 +17,7 @@ export default function encode (_key: Uint8Array | string, ss58Format: Prefix = 
   // decode it, this means we can re-encode an address
   const key = decode(_key);
 
-  assert(defaults.allowedDecodedLengths.includes(key.length), `Expected a valid key to convert, with length ${defaults.allowedDecodedLengths}`);
+  assert(defaults.allowedDecodedLengths.includes(key.length), `Expected a valid key to convert, with length ${defaults.allowedDecodedLengths.join(', ')}`);
 
   const isPublicKey = key.length === 32;
 
