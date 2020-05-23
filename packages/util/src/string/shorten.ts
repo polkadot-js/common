@@ -6,7 +6,7 @@
  * @name stringShorten
  * @summary Returns a string with maximum length
  * @description
- * Checks the string against the `prefixLength`, if longer than dopuble this, shortens it by placing `..` in the middle of it
+ * Checks the string against the `prefixLength`, if longer than double this, shortens it by placing `..` in the middle of it
  * @example
  * <BR>
  *
@@ -17,12 +17,10 @@
  * ```
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function stringShorten (_value?: any, prefixLength = 6): string {
-  const value = `${_value}`;
-
+export default function stringShorten (value: string, prefixLength = 6): string {
   if (value.length <= 2 + 2 * prefixLength) {
     return value;
   }
 
-  return `${value.substr(0, prefixLength)}..${value.slice(-prefixLength)}`;
+  return `${value.substr(0, prefixLength)}…${value.slice(-prefixLength)}`;
 }

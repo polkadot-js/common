@@ -21,13 +21,13 @@ const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
  * isHex('0x1234', 8); // => false
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/ban-types
-export default function isHex (value: any, bitLength = -1, ignoreLength = false): value is string | String {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export default function isHex (value: unknown, bitLength = -1, ignoreLength = false): value is string | String {
   const isValidHex = value === '0x' || (isString(value) && HEX_REGEX.test(value.toString()));
 
   if (isValidHex && bitLength !== -1) {
-    return value.length === (2 + Math.ceil(bitLength / 4));
+    return (value as string).length === (2 + Math.ceil(bitLength / 4));
   }
 
-  return isValidHex && (ignoreLength || (value.length % 2 === 0));
+  return isValidHex && (ignoreLength || ((value as string).length % 2 === 0));
 }

@@ -53,6 +53,12 @@ describe('hexToBn', (): void => {
     ).toBe(-1234);
   });
 
+  it('handles negative numbers (LE, 128)', (): void => {
+    expect(
+      hexToBn('0x00009c584c491ff2ffffffffffffffff', { isLe: true, isNegative: true }).toString()
+    ).toEqual('-1000000000000000000');
+  });
+
   it('handles starting zeros correctly (BE)', (): void => {
     expect(
       hexToBn('0x0000000000000100', { isLe: false }).toNumber()

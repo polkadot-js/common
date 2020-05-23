@@ -24,7 +24,6 @@ interface Observable {
  * console.log('isObservable', isObservable(...));
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function isObservable (value: any): value is Observable {
+export default function isObservable (value: unknown): value is Observable {
   return isObject(value) && isFunction((value as Observable).next);
 }

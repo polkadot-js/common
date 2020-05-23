@@ -7,9 +7,10 @@ import { KeyringPair$Json, KeyringPair$Meta } from '../types';
 
 import { u8aToHex } from '@polkadot/util';
 
-type PairStateJson = KeyringPair$Meta & {
+interface PairStateJson {
   address: string;
-};
+  meta: KeyringPair$Meta;
+}
 
 export default function toJson (type: KeypairType, { address, meta }: PairStateJson, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
   return {

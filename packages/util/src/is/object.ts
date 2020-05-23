@@ -22,7 +22,6 @@ interface ObjectIndexed {
  * isObject('something'); // => false
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function isObject (value: any): value is ObjectIndexed {
+export default function isObject (value: unknown): value is ObjectIndexed {
   return typeof value === 'object';
 }

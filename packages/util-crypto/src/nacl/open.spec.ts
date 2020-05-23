@@ -33,19 +33,19 @@ describe('naclOpen', (): void => {
     // Receiver sends encrypting public key to receive message to decrypt with his private key
     const receiverIdBoxKey = naclBoxKeypairFromSecret(receiverIdKey.secretKey);
 
-    console.log(`Receiver sends receiver's public key to sender ${receiverIdBoxKey.publicKey}`);
+    console.log(`Receiver sends receiver's public key to sender ${receiverIdBoxKey.publicKey.toString()}`);
 
     // Sender encrypts message to send with the public key the receiver sent and send it to receiver
     const senderIdBoxKey = naclBoxKeypairFromSecret(senderIdKey.secretKey);
     const message = new Uint8Array([1, 2, 3, 4, 5, 4, 3, 2, 1]);
     const { nonce, sealed } = naclSeal(message, senderIdBoxKey.secretKey, receiverIdBoxKey.publicKey);
 
-    console.log(`Sender sends encrypted message to receiver ${sealed}, ${nonce}`);
+    console.log(`Sender sends encrypted message to receiver ${sealed.toString()}, ${nonce.toString()}`);
 
     // Receiver opens encrypted message from the sender
     let opened = naclOpen(sealed, nonce, senderIdBoxKey.publicKey, receiverIdBoxKey.secretKey);
 
-    console.log(`The sealed message is ${opened}`);
+    console.log(`The sealed message is ${opened?.toString() || 'null'}`);
 
     // Oh no the Id key is hacked, derive Id key again from another index
     const senderIdKey2 = fromPath(sender, keyExtractPath('//1//1//1//2').path, 'ed25519');
@@ -54,7 +54,7 @@ describe('naclOpen', (): void => {
     // Receiver sends encrypting public key to receive message to decrypt with his private key
     const receiverIdBoxKey2 = naclBoxKeypairFromSecret(receiverIdKey2.secretKey);
 
-    console.log(`Receiver sends receiver's public key to sender ${receiverIdBoxKey2.publicKey}`);
+    console.log(`Receiver sends receiver's public key to sender ${receiverIdBoxKey2.publicKey.toString()}`);
 
     // Sender encrypts message to send with the public key the receiver sent and send it to receiver
     const senderIdBoxKey2 = naclBoxKeypairFromSecret(senderIdKey2.secretKey);
@@ -63,17 +63,17 @@ describe('naclOpen', (): void => {
     const sealed2 = ctx.sealed;
     const nonce2 = ctx.nonce;
 
-    console.log(`Sender sends encrypted message to receiver ${sealed}, ${nonce}`);
+    console.log(`Sender sends encrypted message to receiver ${sealed.toString()}, ${nonce.toString()}`);
 
     // Receiver opens encrypted message from the sender
     opened = naclOpen(sealed2, nonce2, senderIdBoxKey2.publicKey, receiverIdBoxKey2.secretKey);
-    console.log(`The sealed message is ${opened}`);
+    console.log(`The sealed message is ${opened?.toString() || 'null'}`);
 
     // This time derive key for each message to send and receive
     // Receiver sends encrypting public key to receive message to decrypt with his private key
     const receiverIdBoxKey2One = naclBoxKeypairFromSecret(receiverIdBoxKey2.secretKey);
 
-    console.log(`Receiver sends receiver's public key to sender ${receiverIdBoxKey2One.publicKey}`);
+    console.log(`Receiver sends receiver's public key to sender ${receiverIdBoxKey2One.publicKey.toString()}`);
 
     // Sender encrypts message to send with the public key the receiver sent and send it to receiver
     const senderIdBoxKey2One = naclBoxKeypairFromSecret(senderIdBoxKey2.secretKey);
@@ -84,11 +84,11 @@ describe('naclOpen', (): void => {
     const sealed3 = ctx.sealed;
     const nonce3 = ctx.nonce;
 
-    console.log(`Sender sends encrypted message to receiver ${sealed3}, ${nonce3}`);
+    console.log(`Sender sends encrypted message to receiver ${sealed3.toString()}, ${nonce3.toString()}`);
 
     // Receiver opens encrypted message from the sender
     opened = naclOpen(sealed2, nonce2, senderIdBoxKey2One.publicKey, receiverIdBoxKey2One.secretKey);
-    console.log(`The sealed message is ${opened}`);
+    console.log(`The sealed message is ${opened?.toString() || 'null'}`);
   });
 
   it('returns null on invalid', (): void => {

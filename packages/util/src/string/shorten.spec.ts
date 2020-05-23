@@ -16,16 +16,4 @@ describe('stringShorten', (): void => {
       stringShorten('0123456789', 3)
     ).toEqual('012..789');
   });
-
-  it('returns undefined as undefined', (): void => {
-    expect(
-      stringShorten()
-    ).toEqual('undefined');
-  });
-
-  it('returns non-string values as strings', (): void => {
-    expect(
-      stringShorten(12345678, 2)
-    ).toEqual('12..78');
-  });
 });

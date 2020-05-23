@@ -16,7 +16,6 @@
  * console.log('isNull', isNull(null)); // => true
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function isNull (value?: any): value is null {
+export default function isNull (value?: unknown): value is null {
   return value === null;
 }

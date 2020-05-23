@@ -31,17 +31,15 @@ interface ObjectIndexed {
  * isJsonObject('not an object'); // => false
  * ```
  */
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function isJsonObject (value: any): value is ObjectIndexed {
-  value = typeof value !== 'string'
+export default function isJsonObject (value: unknown): value is ObjectIndexed {
+  const str = typeof value !== 'string'
     ? JSON.stringify(value)
     : value;
 
   try {
-    value = JSON.parse(value);
+    const obj = JSON.parse(str) as unknown;
 
-    return (typeof value === 'object' && value !== null);
+    return (typeof obj === 'object' && obj !== null);
   } catch (e) {
     return false;
   }
