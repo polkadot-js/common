@@ -10,7 +10,7 @@ describe('String padStart', (): void => {
   beforeEach((): void => {
     stringStart = String.prototype.padStart;
 
-    // eslint-disable-next-line no-extend-native,@typescript-eslint/no-explicit-any
+    // eslint-disable-next-line no-extend-native,@typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment
     String.prototype.padStart = null as any;
 
     require('./padStart');

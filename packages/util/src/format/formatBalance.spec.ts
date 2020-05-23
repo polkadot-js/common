@@ -23,7 +23,7 @@ describe('formatBalance', (): void => {
 
     it('formats BigInt numbers', (): void => {
       expect(
-        formatBalance(123_456_789_000n, { decimals: 15, withSi: true })
+        formatBalance(123456789000n, { decimals: 15, withSi: true })
       ).toEqual('123.456µ Unit');
     });
 

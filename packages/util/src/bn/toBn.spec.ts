@@ -21,7 +21,7 @@ describe('bnToBn', (): void => {
 
   it('converts BigInt values to BN', (): void => {
     expect(
-      bnToBn(128_821n).toNumber()
+      bnToBn(128821n).toNumber()
     ).toEqual(128821);
   });
 

@@ -21,6 +21,7 @@ export default function secp256k1Verify (message: Uint8Array | string, signature
   };
   const recovery = signatureU8a[64];
   const publicKey = new Uint8Array(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
     ec.recoverPubKey(blake2AsU8a(message, 256), sig, recovery)
       .encodeCompressed(null)
   );

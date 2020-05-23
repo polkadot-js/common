@@ -7,13 +7,13 @@ import { isBigInt } from '.';
 describe('isBigInt', (): void => {
   it('returns true when a BigInt value', (): void => {
     expect(
-      isBigInt(123_456n)
+      isBigInt(123456n)
     ).toEqual(true);
   });
 
   it('returns true when a BigInt value', (): void => {
     expect(
-      isBigInt(BigInt(123_456))
+      isBigInt(BigInt(123456))
     ).toEqual(true);
   });
 
