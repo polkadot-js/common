@@ -14,6 +14,6 @@ describe('stringShorten', (): void => {
   it('returns the shortened value when > maxLength', (): void => {
     expect(
       stringShorten('0123456789', 3)
-    ).toEqual('012..789');
+    ).toEqual('012…789');
   });
 });
