@@ -10,7 +10,7 @@ export interface KeyringOptions {
   type?: KeypairType;
 }
 
-export type KeyringPair$Meta = Record<string, boolean | number | string>;
+export type KeyringPair$Meta = Record<string, unknown>;
 
 export type KeyringPair$JsonVersion = '0' | '1' | '2';
 
