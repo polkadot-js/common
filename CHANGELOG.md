@@ -1,3 +1,8 @@
+# 2.11.1 May 26, 2020
+
+- Internal cleanups on typings
+- Support for latest TypeScript, eslint & typescript-eslint
+
 # 2.10.1 May 14, 2020
 
 - Add Kulupu ss58 prefix as an allowed value (Thanks to https://github.com/sorpaas)
