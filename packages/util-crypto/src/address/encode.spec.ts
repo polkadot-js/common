@@ -2,7 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import testingPairs from '../../../keyring/src/testingPairs';
+import testingPairs from '@polkadot/keyring/testingPairs';
+
 import encode from './encode';
 
 const keyring = testingPairs({ type: 'ed25519' }, false);

@@ -8,10 +8,12 @@ import createKeyMulti from './keyMulti';
 import createKeySub from './keySub';
 import decodeAddress from './decode';
 import encodeAddress from './encode';
+import addressEq from './eq';
 import setSS58Format from './setSS58Format';
 import sortAddresses from './sort';
 
 export {
+  addressEq,
   checkAddress,
   checkAddressChecksum,
   createKeyMulti,

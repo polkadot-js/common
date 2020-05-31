@@ -2,7 +2,11 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-const ALPHABET = '0123456789abcdef';
+const ALPHABET = new Array(256) as string[];
+
+for (let n = 0; n < 256; ++n) {
+  ALPHABET[n] = n.toString(16).padStart(2, '0');
+}
 
 /**
  * @name u8aToHex
@@ -35,10 +39,11 @@ export default function u8aToHex (value?: Uint8Array | null, bitLength = -1, isP
     return `${u8aToHex(value.subarray(0, halfLength), -1, isPrefixed)}…${u8aToHex(value.subarray(value.length - halfLength), -1, false)}`;
   }
 
-  // based on comments in https://stackoverflow.com/questions/40031688/javascript-arraybuffer-to-hex and
-  // implementation in http://jsben.ch/Vjx2V - optimisation here suggests that a forEach loop is faster
-  // than reduce as well (clocking at in 90% of the reduce speed with tweaking in the playpen above)
-  return value.reduce((result, value): string => {
-    return result + ALPHABET[value >> 4] + ALPHABET[value & 15];
-  }, prefix);
+  const result = new Array(value.length) as string[];
+
+  for (let i = 0; i < value.length; i++) {
+    result[i] = ALPHABET[value[i]];
+  }
+
+  return prefix + result.join('');
 }
