@@ -2,6 +2,7 @@
 
 ## 2.12.0-beta.x
 
+- **Important** Removed `mnemonicToSeed`, it has not been in-active use since POC-2, use `mnemonicToMiniSecret` for the expected outcome
 - Added `u8aEq` to compare two Uint8Array or hex values for an exact match
 - Added `addressEq` to compare two addresses (ss58, Uint8array or hex) for an exact match
 - Performance optimizations in `u8aToHex` conversions
