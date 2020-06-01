@@ -22,13 +22,20 @@ import u8aToU8a from './toU8a';
  * ```
  */
 export default function u8aConcat (...list: (Uint8Array | string)[]): Uint8Array {
-  const all = list.map(u8aToU8a);
-  const result = new Uint8Array(all.reduce((total, item) => total + item.length, 0));
+  let length = 0;
   let offset = 0;
+  const u8as = list.map((input): Uint8Array => {
+    const u8a = u8aToU8a(input);
 
-  for (let i = 0; i < list.length; i++) {
-    result.set(all[i], offset);
-    offset += all[i].length;
+    length += u8a.length;
+
+    return u8a;
+  });
+  const result = new Uint8Array(length);
+
+  for (let i = 0; i < u8as.length; i++) {
+    result.set(u8as[i], offset);
+    offset += u8as[i].length;
   }
 
   return result;
