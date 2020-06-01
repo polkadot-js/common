@@ -29,4 +29,24 @@ describe('sign and verify', (): void => {
 
     expect(verify(MESSAGE, signature, pair.publicKey)).toBe(true);
   });
+
+  it('throws error when publicKey lengths do not match', (): void => {
+    expect(
+      () => verify(
+        new Uint8Array([0x61, 0x62, 0x63, 0x64]),
+        new Uint8Array(64),
+        new Uint8Array(31)
+      )
+    ).toThrow(/Invalid publicKey/);
+  });
+
+  it('throws error when signature lengths do not match', (): void => {
+    expect(
+      () => verify(
+        new Uint8Array([0x61, 0x62, 0x63, 0x64]),
+        new Uint8Array(65),
+        new Uint8Array(32)
+      )
+    ).toThrow(/Invalid signature/);
+  });
 });

@@ -13,7 +13,7 @@ export interface ExtractResult {
 }
 
 /**
- * @description Extract derivation juntions from the supplied path
+ * @description Extract derivation junctions from the supplied path
  */
 export default function keyExtractPath (derivePath: string): ExtractResult {
   const parts = derivePath.match(RE_JUNCTION);

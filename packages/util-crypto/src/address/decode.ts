@@ -19,8 +19,7 @@ export default function decode (encoded: string | Uint8Array, ignoreChecksum?: b
   }
 
   const decoded = bufferToU8a(bs58.decode(encoded));
-  const error = (message: string): string =>
-    `Decoding ${encoded as string}: ${message}`;
+  const error = (message: string) => `Decoding ${encoded as string}: ${message}`;
 
   // assert(defaults.allowedPrefix.includes(decoded[0] as Prefix), error('Invalid decoded address prefix'));
   assert(defaults.allowedEncodedLengths.includes(decoded.length), error('Invalid decoded address length'));

@@ -20,7 +20,6 @@ export default function encode (_key: Uint8Array | string, ss58Format: Prefix = 
   assert(defaults.allowedDecodedLengths.includes(key.length), `Expected a valid key to convert, with length ${defaults.allowedDecodedLengths.join(', ')}`);
 
   const isPublicKey = key.length === 32;
-
   const input = u8aConcat(new Uint8Array([ss58Format]), key);
   const hash = sshash(input);
 

@@ -7,7 +7,7 @@ import { waitReady } from '@polkadot/wasm-crypto';
 
 import { naclVerify, naclKeypairFromSeed } from '.';
 
-describe('naclSign', (): void => {
+describe('naclVerify', (): void => {
   let publicKey: Uint8Array;
   let signature: Uint8Array;
 
@@ -50,5 +50,25 @@ describe('naclSign', (): void => {
         publicKey
       )
     ).toEqual(false);
+  });
+
+  it('throws error when publicKey lengths do not match', (): void => {
+    expect(
+      () => naclVerify(
+        new Uint8Array([0x61, 0x62, 0x63, 0x64]),
+        signature,
+        new Uint8Array([1, 2])
+      )
+    ).toThrow(/Invalid publicKey/);
+  });
+
+  it('throws error when signature lengths do not match', (): void => {
+    expect(
+      () => naclVerify(
+        new Uint8Array([0x61, 0x62, 0x63, 0x64]),
+        new Uint8Array([1, 2]),
+        publicKey
+      )
+    ).toThrow(/Invalid signature/);
   });
 });
