@@ -39,7 +39,7 @@ function flattenVersions (_all: (VersionPath | string)[]): string {
   const verLength = all.reduce((max, { version }): number => Math.max(max, version.length), 0);
 
   return all
-    .map(({ path, version }): string => `\t${version.padEnd(verLength)}\t${expandPath(path)}`)
+    .map(({ path, version }) => `\t${version.padEnd(verLength)}\t${expandPath(path)}`)
     .join('\n');
 }
 

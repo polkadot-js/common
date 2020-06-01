@@ -7,8 +7,7 @@ if (typeof TextDecoder === 'undefined') {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-var-requires
     const { TextDecoder: UTD } = require('util') as { TextDecoder: { new(): TextDecoder } };
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access
-    (global as any).TextDecoder = UTD;
+    global.TextDecoder = UTD;
   } catch (error) {
     // noop
   }

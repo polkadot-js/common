@@ -17,8 +17,8 @@
  * await promisify(null, (cb) => cb(new Error('error!'))); // rejects with `error!`
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
-export default function promisify <R = any> (self: unknown, fn: Function, ...params: any[]): Promise<R> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function promisify <R = any> (self: unknown, fn: (...params: any) => any, ...params: any[]): Promise<R> {
   return new Promise((resolve, reject): void => {
     const handler = (error: Error | null, result?: R): void => {
       if (error) {
