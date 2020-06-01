@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 2.12.0-beta.x
+## 2.12.1 Jun 1, 2020
 
 - **Important** Removed `mnemonicToSeed`, it is only for bip39, use `mnemonicToMiniSecret` for the Substrate variant
 - Added `u8aEq` to compare two Uint8Array or hex values for an exact match
