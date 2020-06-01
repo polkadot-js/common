@@ -59,7 +59,7 @@ describe('naclVerify', (): void => {
         signature,
         new Uint8Array([1, 2])
       )
-    ).toThrow(/Invalid publicKey length/);
+    ).toThrow(/Invalid publicKey/);
   });
 
   it('throws error when signature lengths do not match', (): void => {
@@ -69,6 +69,6 @@ describe('naclVerify', (): void => {
         new Uint8Array([1, 2]),
         publicKey
       )
-    ).toThrow(/Invalid signature length/);
+    ).toThrow(/Invalid signature/);
   });
 });

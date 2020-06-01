@@ -37,7 +37,7 @@ describe('sign and verify', (): void => {
         new Uint8Array(64),
         new Uint8Array(31)
       )
-    ).toThrow(/Invalid publicKey length/);
+    ).toThrow(/Invalid publicKey/);
   });
 
   it('throws error when signature lengths do not match', (): void => {
@@ -47,6 +47,6 @@ describe('sign and verify', (): void => {
         new Uint8Array(65),
         new Uint8Array(32)
       )
-    ).toThrow(/Invalid signature length/);
+    ).toThrow(/Invalid signature/);
   });
 });
