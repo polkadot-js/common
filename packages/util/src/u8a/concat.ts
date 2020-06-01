@@ -21,15 +21,15 @@ import u8aToU8a from './toU8a';
  * ); // [1, 2, 3, 4, 5, 6]
  * ```
  */
-export default function u8aConcat (..._list: (Uint8Array | string)[]): Uint8Array {
-  const list = _list.map(u8aToU8a);
-  const result = new Uint8Array(list.reduce((total, item): number => total + item.length, 0));
+export default function u8aConcat (...list: (Uint8Array | string)[]): Uint8Array {
+  const all = list.map(u8aToU8a);
+  const result = new Uint8Array(all.reduce((total, item) => total + item.length, 0));
   let offset = 0;
 
-  return list.reduce((result, item): Uint8Array => {
-    result.set(item, offset);
-    offset += item.length;
+  for (let i = 0; i < list.length; i++) {
+    result.set(all[i], offset);
+    offset += all[i].length;
+  }
 
-    return result;
-  }, result);
+  return result;
 }

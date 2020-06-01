@@ -20,10 +20,8 @@ export interface SiDef {
   value: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Logger$Data$Fn = () => any[];
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Logger$Data = (any | Logger$Data$Fn)[];
+type Logger$Data$Fn = () => unknown[];
+export type Logger$Data = (unknown | Logger$Data$Fn)[];
 
 export interface Logger {
   debug: (...values: Logger$Data) => void;

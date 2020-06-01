@@ -22,5 +22,5 @@ import assert from '../assert';
 export default function max (...items: BN[]): BN {
   assert(items && items.length >= 1, 'Must provide one or more BN arguments');
 
-  return items.reduce((acc: BN, val: BN): BN => BN.max(acc, val), items[0]);
+  return items.reduce((acc: BN, val: BN) => BN.max(acc, val), items[0]);
 }

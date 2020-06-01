@@ -67,8 +67,7 @@ export function format (value: unknown): unknown {
 
 function apply (log: LogType, type: string, values: Logger$Data): void {
   if (values.length === 1 && isFunction(values[0])) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/ban-types
-    const fnResult = (values[0] as Function)();
+    const fnResult = values[0]();
 
     return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult]);
   }
@@ -83,8 +82,7 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function noop (...values: Logger$Data): void {
+function noop (): void {
   // noop
 }
 
