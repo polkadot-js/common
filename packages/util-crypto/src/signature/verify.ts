@@ -67,10 +67,9 @@ export default function signatureVerify (message: Uint8Array | string, signature
 
   const result: VerifyResult = { crypto: 'none', isValid: false };
   const publicKey = addressDecode(addressOrPublicKey);
+  const isMultisig = [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length);
 
-  const multisig = [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length);
-
-  if (multisig) {
+  if (isMultisig) {
     return verifyMultisig(result, message, signatureU8a, publicKey);
   } else {
     return verifyDetect(result, message, signatureU8a, publicKey);
