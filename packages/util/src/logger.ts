@@ -67,7 +67,7 @@ export function format (value: unknown): unknown {
 
 function apply (log: LogType, type: string, values: Logger$Data): void {
   if (values.length === 1 && isFunction(values[0])) {
-    const fnResult = values[0]();
+    const fnResult = values[0]() as unknown;
 
     return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult]);
   }
