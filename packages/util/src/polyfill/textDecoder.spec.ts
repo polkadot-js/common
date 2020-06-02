@@ -26,7 +26,7 @@ describe('TextDecoder', (): void => {
   });
 
   it('polyfills with no exceptions (with TextDecoder)', (): void => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
     (global as any).TextDecoder = require('util').TextDecoder;
 
     // eslint-disable-next-line @typescript-eslint/no-var-requires
