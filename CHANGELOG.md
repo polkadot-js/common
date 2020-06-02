@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.12.2 Jun 1, 2020
+
+- Fix `isFunction` signature to assert `Function`
+
 ## 2.12.1 Jun 1, 2020
 
 - **Important** Removed `mnemonicToSeed`, it is only for bip39, use `mnemonicToMiniSecret` for the Substrate variant
