@@ -40,4 +40,4 @@ export {
   BN_TEN,
   BN_HUNDRED,
   BN_THOUSAND
-}
+};
