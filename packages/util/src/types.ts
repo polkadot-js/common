@@ -41,4 +41,9 @@ export type BnList = {
   1: BN;
 } & BN[];
 
-export type Time = [number, number, number, number];
+export interface Time {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}

@@ -13,8 +13,15 @@ const DAY = HRS * 24;
  */
 
 function addTime (a: Time, b: Time): Time {
-  return [a[0] + b[0], a[1] + b[1], a[2] + b[2], a[3] + b[3]];
+  return {
+    days: a.days + b.days,
+    hours: a.hours + b.hours,
+    minutes: a.minutes + b.minutes,
+    seconds: a.seconds + b.seconds
+  };
 }
+
+const ZERO = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
 /**
  * @name extractTime
@@ -28,30 +35,30 @@ function addTime (a: Time, b: Time): Time {
  * const [days, minutes, hours, seconds] = extractTime(6000); // [0, 0, 10, 0]
  * ```
  */
-export default function extractTime (value?: number): Time {
-  if (!value) {
-    return [0, 0, 0, 0];
-  } else if (value < 60) {
-    return [0, 0, 0, value];
+export default function extractTime (seconds?: number): Time {
+  if (!seconds) {
+    return ZERO;
+  } else if (seconds < 60) {
+    return { ...ZERO, seconds };
   }
 
-  const mins = value / 60;
+  const mins = seconds / 60;
 
   if (mins < 60) {
-    const round = Math.floor(mins);
+    const minutes = Math.floor(mins);
 
-    return addTime([0, 0, round, 0], extractTime(value - (round * 60)));
+    return addTime({ ...ZERO, minutes }, extractTime(seconds - (minutes * 60)));
   }
 
   const hrs = mins / 60;
 
   if (hrs < 24) {
-    const round = Math.floor(hrs);
+    const hours = Math.floor(hrs);
 
-    return addTime([0, round, 0, 0], extractTime(value - (round * HRS)));
+    return addTime({ ...ZERO, hours }, extractTime(seconds - (hours * HRS)));
   }
 
-  const round = Math.floor(hrs / 24);
+  const days = Math.floor(hrs / 24);
 
-  return addTime([round, 0, 0, 0], extractTime(value - (round * DAY)));
+  return addTime({ ...ZERO, days }, extractTime(seconds - (days * DAY)));
 }
