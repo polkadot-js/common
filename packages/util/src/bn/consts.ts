@@ -35,9 +35,9 @@ const BN_HUNDRED: BN = new BN(100);
 const BN_THOUSAND: BN = new BN(1000);
 
 export {
-    BN_ZERO,
-    BN_ONE,
-    BN_TEN,
-    BN_HUNDRED,
-    BN_THOUSAND
+  BN_ZERO,
+  BN_ONE,
+  BN_TEN,
+  BN_HUNDRED,
+  BN_THOUSAND
 }
