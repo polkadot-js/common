@@ -18,18 +18,18 @@ export const ONE = new BN(1);
 
 /**
  * @name TEN
- * @summary BN constant for 1.
+ * @summary BN constant for 10.
  */
 export const TEN = new BN(10);
 
 /**
  * @name HUNDRED
- * @summary BN constant for 1.
+ * @summary BN constant for 100.
  */
 export const HUNDRED = new BN(100);
 
 /**
  * @name THOUSAND
- * @summary BN constant for 1.
+ * @summary BN constant for 1000.
  */
 export const THOUSAND = new BN(1000);
