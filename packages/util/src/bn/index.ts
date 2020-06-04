@@ -6,6 +6,7 @@
  * @summary Utility methods to convert to and from `BN` objects
  */
 
+export * from './consts';
 export { default as bnFromHex } from './fromHex';
 export { default as bnMax } from './max';
 export { default as bnMin } from './min';

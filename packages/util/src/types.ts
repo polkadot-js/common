@@ -40,3 +40,5 @@ export type BnList = {
   0: BN;
   1: BN;
 } & BN[];
+
+export type Time = [number, number, number, number];
