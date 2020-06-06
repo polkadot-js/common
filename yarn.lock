@@ -2763,12 +2763,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/ts@npm:^0.3.25":
-  version: 0.3.25
-  resolution: "@polkadot/ts@npm:0.3.25"
+"@polkadot/ts@npm:^0.3.26":
+  version: 0.3.26
+  resolution: "@polkadot/ts@npm:0.3.26"
   dependencies:
     "@types/chrome": ^0.0.114
-  checksum: 3/9cd069fca8d70ce56618ce45d98670f5d4c020518148d61413227e9b9aae2d59200897866e1b7513dd8445a37daaeb98546a48d0903ac5ba73409f932f24a44a
+  checksum: 3/c035d1282c66144bbfd6dee67ca0142dc051271d9905f729c7632754f645c9472366af5790364fe280f52062a630e4d13e2f995263dd71516c630c6010ca6d79
   languageName: node
   linkType: hard
 
@@ -7263,9 +7263,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.413":
-  version: 1.3.462
-  resolution: "electron-to-chromium@npm:1.3.462"
-  checksum: 3/b6817aa6e444c4c6ffa869b3b29be409a274ecd06e7e423a98435c7f5ea08698b977787034549af777e646facfc0bb16b122c4b59096ac68b5148a35207fd546
+  version: 1.3.463
+  resolution: "electron-to-chromium@npm:1.3.463"
+  checksum: 3/27f10984fe4c6eb600c21b128d9609b5b613dc645a47d22ce0e9f5f1a264d95ab3ecc6d27d0655756958ba7583657336fe63a5d09cf602f950e37f87c6e5c18c
   languageName: node
   linkType: hard
 
@@ -7687,7 +7687,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-scope@npm:^5.0.0":
+"eslint-scope@npm:^5.0.0, eslint-scope@npm:^5.1.0":
   version: 5.1.0
   resolution: "eslint-scope@npm:5.1.0"
   dependencies:
@@ -7714,8 +7714,8 @@ __metadata:
   linkType: hard
 
 "eslint@npm:^7.1.0":
-  version: 7.1.0
-  resolution: "eslint@npm:7.1.0"
+  version: 7.2.0
+  resolution: "eslint@npm:7.2.0"
   dependencies:
     "@babel/code-frame": ^7.0.0
     ajv: ^6.10.0
@@ -7723,10 +7723,10 @@ __metadata:
     cross-spawn: ^7.0.2
     debug: ^4.0.1
     doctrine: ^3.0.0
-    eslint-scope: ^5.0.0
+    eslint-scope: ^5.1.0
     eslint-utils: ^2.0.0
-    eslint-visitor-keys: ^1.1.0
-    espree: ^7.0.0
+    eslint-visitor-keys: ^1.2.0
+    espree: ^7.1.0
     esquery: ^1.2.0
     esutils: ^2.0.2
     file-entry-cache: ^5.0.1
@@ -7755,11 +7755,11 @@ __metadata:
     v8-compile-cache: ^2.0.3
   bin:
     eslint: bin/eslint.js
-  checksum: 3/26b8bc7947b9b8c42f05965a24cd9ea261f0d7b2b5993135bdac403bc65df7812338a2a0999810cae865ff877ec0e17eb818534179d765b7ed36a3a90c3a69b3
+  checksum: 3/37cb498f61fe6b2d98b77104377c1db207649e82e06f76dd4243db09c60424b705036b7cc81c8201eb47b028d576a0ebe9c293b0bc4a5747185e5dc5bc423041
   languageName: node
   linkType: hard
 
-"espree@npm:^7.0.0":
+"espree@npm:^7.1.0":
   version: 7.1.0
   resolution: "espree@npm:7.1.0"
   dependencies:
@@ -15837,7 +15837,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.10.2
     "@polkadot/dev": ^0.55.8
-    "@polkadot/ts": ^0.3.25
+    "@polkadot/ts": ^0.3.26
     "@types/jest": ^25.2.3
   languageName: unknown
   linkType: soft
