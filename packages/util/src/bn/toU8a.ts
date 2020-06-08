@@ -2,11 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { ToBn, ToBnOptions } from '../types';
+
 import BN from 'bn.js';
 
 import isNumber from '../is/number';
 import bnToBn from './toBn';
-import { ToBnOptions } from '../types';
 
 interface Options extends ToBnOptions {
   bitLength?: number;
@@ -26,9 +27,9 @@ interface Options extends ToBnOptions {
  * bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
  * ```
  */
-function bnToU8a (value: BN | BigInt | number | null, options?: Options): Uint8Array;
-function bnToU8a (value: BN | BigInt | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
-function bnToU8a (value: BN | BigInt | number | null, arg1: number | Options = { bitLength: -1, isLe: true, isNegative: false }, arg2?: boolean): Uint8Array {
+function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, options?: Options): Uint8Array;
+function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
+function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, arg1: number | Options = { bitLength: -1, isLe: true, isNegative: false }, arg2?: boolean): Uint8Array {
   const _options: Options = {
     bitLength: -1,
     isLe: true,

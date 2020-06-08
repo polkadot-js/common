@@ -25,6 +25,12 @@ describe('bnToHex', (): void => {
     ).toBe('0x0080');
   });
 
+  it('converts BN values to a prefixed hex representation (bitLength + le)', (): void => {
+    expect(
+      bnToHex(new BN(128), 16, true)
+    ).toBe('0x8000');
+  });
+
   it('converts BN values to a prefixed hex representation (LE)', (): void => {
     expect(
       bnToHex(new BN(128), { bitLength: 16, isLe: true })

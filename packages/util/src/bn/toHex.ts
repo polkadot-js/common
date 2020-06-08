@@ -2,11 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { ToBn, ToBnOptions } from '../types';
+
 import BN from 'bn.js';
 
 import isNumber from '../is/number';
 import bnToU8a from './toU8a';
-import { ToBnOptions } from '../types';
 import { u8aToHex } from '../u8a';
 
 const ZERO_STR = '0x00';
@@ -30,7 +31,9 @@ interface Options extends ToBnOptions {
  * bnToHex(new BN(0x123456)); // => '0x123456'
  * ```
  */
-export default function bnToHex (value?: BN | BigInt | number | null, options: number | Options = { bitLength: -1, isLe: false, isNegative: false }): string {
+function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, options?: Options): string;
+function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, bitLength?: number, isLe?: boolean): string;
+function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, arg1: number | Options = { bitLength: -1, isLe: false, isNegative: false }, arg2?: boolean): string {
   if (!value) {
     return ZERO_STR;
   }
@@ -39,8 +42,10 @@ export default function bnToHex (value?: BN | BigInt | number | null, options: n
     isLe: false,
     isNegative: false,
     // Backwards-compatibility
-    ...(isNumber(options) ? { bitLength: options } : options)
+    ...(isNumber(arg1) ? { bitLength: arg1, isLe: arg2 } : arg1)
   };
 
   return u8aToHex(bnToU8a(value, _options));
 }
+
+export default bnToHex;
