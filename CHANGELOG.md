@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 2.13.0-beta.x
+## 2.13.1 Jun 8, 2020
 
 - Fix JS blake2 fallback (non-wasm) to correctly deal with hex inputs
 - Align `bnToHex` signature with `bnToU8a` (with old/new style)
