@@ -43,4 +43,18 @@ describe('blake2AsU8a', (): void => {
       hexToU8a('0xba80a53f981c4d0d6a2797b69f12f6e94c212f14685ac4b74b12bb6fdbffa2d17d87c5392aab792dc252d5de4533cc9518d38aa8dbf1925ab92386edd4009923')
     );
   });
+
+  it('has equivalent Wasm/Js outputs on hex inputs', (): void => {
+    const a = blake2AsU8a('0x123456', 256, null, false);
+    const b = blake2AsU8a('0x123456', 256, null, true);
+
+    expect(a).toEqual(b);
+  });
+
+  it('has equivalent Wasm/Js outputs with key inputs', (): void => {
+    const a = blake2AsU8a('0x123456', 256, new Uint8Array([1, 2]), false);
+    const b = blake2AsU8a('0x123456', 256, new Uint8Array([1, 2]), true);
+
+    expect(a).toEqual(b);
+  });
 });
