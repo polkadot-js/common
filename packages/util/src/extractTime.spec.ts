@@ -5,14 +5,14 @@
 import { extractTime } from '.';
 
 describe('extractTime', (): void => {
-  const milliseconds = 1e9;
+  const milliseconds = 1e9 + 123;
 
   it('extracts time components correctly', (): void => {
     expect(extractTime(milliseconds))
       .toEqual({
         days: 11,
         hours: 13,
-        milliseconds: 500,
+        milliseconds: 123,
         minutes: 46,
         seconds: 40
       });
