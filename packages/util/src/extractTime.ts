@@ -17,11 +17,12 @@ function addTime (a: Time, b: Time): Time {
     days: a.days + b.days,
     hours: a.hours + b.hours,
     minutes: a.minutes + b.minutes,
-    seconds: a.seconds + b.seconds
+    seconds: a.seconds + b.seconds,
+    milliseconds: a.milliseconds + b.milliseconds
   };
 }
 
-const ZERO = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+const ZERO = { days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 };
 
 /**
  * @name extractTime
@@ -35,14 +36,22 @@ const ZERO = { days: 0, hours: 0, minutes: 0, seconds: 0 };
  * const [days, minutes, hours, seconds] = extractTime(6000); // [0, 0, 10, 0]
  * ```
  */
-export default function extractTime (seconds?: number): Time {
-  if (!seconds) {
+export default function extractTime (milliseconds?: number): Time {
+  if (!milliseconds) {
     return ZERO;
-  } else if (seconds < 60) {
-    return { ...ZERO, seconds };
+  } else if (milliseconds < 1000) {
+    return { ...ZERO, milliseconds };
   }
 
-  const mins = seconds / 60;
+  const secs = milliseconds / 1000;
+
+  if (sec < 60) {
+    const seconds = Math.floor(sec);
+
+    return addTime({ ...ZERO, seconds }, extractTime(milliseconds - (seconds * 1000)));
+  }
+
+  const mins = secs / 60;
 
   if (mins < 60) {
     const minutes = Math.floor(mins);
