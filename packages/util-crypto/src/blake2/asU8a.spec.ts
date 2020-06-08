@@ -44,14 +44,14 @@ describe('blake2AsU8a', (): void => {
     );
   });
 
-  it('has equivalent Rust/Js outputs on hex inputs', (): void => {
+  it('has equivalent Wasm/Js outputs on hex inputs', (): void => {
     const a = blake2AsU8a('0x123456', 256, null, false);
     const b = blake2AsU8a('0x123456', 256, null, true);
 
     expect(a).toEqual(b);
   });
 
-  it('has equivalent Rust/Js outputs with key inputs', (): void => {
+  it('has equivalent Wasm/Js outputs with key inputs', (): void => {
     const a = blake2AsU8a('0x123456', 256, new Uint8Array([1, 2]), false);
     const b = blake2AsU8a('0x123456', 256, new Uint8Array([1, 2]), true);
 
