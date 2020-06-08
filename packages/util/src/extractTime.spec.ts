@@ -12,9 +12,9 @@ describe('extractTime', (): void => {
       .toEqual({
         days: 11,
         hours: 13,
+        milliseconds: 500,
         minutes: 46,
-        seconds: 40,
-        milliseconds: 500
+        seconds: 40
       });
   });
 });

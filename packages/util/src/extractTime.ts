@@ -16,24 +16,24 @@ function addTime (a: Time, b: Time): Time {
   return {
     days: a.days + b.days,
     hours: a.hours + b.hours,
+    milliseconds: a.milliseconds + b.milliseconds,
     minutes: a.minutes + b.minutes,
-    seconds: a.seconds + b.seconds,
-    milliseconds: a.milliseconds + b.milliseconds
+    seconds: a.seconds + b.seconds
   };
 }
 
-const ZERO = { days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 };
+const ZERO = { days: 0, hours: 0, milliseconds: 0, minutes: 0, seconds: 0 };
 
 /**
  * @name extractTime
- * @summary Convert a quantity of seconds to Time array representing accumulated [days, minutes, hours, seconds]
+ * @summary Convert a quantity of seconds to Time array representing accumulated {days, minutes, hours, seconds, milliseconds}
  * @example
  * <BR>
  *
  * ```javascript
  * import { extractTime } from '@polkadot/util';
  *
- * const [days, minutes, hours, seconds] = extractTime(6000); // [0, 0, 10, 0]
+ * const { days, minutes, hours, seconds, milliseconds } = extractTime(6000); // 0, 0, 10, 0, 0
  * ```
  */
 export default function extractTime (milliseconds?: number): Time {
@@ -45,8 +45,8 @@ export default function extractTime (milliseconds?: number): Time {
 
   const secs = milliseconds / 1000;
 
-  if (sec < 60) {
-    const seconds = Math.floor(sec);
+  if (secs < 60) {
+    const seconds = Math.floor(secs);
 
     return addTime({ ...ZERO, seconds }, extractTime(milliseconds - (seconds * 1000)));
   }
@@ -56,7 +56,7 @@ export default function extractTime (milliseconds?: number): Time {
   if (mins < 60) {
     const minutes = Math.floor(mins);
 
-    return addTime({ ...ZERO, minutes }, extractTime(seconds - (minutes * 60)));
+    return addTime({ ...ZERO, minutes }, extractTime(milliseconds - (minutes * 60 * 1000)));
   }
 
   const hrs = mins / 60;
@@ -64,10 +64,10 @@ export default function extractTime (milliseconds?: number): Time {
   if (hrs < 24) {
     const hours = Math.floor(hrs);
 
-    return addTime({ ...ZERO, hours }, extractTime(seconds - (hours * HRS)));
+    return addTime({ ...ZERO, hours }, extractTime(milliseconds - (hours * HRS * 1000)));
   }
 
   const days = Math.floor(hrs / 24);
 
-  return addTime({ ...ZERO, days }, extractTime(seconds - (days * DAY)));
+  return addTime({ ...ZERO, days }, extractTime(milliseconds - (days * DAY * 1000)));
 }
