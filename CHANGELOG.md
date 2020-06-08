@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.13.0-beta.x
+
+- Fix JS blake2 fallback (non-wasm) to correctly deal with hex inputs
+- Align `bnToHex` signature with `bnToU8a` (with old/new style)
+- Allow `bnTo{Hex,U8a}` to take any value with `.toBn()` signatures
+
 ## 2.12.2 Jun 1, 2020
 
 - Fix `isFunction` signature to assert `Function`
