@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.14.1 Jun 16, 2020
+
+- Add `extractTime` utility conversion (Thanks to https://github.com/kwingram25)
+
 ## 2.13.1 Jun 8, 2020
 
 - Fix JS blake2 fallback (non-wasm) to correctly deal with hex inputs
