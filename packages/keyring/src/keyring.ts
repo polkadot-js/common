@@ -5,7 +5,7 @@
 import { KeypairType, Keypair } from '@polkadot/util-crypto/types';
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions } from './types';
 
-import { assert, hexToU8a, isHex, stringToU8a } from '@polkadot/util';
+import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
 import { decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
@@ -192,7 +192,7 @@ export default class Keyring implements KeyringInstance {
    * @description Encodes the input into an ss58 representation
    */
   public encodeAddress = (address: Uint8Array | string, ss58Format?: number): string => {
-    return encodeAddress(address, ss58Format || this.#ss58);
+    return encodeAddress(address, isUndefined(ss58Format) ? this.#ss58 : ss58Format);
   }
 
   /**

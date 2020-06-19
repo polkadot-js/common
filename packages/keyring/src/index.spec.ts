@@ -212,4 +212,18 @@ describe('keypair', (): void => {
       expect(pair.verify(MESSAGE, signature)).toBe(true);
     });
   });
+
+  describe('util', (): void => {
+    let keyring: Keyring;
+
+    beforeEach((): void => {
+      keyring = new Keyring({ ss58Format: 42 });
+    });
+
+    it('can re-encode an address to Polkadot live', (): void => {
+      expect(
+        keyring.encodeAddress('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', 0)
+      ).toEqual('15oF4uVJwmo4TdGW7VfQxNLavjCXviqxT9S1MgbjMNHr6Sp5');
+    });
+  });
 });
