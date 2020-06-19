@@ -21,6 +21,12 @@ describe('encode', (): void => {
     ).toEqual('7sL6eNJj5ZGV5cn3hhV2deRUsivXfBfMH76wCALCqWj1EKzv');
   });
 
+  it('can re-encode an address to Polkadot live', (): void => {
+    expect(
+      encode('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', 0)
+    ).toEqual('15oF4uVJwmo4TdGW7VfQxNLavjCXviqxT9S1MgbjMNHr6Sp5');
+  });
+
   it('fails when non-valid publicKey provided', (): void => {
     expect(
       (): string => encode(
