@@ -15,7 +15,7 @@ import sshash from './sshash';
 
 export default function encode (_key: Uint8Array | string, _ss58Format: Prefix): string {
 
-  const ss58Format = ss58Format || ss58Format === 0 ? ss58Format : defaults.prefix;
+  const ss58Format = _ss58Format || _ss58Format === 0 ? _ss58Format : defaults.prefix;
   // decode it, this means we can re-encode an address
   const key = decode(_key);
 
