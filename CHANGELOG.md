@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.15.1 Jun 22, 2020
+
+- Adjust keyring to no override 0-prefix (Polkadot live) settings with keychain default
+
 ## 2.14.1 Jun 16, 2020
 
 - Add `extractTime` utility conversion (Thanks to https://github.com/kwingram25)
