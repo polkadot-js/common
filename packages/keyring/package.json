@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/keyring",
-  "version": "2.15.0-beta.0",
+  "version": "2.15.0",
   "description": "Keyring management",
   "main": "index.js",
   "publishConfig": {
@@ -27,8 +27,8 @@
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/keyring#readme",
   "dependencies": {
-    "@babel/runtime": "^7.10.2",
-    "@polkadot/util": "2.15.0-beta.0",
-    "@polkadot/util-crypto": "2.15.0-beta.0"
+    "@babel/runtime": "^7.10.3",
+    "@polkadot/util": "2.15.0",
+    "@polkadot/util-crypto": "2.15.0"
   }
 }
