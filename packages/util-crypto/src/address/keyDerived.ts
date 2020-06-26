@@ -10,7 +10,7 @@ import decodeAddress from './decode';
 
 const PREFIX = stringToU8a('modlpy/utilisuba');
 
-export default function createKeySub (who: Uint8Array | string, index: BigInt | BN | number): Uint8Array {
+export default function createKeyDerived (who: Uint8Array | string, index: BigInt | BN | number): Uint8Array {
   return blake2AsU8a(
     u8aConcat(
       PREFIX,

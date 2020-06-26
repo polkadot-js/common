@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.16.0-beta.x
+
+- Adjust `addressCheck` and `encodeAddress` function to check for valid base58 alphabets (better error reporting)
+- Rename `createKeySub` to `createKeyDerived` based on changed in Substrate (sub keys now named derived)
+
 ## 2.15.1 Jun 22, 2020
 
 - Adjust keyring to no override 0-prefix (Polkadot live) settings with keychain default

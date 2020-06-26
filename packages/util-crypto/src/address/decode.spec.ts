@@ -94,4 +94,10 @@ describe('decode', (): void => {
       (): Uint8Array => decode('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaDwU')
     ).toThrow(/address checksum/);
   });
+
+  it('fails when invalid base58 encoded address is found', (): void => {
+    expect(
+      () => u8aToHex(decode('F3opIRbN5ZbjJNU511Kj2TLuzFcDq9BGduA9TgiECafpg29'))
+    ).toThrow(/Decoding F3opIRbN5ZbjJNU511Kj2TLuzFcDq9BGduA9TgiECafpg29: Invalid base58 character "I" \(0x49\) at index 4/);
+  });
 });

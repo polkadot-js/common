@@ -6,9 +6,9 @@ import { Prefix } from './types';
 
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L34
 
-import bs58 from 'bs58';
-import { assert, u8aConcat, u8aToBuffer } from '@polkadot/util';
+import { assert, u8aConcat } from '@polkadot/util';
 
+import base58Encode from '../base58/encode';
 import decode from './decode';
 import defaults from './defaults';
 import sshash from './sshash';
@@ -23,9 +23,7 @@ export default function encode (_key: Uint8Array | string, ss58Format: Prefix = 
   const input = u8aConcat(new Uint8Array([ss58Format]), key);
   const hash = sshash(input);
 
-  return bs58.encode(
-    u8aToBuffer(
-      u8aConcat(input, hash.subarray(0, isPublicKey ? 2 : 1))
-    )
+  return base58Encode(
+    u8aConcat(input, hash.subarray(0, isPublicKey ? 2 : 1))
   );
 }

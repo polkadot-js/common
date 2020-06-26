@@ -6,9 +6,9 @@ import { Prefix } from './types';
 
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L6
 
-import bs58 from 'bs58';
-import { assert, bufferToU8a, isHex, isU8a, u8aToU8a } from '@polkadot/util';
+import { assert, isHex, isU8a, u8aToU8a } from '@polkadot/util';
 
+import base58Decode from '../base58/decode';
 import checkChecksum from './checkChecksum';
 import defaults from './defaults';
 
@@ -18,11 +18,17 @@ export default function decode (encoded: string | Uint8Array, ignoreChecksum?: b
     return u8aToU8a(encoded);
   }
 
-  const decoded = bufferToU8a(bs58.decode(encoded));
-  const error = (message: string) => `Decoding ${encoded as string}: ${message}`;
+  const wrapError = (message: string) => `Decoding ${encoded as string}: ${message}`;
+  let decoded;
+
+  try {
+    decoded = base58Decode(encoded);
+  } catch (error) {
+    throw new Error(wrapError((error as Error).message));
+  }
 
   // assert(defaults.allowedPrefix.includes(decoded[0] as Prefix), error('Invalid decoded address prefix'));
-  assert(defaults.allowedEncodedLengths.includes(decoded.length), error('Invalid decoded address length'));
+  assert(defaults.allowedEncodedLengths.includes(decoded.length), wrapError('Invalid decoded address length'));
 
   // TODO Unless it is an "use everywhere" prefix, throw an error
   // if (decoded[0] !== prefix) {
@@ -31,7 +37,7 @@ export default function decode (encoded: string | Uint8Array, ignoreChecksum?: b
 
   const [isValid, endPos] = checkChecksum(decoded);
 
-  assert(ignoreChecksum || isValid, error('Invalid decoded address checksum'));
+  assert(ignoreChecksum || isValid, wrapError('Invalid decoded address checksum'));
 
   return decoded.slice(1, endPos);
 }

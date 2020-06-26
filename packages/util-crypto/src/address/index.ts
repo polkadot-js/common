@@ -5,7 +5,7 @@
 import checkAddress from './check';
 import checkAddressChecksum from './checkChecksum';
 import createKeyMulti from './keyMulti';
-import createKeySub from './keySub';
+import createKeyDerived from './keyDerived';
 import decodeAddress from './decode';
 import encodeAddress from './encode';
 import addressEq from './eq';
@@ -16,8 +16,8 @@ export {
   addressEq,
   checkAddress,
   checkAddressChecksum,
+  createKeyDerived,
   createKeyMulti,
-  createKeySub,
   decodeAddress,
   encodeAddress,
   setSS58Format,

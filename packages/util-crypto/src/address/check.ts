@@ -4,13 +4,24 @@
 
 import { Prefix } from './types';
 
-import bs58 from 'bs58';
-
+import base58Decode from '../base58/decode';
 import checkChecksum from './checkChecksum';
 import defaults from './defaults';
 
+/**
+ * @name checkAddress
+ * @summary Validates an ss58 address.
+ * @description
+ * From the provided input, validate that the address is a valid input.
+ */
 export default function check (address: string, prefix: Prefix): [boolean, string | null] {
-  const decoded = bs58.decode(address);
+  let decoded;
+
+  try {
+    decoded = base58Decode(address);
+  } catch (error) {
+    return [false, (error as Error).message];
+  }
 
   if (decoded[0] !== prefix) {
     return [false, `Prefix mismatch, expected ${prefix}, found ${decoded[0]}`];
