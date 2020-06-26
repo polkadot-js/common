@@ -17,6 +17,12 @@ describe('checkAddress', (): void => {
     ).toEqual([true, null]);
   });
 
+  it('fails when an invalid base58 character is supplied', (): void => {
+    expect(
+      checkAddress('5EnxIUmEbw8DkENKiYuZ1DwQuMoB2UWEQJZZXrTsxoz7SpgG', 2)
+    ).toEqual([false, 'Invalid base58 character "I" at index 4 in "5EnxIUmEbw8DkENKiYuZ1DwQuMoB2UWEQJZZXrTsxoz7SpgG"']);
+  });
+
   it('fails with invalid prefix when checking Substrate against Kusama prefix', (): void => {
     expect(
       checkAddress('5EnxxUmEbw8DkENKiYuZ1DwQuMoB2UWEQJZZXrTsxoz7SpgG', 2)

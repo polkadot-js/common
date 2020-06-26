@@ -2664,9 +2664,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.55.11":
-  version: 0.55.11
-  resolution: "@polkadot/dev@npm:0.55.11"
+"@polkadot/dev@npm:^0.55.12":
+  version: 0.55.12
+  resolution: "@polkadot/dev@npm:0.55.12"
   dependencies:
     "@babel/cli": ^7.10.3
     "@babel/core": ^7.10.3
@@ -2688,8 +2688,8 @@ __metadata:
     "@babel/preset-typescript": ^7.10.1
     "@babel/register": ^7.10.3
     "@babel/runtime": ^7.10.3
-    "@typescript-eslint/eslint-plugin": 3.3.0
-    "@typescript-eslint/parser": 3.3.0
+    "@typescript-eslint/eslint-plugin": 3.4.0
+    "@typescript-eslint/parser": 3.4.0
     "@vue/component-compiler-utils": ^3.1.2
     babel-core: ^7.0.0-bridge.0
     babel-jest: ^26.0.1
@@ -2698,7 +2698,7 @@ __metadata:
     browserslist: ^4.12.0
     coveralls: ^3.1.0
     cpx: ^1.5.0
-    eslint: ^7.3.0
+    eslint: ^7.3.1
     eslint-config-standard: ^14.1.1
     eslint-import-resolver-node: ^0.3.4
     eslint-plugin-header: ^3.0.0
@@ -2749,7 +2749,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.js
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.js
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.js
-  checksum: 3/8e0779a09438961c5a5e5a6395f503620eccf130e4d43e99c9c41a1a0794b190804b2b52302ef7ae3df74f2947489c7ab75ea150bd60f59a1ab8f9fbfa314cdb
+  checksum: 3/095ccaabe03dfe81402ccfa4cb0751bd29c932031eb3a7923b1a62eb6f9bf8bf1194b93f8b89b2995ba7c6bae1845582e0b1f9c8ac34b54467f54bcc0f422fa9
   languageName: node
   linkType: hard
 
@@ -3145,11 +3145,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:3.3.0":
-  version: 3.3.0
-  resolution: "@typescript-eslint/eslint-plugin@npm:3.3.0"
+"@typescript-eslint/eslint-plugin@npm:3.4.0":
+  version: 3.4.0
+  resolution: "@typescript-eslint/eslint-plugin@npm:3.4.0"
   dependencies:
-    "@typescript-eslint/experimental-utils": 3.3.0
+    "@typescript-eslint/experimental-utils": 3.4.0
+    debug: ^4.1.1
     functional-red-black-tree: ^1.0.1
     regexpp: ^3.0.0
     semver: ^7.3.2
@@ -3161,31 +3162,31 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 3/5a29cad7f36c15d0a1bd3fb12144ee543a5c8ba110b73e332023d896d8ebf4cb192f339464c4222d9b831b1558e9d1ec45bb9697d434252f398afa5e3ba598c2
+  checksum: 3/699d2de912fc4a27cd7ba3f9cdf1f85d2b774818c5fe3fbedbcfb64777129e5be40ded90fca234d8379df4f868b5a4ccf9dfd1c0c8da3f876672d3a33847d683
   languageName: node
   linkType: hard
 
-"@typescript-eslint/experimental-utils@npm:3.3.0":
-  version: 3.3.0
-  resolution: "@typescript-eslint/experimental-utils@npm:3.3.0"
+"@typescript-eslint/experimental-utils@npm:3.4.0":
+  version: 3.4.0
+  resolution: "@typescript-eslint/experimental-utils@npm:3.4.0"
   dependencies:
     "@types/json-schema": ^7.0.3
-    "@typescript-eslint/typescript-estree": 3.3.0
+    "@typescript-eslint/typescript-estree": 3.4.0
     eslint-scope: ^5.0.0
     eslint-utils: ^2.0.0
   peerDependencies:
     eslint: "*"
-  checksum: 3/da968f8cd85e7cee1556da2a699ace328f5d54e196f92222e4376c7e7abe74441e91448157c501b73eb9c159b3bf33b1d3cd74c7f819f1140c8cb48a89d7e41a
+  checksum: 3/0f99ca31c2cc5000f39fc51d92b8daec55253e992bf5db90af7742cc89ed7aed6b77a95f19a6c3d51742cac6f72b90d62978c1b47acd7b395da690876a375d7c
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:3.3.0":
-  version: 3.3.0
-  resolution: "@typescript-eslint/parser@npm:3.3.0"
+"@typescript-eslint/parser@npm:3.4.0":
+  version: 3.4.0
+  resolution: "@typescript-eslint/parser@npm:3.4.0"
   dependencies:
     "@types/eslint-visitor-keys": ^1.0.0
-    "@typescript-eslint/experimental-utils": 3.3.0
-    "@typescript-eslint/typescript-estree": 3.3.0
+    "@typescript-eslint/experimental-utils": 3.4.0
+    "@typescript-eslint/typescript-estree": 3.4.0
     eslint-visitor-keys: ^1.1.0
   peerDependencies:
     eslint: ^5.0.0 || ^6.0.0 || ^7.0.0
@@ -3193,13 +3194,13 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 3/19bb5c5ac28b99964695265c6e9be4a09dbd6f161d4bcc0434d830ebeb3b09369c14cda7eab23d6a59776e662c1bd43b324c03628303558a4d64bf2d4445c27f
+  checksum: 3/c2f13ed3493fa06a506c333c496dfa24aeb700669fbf089394e3adff2c889292f8a8072f2406c09d93c74dfd995bfb9d695db13e1920de586134f407aa200e75
   languageName: node
   linkType: hard
 
-"@typescript-eslint/typescript-estree@npm:3.3.0":
-  version: 3.3.0
-  resolution: "@typescript-eslint/typescript-estree@npm:3.3.0"
+"@typescript-eslint/typescript-estree@npm:3.4.0":
+  version: 3.4.0
+  resolution: "@typescript-eslint/typescript-estree@npm:3.4.0"
   dependencies:
     debug: ^4.1.1
     eslint-visitor-keys: ^1.1.0
@@ -3213,7 +3214,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 3/f81a1f2efcc98ebaf0069c0e1bd27d1cf0d674e19530a2eb466a4fe41cfe2a02136426d51239cfed6482c894660808b90e658cd98051055165159ec9a4bdbebb
+  checksum: 3/96cb85cd30266c3293930abc391a0a8f8549ca37c51fda4ec8675483809d517ae1333cfa63be46545f0cbf682660ad10390710eb2cb5f0096c0ee4ec5f3b1af9
   languageName: node
   linkType: hard
 
@@ -7711,9 +7712,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^7.3.0":
-  version: 7.3.0
-  resolution: "eslint@npm:7.3.0"
+"eslint@npm:^7.3.1":
+  version: 7.3.1
+  resolution: "eslint@npm:7.3.1"
   dependencies:
     "@babel/code-frame": ^7.0.0
     ajv: ^6.10.0
@@ -7753,7 +7754,7 @@ __metadata:
     v8-compile-cache: ^2.0.3
   bin:
     eslint: bin/eslint.js
-  checksum: 3/a9551aaa81bc22dc948f058da82d2698119b12c767f2bfa1f992126f3bbf4c8cfc03aec5614e57727f8520bda10ddb868fb83b07a4fb30fee0a25b319cd3fde0
+  checksum: 3/5d9fd38514ffb43d0c326488bae2338861a654d507e40594f0d6b39efee5d91ec3105d5408f2add6891e8b47d512a75f06b4ce974c2d70bc6d9ae62574b31deb
   languageName: node
   linkType: hard
 
@@ -15760,7 +15761,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.10.3
-    "@polkadot/dev": ^0.55.11
+    "@polkadot/dev": ^0.55.12
     "@polkadot/ts": ^0.3.26
     "@types/jest": ^26.0.0
   languageName: unknown
