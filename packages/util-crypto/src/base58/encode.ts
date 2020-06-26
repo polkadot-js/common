@@ -3,10 +3,10 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import bs58 from 'bs58';
-import { u8aToBuffer } from '@polkadot/util';
+import { u8aToBuffer, u8aToU8a } from '@polkadot/util';
 
-export default function base58Decode (value: Uint8Array): string {
+export default function base58Decode (value: Uint8Array | string | Buffer | number[]): string {
   return bs58.encode(
-    u8aToBuffer(value)
+    u8aToBuffer(u8aToU8a(value))
   );
 }
