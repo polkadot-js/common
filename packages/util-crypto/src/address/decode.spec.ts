@@ -98,6 +98,6 @@ describe('decode', (): void => {
   it('fails when invalid base58 encoded address is found', (): void => {
     expect(
       () => u8aToHex(decode('F3opIRbN5ZbjJNU511Kj2TLuzFcDq9BGduA9TgiECafpg29'))
-    ).toThrow(/Invalid base58 character "I" at index 4 in "F3opIRbN5ZbjJNU511Kj2TLuzFcDq9BGduA9TgiECafpg29"/);
+    ).toThrow(/Decoding F3opIRbN5ZbjJNU511Kj2TLuzFcDq9BGduA9TgiECafpg29: Invalid base58 character "I" at index 4/);
   });
 });

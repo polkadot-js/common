@@ -19,17 +19,23 @@ export default function decode (encoded: string | Uint8Array, ignoreChecksum?: b
     return u8aToU8a(encoded);
   }
 
+  const wrapError = (message: string) => `Decoding ${encoded as string}: ${message}`;
   const [, base58Error] = base58Check(encoded);
 
   if (base58Error) {
-    throw new Error(base58Error);
+    throw new Error(wrapError(base58Error));
   }
 
-  const decoded = bufferToU8a(bs58.decode(encoded));
-  const error = (message: string) => `Decoding ${encoded as string}: ${message}`;
+  let decoded;
+
+  try {
+    decoded = bufferToU8a(bs58.decode(encoded));
+  } catch (error) {
+    throw new Error(wrapError((error as Error).message));
+  }
 
   // assert(defaults.allowedPrefix.includes(decoded[0] as Prefix), error('Invalid decoded address prefix'));
-  assert(defaults.allowedEncodedLengths.includes(decoded.length), error('Invalid decoded address length'));
+  assert(defaults.allowedEncodedLengths.includes(decoded.length), wrapError('Invalid decoded address length'));
 
   // TODO Unless it is an "use everywhere" prefix, throw an error
   // if (decoded[0] !== prefix) {
@@ -38,7 +44,7 @@ export default function decode (encoded: string | Uint8Array, ignoreChecksum?: b
 
   const [isValid, endPos] = checkChecksum(decoded);
 
-  assert(ignoreChecksum || isValid, error('Invalid decoded address checksum'));
+  assert(ignoreChecksum || isValid, wrapError('Invalid decoded address checksum'));
 
   return decoded.slice(1, endPos);
 }
