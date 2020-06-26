@@ -4,23 +4,15 @@
 
 import { Prefix } from './types';
 
-import bs58 from 'bs58';
-
-import base58Check from './base58Check';
+import base58Decode from '../base58/decode';
 import checkChecksum from './checkChecksum';
 import defaults from './defaults';
 
 export default function check (address: string, prefix: Prefix): [boolean, string | null] {
-  const base58Result = base58Check(address);
-
-  if (!base58Result[0]) {
-    return base58Result;
-  }
-
   let decoded;
 
   try {
-    decoded = bs58.decode(address);
+    decoded = base58Decode(address);
   } catch (error) {
     return [false, (error as Error).message];
   }

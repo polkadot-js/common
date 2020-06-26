@@ -6,10 +6,9 @@ import { Prefix } from './types';
 
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L6
 
-import bs58 from 'bs58';
-import { assert, bufferToU8a, isHex, isU8a, u8aToU8a } from '@polkadot/util';
+import { assert, isHex, isU8a, u8aToU8a } from '@polkadot/util';
 
-import base58Check from './base58Check';
+import base58Decode from '../base58/decode';
 import checkChecksum from './checkChecksum';
 import defaults from './defaults';
 
@@ -20,16 +19,10 @@ export default function decode (encoded: string | Uint8Array, ignoreChecksum?: b
   }
 
   const wrapError = (message: string) => `Decoding ${encoded as string}: ${message}`;
-  const [, base58Error] = base58Check(encoded);
-
-  if (base58Error) {
-    throw new Error(wrapError(base58Error));
-  }
-
   let decoded;
 
   try {
-    decoded = bufferToU8a(bs58.decode(encoded));
+    decoded = base58Decode(encoded);
   } catch (error) {
     throw new Error(wrapError((error as Error).message));
   }
