@@ -5,7 +5,13 @@
 import bs58 from 'bs58';
 import { u8aToBuffer, u8aToU8a } from '@polkadot/util';
 
-export default function base58Decode (value: Uint8Array | string | Buffer | number[]): string {
+/**
+ * @name base58Encode
+ * @summary Creates a base58 value.
+ * @description
+ * From the provided input, create the base58 and return the result as a string.
+ */
+export default function base58Encode (value: Uint8Array | string | Buffer | number[]): string {
   return bs58.encode(
     u8aToBuffer(u8aToU8a(value))
   );

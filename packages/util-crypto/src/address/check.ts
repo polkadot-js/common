@@ -8,6 +8,12 @@ import base58Decode from '../base58/decode';
 import checkChecksum from './checkChecksum';
 import defaults from './defaults';
 
+/**
+ * @name checkAddress
+ * @summary Validates an ss58 address.
+ * @description
+ * From the provided input, validate that the address is a valid input.
+ */
 export default function check (address: string, prefix: Prefix): [boolean, string | null] {
   let decoded;
 
