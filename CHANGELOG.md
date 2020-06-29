@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 2.16.0-beta.x
+## 2.16.1 Jun 29, 2020
 
 - Adjust `addressCheck` and `encodeAddress` function to check for valid base58 alphabets (better error reporting)
 - Rename `createKeySub` to `createKeyDerived` based on changed in Substrate (sub keys now named derived)
