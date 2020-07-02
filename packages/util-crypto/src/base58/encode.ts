@@ -2,8 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import bs58 from 'bs58';
 import { u8aToBuffer, u8aToU8a } from '@polkadot/util';
+
+import { bs58 } from './bs58';
 
 /**
  * @name base58Encode
