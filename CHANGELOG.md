@@ -3,6 +3,7 @@
 ## 2.17.0-beta.x
 
 - Correctly handle 0 inputs in `numberToU8a`
+- Simplify and flatten base58 dependencies
 
 ## 2.16.1 Jun 29, 2020
 
