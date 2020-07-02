@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.17.0-beta.x
+
+- Correctly handle 0 inputs in `numberToU8a`
+
 ## 2.16.1 Jun 29, 2020
 
 - Adjust `addressCheck` and `encodeAddress` function to check for valid base58 alphabets (better error reporting)

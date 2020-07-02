@@ -3,6 +3,8 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import hexToU8a from '../hex/toU8a';
+import isNull from '../is/null';
+import isUndefined from '../is/undefined';
 import numberToHex from './toHex';
 
 /**
@@ -20,7 +22,7 @@ import numberToHex from './toHex';
  * ```
  */
 export default function numberToU8a (value?: number | null, bitLength = -1): Uint8Array {
-  if (!value || isNaN(value)) {
+  if (isUndefined(value) || isNull(value) || isNaN(value)) {
     return new Uint8Array();
   }
 

@@ -29,6 +29,18 @@ describe('numberToU8a', (): void => {
     ).toEqual(new Uint8Array());
   });
 
+  it('converts 0 to u8a', (): void => {
+    expect(
+      numberToU8a(0)
+    ).toEqual(new Uint8Array([0]));
+  });
+
+  it('converts 0 to u8a (with length)', (): void => {
+    expect(
+      numberToU8a(0, 16)
+    ).toEqual(new Uint8Array([0, 0]));
+  });
+
   it('converts values to the u8a', (): void => {
     expect(
       numberToU8a(0x3456)
