@@ -5,12 +5,6 @@
 import { numberToU8a } from '.';
 
 describe('numberToU8a', (): void => {
-  it('converts 0 to empty', (): void => {
-    expect(
-      numberToU8a(0)
-    ).toEqual(new Uint8Array());
-  });
-
   it('converts undefined to empty', (): void => {
     expect(
       numberToU8a()
