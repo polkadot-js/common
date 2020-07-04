@@ -8,6 +8,8 @@ import createKeyMulti from './keyMulti';
 import createKeyDerived from './keyDerived';
 import decodeAddress from './decode';
 import encodeAddress from './encode';
+import encodeDerivedAddress from './encodeDerived';
+import encodeMultiAddress from './encodeMulti';
 import addressEq from './eq';
 import setSS58Format from './setSS58Format';
 import sortAddresses from './sort';
@@ -20,6 +22,8 @@ export {
   createKeyMulti,
   decodeAddress,
   encodeAddress,
+  encodeDerivedAddress,
+  encodeMultiAddress,
   setSS58Format,
   sortAddresses
 };
