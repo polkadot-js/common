@@ -2,6 +2,7 @@
 
 ## 2.17.0-beta.x
 
+- Add `encode{Derived, Multi}Address` to encode derived/multi addresses
 - Correctly handle 0 inputs in `numberToU8a`
 - Simplify and flatten base58 dependencies
 
