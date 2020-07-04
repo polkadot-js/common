@@ -4,7 +4,7 @@
 
 import createKeyDerived from './keyDerived';
 
-describe('createKeySub', (): void => {
+describe('createKeyDerived', (): void => {
   it('matches sub accounts with Rust', (): void => {
     expect(
       createKeyDerived(new Uint8Array([1, 0, 0, 0, 0, 0, 0, 0]), 0)
