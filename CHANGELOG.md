@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 2.17.0-beta.x
+## 2.17.1 Jul 6, 2020
 
 - Add `encode{Derived, Multi}Address` to encode derived/multi addresses
 - Correctly handle 0 inputs in `numberToU8a`
