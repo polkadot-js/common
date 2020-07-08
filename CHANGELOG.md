@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.18.0-beta.x
+
+- Add `isAscii` to allow detection of ASCII characters (including tab, newline)
+
 ## 2.17.1 Jul 6, 2020
 
 - Add `encode{Derived, Multi}Address` to encode derived/multi addresses

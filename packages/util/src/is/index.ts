@@ -5,6 +5,7 @@
 /**
  * @summary Type checking utilities
  */
+export { default as isAscii } from './ascii';
 export { default as isBigInt } from './bigInt';
 export { default as isBn } from './bn';
 export { default as isBuffer } from './buffer';
