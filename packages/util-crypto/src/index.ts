@@ -11,6 +11,7 @@ export * from './init';
 // all internal exports
 export * from './address';
 export * from './base58';
+export * from './base64';
 export * from './blake2';
 export * from './keccak';
 export * from './key';
