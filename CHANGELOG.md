@@ -2,7 +2,8 @@
 
 ## 2.18.0-beta.x
 
-- Add `isAscii` to allow detection of ASCII characters (including tab, newline)
+- Add `isAscii` to allow detection of printable ASCII sequences (including tab, newline)
+- Add `isUtf8` to allow detection of valid Utf8 sequences
 
 ## 2.17.1 Jul 6, 2020
 
