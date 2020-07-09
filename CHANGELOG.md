@@ -2,6 +2,8 @@
 
 ## 2.18.0-beta.x
 
+- Add `base64{Decode, Encode, Validate}` as crypto utils
+- Extract `base58Validate` from base58 decode checks
 - Add `isAscii` to allow detection of printable ASCII sequences (including tab, newline)
 - Add `isUtf8` to allow detection of valid Utf8 sequences
 
