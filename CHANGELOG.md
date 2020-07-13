@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 2.18.0-beta.x
+## 2.18.1 Jul 13, 2020
 
 - Add `base64{Decode, Encode, Validate}` as crypto utils
 - Extract `base58Validate` from base58 decode checks
