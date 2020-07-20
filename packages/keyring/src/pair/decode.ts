@@ -43,7 +43,7 @@ function decodePkcs8 (encoded: Uint8Array): DecodeResult {
   };
 }
 
-export default function decode (passphrase?: string, encrypted?: Uint8Array | null, encType: KeyringPair$JsonEncodingTypes[] = ['xsalsa20-poly1305']): DecodeResult {
+export default function decode (passphrase?: string, encrypted?: Uint8Array | null, encType: KeyringPair$JsonEncodingTypes[] = ['pbkdf2', 'xsalsa20-poly1305']): DecodeResult {
   assert(encrypted, 'No encrypted data available to decode');
 
   let encoded: Uint8Array | null = encrypted;

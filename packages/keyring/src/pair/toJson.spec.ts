@@ -15,8 +15,8 @@ describe('toJson', (): void => {
       encoded: '0x3053020101300506032b657004220420416c696365202020202020202020202020202020202020202020202020202020d172a74cda4c865912c32ba0a80a57ae69abae410e5ccb59dee84e2f4432db4fa123032100d172a74cda4c865912c32ba0a80a57ae69abae410e5ccb59dee84e2f4432db4f',
       encoding: {
         content: ['pkcs8', 'ed25519'],
-        type: 'none',
-        version: '2'
+        type: ['none'],
+        version: '3'
       },
       meta: {
         isTesting: true,
@@ -28,13 +28,13 @@ describe('toJson', (): void => {
   it('creates an encoded output with passphrase', (): void => {
     const json = keyring.alice.toJson('testing');
 
-    expect(json.encoded).toHaveLength(316);
+    expect(json.encoded).toHaveLength(252 + ((32 + 32) * 2));
     expect(json).toMatchObject({
       address: '5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua',
       encoding: {
         content: ['pkcs8', 'ed25519'],
-        type: 'xsalsa20-poly1305',
-        version: '2'
+        type: ['pbkdf2', 'xsalsa20-poly1305'],
+        version: '3'
       }
     });
   });
