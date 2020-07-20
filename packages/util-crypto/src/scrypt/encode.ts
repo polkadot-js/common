@@ -8,18 +8,13 @@ import scrypt from 'scryptsy';
 import { bufferToU8a, u8aToBuffer, u8aToU8a } from '@polkadot/util';
 
 import randomAsU8a from '../random/asU8a';
+import { DEFAULT_PARAMS } from './defaults';
 
 interface Result {
   params: Params,
   password: Uint8Array;
   salt: Uint8Array;
 }
-
-const DEFAULT_PARAMS = {
-  N: 1 << 15,
-  p: 1,
-  r: 8
-};
 
 export default function scryptEncode (passphrase?: Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS): Result {
   const password = bufferToU8a(
