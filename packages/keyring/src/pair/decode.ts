@@ -45,27 +45,30 @@ function decodePkcs8 (encoded: Uint8Array): DecodeResult {
 
 export default function decode (passphrase?: string, encrypted?: Uint8Array | null, encType: KeyringPair$JsonEncodingTypes[] = ['scrypt', 'xsalsa20-poly1305']): DecodeResult {
   assert(encrypted, 'No encrypted data available to decode');
+  assert(passphrase || !encType.includes('xsalsa20-poly1305'), 'Password required to decode encypted data');
 
   let encoded: Uint8Array | null = encrypted;
 
   if (passphrase) {
+    let password: Uint8Array;
+
     if (encType.includes('scrypt')) {
       const { params, salt } = scryptFromU8a(encrypted);
-      const nonce = encrypted.subarray(SCRYPT_LENGTH, SCRYPT_LENGTH + NONCE_LENGTH);
-      const data = encrypted.subarray(SCRYPT_LENGTH + NONCE_LENGTH);
-      const { password } = scryptEncode(passphrase, salt, params);
 
-      encoded = naclDecrypt(data, nonce, u8aFixLength(password, 256, true));
+      password = scryptEncode(passphrase, salt, params).password;
+      encrypted = encrypted.subarray(SCRYPT_LENGTH);
     } else {
-      encoded = naclDecrypt(
-        encrypted.subarray(NONCE_LENGTH),
-        encrypted.subarray(0, NONCE_LENGTH),
-        u8aFixLength(stringToU8a(passphrase), 256, true)
-      );
+      password = stringToU8a(passphrase);
     }
+
+    encoded = naclDecrypt(
+      encrypted.subarray(NONCE_LENGTH),
+      encrypted.subarray(0, NONCE_LENGTH),
+      u8aFixLength(password, 256, true)
+    );
   }
 
-  assert(encoded, 'Unable to unencrypt using the supplied passphrase');
+  assert(encoded, 'Unable to decode using the supplied passphrase');
 
   return decodePkcs8(encoded);
 }
