@@ -9,6 +9,7 @@ const PUB_LENGTH = 32;
 const SALT_LENGTH = 32;
 const SEC_LENGTH = 64;
 const SEED_LENGTH = 32;
+const SCRYPT_LENGTH = SALT_LENGTH + (3 * 4);
 
 export {
   NONCE_LENGTH,
@@ -17,5 +18,6 @@ export {
   PUB_LENGTH,
   SALT_LENGTH,
   SEC_LENGTH,
-  SEED_LENGTH
+  SEED_LENGTH,
+  SCRYPT_LENGTH
 };

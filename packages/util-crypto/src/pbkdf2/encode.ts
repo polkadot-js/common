@@ -10,6 +10,7 @@ import randomAsU8a from '../random/asU8a';
 
 interface Result {
   password: Uint8Array;
+  rounds: number;
   salt: Uint8Array;
 }
 
@@ -19,5 +20,5 @@ export default function pbkdf2Encode (passphrase?: Uint8Array | string, salt = r
     ? pbkdf2(u8a, salt, rounds)
     : bufferToU8a(pbkdf2Sync(u8aToBuffer(u8a), u8aToBuffer(salt), rounds, 64));
 
-  return { password, salt };
+  return { password, rounds, salt };
 }

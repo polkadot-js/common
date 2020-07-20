@@ -22,7 +22,7 @@ export default function toJson (type: KeypairType, { address, meta }: PairStateJ
     encoding: {
       content: ['pkcs8', type],
       type: isEncrypted
-        ? ['pbkdf2', 'xsalsa20-poly1305']
+        ? ['scrypt', 'xsalsa20-poly1305']
         : ['none'],
       version: '3'
     },

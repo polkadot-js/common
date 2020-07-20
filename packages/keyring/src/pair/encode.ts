@@ -5,7 +5,7 @@
 import { PairInfo } from './types';
 
 import { u8aConcat, assert } from '@polkadot/util';
-import { naclEncrypt, pbkdf2Encode } from '@polkadot/util-crypto';
+import { naclEncrypt, scryptEncode, scryptToU8a } from '@polkadot/util-crypto';
 
 import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
 
@@ -23,8 +23,8 @@ export default function encode ({ publicKey, secretKey }: PairInfo, passphrase?:
     return encoded;
   }
 
-  const { password, salt } = pbkdf2Encode(passphrase);
+  const { params, password, salt } = scryptEncode(passphrase);
   const { encrypted, nonce } = naclEncrypt(encoded, password.subarray(0, 32));
 
-  return u8aConcat(salt, nonce, encrypted);
+  return u8aConcat(scryptToU8a(salt, params), nonce, encrypted);
 }

@@ -28,12 +28,12 @@ describe('toJson', (): void => {
   it('creates an encoded output with passphrase', (): void => {
     const json = keyring.alice.toJson('testing');
 
-    expect(json.encoded).toHaveLength(252 + ((32 + 32) * 2));
+    expect(json.encoded).toHaveLength(252 + ((32 + 32 + 12) * 2));
     expect(json).toMatchObject({
       address: '5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua',
       encoding: {
         content: ['pkcs8', 'ed25519'],
-        type: ['pbkdf2', 'xsalsa20-poly1305'],
+        type: ['scrypt', 'xsalsa20-poly1305'],
         version: '3'
       }
     });

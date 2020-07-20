@@ -6,9 +6,9 @@ import { KeyringPair$JsonEncodingTypes } from '../types';
 import { PairInfo } from './types';
 
 import { assert, stringToU8a, u8aFixLength } from '@polkadot/util';
-import { naclDecrypt, pbkdf2Encode } from '@polkadot/util-crypto';
+import { naclDecrypt, scryptEncode, scryptFromU8a } from '@polkadot/util-crypto';
 
-import { NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SALT_LENGTH, SEC_LENGTH, SEED_LENGTH } from './defaults';
+import { NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH, SCRYPT_LENGTH } from './defaults';
 
 const SEED_OFFSET = PKCS8_HEADER.length;
 
@@ -43,19 +43,19 @@ function decodePkcs8 (encoded: Uint8Array): DecodeResult {
   };
 }
 
-export default function decode (passphrase?: string, encrypted?: Uint8Array | null, encType: KeyringPair$JsonEncodingTypes[] = ['pbkdf2', 'xsalsa20-poly1305']): DecodeResult {
+export default function decode (passphrase?: string, encrypted?: Uint8Array | null, encType: KeyringPair$JsonEncodingTypes[] = ['scrypt', 'xsalsa20-poly1305']): DecodeResult {
   assert(encrypted, 'No encrypted data available to decode');
 
   let encoded: Uint8Array | null = encrypted;
 
   if (passphrase) {
-    if (encType.includes('pbkdf2')) {
-      const salt = encrypted.subarray(0, SALT_LENGTH);
-      const nonce = encrypted.subarray(SALT_LENGTH, SALT_LENGTH + NONCE_LENGTH);
-      const data = encrypted.subarray(SALT_LENGTH + NONCE_LENGTH);
-      const { password } = pbkdf2Encode(passphrase, salt);
+    if (encType.includes('scrypt')) {
+      const { params, salt } = scryptFromU8a(encrypted);
+      const nonce = encrypted.subarray(SCRYPT_LENGTH, SCRYPT_LENGTH + NONCE_LENGTH);
+      const data = encrypted.subarray(SCRYPT_LENGTH + NONCE_LENGTH);
+      const { password } = scryptEncode(passphrase, salt, params);
 
-      encoded = naclDecrypt(data, nonce, password.subarray(0, 32));
+      encoded = naclDecrypt(data, nonce, u8aFixLength(password, 256, true));
     } else {
       encoded = naclDecrypt(
         encrypted.subarray(NONCE_LENGTH),

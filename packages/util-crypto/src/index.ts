@@ -20,6 +20,7 @@ export * from './nacl';
 export * from './pbkdf2';
 export * from './random';
 export * from './schnorrkel';
+export * from './scrypt';
 export * from './secp256k1';
 export * from './sha512';
 export * from './signature';
