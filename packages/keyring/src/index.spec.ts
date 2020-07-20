@@ -235,7 +235,8 @@ describe('keypair', (): void => {
 
   describe('version 2 JSON', (): void => {
     const PAIR = '{"address":"5CczAE5AmGrZ93MeVhha3Ywam7j9dKB7cArnH7gtrXcMFJvu","encoded":"0xee8f236e2ac3217ce689692a4afc612220dc77fddaed0482f8f95136a7c3e034cccfbc495410a6e9b2439904974ed1d207abeca536ff6985ceb78edeeb3dc343e561c184c488101af8811d1331430b4ccf0e96ef507132e5132964e8564232e7100d973c5bee7b231dd0c8ad5273f3501515a422c8d7ed9d20a73c0ed17c98ee4588e54844bb73052dcad81f7a1094613d63c162fec7446c88b1fae70e","encoding":{"content":["pkcs8","sr25519"],"type":"xsalsa20-poly1305","version":"2"},"meta":{"genesisHash":"0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e","name":"json v2","tags":[],"whenCreated":1595243159596}}';
-    const PASS = 'versionTwo';
+    const PASS2 = 'versionTwo';
+    const PASS3 = 'versionThree';
     let keyring: Keyring;
 
     beforeEach((): void => {
@@ -245,10 +246,20 @@ describe('keypair', (): void => {
     it('can decode from a version 2 JSON file', (): void => {
       const pair = keyring.addFromJson(JSON.parse(PAIR));
 
+      pair.decodePkcs8(PASS2);
+
+      const json = pair.toJson(PASS3);
+
+      expect(pair.isLocked).toBe(false);
+      expect(json.encoding).toEqual({
+        content: ['pkcs8', 'sr25519'],
+        type: ['scrypt', 'xsalsa20-poly1305'],
+        version: '3'
+      });
+
+      pair.decodePkcs8(PASS3);
+
       expect(pair.address).toEqual('5CczAE5AmGrZ93MeVhha3Ywam7j9dKB7cArnH7gtrXcMFJvu');
-      expect(
-        () => pair.decodePkcs8(PASS)
-      ).not.toThrow();
     });
   });
 });
