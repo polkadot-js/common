@@ -6,7 +6,7 @@ import { KeypairType, Keypair } from '@polkadot/util-crypto/types';
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, KeyringOptions } from './types';
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
-import { decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
+import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
 import createPair from './pair';
@@ -105,7 +105,7 @@ export default class Keyring implements KeyringInstance {
       ? [type]
       : type;
 
-    return this.addFromAddress(address, meta, hexToU8a(encoded), cryptoType, ignoreChecksum, encType);
+    return this.addFromAddress(address, meta, isHex(encoded) ? hexToU8a(encoded) : base64Decode(encoded), cryptoType, ignoreChecksum, encType);
   }
 
   /**

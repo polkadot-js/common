@@ -5,7 +5,7 @@
 import { KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringPair$Json, KeyringPair$Meta } from '../types';
 
-import { u8aToHex } from '@polkadot/util';
+import { base64Encode } from '@polkadot/util-crypto';
 
 interface PairStateJson {
   address: string;
@@ -18,7 +18,7 @@ interface PairStateJson {
 export default function toJson (type: KeypairType, { address, meta }: PairStateJson, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
   return {
     address,
-    encoded: u8aToHex(encoded),
+    encoded: base64Encode(encoded),
     encoding: {
       content: ['pkcs8', type],
       type: isEncrypted
