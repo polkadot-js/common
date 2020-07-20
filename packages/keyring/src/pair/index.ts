@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { Keypair, KeypairType } from '@polkadot/util-crypto/types';
-import { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types';
+import { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, SignOptions } from '../types';
 import { PairInfo } from './types';
 
 import { assert, u8aConcat } from '@polkadot/util';
@@ -112,7 +112,7 @@ function isLocked (secretKey?: Uint8Array): secretKey is undefined {
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null): KeyringPair {
+export default function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, encTypes?: KeyringPair$JsonEncodingTypes[]): KeyringPair {
   return {
     get address (): string {
       return toSS58(getAddress(type, publicKey));
@@ -131,7 +131,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     },
     // eslint-disable-next-line sort-keys
     decodePkcs8: (passphrase?: string, _encoded?: Uint8Array | null): void => {
-      const decoded = decode(passphrase, _encoded || encoded);
+      const decoded = decode(passphrase, _encoded || encoded, encTypes);
 
       if (decoded.secretKey.length === 64) {
         publicKey = decoded.publicKey;

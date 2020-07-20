@@ -12,6 +12,9 @@ interface PairStateJson {
   meta: KeyringPair$Meta;
 }
 
+// version 2 - nonce, encoded (previous)
+// version 3 - salt, nonce, encoded
+
 export default function toJson (type: KeypairType, { address, meta }: PairStateJson, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
   return {
     address,
@@ -19,9 +22,9 @@ export default function toJson (type: KeypairType, { address, meta }: PairStateJ
     encoding: {
       content: ['pkcs8', type],
       type: isEncrypted
-        ? 'xsalsa20-poly1305'
-        : 'none',
-      version: '2'
+        ? ['pbkdf2', 'xsalsa20-poly1305']
+        : ['none'],
+      version: '3'
     },
     meta
   };

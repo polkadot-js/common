@@ -12,11 +12,13 @@ export interface KeyringOptions {
 
 export type KeyringPair$Meta = Record<string, unknown>;
 
-export type KeyringPair$JsonVersion = '0' | '1' | '2';
+export type KeyringPair$JsonVersion = '0' | '1' | '2' | '3';
+
+export type KeyringPair$JsonEncodingTypes = 'none' | 'pbkdf2' | 'xsalsa20-poly1305';
 
 export interface KeyringPair$JsonEncoding {
   content: ['pkcs8', KeypairType];
-  type: 'xsalsa20-poly1305' | 'none';
+  type: KeyringPair$JsonEncodingTypes | KeyringPair$JsonEncodingTypes[];
   version: KeyringPair$JsonVersion;
 }
 

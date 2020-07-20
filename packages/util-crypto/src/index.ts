@@ -17,6 +17,7 @@ export * from './keccak';
 export * from './key';
 export * from './mnemonic';
 export * from './nacl';
+export * from './pbkdf2';
 export * from './random';
 export * from './schnorrkel';
 export * from './secp256k1';

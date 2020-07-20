@@ -2,11 +2,13 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { assert, stringToU8a, u8aFixLength } from '@polkadot/util';
-import { naclDecrypt } from '@polkadot/util-crypto';
+import { KeyringPair$JsonEncodingTypes } from '../types';
 import { PairInfo } from './types';
 
-import { NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH } from './defaults';
+import { assert, stringToU8a, u8aFixLength } from '@polkadot/util';
+import { naclDecrypt, pbkdf2Encode } from '@polkadot/util-crypto';
+
+import { NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SALT_LENGTH, SEC_LENGTH, SEED_LENGTH } from './defaults';
 
 const SEED_OFFSET = PKCS8_HEADER.length;
 
@@ -41,16 +43,27 @@ function decodePkcs8 (encoded: Uint8Array): DecodeResult {
   };
 }
 
-export default function decode (passphrase?: string, encrypted?: Uint8Array | null): DecodeResult {
+export default function decode (passphrase?: string, encrypted?: Uint8Array | null, encType: KeyringPair$JsonEncodingTypes[] = ['xsalsa20-poly1305']): DecodeResult {
   assert(encrypted, 'No encrypted data available to decode');
 
-  const encoded = passphrase
-    ? naclDecrypt(
-      encrypted.subarray(NONCE_LENGTH),
-      encrypted.subarray(0, NONCE_LENGTH),
-      u8aFixLength(stringToU8a(passphrase), 256, true)
-    )
-    : encrypted;
+  let encoded: Uint8Array | null = encrypted;
+
+  if (passphrase) {
+    if (encType.includes('pbkdf2')) {
+      const salt = encrypted.subarray(0, SALT_LENGTH);
+      const nonce = encrypted.subarray(SALT_LENGTH, SALT_LENGTH + NONCE_LENGTH);
+      const data = encrypted.subarray(SALT_LENGTH + NONCE_LENGTH);
+      const { password } = pbkdf2Encode(passphrase, salt);
+
+      encoded = naclDecrypt(data, nonce, password.subarray(0, 32));
+    } else {
+      encoded = naclDecrypt(
+        encrypted.subarray(NONCE_LENGTH),
+        encrypted.subarray(0, NONCE_LENGTH),
+        u8aFixLength(stringToU8a(passphrase), 256, true)
+      );
+    }
+  }
 
   assert(encoded, 'Unable to unencrypt using the supplied passphrase');
 
