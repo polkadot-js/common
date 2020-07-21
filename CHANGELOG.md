@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.0.0-beta.x
+
+- Adjust JSON pair output with scrypt kdf (version 3 output)
+
 ## 2.18.1 Jul 13, 2020
 
 - Add `base64{Decode, Encode, Validate}` as crypto utils

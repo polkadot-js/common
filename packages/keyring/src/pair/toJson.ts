@@ -5,23 +5,26 @@
 import { KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringPair$Json, KeyringPair$Meta } from '../types';
 
-import { u8aToHex } from '@polkadot/util';
+import { base64Encode } from '@polkadot/util-crypto';
 
 interface PairStateJson {
   address: string;
   meta: KeyringPair$Meta;
 }
 
+// version 2 - nonce, encoded (previous)
+// version 3 - salt, nonce, encoded
+
 export default function toJson (type: KeypairType, { address, meta }: PairStateJson, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
   return {
     address,
-    encoded: u8aToHex(encoded),
+    encoded: base64Encode(encoded),
     encoding: {
       content: ['pkcs8', type],
       type: isEncrypted
-        ? 'xsalsa20-poly1305'
-        : 'none',
-      version: '2'
+        ? ['scrypt', 'xsalsa20-poly1305']
+        : ['none'],
+      version: '3'
     },
     meta
   };

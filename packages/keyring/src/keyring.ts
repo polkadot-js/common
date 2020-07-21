@@ -3,10 +3,10 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { KeypairType, Keypair } from '@polkadot/util-crypto/types';
-import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$Meta, KeyringOptions } from './types';
+import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, KeyringOptions } from './types';
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
-import { decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
+import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
 import createPair from './pair';
@@ -84,10 +84,10 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from them that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  public addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.type, ignoreChecksum?: boolean): KeyringPair {
+  public addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.type, ignoreChecksum?: boolean, encType?: KeyringPair$JsonEncodingTypes[]): KeyringPair {
     const publicKey = this.decodeAddress(address, ignoreChecksum);
 
-    return this.addPair(createPair({ toSS58: this.encodeAddress, type }, { publicKey, secretKey: new Uint8Array() }, meta, encoded));
+    return this.addPair(createPair({ toSS58: this.encodeAddress, type }, { publicKey, secretKey: new Uint8Array() }, meta, encoded, encType));
   }
 
   /**
@@ -97,12 +97,15 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  public addFromJson ({ address, encoded, encoding: { content, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
-    const type = version === '0' || !Array.isArray(content)
+  public addFromJson ({ address, encoded, encoding: { content, type, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
+    const cryptoType = version === '0' || !Array.isArray(content)
       ? this.type
       : content[1];
+    const encType = !Array.isArray(type)
+      ? [type]
+      : type;
 
-    return this.addFromAddress(address, meta, hexToU8a(encoded), type, ignoreChecksum);
+    return this.addFromAddress(address, meta, isHex(encoded) ? hexToU8a(encoded) : base64Decode(encoded), cryptoType, ignoreChecksum, encType);
   }
 
   /**

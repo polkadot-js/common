@@ -2,11 +2,13 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { assert, stringToU8a, u8aFixLength } from '@polkadot/util';
-import { naclDecrypt } from '@polkadot/util-crypto';
+import { KeyringPair$JsonEncodingTypes } from '../types';
 import { PairInfo } from './types';
 
-import { NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH } from './defaults';
+import { assert, stringToU8a, u8aFixLength } from '@polkadot/util';
+import { naclDecrypt, scryptEncode, scryptFromU8a } from '@polkadot/util-crypto';
+
+import { NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH, SCRYPT_LENGTH } from './defaults';
 
 const SEED_OFFSET = PKCS8_HEADER.length;
 
@@ -41,18 +43,32 @@ function decodePkcs8 (encoded: Uint8Array): DecodeResult {
   };
 }
 
-export default function decode (passphrase?: string, encrypted?: Uint8Array | null): DecodeResult {
+export default function decode (passphrase?: string, encrypted?: Uint8Array | null, encType: KeyringPair$JsonEncodingTypes[] = ['scrypt', 'xsalsa20-poly1305']): DecodeResult {
   assert(encrypted, 'No encrypted data available to decode');
+  assert(passphrase || !encType.includes('xsalsa20-poly1305'), 'Password required to decode encypted data');
 
-  const encoded = passphrase
-    ? naclDecrypt(
+  let encoded: Uint8Array | null = encrypted;
+
+  if (passphrase) {
+    let password: Uint8Array;
+
+    if (encType.includes('scrypt')) {
+      const { params, salt } = scryptFromU8a(encrypted);
+
+      password = scryptEncode(passphrase, salt, params).password;
+      encrypted = encrypted.subarray(SCRYPT_LENGTH);
+    } else {
+      password = stringToU8a(passphrase);
+    }
+
+    encoded = naclDecrypt(
       encrypted.subarray(NONCE_LENGTH),
       encrypted.subarray(0, NONCE_LENGTH),
-      u8aFixLength(stringToU8a(passphrase), 256, true)
-    )
-    : encrypted;
+      u8aFixLength(password, 256, true)
+    );
+  }
 
-  assert(encoded, 'Unable to unencrypt using the supplied passphrase');
+  assert(encoded, 'Unable to decode using the supplied passphrase');
 
   return decodePkcs8(encoded);
 }

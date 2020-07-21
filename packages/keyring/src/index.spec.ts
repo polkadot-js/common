@@ -232,4 +232,73 @@ describe('keypair', (): void => {
       ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY');
     });
   });
+
+  describe('version 2 JSON', (): void => {
+    const PAIR = '{"address":"5CczAE5AmGrZ93MeVhha3Ywam7j9dKB7cArnH7gtrXcMFJvu","encoded":"0xee8f236e2ac3217ce689692a4afc612220dc77fddaed0482f8f95136a7c3e034cccfbc495410a6e9b2439904974ed1d207abeca536ff6985ceb78edeeb3dc343e561c184c488101af8811d1331430b4ccf0e96ef507132e5132964e8564232e7100d973c5bee7b231dd0c8ad5273f3501515a422c8d7ed9d20a73c0ed17c98ee4588e54844bb73052dcad81f7a1094613d63c162fec7446c88b1fae70e","encoding":{"content":["pkcs8","sr25519"],"type":"xsalsa20-poly1305","version":"2"},"meta":{"genesisHash":"0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e","name":"json v2","tags":[],"whenCreated":1595243159596}}';
+    const PASS2 = 'versionTwo';
+    const PASS3 = 'versionThree';
+    let keyring: Keyring;
+
+    beforeEach((): void => {
+      keyring = new Keyring({ ss58Format: 42 });
+    });
+
+    it('can decode from a version 2 JSON file', (): void => {
+      const pair = keyring.addFromJson(JSON.parse(PAIR));
+
+      pair.decodePkcs8(PASS2);
+
+      const json = pair.toJson(PASS3);
+
+      expect(pair.isLocked).toBe(false);
+      expect(pair.address).toBe('5CczAE5AmGrZ93MeVhha3Ywam7j9dKB7cArnH7gtrXcMFJvu');
+      expect(json.encoding).toEqual({
+        content: ['pkcs8', 'sr25519'],
+        type: ['scrypt', 'xsalsa20-poly1305'],
+        version: '3'
+      });
+
+      pair.decodePkcs8(PASS3);
+
+      expect(pair.address).toEqual('5CczAE5AmGrZ93MeVhha3Ywam7j9dKB7cArnH7gtrXcMFJvu');
+    });
+  });
+
+  describe('version 3 JSON (hex)', (): void => {
+    const PAIR = '{"address":"FLiSDPCcJ6auZUGXALLj6jpahcP6adVFDBUQznPXUQ7yoqH","encoded":"0xcd238963070cc4d6806053ee1ac500c7add9c28732bb5d434a332f84a91d9be0008000000100000008000000cf630a1113941b350ddd06697e50399183162e5e9a0e893eafc7f5f4893a223dca5055706b9925b56fdb4304192143843da718e11717daf89cf4f4781f94fb443f61432f782d54280af9eec90bd3069c3cc2d957a42b7c18dc2e9497f623735518e0e49b58f8e4db2c09da3a45dbb935659d015fc94b946cba75b606a6ff7f4e823f6b049e2e6892026b49de02d6dbbd64646fe0933f537d9ea53a70be","encoding":{"content":["pkcs8","sr25519"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{"genesisHash":"0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe","name":"version3","tags":[],"whenCreated":1595277797639}}';
+    const PASS3 = 'version3';
+    let keyring: Keyring;
+
+    beforeEach((): void => {
+      keyring = new Keyring({ ss58Format: 2 });
+    });
+
+    it('can decode from a version 3 JSON file', (): void => {
+      const pair = keyring.addFromJson(JSON.parse(PAIR));
+
+      pair.decodePkcs8(PASS3);
+
+      expect(pair.isLocked).toBe(false);
+      expect(pair.address).toBe('FLiSDPCcJ6auZUGXALLj6jpahcP6adVFDBUQznPXUQ7yoqH');
+    });
+  });
+
+  describe('version 3 JSON (base64)', (): void => {
+    const PAIR = '{"address":"FLiSDPCcJ6auZUGXALLj6jpahcP6adVFDBUQznPXUQ7yoqH","encoded":"ILjSgYaGvq1zaCz/kx+aqfLaHBjLXz0Qsmr6RnkOVU4AgAAAAQAAAAgAAAB5R2hm5kgXyc0NQYFxvMU4zCdjB+ugs/ibEooqCvuudbaeKn3Ee47NkCqU1ecOJV+eeaVn4W4dRvIpj5kGmQOGsewR+MiQ/B0G9NFh7JXV0qcPlk2QMNW1/mbJrTO4miqL448BSkP7ZOhUV6HFUpMt3B9HwjiRLN8RORcFp0ID/Azs4Jl/xOpXNzbgQGIffWgCIKTxN9N1ku6tdlG4","encoding":{"content":["pkcs8","sr25519"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{"genesisHash":"0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe","name":"version3","tags":[],"whenCreated":1595277797639,"whenEdited":1595278378596}}';
+    const PASS3 = 'version3';
+    let keyring: Keyring;
+
+    beforeEach((): void => {
+      keyring = new Keyring({ ss58Format: 2 });
+    });
+
+    it('can decode from a version 3 JSON file', (): void => {
+      const pair = keyring.addFromJson(JSON.parse(PAIR));
+
+      pair.decodePkcs8(PASS3);
+
+      expect(pair.isLocked).toBe(false);
+      expect(pair.address).toBe('FLiSDPCcJ6auZUGXALLj6jpahcP6adVFDBUQznPXUQ7yoqH');
+    });
+  });
 });
