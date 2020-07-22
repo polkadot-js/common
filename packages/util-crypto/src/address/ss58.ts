@@ -7,6 +7,8 @@ export const allowedSS58 = [
   0, 1,
   // Kusama
   2, 3,
+  // Katal Chain
+  4,
   // Kulupu
   16, 17,
   // Dothereum
