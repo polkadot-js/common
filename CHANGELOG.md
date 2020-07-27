@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## 3.0.0-beta.x
+## 3.0.1 Jul 27, 2020
 
+- Add Katal ss58Format (Thanks to https://github.com/retotrinkler)
 - Adjust JSON pair output with scrypt kdf (version 3 output)
 
 ## 2.18.1 Jul 13, 2020
