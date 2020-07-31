@@ -8,7 +8,7 @@ describe('keyExtractSuri', (): void => {
   it('does not extract from invalid suri', (): void => {
     expect(
       (): ExtractResult => keyExtractSuri('//2')
-    ).toThrow(/to a secret URI/);
+    ).toThrow('Unable to match provided value to a secret URI');
   });
 
   it('derives on "hello world"', (): void => {
