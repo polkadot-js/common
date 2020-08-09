@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+// adapted from https://github.com/multiformats/js-multibase/blob/424709195b46ffb1d6f2f69a7707598ebe751e5e/src/rfc4648.js
+
 import { BASE32_ALPHABET, BITS_PER_CHAR } from './bs32';
 import validate from './validate';
 import { assert } from '@polkadot/util';
@@ -30,22 +32,12 @@ export default function base32Decode (value: string, ipfsCompat = false): Uint8A
 
   validate(value);
 
-  // Count the padding bytes:
-  let end = value.length;
+  const out = new Uint8Array((value.length * BITS_PER_CHAR / 8) | 0);
+  let bits = 0;
+  let buffer = 0;
+  let written = 0;
 
-  while (value[end - 1] === '=') {
-    --end;
-  }
-
-  // Allocate the output:
-  const out = new Uint8Array((end * BITS_PER_CHAR / 8) | 0);
-
-  // Parse the data:
-  let bits = 0; // Number of bits currently in the buffer
-  let buffer = 0; // Bits waiting to be written out, MSB first
-  let written = 0; // Next byte to write
-
-  for (let i = 0; i < end; ++i) {
+  for (let i = 0; i < value.length; ++i) {
     buffer = (buffer << BITS_PER_CHAR) | lookup[value[i]];
     bits += BITS_PER_CHAR;
 
@@ -55,10 +47,7 @@ export default function base32Decode (value: string, ipfsCompat = false): Uint8A
     }
   }
 
-  // Verify that we have received just enough bits
-  if (bits >= BITS_PER_CHAR || 0xff & (buffer << (8 - bits))) {
-    throw new SyntaxError('Unexpected end of data');
-  }
+  assert(!(bits >= BITS_PER_CHAR || 0xff & (buffer << (8 - bits))), 'Unexpected end of data');
 
   return out;
 }

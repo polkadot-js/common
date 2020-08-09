@@ -2,6 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+// adapted from https://github.com/multiformats/js-multibase/blob/424709195b46ffb1d6f2f69a7707598ebe751e5e/src/rfc4648.js
+
 import { u8aToU8a } from '@polkadot/util';
 
 import { BASE32_ALPHABET, BITS_PER_CHAR } from './bs32';
@@ -18,15 +20,13 @@ const MASK = (1 << BITS_PER_CHAR) - 1;
 export default function base32Encode (value: Uint8Array | string | Buffer | number[], ipfsCompat = false): string {
   const u8a = u8aToU8a(value);
   let out = '';
-  let bits = 0; // Number of bits currently in the buffer
-  let buffer = 0; // Bits waiting to be written out, MSB first
+  let bits = 0;
+  let buffer = 0;
 
   for (let i = 0; i < u8a.length; ++i) {
-    // Slurp data into the buffer:
     buffer = (buffer << 8) | u8a[i];
     bits += 8;
 
-    // Write out as much as we can:
     while (bits > BITS_PER_CHAR) {
       bits -= BITS_PER_CHAR;
       out += BASE32_ALPHABET[MASK & (buffer >> bits)];
