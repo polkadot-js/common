@@ -8,7 +8,6 @@ import { u8aToU8a } from '@polkadot/util';
 
 import { BASE32_ALPHABET, BITS_PER_CHAR } from './bs32';
 
-// 5 bits per char
 const MASK = (1 << BITS_PER_CHAR) - 1;
 
 /**

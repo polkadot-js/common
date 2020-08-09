@@ -4,9 +4,10 @@
 
 // adapted from https://github.com/multiformats/js-multibase/blob/424709195b46ffb1d6f2f69a7707598ebe751e5e/src/rfc4648.js
 
+import { assert } from '@polkadot/util';
+
 import { BASE32_ALPHABET, BITS_PER_CHAR } from './bs32';
 import validate from './validate';
-import { assert } from '@polkadot/util';
 
 // Build the character lookup table:
 const LOOKUP = BASE32_ALPHABET
