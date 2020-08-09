@@ -7,6 +7,7 @@ import checkAddressChecksum from './checkChecksum';
 import createKeyMulti from './keyMulti';
 import createKeyDerived from './keyDerived';
 import decodeAddress from './decode';
+import deriveAddress from './derive';
 import encodeAddress from './encode';
 import encodeDerivedAddress from './encodeDerived';
 import encodeMultiAddress from './encodeMulti';
@@ -21,6 +22,7 @@ export {
   createKeyDerived,
   createKeyMulti,
   decodeAddress,
+  deriveAddress,
   encodeAddress,
   encodeDerivedAddress,
   encodeMultiAddress,

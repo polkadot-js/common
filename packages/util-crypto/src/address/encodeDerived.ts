@@ -12,7 +12,7 @@ import keyDerived from './keyDerived';
 
 /**
  * @name encodeDerivedAddress
- * @summary Creates a derived address.
+ * @summary Creates a derived address as used in Substrate utility.
  * @description
  * Creates a Substrate derived address based on the input address/publicKey and the index supplied.
  */

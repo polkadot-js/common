@@ -7,7 +7,7 @@ import { stringToU8a, u8aToHex } from '@polkadot/util';
 import testingPairs, { TestKeyringMap } from '../../../keyring/src/testingPairs';
 import decode from './decode';
 
-describe('decode', (): void => {
+describe('decodeAddress', (): void => {
   let keyring: TestKeyringMap;
 
   beforeAll((): void => {
