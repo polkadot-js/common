@@ -9,7 +9,7 @@ import validate from './validate';
 import { assert } from '@polkadot/util';
 
 // Build the character lookup table:
-const lookup = BASE32_ALPHABET
+const LOOKUP = BASE32_ALPHABET
   .split('')
   .reduce((lookup: Record<string, number>, char: string, index: number): Record<string, number> => {
     lookup[char] = index;
@@ -38,7 +38,7 @@ export default function base32Decode (value: string, ipfsCompat = false): Uint8A
   let written = 0;
 
   for (let i = 0; i < value.length; ++i) {
-    buffer = (buffer << BITS_PER_CHAR) | lookup[value[i]];
+    buffer = (buffer << BITS_PER_CHAR) | LOOKUP[value[i]];
     bits += BITS_PER_CHAR;
 
     if (bits >= 8) {
