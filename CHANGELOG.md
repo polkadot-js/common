@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 3.1.0-beta.x
+
+- Use `scrypt` from WASM as available
+- Add `base32{Encode, Decode}` utilities
+- Support IPFS compatibility flag in base58 encoding/decoding
+- Update to `@polkadot/wasm-crypto` 1.3.1
+
 ## 3.0.1 Jul 27, 2020
 
 - Add Katal ss58Format (Thanks to https://github.com/retotrinkler)
