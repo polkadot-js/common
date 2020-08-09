@@ -2,8 +2,9 @@
 
 ## 3.1.0-beta.x
 
-- Use `scrypt` from WASM as available
-- Add `base32{Encode, Decode}` utilities
+- Add `deriveAddress(<address>, '/<soft>/<soft-b>')` via sr25519 soft
+- Use `scrypt` from WASM as available (JS fallback in place)
+- Add `base32{Encode, Decode}` utilities (IPFS-compatible alphabet)
 - Support IPFS compatibility flag in base58 encoding/decoding
 - Update to `@polkadot/wasm-crypto` 1.3.1
 
