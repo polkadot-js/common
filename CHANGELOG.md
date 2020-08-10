@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 3.1.0-beta.x
+## 3.1.1 Aug 10, 2020
 
 - Add `deriveAddress(<address>, '/<soft>/<soft-b>')` via sr25519 soft
 - Use `scrypt` from WASM as available (JS fallback in place)

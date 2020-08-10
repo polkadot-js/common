@@ -2731,9 +2731,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.55.35":
-  version: 0.55.35
-  resolution: "@polkadot/dev@npm:0.55.35"
+"@polkadot/dev@npm:^0.55.36":
+  version: 0.55.36
+  resolution: "@polkadot/dev@npm:0.55.36"
   dependencies:
     "@babel/cli": ^7.10.5
     "@babel/core": ^7.11.1
@@ -2763,6 +2763,7 @@ __metadata:
     babel-plugin-module-resolver: ^4.0.0
     babel-plugin-styled-components: ^1.11.1
     browserslist: ^4.14.0
+    chalk: ^4.1.0
     coveralls: ^3.1.0
     cpx: ^1.5.0
     eslint: ^7.6.0
@@ -2819,7 +2820,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.js
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.js
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.js
-  checksum: 40fa651d13d69d6852e969c25c6adac6fc920ed43c87d88b23171f679fe2219bdb3d00ec9f6c6c14279cc79324f7edff291cf42cefa3ffef20fea4b925607ff4
+  checksum: d651ef83ef38cabd7f40e3afe2d696d5bb01d5ce6d7ac6a0f5840e6f3795840412136bf48e8e57035b64acdff67699617523a97ec348b882af930128a056d28f
   languageName: node
   linkType: hard
 
@@ -2828,26 +2829,26 @@ __metadata:
   resolution: "@polkadot/keyring@workspace:packages/keyring"
   dependencies:
     "@babel/runtime": ^7.11.2
-    "@polkadot/util": 3.1.0-beta.8
-    "@polkadot/util-crypto": 3.1.0-beta.8
+    "@polkadot/util": 3.1.0
+    "@polkadot/util-crypto": 3.1.0
   languageName: unknown
   linkType: soft
 
-"@polkadot/ts@npm:^0.3.35":
-  version: 0.3.35
-  resolution: "@polkadot/ts@npm:0.3.35"
+"@polkadot/ts@npm:^0.3.36":
+  version: 0.3.36
+  resolution: "@polkadot/ts@npm:0.3.36"
   dependencies:
     "@types/chrome": ^0.0.122
-  checksum: 36f94ebcac16eb097d1bbafc898f01ab581dc7ff99fdd8e97d0a046a1ba449833387a59f9519f0ded4175e867891ee6e5a8dc7764374205e4a8ddab41c94c8db
+  checksum: b5afdb242a5a0ab0e94e8b9b0a00c2e52dc765ba4f4ffb4694c3246e38a968920670c695773b9ac60201bcc1585a26dbfedfa4e510b3b4bc3c4a7e9bee7021ae
   languageName: node
   linkType: hard
 
-"@polkadot/util-crypto@3.1.0-beta.8, @polkadot/util-crypto@workspace:packages/util-crypto":
+"@polkadot/util-crypto@3.1.0, @polkadot/util-crypto@workspace:packages/util-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.11.2
-    "@polkadot/util": 3.1.0-beta.8
+    "@polkadot/util": 3.1.0
     "@polkadot/wasm-crypto": ^1.3.1
     "@types/bn.js": ^4.11.6
     "@types/elliptic": ^6.4.12
@@ -2867,7 +2868,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/util@3.1.0-beta.8, @polkadot/util@workspace:packages/util":
+"@polkadot/util@3.1.0, @polkadot/util@workspace:packages/util":
   version: 0.0.0-use.local
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
@@ -15883,8 +15884,8 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.11.1
-    "@polkadot/dev": ^0.55.35
-    "@polkadot/ts": ^0.3.35
+    "@polkadot/dev": ^0.55.36
+    "@polkadot/ts": ^0.3.36
     "@types/jest": ^26.0.9
   languageName: unknown
   linkType: soft
