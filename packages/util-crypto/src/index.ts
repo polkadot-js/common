@@ -10,6 +10,7 @@ export * from './init';
 
 // all internal exports
 export * from './address';
+export * from './base32';
 export * from './base58';
 export * from './base64';
 export * from './blake2';
