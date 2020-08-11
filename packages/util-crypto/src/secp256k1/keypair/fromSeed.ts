@@ -3,8 +3,9 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { Keypair } from '../../types';
-import { assert, hexToU8a } from '@polkadot/util';
+
 import elliptic from 'elliptic';
+import { assert, hexToU8a } from '@polkadot/util';
 
 const EC = elliptic.ec;
 const ec = new EC('secp256k1');

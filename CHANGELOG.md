@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.2.0-beta.x
+
+- Allow for (optional, default blake2) hasher to secp256k1 sign/verify functions
+
 ## 3.1.1 Aug 10, 2020
 
 - Add `deriveAddress(<address>, '/<soft>/<soft-b>')` via sr25519 soft

@@ -3,9 +3,10 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { stringToU8a } from '@polkadot/util';
-import { blake2AsU8a } from '../blake2';
+
 import randomAsU8a from '../random/asU8a';
 import pairFromSeed from './keypair/fromSeed';
+import hasher from './hasher';
 import sign from './sign';
 import verify from './verify';
 
@@ -29,8 +30,24 @@ describe('sign and verify', (): void => {
   it('can sign and verify a message by random key', (): void => {
     const pair = pairFromSeed(randomAsU8a());
     const signature = sign(MESSAGE, pair);
-    const address = blake2AsU8a(pair.publicKey, 256);
+    const address = hasher('blake2', pair.publicKey);
 
     expect(verify(MESSAGE, signature, address)).toBe(true);
+  });
+
+  it('can sign and verify a message by random key (keccak)', (): void => {
+    const pair = pairFromSeed(randomAsU8a());
+    const signature = sign(MESSAGE, pair, 'keccak');
+    const address = hasher('keccak', pair.publicKey);
+
+    expect(verify(MESSAGE, signature, address, 'keccak')).toBe(true);
+  });
+
+  it('can fals verification on hasher mismatches', (): void => {
+    const pair = pairFromSeed(randomAsU8a());
+    const signature = sign(MESSAGE, pair, 'keccak');
+    const address = hasher('keccak', pair.publicKey);
+
+    expect(verify(MESSAGE, signature, address, 'blake2')).toBe(false);
   });
 });
