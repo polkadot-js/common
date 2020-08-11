@@ -24,6 +24,6 @@ export default function keccakAsU8a (value: Buffer | Uint8Array | string): Uint8
   return isReady()
     ? keccak256(u8aToU8a(value))
     : new Uint8Array(
-      jssha3.keccak256.update(value).arrayBuffer()
+      jssha3.keccak256.update(u8aToU8a(value)).arrayBuffer()
     );
 }
