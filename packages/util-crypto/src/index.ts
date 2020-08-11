@@ -14,6 +14,7 @@ export * from './base32';
 export * from './base58';
 export * from './base64';
 export * from './blake2';
+export * from './ethereum';
 export * from './keccak';
 export * from './key';
 export * from './mnemonic';

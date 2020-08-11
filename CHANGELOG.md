@@ -3,6 +3,7 @@
 ## 3.2.0-beta.x
 
 - Allow for (optional, default blake2) hasher to secp256k1 sign/verify functions
+- Add basic Ethereum address utils (encode with checksum & checksum verification)
 
 ## 3.1.1 Aug 10, 2020
 
