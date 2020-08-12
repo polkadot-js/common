@@ -27,7 +27,7 @@ describe('sign and verify', (): void => {
     expect(sign(MESSAGE, pair)).toHaveLength(65);
   });
 
-  it('can sign and verify a message by random key', (): void => {
+  it('signs/verifies a message by random key', (): void => {
     const pair = pairFromSeed(randomAsU8a());
     const signature = sign(MESSAGE, pair);
     const address = hasher('blake2', pair.publicKey);
@@ -35,7 +35,7 @@ describe('sign and verify', (): void => {
     expect(verify(MESSAGE, signature, address)).toBe(true);
   });
 
-  it('can sign and verify a message by random key (keccak)', (): void => {
+  it('signs/verifies a message by random key (keccak)', (): void => {
     const pair = pairFromSeed(randomAsU8a());
     const signature = sign(MESSAGE, pair, 'keccak');
     const address = hasher('keccak', pair.publicKey);
@@ -43,7 +43,7 @@ describe('sign and verify', (): void => {
     expect(verify(MESSAGE, signature, address, 'keccak')).toBe(true);
   });
 
-  it('can fals verification on hasher mismatches', (): void => {
+  it('fails verification on hasher mismatches', (): void => {
     const pair = pairFromSeed(randomAsU8a());
     const signature = sign(MESSAGE, pair, 'keccak');
     const address = hasher('keccak', pair.publicKey);

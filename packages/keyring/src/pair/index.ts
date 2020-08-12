@@ -7,7 +7,7 @@ import { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPa
 import { PairInfo } from './types';
 
 import { assert, u8aConcat } from '@polkadot/util';
-import { keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Verify, blake2AsU8a } from '@polkadot/util-crypto';
+import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Verify } from '@polkadot/util-crypto';
 
 import decode from './decode';
 import encode from './encode';
@@ -23,6 +23,9 @@ const SIG_TYPE_ED25519 = new Uint8Array([0]);
 const SIG_TYPE_SR25519 = new Uint8Array([1]);
 const SIG_TYPE_ECDSA = new Uint8Array([2]);
 
+// FIXME This needs a mapping to supported - maybe ecdsa for MultiSignature?
+const SIG_TYPE_ETHEREUM = new Uint8Array([255]);
+
 function isEmpty (u8a: Uint8Array): boolean {
   return u8a.reduce((count, u8): number => count + u8, 0) === 0;
 }
@@ -31,6 +34,8 @@ function fromSeed (type: KeypairType, seed: Uint8Array): Keypair {
   return {
     ecdsa: (): Keypair => secp256k1FromSeed(seed),
     ed25519: (): Keypair => naclFromSeed(seed),
+    // FIXME This needs to actually be Ethereum-compatible
+    ethereum: (): Keypair => secp256k1FromSeed(seed),
     sr25519: (): Keypair => schnorrkelFromSeed(seed)
   }[type]();
 }
@@ -39,14 +44,16 @@ function multiSignaturePrefix (type: KeypairType): Uint8Array {
   return {
     ecdsa: SIG_TYPE_ECDSA,
     ed25519: SIG_TYPE_ED25519,
+    ethereum: SIG_TYPE_ETHEREUM,
     sr25519: SIG_TYPE_SR25519
   }[type];
 }
 
 function sign (type: KeypairType, message: Uint8Array, pair: Partial<Keypair>, { withType = false }: SignOptions = {}): Uint8Array {
   const signature = {
-    ecdsa: (): Uint8Array => secp256k1Sign(message, pair),
+    ecdsa: (): Uint8Array => secp256k1Sign(message, pair, 'blake2'),
     ed25519: (): Uint8Array => naclSign(message, pair),
+    ethereum: (): Uint8Array => secp256k1Sign(message, pair, 'keccak'),
     sr25519: (): Uint8Array => schnorrkelSign(message, pair)
   }[type]();
 
@@ -62,8 +69,9 @@ function sign (type: KeypairType, message: Uint8Array, pair: Partial<Keypair>, {
 
 function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array): boolean {
   return {
-    ecdsa: (): boolean => secp256k1Verify(message, signature, blake2AsU8a(publicKey, 256)),
+    ecdsa: (): boolean => secp256k1Verify(message, signature, blake2AsU8a(publicKey, 256), 'blake2'),
     ed25519: (): boolean => naclVerify(message, signature, publicKey),
+    ethereum: (): boolean => secp256k1Verify(message, signature, keccakAsU8a(publicKey), 'keccak'),
     sr25519: (): boolean => schnorrkelVerify(message, signature, publicKey)
   }[type]();
 }
@@ -71,6 +79,8 @@ function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, 
 function getAddress (type: KeypairType, publicKey: Uint8Array): Uint8Array {
   if (type === 'ecdsa' && publicKey.length > 32) {
     return blake2AsU8a(publicKey, 256);
+  } else if (type === 'ethereum' && publicKey.length > 32) {
+    return keccakAsU8a(publicKey);
   } else {
     return publicKey;
   }
@@ -122,7 +132,9 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
 
   return {
     get address (): string {
-      return toSS58(getAddress(type, publicKey));
+      return type === 'ethereum'
+        ? ethereumEncode(getAddress(type, publicKey))
+        : toSS58(getAddress(type, publicKey));
     },
     get isLocked (): boolean {
       return isLocked(secretKey);
