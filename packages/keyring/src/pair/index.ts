@@ -22,9 +22,7 @@ const SIG_TYPE_NONE = new Uint8Array();
 const SIG_TYPE_ED25519 = new Uint8Array([0]);
 const SIG_TYPE_SR25519 = new Uint8Array([1]);
 const SIG_TYPE_ECDSA = new Uint8Array([2]);
-
-// FIXME This needs a mapping to supported - maybe ecdsa for MultiSignature?
-const SIG_TYPE_ETHEREUM = new Uint8Array([255]);
+const SIG_TYPE_ETHEREUM = SIG_TYPE_ECDSA;
 
 function isEmpty (u8a: Uint8Array): boolean {
   return u8a.reduce((count, u8): number => count + u8, 0) === 0;
@@ -69,7 +67,7 @@ function sign (type: KeypairType, message: Uint8Array, pair: Partial<Keypair>, {
 
 function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array): boolean {
   return {
-    ecdsa: (): boolean => secp256k1Verify(message, signature, blake2AsU8a(publicKey, 256), 'blake2'),
+    ecdsa: (): boolean => secp256k1Verify(message, signature, blake2AsU8a(publicKey), 'blake2'),
     ed25519: (): boolean => naclVerify(message, signature, publicKey),
     ethereum: (): boolean => secp256k1Verify(message, signature, keccakAsU8a(publicKey), 'keccak'),
     sr25519: (): boolean => schnorrkelVerify(message, signature, publicKey)
@@ -78,7 +76,7 @@ function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, 
 
 function getAddress (type: KeypairType, publicKey: Uint8Array): Uint8Array {
   if (type === 'ecdsa' && publicKey.length > 32) {
-    return blake2AsU8a(publicKey, 256);
+    return blake2AsU8a(publicKey);
   } else if (type === 'ethereum' && publicKey.length > 32) {
     return keccakAsU8a(publicKey);
   } else {

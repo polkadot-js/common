@@ -11,7 +11,7 @@ const HASH_TYPES = ['blake2', 'keccak'];
 
 export default function secp256k1Hasher (hashType: HashType, data: Uint8Array | string): Uint8Array {
   if (hashType === 'blake2') {
-    return blake2AsU8a(data, 256);
+    return blake2AsU8a(data);
   } else if (hashType === 'keccak') {
     return keccakAsU8a(data);
   }
