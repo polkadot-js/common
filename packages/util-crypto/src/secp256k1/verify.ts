@@ -5,7 +5,7 @@
 import { HashType } from './types';
 
 import elliptic from 'elliptic';
-import { u8aToU8a } from '@polkadot/util';
+import { assert, u8aToU8a } from '@polkadot/util';
 
 import hasher from './hasher';
 
@@ -18,6 +18,9 @@ const ec = new EC('secp256k1');
  */
 export default function secp256k1Verify (message: Uint8Array | string, signature: Uint8Array | string, address: Uint8Array | string, hashType: HashType = 'blake2'): boolean {
   const signatureU8a = u8aToU8a(signature);
+
+  assert(signatureU8a.length === 65, `Expected signature with 65 bytes, ${signatureU8a.length} found instead`);
+
   const sig = {
     r: signatureU8a.slice(0, 32),
     s: signatureU8a.slice(32, 64)
@@ -26,7 +29,7 @@ export default function secp256k1Verify (message: Uint8Array | string, signature
   const publicKey = new Uint8Array(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
     ec.recoverPubKey(hasher(hashType, message), sig, recovery)
-      .encodeCompressed(null)
+      .encodeCompressed()
   );
 
   return Buffer.compare(hasher(hashType, publicKey), u8aToU8a(address)) === 0;

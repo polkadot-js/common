@@ -27,7 +27,7 @@ describe('sign and verify', (): void => {
     expect(sign(MESSAGE, pair)).toHaveLength(65);
   });
 
-  it('can sign and verify a message by random key', (): void => {
+  it('signs/verifies a message by random key (blake2)', (): void => {
     const pair = pairFromSeed(randomAsU8a());
     const signature = sign(MESSAGE, pair);
     const address = hasher('blake2', pair.publicKey);
@@ -35,7 +35,7 @@ describe('sign and verify', (): void => {
     expect(verify(MESSAGE, signature, address)).toBe(true);
   });
 
-  it('can sign and verify a message by random key (keccak)', (): void => {
+  it('signs/verifies a message by random key (keccak)', (): void => {
     const pair = pairFromSeed(randomAsU8a());
     const signature = sign(MESSAGE, pair, 'keccak');
     const address = hasher('keccak', pair.publicKey);
@@ -43,11 +43,37 @@ describe('sign and verify', (): void => {
     expect(verify(MESSAGE, signature, address, 'keccak')).toBe(true);
   });
 
-  it('can fals verification on hasher mismatches', (): void => {
+  it('fails verification on hasher mismatches', (): void => {
     const pair = pairFromSeed(randomAsU8a());
     const signature = sign(MESSAGE, pair, 'keccak');
     const address = hasher('keccak', pair.publicKey);
 
     expect(verify(MESSAGE, signature, address, 'blake2')).toBe(false);
   });
+
+  it('works over a range of random keys (blake2)', (): void => {
+    for (let i = 0; i < 256; i++) {
+      const pair = pairFromSeed(randomAsU8a());
+
+      try {
+        expect(verify(MESSAGE, sign(MESSAGE, pair, 'blake2'), hasher('blake2', pair.publicKey), 'blake2')).toBe(true);
+      } catch (error) {
+        console.error(`blake2 failed on #${i}`);
+        throw error;
+      }
+    }
+  }, 120000);
+
+  it('works over a range of random keys (keccak)', (): void => {
+    for (let i = 0; i < 256; i++) {
+      const pair = pairFromSeed(randomAsU8a());
+
+      try {
+        expect(verify(MESSAGE, sign(MESSAGE, pair, 'keccak'), hasher('keccak', pair.publicKey), 'keccak')).toBe(true);
+      } catch (error) {
+        console.error(`keccak failed on #${i}`);
+        throw error;
+      }
+    }
+  }, 120000);
 });

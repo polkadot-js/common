@@ -12,6 +12,8 @@ import keyHdkdEcdsa from './hdkdEcdsa';
 const generators = {
   ecdsa: keyHdkdEcdsa,
   ed25519: keyHdkdEd15519,
+  // FIXME This is Substrate-compatible, not Ethereum-compatible
+  ethereum: keyHdkdEcdsa,
   sr25519: keyHdkdSr15519
 };
 

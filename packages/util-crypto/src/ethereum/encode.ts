@@ -12,13 +12,13 @@ export default function ethereumEncode (_address?: string | Uint8Array): string 
     return '0x';
   }
 
-  const address = u8aToHex(u8aToU8a(_address), -1, false).toLowerCase();
+  const address = u8aToHex(u8aToU8a(_address), -1, false);
 
   if (!isEthereumAddress(`0x${address}`)) {
     return '0x';
   }
 
-  const hash = u8aToHex(keccakAsU8a(address.toLowerCase()), -1, false);
+  const hash = u8aToHex(keccakAsU8a(address), -1, false);
   let result = '';
 
   for (let index = 0; index < 40; index++) {

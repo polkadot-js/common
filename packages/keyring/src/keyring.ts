@@ -12,6 +12,14 @@ import { DEV_PHRASE } from './defaults';
 import createPair from './pair';
 import Pairs from './pairs';
 
+const keypairFromSeed = {
+  ecdsa: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
+  ed25519: (seed: Uint8Array): Keypair => naclFromSeed(seed),
+  // FIXME This is not Ethereum-compatible
+  ethereum: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
+  sr25519: (seed: Uint8Array): Keypair => schnorrkelFromSeed(seed)
+};
+
 /**
  * # @polkadot/keyring
  *
@@ -128,13 +136,7 @@ export default class Keyring implements KeyringInstance {
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
   public addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
-    const keypair = {
-      ecdsa: (): Keypair => secp256k1FromSeed(seed),
-      ed25519: (): Keypair => naclFromSeed(seed),
-      sr25519: (): Keypair => schnorrkelFromSeed(seed)
-    }[type]();
-
-    return this.addPair(createPair({ toSS58: this.encodeAddress, type }, keypair, meta, null));
+    return this.addPair(createPair({ toSS58: this.encodeAddress, type }, keypairFromSeed[type](seed), meta, null));
   }
 
   /**
@@ -180,12 +182,7 @@ export default class Keyring implements KeyringInstance {
       }
     }
 
-    const keypair = {
-      ecdsa: (): Keypair => secp256k1FromSeed(seed),
-      ed25519: (): Keypair => naclFromSeed(seed),
-      sr25519: (): Keypair => schnorrkelFromSeed(seed)
-    };
-    const derived = keyFromPath(keypair[type](), path, type);
+    const derived = keyFromPath(keypairFromSeed[type](seed), path, type);
 
     return createPair({ toSS58: this.encodeAddress, type }, derived, meta, null);
   }

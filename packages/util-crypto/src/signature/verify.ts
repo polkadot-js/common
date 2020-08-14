@@ -14,13 +14,23 @@ import secp256k1Verify from '../secp256k1/verify';
 const VERIFIERS: [KeypairType, (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string) => boolean][] = [
   ['ed25519', naclVerify],
   ['sr25519', schnorrkelVerify],
-  ['ecdsa', secp256k1Verify]
+  [
+    'ecdsa',
+    (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string) =>
+      secp256k1Verify(message, signature, publicKey, 'blake2')
+  ],
+  [
+    'ethereum',
+    (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string) =>
+      secp256k1Verify(message, signature, publicKey, 'keccak')
+  ]
 ];
 
 const CRYPTO_TYPES: KeypairType[] = [
   'ed25519',
   'sr25519',
-  'ecdsa'
+  'ecdsa',
+  'ethereum'
 ];
 
 function verifyDetect (result: VerifyResult, message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array): VerifyResult {
@@ -48,8 +58,9 @@ function verifyMultisig (result: VerifyResult, message: Uint8Array | string, sig
 
   try {
     result.isValid = {
-      ecdsa: (): boolean => secp256k1Verify(message, signature.subarray(1), publicKey),
+      ecdsa: (): boolean => secp256k1Verify(message, signature.subarray(1), publicKey, 'blake2'),
       ed25519: (): boolean => naclVerify(message, signature.subarray(1), publicKey),
+      ethereum: (): boolean => secp256k1Verify(message, signature.subarray(1), publicKey, 'keccak'),
       none: (): boolean => { throw Error('no verify for `none` crypto type'); },
       sr25519: (): boolean => schnorrkelVerify(message, signature.subarray(1), publicKey)
     }[result.crypto]();
