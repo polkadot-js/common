@@ -52,7 +52,7 @@ describe('sign and verify', (): void => {
   });
 
   it('works over a range of random keys (blake2)', (): void => {
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 256; i++) {
       const pair = pairFromSeed(randomAsU8a());
 
       try {
@@ -65,7 +65,7 @@ describe('sign and verify', (): void => {
   }, 120000);
 
   it('works over a range of random keys (keccak)', (): void => {
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 256; i++) {
       const pair = pairFromSeed(randomAsU8a());
 
       try {

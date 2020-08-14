@@ -6,7 +6,7 @@ import { Keypair } from '../types';
 import { HashType } from './types';
 
 import elliptic from 'elliptic';
-import { assert, u8aConcat } from '@polkadot/util';
+import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
 import hasher from './hasher';
 
@@ -22,9 +22,10 @@ export default function secp256k1Sign (message: Uint8Array | string, { secretKey
 
   const key = ec.keyFromPrivate(secretKey);
   const ecsig = key.sign(hasher(hashType, message));
-  const rParam = new Uint8Array(ecsig.r.toArray());
-  const sParam = new Uint8Array(ecsig.s.toArray());
-  const recoveryParam = Uint8Array.of(ecsig.recoveryParam || 0);
 
-  return u8aConcat(rParam, sParam, recoveryParam);
+  return u8aConcat(
+    bnToU8a(ecsig.r, { bitLength: 256, isLe: false }),
+    bnToU8a(ecsig.s, { bitLength: 256, isLe: false }),
+    new Uint8Array([ecsig.recoveryParam || 0])
+  );
 }

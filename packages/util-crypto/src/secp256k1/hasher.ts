@@ -4,20 +4,16 @@
 
 import { HashType } from './types';
 
-import { u8aToU8a } from '@polkadot/util';
-
 import { blake2AsU8a } from '../blake2';
 import { keccakAsU8a } from '../keccak';
 
 const HASH_TYPES = ['blake2', 'keccak'];
 
 export default function secp256k1Hasher (hashType: HashType, data: Uint8Array | string): Uint8Array {
-  const u8a = u8aToU8a(data);
-
   if (hashType === 'blake2') {
-    return blake2AsU8a(u8a);
+    return blake2AsU8a(data);
   } else if (hashType === 'keccak') {
-    return keccakAsU8a(u8a);
+    return keccakAsU8a(data);
   }
 
   throw new Error(`Unsupported secp256k1 hasher '${hashType as string}', expected one of ${HASH_TYPES.join(', ')}`);

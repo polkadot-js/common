@@ -5,7 +5,7 @@
 import { Keypair } from '../../types';
 
 import elliptic from 'elliptic';
-import { assert, hexToU8a } from '@polkadot/util';
+import { assert, bnToU8a } from '@polkadot/util';
 
 const EC = elliptic.ec;
 const ec = new EC('secp256k1');
@@ -20,7 +20,7 @@ export default function secp256k1KeypairFromSeed (seed: Uint8Array): Keypair {
   const key = ec.keyFromPrivate(seed);
 
   return {
-    publicKey: new Uint8Array(key.getPublic().encodeCompressed('array')),
-    secretKey: hexToU8a(`0x${key.getPrivate('hex')}`)
+    publicKey: new Uint8Array(key.getPublic().encodeCompressed()),
+    secretKey: bnToU8a(key.getPrivate(), { bitLength: 256, isLe: false })
   };
 }
