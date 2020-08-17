@@ -6,7 +6,7 @@ import { KeypairType, Keypair } from '@polkadot/util-crypto/types';
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, KeyringOptions } from './types';
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
-import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
+import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToBip39, mnemonicToMiniSecret } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
 import createPair from './pair';
@@ -48,7 +48,7 @@ export default class Keyring implements KeyringInstance {
   constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
 
-    assert(options && ['ecdsa', 'ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519', 'sr25519' or 'ecdsa', found '${options.type}`);
+    assert(options && ['ecdsa', 'ethereum', 'ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519', 'sr25519' or 'ecdsa', found '${options.type}`);
 
     this.#pairs = new Pairs();
     this.#ss58 = options.ss58Format;
@@ -170,11 +170,9 @@ export default class Keyring implements KeyringInstance {
       const parts = str.split(' ');
 
       if ([12, 15, 18, 21, 24].includes(parts.length)) {
-        // FIXME This keeps compat with older versions, but breaks compat with subkey
-        // seed = type === 'sr25519'
-        //   ? mnemonicToMiniSecret(phrase, password)
-        //   : mnemonicToSeed(phrase, password);
-        seed = mnemonicToMiniSecret(phrase, password);
+        seed = type === 'ethereum'
+          ? mnemonicToBip39(phrase)
+          : mnemonicToMiniSecret(phrase, password);
       } else {
         assert(str.length <= 32, 'specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
 
@@ -182,6 +180,7 @@ export default class Keyring implements KeyringInstance {
       }
     }
 
+    // FIXME Need to support Ethereum-type derivation paths
     const derived = keyFromPath(keypairFromSeed[type](seed), path, type);
 
     return createPair({ toSS58: this.encodeAddress, type }, derived, meta, null);
