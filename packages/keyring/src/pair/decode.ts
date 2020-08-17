@@ -8,7 +8,7 @@ import { PairInfo } from './types';
 import { assert, stringToU8a, u8aFixLength } from '@polkadot/util';
 import { naclDecrypt, scryptEncode, scryptFromU8a } from '@polkadot/util-crypto';
 
-import { NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH, SCRYPT_LENGTH } from './defaults';
+import { ENCODING, NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH, SCRYPT_LENGTH } from './defaults';
 
 const SEED_OFFSET = PKCS8_HEADER.length;
 
@@ -43,7 +43,7 @@ function decodePkcs8 (encoded: Uint8Array): DecodeResult {
   };
 }
 
-export default function decode (passphrase?: string, encrypted?: Uint8Array | null, encType: KeyringPair$JsonEncodingTypes[] = ['scrypt', 'xsalsa20-poly1305']): DecodeResult {
+export default function decode (passphrase?: string, encrypted?: Uint8Array | null, encType: KeyringPair$JsonEncodingTypes[] = ENCODING): DecodeResult {
   assert(encrypted, 'No encrypted data available to decode');
   assert(passphrase || !encType.includes('xsalsa20-poly1305'), 'Password required to decode encypted data');
 

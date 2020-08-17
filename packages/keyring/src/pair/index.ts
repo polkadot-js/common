@@ -48,7 +48,7 @@ const TYPE_VERIFY = {
     secp256k1Verify(message, signature, blake2AsU8a(publicKey), 'blake2'),
   ed25519: naclVerify,
   ethereum: (message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array) =>
-    secp256k1Verify(message, signature, keccakAsU8a(publicKey), 'keccak'),
+    secp256k1Verify(message, signature, keccakAsU8a(secp256k1Compress(publicKey)), 'keccak'),
   sr25519: schnorrkelVerify
 };
 
@@ -75,10 +75,10 @@ function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, 
   return TYPE_VERIFY[type](message, signature, publicKey);
 }
 
-function getAddress (type: KeypairType, publicKey: Uint8Array, isCompressed = false): Uint8Array {
+function getAddress (type: KeypairType, publicKey: Uint8Array): Uint8Array {
   if (type === 'ecdsa' && publicKey.length > 32) {
     return blake2AsU8a(publicKey);
-  } else if (type === 'ethereum' && isCompressed) {
+  } else if (type === 'ethereum') {
     return secp256k1Compress(publicKey).slice(-32);
   }
 
@@ -183,7 +183,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
       return sign(type, message, { publicKey, secretKey }, options);
     },
     toJson: (passphrase?: string): KeyringPair$Json =>
-      toJson(type, { address: toSS58(getAddress(type, publicKey, true)), meta }, recode(passphrase), !!passphrase),
+      toJson(type, { address: toSS58(getAddress(type, publicKey)), meta }, recode(passphrase), !!passphrase),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       verify(type, message, signature, publicKey)
   };
