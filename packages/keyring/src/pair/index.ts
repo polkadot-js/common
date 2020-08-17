@@ -6,8 +6,8 @@ import { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, SignOptions } from '../types';
 import { PairInfo } from './types';
 
-import { assert, u8aConcat } from '@polkadot/util';
-import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Verify } from '@polkadot/util-crypto';
+import { assert, u8aConcat, u8aToHex } from '@polkadot/util';
+import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Verify, secp256k1Compress } from '@polkadot/util-crypto';
 
 import decode from './decode';
 import encode from './encode';
@@ -103,11 +103,14 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     return encoded;
   };
 
+  const encodeAddress = (): string =>
+    type === 'ethereum'
+      ? ethereumEncode(TYPE_ADDRESS[type](publicKey))
+      : toSS58(TYPE_ADDRESS[type](publicKey));
+
   return {
     get address (): string {
-      return type === 'ethereum'
-        ? ethereumEncode(TYPE_ADDRESS[type](publicKey))
-        : toSS58(TYPE_ADDRESS[type](publicKey));
+      return encodeAddress();
     },
     get isLocked (): boolean {
       return isLocked(secretKey);
@@ -161,8 +164,13 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
         TYPE_SIGNATURE[type](message, { publicKey, secretKey })
       );
     },
-    toJson: (passphrase?: string): KeyringPair$Json =>
-      toJson(type, { address: toSS58(TYPE_ADDRESS[type](publicKey)), meta }, recode(passphrase), !!passphrase),
+    toJson: (passphrase?: string): KeyringPair$Json => {
+      const address = ['ecdsa', 'ethereum'].includes(type)
+        ? u8aToHex(secp256k1Compress(publicKey))
+        : encodeAddress();
+
+      return toJson(type, { address, meta }, recode(passphrase), !!passphrase);
+    },
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       TYPE_VERIFY[type](message, signature, publicKey)
   };
