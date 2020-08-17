@@ -7,7 +7,7 @@ import { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPa
 import { PairInfo } from './types';
 
 import { assert, u8aConcat } from '@polkadot/util';
-import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1Compress, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Verify } from '@polkadot/util-crypto';
+import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Verify } from '@polkadot/util-crypto';
 
 import decode from './decode';
 import encode from './encode';
@@ -48,7 +48,7 @@ const TYPE_VERIFY = {
     secp256k1Verify(message, signature, blake2AsU8a(publicKey), 'blake2'),
   ed25519: naclVerify,
   ethereum: (message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array) =>
-    secp256k1Verify(message, signature, keccakAsU8a(secp256k1Compress(publicKey)), 'keccak'),
+    secp256k1Verify(message, signature, keccakAsU8a(secp256k1Expand(publicKey)), 'keccak'),
   sr25519: schnorrkelVerify
 };
 

@@ -7,6 +7,7 @@ import { HashType } from './types';
 import elliptic from 'elliptic';
 import { assert, u8aToU8a } from '@polkadot/util';
 
+import secp256k1Expand from './expand';
 import hasher from './hasher';
 
 const EC = elliptic.ec;
@@ -31,6 +32,9 @@ export default function secp256k1Verify (message: Uint8Array | string, signature
     ec.recoverPubKey(hasher(hashType, message), sig, recovery)
       .encodeCompressed()
   );
+  const hashData = hashType === 'keccak'
+    ? secp256k1Expand(publicKey)
+    : publicKey;
 
-  return Buffer.compare(hasher(hashType, publicKey), u8aToU8a(address)) === 0;
+  return Buffer.compare(hasher(hashType, hashData), u8aToU8a(address)) === 0;
 }
