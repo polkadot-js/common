@@ -7,20 +7,20 @@ import { assert, u8aToHex, u8aToU8a } from '@polkadot/util';
 import { keccakAsU8a } from '../keccak';
 import { secp256k1Expand } from '../secp256k1';
 
-export default function ethereumEncode (_address?: string | Uint8Array): string {
-  if (!_address) {
+export default function ethereumEncode (addressOrPublic?: string | Uint8Array): string {
+  if (!addressOrPublic) {
     return '0x';
   }
 
-  let u8a = u8aToU8a(_address);
+  let u8aAddress = u8aToU8a(addressOrPublic);
 
-  assert([20, 32, 33, 64, 65].includes(u8a.length), 'Invalid address or publicKey passed');
+  assert([20, 32, 33, 64, 65].includes(u8aAddress.length), 'Invalid address or publicKey passed');
 
-  if (u8a.length > 20) {
-    u8a = keccakAsU8a(secp256k1Expand(u8a)).slice(-20);
+  if (u8aAddress.length > 20) {
+    u8aAddress = keccakAsU8a(secp256k1Expand(u8aAddress)).slice(-20);
   }
 
-  const address = u8aToHex(u8a, -1, false);
+  const address = u8aToHex(u8aAddress, -1, false);
   const hash = u8aToHex(keccakAsU8a(address), -1, false);
   let result = '';
 
