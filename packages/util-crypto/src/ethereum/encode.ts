@@ -2,22 +2,25 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { u8aToHex, u8aToU8a } from '@polkadot/util';
+import { assert, u8aToHex, u8aToU8a } from '@polkadot/util';
 
 import { keccakAsU8a } from '../keccak';
-import isEthereumAddress from './isAddress';
+import { secp256k1Expand } from '../secp256k1';
 
 export default function ethereumEncode (_address?: string | Uint8Array): string {
   if (!_address) {
     return '0x';
   }
 
-  const address = u8aToHex(u8aToU8a(_address), -1, false);
+  let u8a = u8aToU8a(_address);
 
-  if (!isEthereumAddress(`0x${address}`)) {
-    return '0x';
+  assert([20, 32, 33, 64, 65].includes(u8a.length), 'Invalid address or publicKey passed');
+
+  if (u8a.length > 20) {
+    u8a = keccakAsU8a(secp256k1Expand(u8a)).slice(-20);
   }
 
+  const address = u8aToHex(u8a, -1, false);
   const hash = u8aToHex(keccakAsU8a(address), -1, false);
   let result = '';
 

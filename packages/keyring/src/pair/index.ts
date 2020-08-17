@@ -7,7 +7,7 @@ import { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPa
 import { PairInfo } from './types';
 
 import { assert, u8aConcat } from '@polkadot/util';
-import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Verify } from '@polkadot/util-crypto';
+import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1Compress, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Verify } from '@polkadot/util-crypto';
 
 import decode from './decode';
 import encode from './encode';
@@ -74,11 +74,13 @@ function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, 
   }[type]();
 }
 
-function getAddress (type: KeypairType, publicKey: Uint8Array): Uint8Array {
+function getAddress (type: KeypairType, publicKey: Uint8Array, isCompressed = false): Uint8Array {
   if (type === 'ecdsa' && publicKey.length > 32) {
     return blake2AsU8a(publicKey);
-  } else if (type === 'ethereum' && publicKey.length > 32) {
-    return keccakAsU8a(publicKey);
+  } else if (type === 'ethereum') {
+    return isCompressed
+      ? secp256k1Compress(publicKey).slice(-32)
+      : publicKey;
   } else {
     return publicKey;
   }
@@ -182,7 +184,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
       return sign(type, message, { publicKey, secretKey }, options);
     },
     toJson: (passphrase?: string): KeyringPair$Json =>
-      toJson(type, { address: toSS58(getAddress(type, publicKey)), meta }, recode(passphrase), !!passphrase),
+      toJson(type, { address: toSS58(getAddress(type, publicKey, true)), meta }, recode(passphrase), !!passphrase),
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       verify(type, message, signature, publicKey)
   };

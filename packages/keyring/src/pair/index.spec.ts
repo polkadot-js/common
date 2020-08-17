@@ -4,6 +4,8 @@
 
 import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkadot/util-crypto';
 
+import { hexToU8a } from '@polkadot/util';
+
 import { PAIRS } from '../testing';
 import testingPairs from '../testingPairs';
 import createPair from '.';
@@ -102,5 +104,13 @@ describe('pair', (): void => {
     expect((): Uint8Array =>
       pair.sign(new Uint8Array([0]))
     ).toThrow('Cannot sign with a locked key pair');
+  });
+
+  describe('ethereum', (): void => {
+    it('has a valid address from a known public', (): void => {
+      const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077') });
+
+      expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
+    });
   });
 });
