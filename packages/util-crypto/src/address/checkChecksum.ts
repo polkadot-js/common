@@ -5,7 +5,7 @@
 import sshash from './sshash';
 
 export default function checkChecksum (decoded: Uint8Array): [boolean, number] {
-  const isPublicKey = decoded.length === 35;
+  const isPublicKey = [35, 36].includes(decoded.length);
 
   // non-publicKeys has 1 byte checksums, else default to 2
   const length = decoded.length - (isPublicKey ? 2 : 1);

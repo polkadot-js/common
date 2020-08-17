@@ -6,8 +6,8 @@ import { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, SignOptions } from '../types';
 import { PairInfo } from './types';
 
-import { assert, u8aConcat } from '@polkadot/util';
-import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1Compress, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Verify } from '@polkadot/util-crypto';
+import { assert, u8aConcat, u8aToHex } from '@polkadot/util';
+import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclVerify, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVerify, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Verify, secp256k1Compress } from '@polkadot/util-crypto';
 
 import decode from './decode';
 import encode from './encode';
@@ -35,54 +35,28 @@ const TYPE_PREFIX = {
 };
 
 const TYPE_SIGNATURE = {
-  ecdsa: (message: Uint8Array, pair: Partial<Keypair>) =>
-    secp256k1Sign(message, pair, 'blake2'),
+  ecdsa: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'blake2'),
   ed25519: naclSign,
-  ethereum: (message: Uint8Array, pair: Partial<Keypair>) =>
-    secp256k1Sign(message, pair, 'keccak'),
+  ethereum: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'keccak'),
   sr25519: schnorrkelSign
 };
 
+const TYPE_ADDRESS = {
+  ecdsa: (p: Uint8Array) => p.length > 32 ? blake2AsU8a(p) : p,
+  ed25519: (p: Uint8Array) => p,
+  ethereum: (p: Uint8Array) => keccakAsU8a(secp256k1Expand(p)),
+  sr25519: (p: Uint8Array) => p
+};
+
 const TYPE_VERIFY = {
-  ecdsa: (message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array) =>
-    secp256k1Verify(message, signature, blake2AsU8a(publicKey), 'blake2'),
+  ecdsa: (m: Uint8Array, s: Uint8Array, p: Uint8Array) => secp256k1Verify(m, s, TYPE_ADDRESS.ecdsa(p), 'blake2'),
   ed25519: naclVerify,
-  ethereum: (message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array) =>
-    secp256k1Verify(message, signature, keccakAsU8a(publicKey), 'keccak'),
+  ethereum: (m: Uint8Array, s: Uint8Array, p: Uint8Array) => secp256k1Verify(m, s, TYPE_ADDRESS.ethereum(p), 'keccak', true),
   sr25519: schnorrkelVerify
 };
 
 function isEmpty (u8a: Uint8Array): boolean {
-  return u8a.reduce((count, u8): number => count + u8, 0) === 0;
-}
-
-function fromSeed (type: KeypairType, seed: Uint8Array): Keypair {
-  return TYPE_FROM_SEED[type](seed);
-}
-
-function sign (type: KeypairType, message: Uint8Array, pair: Partial<Keypair>, { withType = false }: SignOptions = {}): Uint8Array {
-  return u8aConcat(
-    // for multi-signatures, i.e. with indicator, append the signature type as per
-    // the MultiSignature enum
-    withType
-      ? TYPE_PREFIX[type]
-      : SIG_TYPE_NONE,
-    TYPE_SIGNATURE[type](message, pair)
-  );
-}
-
-function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array): boolean {
-  return TYPE_VERIFY[type](message, signature, publicKey);
-}
-
-function getAddress (type: KeypairType, publicKey: Uint8Array, isCompressed = false): Uint8Array {
-  if (type === 'ecdsa' && publicKey.length > 32) {
-    return blake2AsU8a(publicKey);
-  } else if (type === 'ethereum' && isCompressed) {
-    return secp256k1Compress(publicKey).slice(-32);
-  }
-
-  return publicKey;
+  return u8a.reduce((count, u8) => count + u8, 0) === 0;
 }
 
 // Not 100% correct, since it can be a Uint8Array, but an invalid one - just say "undefined" is anything non-valid
@@ -129,11 +103,14 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     return encoded;
   };
 
+  const encodeAddress = (): string =>
+    type === 'ethereum'
+      ? ethereumEncode(TYPE_ADDRESS[type](publicKey))
+      : toSS58(TYPE_ADDRESS[type](publicKey));
+
   return {
     get address (): string {
-      return type === 'ethereum'
-        ? ethereumEncode(getAddress(type, publicKey))
-        : toSS58(getAddress(type, publicKey));
+      return encodeAddress();
     },
     get isLocked (): boolean {
       return isLocked(secretKey);
@@ -155,7 +132,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
         publicKey = decoded.publicKey;
         secretKey = decoded.secretKey;
       } else {
-        const pair = fromSeed(type, decoded.secretKey);
+        const pair = TYPE_FROM_SEED[type](decoded.secretKey);
 
         publicKey = pair.publicKey;
         secretKey = pair.secretKey;
@@ -177,14 +154,24 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     setMeta: (additional: KeyringPair$Meta): void => {
       meta = { ...meta, ...additional };
     },
-    sign: (message: Uint8Array, options?: SignOptions): Uint8Array => {
+    sign: (message: Uint8Array, options: SignOptions = {}): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
 
-      return sign(type, message, { publicKey, secretKey }, options);
+      return u8aConcat(
+        options.withType
+          ? TYPE_PREFIX[type]
+          : SIG_TYPE_NONE,
+        TYPE_SIGNATURE[type](message, { publicKey, secretKey })
+      );
     },
-    toJson: (passphrase?: string): KeyringPair$Json =>
-      toJson(type, { address: toSS58(getAddress(type, publicKey, true)), meta }, recode(passphrase), !!passphrase),
+    toJson: (passphrase?: string): KeyringPair$Json => {
+      const address = ['ecdsa', 'ethereum'].includes(type)
+        ? u8aToHex(secp256k1Compress(publicKey))
+        : encodeAddress();
+
+      return toJson(type, { address, meta }, recode(passphrase), !!passphrase);
+    },
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
-      verify(type, message, signature, publicKey)
+      TYPE_VERIFY[type](message, signature, publicKey)
   };
 }
