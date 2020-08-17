@@ -77,13 +77,11 @@ function verify (type: KeypairType, message: Uint8Array, signature: Uint8Array, 
 function getAddress (type: KeypairType, publicKey: Uint8Array, isCompressed = false): Uint8Array {
   if (type === 'ecdsa' && publicKey.length > 32) {
     return blake2AsU8a(publicKey);
-  } else if (type === 'ethereum') {
-    return isCompressed
-      ? secp256k1Compress(publicKey).slice(-32)
-      : publicKey;
-  } else {
-    return publicKey;
+  } else if (type === 'ethereum' && isCompressed) {
+    return secp256k1Compress(publicKey).slice(-32);
   }
+
+  return publicKey;
 }
 
 // Not 100% correct, since it can be a Uint8Array, but an invalid one - just say "undefined" is anything non-valid
