@@ -1,9 +1,11 @@
 # CHANGELOG
 
-## 3.2.0-beta.x
+## 3.2.1 Aug 17, 2020
 
 - Allow for (optional, default blake2) hasher to secp256k1 sign/verify functions
+- Utilities for secp256k1 publicKey expansion and compression
 - Add basic Ethereum address utils (encode with checksum & checksum verification)
+- Add Ethereum-compatible `mnemonicToBip39` seed creation function
 
 ## 3.1.1 Aug 10, 2020
 
