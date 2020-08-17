@@ -15,7 +15,6 @@ import Pairs from './pairs';
 const keypairFromSeed = {
   ecdsa: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
   ed25519: (seed: Uint8Array): Keypair => naclFromSeed(seed),
-  // FIXME This is not Ethereum-compatible
   ethereum: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
   sr25519: (seed: Uint8Array): Keypair => schnorrkelFromSeed(seed)
 };
