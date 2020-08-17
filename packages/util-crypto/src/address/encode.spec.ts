@@ -67,11 +67,17 @@ describe('encode', (): void => {
     ).toEqual('as7QnGMf');
   });
 
-  it('enodes a 8-byte address', (): void => {
+  it('encodes a 8-byte address', (): void => {
     expect(
       encode(
         new Uint8Array([42, 44, 10, 0, 0, 0, 0, 0]), 68
       )
     ).toEqual('4q7qY5RBG7Z4wv');
+  });
+
+  it('encodes an 33-byte address', (): void => {
+    expect(
+      encode('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077')
+    ).toEqual('KWCv1L3QX9LDPwY4VzvLmarEmXjVJidUzZcinvVnmxAJJCBou');
   });
 });

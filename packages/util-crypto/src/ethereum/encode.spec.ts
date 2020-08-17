@@ -2,6 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+import { keccakAsU8a } from '../keccak';
 import { ethereumEncode } from './';
 
 describe('formatAddress', () => {
@@ -36,25 +37,21 @@ describe('formatAddress', () => {
 
     it('encodes a compressed publicKey', (): void => {
       expect(
-        ethereumEncode('0xb9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077')
-      ).toEqual(ADDRESS);
-    });
-
-    it('encodes a compressed publicKey (indicator)', (): void => {
-      expect(
         ethereumEncode('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077')
       ).toEqual(ADDRESS);
     });
 
     it('encodes an expanded publicKey', (): void => {
       expect(
-        ethereumEncode('0xb9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb1307763fe926c273235fd979a134076d00fd1683cbd35868cb485d4a3a640e52184af')
+        ethereumEncode('0x04b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb1307763fe926c273235fd979a134076d00fd1683cbd35868cb485d4a3a640e52184af')
       ).toEqual(ADDRESS);
     });
 
-    it('encodes an expanded publicKey (indicator + x/y)', (): void => {
+    it('encodes a pre-hashed key', (): void => {
       expect(
-        ethereumEncode('0x04b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb1307763fe926c273235fd979a134076d00fd1683cbd35868cb485d4a3a640e52184af')
+        ethereumEncode(
+          keccakAsU8a('0xb9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb1307763fe926c273235fd979a134076d00fd1683cbd35868cb485d4a3a640e52184af')
+        )
       ).toEqual(ADDRESS);
     });
   });

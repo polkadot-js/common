@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { stringToU8a, u8aToHex } from '@polkadot/util';
+import { stringToU8a, u8aToHex, hexToU8a } from '@polkadot/util';
 
 import testingPairs, { TestKeyringMap } from '../../../keyring/src/testingPairs';
 import decode from './decode';
@@ -72,6 +72,14 @@ describe('decodeAddress', (): void => {
     expect(
       decode('4q7qY5RBG7Z4wv', false, 68)
     ).toEqual(new Uint8Array([42, 44, 10, 0, 0, 0, 0, 0]));
+  });
+
+  it('decodes a 33-byte address', (): void => {
+    expect(
+      decode('KWCv1L3QX9LDPwY4VzvLmarEmXjVJidUzZcinvVnmxAJJCBou')
+    ).toEqual(
+      hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077')
+    );
   });
 
   it.skip('allows invalid prefix (in list)', (): void => {

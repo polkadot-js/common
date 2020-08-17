@@ -230,10 +230,10 @@ describe('keypair', (): void => {
 
     it('allows adding from JSON', (): void => {
       const pair = keyring.addFromJson(
-        JSON.parse('{"address":"34wtVv7QQ5NsJQDcyWYnz9J5XrNgYE3VcRfKQ6scSt7o1ixi","encoded":"U8qFEaghhmNV2PgFhjqzmhyUy37Ok7abfFU2MNsBd0sAgAAAAQAAAAgAAAA3+NniKogzNphiMNueB1X0sGA07B6CaXWfpXPx45iSXoTTprwzU5mOoSqUWO0GKHROI72LN+uJ8Yfv6Ll6JOOV3VPKfoVoFmYm+zDrrMPa0gk5E5kUuSijxADcE6zUrliPVr0Ix/qaghu5SJ7RtWDQLBf4Hp86SJ8Gg6gTSSk=","encoding":{"content":["pkcs8","ethereum"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{}}')
+        JSON.parse('{"address":"KWCv1L3QX9LDPwY4VzvLmarEmXjVJidUzZcinvVnmxAJJCBou","encoded":"U8qFEaghhmNV2PgFhjqzmhyUy37Ok7abfFU2MNsBd0sAgAAAAQAAAAgAAAA3+NniKogzNphiMNueB1X0sGA07B6CaXWfpXPx45iSXoTTprwzU5mOoSqUWO0GKHROI72LN+uJ8Yfv6Ll6JOOV3VPKfoVoFmYm+zDrrMPa0gk5E5kUuSijxADcE6zUrliPVr0Ix/qaghu5SJ7RtWDQLBf4Hp86SJ8Gg6gTSSk=","encoding":{"content":["pkcs8","ethereum"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{}}')
       );
 
-      expect(pair.publicKey).toEqual(hexToU8a('0xb9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077'));
+      expect(pair.publicKey).toEqual(hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077'));
       expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
 
       pair.decodePkcs8('password');
@@ -247,7 +247,7 @@ describe('keypair', (): void => {
       const MESSAGE = stringToU8a('just some test message');
       const signer = keyring.createFromUri(PHRASE);
       const verifier = keyring.addFromJson(
-        JSON.parse('{"address":"34wtVv7QQ5NsJQDcyWYnz9J5XrNgYE3VcRfKQ6scSt7o1ixi","encoded":"U8qFEaghhmNV2PgFhjqzmhyUy37Ok7abfFU2MNsBd0sAgAAAAQAAAAgAAAA3+NniKogzNphiMNueB1X0sGA07B6CaXWfpXPx45iSXoTTprwzU5mOoSqUWO0GKHROI72LN+uJ8Yfv6Ll6JOOV3VPKfoVoFmYm+zDrrMPa0gk5E5kUuSijxADcE6zUrliPVr0Ix/qaghu5SJ7RtWDQLBf4Hp86SJ8Gg6gTSSk=","encoding":{"content":["pkcs8","ethereum"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{}}')
+        JSON.parse('{"address":"KWCv1L3QX9LDPwY4VzvLmarEmXjVJidUzZcinvVnmxAJJCBou","encoded":"U8qFEaghhmNV2PgFhjqzmhyUy37Ok7abfFU2MNsBd0sAgAAAAQAAAAgAAAA3+NniKogzNphiMNueB1X0sGA07B6CaXWfpXPx45iSXoTTprwzU5mOoSqUWO0GKHROI72LN+uJ8Yfv6Ll6JOOV3VPKfoVoFmYm+zDrrMPa0gk5E5kUuSijxADcE6zUrliPVr0Ix/qaghu5SJ7RtWDQLBf4Hp86SJ8Gg6gTSSk=","encoding":{"content":["pkcs8","ethereum"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{}}')
       );
 
       const signature = signer.sign(MESSAGE);
