@@ -14,7 +14,7 @@ import keypairFromU8a from './fromU8a';
  * @name schnorrkelKeypairFromSeed
  * @description Returns a object containing a `publicKey` & `secretKey` generated from the supplied seed.
  */
-export default function schnorrkelKeypairFromSeed (seed: Uint8Array): Keypair {
+export default async function schnorrkelKeypairFromSeed (seed: Uint8Array): Keypair {
   await waitReady()
   return keypairFromU8a(
     sr25519KeypairFromSeed(seed)
