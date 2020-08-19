@@ -4,8 +4,9 @@
 
 import '../polyfill';
 
-import { sr25519DerivePublicSoft } from '@polkadot/wasm-crypto';
+import { sr25519DerivePublicSoft, waitReady } from '@polkadot/wasm-crypto';
 
-export default function deriveSoft (publicKey: Uint8Array, chainCode: Uint8Array): Uint8Array {
+export default async function deriveSoft (publicKey: Uint8Array, chainCode: Uint8Array): Uint8Array {
+  await waitReady()
   return sr25519DerivePublicSoft(publicKey, chainCode);
 }

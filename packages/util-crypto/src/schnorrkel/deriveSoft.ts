@@ -6,12 +6,13 @@ import { Keypair } from '../types';
 
 import '../polyfill';
 
-import { sr25519DeriveKeypairSoft } from '@polkadot/wasm-crypto';
+import { sr25519DeriveKeypairSoft, waitReady } from '@polkadot/wasm-crypto';
 
 import keypairFromU8a from './keypair/fromU8a';
 import keypairToU8a from './keypair/toU8a';
 
-export default function deriveSoft (keypair: Keypair, chainCode: Uint8Array): Keypair {
+export default async function deriveSoft (keypair: Keypair, chainCode: Uint8Array): Keypair {
+  await waitReady()
   return keypairFromU8a(
     sr25519DeriveKeypairSoft(keypairToU8a(keypair), chainCode)
   );
