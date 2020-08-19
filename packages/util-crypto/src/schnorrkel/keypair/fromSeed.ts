@@ -6,7 +6,7 @@ import { Keypair } from '../../types';
 
 import '../../polyfill';
 
-import { sr25519KeypairFromSeed } from '@polkadot/wasm-crypto';
+import { sr25519KeypairFromSeed, waitReady } from '@polkadot/wasm-crypto';
 
 import keypairFromU8a from './fromU8a';
 
@@ -15,6 +15,7 @@ import keypairFromU8a from './fromU8a';
  * @description Returns a object containing a `publicKey` & `secretKey` generated from the supplied seed.
  */
 export default function schnorrkelKeypairFromSeed (seed: Uint8Array): Keypair {
+  await waitReady()
   return keypairFromU8a(
     sr25519KeypairFromSeed(seed)
   );
