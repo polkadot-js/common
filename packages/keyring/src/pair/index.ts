@@ -112,6 +112,9 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     get address (): string {
       return encodeAddress();
     },
+    get addressRaw (): Uint8Array {
+      return TYPE_ADDRESS[type](publicKey);
+    },
     get isLocked (): boolean {
       return isLocked(secretKey);
     },
