@@ -2,7 +2,7 @@
 
 ## 3.3.0-beta.x
 
-- Add `addressRaw` to Keyring interface (if address encoding is different publicKey)
+- Add `addressRaw` to Keyring interface (if address encoding is different to publicKey)
 - Allow for Ethereum pair signing and verification
 
 ## 3.2.1 Aug 17, 2020
