@@ -26,6 +26,7 @@ const json: KeyringPair$Json = {
 export default function everybody (): KeyringPair {
   const pair: KeyringPair = {
     address,
+    addressRaw: publicKey,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void =>
       undefined,
