@@ -103,17 +103,24 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
     return encoded;
   };
 
-  const encodeAddress = (): string =>
-    type === 'ethereum'
-      ? ethereumEncode(TYPE_ADDRESS[type](publicKey))
-      : toSS58(TYPE_ADDRESS[type](publicKey));
+  const encodeAddress = (): string => {
+    const raw = TYPE_ADDRESS[type](publicKey);
+
+    return type === 'ethereum'
+      ? ethereumEncode(raw)
+      : toSS58(raw);
+  };
 
   return {
     get address (): string {
       return encodeAddress();
     },
     get addressRaw (): Uint8Array {
-      return TYPE_ADDRESS[type](publicKey);
+      const raw = TYPE_ADDRESS[type](publicKey);
+
+      return type === 'ethereum'
+        ? raw.slice(-20)
+        : raw;
     },
     get isLocked (): boolean {
       return isLocked(secretKey);
