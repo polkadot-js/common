@@ -13,7 +13,7 @@ import stringToU8a from '../string/toU8a';
  * @name u8aToU8a
  * @summary Creates a Uint8Array value from a Uint8Array, Buffer, string or hex input.
  * @description
- * `null` ior `undefined` nputs returns a `[]` result, Uint8Array values returns the value, hex strings returns a Uint8Array representation.
+ * `null` or `undefined` inputs returns a `[]` result, Uint8Array values returns the value, hex strings returns a Uint8Array representation.
  * @example
  * <BR>
  *

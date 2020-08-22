@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 3.3.0-beta.x
+
+- Add `addressRaw` to Keyring interface (if address encoding is different to publicKey)
+- Allow for Ethereum pair signing and verification
+
 ## 3.2.1 Aug 17, 2020
 
 - Allow for (optional, default blake2) hasher to secp256k1 sign/verify functions

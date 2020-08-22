@@ -35,6 +35,7 @@ export interface SignOptions {
 
 export interface KeyringPair {
   readonly address: string;
+  readonly addressRaw: Uint8Array;
   readonly meta: KeyringPair$Meta;
   readonly isLocked: boolean;
   readonly publicKey: Uint8Array;
