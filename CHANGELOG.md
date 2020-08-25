@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.4.0-beta.x
+
+- Allow for WASM-as-available `mnemonicToBip39` call
+
 ## 3.3.1 Aug 24, 2020
 
 - Add `addressRaw` to Keyring interface (if address encoding is different to publicKey)

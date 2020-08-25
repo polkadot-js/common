@@ -5,7 +5,7 @@
 import { mnemonicToSeedSync } from 'bip39';
 import { bufferToU8a } from '@polkadot/util';
 
-// import { bip39ToSeed, isReady } from '@polkadot/wasm-crypto';
+import { bip39ToSeed, isReady } from '@polkadot/wasm-crypto';
 
 /**
  * @name toSeed
@@ -25,9 +25,7 @@ import { bufferToU8a } from '@polkadot/util';
  * ```
  */
 export default function toBip39 (mnemonic: string, password = ''): Uint8Array {
-  // FIXMe Re-add when we have support in the WASM libs again
-  // return isReady()
-  //   ? bip39ToSeed(mnemonic, password)
-
-  return bufferToU8a(mnemonicToSeedSync(mnemonic, password)).subarray(0, 32);
+  return isReady()
+    ? bip39ToSeed(mnemonic, password)
+    : bufferToU8a(mnemonicToSeedSync(mnemonic, password)).subarray(0, 32);
 }
