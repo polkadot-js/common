@@ -21,9 +21,9 @@
     "test:one": "polkadot-dev-run-test"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@polkadot/dev": "^0.55.39",
-    "@polkadot/ts": "^0.3.39",
+    "@babel/core": "^7.11.4",
+    "@polkadot/dev": "^0.55.41",
+    "@polkadot/ts": "^0.3.40",
     "@types/jest": "^26.0.10"
   },
   "version": "3.4.0-beta.0"
