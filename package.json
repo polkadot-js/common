@@ -22,9 +22,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
-    "@polkadot/dev": "^0.55.42",
+    "@polkadot/dev": "^0.55.43",
     "@polkadot/ts": "^0.3.40",
     "@types/jest": "^26.0.10",
+    "typedoc": "^0.18.0",
     "typedoc-plugin-markdown": "2.4.1",
     "typedoc-plugin-no-inherit": "^1.1.10"
   },
