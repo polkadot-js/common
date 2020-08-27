@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/runtime": "^7.11.2",
     "@polkadot/util": "3.4.0-beta.1",
-    "@polkadot/wasm-crypto": "^1.4.0-beta.7",
+    "@polkadot/wasm-crypto": "^1.4.1",
     "base-x": "^3.0.8",
     "bip39": "^3.0.2",
     "blakejs": "^1.1.0",
