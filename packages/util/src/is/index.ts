@@ -27,3 +27,4 @@ export { default as isToBn } from './toBn';
 export { default as isU8a } from './u8a';
 export { default as isUndefined } from './undefined';
 export { default as isUtf8 } from './utf8';
+export { default as isWasm } from './wasm';

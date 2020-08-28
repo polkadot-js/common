@@ -3,6 +3,7 @@
 ## 3.4.0-beta.x
 
 - Allow for WASM-as-available `mnemonicToBip39` call (used for Ethereum-compatible keypairs)
+- Add `isWasm` utility to check for valid WASM headers
 - `@polkadot/wasm-crypto` 1.4.1
 
 ## 3.3.1 Aug 24, 2020
