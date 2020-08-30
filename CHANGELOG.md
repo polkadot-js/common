@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 3.4.0-beta.x
+## 3.4.1 Aug 31, 2020
 
 - Allow for WASM-as-available `mnemonicToBip39` call (used for Ethereum-compatible keypairs)
 - Add `isWasm` utility to check for valid WASM headers
