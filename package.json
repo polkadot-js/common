@@ -22,11 +22,11 @@
     "test:one": "polkadot-dev-run-test"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.5",
-    "@polkadot/dev": "^0.55.45",
-    "@polkadot/ts": "^0.3.40",
+    "@babel/core": "^7.11.6",
+    "@polkadot/dev": "^0.55.46",
+    "@polkadot/ts": "^0.3.42",
     "@types/jest": "^26.0.13",
-    "typedoc": "^0.19.0",
+    "typedoc": "^0.19.1",
     "typedoc-plugin-markdown": "^2.4.2",
     "typedoc-plugin-no-inherit": "^1.1.10"
   },
