@@ -31,6 +31,12 @@ describe('keypair', (): void => {
       ).toEqual(publicKeyTwo);
     });
 
+    it('creates via a dev seed', (): void => {
+      expect(
+        keyring.addFromUri('//Alice').address
+      ).toEqual('5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu');
+    });
+
     it('creates a ed25519 pair via mnemonicToSeed', (): void => {
       expect(
         keyring.addFromUri(
