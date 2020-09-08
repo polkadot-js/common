@@ -3932,11 +3932,11 @@ __metadata:
   linkType: hard
 
 "acorn-jsx@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "acorn-jsx@npm:5.2.0"
+  version: 5.3.1
+  resolution: "acorn-jsx@npm:5.3.1"
   peerDependencies:
-    acorn: ^6.0.0 || ^7.0.0
-  checksum: 1247cc4b32e7883c70823eae643ef07faefb02ef6084bb92d650e5564bb22d6e6392771036c1e15428dc01e6350a5336c6741e272c30ab6bf9ce578e4701f6c0
+    acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
+  checksum: 5925bc5d79a2821a8f7250b6de2b02bb86c0470dcb78cf68a603855291c5e50602b9eaf294aba2efbf3ee7063c80a9074b520b2330cc1aef80b849bfc7a041c0
   languageName: node
   linkType: hard
 
@@ -7427,9 +7427,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.562":
-  version: 1.3.562
-  resolution: "electron-to-chromium@npm:1.3.562"
-  checksum: f407a271c4f031f6a1927b1ea34360e987caa777d799121c065d7783f1eda61fdbdcbc109cdbdd2a44e34bdcf548573aeec68a08fa89de4619326c6f3ce1f81a
+  version: 1.3.563
+  resolution: "electron-to-chromium@npm:1.3.563"
+  checksum: 342959259ed2bb776542870b8a08f65d1e2604e8039c6130a5e7eb40480803b4d72eefc27740e73cdce0bb3ef270afffb9ca84c434459011ef7ed8ad15c6187f
   languageName: node
   linkType: hard
 
@@ -9663,9 +9663,9 @@ __metadata:
   linkType: hard
 
 "highlight.js@npm:^10.0.0":
-  version: 10.1.2
-  resolution: "highlight.js@npm:10.1.2"
-  checksum: 12ad98d6f2b89ff7f46e2f9404bb3f3783c81cc5a98362e89e7f56d9d0315952149561e5f1661073e0bf8528412ce9262a331f27da4e263d122d34daa5473d08
+  version: 10.2.0
+  resolution: "highlight.js@npm:10.2.0"
+  checksum: 249ae2aa4504200bb0bf856a0ed40dfd65f0302b5780dffcdc74d30bed31de72c9d1d1c2ab1fb6e365ebf7096064b69288cf1985c1d7bac6967fcb956ea7d247
   languageName: node
   linkType: hard
 
@@ -18051,11 +18051,11 @@ __metadata:
   linkType: hard
 
 "uglify-js@npm:^3.1.4":
-  version: 3.10.3
-  resolution: "uglify-js@npm:3.10.3"
+  version: 3.10.4
+  resolution: "uglify-js@npm:3.10.4"
   bin:
     uglifyjs: bin/uglifyjs
-  checksum: 61582fd815d1d3f8ef86de706350abdf43dc64dde4d54be8a138b237d8e95dc5b25564edbc4910a4642cbaf99ce8813aed43b172e4665d2352d58295306382b7
+  checksum: b16ee80e2d4bcddc6e792fdcc58a17f837eed9609f9b945012ab0829bb3a60b71e20a653d9f7a0eb73275694a08a33974bc2f9a8d9b3c829eb5e4a24bd81120d
   languageName: node
   linkType: hard
 
@@ -18979,13 +18979,13 @@ __metadata:
   linkType: hard
 
 "whatwg-url@npm:^8.0.0":
-  version: 8.2.1
-  resolution: "whatwg-url@npm:8.2.1"
+  version: 8.2.2
+  resolution: "whatwg-url@npm:8.2.2"
   dependencies:
     lodash.sortby: ^4.7.0
     tr46: ^2.0.2
     webidl-conversions: ^6.1.0
-  checksum: d0878feda0616889459ffe012e85b3edbb9da8085af3dd2da555808f279ad926361c803877b162fc826b33933e67b0fb0de46533fd7d8a424d75b51664d877f5
+  checksum: 3200508d0b79cfee888fb36bf26873e0583608d59be5e7486959de492c5d1aa649f8457930d0be6920d1c9b2fbd4238af45c5bd57f7fa12bb0b03483f9ccb56b
   languageName: node
   linkType: hard
 
