@@ -4,7 +4,7 @@
 
 import { Logger, Logger$Data } from './types';
 
-import chalk from 'chalk';
+import * as chalk from 'chalk';
 
 import formatDate from './format/formatDate';
 import isBn from './is/bn';

@@ -4,7 +4,7 @@
 
 import { HashType } from './types';
 
-import elliptic from 'elliptic';
+import * as elliptic from 'elliptic';
 import { assert, u8aEq, u8aToU8a } from '@polkadot/util';
 
 import secp256k1Expand from './expand';

@@ -5,7 +5,7 @@
 import { Keypair } from '../types';
 import { HashType } from './types';
 
-import elliptic from 'elliptic';
+import * as elliptic from 'elliptic';
 import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
 import hasher from './hasher';

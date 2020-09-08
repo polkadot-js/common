@@ -6,6 +6,8 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
+    "allowSyntheticDefaultImports": false,
+    "esModuleInterop": false,
     "paths": {
       "@polkadot/keyring": [ "packages/keyring/src" ],
       "@polkadot/keyring/*": [ "packages/keyring/src/*" ],

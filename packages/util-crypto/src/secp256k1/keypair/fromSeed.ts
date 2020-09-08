@@ -4,7 +4,7 @@
 
 import { Keypair } from '../../types';
 
-import elliptic from 'elliptic';
+import * as elliptic from 'elliptic';
 import { assert, bnToU8a } from '@polkadot/util';
 
 const EC = elliptic.ec;

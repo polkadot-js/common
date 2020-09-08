@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import nacl from 'tweetnacl';
+import * as nacl from 'tweetnacl';
 import { assert, u8aToU8a } from '@polkadot/util';
 import { isReady, ed25519Verify } from '@polkadot/wasm-crypto';
 

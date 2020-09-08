@@ -4,7 +4,7 @@
 
 import { BitLength } from './types';
 
-import BN from 'bn.js';
+import * as BN from 'bn.js';
 
 import { u8aToBn, u8aToU8a } from '../u8a';
 import { DEFAULT_BITLENGTH } from './defaults';

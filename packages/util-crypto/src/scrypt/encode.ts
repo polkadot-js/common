@@ -4,7 +4,7 @@
 
 import { Params } from './types';
 
-import scryptsy from 'scryptsy';
+import * as scryptsy from 'scryptsy';
 import { bufferToU8a, u8aToBuffer, u8aToU8a } from '@polkadot/util';
 import { isReady, scrypt } from '@polkadot/wasm-crypto';
 

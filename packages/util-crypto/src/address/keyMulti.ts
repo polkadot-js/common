@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import BN from 'bn.js';
+import * as BN from 'bn.js';
 import { bnToU8a, compactToU8a, stringToU8a, u8aConcat, u8aSorted } from '@polkadot/util';
 
 import blake2AsU8a from '../blake2/asU8a';

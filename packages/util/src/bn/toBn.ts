@@ -4,7 +4,7 @@
 
 import { ToBn } from '../types';
 
-import BN from 'bn.js';
+import * as BN from 'bn.js';
 
 import isBigInt from '../is/bigInt';
 import isToBn from '../is/toBn';
@@ -20,7 +20,7 @@ import hexToBn from '../hex/toBn';
  * <BR>
  *
  * ```javascript
- * import BN from 'bn.js';
+ * import * as BN from 'bn.js';
  * import { bnToBn } from '@polkadot/util';
  *
  * bnToBn(0x1234); // => BN(0x1234)
@@ -34,11 +34,11 @@ export default function bnToBn <ExtToBn extends ToBn> (value?: ExtToBn | BN | Bi
     return hexToBn(value.toString());
   } else if (isBigInt(value)) {
     return new BN(value.toString());
+  } else if (BN.isBN(value)) {
+    return value;
+  } else if (isToBn(value)) {
+    return value.toBn();
   }
 
-  return BN.isBN(value)
-    ? value
-    : isToBn(value)
-      ? value.toBn()
-      : new BN(value);
+  return new BN(value);
 }

@@ -4,7 +4,7 @@
 
 import { Keypair } from '../types';
 
-import nacl from 'tweetnacl';
+import * as nacl from 'tweetnacl';
 import { assert, u8aToU8a } from '@polkadot/util';
 import { isReady, ed25519Sign } from '@polkadot/wasm-crypto';
 
