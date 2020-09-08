@@ -4,7 +4,7 @@
 
 import { ToBn } from '../types';
 
-import * as BN from 'bn.js';
+import BN from 'bn.js';
 
 import bnToBn from '../bn/toBn';
 import formatDecimal from './formatDecimal';

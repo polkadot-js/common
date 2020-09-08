@@ -4,7 +4,7 @@
 
 import { ToBn } from '../types';
 
-import * as BN from 'bn.js';
+import BN from 'bn.js';
 
 import isBigInt from '../is/bigInt';
 import isToBn from '../is/toBn';
@@ -20,7 +20,7 @@ import hexToBn from '../hex/toBn';
  * <BR>
  *
  * ```javascript
- * import * as BN from 'bn.js';
+ * import BN from 'bn.js';
  * import { bnToBn } from '@polkadot/util';
  *
  * bnToBn(0x1234); // => BN(0x1234)

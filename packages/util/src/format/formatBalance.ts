@@ -4,7 +4,7 @@
 
 import { SiDef, ToBn } from '../types';
 
-import * as BN from 'bn.js';
+import BN from 'bn.js';
 
 import bnToBn from '../bn/toBn';
 import isBoolean from '../is/boolean';

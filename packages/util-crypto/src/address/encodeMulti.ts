@@ -4,7 +4,7 @@
 
 import { Prefix } from './types';
 
-import * as BN from 'bn.js';
+import BN from 'bn.js';
 
 import encode from './encode';
 import keyMulti from './keyMulti';

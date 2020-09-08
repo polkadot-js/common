@@ -4,7 +4,7 @@
 
 import { ToBn } from '../types';
 
-import * as BN from 'bn.js';
+import BN from 'bn.js';
 
 import isToBn from '../is/toBn';
 

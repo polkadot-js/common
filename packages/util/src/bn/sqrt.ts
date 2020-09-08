@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import * as BN from 'bn.js';
+import BN from 'bn.js';
 
 import assert from '../assert';
 
@@ -24,7 +24,7 @@ function newtonIteration (n: BN, x0: BN): BN {
  * <BR>
  *
  * ```javascript
- * import * as BN from 'bn.js';
+ * import BN from 'bn.js';
  * import { bnSqrt } from '@polkadot/util';
  *
  * bnSqrt(new BN(16)).toString(); // => '4'

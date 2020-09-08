@@ -4,7 +4,7 @@
 
 import { Prefix } from './types';
 
-import * as BN from 'bn.js';
+import BN from 'bn.js';
 
 import decode from './decode';
 import encode from './encode';

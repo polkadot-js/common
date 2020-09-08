@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { BN_ZERO, BN_ONE, BN_TEN, BN_HUNDRED, BN_THOUSAND } from '.';
-import * as BN from 'bn.js';
+import BN from 'bn.js';
 
 describe('consts', (): void => {
   it('BN_ZERO equals 0', (): void => {

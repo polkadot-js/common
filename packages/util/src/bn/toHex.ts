@@ -4,7 +4,7 @@
 
 import { ToBn, ToBnOptions } from '../types';
 
-import * as BN from 'bn.js';
+import BN from 'bn.js';
 
 import isNumber from '../is/number';
 import bnToU8a from './toU8a';
@@ -25,7 +25,7 @@ interface Options extends ToBnOptions {
  * <BR>
  *
  * ```javascript
- * import * as BN from 'bn.js';
+ * import BN from 'bn.js';
  * import { bnToHex } from '@polkadot/util';
  *
  * bnToHex(new BN(0x123456)); // => '0x123456'

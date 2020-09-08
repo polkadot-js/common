@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import * as BN from 'bn.js';
+import BN from 'bn.js';
 
 /**
  * @name isBn
@@ -13,7 +13,7 @@ import * as BN from 'bn.js';
  * <BR>
  *
  * ```javascript
- * import * as BN from 'bn.js';
+ * import BN from 'bn.js';
  * import { isBn } from '@polkadot/util';
  *
  * console.log('isBn', isBn(new BN(1))); // => true
