@@ -13,6 +13,8 @@ export const allowedSS58 = [
   16, 17,
   // Dothereum
   20,
+  // Dock testnet and mainnet
+  21, 22,
   // Substrate default
   42, 43,
   // Substrate BBQ (deprecated)
