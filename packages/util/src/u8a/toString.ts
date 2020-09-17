@@ -2,21 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-let decoder: { decode: (value: Uint8Array) => string };
+import TextDecoder from '@polkadot/x-textdecoder';
 
-function polyfilledDecode (value: Uint8Array): string {
-  return value.reduce((str, code): string => {
-    return str + String.fromCharCode(code);
-  }, '');
-}
-
-try {
-  decoder = new TextDecoder('utf-8');
-} catch (error) {
-  decoder = {
-    decode: polyfilledDecode
-  };
-}
+const decoder = new TextDecoder('utf-8');
 
 /**
  * @name u8aToString

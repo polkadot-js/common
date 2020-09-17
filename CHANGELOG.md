@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 3.5.0-beta.x
+
+Contributed:
+
+- Add Dock network identifiers (Thanks to https://github.com/lovesh)
+
+Changes:
+
+- Use cross-environment TextDecoder & TextEncoder from the polkadot-js polyfills
+
+
 ## 3.4.1 Aug 31, 2020
 
 Changes:

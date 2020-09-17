@@ -2,25 +2,9 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-let encoder: { encode: (value: string) => Uint8Array };
+import TextEncoder from '@polkadot/x-textencoder';
 
-function polyfilledEncode (value: string): Uint8Array {
-  const u8a = new Uint8Array(value.length);
-
-  for (let i = 0; i < value.length; i++) {
-    u8a[i] = value.charCodeAt(i);
-  }
-
-  return u8a;
-}
-
-try {
-  encoder = new TextEncoder();
-} catch (error) {
-  encoder = {
-    encode: polyfilledEncode
-  };
-}
+const encoder = new TextEncoder();
 
 /**
  * @name stringToU8a

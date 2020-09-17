@@ -2896,6 +2896,8 @@ __metadata:
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
     "@babel/runtime": ^7.11.2
+    "@polkadot/x-textdecoder": ^0.3.2
+    "@polkadot/x-textencoder": ^0.3.2
     "@types/bn.js": ^4.11.6
     bn.js: ^5.1.3
     camelcase: ^5.3.1
@@ -2910,6 +2912,24 @@ __metadata:
   peerDependencies:
     "@polkadot/util": "*"
   checksum: 5fff4c5f6d1625807c5e4355a7d228e42ecd477faaa79dabb7e738a800f51c0a9874f4ccfee9bce9ade2b2b99d8c7da2f12af8fa07d3ad43f154fc4eb0b66a5a
+  languageName: node
+  linkType: hard
+
+"@polkadot/x-textdecoder@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "@polkadot/x-textdecoder@npm:0.3.2"
+  dependencies:
+    "@babel/runtime": ^7.11.2
+  checksum: 1a14bc082b35d1b43632ecea504b4050a8311994c0e76f56a0830eb9ab2bf469382967dbddf53867daf8e84f6b3daf9d143deb1acc3816926db2986aa188b498
+  languageName: node
+  linkType: hard
+
+"@polkadot/x-textencoder@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "@polkadot/x-textencoder@npm:0.3.2"
+  dependencies:
+    "@babel/runtime": ^7.11.2
+  checksum: 1e7537c6020929b9f5307d85e644b522789d5428edaf277d164a605528883b8448cc740b79bfc160ef2773f2271a459f1135cdb094eeb2d1f5041c4cb33032d9
   languageName: node
   linkType: hard
 
@@ -3107,13 +3127,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^26.0.13":
-  version: 26.0.13
-  resolution: "@types/jest@npm:26.0.13"
+"@types/jest@npm:^26.0.14":
+  version: 26.0.14
+  resolution: "@types/jest@npm:26.0.14"
   dependencies:
     jest-diff: ^25.2.1
     pretty-format: ^25.2.1
-  checksum: 5476d59a99d1552d3ef99179d9ab8a59b24434c1990fda0836b8e6899a6a5fe898b62c0f0b8c9d3308b5c652cb95fca0b3b404028379b306f123a1e872413498
+  checksum: bddbe82d12217c5217efabcad09e4fbe2c5eaecf9392da9b0edbe4c3d9fb240b3fab914f88c5f3708f6d5046640a2782458944873eae4ac01abcb17d32d3c78f
   languageName: node
   linkType: hard
 
@@ -3155,9 +3175,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:>= 8":
-  version: 14.10.2
-  resolution: "@types/node@npm:14.10.2"
-  checksum: e3056686911078de7bbc3faf2f97cbdb9dffda9fe8f646aff6336f73fee7a64ad5f41d757c7c577b5e8d1bdc5e1ab7e9c3de610eb78c1d8d73dd797c93eef23d
+  version: 14.10.3
+  resolution: "@types/node@npm:14.10.3"
+  checksum: 0411c026e894fb2485b4f625e4cfa00e16844f074e5d926458bea1b29daace01730c059a60d625f2ce04c79719e29afdb0276db7a81cb6675c9290251662c474
   languageName: node
   linkType: hard
 
@@ -7284,9 +7304,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.564":
-  version: 1.3.569
-  resolution: "electron-to-chromium@npm:1.3.569"
-  checksum: c928f20d1a29097a8b3d184981446b392fbf63427ade47ba05664e38ff8f3d256bdd65eb25c82eec77b61bf7b29a89f0589ddf46a7ead9ca81855f4d6863fa6f
+  version: 1.3.570
+  resolution: "electron-to-chromium@npm:1.3.570"
+  checksum: 23388b39692e2932e56033e7c0b5b5f70199e22c03335d97c811cad9b16f89e80c94abe55c6140aa12d0e19431abec764955395df9fdf3972918c6bccebc8e10
   languageName: node
   linkType: hard
 
@@ -14324,13 +14344,13 @@ fsevents@^1.2.7:
   linkType: hard
 
 "postcss@npm:^7.0.0, postcss@npm:^7.0.1, postcss@npm:^7.0.14, postcss@npm:^7.0.2, postcss@npm:^7.0.26, postcss@npm:^7.0.27, postcss@npm:^7.0.32, postcss@npm:^7.0.5, postcss@npm:^7.0.6":
-  version: 7.0.32
-  resolution: "postcss@npm:7.0.32"
+  version: 7.0.34
+  resolution: "postcss@npm:7.0.34"
   dependencies:
     chalk: ^2.4.2
     source-map: ^0.6.1
     supports-color: ^6.1.0
-  checksum: 340f4f6ca6bd37961927f68bf7e38d071a7cba0468240cbba64ccf78012b2acbec974491284cb200e438dd3e655314e6d9508562523cbf9a49d5b00fd7e769fa
+  checksum: 60e02f81cedf98bc5f902e72ca7cfef20dc5789e367fd3620a41a00719ff3226796831f4ba55db7a1a1c595564fe0fa9a0a2fa6d8b2477d10ab83422fc0f91de
   languageName: node
   linkType: hard
 
@@ -15521,7 +15541,7 @@ fsevents@^1.2.7:
     "@babel/core": ^7.11.6
     "@polkadot/dev": ^0.55.52
     "@polkadot/ts": ^0.3.47
-    "@types/jest": ^26.0.13
+    "@types/jest": ^26.0.14
     typedoc: ^0.19.1
     typedoc-plugin-markdown: ^2.4.2
     typedoc-plugin-no-inherit: ^1.2.0
@@ -16234,9 +16254,9 @@ fsevents@^1.2.7:
   linkType: hard
 
 "spdx-license-ids@npm:^3.0.0":
-  version: 3.0.5
-  resolution: "spdx-license-ids@npm:3.0.5"
-  checksum: 4ff7c0615a3c69a195b206a425e6a633ccb24e680ac21f5464b249b57ebb5c3f356f84a8e713599758be69ee4a849319d7fce7041b69e29acd9d31daed3fb8eb
+  version: 3.0.6
+  resolution: "spdx-license-ids@npm:3.0.6"
+  checksum: 90f9f7db7f049e5b2b315d45858368ba0451036f5e3536acad5c9771d7506543be0e1ee641441d813c7cddf9d06337a14ceae21e18e2622bbf3dbcc9d396c193
   languageName: node
   linkType: hard
 
