@@ -8,3 +8,4 @@
 export { default as base64Decode } from './decode';
 export { default as base64Encode } from './encode';
 export { default as base64Validate } from './validate';
+export { default as isBase64 } from './is';

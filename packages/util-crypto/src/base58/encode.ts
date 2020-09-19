@@ -11,7 +11,7 @@ import { bs58 } from './bs58';
  * @description
  * From the provided input, create the base58 and return the result as a string.
  */
-export default function base58Encode (value: Uint8Array | string | Buffer | number[], ipfsCompat = false): string {
+export default function base58Encode (value: Uint8Array | string | Buffer | number[], ipfsCompat?: boolean): string {
   const out = bs58.encode(
     u8aToBuffer(u8aToU8a(value))
   );

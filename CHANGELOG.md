@@ -9,6 +9,7 @@ Contributed:
 Changes:
 
 - Use cross-environment TextDecoder & TextEncoder from the polkadot-js polyfills
+- Add `isBase{32, 58, 64}` to `@polkadot/util-crypto`
 
 
 ## 3.4.1 Aug 31, 2020

@@ -8,3 +8,4 @@
 export { default as base32Decode } from './decode';
 export { default as base32Encode } from './encode';
 export { default as base32Validate } from './validate';
+export { default as isBase32 } from './is';
