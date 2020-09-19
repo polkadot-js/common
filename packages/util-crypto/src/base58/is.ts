@@ -3,7 +3,7 @@
 
 import validate from './validate';
 
-export default function isBase58 (value: string, ipfsCompat?: boolean): boolean {
+export default function isBase58 (value?: string | null, ipfsCompat?: boolean): boolean {
   try {
     return validate(value, ipfsCompat);
   } catch (error) {

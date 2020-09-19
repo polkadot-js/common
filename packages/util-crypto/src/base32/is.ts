@@ -3,7 +3,7 @@
 
 import validate from './validate';
 
-export default function isBase32 (value: string): boolean {
+export default function isBase32 (value?: string | null): boolean {
   try {
     return validate(value);
   } catch (error) {
