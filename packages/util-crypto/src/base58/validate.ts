@@ -6,7 +6,7 @@ import { assert } from '@polkadot/util';
 import { BASE58_ALPHABET } from './bs58';
 
 export function validateChars (type: string, alphabet: string, value?: string | null): true {
-  assert(value, `Empty ${type} input`);
+  assert(value, `Empty non-null, non-empty ${type} input`);
 
   for (let i = 0; i < value.length; i++) {
     if (!alphabet.includes(value[i])) {
