@@ -8,3 +8,4 @@
 export { default as base58Decode } from './decode';
 export { default as base58Encode } from './encode';
 export { default as base58Validate } from './validate';
+export { default as isBase58 } from './is';

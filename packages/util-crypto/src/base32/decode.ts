@@ -24,20 +24,14 @@ const LOOKUP = BASE32_ALPHABET
  * From the provided input, decode the base32 and return the result as an `Uint8Array`.
  */
 export default function base32Decode (value: string, ipfsCompat = false): Uint8Array {
-  if (ipfsCompat) {
-    assert(value[0] === 'b', "Expected IPFS base32 identifier 'b' at string start");
+  validate(value, ipfsCompat);
 
-    value = value.substr(1);
-  }
-
-  validate(value);
-
-  const out = new Uint8Array((value.length * BITS_PER_CHAR / 8) | 0);
+  const out = new Uint8Array(((value.length - (ipfsCompat ? 1 : 0)) * BITS_PER_CHAR / 8) | 0);
   let bits = 0;
   let buffer = 0;
   let written = 0;
 
-  for (let i = 0; i < value.length; ++i) {
+  for (let i = (ipfsCompat ? 1 : 0); i < value.length; ++i) {
     buffer = (buffer << BITS_PER_CHAR) | LOOKUP[value[i]];
     bits += BITS_PER_CHAR;
 
