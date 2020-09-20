@@ -2,5 +2,5 @@
 // SPDX-License-Identifier: Apache-2.0
 
 export default function base64Trim (value: string): string {
-  return value.padEnd(value.length % 4, '=');
+  return value.padEnd(value.length + (value.length % 4), '=');
 }

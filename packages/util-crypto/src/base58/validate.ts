@@ -5,13 +5,12 @@ import { assert } from '@polkadot/util';
 
 import { BASE58_ALPHABET } from './bs58';
 
-export function validateChars (type: string, alphabet: string, value?: string | null): true {
-  assert(value, `Empty non-null, non-empty ${type} input`);
+export function validateChars (type: string, alphabet: string, value?: string | null, startChar?: string): true {
+  assert(value, `Expected non-null, non-empty ${type} input`);
+  assert(!startChar || value[0] === startChar, `Expected ${type} to start with '${startChar || ''}'`);
 
-  for (let i = 0; i < value.length; i++) {
-    if (!alphabet.includes(value[i])) {
-      throw new TypeError(`Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`);
-    }
+  for (let i = (startChar ? 1 : 0); i < value.length; i++) {
+    assert(alphabet.includes(value[i]), `Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`);
   }
 
   return true;
@@ -24,11 +23,5 @@ export function validateChars (type: string, alphabet: string, value?: string | 
  * Validates the the supplied value is valid base58
  */
 export default function base58Validate (value?: string | null, ipfsCompat = false): true {
-  if (ipfsCompat && value) {
-    assert(value[0] === 'z', "Expected IPFS base32 identifier 'z' at string start");
-
-    value = value.substr(1);
-  }
-
-  return validateChars('base58', BASE58_ALPHABET, value);
+  return validateChars('base58', BASE58_ALPHABET, value, ipfsCompat ? 'z' : undefined);
 }

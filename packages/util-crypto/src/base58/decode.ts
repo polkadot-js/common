@@ -15,5 +15,5 @@ import validate from './validate';
 export default function base58Decode (value: string, ipfsCompat?: boolean): Uint8Array {
   validate(value, ipfsCompat);
 
-  return bufferToU8a(bs58.decode(value));
+  return bufferToU8a(bs58.decode(value.substr(ipfsCompat ? 1 : 0)));
 }

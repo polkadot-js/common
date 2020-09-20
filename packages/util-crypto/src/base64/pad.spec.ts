@@ -6,7 +6,7 @@ import { base64Pad } from '.';
 describe('base64Pad', (): void => {
   it('pads a utf-8 string', (): void => {
     expect(
-      base64Pad('aGVsbG8gd29ybGQg0J/RgNC40LLQtdGC0YHRgtCy0YPRjiDQvNC4IOS9oOWlvQ')
-    ).toEqual('aGVsbG8gd29ybGQg0J/RgNC40LLQtdGC0YHRgtCy0YPRjiDQvNC4IOS9oOWlvQ==');
+      base64Pad('YWJjZA')
+    ).toEqual('YWJjZA==');
   });
 });

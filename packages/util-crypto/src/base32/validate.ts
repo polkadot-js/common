@@ -10,6 +10,6 @@ import { BASE32_ALPHABET } from './bs32';
  * @description
  * Validates the the supplied value is valid base32
  */
-export default function base32Validate (value?: string | null): true {
-  return validateChars('base32', BASE32_ALPHABET, value);
+export default function base32Validate (value?: string | null, ipfsCompat = false): true {
+  return validateChars('base32', BASE32_ALPHABET, value, ipfsCompat ? 'b' : undefined);
 }
