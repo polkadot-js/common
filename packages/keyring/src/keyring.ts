@@ -103,15 +103,8 @@ export default class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from it that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  public addFromJson ({ address, encoded, encoding: { content, type, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
-    const cryptoType = version === '0' || !Array.isArray(content)
-      ? this.type
-      : content[1];
-    const encType = !Array.isArray(type)
-      ? [type]
-      : type;
-
-    return this.addFromAddress(address, meta, isHex(encoded) ? hexToU8a(encoded) : base64Decode(encoded), cryptoType, ignoreChecksum, encType);
+  public addFromJson (json: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
+    return this.addPair(this.createFromJSON(json, ignoreChecksum));
   }
 
   /**
@@ -146,6 +139,27 @@ export default class Keyring implements KeyringInstance {
     return this.addPair(
       this.createFromUri(suri, meta, type)
     );
+  }
+
+  /**
+   * @name createFromJSON
+   * @description Creates a pair from a JSON keyfile
+   */
+  public createFromJSON ({ address, encoded, encoding: { content, type, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
+    const cryptoType = version === '0' || !Array.isArray(content)
+      ? this.type
+      : content[1];
+    const encType = !Array.isArray(type)
+      ? [type]
+      : type;
+    const publicKey = isHex(address)
+      ? hexToU8a(address)
+      : this.decodeAddress(address, ignoreChecksum);
+    const decoded = isHex(encoded)
+      ? hexToU8a(encoded)
+      : base64Decode(encoded);
+
+    return createPair({ toSS58: this.encodeAddress, type: cryptoType }, { publicKey, secretKey: new Uint8Array() }, meta, decoded, encType);
   }
 
   /**

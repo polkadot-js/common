@@ -209,6 +209,16 @@ describe('keypair', (): void => {
       ).toEqual('5DzMsaYFhmpRdErWrP6K6PD7UXzYoeETToSBUrZSvxasqWRz');
     });
 
+    it('allows creation from JSON', (): void => {
+      keyring.setSS58Format(2);
+      const pair = keyring.createFromJSON(
+        JSON.parse('{"address":"0x02fde629668eb2bcc7d748f40a7e597f7c7b363498ff3db31f03ce4854937883ad","encoded":"qIhAhKqtf2iyEoWEr8nmBdksSI8EHHCpgJHToqd6Pl8AgAAAAQAAAAgAAADDZ//fj/BRRj+0+bl1KAlYgoPJp6nEUwiw0fVqO2BW4mjEgQ+iWwJEgDf1JUtecbzOlfhTXBzqX/dIYzLgUADrF4EFEPpboCWiU1iN7W/3DM1cOTRVvTGcbdIqW//z3axhz961qzeJVUIFgllwGe/euLUPIlKbIkiN/CsRYdQ=","encoding":{"content":["pkcs8","ecdsa"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{"genesisHash":"0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe","name":"ecdsa","tags":[],"whenCreated":1600925898271}}')
+      );
+
+      expect(pair.address).toEqual('DHL8HKFuTTR55JzzLmkJRCAfPBbuevKaT9cXikxbEV97Ko8');
+      expect(pair.publicKey).toEqual(hexToU8a('0x02fde629668eb2bcc7d748f40a7e597f7c7b363498ff3db31f03ce4854937883ad'));
+    });
+
     it('signs and verifies', (): void => {
       const MESSAGE = stringToU8a('this is a message');
       const pair = keyring.getPair(addressKeyOne);
