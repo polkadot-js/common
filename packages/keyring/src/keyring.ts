@@ -159,7 +159,7 @@ export default class Keyring implements KeyringInstance {
       ? hexToU8a(encoded)
       : base64Decode(encoded);
 
-    return createPair({ toSS58: this.encodeAddress, type: cryptoType }, { publicKey, secretKey: new Uint8Array() }, meta, decoded, encType)
+    return createPair({ toSS58: this.encodeAddress, type: cryptoType }, { publicKey, secretKey: new Uint8Array() }, meta, decoded, encType);
   }
 
   /**
