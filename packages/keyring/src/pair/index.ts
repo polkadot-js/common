@@ -110,7 +110,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
   };
 
   const recode = (passphrase?: string): Uint8Array => {
-    isLocked(secretKey) && decodePkcs8(passphrase, encoded);
+    isLocked(secretKey) && encoded && decodePkcs8(passphrase, encoded);
 
     encoded = encode({ publicKey, secretKey }, passphrase); // re-encode, latest version
     encTypes = undefined; // swap to defaults, latest version follows
