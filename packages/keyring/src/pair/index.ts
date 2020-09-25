@@ -95,7 +95,23 @@ function isLocked (secretKey?: Uint8Array): secretKey is undefined {
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
 export default function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, encTypes?: KeyringPair$JsonEncodingTypes[]): KeyringPair {
+  const decodePkcs8 = (passphrase?: string, userEncoded?: Uint8Array | null): void => {
+    const decoded = decode(passphrase, userEncoded || encoded, encTypes);
+
+    if (decoded.secretKey.length === 64) {
+      publicKey = decoded.publicKey;
+      secretKey = decoded.secretKey;
+    } else {
+      const pair = TYPE_FROM_SEED[type](decoded.secretKey);
+
+      publicKey = pair.publicKey;
+      secretKey = pair.secretKey;
+    }
+  };
+
   const recode = (passphrase?: string): Uint8Array => {
+    isLocked(secretKey) && decodePkcs8(passphrase, encoded);
+
     encoded = encode({ publicKey, secretKey }, passphrase); // re-encode, latest version
     encTypes = undefined; // swap to defaults, latest version follows
 
@@ -134,19 +150,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
       return type;
     },
     // eslint-disable-next-line sort-keys
-    decodePkcs8: (passphrase?: string, userEncoded?: Uint8Array | null): void => {
-      const decoded = decode(passphrase, userEncoded || encoded, encTypes);
-
-      if (decoded.secretKey.length === 64) {
-        publicKey = decoded.publicKey;
-        secretKey = decoded.secretKey;
-      } else {
-        const pair = TYPE_FROM_SEED[type](decoded.secretKey);
-
-        publicKey = pair.publicKey;
-        secretKey = pair.secretKey;
-      }
-    },
+    decodePkcs8,
     derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair => {
       assert(!isLocked(secretKey), 'Cannot derive on a locked keypair');
 
