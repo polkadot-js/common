@@ -104,7 +104,7 @@ export default class Keyring implements KeyringInstance {
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
   public addFromJson (json: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
-    return this.addPair(this.createFromJSON(json, ignoreChecksum));
+    return this.addPair(this.createFromJson(json, ignoreChecksum));
   }
 
   /**
@@ -142,10 +142,10 @@ export default class Keyring implements KeyringInstance {
   }
 
   /**
-   * @name createFromJSON
+   * @name createFromJson
    * @description Creates a pair from a JSON keyfile
    */
-  public createFromJSON ({ address, encoded, encoding: { content, type, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
+  public createFromJson ({ address, encoded, encoding: { content, type, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
     const cryptoType = version === '0' || !Array.isArray(content)
       ? this.type
       : content[1];

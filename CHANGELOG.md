@@ -11,7 +11,7 @@ Changes:
 - Use cross-environment TextDecoder & TextEncoder from the polkadot-js polyfills
 - Add `isBase{32, 58, 64}` to `@polkadot/util-crypto`
 - Add `base64{Pad, Trim}` to add/remove padding characters
-- Add `createFromJSON(json)` to keyring (create pair without adding)
+- Add `createFromJsonjson)` to keyring (create pair without adding)
 
 
 ## 3.4.1 Aug 31, 2020

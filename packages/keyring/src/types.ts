@@ -72,7 +72,7 @@ export interface KeyringInstance {
   addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
   addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
   addFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
-  createFromJSON (json: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair;
+  createFromJson (json: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair;
   createFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
   getPair (address: string | Uint8Array): KeyringPair;
   getPairs (): KeyringPair[];
