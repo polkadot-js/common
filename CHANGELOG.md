@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 3.5.0-beta.x
+## 3.5.1 Sep 26, 2020
 
 Contributed:
 
