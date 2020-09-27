@@ -12,6 +12,7 @@ Changes:
 - Add `isBase{32, 58, 64}` to `@polkadot/util-crypto`
 - Add `base64{Pad, Trim}` to add/remove padding characters
 - Add `createFromJson(json)` to keyring (create pair without adding)
+- Balance formatter now outputs 4 numbers after the decimal point
 
 
 ## 3.4.1 Aug 31, 2020
