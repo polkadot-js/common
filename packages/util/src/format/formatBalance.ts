@@ -67,13 +67,13 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | B
   const mid = text.length - (decimals + si.power);
   const prefix = text.substr(0, mid);
   const padding = mid < 0 ? 0 - mid : 0;
-  const postfix = `${`${new Array(padding + 1).join('0')}${text}`.substr(mid < 0 ? 0 : mid)}000`.substr(0, 3);
+  const postfix = `${`${new Array(padding + 1).join('0')}${text}`.substr(mid < 0 ? 0 : mid)}0000`.substr(0, 4);
   const units = withSi || withSiFull
     ? si.value === '-'
       ? withUnit
         ? ` ${isBoolean(withUnit) ? si.text : withUnit}`
         : ''
-      : `${withSiFull ? ` ${si.text}` : si.value}${withUnit ? ` ${isBoolean(withUnit) ? SI[SI_MID].text : withUnit}` : ''}`
+      : ` ${withSiFull ? si.text : si.value}${withUnit ? `${withSiFull ? ' ' : ''}${(isBoolean(withUnit) ? SI[SI_MID].text : withUnit)}` : ''}`
     : '';
 
   return `${isNegative ? '-' : ''}${formatDecimal(prefix || '0')}.${postfix}${units}`;
