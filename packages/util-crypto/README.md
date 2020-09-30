@@ -16,6 +16,20 @@ Functions can be imported as follows:
 import { mnemonicGenerate } from '@polkadot/util-crypto';
 ```
 
-## Utilities
+## Example
 
-[Utilities](SUMMARY.md)
+```js
+import { mnemonicGenerate, mnemonicToBip39, naclKeypairFromSeed, encodeAddress } from '@polkadot/util-crypto';
+
+const mnemonic = mnemonicGenerate()
+console.log('mnemonic:', mnemonic)
+
+const seed = Buffer.from(mnemonicToBip39(mnemonic))
+console.log('seed', seed.toString('hex'))
+
+const keyPair = naclKeypairFromSeed(seed) // using ed25519
+console.log('keyPair', keyPair)
+
+const address = encodeAddress(keyPair.publicKey)
+console.log('address', address)
+```
