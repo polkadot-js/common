@@ -1,5 +1,11 @@
 # CHANGELOG
 
+### 3.6.0-beta.x
+
+Changes:
+
+- Reanem `mneminicToBip39` to `mnemonicToLegacySeed` (uses in nn-Substrate compatible usecases)
+
 ## 3.5.1 Sep 27, 2020
 
 Contributed:
