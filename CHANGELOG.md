@@ -4,7 +4,7 @@
 
 Changes:
 
-- Reanem `mneminicToBip39` to `mnemonicToLegacySeed` (uses in nn-Substrate compatible usecases)
+- Rename `mnemonicToBip39` to `mnemonicToLegacySeed` (used in non-Substrate compatible fashion)
 
 ## 3.5.1 Sep 27, 2020
 
