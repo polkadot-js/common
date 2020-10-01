@@ -1,5 +1,11 @@
 # CHANGELOG
 
+### 3.6.0-beta.x
+
+Changes:
+
+- Rename `mnemonicToBip39` to `mnemonicToLegacySeed` (used in non-Substrate compatible fashion)
+
 ## 3.5.1 Sep 27, 2020
 
 Contributed:

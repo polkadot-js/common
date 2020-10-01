@@ -5,7 +5,7 @@ import { KeypairType, Keypair } from '@polkadot/util-crypto/types';
 import { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, KeyringOptions } from './types';
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
-import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToBip39, mnemonicToMiniSecret } from '@polkadot/util-crypto';
+import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToLegacySeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
 import createPair from './pair';
@@ -183,7 +183,7 @@ export default class Keyring implements KeyringInstance {
 
       if ([12, 15, 18, 21, 24].includes(parts.length)) {
         seed = type === 'ethereum'
-          ? mnemonicToBip39(phrase)
+          ? mnemonicToLegacySeed(phrase)
           : mnemonicToMiniSecret(phrase, password);
       } else {
         assert(str.length <= 32, 'specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
