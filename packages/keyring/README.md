@@ -15,7 +15,3 @@ Classes and Functions can be imported as follows:
 ```js
 import Keyring from '@polkadot/keyring';
 ```
-
-## Utilities
-
-[Utilities](SUMMARY.md)
