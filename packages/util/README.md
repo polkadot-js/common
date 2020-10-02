@@ -15,7 +15,3 @@ Functions can be imported directly from the package, e.g.
 ```js
 import { isHex } from '@polkadot/util';
 ```
-
-## Utilities
-
-[Utilities](SUMMARY.md)
