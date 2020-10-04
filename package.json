@@ -30,5 +30,5 @@
     "typedoc-plugin-markdown": "^3.0.6",
     "typedoc-plugin-no-inherit": "^1.2.0"
   },
-  "version": "3.6.0-beta.2"
+  "version": "3.6.0-beta.3"
 }
