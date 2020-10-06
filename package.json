@@ -13,8 +13,6 @@
   "scripts": {
     "build": "polkadot-dev-build-ts",
     "build:release": "polkadot-ci-ghact-build",
-    "docs": "polkadot-dev-build-docs",
-    "docs:release": "polkadot-ci-ghact-docs",
     "lint": "polkadot-dev-run-lint",
     "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
