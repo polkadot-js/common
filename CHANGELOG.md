@@ -2,9 +2,16 @@
 
 ### 3.6.0-beta.x
 
+Contributed:
+
+- Remove invalid link to docs (thanks to https://github.com/roccomuso)
+
 Changes:
 
 - Rename `mnemonicToBip39` to `mnemonicToLegacySeed` (used in non-Substrate compatible fashion)
+- Update pair signature verification to handle MultiSignature results
+- Move documentation to docs repo
+
 
 ## 3.5.1 Sep 27, 2020
 
