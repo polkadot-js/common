@@ -1815,8 +1815,8 @@ __metadata:
   resolution: "@polkadot/keyring@workspace:packages/keyring"
   dependencies:
     "@babel/runtime": ^7.11.2
-    "@polkadot/util": 3.6.0-beta.4
-    "@polkadot/util-crypto": 3.6.0-beta.4
+    "@polkadot/util": 3.6.0-beta.5
+    "@polkadot/util-crypto": 3.6.0-beta.5
   languageName: unknown
   linkType: soft
 
@@ -1829,12 +1829,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/util-crypto@3.6.0-beta.4, @polkadot/util-crypto@workspace:packages/util-crypto":
+"@polkadot/util-crypto@3.6.0-beta.5, @polkadot/util-crypto@workspace:packages/util-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.11.2
-    "@polkadot/util": 3.6.0-beta.4
+    "@polkadot/util": 3.6.0-beta.5
     "@polkadot/wasm-crypto": ^1.4.1
     "@types/bn.js": ^4.11.6
     "@types/elliptic": ^6.4.12
@@ -1854,7 +1854,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/util@3.6.0-beta.4, @polkadot/util@workspace:packages/util":
+"@polkadot/util@3.6.0-beta.5, @polkadot/util@workspace:packages/util":
   version: 0.0.0-use.local
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
