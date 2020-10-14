@@ -8,7 +8,7 @@ import { assert } from '@polkadot/util';
 
 import { all } from './';
 
-describe('check lastest Substrate ss58 registry', (): void => {
+describe('check latest Substrate ss58 registry', (): void => {
   let original: Ss58Registry;
 
   beforeAll(async (): Promise<void> => {
