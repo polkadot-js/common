@@ -11,6 +11,7 @@ Changes:
 - Rename `mnemonicToBip39` to `mnemonicToLegacySeed` (used in non-Substrate compatible fashion)
 - Update pair signature verification to handle MultiSignature results
 - Move documentation to docs repo
+- Added `@polkadot/networks` for a list of known networks and their identifying information
 
 
 ## 3.5.1 Sep 27, 2020

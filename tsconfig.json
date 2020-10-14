@@ -9,6 +9,8 @@
     "paths": {
       "@polkadot/keyring": [ "packages/keyring/src" ],
       "@polkadot/keyring/*": [ "packages/keyring/src/*" ],
+      "@polkadot/networks": [ "packages/networks/src" ],
+      "@polkadot/networks/*": [ "packages/networks/src/*" ],
       "@polkadot/util-crypto": [ "packages/util-crypto/src" ],
       "@polkadot/util-crypto/*": [ "packages/util-crypto/src/*" ],
       "@polkadot/util": [ "packages/util/src" ],
