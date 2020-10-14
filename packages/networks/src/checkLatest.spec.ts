@@ -43,14 +43,16 @@ describe('check lastest Substrate ss58 registry', (): void => {
   it('has the same values as the original', (): void => {
     const errors = original
       .map((n): [string, string[]] => {
-        const name = `${n.displayName} (${n.prefix})`;
         const other = all.find(({ prefix }) => prefix === n.prefix);
 
-        return other
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          ? [name, FIELDS.filter((f) => JSON.stringify(n[f]) !== JSON.stringify(other[f]))]
-          : [name, []];
+        return [
+          `${n.displayName} (${n.prefix})`,
+          other
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            ? FIELDS.filter((f) => JSON.stringify(n[f]) !== JSON.stringify(other[f]))
+            : []
+        ];
       })
       .filter(([, fields]) => fields.length);
 
