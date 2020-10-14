@@ -46,13 +46,11 @@ describe('check lastest Substrate ss58 registry', (): void => {
         const name = `${n.displayName} (${n.prefix})`;
         const other = all.find(({ prefix }) => prefix === n.prefix);
 
-        if (!other) {
-          return [name, []];
-        }
-
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        return [name, FIELDS.filter((f) => JSON.stringify(n[f]) !== JSON.stringify(other[f]))];
+        return other
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          ? [name, FIELDS.filter((f) => JSON.stringify(n[f]) !== JSON.stringify(other[f]))]
+          : [name, []];
       })
       .filter(([, fields]) => fields.length);
 
