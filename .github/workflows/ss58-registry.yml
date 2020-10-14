@@ -1,4 +1,4 @@
-name: Nightly tests run
+name: Nightly ss58-registry check
 on:
   schedule:
     - cron:  '1 5 * * *'
