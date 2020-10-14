@@ -360,6 +360,10 @@ const all: NetworkFromSubstrate[] = [
   }
 ];
 
+const prefixes: number[] = all
+  .filter(({ standardAccount }) => standardAccount === '*25519')
+  .map(({ prefix }) => prefix);
+
 // map, filter & sort to get a trimmed list
 //   - we only include those where we have a genesisHash (and prefix 42)
 //   - when no icon has been specified, default to substrate
@@ -377,6 +381,6 @@ const filtered: Network[] = all
           : a.displayName.localeCompare(b.displayName)
   );
 
-export { all };
+export { all, prefixes };
 
 export default filtered;

@@ -26,6 +26,7 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
     "@babel/runtime": "^7.11.2",
+    "@polkadot/networks": "3.6.0-beta.6",
     "@polkadot/util": "3.6.0-beta.6",
     "@polkadot/wasm-crypto": "^1.4.1",
     "base-x": "^3.0.8",
