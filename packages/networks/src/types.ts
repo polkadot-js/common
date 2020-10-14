@@ -22,4 +22,6 @@ export interface Network extends NetworkFromSubstrate {
 
 export interface Ss58Registry {
   registry: NetworkFromSubstrate[];
+  specification: string;
+  schema: Record<string, string>;
 }
