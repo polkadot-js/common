@@ -21,7 +21,7 @@ describe('check latest Substrate ss58 registry', (): void => {
     expect(all.length).toEqual(original.registry.length);
   });
 
-  it('is not missing any entries', (): void => {
+  it('has no missing any entries', (): void => {
     const missing = original.registry
       .filter(({ prefix }) => !all.some((n) => n.prefix === prefix))
       .map(({ displayName, prefix }) => `${displayName} (${prefix})}`);
@@ -29,7 +29,7 @@ describe('check latest Substrate ss58 registry', (): void => {
     assert(!missing.length, `Missing entries found: ${missing.join(', ')}`);
   });
 
-  it('is does not have extra entries', (): void => {
+  it('has no extra entries', (): void => {
     const missing = all
       .filter(({ prefix }) => !original.registry.some((n) => n.prefix === prefix))
       .map(({ displayName, prefix }) => `${displayName} (${prefix})}`);
