@@ -4,15 +4,20 @@ on:
     - cron:  '1 5 * * *'
 
 jobs:
-  alltests:
-    strategy:
-      matrix:
-        step: ['test:networks']
-    name: ${{ matrix.step }}
+  ss58:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: ${{ matrix.step }}
+    - name: test
       run: |
+        echo '```' >> ~/issue_body
         yarn install --immutable | grep -v 'YN0013'
-        yarn ${{ matrix.step }}
+        yarn test:networks
+
+    - name: Create issue for failure
+      if: ${{ failure() }}
+      uses: peter-evans/create-issue-from-file@v2
+      with:
+        title: SS58 registry is outdated compared to Substrate master
+        content-filepath: ~/issue_body
+        token: ${{ secrets.GH_PAT }}
