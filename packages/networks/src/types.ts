@@ -8,7 +8,7 @@ export interface NetworkFromSubstrate {
   displayName: string;
   network: string;
   prefix: number;
-  genesisHash?: string | null;
+  genesisHash?: string[] | null;
   icon?: Icon | null;
   standardAccount: '*25519' | null;
   symbols: string[] | null;
@@ -16,7 +16,7 @@ export interface NetworkFromSubstrate {
 }
 
 export interface Network extends NetworkFromSubstrate {
-  genesisHash: string | null;
+  genesisHash: string[] | null;
   icon: Icon;
 }
 
