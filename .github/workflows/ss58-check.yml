@@ -1,7 +1,7 @@
 name: SS58-registry check
 on:
   schedule:
-    - cron:  '*/15 * * * *'
+    - cron:  '45 4 * * *'
 
 jobs:
   ss58:
