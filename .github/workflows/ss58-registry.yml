@@ -20,5 +20,6 @@ jobs:
       uses: peter-evans/create-issue-from-file@v2
       with:
         title: SS58 registry is outdated compared to Substrate master
+        labels: ci
         content-filepath: ./issue_template
         token: ${{ secrets.GH_PAT }}
