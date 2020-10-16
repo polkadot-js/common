@@ -1,0 +1,20 @@
+name: SS58-registry check
+on:
+  schedule:
+    - cron:  '*/15 * * * *'
+
+jobs:
+  ss58:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: check
+      run: |
+        yarn install --immutable | grep -v 'YN0013'
+        yarn test:networks
+
+    - name: issue
+      if: ${{ failure() }}
+      uses: JasonEtco/create-an-issue@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
