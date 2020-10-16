@@ -334,13 +334,13 @@ const all: NetworkFromSubstrate[] = [
     website: null
   },
   {
-    decimals: null,
+    decimals: [8],
     displayName: 'ChainX',
     network: 'chainx',
     prefix: 44,
     standardAccount: '*25519',
-    symbols: null,
-    website: null
+    symbols: ['PCX'],
+    website: 'https://chainx.org/'
   },
   {
     decimals: null,
