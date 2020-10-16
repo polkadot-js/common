@@ -18,3 +18,5 @@ jobs:
       uses: JasonEtco/create-an-issue@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      with:
+        filename: .github/ss58-check.md
