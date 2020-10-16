@@ -16,7 +16,7 @@ export interface NetworkFromSubstrate {
 }
 
 export interface Network extends NetworkFromSubstrate {
-  genesisHash: string[] | null;
+  genesisHash: string[];
   icon: Icon;
 }
 

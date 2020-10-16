@@ -8,7 +8,7 @@ const UNSORTED = [0, 2, 42];
 
 // NOTE: In the case where the network was hard-spooned and multiple genesisHashes
 // are provided, it needs to be in reverse order, i.e. most-recent first, oldest
-// last. This make lookups for current a case of genesisHash[0]
+// last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
 
 const all: NetworkFromSubstrate[] = [
@@ -371,17 +371,13 @@ const all: NetworkFromSubstrate[] = [
   }
 ];
 
-const prefixes: number[] = all
-  .filter(({ standardAccount }) => standardAccount === '*25519')
-  .map(({ prefix }) => prefix);
-
-// map, filter & sort to get a trimmed list
-//   - we only include those where we have a genesisHash (and prefix 42)
+// The list of available/claimed prefixes
+//   - we only include those where we have a standardAccount
 //   - when no icon has been specified, default to substrate
 //   - sort by name, however we keep 0, 2, 42 first in the list
-const filtered: Network[] = all
-  .filter((n): n is Network => !!(n as Network).genesisHash || n.prefix === 42)
-  .map((n) => ({ ...n, icon: n.icon || 'substrate' }))
+const available: Network[] = all
+  .filter((n) => n.standardAccount === '*25519')
+  .map((n) => ({ ...n, genesisHash: n.genesisHash || [], icon: n.icon || 'substrate' }))
   .sort((a, b) =>
     UNSORTED.includes(a.prefix) && UNSORTED.includes(b.prefix)
       ? 0
@@ -392,6 +388,9 @@ const filtered: Network[] = all
           : a.displayName.localeCompare(b.displayName)
   );
 
-export { all, prefixes };
+// A filtered list of those chains we have details about (genesisHashes)
+const filtered: Network[] = available.filter((n) => n.genesisHash.length || n.prefix === 42);
+
+export { all, available };
 
 export default filtered;
