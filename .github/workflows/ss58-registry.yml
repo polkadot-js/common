@@ -1,7 +1,7 @@
 name: Nightly ss58-registry check
 on:
   schedule:
-    - cron:  '1 5 * * *'
+    - cron:  '1 * * * *'
 
 jobs:
   ss58:
@@ -10,7 +10,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: test
       run: |
-        echo '```' >> ~/issue_body
+        echo 'auto-created from CI' > ./issue_template
+        echo >> ./issue_template
         yarn install --immutable | grep -v 'YN0013'
         yarn test:networks
 
@@ -19,5 +20,5 @@ jobs:
       uses: peter-evans/create-issue-from-file@v2
       with:
         title: SS58 registry is outdated compared to Substrate master
-        content-filepath: ~/issue_body
+        content-filepath: ./issue_template
         token: ${{ secrets.GH_PAT }}
