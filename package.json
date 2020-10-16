@@ -16,9 +16,9 @@
     "lint": "polkadot-dev-run-lint",
     "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "polkadot-dev-run-test --coverage --runInBand",
+    "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns checkNetworks",
     "test:one": "polkadot-dev-run-test",
-    "test:networks": "polkadot-dev-run-test packages/networks/src/checkLatest"
+    "test:networks": "polkadot-dev-run-test packages/networks/src/checkNetworks"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
