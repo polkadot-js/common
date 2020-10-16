@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/networks",
-  "version": "3.6.0-beta.9",
+  "version": "3.6.0-beta.10",
   "description": "A list of all available Substrate networks and their applicable prefixes",
   "main": "index.js",
   "publishConfig": {
@@ -30,7 +30,7 @@
     "@babel/runtime": "^7.11.2"
   },
   "devDependencies": {
-    "@polkadot/util": "3.6.0-beta.9",
+    "@polkadot/util": "3.6.0-beta.10",
     "@polkadot/x-fetch": "^0.3.2"
   }
 }
