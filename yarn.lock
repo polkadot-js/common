@@ -10009,9 +10009,6 @@ fsevents@^1.2.7:
     "@polkadot/dev": ^0.58.1
     "@polkadot/ts": ^0.3.49
     "@types/jest": ^26.0.14
-    typedoc: ^0.19.2
-    typedoc-plugin-markdown: ^3.0.7
-    typedoc-plugin-no-inherit: ^1.2.0
   languageName: unknown
   linkType: soft
 
