@@ -9,6 +9,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: check
+      env:
+        CI_LOG: 123
       run: |
         yarn install --immutable | grep -v 'YN0013'
         yarn test:networks
