@@ -3,10 +3,23 @@
 
 import { Ss58Registry } from './types';
 
+import fs from 'fs';
 import fetch from '@polkadot/x-fetch';
-import { assert } from '@polkadot/util';
 
 import { all } from './';
+
+const OUTPUT = './.github/ss58-check.md';
+
+function assertAndLog (check: boolean, error: string): void {
+  if (!check) {
+    process.env.CI_LOG && fs.appendFileSync(OUTPUT, `
+
+${error}
+`);
+
+    throw new Error(error);
+  }
+}
 
 describe('check latest Substrate ss58 registry', (): void => {
   let original: Ss58Registry;
@@ -18,23 +31,23 @@ describe('check latest Substrate ss58 registry', (): void => {
   });
 
   it('has the same number as the original', (): void => {
-    expect(all.length).toEqual(original.registry.length);
+    assertAndLog(all.length === original.registry.length, `Number of entries mismatched:: Expected ${original.registry.length} found ${all.length}`);
   });
 
   it('has no missing any entries', (): void => {
     const missing = original.registry
       .filter(({ prefix }) => !all.some((n) => n.prefix === prefix))
-      .map(({ displayName, prefix }) => `${displayName} (${prefix})}`);
+      .map(({ displayName, prefix }) => `${displayName} (${prefix})`);
 
-    assert(!missing.length, `Missing entries found: ${missing.join(', ')}`);
+    assertAndLog(!missing.length, `Missing entries found: ${JSON.stringify(missing, null, 2)}`);
   });
 
   it('has no extra entries', (): void => {
     const missing = all
       .filter(({ prefix }) => !original.registry.some((n) => n.prefix === prefix))
-      .map(({ displayName, prefix }) => `${displayName} (${prefix})}`);
+      .map(({ displayName, prefix }) => `${displayName} (${prefix})`);
 
-    assert(!missing.length, `Extra entries found: ${missing.join(', ')}`);
+    assertAndLog(!missing.length, `Extra entries found: ${JSON.stringify(missing, null, 2)}`);
   });
 
   it('has the same values as the original', (): void => {
@@ -54,6 +67,6 @@ describe('check latest Substrate ss58 registry', (): void => {
       })
       .filter(([, fields]) => fields.length);
 
-    assert(!errors.length, `Mismatches found: ${JSON.stringify(errors.map(([name, m]) => `${name} on ${m.join(', ')}`), null, 2)}`);
+    assertAndLog(!errors.length, `Mismatches found: ${JSON.stringify(errors.map(([name, m]) => `${name}:: ${m.join(', ')}`), null, 2)}`);
   });
 });
