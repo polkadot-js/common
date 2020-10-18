@@ -8,6 +8,7 @@ import fetch from '@polkadot/x-fetch';
 
 import { all } from './';
 
+const ORIGINAL = 'https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json';
 const OUTPUT = './.github/ss58-check.md';
 
 function assertAndLog (check: boolean, error: string): void {
@@ -25,9 +26,7 @@ describe('check latest Substrate ss58 registry', (): void => {
   let original: Ss58Registry;
 
   beforeAll(async (): Promise<void> => {
-    const response = await fetch('https://raw.githack.com/paritytech/substrate/master/ss58-registry.json');
-
-    original = await response.json() as Ss58Registry;
+    original = (await (await fetch(ORIGINAL)).json()) as Ss58Registry;
   });
 
   it('has the same number as the original', (): void => {
