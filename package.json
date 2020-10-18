@@ -15,10 +15,10 @@
     "build:release": "polkadot-ci-ghact-build",
     "lint": "polkadot-dev-run-lint",
     "clean": "polkadot-dev-clean-build",
+    "networks:crosscheck": "polkadot-dev-run-test packages/networks/src/crosscheck",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns checkNetworks",
-    "test:one": "polkadot-dev-run-test",
-    "test:networks": "polkadot-dev-run-test packages/networks/src/checkNetworks"
+    "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns crosscheck",
+    "test:one": "polkadot-dev-run-test"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
