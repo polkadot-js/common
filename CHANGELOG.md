@@ -1,9 +1,10 @@
 # CHANGELOG
 
-### 3.6.0-beta.x
+## 3.6.1 Oct 18, 2020
 
 Contributed:
 
+- Add evmToAddress and addressToEvm `@polkadot/util-crypto` (Thanks to https://github.com/jnaviask)
 - Remove invalid link to docs (thanks to https://github.com/roccomuso)
 
 Changes:

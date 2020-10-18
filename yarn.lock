@@ -1823,17 +1823,17 @@ __metadata:
   resolution: "@polkadot/keyring@workspace:packages/keyring"
   dependencies:
     "@babel/runtime": ^7.12.1
-    "@polkadot/util": 3.6.0-beta.17
-    "@polkadot/util-crypto": 3.6.0-beta.17
+    "@polkadot/util": 3.6.0
+    "@polkadot/util-crypto": 3.6.0
   languageName: unknown
   linkType: soft
 
-"@polkadot/networks@3.6.0-beta.17, @polkadot/networks@workspace:packages/networks":
+"@polkadot/networks@3.6.0, @polkadot/networks@workspace:packages/networks":
   version: 0.0.0-use.local
   resolution: "@polkadot/networks@workspace:packages/networks"
   dependencies:
     "@babel/runtime": ^7.12.1
-    "@polkadot/util": 3.6.0-beta.17
+    "@polkadot/util": 3.6.0
     "@polkadot/x-fetch": ^0.3.3
   languageName: unknown
   linkType: soft
@@ -1847,13 +1847,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/util-crypto@3.6.0-beta.17, @polkadot/util-crypto@workspace:packages/util-crypto":
+"@polkadot/util-crypto@3.6.0, @polkadot/util-crypto@workspace:packages/util-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.12.1
-    "@polkadot/networks": 3.6.0-beta.17
-    "@polkadot/util": 3.6.0-beta.17
+    "@polkadot/networks": 3.6.0
+    "@polkadot/util": 3.6.0
     "@polkadot/wasm-crypto": ^1.4.1
     "@types/bn.js": ^4.11.6
     "@types/elliptic": ^6.4.12
@@ -1873,7 +1873,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/util@3.6.0-beta.17, @polkadot/util@workspace:packages/util":
+"@polkadot/util@3.6.0, @polkadot/util@workspace:packages/util":
   version: 0.0.0-use.local
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
@@ -6205,9 +6205,9 @@ fsevents@^1.2.7:
   linkType: hard
 
 "highlight.js@npm:^10.2.0":
-  version: 10.2.1
-  resolution: "highlight.js@npm:10.2.1"
-  checksum: a799dabfbf78ae5f369d113bfedcf0ba6ea4f9aefcc44d4b27a6d77ec0d6b90fc31b01137497c9710c7d87ec8b2613e613c9499d69bfa65282bcbaf8ca7daeaa
+  version: 10.3.1
+  resolution: "highlight.js@npm:10.3.1"
+  checksum: fc7b665c4b00ea371b5a483dbd0586572a8229b24f5d7340afe0e9116364f36ec3b85d550c67f3dc622a19cf2649f6f01f0d2a926edcea9430bd050f79f5ce08
   languageName: node
   linkType: hard
 
