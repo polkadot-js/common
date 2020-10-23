@@ -31,6 +31,6 @@
   },
   "devDependencies": {
     "@polkadot/util": "3.6.2-0",
-    "@polkadot/x-fetch": "^0.3.3"
+    "@polkadot/x-fetch": "^0.3.4"
   }
 }
