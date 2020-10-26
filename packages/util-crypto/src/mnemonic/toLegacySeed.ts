@@ -1,10 +1,11 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { mnemonicToSeedSync } from 'bip39';
 import { bufferToU8a } from '@polkadot/util';
 
 import { bip39ToSeed, isReady } from '@polkadot/wasm-crypto';
+
+import { mnemonicToSeedSync } from './bip39';
 
 /**
  * @name toSeed

@@ -3,8 +3,9 @@
 
 import '../polyfill';
 
-import { validateMnemonic } from 'bip39';
 import { bip39Validate, isReady } from '@polkadot/wasm-crypto';
+
+import { validateMnemonic } from './bip39';
 
 /**
  * @name mnemonicValidate
