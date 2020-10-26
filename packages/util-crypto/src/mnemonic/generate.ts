@@ -3,8 +3,9 @@
 
 import '../polyfill';
 
-import { generateMnemonic } from 'bip39';
 import { bip39Generate, isReady } from '@polkadot/wasm-crypto';
+
+import { generateMnemonic } from './bip39';
 
 export type WordCount = 12 | 15 | 18 | 21 | 24;
 

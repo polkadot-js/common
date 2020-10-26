@@ -1845,14 +1845,15 @@ __metadata:
     "@polkadot/util": ^3.6.2-5
     "@polkadot/wasm-crypto": ^1.4.1
     "@types/bn.js": ^4.11.6
+    "@types/create-hash": ^1.2.0
     "@types/elliptic": ^6.4.12
     "@types/pbkdf2": ^3.1.0
     "@types/scryptsy": ^2.0.0
     "@types/xxhashjs": ^0.2.2
     base-x: ^3.0.8
-    bip39: ^3.0.2
     blakejs: ^1.1.0
     bn.js: ^5.1.3
+    create-hash: ^1.2.0
     elliptic: ^6.5.3
     js-sha3: ^0.8.0
     pbkdf2: ^3.1.1
@@ -2015,6 +2016,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/create-hash@npm:^1.2.0":
+  version: 1.2.2
+  resolution: "@types/create-hash@npm:1.2.2"
+  dependencies:
+    "@types/node": "*"
+  checksum: d9bd1821c26137be78eeda9d78e6a402ae766637a30323241adf23f6601d3053f2d37073798e1d36dd370fea75592a73f6ccda50a20f2b4080d2cfaee9264eac
+  languageName: node
+  linkType: hard
+
 "@types/elliptic@npm:^6.4.12":
   version: 6.4.12
   resolution: "@types/elliptic@npm:6.4.12"
@@ -2128,13 +2138,6 @@ __metadata:
   version: 14.14.3
   resolution: "@types/node@npm:14.14.3"
   checksum: f77a69dfc0edb74007883f339636f7d79b891219389311ff6d756a966ca1025557c84c68643f738e897385d2e57e9124cc8261fcf080d378398ab60babaffd57
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:11.11.6":
-  version: 11.11.6
-  resolution: "@types/node@npm:11.11.6"
-  checksum: 2b64bfc2344f60fdcf3baea2f9f2e065189cee3a6144d3dbdcb32cb6728dd64933808e2da8bd4d69033f04510f7de1397c08d54d8f89d505b3a957b24dcc583f
   languageName: node
   linkType: hard
 
@@ -3171,18 +3174,6 @@ __metadata:
   dependencies:
     file-uri-to-path: 1.0.0
   checksum: bd623dec58f126eb0c30f04a20da7080f06cdd5af26bf5a91615e70055fbba66c4cec5c88b156e8181c1d822f2392034a40a9121ef3ebc25638dc2163332b12d
-  languageName: node
-  linkType: hard
-
-"bip39@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "bip39@npm:3.0.2"
-  dependencies:
-    "@types/node": 11.11.6
-    create-hash: ^1.1.0
-    pbkdf2: ^3.0.9
-    randombytes: ^2.0.1
-  checksum: 24c59dafc6c3b5c4ff0b8d0861509c0007bc0301b217125d1f1de6a39e84d21c9cfc1df743d472237c2ec4116387a46389843b36c95585b0eacebb6f5be6ecbd
   languageName: node
   linkType: hard
 
@@ -8955,7 +8946,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"pbkdf2@npm:^3.0.3, pbkdf2@npm:^3.0.9, pbkdf2@npm:^3.1.1":
+"pbkdf2@npm:^3.0.3, pbkdf2@npm:^3.1.1":
   version: 3.1.1
   resolution: "pbkdf2@npm:3.1.1"
   dependencies:
