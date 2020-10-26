@@ -3,8 +3,6 @@
 
 import { Logger, Logger$Data } from './types';
 
-import chalk from 'chalk';
-
 import formatDate from './format/formatDate';
 import isBn from './is/bn';
 import isBuffer from './is/buffer';
@@ -21,13 +19,6 @@ const logTo = {
   error: 'error',
   log: 'log',
   warn: 'warn'
-};
-
-const chalked = {
-  debug: chalk.gray,
-  error: chalk.red,
-  log: chalk.reset,
-  warn: chalk.yellow
 };
 
 function formatObject (value: Record<string, unknown>): Record<string, unknown> {
@@ -71,12 +62,9 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
     return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult]);
   }
 
-  const chalk = (value: string): string =>
-    chalked[log](value);
-
   console[logTo[log] as 'log'](
-    chalk(formatDate(new Date())),
-    chalk(type),
+    formatDate(new Date()),
+    type,
     ...values.map(format)
   );
 }
