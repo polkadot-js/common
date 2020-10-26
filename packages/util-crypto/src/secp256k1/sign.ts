@@ -4,12 +4,11 @@
 import { Keypair } from '../types';
 import { HashType } from './types';
 
-import elliptic from 'elliptic';
+import { ec as EC } from 'elliptic';
 import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
 import hasher from './hasher';
 
-const EC = elliptic.ec;
 const ec = new EC('secp256k1');
 
 /**
