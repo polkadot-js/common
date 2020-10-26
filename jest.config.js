@@ -17,5 +17,5 @@ module.exports = Object.assign({}, config, {
     '<rootDir>/packages/util/build',
     '<rootDir>/packages/util-crypto/build'
   ],
-  resolver: './jest.resolver.js'
+  resolver: '@polkadot/dev/config/jest-resolver'
 });
