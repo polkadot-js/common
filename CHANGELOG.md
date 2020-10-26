@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 3.6.2-x
+
+Changes:
+
+- Remove the use of `chalk` (logger) for less overall dependencies
+
+
 ## 3.6.1 Oct 18, 2020
 
 Contributed:
