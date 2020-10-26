@@ -1,10 +1,9 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import elliptic from 'elliptic';
+import { ec as EC } from 'elliptic';
 import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
-const EC = elliptic.ec;
 const ec = new EC('secp256k1');
 
 export default function secp256k1Expand (publicKey: Uint8Array): Uint8Array {
