@@ -13,7 +13,7 @@
 //   - Remove setting of wordlost passing of wordlist in functions
 //   - Remove mnemonicToSeed (we only use the sync variant)
 
-import * as createHash from 'create-hash';
+import createHash from 'create-hash';
 import { pbkdf2Sync } from 'pbkdf2';
 
 import randomAsU8a from '../random/asU8a';
@@ -120,6 +120,9 @@ export function entropyToMnemonic (entropy: Uint8Array): string {
   const checksumBits = deriveChecksumBits(entropy);
 
   const bits = entropyBits + checksumBits;
+
+  // we just set it prior, so this is a safe check
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const chunks = bits.match(/(.{1,11})/g)!;
 
   const words = chunks.map(
