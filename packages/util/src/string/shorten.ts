@@ -15,10 +15,10 @@
  * stringShorten('1234567890', 2); // => 12..90
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function stringShorten (value: string, prefixLength = 6): string {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export default function stringShorten (value: String | string, prefixLength = 6): string {
   if (value.length <= 2 + 2 * prefixLength) {
-    return value;
+    return value.toString();
   }
 
   return `${value.substr(0, prefixLength)}…${value.slice(-prefixLength)}`;

@@ -16,6 +16,12 @@ describe('stringUpperFirst', (): void => {
     ).toBe('Abc');
   });
 
+  it("uppers the first letter if it's a lowercase letter (String)", (): void => {
+    expect(
+      stringUpperFirst(String('abc'))
+    ).toBe('Abc');
+  });
+
   it('returns undefined as empty', (): void => {
     expect(
       stringUpperFirst()
