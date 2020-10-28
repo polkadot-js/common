@@ -15,7 +15,8 @@
  * stringLowerFirst('ABC'); // => 'aBC'
  * ```
  */
-export default function stringLowerFirst (value?: string | null): string {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export default function stringLowerFirst (value?: string | String | null): string {
   return value
     ? value.charAt(0).toLowerCase() + value.slice(1)
     : '';

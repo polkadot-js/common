@@ -18,7 +18,8 @@ import stringToU8a from './toU8a';
  * stringToU8a('hello'); // 0x68656c6c6f
  * ```
  */
-export default function stringToHex (value?: string): string {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export default function stringToHex (value?: String | string): string {
   return u8aToHex(
     stringToU8a(value)
   );
