@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@types/bn.js": "^4.11.6",
-    "@types/create-hash": "^1.2.0",
+    "@types/create-hash": "^1.2.2",
     "@types/elliptic": "^6.4.12",
     "@types/pbkdf2": "^3.1.0",
     "@types/scryptsy": "^2.0.0",
