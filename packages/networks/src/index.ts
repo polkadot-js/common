@@ -149,6 +149,15 @@ const all: NetworkFromSubstrate[] = [
     website: 'https://www.substratee.com'
   },
   {
+    decimals: [0],
+    displayName: 'Totem',
+    network: 'totem',
+    prefix: 14,
+    standardAccount: '*25519',
+    symbols: ['XTX'],
+    website: 'https://totemaccounting.com'
+  },
+  {
     decimals: [12],
     displayName: 'Kulupu',
     genesisHash: ['0xf7a99d3cb92853d00d5275c971c132c074636256583fee53b3bbe60d7b8769ba'],
