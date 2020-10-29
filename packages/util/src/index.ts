@@ -7,7 +7,7 @@ import './polyfill';
  * @summary Utility methods for this package are split into groups
  */
 
-export { default as assert } from './assert';
+export { default as assert, assertReturn } from './assert';
 export { default as detectPackage } from './detectPackage';
 export { default as extractTime } from './extractTime';
 export { default as logger } from './logger';

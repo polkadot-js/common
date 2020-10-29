@@ -30,3 +30,13 @@ export default function assert (condition: unknown, message: string | MessageFn)
     );
   }
 }
+
+/**
+ * @name assertReturn
+ * @summart Returns when the value is truthy, otherwise throws assertion error
+ */
+export function assertReturn <T> (value: T | undefined | null, message: string | MessageFn): T {
+  assert(value, message);
+
+  return value;
+}
