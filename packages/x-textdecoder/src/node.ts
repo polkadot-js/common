@@ -4,5 +4,5 @@
 import { TextDecoder as NodeTextDecoder } from 'util';
 
 export default typeof TextDecoder === 'undefined'
-  ? NodeTextDecoder
+  ? NodeTextDecoder as unknown as typeof TextDecoder
   : TextDecoder;

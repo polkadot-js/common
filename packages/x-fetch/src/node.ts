@@ -4,5 +4,5 @@
 import nodeFetch from 'node-fetch';
 
 export default typeof fetch === 'undefined'
-  ? nodeFetch
+  ? nodeFetch as unknown as typeof fetch
   : fetch;

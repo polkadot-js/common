@@ -17,5 +17,5 @@ export default typeof TextEncoder === 'undefined'
 
       return Uint8Array.from(encoded);
     }
-  }
+  } as unknown as typeof TextEncoder
   : TextEncoder;
