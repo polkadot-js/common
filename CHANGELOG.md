@@ -8,6 +8,8 @@ Changes:
 - `string*` utilities now also allows `String` (class) inputs
 - Align bip39 use with wasm-crypto for English-only wordlist, default, non supplied)
 - Adjust elliptic imports for explicit paths (allows tree-shaking)
+- Add Totem (ss58 prefix 14) into `@polkadot/networks`
+- Move `@polkadot/x-{fetch,textdecoder,textencoder,ws}` into `common` repo
 
 
 ## 3.6.1 Oct 18, 2020

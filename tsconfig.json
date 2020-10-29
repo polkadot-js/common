@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@polkadot/dev/config/tsconfig",
+  "extends": "@polkadot/dev/config/tsconfig",
   "exclude": [
     "build/**/*",
     "**/build/**/*"
@@ -14,7 +14,8 @@
       "@polkadot/util-crypto": [ "packages/util-crypto/src" ],
       "@polkadot/util-crypto/*": [ "packages/util-crypto/src/*" ],
       "@polkadot/util": [ "packages/util/src" ],
-      "@polkadot/util/*": [ "packages/util/src/*" ]
+      "@polkadot/util/*": [ "packages/util/src/*" ],
+      "@polkadot/x-*": [ "packages/x-*/src/browser" ]
     },
     "skipLibCheck": true,
     "typeRoots": [
