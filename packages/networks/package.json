@@ -13,8 +13,7 @@
   },
   "keywords": [
     "Polkadot",
-    "Keyring",
-    "ed25519"
+    "ss58"
   ],
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [
@@ -31,6 +30,6 @@
   },
   "devDependencies": {
     "@polkadot/util": "^3.6.2-11",
-    "@polkadot/x-fetch": "^0.3.6"
+    "@polkadot/x-fetch": "^3.6.2-11"
   }
 }
