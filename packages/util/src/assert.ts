@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import isFunction from './is/function';
+import isUndefined from './is/undefined';
 
 type MessageFn = () => string;
 
@@ -33,10 +34,10 @@ export default function assert (condition: unknown, message: string | MessageFn)
 
 /**
  * @name assertReturn
- * @summart Returns when the value is truthy, otherwise throws assertion error
+ * @summart Returns when the value is not undefined, otherwise throws assertion error
  */
-export function assertReturn <T> (value: T | undefined | null, message: string | MessageFn): T {
-  assert(value, message);
+export function assertReturn <T> (value: T | undefined, message: string | MessageFn): T {
+  assert(!isUndefined(value), message);
 
   return value;
 }
