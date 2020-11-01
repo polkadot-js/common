@@ -1,24 +1,9 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const crypto = require('crypto');
-const jestConfig = require('jest-config');
 const config = require('@polkadot/dev/config/jest');
 
 module.exports = Object.assign({}, config, {
-  globals: {
-    ...jestConfig.defaults.globals,
-    ...(config.globals || {}),
-    crypto: {
-      getRandomValues: function (arr) {
-        return crypto.randomBytes(arr.length).reduce((arr, value, index) => {
-          arr[index] = value;
-
-          return arr;
-        }, arr);
-      }
-    }
-  },
   moduleNameMapper: {
     '@polkadot/keyring(.*)$': '<rootDir>/packages/keyring/src/$1',
     '@polkadot/networks(.*)$': '<rootDir>/packages/networks/src/$1',
