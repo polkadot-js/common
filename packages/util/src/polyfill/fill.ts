@@ -5,6 +5,12 @@
 
 import assert from '../assert';
 
+function getOffset (value: number, length: number): number {
+  return value < 0
+    ? Math.max(length + value, 0)
+    : Math.min(value, length);
+}
+
 if (!Array.prototype.fill) {
   // eslint-disable-next-line no-extend-native
   Array.prototype.fill = function fill <T> (value: T, start = 0, end?: number): T[] {
@@ -12,12 +18,8 @@ if (!Array.prototype.fill) {
 
     const A = Object(this) as T[];
     const relativeEnd = end ?? A.length;
-    const final = relativeEnd < 0
-      ? Math.max(A.length + relativeEnd, 0)
-      : Math.min(relativeEnd, A.length);
-    let k = start < 0
-      ? Math.max(A.length + start, 0)
-      : Math.min(start, A.length);
+    const final = getOffset(relativeEnd, A.length);
+    let k = getOffset(start, A.length);
 
     while (k < final) {
       A[k] = value;

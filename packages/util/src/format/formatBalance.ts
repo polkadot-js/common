@@ -61,8 +61,8 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | B
     : options;
 
   // NOTE We start at midpoint (8) minus 1 - this means that values display as
-  // 123.456 instead of 0.123k (so always 6 relevant). Additionally we us ceil
-  // so there are at most 3 decimal before the decimal seperator
+  // 123.456 instead of 0.123k (so always 6 relevant). Additionally we use ceil
+  // so there are at most 3 decimal before the decimal separator
   const si = calcSi(text, decimals, forceUnit);
   const mid = text.length - (decimals + si.power);
   const prefix = text.substr(0, mid);

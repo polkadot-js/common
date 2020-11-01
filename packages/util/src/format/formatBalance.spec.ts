@@ -20,16 +20,16 @@ describe('formatBalance', (): void => {
       ).toEqual('123.4567 µUnit');
     });
 
+    it('formats 123,456 (decimals=0)', (): void => {
+      expect(
+        formatBalance(123456, { decimals: 0, withSi: true })
+      ).toEqual('123.4560 kUnit');
+    });
+
     it('formats BigInt numbers', (): void => {
       expect(
         formatBalance(123456789000n, { decimals: 15, withSi: true })
       ).toEqual('123.4567 µUnit');
-    });
-
-    it('formats 123,456 (decimals=0)', (): void => {
-      expect(
-        formatBalance(TESTVAL, { decimals: 0, withSi: true })
-      ).toEqual('123.4560 kUnit');
     });
 
     it('formats 123,456,789,000 (decimals=15, old style)', (): void => {
