@@ -4,19 +4,19 @@
 /* eslint-disable no-extend-native */
 /* eslint-disable @typescript-eslint/unbound-method */
 
+import assert from '../assert';
+import isUndefined from '../is/undefined';
+
 if (!Array.prototype.fill) {
   // eslint-disable-next-line no-extend-native
   Array.prototype.fill = function fill <T> (value: T, start = 0, end?: number): T[] {
     // Steps 1-2.
-    if (!this) {
-      throw new TypeError('this is null or not defined');
-    }
+    assert(this, 'this is null or not defined');
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const A = Object(this);
+    const A: T[] = Object(this);
 
     // Steps 3-5.
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const len = A.length >>> 0;
 
     // Steps 6-7.
@@ -28,7 +28,7 @@ if (!Array.prototype.fill) {
       : Math.min(relativeStart, len);
 
     // Steps 9-10.
-    const relativeEnd = end === undefined
+    const relativeEnd = isUndefined(end)
       ? len
       : end >> 0;
 
@@ -39,13 +39,11 @@ if (!Array.prototype.fill) {
 
     // Step 12.
     while (k < final) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
       A[k] = value;
       k++;
     }
 
     // Step 13.
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return A;
   };
 }
