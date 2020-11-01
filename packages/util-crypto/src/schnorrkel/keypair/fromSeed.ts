@@ -3,8 +3,6 @@
 
 import { Keypair } from '../../types';
 
-import '../../polyfill';
-
 import { sr25519KeypairFromSeed } from '@polkadot/wasm-crypto';
 
 import keypairFromU8a from './fromU8a';

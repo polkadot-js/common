@@ -4,6 +4,10 @@
 const config = require('@polkadot/dev/config/jest');
 
 module.exports = Object.assign({}, config, {
+  globals: {
+    ...(config.globals || {}),
+    crypto: require('crypto')
+  },
   moduleNameMapper: {
     '@polkadot/keyring(.*)$': '<rootDir>/packages/keyring/src/$1',
     '@polkadot/networks(.*)$': '<rootDir>/packages/networks/src/$1',

@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 3.7.2-x
+
+Changes:
+
+- Remove built-in utility polyfills for `Array.fill`, `String.padStart`, `String.padEnd` as well as `Object.setPrototypeOf`. These should be provided by the actual user of the libraries if so required.
+- Remove explicit crypto polyfill injection for Jest (see [jest.config.js](./jest.config.js) for crypto config)
+
+
 ## 3.7.1 Nov 1, 2020
 
 Changes:

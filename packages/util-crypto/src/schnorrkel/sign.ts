@@ -3,8 +3,6 @@
 
 import { Keypair } from '../types';
 
-import '../polyfill';
-
 import { assert, u8aToU8a } from '@polkadot/util';
 import { sr25519Sign } from '@polkadot/wasm-crypto';
 
