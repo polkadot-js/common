@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 3.6.2-x
+## 3.7.1 Nov 1, 2020
 
 Changes:
 
