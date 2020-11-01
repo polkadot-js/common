@@ -39,22 +39,8 @@ const DEFAULT_UNIT = SI[SI_MID].text;
 let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
-function _formatPost (text: string, mid: number): string {
-  return `${`${new Array((mid < 0 ? 0 - mid : 0) + 1).join('0')}${text}`.substr(mid < 0 ? 0 : mid)}0000`.substr(0, 4);
-}
-
-function _formatUnit (si: SiDef, { withSi = true, withSiFull = false, withUnit = true }: Options): string {
-  return withSi || withSiFull
-    ? si.value === '-'
-      ? withUnit
-        ? ` ${isBoolean(withUnit) ? si.text : withUnit}`
-        : ''
-      : ` ${withSiFull ? si.text : si.value}${withUnit ? `${withSiFull ? ' ' : ''}${(isBoolean(withUnit) ? SI[SI_MID].text : withUnit)}` : ''}`
-    : '';
-}
-
 // Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | BigInt | ExtToBn, optOrBool: Options | boolean = true, optDecimals = defaultDecimals): string {
+function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | BigInt | ExtToBn, options: Options | boolean = true, optDecimals: number = defaultDecimals): string {
   let text = bnToBn(input).toString();
 
   if (text.length === 0 || text === '0') {
@@ -70,18 +56,27 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | B
   }
 
   // extract options - the boolean case is for backwards-compat
-  const options = isBoolean(optOrBool)
-    ? { withSi: optOrBool }
-    : optOrBool;
+  const { decimals = optDecimals, forceUnit = undefined, withSi = true, withSiFull = false, withUnit = true } = isBoolean(options)
+    ? { withSi: options }
+    : options;
 
   // NOTE We start at midpoint (8) minus 1 - this means that values display as
   // 123.456 instead of 0.123k (so always 6 relevant). Additionally we us ceil
   // so there are at most 3 decimal before the decimal seperator
-  const decimals = options.decimals ?? optDecimals;
-  const si = calcSi(text, decimals, options.forceUnit);
+  const si = calcSi(text, decimals, forceUnit);
   const mid = text.length - (decimals + si.power);
+  const prefix = text.substr(0, mid);
+  const padding = mid < 0 ? 0 - mid : 0;
+  const postfix = `${`${new Array(padding + 1).join('0')}${text}`.substr(mid < 0 ? 0 : mid)}0000`.substr(0, 4);
+  const units = withSi || withSiFull
+    ? si.value === '-'
+      ? withUnit
+        ? ` ${isBoolean(withUnit) ? si.text : withUnit}`
+        : ''
+      : ` ${withSiFull ? si.text : si.value}${withUnit ? `${withSiFull ? ' ' : ''}${(isBoolean(withUnit) ? SI[SI_MID].text : withUnit)}` : ''}`
+    : '';
 
-  return `${isNegative ? '-' : ''}${formatDecimal(text.substr(0, mid) || '0')}.${_formatPost(text, mid)}${_formatUnit(si, options)}`;
+  return `${isNegative ? '-' : ''}${formatDecimal(prefix || '0')}.${postfix}${units}`;
 }
 
 const formatBalance = _formatBalance as BalanceFormatter;
