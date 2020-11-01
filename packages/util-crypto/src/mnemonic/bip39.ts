@@ -15,7 +15,7 @@
 
 import createHash from 'create-hash';
 import { pbkdf2Sync } from 'pbkdf2';
-import { assert } from '@polkadot/util';
+import { assert, u8aToU8a } from '@polkadot/util';
 
 import randomAsU8a from '../random/asU8a';
 import DEFAULT_WORDLIST from './bip39-en';
@@ -57,7 +57,7 @@ export function mnemonicToSeedSync (mnemonic: string, password?: string): Buffer
   return pbkdf2Sync(mnemonicBuffer, saltBuffer, 2048, 64, 'sha512');
 }
 
-export function mnemonicToEntropy (mnemonic: string): string {
+export function mnemonicToEntropy (mnemonic: string): Uint8Array {
   const words = normalize(mnemonic).split(' ');
 
   assert(words.length % 3 === 0, INVALID_MNEMONIC);
@@ -83,12 +83,12 @@ export function mnemonicToEntropy (mnemonic: string): string {
 
   assert(entropyBytes && entropyBytes.length % 4 === 0 && entropyBytes.length >= 16 && entropyBytes.length <= 32, INVALID_ENTROPY);
 
-  const entropy = Buffer.from(entropyBytes);
+  const entropy = u8aToU8a(entropyBytes);
   const newChecksum = deriveChecksumBits(entropy);
 
   assert(newChecksum === checksumBits, INVALID_CHECKSUM);
 
-  return entropy.toString('hex');
+  return entropy;
 }
 
 export function entropyToMnemonic (entropy: Uint8Array): string {
