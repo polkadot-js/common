@@ -5,8 +5,8 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 
 if (!Array.prototype.fill) {
-  // eslint-disable-next-line no-extend-native,@typescript-eslint/no-explicit-any
-  Array.prototype.fill = function fill (value: any, start = 0, end?: number): any[] {
+  // eslint-disable-next-line no-extend-native
+  Array.prototype.fill = function fill <T> (value: T, start = 0, end?: number): T[] {
     // Steps 1-2.
     if (!this) {
       throw new TypeError('this is null or not defined');

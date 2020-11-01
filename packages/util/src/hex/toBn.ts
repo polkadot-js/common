@@ -8,7 +8,7 @@ import hexStripPrefix from './stripPrefix';
 import { ToBnOptions } from '../types';
 
 function reverse (value: string): string {
-  return (value.match(new RegExp('.{1,2}', 'g')) || [])
+  return (value.match(/.{1,2}/g) || [])
     .reverse()
     .join('');
 }
