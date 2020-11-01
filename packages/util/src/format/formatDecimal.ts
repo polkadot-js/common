@@ -1,7 +1,8 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const NUMBER_REGEX = /(\\d+?)(?=(\\d{3})+(?!\\d)|$)/g;
+// eslint-disable-next-line prefer-regex-literals
+const NUMBER_REGEX = new RegExp('(\\d+?)(?=(\\d{3})+(?!\\d)|$)', 'g');
 
 export default function formatDecimal (value: string): string {
   // We can do this by adjusting the regx, however for the sake of clarity
