@@ -2,6 +2,8 @@
 
 ## 3.7.2-x
 
+- **Breaking change** Polyfills are not provided by these libraries anymore, the user should provide them.
+
 Changes:
 
 - Remove built-in utility polyfills for `Array.fill`, `String.padStart`, `String.padEnd` as well as `Object.setPrototypeOf`. These should be provided by the actual user of the libraries if so required.
