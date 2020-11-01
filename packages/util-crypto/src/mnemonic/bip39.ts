@@ -15,6 +15,7 @@
 
 import createHash from 'create-hash';
 import { pbkdf2Sync } from 'pbkdf2';
+import { assert } from '@polkadot/util';
 
 import randomAsU8a from '../random/asU8a';
 import DEFAULT_WORDLIST from './bip39-en';
@@ -59,23 +60,17 @@ export function mnemonicToSeedSync (mnemonic: string, password?: string): Buffer
 export function mnemonicToEntropy (mnemonic: string): string {
   const words = normalize(mnemonic).split(' ');
 
-  if (words.length % 3 !== 0) {
-    throw new Error(INVALID_MNEMONIC);
-  }
+  assert(words.length % 3 === 0, INVALID_MNEMONIC);
 
   // convert word indices to 11 bit binary strings
   const bits = words
-    .map(
-      (word: string): string => {
-        const index = DEFAULT_WORDLIST.indexOf(word);
+    .map((word): string => {
+      const index = DEFAULT_WORDLIST.indexOf(word);
 
-        if (index === -1) {
-          throw new Error(INVALID_MNEMONIC);
-        }
+      assert(index !== -1, INVALID_MNEMONIC);
 
-        return index.toString(2).padStart(11, '0');
-      }
-    )
+      return index.toString(2).padStart(11, '0');
+    })
     .join('');
 
   // split the binary string into ENT/CS
@@ -86,62 +81,34 @@ export function mnemonicToEntropy (mnemonic: string): string {
   // calculate the checksum and compare
   const entropyBytes = entropyBits.match(/(.{1,8})/g)?.map(binaryToByte);
 
-  if (!entropyBytes || entropyBytes.length < 16) {
-    throw new Error(INVALID_ENTROPY);
-  } else if (entropyBytes.length > 32) {
-    throw new Error(INVALID_ENTROPY);
-  } else if (entropyBytes.length % 4 !== 0) {
-    throw new Error(INVALID_ENTROPY);
-  }
+  assert(entropyBytes && entropyBytes.length % 4 === 0 && entropyBytes.length >= 16 && entropyBytes.length <= 32, INVALID_ENTROPY);
 
   const entropy = Buffer.from(entropyBytes);
   const newChecksum = deriveChecksumBits(entropy);
 
-  if (newChecksum !== checksumBits) {
-    throw new Error(INVALID_CHECKSUM);
-  }
+  assert(newChecksum === checksumBits, INVALID_CHECKSUM);
 
   return entropy.toString('hex');
 }
 
 export function entropyToMnemonic (entropy: Uint8Array): string {
   // 128 <= ENT <= 256
-  if (entropy.length < 16) {
-    throw new TypeError(INVALID_ENTROPY);
-  }
-
-  if (entropy.length > 32) {
-    throw new TypeError(INVALID_ENTROPY);
-  } else if (entropy.length % 4 !== 0) {
-    throw new TypeError(INVALID_ENTROPY);
-  }
+  assert(entropy.length % 4 === 0 && entropy.length >= 16 && entropy.length <= 32, INVALID_ENTROPY);
 
   const entropyBits = bytesToBinary(Array.from(entropy));
   const checksumBits = deriveChecksumBits(entropy);
 
-  const bits = entropyBits + checksumBits;
-
   // we just set it prior, so this is a safe check
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const chunks = bits.match(/(.{1,11})/g)!;
-
-  const words = chunks.map(
-    (binary: string): string => {
-      const index = binaryToByte(binary);
-
-      return DEFAULT_WORDLIST[index];
-    }
-  );
-
-  return words.join(' ');
+  return (entropyBits + checksumBits).match(/(.{1,11})/g)!
+    .map((binary) => DEFAULT_WORDLIST[binaryToByte(binary)])
+    .join(' ');
 }
 
 export function generateMnemonic (strength?: number): string {
   strength = strength || 128;
 
-  if (strength % 32 !== 0) {
-    throw new TypeError(INVALID_ENTROPY);
-  }
+  assert(strength % 32 === 0, INVALID_ENTROPY);
 
   return entropyToMnemonic(randomAsU8a(strength / 8));
 }

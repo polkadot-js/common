@@ -13,11 +13,7 @@ const FORMAT = [9, 10, 13];
  * Checks to see if the input string or Uint8Array is printable ASCII, 32-127 + formatters
  */
 export default function isAscii (value?: number[] | Buffer | Uint8Array | string | null): boolean {
-  if (!value) {
-    return isString(value);
-  }
-
-  const u8a = u8aToU8a(value);
-
-  return !u8a.some((byte) => (byte >= 127) || (byte < 32 && !FORMAT.includes(byte)));
+  return value
+    ? !u8aToU8a(value).some((byte) => (byte >= 127) || (byte < 32 && !FORMAT.includes(byte)))
+    : isString(value);
 }
