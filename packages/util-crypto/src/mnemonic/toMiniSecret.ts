@@ -9,8 +9,8 @@ import { bip39ToMiniSecret, isReady } from '@polkadot/wasm-crypto';
 
 import toEntropy from './toEntropy';
 
-export default function toMiniSecret (mnemonic: string, password = ''): Uint8Array {
-  if (isReady()) {
+export default function toMiniSecret (mnemonic: string, password = '', onlyJs = false): Uint8Array {
+  if (isReady() && !onlyJs) {
     return bip39ToMiniSecret(mnemonic, password);
   }
 

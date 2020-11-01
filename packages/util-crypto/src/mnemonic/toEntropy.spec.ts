@@ -15,6 +15,7 @@ describe('mnemonicToEntropy', (): void => {
   tests.forEach(([mnemonic, entropy], index): void => {
     it(`Created correct entropy for ${index}`, (): void => {
       expect(u8aToHex(toEntropy(mnemonic))).toEqual(entropy);
+      expect(u8aToHex(toEntropy(mnemonic, true))).toEqual(entropy);
     });
   });
 });
