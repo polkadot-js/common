@@ -1,10 +1,12 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+const jestConfig = require('jest-config');
 const config = require('@polkadot/dev/config/jest');
 
 module.exports = Object.assign({}, config, {
   globals: {
+    ...jestConfig.defaults.globals,
     ...(config.globals || {}),
     crypto: require('crypto')
   },
