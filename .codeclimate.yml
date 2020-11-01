@@ -1,4 +1,5 @@
 exclude_patterns:
 - "**/*.spec.js"
 - "**/*.spec.ts"
-- "docs/**/*.js"
+- "packages/networks/src/index.ts"
+- "packages/util/src/is/utf8.ts"
