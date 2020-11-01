@@ -2,48 +2,28 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable no-extend-native */
-/* eslint-disable @typescript-eslint/unbound-method */
 
 import assert from '../assert';
-import isUndefined from '../is/undefined';
 
 if (!Array.prototype.fill) {
   // eslint-disable-next-line no-extend-native
   Array.prototype.fill = function fill <T> (value: T, start = 0, end?: number): T[] {
-    // Steps 1-2.
     assert(this, 'this is null or not defined');
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const A: T[] = Object(this);
-
-    // Steps 3-5.
-    const len = A.length >>> 0;
-
-    // Steps 6-7.
-    const relativeStart = start >> 0;
-
-    // Step 8.
-    let k = relativeStart < 0
-      ? Math.max(len + relativeStart, 0)
-      : Math.min(relativeStart, len);
-
-    // Steps 9-10.
-    const relativeEnd = isUndefined(end)
-      ? len
-      : end >> 0;
-
-    // Step 11.
+    const A = Object(this) as T[];
+    const relativeEnd = end ?? A.length;
     const final = relativeEnd < 0
-      ? Math.max(len + relativeEnd, 0)
-      : Math.min(relativeEnd, len);
+      ? Math.max(A.length + relativeEnd, 0)
+      : Math.min(relativeEnd, A.length);
+    let k = start < 0
+      ? Math.max(A.length + start, 0)
+      : Math.min(start, A.length);
 
-    // Step 12.
     while (k < final) {
       A[k] = value;
       k++;
     }
 
-    // Step 13.
     return A;
   };
 }
