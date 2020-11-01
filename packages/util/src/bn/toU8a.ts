@@ -12,6 +12,15 @@ interface Options extends ToBnOptions {
   bitLength?: number;
 }
 
+function setBn (valueBn: BN, byteLength: number, { isLe, isNegative }: Options): Uint8Array {
+  const output = new Uint8Array(byteLength);
+  const bn = isNegative ? valueBn.toTwos(byteLength * 8) : valueBn;
+
+  output.set(bn.toArray(isLe ? 'le' : 'be', byteLength), 0);
+
+  return output;
+}
+
 /**
  * @name bnToU8a
  * @summary Creates a Uint8Array object from a BN.
@@ -29,7 +38,7 @@ interface Options extends ToBnOptions {
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, options?: Options): Uint8Array;
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, arg1: number | Options = { bitLength: -1, isLe: true, isNegative: false }, arg2?: boolean): Uint8Array {
-  const _options: Options = {
+  const options: Options = {
     bitLength: -1,
     isLe: true,
     isNegative: false,
@@ -37,25 +46,15 @@ function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number 
   };
 
   const valueBn = bnToBn(value);
-  const byteLength = _options.bitLength === -1
+  const byteLength = options.bitLength === -1
     ? Math.ceil(valueBn.bitLength() / 8)
-    : Math.ceil((_options.bitLength || 0) / 8);
+    : Math.ceil((options.bitLength || 0) / 8);
 
-  if (!value) {
-    return _options.bitLength === -1
+  return value
+    ? setBn(valueBn, byteLength, options)
+    : options.bitLength === -1
       ? new Uint8Array()
       : new Uint8Array(byteLength);
-  }
-
-  const output = new Uint8Array(byteLength);
-  const bn = _options.isNegative ? valueBn.toTwos(byteLength * 8) : valueBn;
-
-  output.set(
-    bn.toArray(_options.isLe ? 'le' : 'be', byteLength),
-    0
-  );
-
-  return output;
 }
 
 export default bnToU8a;

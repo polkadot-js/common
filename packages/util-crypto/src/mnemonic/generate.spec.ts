@@ -11,24 +11,20 @@ describe('mnemonicGenerate', (): void => {
   });
 
   it('generates a valid mnemonic (default strength)', (): void => {
-    const mnemonic = generate();
-
-    console.error(mnemonic);
-
     expect(
-      validate(mnemonic)
+      validate(generate())
     ).toEqual(true);
   });
 
   ([12, 15, 18, 21, 24] as WordCount[]).forEach((num: WordCount): void => {
     it(`generates a valid mnemonic (${num} words)`, (): void => {
-      const mnemonic = generate(num);
-      const isValid = validate(mnemonic);
+      [false, true].forEach((onlyJs): void => {
+        const mnemonic = generate(num, onlyJs);
+        const isValid = validate(mnemonic);
 
-      console.error(mnemonic);
-
-      expect(mnemonic.split(' ')).toHaveLength(num);
-      expect(isValid).toEqual(true);
+        expect(mnemonic.split(' ')).toHaveLength(num);
+        expect(isValid).toEqual(true);
+      });
     });
   });
 });

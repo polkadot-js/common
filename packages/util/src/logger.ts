@@ -5,11 +5,12 @@ import { Logger, Logger$Data } from './types';
 
 import formatDate from './format/formatDate';
 import isBn from './is/bn';
-import isBuffer from './is/buffer';
 import isFunction from './is/function';
 import isObject from './is/object';
 import isU8a from './is/u8a';
 import u8aToHex from './u8a/toHex';
+import u8aToU8a from './u8a/toU8a';
+import { isBuffer } from './is';
 
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
@@ -34,21 +35,11 @@ function formatObject (value: Record<string, unknown>): Record<string, unknown> 
 export function format (value: unknown): unknown {
   if (Array.isArray(value)) {
     return value.map(format);
-  }
-
-  if (isBn(value)) {
+  } else if (isBn(value)) {
     return value.toString();
-  }
-
-  if (isBuffer(value)) {
-    return `0x${value.toString('hex')}`;
-  }
-
-  if (isU8a(value)) {
-    return u8aToHex(value);
-  }
-
-  if (value && isObject(value) && value.constructor === Object) {
+  } else if (isU8a(value) || isBuffer(value)) {
+    return u8aToHex(u8aToU8a(value));
+  } else if (value && isObject(value) && value.constructor === Object) {
     return formatObject(value);
   }
 

@@ -24,8 +24,8 @@ import { mnemonicToSeedSync } from './bip39';
  * }
  * ```
  */
-export default function toLegacy (mnemonic: string, password = ''): Uint8Array {
-  return isReady()
+export default function toLegacy (mnemonic: string, password = '', onlyJs = false): Uint8Array {
+  return isReady() && !onlyJs
     ? bip39ToSeed(mnemonic, password)
     : bufferToU8a(mnemonicToSeedSync(mnemonic, password)).subarray(0, 32);
 }
