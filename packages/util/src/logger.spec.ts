@@ -3,6 +3,8 @@
 
 import { Logger } from './types';
 
+import BN from 'bn.js';
+
 import { logger } from '.';
 import { format } from './logger';
 
@@ -62,15 +64,17 @@ describe('logger', (): void => {
     );
   });
 
-  it('logs with mulptiple values', (): void => {
-    l.log('test', 'a', 2);
+  it('logs with multiple values', (): void => {
+    l.log('test', 'a', 2, new BN('12345678900987654321'), Buffer.from([0, 1, 2, 3]));
 
     expect(spy.log).toHaveBeenCalledWith(
       dateMatch,
       prefixMatch,
       expect.stringMatching('test'),
       expect.stringMatching('a'),
-      2
+      2,
+      expect.stringMatching('12345678900987654321'),
+      expect.stringMatching('0x00010203')
     );
   });
 
