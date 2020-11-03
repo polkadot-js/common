@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-crypto",
-  "version": "3.7.1",
+  "version": "4.0.0-1",
   "description": "A collection of useful crypto utilities for @polkadot",
   "main": "index.js",
   "keywords": [
@@ -26,8 +26,8 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
     "@babel/runtime": "^7.12.1",
-    "@polkadot/networks": "^3.7.1",
-    "@polkadot/util": "^3.7.1",
+    "@polkadot/networks": "^4.0.0-1",
+    "@polkadot/util": "^4.0.0-1",
     "@polkadot/wasm-crypto": "^1.4.1",
     "base-x": "^3.0.8",
     "blakejs": "^1.1.0",
