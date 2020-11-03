@@ -12,17 +12,13 @@ import secp256k1Verify from '../secp256k1/verify';
 
 type Verifier = [KeypairType, (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string, isExpanded?: boolean) => boolean];
 
+const secp256k1VerifyHasher = (hashType: 'blake2' | 'keccak') =>
+  (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string, isExpanded?: boolean) =>
+    secp256k1Verify(message, signature, publicKey, { hashType, isExpanded });
+
 const VERIFIERS_ECDSA: Verifier[] = [
-  [
-    'ecdsa',
-    (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string, isExpanded?: boolean) =>
-      secp256k1Verify(message, signature, publicKey, { hashType: 'blake2', isExpanded })
-  ],
-  [
-    'ethereum',
-    (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string, isExpanded?: boolean) =>
-      secp256k1Verify(message, signature, publicKey, { hashType: 'keccak', isExpanded })
-  ]
+  ['ecdsa', secp256k1VerifyHasher('blake2')],
+  ['ethereum', secp256k1VerifyHasher('keccak')]
 ];
 
 const VERIFIERS: Verifier[] = [
