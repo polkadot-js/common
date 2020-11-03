@@ -5,7 +5,15 @@ import { assert } from '@polkadot/util';
 
 import { BASE58_ALPHABET } from './bs58';
 
-export function validateChars (type: string, alphabet: string, ipfsChar: string, value?: string | null, ipfsCompat = false): true {
+interface CheckConfig {
+  alphabet: string;
+  ipfsChar: string;
+  type: string;
+}
+
+const BASE_CONFIG = { alphabet: BASE58_ALPHABET, ipfsChar: 'z', type: 'base58' };
+
+export function validateChars ({ alphabet, ipfsChar, type }: CheckConfig, value?: string | null, ipfsCompat?: boolean): true {
   assert(value, `Expected non-null, non-empty ${type} input`);
   assert(!ipfsCompat || value[0] === ipfsChar, `Expected ${type} to start with '${ipfsChar}'`);
 
@@ -23,5 +31,5 @@ export function validateChars (type: string, alphabet: string, ipfsChar: string,
  * Validates the the supplied value is valid base58
  */
 export default function base58Validate (value?: string | null, ipfsCompat?: boolean): true {
-  return validateChars('base58', BASE58_ALPHABET, 'z', value, ipfsCompat);
+  return validateChars(BASE_CONFIG, value, ipfsCompat);
 }
