@@ -7,7 +7,7 @@ import BN from 'bn.js';
 
 import isToBn from '../is/toBn';
 
-function getValue <ExtToBn extends ToBn> (value?: BN | ExtToBn | Date | number | null): number {
+function getValue <ExtToBn extends ToBn> (value: BN | ExtToBn | Date | number): number {
   if (isToBn(value)) {
     return getValue(value.toBn());
   } else if (value instanceof Date) {
@@ -16,7 +16,7 @@ function getValue <ExtToBn extends ToBn> (value?: BN | ExtToBn | Date | number |
     return getValue(value.toNumber());
   }
 
-  return value || 0;
+  return value;
 }
 
 function formatValue (elapsed: number): string {
@@ -33,7 +33,7 @@ function formatValue (elapsed: number): string {
 
 export default function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: BN | ExtToBn | Date | number | null): string {
   const tsNow = (now && now.getTime()) || 0;
-  const tsValue = getValue(value);
+  const tsValue = getValue(value || 0);
 
   if (tsNow && tsValue) {
     const elapsed = Math.max(Math.abs(tsNow - tsValue), 0) / 1000;
