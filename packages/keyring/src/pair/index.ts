@@ -34,9 +34,9 @@ const TYPE_PREFIX = {
 };
 
 const TYPE_SIGNATURE = {
-  ecdsa: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'blake2'),
+  ecdsa: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, { hashType: 'blake2' }),
   ed25519: naclSign,
-  ethereum: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'keccak'),
+  ethereum: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, { hashType: 'keccak' }),
   sr25519: schnorrkelSign
 };
 

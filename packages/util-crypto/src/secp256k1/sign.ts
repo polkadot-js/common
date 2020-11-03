@@ -9,13 +9,17 @@ import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
 import hasher from './hasher';
 
+interface Options {
+  hashType: HashType;
+}
+
 const ec = new EC('secp256k1');
 
 /**
  * @name secp256k1Sign
  * @description Returns message signature of `message`, using the supplied pair
  */
-export default function secp256k1Sign (message: Uint8Array | string, { secretKey }: Partial<Keypair>, hashType: HashType = 'blake2'): Uint8Array {
+export default function secp256k1Sign (message: Uint8Array | string, { secretKey }: Partial<Keypair>, { hashType = 'blake2' }: Partial<Options> = {}): Uint8Array {
   assert(secretKey?.length === 32, 'Expected valid secp256k1 secretKey, 32-bytes');
 
   const key = ec.keyFromPrivate(secretKey);
