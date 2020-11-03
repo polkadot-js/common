@@ -1,8 +1,6 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import '../polyfill';
-
 /**
  * @summary Create valid mnemonic strings, validate them using BIP39, and convert them to valid seeds
  */

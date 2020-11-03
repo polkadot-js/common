@@ -9,13 +9,18 @@ import { assert, u8aEq, u8aToU8a } from '@polkadot/util';
 import secp256k1Expand from './expand';
 import hasher from './hasher';
 
+interface Options {
+  hashType: HashType;
+  isExpanded: boolean;
+}
+
 const ec = new EC('secp256k1');
 
 /**
  * @name secp256k1Verify
  * @description Verifies the signature of `message`, using the supplied pair
  */
-export default function secp256k1Verify (message: Uint8Array | string, signature: Uint8Array | string, address: Uint8Array | string, hashType: HashType = 'blake2', isExpanded = false): boolean {
+export default function secp256k1Verify (message: Uint8Array | string, signature: Uint8Array | string, address: Uint8Array | string, { hashType = 'blake2', isExpanded = false }: Partial<Options> = {}): boolean {
   const u8a = u8aToU8a(signature);
 
   assert(u8a.length === 65, `Expected signature with 65 bytes, ${u8a.length} found instead`);

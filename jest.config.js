@@ -22,5 +22,8 @@ module.exports = Object.assign({}, config, {
     '<rootDir>/packages/x-textencoder/build',
     '<rootDir>/packages/x-ws/build'
   ],
-  resolver: '@polkadot/dev/config/jest-resolver'
+  resolver: '@polkadot/dev/config/jest-resolver',
+  setupFilesAfterEnv: [
+    '@polkadot/dev/config/jest-crypto'
+  ]
 });

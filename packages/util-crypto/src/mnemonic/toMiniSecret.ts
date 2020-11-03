@@ -1,8 +1,6 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import '../polyfill';
-
 import { pbkdf2Sync } from 'pbkdf2';
 import { bufferToU8a, stringToU8a, u8aToBuffer } from '@polkadot/util';
 import { bip39ToMiniSecret, isReady } from '@polkadot/wasm-crypto';

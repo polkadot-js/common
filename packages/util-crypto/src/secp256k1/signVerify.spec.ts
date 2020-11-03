@@ -36,18 +36,18 @@ describe('sign and verify', (): void => {
 
   it('signs/verifies a message by random key (keccak)', (): void => {
     const pair = pairFromSeed(randomAsU8a());
-    const signature = sign(MESSAGE, pair, 'keccak');
+    const signature = sign(MESSAGE, pair, { hashType: 'keccak' });
     const address = hasher('keccak', pair.publicKey);
 
-    expect(verify(MESSAGE, signature, address, 'keccak')).toBe(true);
+    expect(verify(MESSAGE, signature, address, { hashType: 'keccak' })).toBe(true);
   });
 
   it('fails verification on hasher mismatches', (): void => {
     const pair = pairFromSeed(randomAsU8a());
-    const signature = sign(MESSAGE, pair, 'keccak');
+    const signature = sign(MESSAGE, pair, { hashType: 'keccak' });
     const address = hasher('keccak', pair.publicKey);
 
-    expect(verify(MESSAGE, signature, address, 'blake2')).toBe(false);
+    expect(verify(MESSAGE, signature, address, { hashType: 'blake2' })).toBe(false);
   });
 
   it('works over a range of random keys (blake2)', (): void => {
@@ -55,7 +55,7 @@ describe('sign and verify', (): void => {
       const pair = pairFromSeed(randomAsU8a());
 
       try {
-        expect(verify(MESSAGE, sign(MESSAGE, pair, 'blake2'), hasher('blake2', pair.publicKey), 'blake2')).toBe(true);
+        expect(verify(MESSAGE, sign(MESSAGE, pair, { hashType: 'blake2' }), hasher('blake2', pair.publicKey), { hashType: 'blake2' })).toBe(true);
       } catch (error) {
         console.error(`blake2 failed on #${i}`);
         throw error;
@@ -68,7 +68,7 @@ describe('sign and verify', (): void => {
       const pair = pairFromSeed(randomAsU8a());
 
       try {
-        expect(verify(MESSAGE, sign(MESSAGE, pair, 'keccak'), hasher('keccak', pair.publicKey), 'keccak')).toBe(true);
+        expect(verify(MESSAGE, sign(MESSAGE, pair, { hashType: 'keccak' }), hasher('keccak', pair.publicKey), { hashType: 'keccak' })).toBe(true);
       } catch (error) {
         console.error(`keccak failed on #${i}`);
         throw error;
