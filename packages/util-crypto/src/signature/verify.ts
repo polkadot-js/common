@@ -16,12 +16,12 @@ const VERIFIERS_ECDSA: Verifier[] = [
   [
     'ecdsa',
     (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string, isExpanded?: boolean) =>
-      secp256k1Verify(message, signature, publicKey, 'blake2', isExpanded)
+      secp256k1Verify(message, signature, publicKey, { hashType: 'blake2', isExpanded })
   ],
   [
     'ethereum',
     (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string, isExpanded?: boolean) =>
-      secp256k1Verify(message, signature, publicKey, 'keccak', isExpanded)
+      secp256k1Verify(message, signature, publicKey, { hashType: 'keccak', isExpanded })
   ]
 ];
 
