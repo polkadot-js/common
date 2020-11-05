@@ -153,6 +153,15 @@ const all: NetworkFromSubstrate[] = [
   },
   {
     decimals: [12],
+    displayName: 'Synesthesia',
+    network: 'synesthesia',
+    prefix: 15,
+    standardAccount: '*25519',
+    symbols: ['SYN'],
+    website: 'https://synesthesia.network/'
+  },
+  {
+    decimals: [12],
     displayName: 'Kulupu',
     genesisHash: ['0xf7a99d3cb92853d00d5275c971c132c074636256583fee53b3bbe60d7b8769ba'],
     network: 'kulupu',
