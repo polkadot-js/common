@@ -1861,7 +1861,7 @@ __metadata:
     "@babel/runtime": ^7.12.1
     "@polkadot/networks": ^4.0.0-7
     "@polkadot/util": ^4.0.0-7
-    "@polkadot/wasm-crypto": ^2.0.0-9
+    "@polkadot/wasm-crypto": ^2.0.0-10
     "@polkadot/x-randomvalues": ^4.0.0-7
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
@@ -1896,13 +1896,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto@npm:^2.0.0-9":
-  version: 2.0.0-9
-  resolution: "@polkadot/wasm-crypto@npm:2.0.0-9"
+"@polkadot/wasm-crypto@npm:^2.0.0-10":
+  version: 2.0.0-10
+  resolution: "@polkadot/wasm-crypto@npm:2.0.0-10"
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
-  checksum: 7bbe141f926f4cd4d0d03b0d187fb6ab8efb668a0bc28f489bd6a60316136d300d02a6c85b8ddc9466c7ee06abd4a347f1255c9d96feb82bd421f7a7e39b7111
+  checksum: 1217c72172b3781608280bd6c001b199ada00cec14326b27d081e1904967fc0246f512d1cd74bd15797c87f39d2efec2d639d89c608c0bcf140ec05ff8fe7564
   languageName: node
   linkType: hard
 
