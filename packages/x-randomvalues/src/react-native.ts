@@ -32,26 +32,9 @@ function getRandomValuesGlobal <T extends Uint8Array> (arr: T): T {
   return crypto.getRandomValues(arr);
 }
 
-const getRandomValues = typeof global.crypto !== 'undefined' && typeof global.crypto.getRandomValues === 'function'
+export default typeof global.crypto === 'object' && typeof global.crypto.getRandomValues === 'function'
   ? getRandomValuesGlobal
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-explicit-any
   : (typeof (global as any).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
     ? insecureRandomValues
     : getRandomValuesNative;
-
-export function polyfill (): void {
-  if (typeof global.crypto !== 'object') {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    global.crypto = {};
-  }
-
-  if (typeof global.crypto.getRandomValues !== 'function') {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    global.crypto.getRandomValues = getRandomValues;
-  }
-}
-
-export default getRandomValues;

@@ -10,17 +10,3 @@ export default function getRandomValues <T extends Uint8Array> (arr: T): T {
     return arr;
   }, arr);
 }
-
-export function polyfill (): void {
-  if (typeof global.crypto !== 'object') {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    global.crypto = {};
-  }
-
-  if (typeof global.crypto.getRandomValues !== 'function') {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    global.crypto.getRandomValues = getRandomValues;
-  }
-}
