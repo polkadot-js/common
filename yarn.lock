@@ -1861,7 +1861,7 @@ __metadata:
     "@babel/runtime": ^7.12.1
     "@polkadot/networks": ^4.0.0-6
     "@polkadot/util": ^4.0.0-6
-    "@polkadot/wasm-crypto": ^2.0.0-8
+    "@polkadot/wasm-crypto": ^2.0.0-9
     "@polkadot/x-randomvalues": ^4.0.0-6
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
@@ -1896,12 +1896,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto@npm:^2.0.0-8":
-  version: 2.0.0-8
-  resolution: "@polkadot/wasm-crypto@npm:2.0.0-8"
+"@polkadot/wasm-crypto@npm:^2.0.0-9":
+  version: 2.0.0-9
+  resolution: "@polkadot/wasm-crypto@npm:2.0.0-9"
   peerDependencies:
     "@polkadot/util": "*"
-  checksum: ae064e32aaeff796cf1b24365e8a03bbe3f1c8612562095105b5b7391ee8ac138b9b8720dca192ccb870eb5e180f06a64ea0a405e177187cc1941e745975ca91
+    "@polkadot/x-randomvalues": "*"
+  checksum: 7bbe141f926f4cd4d0d03b0d187fb6ab8efb668a0bc28f489bd6a60316136d300d02a6c85b8ddc9466c7ee06abd4a347f1255c9d96feb82bd421f7a7e39b7111
   languageName: node
   linkType: hard
 
@@ -1920,6 +1921,7 @@ __metadata:
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
     "@babel/runtime": ^7.12.1
+    "@types/react-native": ^0.63.33
   languageName: unknown
   linkType: soft
 
@@ -2195,6 +2197,32 @@ __metadata:
   version: 2.1.5
   resolution: "@types/prettier@npm:2.1.5"
   checksum: bc6271235d881fa49b2f03e8e9242a7be8ecbcdcffeb7e31347afd0343f5f5e372ce65fe257e44254156737935c9249c9722cbe991dfad9aab72056c6acdbdaa
+  languageName: node
+  linkType: hard
+
+"@types/prop-types@npm:*":
+  version: 15.7.3
+  resolution: "@types/prop-types@npm:15.7.3"
+  checksum: bd0eab69d5120ad3784d0c9985f902653d5924707a7f2b3702a330e762dfd61b6494954cb54ad0c52b918ffd6f1e7e27c9270e4442bc15250de348596f2f60cb
+  languageName: node
+  linkType: hard
+
+"@types/react-native@npm:^0.63.33":
+  version: 0.63.33
+  resolution: "@types/react-native@npm:0.63.33"
+  dependencies:
+    "@types/react": "*"
+  checksum: ac6f202902f2d2e2c938b120a3175fd1f61e337c709373ad6c1d7e716ad6e863ee71693744cf73cb0f75b311f86497bcaea06ea15cb896e684138327e14bae65
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:*":
+  version: 16.9.56
+  resolution: "@types/react@npm:16.9.56"
+  dependencies:
+    "@types/prop-types": "*"
+    csstype: ^3.0.2
+  checksum: 139867e2b3d577723b9361234f105d0cf1b143202f51fef207355332f972dd74030cfb3918037cb311eefd203ee06e0a370c37755204eefdd35734f0fde070a1
   languageName: node
   linkType: hard
 
@@ -3671,6 +3699,13 @@ __metadata:
   dependencies:
     cssom: ~0.3.6
   checksum: a778180d2f5eef44742b7083997a0ad6e59eee016724ceac4d6229e48842d3c5ebbb55dc02c555f793bdc486254f6eef8d2049c1815e8fc74514e3eb827d49ec
+  languageName: node
+  linkType: hard
+
+"csstype@npm:^3.0.2":
+  version: 3.0.4
+  resolution: "csstype@npm:3.0.4"
+  checksum: 90cd2ff9aced9049010c5c69470b30643761d511b4250f6ce2bbdbab23229822c325fd841be6066a94a9ba800112026e3c046be879cd44a066e8705991cdc700
   languageName: node
   linkType: hard
 
