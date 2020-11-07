@@ -15,12 +15,7 @@ interface RNExt {
   }
 }
 
-export default function getRandomValues <T extends Uint8Array> (arr: T): T {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-explicit-any
-  if (typeof (global as any).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom) {
-    return insecureRandomValues(arr);
-  }
-
+function getRandomValuesNative <T extends Uint8Array> (arr: T): T {
   // We may want to use a base64 decoder here, but we certainly have an issue where we
   // want/need this part as lean as possible. Since Buffer is already needed elsewhere
   // (an generally prevalent in JS), we rather use it as-is.
@@ -33,6 +28,17 @@ export default function getRandomValues <T extends Uint8Array> (arr: T): T {
     }, arr);
 }
 
+function getRandomValuesGlobal <T extends Uint8Array> (arr: T): T {
+  return crypto.getRandomValues(arr);
+}
+
+const getRandomValues = typeof global.crypto !== 'undefined' && typeof global.crypto.getRandomValues === 'function'
+  ? getRandomValuesGlobal
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-explicit-any
+  : (typeof (global as any).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
+    ? insecureRandomValues
+    : getRandomValuesNative;
+
 export function polyfill (): void {
   if (typeof global.crypto !== 'object') {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -43,6 +49,9 @@ export function polyfill (): void {
   if (typeof global.crypto.getRandomValues !== 'function') {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     global.crypto.getRandomValues = getRandomValues;
   }
 }
+
+export default getRandomValues;
