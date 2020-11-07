@@ -10,6 +10,7 @@ module.exports = Object.assign({}, config, {
     '@polkadot/util-(crypto)(.*)$': '<rootDir>/packages/util-$1/src/$2',
     // eslint-disable-next-line sort-keys
     '@polkadot/util(.*)$': '<rootDir>/packages/util/src/$1',
+    '@polkadot/wasm-crypto(.*)$': '<rootDir>/packages/wasm-crypto/src/$1',
     '@polkadot/x-(fetch|randomvalues|textdecoder|textencoder|ws)(.*)$': '<rootDir>/packages/x-$1/src/node'
   },
   modulePathIgnorePatterns: [

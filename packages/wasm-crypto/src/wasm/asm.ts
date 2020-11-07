@@ -3,4 +3,6 @@
 
 // Stub replaced at build time
 
-module.exports = require('./asm-empty');
+import asm from './asm-empty';
+
+export default asm;

@@ -1905,6 +1905,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@polkadot/wasm-crypto@workspace:packages/wasm-crypto":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
+  dependencies:
+    "@polkadot/dev": ^0.59.19
+    "@polkadot/util": ^4.0.0-6
+    "@polkadot/x-randomvalues": ^4.0.0-6
+    override-require: ^1.1.1
+  languageName: unknown
+  linkType: soft
+
 "@polkadot/x-fetch@^4.0.0-6, @polkadot/x-fetch@workspace:packages/x-fetch":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-fetch@workspace:packages/x-fetch"
@@ -7985,6 +7996,13 @@ fsevents@^1.2.7:
   version: 1.0.2
   resolution: "os-tmpdir@npm:1.0.2"
   checksum: ca158a3c2e48748adc7736cdbe4c593723f8ed8581d2aae2f2a30fdb9417d4ba14bed1cd487d47561898a7b1ece88bce69745e9ce0303e1dea9ea7d22d1f1082
+  languageName: node
+  linkType: hard
+
+"override-require@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "override-require@npm:1.1.1"
+  checksum: 7ce873a0ae207112ae0fe55d99a53bf25f866f4be678477a9f62db9bd4dc98e380f93af858e5afa8cdc6d47a94af493bb5f91cfdd98c1c8028f27e70303dfa1d
   languageName: node
   linkType: hard
 

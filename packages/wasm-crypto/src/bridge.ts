@@ -31,12 +31,14 @@ export async function initWasm (wasmBytes: Uint8Array | null, asmFn: AsmCreator 
   }
 }
 
-export function withWasm <T> (fn: (wasm: WasmCryptoInstance, ...params: unknown[]) => T): (...params: unknown[]) => T {
-  return (...params: unknown[]): T => {
+// FIXME We really would love to clean this up and have a sign like (wasm, ...params) => T
+// Alas, TypeScript foo is not that great today, so we sadly have an extra closure here
+export function withWasm <T, F extends (...params: never[]) => T> (fn: (wasm: WasmCryptoInstance) => F): F {
+  return ((...params: never[]): T => {
     assert(wasm, 'The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');
 
-    return fn(wasm, ...params);
-  };
+    return fn(wasm)(...params);
+  }) as unknown as F;
 }
 
 export function getWasm (): WasmCryptoInstance {
