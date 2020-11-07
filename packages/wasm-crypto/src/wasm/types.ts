@@ -33,3 +33,5 @@ export interface WasmCryptoInstance {
   ext_sr_sign(a: number, b: number, c: number, d: number, e: number, f: number, g: number): void;
   ext_sr_verify(a: number, b: number, c: number, d: number, e: number, f: number): number;
 }
+
+export type AsmCreator = (wbg: Record<string, WebAssembly.ImportValue>) => WasmCryptoInstance;
