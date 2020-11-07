@@ -25,5 +25,8 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-randomvalues#readme",
   "dependencies": {
     "@babel/runtime": "^7.12.1"
+  },
+  "devDependencies": {
+    "@types/react-native": "^0.63.33"
   }
 }
