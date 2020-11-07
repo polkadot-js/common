@@ -1862,6 +1862,7 @@ __metadata:
     "@polkadot/networks": ^4.0.0-5
     "@polkadot/util": ^4.0.0-5
     "@polkadot/wasm-crypto": ^2.0.0-8
+    "@polkadot/x-randomvalues": ^4.0.0-5
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
     "@types/elliptic": ^6.4.12
@@ -1914,7 +1915,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-randomvalues@workspace:packages/x-randomvalues":
+"@polkadot/x-randomvalues@^4.0.0-5, @polkadot/x-randomvalues@workspace:packages/x-randomvalues":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
