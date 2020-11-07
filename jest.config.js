@@ -10,7 +10,7 @@ module.exports = Object.assign({}, config, {
     '@polkadot/util-(crypto)(.*)$': '<rootDir>/packages/util-$1/src/$2',
     // eslint-disable-next-line sort-keys
     '@polkadot/util(.*)$': '<rootDir>/packages/util/src/$1',
-    '@polkadot/x-(fetch|textdecoder|textencoder|ws)(.*)$': '<rootDir>/packages/x-$1/src/node'
+    '@polkadot/x-(fetch|randomvalues|textdecoder|textencoder|ws)(.*)$': '<rootDir>/packages/x-$1/src/node'
   },
   modulePathIgnorePatterns: [
     '<rootDir>/packages/keyring/build',
@@ -18,6 +18,7 @@ module.exports = Object.assign({}, config, {
     '<rootDir>/packages/util/build',
     '<rootDir>/packages/util-crypto/build',
     '<rootDir>/packages/x-fetch/build',
+    '<rootDir>/packages/x-randomvalues/build',
     '<rootDir>/packages/x-textdecoder/build',
     '<rootDir>/packages/x-textencoder/build',
     '<rootDir>/packages/x-ws/build'

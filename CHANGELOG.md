@@ -7,7 +7,9 @@
 Changes:
 
 - Remove built-in utility polyfills for `Array.fill`, `String.padStart`, `String.padEnd` as well as `Object.setPrototypeOf`. These should be provided by the actual user of the libraries if so required.
-- Remove explicit crypto polyfill injection (aligning with update `@polkadot/wasm`)
+- Update `@polkadot/wasm-crypto` library (under-the-hood cleanups)
+- Remove explicit crypto polyfill injection (aligning with updated `@polkadot/wasm-crypto`)
+- Add `@polkadot/x-randomvalues` polyfill (for use in `@polkadot/wasm-crypto`)
 
 
 ## 3.7.1 Nov 1, 2020
