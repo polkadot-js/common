@@ -1,0 +1,22 @@
+{
+  "name": "@polkadot/wasm-crypto",
+  "version": "2.0.0-8",
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "browser": {
+    "./randomvalues.js": "./randomvalues-browser.js"
+  },
+  "react-native": {
+    "./randomvalues.js": "./randomvalues-react-native.js",
+    "./wasm/asm-empty.js": "./wasm/asm.js"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "devDependencies": {
+    "@polkadot/dev": "^0.59.19",
+    "@polkadot/util": "^4.0.0-6",
+    "override-require": "^1.1.1"
+  },
+  "peerDependencies": {
+    "@polkadot/util": "*"
+  }
+}
