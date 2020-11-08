@@ -3,10 +3,9 @@
 
 import { Keypair } from '../../types';
 
-import { ec as EC } from 'elliptic';
 import { assert, bnToU8a } from '@polkadot/util';
 
-const ec = new EC('secp256k1');
+import { secp256k1 } from '../secp256k1';
 
 /**
  * @name secp256k1KeypairFromSeed
@@ -15,7 +14,7 @@ const ec = new EC('secp256k1');
 export function secp256k1KeypairFromSeed (seed: Uint8Array): Keypair {
   assert(seed.length === 32, 'Expected valid 32-byte private key as a seed');
 
-  const key = ec.keyFromPrivate(seed);
+  const key = secp256k1.keyFromPrivate(seed);
 
   return {
     publicKey: new Uint8Array(key.getPublic().encodeCompressed()),
