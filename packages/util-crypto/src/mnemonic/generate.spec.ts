@@ -30,14 +30,12 @@ describe('mnemonicGenerate', (): void => {
 
   [true, false].forEach((onlyJs): void => {
     it(`generates not deterministic (onlyJs=${onlyJs.toString()})`, (): void => {
-      [false, true].forEach((onlyJs): void => {
-        const m1 = mnemonicGenerate(24, onlyJs);
-        const m2 = mnemonicGenerate(24, onlyJs);
+      const m1 = mnemonicGenerate(24, onlyJs);
+      const m2 = mnemonicGenerate(24, onlyJs);
 
-        expect(m1 === m2).toEqual(false);
-        expect(mnemonicValidate(m1)).toEqual(true);
-        expect(mnemonicValidate(m2)).toEqual(true);
-      });
+      expect(m1 === m2).toEqual(false);
+      expect(mnemonicValidate(m1)).toEqual(true);
+      expect(mnemonicValidate(m2)).toEqual(true);
     });
   });
 });

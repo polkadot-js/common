@@ -13,9 +13,10 @@ describe('mnemonicToEntropy', (): void => {
   });
 
   tests.forEach(([mnemonic, entropy], index): void => {
-    it(`Created correct entropy for ${index}`, (): void => {
-      expect(u8aToHex(mnemonicToEntropy(mnemonic))).toEqual(entropy);
-      expect(u8aToHex(mnemonicToEntropy(mnemonic, true))).toEqual(entropy);
+    [false, true].forEach((onlyJs): void => {
+      it(`Created correct entropy for ${index} (onlyJs = ${onlyJs.toString()})`, (): void => {
+        expect(u8aToHex(mnemonicToEntropy(mnemonic, onlyJs))).toEqual(entropy);
+      });
     });
   });
 });

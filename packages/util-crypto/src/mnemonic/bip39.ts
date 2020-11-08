@@ -13,10 +13,10 @@
 //   - Remove setting of wordlost passing of wordlist in functions
 //   - Remove mnemonicToSeed (we only use the sync variant)
 
-import createHash from 'create-hash';
-import { pbkdf2Sync } from 'pbkdf2';
+import createSha from 'sha.js';
 import { assert, u8aToU8a } from '@polkadot/util';
 
+import { pbkdf2Encode } from '../pbkdf2';
 import { randomAsU8a } from '../random/asU8a';
 import DEFAULT_WORDLIST from './bip39-en';
 
@@ -39,7 +39,7 @@ function bytesToBinary (bytes: number[]): string {
 function deriveChecksumBits (entropyBuffer: Uint8Array): string {
   const ENT = entropyBuffer.length * 8;
   const CS = ENT / 32;
-  const hash = createHash('sha256')
+  const hash = createSha('sha256')
     .update(entropyBuffer)
     .digest();
 
@@ -50,11 +50,11 @@ function salt (password?: string): string {
   return 'mnemonic' + (password || '');
 }
 
-export function mnemonicToSeedSync (mnemonic: string, password?: string): Buffer {
+export function mnemonicToSeedSync (mnemonic: string, password?: string): Uint8Array {
   const mnemonicBuffer = Buffer.from(normalize(mnemonic), 'utf8');
   const saltBuffer = Buffer.from(salt(normalize(password)), 'utf8');
 
-  return pbkdf2Sync(mnemonicBuffer, saltBuffer, 2048, 64, 'sha512');
+  return pbkdf2Encode(mnemonicBuffer, saltBuffer).password;
 }
 
 export function mnemonicToEntropy (mnemonic: string): Uint8Array {
