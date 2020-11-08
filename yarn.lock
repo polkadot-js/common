@@ -1871,17 +1871,16 @@ __metadata:
     "@types/elliptic": ^6.4.12
     "@types/pbkdf2": ^3.1.0
     "@types/scryptsy": ^2.0.0
-    "@types/sha.js": ^2.4.0
     "@types/xxhashjs": ^0.2.2
     base-x: ^3.0.8
     blakejs: ^1.1.0
     bn.js: ^5.1.3
     create-hash: ^1.2.0
     elliptic: ^6.5.3
+    hash.js: ^1.1.7
     js-sha3: ^0.8.0
     pbkdf2: ^3.1.1
     scryptsy: ^2.1.0
-    sha.js: ^2.4.11
     tweetnacl: ^1.0.3
     xxhashjs: ^0.2.2
   peerDependencies:
@@ -2248,15 +2247,6 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 774b1f24ea8ed5a9e8340738093d8d6337449aaf27b78e0e6715d4941ad593b417a34702b55b08888ed235428eb2e8742e888f064cd04d66f85f6464aca37511
-  languageName: node
-  linkType: hard
-
-"@types/sha.js@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@types/sha.js@npm:2.4.0"
-  dependencies:
-    "@types/node": "*"
-  checksum: d23139fb0c9ad65c884b057728b19944399e167fc2a05a22931760d3541c861af7c3c274de11ecc26d3e340f38c249e6d3b0359d249fb674bb702c3232c2d53f
   languageName: node
   linkType: hard
 
@@ -5662,7 +5652,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"hash.js@npm:^1.0.0, hash.js@npm:^1.0.3":
+"hash.js@npm:^1.0.0, hash.js@npm:^1.0.3, hash.js@npm:^1.1.7":
   version: 1.1.7
   resolution: "hash.js@npm:1.1.7"
   dependencies:
@@ -9277,7 +9267,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"sha.js@npm:^2.4.0, sha.js@npm:^2.4.11, sha.js@npm:^2.4.8":
+"sha.js@npm:^2.4.0, sha.js@npm:^2.4.8":
   version: 2.4.11
   resolution: "sha.js@npm:2.4.11"
   dependencies:
