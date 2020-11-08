@@ -8,6 +8,18 @@ import bufferToU8a from '../buffer/toU8a';
 import hexToU8a from '../hex/toU8a';
 import stringToU8a from '../string/toU8a';
 
+function convertArray (value: number[] | Uint8Array): Uint8Array {
+  return Array.isArray(value)
+    ? Uint8Array.from(value)
+    : value;
+}
+
+function convertString (value: string): Uint8Array {
+  return isHex(value)
+    ? hexToU8a(value)
+    : stringToU8a(value);
+}
+
 /**
  * @name u8aToU8a
  * @summary Creates a Uint8Array value from a Uint8Array, Buffer, string or hex input.
@@ -29,12 +41,8 @@ export default function u8aToU8a (value?: number[] | Buffer | Uint8Array | strin
   } else if (isBuffer(value)) {
     return bufferToU8a(value);
   } else if (isString(value)) {
-    return isHex(value)
-      ? hexToU8a(value)
-      : stringToU8a(value);
+    return convertString(value);
   }
 
-  return Array.isArray(value)
-    ? Uint8Array.from(value)
-    : value;
+  return convertArray(value);
 }
