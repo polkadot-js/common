@@ -4,3 +4,5 @@
 import { ec as EC } from 'elliptic';
 
 export const secp256k1 = new EC('secp256k1');
+
+export const EXPAND_OPT = { bitLength: 256, isLe: false };

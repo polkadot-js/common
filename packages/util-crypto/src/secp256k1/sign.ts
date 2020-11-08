@@ -7,7 +7,7 @@ import { HashType } from './types';
 import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
 import { secp256k1Hasher } from './hasher';
-import { secp256k1 } from './secp256k1';
+import { EXPAND_OPT, secp256k1 } from './secp256k1';
 
 interface Options {
   hashType: HashType;
@@ -24,8 +24,8 @@ export function secp256k1Sign (message: Uint8Array | string, { secretKey }: Part
   const ecsig = key.sign(secp256k1Hasher(hashType, message));
 
   return u8aConcat(
-    bnToU8a(ecsig.r, { bitLength: 256, isLe: false }),
-    bnToU8a(ecsig.s, { bitLength: 256, isLe: false }),
+    bnToU8a(ecsig.r, EXPAND_OPT),
+    bnToU8a(ecsig.s, EXPAND_OPT),
     new Uint8Array([ecsig.recoveryParam || 0])
   );
 }

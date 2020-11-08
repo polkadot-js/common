@@ -27,7 +27,7 @@ export function decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: bo
   }
 
   // assert(defaults.allowedPrefix.includes(decoded[0] as Prefix), error('Invalid decoded address prefix'));
-  assert(defaults.allowedDecodedLengths.includes(decoded.length), wrapError('Invalid decoded address length'));
+  assert(defaults.allowedEncodedLengths.includes(decoded.length), wrapError('Invalid decoded address length'));
 
   // TODO Unless it is an "use everywhere" prefix, throw an error
   // if (decoded[0] !== prefix) {
