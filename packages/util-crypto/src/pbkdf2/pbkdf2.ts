@@ -17,18 +17,14 @@ export function pbkdf2Sync (password: Uint8Array, salt: Uint8Array, rounds: numb
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    let prev = hmac(sha512, password)
-      .update(block)
-      .digest();
+    let prev = hmac(sha512, password).update(block).digest();
     const md = prev;
     let i = 0;
 
     while (++i < rounds) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      prev = hmac(sha512, password)
-        .update(prev)
-        .digest();
+      prev = hmac(sha512, password).update(prev).digest();
 
       let j = -1;
 
