@@ -4,7 +4,7 @@
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import randomAsU8a from '../random/asU8a';
+import { randomAsU8a } from '../random/asU8a';
 import pairFromSeed from './keypair/fromSeed';
 import sign from './sign';
 import verify from './verify';

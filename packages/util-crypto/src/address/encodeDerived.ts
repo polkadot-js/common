@@ -5,9 +5,9 @@ import { Prefix } from './types';
 
 import BN from 'bn.js';
 
-import decode from './decode';
-import encode from './encode';
-import keyDerived from './keyDerived';
+import { decodeAddress } from './decode';
+import { encodeAddress } from './encode';
+import { createKeyDerived } from './keyDerived';
 
 /**
  * @name encodeDerivedAddress
@@ -15,6 +15,6 @@ import keyDerived from './keyDerived';
  * @description
  * Creates a Substrate derived address based on the input address/publicKey and the index supplied.
  */
-export default function encodeDerivedAddress (who: Uint8Array | string, index: BigInt | BN | number, ss58Format?: Prefix): string {
-  return encode(keyDerived(decode(who), index), ss58Format);
+export function encodeDerivedAddress (who: Uint8Array | string, index: BigInt | BN | number, ss58Format?: Prefix): string {
+  return encodeAddress(createKeyDerived(decodeAddress(who), index), ss58Format);
 }

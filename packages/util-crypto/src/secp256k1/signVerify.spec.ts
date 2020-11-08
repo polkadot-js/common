@@ -3,7 +3,7 @@
 
 import { stringToU8a } from '@polkadot/util';
 
-import randomAsU8a from '../random/asU8a';
+import { randomAsU8a } from '../random/asU8a';
 import pairFromSeed from './keypair/fromSeed';
 import hasher from './hasher';
 import sign from './sign';

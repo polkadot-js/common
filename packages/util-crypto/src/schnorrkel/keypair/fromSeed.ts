@@ -5,14 +5,14 @@ import { Keypair } from '../../types';
 
 import { sr25519KeypairFromSeed } from '@polkadot/wasm-crypto';
 
-import keypairFromU8a from './fromU8a';
+import { schnorrkelKeypairFromU8a } from './fromU8a';
 
 /**
  * @name schnorrkelKeypairFromSeed
  * @description Returns a object containing a `publicKey` & `secretKey` generated from the supplied seed.
  */
-export default function schnorrkelKeypairFromSeed (seed: Uint8Array): Keypair {
-  return keypairFromU8a(
+export function schnorrkelKeypairFromSeed (seed: Uint8Array): Keypair {
+  return schnorrkelKeypairFromU8a(
     sr25519KeypairFromSeed(seed)
   );
 }

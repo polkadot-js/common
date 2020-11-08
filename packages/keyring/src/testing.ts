@@ -5,7 +5,7 @@ import { KeyringInstance, KeyringOptions } from './types';
 
 import { hexToU8a } from '@polkadot/util';
 
-import createPair from './pair';
+import { createPair } from './pair';
 import Keyring from '.';
 
 interface PairDef {
@@ -67,9 +67,9 @@ export const PAIRS: PairDef[] = [
  * @name testKeyring
  * @summary Create an instance of Keyring pre-populated with locked test accounts
  * @description The test accounts (i.e. alice, bob, dave, eve, ferdie)
- * are available on the dev chain and each test account is initialised with DOT funds.
+ * are available on the dev chain and each test account is initialized with DOT funds.
  */
-export default function testKeyring (options: KeyringOptions = {}, isDerived = true): KeyringInstance {
+export function createTestKeyring (options: KeyringOptions = {}, isDerived = true): KeyringInstance {
   const keyring = new Keyring(options);
 
   PAIRS.forEach(({ name, publicKey, secretKey, seed, type = 'sr25519' }): void => {

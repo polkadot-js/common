@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import validate from './validate';
+import { base32Validate } from './validate';
 
 export function testValidator (validate: (value?: string | null, ipfsCompat?: boolean) => boolean, value?: string | null, ipfsCompat?: boolean): boolean {
   try {
@@ -11,6 +11,6 @@ export function testValidator (validate: (value?: string | null, ipfsCompat?: bo
   }
 }
 
-export default function isBase32 (value?: string | null, ipfsCompat?: boolean): boolean {
-  return testValidator(validate, value, ipfsCompat);
+export function isBase32 (value?: string | null, ipfsCompat?: boolean): boolean {
+  return testValidator(base32Validate, value, ipfsCompat);
 }

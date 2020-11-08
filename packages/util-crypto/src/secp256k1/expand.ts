@@ -6,7 +6,7 @@ import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
 const ec = new EC('secp256k1');
 
-export default function secp256k1Expand (publicKey: Uint8Array): Uint8Array {
+export function secp256k1Expand (publicKey: Uint8Array): Uint8Array {
   assert([33, 65].includes(publicKey.length), 'Invalid publicKey provided');
 
   const expanded = ec.keyFromPublic(publicKey).getPublic();

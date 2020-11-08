@@ -3,7 +3,7 @@
 
 import nacl from 'tweetnacl';
 
-import randomAsU8a from '../random/asU8a';
+import { randomAsU8a } from '../random/asU8a';
 
 interface Sealed {
   sealed: Uint8Array;
@@ -24,7 +24,7 @@ interface Sealed {
  * naclSeal([...], [...], [...], [...]); // => [...]
  * ```
  */
-export default function naclSeal (message: Uint8Array, senderBoxSecret: Uint8Array, receiverBoxPublic: Uint8Array, nonce: Uint8Array = randomAsU8a(24)): Sealed {
+export function naclSeal (message: Uint8Array, senderBoxSecret: Uint8Array, receiverBoxPublic: Uint8Array, nonce: Uint8Array = randomAsU8a(24)): Sealed {
   return {
     nonce,
     sealed: nacl.box(message, nonce, receiverBoxPublic, senderBoxSecret)

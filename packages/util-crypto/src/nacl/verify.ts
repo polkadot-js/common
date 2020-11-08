@@ -19,7 +19,7 @@ import { isReady, ed25519Verify } from '@polkadot/wasm-crypto';
  * naclVerify([...], [...], [...]); // => true/false
  * ```
  */
-export default function naclVerify (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string): boolean {
+export function naclVerify (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string): boolean {
   const messageU8a = u8aToU8a(message);
   const publicKeyU8a = u8aToU8a(publicKey);
   const signatureU8a = u8aToU8a(signature);

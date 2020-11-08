@@ -4,12 +4,12 @@
 import BN from 'bn.js';
 import { bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
-import blake2AsU8a from '../blake2/asU8a';
-import decodeAddress from './decode';
+import { blake2AsU8a } from '../blake2/asU8a';
+import { decodeAddress } from './decode';
 
 const PREFIX = stringToU8a('modlpy/utilisuba');
 
-export default function createKeyDerived (who: Uint8Array | string, index: BigInt | BN | number): Uint8Array {
+export function createKeyDerived (who: Uint8Array | string, index: BigInt | BN | number): Uint8Array {
   return blake2AsU8a(
     u8aConcat(
       PREFIX,

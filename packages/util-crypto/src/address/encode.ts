@@ -7,14 +7,14 @@ import { Prefix } from './types';
 
 import { assert, u8aConcat } from '@polkadot/util';
 
-import base58Encode from '../base58/encode';
-import decode from './decode';
-import defaults from './defaults';
-import sshash from './sshash';
+import { base58Encode } from '../base58/encode';
+import { decodeAddress } from './decode';
+import { defaults } from './defaults';
+import { sshash } from './sshash';
 
-export default function encode (_key: Uint8Array | string, ss58Format: Prefix = defaults.prefix): string {
+export function encodeAddress (_key: Uint8Array | string, ss58Format: Prefix = defaults.prefix): string {
   // decode it, this means we can re-encode an address
-  const key = decode(_key);
+  const key = decodeAddress(_key);
 
   assert(defaults.allowedDecodedLengths.includes(key.length), `Expected a valid key to convert, with length ${defaults.allowedDecodedLengths.join(', ')}`);
 

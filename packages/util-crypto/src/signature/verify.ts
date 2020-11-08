@@ -74,7 +74,7 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
   return result;
 }
 
-export default function signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrPublicKey: Uint8Array | string, isExpanded?: boolean): VerifyResult {
+export function signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrPublicKey: Uint8Array | string, isExpanded?: boolean): VerifyResult {
   const signatureU8a = u8aToU8a(signature);
 
   assert([64, 65, 66].includes(signatureU8a.length), `Invalid signature length, expected [64..66] bytes, found ${signatureU8a.length}`);

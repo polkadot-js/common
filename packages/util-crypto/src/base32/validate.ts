@@ -12,6 +12,6 @@ const BASE_CONFIG = { alphabet: BASE32_ALPHABET, ipfsChar: 'b', type: 'base32' }
  * @description
  * Validates the the supplied value is valid base32
  */
-export default function base32Validate (value?: string | null, ipfsCompat?: boolean): true {
+export function base32Validate (value?: string | null, ipfsCompat?: boolean): true {
   return validateChars(BASE_CONFIG, value, ipfsCompat);
 }

@@ -4,7 +4,7 @@
 import { detectPackage } from '@polkadot/util';
 import { decodeAddress, encodeAddress, setSS58Format } from '@polkadot/util-crypto';
 
-import Keyring from './keyring';
+import { Keyring } from './keyring';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 detectPackage(require('./package.json'), typeof __dirname !== 'undefined' && __dirname);

@@ -3,11 +3,11 @@
 
 import { Keypair } from '../types';
 
-import schnorrkelDeriveHard from '../schnorrkel/deriveHard';
-import schnorrkelDeriveSoft from '../schnorrkel/deriveSoft';
-import DeriveJunction from './DeriveJunction';
+import { schnorrkelDeriveHard } from '../schnorrkel/deriveHard';
+import { schnorrkelDeriveSoft } from '../schnorrkel/deriveSoft';
+import { DeriveJunction } from './DeriveJunction';
 
-export default function keyHdkdSr25519 (keypair: Keypair, { chainCode, isSoft }: DeriveJunction): Keypair {
+export function keyHdkdSr25519 (keypair: Keypair, { chainCode, isSoft }: DeriveJunction): Keypair {
   return isSoft
     ? schnorrkelDeriveSoft(keypair, chainCode)
     : schnorrkelDeriveHard(keypair, chainCode);

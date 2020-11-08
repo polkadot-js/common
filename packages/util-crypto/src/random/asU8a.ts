@@ -17,6 +17,6 @@ import getRandomValues from '@polkadot/x-randomvalues';
  * randomAsU8a(); // => Uint8Array([...])
  * ```
  */
-export default function randomAsU8a (length = 32): Uint8Array {
+export function randomAsU8a (length = 32): Uint8Array {
   return getRandomValues(new Uint8Array(length));
 }

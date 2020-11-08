@@ -3,10 +3,10 @@
 
 import { bip39ToEntropy, isReady } from '@polkadot/wasm-crypto';
 
-import { mnemonicToEntropy } from './bip39';
+import { mnemonicToEntropy as jsToEntropy } from './bip39';
 
-export default function toEntropy (mnemonic: string, onlyJs = false): Uint8Array {
+export function mnemonicToEntropy (mnemonic: string, onlyJs = false): Uint8Array {
   return isReady() && !onlyJs
     ? bip39ToEntropy(mnemonic)
-    : mnemonicToEntropy(mnemonic);
+    : jsToEntropy(mnemonic);
 }

@@ -19,6 +19,6 @@ import nacl from 'tweetnacl';
  * naclKeypairFromRandom(); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export default function naclKeypairFromRandom (): Keypair {
+export function naclKeypairFromRandom (): Keypair {
   return nacl.sign.keyPair();
 }

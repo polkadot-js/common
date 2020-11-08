@@ -15,7 +15,7 @@ const MASK = (1 << BITS_PER_CHAR) - 1;
  * @description
  * From the provided input, create the base32 and return the result as a string.
  */
-export default function base32Encode (value: Uint8Array | string | Buffer | number[], ipfsCompat = false): string {
+export function base32Encode (value: Uint8Array | string | Buffer | number[], ipfsCompat = false): string {
   const u8a = u8aToU8a(value);
   let out = '';
   let bits = 0;

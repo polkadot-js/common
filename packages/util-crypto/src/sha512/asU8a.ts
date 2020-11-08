@@ -18,7 +18,7 @@ import { isReady, sha512 } from '@polkadot/wasm-crypto';
  * sha512AsU8a(Uint8Array.from([...])); // => Uint8Array([...])
  * ```
  */
-export default function sha512AsU8a (data: Uint8Array): Uint8Array {
+export function sha512AsU8a (data: Uint8Array): Uint8Array {
   return isReady()
     ? sha512(data)
     : nacl.hash(data);

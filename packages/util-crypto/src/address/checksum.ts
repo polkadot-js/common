@@ -1,9 +1,9 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import sshash from './sshash';
+import { sshash } from './sshash';
 
-export default function checkChecksum (decoded: Uint8Array): [boolean, number] {
+export function checkAddressChecksum (decoded: Uint8Array): [boolean, number] {
   const isPublicKey = [35, 36].includes(decoded.length);
 
   // non-publicKeys has 1 byte checksums, else default to 2

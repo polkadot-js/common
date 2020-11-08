@@ -3,7 +3,7 @@
 
 import { u8aToHex } from '@polkadot/util';
 
-import randomAsU8a from './asU8a';
+import { randomAsU8a } from './asU8a';
 
 /**
  * @name randomAsHex
@@ -19,7 +19,7 @@ import randomAsU8a from './asU8a';
  * randomAsHex(); // => 0x...
  * ```
  */
-export default function randomAsHex (length = 32): string {
+export function randomAsHex (length = 32): string {
   return u8aToHex(
     randomAsU8a(length)
   );

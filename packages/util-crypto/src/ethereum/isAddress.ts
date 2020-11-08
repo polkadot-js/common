@@ -3,9 +3,9 @@
 
 import { isHex } from '@polkadot/util';
 
-import isEthereumChecksum from './isChecksum';
+import { isEthereumChecksum } from './isChecksum';
 
-export default function isEthereumAddress (address?: string): boolean {
+export function isEthereumAddress (address?: string): boolean {
   if (!address || address.length !== 42 || !isHex(address)) {
     return false;
   }

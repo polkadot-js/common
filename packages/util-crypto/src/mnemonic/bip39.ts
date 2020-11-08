@@ -17,7 +17,7 @@ import createHash from 'create-hash';
 import { pbkdf2Sync } from 'pbkdf2';
 import { assert, u8aToU8a } from '@polkadot/util';
 
-import randomAsU8a from '../random/asU8a';
+import { randomAsU8a } from '../random/asU8a';
 import DEFAULT_WORDLIST from './bip39-en';
 
 const INVALID_MNEMONIC = 'Invalid mnemonic';
