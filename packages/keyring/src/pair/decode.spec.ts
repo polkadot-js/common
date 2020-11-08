@@ -1,9 +1,9 @@
 // Copyright 2017-2020 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import testingPairs from '../testingPairs';
+import { createTestPairs } from '../testingPairs';
 
-const keyring = testingPairs({ type: 'ed25519' }, false);
+const keyring = createTestPairs({ type: 'ed25519' }, false);
 
 describe('decode', (): void => {
   it('fails when no data provided', (): void => {

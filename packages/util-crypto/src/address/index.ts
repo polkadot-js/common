@@ -1,34 +1,17 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import addressToEvm from './addressToEvm';
-import checkAddress from './check';
-import checkAddressChecksum from './checkChecksum';
-import createKeyMulti from './keyMulti';
-import createKeyDerived from './keyDerived';
-import decodeAddress from './decode';
-import deriveAddress from './derive';
-import encodeAddress from './encode';
-import encodeDerivedAddress from './encodeDerived';
-import encodeMultiAddress from './encodeMulti';
-import evmToAddress from './evmToAddress';
-import addressEq from './eq';
-import setSS58Format from './setSS58Format';
-import sortAddresses from './sort';
-
-export {
-  addressEq,
-  addressToEvm,
-  checkAddress,
-  checkAddressChecksum,
-  createKeyDerived,
-  createKeyMulti,
-  decodeAddress,
-  deriveAddress,
-  encodeAddress,
-  encodeDerivedAddress,
-  encodeMultiAddress,
-  evmToAddress,
-  setSS58Format,
-  sortAddresses
-};
+export { addressToEvm } from './addressToEvm';
+export { checkAddress } from './check';
+export { checkAddressChecksum } from './checksum';
+export { createKeyMulti } from './keyMulti';
+export { createKeyDerived } from './keyDerived';
+export { decodeAddress } from './decode';
+export { deriveAddress } from './derive';
+export { encodeAddress } from './encode';
+export { encodeDerivedAddress } from './encodeDerived';
+export { encodeMultiAddress } from './encodeMulti';
+export { evmToAddress } from './evmToAddress';
+export { addressEq } from './eq';
+export { setSS58Format } from './setSS58Format';
+export { sortAddresses } from './sort';

@@ -6,7 +6,7 @@
 import { assert } from '@polkadot/util';
 
 import { BASE32_ALPHABET, BITS_PER_CHAR } from './bs32';
-import validate from './validate';
+import { base32Validate } from './validate';
 
 // Build the character lookup table:
 const LOOKUP = BASE32_ALPHABET
@@ -42,8 +42,8 @@ function decode (output: Uint8Array, input: string, offset: number): [Uint8Array
  * @description
  * From the provided input, decode the base32 and return the result as an `Uint8Array`.
  */
-export default function base32Decode (value: string, ipfsCompat = false): Uint8Array {
-  validate(value, ipfsCompat);
+export function base32Decode (value: string, ipfsCompat = false): Uint8Array {
+  base32Validate(value, ipfsCompat);
 
   const offset = (ipfsCompat ? 1 : 0);
   const [output, bits, buffer] = decode(

@@ -3,8 +3,8 @@
 
 import { ToBn } from '../types';
 
-import isFunction from './function';
+import { isFunction } from './function';
 
-export default function isToBn (value?: unknown): value is ToBn {
+export function isToBn (value?: unknown): value is ToBn {
   return !!value && isFunction((value as ToBn).toBn);
 }

@@ -5,7 +5,7 @@ import { Params } from './types';
 
 import { bnToU8a, u8aConcat } from '@polkadot/util';
 
-export default function scryptToU8a (salt: Uint8Array, { N, p, r }: Params): Uint8Array {
+export function scryptToU8a (salt: Uint8Array, { N, p, r }: Params): Uint8Array {
   return u8aConcat(
     salt,
     bnToU8a(N, { bitLength: 32, isLe: true }),

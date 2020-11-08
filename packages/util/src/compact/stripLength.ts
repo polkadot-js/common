@@ -4,7 +4,7 @@
 import { BitLength } from './types';
 
 import { DEFAULT_BITLENGTH } from './defaults';
-import compactFromU8a from './fromU8a';
+import { compactFromU8a } from './fromU8a';
 
 /**
  * @name compactStripLength
@@ -18,7 +18,7 @@ import compactFromU8a from './fromU8a';
  * console.log(compactStripLength(new Uint8Array([2 << 2, 0xde, 0xad]))); // [2, Uint8Array[0xde, 0xad]]
  * ```
  */
-export default function compactStripLength (input: Uint8Array, bitLength: BitLength = DEFAULT_BITLENGTH): [number, Uint8Array] {
+export function compactStripLength (input: Uint8Array, bitLength: BitLength = DEFAULT_BITLENGTH): [number, Uint8Array] {
   const [offset, length] = compactFromU8a(input, bitLength);
   const total = offset + length.toNumber();
 

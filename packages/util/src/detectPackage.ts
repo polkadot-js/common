@@ -1,8 +1,8 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import assert from './assert';
-import isString from './is/string';
+import { assert } from './assert';
+import { isString } from './is/string';
 
 // eslint-disable-next-line no-undef
 type This = typeof globalThis;
@@ -46,7 +46,7 @@ function flattenVersions (_all: (VersionPath | string)[]): string {
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
  */
-export default function detectPackage ({ name, version }: PackageJson, path?: string | false): void {
+export function detectPackage ({ name, version }: PackageJson, path?: string | false): void {
   const _global = typeof window !== 'undefined'
     ? window as PjsWindow
     : global as PjsGlobal;

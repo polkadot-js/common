@@ -9,7 +9,7 @@ function isInvalidChar (char: string, byte: number): boolean {
   return (byte > 7 && char !== char.toUpperCase()) || (byte <= 7 && char !== char.toLowerCase());
 }
 
-export default function isEthereumChecksum (_address: string): boolean {
+export function isEthereumChecksum (_address: string): boolean {
   const address = _address.replace('0x', '');
   const hash = u8aToHex(keccakAsU8a(address.toLowerCase()), -1, false);
 

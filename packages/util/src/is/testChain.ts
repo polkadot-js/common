@@ -3,7 +3,7 @@
 
 const re = /(Development|Local Testnet)$/;
 
-export default function isTestChain (chain?: string | null): boolean {
+export function isTestChain (chain?: string | null): boolean {
   if (!chain) {
     return false;
   }

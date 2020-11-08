@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import u8aToU8a from './toU8a';
+import { u8aToU8a } from './toU8a';
 
 /**
  * @name u8aConcat
@@ -12,7 +12,7 @@ import u8aToU8a from './toU8a';
  * <BR>
  *
  * ```javascript
- * import { u8aConcat } from '@polkadot/util';
+ * import { { u8aConcat } from '@polkadot/util';
  *
  * u8aConcat(
  *   new Uint8Array([1, 2, 3]),
@@ -20,7 +20,7 @@ import u8aToU8a from './toU8a';
  * ); // [1, 2, 3, 4, 5, 6]
  * ```
  */
-export default function u8aConcat (...list: (Uint8Array | string)[]): Uint8Array {
+export function u8aConcat (...list: (Uint8Array | string)[]): Uint8Array {
   let length = 0;
   let offset = 0;
   const u8as = new Array(list.length) as Uint8Array[];

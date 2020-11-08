@@ -5,8 +5,8 @@ import { ToBn, ToBnOptions } from '../types';
 
 import BN from 'bn.js';
 
-import isNumber from '../is/number';
-import bnToBn from './toBn';
+import { isNumber } from '../is/number';
+import { bnToBn } from './toBn';
 
 interface Options extends ToBnOptions {
   bitLength?: number;
@@ -61,4 +61,4 @@ function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number 
     : createEmpty(byteLength, options);
 }
 
-export default bnToU8a;
+export { bnToU8a };

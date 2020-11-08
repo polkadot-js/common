@@ -8,7 +8,7 @@ import { naclEncrypt, scryptEncode, scryptToU8a } from '@polkadot/util-crypto';
 
 import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
 
-export default function encode ({ publicKey, secretKey }: PairInfo, passphrase?: string): Uint8Array {
+export function encodePair ({ publicKey, secretKey }: PairInfo, passphrase?: string): Uint8Array {
   assert(secretKey, 'Expected a valid secretKey to be passed to encode');
 
   const encoded = u8aConcat(

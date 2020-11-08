@@ -19,6 +19,6 @@ import nacl from 'tweetnacl';
  * naclBoxKeypairFromSecret(...); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export default function naclBoxKeypairFromSecret (secret: Uint8Array): Keypair {
+export function naclBoxKeypairFromSecret (secret: Uint8Array): Keypair {
   return nacl.box.keyPair.fromSecretKey(secret.slice(0, 32));
 }

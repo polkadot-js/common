@@ -1,8 +1,8 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import hexAddPrefix from './addPrefix';
-import hexStripPrefix from './stripPrefix';
+import { hexAddPrefix } from './addPrefix';
+import { hexStripPrefix } from './stripPrefix';
 
 /**
  * @name hexFixLength
@@ -20,7 +20,7 @@ import hexStripPrefix from './stripPrefix';
  * console.log('fixed', hexFixLength('0x0012', 8)); // => 0x12
  * ```
  */
-export default function hexFixLength (value: string, bitLength = -1, withPadding = false): string {
+export function hexFixLength (value: string, bitLength = -1, withPadding = false): string {
   const strLength = Math.ceil(bitLength / 4);
   const hexLength = strLength + 2;
 

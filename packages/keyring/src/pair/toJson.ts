@@ -19,7 +19,7 @@ const VERSION = '3';
 
 const ENC_NONE: KeyringPair$JsonEncodingTypes[] = ['none'];
 
-export default function toJson (type: KeypairType, { address, meta }: PairStateJson, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
+export function pairToJson (type: KeypairType, { address, meta }: PairStateJson, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
   return {
     address,
     encoded: base64Encode(encoded),

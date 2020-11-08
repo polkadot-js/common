@@ -20,7 +20,7 @@ const encoder = new TextEncoder();
  * ```
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
-export default function stringToU8a (value?: String | string): Uint8Array {
+export function stringToU8a (value?: String | string): Uint8Array {
   return value
     ? encoder.encode(value.toString())
     : new Uint8Array();

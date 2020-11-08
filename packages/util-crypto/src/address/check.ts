@@ -3,9 +3,9 @@
 
 import { Prefix } from './types';
 
-import base58Decode from '../base58/decode';
-import checkChecksum from './checkChecksum';
-import defaults from './defaults';
+import { base58Decode } from '../base58/decode';
+import { checkAddressChecksum } from './checksum';
+import { defaults } from './defaults';
 
 /**
  * @name checkAddress
@@ -13,7 +13,7 @@ import defaults from './defaults';
  * @description
  * From the provided input, validate that the address is a valid input.
  */
-export default function check (address: string, prefix: Prefix): [boolean, string | null] {
+export function checkAddress (address: string, prefix: Prefix): [boolean, string | null] {
   let decoded;
 
   try {
@@ -28,7 +28,7 @@ export default function check (address: string, prefix: Prefix): [boolean, strin
     return [false, 'Invalid decoded address length'];
   }
 
-  const [isValid] = checkChecksum(decoded);
+  const [isValid] = checkAddressChecksum(decoded);
 
   return [isValid, isValid ? null : 'Invalid decoded address checksum'];
 }

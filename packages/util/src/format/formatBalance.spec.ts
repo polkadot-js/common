@@ -3,7 +3,7 @@
 
 import BN from 'bn.js';
 
-import formatBalance from './formatBalance';
+import { formatBalance } from '.';
 
 describe('formatBalance', (): void => {
   const TESTVAL = new BN('123456789000');

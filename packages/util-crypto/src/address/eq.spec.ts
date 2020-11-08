@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import testingPairs from '@polkadot/keyring/testingPairs';
+import { createTestPairs } from '@polkadot/keyring/testingPairs';
 import { addressEq } from '.';
 
 describe('addressEq', (): void => {
@@ -33,7 +33,7 @@ describe('addressEq', (): void => {
   });
 
   it('returns true for equal, address vs publicKey', (): void => {
-    const keyring = testingPairs({ type: 'sr25519' });
+    const keyring = createTestPairs({ type: 'sr25519' });
 
     expect(
       addressEq(

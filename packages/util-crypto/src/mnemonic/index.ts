@@ -4,8 +4,8 @@
 /**
  * @summary Create valid mnemonic strings, validate them using BIP39, and convert them to valid seeds
  */
-export { default as mnemonicGenerate } from './generate';
-export { default as mnemonicToEntropy } from './toEntropy';
-export { default as mnemonicToLegacySeed } from './toLegacySeed';
-export { default as mnemonicToMiniSecret } from './toMiniSecret';
-export { default as mnemonicValidate } from './validate';
+export { mnemonicGenerate } from './generate';
+export { mnemonicToEntropy } from './toEntropy';
+export { mnemonicToLegacySeed } from './toLegacySeed';
+export { mnemonicToMiniSecret } from './toMiniSecret';
+export { mnemonicValidate } from './validate';

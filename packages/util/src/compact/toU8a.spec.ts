@@ -3,7 +3,7 @@
 
 import BN from 'bn.js';
 
-import compactToU8a from './toU8a';
+import { compactToU8a } from '.';
 
 describe('encode', (): void => {
   it('encodes short u8', (): void => {

@@ -4,30 +4,28 @@
 import { Keypair } from '../types';
 import { HashType } from './types';
 
-import { ec as EC } from 'elliptic';
 import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
-import hasher from './hasher';
+import { secp256k1Hasher } from './hasher';
+import { EXPAND_OPT, secp256k1 } from './secp256k1';
 
 interface Options {
   hashType: HashType;
 }
 
-const ec = new EC('secp256k1');
-
 /**
  * @name secp256k1Sign
  * @description Returns message signature of `message`, using the supplied pair
  */
-export default function secp256k1Sign (message: Uint8Array | string, { secretKey }: Partial<Keypair>, { hashType = 'blake2' }: Partial<Options> = {}): Uint8Array {
+export function secp256k1Sign (message: Uint8Array | string, { secretKey }: Partial<Keypair>, { hashType = 'blake2' }: Partial<Options> = {}): Uint8Array {
   assert(secretKey?.length === 32, 'Expected valid secp256k1 secretKey, 32-bytes');
 
-  const key = ec.keyFromPrivate(secretKey);
-  const ecsig = key.sign(hasher(hashType, message));
+  const key = secp256k1.keyFromPrivate(secretKey);
+  const ecsig = key.sign(secp256k1Hasher(hashType, message));
 
   return u8aConcat(
-    bnToU8a(ecsig.r, { bitLength: 256, isLe: false }),
-    bnToU8a(ecsig.s, { bitLength: 256, isLe: false }),
+    bnToU8a(ecsig.r, EXPAND_OPT),
+    bnToU8a(ecsig.s, EXPAND_OPT),
     new Uint8Array([ecsig.recoveryParam || 0])
   );
 }

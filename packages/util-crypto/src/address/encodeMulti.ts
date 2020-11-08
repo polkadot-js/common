@@ -5,8 +5,8 @@ import { Prefix } from './types';
 
 import BN from 'bn.js';
 
-import encode from './encode';
-import keyMulti from './keyMulti';
+import { encodeAddress } from './encode';
+import { createKeyMulti } from './keyMulti';
 
 /**
  * @name encodeMultiAddress
@@ -14,6 +14,6 @@ import keyMulti from './keyMulti';
  * @description
  * Creates a Substrate multisig address based on the input address and the required threshold.
  */
-export default function encodeMultiAddress (who: (Uint8Array | string)[], threshold: BigInt | BN | number, ss58Format?: Prefix): string {
-  return encode(keyMulti(who, threshold), ss58Format);
+export function encodeMultiAddress (who: (Uint8Array | string)[], threshold: BigInt | BN | number, ss58Format?: Prefix): string {
+  return encodeAddress(createKeyMulti(who, threshold), ss58Format);
 }

@@ -12,7 +12,7 @@ interface Result {
   salt: Uint8Array;
 }
 
-export default function scryptFromU8a (data: Uint8Array): Result {
+export function scryptFromU8a (data: Uint8Array): Result {
   const salt = data.subarray(0, 32);
   const N = u8aToBn(data.subarray(32 + 0, 32 + 4), { isLe: true }).toNumber();
   const p = u8aToBn(data.subarray(32 + 4, 32 + 8), { isLe: true }).toNumber();

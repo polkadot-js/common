@@ -3,6 +3,6 @@
 
 import { sr25519DerivePublicSoft } from '@polkadot/wasm-crypto';
 
-export default function deriveSoft (publicKey: Uint8Array, chainCode: Uint8Array): Uint8Array {
+export function schnorrkelDerivePublic (publicKey: Uint8Array, chainCode: Uint8Array): Uint8Array {
   return sr25519DerivePublicSoft(publicKey, chainCode);
 }

@@ -28,7 +28,7 @@ const STRENGTH_MAP = {
  * const mnemonic = mnemonicGenerate(); // => string
  * ```
  */
-export default function mnemonicGenerate (numWords: WordCount = 12, onlyJs = false): string {
+export function mnemonicGenerate (numWords: WordCount = 12, onlyJs = false): string {
   return isReady() && !onlyJs
     ? bip39Generate(numWords)
     : generateMnemonic(STRENGTH_MAP[numWords]);

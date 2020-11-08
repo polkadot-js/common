@@ -33,7 +33,7 @@ function trim (value: Uint8Array, halfLength: number): string {
  * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```
  */
-export default function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed = true): string {
+export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed = true): string {
   const prefix = isPrefixed
     ? '0x'
     : '';

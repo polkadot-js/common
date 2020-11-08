@@ -19,7 +19,7 @@ import { isReady, keccak256 } from '@polkadot/wasm-crypto';
  * keccakAsU8a('123'); // => Uint8Array
  * ```
  */
-export default function keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array {
+export function keccakAsU8a (value: Buffer | Uint8Array | string): Uint8Array {
   return isReady()
     ? keccak256(u8aToU8a(value))
     : new Uint8Array(

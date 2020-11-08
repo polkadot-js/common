@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import encodeMultiAddress from './encodeMulti';
+import { encodeMultiAddress } from '.';
 
 describe('encodeMultiAddress', (): void => {
   it('creates a valid known multi address', (): void => {

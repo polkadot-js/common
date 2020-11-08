@@ -16,7 +16,7 @@
  * ```
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
-export default function stringShorten (value: String | string, prefixLength = 6): string {
+export function stringShorten (value: String | string, prefixLength = 6): string {
   if (value.length <= 2 + 2 * prefixLength) {
     return value.toString();
   }

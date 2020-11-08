@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import hasPrefix from './hasPrefix';
+import { hexHasPrefix } from './hasPrefix';
 
 const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
 
@@ -19,12 +19,12 @@ const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
  * console.log('stripped', hexStripPrefix('0x1234')); // => 1234
  * ```
  */
-export default function hexStripPrefix (value?: string | null): string {
+export function hexStripPrefix (value?: string | null): string {
   if (!value) {
     return '';
   }
 
-  if (hasPrefix(value)) {
+  if (hexHasPrefix(value)) {
     return value.substr(2);
   }
 

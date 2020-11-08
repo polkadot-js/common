@@ -30,6 +30,6 @@ export function validateChars ({ alphabet, ipfsChar, type }: CheckConfig, value?
  * @description
  * Validates the the supplied value is valid base58
  */
-export default function base58Validate (value?: string | null, ipfsCompat?: boolean): true {
+export function base58Validate (value?: string | null, ipfsCompat?: boolean): true {
   return validateChars(BASE_CONFIG, value, ipfsCompat);
 }

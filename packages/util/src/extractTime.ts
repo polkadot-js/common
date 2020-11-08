@@ -77,7 +77,7 @@ function extractSecs (milliseconds: number): Time {
  * const { days, minutes, hours, seconds, milliseconds } = extractTime(6000); // 0, 0, 10, 0, 0
  * ```
  */
-export default function extractTime (milliseconds?: number): Time {
+export function extractTime (milliseconds?: number): Time {
   if (!milliseconds) {
     return ZERO;
   } else if (milliseconds < 1000) {

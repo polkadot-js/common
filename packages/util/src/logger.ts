@@ -3,13 +3,13 @@
 
 import { Logger, Logger$Data } from './types';
 
-import formatDate from './format/formatDate';
-import isBn from './is/bn';
-import isFunction from './is/function';
-import isObject from './is/object';
-import isU8a from './is/u8a';
-import u8aToHex from './u8a/toHex';
-import u8aToU8a from './u8a/toU8a';
+import { formatDate } from './format/formatDate';
+import { isBn } from './is/bn';
+import { isFunction } from './is/function';
+import { isObject } from './is/object';
+import { isU8a } from './is/u8a';
+import { u8aToHex } from './u8a/toHex';
+import { u8aToU8a } from './u8a/toU8a';
 import { isBuffer } from './is';
 
 type ConsoleType = 'error' | 'log' | 'warn';
@@ -78,7 +78,7 @@ function noop (): void {
  * l.log('blah'); // <date>     TEST: blah
  * ```
  */
-export default function logger (_type: string): Logger {
+export function logger (_type: string): Logger {
   const type = `${_type.toUpperCase()}:`.padStart(16);
   let isDebug;
 

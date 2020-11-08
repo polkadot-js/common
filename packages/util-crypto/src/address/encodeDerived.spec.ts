@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import encodeDerivedAddress from './encodeDerived';
+import { encodeDerivedAddress } from '.';
 
 describe('encodeDerivedAddress', (): void => {
   it('creates a valid known derived address', (): void => {

@@ -15,7 +15,7 @@
  * console.log('Buffer', u8aToBuffer('0x123480001f'));
  * ```
  */
-export default function u8aToBuffer (value?: Uint8Array | null): Buffer {
+export function u8aToBuffer (value?: Uint8Array | null): Buffer {
   return !value
     ? Buffer.from([])
     : Buffer.from(value);

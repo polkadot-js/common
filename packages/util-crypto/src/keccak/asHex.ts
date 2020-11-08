@@ -3,7 +3,7 @@
 
 import { u8aToHex } from '@polkadot/util';
 
-import keccakAsU8a from './asU8a';
+import { keccakAsU8a } from './asU8a';
 
 /**
  * @name keccakAsHex
@@ -19,7 +19,7 @@ import keccakAsU8a from './asU8a';
  * keccakAsHex('123'); // => 0x...
  * ```
  */
-export default function keccakAsHex (value: Buffer | Uint8Array | string): string {
+export function keccakAsHex (value: Buffer | Uint8Array | string): string {
   return u8aToHex(
     keccakAsU8a(value)
   );

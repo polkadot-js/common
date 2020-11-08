@@ -5,7 +5,7 @@ import { ToBn } from '../types';
 
 import BN from 'bn.js';
 
-import bnToBn from '../bn/toBn';
+import { bnToBn } from '../bn/toBn';
 
 function formatValue (elapsed: number): string {
   if (elapsed < 15) {
@@ -19,7 +19,7 @@ function formatValue (elapsed: number): string {
   return `${elapsed / 3600 | 0}h`;
 }
 
-export default function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: BigInt | BN | ExtToBn | Date | number | null): string {
+export function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: BigInt | BN | ExtToBn | Date | number | null): string {
   const tsNow = (now && now.getTime()) || 0;
   const tsValue = value instanceof Date
     ? value.getTime()

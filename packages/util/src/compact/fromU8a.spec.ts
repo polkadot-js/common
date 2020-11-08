@@ -3,8 +3,8 @@
 
 import BN from 'bn.js';
 
-import hexToU8a from '../hex/toU8a';
-import compactFromU8a from './fromU8a';
+import { hexToU8a } from '../hex/toU8a';
+import { compactFromU8a } from '.';
 
 describe('compactFromU8a', (): void => {
   it('decoded u8 value', (): void => {

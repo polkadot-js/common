@@ -5,9 +5,9 @@
  * @summary Encode and decode base64 values
  */
 
-export { default as base64Decode } from './decode';
-export { default as base64Encode } from './encode';
-export { default as base64Pad } from './pad';
-export { default as base64Trim } from './trim';
-export { default as base64Validate } from './validate';
-export { default as isBase64 } from './is';
+export { base64Decode } from './decode';
+export { base64Encode } from './encode';
+export { base64Pad } from './pad';
+export { base64Trim } from './trim';
+export { base64Validate } from './validate';
+export { isBase64 } from './is';

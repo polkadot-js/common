@@ -19,6 +19,6 @@ import nacl from 'tweetnacl';
  * naclKeypairFromSecret(...); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export default function naclKeypairFromSecret (secret: Uint8Array): Keypair {
+export function naclKeypairFromSecret (secret: Uint8Array): Keypair {
   return nacl.sign.keyPair.fromSecretKey(secret);
 }
