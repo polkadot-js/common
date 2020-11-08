@@ -14,12 +14,11 @@ describe('mnemonicToLegacySeed', (): void => {
     await waitReady();
   });
 
-  it('generates a valid seed', (): void => {
-    expect(
-      u8aToHex(mnemonicToLegacySeed(MENMONIC))
-    ).toEqual(SEED);
-    expect(
-      u8aToHex(mnemonicToLegacySeed(MENMONIC, undefined, true))
-    ).toEqual(SEED);
+  [false, true].forEach((onlyJs): void => {
+    it(`generates a valid seed (onlyJs = ${onlyJs.toString()})`, (): void => {
+      expect(
+        u8aToHex(mnemonicToLegacySeed(MENMONIC, undefined, onlyJs))
+      ).toEqual(SEED);
+    });
   });
 });

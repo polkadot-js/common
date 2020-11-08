@@ -1,10 +1,10 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { pbkdf2Sync } from 'pbkdf2';
-import { bufferToU8a, stringToU8a, u8aToBuffer } from '@polkadot/util';
+import { stringToU8a, u8aToBuffer } from '@polkadot/util';
 import { bip39ToMiniSecret, isReady } from '@polkadot/wasm-crypto';
 
+import { pbkdf2Encode } from '../pbkdf2';
 import { mnemonicToEntropy } from './toEntropy';
 
 export function mnemonicToMiniSecret (mnemonic: string, password = '', onlyJs = false): Uint8Array {
@@ -16,7 +16,5 @@ export function mnemonicToMiniSecret (mnemonic: string, password = '', onlyJs = 
   const salt = u8aToBuffer(stringToU8a(`mnemonic${password}`));
 
   // return the first 32 bytes as the seed
-  return bufferToU8a(
-    pbkdf2Sync(entropy, salt, 2048, 64, 'sha512')
-  ).slice(0, 32);
+  return pbkdf2Encode(entropy, salt).password.slice(0, 32);
 }
