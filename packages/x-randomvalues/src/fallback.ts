@@ -16,11 +16,11 @@ export default function insecureRandomValues <T extends Uint8Array> (arr: T): T 
   let r = 0;
 
   for (let i = 0; i < arr.length; i++) {
-    if ((i & 0x03) === 0) {
+    if ((i & 0b11) === 0) {
       r = Math.random() * 0x100000000;
     }
 
-    arr[i] = (r >>> ((i & 0x03) << 3)) & 0xff;
+    arr[i] = (r >>> ((i & 0b11) << 3)) & 0xff;
   }
 
   return arr;

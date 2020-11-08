@@ -4,5 +4,5 @@
 import Fallback from './fallback';
 
 export default typeof TextDecoder === 'undefined'
-  ? Fallback
+  ? Fallback as unknown as typeof TextDecoder
   : TextDecoder;

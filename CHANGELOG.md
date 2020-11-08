@@ -2,14 +2,14 @@
 
 ## 4.0.0-x
 
-- **Breaking change** Polyfills are not provided by these libraries anymore to avoid clobbering external globals, the user should provide them if their environment is missing base functionality.
+- **Breaking change** Polyfills are not injected by these libraries anymore to avoid clobbering external globals, the user should provide them if their environment is missing base functionality.
 
 Changes:
 
 - Remove built-in utility polyfills for `Array.fill`, `String.padStart`, `String.padEnd` as well as `Object.setPrototypeOf`. These should be provided by the actual user of the libraries if so required.
 - Update `@polkadot/wasm-crypto` library (under-the-hood cleanups)
 - Remove explicit crypto polyfill injection (aligning with updated `@polkadot/wasm-crypto`)
-- Add `@polkadot/x-randomvalues` polyfill (for use in `@polkadot/wasm-crypto`)
+- Add cross-environment `@polkadot/x-randomvalues` (for use in `@polkadot/wasm-crypto`)
 
 
 ## 3.7.1 Nov 1, 2020
