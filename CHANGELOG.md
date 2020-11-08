@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 4.0.0-x
+## 4.0.1 Nov 8, 2020
 
 - **Breaking change** Polyfills are not injected by these libraries anymore to avoid clobbering external globals, the user should provide them if their environment is missing base functionality.
 
