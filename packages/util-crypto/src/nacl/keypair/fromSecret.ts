@@ -3,7 +3,7 @@
 
 import { Keypair } from '../../types';
 
-import nacl from 'tweetnacl';
+import { sign } from 'tweetnacl';
 
 /**
  * @name naclKeypairFromSecret
@@ -20,5 +20,5 @@ import nacl from 'tweetnacl';
  * ```
  */
 export function naclKeypairFromSecret (secret: Uint8Array): Keypair {
-  return nacl.sign.keyPair.fromSecretKey(secret);
+  return sign.keyPair.fromSecretKey(secret);
 }

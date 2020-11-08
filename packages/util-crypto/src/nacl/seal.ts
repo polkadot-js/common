@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import nacl from 'tweetnacl';
+import { box } from 'tweetnacl';
 
 import { randomAsU8a } from '../random/asU8a';
 
@@ -27,6 +27,6 @@ interface Sealed {
 export function naclSeal (message: Uint8Array, senderBoxSecret: Uint8Array, receiverBoxPublic: Uint8Array, nonce: Uint8Array = randomAsU8a(24)): Sealed {
   return {
     nonce,
-    sealed: nacl.box(message, nonce, receiverBoxPublic, senderBoxSecret)
+    sealed: box(message, nonce, receiverBoxPublic, senderBoxSecret)
   };
 }

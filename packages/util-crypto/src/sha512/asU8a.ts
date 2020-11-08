@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import nacl from 'tweetnacl';
+import { hash } from 'tweetnacl';
 import { isReady, sha512 } from '@polkadot/wasm-crypto';
 
 /**
@@ -21,5 +21,5 @@ import { isReady, sha512 } from '@polkadot/wasm-crypto';
 export function sha512AsU8a (data: Uint8Array): Uint8Array {
   return isReady()
     ? sha512(data)
-    : nacl.hash(data);
+    : hash(data);
 }

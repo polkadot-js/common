@@ -3,7 +3,7 @@
 
 import { Keypair } from '../types';
 
-import nacl from 'tweetnacl';
+import { sign } from 'tweetnacl';
 import { assert, u8aToU8a } from '@polkadot/util';
 import { isReady, ed25519Sign } from '@polkadot/wasm-crypto';
 
@@ -28,5 +28,5 @@ export function naclSign (message: Uint8Array | string, { publicKey, secretKey }
 
   return isReady()
     ? ed25519Sign(publicKey as Uint8Array, secretKey.subarray(0, 32), messageU8a)
-    : nacl.sign.detached(messageU8a, secretKey);
+    : sign.detached(messageU8a, secretKey);
 }
