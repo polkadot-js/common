@@ -5,19 +5,7 @@ import { ToBn } from '../types';
 
 import BN from 'bn.js';
 
-import isToBn from '../is/toBn';
-
-function getValue <ExtToBn extends ToBn> (value: BN | ExtToBn | Date | number): number {
-  if (isToBn(value)) {
-    return getValue(value.toBn());
-  } else if (value instanceof Date) {
-    return getValue(value.getTime());
-  } else if (value instanceof BN) {
-    return getValue(value.toNumber());
-  }
-
-  return value;
-}
+import bnToBn from '../bn/toBn';
 
 function formatValue (elapsed: number): string {
   if (elapsed < 15) {
@@ -31,9 +19,11 @@ function formatValue (elapsed: number): string {
   return `${elapsed / 3600 | 0}h`;
 }
 
-export default function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: BN | ExtToBn | Date | number | null): string {
+export default function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: BigInt | BN | ExtToBn | Date | number | null): string {
   const tsNow = (now && now.getTime()) || 0;
-  const tsValue = getValue(value || 0);
+  const tsValue = value instanceof Date
+    ? value.getTime()
+    : bnToBn(value).toNumber();
 
   return (tsNow && tsValue)
     ? formatValue(Math.max(Math.abs(tsNow - tsValue), 0) / 1000)

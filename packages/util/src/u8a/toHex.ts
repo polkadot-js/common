@@ -1,11 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const ALPHABET = new Array(256) as string[];
-
-for (let n = 0; n < 256; ++n) {
-  ALPHABET[n] = n.toString(16).padStart(2, '0');
-}
+const ALPHABET = new Array(256).fill(0).map((_, n) => n.toString(16).padStart(2, '0'));
 
 /** @internal */
 function extract (value: Uint8Array): string {

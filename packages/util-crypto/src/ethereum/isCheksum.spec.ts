@@ -7,7 +7,7 @@ const ADDRESS = '0x00a329c0648769A73afAc7F9381E08FB43dBEA72';
 
 describe('isEthereumChecksum', () => {
   it('returns false on invalid address', () => {
-    expect(isEthereumChecksum('0xinvalid')).toBe(false);
+    expect(isEthereumChecksum('0x00a329c0648769')).toBe(false);
   });
 
   it('returns false on non-checksum address', () => {
