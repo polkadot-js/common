@@ -12,7 +12,7 @@ import { checkAddressChecksum } from './checksum';
 import { defaults } from './defaults';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: boolean, ss58Format: Prefix = 99): Uint8Array {
+export function decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: boolean, ss58Format: Prefix = -1): Uint8Array {
   if (isU8a(encoded) || isHex(encoded)) {
     return u8aToU8a(encoded);
   }
@@ -30,8 +30,8 @@ export function decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: bo
   assert(defaults.allowedEncodedLengths.includes(decoded.length), wrapError('Invalid decoded address length'));
 
   // TODO Unless it is an "use everywhere" prefix, throw an error
-  // if (decoded[0] !== prefix) {
-  //   console.log(`WARN: Expected ${prefix}, found ${decoded[0]}`);
+  // if (ss58Format !== -1 && (decoded[0] !== ss58Format)) {
+  //   console.log(`WARN: Expected ${ss58Format}, found ${decoded[0]}`);
   // }
 
   const [isValid, endPos] = checkAddressChecksum(decoded);
