@@ -16,9 +16,6 @@ interface RNExt {
 }
 
 function getRandomValuesNative <T extends Uint8Array> (arr: T): T {
-  // We may want to use a base64 decoder here, but we certainly have an issue where we
-  // want/need this part as lean as possible. Since Buffer is already needed elsewhere
-  // (an generally prevalent in JS), we rather use it as-is.
   return Buffer
     .from((NativeModules as RNExt).RNGetRandomValues.getRandomBase64(arr.length), 'base64')
     .reduce((arr, byte, index): T => {

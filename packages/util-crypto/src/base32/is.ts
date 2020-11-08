@@ -3,10 +3,14 @@
 
 import validate from './validate';
 
-export default function isBase32 (value?: string | null): boolean {
+export function testValidator (validate: (value?: string | null, ipfsCompat?: boolean) => boolean, value?: string | null, ipfsCompat?: boolean): boolean {
   try {
-    return validate(value);
+    return validate(value, ipfsCompat);
   } catch (error) {
     return false;
   }
+}
+
+export default function isBase32 (value?: string | null, ipfsCompat?: boolean): boolean {
+  return testValidator(validate, value, ipfsCompat);
 }

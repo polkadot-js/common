@@ -22,14 +22,16 @@ const logTo = {
   warn: 'warn'
 };
 
-function formatObject (value: Record<string, unknown>): Record<string, unknown> {
-  const result: Record<string, unknown> = {};
+function formatOther (value: unknown): unknown {
+  if (value && isObject(value) && value.constructor === Object) {
+    return Object.keys(value).reduce((result: Record<string, unknown>, key): Record<string, unknown> => {
+      result[key] = format(value[key]);
 
-  return Object.keys(value).reduce((result, key): Record<string, unknown> => {
-    result[key] = format(value[key]);
+      return result;
+    }, {});
+  }
 
-    return result;
-  }, result);
+  return value;
 }
 
 export function format (value: unknown): unknown {
@@ -39,11 +41,9 @@ export function format (value: unknown): unknown {
     return value.toString();
   } else if (isU8a(value) || isBuffer(value)) {
     return u8aToHex(u8aToU8a(value));
-  } else if (value && isObject(value) && value.constructor === Object) {
-    return formatObject(value);
   }
 
-  return value;
+  return formatOther(value);
 }
 
 function apply (log: LogType, type: string, values: Logger$Data): void {

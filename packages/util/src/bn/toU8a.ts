@@ -12,7 +12,13 @@ interface Options extends ToBnOptions {
   bitLength?: number;
 }
 
-function setBn (valueBn: BN, byteLength: number, { isLe, isNegative }: Options): Uint8Array {
+function createEmpty (byteLength: number, options: Options): Uint8Array {
+  return options.bitLength === -1
+    ? new Uint8Array()
+    : new Uint8Array(byteLength);
+}
+
+function createValue (valueBn: BN, byteLength: number, { isLe, isNegative }: Options): Uint8Array {
   const output = new Uint8Array(byteLength);
   const bn = isNegative ? valueBn.toTwos(byteLength * 8) : valueBn;
 
@@ -51,10 +57,8 @@ function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number 
     : Math.ceil((options.bitLength || 0) / 8);
 
   return value
-    ? setBn(valueBn, byteLength, options)
-    : options.bitLength === -1
-      ? new Uint8Array()
-      : new Uint8Array(byteLength);
+    ? createValue(valueBn, byteLength, options)
+    : createEmpty(byteLength, options);
 }
 
 export default bnToU8a;

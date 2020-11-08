@@ -35,11 +35,7 @@ export default function formatElapsed <ExtToBn extends ToBn> (now?: Date | null,
   const tsNow = (now && now.getTime()) || 0;
   const tsValue = getValue(value || 0);
 
-  if (tsNow && tsValue) {
-    const elapsed = Math.max(Math.abs(tsNow - tsValue), 0) / 1000;
-
-    return formatValue(elapsed);
-  }
-
-  return '0.0s';
+  return (tsNow && tsValue)
+    ? formatValue(Math.max(Math.abs(tsNow - tsValue), 0) / 1000)
+    : '0.0s';
 }

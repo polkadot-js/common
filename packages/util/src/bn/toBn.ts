@@ -10,6 +10,14 @@ import isToBn from '../is/toBn';
 import isHex from '../is/hex';
 import hexToBn from '../hex/toBn';
 
+function numberToBn <ExtToBn extends ToBn> (value: number | ExtToBn | BN): BN {
+  return BN.isBN(value)
+    ? value
+    : isToBn(value)
+      ? value.toBn()
+      : new BN(value);
+}
+
 /**
  * @name bnToBn
  * @summary Creates a BN value from a BN, BigInt, string (base 10 or hex) or number input.
@@ -35,9 +43,5 @@ export default function bnToBn <ExtToBn extends ToBn> (value?: ExtToBn | BN | Bi
     return new BN(value.toString());
   }
 
-  return BN.isBN(value)
-    ? value
-    : isToBn(value)
-      ? value.toBn()
-      : new BN(value);
+  return numberToBn(value);
 }
