@@ -5,10 +5,10 @@ import { KeypairType, VerifyResult } from '../types';
 
 import { assert, u8aToU8a } from '@polkadot/util';
 
-import addressDecode from '../address/decode';
-import naclVerify from '../nacl/verify';
-import schnorrkelVerify from '../schnorrkel/verify';
-import secp256k1Verify from '../secp256k1/verify';
+import { decodeAddress } from '../address/decode';
+import { naclVerify } from '../nacl/verify';
+import { schnorrkelVerify } from '../schnorrkel/verify';
+import { secp256k1Verify } from '../secp256k1/verify';
 
 interface VerifyInput {
   message: Uint8Array | string;
@@ -80,7 +80,7 @@ export function signatureVerify (message: Uint8Array | string, signature: Uint8A
   assert([64, 65, 66].includes(signatureU8a.length), `Invalid signature length, expected [64..66] bytes, found ${signatureU8a.length}`);
 
   const result: VerifyResult = { crypto: 'none', isValid: false };
-  const publicKey = addressDecode(addressOrPublicKey);
+  const publicKey = decodeAddress(addressOrPublicKey);
   const input = { message, publicKey, signature: signatureU8a };
 
   return [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length)

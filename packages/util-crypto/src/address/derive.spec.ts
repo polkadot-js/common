@@ -3,7 +3,7 @@
 
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import derive from './derive';
+import { deriveAddress } from '.';
 
 describe('deriveAddress', (): void => {
   beforeEach(async (): Promise<void> => {
@@ -12,13 +12,13 @@ describe('deriveAddress', (): void => {
 
   it('derives a known path', (): void => {
     expect(
-      derive('5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB', '/joe/polkadot/0')
+      deriveAddress('5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB', '/joe/polkadot/0')
     ).toEqual('5GZ4srnepXvdsuNVoxCGyVZd8ScDm4gkGLTKuaGARy9akjTa');
   });
 
   it('fails on hard paths', (): void => {
     expect(
-      () => derive('5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB', '//bob')
+      () => deriveAddress('5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB', '//bob')
     ).toThrow(/Expected suri to contain a combination of non-hard paths/);
   });
 });

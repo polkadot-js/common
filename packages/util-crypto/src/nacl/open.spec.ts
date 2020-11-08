@@ -1,9 +1,9 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { keyFromPath } from '../key/fromPath';
+import { keyExtractPath } from '../key';
 import { naclBoxKeypairFromSecret, naclKeypairFromString, naclOpen, naclSeal } from '.';
-import fromPath from '@polkadot/util-crypto/key/fromPath';
-import { keyExtractPath } from '@polkadot/util-crypto/key';
 
 describe('naclOpen', (): void => {
   it('opens a sealed message by the sender', (): void => {
@@ -26,8 +26,8 @@ describe('naclOpen', (): void => {
     const receiver = naclKeypairFromString('receiver');
 
     // Make id key for identifying each other
-    const senderIdKey = fromPath(sender, keyExtractPath('//1//1//1//1').path, 'ed25519');
-    const receiverIdKey = fromPath(receiver, keyExtractPath('//2//2//2//2').path, 'ed25519');
+    const senderIdKey = keyFromPath(sender, keyExtractPath('//1//1//1//1').path, 'ed25519');
+    const receiverIdKey = keyFromPath(receiver, keyExtractPath('//2//2//2//2').path, 'ed25519');
 
     // Receiver sends encrypting public key to receive message to decrypt with his private key
     const receiverIdBoxKey = naclBoxKeypairFromSecret(receiverIdKey.secretKey);
@@ -47,8 +47,8 @@ describe('naclOpen', (): void => {
     console.log(`The sealed message is ${opened?.toString() || 'null'}`);
 
     // Oh no the Id key is hacked, derive Id key again from another index
-    const senderIdKey2 = fromPath(sender, keyExtractPath('//1//1//1//2').path, 'ed25519');
-    const receiverIdKey2 = fromPath(receiver, keyExtractPath('//2//2//2//3').path, 'ed25519');
+    const senderIdKey2 = keyFromPath(sender, keyExtractPath('//1//1//1//2').path, 'ed25519');
+    const receiverIdKey2 = keyFromPath(receiver, keyExtractPath('//2//2//2//3').path, 'ed25519');
 
     // Receiver sends encrypting public key to receive message to decrypt with his private key
     const receiverIdBoxKey2 = naclBoxKeypairFromSecret(receiverIdKey2.secretKey);

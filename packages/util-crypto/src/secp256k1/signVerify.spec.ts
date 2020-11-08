@@ -4,10 +4,10 @@
 import { stringToU8a } from '@polkadot/util';
 
 import { randomAsU8a } from '../random/asU8a';
-import pairFromSeed from './keypair/fromSeed';
-import hasher from './hasher';
-import sign from './sign';
-import verify from './verify';
+import { secp256k1KeypairFromSeed } from './keypair/fromSeed';
+import { secp256k1Hasher } from './hasher';
+import { secp256k1Sign } from './sign';
+import { secp256k1Verify } from './verify';
 
 const MESSAGE = stringToU8a('this is a message');
 
@@ -17,45 +17,47 @@ describe('sign and verify', (): void => {
     const sig = '0x92fcacf0946bbd10b31dfe16d567ed1d3014e81007dd9e5256e19c0f07eacc1643b151ca29e449a765e16a7ce59b88d800467d6b3412d30ea8ad22307a59664b00';
     const msg = stringToU8a('secp256k1');
 
-    expect(verify(msg, sig, address)).toBe(true);
+    expect(secp256k1Verify(msg, sig, address)).toBe(true);
   });
 
   it('has 65-byte signatures', (): void => {
-    const pair = pairFromSeed(randomAsU8a());
+    const pair = secp256k1KeypairFromSeed(randomAsU8a());
 
-    expect(sign(MESSAGE, pair)).toHaveLength(65);
+    expect(secp256k1Sign(MESSAGE, pair)).toHaveLength(65);
   });
 
   it('signs/verifies a message by random key (blake2)', (): void => {
-    const pair = pairFromSeed(randomAsU8a());
-    const signature = sign(MESSAGE, pair);
-    const address = hasher('blake2', pair.publicKey);
+    const pair = secp256k1KeypairFromSeed(randomAsU8a());
+    const signature = secp256k1Sign(MESSAGE, pair);
+    const address = secp256k1Hasher('blake2', pair.publicKey);
 
-    expect(verify(MESSAGE, signature, address)).toBe(true);
+    expect(secp256k1Verify(MESSAGE, signature, address)).toBe(true);
   });
 
   it('signs/verifies a message by random key (keccak)', (): void => {
-    const pair = pairFromSeed(randomAsU8a());
-    const signature = sign(MESSAGE, pair, { hashType: 'keccak' });
-    const address = hasher('keccak', pair.publicKey);
+    const pair = secp256k1KeypairFromSeed(randomAsU8a());
+    const signature = secp256k1Sign(MESSAGE, pair, { hashType: 'keccak' });
+    const address = secp256k1Hasher('keccak', pair.publicKey);
 
-    expect(verify(MESSAGE, signature, address, { hashType: 'keccak' })).toBe(true);
+    expect(secp256k1Verify(MESSAGE, signature, address, { hashType: 'keccak' })).toBe(true);
   });
 
   it('fails verification on hasher mismatches', (): void => {
-    const pair = pairFromSeed(randomAsU8a());
-    const signature = sign(MESSAGE, pair, { hashType: 'keccak' });
-    const address = hasher('keccak', pair.publicKey);
+    const pair = secp256k1KeypairFromSeed(randomAsU8a());
+    const signature = secp256k1Sign(MESSAGE, pair, { hashType: 'keccak' });
+    const address = secp256k1Hasher('keccak', pair.publicKey);
 
-    expect(verify(MESSAGE, signature, address, { hashType: 'blake2' })).toBe(false);
+    expect(secp256k1Verify(MESSAGE, signature, address, { hashType: 'blake2' })).toBe(false);
   });
 
   it('works over a range of random keys (blake2)', (): void => {
     for (let i = 0; i < 256; i++) {
-      const pair = pairFromSeed(randomAsU8a());
+      const pair = secp256k1KeypairFromSeed(randomAsU8a());
 
       try {
-        expect(verify(MESSAGE, sign(MESSAGE, pair, { hashType: 'blake2' }), hasher('blake2', pair.publicKey), { hashType: 'blake2' })).toBe(true);
+        expect(
+          secp256k1Verify(MESSAGE, secp256k1Sign(MESSAGE, pair, { hashType: 'blake2' }), secp256k1Hasher('blake2', pair.publicKey), { hashType: 'blake2' })
+        ).toBe(true);
       } catch (error) {
         console.error(`blake2 failed on #${i}`);
         throw error;
@@ -65,10 +67,10 @@ describe('sign and verify', (): void => {
 
   it('works over a range of random keys (keccak)', (): void => {
     for (let i = 0; i < 256; i++) {
-      const pair = pairFromSeed(randomAsU8a());
+      const pair = secp256k1KeypairFromSeed(randomAsU8a());
 
       try {
-        expect(verify(MESSAGE, sign(MESSAGE, pair, { hashType: 'keccak' }), hasher('keccak', pair.publicKey), { hashType: 'keccak' })).toBe(true);
+        expect(secp256k1Verify(MESSAGE, secp256k1Sign(MESSAGE, pair, { hashType: 'keccak' }), secp256k1Hasher('keccak', pair.publicKey), { hashType: 'keccak' })).toBe(true);
       } catch (error) {
         console.error(`keccak failed on #${i}`);
         throw error;
