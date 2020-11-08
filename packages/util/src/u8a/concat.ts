@@ -20,7 +20,7 @@ import { u8aToU8a } from './toU8a';
  * ); // [1, 2, 3, 4, 5, 6]
  * ```
  */
-export function u8aConcat (...list: (Uint8Array | string)[]): Uint8Array {
+export function u8aConcat (...list: (Buffer | Uint8Array | number[] | string)[]): Uint8Array {
   let length = 0;
   let offset = 0;
   const u8as = new Array(list.length) as Uint8Array[];
