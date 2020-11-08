@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { xxhash64AsHex } from '.';
+import xxhash64AsHex from './asHex';
 
 describe('xxhash64AsHex', (): void => {
   it('creates the correct hex output', (): void => {

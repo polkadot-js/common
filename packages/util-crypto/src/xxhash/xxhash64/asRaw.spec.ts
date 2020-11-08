@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { xxhash64AsRaw } from '.';
+import xxhash64AsRaw from './asRaw';
 
 describe('xxhash64AsRaw', (): void => {
   it('creates the correct non-prefixed hex output', (): void => {

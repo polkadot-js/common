@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { xxhash64AsBn } from '.';
+import xxhash64AsBn from './asBn';
 
 describe('xxhash64AsBn', (): void => {
   it('creates the correct BN output', (): void => {
