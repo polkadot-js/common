@@ -24,7 +24,7 @@ export function checkAddress (address: string, prefix: Prefix): [boolean, string
 
   if (decoded[0] !== prefix) {
     return [false, `Prefix mismatch, expected ${prefix}, found ${decoded[0]}`];
-  } else if (!defaults.allowedDecodedLengths.includes(decoded.length)) {
+  } else if (!defaults.allowedEncodedLengths.includes(decoded.length)) {
     return [false, 'Invalid decoded address length'];
   }
 
