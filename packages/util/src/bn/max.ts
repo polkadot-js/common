@@ -18,6 +18,6 @@ import { checkMaxMin } from './util';
  * bnMax([new BN(1), new BN(3), new BN(2)]).toString(); // => '3'
  * ```
  */
-export default function max (...items: BN[]): BN {
+export function bnMax (...items: BN[]): BN {
   return checkMaxMin('max', items);
 }

@@ -1,8 +1,8 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import isFunction from './is/function';
-import isUndefined from './is/undefined';
+import { isFunction } from './is/function';
+import { isUndefined } from './is/undefined';
 
 type MessageFn = () => string;
 
@@ -22,7 +22,7 @@ type MessageFn = () => string;
  * assert(false, () => 'message'); // Error with 'message'
  * ```
  */
-export default function assert (condition: unknown, message: string | MessageFn): asserts condition {
+export function assert (condition: unknown, message: string | MessageFn): asserts condition {
   if (!condition) {
     throw new Error(
       isFunction(message)

@@ -8,6 +8,6 @@ import camelcase from 'camelcase';
  * @summary Convert a dash/dot/underscore/space separated string/String to camelCase
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
-export default function stringCamelCase (value: string | String): string {
+export function stringCamelCase (value: string | String): string {
   return camelcase(value.toString());
 }

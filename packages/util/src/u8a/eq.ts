@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import u8aToU8a from './toU8a';
+import { u8aToU8a } from './toU8a';
 
 function equals (a: Uint8Array, b: Uint8Array): boolean {
   if (a.length !== b.length) {
@@ -26,11 +26,11 @@ function equals (a: Uint8Array, b: Uint8Array): boolean {
  * <BR>
  *
  * ```javascript
- * import { u8aEq } from '@polkadot/util';
+ * import { { u8aEq } from '@polkadot/util';
  *
  * u8aEq(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // true
  * ```
  */
-export default function u8aEq (a: Uint8Array | string, b: Uint8Array | string): boolean {
+export function u8aEq (a: Uint8Array | string, b: Uint8Array | string): boolean {
   return equals(u8aToU8a(a), u8aToU8a(b));
 }

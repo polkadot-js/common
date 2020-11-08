@@ -22,7 +22,7 @@
  * Note: we use *LOW BITS* of the LSB in LE encoding to encode the 2 bit key.
  */
 
-export { default as compactAddLength } from './addLength';
-export { default as compactStripLength } from './stripLength';
-export { default as compactFromU8a } from './fromU8a';
-export { default as compactToU8a } from './toU8a';
+export { compactAddLength } from './addLength';
+export { compactStripLength } from './stripLength';
+export { compactFromU8a } from './fromU8a';
+export { compactToU8a } from './toU8a';

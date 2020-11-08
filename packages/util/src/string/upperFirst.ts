@@ -16,7 +16,7 @@
  * ```
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
-export default function stringUpperFirst (value?: String | string | null): string {
+export function stringUpperFirst (value?: String | string | null): string {
   return value
     ? value.charAt(0).toUpperCase() + value.slice(1)
     : '';

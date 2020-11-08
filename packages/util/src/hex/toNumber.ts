@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import hexToBn from './toBn';
+import { hexToBn } from './toBn';
 
 /**
  * @name hexToNumber
@@ -17,7 +17,7 @@ import hexToBn from './toBn';
  * hexToNumber('0x1234'); // => 0x1234
  * ```
  */
-export default function hexToNumber (value?: string | null): number {
+export function hexToNumber (value?: string | null): number {
   return value
     ? hexToBn(value).toNumber()
     : NaN;

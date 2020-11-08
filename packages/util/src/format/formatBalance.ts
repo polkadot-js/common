@@ -5,10 +5,10 @@ import { SiDef, ToBn } from '../types';
 
 import BN from 'bn.js';
 
-import bnToBn from '../bn/toBn';
-import isBoolean from '../is/boolean';
-import isUndefined from '../is/undefined';
-import formatDecimal from './formatDecimal';
+import { bnToBn } from '../bn/toBn';
+import { isBoolean } from '../is/boolean';
+import { isUndefined } from '../is/undefined';
+import { formatDecimal } from './formatDecimal';
 import { SI, SI_MID, calcSi, findSi } from './si';
 
 interface Defaults {
@@ -115,4 +115,4 @@ formatBalance.setDefaults = ({ decimals, unit }: Partial<Defaults>): void => {
   SI[SI_MID].text = defaultUnit;
 };
 
-export default formatBalance;
+export { formatBalance };

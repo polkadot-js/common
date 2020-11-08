@@ -5,11 +5,11 @@
  * @summary Utility methods for this package are split into groups
  */
 
-export { default as assert, assertReturn } from './assert';
-export { default as detectPackage } from './detectPackage';
-export { default as extractTime } from './extractTime';
-export { default as logger } from './logger';
-export { default as promisify } from './promisify';
+export { assert, assertReturn } from './assert';
+export { detectPackage } from './detectPackage';
+export { extractTime } from './extractTime';
+export { logger } from './logger';
+export { promisify } from './promisify';
 
 export * from './array';
 export * from './bn';

@@ -15,6 +15,6 @@
  * console.log('isNumber', isNumber(1234)); // => true
  * ```
  */
-export default function isNumber (value: unknown): value is number {
+export function isNumber (value: unknown): value is number {
   return typeof value === 'number';
 }

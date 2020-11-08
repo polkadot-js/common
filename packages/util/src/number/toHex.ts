@@ -1,9 +1,9 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import hexFixLength from '../hex/fixLength';
-import isNull from '../is/null';
-import isUndefined from '../is/undefined';
+import { hexFixLength } from '../hex/fixLength';
+import { isNull } from '../is/null';
+import { isUndefined } from '../is/undefined';
 
 /**
  * @name numberToHex
@@ -20,7 +20,7 @@ import isUndefined from '../is/undefined';
  * numberToHex(0x1234, 32); // => 0x00001234
  * ```
  */
-export default function numberToHex (value?: number | null, bitLength = -1): string {
+export function numberToHex (value?: number | null, bitLength = -1): string {
   if (isUndefined(value) || isNull(value) || isNaN(value)) {
     return '0x';
   }

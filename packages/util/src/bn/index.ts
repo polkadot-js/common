@@ -6,10 +6,11 @@
  */
 
 export * from './consts';
-export { default as bnFromHex } from './fromHex';
-export { default as bnMax } from './max';
-export { default as bnMin } from './min';
-export { default as bnSqrt } from './sqrt';
-export { default as bnToBn } from './toBn';
-export { default as bnToHex } from './toHex';
-export { default as bnToU8a } from './toU8a';
+
+export { bnFromHex } from './fromHex';
+export { bnMax } from './max';
+export { bnMin } from './min';
+export { bnSqrt } from './sqrt';
+export { bnToBn } from './toBn';
+export { bnToHex } from './toHex';
+export { bnToU8a } from './toU8a';

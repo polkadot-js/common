@@ -3,7 +3,7 @@
 
 import BN from 'bn.js';
 
-import formatElapsed from './formatElapsed';
+import { formatElapsed } from '.';
 
 describe('formatElapsed', (): void => {
   const start = 12345678;

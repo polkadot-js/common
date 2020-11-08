@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import isTestChain from './testChain';
+import { isTestChain } from '.';
 
 describe('isTestChain', (): void => {
   it('enables test environment when chain specification matches text of dev or loc(al)', (): void => {

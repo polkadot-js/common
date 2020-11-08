@@ -5,8 +5,8 @@ import { ToBn, ToBnOptions } from '../types';
 
 import BN from 'bn.js';
 
-import isNumber from '../is/number';
-import bnToU8a from './toU8a';
+import { isNumber } from '../is/number';
+import { bnToU8a } from './toU8a';
 import { u8aToHex } from '../u8a';
 
 const ZERO_STR = '0x00';
@@ -47,4 +47,4 @@ function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number 
   return u8aToHex(bnToU8a(value, _options));
 }
 
-export default bnToHex;
+export { bnToHex };
