@@ -3,18 +3,16 @@
 
 import { HashType } from './types';
 
-import { ec as EC } from 'elliptic';
 import { assert, u8aEq, u8aToU8a } from '@polkadot/util';
 
 import secp256k1Expand from './expand';
 import hasher from './hasher';
+import secp256k1 from './secp256k1';
 
 interface Options {
   hashType: HashType;
   isExpanded: boolean;
 }
-
-const ec = new EC('secp256k1');
 
 /**
  * @name secp256k1Verify
@@ -27,7 +25,8 @@ export default function secp256k1Verify (message: Uint8Array | string, signature
 
   const publicKey = new Uint8Array(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
-    ec.recoverPubKey(hasher(hashType, message), { r: u8a.slice(0, 32), s: u8a.slice(32, 64) }, u8a[64])
+    secp256k1
+      .recoverPubKey(hasher(hashType, message), { r: u8a.slice(0, 32), s: u8a.slice(32, 64) }, u8a[64])
       .encodeCompressed()
   );
 
