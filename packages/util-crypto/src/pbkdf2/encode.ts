@@ -18,7 +18,7 @@ export function pbkdf2Encode (passphrase?: Buffer | Uint8Array | string, salt: B
   const u8aSalt = u8aToU8a(salt);
   const password = isReady() && !onlyJs
     ? pbkdf2(u8aPass, u8aSalt, rounds)
-    : pbkdf2Sync(u8aPass, u8aSalt, rounds, 64);
+    : pbkdf2Sync(u8aPass, u8aSalt, rounds);
 
   return { password, rounds, salt };
 }
