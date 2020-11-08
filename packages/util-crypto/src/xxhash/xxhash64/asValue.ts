@@ -1,30 +1,16 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import xxhashjs from 'xxhashjs';
+import hasher from 'xxhashjs/lib/xxhash64';
 import { isBuffer, isString, u8aToBuffer } from '@polkadot/util';
 
-/**
- * @name xxhash64AsValue
- * @summary Creates a hex number from the input.
- * @description
- * From either a `string`, `Uint8Array` or a `Buffer` input, create the xxhash and return the result as a hex number
- * @example
- * <BR>
- *
- * ```javascript
- * import { xxhash64AsValue } from '@polkadot/util-crypto';
- *
- * xxhash64AsValue('abcd', 0xabcd)); // => e29f70f8b8c96df7
- * ```
- */
 export default function xxhash64AsValue (data: Buffer | Uint8Array | string, seed: number): number {
   if (isBuffer(data) || isString(data)) {
-    return xxhashjs.h64(data, seed) as unknown as number;
+    return hasher(data, seed);
   }
 
-  return xxhashjs.h64(
+  return hasher(
     u8aToBuffer(data),
     seed
-  ) as unknown as number;
+  );
 }
