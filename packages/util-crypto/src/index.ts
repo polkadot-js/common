@@ -1,8 +1,9 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// out of order and early in the chain, this also kicks off initialization on require
-export * from './init';
+import './cryptoInit';
+
+export * from './crypto';
 
 // all internal exports
 export * from './address';
