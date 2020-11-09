@@ -3,6 +3,8 @@
   "version": "4.0.2-4",
   "description": "Keyring management",
   "main": "index.js",
+  "module": "esnext/index.js",
+  "sideEffects": false,
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
