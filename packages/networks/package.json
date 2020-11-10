@@ -3,25 +3,18 @@
   "version": "4.0.2-10",
   "description": "A list of all available Substrate networks and their applicable prefixes",
   "main": "index.js",
-  "module": "index.mjs",
+  "module": "esm/index.js",
   "sideEffects": false,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/polkadot-js/common.git"
-  },
+  "repository": "github:polkadot-js/common",
   "keywords": [
     "Polkadot",
     "ss58"
   ],
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [
-    "Jaco Greeff <jacogr@gmail.com>"
-  ],
+  "maintainers": [],
   "contributors": [],
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/polkadot-js/common/issues"
-  },
+  "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/networks#readme",
   "dependencies": {
     "@babel/runtime": "^7.12.1"

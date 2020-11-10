@@ -3,24 +3,17 @@
   "version": "4.0.2-10",
   "description": "A collection of useful crypto utilities for @polkadot",
   "main": "index.js",
-  "module": "index.mjs",
+  "module": "esm/index.js",
   "sideEffects": false,
   "keywords": [
     "Polkadot"
   ],
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [
-    "Jaco Greeff <jacogr@gmail.com>"
-  ],
+  "maintainers": [],
   "contributors": [],
   "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/polkadot-js/common.git"
-  },
-  "bugs": {
-    "url": "https://github.com/polkadot-js/common/issues"
-  },
+  "repository": "github:polkadot-js/common",
+  "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
     "@babel/runtime": "^7.12.1",
