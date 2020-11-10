@@ -34,16 +34,16 @@ export function secp256k1Verify (message: Uint8Array | string, signature: Uint8A
       .encodeCompressed()
   );
 
-  if (hashType === 'keccak') {
-    // ethereum addresses are truncated to 20 bytes (160bits)
-    return u8aEq(
-      u8aFixLength(secp256k1Hasher(hashType, isExpanded ? secp256k1Expand(publicKey) : publicKey), 160),
-      u8aFixLength(u8aToU8a(address), 160)
+  const signingAddress: Uint8Array = secp256k1Hasher(hashType, isExpanded ? secp256k1Expand(publicKey) : publicKey);
+  const inputAddress: Uint8Array = u8aToU8a(address);
+
+  return hashType === 'keccak'
+    ? u8aEq(
+      u8aFixLength(signingAddress, 160),
+      u8aFixLength(inputAddress, 160)
+    )
+    : u8aEq(
+      signingAddress,
+      inputAddress
     );
-  } else {
-    return u8aEq(
-      secp256k1Hasher(hashType, isExpanded ? secp256k1Expand(publicKey) : publicKey),
-      u8aToU8a(address)
-    );
-  }
 }
