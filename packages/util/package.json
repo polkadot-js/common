@@ -3,7 +3,7 @@
   "version": "4.0.2-7",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
-  "module": "esnext/index.js",
+  "module": "index.mjs",
   "sideEffects": false,
   "keywords": [
     "Polkadot"

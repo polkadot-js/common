@@ -3,7 +3,7 @@
 
 import { Keypair } from '../../types';
 
-import { sign } from 'tweetnacl';
+import * as nacl from 'tweetnacl';
 import { isReady, ed25519KeypairFromSeed } from '@polkadot/wasm-crypto';
 
 /**
@@ -30,5 +30,5 @@ export function naclKeypairFromSeed (seed: Uint8Array): Keypair {
     };
   }
 
-  return sign.keyPair.fromSeed(seed);
+  return nacl.sign.keyPair.fromSeed(seed);
 }

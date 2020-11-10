@@ -1,15 +1,14 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import wasmCrypto from '@polkadot/wasm-crypto';
+import { isReady, waitReady } from '@polkadot/wasm-crypto';
 
 export function cryptoIsReady (): boolean {
-  return wasmCrypto.isReady();
+  return isReady();
 }
 
 export function cryptoWaitReady (): Promise<boolean> {
-  return wasmCrypto
-    .waitReady()
+  return waitReady()
     .then((): boolean => true)
     .catch((error): boolean => {
       console.error('Unable to initialize @polkadot/util-crypto', error);
