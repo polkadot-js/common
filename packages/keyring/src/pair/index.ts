@@ -5,7 +5,7 @@ import { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, SignOptions } from '../types';
 import { PairInfo } from './types';
 
-import { assert, u8aConcat, u8aFixLength, u8aToHex } from '@polkadot/util';
+import { assert, u8aConcat, u8aToHex } from '@polkadot/util';
 import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Compress, signatureVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
@@ -178,7 +178,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       return pairToJson(type, { address, meta }, recode(passphrase), !!passphrase);
     },
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
-      signatureVerify(message, signature, 
+      signatureVerify(message, signature,
         TYPE_ADDRESS[type](publicKey),
         type === 'ethereum').isValid
   };

@@ -20,6 +20,7 @@ interface Options {
  */
 export function secp256k1Verify (message: Uint8Array | string, signature: Uint8Array | string, address: Uint8Array | string, { hashType = 'blake2', isExpanded = false }: Partial<Options> = {}): boolean {
   const u8a = u8aToU8a(signature);
+
   assert(u8a.length === 65, `Expected signature with 65 bytes, ${u8a.length} found instead`);
 
   const publicKey = new Uint8Array(
@@ -32,14 +33,14 @@ export function secp256k1Verify (message: Uint8Array | string, signature: Uint8A
       )
       .encodeCompressed()
   );
-  
-  if (hashType==="keccak"){
+
+  if (hashType === 'keccak') {
     // ethereum addresses are truncated to 20 bytes (160bits)
     return u8aEq(
-      u8aFixLength(secp256k1Hasher(hashType, isExpanded ? secp256k1Expand(publicKey) : publicKey),160),
-      u8aFixLength(u8aToU8a(address),160)
+      u8aFixLength(secp256k1Hasher(hashType, isExpanded ? secp256k1Expand(publicKey) : publicKey), 160),
+      u8aFixLength(u8aToU8a(address), 160)
     );
-  } else { 
+  } else {
     return u8aEq(
       secp256k1Hasher(hashType, isExpanded ? secp256k1Expand(publicKey) : publicKey),
       u8aToU8a(address)
