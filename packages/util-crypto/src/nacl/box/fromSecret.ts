@@ -3,7 +3,7 @@
 
 import { Keypair } from '../../types';
 
-import { box } from 'tweetnacl';
+import * as nacl from 'tweetnacl';
 
 /**
  * @name naclBoxKeypairFromSecret
@@ -20,5 +20,5 @@ import { box } from 'tweetnacl';
  * ```
  */
 export function naclBoxKeypairFromSecret (secret: Uint8Array): Keypair {
-  return box.keyPair.fromSecretKey(secret.slice(0, 32));
+  return nacl.box.keyPair.fromSecretKey(secret.slice(0, 32));
 }
