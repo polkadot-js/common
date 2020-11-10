@@ -178,6 +178,8 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       return pairToJson(type, { address, meta }, recode(passphrase), !!passphrase);
     },
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
-      signatureVerify(message, signature, TYPE_ADDRESS[type](publicKey), type === 'ethereum').isValid
+      signatureVerify(message, signature,
+        TYPE_ADDRESS[type](publicKey),
+        type === 'ethereum').isValid
   };
 }
