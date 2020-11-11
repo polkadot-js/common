@@ -7,7 +7,6 @@
   "contributors": [],
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "esm/index.js",
   "sideEffects": false,
   "keywords": [
     "Polkadot",

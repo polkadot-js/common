@@ -3,7 +3,6 @@
   "version": "4.0.2-11",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
-  "module": "esm/index.js",
   "keywords": [
     "Polkadot"
   ],
