@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/keyring",
-  "version": "4.0.2-11",
+  "version": "4.0.2-12",
   "description": "Keyring management",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
@@ -18,11 +18,11 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/keyring#readme",
   "dependencies": {
     "@babel/runtime": "^7.12.1",
-    "@polkadot/util": "4.0.2-11",
-    "@polkadot/util-crypto": "4.0.2-11"
+    "@polkadot/util": "4.0.2-12",
+    "@polkadot/util-crypto": "4.0.2-12"
   },
   "peerDependencies": {
-    "@polkadot/util": "4.0.2-11",
-    "@polkadot/util-crypto": "4.0.2-11"
+    "@polkadot/util": "4.0.2-12",
+    "@polkadot/util-crypto": "4.0.2-12"
   }
 }
