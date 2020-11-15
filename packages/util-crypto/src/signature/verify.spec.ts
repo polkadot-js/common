@@ -10,7 +10,7 @@ import { signatureVerify } from '.';
 const ADDR_ED = 'DxN4uvzwPzJLtn17yew6jEffPhXQfdKHTp2brufb98vGbPN';
 const ADDR_SR = 'EK1bFgKm2FsghcttHT7TB7rNyXApFgs9fCbijMGQNyFGBQm';
 const ADDR_EC = 'XyFVXiGaHxoBhXZkSh6NS2rjFyVaVNUo5UiZDqZbuSfUdji';
-const ADDR_ETH = '0xe51153f44325ecf279f24bd51bfe412515a7c9ba';
+const ADDR_ETH = '0x54dab85ee2c7b9f7421100d7134efb5dfa4239bf';
 const MESSAGE = 'hello world';
 const SIG_ED = '0x299d3bf4c8bb51af732f8067b3a3015c0862a5ff34721749d8ed6577ea2708365d1c5f76bd519009971e41156f12c70abc2533837ceb3bad9a05a99ab923de06';
 const SIG_SR = '0xca01419b5a17219f7b78335658cab3b126db523a5df7be4bfc2bef76c2eb3b1dcf4ca86eb877d0a6cf6df12db5995c51d13b00e005d053b892bd09c594434288';
@@ -48,6 +48,19 @@ describe('signatureVerify', (): void => {
 
     it('verifies an ethereum signature', (): void => {
       expect(signatureVerify(MESSAGE, SIG_ETH, ADDR_ETH)).toEqual({
+        crypto: 'ethereum',
+        isValid: true
+      });
+    });
+
+    it('verifies an ethereum signature (known)', (): void => {
+      const message = 'Pay KSMs to the Kusama account:88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee';
+
+      expect(signatureVerify(
+        `\x19Ethereum Signed Message:\n${message.length.toString()}${message}`,
+        '0x55bd020bdbbdc02de34e915effc9b18a99002f4c29f64e22e8dcbb69e722ea6c28e1bb53b9484063fbbfd205e49dcc1f620929f520c9c4c3695150f05a28f52a01',
+        '0x002309df96687e44280bb72c3818358faeeb699c'
+      )).toEqual({
         crypto: 'ethereum',
         isValid: true
       });
