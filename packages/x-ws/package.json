@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-ws",
-  "version": "4.0.2-12",
+  "version": "4.0.2-13",
   "description": "A cross-environment WebSocket replacement",
   "browser": "browser.js",
   "main": "node.js",
