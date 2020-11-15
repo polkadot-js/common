@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 4.1.1 Nov 16, 2020
+
+Contributed:
+
+- Expand ETH tests, allow for verification against address (Thanks to https://github.com/joelamouche)
+
+Changes:
+
+- Replace pbkdf2 imports with explicit use from sync-only package
+- Adjust secp256k1 imports with shared elliptic
+- Expand crypto tests for explicit wasm vs JS compares in all cases
+
+
 ## 4.0.1 Nov 8, 2020
 
 - **Breaking change** Polyfills are not injected by these libraries anymore to avoid clobbering external globals, the user should provide them if their environment is missing base functionality.
