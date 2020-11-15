@@ -34,9 +34,9 @@ const TYPE_PREFIX = {
 };
 
 const TYPE_SIGNATURE = {
-  ecdsa: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, { hashType: 'blake2' }),
+  ecdsa: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'blake2'),
   ed25519: naclSign,
-  ethereum: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, { hashType: 'keccak' }),
+  ethereum: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'keccak'),
   sr25519: schnorrkelSign
 };
 
@@ -178,8 +178,6 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       return pairToJson(type, { address, meta }, recode(passphrase), !!passphrase);
     },
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
-      signatureVerify(message, signature,
-        TYPE_ADDRESS[type](publicKey),
-        type === 'ethereum').isValid
+      signatureVerify(message, signature, TYPE_ADDRESS[type](publicKey)).isValid
   };
 }
