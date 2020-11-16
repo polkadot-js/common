@@ -46,6 +46,14 @@ export function format (value: unknown): unknown {
   return formatOther(value);
 }
 
+function formatValues (values: Logger$Data, maxSize: number): string {
+  const formatted = values.map(format).join(' ');
+
+  return maxSize <= 0
+    ? formatted
+    : formatted.substr(0, maxSize);
+}
+
 function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): void {
   if (values.length === 1 && isFunction(values[0])) {
     const fnResult = values[0]() as unknown;
@@ -53,13 +61,30 @@ function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): 
     return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult], maxSize);
   }
 
-  const formatted = values.map(format).join(' ');
-
-  console[logTo[log] as 'log'](formatDate(new Date()), type, maxSize <= 0 ? formatted : formatted.substr(0, maxSize));
+  console[logTo[log] as 'log'](formatDate(new Date()), type, formatValues(values, maxSize));
 }
 
 function noop (): void {
   // noop
+}
+
+function parseEnv (type: string): [boolean, number] {
+  try {
+    const isDebug = (process.env.NODE_ENV === 'test') || (
+      (process.env.DEBUG || '')
+        .split(',')
+        .some((e) => e === '*' || type.startsWith(e))
+    );
+    const maxSize = parseInt(process.env.DEBUG_SIZE || '-1', 10);
+
+    if (isNaN(maxSize)) {
+      return [isDebug, -1];
+    }
+
+    return [isDebug, maxSize];
+  } catch (error) {
+    return [false, -1];
+  }
 }
 
 /**
@@ -78,26 +103,7 @@ function noop (): void {
  */
 export function logger (_type: string): Logger {
   const type = `${_type.toUpperCase()}:`.padStart(16);
-  let isDebug: boolean;
-  let maxSize: number;
-
-  try {
-    const isTest = process.env.NODE_ENV === 'test';
-
-    isDebug = isTest || (
-      (process.env.DEBUG || '')
-        .split(',')
-        .some((e) => e === '*' || _type.startsWith(e))
-    );
-    maxSize = parseInt(process.env.DEBUG_SIZE || '-1', 10);
-
-    if (isNaN(maxSize)) {
-      maxSize = -1;
-    }
-  } catch (error) {
-    isDebug = false;
-    maxSize = -1;
-  }
+  const [isDebug, maxSize] = parseEnv(_type);
 
   return {
     debug: isDebug
