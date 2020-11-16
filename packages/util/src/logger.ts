@@ -46,18 +46,16 @@ export function format (value: unknown): unknown {
   return formatOther(value);
 }
 
-function apply (log: LogType, type: string, values: Logger$Data): void {
+function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): void {
   if (values.length === 1 && isFunction(values[0])) {
     const fnResult = values[0]() as unknown;
 
-    return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult]);
+    return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult], maxSize);
   }
 
-  console[logTo[log] as 'log'](
-    formatDate(new Date()),
-    type,
-    ...values.map(format)
-  );
+  const formatted = values.map(format).join(' ');
+
+  console[logTo[log] as 'log'](formatDate(new Date()), type, maxSize <= 0 ? formatted : formatted.substr(0, maxSize));
 }
 
 function noop (): void {
@@ -80,24 +78,34 @@ function noop (): void {
  */
 export function logger (_type: string): Logger {
   const type = `${_type.toUpperCase()}:`.padStart(16);
-  let isDebug;
+  let isDebug: boolean;
+  let maxSize: number;
 
   try {
     const isTest = process.env.NODE_ENV === 'test';
-    const debugList = (process.env.DEBUG || '').split(',');
 
-    isDebug = isTest || !!debugList.find((entry): boolean => _type.startsWith(entry));
+    isDebug = isTest || (
+      (process.env.DEBUG || '')
+        .split(',')
+        .some((e) => e === '*' || _type.startsWith(e))
+    );
+    maxSize = parseInt(process.env.DEBUG_SIZE || '-1', 10);
+
+    if (isNaN(maxSize)) {
+      maxSize = -1;
+    }
   } catch (error) {
     isDebug = false;
+    maxSize = -1;
   }
 
   return {
     debug: isDebug
-      ? (...values: Logger$Data): void => apply('debug', type, values)
+      ? (...values: Logger$Data) => apply('debug', type, values, maxSize)
       : noop,
-    error: (...values: Logger$Data): void => apply('error', type, values),
-    log: (...values: Logger$Data): void => apply('log', type, values),
+    error: (...values: Logger$Data) => apply('error', type, values),
+    log: (...values: Logger$Data) => apply('log', type, values),
     noop,
-    warn: (...values: Logger$Data): void => apply('warn', type, values)
+    warn: (...values: Logger$Data) => apply('warn', type, values)
   };
 }
