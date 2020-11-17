@@ -98,7 +98,7 @@ describe('logger', (): void => {
   });
 
   it('logs an object alongside primitives (trimming)', (): void => {
-    process.env.DEBUG_SIZE = '10';
+    process.env.DEBUG_MAX = '10';
 
     l = logger('test');
     l.debug(123, 'a', new BN('12345678900987654321'), { a: 'an a', b: 42 });

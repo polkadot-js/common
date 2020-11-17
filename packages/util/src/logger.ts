@@ -75,7 +75,7 @@ function noop (): void {
 }
 
 function parseEnv (type: string): [boolean, number] {
-  const maxSize = parseInt(process?.env?.DEBUG_SIZE || '-1', 10);
+  const maxSize = parseInt(process?.env?.DEBUG_MAX || '-1', 10);
 
   return [
     (process?.env?.DEBUG || '').split(',').some((e) => !!e && (e === '*' || type.startsWith(e))),
