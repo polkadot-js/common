@@ -93,7 +93,20 @@ describe('logger', (): void => {
     expect(spy.log).toHaveBeenCalledWith(
       dateMatch,
       prefixMatch,
-      expect.stringMatching('123 b 12345678900987654321 {\\"a\\":\\"an a\\",\\"b\\":42}')
+      '123 a 12345678900987654321 {"a":"an a","b":42}'
+    );
+  });
+
+  it('logs an object alongside primitives (trimming)', (): void => {
+    process.env.DEBUG_SIZE = '10';
+
+    l = logger('test');
+    l.debug(123, 'a', new BN('12345678900987654321'), { a: 'an a', b: 42 });
+
+    expect(spy.log).toHaveBeenCalledWith(
+      dateMatch,
+      prefixMatch,
+      '123 a 1234…'
     );
   });
 

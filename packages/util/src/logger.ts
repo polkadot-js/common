@@ -55,9 +55,9 @@ export function format (value: unknown): string | number {
 function formatValues (values: Logger$Data, maxSize: number): string {
   const formatted = values.map(format).join(' ');
 
-  return maxSize <= 0
+  return maxSize <= 0 || formatted.length <= maxSize
     ? formatted
-    : formatted.substr(0, maxSize);
+    : `${formatted.substr(0, maxSize)}…`;
 }
 
 function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): void {
@@ -66,8 +66,6 @@ function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): 
 
     return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult], maxSize);
   }
-
-  console.error('*****', formatValues(values, maxSize));
 
   console[logTo[log] as 'log'](formatDate(new Date()), type, formatValues(values, maxSize));
 }
