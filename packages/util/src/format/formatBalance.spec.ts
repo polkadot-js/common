@@ -230,7 +230,7 @@ describe('formatBalance', (): void => {
       { power: 3, text: 'Kilo', value: 'k' },
       { power: 6, text: 'Mill', value: 'M' },
       { power: 9, text: 'Bill', value: 'B' },
-      { power: 12, text: 'Tera', value: 'T' },
+      { power: 12, text: 'Tril', value: 'T' },
       { power: 15, text: 'Peta', value: 'P' },
       { power: 18, text: 'Exa', value: 'E' },
       { power: 21, text: 'Zeta', value: 'Z' },
