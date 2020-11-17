@@ -5,12 +5,12 @@ import { Logger, Logger$Data } from './types';
 
 import { formatDate } from './format/formatDate';
 import { isBn } from './is/bn';
+import { isBuffer } from './is/buffer';
 import { isFunction } from './is/function';
 import { isObject } from './is/object';
 import { isU8a } from './is/u8a';
 import { u8aToHex } from './u8a/toHex';
 import { u8aToU8a } from './u8a/toU8a';
-import { isBuffer } from './is';
 
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
@@ -86,7 +86,9 @@ function parseEnv (type: string): [boolean, number] {
  * <BR>
  *
  * ```javascript
- * const l from '@polkadot/util/logger')('test');
+ * import { logger } from '@polkadot';
+ *
+ * const l = logger('test');
  *
  * l.log('blah'); // <date>     TEST: blah
  * ```
