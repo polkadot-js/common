@@ -8,9 +8,11 @@ import { isBn } from './is/bn';
 import { isBuffer } from './is/buffer';
 import { isFunction } from './is/function';
 import { isObject } from './is/object';
+import { isString } from './is/string';
 import { isU8a } from './is/u8a';
 import { u8aToHex } from './u8a/toHex';
 import { u8aToU8a } from './u8a/toU8a';
+import { isNumber } from './is';
 
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
@@ -22,21 +24,25 @@ const logTo = {
   warn: 'warn'
 };
 
-function formatOther (value: unknown): unknown {
+function formatOther (value: unknown): string | number {
   if (value && isObject(value) && value.constructor === Object) {
-    return Object.keys(value).reduce((result: Record<string, unknown>, key): Record<string, unknown> => {
+    return JSON.stringify(Object.keys(value).reduce((result: Record<string, unknown>, key): Record<string, unknown> => {
       result[key] = format(value[key]);
 
       return result;
-    }, {});
+    }, {}));
   }
 
-  return value;
+  return isString(value)
+    ? value.toString()
+    : isNumber(value)
+      ? value
+      : JSON.stringify(value);
 }
 
-export function format (value: unknown): unknown {
+export function format (value: unknown): string | number {
   if (Array.isArray(value)) {
-    return value.map(format);
+    return value.map(format).join(' ');
   } else if (isBn(value)) {
     return value.toString();
   } else if (isU8a(value) || isBuffer(value)) {
@@ -61,6 +67,8 @@ function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): 
     return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult], maxSize);
   }
 
+  console.error('*****', formatValues(values, maxSize));
+
   console[logTo[log] as 'log'](formatDate(new Date()), type, formatValues(values, maxSize));
 }
 
@@ -69,12 +77,12 @@ function noop (): void {
 }
 
 function parseEnv (type: string): [boolean, number] {
-  const isDebug = (process?.env?.DEBUG || '')
-    .split(',')
-    .some((e) => e === '*' || type.startsWith(e));
   const maxSize = parseInt(process?.env?.DEBUG_SIZE || '-1', 10);
 
-  return [isDebug, isNaN(maxSize) ? -1 : maxSize];
+  return [
+    (process?.env?.DEBUG || '').split(',').some((e) => !!e && (e === '*' || type.startsWith(e))),
+    isNaN(maxSize) ? -1 : maxSize
+  ];
 }
 
 /**

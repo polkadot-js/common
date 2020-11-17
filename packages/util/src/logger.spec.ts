@@ -18,7 +18,6 @@ describe('logger', (): void => {
 
   beforeEach((): void => {
     oldEnv = process.env;
-    process.env.NODE_ENV = 'development';
 
     ln = logger('notDebug');
 
@@ -46,11 +45,15 @@ describe('logger', (): void => {
 
   describe('format', (): void => {
     it('returns null as-is', (): void => {
-      expect(format(null)).toEqual(null);
+      expect(format(null)).toEqual('null');
     });
 
     it('returns undefined as-is', (): void => {
       expect(format(undefined)).toEqual(undefined);
+    });
+
+    it('formats an object', (): void => {
+      expect(format({ a: 'an a', b: 42 })).toEqual('{"a":"an a","b":42}');
     });
   });
 
@@ -70,11 +73,7 @@ describe('logger', (): void => {
     expect(spy.log).toHaveBeenCalledWith(
       dateMatch,
       prefixMatch,
-      expect.stringMatching('test'),
-      expect.stringMatching('a'),
-      2,
-      expect.stringMatching('12345678900987654321'),
-      expect.stringMatching('0x00010203')
+      expect.stringMatching('a 2 12345678900987654321 0x00010203')
     );
   });
 
@@ -85,6 +84,16 @@ describe('logger', (): void => {
       dateMatch,
       prefixMatch,
       expect.stringMatching('a function test')
+    );
+  });
+
+  it('logs an object alongside primitives', (): void => {
+    l.log(123, 'a', new BN('12345678900987654321'), { a: 'an a', b: 42 });
+
+    expect(spy.log).toHaveBeenCalledWith(
+      dateMatch,
+      prefixMatch,
+      expect.stringMatching('123 b 12345678900987654321 {\\"a\\":\\"an a\\",\\"b\\":42}')
     );
   });
 
@@ -138,9 +147,8 @@ describe('logger', (): void => {
     expect(spy.log).not.toHaveBeenCalled();
   });
 
-  it('does debug log when NODE_ENV=test specified', (): void => {
-    process.env.DEBUG = 'blah';
-    process.env.NODE_ENV = 'test';
+  it('does debug log when DEBUG=* specified', (): void => {
+    process.env.DEBUG = '*';
 
     l = logger('test');
     l.debug('test');
@@ -149,7 +157,7 @@ describe('logger', (): void => {
   });
 
   it('does not debug log when no process.env', (): void => {
-    process.env = undefined as unknown as NodeJS.ProcessEnv;
+    process.env = null as unknown as NodeJS.ProcessEnv;
 
     l = logger('test');
     l.debug('test');
