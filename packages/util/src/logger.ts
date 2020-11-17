@@ -15,9 +15,6 @@ import { isBuffer } from './is';
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
 
-const EMPTY_PROCESS = { env: {} };
-const EMPTY_ENV = { DEBUG: '', DEBUG_SIZE: '-1' };
-
 const logTo = {
   debug: 'log',
   error: 'error',
@@ -72,10 +69,10 @@ function noop (): void {
 }
 
 function parseEnv (type: string): [boolean, number] {
-  const isDebug = (((process || EMPTY_PROCESS).env || EMPTY_ENV).DEBUG || '')
+  const isDebug = (process?.env?.DEBUG || '')
     .split(',')
     .some((e) => e === '*' || type.startsWith(e));
-  const maxSize = parseInt(((process || EMPTY_PROCESS).env || EMPTY_ENV).DEBUG_SIZE || '-1', 10);
+  const maxSize = parseInt(process?.env?.DEBUG_SIZE || '-1', 10);
 
   if (isNaN(maxSize)) {
     return [isDebug, -1];
