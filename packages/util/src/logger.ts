@@ -74,11 +74,7 @@ function parseEnv (type: string): [boolean, number] {
     .some((e) => e === '*' || type.startsWith(e));
   const maxSize = parseInt(process?.env?.DEBUG_SIZE || '-1', 10);
 
-  if (isNaN(maxSize)) {
-    return [isDebug, -1];
-  }
-
-  return [isDebug, maxSize];
+  return [isDebug, isNaN(maxSize) ? -1 : maxSize];
 }
 
 /**
