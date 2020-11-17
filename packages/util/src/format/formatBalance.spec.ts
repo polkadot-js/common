@@ -116,6 +116,12 @@ describe('formatBalance', (): void => {
       ).toEqual('123.4567 kBAR');
     });
 
+    it('formats 123,456,789,000 (decimals=0, unit specified)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { withSi: true, withUnit: 'BAR' }, 0)
+      ).toEqual('123.4567 BBAR');
+    });
+
     it('formats 123,456,789,000 * 10 (decimals=12)', (): void => {
       expect(
         formatBalance(TESTVAL.muln(10), { withSi: true }, 12)
@@ -222,8 +228,8 @@ describe('formatBalance', (): void => {
     ).toEqual([
       { power: 0, text: 'TEST', value: '-' },
       { power: 3, text: 'Kilo', value: 'k' },
-      { power: 6, text: 'Mega', value: 'M' },
-      { power: 9, text: 'Giga', value: 'G' },
+      { power: 6, text: 'Mill', value: 'M' },
+      { power: 9, text: 'Bill', value: 'B' },
       { power: 12, text: 'Tera', value: 'T' },
       { power: 15, text: 'Peta', value: 'P' },
       { power: 18, text: 'Exa', value: 'E' },
