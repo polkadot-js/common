@@ -18,7 +18,7 @@ export const SI: SiDef[] = [
   { power: 3, text: 'Kilo', value: 'k' },
   { power: 6, text: 'Mill', value: 'M' }, // Mega, M
   { power: 9, text: 'Bill', value: 'B' }, // Giga, G
-  { power: 12, text: 'Tera', value: 'T' },
+  { power: 12, text: 'Tril', value: 'T' }, // Tera, T
   { power: 15, text: 'Peta', value: 'P' },
   { power: 18, text: 'Exa', value: 'E' },
   { power: 21, text: 'Zeta', value: 'Z' },
