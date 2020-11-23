@@ -1,6 +1,11 @@
 // Copyright 2017-2020 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// This contains exactly the same information as available in (with some extensions)
+// https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json
+//
+// Once the above is published as a package, the duplication here can be removed
+
 import { Network, NetworkFromSubstrate } from './types';
 
 // These are known prefixes that are not sorted
