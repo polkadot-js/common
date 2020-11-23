@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 4.2.1 Nov 23, 2020
+
+Changes:
+
+- Rename default Mega to Million, Giga to Billion and Tera to Trillion in formatter
+- Dedupe bn.js by aligning versions between different libraries
+- Add explicit link to base Substrate ss58 formats (as managed in `@polkadot/util`)
+
+
 ## 4.1.1 Nov 16, 2020
 
 Contributed:
