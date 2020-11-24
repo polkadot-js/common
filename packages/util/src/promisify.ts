@@ -23,7 +23,7 @@ export function promisify <R = any> (self: unknown, fn: (...params: any) => any,
       if (error) {
         reject(error);
       } else {
-        resolve(result);
+        resolve(result as R);
       }
     };
 
