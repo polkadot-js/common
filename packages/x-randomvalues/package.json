@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-randomvalues",
-  "version": "4.2.1",
+  "version": "4.2.2-0",
   "description": "A cross-environment window.crypto.getRandomValues replacement",
   "browser": "browser.js",
   "main": "node.js",
