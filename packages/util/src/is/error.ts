@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import isInstanceOf from './instanceOf';
+import { isInstanceOf } from './instanceOf';
 
 /**
  * @name isError
@@ -17,6 +17,6 @@ import isInstanceOf from './instanceOf';
  * console.log('isError', isError(new Error('message'))); // => true
  * ```
  */
-export default function isError (value: unknown): value is Error {
+export function isError (value: unknown): value is Error {
   return isInstanceOf(value, Error);
 }

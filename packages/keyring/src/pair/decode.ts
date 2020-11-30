@@ -42,7 +42,7 @@ function decodePkcs8 (encoded: Uint8Array): DecodeResult {
   };
 }
 
-export default function decode (passphrase?: string, encrypted?: Uint8Array | null, encType: KeyringPair$JsonEncodingTypes[] = ENCODING): DecodeResult {
+export function decodePair (passphrase?: string, encrypted?: Uint8Array | null, encType: KeyringPair$JsonEncodingTypes[] = ENCODING): DecodeResult {
   assert(encrypted, 'No encrypted data available to decode');
   assert(passphrase || !encType.includes('xsalsa20-poly1305'), 'Password required to decode encypted data');
 

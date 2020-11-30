@@ -9,4 +9,10 @@ describe('stringCamelCase', (): void => {
       stringCamelCase('Snake_case')
     ).toBe('snakeCase');
   });
+
+  it('works correctly for String (class', (): void => {
+    expect(
+      stringCamelCase(String('Snake_case'))
+    ).toBe('snakeCase');
+  });
 });

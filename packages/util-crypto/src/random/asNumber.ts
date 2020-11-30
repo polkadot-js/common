@@ -4,7 +4,7 @@
 import BN from 'bn.js';
 import { hexToBn } from '@polkadot/util';
 
-import randomAsHex from './asHex';
+import { randomAsHex } from './asHex';
 
 const BN_53 = new BN(0b11111111111111111111111111111111111111111111111111111);
 
@@ -22,7 +22,7 @@ const BN_53 = new BN(0b11111111111111111111111111111111111111111111111111111);
  * randomAsNumber(); // => <random number>
  * ```
  */
-export default function randomAsNumber (): number {
+export function randomAsNumber (): number {
   return hexToBn(
     randomAsHex(8)
   ).and(BN_53).toNumber();

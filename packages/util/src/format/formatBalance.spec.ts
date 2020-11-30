@@ -3,7 +3,7 @@
 
 import BN from 'bn.js';
 
-import formatBalance from './formatBalance';
+import { formatBalance } from '.';
 
 describe('formatBalance', (): void => {
   const TESTVAL = new BN('123456789000');
@@ -18,6 +18,12 @@ describe('formatBalance', (): void => {
       expect(
         formatBalance(TESTVAL, { decimals: 15, withSi: true })
       ).toEqual('123.4567 µUnit');
+    });
+
+    it('formats 123,456 (decimals=0)', (): void => {
+      expect(
+        formatBalance(123456, { decimals: 0, withSi: true })
+      ).toEqual('123.4560 kUnit');
     });
 
     it('formats BigInt numbers', (): void => {
@@ -108,6 +114,12 @@ describe('formatBalance', (): void => {
       expect(
         formatBalance(TESTVAL, { withSi: true, withUnit: 'BAR' }, 6)
       ).toEqual('123.4567 kBAR');
+    });
+
+    it('formats 123,456,789,000 (decimals=0, unit specified)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { withSi: true, withUnit: 'BAR' }, 0)
+      ).toEqual('123.4567 BBAR');
     });
 
     it('formats 123,456,789,000 * 10 (decimals=12)', (): void => {
@@ -216,9 +228,9 @@ describe('formatBalance', (): void => {
     ).toEqual([
       { power: 0, text: 'TEST', value: '-' },
       { power: 3, text: 'Kilo', value: 'k' },
-      { power: 6, text: 'Mega', value: 'M' },
-      { power: 9, text: 'Giga', value: 'G' },
-      { power: 12, text: 'Tera', value: 'T' },
+      { power: 6, text: 'Mill', value: 'M' },
+      { power: 9, text: 'Bill', value: 'B' },
+      { power: 12, text: 'Tril', value: 'T' },
       { power: 15, text: 'Peta', value: 'P' },
       { power: 18, text: 'Exa', value: 'E' },
       { power: 21, text: 'Zeta', value: 'Z' },

@@ -6,7 +6,7 @@ function zeroPad (value: number): string {
   return value.toString().padStart(2, '0');
 }
 
-export default function formatDate (date: Date): string {
+export function formatDate (date: Date): string {
   const year = date.getFullYear().toString();
   const month = zeroPad((date.getMonth() + 1));
   const day = zeroPad(date.getDate());

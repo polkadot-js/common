@@ -7,8 +7,7 @@
     "packages/*"
   ],
   "resolutions": {
-    "babel-core": "^7.0.0-bridge.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.1.2"
   },
   "scripts": {
     "build": "polkadot-dev-build-ts",
@@ -21,10 +20,10 @@
     "test:one": "polkadot-dev-run-test"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@polkadot/dev": "^0.58.3",
-    "@polkadot/ts": "^0.3.49",
-    "@types/jest": "^26.0.14"
+    "@babel/core": "^7.12.8",
+    "@polkadot/dev": "^0.60.4",
+    "@polkadot/ts": "^0.3.55",
+    "@types/jest": "^26.0.15"
   },
-  "version": "3.6.1"
+  "version": "4.2.2-0"
 }

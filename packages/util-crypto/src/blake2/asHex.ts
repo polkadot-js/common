@@ -3,7 +3,7 @@
 
 import { u8aToHex } from '@polkadot/util';
 
-import blake2AsU8a from './asU8a';
+import { blake2AsU8a } from './asU8a';
 
 /**
  * @name blake2AsHex
@@ -19,7 +19,7 @@ import blake2AsU8a from './asU8a';
  * blake2AsHex('abc'); // => 0xba80a53f981c4d0d
  * ```
  */
-export default function blake2AsHex (data: Uint8Array | string, bitLength = 256): string {
+export function blake2AsHex (data: Uint8Array | string, bitLength = 256): string {
   return u8aToHex(
     blake2AsU8a(data, bitLength)
   );

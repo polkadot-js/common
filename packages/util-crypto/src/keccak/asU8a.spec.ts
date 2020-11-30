@@ -16,25 +16,27 @@ describe('keccakAsU8a', (): void => {
     '0x2d07364b5c231c56ce63d49430e085ea3033c750688ba532b24029124c26ca5e'
   );
 
-  it('returns an hex representation (string)', (): void => {
-    expect(
-      keccakAsU8a(input)
-    ).toEqual(output);
+  [false, true].forEach((onlyJs): void => {
+    it(`returns an hex representation (string, onlyJs=${onlyJs.toString()})`, (): void => {
+      expect(
+        keccakAsU8a(input, onlyJs)
+      ).toEqual(output);
+    });
   });
 
-  it('returns an hex representation (Buffer)', (): void => {
-    expect(
-      keccakAsU8a(
-        Buffer.from(input)
-      )
-    ).toEqual(output);
+  [false, true].forEach((onlyJs): void => {
+    it(`returns an hex representation (Buffer, onlyJs=${onlyJs.toString()})`, (): void => {
+      expect(
+        keccakAsU8a(Buffer.from(input), onlyJs)
+      ).toEqual(output);
+    });
   });
 
-  it('returns an hex representation (Uint8Array)', (): void => {
-    expect(
-      keccakAsU8a(
-        stringToU8a(input)
-      )
-    ).toEqual(output);
+  [false, true].forEach((onlyJs): void => {
+    it(`returns an hex representation (Uint8Array, onlyJs=${onlyJs.toString()})`, (): void => {
+      expect(
+        keccakAsU8a(stringToU8a(input), onlyJs)
+      ).toEqual(output);
+    });
   });
 });

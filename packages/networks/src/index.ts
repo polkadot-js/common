@@ -1,6 +1,11 @@
 // Copyright 2017-2020 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// This contains exactly the same information as available in (with some extensions)
+// https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json
+//
+// Once the above is published as a package, the duplication here can be removed
+
 import { Network, NetworkFromSubstrate } from './types';
 
 // These are known prefixes that are not sorted
@@ -10,6 +15,16 @@ const UNSORTED = [0, 2, 42];
 // are provided, it needs to be in reverse order, i.e. most-recent first, oldest
 // last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
+
+const createReserved = (prefix: number, displayName = 'This prefix is reserved.'): NetworkFromSubstrate => ({
+  decimals: null,
+  displayName,
+  network: `reserved${prefix}`,
+  prefix,
+  standardAccount: null,
+  symbols: null,
+  website: null
+});
 
 const all: NetworkFromSubstrate[] = [
   {
@@ -23,15 +38,7 @@ const all: NetworkFromSubstrate[] = [
     symbols: ['DOT'],
     website: 'https://polkadot.network'
   },
-  {
-    decimals: null,
-    displayName: 'This prefix is reserved.',
-    network: 'reserved1',
-    prefix: 1,
-    standardAccount: null,
-    symbols: null,
-    website: null
-  },
+  createReserved(1),
   {
     decimals: [12],
     displayName: 'Kusama Relay Chain',
@@ -47,15 +54,7 @@ const all: NetworkFromSubstrate[] = [
     symbols: ['KSM'],
     website: 'https://kusama.network'
   },
-  {
-    decimals: null,
-    displayName: 'This prefix is reserved.',
-    network: 'reserved3',
-    prefix: 3,
-    standardAccount: null,
-    symbols: null,
-    website: null
-  },
+  createReserved(3),
   {
     decimals: null,
     displayName: 'Katal Chain',
@@ -149,6 +148,24 @@ const all: NetworkFromSubstrate[] = [
     website: 'https://www.substratee.com'
   },
   {
+    decimals: [0],
+    displayName: 'Totem',
+    network: 'totem',
+    prefix: 14,
+    standardAccount: '*25519',
+    symbols: ['XTX'],
+    website: 'https://totemaccounting.com'
+  },
+  {
+    decimals: [12],
+    displayName: 'Synesthesia',
+    network: 'synesthesia',
+    prefix: 15,
+    standardAccount: '*25519',
+    symbols: ['SYN'],
+    website: 'https://synesthesia.network/'
+  },
+  {
     decimals: [12],
     displayName: 'Kulupu',
     genesisHash: ['0xf7a99d3cb92853d00d5275c971c132c074636256583fee53b3bbe60d7b8769ba'],
@@ -186,14 +203,14 @@ const all: NetworkFromSubstrate[] = [
     website: 'https://geekcash.org'
   },
   {
-    decimals: null,
+    decimals: [12],
     displayName: 'Stafi',
     genesisHash: ['0x290a4149f09ea0e402c74c1c7e96ae4239588577fe78932f94f5404c68243d80'],
     network: 'stafi',
     prefix: 20,
     standardAccount: '*25519',
-    symbols: null,
-    website: null
+    symbols: ['FIS'],
+    website: 'https://stafi.io'
   },
   {
     decimals: [6],
@@ -324,15 +341,7 @@ const all: NetworkFromSubstrate[] = [
     symbols: null,
     website: 'https://substrate.dev/'
   },
-  {
-    decimals: null,
-    displayName: 'This prefix is reserved.',
-    network: 'reserved43',
-    prefix: 43,
-    standardAccount: null,
-    symbols: null,
-    website: null
-  },
+  createReserved(43),
   {
     decimals: [8],
     displayName: 'ChainX',
@@ -342,33 +351,9 @@ const all: NetworkFromSubstrate[] = [
     symbols: ['PCX'],
     website: 'https://chainx.org/'
   },
-  {
-    decimals: null,
-    displayName: 'This prefix is reserved.',
-    network: 'reserved46',
-    prefix: 46,
-    standardAccount: null,
-    symbols: null,
-    website: null
-  },
-  {
-    decimals: null,
-    displayName: 'This prefix is reserved.',
-    network: 'reserved47',
-    prefix: 47,
-    standardAccount: null,
-    symbols: null,
-    website: null
-  },
-  {
-    decimals: null,
-    displayName: 'All prefixes 48 and higher are reserved and cannot be allocated.',
-    network: 'reserved48',
-    prefix: 48,
-    standardAccount: null,
-    symbols: null,
-    website: null
-  }
+  createReserved(46),
+  createReserved(47),
+  createReserved(48, 'All prefixes 48 and higher are reserved and cannot be allocated.')
 ];
 
 // The list of available/claimed prefixes

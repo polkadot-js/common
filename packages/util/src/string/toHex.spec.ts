@@ -15,4 +15,10 @@ describe('hexToString', (): void => {
       stringToHex('hello')
     ).toEqual('0x68656c6c6f');
   });
+
+  it('converts to a hex from String', (): void => {
+    expect(
+      stringToHex(String('hello'))
+    ).toEqual('0x68656c6c6f');
+  });
 });

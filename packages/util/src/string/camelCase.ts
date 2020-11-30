@@ -1,6 +1,13 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import stringCamelCase from 'camelcase';
+import camelcase from 'camelcase';
 
-export default stringCamelCase;
+/**
+ * @name stringCamelCase
+ * @summary Convert a dash/dot/underscore/space separated string/String to camelCase
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function stringCamelCase (value: string | String): string {
+  return camelcase(value.toString());
+}

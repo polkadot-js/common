@@ -3,7 +3,7 @@
 
 import { u8aEq } from '@polkadot/util';
 
-import decode from './decode';
+import { decodeAddress } from './decode';
 
 /**
  * @name addressEq
@@ -19,6 +19,6 @@ import decode from './decode';
  * u8aEq(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // true
  * ```
  */
-export default function addressEq (a: string | Uint8Array, b: string | Uint8Array): boolean {
-  return u8aEq(decode(a), decode(b));
+export function addressEq (a: string | Uint8Array, b: string | Uint8Array): boolean {
+  return u8aEq(decodeAddress(a), decodeAddress(b));
 }

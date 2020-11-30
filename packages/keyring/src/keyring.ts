@@ -8,8 +8,8 @@ import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/uti
 import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToLegacySeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
-import createPair from './pair';
-import Pairs from './pairs';
+import { createPair } from './pair';
+import { Pairs } from './pairs';
 
 const keypairFromSeed = {
   ecdsa: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
@@ -34,7 +34,7 @@ const keypairFromSeed = {
  * lookup of a pair for a given account address or public key using `getPair`. JSON metadata associated with
  * an account may be obtained using `toJson` accompanied by the account passphrase.
  */
-export default class Keyring implements KeyringInstance {
+export class Keyring implements KeyringInstance {
   readonly #pairs: Pairs;
 
   readonly #type: KeypairType;

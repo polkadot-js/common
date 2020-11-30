@@ -8,7 +8,7 @@ import { decodeAddress } from '@polkadot/util-crypto';
 
 type KeyringPairMap = Record<string, KeyringPair>;
 
-export default class Pairs implements KeyringPairs {
+export class Pairs implements KeyringPairs {
   readonly #map: KeyringPairMap = {};
 
   public add (pair: KeyringPair): KeyringPair {

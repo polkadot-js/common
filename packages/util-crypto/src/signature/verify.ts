@@ -5,24 +5,26 @@ import { KeypairType, VerifyResult } from '../types';
 
 import { assert, u8aToU8a } from '@polkadot/util';
 
-import addressDecode from '../address/decode';
-import naclVerify from '../nacl/verify';
-import schnorrkelVerify from '../schnorrkel/verify';
-import secp256k1Verify from '../secp256k1/verify';
+import { decodeAddress } from '../address/decode';
+import { naclVerify } from '../nacl/verify';
+import { schnorrkelVerify } from '../schnorrkel/verify';
+import { secp256k1Verify } from '../secp256k1/verify';
 
-type Verifier = [KeypairType, (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string, isExpanded?: boolean) => boolean];
+interface VerifyInput {
+  message: Uint8Array | string;
+  publicKey: Uint8Array;
+  signature: Uint8Array;
+}
+
+type Verifier = [KeypairType, (message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array) => boolean];
+
+const secp256k1VerifyHasher = (hashType: 'blake2' | 'keccak') =>
+  (message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array) =>
+    secp256k1Verify(message, signature, publicKey, hashType);
 
 const VERIFIERS_ECDSA: Verifier[] = [
-  [
-    'ecdsa',
-    (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string, isExpanded?: boolean) =>
-      secp256k1Verify(message, signature, publicKey, 'blake2', isExpanded)
-  ],
-  [
-    'ethereum',
-    (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string, isExpanded?: boolean) =>
-      secp256k1Verify(message, signature, publicKey, 'keccak', isExpanded)
-  ]
+  ['ecdsa', secp256k1VerifyHasher('blake2')],
+  ['ethereum', secp256k1VerifyHasher('keccak')]
 ];
 
 const VERIFIERS: Verifier[] = [
@@ -33,10 +35,10 @@ const VERIFIERS: Verifier[] = [
 
 const CRYPTO_TYPES: ('ed25519' | 'sr25519' | 'ecdsa')[] = ['ed25519', 'sr25519', 'ecdsa'];
 
-function verifyDetect (result: VerifyResult, message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array, isExpanded?: boolean, verifiers = VERIFIERS): VerifyResult {
+function verifyDetect (result: VerifyResult, { message, publicKey, signature }: VerifyInput, verifiers = VERIFIERS): VerifyResult {
   result.isValid = verifiers.some(([crypto, verify]): boolean => {
     try {
-      if (verify(message, signature, publicKey, isExpanded)) {
+      if (verify(message, signature, publicKey)) {
         result.crypto = crypto;
 
         return true;
@@ -51,7 +53,7 @@ function verifyDetect (result: VerifyResult, message: Uint8Array | string, signa
   return result;
 }
 
-function verifyMultisig (result: VerifyResult, message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array, isExpanded?: boolean): VerifyResult {
+function verifyMultisig (result: VerifyResult, { message, publicKey, signature }: VerifyInput): VerifyResult {
   assert([0, 1, 2].includes(signature[0]), `Unknown crypto type, expected signature prefix [0..2], found ${signature[0]}`);
 
   const type = CRYPTO_TYPES[signature[0]] || 'none';
@@ -60,7 +62,7 @@ function verifyMultisig (result: VerifyResult, message: Uint8Array | string, sig
 
   try {
     result.isValid = {
-      ecdsa: () => verifyDetect(result, message, signature.subarray(1), publicKey, isExpanded, VERIFIERS_ECDSA).isValid,
+      ecdsa: () => verifyDetect(result, { message, publicKey, signature: signature.subarray(1) }, VERIFIERS_ECDSA).isValid,
       ed25519: () => naclVerify(message, signature.subarray(1), publicKey),
       none: () => { throw Error('no verify for `none` crypto type'); },
       sr25519: () => schnorrkelVerify(message, signature.subarray(1), publicKey)
@@ -72,15 +74,16 @@ function verifyMultisig (result: VerifyResult, message: Uint8Array | string, sig
   return result;
 }
 
-export default function signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrPublicKey: Uint8Array | string, isExpanded?: boolean): VerifyResult {
+export function signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrPublicKey: Uint8Array | string): VerifyResult {
   const signatureU8a = u8aToU8a(signature);
 
   assert([64, 65, 66].includes(signatureU8a.length), `Invalid signature length, expected [64..66] bytes, found ${signatureU8a.length}`);
 
   const result: VerifyResult = { crypto: 'none', isValid: false };
-  const publicKey = addressDecode(addressOrPublicKey);
+  const publicKey = decodeAddress(addressOrPublicKey);
+  const input = { message, publicKey, signature: signatureU8a };
 
   return [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length)
-    ? verifyMultisig(result, message, signatureU8a, publicKey, isExpanded)
-    : verifyDetect(result, message, signatureU8a, publicKey, isExpanded);
+    ? verifyMultisig(result, input)
+    : verifyDetect(result, input);
 }

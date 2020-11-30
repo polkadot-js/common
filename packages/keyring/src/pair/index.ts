@@ -8,9 +8,9 @@ import { PairInfo } from './types';
 import { assert, u8aConcat, u8aToHex } from '@polkadot/util';
 import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, secp256k1Compress, signatureVerify } from '@polkadot/util-crypto';
 
-import decode from './decode';
-import encode from './encode';
-import toJson from './toJson';
+import { decodePair } from './decode';
+import { encodePair } from './encode';
+import { pairToJson } from './toJson';
 
 interface Setup {
   toSS58: (publicKey: Uint8Array) => string;
@@ -57,7 +57,7 @@ function isLocked (secretKey?: Uint8Array): secretKey is undefined {
 }
 
 /**
- * @name pair
+ * @name createPair
  * @summary Creates a keyring pair object
  * @description Creates a keyring pair object with provided account public key, metadata, and encoded arguments.
  * The keyring pair stores the account state including the encoded address and associated metadata.
@@ -87,9 +87,9 @@ function isLocked (secretKey?: Uint8Array): secretKey is undefined {
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export default function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, encTypes?: KeyringPair$JsonEncodingTypes[]): KeyringPair {
+export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, encTypes?: KeyringPair$JsonEncodingTypes[]): KeyringPair {
   const decodePkcs8 = (passphrase?: string, userEncoded?: Uint8Array | null): void => {
-    const decoded = decode(passphrase, userEncoded || encoded, encTypes);
+    const decoded = decodePair(passphrase, userEncoded || encoded, encTypes);
 
     if (decoded.secretKey.length === 64) {
       publicKey = decoded.publicKey;
@@ -105,7 +105,7 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
   const recode = (passphrase?: string): Uint8Array => {
     isLocked(secretKey) && encoded && decodePkcs8(passphrase, encoded);
 
-    encoded = encode({ publicKey, secretKey }, passphrase); // re-encode, latest version
+    encoded = encodePair({ publicKey, secretKey }, passphrase); // re-encode, latest version
     encTypes = undefined; // swap to defaults, latest version follows
 
     return encoded;
@@ -177,9 +177,9 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
           ? ethereumEncode(secp256k1Compress(publicKey))
           : encodeAddress();
 
-      return toJson(type, { address, meta }, recode(passphrase), !!passphrase);
+      return pairToJson(type, { address, meta }, recode(passphrase), !!passphrase);
     },
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
-      signatureVerify(message, signature, TYPE_ADDRESS[type](publicKey), type === 'ethereum').isValid
+      signatureVerify(message, signature, TYPE_ADDRESS[type](publicKey)).isValid
   };
 }

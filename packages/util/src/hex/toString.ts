@@ -1,8 +1,8 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import u8aToString from '../u8a/toString';
-import hexToU8a from './toU8a';
+import { u8aToString } from '../u8a/toString';
+import { hexToU8a } from './toU8a';
 
 /**
  * @name hexToU8a
@@ -18,7 +18,7 @@ import hexToU8a from './toU8a';
  * hexToU8a('0x68656c6c6f'); // hello
  * ```
  */
-export default function hexToString (_value?: string | null): string {
+export function hexToString (_value?: string | null): string {
   return u8aToString(
     hexToU8a(_value)
   );

@@ -15,7 +15,8 @@
  * stringUpperFirst('abc'); // => 'Abc'
  * ```
  */
-export default function stringUpperFirst (value?: string | null): string {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function stringUpperFirst (value?: String | string | null): string {
   return value
     ? value.charAt(0).toUpperCase() + value.slice(1)
     : '';

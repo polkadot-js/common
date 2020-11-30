@@ -5,10 +5,18 @@ import { ToBn } from '../types';
 
 import BN from 'bn.js';
 
-import isBigInt from '../is/bigInt';
-import isToBn from '../is/toBn';
-import isHex from '../is/hex';
-import hexToBn from '../hex/toBn';
+import { isBigInt } from '../is/bigInt';
+import { isToBn } from '../is/toBn';
+import { isHex } from '../is/hex';
+import { hexToBn } from '../hex/toBn';
+
+function numberToBn <ExtToBn extends ToBn> (value: number | ExtToBn | BN): BN {
+  return BN.isBN(value)
+    ? value
+    : isToBn(value)
+      ? value.toBn()
+      : new BN(value);
+}
 
 /**
  * @name bnToBn
@@ -26,7 +34,7 @@ import hexToBn from '../hex/toBn';
  * bnToBn(new BN(0x1234)); // => BN(0x1234)
  * ```
  */
-export default function bnToBn <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | string | number | null): BN {
+export function bnToBn <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | string | number | null): BN {
   if (!value) {
     return new BN(0);
   } else if (isHex(value)) {
@@ -35,9 +43,5 @@ export default function bnToBn <ExtToBn extends ToBn> (value?: ExtToBn | BN | Bi
     return new BN(value.toString());
   }
 
-  return BN.isBN(value)
-    ? value
-    : isToBn(value)
-      ? value.toBn()
-      : new BN(value);
+  return numberToBn(value);
 }

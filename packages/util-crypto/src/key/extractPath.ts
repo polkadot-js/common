@@ -1,8 +1,9 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import DeriveJunction from './DeriveJunction';
 import { assert } from '@polkadot/util';
+
+import { DeriveJunction } from './DeriveJunction';
 
 const RE_JUNCTION = /\/(\/?)([^/]+)/g;
 
@@ -14,7 +15,7 @@ export interface ExtractResult {
 /**
  * @description Extract derivation junctions from the supplied path
  */
-export default function keyExtractPath (derivePath: string): ExtractResult {
+export function keyExtractPath (derivePath: string): ExtractResult {
   const parts = derivePath.match(RE_JUNCTION);
   const path: DeriveJunction[] = [];
   let constructed = '';

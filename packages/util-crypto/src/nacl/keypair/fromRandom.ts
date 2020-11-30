@@ -3,7 +3,7 @@
 
 import { Keypair } from '../../types';
 
-import nacl from 'tweetnacl';
+import * as nacl from 'tweetnacl';
 
 /**
  * @name naclKeypairFromRandom
@@ -19,6 +19,6 @@ import nacl from 'tweetnacl';
  * naclKeypairFromRandom(); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export default function naclKeypairFromRandom (): Keypair {
+export function naclKeypairFromRandom (): Keypair {
   return nacl.sign.keyPair();
 }

@@ -5,8 +5,8 @@ import { Keypair } from '../../types';
 
 import { stringToU8a } from '@polkadot/util';
 
-import blake2AsU8a from '../../blake2/asU8a';
-import fromSeed from './fromSeed';
+import { blake2AsU8a } from '../../blake2/asU8a';
+import { naclKeypairFromSeed } from './fromSeed';
 
 /**
  * @name naclKeypairFromString
@@ -22,8 +22,8 @@ import fromSeed from './fromSeed';
  * naclKeypairFromString('test'); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export default function naclKeypairFromString (value: string): Keypair {
-  return fromSeed(
+export function naclKeypairFromString (value: string): Keypair {
+  return naclKeypairFromSeed(
     blake2AsU8a(
       stringToU8a(value),
       256

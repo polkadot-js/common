@@ -5,7 +5,7 @@ import type BN from 'bn.js';
 
 import { bnToHex, compactAddLength, hexToU8a, isBigInt, isBn, isHex, isNumber, isString, stringToU8a } from '@polkadot/util';
 
-import blake2AsU8a from '../blake2/asU8a';
+import { blake2AsU8a } from '../blake2/asU8a';
 
 const RE_NUMBER = /^\d+$/;
 
@@ -15,7 +15,7 @@ const BN_OPTIONS = {
   isLe: true
 };
 
-export default class DeriveJunction {
+export class DeriveJunction {
   readonly #chainCode: Uint8Array = new Uint8Array(32);
 
   #isHard = false;

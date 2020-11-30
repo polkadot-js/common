@@ -6,22 +6,19 @@ import { waitReady } from '@polkadot/wasm-crypto';
 
 import { mnemonicToLegacySeed } from './';
 
+const MENMONIC = 'seed sock milk update focus rotate barely fade car face mechanic mercy';
+const SEED = '0x3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027';
+
 describe('mnemonicToLegacySeed', (): void => {
-  it('generates a valid seed', (): void => {
-    expect(
-      u8aToHex(
-        mnemonicToLegacySeed('seed sock milk update focus rotate barely fade car face mechanic mercy')
-      )
-    ).toEqual('0x3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027');
+  beforeEach(async (): Promise<void> => {
+    await waitReady();
   });
 
-  it('generates the seed via WASM', async (): Promise<void> => {
-    await waitReady();
-
-    expect(
-      u8aToHex(
-        mnemonicToLegacySeed('seed sock milk update focus rotate barely fade car face mechanic mercy')
-      )
-    ).toEqual('0x3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027');
+  [false, true].forEach((onlyJs): void => {
+    it(`generates a valid seed (onlyJs = ${onlyJs.toString()})`, (): void => {
+      expect(
+        u8aToHex(mnemonicToLegacySeed(MENMONIC, undefined, onlyJs))
+      ).toEqual(SEED);
+    });
   });
 });

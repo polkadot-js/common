@@ -3,15 +3,14 @@
 
 import { Logger, Logger$Data } from './types';
 
-import chalk from 'chalk';
-
-import formatDate from './format/formatDate';
-import isBn from './is/bn';
-import isBuffer from './is/buffer';
-import isFunction from './is/function';
-import isObject from './is/object';
-import isU8a from './is/u8a';
-import u8aToHex from './u8a/toHex';
+import { formatDate } from './format/formatDate';
+import { isBn } from './is/bn';
+import { isFunction } from './is/function';
+import { isObject } from './is/object';
+import { isU8a } from './is/u8a';
+import { u8aToHex } from './u8a/toHex';
+import { u8aToU8a } from './u8a/toU8a';
+import { isBuffer } from './is';
 
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
@@ -23,45 +22,28 @@ const logTo = {
   warn: 'warn'
 };
 
-const chalked = {
-  debug: chalk.gray,
-  error: chalk.red,
-  log: chalk.reset,
-  warn: chalk.yellow
-};
+function formatOther (value: unknown): unknown {
+  if (value && isObject(value) && value.constructor === Object) {
+    return Object.keys(value).reduce((result: Record<string, unknown>, key): Record<string, unknown> => {
+      result[key] = format(value[key]);
 
-function formatObject (value: Record<string, unknown>): Record<string, unknown> {
-  const result: Record<string, unknown> = {};
+      return result;
+    }, {});
+  }
 
-  return Object.keys(value).reduce((result, key): Record<string, unknown> => {
-    result[key] = format(value[key]);
-
-    return result;
-  }, result);
+  return value;
 }
 
 export function format (value: unknown): unknown {
   if (Array.isArray(value)) {
     return value.map(format);
-  }
-
-  if (isBn(value)) {
+  } else if (isBn(value)) {
     return value.toString();
+  } else if (isU8a(value) || isBuffer(value)) {
+    return u8aToHex(u8aToU8a(value));
   }
 
-  if (isBuffer(value)) {
-    return `0x${value.toString('hex')}`;
-  }
-
-  if (isU8a(value)) {
-    return u8aToHex(value);
-  }
-
-  if (value && isObject(value) && value.constructor === Object) {
-    return formatObject(value);
-  }
-
-  return value;
+  return formatOther(value);
 }
 
 function apply (log: LogType, type: string, values: Logger$Data): void {
@@ -71,12 +53,9 @@ function apply (log: LogType, type: string, values: Logger$Data): void {
     return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult]);
   }
 
-  const chalk = (value: string): string =>
-    chalked[log](value);
-
   console[logTo[log] as 'log'](
-    chalk(formatDate(new Date())),
-    chalk(type),
+    formatDate(new Date()),
+    type,
     ...values.map(format)
   );
 }
@@ -99,7 +78,7 @@ function noop (): void {
  * l.log('blah'); // <date>     TEST: blah
  * ```
  */
-export default function logger (_type: string): Logger {
+export function logger (_type: string): Logger {
   const type = `${_type.toUpperCase()}:`.padStart(16);
   let isDebug;
 

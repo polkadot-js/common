@@ -3,15 +3,13 @@
 
 import { Keypair } from '../types';
 
-import '../polyfill';
-
 import { sr25519DeriveKeypairHard } from '@polkadot/wasm-crypto';
 
-import keypairFromU8a from './keypair/fromU8a';
-import keypairToU8a from './keypair/toU8a';
+import { schnorrkelKeypairFromU8a } from './keypair/fromU8a';
+import { schnorrkelKeypairToU8a } from './keypair/toU8a';
 
-export default function deriveHard (keypair: Keypair, chainCode: Uint8Array): Keypair {
-  return keypairFromU8a(
-    sr25519DeriveKeypairHard(keypairToU8a(keypair), chainCode)
+export function schnorrkelDeriveHard (keypair: Keypair, chainCode: Uint8Array): Keypair {
+  return schnorrkelKeypairFromU8a(
+    sr25519DeriveKeypairHard(schnorrkelKeypairToU8a(keypair), chainCode)
   );
 }

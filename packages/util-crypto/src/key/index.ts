@@ -4,9 +4,9 @@
 /**
  * @summary Create keys from paths, seeds and password
  */
-export { default as keyExtractPath } from './extractPath';
-export { default as keyExtractSuri } from './extractSuri';
-export { default as keyFromPath } from './fromPath';
-export { default as keyHdkdEd25519 } from './hdkdEd25519';
-export { default as keyHdkdSr25519 } from './hdkdEd25519';
-export { default as keyHdkdEcdsa } from './hdkdEcdsa';
+export { keyExtractPath } from './extractPath';
+export { keyExtractSuri } from './extractSuri';
+export { keyFromPath } from './fromPath';
+export { keyHdkdEd25519 } from './hdkdEd25519';
+export { keyHdkdSr25519 } from './hdkdSr25519';
+export { keyHdkdEcdsa } from './hdkdEcdsa';

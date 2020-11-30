@@ -5,11 +5,11 @@ jobs:
   pr:
     strategy:
       matrix:
-        step: ['lint', 'test', 'build']
+        step: ['lint', 'test', 'build', 'networks:crosscheck']
     name: ${{ matrix.step }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: ${{ matrix.step }}
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}

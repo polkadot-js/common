@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import formatDecimal from './formatDecimal';
+import { formatDecimal } from '.';
 
 describe('formatDecimal', (): void => {
   it('formats decimals in number groupings', (): void => {

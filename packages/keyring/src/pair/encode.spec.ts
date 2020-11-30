@@ -1,13 +1,13 @@
 // Copyright 2017-2020 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import testingPairs from '../testingPairs';
+import { createTestPairs } from '../testingPairs';
 import { PKCS8_DIVIDER, PKCS8_HEADER, NONCE_LENGTH, PUB_LENGTH, SCRYPT_LENGTH, SEC_LENGTH } from './defaults';
 
 const PKCS8_LENGTH = PKCS8_DIVIDER.length + PKCS8_HEADER.length + PUB_LENGTH + SEC_LENGTH;
 const ENCODED_LENGTH = 16 + PKCS8_LENGTH + NONCE_LENGTH + SCRYPT_LENGTH;
 
-const keyring = testingPairs({ type: 'ed25519' }, false);
+const keyring = createTestPairs({ type: 'ed25519' }, false);
 
 describe('encode', (): void => {
   it('returns PKCS8 when no passphrase supplied', (): void => {

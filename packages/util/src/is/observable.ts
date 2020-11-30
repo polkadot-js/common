@@ -1,8 +1,8 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import isFunction from './function';
-import isObject from './object';
+import { isFunction } from './function';
+import { isObject } from './object';
 
 interface Observable {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,6 +23,6 @@ interface Observable {
  * console.log('isObservable', isObservable(...));
  * ```
  */
-export default function isObservable (value: unknown): value is Observable {
+export function isObservable (value: unknown): value is Observable {
   return isObject(value) && isFunction((value as Observable).next);
 }

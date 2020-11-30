@@ -23,7 +23,7 @@ import { DEFAULT_BITLENGTH } from './defaults';
  * ```
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function compactFromU8a (_input: Uint8Array | string, bitLength: BitLength = DEFAULT_BITLENGTH): [number, BN] {
+export function compactFromU8a (_input: Uint8Array | string, bitLength: BitLength = DEFAULT_BITLENGTH): [number, BN] {
   const input = u8aToU8a(_input);
   const flag = input[0] & 0b11;
 

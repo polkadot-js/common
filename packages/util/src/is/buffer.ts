@@ -1,8 +1,6 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import isInstanceOf from './instanceOf';
-
 /**
  * @name isBuffer
  * @summary Tests for a `Buffer` object instance.
@@ -17,6 +15,6 @@ import isInstanceOf from './instanceOf';
  * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
  * ```
  */
-export default function isBuffer (value: unknown): value is Buffer {
-  return isInstanceOf(value, Buffer);
+export function isBuffer (value: unknown): value is Buffer {
+  return Buffer.isBuffer(value);
 }

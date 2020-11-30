@@ -1,10 +1,10 @@
 // Copyright 2017-2020 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import testingPairs from '../testingPairs';
+import { createTestPairs } from '../testingPairs';
 import Keyring from '../keyring';
 
-const testPairsKeyring = testingPairs({ type: 'ed25519' }, false);
+const testPairsKeyring = createTestPairs({ type: 'ed25519' }, false);
 
 describe('toJson', (): void => {
   it('creates an unencoded output with no passphrase with ed25519', (): void => {

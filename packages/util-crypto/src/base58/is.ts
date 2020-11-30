@@ -1,12 +1,9 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import validate from './validate';
+import { testValidator } from '../base32/is';
+import { base58Validate } from './validate';
 
-export default function isBase58 (value?: string | null, ipfsCompat?: boolean): boolean {
-  try {
-    return validate(value, ipfsCompat);
-  } catch (error) {
-    return false;
-  }
+export function isBase58 (value?: string | null, ipfsCompat?: boolean): boolean {
+  return testValidator(base58Validate, value, ipfsCompat);
 }

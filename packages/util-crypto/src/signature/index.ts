@@ -5,4 +5,4 @@
  * @summary Utilities for working with signatures
  */
 
-export { default as signatureVerify } from './verify';
+export { signatureVerify } from './verify';

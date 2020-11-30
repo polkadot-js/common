@@ -3,7 +3,7 @@
 
 import { u8aToHex } from '@polkadot/util';
 
-import toEntropy from './toEntropy';
+import { mnemonicToEntropy } from './toEntropy';
 import tests from '../schnorrkel/keypair/testing';
 import { cryptoWaitReady } from '..';
 
@@ -13,8 +13,10 @@ describe('mnemonicToEntropy', (): void => {
   });
 
   tests.forEach(([mnemonic, entropy], index): void => {
-    it(`Created correct entropy for ${index}`, (): void => {
-      expect(u8aToHex(toEntropy(mnemonic))).toEqual(entropy);
+    [false, true].forEach((onlyJs): void => {
+      it(`Created correct entropy for ${index} (onlyJs = ${onlyJs.toString()})`, (): void => {
+        expect(u8aToHex(mnemonicToEntropy(mnemonic, onlyJs))).toEqual(entropy);
+      });
     });
   });
 });

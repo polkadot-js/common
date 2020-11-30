@@ -6,10 +6,10 @@ import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkad
 import { hexToU8a } from '@polkadot/util';
 
 import { PAIRS } from '../testing';
-import testingPairs from '../testingPairs';
-import createPair from '.';
+import { createTestPairs } from '../testingPairs';
+import { createPair } from '.';
 
-const keyring = testingPairs({ type: 'ed25519' }, false);
+const keyring = createTestPairs({ type: 'ed25519' }, false);
 
 describe('pair', (): void => {
   beforeEach(async (): Promise<void> => {

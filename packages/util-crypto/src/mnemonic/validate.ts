@@ -1,10 +1,9 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import '../polyfill';
-
-import { validateMnemonic } from 'bip39';
 import { bip39Validate, isReady } from '@polkadot/wasm-crypto';
+
+import { validateMnemonic } from './bip39';
 
 /**
  * @name mnemonicValidate
@@ -19,8 +18,8 @@ import { bip39Validate, isReady } from '@polkadot/wasm-crypto';
  * const isValidMnemonic = mnemonicValidate(mnemonic); // => boolean
  * ```
  */
-export default function mnemonicValidate (mnemonic: string): boolean {
-  return isReady()
+export function mnemonicValidate (mnemonic: string, onlyJs = false): boolean {
+  return isReady() && !onlyJs
     ? bip39Validate(mnemonic)
     : validateMnemonic(mnemonic);
 }

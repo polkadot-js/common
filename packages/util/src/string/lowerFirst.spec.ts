@@ -10,6 +10,12 @@ describe('stringLowerFirst', (): void => {
     ).toBe('aBC');
   });
 
+  it("lowers the first letter if it's a capital letter (String)", (): void => {
+    expect(
+      stringLowerFirst(String('ABC'))
+    ).toBe('aBC');
+  });
+
   it("lowers the first letter if it's a lowercase letter", (): void => {
     expect(
       stringLowerFirst('abc')

@@ -1,9 +1,10 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// eslint-disable-next-line prefer-regex-literals
 const NUMBER_REGEX = new RegExp('(\\d+?)(?=(\\d{3})+(?!\\d)|$)', 'g');
 
-export default function formatDecimal (value: string): string {
+export function formatDecimal (value: string): string {
   // We can do this by adjusting the regx, however for the sake of clarity
   // we rather strip and re-add the negative sign in the output
   const isNegative = value[0].startsWith('-');

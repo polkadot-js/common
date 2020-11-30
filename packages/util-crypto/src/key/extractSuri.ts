@@ -3,8 +3,8 @@
 
 import { assert, isNull } from '@polkadot/util';
 
-import DeriveJunction from './DeriveJunction';
-import keyExtractPath from './extractPath';
+import { DeriveJunction } from './DeriveJunction';
+import { keyExtractPath } from './extractPath';
 
 export interface ExtractResult {
   password?: string;
@@ -17,7 +17,7 @@ const RE_CAPTURE = /^(\w+( \w+)*)((\/\/?[^/]+)*)(\/\/\/(.*))?$/;
 /**
  * @description Extracts the phrase, path and password from a SURI format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed).
  */
-export default function keyExtract (suri: string): ExtractResult {
+export function keyExtractSuri (suri: string): ExtractResult {
   // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
   const matches = suri.match(RE_CAPTURE);
 

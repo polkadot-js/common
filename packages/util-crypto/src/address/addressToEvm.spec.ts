@@ -3,7 +3,7 @@
 
 import { hexToU8a } from '@polkadot/util';
 
-import addressToEvm from './addressToEvm';
+import { addressToEvm } from './addressToEvm';
 
 describe('addressToEvm', (): void => {
   it('creates a valid known EVM address', (): void => {

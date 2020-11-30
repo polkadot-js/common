@@ -1,5 +1,51 @@
 # CHANGELOG
 
+## 4.2.1 Nov 23, 2020
+
+Changes:
+
+- Rename default Mega to Million, Giga to Billion and Tera to Trillion in formatter
+- Dedupe bn.js by aligning versions between different libraries
+- Add explicit link to base Substrate ss58 formats (as managed in `@polkadot/util`)
+
+
+## 4.1.1 Nov 16, 2020
+
+Contributed:
+
+- Expand ETH tests, allow for verification against address (Thanks to https://github.com/joelamouche)
+
+Changes:
+
+- Replace pbkdf2 imports with explicit use from sync-only package
+- Adjust secp256k1 imports with shared elliptic
+- Expand crypto tests for explicit wasm vs JS compares in all cases
+
+
+## 4.0.1 Nov 8, 2020
+
+- **Breaking change** Polyfills are not injected by these libraries anymore to avoid clobbering external globals, the user should provide them if their environment is missing base functionality.
+
+Changes:
+
+- Remove built-in utility polyfills for `Array.fill`, `String.padStart`, `String.padEnd` as well as `Object.setPrototypeOf`. These should be provided by the actual user of the libraries if so required.
+- Update `@polkadot/wasm-crypto` library (under-the-hood cleanups)
+- Remove explicit crypto polyfill injection (aligning with updated `@polkadot/wasm-crypto`)
+- Add cross-environment `@polkadot/x-randomvalues` (for use in `@polkadot/wasm-crypto`)
+
+
+## 3.7.1 Nov 1, 2020
+
+Changes:
+
+- Remove the use of `chalk` (logger) for less overall dependencies
+- `string*` utilities now also allows `String` (class) inputs
+- Align bip39 use with wasm-crypto for English-only wordlist, default, non supplied)
+- Adjust elliptic imports for explicit paths (allows tree-shaking)
+- Add Totem (ss58 prefix 14) into `@polkadot/networks`
+- Move `@polkadot/x-{fetch,textdecoder,textencoder,ws}` into `common` repo
+
+
 ## 3.6.1 Oct 18, 2020
 
 Contributed:

@@ -5,40 +5,27 @@ import { ToBn } from '../types';
 
 import BN from 'bn.js';
 
-import isToBn from '../is/toBn';
+import { bnToBn } from '../bn/toBn';
 
-function getValue <ExtToBn extends ToBn> (value?: BN | ExtToBn | Date | number | null): number {
-  if (value) {
-    if (isToBn(value)) {
-      return getValue(value.toBn());
-    } else if (value instanceof Date) {
-      return getValue(value.getTime());
-    } else if (value instanceof BN) {
-      return getValue(value.toNumber());
-    }
+function formatValue (elapsed: number): string {
+  if (elapsed < 15) {
+    return `${elapsed.toFixed(1)}s`;
+  } else if (elapsed < 60) {
+    return `${elapsed | 0}s`;
+  } else if (elapsed < 3600) {
+    return `${elapsed / 60 | 0}m`;
   }
 
-  return (value as number) || 0;
+  return `${elapsed / 3600 | 0}h`;
 }
 
-export default function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: BN | ExtToBn | Date | number | null): string {
+export function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: BigInt | BN | ExtToBn | Date | number | null): string {
   const tsNow = (now && now.getTime()) || 0;
-  const tsValue = getValue(value);
-  let display = '0.0s';
+  const tsValue = value instanceof Date
+    ? value.getTime()
+    : bnToBn(value).toNumber();
 
-  if (tsNow && tsValue) {
-    const elapsed = Math.max(Math.abs(tsNow - tsValue), 0) / 1000;
-
-    if (elapsed < 15) {
-      display = `${elapsed.toFixed(1)}s`;
-    } else if (elapsed < 60) {
-      display = `${elapsed | 0}s`;
-    } else if (elapsed < 3600) {
-      display = `${elapsed / 60 | 0}m`;
-    } else {
-      display = `${elapsed / 3600 | 0}h`;
-    }
-  }
-
-  return display;
+  return (tsNow && tsValue)
+    ? formatValue(Math.max(Math.abs(tsNow - tsValue), 0) / 1000)
+    : '0.0s';
 }

@@ -3,7 +3,7 @@
 
 import BN from 'bn.js';
 
-import assert from '../assert';
+import { checkMaxMin } from './util';
 
 /**
  * @name bnMax
@@ -18,8 +18,6 @@ import assert from '../assert';
  * bnMax([new BN(1), new BN(3), new BN(2)]).toString(); // => '3'
  * ```
  */
-export default function max (...items: BN[]): BN {
-  assert(items && items.length >= 1, 'Must provide one or more BN arguments');
-
-  return items.reduce((acc: BN, val: BN) => BN.max(acc, val), items[0]);
+export function bnMax (...items: BN[]): BN {
+  return checkMaxMin('max', items);
 }

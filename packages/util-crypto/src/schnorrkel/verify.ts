@@ -1,8 +1,6 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import '../polyfill';
-
 import { assert, u8aToU8a } from '@polkadot/util';
 import { sr25519Verify } from '@polkadot/wasm-crypto';
 
@@ -10,7 +8,7 @@ import { sr25519Verify } from '@polkadot/wasm-crypto';
  * @name schnorrkelVerify
  * @description Verifies the signature of `message`, using the supplied pair
  */
-export default function schnorrkelVerify (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string): boolean {
+export function schnorrkelVerify (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string): boolean {
   const messageU8a = u8aToU8a(message);
   const publicKeyU8a = u8aToU8a(publicKey);
   const signatureU8a = u8aToU8a(signature);

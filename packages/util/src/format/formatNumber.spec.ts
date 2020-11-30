@@ -3,7 +3,7 @@
 
 import BN from 'bn.js';
 
-import formatNumber from './formatNumber';
+import { formatNumber } from '.';
 
 describe('formatNumber', (): void => {
   it('formats empty', (): void => {

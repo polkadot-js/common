@@ -1,10 +1,22 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const ALPHABET = new Array(256) as string[];
+const ALPHABET = new Array(256).fill(0).map((_, n) => n.toString(16).padStart(2, '0'));
 
-for (let n = 0; n < 256; ++n) {
-  ALPHABET[n] = n.toString(16).padStart(2, '0');
+/** @internal */
+function extract (value: Uint8Array): string {
+  const result = new Array(value.length) as string[];
+
+  for (let i = 0; i < value.length; i++) {
+    result[i] = ALPHABET[value[i]];
+  }
+
+  return result.join('');
+}
+
+/** @internal */
+function trim (value: Uint8Array, halfLength: number): string {
+  return `${u8aToHex(value.subarray(0, halfLength), -1, false)}…${u8aToHex(value.subarray(value.length - halfLength), -1, false)}`;
 }
 
 /**
@@ -21,7 +33,7 @@ for (let n = 0; n < 256; ++n) {
  * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```
  */
-export default function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed = true): string {
+export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed = true): string {
   const prefix = isPrefixed
     ? '0x'
     : '';
@@ -32,17 +44,8 @@ export default function u8aToHex (value?: Uint8Array | null, bitLength = -1, isP
 
   const byteLength = Math.ceil(bitLength / 8);
 
-  if (byteLength > 0 && value.length > byteLength) {
-    const halfLength = Math.ceil(byteLength / 2);
-
-    return `${u8aToHex(value.subarray(0, halfLength), -1, isPrefixed)}…${u8aToHex(value.subarray(value.length - halfLength), -1, false)}`;
-  }
-
-  const result = new Array(value.length) as string[];
-
-  for (let i = 0; i < value.length; i++) {
-    result[i] = ALPHABET[value[i]];
-  }
-
-  return prefix + result.join('');
+  return prefix + ((byteLength > 0 && value.length > byteLength)
+    ? trim(value, Math.ceil(byteLength / 2))
+    : extract(value)
+  );
 }

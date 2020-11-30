@@ -1,8 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import encode from './encode';
-import setSS58Format from './setSS58Format';
+import { encodeAddress, setSS58Format } from '.';
 
 describe('setSS58Format', (): void => {
   beforeEach((): void => {
@@ -11,7 +10,7 @@ describe('setSS58Format', (): void => {
 
   it('sets and allows encoding using', (): void => {
     expect(
-      encode(
+      encodeAddress(
         new Uint8Array([1])
       )
     ).toEqual('PqtB');

@@ -22,7 +22,7 @@ const json: KeyringPair$Json = {
   meta
 };
 
-export default function everybody (): KeyringPair {
+export function nobody (): KeyringPair {
   const pair: KeyringPair = {
     address,
     addressRaw: publicKey,

@@ -22,7 +22,7 @@ type IpTypes = 'v4' | 'v6';
  * isIp('1:2:3:4:5:6:7:8', 'v4'); // => false
  * ```
  */
-export default function isIp (value: string, type?: IpTypes): boolean {
+export function isIp (value: string, type?: IpTypes): boolean {
   if (type === 'v4') {
     return ipRegex.v4({ exact: true }).test(value);
   } else if (type === 'v6') {

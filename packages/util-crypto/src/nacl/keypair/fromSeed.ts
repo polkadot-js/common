@@ -3,7 +3,7 @@
 
 import { Keypair } from '../../types';
 
-import nacl from 'tweetnacl';
+import * as nacl from 'tweetnacl';
 import { isReady, ed25519KeypairFromSeed } from '@polkadot/wasm-crypto';
 
 /**
@@ -20,7 +20,7 @@ import { isReady, ed25519KeypairFromSeed } from '@polkadot/wasm-crypto';
  * naclKeypairFromSeed(...); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export default function naclKeypairFromSeed (seed: Uint8Array): Keypair {
+export function naclKeypairFromSeed (seed: Uint8Array): Keypair {
   if (isReady()) {
     const full = ed25519KeypairFromSeed(seed);
 

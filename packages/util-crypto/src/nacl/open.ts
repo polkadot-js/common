@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import nacl from 'tweetnacl';
+import * as nacl from 'tweetnacl';
 
 /**
  * @name naclOpen
@@ -17,6 +17,6 @@ import nacl from 'tweetnacl';
  * naclOpen([...], [...], [...]); // => [...]
  * ```
  */
-export default function naclOpen (sealed: Uint8Array, nonce: Uint8Array, senderBoxPublic: Uint8Array, receiverBoxSecret: Uint8Array): Uint8Array | null {
+export function naclOpen (sealed: Uint8Array, nonce: Uint8Array, senderBoxPublic: Uint8Array, receiverBoxSecret: Uint8Array): Uint8Array | null {
   return nacl.box.open(sealed, nonce, senderBoxPublic, receiverBoxSecret) || null;
 }
