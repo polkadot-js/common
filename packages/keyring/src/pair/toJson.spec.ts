@@ -5,7 +5,6 @@ import testingPairs from '../testingPairs';
 import Keyring from '../keyring';
 
 const testPairsKeyring = testingPairs({ type: 'ed25519' }, false);
-const ethereumPair = new Keyring({ type: 'ethereum' });
 
 describe('toJson', (): void => {
   it('creates an unencoded output with no passphrase with ed25519', (): void => {
@@ -40,17 +39,19 @@ describe('toJson', (): void => {
     });
   });
 
+  const ethereumPair = new Keyring({ type: 'ethereum' });
+  const pairOpts = {
+    meta: {
+      genesisHash: '0xc8d32cd0020b9da3804ef726f876604b7fcf5a799e687221a959f2dba5c78f18',
+      name: 'MyEthAccount',
+      tags: []
+    },
+    pairType: 'ethereum',
+    password: 'SomePassword',
+    suri: '0x728746aaa496d72abd7e3ef7bcdbaa87d5ba36ad612989ec782c0efb78c56866'
+  };
+
   it('creates an unencoded output with no passphrase for ethereum account with ethereum type', (): void => {
-    const pairOpts = {
-      meta: {
-        genesisHash: '0xc8d32cd0020b9da3804ef726f876604b7fcf5a799e687221a959f2dba5c78f18',
-        name: 'dddddd',
-        tags: []
-      },
-      pairType: 'ethereum',
-      password: 'aaaaaa',
-      suri: '0x728746aaa496d72abd7e3ef7bcdbaa87d5ba36ad612989ec782c0efb78c56866'
-    };
     const pair = ethereumPair.addFromUri(pairOpts.suri, pairOpts.meta, pairOpts.pairType as 'ethereum');
 
     const json = pair.toJson();
@@ -65,9 +66,30 @@ describe('toJson', (): void => {
       },
       meta: {
         genesisHash: '0xc8d32cd0020b9da3804ef726f876604b7fcf5a799e687221a959f2dba5c78f18',
-        name: 'dddddd',
+        name: 'MyEthAccount',
         tags: []
       }
     });
+  });
+
+  it('creates an encoded output with passphrase for ethereum account with ethereum type', (): void => {
+    const pair = ethereumPair.addFromUri(pairOpts.suri, pairOpts.meta, pairOpts.pairType as 'ethereum');
+
+    const json = pair.toJson(pairOpts.password);
+
+    expect(json).toMatchObject({
+      address: '0x5D0aa7d985DfF020174C907e3b57F5C8b5741013',
+      encoding: {
+        content: ['pkcs8', 'ethereum'],
+        type: ['scrypt', 'xsalsa20-poly1305'],
+        version: '3'
+      },
+      meta: {
+        genesisHash: '0xc8d32cd0020b9da3804ef726f876604b7fcf5a799e687221a959f2dba5c78f18',
+        name: 'MyEthAccount',
+        tags: []
+      }
+    }
+    );
   });
 });
