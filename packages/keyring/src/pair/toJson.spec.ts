@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { createTestPairs } from '../testingPairs';
-import Keyring from '../keyring';
+import Keyring from '../';
 
 const testPairsKeyring = createTestPairs({ type: 'ed25519' }, false);
 
