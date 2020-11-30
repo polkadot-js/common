@@ -171,9 +171,11 @@ export default function createPair ({ toSS58, type }: Setup, { publicKey, secret
       );
     },
     toJson: (passphrase?: string): KeyringPair$Json => {
-      const address = ['ecdsa', 'ethereum'].includes(type)
+      const address = type === 'ecdsa'
         ? u8aToHex(secp256k1Compress(publicKey))
-        : encodeAddress();
+        : type === 'ethereum'
+          ? ethereumEncode(secp256k1Compress(publicKey))
+          : encodeAddress();
 
       return toJson(type, { address, meta }, recode(passphrase), !!passphrase);
     },
