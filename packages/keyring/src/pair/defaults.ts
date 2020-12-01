@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { KeyringPair$JsonEncodingTypes } from '../types';
+import type { KeyringPair$JsonEncodingTypes } from '../types';
 
 const ENCODING: KeyringPair$JsonEncodingTypes[] = ['scrypt', 'xsalsa20-poly1305'];
 const NONCE_LENGTH = 24;

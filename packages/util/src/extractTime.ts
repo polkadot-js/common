@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Time } from './types';
+import type { Time } from './types';
 
 const HRS = 60 * 60;
 const DAY = HRS * 24;

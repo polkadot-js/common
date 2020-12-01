@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { HashType } from './types';
+import type { HashType } from './types';
 
 import { blake2AsU8a } from '../blake2';
 import { keccakAsU8a } from '../keccak';

@@ -1,12 +1,12 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Prefix } from './types';
+import type { HashType } from '../secp256k1/types';
+import type { Prefix } from './types';
 
 import { u8aConcat } from '@polkadot/util';
 
 import { secp256k1Hasher } from '../secp256k1/hasher';
-import { HashType } from '../secp256k1/types';
 import { encodeAddress } from './encode';
 
 /**

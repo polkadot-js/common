@@ -1,11 +1,12 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { ToBnOptions } from '../types';
+
 import BN from 'bn.js';
 
 import { isBoolean } from '../is/boolean';
 import { hexStripPrefix } from './stripPrefix';
-import { ToBnOptions } from '../types';
 
 function reverse (value: string): string {
   return (value.match(/.{1,2}/g) || [])

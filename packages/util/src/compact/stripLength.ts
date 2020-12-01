@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { BitLength } from './types';
+import type { BitLength } from './types';
 
 import { DEFAULT_BITLENGTH } from './defaults';
 import { compactFromU8a } from './fromU8a';

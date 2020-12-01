@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { KeypairType, Keypair } from '../types';
+import type { KeypairType, Keypair } from '../types';
 
 import { DeriveJunction } from './DeriveJunction';
 import { keyHdkdEd25519 } from './hdkdEd25519';
