@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Ss58Registry } from './types';
+import type { Ss58Registry } from './types';
 
 import fs from 'fs';
 import fetch from '@polkadot/x-fetch';

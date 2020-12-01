@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { KeyringInstance, KeyringOptions } from './types';
+import type { KeyringInstance, KeyringOptions } from './types';
 
 import { hexToU8a } from '@polkadot/util';
 

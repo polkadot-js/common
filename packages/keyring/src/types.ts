@@ -1,8 +1,8 @@
 // Copyright 2017-2020 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Prefix } from '@polkadot/util-crypto/address/types';
-import { KeypairType } from '@polkadot/util-crypto/types';
+import type { Prefix } from '@polkadot/util-crypto/address/types';
+import type { KeypairType } from '@polkadot/util-crypto/types';
 
 export interface KeyringOptions {
   ss58Format?: Prefix;

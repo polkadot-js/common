@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Logger, Logger$Data } from './types';
+import type { Logger, Logger$Data } from './types';
 
 import { formatDate } from './format/formatDate';
 import { isBn } from './is/bn';

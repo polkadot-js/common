@@ -1,8 +1,8 @@
 // Copyright 2017-2020 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { KeyringPair$JsonEncodingTypes } from '../types';
-import { PairInfo } from './types';
+import type { KeyringPair$JsonEncodingTypes } from '../types';
+import type { PairInfo } from './types';
 
 import { assert, stringToU8a, u8aFixLength } from '@polkadot/util';
 import { naclDecrypt, scryptEncode, scryptFromU8a } from '@polkadot/util-crypto';

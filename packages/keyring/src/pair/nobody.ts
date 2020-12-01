@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
+import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
 
 import { encodeAddress } from '@polkadot/util-crypto';
 

@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { KeyringPairs, KeyringPair } from './types';
+import type { KeyringPairs, KeyringPair } from './types';
 
 import { assert, isHex, isU8a, u8aToHex, u8aToU8a } from '@polkadot/util';
 import { decodeAddress } from '@polkadot/util-crypto';

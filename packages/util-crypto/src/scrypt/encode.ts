@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Params } from './types';
+import type { Params } from './types';
 
 import scryptsy from 'scryptsy';
 import { bufferToU8a, u8aToBuffer, u8aToU8a } from '@polkadot/util';

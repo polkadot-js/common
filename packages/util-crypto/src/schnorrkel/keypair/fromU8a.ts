@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Keypair } from '../../types';
+import type { Keypair } from '../../types';
 
 const SEC_LEN = 64;
 const PUB_LEN = 32;

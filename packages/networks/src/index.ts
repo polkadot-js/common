@@ -6,7 +6,7 @@
 //
 // Once the above is published as a package, the duplication here can be removed
 
-import { Network, NetworkFromSubstrate } from './types';
+import type { Network, NetworkFromSubstrate } from './types';
 
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];

@@ -1,8 +1,8 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Keypair } from '../types';
-import { HashType } from './types';
+import type { Keypair } from '../types';
+import type { HashType } from './types';
 
 import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
