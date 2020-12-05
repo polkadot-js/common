@@ -270,13 +270,13 @@ const all: NetworkFromSubstrate[] = [
     website: null
   },
   {
-    decimals: null,
+    decimals: [12],
     displayName: 'Phala Network',
     network: 'phala',
     prefix: 30,
     standardAccount: '*25519',
-    symbols: null,
-    website: null
+    symbols: ['PHA'],
+    website: 'https://phala.network'
   },
   {
     decimals: null,
