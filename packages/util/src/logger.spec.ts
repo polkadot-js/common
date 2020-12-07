@@ -5,8 +5,8 @@ import type { Logger } from './types';
 
 import BN from 'bn.js';
 
-import { logger } from '.';
 import { format } from './logger';
+import { logger } from '.';
 
 describe('logger', (): void => {
   let dateMatch: unknown;

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
-import { cryptoWaitReady, setSS58Format, encodeAddress } from '@polkadot/util-crypto';
+import { cryptoWaitReady, encodeAddress, setSS58Format } from '@polkadot/util-crypto';
 
 import Keyring from '.';
 

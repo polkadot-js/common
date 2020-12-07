@@ -2,8 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import * as nacl from 'tweetnacl';
+
 import { assert, u8aToU8a } from '@polkadot/util';
-import { isReady, ed25519Verify } from '@polkadot/wasm-crypto';
+import { ed25519Verify, isReady } from '@polkadot/wasm-crypto';
 
 /**
  * @name naclSign

@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { isFunction } from '../is/function';
-
 import { bnFromHex } from '.';
 
 describe('bnFromHex', (): void => {

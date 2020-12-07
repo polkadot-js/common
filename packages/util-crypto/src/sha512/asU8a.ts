@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import * as nacl from 'tweetnacl';
+
 import { isReady, sha512 } from '@polkadot/wasm-crypto';
 
 /**

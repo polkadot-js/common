@@ -1,8 +1,8 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { assert } from './assert';
 import { isString } from './is/string';
+import { assert } from './assert';
 
 // eslint-disable-next-line no-undef
 type This = typeof globalThis;

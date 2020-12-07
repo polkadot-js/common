@@ -1,9 +1,9 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { stringToU8a, u8aToHex, hexToU8a } from '@polkadot/util';
+import { hexToU8a, stringToU8a, u8aToHex } from '@polkadot/util';
 
-import { TestKeyringMap, createTestPairs } from '../../../keyring/src/testingPairs';
+import { createTestPairs, TestKeyringMap } from '../../../keyring/src/testingPairs';
 import { decodeAddress } from '.';
 
 describe('decodeAddress', (): void => {

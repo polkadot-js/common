@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { u8aToHex, hexToU8a } from '@polkadot/util';
+import { hexToU8a, u8aToHex } from '@polkadot/util';
 
 import { mnemonicToMiniSecret } from '../../mnemonic';
 import { secp256k1KeypairFromSeed } from '..';

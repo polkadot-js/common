@@ -1,11 +1,11 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { bufferToU8a } from '../buffer/toU8a';
+import { hexToU8a } from '../hex/toU8a';
 import { isBuffer } from '../is/buffer';
 import { isHex } from '../is/hex';
 import { isString } from '../is/string';
-import { bufferToU8a } from '../buffer/toU8a';
-import { hexToU8a } from '../hex/toU8a';
 import { stringToU8a } from '../string/toU8a';
 
 function convertArray (value: number[] | Uint8Array): Uint8Array {

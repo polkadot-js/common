@@ -6,8 +6,8 @@ import type { ToBn, ToBnOptions } from '../types';
 import BN from 'bn.js';
 
 import { isNumber } from '../is/number';
-import { bnToU8a } from './toU8a';
 import { u8aToHex } from '../u8a';
+import { bnToU8a } from './toU8a';
 
 const ZERO_STR = '0x00';
 

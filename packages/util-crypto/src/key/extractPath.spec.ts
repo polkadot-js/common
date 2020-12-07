@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { keyExtractPath, ExtractResult } from './extractPath';
+import { ExtractResult, keyExtractPath } from './extractPath';
 
 describe('keyExtractPath', (): void => {
   it('extracts properly from soft', (): void => {

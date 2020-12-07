@@ -14,6 +14,7 @@
 //   - Remove mnemonicToSeed (we only use the sync variant)
 
 import { sha256 } from 'hash.js';
+
 import { assert, u8aToU8a } from '@polkadot/util';
 
 import { pbkdf2Encode } from '../pbkdf2';

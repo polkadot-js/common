@@ -1,11 +1,11 @@
 // Copyright 2017-2020 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeypairType, Keypair } from '@polkadot/util-crypto/types';
-import type { KeyringInstance, KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, KeyringOptions } from './types';
+import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
+import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta } from './types';
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
-import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, mnemonicToLegacySeed, mnemonicToMiniSecret } from '@polkadot/util-crypto';
+import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
 import { createPair } from './pair';

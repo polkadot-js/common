@@ -5,8 +5,8 @@ import type { Prefix } from './types';
 
 import { assert } from '@polkadot/util';
 
-import { DeriveJunction } from '../key/DeriveJunction';
 import { keyExtractPath } from '../key';
+import { DeriveJunction } from '../key/DeriveJunction';
 import { schnorrkelDerivePublic } from '../schnorrkel';
 import { decodeAddress } from './decode';
 import { encodeAddress } from './encode';
