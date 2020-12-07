@@ -4,8 +4,8 @@
 import { stringToU8a } from '@polkadot/util';
 
 import { randomAsU8a } from '../random/asU8a';
-import { secp256k1Expand, secp256k1KeypairFromSeed, secp256k1Sign, secp256k1Verify } from '.';
 import { secp256k1Hasher } from './hasher';
+import { secp256k1Expand, secp256k1KeypairFromSeed, secp256k1Sign, secp256k1Verify } from '.';
 
 const MESSAGE = stringToU8a('this is a message');
 

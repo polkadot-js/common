@@ -3,8 +3,8 @@
 
 import { u8aToHex } from '@polkadot/util';
 
-import { cryptoWaitReady } from '..';
 import tests from '../schnorrkel/keypair/testing';
+import { cryptoWaitReady } from '..';
 import { mnemonicToEntropy } from './toEntropy';
 
 describe('mnemonicToEntropy', (): void => {

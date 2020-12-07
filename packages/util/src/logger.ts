@@ -4,8 +4,8 @@
 import type { Logger, Logger$Data } from './types';
 
 import { formatDate } from './format/formatDate';
-import { isBuffer } from './is';
 import { isBn } from './is/bn';
+import { isBuffer } from './is/buffer';
 import { isFunction } from './is/function';
 import { isObject } from './is/object';
 import { isU8a } from './is/u8a';

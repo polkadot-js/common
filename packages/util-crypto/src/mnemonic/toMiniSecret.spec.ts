@@ -3,8 +3,8 @@
 
 import { u8aToHex } from '@polkadot/util';
 
-import { cryptoWaitReady } from '..';
 import tests from '../schnorrkel/keypair/testing';
+import { cryptoWaitReady } from '..';
 import { mnemonicToMiniSecret } from './toMiniSecret';
 
 const MNEMONIC = 'seed sock milk update focus rotate barely fade car face mechanic mercy';
