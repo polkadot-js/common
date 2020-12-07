@@ -4,7 +4,7 @@
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { naclSign, naclKeypairFromSeed } from '.';
+import { naclKeypairFromSeed, naclSign } from '.';
 
 describe('naclSign', (): void => {
   beforeEach(async (): Promise<void> => {

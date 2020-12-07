@@ -4,7 +4,8 @@
 import type { Keypair } from '../../types';
 
 import * as nacl from 'tweetnacl';
-import { isReady, ed25519KeypairFromSeed } from '@polkadot/wasm-crypto';
+
+import { ed25519KeypairFromSeed, isReady } from '@polkadot/wasm-crypto';
 
 /**
  * @name naclKeypairFromSeed

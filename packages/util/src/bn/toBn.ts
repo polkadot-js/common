@@ -5,10 +5,10 @@ import type { ToBn } from '../types';
 
 import BN from 'bn.js';
 
-import { isBigInt } from '../is/bigInt';
-import { isToBn } from '../is/toBn';
-import { isHex } from '../is/hex';
 import { hexToBn } from '../hex/toBn';
+import { isBigInt } from '../is/bigInt';
+import { isHex } from '../is/hex';
+import { isToBn } from '../is/toBn';
 
 function numberToBn <ExtToBn extends ToBn> (value: number | ExtToBn | BN): BN {
   return BN.isBN(value)

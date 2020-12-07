@@ -3,9 +3,9 @@
 
 import { u8aToHex } from '@polkadot/util';
 
-import { mnemonicToEntropy } from './toEntropy';
-import tests from '../schnorrkel/keypair/testing';
 import { cryptoWaitReady } from '..';
+import tests from '../schnorrkel/keypair/testing';
+import { mnemonicToEntropy } from './toEntropy';
 
 describe('mnemonicToEntropy', (): void => {
   beforeEach(async (): Promise<void> => {

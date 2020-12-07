@@ -9,7 +9,7 @@ import { bnToBn } from '../bn/toBn';
 import { isBoolean } from '../is/boolean';
 import { isUndefined } from '../is/undefined';
 import { formatDecimal } from './formatDecimal';
-import { SI, SI_MID, calcSi, findSi } from './si';
+import { calcSi, findSi, SI, SI_MID } from './si';
 
 interface Defaults {
   decimals: number;

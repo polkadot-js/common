@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { naclSeal, naclKeypairFromString, naclBoxKeypairFromSecret } from '.';
+import { naclBoxKeypairFromSecret, naclKeypairFromString, naclSeal } from '.';
 
 describe('naclSeal', (): void => {
   it('seals a message', (): void => {

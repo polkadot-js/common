@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { createTestPairs } from '@polkadot/keyring/testingPairs';
+
 import { addressEq } from '.';
 
 describe('addressEq', (): void => {

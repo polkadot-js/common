@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import blakejs from 'blakejs';
+
 import { u8aToU8a } from '@polkadot/util';
 import { blake2b, isReady } from '@polkadot/wasm-crypto';
 

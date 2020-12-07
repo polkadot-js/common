@@ -4,6 +4,7 @@
 // Adapted from https://gist.github.com/calvinmetcalf/91e8e84dc63c75f2aa53
 
 import { hmac, sha512 } from 'hash.js';
+
 import { u8aConcat } from '@polkadot/util';
 
 export function pbkdf2Sync (password: Uint8Array, salt: Uint8Array, rounds: number, len = 64): Uint8Array {

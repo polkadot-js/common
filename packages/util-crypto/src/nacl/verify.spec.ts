@@ -4,7 +4,7 @@
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { naclVerify, naclKeypairFromSeed } from '.';
+import { naclKeypairFromSeed, naclVerify } from '.';
 
 describe('naclVerify', (): void => {
   let publicKey: Uint8Array;

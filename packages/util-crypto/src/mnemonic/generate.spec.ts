@@ -1,9 +1,9 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { cryptoWaitReady } from '..';
 import { mnemonicGenerate, WordCount } from './generate';
 import { mnemonicValidate } from './validate';
-import { cryptoWaitReady } from '..';
 
 describe('mnemonicGenerate', (): void => {
   beforeEach(async (): Promise<void> => {

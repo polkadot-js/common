@@ -1,8 +1,8 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { keyFromPath } from '../key/fromPath';
 import { keyExtractPath } from '../key';
+import { keyFromPath } from '../key/fromPath';
 import { naclBoxKeypairFromSecret, naclKeypairFromString, naclOpen, naclSeal } from '.';
 
 describe('naclOpen', (): void => {

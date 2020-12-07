@@ -3,7 +3,7 @@
 
 import type { Params } from './types';
 
-import { u8aToBn, assert } from '@polkadot/util';
+import { assert, u8aToBn } from '@polkadot/util';
 
 import { DEFAULT_PARAMS } from './defaults';
 

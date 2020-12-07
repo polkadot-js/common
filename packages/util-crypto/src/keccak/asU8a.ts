@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { keccak256 as keccak256Js } from 'js-sha3';
+
 import { u8aToU8a } from '@polkadot/util';
 import { isReady, keccak256 } from '@polkadot/wasm-crypto';
 

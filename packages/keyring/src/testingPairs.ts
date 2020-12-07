@@ -1,10 +1,10 @@
 // Copyright 2017-2020 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyringPair, KeyringOptions } from './types';
+import type { KeyringOptions, KeyringPair } from './types';
 
-import { createTestKeyring } from './testing';
 import { nobody } from './pair/nobody';
+import { createTestKeyring } from './testing';
 
 export interface TestKeyringMap {
   [index: string]: KeyringPair;
