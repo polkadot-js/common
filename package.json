@@ -12,7 +12,7 @@
   "scripts": {
     "build": "polkadot-dev-build-ts",
     "build:release": "polkadot-ci-ghact-build",
-    "lint": "polkadot-dev-run-lint --fix",
+    "lint": "polkadot-dev-run-lint",
     "clean": "polkadot-dev-clean-build",
     "networks:crosscheck": "polkadot-dev-run-test packages/networks/src/crosscheck",
     "postinstall": "polkadot-dev-yarn-only",
@@ -21,9 +21,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@polkadot/dev": "^0.60.11",
+    "@polkadot/dev": "^0.60.12",
     "@polkadot/ts": "^0.3.57",
-    "@types/jest": "^26.0.16"
+    "@types/jest": "^26.0.17"
   },
   "version": "4.2.2-4"
 }
