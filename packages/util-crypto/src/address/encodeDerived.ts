@@ -1,9 +1,8 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type BN from 'bn.js';
 import type { Prefix } from './types';
-
-import BN from 'bn.js';
 
 import { decodeAddress } from './decode';
 import { encodeAddress } from './encode';

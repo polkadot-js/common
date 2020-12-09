@@ -1,9 +1,8 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type BN from 'bn.js';
 import type { ToBn, ToBnOptions } from '../types';
-
-import BN from 'bn.js';
 
 import { isNumber } from '../is/number';
 import { u8aToHex } from '../u8a';
