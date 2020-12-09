@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import blakejs from 'blakejs';
+import { blake2b as blakejs } from 'blakejs';
 
 import { u8aToU8a } from '@polkadot/util';
 import { blake2b, isReady } from '@polkadot/wasm-crypto';
@@ -25,5 +25,5 @@ export function blake2AsU8a (data: Uint8Array | string, bitLength = 256, key: Ui
 
   return isReady() && !onlyJs
     ? blake2b(u8aToU8a(data), u8aToU8a(key), byteLength)
-    : blakejs.blake2b(u8aToU8a(data), key, byteLength);
+    : blakejs(u8aToU8a(data), key, byteLength);
 }
