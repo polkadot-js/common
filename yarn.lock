@@ -1712,9 +1712,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.60.18":
-  version: 0.60.18
-  resolution: "@polkadot/dev@npm:0.60.18"
+"@polkadot/bytes-asmjs-crypto@npm:^2.0.2-8":
+  version: 2.0.2-8
+  resolution: "@polkadot/bytes-asmjs-crypto@npm:2.0.2-8"
+  checksum: 04b60e123a26db6577ff701cf6531198df96e131ddf9d679580f97f94ddad09cd76ee09855f95db9fc5b0ef6fad90a5749a3a99c827e95ae455610da1879c6a1
+  languageName: node
+  linkType: hard
+
+"@polkadot/bytes-wasm-crypto@npm:^2.0.2-8":
+  version: 2.0.2-8
+  resolution: "@polkadot/bytes-wasm-crypto@npm:2.0.2-8"
+  checksum: 1b39530eb7cac05cbd5fba511fd1a6c46897a583fc2d05b092e7c43cd66a5ee7b93fc26bc203edffe8c14914c16ff31cef0e2108cc1e16ea6913bc4b8465f1d3
+  languageName: node
+  linkType: hard
+
+"@polkadot/dev@npm:^0.60.20":
+  version: 0.60.20
+  resolution: "@polkadot/dev@npm:0.60.20"
   dependencies:
     "@babel/cli": ^7.12.8
     "@babel/core": ^7.12.9
@@ -1730,6 +1744,7 @@ __metadata:
     "@babel/plugin-syntax-dynamic-import": ^7.8.3
     "@babel/plugin-syntax-import-meta": ^7.10.4
     "@babel/plugin-syntax-top-level-await": ^7.12.1
+    "@babel/plugin-transform-regenerator": ^7.12.1
     "@babel/plugin-transform-runtime": ^7.12.1
     "@babel/preset-env": ^7.12.7
     "@babel/preset-react": ^7.12.7
@@ -1801,7 +1816,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.cjs
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: 1ea2c1ccb5683188c7cc2060d7975d575b822e6f71f8205b28e6236d740f5c08749f40b5c33690a1039a12e7a58b6a48a9f44ed588e041c6ce20eae20fba3db4
+  checksum: f8784f3c657b5b42e6ea3e123c9b349f908d6cdd44ac6ff4851523da0607f58fd886170a863902550d409327082602c4ccfc7457d959bcda0a1a7ba1a5fe832d
   languageName: node
   linkType: hard
 
@@ -1844,7 +1859,7 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@polkadot/networks": 4.2.2-9
     "@polkadot/util": 4.2.2-9
-    "@polkadot/wasm-crypto": ^2.0.2-6
+    "@polkadot/wasm-crypto": ^2.0.2-8
     "@polkadot/x-randomvalues": 4.2.2-9
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
@@ -1880,13 +1895,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto@npm:^2.0.2-6":
-  version: 2.0.2-6
-  resolution: "@polkadot/wasm-crypto@npm:2.0.2-6"
+"@polkadot/wasm-crypto@npm:^2.0.2-8":
+  version: 2.0.2-8
+  resolution: "@polkadot/wasm-crypto@npm:2.0.2-8"
+  dependencies:
+    "@polkadot/bytes-asmjs-crypto": ^2.0.2-8
+    "@polkadot/bytes-wasm-crypto": ^2.0.2-8
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
-  checksum: 47a9a0ade143d0885df07ea57e70d54a571a311e2b36d8438d081d3ac07741ce76a7a2110fe5e9d80a0961ce78e7ee584fa592c5bb1a7184d56a40aadc85ba9a
+  checksum: b86515ed97693e497df44607caf561e8a02573422992a649c7f31651a3f473a2d3cf5fbbedeef0c5a7f01e3082534268101c68c4ee8d34a74d82ae469e312ea3
   languageName: node
   linkType: hard
 
@@ -8996,7 +9014,7 @@ fsevents@~2.1.2:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.12.9
-    "@polkadot/dev": ^0.60.18
+    "@polkadot/dev": ^0.60.20
     "@polkadot/ts": ^0.3.58
     "@types/jest": ^26.0.18
   languageName: unknown
