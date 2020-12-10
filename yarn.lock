@@ -1712,17 +1712,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/bytes-asmjs-crypto@npm:^2.0.2-9":
-  version: 2.0.2-9
-  resolution: "@polkadot/bytes-asmjs-crypto@npm:2.0.2-9"
-  checksum: 35d6d7d8dc713db5976ab39512e1bb0c2e0207d8cf2e2d7072e579f2a6f203feb01850488fd74ce56178aed9e3db3ed5556e66852202dc8d726c991e11a08b64
+"@polkadot/bytes-asmjs-crypto@npm:^2.0.2-10":
+  version: 2.0.2-10
+  resolution: "@polkadot/bytes-asmjs-crypto@npm:2.0.2-10"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+  checksum: 4901bc442d6be14f144137c94c7bd734893e98c811b0d5104233587fd34e278fcef77de07b1069fc84890be05f838fa81b8eebdf325626c31fa4972155403e30
   languageName: node
   linkType: hard
 
-"@polkadot/bytes-wasm-crypto@npm:^2.0.2-9":
-  version: 2.0.2-9
-  resolution: "@polkadot/bytes-wasm-crypto@npm:2.0.2-9"
-  checksum: 8ad447eb20c2a04a02d5cd4f6bc1ac1fe26ac98dbc4db155e6c0e9b66f1c0953c127fc6612510067d1fbcd3433713ce21e105f263135735d59e4f189b3030cac
+"@polkadot/bytes-wasm-crypto@npm:^2.0.2-10":
+  version: 2.0.2-10
+  resolution: "@polkadot/bytes-wasm-crypto@npm:2.0.2-10"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+  checksum: 10b1db17b965a49df75ee670169c649bcec44029fb43449e1af03351d11c212cc1aef77fdb6136bd562ccbac5582a3249ae9dd5f5ef271423c6315546786fb32
   languageName: node
   linkType: hard
 
@@ -1859,7 +1863,7 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@polkadot/networks": 4.2.2-9
     "@polkadot/util": 4.2.2-9
-    "@polkadot/wasm-crypto": ^2.0.2-9
+    "@polkadot/wasm-crypto": ^2.0.2-10
     "@polkadot/x-randomvalues": 4.2.2-9
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
@@ -1895,16 +1899,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto@npm:^2.0.2-9":
-  version: 2.0.2-9
-  resolution: "@polkadot/wasm-crypto@npm:2.0.2-9"
+"@polkadot/wasm-crypto@npm:^2.0.2-10":
+  version: 2.0.2-10
+  resolution: "@polkadot/wasm-crypto@npm:2.0.2-10"
   dependencies:
-    "@polkadot/bytes-asmjs-crypto": ^2.0.2-9
-    "@polkadot/bytes-wasm-crypto": ^2.0.2-9
+    "@babel/runtime": ^7.12.5
+    "@polkadot/bytes-asmjs-crypto": ^2.0.2-10
+    "@polkadot/bytes-wasm-crypto": ^2.0.2-10
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
-  checksum: e5f8a4930a1d2b7093bbdd6c6d77774895996c27cf938302b798d73469f9d6e6bb7ff468915f9907fe256e03cee4752daffc08659f598331693b9f1947100153
+  checksum: d0ee3cb2844bf8694309406991bbb97da419ddd93f045228f88f45c8f4e6ab86d39f4b6059055ec2fad7dc257be2f4f7a5db0a5fffbb5f055fac9c9cc885e553
   languageName: node
   linkType: hard
 
