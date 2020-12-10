@@ -316,6 +316,15 @@ const all: NetworkFromSubstrate[] = [
   },
   {
     decimals: [18],
+    displayName: 'KILT Chain',
+    network: 'kilt',
+    prefix: 38,
+    standardAccount: '*25519',
+    symbols: ['KILT'],
+    website: 'https://kilt.io/'
+  },
+  {
+    decimals: [18],
     displayName: 'MathChain mainnet',
     network: 'mathchain',
     prefix: 39,
@@ -331,6 +340,15 @@ const all: NetworkFromSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['MATH'],
     website: 'https://mathwallet.org'
+  },
+  {
+    decimals: null,
+    displayName: 'Polimec Chain',
+    network: 'poli',
+    prefix: 41,
+    standardAccount: '*25519',
+    symbols: null,
+    website: 'https://polimec.io/'
   },
   {
     decimals: null,
