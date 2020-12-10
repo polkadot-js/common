@@ -8,11 +8,6 @@
   "license": "Apache-2.0",
   "main": "index.js",
   "sideEffects": false,
-  "keywords": [
-    "Polkadot",
-    "Keyring",
-    "ed25519"
-  ],
   "repository": "github:polkadot-js/common",
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/keyring#readme",

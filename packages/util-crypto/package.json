@@ -4,9 +4,6 @@
   "description": "A collection of useful crypto utilities for @polkadot",
   "main": "index.js",
   "sideEffects": false,
-  "keywords": [
-    "Polkadot"
-  ],
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
@@ -18,7 +15,7 @@
     "@babel/runtime": "^7.12.5",
     "@polkadot/networks": "4.2.2-9",
     "@polkadot/util": "4.2.2-9",
-    "@polkadot/wasm-crypto": "^2.0.2-8",
+    "@polkadot/wasm-crypto": "^2.0.2-9",
     "@polkadot/x-randomvalues": "4.2.2-9",
     "base-x": "^3.0.8",
     "blakejs": "^1.1.0",

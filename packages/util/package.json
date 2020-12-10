@@ -3,9 +3,6 @@
   "version": "4.2.2-9",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
-  "keywords": [
-    "Polkadot"
-  ],
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
