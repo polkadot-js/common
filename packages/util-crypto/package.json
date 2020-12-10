@@ -15,7 +15,7 @@
     "@babel/runtime": "^7.12.5",
     "@polkadot/networks": "4.2.2-10",
     "@polkadot/util": "4.2.2-10",
-    "@polkadot/wasm-crypto": "^2.0.2-10",
+    "@polkadot/wasm-crypto": "^2.0.2-11",
     "@polkadot/x-randomvalues": "4.2.2-10",
     "base-x": "^3.0.8",
     "blakejs": "^1.1.0",
