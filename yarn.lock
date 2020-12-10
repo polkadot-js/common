@@ -1829,21 +1829,21 @@ __metadata:
   resolution: "@polkadot/keyring@workspace:packages/keyring"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/util": 4.2.2-10
-    "@polkadot/util-crypto": 4.2.2-10
+    "@polkadot/util": 4.2.2-11
+    "@polkadot/util-crypto": 4.2.2-11
   peerDependencies:
-    "@polkadot/util": 4.2.2-10
-    "@polkadot/util-crypto": 4.2.2-10
+    "@polkadot/util": 4.2.2-11
+    "@polkadot/util-crypto": 4.2.2-11
   languageName: unknown
   linkType: soft
 
-"@polkadot/networks@4.2.2-10, @polkadot/networks@workspace:packages/networks":
+"@polkadot/networks@4.2.2-11, @polkadot/networks@workspace:packages/networks":
   version: 0.0.0-use.local
   resolution: "@polkadot/networks@workspace:packages/networks"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/util": 4.2.2-10
-    "@polkadot/x-fetch": 4.2.2-10
+    "@polkadot/util": 4.2.2-11
+    "@polkadot/x-fetch": 4.2.2-11
   languageName: unknown
   linkType: soft
 
@@ -1856,15 +1856,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/util-crypto@4.2.2-10, @polkadot/util-crypto@workspace:packages/util-crypto":
+"@polkadot/util-crypto@4.2.2-11, @polkadot/util-crypto@workspace:packages/util-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/networks": 4.2.2-10
-    "@polkadot/util": 4.2.2-10
+    "@polkadot/networks": 4.2.2-11
+    "@polkadot/util": 4.2.2-11
     "@polkadot/wasm-crypto": ^2.0.2-11
-    "@polkadot/x-randomvalues": 4.2.2-10
+    "@polkadot/x-randomvalues": 4.2.2-11
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
     "@types/elliptic": ^6.4.12
@@ -1881,17 +1881,17 @@ __metadata:
     tweetnacl: ^1.0.3
     xxhashjs: ^0.2.2
   peerDependencies:
-    "@polkadot/util": 4.2.2-10
+    "@polkadot/util": 4.2.2-11
   languageName: unknown
   linkType: soft
 
-"@polkadot/util@4.2.2-10, @polkadot/util@workspace:packages/util":
+"@polkadot/util@4.2.2-11, @polkadot/util@workspace:packages/util":
   version: 0.0.0-use.local
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/x-textdecoder": 4.2.2-10
-    "@polkadot/x-textencoder": 4.2.2-10
+    "@polkadot/x-textdecoder": 4.2.2-11
+    "@polkadot/x-textencoder": 4.2.2-11
     "@types/bn.js": ^4.11.6
     bn.js: ^4.11.9
     camelcase: ^5.3.1
@@ -1913,7 +1913,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/x-fetch@4.2.2-10, @polkadot/x-fetch@workspace:packages/x-fetch":
+"@polkadot/x-fetch@4.2.2-11, @polkadot/x-fetch@workspace:packages/x-fetch":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-fetch@workspace:packages/x-fetch"
   dependencies:
@@ -1923,7 +1923,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-randomvalues@4.2.2-10, @polkadot/x-randomvalues@workspace:packages/x-randomvalues":
+"@polkadot/x-randomvalues@4.2.2-11, @polkadot/x-randomvalues@workspace:packages/x-randomvalues":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
@@ -1932,7 +1932,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-textdecoder@4.2.2-10, @polkadot/x-textdecoder@workspace:packages/x-textdecoder":
+"@polkadot/x-textdecoder@4.2.2-11, @polkadot/x-textdecoder@workspace:packages/x-textdecoder":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-textdecoder@workspace:packages/x-textdecoder"
   dependencies:
@@ -1940,7 +1940,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-textencoder@4.2.2-10, @polkadot/x-textencoder@workspace:packages/x-textencoder":
+"@polkadot/x-textencoder@4.2.2-11, @polkadot/x-textencoder@workspace:packages/x-textencoder":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-textencoder@workspace:packages/x-textencoder"
   dependencies:
