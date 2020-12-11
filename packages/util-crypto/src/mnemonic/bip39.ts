@@ -13,7 +13,7 @@
 //   - Remove setting of wordlost passing of wordlist in functions
 //   - Remove mnemonicToSeed (we only use the sync variant)
 
-import { sha256 } from 'hash.js';
+import hash from 'hash.js';
 
 import { assert, u8aToU8a } from '@polkadot/util';
 
@@ -40,9 +40,9 @@ function bytesToBinary (bytes: number[]): string {
 function deriveChecksumBits (entropyBuffer: Uint8Array): string {
   const ENT = entropyBuffer.length * 8;
   const CS = ENT / 32;
-  const hash = sha256().update(entropyBuffer).digest();
+  const result = hash.sha256().update(entropyBuffer).digest();
 
-  return bytesToBinary(Array.from(hash)).slice(0, CS);
+  return bytesToBinary(Array.from(result)).slice(0, CS);
 }
 
 function salt (password?: string): string {

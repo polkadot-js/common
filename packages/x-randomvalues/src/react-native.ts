@@ -7,7 +7,7 @@
 
 import { NativeModules } from 'react-native';
 
-import insecureRandomValues from './fallback';
+import { insecureRandomValues } from './fallback';
 
 interface RNExt {
   RNGetRandomValues: {
@@ -29,7 +29,7 @@ function getRandomValuesGlobal <T extends Uint8Array> (arr: T): T {
   return crypto.getRandomValues(arr);
 }
 
-export default typeof global.crypto === 'object' && typeof global.crypto.getRandomValues === 'function'
+export const getRandomValues = typeof global.crypto === 'object' && typeof global.crypto.getRandomValues === 'function'
   ? getRandomValuesGlobal
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-explicit-any
   : (typeof (global as any).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)

@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { keccak256 as keccak256Js } from 'js-sha3';
+import js from 'js-sha3';
 
 import { u8aToU8a } from '@polkadot/util';
 import { isReady, keccak256 } from '@polkadot/wasm-crypto';
@@ -24,6 +24,6 @@ export function keccakAsU8a (value: Buffer | Uint8Array | string, onlyJs = false
   return isReady() && !onlyJs
     ? keccak256(u8aToU8a(value))
     : new Uint8Array(
-      keccak256Js.update(u8aToU8a(value)).arrayBuffer()
+      js.keccak256.update(u8aToU8a(value)).arrayBuffer()
     );
 }
