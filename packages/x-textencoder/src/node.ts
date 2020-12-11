@@ -18,6 +18,6 @@ class NodeFallback {
   }
 }
 
-export default typeof TextEncoder === 'undefined'
-  ? NodeFallback as unknown as typeof TextEncoder
-  : TextEncoder;
+export const TextEncoder = typeof global.TextEncoder === 'undefined'
+  ? NodeFallback as unknown as typeof global.TextEncoder
+  : global.TextEncoder;

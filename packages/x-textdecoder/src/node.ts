@@ -3,6 +3,6 @@
 
 import { TextDecoder as NodeTextDecoder } from 'util';
 
-export default typeof TextDecoder === 'undefined'
-  ? NodeTextDecoder as unknown as typeof TextDecoder
-  : TextDecoder;
+export const TextDecoder = typeof global.TextDecoder === 'undefined'
+  ? NodeTextDecoder as unknown as typeof global.TextDecoder
+  : global.TextDecoder;

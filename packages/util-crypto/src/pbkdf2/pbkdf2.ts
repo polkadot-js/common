@@ -3,7 +3,7 @@
 
 // Adapted from https://gist.github.com/calvinmetcalf/91e8e84dc63c75f2aa53
 
-import { hmac, sha512 } from 'hash.js';
+import hash from 'hash.js';
 
 import { u8aConcat } from '@polkadot/util';
 
@@ -18,14 +18,14 @@ export function pbkdf2Sync (password: Uint8Array, salt: Uint8Array, rounds: numb
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    let prev = hmac(sha512, password).update(block).digest();
+    let prev = hash.hmac(hash.sha512, password).update(block).digest();
     const md = prev;
     let i = 0;
 
     while (++i < rounds) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      prev = hmac(sha512, password).update(prev).digest();
+      prev = hash.hmac(hash.sha512, password).update(prev).digest();
 
       let j = -1;
 

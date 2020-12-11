@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // This is very limited, only handling Ascii values
-export default class TextEncoder {
+export class TextEncoder {
   encode (value: string): Uint8Array {
     const u8a = new Uint8Array(value.length);
 

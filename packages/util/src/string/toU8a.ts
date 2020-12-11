@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import TextEncoder from '@polkadot/x-textencoder';
+import { TextEncoder } from '@polkadot/x-textencoder';
 
 const encoder = new TextEncoder();
 

@@ -5,7 +5,7 @@ import type { Ss58Registry } from './types';
 
 import fs from 'fs';
 
-import fetch from '@polkadot/x-fetch';
+import { fetch } from '@polkadot/x-fetch';
 
 import { all } from './';
 
