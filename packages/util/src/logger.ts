@@ -59,7 +59,7 @@ function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): 
     ...values
       .map(format)
       .map((v) => {
-        if (maxSize === -1) {
+        if (maxSize <= 0) {
           return v;
         }
 
