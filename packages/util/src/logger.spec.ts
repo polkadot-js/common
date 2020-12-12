@@ -138,9 +138,8 @@ describe('logger', (): void => {
     expect(spy.log).not.toHaveBeenCalled();
   });
 
-  it('does debug log when NODE_ENV=test specified', (): void => {
-    process.env.DEBUG = 'blah';
-    process.env.NODE_ENV = 'test';
+  it('does debug log when DEBUG=* specified', (): void => {
+    process.env.DEBUG = '*';
 
     l = logger('test');
     l.debug('test');
