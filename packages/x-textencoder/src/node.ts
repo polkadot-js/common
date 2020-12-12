@@ -1,13 +1,13 @@
 // Copyright 2017-2020 @polkadot/x-textencoder authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { TextEncoder as NodeTextEncoder } from 'util';
+import util from 'util';
 
 class NodeFallback {
-  #encoder: NodeTextEncoder;
+  #encoder: util.TextEncoder;
 
   constructor () {
-    this.#encoder = new NodeTextEncoder();
+    this.#encoder = new util.TextEncoder();
   }
 
   // For a Jest 26.0.1 environment, Buffer !== Uint8Array
