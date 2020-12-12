@@ -46,22 +46,43 @@ export function format (value: unknown): unknown {
   return formatOther(value);
 }
 
-function apply (log: LogType, type: string, values: Logger$Data): void {
+function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): void {
   if (values.length === 1 && isFunction(values[0])) {
     const fnResult = values[0]() as unknown;
 
-    return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult]);
+    return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult], maxSize);
   }
 
   console[logTo[log] as 'log'](
     formatDate(new Date()),
     type,
-    ...values.map(format)
+    ...values
+      .map(format)
+      .map((v) => {
+        if (maxSize === -1) {
+          return v;
+        }
+
+        const r = `${v as string}`;
+
+        return r.length < maxSize
+          ? v
+          : `${r.substr(0, maxSize)} ...`;
+      })
   );
 }
 
 function noop (): void {
   // noop
+}
+
+function parseEnv (type: string): [boolean, number] {
+  const maxSize = parseInt(process?.env?.DEBUG_MAX || '-1', 10);
+
+  return [
+    (process?.env?.DEBUG || '').toLowerCase().split(',').some((e) => !!e && (e === '*' || type.startsWith(e))),
+    isNaN(maxSize) ? -1 : maxSize
+  ];
 }
 
 /**
@@ -73,31 +94,22 @@ function noop (): void {
  * <BR>
  *
  * ```javascript
- * const l from '@polkadot/util/logger')('test');
+ * import { logger } from '@polkadot';
  *
- * l.log('blah'); // <date>     TEST: blah
+ * const l = logger('test');
  * ```
  */
 export function logger (_type: string): Logger {
   const type = `${_type.toUpperCase()}:`.padStart(16);
-  let isDebug;
-
-  try {
-    const isTest = process.env.NODE_ENV === 'test';
-    const debugList = (process.env.DEBUG || '').split(',');
-
-    isDebug = isTest || !!debugList.find((entry): boolean => _type.startsWith(entry));
-  } catch (error) {
-    isDebug = false;
-  }
+  const [isDebug, maxSize] = parseEnv(_type.toLowerCase());
 
   return {
     debug: isDebug
-      ? (...values: Logger$Data): void => apply('debug', type, values)
+      ? (...values: Logger$Data) => apply('debug', type, values, maxSize)
       : noop,
-    error: (...values: Logger$Data): void => apply('error', type, values),
-    log: (...values: Logger$Data): void => apply('log', type, values),
+    error: (...values: Logger$Data) => apply('error', type, values),
+    log: (...values: Logger$Data) => apply('log', type, values),
     noop,
-    warn: (...values: Logger$Data): void => apply('warn', type, values)
+    warn: (...values: Logger$Data) => apply('warn', type, values)
   };
 }
