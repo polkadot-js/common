@@ -9,6 +9,8 @@ Changes:
 - Build and expose both cjs and esm via exports map
 - Use `import type { ... }` form for all type imports
 - Align with Substrate master network list
+- Debug logs now don't depend on `NODE_ENV`, but rather `DEBUG=<type,type,...>` (`*` logs all)
+- Limit debug console output via `DEBUG_MAX=<number>` value, trimming when passed
 
 
 ## 4.2.1 Nov 23, 2020
