@@ -5,6 +5,7 @@
 
 import type { Memoized } from './types';
 
+import { isBigInt } from './is/bigInt';
 import { isUndefined } from './is/undefined';
 
 interface Options {
@@ -14,11 +15,19 @@ interface Options {
 
 const INSTANCEID = () => 'none';
 
+function normalize (args: any[]): string {
+  return JSON.stringify(args, (_, value: unknown) =>
+    isBigInt(value)
+      ? value.toString()
+      : value
+  );
+}
+
 export function memoize <T> (fn: (...args: any[]) => T, { getInstanceId = INSTANCEID }: Options = {}): Memoized<T> {
   const cache: Record<string, Record<string, T>> = {};
 
   const memoized = (...args: any[]): T => {
-    const stringParams = JSON.stringify({ args });
+    const stringParams = normalize(args);
     const instanceId = getInstanceId();
 
     if (!cache[instanceId]) {
@@ -33,7 +42,7 @@ export function memoize <T> (fn: (...args: any[]) => T, { getInstanceId = INSTAN
   };
 
   memoized.unmemoize = (...args: any[]): void => {
-    const stringParams = JSON.stringify({ args });
+    const stringParams = normalize(args);
     const instanceId = getInstanceId();
 
     if (cache[instanceId] && !isUndefined(cache[instanceId][stringParams])) {
