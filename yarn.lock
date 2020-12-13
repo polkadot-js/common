@@ -1686,9 +1686,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.61.1":
-  version: 0.61.1
-  resolution: "@polkadot/dev@npm:0.61.1"
+"@polkadot/dev@npm:^0.61.2":
+  version: 0.61.2
+  resolution: "@polkadot/dev@npm:0.61.2"
   dependencies:
     "@babel/cli": ^7.12.10
     "@babel/core": ^7.12.10
@@ -1775,7 +1775,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.cjs
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: b483cff04845f5acb075618a93dbe4472d4a63c027a9b5cbcb6015da930e9942bebad5f1215a47f82ca844e260d60cefec65bdd492b008a0fcc3eff23ae7c948
+  checksum: aada176bd714442e309941c42f0cf48466599aa1e0cbca894e00c91b6efd2eb6b11a677f1e607d46f3245a780934d5f0b4b4029ee2124e8d41cb5f6c96423b21
   languageName: node
   linkType: hard
 
@@ -9000,7 +9000,7 @@ fsevents@~2.1.2:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.12.10
-    "@polkadot/dev": ^0.61.1
+    "@polkadot/dev": ^0.61.2
     "@polkadot/ts": ^0.3.58
     "@types/jest": ^26.0.19
   languageName: unknown

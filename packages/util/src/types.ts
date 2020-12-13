@@ -48,9 +48,6 @@ export interface Time {
   milliseconds: number;
 }
 
-export interface Memoized <T> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (...args: any[]): T;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  unmemoize: (...args: any[]) => void;
+export type Memoized<F> = F & {
+  unmemoize: (...args: unknown[]) => void;
 }

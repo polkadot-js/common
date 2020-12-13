@@ -68,4 +68,10 @@ describe('memoize', (): void => {
     expect(fn(1, 3)).toEqual(4);
     expect(spy).toHaveBeenCalledTimes(4);
   });
+
+  it('normalizes BigInt values as well', (): void => {
+    const fn = memoize((a: BigInt, b: BigInt) => BigInt(a) + BigInt(b));
+
+    expect(fn(1n, 2n).toString()).toEqual('3');
+  });
 });

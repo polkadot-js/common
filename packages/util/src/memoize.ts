@@ -1,24 +1,33 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import type { Memoized } from './types';
 
+import { isBigInt } from './is/bigInt';
 import { isUndefined } from './is/undefined';
 
 interface Options {
-  getInstanceId?: () => string,
-  normalize?: (args: any[]) => string;
+  getInstanceId?: () => string;
 }
 
-const INSTANCEID = () => 'none';
+function defaultGetId (): string {
+  return 'none';
+}
 
-export function memoize <T> (fn: (...args: any[]) => T, { getInstanceId = INSTANCEID }: Options = {}): Memoized<T> {
+function normalize (args: unknown[]): string {
+  return JSON.stringify(args, (_, value: unknown) =>
+    isBigInt(value)
+      ? value.toString()
+      : value
+  );
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function memoize <T, F extends (...args: any[]) => T> (fn: F, { getInstanceId = defaultGetId }: Options = {}): Memoized<F> {
   const cache: Record<string, Record<string, T>> = {};
 
-  const memoized = (...args: any[]): T => {
-    const stringParams = JSON.stringify({ args });
+  const memoized = (...args: unknown[]): T => {
+    const stringParams = normalize(args);
     const instanceId = getInstanceId();
 
     if (!cache[instanceId]) {
@@ -32,8 +41,8 @@ export function memoize <T> (fn: (...args: any[]) => T, { getInstanceId = INSTAN
     return cache[instanceId][stringParams];
   };
 
-  memoized.unmemoize = (...args: any[]): void => {
-    const stringParams = JSON.stringify({ args });
+  memoized.unmemoize = (...args: unknown[]): void => {
+    const stringParams = normalize(args);
     const instanceId = getInstanceId();
 
     if (cache[instanceId] && !isUndefined(cache[instanceId][stringParams])) {
@@ -41,5 +50,5 @@ export function memoize <T> (fn: (...args: any[]) => T, { getInstanceId = INSTAN
     }
   };
 
-  return memoized;
+  return memoized as Memoized<F>;
 }
