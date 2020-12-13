@@ -23,7 +23,7 @@ function normalize (args: any[]): string {
   );
 }
 
-export function memoize <T> (fn: (...args: any[]) => T, { getInstanceId = INSTANCEID }: Options = {}): Memoized<T> {
+export function memoize <T, F extends (...args: any[]) => T> (fn: F, { getInstanceId = INSTANCEID }: Options = {}): F & Memoized {
   const cache: Record<string, Record<string, T>> = {};
 
   const memoized = (...args: any[]): T => {
@@ -50,5 +50,5 @@ export function memoize <T> (fn: (...args: any[]) => T, { getInstanceId = INSTAN
     }
   };
 
-  return memoized;
+  return memoized as (F & Memoized);
 }
