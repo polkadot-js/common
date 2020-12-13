@@ -11,6 +11,7 @@ Changes:
 - Align with Substrate master network list
 - Debug logs now don't depend on `NODE_ENV`, but rather `DEBUG=<type,type,...>` (`*` logs all)
 - Limit debug console output via `DEBUG_MAX=<number>` value, trimming when passed
+- Add `memoize` util, allowing for function memoization (as used in the API)
 
 
 ## 4.2.1 Nov 23, 2020
