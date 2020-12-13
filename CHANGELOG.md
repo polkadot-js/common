@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 5.0.1 Dec 13, 2020
+
+**Important** While this package contains no external interface changes, it doe now compile and ship both cjs and esm modules. This means that modern bundlers will have more information for tree-shaking available. Additionally when using Node with `.mjs` extensions, the esm version imports will be used on recent Node versions. Adding an export map, as here, may have some impacts so a major semver bump is advised. There may be (small) dragons hiding in the dark corners...
+
+Changes:
+
+- Build and expose both cjs and esm via exports map
+- Use `import type { ... }` form for all type imports
+- Align with Substrate master network list
+- Debug logs now don't depend on `NODE_ENV`, but rather `DEBUG=<type,type,...>` (`*` logs all)
+- Limit debug console output via `DEBUG_MAX=<number>` value, trimming when passed
+- Add `memoize` util, allowing for function memoization (as used in the API)
+
+
 ## 4.2.1 Nov 23, 2020
 
 Changes:
