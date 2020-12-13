@@ -13,13 +13,12 @@ interface Options {
 }
 
 const INSTANCEID = () => 'none';
-const NORMALIZER = (args: any[]) => JSON.stringify({ args });
 
-export function memoize <T> (fn: (...args: any[]) => T, { getInstanceId = INSTANCEID, normalize = NORMALIZER }: Options = {}): Memoized<T> {
+export function memoize <T> (fn: (...args: any[]) => T, { getInstanceId = INSTANCEID }: Options = {}): Memoized<T> {
   const cache: Record<string, Record<string, T>> = {};
 
   const memoized = (...args: any[]): T => {
-    const stringParams = normalize(args);
+    const stringParams = JSON.stringify({ args });
     const instanceId = getInstanceId();
 
     if (!cache[instanceId]) {
@@ -34,11 +33,11 @@ export function memoize <T> (fn: (...args: any[]) => T, { getInstanceId = INSTAN
   };
 
   memoized.unmemoize = (...args: any[]): void => {
-    const stringParams = normalize(args);
+    const stringParams = JSON.stringify({ args });
     const instanceId = getInstanceId();
 
     if (cache[instanceId] && !isUndefined(cache[instanceId][stringParams])) {
-      delete cache[stringParams];
+      delete cache[instanceId][stringParams];
     }
   };
 
