@@ -7,15 +7,14 @@ import { isBigInt } from './is/bigInt';
 import { isUndefined } from './is/undefined';
 
 interface Options {
-  getInstanceId?: () => string,
-  normalize?: (args: unknown[]) => string;
+  getInstanceId?: () => string;
 }
 
-function defaultInstanceId (): string {
+function defaultGetId (): string {
   return 'none';
 }
 
-function defaultNormalize (args: unknown[]): string {
+function normalize (args: unknown[]): string {
   return JSON.stringify(args, (_, value: unknown) =>
     isBigInt(value)
       ? value.toString()
@@ -24,7 +23,7 @@ function defaultNormalize (args: unknown[]): string {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function memoize <T, F extends (...args: any[]) => T> (fn: F, { getInstanceId = defaultInstanceId, normalize = defaultNormalize }: Options = {}): Memoized<F> {
+export function memoize <T, F extends (...args: any[]) => T> (fn: F, { getInstanceId = defaultGetId }: Options = {}): Memoized<F> {
   const cache: Record<string, Record<string, T>> = {};
 
   const memoized = (...args: unknown[]): T => {
