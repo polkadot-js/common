@@ -47,3 +47,7 @@ export interface Time {
   seconds: number;
   milliseconds: number;
 }
+
+export type Memoized<F> = F & {
+  unmemoize: (...args: unknown[]) => void;
+}
