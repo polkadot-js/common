@@ -9,6 +9,7 @@ export { assert, assertReturn } from './assert';
 export { detectPackage } from './detectPackage';
 export { extractTime } from './extractTime';
 export { logger } from './logger';
+export { memoize } from './memoize';
 export { promisify } from './promisify';
 
 export * from './array';
