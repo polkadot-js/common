@@ -2,8 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import './cryptoInit';
-
-export * from './crypto';
+import './detectPackage';
 
 // all internal exports
 export * from './address';
@@ -11,6 +10,7 @@ export * from './base32';
 export * from './base58';
 export * from './base64';
 export * from './blake2';
+export * from './crypto';
 export * from './ethereum';
 export * from './keccak';
 export * from './key';
