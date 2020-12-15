@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-textencoder",
-  "version": "5.0.1",
+  "version": "5.0.2-0",
   "description": "A TextDecoder replacement",
   "browser": "browser.js",
   "main": "node.js",
