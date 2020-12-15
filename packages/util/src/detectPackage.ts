@@ -48,7 +48,7 @@ function flattenVersions (_all: (VersionPath | string)[]): string {
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
  */
-export function detectPackage ({ name, version }: PackageJson, pathFn?: StringFn): void {
+export function detectPackage ({ name, version }: PackageJson, pathOrFn?: StringFn): void {
   const _global = typeof window !== 'undefined'
     ? window as PjsWindow
     : global as PjsGlobal;
@@ -62,9 +62,9 @@ export function detectPackage ({ name, version }: PackageJson, pathFn?: StringFn
   let path: false | string | undefined;
 
   try {
-    path = isFunction(pathFn)
-      ? pathFn()
-      : false;
+    path = isFunction(pathOrFn)
+      ? pathOrFn()
+      : pathOrFn;
   } catch (error) {
     // ignore
   }
