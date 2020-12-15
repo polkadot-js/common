@@ -12,7 +12,7 @@ describe('assertSingletonPackage', (): void => {
   it('should not log the first time', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackage({ name: PKG, version: VER1 }, `${PATH}/01`);
+    detectPackage({ name: PKG, version: VER1 }, () => `${PATH}/01`);
     expect(spy).not.toHaveBeenCalled();
     spy.mockRestore();
   });
@@ -20,7 +20,7 @@ describe('assertSingletonPackage', (): void => {
   it('should log the second time', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackage({ name: PKG, version: VER2 }, `${PATH}/02`);
+    detectPackage({ name: PKG, version: VER2 }, () => `${PATH}/02`);
     expect(spy).toHaveBeenCalledWith(`Multiple instances of @polkadot/util detected, ensure that there is only one package in your dependency tree.\n\t${VER1}\t${PATH}/01\n\t${VER2}        \t${PATH}/02`);
     spy.mockRestore();
   });

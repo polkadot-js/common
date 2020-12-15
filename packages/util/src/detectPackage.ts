@@ -1,7 +1,6 @@
 // Copyright 2017-2020 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isFunction } from './is/function';
 import { isString } from './is/string';
 import { assert } from './assert';
 
@@ -48,7 +47,7 @@ function flattenVersions (_all: (VersionPath | string)[]): string {
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
  */
-export function detectPackage ({ name, version }: PackageJson, pathOrPathFn?: string | false | StringFn): void {
+export function detectPackage ({ name, version }: PackageJson, pathFn?: StringFn): void {
   const _global = typeof window !== 'undefined'
     ? window as PjsWindow
     : global as PjsGlobal;
@@ -59,12 +58,10 @@ export function detectPackage ({ name, version }: PackageJson, pathOrPathFn?: st
 
   assert(name.startsWith('@polkadot'), `Invalid package descriptor ${name}`);
 
-  let path: false | string | undefined;
+  let path: string | undefined;
 
   try {
-    path = isFunction(pathOrPathFn)
-      ? pathOrPathFn()
-      : pathOrPathFn;
+    path = pathFn && pathFn();
   } catch (error) {
     // ignore
   }
