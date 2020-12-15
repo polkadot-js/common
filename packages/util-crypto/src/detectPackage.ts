@@ -8,5 +8,7 @@ import packageInfo from './package-info.json';
 detectPackage(packageInfo, () =>
   typeof __dirname !== 'undefined'
     ? __dirname
-    : import.meta.url
+    : typeof require === 'undefined'
+      ? import.meta.url
+      : undefined
 );
