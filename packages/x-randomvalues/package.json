@@ -16,6 +16,6 @@
     "@babel/runtime": "^7.12.5"
   },
   "devDependencies": {
-    "@types/react-native": "^0.63.40"
+    "@types/react-native": "^0.63.41"
   }
 }

@@ -1686,9 +1686,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.61.5":
-  version: 0.61.5
-  resolution: "@polkadot/dev@npm:0.61.5"
+"@polkadot/dev@npm:^0.61.7":
+  version: 0.61.7
+  resolution: "@polkadot/dev@npm:0.61.7"
   dependencies:
     "@babel/cli": ^7.12.10
     "@babel/core": ^7.12.10
@@ -1775,7 +1775,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.cjs
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: f58b0190986d600ddbd46ce854eca164ee7bc71ec4c09614b01ce96ca8256a63871b6344f3d0819d778a15de6b787c730ded12a863c3172f74decc65adaa1f4d
+  checksum: 7be9f1bf2049f1ad6994667294a40eafbd707afea07e4e63dc6eca9e18542d874a7de696580a6ca0dc716143376a63ee7a156e0074b2e500833c08b96ab7d770
   languageName: node
   linkType: hard
 
@@ -1902,7 +1902,7 @@ __metadata:
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@types/react-native": ^0.63.40
+    "@types/react-native": ^0.63.41
   languageName: unknown
   linkType: soft
 
@@ -2179,12 +2179,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.63.40":
-  version: 0.63.40
-  resolution: "@types/react-native@npm:0.63.40"
+"@types/react-native@npm:^0.63.41":
+  version: 0.63.41
+  resolution: "@types/react-native@npm:0.63.41"
   dependencies:
     "@types/react": "*"
-  checksum: c5f926f0d53a37608b33400aa15a0e514bf77c2be0c84c555b6d8cd415d74552f70df22d0112311d4145f3f2649c48117ba664e41dd7f589660de570a7f67550
+  checksum: 671b14ba35d3be57ad219cec0b4b26ace34a8c8cf95b08581236c333a63afecf8e1e845ae9cad6256c842b4c3b32a7bfdd3d1283800f94693512c172366ba4d8
   languageName: node
   linkType: hard
 
@@ -9000,7 +9000,7 @@ fsevents@~2.1.2:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.12.10
-    "@polkadot/dev": ^0.61.5
+    "@polkadot/dev": ^0.61.7
     "@polkadot/ts": ^0.3.58
     "@types/jest": ^26.0.19
   languageName: unknown
