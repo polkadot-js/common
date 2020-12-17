@@ -26,18 +26,37 @@ type PjsGlobal = NodeJS.Global & PjsChecks;
 type PjsWindow = Window & PjsChecks;
 type FnString = () => string | undefined;
 
+/** @internal */
 function expandPath (path?: string): string {
   return (!path || path.length < 5) ? '<unknown>' : path;
 }
 
 /** @internal */
-function flattenVersions (_all: (VersionPath | string)[]): string {
-  const all: VersionPath[] = _all.map((version: VersionPath | string): VersionPath =>
+function getMap (): Record<string, VersionPath[]> {
+  const _global = typeof window !== 'undefined'
+    ? window as PjsWindow
+    : global as PjsGlobal;
+
+  if (!_global.__polkadotjs) {
+    _global.__polkadotjs = {};
+  }
+
+  return _global.__polkadotjs;
+}
+
+/** @internal */
+function getVersions (name: string): VersionPath[] {
+  return (getMap()[name] || []).map((version: VersionPath | string): VersionPath =>
     isString(version)
       ? { version }
       : version
   );
-  const verLength = all.reduce((max, { version }): number => Math.max(max, version.length), 0);
+}
+
+/** @internal */
+function flattenVersions (name: string): string {
+  const all = getVersions(name);
+  const verLength = all.reduce((max, { version }) => Math.max(max, version.length), 0);
 
   return all
     .map(({ path, version }) => `\t${version.padEnd(verLength)}\t${expandPath(path)}`)
@@ -62,23 +81,14 @@ function getPath (pathOrFn?: FnString | string | false): false | string | undefi
  * @summary Checks that a specific package is only imported once
  */
 export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnString | string | false): void {
-  const _global = typeof window !== 'undefined'
-    ? window as PjsWindow
-    : global as PjsGlobal;
-
-  if (!_global.__polkadotjs) {
-    _global.__polkadotjs = {};
-  }
-
   assert(name.startsWith('@polkadot'), `Invalid package descriptor ${name}`);
 
+  const map = getMap();
   const path = getPath(pathOrFn);
 
-  _global.__polkadotjs[name] = [...(_global.__polkadotjs[name] || []), { path: path || '', version }];
+  map[name] = [...(map[name] || []), { path: path || '', version }];
 
-  if (_global.__polkadotjs[name].length !== 1) {
-    const versions = flattenVersions(_global.__polkadotjs[name]);
-
-    console.warn(`Multiple instances of ${name} detected, ensure that there is only one package in your dependency tree.\n${versions}`);
+  if (map[name].length !== 1) {
+    console.warn(`Multiple instances of ${name} detected, ensure that there is only one package in your dependency tree.\n${flattenVersions(name)}`);
   }
 }
