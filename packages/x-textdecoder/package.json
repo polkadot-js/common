@@ -5,6 +5,7 @@
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
+  "sideEffects": false,
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
