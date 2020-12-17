@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-fetch",
-  "version": "5.0.2-2",
+  "version": "5.0.2-3",
   "description": "A cross-environment fetch replacement",
   "browser": "browser.js",
   "main": "node.js",
