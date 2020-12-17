@@ -32,7 +32,7 @@ function expandPath (path?: string): string {
 }
 
 /** @internal */
-function getMap (): Record<string, VersionPath[]> {
+function getEntry (name: string): VersionPath[] {
   const _global = typeof window !== 'undefined'
     ? window as PjsWindow
     : global as PjsGlobal;
@@ -41,21 +41,20 @@ function getMap (): Record<string, VersionPath[]> {
     _global.__polkadotjs = {};
   }
 
-  return _global.__polkadotjs;
+  if (!_global.__polkadotjs[name]) {
+    _global.__polkadotjs[name] = [];
+  }
+
+  return _global.__polkadotjs[name];
 }
 
 /** @internal */
-function getVersions (name: string): VersionPath[] {
-  return (getMap()[name] || []).map((version: VersionPath | string): VersionPath =>
+function flattenVersions (entry: VersionPath[]): string {
+  const all = entry.map((version: VersionPath | string): VersionPath =>
     isString(version)
       ? { version }
       : version
   );
-}
-
-/** @internal */
-function flattenVersions (name: string): string {
-  const all = getVersions(name);
   const verLength = all.reduce((max, { version }) => Math.max(max, version.length), 0);
 
   return all
@@ -83,12 +82,11 @@ function getPath (pathOrFn?: FnString | string | false): false | string | undefi
 export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnString | string | false): void {
   assert(name.startsWith('@polkadot'), `Invalid package descriptor ${name}`);
 
-  const map = getMap();
-  const path = getPath(pathOrFn);
+  const entry = getEntry(name);
 
-  map[name] = [...(map[name] || []), { path: path || '', version }];
+  entry.push({ path: getPath(pathOrFn) || '', version });
 
-  if (map[name].length !== 1) {
-    console.warn(`Multiple instances of ${name} detected, ensure that there is only one package in your dependency tree.\n${flattenVersions(name)}`);
+  if (entry.length !== 1) {
+    console.warn(`Multiple instances of ${name} detected, ensure that there is only one package in your dependency tree.\n${flattenVersions(entry)}`);
   }
 }
