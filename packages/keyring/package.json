@@ -7,6 +7,7 @@
   "contributors": [],
   "license": "Apache-2.0",
   "main": "index.js",
+  "module": "index.mjs",
   "sideEffects": false,
   "repository": "github:polkadot-js/common",
   "bugs": "https://github.com/polkadot-js/common/issues",
