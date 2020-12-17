@@ -314,28 +314,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-validator-identifier@npm:^7.10.4":
-  version: 7.10.4
-  resolution: "@babel/helper-validator-identifier@npm:7.10.4"
-  checksum: 25098ef842e3ffecdd9a7216f6173da7ad7be1b0b3e454a9f6965055154b9ad7a4acd2f218ba3d2efc0821bdab97837b3cb815844af7d72f66f89d446a54efc6
-  languageName: node
-  linkType: hard
-
-"@babel/helper-validator-identifier@npm:^7.12.11":
+"@babel/helper-validator-identifier@npm:^7.10.4, @babel/helper-validator-identifier@npm:^7.12.11":
   version: 7.12.11
   resolution: "@babel/helper-validator-identifier@npm:7.12.11"
   checksum: 18de432203264b501db2690b53370a4289dc56084f5a2c66de624b159ee28b8abaeb402b2b7584296d9261645d91ddb6bfd21125d3ffd9bf02e9262e77baf3d2
   languageName: node
   linkType: hard
 
-"@babel/helper-validator-option@npm:^7.12.1":
-  version: 7.12.1
-  resolution: "@babel/helper-validator-option@npm:7.12.1"
-  checksum: 5d9a8f67500baf464151d15ca281388e7272ed22e3b909e13ccff89b2b4cc83a3e29972f9feaacb8a372e749028b252187982a59c6e6944ce30e0d15d905ab5c
-  languageName: node
-  linkType: hard
-
-"@babel/helper-validator-option@npm:^7.12.11":
+"@babel/helper-validator-option@npm:^7.12.1, @babel/helper-validator-option@npm:^7.12.11":
   version: 7.12.11
   resolution: "@babel/helper-validator-option@npm:7.12.11"
   checksum: c0a861e95f4f24ed59535c28206f62e639404db873473886ec77b50fef53e21111b4093522838927b79be768a885ad2007086b2434353b9d2b89b891ca14028a
@@ -1391,18 +1377,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.0.0, @babel/types@npm:^7.10.4, @babel/types@npm:^7.10.5, @babel/types@npm:^7.11.0, @babel/types@npm:^7.12.1, @babel/types@npm:^7.12.10, @babel/types@npm:^7.12.5, @babel/types@npm:^7.12.7, @babel/types@npm:^7.3.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4, @babel/types@npm:^7.8.3":
-  version: 7.12.10
-  resolution: "@babel/types@npm:7.12.10"
-  dependencies:
-    "@babel/helper-validator-identifier": ^7.10.4
-    lodash: ^4.17.19
-    to-fast-properties: ^2.0.0
-  checksum: 4f791b6788397d38eba9d4ee7e019e2f88ab337ae331da69d6f4d5d5b26d40c25a47a92f2b0c2025cf856455728fa9d9a79bb046f6f998c491375453822ae2ea
-  languageName: node
-  linkType: hard
-
-"@babel/types@npm:^7.12.11":
+"@babel/types@npm:^7.0.0, @babel/types@npm:^7.10.4, @babel/types@npm:^7.10.5, @babel/types@npm:^7.11.0, @babel/types@npm:^7.12.1, @babel/types@npm:^7.12.10, @babel/types@npm:^7.12.11, @babel/types@npm:^7.12.5, @babel/types@npm:^7.12.7, @babel/types@npm:^7.3.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4, @babel/types@npm:^7.8.3":
   version: 7.12.11
   resolution: "@babel/types@npm:7.12.11"
   dependencies:
@@ -1843,7 +1818,7 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@polkadot/networks": 5.0.2-1
     "@polkadot/util": 5.0.2-1
-    "@polkadot/wasm-crypto": ^3.0.1
+    "@polkadot/wasm-crypto": ^3.0.2-3
     "@polkadot/x-randomvalues": 5.0.2-1
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
@@ -1879,36 +1854,36 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-asmjs@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@polkadot/wasm-crypto-asmjs@npm:3.0.1"
+"@polkadot/wasm-crypto-asmjs@npm:^3.0.2-3":
+  version: 3.0.2-3
+  resolution: "@polkadot/wasm-crypto-asmjs@npm:3.0.2-3"
   dependencies:
     "@babel/runtime": ^7.12.5
-  checksum: 5bf3662004f6e493ab6724c0257ef7a1b1405c9f51eaeea702b7024a5a5234a276eb77ee2bdefa77cd4136a426ac4e59c4ba8fa7163182049c6bab67e5885d78
+  checksum: abdfff72c7e9ba7858140d3ab6a5e442117c02bc03fd1172f3610a06eeb9418d40b455bff74ff83ff5438c884e425046e20670b1fb4f2437c87bcb150477af5c
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto-wasm@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@polkadot/wasm-crypto-wasm@npm:3.0.1"
+"@polkadot/wasm-crypto-wasm@npm:^3.0.2-3":
+  version: 3.0.2-3
+  resolution: "@polkadot/wasm-crypto-wasm@npm:3.0.2-3"
   dependencies:
     "@babel/runtime": ^7.12.5
     fflate: ^0.4.2
-  checksum: f6bb6ed837c49528fbada6ba7a42b00fd6af3aa9381f6bae458427e5b8274d2e9b83f4783f1b4ad98bf2918cd4089d5a01923a9695c0b8898a06cda1e142b8ad
+  checksum: 83aaf297b7839655b52fc6c9e8a5442c89c8a43de0a6bfd45fdae4f61aaf06ac56a688283fcecb11ff40a5688cb8da8f5842de2be005b954fdb4403442422221
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@polkadot/wasm-crypto@npm:3.0.1"
+"@polkadot/wasm-crypto@npm:^3.0.2-3":
+  version: 3.0.2-3
+  resolution: "@polkadot/wasm-crypto@npm:3.0.2-3"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/wasm-crypto-asmjs": ^3.0.1
-    "@polkadot/wasm-crypto-wasm": ^3.0.1
+    "@polkadot/wasm-crypto-asmjs": ^3.0.2-3
+    "@polkadot/wasm-crypto-wasm": ^3.0.2-3
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
-  checksum: 9a3b970f3fec48c3b90e227aa39a303dd8895a189d62be4d2ba6c3f5ae2203dc4316c185a547d1a9ede2ea7119274e0a5f4949b349a03eb8d1c22128650d2059
+  checksum: dfa16933d638375839eb3c72a8cbbe697fe2f625bcbf1616c73aac5b915d6b88f0d8d156d2d3f7bc633af19f64e30809e24728eadc53d6c43c147129d0646bc0
   languageName: node
   linkType: hard
 
