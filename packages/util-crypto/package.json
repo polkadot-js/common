@@ -3,6 +3,7 @@
   "version": "5.0.2-2",
   "description": "A collection of useful crypto utilities for @polkadot",
   "main": "index.js",
+  "module": "index.mjs",
   "sideEffects": false,
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],

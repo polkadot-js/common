@@ -3,6 +3,7 @@
   "version": "5.0.2-2",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
+  "module": "index.mjs",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
