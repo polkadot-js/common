@@ -4,7 +4,10 @@
   "description": "A collection of useful crypto utilities for @polkadot",
   "main": "index.js",
   "module": "index.mjs",
-  "sideEffects": false,
+  "sideEffects": [
+    "./detectPackage.js",
+    "./detectPackage.mjs"
+  ],
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
