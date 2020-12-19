@@ -1686,9 +1686,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.61.12":
-  version: 0.61.12
-  resolution: "@polkadot/dev@npm:0.61.12"
+"@polkadot/dev@npm:^0.61.13":
+  version: 0.61.13
+  resolution: "@polkadot/dev@npm:0.61.13"
   dependencies:
     "@babel/cli": ^7.12.10
     "@babel/core": ^7.12.10
@@ -1775,7 +1775,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.cjs
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: 7122a2a5a9e61cc98120147a632b23633096bb638e916f294721154428b8cff78ee4eb75b2ddac0762cf611f8c970a71dbc90e77cc5e42cf14a47b2d812615d8
+  checksum: 2a38bf5128ec843c3cd61592d2840aa5af24f2dffbbc5553f59fa54c108b48b81bbf6df25c434d1fd5cd050358d103fd861742ce4435f60ec44a03910161c500
   languageName: node
   linkType: hard
 
@@ -1784,21 +1784,21 @@ __metadata:
   resolution: "@polkadot/keyring@workspace:packages/keyring"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/util": 5.0.2-9
-    "@polkadot/util-crypto": 5.0.2-9
+    "@polkadot/util": 5.1.0
+    "@polkadot/util-crypto": 5.1.0
   peerDependencies:
-    "@polkadot/util": 5.0.2-9
-    "@polkadot/util-crypto": 5.0.2-9
+    "@polkadot/util": 5.1.0
+    "@polkadot/util-crypto": 5.1.0
   languageName: unknown
   linkType: soft
 
-"@polkadot/networks@5.0.2-9, @polkadot/networks@workspace:packages/networks":
+"@polkadot/networks@5.1.0, @polkadot/networks@workspace:packages/networks":
   version: 0.0.0-use.local
   resolution: "@polkadot/networks@workspace:packages/networks"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/util": 5.0.2-9
-    "@polkadot/x-fetch": 5.0.2-9
+    "@polkadot/util": 5.1.0
+    "@polkadot/x-fetch": 5.1.0
   languageName: unknown
   linkType: soft
 
@@ -1811,15 +1811,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/util-crypto@5.0.2-9, @polkadot/util-crypto@workspace:packages/util-crypto":
+"@polkadot/util-crypto@5.1.0, @polkadot/util-crypto@workspace:packages/util-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/networks": 5.0.2-9
-    "@polkadot/util": 5.0.2-9
-    "@polkadot/wasm-crypto": ^3.0.2-12
-    "@polkadot/x-randomvalues": 5.0.2-9
+    "@polkadot/networks": 5.1.0
+    "@polkadot/util": 5.1.0
+    "@polkadot/wasm-crypto": ^3.1.1
+    "@polkadot/x-randomvalues": 5.1.0
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
     "@types/elliptic": ^6.4.12
@@ -1836,17 +1836,17 @@ __metadata:
     tweetnacl: ^1.0.3
     xxhashjs: ^0.2.2
   peerDependencies:
-    "@polkadot/util": 5.0.2-9
+    "@polkadot/util": 5.1.0
   languageName: unknown
   linkType: soft
 
-"@polkadot/util@5.0.2-9, @polkadot/util@workspace:packages/util":
+"@polkadot/util@5.1.0, @polkadot/util@workspace:packages/util":
   version: 0.0.0-use.local
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/x-textdecoder": 5.0.2-9
-    "@polkadot/x-textencoder": 5.0.2-9
+    "@polkadot/x-textdecoder": 5.1.0
+    "@polkadot/x-textencoder": 5.1.0
     "@types/bn.js": ^4.11.6
     bn.js: ^4.11.9
     camelcase: ^5.3.1
@@ -1854,39 +1854,39 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-asmjs@npm:^3.0.2-12":
-  version: 3.0.2-12
-  resolution: "@polkadot/wasm-crypto-asmjs@npm:3.0.2-12"
+"@polkadot/wasm-crypto-asmjs@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@polkadot/wasm-crypto-asmjs@npm:3.1.1"
   dependencies:
     "@babel/runtime": ^7.12.5
-  checksum: 53cfeb0e3843f2429f8a4e17b65d7067d8f32f7f7a6a62e8fff45b09fc3432740509cc56ac6f9e9fe5ff03225f50dbcbe334c2057ad740dc3b74be3243711b77
+  checksum: 6f8f10452e89ba7e3cabbd38f521cd379180c6efec644a79b7e39c04eb00dbba50a121a695cfc02578ec123c3139ce2aa128b193f11ed49e1e9f624685350e8a
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto-wasm@npm:^3.0.2-12":
-  version: 3.0.2-12
-  resolution: "@polkadot/wasm-crypto-wasm@npm:3.0.2-12"
+"@polkadot/wasm-crypto-wasm@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@polkadot/wasm-crypto-wasm@npm:3.1.1"
   dependencies:
     "@babel/runtime": ^7.12.5
-  checksum: 9f66f9ef5b9e4ca01a444bf37c09abc39329de6ced74862a70cf2ae17dfa2ed35961b2f1ae32293a1fa6b067f4228b8e70b9d0656d50b8f7831b08e094005506
+  checksum: f96eda239fa4632359983ef12d776268ed2f16a12cc888e594f3ca43f09b42cc389ad248bbccb99b801b59ad672e2961a9e3dff9377ede067588d4de541df6fa
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto@npm:^3.0.2-12":
-  version: 3.0.2-12
-  resolution: "@polkadot/wasm-crypto@npm:3.0.2-12"
+"@polkadot/wasm-crypto@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@polkadot/wasm-crypto@npm:3.1.1"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/wasm-crypto-asmjs": ^3.0.2-12
-    "@polkadot/wasm-crypto-wasm": ^3.0.2-12
+    "@polkadot/wasm-crypto-asmjs": ^3.1.1
+    "@polkadot/wasm-crypto-wasm": ^3.1.1
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
-  checksum: b3d28c00be18777ec78c9d364c4538facd1959913a8068f3237dc50cb042479fa7ecfab79454601351395fe524694d34ecc6495b88727afe24a1fa4591914a4d
+  checksum: a7b3d029d88669ea9775c8cfe166a44a06ba243283c03fa0547bf4c6144c5440260a0bd1a6acc9c67b57ab707c406d681a2e52af5e7da3ebe8bb4fdeff071c66
   languageName: node
   linkType: hard
 
-"@polkadot/x-fetch@5.0.2-9, @polkadot/x-fetch@workspace:packages/x-fetch":
+"@polkadot/x-fetch@5.1.0, @polkadot/x-fetch@workspace:packages/x-fetch":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-fetch@workspace:packages/x-fetch"
   dependencies:
@@ -1896,16 +1896,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-randomvalues@5.0.2-9, @polkadot/x-randomvalues@workspace:packages/x-randomvalues":
+"@polkadot/x-randomvalues@5.1.0, @polkadot/x-randomvalues@workspace:packages/x-randomvalues":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@types/react-native": ^0.63.41
+    "@types/react-native": ^0.63.42
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-textdecoder@5.0.2-9, @polkadot/x-textdecoder@workspace:packages/x-textdecoder":
+"@polkadot/x-textdecoder@5.1.0, @polkadot/x-textdecoder@workspace:packages/x-textdecoder":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-textdecoder@workspace:packages/x-textdecoder"
   dependencies:
@@ -1913,7 +1913,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-textencoder@5.0.2-9, @polkadot/x-textencoder@workspace:packages/x-textencoder":
+"@polkadot/x-textencoder@5.1.0, @polkadot/x-textencoder@workspace:packages/x-textencoder":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-textencoder@workspace:packages/x-textencoder"
   dependencies:
@@ -2178,12 +2178,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.63.41":
-  version: 0.63.41
-  resolution: "@types/react-native@npm:0.63.41"
+"@types/react-native@npm:^0.63.42":
+  version: 0.63.42
+  resolution: "@types/react-native@npm:0.63.42"
   dependencies:
     "@types/react": "*"
-  checksum: 671b14ba35d3be57ad219cec0b4b26ace34a8c8cf95b08581236c333a63afecf8e1e845ae9cad6256c842b4c3b32a7bfdd3d1283800f94693512c172366ba4d8
+  checksum: a4a9838f76d03561302f40b342e11e799bdb58d8d8cdd82918a83b4d9a9717df5e64794705f258b93231ed30475fe74495267e3675985d467efcb793258b6daa
   languageName: node
   linkType: hard
 
@@ -8992,7 +8992,7 @@ fsevents@~2.1.2:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.12.10
-    "@polkadot/dev": ^0.61.12
+    "@polkadot/dev": ^0.61.13
     "@polkadot/ts": ^0.3.58
     "@types/jest": ^26.0.19
   languageName: unknown
