@@ -12,7 +12,7 @@
  * ```javascript
  * import { arrayChunk } from '@polkadot/util';
  *
- * arrayChunk([2, 2, 3, 4, 5]); // [[1, 2], [3, 4], 5]
+ * arrayChunk([1, 2, 3, 4, 5]); // [[1, 2], [3, 4], [5]]
  * ```
  */
 export function arrayChunk <T> (array: T[], chunkSize: number): T[][] {
