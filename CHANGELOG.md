@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 5.2.1
+
+Changes:
+
+- Add `arrayFlatten` to merge a series of arrays into a single
+
+
 ## 5.1.1 Dec 19, 2020
 
 Changes:

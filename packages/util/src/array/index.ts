@@ -6,3 +6,4 @@
  */
 
 export { arrayFilter } from './filter';
+export { arrayFlatten } from './flatten';
