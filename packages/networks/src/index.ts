@@ -297,6 +297,15 @@ const all: NetworkFromSubstrate[] = [
     website: null
   },
   {
+    decimals: [15],
+    displayName: 'Valiu Liquidity Network',
+    network: 'vln',
+    prefix: 35,
+    standardAccount: '*25519',
+    symbols: ['USDv'],
+    website: 'https://valiu.com/'
+  },
+  {
     decimals: [18],
     displayName: 'Centrifuge Chain',
     network: 'centrifuge',
