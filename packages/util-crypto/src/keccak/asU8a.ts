@@ -20,10 +20,12 @@ import { isReady, keccak256 } from '@polkadot/wasm-crypto';
  * keccakAsU8a('123'); // => Uint8Array
  * ```
  */
-export function keccakAsU8a (value: Buffer | Uint8Array | string, onlyJs = false): Uint8Array {
-  return isReady() && !onlyJs
+export function keccakAsU8a (value: Buffer | Uint8Array | string, bitLength: 256 | 512 = 256, onlyJs = false): Uint8Array {
+  const is256 = bitLength === 256;
+
+  return isReady() && is256 && !onlyJs
     ? keccak256(u8aToU8a(value))
     : new Uint8Array(
-      js.keccak256.update(u8aToU8a(value)).arrayBuffer()
+      (is256 ? js.keccak256 : js.keccak512).update(u8aToU8a(value)).arrayBuffer()
     );
 }

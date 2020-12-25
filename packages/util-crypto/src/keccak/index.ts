@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /**
- * @summary Create Keccak256 values as hex & Uint8Array output
+ * @summary Create Keccak256/512 values as hex & Uint8Array output
  */
 
 export { keccakAsHex } from './asHex';

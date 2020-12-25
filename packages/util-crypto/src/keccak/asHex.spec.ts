@@ -5,17 +5,24 @@ import { waitReady } from '@polkadot/wasm-crypto';
 
 import { keccakAsHex } from '.';
 
-const value = 'test value';
-const result = '2d07364b5c231c56ce63d49430e085ea3033c750688ba532b24029124c26ca5e';
+const BITS: (256 | 512)[] = [256, 512];
+
+const value = 'test';
+const result = {
+  256: '9c22ff5f21f0b81b113e63f7db6da94fedef11b2119b4088b89664fb9a3cb658',
+  512: '1e2e9fc2002b002d75198b7503210c05a1baac4560916a3c6d93bcce3a50d7f00fd395bf1647b9abb8d1afcc9c76c289b0c9383ba386a956da4b38934417789e'
+};
 
 describe('keccakAsHex', (): void => {
   beforeEach(async (): Promise<void> => {
     await waitReady();
   });
 
-  it('returns a prefixed hex representation', (): void => {
-    expect(
-      keccakAsHex(value)
-    ).toEqual(`0x${result}`);
+  BITS.forEach((bitLength): void => {
+    it('returns a prefixed hex representation', (): void => {
+      expect(
+        keccakAsHex(value, bitLength)
+      ).toEqual(`0x${result[bitLength]}`);
+    });
   });
 });

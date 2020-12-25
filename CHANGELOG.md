@@ -6,7 +6,8 @@ Changes:
 
 - Add `arrayFlatten` to merge a series of arrays into a single
 - Add `arrayChunk` to chunk an array into multiples of defined size
-
+- Add `bitLength` (256/512) to `keccakAs{Hex, U8a}`
+- Align `@polkadot/networks` with Substrate master
 
 ## 5.1.1 Dec 19, 2020
 
@@ -15,6 +16,7 @@ Changes:
 - `detectPackage` now can take a path-retrieval callback as second argument
 - Adjust `blake2js` imports to consistently cater for esm & cjs usage
 - Explicitly mark `detectPackage` usage as having side-effects
+- Align `@polkadot/networks` with Substrate master
 - `@polkadot/wasm-crypto` 3.1.1
 
 
@@ -30,6 +32,7 @@ Changes:
 - Debug logs now don't depend on `NODE_ENV`, but rather `DEBUG=<type,type,...>` (`*` logs all)
 - Limit debug console output via `DEBUG_MAX=<number>` value, trimming when passed
 - Add `memoize` util, allowing for function memoization (as used in the API)
+- Align `@polkadot/networks` with Substrate master
 - `@polkadot/wasm-crypto` 3.0.1
 
 
