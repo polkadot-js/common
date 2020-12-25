@@ -7,10 +7,10 @@ import { keccakAsHex } from '.';
 
 const BITS: (256 | 512)[] = [256, 512];
 
-const value = 'test value';
+const value = 'test';
 const result = {
-  256: '2d07364b5c231c56ce63d49430e085ea3033c750688ba532b24029124c26ca5e',
-  512: 'hec1b50cc57f85ccd968a9d7c7a809dcebd140a548c8e0b67f3afcdd6fc14cca2b1d04187aef24ba0081b74f2ec362431e425760febe94a5607790854cafe5b197'
+  256: '9c22ff5f21f0b81b113e63f7db6da94fedef11b2119b4088b89664fb9a3cb658',
+  512: '1e2e9fc2002b002d75198b7503210c05a1baac4560916a3c6d93bcce3a50d7f00fd395bf1647b9abb8d1afcc9c76c289b0c9383ba386a956da4b38934417789e'
 };
 
 describe('keccakAsHex', (): void => {
