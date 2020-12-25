@@ -26,8 +26,6 @@ export function keccakAsU8a (value: Buffer | Uint8Array | string, bitLength: 256
   return isReady() && is256 && !onlyJs
     ? keccak256(u8aToU8a(value))
     : new Uint8Array(
-      is256
-        ? js.keccak256.update(u8aToU8a(value)).arrayBuffer()
-        : js.keccak512.update(u8aToU8a(value)).arrayBuffer()
+      (is256 ? js.keccak256 : js.keccak512).update(u8aToU8a(value)).arrayBuffer()
     );
 }
