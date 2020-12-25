@@ -19,8 +19,8 @@ import { keccakAsU8a } from './asU8a';
  * keccakAsHex('123'); // => 0x...
  * ```
  */
-export function keccakAsHex (value: Buffer | Uint8Array | string): string {
+export function keccakAsHex (value: Buffer | Uint8Array | string, bitLength?: 256 | 512): string {
   return u8aToHex(
-    keccakAsU8a(value)
+    keccakAsU8a(value, bitLength)
   );
 }
