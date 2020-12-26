@@ -1,13 +1,14 @@
 # CHANGELOG
 
-## 5.2.1
+## 5.2.1 Dec 27, 2020
 
 Changes:
 
 - Add `arrayFlatten` to merge a series of arrays into a single
 - Add `arrayChunk` to chunk an array into multiples of defined size
-- Add `bitLength` (256/512) to `keccakAs{Hex, U8a}`
+- Add `bitLength` param (allowed 256, 512) to `keccakAs{Hex, U8a}`
 - Align `@polkadot/networks` with Substrate master
+
 
 ## 5.1.1 Dec 19, 2020
 
