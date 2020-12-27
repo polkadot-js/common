@@ -10,6 +10,7 @@ export interface NetworkFromSubstrate {
   prefix: number;
   genesisHash?: string[] | null;
   icon?: Icon | null;
+  isIgnored?: boolean;
   standardAccount: '*25519' | null;
   symbols: string[] | null;
   website: string | null;

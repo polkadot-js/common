@@ -19,6 +19,7 @@ const UNSORTED = [0, 2, 42];
 const createReserved = (prefix: number, displayName = 'This prefix is reserved.'): NetworkFromSubstrate => ({
   decimals: null,
   displayName,
+  isIgnored: true,
   network: `reserved${prefix}`,
   prefix,
   standardAccount: null,
@@ -215,7 +216,7 @@ const all: NetworkFromSubstrate[] = [
   {
     decimals: [6],
     displayName: 'Dock Testnet',
-    genesisHash: ['0x3f0608444cf5d7eec977430483ffef31ff86dfa6bfc6d7114023ee80cc03ea3f'],
+    isIgnored: true, // testnet
     network: 'dock-testnet',
     prefix: 21,
     standardAccount: '*25519',
@@ -253,6 +254,7 @@ const all: NetworkFromSubstrate[] = [
   {
     decimals: [18],
     displayName: 'ZERO Alphaville',
+    isIgnored: true, // testnet
     network: 'zero-alphaville',
     prefix: 25,
     standardAccount: '*25519',
@@ -344,6 +346,7 @@ const all: NetworkFromSubstrate[] = [
   {
     decimals: [18],
     displayName: 'MathChain testnet',
+    isIgnored: true, // testnet
     network: 'mathchain-testnet',
     prefix: 40,
     standardAccount: '*25519',
@@ -384,11 +387,12 @@ const all: NetworkFromSubstrate[] = [
 ];
 
 // The list of available/claimed prefixes
+//   - no testnets
 //   - we only include those where we have a standardAccount
 //   - when no icon has been specified, default to substrate
 //   - sort by name, however we keep 0, 2, 42 first in the list
 const available: Network[] = all
-  .filter((n) => n.standardAccount === '*25519')
+  .filter((n) => !n.isIgnored)
   .map((n) => ({ ...n, genesisHash: n.genesisHash || [], icon: n.icon || 'substrate' }))
   .sort((a, b) =>
     UNSORTED.includes(a.prefix) && UNSORTED.includes(b.prefix)
