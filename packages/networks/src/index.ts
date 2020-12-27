@@ -215,7 +215,6 @@ const all: NetworkFromSubstrate[] = [
   {
     decimals: [6],
     displayName: 'Dock Testnet',
-    genesisHash: ['0x3f0608444cf5d7eec977430483ffef31ff86dfa6bfc6d7114023ee80cc03ea3f'],
     isIgnored: true, // testnet
     network: 'dock-testnet',
     prefix: 21,
