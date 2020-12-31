@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import * as nacl from 'tweetnacl';
+import nacl from 'tweetnacl';
 
 import { randomAsU8a } from '../random/asU8a';
 

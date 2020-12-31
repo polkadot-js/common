@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types';
 
-import * as nacl from 'tweetnacl';
+import nacl from 'tweetnacl';
 
 import { ed25519KeypairFromSeed, isReady } from '@polkadot/wasm-crypto';
 
