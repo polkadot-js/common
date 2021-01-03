@@ -1,4 +1,4 @@
-// Copyright 2017-2020 @polkadot/networks authors & contributors
+// Copyright 2017-2021 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // This contains exactly the same information as available in (with some extensions)
