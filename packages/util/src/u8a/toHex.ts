@@ -1,4 +1,4 @@
-// Copyright 2017-2020 @polkadot/util authors & contributors
+// Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 const ALPHABET = new Array(256).fill(0).map((_, n) => n.toString(16).padStart(2, '0'));
