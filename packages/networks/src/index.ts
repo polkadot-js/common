@@ -262,6 +262,25 @@ const all: NetworkFromSubstrate[] = [
     website: 'https://zero.io'
   },
   {
+    decimals: [10],
+    displayName: 'Jupiter',
+    isIgnored: true, // testnet
+    network: 'jupiter',
+    prefix: 26,
+    standardAccount: '*25519',
+    symbols: ['jDOT'],
+    website: 'https://jupiter.patract.io'
+  },
+  {
+    decimals: [10, 12],
+    displayName: 'Patract',
+    network: 'patract',
+    prefix: 27,
+    standardAccount: '*25519',
+    symbols: ['pDOT', 'pKSM'],
+    website: 'https://patract.network'
+  },
+  {
     decimals: null,
     displayName: 'Subsocial',
     genesisHash: ['0x0bd72c1c305172e1275278aaeb3f161e02eccb7a819e63f62d47bd53a28189f8'],
