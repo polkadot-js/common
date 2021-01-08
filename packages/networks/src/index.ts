@@ -400,6 +400,15 @@ const all: NetworkFromSubstrate[] = [
     symbols: ['PCX'],
     website: 'https://chainx.org/'
   },
+  {
+    decimals: [12, 12],
+    displayName: 'UniArts Network',
+    network: 'uniarts',
+    prefix: 45,
+    standardAccount: '*25519',
+    symbols: ['UART', 'UINK'],
+    website: 'https://uniarts.me'
+  },
   createReserved(46),
   createReserved(47),
   createReserved(48, 'All prefixes 48 and higher are reserved and cannot be allocated.')
