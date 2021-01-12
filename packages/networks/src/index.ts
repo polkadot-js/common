@@ -272,6 +272,15 @@ const all: NetworkFromSubstrate[] = [
     website: null
   },
   {
+    decimals: [18],
+    displayName: 'Dhiway CORD Network',
+    network: 'cord',
+    prefix: 29,
+    standardAccount: '*25519',
+    symbols: ['DCU'],
+    website: 'https://dhiway.com/'
+  },
+  {
     decimals: [12],
     displayName: 'Phala Network',
     network: 'phala',
