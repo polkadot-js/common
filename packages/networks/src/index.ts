@@ -133,6 +133,7 @@ const all: NetworkFromSubstrate[] = [
   {
     decimals: null,
     displayName: 'Polymath',
+    genesisHash: ['12fddc9e2128b3fe571e4e5427addcb87fcaf08493867a68dd6ae44b406b39c7'],
     network: 'polymath',
     prefix: 12,
     standardAccount: '*25519',
