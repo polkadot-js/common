@@ -131,14 +131,13 @@ const all: NetworkFromSubstrate[] = [
     website: 'http://laminar.network/'
   },
   {
-    decimals: [6],
-    displayName: 'Polymesh',
-    genesisHash: ['12fddc9e2128b3fe571e4e5427addcb87fcaf08493867a68dd6ae44b406b39c7'],
-    network: 'polymesh',
+    decimals: null,
+    displayName: 'Polymath',
+    network: 'polymath',
     prefix: 12,
     standardAccount: '*25519',
-    symbols: ['POLYX'],
-    website: 'https://polymath.network/'
+    symbols: null,
+    website: null
   },
   {
     decimals: null,
