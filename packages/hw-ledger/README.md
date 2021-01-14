@@ -1,2 +1,2 @@
-# @polkadot/ledger
+# @polkadot/hw-ledger
 

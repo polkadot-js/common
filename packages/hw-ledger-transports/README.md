@@ -1,2 +1,2 @@
-# @polkadot/ledger-transports
+# @polkadot/hw-ledger-transports
 
