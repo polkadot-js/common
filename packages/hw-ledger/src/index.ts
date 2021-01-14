@@ -6,7 +6,7 @@ import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, Ledge
 
 import { newDockApp, newKusamaApp, newPolkadotApp, newPolymeshApp, ResponseBase, SubstrateApp } from '@zondax/ledger-polkadot';
 
-import { transports } from '@polkadot/ledger-transports';
+import { transports } from '@polkadot/hw-ledger-transports';
 import { assert, bufferToU8a, u8aToBuffer, u8aToHex } from '@polkadot/util';
 
 export const LEDGER_DEFAULT_ACCOUNT = 0x80000000;

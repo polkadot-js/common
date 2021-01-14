@@ -1785,22 +1785,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/keyring@workspace:packages/keyring":
+"@polkadot/hw-ledger-transports@5.2.4-5, @polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports":
   version: 0.0.0-use.local
-  resolution: "@polkadot/keyring@workspace:packages/keyring"
-  dependencies:
-    "@babel/runtime": ^7.12.5
-    "@polkadot/util": 5.2.4-5
-    "@polkadot/util-crypto": 5.2.4-5
-  peerDependencies:
-    "@polkadot/util": 5.2.4-5
-    "@polkadot/util-crypto": 5.2.4-5
-  languageName: unknown
-  linkType: soft
-
-"@polkadot/ledger-transports@5.2.4-5, @polkadot/ledger-transports@workspace:packages/ledger-transports":
-  version: 0.0.0-use.local
-  resolution: "@polkadot/ledger-transports@workspace:packages/ledger-transports"
+  resolution: "@polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.38.0
@@ -1813,14 +1800,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/ledger@workspace:packages/ledger":
+"@polkadot/hw-ledger@workspace:packages/hw-ledger":
   version: 0.0.0-use.local
-  resolution: "@polkadot/ledger@workspace:packages/ledger"
+  resolution: "@polkadot/hw-ledger@workspace:packages/hw-ledger"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/ledger-transports": 5.2.4-5
+    "@polkadot/hw-ledger-transports": 5.2.4-5
     "@polkadot/util": ^5.2.4-5
     "@zondax/ledger-polkadot": ^0.13.0
+  languageName: unknown
+  linkType: soft
+
+"@polkadot/keyring@workspace:packages/keyring":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/keyring@workspace:packages/keyring"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@polkadot/util": 5.2.4-5
+    "@polkadot/util-crypto": 5.2.4-5
+  peerDependencies:
+    "@polkadot/util": 5.2.4-5
+    "@polkadot/util-crypto": 5.2.4-5
   languageName: unknown
   linkType: soft
 
