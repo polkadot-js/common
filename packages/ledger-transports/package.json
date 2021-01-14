@@ -1,0 +1,24 @@
+{
+  "name": "@polkadot/ledger-transports",
+  "version": "5.2.4-5",
+  "repository": "github:polkadot-js/common",
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "maintainers": [],
+  "contributors": [],
+  "license": "Apache-2.0",
+  "main": "node.js",
+  "browser": "browser.js",
+  "react-native": "react-native.js",
+  "sideEffects": false,
+  "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "@ledgerhq/hw-transport-webusb": "^5.38.0"
+  },
+  "devDependencies": {
+    "@types/ledgerhq__hw-transport-node-hid": "^4.22.2",
+    "@types/ledgerhq__hw-transport-webusb": "^4.70.1"
+  },
+  "optionalDependencies": {
+    "@ledgerhq/hw-transport-node-hid-singleton": "^5.38.0"
+  }
+}

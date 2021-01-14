@@ -9,6 +9,10 @@
     "paths": {
       "@polkadot/keyring": [ "packages/keyring/src" ],
       "@polkadot/keyring/*": [ "packages/keyring/src/*" ],
+      "@polkadot/ledger": [ "packages/ledger/src" ],
+      "@polkadot/ledger/*": [ "packages/ledger/src/*" ],
+      "@polkadot/ledger-transports": [ "packages/ledger-transports/src" ],
+      "@polkadot/ledger-transports/*": [ "packages/ledger-transports/src/*" ],
       "@polkadot/networks": [ "packages/networks/src" ],
       "@polkadot/networks/*": [ "packages/networks/src/*" ],
       "@polkadot/util-crypto": [ "packages/util-crypto/src" ],
