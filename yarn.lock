@@ -1798,21 +1798,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/ledger-transports@npm:0.65.2-4":
-  version: 0.65.2-4
-  resolution: "@polkadot/ledger-transports@npm:0.65.2-4"
-  dependencies:
-    "@babel/runtime": ^7.12.5
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.38.0
-    "@ledgerhq/hw-transport-webusb": ^5.38.0
-  dependenciesMeta:
-    "@ledgerhq/hw-transport-node-hid-singleton":
-      optional: true
-  checksum: af075e302a0e01f65e5f18dd39ecfcf1d33a4d5861cafec2dcf73dcadb5fbe24cd6b3f613604ba898969477d5c345127b052dc90eaee24c8d65bf68d19876f36
-  languageName: node
-  linkType: hard
-
-"@polkadot/ledger-transports@workspace:packages/ledger-transports":
+"@polkadot/ledger-transports@5.2.4-5, @polkadot/ledger-transports@workspace:packages/ledger-transports":
   version: 0.0.0-use.local
   resolution: "@polkadot/ledger-transports@workspace:packages/ledger-transports"
   dependencies:
@@ -1832,7 +1818,7 @@ __metadata:
   resolution: "@polkadot/ledger@workspace:packages/ledger"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/ledger-transports": 0.65.2-4
+    "@polkadot/ledger-transports": 5.2.4-5
     "@polkadot/util": ^5.2.4-5
     "@zondax/ledger-polkadot": ^0.13.0
   languageName: unknown
