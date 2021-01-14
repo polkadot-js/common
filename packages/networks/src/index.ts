@@ -32,6 +32,7 @@ const all: NetworkFromSubstrate[] = [
     decimals: [10],
     displayName: 'Polkadot Relay Chain',
     genesisHash: ['0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3'],
+    hasLedgerSupport: true,
     icon: 'polkadot',
     network: 'polkadot',
     prefix: 0,
@@ -48,6 +49,7 @@ const all: NetworkFromSubstrate[] = [
       '0xe3777fa922cafbff200cadeaea1a76bd7898ad5b89f7848999058b50e715f636', // Kusama CC2
       '0x3fd7b9eb6a00376e5be61f01abb429ffb0b104be05eaff4d458da48fcd425baf' // Kusama CC1
     ],
+    hasLedgerSupport: true,
     icon: 'polkadot',
     network: 'kusama',
     prefix: 2,
@@ -134,6 +136,7 @@ const all: NetworkFromSubstrate[] = [
     decimals: null,
     displayName: 'Polymath',
     genesisHash: ['0x12fddc9e2128b3fe571e4e5427addcb87fcaf08493867a68dd6ae44b406b39c7'],
+    hasLedgerSupport: true,
     network: 'polymath',
     prefix: 12,
     standardAccount: '*25519',
@@ -228,6 +231,7 @@ const all: NetworkFromSubstrate[] = [
     decimals: [6],
     displayName: 'Dock Mainnet',
     genesisHash: ['0xf73467c6544aa68df2ee546b135f955c46b90fa627e9b5d7935f41061bb8a5a9'],
+    hasLedgerSupport: true,
     network: 'dock-mainnet',
     prefix: 22,
     standardAccount: '*25519',
