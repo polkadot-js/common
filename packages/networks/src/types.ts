@@ -9,6 +9,7 @@ export interface NetworkFromSubstrate {
   network: string;
   prefix: number;
   genesisHash?: string[] | null;
+  hasLedgerSupport?: boolean;
   icon?: Icon | null;
   isIgnored?: boolean;
   standardAccount: '*25519' | null;

@@ -7,6 +7,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@polkadot/hw-ledger": [ "packages/ledger/src" ],
+      "@polkadot/hw-ledger/*": [ "packages/ledger/src/*" ],
+      "@polkadot/hw-ledger-transports": [ "packages/hw-ledger-transports/src/browser" ],
+      "@polkadot/hw-ledger-transports/*": [ "packages/hw-ledger-transports/src/browser" ],
       "@polkadot/keyring": [ "packages/keyring/src" ],
       "@polkadot/keyring/*": [ "packages/keyring/src/*" ],
       "@polkadot/networks": [ "packages/networks/src" ],
