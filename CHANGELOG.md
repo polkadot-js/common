@@ -6,6 +6,7 @@
 
 Contributed:
 
+- Add Dock Ledger integration (Thanks to https://github.com/lovesh)
 - Add Polymesh Ledger integration (Thanks to https://github.com/adamdossa)
 - Add flag for Ledger capabilities on networks (Thanks to https://github.com/Tbaut)
 
