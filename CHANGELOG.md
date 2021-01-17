@@ -12,7 +12,7 @@ Contributed:
 Changes:
 
 - Move `@polkadot/ledger` packages into common
-- Update `@polkadot.networks` to align with latest Substrate ss58-registry
+- Update `@polkadot/networks` to align with latest Substrate ss58-registry
 
 
 ## 5.2.1 Dec 27, 2020
