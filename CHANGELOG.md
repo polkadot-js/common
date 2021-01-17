@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 5.3.1 Jan 17, 2021
+
+**Important** For users of the `@polkadot/ledger` package, it is now included in this repo (since it is a general utility) and renamed to `@polkadot/hw-ledger`
+
+Contributed:
+
+- Add Polymesh Ledger integration (Thanks to https://github.com/adamdossa)
+- Add flag for Ledger capabilities on networks (Thanks to https://github.com/Tbaut)
+
+Changes:
+
+- Move `@polkadot/ledger` packages into common
+- Update `@polkadot.networks` to align with latest Substrate ss58-registry
+
+
 ## 5.2.1 Dec 27, 2020
 
 Changes:
