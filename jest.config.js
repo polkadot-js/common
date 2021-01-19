@@ -13,7 +13,8 @@ module.exports = Object.assign({}, config, {
     '@polkadot/util-(crypto)(.*)$': '<rootDir>/packages/util-$1/src/$2',
     // eslint-disable-next-line sort-keys
     '@polkadot/util(.*)$': '<rootDir>/packages/util/src/$1',
-    '@polkadot/x-(fetch|randomvalues|textdecoder|textencoder|ws)(.*)$': '<rootDir>/packages/x-$1/src/node'
+    '@polkadot/x-(fetch|randomvalues|textdecoder|textencoder|ws)(.*)$': '<rootDir>/packages/x-$1/src/node',
+    '@polkadot/x-rxjs(.*)$': '<rootDir>/packages/x-rxjs/src/$1'
   },
   modulePathIgnorePatterns: [
     '<rootDir>/packages/hw-ledger/build',
