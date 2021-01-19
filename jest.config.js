@@ -24,6 +24,7 @@ module.exports = Object.assign({}, config, {
     '<rootDir>/packages/util-crypto/build',
     '<rootDir>/packages/x-fetch/build',
     '<rootDir>/packages/x-randomvalues/build',
+    '<rootDir>/packages/x-rxjs/build',
     '<rootDir>/packages/x-textdecoder/build',
     '<rootDir>/packages/x-textencoder/build',
     '<rootDir>/packages/x-ws/build'
