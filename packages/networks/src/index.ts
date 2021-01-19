@@ -133,15 +133,15 @@ const all: NetworkFromSubstrate[] = [
     website: 'http://laminar.network/'
   },
   {
-    decimals: null,
-    displayName: 'Polymath',
+    decimals: [6],
+    displayName: 'Polymesh',
     genesisHash: ['0x12fddc9e2128b3fe571e4e5427addcb87fcaf08493867a68dd6ae44b406b39c7'],
     hasLedgerSupport: true,
-    network: 'polymath',
+    network: 'polymesh',
     prefix: 12,
     standardAccount: '*25519',
-    symbols: null,
-    website: null
+    symbols: ['POLYX'],
+    website: 'https://polymath.network/'
   },
   {
     decimals: null,
@@ -314,13 +314,22 @@ const all: NetworkFromSubstrate[] = [
     website: 'https://phala.network'
   },
   {
-    decimals: null,
-    displayName: 'Robonomics Network',
+    decimals: [12],
+    displayName: 'Litentry Network',
+    network: 'litentry',
+    prefix: 31,
+    standardAccount: '*25519',
+    symbols: ['LIT'],
+    website: 'https://litentry.com/'
+  },
+  {
+    decimals: [9],
+    displayName: 'Robonomics',
     network: 'robonomics',
     prefix: 32,
     standardAccount: '*25519',
-    symbols: null,
-    website: null
+    symbols: ['XRT'],
+    website: 'https://robonomics.network'
   },
   {
     decimals: null,
