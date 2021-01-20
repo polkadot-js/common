@@ -6,8 +6,6 @@ import { vrfVerify } from '@polkadot/wasm-crypto';
 
 const EMPTY_U8A = new Uint8Array();
 
-// (pubkey: Uint8Array, context: Uint8Array, message: Uint8Array, extra: Uint8Array, outAndProof: Uint8Array)
-
 /**
  * @name schnorrkelVrfVerify
  * @description Verify with sr25519 vrf verification

@@ -8,8 +8,6 @@ import { vrfSign } from '@polkadot/wasm-crypto';
 
 const EMPTY_U8A = new Uint8Array();
 
-// secret: Uint8Array, context: Uint8Array, message: Uint8Array, extra: Uint8Array
-
 /**
  * @name schnorrkelVrfSign
  * @description Sign with sr25519 vrf signing (deterministic)
