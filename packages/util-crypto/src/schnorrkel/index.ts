@@ -7,3 +7,5 @@ export { schnorrkelDeriveSoft } from './deriveSoft';
 export { schnorrkelKeypairFromSeed } from './keypair/fromSeed';
 export { schnorrkelSign } from './sign';
 export { schnorrkelVerify } from './verify';
+export { schnorrkelVrfSign } from './vrfSign';
+export { schnorrkelVrfVerify } from './vrfVerify';
