@@ -53,6 +53,12 @@ export function nobody (): KeyringPair {
     type: 'ed25519',
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
+      false,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    vrfSign: (message: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array =>
+      new Uint8Array(96),
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    vrfVerify: (message: Uint8Array, vrfResult: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): boolean =>
       false
   };
 

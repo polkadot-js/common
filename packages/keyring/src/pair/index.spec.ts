@@ -56,6 +56,17 @@ describe('pair', (): void => {
     ).toEqual(false);
   });
 
+  it('allows vrf sign and verify', (): void => {
+    const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
+
+    expect(
+      keyring.alice.vrfVerify(
+        message,
+        keyring.alice.vrfSign(message)
+      )
+    ).toBe(true);
+  });
+
   it('allows setting/getting of meta', (): void => {
     keyring.bob.setMeta({ foo: 'bar', something: 'else' });
 
