@@ -48,6 +48,8 @@ export interface KeyringPair {
   sign (message: Uint8Array, options?: SignOptions): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;
   verify (message: Uint8Array, signature: Uint8Array): boolean;
+  vrfSign (message: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array;
+  vrfVerify (message: Uint8Array, vrfResult: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): boolean;
 }
 
 export interface KeyringPairs {

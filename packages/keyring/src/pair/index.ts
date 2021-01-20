@@ -5,8 +5,8 @@ import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, SignOptions } from '../types';
 import type { PairInfo } from './types';
 
-import { assert, u8aConcat, u8aToHex } from '@polkadot/util';
-import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
+import { assert, u8aConcat, u8aEq, u8aToHex } from '@polkadot/util';
+import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
 import { encodePair } from './encode';
@@ -178,6 +178,27 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       return pairToJson(type, { address, meta }, recode(passphrase), !!passphrase);
     },
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
-      signatureVerify(message, signature, TYPE_ADDRESS[type](publicKey)).isValid
+      signatureVerify(message, signature, TYPE_ADDRESS[type](publicKey)).isValid,
+    vrfSign: (message: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array => {
+      assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
+
+      if (type === 'sr25519') {
+        return schnorrkelVrfSign(message, { secretKey }, context, extra);
+      }
+
+      const proof = TYPE_SIGNATURE[type](message, { publicKey, secretKey });
+
+      return u8aConcat(
+        blake2AsU8a(u8aConcat(context || '', extra || '', proof)),
+        proof
+      );
+    },
+    vrfVerify: (message: Uint8Array, vrfResult: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): boolean =>
+      type === 'sr25519'
+        ? schnorrkelVrfVerify(message, vrfResult, publicKey, context, extra)
+        : (
+          signatureVerify(message, vrfResult.subarray(32), TYPE_ADDRESS[type](publicKey)).isValid &&
+          u8aEq(vrfResult.subarray(0, 32), blake2AsU8a(u8aConcat(context || '', extra || '', vrfResult.subarray(32))))
+        )
   };
 }
