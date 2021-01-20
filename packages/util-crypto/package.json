@@ -19,7 +19,7 @@
     "@babel/runtime": "^7.12.5",
     "@polkadot/networks": "5.3.2-1",
     "@polkadot/util": "5.3.2-1",
-    "@polkadot/wasm-crypto": "^3.1.1",
+    "@polkadot/wasm-crypto": "^3.1.2-4",
     "@polkadot/x-randomvalues": "5.3.2-1",
     "base-x": "^3.0.8",
     "blakejs": "^1.1.0",

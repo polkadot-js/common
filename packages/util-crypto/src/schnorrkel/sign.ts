@@ -14,7 +14,5 @@ export function schnorrkelSign (message: Uint8Array | string, { publicKey, secre
   assert(publicKey?.length === 32, 'Expected a valid publicKey, 32-bytes');
   assert(secretKey?.length === 64, 'Expected a valid secretKey, 64-bytes');
 
-  const messageU8a = u8aToU8a(message);
-
-  return sr25519Sign(publicKey, secretKey, messageU8a);
+  return sr25519Sign(publicKey, secretKey, u8aToU8a(message));
 }
