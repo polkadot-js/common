@@ -24,7 +24,7 @@ const APPS: Record<string, (transport: Transport) => SubstrateApp> = {
   dock: newDockApp,
   kusama: newKusamaApp,
   polkadot: newPolkadotApp,
-  polymath: newPolymeshApp
+  polymesh: newPolymeshApp
 };
 
 type Chain = keyof typeof APPS;
