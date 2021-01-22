@@ -1851,7 +1851,7 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@polkadot/networks": 5.3.2-6
     "@polkadot/util": 5.3.2-6
-    "@polkadot/wasm-crypto": ^3.1.2-6
+    "@polkadot/wasm-crypto": ^3.2.1
     "@polkadot/x-randomvalues": 5.3.2-6
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
@@ -1887,35 +1887,35 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-asmjs@npm:^3.1.2-6":
-  version: 3.1.2-6
-  resolution: "@polkadot/wasm-crypto-asmjs@npm:3.1.2-6"
+"@polkadot/wasm-crypto-asmjs@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@polkadot/wasm-crypto-asmjs@npm:3.2.1"
   dependencies:
     "@babel/runtime": ^7.12.5
-  checksum: b7411182abb18b7e600fc5bce853a34781708041a6658adb6f902d0cc337277a3cef64dbaeaa01b2a54d4ca0f59f915a7bf747a3a3061fd1b190d00d9e16c0be
+  checksum: 8aa86a954d33a562b6f1efb4beb0fc512f43bc36e5465455b3efd05edbc67626055464c7bec06e6ce2c152a8535988459b89a800b5dc044299c5b24a790ad4cf
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto-wasm@npm:^3.1.2-6":
-  version: 3.1.2-6
-  resolution: "@polkadot/wasm-crypto-wasm@npm:3.1.2-6"
+"@polkadot/wasm-crypto-wasm@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@polkadot/wasm-crypto-wasm@npm:3.2.1"
   dependencies:
     "@babel/runtime": ^7.12.5
-  checksum: b810eab54e8ca248dadbd6e4e3db2e7bb403ae3e6de0aa97bdf24918b1487d9407ccf739b32bc1b2923dc3c047f9cf5bc0b4259ef52173873ac3b8c86edc61f8
+  checksum: 974372b4dff99b2ec7620a1ba9bb69e181e30ca0f0e814560311cbbc1d851e820676883c5a73b683eb2b0d82765c3256add074586983aa89b46d0d43c6d14507
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto@npm:^3.1.2-6":
-  version: 3.1.2-6
-  resolution: "@polkadot/wasm-crypto@npm:3.1.2-6"
+"@polkadot/wasm-crypto@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@polkadot/wasm-crypto@npm:3.2.1"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/wasm-crypto-asmjs": ^3.1.2-6
-    "@polkadot/wasm-crypto-wasm": ^3.1.2-6
+    "@polkadot/wasm-crypto-asmjs": ^3.2.1
+    "@polkadot/wasm-crypto-wasm": ^3.2.1
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
-  checksum: 23f813a8250867aa530672ba53162f8b880271e7de550be005ae924bd1e3f3d6ca814224bd60b2dd744b7fd8179ed1319eb572a2ea6c4e1b350b186c17387a4b
+  checksum: 388f77a79db8c5d99acae56e5b9cf0a855710a2dd468b4bec4f7687da00f64ebf7cb914b3b7d1613374068556971619220fd4ccf7f8de190ece2387e18c176a9
   languageName: node
   linkType: hard
 
