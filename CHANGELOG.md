@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 5.4.1 Jan 24, 2021
+
+Contributed:
+
+- Adjust Ledger app lookup for Polymesh (Thanks to https://github.com/adamdossa)
+
+Changes:
+
+- Allow decimals as `number[]` & symbol as `string[]` in balanceFormat defaults
+- Add `schnorrkelVrf{Sign, Verify}` to `@polkadot/util-crypto`
+- Export `vrf{Sign, Verify}` on keyring interface
+- Move `@polkadot/x-rxjs` packages from the api repo
+- Align `@polkadot/networks` with Substrate master
+- Explicit edcsa tests for derivation
+- `@polkadot/wasm-crypto` 3.2.1
+
+
 ## 5.3.1 Jan 17, 2021
 
 **Important** For users of the `@polkadot/ledger` package, it is now included in this repo (since it is a general utility) and renamed to `@polkadot/hw-ledger`
