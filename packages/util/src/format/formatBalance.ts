@@ -15,6 +15,11 @@ interface Defaults {
   unit: string;
 }
 
+interface SetDefaults {
+  decimals?: number[] | number;
+  unit?: string[] | string;
+}
+
 interface Options {
   decimals?: number;
   forceUnit?: string;
@@ -29,7 +34,7 @@ interface BalanceFormatter {
   findSi (type: string): SiDef;
   getDefaults (): Defaults;
   getOptions (decimals?: number): SiDef[];
-  setDefaults (defaults: Partial<Defaults>): void;
+  setDefaults (defaults: SetDefaults): void;
 }
 
 const DEFAULT_DECIMALS = 0;
@@ -107,9 +112,17 @@ formatBalance.getOptions = (decimals: number = defaultDecimals): SiDef[] => {
 
 // Sets the default decimals to use for formatting (ui-wide)
 // eslint-disable-next-line @typescript-eslint/unbound-method
-formatBalance.setDefaults = ({ decimals, unit }: Partial<Defaults>): void => {
-  defaultDecimals = isUndefined(decimals) ? defaultDecimals : decimals;
-  defaultUnit = isUndefined(unit) ? defaultUnit : unit;
+formatBalance.setDefaults = ({ decimals, unit }: SetDefaults): void => {
+  defaultDecimals = isUndefined(decimals)
+    ? defaultDecimals
+    : Array.isArray(decimals)
+      ? decimals[0]
+      : decimals;
+  defaultUnit = isUndefined(unit)
+    ? defaultUnit
+    : Array.isArray(unit)
+      ? unit[0]
+      : unit;
 
   SI[SI_MID].text = defaultUnit;
 };
