@@ -237,4 +237,12 @@ describe('formatBalance', (): void => {
       { power: 24, text: 'Yotta', value: 'Y' }
     ]);
   });
+
+  it('can set defaults from array values', (): void => {
+    formatBalance.setDefaults({ decimals: [12, 24], unit: ['Multi', 'Unit'] });
+
+    expect(
+      formatBalance(TESTVAL)
+    ).toEqual('123.4567 mMulti');
+  });
 });
