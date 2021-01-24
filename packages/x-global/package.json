@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-global",
-  "version": "5.4.3",
+  "version": "5.4.4",
   "description": "A cross-environment global replacement",
   "main": "index.js",
   "sideEffects": false,
