@@ -1,7 +1,7 @@
 {
-  "name": "@polkadot/x-rxjs",
+  "name": "@polkadot/x-global",
   "version": "5.4.3",
-  "description": "A pass-through interface for RxJs (allowing node + mjs usage)",
+  "description": "A cross-environment global replacement",
   "main": "index.js",
   "sideEffects": false,
   "author": "Jaco Greeff <jacogr@gmail.com>",
@@ -10,9 +10,10 @@
   "license": "Apache-2.0",
   "repository": "github:polkadot-js/common",
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-rxjs#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-global#readme",
   "dependencies": {
     "@babel/runtime": "^7.12.5",
-    "rxjs": "^6.6.3"
+    "@types/node-fetch": "^2.5.8",
+    "node-fetch": "^2.6.1"
   }
 }
