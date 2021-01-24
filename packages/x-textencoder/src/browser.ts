@@ -3,12 +3,13 @@
 
 import { TextEncoder as Fallback } from './fallback';
 
-const _global =
-  typeof self !== 'undefined'
-    ? self
-    : typeof window !== 'undefined'
-      ? window
-      : this as unknown as (Window & typeof globalThis);
+const _global = typeof self !== 'undefined'
+  ? self
+  : typeof window !== 'undefined'
+    ? window
+    : typeof this !== 'undefined'
+      ? this as unknown as (Window & typeof globalThis)
+      : global;
 
 export const TextEncoder = typeof _global.TextEncoder === 'undefined'
   ? Fallback as unknown as typeof _global.TextEncoder
