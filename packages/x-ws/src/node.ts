@@ -3,6 +3,8 @@
 
 import ws from 'websocket';
 
-export const WebSocket = typeof global.WebSocket === 'undefined'
-  ? ws.w3cwebsocket as unknown as typeof global.WebSocket
-  : global.WebSocket;
+import { xglobal } from '@polkadot/x-global';
+
+export const WebSocket = typeof xglobal.WebSocket === 'undefined'
+  ? ws.w3cwebsocket as unknown as typeof xglobal.WebSocket
+  : xglobal.WebSocket;

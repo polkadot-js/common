@@ -3,6 +3,8 @@
 
 import util from 'util';
 
-export const TextDecoder = typeof global.TextDecoder === 'undefined'
-  ? util.TextDecoder as unknown as typeof global.TextDecoder
-  : global.TextDecoder;
+import { xglobal } from '@polkadot/x-global';
+
+export const TextDecoder = typeof xglobal.TextDecoder === 'undefined'
+  ? util.TextDecoder as unknown as typeof xglobal.TextDecoder
+  : xglobal.TextDecoder;

@@ -3,6 +3,8 @@
 
 import util from 'util';
 
+import { xglobal } from '@polkadot/x-global';
+
 class NodeFallback {
   #encoder: util.TextEncoder;
 
@@ -18,6 +20,6 @@ class NodeFallback {
   }
 }
 
-export const TextEncoder = typeof global.TextEncoder === 'undefined'
-  ? NodeFallback as unknown as typeof global.TextEncoder
-  : global.TextEncoder;
+export const TextEncoder = typeof xglobal.TextEncoder === 'undefined'
+  ? NodeFallback as unknown as typeof xglobal.TextEncoder
+  : xglobal.TextEncoder;
