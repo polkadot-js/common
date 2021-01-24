@@ -20,6 +20,7 @@
       "@polkadot/util": [ "packages/util/src" ],
       "@polkadot/util/*": [ "packages/util/src/*" ],
       "@polkadot/x-fetch": [ "packages/x-fetch/src/browser" ],
+      "@polkadot/x-global": [ "packages/x-global/src" ],
       "@polkadot/x-randomvalues": [ "packages/x-randomvalues/src/browser" ],
       "@polkadot/x-rxjs": ["packages/x-rxjs/src"],
       "@polkadot/x-rxjs/*": ["packages/x-rxjs/src/*"],

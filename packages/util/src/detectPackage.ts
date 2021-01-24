@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { xglobal } from '@polkadot/x-global';
+
 import { isFunction } from './is/function';
 import { isString } from './is/string';
 import { assert } from './assert';
@@ -22,8 +24,7 @@ interface PjsChecks extends This {
   __polkadotjs: Record<string, VersionPath[]>;
 }
 
-type PjsGlobal = NodeJS.Global & PjsChecks;
-type PjsWindow = Window & PjsChecks;
+type PjsWindow = (Window & This) & PjsChecks;
 type FnString = () => string | undefined;
 
 /** @internal */
@@ -33,9 +34,7 @@ function expandPath (path?: string): string {
 
 /** @internal */
 function getEntry (name: string): VersionPath[] {
-  const _global = typeof window !== 'undefined'
-    ? window as PjsWindow
-    : global as PjsGlobal;
+  const _global = xglobal as PjsWindow;
 
   if (!_global.__polkadotjs) {
     _global.__polkadotjs = {};

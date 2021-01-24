@@ -1924,6 +1924,17 @@ __metadata:
   resolution: "@polkadot/x-fetch@workspace:packages/x-fetch"
   dependencies:
     "@babel/runtime": ^7.12.5
+    "@polkadot/x-global": 5.4.3
+    "@types/node-fetch": ^2.5.8
+    node-fetch: ^2.6.1
+  languageName: unknown
+  linkType: soft
+
+"@polkadot/x-global@5.4.3, @polkadot/x-global@workspace:packages/x-global":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/x-global@workspace:packages/x-global"
+  dependencies:
+    "@babel/runtime": ^7.12.5
     "@types/node-fetch": ^2.5.8
     node-fetch: ^2.6.1
   languageName: unknown
@@ -1934,6 +1945,7 @@ __metadata:
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
     "@babel/runtime": ^7.12.5
+    "@polkadot/x-global": 5.4.3
     "@types/react-native": ^0.63.46
   languageName: unknown
   linkType: soft
@@ -1952,6 +1964,7 @@ __metadata:
   resolution: "@polkadot/x-textdecoder@workspace:packages/x-textdecoder"
   dependencies:
     "@babel/runtime": ^7.12.5
+    "@polkadot/x-global": 5.4.3
   languageName: unknown
   linkType: soft
 
@@ -1960,6 +1973,7 @@ __metadata:
   resolution: "@polkadot/x-textencoder@workspace:packages/x-textencoder"
   dependencies:
     "@babel/runtime": ^7.12.5
+    "@polkadot/x-global": 5.4.3
   languageName: unknown
   linkType: soft
 
@@ -1968,6 +1982,7 @@ __metadata:
   resolution: "@polkadot/x-ws@workspace:packages/x-ws"
   dependencies:
     "@babel/runtime": ^7.12.5
+    "@polkadot/x-global": 5.4.3
     "@types/websocket": ^1.0.1
     websocket: ^1.0.33
   languageName: unknown
