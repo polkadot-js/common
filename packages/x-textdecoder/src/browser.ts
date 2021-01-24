@@ -3,6 +3,14 @@
 
 import { TextDecoder as Fallback } from './fallback';
 
-export const TextDecoder = typeof global.TextDecoder === 'undefined'
-  ? Fallback as unknown as typeof global.TextDecoder
-  : global.TextDecoder;
+const _global = (
+  typeof self !== 'undefined'
+    ? self
+    : typeof window !== 'undefined'
+      ? window
+      : this
+) as (Window & typeof globalThis);
+
+export const TextDecoder = typeof _global.TextDecoder === 'undefined'
+  ? Fallback as unknown as typeof _global.TextDecoder
+  : _global.TextDecoder;
