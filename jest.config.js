@@ -14,7 +14,7 @@ module.exports = Object.assign({}, config, {
     // eslint-disable-next-line sort-keys
     '@polkadot/util(.*)$': '<rootDir>/packages/util/src/$1',
     '@polkadot/x-(fetch|randomvalues|textdecoder|textencoder|ws)(.*)$': '<rootDir>/packages/x-$1/src/node',
-    '@polkadot/x-global(.*)$': '<rootDir>/packages/x-$1/src/$1',
+    '@polkadot/x-global(.*)$': '<rootDir>/packages/x-global/src/$1',
     '@polkadot/x-rxjs(.*)$': '<rootDir>/packages/x-rxjs/src/$1'
   },
   modulePathIgnorePatterns: [
