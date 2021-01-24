@@ -1,12 +1,11 @@
 // Copyright 2017-2021 @polkadot/x-fetch authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const _global = (
+const _global =
   typeof self !== 'undefined'
     ? self
     : typeof window !== 'undefined'
       ? window
-      : this
-) as (Window & typeof globalThis);
+      : this as unknown as (Window & typeof globalThis);
 
 export const fetch = _global.fetch;
