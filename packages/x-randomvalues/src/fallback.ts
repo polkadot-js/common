@@ -9,7 +9,7 @@ let warned = false;
 
 export function insecureRandomValues <T extends Uint8Array> (arr: T): T {
   if (!warned) {
-    console.warn('Using an insecure random number generator, this should only happen when running in a debugger without support for crypto.getRandomValues');
+    console.warn('Using an insecure random number generator, this should only happen when running in a debugger without support for crypto');
     warned = true;
   }
 
