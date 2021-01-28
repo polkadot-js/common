@@ -4,12 +4,14 @@
 import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta } from './types';
 
-import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
+import { assert, hexToU8a, isHex, isUndefined, stringToU8a, u8aToHex } from '@polkadot/util';
 import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
 import { createPair } from './pair';
 import { Pairs } from './pairs';
+import HDKey from '@polkadot/util-crypto/key/hdkey';
+
 
 const keypairFromSeed = {
   ecdsa: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
@@ -46,7 +48,7 @@ export class Keyring implements KeyringInstance {
   constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
 
-    assert(options && ['ecdsa', 'ethereum', 'ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519', 'sr25519' or 'ecdsa', found '${options.type}`);
+    assert(options && ['ecdsa', 'ethereum', 'ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519', 'sr25519', 'ethereum' or 'ecdsa', found '${options.type}`);
 
     this.#pairs = new Pairs();
     this.#ss58 = options.ss58Format;
@@ -172,7 +174,7 @@ export class Keyring implements KeyringInstance {
     const suri = _suri.startsWith('//')
       ? `${DEV_PHRASE}${_suri}`
       : _suri;
-    const { password, path, phrase } = keyExtractSuri(suri);
+    const { password, path, phrase, derivePath } = keyExtractSuri(suri);
     let seed: Uint8Array;
 
     if (isHex(phrase, 256)) {
@@ -193,7 +195,20 @@ export class Keyring implements KeyringInstance {
     }
 
     // FIXME Need to support Ethereum-type derivation paths
-    const derived = keyFromPath(keypairFromSeed[type](seed), path, type);
+    let derived:Keypair;
+    if (type==='ethereum'){
+      let key=HDKey.fromMasterSeed(seed)
+      let child=key.derive(derivePath.substring(1))
+      if (child.publicKey&&child.privateKey){
+        derived={publicKey:child.publicKey,secretKey:child.privateKey}
+      } else {
+        throw new Error('child derivation errored')
+      }
+      //console.log('child',child,child.depth, child.chainCode,u8aToHex(child.publicKey),u8aToHex(createPair({ toSS58: this.encodeAddress, type }, derived, meta, null).publicKey))
+    } else {
+
+    derived= keyFromPath(keypairFromSeed[type](seed), path, type);
+    }
 
     return createPair({ toSS58: this.encodeAddress, type }, derived, meta, null);
   }
