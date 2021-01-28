@@ -280,8 +280,7 @@ describe('keypair', (): void => {
 
   describe('ethereum', (): void => {
     const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy';
-    //const PHRASE_ALICE='bottom drive obey lake curtain smoke basket hold race lonely fit walk';
-
+    // const PHRASE_ALICE='bottom drive obey lake curtain smoke basket hold race lonely fit walk';
 
     let keyring: Keyring;
 
@@ -295,11 +294,10 @@ describe('keypair', (): void => {
       expect(pair.publicKey).toEqual(hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077'));
       expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
     });
-    
 
     it.only('creates with dev phrase when only path specified', (): void => {
       expect(
-        keyring.createFromUri(PHRASE+`/m/44'/60'/0'/0/0`).address
+        keyring.createFromUri(PHRASE + '/m/44\'/60\'/0\'/0/0').address
       ).toEqual('0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d');
     });
 

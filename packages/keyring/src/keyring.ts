@@ -6,12 +6,11 @@ import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, Ke
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a, u8aToHex } from '@polkadot/util';
 import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed } from '@polkadot/util-crypto';
+import HDKey from '@polkadot/util-crypto/key/hdkey';
 
 import { DEV_PHRASE } from './defaults';
 import { createPair } from './pair';
 import { Pairs } from './pairs';
-import HDKey from '@polkadot/util-crypto/key/hdkey';
-
 
 const keypairFromSeed = {
   ecdsa: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
@@ -174,7 +173,7 @@ export class Keyring implements KeyringInstance {
     const suri = _suri.startsWith('//')
       ? `${DEV_PHRASE}${_suri}`
       : _suri;
-    const { password, path, phrase, derivePath } = keyExtractSuri(suri);
+    const { derivePath, password, path, phrase } = keyExtractSuri(suri);
     let seed: Uint8Array;
 
     if (isHex(phrase, 256)) {
@@ -196,18 +195,19 @@ export class Keyring implements KeyringInstance {
 
     // FIXME Need to support Ethereum-type derivation paths
     let derived:Keypair;
-    if (type==='ethereum'){
-      let key=HDKey.fromMasterSeed(seed)
-      let child=key.derive(derivePath.substring(1))
-      if (child.publicKey&&child.privateKey){
-        derived={publicKey:child.publicKey,secretKey:child.privateKey}
-      } else {
-        throw new Error('child derivation errored')
-      }
-      //console.log('child',child,child.depth, child.chainCode,u8aToHex(child.publicKey),u8aToHex(createPair({ toSS58: this.encodeAddress, type }, derived, meta, null).publicKey))
-    } else {
 
-    derived= keyFromPath(keypairFromSeed[type](seed), path, type);
+    if (type === 'ethereum') {
+      const key = HDKey.fromMasterSeed(seed);
+      const child = key.derive(derivePath.substring(1));
+
+      if (child.publicKey && child.privateKey) {
+        derived = { publicKey: child.publicKey, secretKey: child.privateKey };
+      } else {
+        throw new Error('child derivation errored');
+      }
+      // console.log('child',child,child.depth, child.chainCode,u8aToHex(child.publicKey),u8aToHex(createPair({ toSS58: this.encodeAddress, type }, derived, meta, null).publicKey))
+    } else {
+      derived = keyFromPath(keypairFromSeed[type](seed), path, type);
     }
 
     return createPair({ toSS58: this.encodeAddress, type }, derived, meta, null);
