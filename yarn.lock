@@ -1855,6 +1855,7 @@ __metadata:
     "@polkadot/x-randomvalues": 5.4.4
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
+    "@types/create-hmac": ^1.1.0
     "@types/elliptic": ^6.4.12
     "@types/scryptsy": ^2.0.0
     "@types/xxhashjs": ^0.2.2
@@ -1862,6 +1863,7 @@ __metadata:
     blakejs: ^1.1.0
     bn.js: ^4.11.9
     create-hash: ^1.2.0
+    create-hmac: ^1.1.7
     elliptic: ^6.5.3
     hash.js: ^1.1.7
     js-sha3: ^0.8.0
@@ -1878,6 +1880,7 @@ __metadata:
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
     "@babel/runtime": ^7.12.5
+    "@polkadot/x-global": 5.4.4
     "@polkadot/x-textdecoder": 5.4.4
     "@polkadot/x-textencoder": 5.4.4
     "@types/bn.js": ^4.11.6
@@ -2095,6 +2098,15 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: d9bd1821c26137be78eeda9d78e6a402ae766637a30323241adf23f6601d3053f2d37073798e1d36dd370fea75592a73f6ccda50a20f2b4080d2cfaee9264eac
+  languageName: node
+  linkType: hard
+
+"@types/create-hmac@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@types/create-hmac@npm:1.1.0"
+  dependencies:
+    "@types/node": "*"
+  checksum: 75d799bb091ac88d06df57d5ef0c0270692736b23914a6edf1b31466be730e1caa3e4242b94e60845ef1f8878943256b068bfe5cdb8832e2ffe9c015a4ca5e50
   languageName: node
   linkType: hard
 
@@ -3411,7 +3423,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cipher-base@npm:^1.0.1":
+"cipher-base@npm:^1.0.1, cipher-base@npm:^1.0.3":
   version: 1.0.4
   resolution: "cipher-base@npm:1.0.4"
   dependencies:
@@ -3721,7 +3733,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-hash@npm:^1.2.0":
+"create-hash@npm:^1.1.0, create-hash@npm:^1.2.0":
   version: 1.2.0
   resolution: "create-hash@npm:1.2.0"
   dependencies:
@@ -3731,6 +3743,20 @@ __metadata:
     ripemd160: ^2.0.1
     sha.js: ^2.4.0
   checksum: 5565182efc3603e4d34c3ce13fd0765a058b27f91e49ba8e720e30ba8bfc53e9cd835e5343136000b6f210a979fe1041a4f3fe728e866e64f34db04b068fd725
+  languageName: node
+  linkType: hard
+
+"create-hmac@npm:^1.1.7":
+  version: 1.1.7
+  resolution: "create-hmac@npm:1.1.7"
+  dependencies:
+    cipher-base: ^1.0.3
+    create-hash: ^1.1.0
+    inherits: ^2.0.1
+    ripemd160: ^2.0.0
+    safe-buffer: ^5.0.1
+    sha.js: ^2.4.8
+  checksum: 98957676a93081678a2a915ae14898d65aac9b5651ffa55b8888484dd9d79c06d3cb3f85b137cd833ab536d87adee17394bb2b0efc591ea0e34110266d5bcd75
   languageName: node
   linkType: hard
 
@@ -9319,7 +9345,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"ripemd160@npm:^2.0.1":
+"ripemd160@npm:^2.0.0, ripemd160@npm:^2.0.1":
   version: 2.0.2
   resolution: "ripemd160@npm:2.0.2"
   dependencies:
@@ -9512,7 +9538,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"sha.js@npm:^2.4.0":
+"sha.js@npm:^2.4.0, sha.js@npm:^2.4.8":
   version: 2.4.11
   resolution: "sha.js@npm:2.4.11"
   dependencies:

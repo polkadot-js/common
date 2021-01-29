@@ -24,6 +24,7 @@
     "blakejs": "^1.1.0",
     "bn.js": "^4.11.9",
     "create-hash": "^1.2.0",
+    "create-hmac": "^1.1.7",
     "elliptic": "^6.5.3",
     "hash.js": "^1.1.7",
     "js-sha3": "^0.8.0",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "@types/bn.js": "^4.11.6",
     "@types/create-hash": "^1.2.2",
+    "@types/create-hmac": "^1.1.0",
     "@types/elliptic": "^6.4.12",
     "@types/scryptsy": "^2.0.0",
     "@types/xxhashjs": "^0.2.2"

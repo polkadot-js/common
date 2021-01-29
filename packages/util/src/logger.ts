@@ -3,6 +3,8 @@
 
 import type { Logger, Logger$Data } from './types';
 
+import { xglobal } from '@polkadot/x-global';
+
 import { formatDate } from './format/formatDate';
 import { isBn } from './is/bn';
 import { isBuffer } from './is/buffer';
@@ -77,10 +79,11 @@ function noop (): void {
 }
 
 function parseEnv (type: string): [boolean, number] {
-  const maxSize = parseInt(process?.env?.DEBUG_MAX || '-1', 10);
+  const { DEBUG, DEBUG_MAX } = xglobal.process?.env || {};
+  const maxSize = parseInt(DEBUG_MAX || '-1', 10);
 
   return [
-    (process?.env?.DEBUG || '').toLowerCase().split(',').some((e) => !!e && (e === '*' || type.startsWith(e))),
+    (DEBUG || '').toLowerCase().split(',').some((e) => !!e && (e === '*' || type.startsWith(e))),
     isNaN(maxSize) ? -1 : maxSize
   ];
 }
