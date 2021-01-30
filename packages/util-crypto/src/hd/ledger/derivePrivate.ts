@@ -5,7 +5,7 @@ import BN from 'bn.js';
 
 import { bnToU8a, u8aConcat } from '@polkadot/util';
 
-import { hmacSha256, hmacSha512 } from '../../hmac';
+import { hmacSha512 } from '../../hmac';
 
 // performs hard-only derivation on the xprv
 export function ledgerDerivePrivate (xprv: Uint8Array, index: number): Uint8Array {
@@ -24,7 +24,7 @@ export function ledgerDerivePrivate (xprv: Uint8Array, index: number): Uint8Arra
 
   data[0] = 0x01;
 
-  const chainCode = hmacSha256(cc, data).slice(32, 64);
+  const chainCode = hmacSha512(cc, data).slice(32, 64);
   const zl = z.slice(0, 32);
   const zr = z.slice(32, 64);
   const left = bnToU8a(new BN(kl, 16, 'le').add(new BN(zl.slice(0, 28), 16, 'le').mul(new BN(8))), { bitLength: 512, isLe: true }).slice(0, 32);
