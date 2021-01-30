@@ -2,9 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import BN from 'bn.js';
-import hash from 'hash.js';
 
 import { bnToU8a, u8aConcat } from '@polkadot/util';
+
+import { hmacSha512 } from '../../hmac';
 
 // performs hard-only derivation on the xprv
 export function ledgerDerivePrivate (xprv: Uint8Array, index: number): Uint8Array {
@@ -19,16 +20,11 @@ export function ledgerDerivePrivate (xprv: Uint8Array, index: number): Uint8Arra
   data.set(kr, 1 + 32);
   data[0] = 0x00;
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const z = hash.hmac(hash.sha512, cc).update(data).digest();
+  const z = hmacSha512(cc, data);
 
   data[0] = 0x01;
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const i = hash.hmac(hash.sha512, cc).update(data).digest();
-  const chainCode = i.slice(32, 64);
+  const chainCode = hmacSha512(cc, data).slice(32, 64);
   const zl = z.slice(0, 32);
   const zr = z.slice(32, 64);
   const left = bnToU8a(new BN(kl, 16, 'le').add(new BN(zl.slice(0, 28), 16, 'le').mul(new BN(8))), { bitLength: 512, isLe: true }).slice(0, 32);
