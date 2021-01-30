@@ -1,10 +1,9 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import hash from 'hash.js';
-
 import { u8aConcat } from '@polkadot/util';
 
+import { hmacSha512 } from '../../hmac';
 import { mnemonicToSeedSync } from '../../mnemonic/bip39';
 
 const ED25519_CRYPTO = 'ed25519 seed';
@@ -15,13 +14,13 @@ export function ledgerMaster (mnemonic: string): Uint8Array {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const chainCode = hash.hmac(hash.sha256, ED25519_CRYPTO).update(new Uint8Array([1, ...seed])).digest();
+  const chainCode = hmacSha512(ED25519_CRYPTO, new Uint8Array([1, ...seed]));
   let priv;
 
   while (!priv || (priv[31] & 0b0010_0000)) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    priv = hash.hmac(hash.sha512, ED25519_CRYPTO).update(priv || seed).digest();
+    priv = hmacSha512(ED25519_CRYPTO, priv || seed);
   }
 
   priv[0] &= 0b1111_1000;

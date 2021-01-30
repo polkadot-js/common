@@ -4,7 +4,8 @@
 
 Changes:
 
-- Added `hdLedger` to allow for Ledger-compatible bip32+ed25519 derivation
+- Added `hdLedger` to util-crypto for Ledger-compatible bip32+ed25519 derivation
+- Added `hmac{Sha256, 512}` to util-crypto
 
 
 ## 5.4.1 Jan 24, 2021
