@@ -3,7 +3,7 @@
 
 import { u8aConcat } from '@polkadot/util';
 
-import { hmacSha512 } from '../../hmac';
+import { hmacSha256, hmacSha512 } from '../../hmac';
 import { mnemonicToSeedSync } from '../../mnemonic/bip39';
 
 const ED25519_CRYPTO = 'ed25519 seed';
@@ -14,7 +14,7 @@ export function ledgerMaster (mnemonic: string): Uint8Array {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const chainCode = hmacSha512(ED25519_CRYPTO, new Uint8Array([1, ...seed]));
+  const chainCode = hmacSha256(ED25519_CRYPTO, new Uint8Array([1, ...seed]));
   let priv;
 
   while (!priv || (priv[31] & 0b0010_0000)) {
