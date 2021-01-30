@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 5.5.1 Jan 31, 2021
+
+Changes:
+
+- Added `hdLedgerDerive` to allow for Ledger-compatible ed25519 derivation
+
+
 ## 5.4.1 Jan 24, 2021
 
 Contributed:

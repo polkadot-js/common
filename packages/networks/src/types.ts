@@ -12,6 +12,7 @@ export interface NetworkFromSubstrate {
   hasLedgerSupport?: boolean;
   icon?: Icon | null;
   isIgnored?: boolean;
+  slip44?: number;
   standardAccount: '*25519' | null;
   symbols: string[] | null;
   website: string | null;

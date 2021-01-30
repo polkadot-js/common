@@ -36,6 +36,7 @@ const all: NetworkFromSubstrate[] = [
     icon: 'polkadot',
     network: 'polkadot',
     prefix: 0,
+    slip44: 0x00000162,
     standardAccount: '*25519',
     symbols: ['DOT'],
     website: 'https://polkadot.network'
@@ -53,6 +54,7 @@ const all: NetworkFromSubstrate[] = [
     icon: 'polkadot',
     network: 'kusama',
     prefix: 2,
+    slip44: 0x000001b2,
     standardAccount: '*25519',
     symbols: ['KSM'],
     website: 'https://kusama.network'
@@ -139,6 +141,7 @@ const all: NetworkFromSubstrate[] = [
     hasLedgerSupport: true,
     network: 'polymesh',
     prefix: 12,
+    slip44: 0x00000253,
     standardAccount: '*25519',
     symbols: ['POLYX'],
     website: 'https://polymath.network/'
@@ -234,6 +237,7 @@ const all: NetworkFromSubstrate[] = [
     hasLedgerSupport: true,
     network: 'dock-mainnet',
     prefix: 22,
+    slip44: 0x00000252,
     standardAccount: '*25519',
     symbols: ['DCK'],
     website: 'https://dock.io'
