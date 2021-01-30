@@ -4,7 +4,7 @@
 
 Changes:
 
-- Added `hdLedgerDerive` to allow for Ledger-compatible ed25519 derivation
+- Added `hdLedger` to allow for Ledger-compatible bip32+ed25519 derivation
 
 
 ## 5.4.1 Jan 24, 2021

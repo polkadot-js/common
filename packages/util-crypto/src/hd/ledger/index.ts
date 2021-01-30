@@ -1,19 +1,19 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair } from '../types';
+import type { Keypair } from '../../types';
 
 import { assert } from '@polkadot/util';
 
-import { mnemonicValidate } from '../mnemonic';
-import { naclKeypairFromSeed } from '../nacl';
-import { ledgerDerivePrivate } from './ledger/derivePrivate';
-import { ledgerMaster } from './ledger/master';
-import { ledgerValidatePath } from './ledger/validatePath';
+import { mnemonicValidate } from '../../mnemonic';
+import { naclKeypairFromSeed } from '../../nacl';
+import { ledgerDerivePrivate } from './derivePrivate';
+import { ledgerMaster } from './master';
+import { ledgerValidatePath } from './validatePath';
 
 const HARDENED = 0x80000000;
 
-export function hdLedgerDerive (mnemonic: string, path: string): Keypair {
+export function hdLedger (mnemonic: string, path: string): Keypair {
   assert(mnemonicValidate(mnemonic), 'Invalid mnemonic passed to ledger derivation');
   assert(ledgerValidatePath(path), 'Invalid derivation path');
 
