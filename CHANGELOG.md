@@ -6,6 +6,10 @@ Changes:
 
 - Added `hdLedger` to util-crypto for Ledger-compatible bip32+ed25519 derivation
 - Added `hmac{Sha256, 512}` to util-crypto
+- Add `slip44` indices for Ledger into `@polkadot/networks`
+- Remove `module` entry in `package.json` (only rely on exports map)
+- Remove direct references to `global` object, use `@polkadot/x-global`
+- Update `@ledgerhq` dependencies to latest
 
 
 ## 5.4.1 Jan 24, 2021
