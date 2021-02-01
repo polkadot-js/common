@@ -47,13 +47,13 @@ const TYPE_ADDRESS = {
   sr25519: (p: Uint8Array) => p
 };
 
-function isEmpty (u8a: Uint8Array): boolean {
-  return u8a.reduce((count, u8) => count + u8, 0) === 0;
-}
-
 // Not 100% correct, since it can be a Uint8Array, but an invalid one - just say "undefined" is anything non-valid
 function isLocked (secretKey?: Uint8Array): secretKey is undefined {
-  return !secretKey || secretKey.length === 0 || isEmpty(secretKey);
+  return !secretKey || secretKey.length === 0 || secretKey.every((b) => b === 0);
+}
+
+function vrfHash (proof: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array {
+  return blake2AsU8a(u8aConcat(context || '', extra || '', proof));
 }
 
 /**
@@ -111,56 +111,65 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     return encoded;
   };
 
-  const encodeAddress = (): string => {
-    const raw = TYPE_ADDRESS[type](publicKey);
-
-    return type === 'ethereum'
-      ? ethereumEncode(raw)
-      : toSS58(raw);
-  };
-
-  return {
+  class Pair implements KeyringPair {
     get address (): string {
-      return encodeAddress();
-    },
+      const raw = TYPE_ADDRESS[type](publicKey);
+
+      return type === 'ethereum'
+        ? ethereumEncode(raw)
+        : toSS58(raw);
+    }
+
     get addressRaw (): Uint8Array {
       const raw = TYPE_ADDRESS[type](publicKey);
 
       return type === 'ethereum'
         ? raw.slice(-20)
         : raw;
-    },
+    }
+
     get isLocked (): boolean {
       return isLocked(secretKey);
-    },
+    }
+
     get meta (): KeyringPair$Meta {
       return meta;
-    },
+    }
+
     get publicKey (): Uint8Array {
       return publicKey;
-    },
+    }
+
     get type (): KeypairType {
       return type;
-    },
-    // eslint-disable-next-line sort-keys
-    decodePkcs8,
-    derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair => {
+    }
+
+    decodePkcs8 (passphrase?: string | undefined, userEncoded?: Uint8Array | undefined): void {
+      return decodePkcs8(passphrase, userEncoded || encoded);
+    }
+
+    derive (suri: string, meta?: KeyringPair$Meta): KeyringPair {
       assert(!isLocked(secretKey), 'Cannot derive on a locked keypair');
 
       const { path } = keyExtractPath(suri);
       const derived = keyFromPath({ publicKey, secretKey }, path, type);
 
       return createPair({ toSS58, type }, derived, meta, null);
-    },
-    encodePkcs8: (passphrase?: string): Uint8Array =>
-      recode(passphrase),
-    lock: (): void => {
+    }
+
+    encodePkcs8 (passphrase?: string): Uint8Array {
+      return recode(passphrase);
+    }
+
+    lock (): void {
       secretKey = new Uint8Array();
-    },
-    setMeta: (additional: KeyringPair$Meta): void => {
+    }
+
+    setMeta (additional: KeyringPair$Meta): void {
       meta = { ...meta, ...additional };
-    },
-    sign: (message: Uint8Array, options: SignOptions = {}): Uint8Array => {
+    }
+
+    sign (message: Uint8Array, options: SignOptions = {}): Uint8Array {
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
 
       return u8aConcat(
@@ -169,17 +178,21 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
           : SIG_TYPE_NONE,
         TYPE_SIGNATURE[type](message, { publicKey, secretKey })
       );
-    },
-    toJson: (passphrase?: string): KeyringPair$Json => {
+    }
+
+    toJson (passphrase?: string): KeyringPair$Json {
       const address = ['ecdsa', 'ethereum'].includes(type)
         ? u8aToHex(secp256k1Compress(publicKey))
-        : encodeAddress();
+        : this.address;
 
       return pairToJson(type, { address, meta }, recode(passphrase), !!passphrase);
-    },
-    verify: (message: Uint8Array, signature: Uint8Array): boolean =>
-      signatureVerify(message, signature, TYPE_ADDRESS[type](publicKey)).isValid,
-    vrfSign: (message: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array => {
+    }
+
+    verify (message: Uint8Array, signature: Uint8Array): boolean {
+      return signatureVerify(message, signature, TYPE_ADDRESS[type](publicKey)).isValid;
+    }
+
+    vrfSign (message: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array {
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
 
       if (type === 'sr25519') {
@@ -188,17 +201,18 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
 
       const proof = TYPE_SIGNATURE[type](message, { publicKey, secretKey });
 
-      return u8aConcat(
-        blake2AsU8a(u8aConcat(context || '', extra || '', proof)),
-        proof
-      );
-    },
-    vrfVerify: (message: Uint8Array, vrfResult: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): boolean =>
-      type === 'sr25519'
+      return u8aConcat(vrfHash(proof, context, extra), proof);
+    }
+
+    vrfVerify (message: Uint8Array, vrfResult: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): boolean {
+      return type === 'sr25519'
         ? schnorrkelVrfVerify(message, vrfResult, publicKey, context, extra)
         : (
-          signatureVerify(message, vrfResult.subarray(32), TYPE_ADDRESS[type](publicKey)).isValid &&
-          u8aEq(vrfResult.subarray(0, 32), blake2AsU8a(u8aConcat(context || '', extra || '', vrfResult.subarray(32))))
-        )
-  };
+          signatureVerify(message, u8aConcat(TYPE_PREFIX[type], vrfResult.subarray(32)), TYPE_ADDRESS[type](publicKey)).isValid &&
+          u8aEq(vrfResult.subarray(0, 32), vrfHash(vrfResult.subarray(32), context, extra))
+        );
+    }
+  }
+
+  return new Pair();
 }
