@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { bnToU8a, u8aConcat, u8aToBn } from '@polkadot/util';
+import { BN_EIGHT, bnToU8a, u8aConcat, u8aToBn } from '@polkadot/util';
 
 import { hmacSha512 } from '../../hmac';
 
@@ -17,7 +17,7 @@ export function ledgerDerivePrivate (xprv: Uint8Array, index: number): Uint8Arra
 
   return u8aConcat(
     bnToU8a(
-      u8aToBn(kl, { isLe: true }).iadd(u8aToBn(z.subarray(0, 28), { isLe: true }).muln(8)),
+      u8aToBn(kl, { isLe: true }).iadd(u8aToBn(z.subarray(0, 28), { isLe: true }).imul(BN_EIGHT)),
       { bitLength: 512, isLe: true }
     ).subarray(0, 32),
     bnToU8a(
