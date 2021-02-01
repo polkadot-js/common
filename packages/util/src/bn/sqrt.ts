@@ -33,5 +33,5 @@ export function bnSqrt (value: BN): BN {
 
   return value.lt(BN_TWO)
     ? value
-    : newtonIteration(value, BN_ONE);
+    : newtonIteration(value, new BN(1));
 }
