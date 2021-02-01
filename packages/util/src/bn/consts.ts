@@ -29,6 +29,18 @@ export const BN_HUNDRED: BN = new BN(100);
 
 /**
  * @name BN_THOUSAND
- * @summary BN constant for 1000.
+ * @summary BN constant for 1,000.
  */
-export const BN_THOUSAND: BN = new BN(1000);
+export const BN_THOUSAND: BN = new BN(1_000);
+
+/**
+ * @name BN_MILLION
+ * @summary BN constant for 1,000,000.
+ */
+export const BN_MILLION: BN = new BN(1_000_000);
+
+/**
+ * @name BN_BILLION
+ * @summary BN constant for 1,000,000,000.
+ */
+export const BN_BILLION: BN = new BN(1_000_000_000);
