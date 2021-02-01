@@ -4,16 +4,15 @@
 import BN from 'bn.js';
 
 import { assert } from '../assert';
+import { BN_ONE } from '../bn';
 
 // https://golb.hplar.ch/2018/09/javascript-bigint.html
 function newtonIteration (n: BN, x0: BN): BN {
   const x1 = n.div(x0).add(x0).shrn(1);
 
-  if (x0.eq(x1) || x0.eq(x1.subn(1))) {
-    return x0;
-  }
-
-  return newtonIteration(n, x1);
+  return (x0.eq(x1) || x0.eq(x1.sub(BN_ONE)))
+    ? x0
+    : newtonIteration(n, x1);
 }
 
 /**
@@ -34,5 +33,5 @@ export function bnSqrt (value: BN): BN {
 
   return value.ltn(2)
     ? value
-    : newtonIteration(value, new BN(1));
+    : newtonIteration(value, BN_ONE);
 }
