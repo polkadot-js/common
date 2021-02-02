@@ -4,16 +4,15 @@
 import BN from 'bn.js';
 
 import { assert } from '../assert';
+import { BN_ONE, BN_TWO, BN_ZERO } from '../bn';
 
 // https://golb.hplar.ch/2018/09/javascript-bigint.html
 function newtonIteration (n: BN, x0: BN): BN {
-  const x1 = n.div(x0).add(x0).shrn(1);
+  const x1 = n.div(x0).iadd(x0).ishrn(1);
 
-  if (x0.eq(x1) || x0.eq(x1.subn(1))) {
-    return x0;
-  }
-
-  return newtonIteration(n, x1);
+  return (x0.eq(x1) || x0.eq(x1.sub(BN_ONE)))
+    ? x0
+    : newtonIteration(n, x1);
 }
 
 /**
@@ -30,9 +29,9 @@ function newtonIteration (n: BN, x0: BN): BN {
  * ```
  */
 export function bnSqrt (value: BN): BN {
-  assert(value.gten(0), 'square root of negative numbers is not supported');
+  assert(value.gte(BN_ZERO), 'square root of negative numbers is not supported');
 
-  return value.ltn(2)
+  return value.lt(BN_TWO)
     ? value
     : newtonIteration(value, new BN(1));
 }
