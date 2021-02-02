@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 5.5.2 Feb 2, 2021
+
+Changes:
+
+- Expose `BN_{MILLION, BILLION}` constants (in addition to 2-9)
+
+
 ## 5.5.1 Jan 31, 2021
 
 Changes:
