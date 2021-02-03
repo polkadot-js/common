@@ -22,12 +22,8 @@ export function decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: bo
 
     const [isValid, endPos, ss58Length, ss58Decoded] = checkAddressChecksum(decoded);
 
-    // TODO Unless it is an "use everywhere" prefix, throw an error
-    if (ss58Format !== -1 && (ss58Decoded !== ss58Format)) {
-      console.log(`WARN: Expected ssPrefix ${ss58Format}, received ${ss58Decoded}`);
-    }
-
     assert(ignoreChecksum || isValid, 'Invalid decoded address checksum');
+    assert([-1, ss58Decoded].includes(ss58Format), `Expected ss58Format ${ss58Format}, received ${ss58Decoded}`);
 
     return decoded.slice(ss58Length, endPos);
   } catch (error) {
