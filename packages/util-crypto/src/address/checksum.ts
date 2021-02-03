@@ -1,10 +1,16 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { compactFromU8a } from '@polkadot/util';
+
 import { sshash } from './sshash';
 
-export function checkAddressChecksum (decoded: Uint8Array): [boolean, number] {
-  const isPublicKey = [35, 36].includes(decoded.length);
+export function checkAddressChecksum (decoded: Uint8Array): [boolean, number, number, number] {
+  const ss58Length = (decoded[0] & 0b0100_0000) ? 2 : 1;
+  const ss58Decoded = ss58Length === 1
+    ? decoded[0]
+    : compactFromU8a(decoded)[1].toNumber();
+  const isPublicKey = [34 + ss58Length, 35 + ss58Length].includes(decoded.length);
 
   // non-publicKeys has 1 byte checksums, else default to 2
   const length = decoded.length - (isPublicKey ? 2 : 1);
@@ -17,5 +23,5 @@ export function checkAddressChecksum (decoded: Uint8Array): [boolean, number] {
     ? decoded[decoded.length - 2] === hash[0] && decoded[decoded.length - 1] === hash[1]
     : decoded[decoded.length - 1] === hash[0];
 
-  return [isValid, length];
+  return [isValid, length, ss58Length, ss58Decoded];
 }

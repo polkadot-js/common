@@ -28,7 +28,7 @@ describe('addressEq', (): void => {
     expect(
       addressEq(
         '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY',
-        '7sL6eNJj5ZGV5cn3hhV2deRUsivXfBfMH76wCALCqWj1EKzv'
+        '15oF4uVJwmo4TdGW7VfQxNLavjCXviqxT9S1MgbjMNHr6Sp5'
       )
     ).toEqual(true);
   });

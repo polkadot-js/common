@@ -28,14 +28,14 @@ export function decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: bo
   // assert(defaults.allowedPrefix.includes(decoded[0] as Prefix), error('Invalid decoded address prefix'));
   assert(defaults.allowedEncodedLengths.includes(decoded.length), wrapError('Invalid decoded address length'));
 
-  // TODO Unless it is an "use everywhere" prefix, throw an error
-  // if (ss58Format !== -1 && (decoded[0] !== ss58Format)) {
-  //   console.log(`WARN: Expected ${ss58Format}, found ${decoded[0]}`);
-  // }
+  const [isValid, endPos, ss58Length, ss58Decoded] = checkAddressChecksum(decoded);
 
-  const [isValid, endPos] = checkAddressChecksum(decoded);
+  // TODO Unless it is an "use everywhere" prefix, throw an error
+  if (ss58Format !== -1 && (ss58Decoded !== ss58Format)) {
+    console.log(`WARN: Expected ssPrefix ${ss58Format}, received ${ss58Decoded}`);
+  }
 
   assert(ignoreChecksum || isValid, wrapError('Invalid decoded address checksum'));
 
-  return decoded.slice(1, endPos);
+  return decoded.slice(ss58Length, endPos);
 }

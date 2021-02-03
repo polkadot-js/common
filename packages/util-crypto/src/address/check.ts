@@ -22,13 +22,13 @@ export function checkAddress (address: string, prefix: Prefix): [boolean, string
     return [false, (error as Error).message];
   }
 
-  if (decoded[0] !== prefix) {
-    return [false, `Prefix mismatch, expected ${prefix}, found ${decoded[0]}`];
+  const [isValid,,, ss58Decoded] = checkAddressChecksum(decoded);
+
+  if (ss58Decoded !== prefix) {
+    return [false, `Prefix mismatch, expected ${prefix}, found ${ss58Decoded}`];
   } else if (!defaults.allowedEncodedLengths.includes(decoded.length)) {
     return [false, 'Invalid decoded address length'];
   }
-
-  const [isValid] = checkAddressChecksum(decoded);
 
   return [isValid, isValid ? null : 'Invalid decoded address checksum'];
 }

@@ -51,25 +51,25 @@ describe('decodeAddress', (): void => {
 
   it('decodes a 1-byte accountId (with prefix)', (): void => {
     expect(
-      decodeAddress('PqtB', false, 68)
+      decodeAddress('g4b', false, 2)
     ).toEqual(new Uint8Array([1]));
   });
 
   it('decodes a 2-byte accountId', (): void => {
     expect(
-      decodeAddress('2jpAFn', false, 68)
+      decodeAddress('3xygo', false, 2)
     ).toEqual(new Uint8Array([0, 1]));
   });
 
   it('encodes a 4-byte address', (): void => {
     expect(
-      decodeAddress('as7QnGMf', false, 68)
+      decodeAddress('zswfoZa', false, 2)
     ).toEqual(new Uint8Array([1, 2, 3, 4]));
   });
 
   it('decodes a 8-byte address', (): void => {
     expect(
-      decodeAddress('4q7qY5RBG7Z4wv', false, 68)
+      decodeAddress('848Gh2GcGaZia', false, 2)
     ).toEqual(new Uint8Array([42, 44, 10, 0, 0, 0, 0, 0]));
   });
 
@@ -78,6 +78,14 @@ describe('decodeAddress', (): void => {
       decodeAddress('KWCv1L3QX9LDPwY4VzvLmarEmXjVJidUzZcinvVnmxAJJCBou')
     ).toEqual(
       hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077')
+    );
+  });
+
+  it('decodes a 2-byte prefix', (): void => {
+    expect(
+      decodeAddress('2vRvjTMnza9uQZzYcjtEHiYkUzLaUvfXxA5nvU2qC68YUvS9VD')
+    ).toEqual(
+      decodeAddress('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua')
     );
   });
 

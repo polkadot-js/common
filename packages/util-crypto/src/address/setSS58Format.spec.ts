@@ -5,7 +5,7 @@ import { encodeAddress, setSS58Format } from '.';
 
 describe('setSS58Format', (): void => {
   beforeEach((): void => {
-    setSS58Format(68);
+    setSS58Format(2);
   });
 
   it('sets and allows encoding using', (): void => {
@@ -13,6 +13,6 @@ describe('setSS58Format', (): void => {
       encodeAddress(
         new Uint8Array([1])
       )
-    ).toEqual('PqtB');
+    ).toEqual('g4b');
   });
 });
