@@ -78,15 +78,11 @@ describe('pair', (): void => {
   });
 
   it('allows encoding of address with different prefixes', (): void => {
-    expect(keyring.alice.address).toEqual(
-      '5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua'
-    );
+    expect(keyring.alice.address).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua');
 
     setSS58Format(255);
 
-    expect(keyring.alice.address).toEqual(
-      '2vRvjTMnza9uQZzYcjtEHiYkUzLaUvfXxA5nvU2qC68YUvS9VD'
-    );
+    expect(keyring.alice.address).toEqual('yGHU8YKprxHbHdEv7oUK4rzMZXtsdhcXVG2CAMyC9WhzhjH2k');
 
     setSS58Format(42);
   });
