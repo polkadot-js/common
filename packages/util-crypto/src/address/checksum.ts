@@ -1,13 +1,9 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { assert } from '@polkadot/util';
-
 import { sshash } from './sshash';
 
 export function checkAddressChecksum (decoded: Uint8Array): [boolean, number, number, number] {
-  assert((decoded[0] & 0b1000_0000) === 0, 'Invalid ssPrefix byte received, expected <= 127');
-
   const ss58Length = (decoded[0] & 0b0100_0000) ? 2 : 1;
   const ss58Decoded = ss58Length === 1
     ? decoded[0]
@@ -21,9 +17,11 @@ export function checkAddressChecksum (decoded: Uint8Array): [boolean, number, nu
   const hash = sshash(decoded.subarray(0, length));
 
   // see if the hash actually matches
-  const isValid = isPublicKey
-    ? decoded[decoded.length - 2] === hash[0] && decoded[decoded.length - 1] === hash[1]
-    : decoded[decoded.length - 1] === hash[0];
+  const isValid = (decoded[0] & 0b1000_0000) === 0 && (
+    isPublicKey
+      ? decoded[decoded.length - 2] === hash[0] && decoded[decoded.length - 1] === hash[1]
+      : decoded[decoded.length - 1] === hash[0]
+  );
 
   return [isValid, length, ss58Length, ss58Decoded];
 }
