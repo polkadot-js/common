@@ -82,10 +82,10 @@ describe('pair', (): void => {
       '5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua'
     );
 
-    setSS58Format(68);
+    setSS58Format(255);
 
     expect(keyring.alice.address).toEqual(
-      '7sGUeMak588SPY2YMmmuKUuLz7u2WQpf74F9dCFtSLB2td9d'
+      '2vRvjTMnza9uQZzYcjtEHiYkUzLaUvfXxA5nvU2qC68YUvS9VD'
     );
 
     setSS58Format(42);
