@@ -83,6 +83,12 @@ describe('encode', (): void => {
   it('encodes with 2 byte prefix', (): void => {
     expect(
       encodeAddress(keyring.alice.publicKey, 255)
-    ).toEqual('2vRvjTMnza9uQZzYcjtEHiYkUzLaUvfXxA5nvU2qC68YUvS9VD');
+    ).toEqual('yGHU8YKprxHbHdEv7oUK4rzMZXtsdhcXVG2CAMyC9WhzhjH2k');
+  });
+
+  it('encodes with 2 byte (Subkey equality)', (): void => {
+    expect(
+      encodeAddress('0x66cd6cf085627d6c85af1aaf2bd10cf843033e929b4e3b1c2ba8e4aa46fe111b', 255)
+    ).toEqual('yGF4JP7q5AK46d1FPCEm9sYQ4KooSjHMpyVAjLnsCSWVafPnf');
   });
 });

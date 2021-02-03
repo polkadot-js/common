@@ -83,7 +83,7 @@ describe('decodeAddress', (): void => {
 
   it('decodes a 2-byte prefix', (): void => {
     expect(
-      decodeAddress('2vRvjTMnza9uQZzYcjtEHiYkUzLaUvfXxA5nvU2qC68YUvS9VD')
+      decodeAddress('yGHU8YKprxHbHdEv7oUK4rzMZXtsdhcXVG2CAMyC9WhzhjH2k')
     ).toEqual(
       decodeAddress('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua')
     );

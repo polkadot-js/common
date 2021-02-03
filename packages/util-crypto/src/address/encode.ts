@@ -4,7 +4,7 @@
 import type { Prefix } from './types';
 
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L34
-import { assert, bnToBn, bnToU8a, u8aConcat } from '@polkadot/util';
+import { assert, u8aConcat } from '@polkadot/util';
 
 import { base58Encode } from '../base58/encode';
 import { decodeAddress } from './decode';
@@ -20,9 +20,14 @@ export function encodeAddress (_key: Uint8Array | string, ss58Format: Prefix = d
 
   const isPublicKey = [32, 33].includes(key.length);
   const input = u8aConcat(
-    ss58Format < 64
-      ? new Uint8Array([ss58Format])
-      : bnToU8a(bnToBn(ss58Format).shln(2).addn(0b01), { bitLength: 16, isLe: true }),
+    new Uint8Array(
+      ss58Format < 64
+        ? [ss58Format]
+        : [
+          ((ss58Format & 0b00000000_11111100) >> 2) | 0b01000000,
+          (ss58Format >> 8) | ((ss58Format & 0b00000000_00000011) << 6)
+        ]
+    ),
     key
   );
   const hash = sshash(input);
