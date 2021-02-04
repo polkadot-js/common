@@ -123,7 +123,10 @@ describe('encode', (): void => {
     });
   });
 
-  it('does not encode for > 16,383', (): void => {
+  it('does not encode for > 16,383, < 0', (): void => {
+    expect(
+      () => encodeAddress(keyring.alice.publicKey, -1)
+    ).toThrow(/range ss58Format specified/);
     expect(
       () => encodeAddress(keyring.alice.publicKey, 16384)
     ).toThrow(/range ss58Format specified/);

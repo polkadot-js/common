@@ -15,7 +15,7 @@ export function encodeAddress (_key: Uint8Array | string, ss58Format: Prefix = d
   // decode it, this means we can re-encode an address
   const key = decodeAddress(_key);
 
-  assert(ss58Format <= 16383 && ![46, 47].includes(ss58Format), 'Out of range ss58Format specified');
+  assert(ss58Format >= 0 && ss58Format <= 16383 && ![46, 47].includes(ss58Format), 'Out of range ss58Format specified');
   assert(defaults.allowedDecodedLengths.includes(key.length), `Expected a valid key to convert, with length ${defaults.allowedDecodedLengths.join(', ')}`);
 
   const isPublicKey = [32, 33].includes(key.length);
