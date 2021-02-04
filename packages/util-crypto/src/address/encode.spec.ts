@@ -115,12 +115,6 @@ describe('encode', (): void => {
     ).toEqual('yGHU8YKprxHbHdEv7oUK4rzMZXtsdhcXVG2CAMyC9WhzhjH2k');
   });
 
-  it('encodes with a 2-byte prefix (from Substrate)', (): void => {
-    expect(
-      encodeAddress(new Uint8Array([116, 28, 8, 160, 111, 65, 197, 150, 96, 143, 103, 116, 37, 155, 217, 4, 51, 4, 173, 250, 93, 62, 234, 98, 118, 11, 217, 190, 151, 99, 77, 99]), 200)
-    ).toEqual('4pbsSkWcBaYoFHrKJZp5fDVUKbqSYD9dhZZGvpp3vQ5ysVs5ybV');
-  });
-
   SUBKEY.forEach(({ address, publicKey, ss58Format }, index): void => {
     it(`encodes with Subkey equality (${index})`, (): void => {
       expect(
