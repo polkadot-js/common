@@ -32,4 +32,12 @@ describe('mnemonicToLegacySeed', (): void => {
       ).toEqual(SEED);
     });
   });
+
+  [false, true].forEach((onlyJs): void => {
+    it(`fails with non-mnemonics (onlyJs = ${onlyJs.toString()})`, (): void => {
+      expect(
+        () => mnemonicToLegacySeed('foo bar baz', undefined, onlyJs)
+      ).toThrow(/mnemonic specified/);
+    });
+  });
 });

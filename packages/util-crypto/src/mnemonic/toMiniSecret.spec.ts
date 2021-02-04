@@ -46,4 +46,12 @@ describe('mnemonicToMiniSecret', (): void => {
       });
     });
   });
+
+  [false, true].forEach((onlyJs): void => {
+    it(`fails with non-mnemonics (onlyJs = ${onlyJs.toString()})`, (): void => {
+      expect(
+        () => mnemonicToMiniSecret('foo bar baz', undefined, onlyJs)
+      ).toThrow(/mnemonic specified/);
+    });
+  });
 });
