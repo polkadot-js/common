@@ -16,4 +16,10 @@ describe('checkAddressChecksum', (): void => {
       checkAddressChecksum(base58Decode('yGHU8YKprxHbHdEv7oUK4rzMZXtsdhcXVG2CAMyC9WhzhjH2k'))
     ).toEqual([true, 34, 2, 255]);
   });
+
+  it('correctly extracts the info from a 2-byte-prefix address (ecdsa, from Substrate)', (): void => {
+    expect(
+      checkAddressChecksum(base58Decode('4pbsSkWcBaYoFHrKJZp5fDVUKbqSYD9dhZZGvpp3vQ5ysVs5ybV'))
+    ).toEqual([true, 35, 2, 200]);
+  });
 });

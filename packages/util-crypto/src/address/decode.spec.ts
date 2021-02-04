@@ -89,6 +89,12 @@ describe('decodeAddress', (): void => {
     );
   });
 
+  it('decodes a 2-byte prefix (ecdsa, from Substrate)', (): void => {
+    expect(
+      u8aToHex(decodeAddress('4pbsSkWcBaYoFHrKJZp5fDVUKbqSYD9dhZZGvpp3vQ5ysVs5ybV'))
+    ).toEqual('0x035676109c54b9a16d271abeb4954316a40a32bcce023ac14c8e26e958aa68fba9');
+  });
+
   it.skip('allows invalid prefix (in list)', (): void => {
     expect(
       (): Uint8Array => decodeAddress('6GfvWUvHvU8otbZ7sFhXH4eYeMcKdUkL61P3nFy52efEPVUx')
