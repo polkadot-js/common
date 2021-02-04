@@ -436,7 +436,15 @@ const all: NetworkFromSubstrate[] = [
     symbols: ['UART', 'UINK'],
     website: 'https://uniarts.me'
   },
-  createReserved(46),
+  {
+    decimals: [18],
+    displayName: 'AvN Mainnet',
+    network: 'aventus',
+    prefix: 46,
+    standardAccount: '*25519',
+    symbols: ['AVT'],
+    website: 'https://aventus.io'
+  },  
   createReserved(47),
   createReserved(48, 'All prefixes 48 and higher are reserved and cannot be allocated.')
 ];
