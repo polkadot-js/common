@@ -15,7 +15,7 @@
 
 import hash from 'hash.js';
 
-import { assert, u8aToU8a } from '@polkadot/util';
+import { assert, stringToU8a, u8aToU8a } from '@polkadot/util';
 
 import { pbkdf2Encode } from '../pbkdf2';
 import { randomAsU8a } from '../random/asU8a';
@@ -45,13 +45,9 @@ function deriveChecksumBits (entropyBuffer: Uint8Array): string {
   return bytesToBinary(Array.from(result)).slice(0, CS);
 }
 
-function salt (password?: string): string {
-  return 'mnemonic' + (password || '');
-}
-
 export function mnemonicToSeedSync (mnemonic: string, password?: string): Uint8Array {
-  const mnemonicBuffer = Buffer.from(normalize(mnemonic), 'utf8');
-  const saltBuffer = Buffer.from(salt(normalize(password)), 'utf8');
+  const mnemonicBuffer = stringToU8a(normalize(mnemonic));
+  const saltBuffer = stringToU8a(`mnemonic${normalize(password)}`);
 
   return pbkdf2Encode(mnemonicBuffer, saltBuffer).password;
 }
