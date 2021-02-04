@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { u8aToHex } from '@polkadot/util';
+import { u8aEq, u8aToHex } from '@polkadot/util';
 
 import tests from '../schnorrkel/keypair/testing';
 import { cryptoWaitReady } from '..';
@@ -13,6 +13,17 @@ const SEED = '0x4d1ab2a57929edfd018aaa974e62ed557e3f54b4104acabedf73c8f5a1dbb029
 describe('mnemonicToMiniSecret', (): void => {
   beforeEach(async (): Promise<void> => {
     await cryptoWaitReady();
+  });
+
+  [undefined, 'foo', 'bar'].forEach((password): void => {
+    it(`generates Wasm & Js equivalents (password = ${password || 'undefined'})`, (): void => {
+      expect(
+        u8aEq(
+          mnemonicToMiniSecret(MNEMONIC, password, true),
+          mnemonicToMiniSecret(MNEMONIC, password, false)
+        )
+      ).toEqual(true);
+    });
   });
 
   [false, true].forEach((onlyJs): void => {
@@ -33,6 +44,14 @@ describe('mnemonicToMiniSecret', (): void => {
           seed.substr(0, 66)
         );
       });
+    });
+  });
+
+  [false, true].forEach((onlyJs): void => {
+    it(`fails with non-mnemonics (onlyJs = ${onlyJs.toString()})`, (): void => {
+      expect(
+        () => mnemonicToMiniSecret('foo bar baz', undefined, onlyJs)
+      ).toThrow(/mnemonic specified/);
     });
   });
 });
