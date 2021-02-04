@@ -7,6 +7,29 @@ import { encodeAddress } from '.';
 
 const keyring = createTestPairs({ type: 'ed25519' }, false);
 
+const SUBKEY = [
+  {
+    address: '5DA4D4GL5iakrn22h5uKoevgvo18Pqj5BcdEUv8etEDPdijA',
+    publicKey: '0x3050f8456519829fe03302da802d22d3233a5f4037b9a3e2bcc403ccfcb2d735',
+    ss58Format: 42
+  },
+  {
+    address: 'yGF4JP7q5AK46d1FPCEm9sYQ4KooSjHMpyVAjLnsCSWVafPnf',
+    publicKey: '0x66cd6cf085627d6c85af1aaf2bd10cf843033e929b4e3b1c2ba8e4aa46fe111b',
+    ss58Format: 255
+  },
+  {
+    address: 'yGDYxQatQwuxqT39Zs4LtcTnpzE12vXb7ZJ6xpdiHv6gTu1hF',
+    publicKey: '0x242fd5a078ac6b7c3c2531e9bcf1314343782aeb58e7bc6880794589e701db55',
+    ss58Format: 255
+  },
+  {
+    address: 'r6Gr4gaMP8TsjhFbqvZhv3YvnasugLiRJpzpRHifsqqG18UXa',
+    publicKey: '0x88f01441682a17b52d6ae12d1a5670cf675fd254897efabaa5069eb3a701ab73',
+    ss58Format: 14269
+  }
+];
+
 describe('encode', (): void => {
   it('encodes an address to a valid value', (): void => {
     expect(
@@ -86,9 +109,11 @@ describe('encode', (): void => {
     ).toEqual('yGHU8YKprxHbHdEv7oUK4rzMZXtsdhcXVG2CAMyC9WhzhjH2k');
   });
 
-  it('encodes with 2 byte (Subkey equality)', (): void => {
-    expect(
-      encodeAddress('0x66cd6cf085627d6c85af1aaf2bd10cf843033e929b4e3b1c2ba8e4aa46fe111b', 255)
-    ).toEqual('yGF4JP7q5AK46d1FPCEm9sYQ4KooSjHMpyVAjLnsCSWVafPnf');
+  SUBKEY.forEach(({ address, publicKey, ss58Format }, index): void => {
+    it(`encodes with Subkey equality (${index})`, (): void => {
+      expect(
+        encodeAddress(publicKey, ss58Format)
+      ).toEqual(address);
+    });
   });
 });

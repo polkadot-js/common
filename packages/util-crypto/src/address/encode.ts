@@ -24,15 +24,14 @@ export function encodeAddress (_key: Uint8Array | string, ss58Format: Prefix = d
       ss58Format < 64
         ? [ss58Format]
         : [
-          ((ss58Format & 0b00000000_11111100) >> 2) | 0b01000000,
-          (ss58Format >> 8) | ((ss58Format & 0b00000000_00000011) << 6)
+          ((ss58Format & 0b0000_0000_1111_1100) >> 2) | 0b0100_0000,
+          (ss58Format >> 8) | ((ss58Format & 0b0000_0000_0000_0011) << 6)
         ]
     ),
     key
   );
-  const hash = sshash(input);
 
   return base58Encode(
-    u8aConcat(input, hash.subarray(0, isPublicKey ? 2 : 1))
+    u8aConcat(input, sshash(input).subarray(0, isPublicKey ? 2 : 1))
   );
 }

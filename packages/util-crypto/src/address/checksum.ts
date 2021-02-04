@@ -7,7 +7,7 @@ export function checkAddressChecksum (decoded: Uint8Array): [boolean, number, nu
   const ss58Length = (decoded[0] & 0b0100_0000) ? 2 : 1;
   const ss58Decoded = ss58Length === 1
     ? decoded[0]
-    : (((decoded[0] & 0b00111111) << 2) | (decoded[1] >> 6)) | ((decoded[1] & 0b00111111) << 8);
+    : (((decoded[0] & 0b0011_1111) << 2) | (decoded[1] >> 6)) | ((decoded[1] & 0b0011_1111) << 8);
   const isPublicKey = [34 + ss58Length, 35 + ss58Length].includes(decoded.length);
 
   // non-publicKeys has 1 byte checksums, else default to 2
