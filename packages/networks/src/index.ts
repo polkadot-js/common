@@ -438,7 +438,16 @@ const all: NetworkFromSubstrate[] = [
   },
   createReserved(46),
   createReserved(47),
-  createReserved(48, 'All prefixes 48 and higher are reserved and cannot be allocated.')
+  createReserved(48, 'All prefixes 48 and higher are reserved and cannot be allocated.'),
+  {
+    decimals: [12],
+    displayName: 'HydraDX',
+    network: 'hydradx',
+    prefix: 63,
+    standardAccount: '*25519',
+    symbols: ['HDX'],
+    website: 'https://hydradx.io'
+  }
 ];
 
 // The list of available/claimed prefixes
