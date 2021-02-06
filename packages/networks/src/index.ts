@@ -20,7 +20,7 @@ const createReserved = (prefix: number, displayName: string): NetworkFromSubstra
   decimals: null,
   displayName,
   isIgnored: true,
-  network: `reserved${prefix}`,
+  network: null,
   prefix,
   standardAccount: null,
   symbols: null,
