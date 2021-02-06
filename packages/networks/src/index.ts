@@ -16,11 +16,11 @@ const UNSORTED = [0, 2, 42];
 // last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
 
-const createReserved = (prefix: number, displayName: string): NetworkFromSubstrate => ({
+const createReserved = (prefix: number, displayName: string, network: string | null = null): NetworkFromSubstrate => ({
   decimals: null,
   displayName,
   isIgnored: true,
-  network: null,
+  network,
   prefix,
   standardAccount: null,
   symbols: null,
@@ -436,8 +436,8 @@ const all: NetworkFromSubstrate[] = [
     symbols: ['UART', 'UINK'],
     website: 'https://uniarts.me'
   },
-  createReserved(46, 'This prefix is reserved.'),
-  createReserved(47, 'This prefix is reserved.')
+  createReserved(46, 'This prefix is reserved.', 'reserved46'),
+  createReserved(47, 'This prefix is reserved.', 'reserved47')
 ];
 
 // The list of available/claimed prefixes
