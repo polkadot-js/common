@@ -16,11 +16,11 @@ const UNSORTED = [0, 2, 42];
 // last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
 
-const createReserved = (prefix: number, displayName = 'This prefix is reserved.'): NetworkFromSubstrate => ({
+const createReserved = (prefix: number, displayName: string, network: string | null = null): NetworkFromSubstrate => ({
   decimals: null,
   displayName,
   isIgnored: true,
-  network: `reserved${prefix}`,
+  network,
   prefix,
   standardAccount: null,
   symbols: null,
@@ -41,7 +41,7 @@ const all: NetworkFromSubstrate[] = [
     symbols: ['DOT'],
     website: 'https://polkadot.network'
   },
-  createReserved(1),
+  createReserved(1, 'Bare 32-bit Schnorr/Ristretto (S/R 25519) public key.'),
   {
     decimals: [12],
     displayName: 'Kusama Relay Chain',
@@ -59,7 +59,7 @@ const all: NetworkFromSubstrate[] = [
     symbols: ['KSM'],
     website: 'https://kusama.network'
   },
-  createReserved(3),
+  createReserved(3, 'Bare 32-bit Ed25519 public key.'),
   {
     decimals: null,
     displayName: 'Katal Chain',
@@ -417,7 +417,7 @@ const all: NetworkFromSubstrate[] = [
     symbols: null,
     website: 'https://substrate.dev/'
   },
-  createReserved(43),
+  createReserved(43, 'Bare 32-bit ECDSA SECP-256k1 public key.'),
   {
     decimals: [8],
     displayName: 'ChainX',
@@ -445,8 +445,8 @@ const all: NetworkFromSubstrate[] = [
     symbols: ['AVT'],
     website: 'https://aventus.io'
   },  
-  createReserved(47),
-  createReserved(48, 'All prefixes 48 and higher are reserved and cannot be allocated.')
+  createReserved(46, 'This prefix is reserved.', 'reserved46'),
+  createReserved(47, 'This prefix is reserved.', 'reserved47')
 ];
 
 // The list of available/claimed prefixes

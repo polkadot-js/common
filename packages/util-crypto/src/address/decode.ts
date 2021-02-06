@@ -10,32 +10,23 @@ import { base58Decode } from '../base58/decode';
 import { checkAddressChecksum } from './checksum';
 import { defaults } from './defaults';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: boolean, ss58Format: Prefix = -1): Uint8Array {
   if (isU8a(encoded) || isHex(encoded)) {
     return u8aToU8a(encoded);
   }
 
-  const wrapError = (message: string) => `Decoding ${encoded as string}: ${message}`;
-  let decoded;
-
   try {
-    decoded = base58Decode(encoded);
+    const decoded = base58Decode(encoded);
+
+    assert(defaults.allowedEncodedLengths.includes(decoded.length), 'Invalid decoded address length');
+
+    const [isValid, endPos, ss58Length, ss58Decoded] = checkAddressChecksum(decoded);
+
+    assert(ignoreChecksum || isValid, 'Invalid decoded address checksum');
+    assert([-1, ss58Decoded].includes(ss58Format), `Expected ss58Format ${ss58Format}, received ${ss58Decoded}`);
+
+    return decoded.slice(ss58Length, endPos);
   } catch (error) {
-    throw new Error(wrapError((error as Error).message));
+    throw new Error(`Decoding ${encoded as string}: ${(error as Error).message}`);
   }
-
-  // assert(defaults.allowedPrefix.includes(decoded[0] as Prefix), error('Invalid decoded address prefix'));
-  assert(defaults.allowedEncodedLengths.includes(decoded.length), wrapError('Invalid decoded address length'));
-
-  // TODO Unless it is an "use everywhere" prefix, throw an error
-  // if (ss58Format !== -1 && (decoded[0] !== ss58Format)) {
-  //   console.log(`WARN: Expected ${ss58Format}, found ${decoded[0]}`);
-  // }
-
-  const [isValid, endPos] = checkAddressChecksum(decoded);
-
-  assert(ignoreChecksum || isValid, wrapError('Invalid decoded address checksum'));
-
-  return decoded.slice(1, endPos);
 }

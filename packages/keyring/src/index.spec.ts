@@ -46,11 +46,11 @@ describe('keypair', (): void => {
 
     it('adds from a mnemonic, with correct ss58', (): void => {
       setSS58Format(20); // this would not be used
-      keyring.setSS58Format(68); // this would be used
+      keyring.setSS58Format(2); // this would be used
 
       const pair = keyring.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {});
 
-      expect(pair.address).toEqual('7sPsxWPE5DzAyPT3VuoJYw5NTGscx9QYN9oddQx4kALKC3hH');
+      expect(pair.address).toEqual('HSLu2eci2GCfWkRimjjdTXKoFSDL3rBv5Ey2JWCBj68cVZj');
       expect(encodeAddress(pair.publicKey)).toEqual('35cDYtPsdG1HUa2n2MaARgJyRz1WKMBZK1DL6c5cX7nugQh1');
     });
 
@@ -123,11 +123,11 @@ describe('keypair', (): void => {
     });
 
     it('adds from a mnemonic', (): void => {
-      keyring.setSS58Format(68);
+      keyring.setSS58Format(2);
 
       expect(
         keyring.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card', {}).address
-      ).toEqual('7qQGarA4PWjPPVHG4USn1yuuVZvEHN7XZz8o7EbAp48jayZQ');
+      ).toEqual('FSjXNRT2K1R5caeHLPD6WMrqYUpfGZB7ua8W89JFctZ1YqV');
     });
 
     it('allows publicKeys retrieval', (): void => {
@@ -200,11 +200,11 @@ describe('keypair', (): void => {
     });
 
     it('adds from a mnemonic', (): void => {
-      keyring.setSS58Format(68);
+      keyring.setSS58Format(2);
 
       expect(
         keyring.addFromMnemonic('moral movie very draw assault whisper awful rebuild speed purity repeat card').address
-      ).toEqual('7ooxHV3mz4nnWbK8v7Mxcb71QMpof268eL1A2VrYWUNWJk8P');
+      ).toEqual('DrRE1KAcs4pCicX8yJPh7YxkLPQ2vXnCFSVRPQfx38KjEFe');
     });
 
     it('allows publicKeys retrieval', (): void => {

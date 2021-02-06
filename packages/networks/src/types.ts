@@ -6,7 +6,7 @@ export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate
 export interface NetworkFromSubstrate {
   decimals: number[] | null,
   displayName: string;
-  network: string;
+  network: string | null;
   prefix: number;
   genesisHash?: string[] | null;
   hasLedgerSupport?: boolean;
