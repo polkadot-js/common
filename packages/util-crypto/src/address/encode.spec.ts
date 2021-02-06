@@ -30,6 +30,11 @@ const SUBKEY = [
     ss58Format: 255
   },
   {
+    address: 'mHm8k9Emsvyfp3piCauSH684iA6NakctF8dySQcX94GDdrJrE',
+    publicKey: '0x44d5a3ac156335ea99d33a83c57c7146c40c8e2260a8a4adf4e7a86256454651',
+    ss58Format: 4242
+  },
+  {
     address: 'r6Gr4gaMP8TsjhFbqvZhv3YvnasugLiRJpzpRHifsqqG18UXa',
     publicKey: '0x88f01441682a17b52d6ae12d1a5670cf675fd254897efabaa5069eb3a701ab73',
     ss58Format: 14269
