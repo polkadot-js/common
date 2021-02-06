@@ -11,15 +11,10 @@ const ED25519_CRYPTO = 'ed25519 seed';
 // gets an xprv from a mnemonic
 export function ledgerMaster (mnemonic: string): Uint8Array {
   const seed = mnemonicToSeedSync(mnemonic);
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const chainCode = hmacSha256(ED25519_CRYPTO, new Uint8Array([1, ...seed]));
   let priv;
 
   while (!priv || (priv[31] & 0b0010_0000)) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     priv = hmacSha512(ED25519_CRYPTO, priv || seed);
   }
 
