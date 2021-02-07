@@ -18,7 +18,11 @@ export interface NetworkFromSubstrate {
   website: string | null;
 }
 
-export interface Network extends NetworkFromSubstrate {
+export interface NetworkFromSubstrateNamed extends NetworkFromSubstrate {
+  network: string;
+}
+
+export interface Network extends NetworkFromSubstrateNamed {
   genesisHash: string[];
   icon: Icon;
 }

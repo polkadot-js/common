@@ -6,7 +6,7 @@
 //
 // Once the above is published as a package, the duplication here can be removed
 
-import type { Network, NetworkFromSubstrate } from './types';
+import type { Network, NetworkFromSubstrate, NetworkFromSubstrateNamed } from './types';
 
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
@@ -446,7 +446,7 @@ const all: NetworkFromSubstrate[] = [
 //   - when no icon has been specified, default to substrate
 //   - sort by name, however we keep 0, 2, 42 first in the list
 const available: Network[] = all
-  .filter((n) => !n.isIgnored)
+  .filter((n): n is NetworkFromSubstrateNamed => !n.isIgnored && !!n.network)
   .map((n) => ({ ...n, genesisHash: n.genesisHash || [], icon: n.icon || 'substrate' }))
   .sort((a, b) =>
     UNSORTED.includes(a.prefix) && UNSORTED.includes(b.prefix)
