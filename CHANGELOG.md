@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 5.6.1 Feb 7, 2021
+
+Contributed:
+
+- Fix installation instructions in `@polkadot/x-global` (Thanks to https://github.com/raoulmillais)
+
+Changes:
+
+- Conform to new ss58 encoding with ids up to 16,383 (>= 64 as 2 bytes)
+- Adjust all `Buffer.from` usages, prefer `Uint8Array` where possible
+- Expand tests for keyring with `vrf{Sign, Verify}`
+- Align `@polkadot/networks` with latest ss58 registry
+
+
 ## 5.5.2 Feb 2, 2021
 
 Changes:

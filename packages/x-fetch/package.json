@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-fetch",
-  "version": "5.5.3-4",
+  "version": "5.6.0",
   "description": "A cross-environment fetch replacement",
   "browser": "browser.js",
   "main": "node.js",
@@ -14,8 +14,8 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-fetch#readme",
   "dependencies": {
-    "@babel/runtime": "^7.12.5",
-    "@polkadot/x-global": "5.5.3-4",
+    "@babel/runtime": "^7.12.13",
+    "@polkadot/x-global": "5.6.0",
     "@types/node-fetch": "^2.5.8",
     "node-fetch": "^2.6.1"
   }
