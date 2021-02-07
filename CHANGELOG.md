@@ -9,6 +9,7 @@ Contributed:
 Changes:
 
 - Conform to new ss58 encoding with ids up to 16,383 (>= 64 as 2 bytes)
+- Use JS sqrt inside `bnSqrt` when value <= MAX_SAFE_INTEGER
 - Adjust all `Buffer.from` usages, prefer `Uint8Array` where possible
 - Expand tests for keyring with `vrf{Sign, Verify}`
 - Align `@polkadot/networks` with latest ss58 registry

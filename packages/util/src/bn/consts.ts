@@ -92,3 +92,15 @@ export const BN_MILLION: BN = new BN(1_000_000);
  * @summary BN constant for 1,000,000,000.
  */
 export const BN_BILLION: BN = new BN(1_000_000_000);
+
+/**
+ * @name BN_QUINTILL
+ * @summary BN constant for 1,000,000,000,000,000,000.
+ */
+export const BN_QUINTILL: BN = BN_BILLION.mul(BN_BILLION);
+
+/**
+ * @name BN_MAX_INTEGER
+ * @summary BN constant for MAX_SAFE_INTEGER
+ */
+export const BN_MAX_INTEGER: BN = new BN(Number.MAX_SAFE_INTEGER);
