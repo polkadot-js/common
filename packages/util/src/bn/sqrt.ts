@@ -13,7 +13,9 @@ function newtonSqrt (n: BN): BN {
     return new BN(Math.floor(Math.sqrt(n.toNumber())));
   }
 
-  let x0 = new BN(1);
+  // Use sqrt(MAX_SAFE_INTEGER) as starting point. since we already know the
+  // output will be larger than this, we expect this to be a safe start
+  let x0 = new BN(94906265);
 
   while (true) {
     const x1 = n.div(x0).iadd(x0).ishrn(1);
