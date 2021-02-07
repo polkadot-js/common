@@ -13,6 +13,7 @@ const TESTS: [string | number | BN | BigInt, string | number][] = [
   [Number.MAX_SAFE_INTEGER, 94906265],
   [new BN(Number.MAX_SAFE_INTEGER).iaddn(256), 94906265],
   [12345678n * 12345679n, 12345678],
+  // test cases below from https://github.com/Aisse-258/bigint-isqrt/blob/f5254b9750841959022461c1353437a07a08f501/test/sqrt-test.js
   [
     '54866395443885995655625',
     '234235768925'

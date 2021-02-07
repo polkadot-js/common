@@ -28,7 +28,7 @@ export function bnSqrt <ExtToBn extends ToBn> (value: ExtToBn | BN | BigInt | st
   assert(n.gte(BN_ZERO), 'square root of negative numbers is not supported');
 
   // https://stackoverflow.com/questions/53683995/javascript-big-integer-square-root/
-  // shortcut < 2^53 -1 to use the JS utils
+  // shortcut <= 2^53 - 1 to use the JS utils
   if (n.lte(BN_MAX_INTEGER)) {
     return new BN(Math.floor(Math.sqrt(n.toNumber())));
   }
