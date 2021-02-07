@@ -5,14 +5,14 @@ import BN from 'bn.js';
 
 import { bnSqrt } from '.';
 
-const TESTS = [
+const TESTS: [string | number | BN | BigInt, string | number][] = [
   [0, 0],
   [1, 1],
   [4, 2],
   [256 * 256, 256],
   [Number.MAX_SAFE_INTEGER, 94906265],
   [new BN(Number.MAX_SAFE_INTEGER).iaddn(256), 94906265],
-  [new BN(12345678).imuln(12345679), 12345678],
+  [12345678n * 12345679n, 12345678],
   [
     '54866395443885995655625',
     '234235768925'
@@ -36,7 +36,7 @@ describe('bnSqrt', (): void => {
 
   TESTS.forEach(([value, expected], index): void => {
     it(`calcs for test #${index}`, (): void => {
-      expect(bnSqrt(new BN(value)).eq(new BN(expected))).toEqual(true);
+      expect(bnSqrt(value).eq(new BN(expected))).toEqual(true);
     });
   });
 });
