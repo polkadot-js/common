@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 5.6.2 Feb 8, 2021
+
+Changes:
+
+- `@polkadot/networks` now filters the new upstream-introduced `null` networks
+
+
 ## 5.6.1 Feb 7, 2021
 
 Contributed:
