@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/hw-ledger-transports",
-  "version": "5.6.1",
+  "version": "5.6.2-0",
   "repository": "github:polkadot-js/common",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
