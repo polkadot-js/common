@@ -442,7 +442,7 @@ const all: NetworkFromSubstrate[] = [
     decimals: [18],
     displayName: 'AvN Mainnet',
     network: 'aventus',
-    prefix: 50,
+    prefix: 65,
     standardAccount: '*25519',
     symbols: ['AVT'],
     website: 'https://aventus.io'
