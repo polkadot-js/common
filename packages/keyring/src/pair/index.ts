@@ -178,6 +178,9 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
 
       return pairToJson(type, { address, meta }, recode(passphrase), !!passphrase);
     },
+    unlock: (passphrase?: string): void => {
+      return decodePkcs8(passphrase);
+    },
     verify: (message: string | Uint8Array, signature: Uint8Array): boolean => {
       return signatureVerify(message, signature, TYPE_ADDRESS[type](publicKey)).isValid;
     },

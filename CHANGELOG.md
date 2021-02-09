@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 5.6.x
+
+Changes:
+
+- Add `unlock(password)` to keypair (less confusing than only having `decodePkcs8`, equivalent to `lock()`)
+
+
 ## 5.6.2 Feb 8, 2021
 
 Changes:

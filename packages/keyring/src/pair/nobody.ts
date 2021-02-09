@@ -52,6 +52,9 @@ export function nobody (): KeyringPair {
       json,
     type: 'ed25519',
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    unlock: (passphrase?: string): void =>
+      undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     verify: (message: Uint8Array, signature: Uint8Array): boolean =>
       false,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
