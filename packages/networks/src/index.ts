@@ -345,6 +345,15 @@ const all: NetworkFromSubstrate[] = [
     website: null
   },
   {
+    decimals: [12],
+    displayName: 'Ares Protocol',
+    network: 'ares',
+    prefix: 34,
+    standardAccount: '*25519',
+    symbols: ['ARES'],
+    website: 'https://www.aresprotocol.com/'
+  },
+  {
     decimals: [15],
     displayName: 'Valiu Liquidity Network',
     network: 'vln',
@@ -446,6 +455,15 @@ const all: NetworkFromSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['AVT'],
     website: 'https://aventus.io'
+  },
+  {
+    decimals: [12],
+    displayName: 'Crust Network',
+    network: 'crust',
+    prefix: 66,
+    standardAccount: '*25519',
+    symbols: ['CRU'],
+    website: 'https://crust.network'
   }
 ];
 
