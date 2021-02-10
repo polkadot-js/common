@@ -437,7 +437,16 @@ const all: NetworkFromSubstrate[] = [
     website: 'https://uniarts.me'
   },
   createReserved(46, 'This prefix is reserved.', 'reserved46'),
-  createReserved(47, 'This prefix is reserved.', 'reserved47')
+  createReserved(47, 'This prefix is reserved.', 'reserved47'),
+  {
+    decimals: [18],
+    displayName: 'AvN Mainnet',
+    network: 'aventus',
+    prefix: 65,
+    standardAccount: '*25519',
+    symbols: ['AVT'],
+    website: 'https://aventus.io'
+  }
 ];
 
 // The list of available/claimed prefixes
