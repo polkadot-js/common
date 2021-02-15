@@ -20,7 +20,7 @@ interface PairDef {
 // keyring is for testing - what happens is that in most cases the keyring is initialises
 // before anything else. Since the sr25519 crypto is async, this creates problems with
 // adding the keys when only the keyring is used.
-export const PAIRS_sr25519: PairDef[] = [
+export const PAIRSSR25519: PairDef[] = [
   {
     publicKey: hexToU8a('0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d'),
     secretKey: hexToU8a('0x98319d4ff8a9508c4bb0cf0b5a78d760a0b2082c02775e6e82370816fedfff48925a225d97aa00682d6a59b95b18780c10d7032336e88f3442b42361f4a66011'),
@@ -71,8 +71,9 @@ export const PAIRS_sr25519: PairDef[] = [
   }
 ];
 
-export const PAIRS_ethereum: PairDef[] = [
+export const PAIRSETHEREUM: PairDef[] = [
   {
+    name: 'Gerald',
     publicKey: new Uint8Array([3, 98, 79, 114, 14, 174, 103, 106,
       4, 17, 22, 49, 201, 202, 51, 140,
       17, 208, 245, 168, 14, 228, 34, 16,
@@ -80,7 +81,6 @@ export const PAIRS_ethereum: PairDef[] = [
       191]),
     secretKey: hexToU8a('0x99b3c12287537e38c90a9219d4cb074a89a16e9cdb20bf85728ebd97c343e342'),
     seed: 'Gerald',
-    name: 'Gerald',
     type: 'ethereum'
   }
 ];
@@ -93,7 +93,7 @@ export const PAIRS_ethereum: PairDef[] = [
  */
 export function createTestKeyring (options: KeyringOptions = {}, isDerived = true): KeyringInstance {
   const keyring = new Keyring(options);
-  const pairs:PairDef[] = (options.type && options.type === 'ethereum') ? PAIRS_ethereum : PAIRS_sr25519;
+  const pairs:PairDef[] = (options.type && options.type === 'ethereum') ? PAIRSETHEREUM : PAIRSSR25519;
 
   pairs.forEach(({ name, publicKey, secretKey, seed, type }): void => {
     const meta = {

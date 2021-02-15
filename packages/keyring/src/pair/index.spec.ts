@@ -4,7 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkadot/util-crypto';
 
-import { PAIRS_sr25519 } from '../testing';
+import { PAIRSSR25519 } from '../testing';
 import { createTestPairs } from '../testingPairs';
 import { createPair } from '.';
 
@@ -99,11 +99,11 @@ describe('pair', (): void => {
   });
 
   it('allows derivation on the pair', (): void => {
-    const alice = createPair({ toSS58, type: 'sr25519' }, { publicKey: PAIRS_sr25519[0].publicKey, secretKey: PAIRS_sr25519[0].secretKey }, {});
+    const alice = createPair({ toSS58, type: 'sr25519' }, { publicKey: PAIRSSR25519[0].publicKey, secretKey: PAIRSSR25519[0].secretKey }, {});
     const stash = alice.derive('//stash');
     const soft = alice.derive('//funding/0');
 
-    expect(stash.publicKey).toEqual(PAIRS_sr25519[1].publicKey);
+    expect(stash.publicKey).toEqual(PAIRSSR25519[1].publicKey);
     expect(soft.address).toEqual('5ECQNn7UueWHPFda5qUi4fTmTtyCnPvGnuoyVVSj5CboJh9J');
   });
 
