@@ -15,15 +15,17 @@ describe('pbkdf2Encode', (): void => {
     await waitReady();
   });
 
-  it('has equivalent Wasm & JS results', (): void => {
-    const salt = randomAsU8a();
+  [256, 1024, 2048].forEach((rounds): void => {
+    it(`has equivalent Wasm & JS results (${rounds} rounds)`, (): void => {
+      const salt = randomAsU8a();
 
-    expect(
-      u8aEq(
-        pbkdf2Encode(TEST_PASSWORD, salt, 2048, false).password,
-        pbkdf2Encode(TEST_PASSWORD, salt, 2048, true).password
-      )
-    ).toBe(true);
+      expect(
+        u8aEq(
+          pbkdf2Encode(TEST_PASSWORD, salt, rounds, false).password,
+          pbkdf2Encode(TEST_PASSWORD, salt, rounds, true).password
+        )
+      ).toBe(true);
+    });
   });
 
   [false, true].forEach((onlyJs): void => {

@@ -6,18 +6,23 @@ export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate
 export interface NetworkFromSubstrate {
   decimals: number[] | null,
   displayName: string;
-  network: string;
+  network: string | null;
   prefix: number;
   genesisHash?: string[] | null;
   hasLedgerSupport?: boolean;
   icon?: Icon | null;
   isIgnored?: boolean;
+  slip44?: number;
   standardAccount: '*25519' | null;
   symbols: string[] | null;
   website: string | null;
 }
 
-export interface Network extends NetworkFromSubstrate {
+export interface NetworkFromSubstrateNamed extends NetworkFromSubstrate {
+  network: string;
+}
+
+export interface Network extends NetworkFromSubstrateNamed {
   genesisHash: string[];
   icon: Icon;
 }

@@ -6,7 +6,7 @@
 //
 // Once the above is published as a package, the duplication here can be removed
 
-import type { Network, NetworkFromSubstrate } from './types';
+import type { Network, NetworkFromSubstrate, NetworkFromSubstrateNamed } from './types';
 
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
@@ -16,11 +16,11 @@ const UNSORTED = [0, 2, 42];
 // last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
 
-const createReserved = (prefix: number, displayName = 'This prefix is reserved.'): NetworkFromSubstrate => ({
+const createReserved = (prefix: number, displayName: string, network: string | null = null): NetworkFromSubstrate => ({
   decimals: null,
   displayName,
   isIgnored: true,
-  network: `reserved${prefix}`,
+  network,
   prefix,
   standardAccount: null,
   symbols: null,
@@ -36,11 +36,12 @@ const all: NetworkFromSubstrate[] = [
     icon: 'polkadot',
     network: 'polkadot',
     prefix: 0,
+    slip44: 0x00000162,
     standardAccount: '*25519',
     symbols: ['DOT'],
     website: 'https://polkadot.network'
   },
-  createReserved(1),
+  createReserved(1, 'Bare 32-bit Schnorr/Ristretto (S/R 25519) public key.'),
   {
     decimals: [12],
     displayName: 'Kusama Relay Chain',
@@ -53,11 +54,12 @@ const all: NetworkFromSubstrate[] = [
     icon: 'polkadot',
     network: 'kusama',
     prefix: 2,
+    slip44: 0x000001b2,
     standardAccount: '*25519',
     symbols: ['KSM'],
     website: 'https://kusama.network'
   },
-  createReserved(3),
+  createReserved(3, 'Bare 32-bit Ed25519 public key.'),
   {
     decimals: null,
     displayName: 'Katal Chain',
@@ -139,6 +141,7 @@ const all: NetworkFromSubstrate[] = [
     hasLedgerSupport: true,
     network: 'polymesh',
     prefix: 12,
+    slip44: 0x00000253,
     standardAccount: '*25519',
     symbols: ['POLYX'],
     website: 'https://polymath.network/'
@@ -234,6 +237,7 @@ const all: NetworkFromSubstrate[] = [
     hasLedgerSupport: true,
     network: 'dock-mainnet',
     prefix: 22,
+    slip44: 0x00000252,
     standardAccount: '*25519',
     symbols: ['DCK'],
     website: 'https://dock.io'
@@ -341,6 +345,15 @@ const all: NetworkFromSubstrate[] = [
     website: null
   },
   {
+    decimals: [12],
+    displayName: 'Ares Protocol',
+    network: 'ares',
+    prefix: 34,
+    standardAccount: '*25519',
+    symbols: ['ARES'],
+    website: 'https://www.aresprotocol.com/'
+  },
+  {
     decimals: [15],
     displayName: 'Valiu Liquidity Network',
     network: 'vln',
@@ -413,7 +426,7 @@ const all: NetworkFromSubstrate[] = [
     symbols: null,
     website: 'https://substrate.dev/'
   },
-  createReserved(43),
+  createReserved(43, 'Bare 32-bit ECDSA SECP-256k1 public key.'),
   {
     decimals: [8],
     displayName: 'ChainX',
@@ -432,9 +445,26 @@ const all: NetworkFromSubstrate[] = [
     symbols: ['UART', 'UINK'],
     website: 'https://uniarts.me'
   },
-  createReserved(46),
-  createReserved(47),
-  createReserved(48, 'All prefixes 48 and higher are reserved and cannot be allocated.')
+  createReserved(46, 'This prefix is reserved.', 'reserved46'),
+  createReserved(47, 'This prefix is reserved.', 'reserved47'),
+  {
+    decimals: [18],
+    displayName: 'AvN Mainnet',
+    network: 'aventus',
+    prefix: 65,
+    standardAccount: '*25519',
+    symbols: ['AVT'],
+    website: 'https://aventus.io'
+  },
+  {
+    decimals: [12],
+    displayName: 'Crust Network',
+    network: 'crust',
+    prefix: 66,
+    standardAccount: '*25519',
+    symbols: ['CRU'],
+    website: 'https://crust.network'
+  }
 ];
 
 // The list of available/claimed prefixes
@@ -443,7 +473,7 @@ const all: NetworkFromSubstrate[] = [
 //   - when no icon has been specified, default to substrate
 //   - sort by name, however we keep 0, 2, 42 first in the list
 const available: Network[] = all
-  .filter((n) => !n.isIgnored)
+  .filter((n): n is NetworkFromSubstrateNamed => !n.isIgnored && !!n.network)
   .map((n) => ({ ...n, genesisHash: n.genesisHash || [], icon: n.icon || 'substrate' }))
   .sort((a, b) =>
     UNSORTED.includes(a.prefix) && UNSORTED.includes(b.prefix)

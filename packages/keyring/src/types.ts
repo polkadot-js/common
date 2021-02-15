@@ -40,16 +40,17 @@ export interface KeyringPair {
   readonly publicKey: Uint8Array;
   readonly type: KeypairType;
 
-  decodePkcs8: (passphrase?: string, encoded?: Uint8Array) => void;
-  derive: (suri: string, meta?: KeyringPair$Meta) => KeyringPair;
-  encodePkcs8: (passphrase?: string) => Uint8Array;
-  lock: () => void;
-  setMeta: (meta: KeyringPair$Meta) => void;
-  sign (message: Uint8Array, options?: SignOptions): Uint8Array;
+  decodePkcs8 (passphrase?: string, encoded?: Uint8Array): void;
+  derive (suri: string, meta?: KeyringPair$Meta): KeyringPair;
+  encodePkcs8 (passphrase?: string): Uint8Array;
+  lock (): void;
+  setMeta (meta: KeyringPair$Meta): void;
+  sign (message: string | Uint8Array, options?: SignOptions): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;
-  verify (message: Uint8Array, signature: Uint8Array): boolean;
-  vrfSign (message: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array;
-  vrfVerify (message: Uint8Array, vrfResult: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): boolean;
+  unlock (passphrase?: string): void;
+  verify (message: string | Uint8Array, signature: Uint8Array): boolean;
+  vrfSign (message: string | Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array;
+  vrfVerify (message: string | Uint8Array, vrfResult: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): boolean;
 }
 
 export interface KeyringPairs {

@@ -1,5 +1,53 @@
 # CHANGELOG
 
+## 5.6.x
+
+Changes:
+
+- Add `unlock(password)` to keypair (less confusing than only having `decodePkcs8`, equivalent to `lock()`)
+
+
+## 5.6.2 Feb 8, 2021
+
+Changes:
+
+- `@polkadot/networks` now filters the new upstream-introduced `null` networks
+
+
+## 5.6.1 Feb 7, 2021
+
+Contributed:
+
+- Fix installation instructions in `@polkadot/x-global` (Thanks to https://github.com/raoulmillais)
+
+Changes:
+
+- Conform to new ss58 encoding with ids up to 16,383 (>= 64 as 2 bytes)
+- Use JS sqrt inside `bnSqrt` when value <= MAX_SAFE_INTEGER
+- Adjust all `Buffer.from` usages, prefer `Uint8Array` where possible
+- Expand tests for keyring with `vrf{Sign, Verify}`
+- Align `@polkadot/networks` with latest ss58 registry
+
+
+## 5.5.2 Feb 2, 2021
+
+Changes:
+
+- Expose `BN_{MILLION, BILLION}` constants (in addition to 2-9)
+
+
+## 5.5.1 Jan 31, 2021
+
+Changes:
+
+- Added `hdLedger` to util-crypto for Ledger-compatible bip32+ed25519 derivation
+- Added `hmac{Sha256, 512}` to util-crypto
+- Add `slip44` indices for Ledger into `@polkadot/networks`
+- Remove `module` entry in `package.json` (only rely on exports map)
+- Remove direct references to `global` object, use `@polkadot/x-global`
+- Update `@ledgerhq` dependencies to latest
+
+
 ## 5.4.1 Jan 24, 2021
 
 Contributed:
