@@ -1,10 +1,17 @@
 # CHANGELOG
 
-## 5.6.x
+## 5.6.3 Feb 16, 2021
+
+Contributed:
+
+- Add ss58 information for Aventus (Thanks to https://github.com/nahuseyoum)
 
 Changes:
 
 - Add `unlock(password)` to keypair (less confusing than only having `decodePkcs8`, equivalent to `lock()`)
+- Change use of `detectPackage` to use `packageInfo.ts`
+- Align with upstream ss58 registry
+- `@polkadot/wasm-crypto` 3.2.3
 
 
 ## 5.6.2 Feb 8, 2021
