@@ -13,7 +13,7 @@ const secp256k1 = require('secp256k1');
 
 const MASTER_SECRET = Buffer.from('Bitcoin seed', 'utf8');
 const HARDENED_OFFSET = 0x80000000;
-const LEN = 78;
+//const LEN = 78;
 
 // Bitcoin hardcoded by default, can use package `coininfo` for others
 const BITCOIN_VERSIONS = { private: 0x0488ADE4, public: 0x0488B21E };
@@ -111,6 +111,7 @@ export default class HDKey {
 
     const entries = path.split('/');
     let hdkey = this as HDKey;
+    console.log('# of entries',entries.length)
 
     entries.forEach(function (c, i) {
       if (i === 0) {
@@ -121,10 +122,12 @@ export default class HDKey {
 
       const hardened = (c.length > 1) && (c[c.length - 1] === "'");
       let childIndex = parseInt(c, 10); // & (HARDENED_OFFSET - 1)
+      console.log('childindex',childIndex
+      )
 
       assert(childIndex < HARDENED_OFFSET, 'Invalid index');
       if (hardened) childIndex += HARDENED_OFFSET;
-
+      console.log('about to derive',i)
       hdkey = hdkey.deriveChild(childIndex);
     });
 
@@ -141,7 +144,8 @@ export default class HDKey {
     let data;
 
     if (isHardened) { // Hardened child
-      // assert(this.privateKey, 'Could not derive hardened child key')
+       assert(this.privateKey, 'Could not derive hardened child key')
+       console.log('ishardened')
       if (this.privateKey) {
         const pk = this.privateKey;
         const zb = Buffer.alloc(1);

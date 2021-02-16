@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
-import { cryptoWaitReady, encodeAddress, setSS58Format } from '@polkadot/util-crypto';
+import { cryptoWaitReady, encodeAddress, secp256k1KeypairFromSeed, setSS58Format } from '@polkadot/util-crypto';
 
 import Keyring from '.';
 
@@ -296,8 +296,19 @@ describe('keypair', (): void => {
     });
 
     it.only('creates with dev phrase when only path specified', (): void => {
+      console.log('start')
+      let pair=keyring.createFromUri(PHRASE + '/m/44\'/60\'/0\'/0/0')
+      console.log('pair from uri: publicKey',pair.publicKey)
+      console.log('pair from uri: address',pair.address)
+      console.log('pair should be ',secp256k1KeypairFromSeed(new Uint8Array([
+        164, 46, 133, 235,   5, 207,  28, 249,
+        232, 85, 198, 139, 228, 139, 150,  58,
+        234, 73,  67,  75, 211, 214, 217, 232,
+        113,  4, 237,  84, 208, 115,  61, 215
+      ])
+  ))
       expect(
-        keyring.createFromUri(PHRASE + '/m/44\'/60\'/0\'/0/0').address
+        pair.address
       ).toEqual('0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d');
     });
 

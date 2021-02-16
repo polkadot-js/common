@@ -5,7 +5,7 @@ import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta } from './types';
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a, u8aToHex } from '@polkadot/util';
-import { base64Decode, decodeAddress, encodeAddress, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed } from '@polkadot/util-crypto';
+import { base64Decode, decodeAddress, encodeAddress, ethereumEncode, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed } from '@polkadot/util-crypto';
 import HDKey from '@polkadot/util-crypto/key/hdkey';
 
 import { DEV_PHRASE } from './defaults';
@@ -184,7 +184,7 @@ export class Keyring implements KeyringInstance {
 
       if ([12, 15, 18, 21, 24].includes(parts.length)) {
         seed = type === 'ethereum'
-          ? mnemonicToLegacySeed(phrase)
+          ? mnemonicToLegacySeed(phrase,"",false,true)
           : mnemonicToMiniSecret(phrase, password);
       } else {
         assert(str.length <= 32, 'specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
@@ -197,8 +197,10 @@ export class Keyring implements KeyringInstance {
     let derived:Keypair;
 
     if (type === 'ethereum') {
+      console.log('SEED',seed,u8aToHex(seed),'length',seed.length)
       const key = HDKey.fromMasterSeed(seed);
       const child = key.derive(derivePath.substring(1));
+      console.log('child privatekey',child.privateKey,u8aToHex(child.privateKey) )
 
       if (child.publicKey && child.privateKey) {
         derived = { publicKey: child.publicKey, secretKey: child.privateKey };
@@ -218,7 +220,12 @@ export class Keyring implements KeyringInstance {
    * @description Encodes the input into an ss58 representation
    */
   public encodeAddress = (address: Uint8Array | string, ss58Format?: number): string => {
-    return encodeAddress(address, isUndefined(ss58Format) ? this.#ss58 : ss58Format);
+    console.log("KEYRING.ENCODEADDRESS CALLED")
+    if (this.type === 'ethereum') {
+      return ethereumEncode(address)
+    } else {
+      return encodeAddress(address, isUndefined(ss58Format) ? this.#ss58 : ss58Format);
+    }
   }
 
   /**
