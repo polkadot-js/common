@@ -81,6 +81,7 @@ export function signatureVerify (message: Uint8Array | string, signature: Uint8A
 
   const result: VerifyResult = { crypto: 'none', isValid: false };
   const publicKey = decodeAddress(addressOrPublicKey);
+  console.log("publicKey in signatureVerify",publicKey)
   const input = { message, publicKey, signature: signatureU8a };
 
   return [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length)

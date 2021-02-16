@@ -24,12 +24,9 @@ import { mnemonicValidate } from "./validate";
  * }
  * ```
  */
-export function mnemonicToLegacySeed(mnemonic: string, password = "", onlyJs = false, isEthereum: boolean): Uint8Array {
-  // IS THIS USED BY ANY OTHER BC THAN ETHEREUM? WE COULD SIMPLIFY THIS FUNCTION IF IT ISNT THE CASE
+export function mnemonicToLegacySeed(mnemonic: string, password = "", onlyJs = false, isEthereum?: boolean): Uint8Array {
+  // TODO: IS THIS USED BY ANY OTHER BC THAN ETHEREUM? WE COULD SIMPLIFY THIS FUNCTION IF IT ISNT THE CASE
   assert(mnemonicValidate(mnemonic), "Invalid bip39 mnemonic specified");
-  console.log("isReady() && !onlyJs", isReady() && !onlyJs);
-  console.log("bip39ToSeed(mnemonic, password)", bip39ToSeed(mnemonic, password));
-  console.log("mnemonicToSeedSync(mnemonic, password)", mnemonicToSeedSync(mnemonic, password));
   if (isEthereum) {
     return mnemonicToSeedSync(mnemonic, password);
   } else {

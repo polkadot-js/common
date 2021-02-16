@@ -26,9 +26,9 @@ export function keyExtractSuri (suri: string): ExtractResult {
 
   const [, phrase, , derivePath, , , password] = matches as string[];
 
-  console.log('phrase', phrase);
-  console.log('derivePath', derivePath);
-  console.log('password', password);
+  // console.log('phrase', phrase);
+  // console.log('derivePath', derivePath);
+  // console.log('password', password);
   const { path } = keyExtractPath(derivePath);
 
   return {

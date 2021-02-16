@@ -113,7 +113,6 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
 
   const encodeAddress = (): string => {
     const raw = TYPE_ADDRESS[type](publicKey);
-console.log("type === 'ethereum'",type === 'ethereum')
     return type === 'ethereum'
       ? ethereumEncode(raw)
       : toSS58(raw);
@@ -172,9 +171,10 @@ console.log("type === 'ethereum'",type === 'ethereum')
       );
     },
     toJson: (passphrase?: string): KeyringPair$Json => {
-      const address = ['ecdsa', 'ethereum'].includes(type)
-        ? u8aToHex(secp256k1Compress(publicKey))
-        : encodeAddress();
+      const address = encodeAddress()
+      // ['ecdsa', 'ethereum'].includes(type)
+      //   ? u8aToHex(secp256k1Compress(publicKey))
+      //   : encodeAddress();
 
       return pairToJson(type, { address, meta }, recode(passphrase), !!passphrase);
     },
@@ -182,6 +182,8 @@ console.log("type === 'ethereum'",type === 'ethereum')
       return decodePkcs8(passphrase);
     },
     verify: (message: string | Uint8Array, signature: Uint8Array): boolean => {
+      console.log("encodeAddress",encodeAddress())
+      console.log("TYPE_ADDRESS[type](publicKey)",TYPE_ADDRESS[type](publicKey))
       return signatureVerify(message, signature, TYPE_ADDRESS[type](publicKey)).isValid;
     },
     vrfSign: (message: string | Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array => {

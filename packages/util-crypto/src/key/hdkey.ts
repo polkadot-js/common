@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import * as crypto from 'crypto';
+import { secp256k1KeypairFromSeed } from '..';
 // import Buffer from 'safe-buffer'
 // import { secp256k1 } from "../secp256k1/secp256k1";
 
@@ -50,12 +51,15 @@ export default class HDKey {
   // private key
   set privateKey (value:Uint8Array|null) {
     assert.equal(value && value.length, 32, 'Private key must be 32 bytes.');
-    assert(secp256k1.privateKeyVerify(value) === true, 'Invalid private key');
+    //TODO: implement privateKeyVerify for local secp256k1
+    //assert(secp256k1.privateKeyVerify(value) === true, 'Invalid private key');
 
     this._privateKey = value;
-    this._publicKey = new Uint8Array(Buffer.from(secp256k1.publicKeyCreate(value, true)));
-    this._publicKey ? this._identifier = this.hash160(this._publicKey) : null;
-    this._identifier ? this._fingerprint = this._identifier.slice(0, 4).readUInt32BE(0) : null;
+    if (value){
+      this._publicKey = secp256k1KeypairFromSeed(value).publicKey //new Uint8Array(Buffer.from(secp256k1.publicKeyCreate(value, true)));
+      this._publicKey ? this._identifier = this.hash160(this._publicKey) : null;
+      this._identifier ? this._fingerprint = this._identifier.slice(0, 4).readUInt32BE(0) : null;
+    }
   }
 
   get privateKey ():Uint8Array|null {
@@ -70,9 +74,11 @@ export default class HDKey {
 
   set publicKey (value) {
     assert(value && value.length === 33 || value && value.length === 65, 'Public key must be 33 or 65 bytes.');
-    assert(secp256k1.publicKeyVerify(value) === true, 'Invalid public key');
+    //TODO: implement publicKeyVerify for local secp256k1
+    //assert(secp256k1.publicKeyVerify(value) === true, 'Invalid public key');
 
-    this._publicKey = new Uint8Array(Buffer.from(secp256k1.publicKeyConvert(value, true))); // force compressed point
+    // TODO: should I use the compress function here?
+    this._publicKey = value //new Uint8Array(Buffer.from(secp256k1.publicKeyConvert(value, true))); // force compressed point
     this._publicKey ? this._identifier = this.hash160(this._publicKey) : null;
     this._identifier ? this._fingerprint = this._identifier.slice(0, 4).readUInt32BE(0) : null;
     this._privateKey = null; // new Uint8Array()
@@ -111,7 +117,6 @@ export default class HDKey {
 
     const entries = path.split('/');
     let hdkey = this as HDKey;
-    console.log('# of entries',entries.length)
 
     entries.forEach(function (c, i) {
       if (i === 0) {
@@ -122,12 +127,9 @@ export default class HDKey {
 
       const hardened = (c.length > 1) && (c[c.length - 1] === "'");
       let childIndex = parseInt(c, 10); // & (HARDENED_OFFSET - 1)
-      console.log('childindex',childIndex
-      )
 
       assert(childIndex < HARDENED_OFFSET, 'Invalid index');
       if (hardened) childIndex += HARDENED_OFFSET;
-      console.log('about to derive',i)
       hdkey = hdkey.deriveChild(childIndex);
     });
 
@@ -145,7 +147,6 @@ export default class HDKey {
 
     if (isHardened) { // Hardened child
        assert(this.privateKey, 'Could not derive hardened child key')
-       console.log('ishardened')
       if (this.privateKey) {
         const pk = this.privateKey;
         const zb = Buffer.alloc(1);
@@ -181,7 +182,6 @@ export default class HDKey {
     if (this.privateKey) {
       // ki = parse256(IL) + kpar (mod n)
       try {
-        console.log('PRIVATE', this.privateKey);
         hd.privateKey = new Uint8Array(Buffer.from(secp256k1.privateKeyTweakAdd(new Uint8Array(Buffer.from(this.privateKey)), new Uint8Array(IL))));
         // throw if IL >= n || (privateKey + IL) === 0
       } catch (err) {
