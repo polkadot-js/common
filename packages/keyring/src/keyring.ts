@@ -184,7 +184,7 @@ export class Keyring implements KeyringInstance {
 
       if ([12, 15, 18, 21, 24].includes(parts.length)) {
         seed = type === 'ethereum'
-          ? mnemonicToLegacySeed(phrase,"",false,true)
+          ? mnemonicToLegacySeed(phrase,"",false,64)
           : mnemonicToMiniSecret(phrase, password);
       } else {
         assert(str.length <= 32, 'specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
