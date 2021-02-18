@@ -62,7 +62,8 @@ describe('pair', (): void => {
     expect(
       keyring.alice.vrfVerify(
         message,
-        keyring.alice.vrfSign(message)
+        keyring.alice.vrfSign(message),
+        keyring.alice.publicKey
       )
     ).toBe(true);
   });
