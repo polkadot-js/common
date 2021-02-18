@@ -194,7 +194,7 @@ export default class HDKey {
     } else {
       // Ki = point(parse256(IL)) + Kpar
       //    = G*IL + Kpar
-      try {
+      try { //TODO: is this necessary?
         hd.publicKey = this.publicKey ? new Uint8Array(Buffer.from(secp256k1.publicKeyTweakAdd(Buffer.from(this.publicKey), IL, true))) : null;
         // throw if IL >= n || (g**IL + publicKey) is infinity
       } catch (err) {

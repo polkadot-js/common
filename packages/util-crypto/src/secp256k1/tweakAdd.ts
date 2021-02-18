@@ -10,11 +10,11 @@ const ecparams = ec.curve;
 
 const errors = {
   // IMPOSSIBLE_CASE: 'Impossible case. Please create issue.',
-  TWEAK_ADD: "The tweak was out of range or the resulted private key is invalid"
+  TWEAK_ADD: "The tweak was out of range or the resulted private key is invalid",
   // TWEAK_MUL: 'The tweak was out of range or equal to zero',
   // CONTEXT_RANDOMIZE_UNKNOW: 'Unknow error on context randomization',
   // SECKEY_INVALID: 'Private Key is invalid',
-  // PUBKEY_PARSE: 'Public Key could not be parsed',
+  PUBKEY_PARSE: 'Public Key could not be parsed',
   // PUBKEY_SERIALIZE: 'Public Key serialization error',
   // PUBKEY_COMBINE: 'The sum of the public keys is not valid',
   // SIG_PARSE: 'Signature could not be parsed',
@@ -23,7 +23,7 @@ const errors = {
   // ECDH: 'Scalar was invalid (zero or overflow)'
 };
 
-function isUint8Array(name: string, value: Uint8Array, length: number) {
+function isUint8Array(name: string, value: Uint8Array, length: number|number[]) {
   assert(value instanceof Uint8Array, `Expected ${name} to be an Uint8Array`);
 
   if (length !== undefined) {
@@ -37,6 +37,21 @@ function isUint8Array(name: string, value: Uint8Array, length: number) {
     }
   }
 }
+
+// function isCompressed (value:boolean) {
+//   assert(toTypeString(value) === 'Boolean', 'Expected compressed to be a Boolean')
+// }
+// function toTypeString (value:boolean) {
+//   return Object.prototype.toString.call(value).slice(8, -1)
+// }
+// function getAssertedOutput (output = (len:number) => new Uint8Array(len), length:number) {
+//   if (typeof output === 'function') output = output(length)
+//   isUint8Array('output', output, length)
+//   return output
+// }
+
+
+// Private key
 
 export function secp256k1PrivateKeyTweakAdd(seckey: Uint8Array, tweak: Uint8Array) {
   isUint8Array("private key", seckey, 32);
@@ -61,3 +76,34 @@ function _secp256k1PrivateKeyTweakAdd(seckey: Uint8Array, tweak: Uint8Array) {
   seckey.set(tweaked);
   return 0;
 }
+
+// export function publicKeyTweakAdd (pubkey:Uint8Array, tweak:Uint8Array, compressed:boolean = true, output:Uint8Array) {
+//   isUint8Array('public key', pubkey, [33, 65])
+//   isUint8Array('tweak', tweak, 32)
+//   //isCompressed(compressed)
+//   output = new Uint8Array(compressed? 33:65) //getAssertedOutput(output, compressed ? 33 : 65)
+
+//   switch (_publicKeyTweakAdd(output, pubkey, tweak)) {
+//     case 0:
+//       return output
+//     case 1:
+//       throw new Error(errors.PUBKEY_PARSE)
+//     case 2:
+//       throw new Error(errors.TWEAK_ADD)
+//   }
+// }
+
+// export function _publicKeyTweakAdd (output:Uint8Array, pubkey:Uint8Array, tweak:Uint8Array) {
+//   const pair = loadPublicKey(pubkey)
+//   if (pair === null) return 1
+
+//   tweak = new BN(tweak)
+//   if (tweak.cmp(ecparams.n) >= 0) return 2
+
+//   const point = pair.getPublic().add(ecparams.g.mul(tweak))
+//   if (point.isInfinity()) return 2
+
+//   savePublicKey(output, point)
+
+//   return 0
+// }

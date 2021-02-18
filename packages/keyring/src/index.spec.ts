@@ -341,7 +341,7 @@ describe('keypair', (): void => {
       expect(pair.address).toBe('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
     });
 
-    it.only('allows for signing/verification', (): void => {
+    it('allows for signing/verification', (): void => {
       const MESSAGE = stringToU8a('just some test message');
       const signer = keyring.createFromUri(PHRASE);
       const verifier = keyring.addFromJson(
@@ -354,7 +354,7 @@ describe('keypair', (): void => {
       expect(verifier.verify(new Uint8Array(), signature)).toBe(false);
     });
 
-    it.only('allows for signing/verification (withType)', (): void => {
+    it('allows for signing/verification (withType)', (): void => {
       const MESSAGE = stringToU8a('just some test message');
       const signer = keyring.createFromUri(PHRASE);
       const verifier = keyring.addFromJson(
