@@ -36,21 +36,24 @@ describe('signatureVerify', (): void => {
     it('verifies an ed25519 signature', (): void => {
       expect(signatureVerify(MESSAGE, SIG_ED, ADDR_ED)).toEqual({
         crypto: 'ed25519',
-        isValid: true
+        isValid: true,
+        publicKey: decodeAddress(ADDR_ED)
       });
     });
 
     it('verifies an ecdsa signature', (): void => {
       expect(signatureVerify(MESSAGE, SIG_EC, ADDR_EC)).toEqual({
         crypto: 'ecdsa',
-        isValid: true
+        isValid: true,
+        publicKey: decodeAddress(ADDR_ED)
       });
     });
 
     it('verifies an ethereum signature', (): void => {
       expect(signatureVerify(MESSAGE, SIG_ET, ADDR_ET)).toEqual({
         crypto: 'ethereum',
-        isValid: true
+        isValid: true,
+        publicKey: hexToU8a(ADDR_ET)
       });
     });
 
@@ -63,35 +66,40 @@ describe('signatureVerify', (): void => {
         '0x002309df96687e44280bb72c3818358faeeb699c'
       )).toEqual({
         crypto: 'ethereum',
-        isValid: true
+        isValid: true,
+        publicKey: hexToU8a(ADDR_ET)
       });
     });
 
     it('fails on invalid ethereum signature', (): void => {
       expect(signatureVerify(MESSAGE, SIG_EC, ADDR_ET)).toEqual({
         crypto: 'none',
-        isValid: false
+        isValid: false,
+        publicKey: hexToU8a(ADDR_ET)
       });
     });
 
     it('verifies an sr25519 signature', (): void => {
       expect(signatureVerify(MESSAGE, SIG_SR, ADDR_SR)).toEqual({
         crypto: 'sr25519',
-        isValid: true
+        isValid: true,
+        publicKey: decodeAddress(ADDR_SR)
       });
     });
 
     it('allows various inputs', (): void => {
       expect(signatureVerify(stringToU8a(MESSAGE), hexToU8a(SIG_ED), decodeAddress(ADDR_ED))).toEqual({
         crypto: 'ed25519',
-        isValid: true
+        isValid: true,
+        publicKey: decodeAddress(ADDR_ED)
       });
     });
 
     it('fails on an invalid signature', (): void => {
       expect(signatureVerify(MESSAGE, SIG_SR, ADDR_ED)).toEqual({
         crypto: 'none',
-        isValid: false
+        isValid: false,
+        publicKey: decodeAddress(ADDR_ED)
       });
     });
   });
@@ -100,35 +108,40 @@ describe('signatureVerify', (): void => {
     it('verifies an ed25519 signature', (): void => {
       expect(signatureVerify(MESSAGE, MUL_ED, ADDR_ED)).toEqual({
         crypto: 'ed25519',
-        isValid: true
+        isValid: true,
+        publicKey: decodeAddress(ADDR_ED)
       });
     });
 
     it('verifies an ecdsa signature', (): void => {
       expect(signatureVerify(MESSAGE, MUL_EC, ADDR_EC)).toEqual({
         crypto: 'ecdsa',
-        isValid: true
+        isValid: true,
+        publicKey: decodeAddress(ADDR_EC)
       });
     });
 
     it('verifies an ethereum signature', (): void => {
       expect(signatureVerify(MESSAGE, MUL_ET, ADDR_ET)).toEqual({
         crypto: 'ethereum',
-        isValid: true
+        isValid: true,
+        publicKey: hexToU8a(ADDR_ET)
       });
     });
 
     it('verifies an sr25519 signature', (): void => {
       expect(signatureVerify(MESSAGE, MUL_SR, ADDR_SR)).toEqual({
         crypto: 'sr25519',
-        isValid: true
+        isValid: true,
+        publicKey: decodeAddress(ADDR_SR)
       });
     });
 
     it('fails on an invalid signature', (): void => {
       expect(signatureVerify(MESSAGE, MUL_SR, ADDR_ED)).toEqual({
         crypto: 'sr25519',
-        isValid: false
+        isValid: false,
+        publicKey: new Uint8Array([61, 12, 55, 211, 0, 211, 97, 199, 4, 37, 17, 213, 81, 175, 166, 23, 251, 199, 144, 210, 19, 83, 186, 1, 196, 231, 14, 156, 171, 46, 141, 146])
       });
     });
   });

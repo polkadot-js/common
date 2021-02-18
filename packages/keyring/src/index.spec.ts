@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
-import { cryptoWaitReady, encodeAddress, secp256k1KeypairFromSeed, setSS58Format } from '@polkadot/util-crypto';
+import { cryptoWaitReady, encodeAddress, randomAsU8a, setSS58Format } from '@polkadot/util-crypto';
 
 import Keyring from '.';
 
@@ -84,6 +84,8 @@ describe('keypair', (): void => {
       const signature = pair.sign(MESSAGE);
 
       expect(pair.verify(MESSAGE, signature)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
       expect(pair.verify(new Uint8Array(), signature)).toBe(false);
     });
 
@@ -93,6 +95,8 @@ describe('keypair', (): void => {
       const signature = pair.sign(MESSAGE, { withType: true });
 
       expect(pair.verify(MESSAGE, signature)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
       expect(pair.verify(new Uint8Array(), signature)).toBe(false);
     });
   });
@@ -160,6 +164,8 @@ describe('keypair', (): void => {
       const signature = pair.sign(MESSAGE);
 
       expect(pair.verify(MESSAGE, signature)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
       expect(pair.verify(new Uint8Array(), signature)).toBe(false);
     });
 
@@ -169,6 +175,8 @@ describe('keypair', (): void => {
       const signature = pair.sign(MESSAGE, { withType: true });
 
       expect(pair.verify(MESSAGE, signature)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
       expect(pair.verify(new Uint8Array(), signature)).toBe(false);
     });
   });
@@ -265,6 +273,8 @@ describe('keypair', (): void => {
       const signature = pair.sign(MESSAGE);
 
       expect(pair.verify(MESSAGE, signature)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
       expect(pair.verify(new Uint8Array(), signature)).toBe(false);
     });
 
@@ -274,11 +284,13 @@ describe('keypair', (): void => {
       const signature = pair.sign(MESSAGE, { withType: true });
 
       expect(pair.verify(MESSAGE, signature)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
       expect(pair.verify(new Uint8Array(), signature)).toBe(false);
     });
   });
 
-  describe('ethereum', (): void => {
+  describe.only('ethereum', (): void => {
     // combine mnemonic with derivation path
     const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy' + '/m/44\'/60\'/0\'/0/0';
     const ETH_ADDRESS_ONE='0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d'
@@ -349,8 +361,13 @@ describe('keypair', (): void => {
       );
 
       const signature = signer.sign(MESSAGE);
+      const dummyPublic = verifier.publicKey.slice();
+
+      dummyPublic[dummyPublic.length - 1] = 0;
 
       expect(verifier.verify(MESSAGE, signature)).toBe(true);
+      expect(verifier.verify(MESSAGE, signature, signer.publicKey)).toBe(true);
+      expect(verifier.verify(MESSAGE, signature, dummyPublic)).toBe(false);
       expect(verifier.verify(new Uint8Array(), signature)).toBe(false);
     });
 
@@ -362,8 +379,13 @@ describe('keypair', (): void => {
       );
 
       const signature = signer.sign(MESSAGE, { withType: true });
+      const dummyPublic = verifier.publicKey.slice();
+
+      dummyPublic[dummyPublic.length - 1] = 0;
 
       expect(verifier.verify(MESSAGE, signature)).toBe(true);
+      expect(verifier.verify(MESSAGE, signature, signer.publicKey)).toBe(true);
+      expect(verifier.verify(MESSAGE, signature, dummyPublic)).toBe(false);
       expect(verifier.verify(new Uint8Array(), signature)).toBe(false);
     });
   });
