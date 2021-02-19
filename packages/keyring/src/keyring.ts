@@ -6,7 +6,7 @@ import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, Ke
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
 import { base64Decode, decodeAddress, encodeAddress, ethereumEncode, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed } from '@polkadot/util-crypto';
-import HDKey from '@polkadot/util-crypto/key/hdkeyEthereum';
+import { HDKeyEth } from '@polkadot/util-crypto/hd';
 
 import { DEV_PHRASE } from './defaults';
 import { createPair } from './pair';
@@ -196,7 +196,7 @@ export class Keyring implements KeyringInstance {
     let derived:Keypair;
 
     if (type === 'ethereum') {
-      const key = HDKey.fromMasterSeed(seed);
+      const key = HDKeyEth.fromMasterSeed(seed);
       const child = key.derive(derivePath.substring(1));
 
       if (child.publicKey && child.privateKey) {

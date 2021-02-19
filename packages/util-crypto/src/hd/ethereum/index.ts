@@ -8,7 +8,7 @@ import { Buffer } from 'safe-buffer';
 // const assert = require('assert');
 import { assert } from '@polkadot/util';
 
-import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '..';
+import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '../..';
 
 const MASTER_SECRET = Buffer.from('Bitcoin seed', 'utf8');
 const HARDENED_OFFSET = 0x80000000;
@@ -30,7 +30,7 @@ function bytesAsBuffer (bytes:Uint8Array):Buffer {
   return bytes as unknown as Buffer;
 }
 
-export default class HDKey {
+export class HDKeyEth {
   versions:Versions;
   public depth:number;
   index:number;
@@ -106,13 +106,13 @@ export default class HDKey {
   }
 
   // derive
-  public derive (path:string):HDKey {
+  public derive (path:string):HDKeyEth {
     if (path === 'm' || path === 'M' || path === "m'" || path === "M'") {
       return this;
     }
 
     const entries = path.split('/');
-    let hdkey = this as HDKey;
+    let hdkey = this as HDKeyEth;
 
     entries.forEach(function (c, i) {
       if (i === 0) {
@@ -133,7 +133,7 @@ export default class HDKey {
   }
 
   // deriveChild
-  private deriveChild (index:number):HDKey {
+  private deriveChild (index:number):HDKeyEth {
     const isHardened = index >= HARDENED_OFFSET;
     const indexBuffer = Buffer.allocUnsafe(4);
 
@@ -175,7 +175,7 @@ export default class HDKey {
     const IL:Buffer = I.slice(0, 32);
     const IR:Buffer = I.slice(32);
 
-    const hd = new HDKey(this.versions);
+    const hd = new HDKeyEth(this.versions);
 
     // Private parent key -> private child key
     if (this.privateKey) {
@@ -203,12 +203,12 @@ export default class HDKey {
   }
 
   // fromMasterSeed
-  public static fromMasterSeed = function (seedBuffer:crypto.BinaryLike, versions?:Versions):HDKey {
+  public static fromMasterSeed = function (seedBuffer:crypto.BinaryLike, versions?:Versions):HDKeyEth {
     const I = crypto.createHmac('sha512', new Uint8Array(bufferAsArrayBuffer(MASTER_SECRET))).update(seedBuffer).digest();
     const IL = I.slice(0, 32);
     const IR = I.slice(32);
 
-    const hdkey = versions ? new HDKey(versions) : new HDKey();
+    const hdkey = versions ? new HDKeyEth(versions) : new HDKeyEth();
 
     hdkey.chainCode = new Uint8Array(IR);
     hdkey.privateKey = new Uint8Array(IL);
