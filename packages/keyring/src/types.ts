@@ -48,9 +48,9 @@ export interface KeyringPair {
   sign (message: string | Uint8Array, options?: SignOptions): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;
   unlock (passphrase?: string): void;
-  verify (message: string | Uint8Array, signature: Uint8Array): boolean;
+  verify (message: string | Uint8Array, signature: Uint8Array, signerPublic: string | Uint8Array): boolean;
   vrfSign (message: string | Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array;
-  vrfVerify (message: string | Uint8Array, vrfResult: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): boolean;
+  vrfVerify (message: string | Uint8Array, vrfResult: Uint8Array, signerPublic: Uint8Array | string, context?: string | Uint8Array, extra?: string | Uint8Array): boolean;
 }
 
 export interface KeyringPairs {
