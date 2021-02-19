@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 5.7.x
+
+**Breaking change** The signature of `pair.verify` now explicitly requires the signer public key as a parameter
+
+Changes:
+
+- The signature on the keyring for `.verify` not explicitly requires the `publicKey` of the signer. Previously it only verified against an own public key.
+
+
 ## 5.6.3 Feb 16, 2021
 
 Contributed:
