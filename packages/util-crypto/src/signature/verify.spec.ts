@@ -45,7 +45,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, SIG_EC, ADDR_EC)).toEqual({
         crypto: 'ecdsa',
         isValid: true,
-        publicKey: decodeAddress(ADDR_ED)
+        publicKey: decodeAddress(ADDR_EC)
       });
     });
 
@@ -67,7 +67,7 @@ describe('signatureVerify', (): void => {
       )).toEqual({
         crypto: 'ethereum',
         isValid: true,
-        publicKey: hexToU8a(ADDR_ET)
+        publicKey: hexToU8a('0x002309df96687e44280bb72c3818358faeeb699c')
       });
     });
 

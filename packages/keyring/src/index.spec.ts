@@ -83,10 +83,9 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE);
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
       expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
       expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
 
     it('signs and verifies (withType)', (): void => {
@@ -94,10 +93,9 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE, { withType: true });
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
       expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
       expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
   });
 
@@ -163,10 +161,9 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE);
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
       expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
       expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
 
     it('signs and verifies (withType)', (): void => {
@@ -174,10 +171,9 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE, { withType: true });
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
       expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
       expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
   });
 
@@ -272,10 +268,9 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(addressKeyOne);
       const signature = pair.sign(MESSAGE);
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
       expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
       expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
 
     it('signs and verifies (withType)', (): void => {
@@ -283,10 +278,9 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(addressKeyOne);
       const signature = pair.sign(MESSAGE, { withType: true });
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
       expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
       expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
   });
 
@@ -365,10 +359,9 @@ describe('keypair', (): void => {
 
       dummyPublic[dummyPublic.length - 1] = 0;
 
-      expect(verifier.verify(MESSAGE, signature)).toBe(true);
       expect(verifier.verify(MESSAGE, signature, signer.publicKey)).toBe(true);
       expect(verifier.verify(MESSAGE, signature, dummyPublic)).toBe(false);
-      expect(verifier.verify(new Uint8Array(), signature)).toBe(false);
+      expect(verifier.verify(new Uint8Array(), signature, signer.publicKey)).toBe(false);
     });
 
     it('allows for signing/verification (withType)', (): void => {
@@ -383,10 +376,9 @@ describe('keypair', (): void => {
 
       dummyPublic[dummyPublic.length - 1] = 0;
 
-      expect(verifier.verify(MESSAGE, signature)).toBe(true);
       expect(verifier.verify(MESSAGE, signature, signer.publicKey)).toBe(true);
       expect(verifier.verify(MESSAGE, signature, dummyPublic)).toBe(false);
-      expect(verifier.verify(new Uint8Array(), signature)).toBe(false);
+      expect(verifier.verify(new Uint8Array(), signature, signer.publicKey)).toBe(false);
     });
   });
 
