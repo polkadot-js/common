@@ -4,6 +4,7 @@
 import type { KeyringInstance, KeyringOptions } from './types';
 
 import { hexToU8a } from '@polkadot/util';
+import { KeypairType } from '@polkadot/util-crypto/types';
 
 import { createPair } from './pair';
 import Keyring from '.';
@@ -13,7 +14,7 @@ interface PairDef {
   publicKey: Uint8Array;
   seed: string;
   secretKey?: Uint8Array;
-  type: 'ed25519' | 'sr25519'|'ethereum';
+  type: KeypairType
 }
 
 // NOTE This is not great since we have the secretKey here explicitly, but a testing
@@ -77,7 +78,7 @@ export const PAIRS_ethereum: PairDef[] = [
       4, 17, 22, 49, 201, 202, 51, 140,
       17, 208, 245, 168, 14, 228, 34, 16,
       198, 190, 114, 152, 60, 235, 98, 15,
-      191]), // hexToU8a('0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b'),
+      191]),
     secretKey: hexToU8a('0x99b3c12287537e38c90a9219d4cb074a89a16e9cdb20bf85728ebd97c343e342'),
     seed: 'Gerald',
     name: 'Gerald',

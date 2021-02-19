@@ -1,4 +1,4 @@
-// [object Object]
+// Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import * as crypto from 'crypto';
@@ -50,7 +50,7 @@ export default class HDKey {
     this._privateKey = value;
 
     if (value) {
-      this._publicKey = secp256k1KeypairFromSeed(value).publicKey; 
+      this._publicKey = secp256k1KeypairFromSeed(value).publicKey;
       this._publicKey ? this._identifier = this.hash160(this._publicKey) : null;
       this._identifier ? this._fingerprint = this._identifier.slice(0, 4).readUInt32BE(0) : null;
     }
@@ -77,7 +77,7 @@ export default class HDKey {
     this._identifier ? this._fingerprint = this._identifier.slice(0, 4).readUInt32BE(0) : null;
     this._privateKey = null;
   }
-  
+
   // fingerprint
   get fingerprint ():number {
     return this._fingerprint;

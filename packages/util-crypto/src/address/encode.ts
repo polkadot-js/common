@@ -12,7 +12,6 @@ import { defaults } from './defaults';
 import { sshash } from './sshash';
 
 export function encodeAddress (_key: Uint8Array | string, ss58Format: Prefix = defaults.prefix): string {
-  console.log('CALLED WRONG ENCODEADDY');
   // decode it, this means we can re-encode an address
   const key = decodeAddress(_key);
 

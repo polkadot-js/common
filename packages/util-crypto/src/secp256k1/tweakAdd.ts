@@ -2,10 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import BN from 'bn.js';
+import { ec as EC } from 'elliptic';
 
 import { assert, isU8a } from '@polkadot/util';
-
-import {ec as EC} from 'elliptic'
 
 const ec = new EC('secp256k1');
 const ecparams = ec.curve;
