@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import * as crypto from 'crypto';
-import { secp256k1KeypairFromSeed } from '..';
+import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '..';
 // import Buffer from 'safe-buffer'
 // import { secp256k1 } from "../secp256k1/secp256k1";
 
@@ -10,7 +10,7 @@ const assert = require('assert');
 const Buffer = require('safe-buffer').Buffer;
 // var crypto = require('crypto')
 // var bs58check = require('bs58check')
-const secp256k1 = require('secp256k1');
+// const secp256k1 = require('secp256k1');
 
 const MASTER_SECRET = Buffer.from('Bitcoin seed', 'utf8');
 const HARDENED_OFFSET = 0x80000000;
@@ -182,27 +182,17 @@ export default class HDKey {
     if (this.privateKey) {
       // ki = parse256(IL) + kpar (mod n)
       try {
-        hd.privateKey = new Uint8Array(Buffer.from(secp256k1.privateKeyTweakAdd(new Uint8Array(Buffer.from(this.privateKey)), new Uint8Array(IL))));
+        hd.privateKey = new Uint8Array(Buffer.from(secp256k1PrivateKeyTweakAdd(new Uint8Array(Buffer.from(this.privateKey)), new Uint8Array(IL))));
         // throw if IL >= n || (privateKey + IL) === 0
       } catch (err) {
-        console.log('error #1', err);
+        console.log('error when secp256k1PrivateKeyTweakAdd in eth key derivation', err);
 
         // In case parse256(IL) >= n or ki == 0, one should proceed with the next value for i
         return this.deriveChild(index + 1);
       }
       // Public parent key -> public child key
     } else {
-      // Ki = point(parse256(IL)) + Kpar
-      //    = G*IL + Kpar
-      try { //TODO: is this necessary?
-        hd.publicKey = this.publicKey ? new Uint8Array(Buffer.from(secp256k1.publicKeyTweakAdd(Buffer.from(this.publicKey), IL, true))) : null;
-        // throw if IL >= n || (g**IL + publicKey) is infinity
-      } catch (err) {
-        console.log('error #2', err);
-
-        // In case parse256(IL) >= n or Ki is the point at infinity, one should proceed with the next value for i
-        return this.deriveChild(index + 1);
-      }
+      throw new Error("PublicKey derivation without private key is not supported at the moment")
     }
 
     hd.chainCode = new Uint8Array(IR);

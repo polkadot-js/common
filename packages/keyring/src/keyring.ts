@@ -193,21 +193,17 @@ export class Keyring implements KeyringInstance {
       }
     }
 
-    // FIXME Need to support Ethereum-type derivation paths
     let derived:Keypair;
 
     if (type === 'ethereum') {
-      //console.log('SEED',seed,u8aToHex(seed),'length',seed.length)
       const key = HDKey.fromMasterSeed(seed);
       const child = key.derive(derivePath.substring(1));
-      //console.log('child privatekey',child.privateKey,u8aToHex(child.privateKey) )
 
       if (child.publicKey && child.privateKey) {
         derived = { publicKey: child.publicKey, secretKey: child.privateKey };
       } else {
         throw new Error('child derivation errored');
       }
-      // console.log('child',child,child.depth, child.chainCode,u8aToHex(child.publicKey),u8aToHex(createPair({ toSS58: this.encodeAddress, type }, derived, meta, null).publicKey))
     } else {
       derived = keyFromPath(keypairFromSeed[type](seed), path, type);
     }
@@ -220,7 +216,6 @@ export class Keyring implements KeyringInstance {
    * @description Encodes the input into an ss58 representation
    */
   public encodeAddress = (address: Uint8Array | string, ss58Format?: number): string => {
-    console.log("KEYRING.ENCODEADDRESS CALLED")
     if (this.type === 'ethereum') {
       return ethereumEncode(address)
     } else {

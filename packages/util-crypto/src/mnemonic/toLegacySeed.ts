@@ -25,7 +25,6 @@ import { mnemonicValidate } from "./validate";
  * ```
  */
 export function mnemonicToLegacySeed(mnemonic: string, password = "", onlyJs = false, byteLength?: number): Uint8Array {
-  // TODO: IS THIS USED BY ANY OTHER BC THAN ETHEREUM? WE COULD SIMPLIFY THIS FUNCTION IF IT ISNT THE CASE
   assert(mnemonicValidate(mnemonic), "Invalid bip39 mnemonic specified");
   if (byteLength && byteLength === 32) {
     return isReady() && !onlyJs

@@ -284,11 +284,10 @@ describe('keypair', (): void => {
     });
   });
 
-  describe.only('ethereum', (): void => {
+  describe('ethereum', (): void => {
     // combine mnemonic with derivation path
     const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy' + '/m/44\'/60\'/0\'/0/0';
     const ETH_ADDRESS_ONE='0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d'
-    // const PHRASE_ALICE='bottom drive obey lake curtain smoke basket hold race lonely fit walk';
 
     let keyring: Keyring;
 
@@ -296,25 +295,9 @@ describe('keypair', (): void => {
       keyring = new Keyring({ type: 'ethereum' });
     });
 
-    // it('adds a pair with the correct address', (): void => {
-    //   const pair = keyring.createFromUri(PHRASE);
-
-    //   expect(pair.publicKey).toEqual(hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077'));
-    //   expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
-    // });
-
     it('creates with dev phrase with derivation path specified', (): void => {
-      // console.log('start')
       let pair=keyring.createFromUri(PHRASE)
-  //     console.log('pair from uri: publicKey',pair.publicKey)
-  //     console.log('pair from uri: address',pair.address)
-  //     console.log('pair should be ',secp256k1KeypairFromSeed(new Uint8Array([
-  //       164, 46, 133, 235,   5, 207,  28, 249,
-  //       232, 85, 198, 139, 228, 139, 150,  58,
-  //       234, 73,  67,  75, 211, 214, 217, 232,
-  //       113,  4, 237,  84, 208, 115,  61, 215
-  //     ])
-  // ))
+      
       expect(
         pair.address
       ).toEqual(ETH_ADDRESS_ONE);

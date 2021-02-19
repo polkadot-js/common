@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isU8a } from "@polkadot/util";
+import { assert, isU8a } from "@polkadot/util";
 import BN from "bn.js";
 const EC = require("elliptic").ec;
 
@@ -23,20 +23,20 @@ const errors = {
   // ECDH: 'Scalar was invalid (zero or overflow)'
 };
 
-// function isUint8Array(name: string, value: Uint8Array, length: number|number[]) {
-//   assert(value instanceof Uint8Array, `Expected ${name} to be an Uint8Array`);
+function isUint8Array(name: string, value: Uint8Array, length: number|number[]) {
+  assert(isU8a(value), `Expected ${name} to be an Uint8Array`);
 
-//   if (length !== undefined) {
-//     if (Array.isArray(length)) {
-//       const numbers = length.join(", ");
-//       const msg = `Expected ${name} to be an Uint8Array with length [${numbers}]`;
-//       assert(length.includes(value.length), msg);
-//     } else {
-//       const msg = `Expected ${name} to be an Uint8Array with length ${length}`;
-//       assert(value.length === length, msg);
-//     }
-//   }
-// }
+  if (length !== undefined) {
+    if (Array.isArray(length)) {
+      const numbers = length.join(", ");
+      const msg = `Expected ${name} to be an Uint8Array with length [${numbers}]`;
+      assert(length.includes(value.length), msg);
+    } else {
+      const msg = `Expected ${name} to be an Uint8Array with length ${length}`;
+      assert(value.length === length, msg);
+    }
+  }
+}
 
 // function isCompressed (value:boolean) {
 //   assert(toTypeString(value) === 'Boolean', 'Expected compressed to be a Boolean')
@@ -54,14 +54,18 @@ const errors = {
 // Private key
 
 export function secp256k1PrivateKeyTweakAdd(seckey: Uint8Array, tweak: Uint8Array) {
-  isU8a(seckey)//"private key", seckey, 32);
-  isU8a(tweak)//"tweak", tweak, 32);
-
-  switch (_secp256k1PrivateKeyTweakAdd(seckey, tweak)) {
-    case 0:
-      return seckey;
-    case 1:
-      throw new Error(errors.TWEAK_ADD);
+  try {
+    isUint8Array("private key", seckey, 32);
+    isUint8Array("tweak", tweak, 32);
+  
+    switch (_secp256k1PrivateKeyTweakAdd(seckey, tweak)) {
+      case 0:
+        return seckey;
+      case 1:
+        throw new Error(errors.TWEAK_ADD);
+    }
+  } catch(e){
+    throw e
   }
 }
 function _secp256k1PrivateKeyTweakAdd(seckey: Uint8Array, tweak: Uint8Array) {
