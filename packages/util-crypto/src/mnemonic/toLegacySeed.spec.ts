@@ -33,11 +33,11 @@ describe('mnemonicToLegacySeed', (): void => {
       ).toEqual(SEED_64);
     });
   });
-  
+
   [false, true].forEach((onlyJs): void => {
     it(`generates a valid 32bytes seed (onlyJs = ${onlyJs.toString()})`, (): void => {
       expect(
-        u8aToHex(mnemonicToLegacySeed(MNEMONIC, undefined, onlyJs,32))
+        u8aToHex(mnemonicToLegacySeed(MNEMONIC, undefined, onlyJs, 32))
       ).toEqual(SEED_32);
     });
   });

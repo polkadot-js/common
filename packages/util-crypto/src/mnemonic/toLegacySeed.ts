@@ -1,11 +1,11 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { assert } from "@polkadot/util";
-import { bip39ToSeed, isReady } from "@polkadot/wasm-crypto";
+import { assert } from '@polkadot/util';
+import { bip39ToSeed, isReady } from '@polkadot/wasm-crypto';
 
-import { mnemonicToSeedSync } from "./bip39";
-import { mnemonicValidate } from "./validate";
+import { mnemonicToSeedSync } from './bip39';
+import { mnemonicValidate } from './validate';
 
 /**
  * @name toSeed
@@ -24,8 +24,9 @@ import { mnemonicValidate } from "./validate";
  * }
  * ```
  */
-export function mnemonicToLegacySeed(mnemonic: string, password = "", onlyJs = false, byteLength?: number): Uint8Array {
-  assert(mnemonicValidate(mnemonic), "Invalid bip39 mnemonic specified");
+export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs = false, byteLength?: number): Uint8Array {
+  assert(mnemonicValidate(mnemonic), 'Invalid bip39 mnemonic specified');
+
   if (byteLength && byteLength === 32) {
     return isReady() && !onlyJs
       ? bip39ToSeed(mnemonic, password)
@@ -33,6 +34,6 @@ export function mnemonicToLegacySeed(mnemonic: string, password = "", onlyJs = f
   } else if (!byteLength || (byteLength && byteLength === 64)) {
     return mnemonicToSeedSync(mnemonic, password);
   } else {
-    throw new Error("wrong byte length for mnemonicToLegacySeed");
+    throw new Error('wrong byte length for mnemonicToLegacySeed');
   }
 }

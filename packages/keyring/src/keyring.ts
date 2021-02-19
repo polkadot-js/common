@@ -4,7 +4,7 @@
 import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta } from './types';
 
-import { assert, hexToU8a, isHex, isUndefined, stringToU8a, u8aToHex } from '@polkadot/util';
+import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
 import { base64Decode, decodeAddress, encodeAddress, ethereumEncode, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed } from '@polkadot/util-crypto';
 import HDKey from '@polkadot/util-crypto/key/hdkey';
 
@@ -184,7 +184,7 @@ export class Keyring implements KeyringInstance {
 
       if ([12, 15, 18, 21, 24].includes(parts.length)) {
         seed = type === 'ethereum'
-          ? mnemonicToLegacySeed(phrase,"",false,64)
+          ? mnemonicToLegacySeed(phrase, '', false, 64)
           : mnemonicToMiniSecret(phrase, password);
       } else {
         assert(str.length <= 32, 'specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
@@ -217,7 +217,7 @@ export class Keyring implements KeyringInstance {
    */
   public encodeAddress = (address: Uint8Array | string, ss58Format?: number): string => {
     if (this.type === 'ethereum') {
-      return ethereumEncode(address)
+      return ethereumEncode(address);
     } else {
       return encodeAddress(address, isUndefined(ss58Format) ? this.#ss58 : ss58Format);
     }

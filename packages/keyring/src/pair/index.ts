@@ -113,6 +113,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
 
   const encodeAddress = (): string => {
     const raw = TYPE_ADDRESS[type](publicKey);
+
     return type === 'ethereum'
       ? ethereumEncode(raw)
       : toSS58(raw);
@@ -171,7 +172,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       );
     },
     toJson: (passphrase?: string): KeyringPair$Json => {
-      const address = encodeAddress()
+      const address = encodeAddress();
       // ['ecdsa', 'ethereum'].includes(type)
       //   ? u8aToHex(secp256k1Compress(publicKey))
       //   : encodeAddress();

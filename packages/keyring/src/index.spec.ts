@@ -287,7 +287,7 @@ describe('keypair', (): void => {
   describe('ethereum', (): void => {
     // combine mnemonic with derivation path
     const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy' + '/m/44\'/60\'/0\'/0/0';
-    const ETH_ADDRESS_ONE='0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d'
+    const ETH_ADDRESS_ONE = '0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d';
 
     let keyring: Keyring;
 
@@ -296,8 +296,8 @@ describe('keypair', (): void => {
     });
 
     it('creates with dev phrase with derivation path specified', (): void => {
-      let pair=keyring.createFromUri(PHRASE)
-      
+      const pair = keyring.createFromUri(PHRASE);
+
       expect(
         pair.address
       ).toEqual(ETH_ADDRESS_ONE);
