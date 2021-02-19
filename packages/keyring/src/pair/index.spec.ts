@@ -48,6 +48,16 @@ describe('pair', (): void => {
     ).toEqual(true);
   });
 
+  it('fails a correctly signed message (signer changed)', (): void => {
+    expect(
+      keyring.alice.verify(
+        new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]),
+        SIGNATURE,
+        keyring.bob.publicKey
+      )
+    ).toEqual(false);
+  });
+
   it('fails a correctly signed message (message changed)', (): void => {
     expect(
       keyring.alice.verify(
@@ -68,6 +78,18 @@ describe('pair', (): void => {
         keyring.alice.publicKey
       )
     ).toBe(true);
+  });
+
+  it('fails vrf sign and verify (publicKey changed)', (): void => {
+    const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
+
+    expect(
+      keyring.alice.vrfVerify(
+        message,
+        keyring.alice.vrfSign(message),
+        keyring.bob.publicKey
+      )
+    ).toBe(false);
   });
 
   it('allows setting/getting of meta', (): void => {
