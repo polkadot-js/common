@@ -26,7 +26,7 @@ describe('TweakAdd', (): void => {
       try {
         secp256k1PrivateKeyTweakAdd(A, B);
       } catch (e) {
-        expect(e.toString()).toEqual('Error: Expected tweak to be an Uint8Array with length 32');
+        expect((e as Error).toString()).toEqual('Error: Expected tweak to be an Uint8Array with length 32');
         bool = true;
       }
 

@@ -6,7 +6,7 @@ import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, Ke
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
 import { base64Decode, decodeAddress, encodeAddress, ethereumEncode, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed } from '@polkadot/util-crypto';
-import HDKey from '@polkadot/util-crypto/key/hdkey';
+import HDKey from '@polkadot/util-crypto/key/hdkeyEthereum';
 
 import { DEV_PHRASE } from './defaults';
 import { createPair } from './pair';
