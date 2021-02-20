@@ -9,9 +9,22 @@ const keyring = createTestPairs({ type: 'ed25519' }, false);
 
 const SUBKEY = [
   {
+    // substrate default
     address: '5DA4D4GL5iakrn22h5uKoevgvo18Pqj5BcdEUv8etEDPdijA',
     publicKey: '0x3050f8456519829fe03302da802d22d3233a5f4037b9a3e2bcc403ccfcb2d735',
     ss58Format: 42
+  },
+  {
+    // aventus
+    address: 'cLtA6nCDyvwKcEHH4QkZDSHMhS9s78BvUJUsKUbUAn1Jc2SCF',
+    publicKey: '0x08e8969768fc14399930d4b8d693f68a2ff6c6a597325d6946095e5e9d9d1b0e',
+    ss58Format: 65
+  },
+  {
+    // crust
+    address: 'cTGShekJ1L1UKFZR9xmv9UTJod7vqjFAPo4sDhXih2c3y1yLS',
+    publicKey: '0x04a047d52fe542484c69bc528990cfeaf3a663dded0638ee1b51cf78bacd1072',
+    ss58Format: 66
   },
   {
     // ecdsa
@@ -121,7 +134,7 @@ describe('encode', (): void => {
   });
 
   SUBKEY.forEach(({ address, publicKey, ss58Format }, index): void => {
-    it(`encodes with Subkey equality (${index})`, (): void => {
+    it(`encodes with Subkey equality (${index} - ${ss58Format})`, (): void => {
       expect(
         encodeAddress(publicKey, ss58Format)
       ).toEqual(address);

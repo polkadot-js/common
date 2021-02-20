@@ -81,7 +81,15 @@ describe('decodeAddress', (): void => {
     );
   });
 
-  it('decodes a 2-byte prefix', (): void => {
+  it('decodes a 2-byte prefix (65)', (): void => {
+    expect(
+      decodeAddress('cLtA6nCDyvwKcEHH4QkZDSHMhS9s78BvUJUsKUbUAn1Jc2SCF')
+    ).toEqual(
+      hexToU8a('0x08e8969768fc14399930d4b8d693f68a2ff6c6a597325d6946095e5e9d9d1b0e')
+    );
+  });
+
+  it('decodes a 2-byte prefix (255)', (): void => {
     expect(
       decodeAddress('yGHU8YKprxHbHdEv7oUK4rzMZXtsdhcXVG2CAMyC9WhzhjH2k')
     ).toEqual(
