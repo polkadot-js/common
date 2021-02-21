@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 5.7.1 Feb 20, 2021
+## 5.7.1 Feb 21, 2021
 
 **Breaking change** The signature of `pair.verify` now requires the signer public key as a parameter. If using `pair.verify` pass the publicKey (hex or Uint8Array) of the signer.
 
