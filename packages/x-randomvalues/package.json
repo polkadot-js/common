@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-randomvalues",
-  "version": "5.7.0",
+  "version": "5.7.1",
   "description": "A cross-environment window.crypto.getRandomValues replacement",
   "browser": "browser.js",
   "main": "node.js",
@@ -15,7 +15,7 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-randomvalues#readme",
   "dependencies": {
     "@babel/runtime": "^7.12.13",
-    "@polkadot/x-global": "5.7.0"
+    "@polkadot/x-global": "5.7.1"
   },
   "devDependencies": {
     "@types/react-native": "^0.63.49"
