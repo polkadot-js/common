@@ -198,7 +198,7 @@ export class Keyring implements KeyringInstance {
     if (type === 'ethereum') {
       const key = HDKeyEth.fromMasterSeed(seed);
       const child = key.derive(derivePath.substring(1));
-
+      console.log('hehe',child.publicKey,child.privateKey )
       assert(child.publicKey && child.privateKey, 'Unable to derive HD key from path');
 
       derived = { publicKey: child.publicKey, secretKey: child.privateKey };

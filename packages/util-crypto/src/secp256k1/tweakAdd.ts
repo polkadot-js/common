@@ -18,7 +18,7 @@ const errors = {
 
 export function secp256k1PrivateKeyTweakAdd (seckey: Uint8Array, tweak: Uint8Array): Uint8Array {
   assert(isU8a(seckey) && seckey.length === 32, 'Expected seckey to be an Uint8Array with length 32');
-  assert(isU8a(tweak) && tweak.length === 32, 'Expected seckey to be an Uint8Array with length 32');
+  assert(isU8a(tweak) && tweak.length === 32, 'Expected tweak to be an Uint8Array with length 32');
 
   switch (_secp256k1PrivateKeyTweakAdd(seckey, tweak)) {
     case 0:

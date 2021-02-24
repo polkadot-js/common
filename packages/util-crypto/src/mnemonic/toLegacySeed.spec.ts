@@ -29,7 +29,7 @@ describe('mnemonicToLegacySeed', (): void => {
   [false, true].forEach((onlyJs): void => {
     it(`generates a valid 64bytes seed (onlyJs = ${onlyJs.toString()})`, (): void => {
       expect(
-        u8aToHex(mnemonicToLegacySeed(MNEMONIC, undefined, onlyJs))
+        u8aToHex(mnemonicToLegacySeed(MNEMONIC, undefined, onlyJs, 64))
       ).toEqual(SEED_64);
     });
   });
@@ -37,7 +37,7 @@ describe('mnemonicToLegacySeed', (): void => {
   [false, true].forEach((onlyJs): void => {
     it(`generates a valid 32bytes seed (onlyJs = ${onlyJs.toString()})`, (): void => {
       expect(
-        u8aToHex(mnemonicToLegacySeed(MNEMONIC, undefined, onlyJs, 32))
+        u8aToHex(mnemonicToLegacySeed(MNEMONIC, undefined, onlyJs))
       ).toEqual(SEED_32);
     });
   });
