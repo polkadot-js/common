@@ -4,7 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkadot/util-crypto';
 
-import { PAIRS } from '../testing';
+import { PAIRSSR25519 } from '../testing';
 import { createTestPairs } from '../testingPairs';
 import { createPair } from '.';
 
@@ -124,11 +124,11 @@ describe('pair', (): void => {
   });
 
   it('allows derivation on the pair', (): void => {
-    const alice = createPair({ toSS58, type: 'sr25519' }, { publicKey: PAIRS[0].publicKey, secretKey: PAIRS[0].secretKey }, {});
+    const alice = createPair({ toSS58, type: 'sr25519' }, { publicKey: PAIRSSR25519[0].publicKey, secretKey: PAIRSSR25519[0].secretKey }, {});
     const stash = alice.derive('//stash');
     const soft = alice.derive('//funding/0');
 
-    expect(stash.publicKey).toEqual(PAIRS[1].publicKey);
+    expect(stash.publicKey).toEqual(PAIRSSR25519[1].publicKey);
     expect(soft.address).toEqual('5ECQNn7UueWHPFda5qUi4fTmTtyCnPvGnuoyVVSj5CboJh9J');
   });
 
@@ -147,6 +147,11 @@ describe('pair', (): void => {
 
       expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
       expect(pair.addressRaw).toEqual(hexToU8a('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887'));
+    });
+    it('has Gerald as test address for Ethereum type parachains', (): void => {
+      const keyringEthereum = createTestPairs({ type: 'ethereum' }, false);
+
+      expect(keyringEthereum.Gerald.address).toEqual('0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b');
     });
   });
 });

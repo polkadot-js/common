@@ -27,6 +27,7 @@
     "elliptic": "^6.5.4",
     "hash.js": "^1.1.7",
     "js-sha3": "^0.8.0",
+    "safe-buffer": "^5.1.1",
     "scryptsy": "^2.1.0",
     "tweetnacl": "^1.0.3",
     "xxhashjs": "^0.2.2"

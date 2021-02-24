@@ -285,25 +285,35 @@ describe('keypair', (): void => {
   });
 
   describe('ethereum', (): void => {
-    const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy';
+    // combine mnemonic with derivation path
+    const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy' + '/m/44\'/60\'/0\'/0/0';
+    const ETH_ADDRESS_ONE = '0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d';
+
     let keyring: Keyring;
 
     beforeEach((): void => {
       keyring = new Keyring({ type: 'ethereum' });
     });
 
-    it('adds a pair with the correct address', (): void => {
+    it('creates with dev phrase with derivation path specified', (): void => {
       const pair = keyring.createFromUri(PHRASE);
 
-      expect(pair.publicKey).toEqual(hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077'));
-      expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
+      expect(
+        pair.address
+      ).toEqual(ETH_ADDRESS_ONE);
+    });
+
+    it('creates with dev phrase with derivation path specified - addFromUri', (): void => {
+      expect(
+        keyring.addFromUri(PHRASE).address
+      ).toEqual(ETH_ADDRESS_ONE);
     });
 
     it('encodes a pair toJSON', (): void => {
       const pair = keyring.createFromUri(PHRASE);
       const json = pair.toJson('password');
 
-      expect(json.address).toEqual('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077');
+      expect(json.address).toEqual(ETH_ADDRESS_ONE);
       expect(json.encoding).toEqual({
         content: ['pkcs8', 'ethereum'],
         type: ['scrypt', 'xsalsa20-poly1305'],
