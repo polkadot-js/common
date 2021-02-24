@@ -448,6 +448,15 @@ const all: NetworkFromSubstrate[] = [
   createReserved(46, 'This prefix is reserved.', 'reserved46'),
   createReserved(47, 'This prefix is reserved.', 'reserved47'),
   {
+    decimals: [12],
+    displayName: 'Neatcoin Mainnet',
+    network: 'neatcoin',
+    prefix: 48,
+    standardAccount: '*25519',
+    symbols: ['NEAT'],
+    website: 'https://neatcoin.org'
+  },
+  {
     decimals: [18],
     displayName: 'AvN Mainnet',
     network: 'aventus',

@@ -1,12 +1,13 @@
 # CHANGELOG
 
-## 5.7.x
+## 5.7.1 Feb 21, 2021
 
-**Breaking change** The signature of `pair.verify` now explicitly requires the signer public key as a parameter
+**Breaking change** The signature of `pair.verify` now requires the signer public key as a parameter. If using `pair.verify` pass the publicKey (hex or Uint8Array) of the signer.
 
 Changes:
 
-- The signature on the keyring for `.verify` not explicitly requires the `publicKey` of the signer. Previously it only verified against an own public key.
+- The signature on the keyring for `.verify` now explicitly requires the `publicKey` of the signer. Previously it only verified against an own public key.
+- Add additional ss58 test vectors (against chains with >63 prefixes in the Substrate registry)
 
 
 ## 5.6.3 Feb 16, 2021
