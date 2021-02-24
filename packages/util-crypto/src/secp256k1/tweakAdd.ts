@@ -7,7 +7,7 @@ import { ec as EC } from 'elliptic';
 import { assert, isU8a } from '@polkadot/util';
 
 const ec = new EC('secp256k1');
-const ecparams = ec.curve as {n:BN};
+const ecparams = ec.curve as {n: BN};
 
 const errors = {
   PUBKEY_PARSE: 'Public Key could not be parsed',
@@ -20,6 +20,7 @@ function isUint8Array (name: string, value: Uint8Array, length: number|number[])
   if (length !== undefined) {
     if (Array.isArray(length)) {
       const numbers = length.join(', ');
+
       assert(length.includes(value.length), `Expected ${name} to be an Uint8Array with length [${numbers}]`);
     } else {
       assert(value.length === length, `Expected ${name} to be an Uint8Array with length ${length}`);
@@ -29,7 +30,7 @@ function isUint8Array (name: string, value: Uint8Array, length: number|number[])
 
 // Private key
 
-export function secp256k1PrivateKeyTweakAdd (seckey: Uint8Array, tweak: Uint8Array):Uint8Array {
+export function secp256k1PrivateKeyTweakAdd (seckey: Uint8Array, tweak: Uint8Array): Uint8Array {
   isUint8Array('private key', seckey, 32);
   isUint8Array('tweak', tweak, 32);
 
@@ -43,7 +44,7 @@ export function secp256k1PrivateKeyTweakAdd (seckey: Uint8Array, tweak: Uint8Arr
   return seckey;
 }
 
-function _secp256k1PrivateKeyTweakAdd (seckey: Uint8Array, tweak: Uint8Array):number {
+function _secp256k1PrivateKeyTweakAdd (seckey: Uint8Array, tweak: Uint8Array): number {
   const bn = new BN(tweak);
 
   if (bn.cmp(ecparams.n) >= 0) return 1;
