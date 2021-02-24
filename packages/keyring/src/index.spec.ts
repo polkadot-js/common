@@ -303,6 +303,12 @@ describe('keypair', (): void => {
       ).toEqual(ETH_ADDRESS_ONE);
     });
 
+    it('creates with dev phrase with derivation path specified - addFromUri', (): void => {
+      expect(
+        keyring.addFromUri(PHRASE).address
+      ).toEqual(ETH_ADDRESS_ONE);
+    });
+
     it('encodes a pair toJSON', (): void => {
       const pair = keyring.createFromUri(PHRASE);
       const json = pair.toJson('password');
