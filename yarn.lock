@@ -1292,12 +1292,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.6, @babel/runtime@npm:^7.8.4":
-  version: 7.13.6
-  resolution: "@babel/runtime@npm:7.13.6"
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.6, @babel/runtime@npm:^7.13.7, @babel/runtime@npm:^7.8.4":
+  version: 7.13.7
+  resolution: "@babel/runtime@npm:7.13.7"
   dependencies:
     regenerator-runtime: ^0.13.4
-  checksum: e839f042db4a22494d7dfc5d55846924d3234b45938859a483ce7f34719f11d7882725f0d2db85785b87a6f8548b11b6ed43f5aa146cb933127c4c28286436b3
+  checksum: 8be9fd44bb684ad42069170ca1bce9e225af7bc13861f5ac9c2517b6f1c585fb167cedb54f1a0c5b3f26a8391a9e1afef874829df494d945398d3f67b39e6116
   languageName: node
   linkType: hard
 
@@ -1944,7 +1944,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.43.0
     "@ledgerhq/hw-transport-webusb": ^5.43.0
     "@types/ledgerhq__hw-transport-node-hid": ^4.22.2
@@ -1959,7 +1959,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/hw-ledger@workspace:packages/hw-ledger"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@polkadot/hw-ledger-transports": 5.7.2-2
     "@polkadot/util": ^5.7.2-2
     "@zondax/ledger-polkadot": ^0.13.1
@@ -1970,7 +1970,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/keyring@workspace:packages/keyring"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@polkadot/util": 5.7.2-2
     "@polkadot/util-crypto": 5.7.2-2
   peerDependencies:
@@ -1983,7 +1983,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/networks@workspace:packages/networks"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@polkadot/util": 5.7.2-2
     "@polkadot/x-fetch": 5.7.2-2
   languageName: unknown
@@ -2002,10 +2002,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@polkadot/networks": 5.7.2-2
     "@polkadot/util": 5.7.2-2
-    "@polkadot/wasm-crypto": ^3.2.3
+    "@polkadot/wasm-crypto": ^3.2.4
     "@polkadot/x-randomvalues": 5.7.2-2
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
@@ -2019,7 +2019,7 @@ __metadata:
     elliptic: ^6.5.4
     hash.js: ^1.1.7
     js-sha3: ^0.8.0
-    safe-buffer: ^5.1.1
+    safe-buffer: ^5.2.1
     scryptsy: ^2.1.0
     tweetnacl: ^1.0.3
     xxhashjs: ^0.2.2
@@ -2032,7 +2032,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@polkadot/x-textdecoder": 5.7.2-2
     "@polkadot/x-textencoder": 5.7.2-2
     "@types/bn.js": ^4.11.6
@@ -2042,35 +2042,35 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-asmjs@npm:^3.2.3":
-  version: 3.2.3
-  resolution: "@polkadot/wasm-crypto-asmjs@npm:3.2.3"
+"@polkadot/wasm-crypto-asmjs@npm:^3.2.4":
+  version: 3.2.4
+  resolution: "@polkadot/wasm-crypto-asmjs@npm:3.2.4"
   dependencies:
-    "@babel/runtime": ^7.12.13
-  checksum: b2184bcc818dfa5d3eb008f9840efc19c0dbe856c6f6a0450484bb4a948ec14a5c639594456052c1a879174c75bd378827b8afb64b1dc80a5a8d1efb094ad8d2
+    "@babel/runtime": ^7.13.7
+  checksum: b6909a042c975e739ca5b725e809ab5ca8c35e34da980ad1e81d4e4f0d6e1e5e9dba140b63c3264f6e59df5428346c0a92b089588e909cf934c85011741956d0
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto-wasm@npm:^3.2.3":
-  version: 3.2.3
-  resolution: "@polkadot/wasm-crypto-wasm@npm:3.2.3"
+"@polkadot/wasm-crypto-wasm@npm:^3.2.4":
+  version: 3.2.4
+  resolution: "@polkadot/wasm-crypto-wasm@npm:3.2.4"
   dependencies:
-    "@babel/runtime": ^7.12.13
-  checksum: c29b90772d6cab23b31d180ce466caa659351a1706a6e13dd0f56cb526b2dd4d7e9ea8ebed0d5607c8b20e6cbe3f6bd36b0eb6628dfa080c83982df4b1e23351
+    "@babel/runtime": ^7.13.7
+  checksum: 7963e8c6a16e4c42733fcc85d6dcddb44452427be968059c2b6cacfdb65a4b23a329f7a568fbf7a6b210106b71097f4be329050a75780717de2d47d37d5a5201
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto@npm:^3.2.3":
-  version: 3.2.3
-  resolution: "@polkadot/wasm-crypto@npm:3.2.3"
+"@polkadot/wasm-crypto@npm:^3.2.4":
+  version: 3.2.4
+  resolution: "@polkadot/wasm-crypto@npm:3.2.4"
   dependencies:
-    "@babel/runtime": ^7.12.13
-    "@polkadot/wasm-crypto-asmjs": ^3.2.3
-    "@polkadot/wasm-crypto-wasm": ^3.2.3
+    "@babel/runtime": ^7.13.7
+    "@polkadot/wasm-crypto-asmjs": ^3.2.4
+    "@polkadot/wasm-crypto-wasm": ^3.2.4
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
-  checksum: e7d530dfb58ed8d3452a6c0ccc01d36000ef97cce3e800cce95f3980b21d798d5d9f4663900d2f418db600d0d380bb09501ff5bb2d96ff61c2d047dc15682321
+  checksum: 23a93e6fd9638dcd4f5116a4b9d94dea9e7e7e5dd4f98a96c52d352d7afa159f0717240c252dada49c8b9d74cea04656d5dfae70551926ca616cc08baa41167e
   languageName: node
   linkType: hard
 
@@ -2078,7 +2078,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-fetch@workspace:packages/x-fetch"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@polkadot/x-global": 5.7.2-2
     "@types/node-fetch": ^2.5.8
     node-fetch: ^2.6.1
@@ -2089,7 +2089,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-global@workspace:packages/x-global"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@types/node-fetch": ^2.5.8
     node-fetch: ^2.6.1
   languageName: unknown
@@ -2099,7 +2099,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@polkadot/x-global": 5.7.2-2
     "@types/react-native": ^0.63.50
   languageName: unknown
@@ -2109,7 +2109,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-rxjs@workspace:packages/x-rxjs"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     rxjs: ^6.6.3
   languageName: unknown
   linkType: soft
@@ -2118,7 +2118,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-textdecoder@workspace:packages/x-textdecoder"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@polkadot/x-global": 5.7.2-2
   languageName: unknown
   linkType: soft
@@ -2127,7 +2127,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-textencoder@workspace:packages/x-textencoder"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@polkadot/x-global": 5.7.2-2
   languageName: unknown
   linkType: soft
@@ -2136,7 +2136,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-ws@workspace:packages/x-ws"
   dependencies:
-    "@babel/runtime": ^7.13.6
+    "@babel/runtime": ^7.13.7
     "@polkadot/x-global": 5.7.2-2
     "@types/websocket": ^1.0.1
     websocket: ^1.0.33
@@ -9589,7 +9589,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.1, safe-buffer@npm:^5.1.2, safe-buffer@npm:^5.2.0, safe-buffer@npm:~5.2.0":
+"safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.2, safe-buffer@npm:^5.2.0, safe-buffer@npm:^5.2.1, safe-buffer@npm:~5.2.0":
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: 0bb57f0d8f9d1fa4fe35ad8a2db1f83a027d48f2822d59ede88fd5cd4ddad83c0b497213feb7a70fbf90597a70c5217f735b0eb1850df40ce9b4ae81dd22b3f9
