@@ -14,25 +14,11 @@ const errors = {
   TWEAK_ADD: 'The tweak was out of range or the resulted private key is invalid'
 };
 
-function isUint8Array (name: string, value: Uint8Array, length: number|number[]) {
-  assert(isU8a(value), `Expected ${name} to be an Uint8Array`);
-
-  if (length !== undefined) {
-    if (Array.isArray(length)) {
-      const numbers = length.join(', ');
-
-      assert(length.includes(value.length), `Expected ${name} to be an Uint8Array with length [${numbers}]`);
-    } else {
-      assert(value.length === length, `Expected ${name} to be an Uint8Array with length ${length}`);
-    }
-  }
-}
-
 // Private key
 
 export function secp256k1PrivateKeyTweakAdd (seckey: Uint8Array, tweak: Uint8Array): Uint8Array {
-  isUint8Array('private key', seckey, 32);
-  isUint8Array('tweak', tweak, 32);
+  assert(isU8a(seckey) && seckey.length === 32, 'Expected seckey to be an Uint8Array with length 32');
+  assert(isU8a(tweak) && tweak.length === 32, 'Expected seckey to be an Uint8Array with length 32');
 
   switch (_secp256k1PrivateKeyTweakAdd(seckey, tweak)) {
     case 0:
