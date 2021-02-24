@@ -20,13 +20,9 @@ function isUint8Array (name: string, value: Uint8Array, length: number|number[])
   if (length !== undefined) {
     if (Array.isArray(length)) {
       const numbers = length.join(', ');
-      const msg = `Expected ${name} to be an Uint8Array with length [${numbers}]`;
-
-      assert(length.includes(value.length), msg);
+      assert(length.includes(value.length), `Expected ${name} to be an Uint8Array with length [${numbers}]`);
     } else {
-      const msg = `Expected ${name} to be an Uint8Array with length ${length}`;
-
-      assert(value.length === length, msg);
+      assert(value.length === length, `Expected ${name} to be an Uint8Array with length ${length}`);
     }
   }
 }

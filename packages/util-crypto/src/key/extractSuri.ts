@@ -7,7 +7,7 @@ import { DeriveJunction } from './DeriveJunction';
 import { keyExtractPath } from './extractPath';
 
 export interface ExtractResult {
-  derivePath:string,
+  derivePath: string,
   password?: string;
   path: DeriveJunction[];
   phrase: string;

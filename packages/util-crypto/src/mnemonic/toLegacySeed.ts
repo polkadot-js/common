@@ -24,16 +24,14 @@ import { mnemonicValidate } from './validate';
  * }
  * ```
  */
-export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs = false, byteLength?: number): Uint8Array {
+export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs = false, byteLength: 32 | 64 = 32): Uint8Array {
   assert(mnemonicValidate(mnemonic), 'Invalid bip39 mnemonic specified');
 
   if (byteLength && byteLength === 32) {
     return isReady() && !onlyJs
       ? bip39ToSeed(mnemonic, password)
       : mnemonicToSeedSync(mnemonic, password).subarray(0, 32);
-  } else if (!byteLength || (byteLength && byteLength === 64)) {
+  } else if (byteLength === 64) {
     return mnemonicToSeedSync(mnemonic, password);
-  } else {
-    throw new Error('wrong byte length for mnemonicToLegacySeed');
   }
 }

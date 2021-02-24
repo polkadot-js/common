@@ -2,10 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import * as crypto from 'crypto';
-// const Buffer = require('safe-buffer').Buffer;
 import { Buffer } from 'safe-buffer';
 
-// const assert = require('assert');
 import { assert } from '@polkadot/util';
 
 import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '../..';
@@ -21,7 +19,7 @@ interface Versions{
 }
 
 // function to retype Buffer to ArrayBuffer in a controlled manner
-function bufferAsArrayBuffer (buffer:Buffer):ArrayBuffer {
+function bufferAsArrayBuffer (buffer:Buffer): ArrayBuffer {
   return buffer as unknown as ArrayBuffer;
 }
 

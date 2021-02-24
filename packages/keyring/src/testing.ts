@@ -94,7 +94,7 @@ export const PAIRSETHEREUM: PairDef[] = [
  */
 export function createTestKeyring (options: KeyringOptions = {}, isDerived = true): KeyringInstance {
   const keyring = new Keyring(options);
-  const pairs:PairDef[] = (options.type && options.type === 'ethereum') ? PAIRSETHEREUM : PAIRSSR25519;
+  const pairs: PairDef[] = (options.type && options.type === 'ethereum') ? PAIRSETHEREUM : PAIRSSR25519;
 
   pairs.forEach(({ name, publicKey, secretKey, seed, type }): void => {
     const meta = {
