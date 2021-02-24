@@ -14,7 +14,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-textdecoder#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.6",
+    "@babel/runtime": "^7.13.7",
     "@polkadot/x-global": "5.7.2-2"
   }
 }

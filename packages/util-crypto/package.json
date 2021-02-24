@@ -15,10 +15,10 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.6",
+    "@babel/runtime": "^7.13.7",
     "@polkadot/networks": "5.7.2-2",
     "@polkadot/util": "5.7.2-2",
-    "@polkadot/wasm-crypto": "^3.2.3",
+    "@polkadot/wasm-crypto": "^3.2.4",
     "@polkadot/x-randomvalues": "5.7.2-2",
     "base-x": "^3.0.8",
     "blakejs": "^1.1.0",
@@ -27,7 +27,7 @@
     "elliptic": "^6.5.4",
     "hash.js": "^1.1.7",
     "js-sha3": "^0.8.0",
-    "safe-buffer": "^5.1.1",
+    "safe-buffer": "^5.2.1",
     "scryptsy": "^2.1.0",
     "tweetnacl": "^1.0.3",
     "xxhashjs": "^0.2.2"

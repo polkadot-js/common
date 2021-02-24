@@ -12,7 +12,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.6",
+    "@babel/runtime": "^7.13.7",
     "@polkadot/x-textdecoder": "5.7.2-2",
     "@polkadot/x-textencoder": "5.7.2-2",
     "@types/bn.js": "^4.11.6",
