@@ -1,69 +1,36 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import * as crypto from 'crypto';
-import { Buffer } from 'safe-buffer';
+import type { Keypair } from '../../types';
 
-import { assert } from '@polkadot/util';
+import { assert, bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
 import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '../..';
+import { hmacSha512 } from '../../hmac';
 
-const MASTER_SECRET = Buffer.from('Bitcoin seed', 'utf8');
+const MASTER_SECRET = stringToU8a('Bitcoin seed');
 const HARDENED_OFFSET = 0x80000000;
-// Bitcoin hardcoded by default, can use package `coininfo` for others
-const BITCOIN_VERSIONS = { private: 0x0488ADE4, public: 0x0488B21E };
-
-interface Versions{
-  private: number;
-  public: number;
-}
-
-// function to retype Buffer to ArrayBuffer in a controlled manner
-function bufferAsArrayBuffer (buffer: Buffer): ArrayBuffer {
-  return buffer as unknown as ArrayBuffer;
-}
-
-// function to retype Uint8Array to Buffer in a controlled manner
-function bytesAsBuffer (bytes: Uint8Array): Buffer {
-  return bytes as unknown as Buffer;
-}
 
 export class HDKeyEth {
-  versions: Versions;
-  public depth: number;
-  index: number;
   public chainCode: Uint8Array | null;
-  parentFingerprint: number | null;
 
-  #fingerprint: number | null;
-  #identifier: Buffer | null;
   #privateKey: Uint8Array | null;
   #publicKey: Uint8Array | null;
 
-  constructor (versions?: Versions) {
-    this.versions = versions || BITCOIN_VERSIONS;
-    this.depth = 0;
-    this.index = 0;
+  constructor () {
     this.#privateKey = null;
     this.#publicKey = null;
-    this.#identifier = null;
     this.chainCode = null;
-    this.#fingerprint = null;
-    this.parentFingerprint = 0;
   }
 
   // private key
   set privateKey (value: Uint8Array | null) {
     assert(value && value.length === 32, 'Private key must be 32 bytes.');
-    // TODO: implement privateKeyVerify for local secp256k1
-    // assert(secp256k1.privateKeyVerify(value) === true, 'Invalid private key');
 
     this.#privateKey = value;
 
     if (value) {
       this.#publicKey = secp256k1KeypairFromSeed(value).publicKey;
-      this.#identifier = this.#publicKey ? this.hash160(this.#publicKey) : null;
-      this.#fingerprint = this.#identifier ? this.#identifier.slice(0, 4).readUInt32BE(0) : null;
     }
   }
 
@@ -79,29 +46,9 @@ export class HDKeyEth {
 
   set publicKey (value: Uint8Array | null) {
     assert(value && (value.length === 33 || value.length === 65), 'Public key must be 33 or 65 bytes.');
-    // TODO: implement publicKeyVerify for local secp256k1
-    // assert(secp256k1.publicKeyVerify(value) === true, 'Invalid public key');
 
-    // TODO: should I use the compress function here?
     this.#publicKey = value; // new Uint8Array(Buffer.from(secp256k1.publicKeyConvert(value, true))); // force compressed point
-    this.#identifier = this.#publicKey ? this.hash160(this.#publicKey) : null;
-    this.#fingerprint = this.#identifier ? this.#identifier.slice(0, 4).readUInt32BE(0) : null;
     this.#privateKey = null;
-  }
-
-  // fingerprint
-  get fingerprint (): number | null {
-    return this.#fingerprint;
-  }
-
-  // identifier
-  get identifier (): Buffer | null {
-    return this.#identifier;
-  }
-
-  // fingerprint
-  get pubKeyHash (): Buffer | null {
-    return this.identifier;
   }
 
   // derive
@@ -124,7 +71,11 @@ export class HDKeyEth {
       let childIndex = parseInt(c, 10); // & (HARDENED_OFFSET - 1)
 
       assert(childIndex < HARDENED_OFFSET, 'Invalid index');
-      if (hardened) childIndex += HARDENED_OFFSET;
+
+      if (hardened) {
+        childIndex += HARDENED_OFFSET;
+      }
+
       hdkey = hdkey.deriveChild(childIndex);
     });
 
@@ -134,90 +85,59 @@ export class HDKeyEth {
   // deriveChild
   private deriveChild (index: number): HDKeyEth {
     const isHardened = index >= HARDENED_OFFSET;
-    const indexBuffer = Buffer.allocUnsafe(4);
-
-    indexBuffer.writeUInt32BE(index, 0);
-
-    let data;
+    const indexBuffer = bnToU8a(index, { bitLength: 32, isLe: false });
+    let data: Uint8Array;
 
     if (isHardened) { // Hardened child
-      assert(this.privateKey, 'Could not derive hardened child key');
+      assert(this.privateKey, 'Could not derive hardened child key without private key');
 
-      if (this.privateKey) {
-        const pk = this.privateKey;
-        const zb = Buffer.alloc(1);
-        const pkConcat = Buffer.concat([zb, bytesAsBuffer(pk)]);
-
-        // data = 0x00 || ser256(kpar) || ser32(index)
-        data = Buffer.concat([pkConcat, indexBuffer]);
-      } else {
-        throw new Error('Could not derive hardened child key : no privatekey');
-      }
+      // data = 0x00 || ser256(kpar) || ser32(index)
+      data = u8aConcat(new Uint8Array(1), this.privateKey, indexBuffer);
     } else { // Normal child
       // data = serP(point(kpar)) || ser32(index)
       //      = serP(Kpar) || ser32(index)
-      if (this.publicKey) {
-        data = Buffer.concat([bytesAsBuffer(this.publicKey), indexBuffer]);
-      } else {
-        throw new Error('Could not derive hardened child key : no publicKey');
-      }
+      assert(this.publicKey, 'Could not derive hardened child key : no publicKey');
+
+      data = u8aConcat(this.publicKey, indexBuffer);
     }
 
-    let I: Buffer = Buffer.from('');
+    assert(this.chainCode, 'deriveChild error: no chainCode');
+    assert(this.privateKey, 'PublicKey derivation without private key is not supported');
 
-    if (this.chainCode) {
-      I = bytesAsBuffer(crypto.createHmac('sha512', this.chainCode).update(data as unknown as crypto.BinaryLike).digest());
-    } else {
-      throw new Error('deriveChild error: no chainCode');
-    }
-
-    const IL: Buffer = I.slice(0, 32);
-    const IR: Buffer = I.slice(32);
-
-    const hd = new HDKeyEth(this.versions);
+    const I = hmacSha512(this.chainCode, data);
+    const IL = I.slice(0, 32);
+    const IR = I.slice(32);
+    const hd = new HDKeyEth();
 
     // Private parent key -> private child key
-    if (this.privateKey) {
-      // ki = parse256(IL) + kpar (mod n)r
-      try {
-        hd.privateKey = new Uint8Array(bufferAsArrayBuffer(Buffer.from(secp256k1PrivateKeyTweakAdd(new Uint8Array(bufferAsArrayBuffer(Buffer.from(this.privateKey))), new Uint8Array(bufferAsArrayBuffer(IL))))));
-        // throw if IL >= n || (privateKey + IL) === 0
-      } catch (err) {
-        console.log('error when secp256k1PrivateKeyTweakAdd in eth key derivation', err);
+    try {
+      hd.privateKey = secp256k1PrivateKeyTweakAdd(this.privateKey, IL);
+      // throw if IL >= n || (privateKey + IL) === 0
+    } catch (err) {
+      console.log('error when secp256k1PrivateKeyTweakAdd in eth key derivation', err);
 
-        // In case parse256(IL) >= n or ki == 0, one should proceed with the next value for i
-        return this.deriveChild(index + 1);
-      }
-      // Public parent key -> public child key
-    } else {
-      throw new Error('PublicKey derivation without private key is not supported at the moment');
+      // In case parse256(IL) >= n or ki == 0, one should proceed with the next value for i
+      return this.deriveChild(index + 1);
     }
 
-    hd.chainCode = new Uint8Array(bufferAsArrayBuffer(IR));
-    hd.depth = this.depth + 1;
-    hd.parentFingerprint = this.fingerprint;// .readUInt32BE(0)
-    hd.index = index;
+    hd.chainCode = IR;
 
     return hd;
   }
+}
 
-  // fromMasterSeed
-  public static fromMasterSeed = function (seedBuffer: crypto.BinaryLike, versions?: Versions): HDKeyEth {
-    const I = crypto.createHmac('sha512', new Uint8Array(bufferAsArrayBuffer(MASTER_SECRET))).update(seedBuffer).digest();
-    const IL = I.slice(0, 32);
-    const IR = I.slice(32);
+export function hdEthereum (seed: Uint8Array, path = ''): Keypair {
+  const hdkey = new HDKeyEth();
+  const I = hmacSha512(MASTER_SECRET, seed);
 
-    const hdkey = versions ? new HDKeyEth(versions) : new HDKeyEth();
+  hdkey.privateKey = I.slice(0, 32);
+  hdkey.chainCode = I.slice(32);
 
-    hdkey.chainCode = new Uint8Array(IR);
-    hdkey.privateKey = new Uint8Array(IL);
+  const child = path
+    ? hdkey.derive(path)
+    : hdkey;
 
-    return hdkey;
-  }
+  assert(child.publicKey && child.privateKey, 'Unable to derive HD key from path');
 
-  private hash160 (buf: crypto.BinaryLike): Buffer {
-    const sha = crypto.createHash('sha256').update(buf).digest();
-
-    return (crypto.createHash('ripemd160').update(sha).digest()) as unknown as Buffer;
-  }
+  return { publicKey: child.publicKey, secretKey: child.privateKey };
 }
