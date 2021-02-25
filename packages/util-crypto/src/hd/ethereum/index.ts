@@ -5,13 +5,13 @@ import type { Keypair } from '../../types';
 
 import { assert, bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
-import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '../..';
 import { hmacSha512 } from '../../hmac';
+import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '../../secp256k1';
 import { HARDENED, hdValidatePath } from '../validatePath';
 
 const MASTER_SECRET = stringToU8a('Bitcoin seed');
 
-export class HDKeyEth {
+export class HDKey {
   readonly chainCode: Uint8Array;
   readonly publicKey: Uint8Array;
   readonly secretKey: Uint8Array;
@@ -23,7 +23,7 @@ export class HDKeyEth {
   }
 
   // derive
-  public derive (path: string): HDKeyEth {
+  public derive (path: string): HDKey {
     if (path === 'm' || path === 'M' || path === "m'" || path === "M'") {
       return this;
     }
@@ -33,7 +33,7 @@ export class HDKeyEth {
     return path
       .split('/')
       .slice(1)
-      .reduce((hd: HDKeyEth, c): HDKeyEth => hd.deriveChild(
+      .reduce((hd: HDKey, c): HDKey => hd.deriveChild(
         parseInt(c, 10) + (
           (c.length > 1) && c.endsWith("'")
             ? HARDENED
@@ -43,7 +43,7 @@ export class HDKeyEth {
   }
 
   // deriveChild
-  private deriveChild (index: number): HDKeyEth {
+  private deriveChild (index: number): HDKey {
     const indexBuffer = bnToU8a(index, { bitLength: 32, isLe: false });
     const data = index >= HARDENED
       ? u8aConcat(new Uint8Array(1), this.secretKey, indexBuffer)
@@ -53,7 +53,7 @@ export class HDKeyEth {
     try {
       const I = hmacSha512(this.chainCode, data);
 
-      return new HDKeyEth(
+      return new HDKey(
         secp256k1PrivateKeyTweakAdd(this.secretKey, I.slice(0, 32)),
         I.slice(32)
       );
@@ -68,7 +68,7 @@ export class HDKeyEth {
 
 export function hdEthereum (seed: Uint8Array, path = ''): Keypair {
   const I = hmacSha512(MASTER_SECRET, seed);
-  const hdkey = new HDKeyEth(I.slice(0, 32), I.slice(32));
+  const hdkey = new HDKey(I.slice(0, 32), I.slice(32));
   const { publicKey, secretKey } = path
     ? hdkey.derive(path)
     : hdkey;
