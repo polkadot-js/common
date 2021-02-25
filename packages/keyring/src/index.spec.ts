@@ -313,7 +313,7 @@ describe('keypair', (): void => {
       const pair = keyring.createFromUri(PHRASE);
       const json = pair.toJson('password');
 
-      expect(json.address).toEqual("0x0381351b1b46d2602b0992bb5d5531f9c1696b0812feb2534b6884adc47e2e1d8b"); //this is the public key (different from address for ethereum)
+      expect(json.address).toEqual('0x0381351b1b46d2602b0992bb5d5531f9c1696b0812feb2534b6884adc47e2e1d8b'); // this is the public key (different from address for ethereum)
       expect(json.encoding).toEqual({
         content: ['pkcs8', 'ethereum'],
         type: ['scrypt', 'xsalsa20-poly1305'],
@@ -331,6 +331,7 @@ describe('keypair', (): void => {
       const pair = keyring.addFromJson(
         json
       );
+
       expect(pair.address).toEqual(ETH_ADDRESS_ONE);
 
       pair.decodePkcs8('password');

@@ -155,6 +155,7 @@ describe('pair', (): void => {
       21, 195, 213, 72, 207, 73, 253, 132,
       24, 217, 127, 147, 175, 105, 158, 70
     ]);
+
     it('has a valid address from a known public', (): void => {
       const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077') });
 
@@ -162,8 +163,9 @@ describe('pair', (): void => {
       expect(pair.addressRaw).toEqual(hexToU8a('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887'));
     });
     it('converts to json', (): void => {
-      const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey:PUBLICDERIVED,secretKey:SECRETDERIVED });
-      let json=pair.toJson('password')
+      const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: PUBLICDERIVED, secretKey: SECRETDERIVED });
+      const json = pair.toJson('password');
+
       expect(json.encoding).toEqual({
         content: ['pkcs8', 'ethereum'],
         type: ['scrypt', 'xsalsa20-poly1305'],
