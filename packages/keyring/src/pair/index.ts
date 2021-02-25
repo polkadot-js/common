@@ -172,6 +172,8 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       );
     },
     toJson: (passphrase?: string): KeyringPair$Json => {
+      // NOTE: in the case of Ethereum and Ecdsa, we encode the ful publicKey - to allow extraction. This will NOT match
+      // e.g. an Ethereum address which is non-reversible, so not used here)
       const address = ['ecdsa', 'ethereum'].includes(type)
         ? u8aToHex(secp256k1Compress(publicKey))
         : encodeAddress();
