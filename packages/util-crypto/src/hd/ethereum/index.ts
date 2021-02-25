@@ -3,76 +3,34 @@
 
 import type { Keypair } from '../../types';
 
-import hash from 'hash.js';
-
-import { assert, bnToU8a, bufferToU8a, stringToU8a, u8aConcat, u8aToBn } from '@polkadot/util';
+import { assert, bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
 import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '../..';
 import { hmacSha512 } from '../../hmac';
 
 const MASTER_SECRET = stringToU8a('Bitcoin seed');
 const HARDENED_OFFSET = 0x80000000;
-// Bitcoin hardcoded by default, can use package `coininfo` for others
-const BITCOIN_VERSIONS = { private: 0x0488ADE4, public: 0x0488B21E };
-
-interface Versions {
-  private: number;
-  public: number;
-}
-
-function hash160 (u8a: Uint8Array): Uint8Array {
-  return bufferToU8a(
-    hash
-      .ripemd160()
-      .update(
-        hash
-          .sha256()
-          .update(u8a)
-          .digest()
-      ).digest()
-  );
-}
 
 export class HDKeyEth {
-  versions: Versions;
-  public depth: number;
-  index: number;
   public chainCode: Uint8Array | null;
-  parentFingerprint: number | null;
 
-  #fingerprint: number | null;
-  #identifier: Uint8Array | null;
   #privateKey: Uint8Array | null;
   #publicKey: Uint8Array | null;
 
-  constructor (versions?: Versions) {
-    this.versions = versions || BITCOIN_VERSIONS;
-    this.depth = 0;
-    this.index = 0;
+  constructor () {
     this.#privateKey = null;
     this.#publicKey = null;
-    this.#identifier = null;
     this.chainCode = null;
-    this.#fingerprint = null;
-    this.parentFingerprint = 0;
   }
 
   // private key
   set privateKey (value: Uint8Array | null) {
     assert(value && value.length === 32, 'Private key must be 32 bytes.');
-    // TODO: implement privateKeyVerify for local secp256k1
-    // assert(secp256k1.privateKeyVerify(value) === true, 'Invalid private key');
 
     this.#privateKey = value;
 
     if (value) {
       this.#publicKey = secp256k1KeypairFromSeed(value).publicKey;
-      this.#identifier = this.#publicKey
-        ? hash160(this.#publicKey)
-        : null;
-      this.#fingerprint = this.#identifier
-        ? u8aToBn(this.#identifier.slice(0, 4), { isLe: false }).toNumber()
-        : null;
     }
   }
 
@@ -88,33 +46,9 @@ export class HDKeyEth {
 
   set publicKey (value: Uint8Array | null) {
     assert(value && (value.length === 33 || value.length === 65), 'Public key must be 33 or 65 bytes.');
-    // TODO: implement publicKeyVerify for local secp256k1
-    // assert(secp256k1.publicKeyVerify(value) === true, 'Invalid public key');
 
-    // TODO: should I use the compress function here?
     this.#publicKey = value; // new Uint8Array(Buffer.from(secp256k1.publicKeyConvert(value, true))); // force compressed point
-    this.#identifier = this.#publicKey
-      ? hash160(this.#publicKey)
-      : null;
-    this.#fingerprint = this.#identifier
-      ? u8aToBn(this.#identifier.slice(0, 4), { isLe: false }).toNumber()
-      : null;
     this.#privateKey = null;
-  }
-
-  // fingerprint
-  get fingerprint (): number | null {
-    return this.#fingerprint;
-  }
-
-  // identifier
-  get identifier (): Uint8Array | null {
-    return this.#identifier;
-  }
-
-  // fingerprint
-  get pubKeyHash (): Uint8Array | null {
-    return this.identifier;
   }
 
   // derive
@@ -173,7 +107,7 @@ export class HDKeyEth {
     const I = hmacSha512(this.chainCode, data);
     const IL = I.slice(0, 32);
     const IR = I.slice(32);
-    const hd = new HDKeyEth(this.versions);
+    const hd = new HDKeyEth();
 
     // Private parent key -> private child key
     try {
@@ -187,18 +121,13 @@ export class HDKeyEth {
     }
 
     hd.chainCode = IR;
-    hd.depth = this.depth + 1;
-    hd.parentFingerprint = this.fingerprint;// .readUInt32BE(0)
-    hd.index = index;
 
     return hd;
   }
 }
 
-export function hdEthereum (seed: Uint8Array, path = '', versions?: Versions): Keypair {
-  const hdkey = versions
-    ? new HDKeyEth(versions)
-    : new HDKeyEth();
+export function hdEthereum (seed: Uint8Array, path = ''): Keypair {
+  const hdkey = new HDKeyEth();
   const I = hmacSha512(MASTER_SECRET, seed);
 
   hdkey.privateKey = I.slice(0, 32);
