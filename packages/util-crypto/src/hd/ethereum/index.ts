@@ -65,7 +65,9 @@ export class HDKeyEth {
 
     if (value) {
       this.#publicKey = secp256k1KeypairFromSeed(value).publicKey;
-      this.#identifier = this.#publicKey ? this.hash160(this.#publicKey) : null;
+      this.#identifier = this.#publicKey
+        ? hash160(this.#publicKey)
+        : null;
       this.#fingerprint = this.#identifier
         ? u8aToBn(this.#identifier.slice(0, 4), { isLe: false }).toNumber()
         : null;
