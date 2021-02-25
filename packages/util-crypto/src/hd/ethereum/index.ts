@@ -152,7 +152,6 @@ export class HDKeyEth {
   private deriveChild (index: number): HDKeyEth {
     const isHardened = index >= HARDENED_OFFSET;
     const indexBuffer = bnToU8a(index, { bitLength: 32, isLe: false });
-
     let data: Uint8Array;
 
     if (isHardened) { // Hardened child
