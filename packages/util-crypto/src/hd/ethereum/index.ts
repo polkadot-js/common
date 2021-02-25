@@ -12,13 +12,11 @@ import { HARDENED, hdValidatePath } from '../validatePath';
 const MASTER_SECRET = stringToU8a('Bitcoin seed');
 
 export class HDKeyEth {
-  chainCode: Uint8Array;
-  publicKey: Uint8Array;
-  secretKey: Uint8Array;
+  readonly chainCode: Uint8Array;
+  readonly publicKey: Uint8Array;
+  readonly secretKey: Uint8Array;
 
   constructor (secretKey: Uint8Array, chainCode: Uint8Array) {
-    assert(secretKey.length === 32, 'Private key must be 32 bytes.');
-
     this.secretKey = secretKey;
     this.publicKey = secp256k1KeypairFromSeed(secretKey).publicKey;
     this.chainCode = chainCode;
@@ -46,19 +44,10 @@ export class HDKeyEth {
 
   // deriveChild
   private deriveChild (index: number): HDKeyEth {
-    assert(this.chainCode, 'Cannot derive without an existing chain code');
-    assert(this.secretKey, 'Cannot derive without an existing private key');
-
     const indexBuffer = bnToU8a(index, { bitLength: 32, isLe: false });
-    let data: Uint8Array;
-
-    if (index >= HARDENED) {
-      data = u8aConcat(new Uint8Array(1), this.secretKey, indexBuffer);
-    } else {
-      assert(this.publicKey, 'Could not derive hardened child key : no publicKey');
-
-      data = u8aConcat(this.publicKey, indexBuffer);
-    }
+    const data = index >= HARDENED
+      ? u8aConcat(new Uint8Array(1), this.secretKey, indexBuffer)
+      : u8aConcat(this.publicKey, indexBuffer);
 
     // Private parent key -> private child key
     try {
