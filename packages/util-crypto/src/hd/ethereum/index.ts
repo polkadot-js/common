@@ -44,11 +44,11 @@ export class HDKeyEth {
     this.versions = versions || BITCOIN_VERSIONS;
     this.depth = 0;
     this.index = 0;
-    this._privateKey = null;
-    this._publicKey = null;
-    this._identifier = null;
+    this.#privateKey = null;
+    this.#publicKey = null;
+    this.#identifier = null;
     this.chainCode = null;
-    this._fingerprint = null;
+    this.#fingerprint = null;
     this.parentFingerprint = 0;
   }
 
@@ -58,23 +58,23 @@ export class HDKeyEth {
     // TODO: implement privateKeyVerify for local secp256k1
     // assert(secp256k1.privateKeyVerify(value) === true, 'Invalid private key');
 
-    this._privateKey = value;
+    this.#privateKey = value;
 
     if (value) {
-      this._publicKey = secp256k1KeypairFromSeed(value).publicKey;
-      this._identifier = this._publicKey ? this.hash160(this._publicKey) : null;
-      this._fingerprint = this._identifier ? this._identifier.slice(0, 4).readUInt32BE(0) : null;
+      this.#publicKey = secp256k1KeypairFromSeed(value).publicKey;
+      this.#identifier = this.#publicKey ? this.hash160(this.#publicKey) : null;
+      this.#fingerprint = this.#identifier ? this.#identifier.slice(0, 4).readUInt32BE(0) : null;
     }
   }
 
   get privateKey (): Uint8Array | null {
-    return this._privateKey;
+    return this.#privateKey;
   }
 
   // public key
 
   get publicKey (): Uint8Array | null {
-    return this._publicKey;
+    return this.#publicKey;
   }
 
   set publicKey (value: Uint8Array | null) {
@@ -83,20 +83,20 @@ export class HDKeyEth {
     // assert(secp256k1.publicKeyVerify(value) === true, 'Invalid public key');
 
     // TODO: should I use the compress function here?
-    this._publicKey = value; // new Uint8Array(Buffer.from(secp256k1.publicKeyConvert(value, true))); // force compressed point
-    this._identifier = this._publicKey ? this.hash160(this._publicKey) : null;
-    this._fingerprint = this._identifier ? this._identifier.slice(0, 4).readUInt32BE(0) : null;
-    this._privateKey = null;
+    this.#publicKey = value; // new Uint8Array(Buffer.from(secp256k1.publicKeyConvert(value, true))); // force compressed point
+    this.#identifier = this.#publicKey ? this.hash160(this.#publicKey) : null;
+    this.#fingerprint = this.#identifier ? this.#identifier.slice(0, 4).readUInt32BE(0) : null;
+    this.#privateKey = null;
   }
 
   // fingerprint
   get fingerprint (): number | null {
-    return this._fingerprint;
+    return this.#fingerprint;
   }
 
   // identifier
   get identifier (): Buffer | null {
-    return this._identifier;
+    return this.#identifier;
   }
 
   // fingerprint
