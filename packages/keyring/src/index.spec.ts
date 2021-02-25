@@ -313,7 +313,7 @@ describe('keypair', (): void => {
       const pair = keyring.createFromUri(PHRASE);
       const json = pair.toJson('password');
 
-      expect(json.address).toEqual(ETH_ADDRESS_ONE);
+      expect(json.address).toEqual("0x0381351b1b46d2602b0992bb5d5531f9c1696b0812feb2534b6884adc47e2e1d8b"); //this is the public key (different from address for ethereum)
       expect(json.encoding).toEqual({
         content: ['pkcs8', 'ethereum'],
         type: ['scrypt', 'xsalsa20-poly1305'],
@@ -321,25 +321,18 @@ describe('keypair', (): void => {
       });
     });
 
-    it.only('encodes a pair toJSON', (): void => {
+    it('encodes a pair toJSON and back', (): void => {
       const pairOriginal = keyring.createFromUri(PHRASE);
-      //console.log('pairoriginal',pairOriginal)
       const json = pairOriginal.toJson('password');
-      console.log('converted to json',json)
       const pair = keyring.addFromJson(
         json
-        //JSON.parse(JSON.stringify(json))
       );
-      console.log("addFromJson")
-
-      //expect(pair.publicKey).toEqual(hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077'));
       expect(pair.address).toEqual(ETH_ADDRESS_ONE);
 
       pair.decodePkcs8('password');
 
       expect(pair.isLocked).toBe(false);
-      //expect(pair.publicKey).toEqual(hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077'));
-      expect(pair.address).toBe('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
+      expect(pair.address).toBe(ETH_ADDRESS_ONE);
     });
 
     it('allows adding from JSON', (): void => {

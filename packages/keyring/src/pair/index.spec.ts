@@ -164,14 +164,11 @@ describe('pair', (): void => {
     it('converts to json', (): void => {
       const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey:PUBLICDERIVED,secretKey:SECRETDERIVED });
       let json=pair.toJson('password')
-      console.log('test json',json)
       expect(json.encoding).toEqual({
         content: ['pkcs8', 'ethereum'],
         type: ['scrypt', 'xsalsa20-poly1305'],
         version: '3'
       });
-      // expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
-      // expect(pair.addressRaw).toEqual(hexToU8a('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887'));
     });
     it('has Gerald as test address for Ethereum type parachains', (): void => {
       const keyringEthereum = createTestPairs({ type: 'ethereum' }, false);
