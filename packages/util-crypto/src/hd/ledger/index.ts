@@ -7,15 +7,13 @@ import { assert } from '@polkadot/util';
 
 import { mnemonicValidate } from '../../mnemonic';
 import { naclKeypairFromSeed } from '../../nacl';
+import { HARDENED, hdValidatePath } from '../validatePath';
 import { ledgerDerivePrivate } from './derivePrivate';
 import { ledgerMaster } from './master';
-import { ledgerValidatePath } from './validatePath';
-
-const HARDENED = 0x80000000;
 
 export function hdLedger (mnemonic: string, path: string): Keypair {
   assert(mnemonicValidate(mnemonic), 'Invalid mnemonic passed to ledger derivation');
-  assert(ledgerValidatePath(path), 'Invalid derivation path');
+  assert(hdValidatePath(path), 'Invalid derivation path');
 
   return naclKeypairFromSeed(
     path

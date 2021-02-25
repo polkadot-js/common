@@ -263,6 +263,25 @@ describe('keypair', (): void => {
       ).not.toThrow();
     });
 
+    it('encodes a pair toJSON (and decodes)', (): void => {
+      const pair = keyring.createFromUri('moral movie very draw assault whisper awful rebuild speed purity repeat card');
+      const json = pair.toJson('password');
+
+      expect(json.address).toEqual('0x03ddca309bd5fedd01f914d6fb76f23aa848a2a520802159215dba5085d7863619');
+      expect(json.encoding).toEqual({
+        content: ['pkcs8', 'ecdsa'],
+        type: ['scrypt', 'xsalsa20-poly1305'],
+        version: '3'
+      });
+
+      const newPair = keyring.createFromJson(json);
+
+      expect(newPair.publicKey).toEqual(pair.publicKey);
+      expect(
+        () => newPair.unlock('password')
+      ).not.toThrow();
+    });
+
     it('signs and verifies', (): void => {
       const MESSAGE = stringToU8a('this is a message');
       const pair = keyring.getPair(addressKeyOne);
@@ -320,9 +339,12 @@ describe('keypair', (): void => {
         version: '3'
       });
 
-      const newPair = keyring.addFromJson(json);
+      const newPair = keyring.createFromJson(json);
 
       expect(newPair.publicKey).toEqual(pair.publicKey);
+      expect(
+        () => newPair.unlock('password')
+      ).not.toThrow();
     });
 
     it('allows adding from JSON', (): void => {
