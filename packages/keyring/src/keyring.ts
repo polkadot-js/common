@@ -153,9 +153,12 @@ export class Keyring implements KeyringInstance {
     const encType = !Array.isArray(type)
       ? [type]
       : type;
+      console.log("isHex(address)",isHex(address))
     const publicKey = isHex(address)
       ? hexToU8a(address)
       : this.decodeAddress(address, ignoreChecksum);
+      console.log("publicKey",publicKey)
+      console.log("isHex(encoded)",encoded,isHex(encoded),base64Decode(encoded))
     const decoded = isHex(encoded)
       ? hexToU8a(encoded)
       : base64Decode(encoded);
