@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { Keypair } from '../../types';
+
 import hash from 'hash.js';
 
 import { assert, bnToU8a, bufferToU8a, stringToU8a, u8aConcat, u8aToBn } from '@polkadot/util';
@@ -205,4 +207,13 @@ export class HDKeyEth {
 
     return hdkey;
   }
+}
+
+export function hdEthereum (seed: Uint8Array, path: string): Keypair {
+  const key = HDKeyEth.fromMasterSeed(seed);
+  const child = key.derive(path);
+
+  assert(child.publicKey && child.privateKey, 'Unable to derive HD key from path');
+
+  return { publicKey: child.publicKey, secretKey: child.privateKey };
 }
