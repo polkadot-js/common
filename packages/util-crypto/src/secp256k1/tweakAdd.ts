@@ -9,7 +9,7 @@ import { secp256k1 } from './secp256k1';
 
 const ecparams = secp256k1.curve as { n: BN };
 
-function _secp256k1PrivateKeyTweakAdd (seckey: Uint8Array, tweak: Uint8Array): number {
+function addTweak (seckey: Uint8Array, tweak: Uint8Array): number {
   const bn = new BN(tweak);
 
   if (bn.cmp(ecparams.n) >= 0) {
@@ -34,7 +34,7 @@ function _secp256k1PrivateKeyTweakAdd (seckey: Uint8Array, tweak: Uint8Array): n
 export function secp256k1PrivateKeyTweakAdd (seckey: Uint8Array, tweak: Uint8Array): Uint8Array {
   assert(isU8a(seckey) && seckey.length === 32, 'Expected seckey to be an Uint8Array with length 32');
   assert(isU8a(tweak) && tweak.length === 32, 'Expected tweak to be an Uint8Array with length 32');
-  assert(_secp256k1PrivateKeyTweakAdd(seckey, tweak) === 0, 'The tweak was out of range or the resulted private key is invalid');
+  assert(addTweak(seckey, tweak) === 0, 'The tweak was out of range or the resulting private key is invalid');
 
   return seckey;
 }
