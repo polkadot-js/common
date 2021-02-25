@@ -120,7 +120,11 @@ export class HDKeyEth {
       let childIndex = parseInt(c, 10); // & (HARDENED_OFFSET - 1)
 
       assert(childIndex < HARDENED_OFFSET, 'Invalid index');
-      if (hardened) childIndex += HARDENED_OFFSET;
+
+      if (hardened) {
+        childIndex += HARDENED_OFFSET;
+      }
+
       hdkey = hdkey.deriveChild(childIndex);
     });
 
@@ -135,54 +139,35 @@ export class HDKeyEth {
     let data: Uint8Array;
 
     if (isHardened) { // Hardened child
-      assert(this.privateKey, 'Could not derive hardened child key');
+      assert(this.privateKey, 'Could not derive hardened child key without private key');
 
-      if (this.privateKey) {
-        const pkConcat = u8aConcat(new Uint8Array(1), this.privateKey);
-
-        // data = 0x00 || ser256(kpar) || ser32(index)
-        data = u8aConcat(pkConcat, indexBuffer);
-      } else {
-        throw new Error('Could not derive hardened child key : no privatekey');
-      }
+      // data = 0x00 || ser256(kpar) || ser32(index)
+      data = u8aConcat(new Uint8Array(1), this.privateKey, indexBuffer);
     } else { // Normal child
       // data = serP(point(kpar)) || ser32(index)
       //      = serP(Kpar) || ser32(index)
-      if (this.publicKey) {
-        data = u8aConcat(this.publicKey, indexBuffer);
-      } else {
-        throw new Error('Could not derive hardened child key : no publicKey');
-      }
+      assert(this.publicKey, 'Could not derive hardened child key : no publicKey');
+
+      data = u8aConcat(this.publicKey, indexBuffer);
     }
 
-    let I = new Uint8Array();
+    assert(this.chainCode, 'deriveChild error: no chainCode');
+    assert(this.privateKey, 'PublicKey derivation without private key is not supported');
 
-    if (this.chainCode) {
-      I = hmacSha512(this.chainCode, data);
-    } else {
-      throw new Error('deriveChild error: no chainCode');
-    }
-
+    const I = hmacSha512(this.chainCode, data);
     const IL = I.slice(0, 32);
     const IR = I.slice(32);
-
     const hd = new HDKeyEth(this.versions);
 
     // Private parent key -> private child key
-    if (this.privateKey) {
-      // ki = parse256(IL) + kpar (mod n)r
-      try {
-        hd.privateKey = secp256k1PrivateKeyTweakAdd(this.privateKey, IL);
-        // throw if IL >= n || (privateKey + IL) === 0
-      } catch (err) {
-        console.log('error when secp256k1PrivateKeyTweakAdd in eth key derivation', err);
+    try {
+      hd.privateKey = secp256k1PrivateKeyTweakAdd(this.privateKey, IL);
+      // throw if IL >= n || (privateKey + IL) === 0
+    } catch (err) {
+      console.log('error when secp256k1PrivateKeyTweakAdd in eth key derivation', err);
 
-        // In case parse256(IL) >= n or ki == 0, one should proceed with the next value for i
-        return this.deriveChild(index + 1);
-      }
-      // Public parent key -> public child key
-    } else {
-      throw new Error('PublicKey derivation without private key is not supported at the moment');
+      // In case parse256(IL) >= n or ki == 0, one should proceed with the next value for i
+      return this.deriveChild(index + 1);
     }
 
     hd.chainCode = IR;
