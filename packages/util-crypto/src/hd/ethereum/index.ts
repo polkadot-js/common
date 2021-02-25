@@ -194,24 +194,20 @@ export class HDKeyEth {
 
     return hd;
   }
-
-  // fromMasterSeed
-  public static fromMasterSeed (seedBuffer: Uint8Array, versions?: Versions): HDKeyEth {
-    const hdkey = versions
-      ? new HDKeyEth(versions)
-      : new HDKeyEth();
-    const I = hmacSha512(MASTER_SECRET, seedBuffer);
-
-    hdkey.privateKey = I.slice(0, 32);
-    hdkey.chainCode = I.slice(32);
-
-    return hdkey;
-  }
 }
 
-export function hdEthereum (seed: Uint8Array, path: string): Keypair {
-  const key = HDKeyEth.fromMasterSeed(seed);
-  const child = key.derive(path);
+export function hdEthereum (seed: Uint8Array, path = '', versions?: Versions): Keypair {
+  const hdkey = versions
+    ? new HDKeyEth(versions)
+    : new HDKeyEth();
+  const I = hmacSha512(MASTER_SECRET, seed);
+
+  hdkey.privateKey = I.slice(0, 32);
+  hdkey.chainCode = I.slice(32);
+
+  const child = path
+    ? hdkey.derive(path)
+    : hdkey;
 
   assert(child.publicKey && child.privateKey, 'Unable to derive HD key from path');
 
