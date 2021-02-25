@@ -145,6 +145,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     // eslint-disable-next-line sort-keys
     decodePkcs8,
     derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair => {
+      assert(type !== 'ethereum', 'Unable to derive on this keypair');
       assert(!isLocked(secretKey), 'Cannot derive on a locked keypair');
 
       const { path } = keyExtractPath(suri);

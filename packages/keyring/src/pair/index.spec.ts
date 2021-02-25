@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { hexToU8a } from '@polkadot/util';
-import { cryptoWaitReady, encodeAddress as toSS58, secp256k1KeypairFromSeed, setSS58Format } from '@polkadot/util-crypto';
+import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkadot/util-crypto';
 
 import { PAIRSSR25519 } from '../testing';
 import { createTestPairs } from '../testingPairs';

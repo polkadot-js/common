@@ -309,7 +309,7 @@ describe('keypair', (): void => {
       ).toEqual(ETH_ADDRESS_ONE);
     });
 
-    it('encodes a pair toJSON', (): void => {
+    it('encodes a pair toJSON (and decodes)', (): void => {
       const pair = keyring.createFromUri(PHRASE);
       const json = pair.toJson('password');
 
@@ -319,6 +319,10 @@ describe('keypair', (): void => {
         type: ['scrypt', 'xsalsa20-poly1305'],
         version: '3'
       });
+
+      const newPair = keyring.addFromJson(json);
+
+      expect(newPair.publicKey).toEqual(pair.publicKey);
     });
 
     it('encodes a pair toJSON and back', (): void => {
