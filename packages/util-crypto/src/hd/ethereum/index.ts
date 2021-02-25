@@ -18,6 +18,19 @@ interface Versions {
   public: number;
 }
 
+function hash160 (u8a: Uint8Array): Uint8Array {
+  return bufferToU8a(
+    hash
+      .ripemd160()
+      .update(
+        hash
+          .sha256()
+          .update(u8a)
+          .digest()
+      ).digest()
+  );
+}
+
 export class HDKeyEth {
   versions: Versions;
   public depth: number;
@@ -77,7 +90,7 @@ export class HDKeyEth {
     // TODO: should I use the compress function here?
     this.#publicKey = value; // new Uint8Array(Buffer.from(secp256k1.publicKeyConvert(value, true))); // force compressed point
     this.#identifier = this.#publicKey
-      ? this.hash160(this.#publicKey)
+      ? hash160(this.#publicKey)
       : null;
     this.#fingerprint = this.#identifier
       ? u8aToBn(this.#identifier.slice(0, 4), { isLe: false }).toNumber()
@@ -189,18 +202,5 @@ export class HDKeyEth {
     hdkey.chainCode = I.slice(32);
 
     return hdkey;
-  }
-
-  private hash160 (buf: Uint8Array): Uint8Array {
-    return bufferToU8a(
-      hash
-        .ripemd160()
-        .update(
-          hash
-            .sha256()
-            .update(buf)
-            .digest()
-        ).digest()
-    );
   }
 }
