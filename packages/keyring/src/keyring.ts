@@ -152,6 +152,7 @@ export class Keyring implements KeyringInstance {
     const encType = !Array.isArray(type)
       ? [type]
       : type;
+      // Here the address and publicKey are 32 bytes and isomorphic. This is why the address field needs to be the public key for ethereum type pairs
     const publicKey = isHex(address)
       ? hexToU8a(address)
       : this.decodeAddress(address, ignoreChecksum);
