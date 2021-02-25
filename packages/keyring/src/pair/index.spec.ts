@@ -148,6 +148,7 @@ describe('pair', (): void => {
       expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
       expect(pair.addressRaw).toEqual(hexToU8a('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887'));
     });
+
     it('has Gerald as test address for Ethereum type parachains', (): void => {
       const keyringEthereum = createTestPairs({ type: 'ethereum' }, false);
 
