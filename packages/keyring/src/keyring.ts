@@ -205,11 +205,9 @@ export class Keyring implements KeyringInstance {
    * @description Encodes the input into an ss58 representation
    */
   public encodeAddress = (address: Uint8Array | string, ss58Format?: number): string => {
-    if (this.type === 'ethereum') {
-      return ethereumEncode(address);
-    } else {
-      return encodeAddress(address, isUndefined(ss58Format) ? this.#ss58 : ss58Format);
-    }
+    return this.type === 'ethereum'
+      ? ethereumEncode(address)
+      : encodeAddress(address, isUndefined(ss58Format) ? this.#ss58 : ss58Format);
   }
 
   /**

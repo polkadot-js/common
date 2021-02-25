@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hexToU8a } from '@polkadot/util';
+import { hexToU8a, u8aToHex } from '@polkadot/util';
 import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkadot/util-crypto';
 
 import { PAIRSSR25519 } from '../testing';
@@ -162,6 +162,7 @@ describe('pair', (): void => {
       expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
       expect(pair.addressRaw).toEqual(hexToU8a('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887'));
     });
+
     it('converts to json', (): void => {
       const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: PUBLICDERIVED, secretKey: SECRETDERIVED });
       const json = pair.toJson('password');
@@ -171,7 +172,9 @@ describe('pair', (): void => {
         type: ['scrypt', 'xsalsa20-poly1305'],
         version: '3'
       });
+      expect(json.address).toEqual(u8aToHex(PUBLICDERIVED));
     });
+
     it('has Gerald as test address for Ethereum type parachains', (): void => {
       const keyringEthereum = createTestPairs({ type: 'ethereum' }, false);
 
