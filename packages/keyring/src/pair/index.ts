@@ -5,8 +5,8 @@ import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, SignOptions } from '../types';
 import type { PairInfo } from './types';
 
-import { assert, u8aConcat, u8aEq, u8aToU8a } from '@polkadot/util';
-import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
+import { assert, u8aConcat, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
+import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
 import { encodePair } from './encode';
@@ -173,7 +173,11 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       );
     },
     toJson: (passphrase?: string): KeyringPair$Json => {
-      const address = encodeAddress();
+      // NOTE: in the case of Ethereum and Ecdsa, we encode the ful publicKey - to allow extraction. This will NOT match
+      // e.g. an Ethereum address which is non-reversible, so not used here)
+      const address = ['ecdsa', 'ethereum'].includes(type)
+        ? u8aToHex(secp256k1Compress(publicKey))
+        : encodeAddress();
 
       return pairToJson(type, { address, meta }, recode(passphrase), !!passphrase);
     },
