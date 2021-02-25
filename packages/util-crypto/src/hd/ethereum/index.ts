@@ -32,12 +32,13 @@ export class HDKeyEth {
   versions: Versions;
   public depth: number;
   index: number;
-  private _privateKey: Uint8Array|null;
-  private _publicKey: Uint8Array|null;
-  public chainCode: Uint8Array|null;
-  private _fingerprint: number|null;
-  parentFingerprint: number|null;
-  private _identifier: Buffer|null;
+  public chainCode: Uint8Array | null;
+  parentFingerprint: number | null;
+
+  #fingerprint: number | null;
+  #identifier: Buffer | null;
+  #privateKey: Uint8Array | null;
+  #publicKey: Uint8Array | null;
 
   constructor (versions?: Versions) {
     this.versions = versions || BITCOIN_VERSIONS;
@@ -52,7 +53,7 @@ export class HDKeyEth {
   }
 
   // private key
-  set privateKey (value: Uint8Array|null) {
+  set privateKey (value: Uint8Array | null) {
     assert(value && value.length === 32, 'Private key must be 32 bytes.');
     // TODO: implement privateKeyVerify for local secp256k1
     // assert(secp256k1.privateKeyVerify(value) === true, 'Invalid private key');
@@ -66,17 +67,17 @@ export class HDKeyEth {
     }
   }
 
-  get privateKey (): Uint8Array|null {
+  get privateKey (): Uint8Array | null {
     return this._privateKey;
   }
 
   // public key
 
-  get publicKey (): Uint8Array|null {
+  get publicKey (): Uint8Array | null {
     return this._publicKey;
   }
 
-  set publicKey (value: Uint8Array|null) {
+  set publicKey (value: Uint8Array | null) {
     assert(value && (value.length === 33 || value.length === 65), 'Public key must be 33 or 65 bytes.');
     // TODO: implement publicKeyVerify for local secp256k1
     // assert(secp256k1.publicKeyVerify(value) === true, 'Invalid public key');
@@ -89,17 +90,17 @@ export class HDKeyEth {
   }
 
   // fingerprint
-  get fingerprint (): number|null {
+  get fingerprint (): number | null {
     return this._fingerprint;
   }
 
   // identifier
-  get identifier (): Buffer|null {
+  get identifier (): Buffer | null {
     return this._identifier;
   }
 
   // fingerprint
-  get pubKeyHash (): Buffer|null {
+  get pubKeyHash (): Buffer | null {
     return this.identifier;
   }
 
