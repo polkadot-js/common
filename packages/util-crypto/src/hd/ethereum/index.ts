@@ -32,74 +32,75 @@ export class HDKeyEth {
   versions: Versions;
   public depth: number;
   index: number;
-  private _privateKey: Uint8Array|null;
-  private _publicKey: Uint8Array|null;
-  public chainCode: Uint8Array|null;
-  private _fingerprint: number|null;
-  parentFingerprint: number|null;
-  private _identifier: Buffer|null;
+  public chainCode: Uint8Array | null;
+  parentFingerprint: number | null;
+
+  #fingerprint: number | null;
+  #identifier: Buffer | null;
+  #privateKey: Uint8Array | null;
+  #publicKey: Uint8Array | null;
 
   constructor (versions?: Versions) {
     this.versions = versions || BITCOIN_VERSIONS;
     this.depth = 0;
     this.index = 0;
-    this._privateKey = null;
-    this._publicKey = null;
-    this._identifier = null;
+    this.#privateKey = null;
+    this.#publicKey = null;
+    this.#identifier = null;
     this.chainCode = null;
-    this._fingerprint = null;
+    this.#fingerprint = null;
     this.parentFingerprint = 0;
   }
 
   // private key
-  set privateKey (value: Uint8Array|null) {
+  set privateKey (value: Uint8Array | null) {
     assert(value && value.length === 32, 'Private key must be 32 bytes.');
     // TODO: implement privateKeyVerify for local secp256k1
     // assert(secp256k1.privateKeyVerify(value) === true, 'Invalid private key');
 
-    this._privateKey = value;
+    this.#privateKey = value;
 
     if (value) {
-      this._publicKey = secp256k1KeypairFromSeed(value).publicKey;
-      this._identifier = this._publicKey ? this.hash160(this._publicKey) : null;
-      this._fingerprint = this._identifier ? this._identifier.slice(0, 4).readUInt32BE(0) : null;
+      this.#publicKey = secp256k1KeypairFromSeed(value).publicKey;
+      this.#identifier = this.#publicKey ? this.hash160(this.#publicKey) : null;
+      this.#fingerprint = this.#identifier ? this.#identifier.slice(0, 4).readUInt32BE(0) : null;
     }
   }
 
-  get privateKey (): Uint8Array|null {
-    return this._privateKey;
+  get privateKey (): Uint8Array | null {
+    return this.#privateKey;
   }
 
   // public key
 
-  get publicKey (): Uint8Array|null {
-    return this._publicKey;
+  get publicKey (): Uint8Array | null {
+    return this.#publicKey;
   }
 
-  set publicKey (value: Uint8Array|null) {
+  set publicKey (value: Uint8Array | null) {
     assert(value && (value.length === 33 || value.length === 65), 'Public key must be 33 or 65 bytes.');
     // TODO: implement publicKeyVerify for local secp256k1
     // assert(secp256k1.publicKeyVerify(value) === true, 'Invalid public key');
 
     // TODO: should I use the compress function here?
-    this._publicKey = value; // new Uint8Array(Buffer.from(secp256k1.publicKeyConvert(value, true))); // force compressed point
-    this._identifier = this._publicKey ? this.hash160(this._publicKey) : null;
-    this._fingerprint = this._identifier ? this._identifier.slice(0, 4).readUInt32BE(0) : null;
-    this._privateKey = null;
+    this.#publicKey = value; // new Uint8Array(Buffer.from(secp256k1.publicKeyConvert(value, true))); // force compressed point
+    this.#identifier = this.#publicKey ? this.hash160(this.#publicKey) : null;
+    this.#fingerprint = this.#identifier ? this.#identifier.slice(0, 4).readUInt32BE(0) : null;
+    this.#privateKey = null;
   }
 
   // fingerprint
-  get fingerprint (): number|null {
-    return this._fingerprint;
+  get fingerprint (): number | null {
+    return this.#fingerprint;
   }
 
   // identifier
-  get identifier (): Buffer|null {
-    return this._identifier;
+  get identifier (): Buffer | null {
+    return this.#identifier;
   }
 
   // fingerprint
-  get pubKeyHash (): Buffer|null {
+  get pubKeyHash (): Buffer | null {
     return this.identifier;
   }
 

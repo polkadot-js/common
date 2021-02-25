@@ -457,6 +457,15 @@ const all: NetworkFromSubstrate[] = [
     website: 'https://neatcoin.org'
   },
   {
+    decimals: [12],
+    displayName: 'HydraDX',
+    network: 'hydradx',
+    prefix: 63,
+    standardAccount: '*25519',
+    symbols: ['HDX'],
+    website: 'https://hydradx.io'
+  },
+  {
     decimals: [18],
     displayName: 'AvN Mainnet',
     network: 'aventus',
