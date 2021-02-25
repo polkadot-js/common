@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
-import { cryptoWaitReady, encodeAddress, setSS58Format } from '@polkadot/util-crypto';
+import { cryptoWaitReady, encodeAddress, randomAsU8a, setSS58Format } from '@polkadot/util-crypto';
 
 import Keyring from '.';
 
@@ -83,8 +83,9 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE);
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
 
     it('signs and verifies (withType)', (): void => {
@@ -92,8 +93,9 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE, { withType: true });
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
   });
 
@@ -159,8 +161,9 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE);
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
 
     it('signs and verifies (withType)', (): void => {
@@ -168,8 +171,9 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(publicKeyOne);
       const signature = pair.sign(MESSAGE, { withType: true });
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
   });
 
@@ -264,8 +268,9 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(addressKeyOne);
       const signature = pair.sign(MESSAGE);
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
 
     it('signs and verifies (withType)', (): void => {
@@ -273,31 +278,42 @@ describe('keypair', (): void => {
       const pair = keyring.getPair(addressKeyOne);
       const signature = pair.sign(MESSAGE, { withType: true });
 
-      expect(pair.verify(MESSAGE, signature)).toBe(true);
-      expect(pair.verify(new Uint8Array(), signature)).toBe(false);
+      expect(pair.verify(MESSAGE, signature, pair.publicKey)).toBe(true);
+      expect(pair.verify(MESSAGE, signature, randomAsU8a())).toBe(false);
+      expect(pair.verify(new Uint8Array(), signature, pair.publicKey)).toBe(false);
     });
   });
 
   describe('ethereum', (): void => {
-    const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy';
+    // combine mnemonic with derivation path
+    const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy' + '/m/44\'/60\'/0\'/0/0';
+    const ETH_ADDRESS_ONE = '0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d';
+
     let keyring: Keyring;
 
     beforeEach((): void => {
       keyring = new Keyring({ type: 'ethereum' });
     });
 
-    it('adds a pair with the correct address', (): void => {
+    it('creates with dev phrase with derivation path specified', (): void => {
       const pair = keyring.createFromUri(PHRASE);
 
-      expect(pair.publicKey).toEqual(hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077'));
-      expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
+      expect(
+        pair.address
+      ).toEqual(ETH_ADDRESS_ONE);
+    });
+
+    it('creates with dev phrase with derivation path specified - addFromUri', (): void => {
+      expect(
+        keyring.addFromUri(PHRASE).address
+      ).toEqual(ETH_ADDRESS_ONE);
     });
 
     it('encodes a pair toJSON', (): void => {
       const pair = keyring.createFromUri(PHRASE);
       const json = pair.toJson('password');
 
-      expect(json.address).toEqual('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077');
+      expect(json.address).toEqual(ETH_ADDRESS_ONE);
       expect(json.encoding).toEqual({
         content: ['pkcs8', 'ethereum'],
         type: ['scrypt', 'xsalsa20-poly1305'],
@@ -328,9 +344,13 @@ describe('keypair', (): void => {
       );
 
       const signature = signer.sign(MESSAGE);
+      const dummyPublic = verifier.publicKey.slice();
 
-      expect(verifier.verify(MESSAGE, signature)).toBe(true);
-      expect(verifier.verify(new Uint8Array(), signature)).toBe(false);
+      dummyPublic[dummyPublic.length - 1] = 0;
+
+      expect(verifier.verify(MESSAGE, signature, signer.publicKey)).toBe(true);
+      expect(verifier.verify(MESSAGE, signature, dummyPublic)).toBe(false);
+      expect(verifier.verify(new Uint8Array(), signature, signer.publicKey)).toBe(false);
     });
 
     it('allows for signing/verification (withType)', (): void => {
@@ -341,9 +361,13 @@ describe('keypair', (): void => {
       );
 
       const signature = signer.sign(MESSAGE, { withType: true });
+      const dummyPublic = verifier.publicKey.slice();
 
-      expect(verifier.verify(MESSAGE, signature)).toBe(true);
-      expect(verifier.verify(new Uint8Array(), signature)).toBe(false);
+      dummyPublic[dummyPublic.length - 1] = 0;
+
+      expect(verifier.verify(MESSAGE, signature, signer.publicKey)).toBe(true);
+      expect(verifier.verify(MESSAGE, signature, dummyPublic)).toBe(false);
+      expect(verifier.verify(new Uint8Array(), signature, signer.publicKey)).toBe(false);
     });
   });
 

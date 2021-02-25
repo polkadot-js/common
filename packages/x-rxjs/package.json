@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-rxjs",
-  "version": "5.6.3",
+  "version": "5.7.2-4",
   "description": "A pass-through interface for RxJs (allowing node + mjs usage)",
   "main": "index.js",
   "sideEffects": false,
@@ -12,7 +12,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-rxjs#readme",
   "dependencies": {
-    "@babel/runtime": "^7.12.13",
+    "@babel/runtime": "^7.13.7",
     "rxjs": "^6.6.3"
   }
 }

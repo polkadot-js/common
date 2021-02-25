@@ -4,7 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { cryptoWaitReady, encodeAddress as toSS58, secp256k1KeypairFromSeed, setSS58Format } from '@polkadot/util-crypto';
 
-import { PAIRS_sr25519 } from '../testing';
+import { PAIRSSR25519 } from '../testing';
 import { createTestPairs } from '../testingPairs';
 import { createPair } from '.';
 
@@ -42,16 +42,28 @@ describe('pair', (): void => {
     expect(
       keyring.alice.verify(
         new Uint8Array([0x61, 0x62, 0x63, 0x64]),
-        SIGNATURE
+        SIGNATURE,
+        keyring.alice.publicKey
       )
     ).toEqual(true);
+  });
+
+  it('fails a correctly signed message (signer changed)', (): void => {
+    expect(
+      keyring.alice.verify(
+        new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]),
+        SIGNATURE,
+        keyring.bob.publicKey
+      )
+    ).toEqual(false);
   });
 
   it('fails a correctly signed message (message changed)', (): void => {
     expect(
       keyring.alice.verify(
         new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]),
-        SIGNATURE
+        SIGNATURE,
+        keyring.alice.publicKey
       )
     ).toEqual(false);
   });
@@ -62,9 +74,22 @@ describe('pair', (): void => {
     expect(
       keyring.alice.vrfVerify(
         message,
-        keyring.alice.vrfSign(message)
+        keyring.alice.vrfSign(message),
+        keyring.alice.publicKey
       )
     ).toBe(true);
+  });
+
+  it('fails vrf sign and verify (publicKey changed)', (): void => {
+    const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
+
+    expect(
+      keyring.alice.vrfVerify(
+        message,
+        keyring.alice.vrfSign(message),
+        keyring.bob.publicKey
+      )
+    ).toBe(false);
   });
 
   it('allows setting/getting of meta', (): void => {
@@ -99,11 +124,11 @@ describe('pair', (): void => {
   });
 
   it('allows derivation on the pair', (): void => {
-    const alice = createPair({ toSS58, type: 'sr25519' }, { publicKey: PAIRS_sr25519[0].publicKey, secretKey: PAIRS_sr25519[0].secretKey }, {});
+    const alice = createPair({ toSS58, type: 'sr25519' }, { publicKey: PAIRSSR25519[0].publicKey, secretKey: PAIRSSR25519[0].secretKey }, {});
     const stash = alice.derive('//stash');
     const soft = alice.derive('//funding/0');
 
-    expect(stash.publicKey).toEqual(PAIRS_sr25519[1].publicKey);
+    expect(stash.publicKey).toEqual(PAIRSSR25519[1].publicKey);
     expect(soft.address).toEqual('5ECQNn7UueWHPFda5qUi4fTmTtyCnPvGnuoyVVSj5CboJh9J');
   });
 
