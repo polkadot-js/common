@@ -60,7 +60,7 @@ export class HDKeyEth {
     const entries = path.split('/');
     let hdkey = this as HDKeyEth;
 
-    entries.forEach(function (c, i) {
+    entries.forEach((c, i): void => {
       if (i === 0) {
         assert(/^[mM]{1}/.test(c), 'Path must start with "m" or "M"');
 
