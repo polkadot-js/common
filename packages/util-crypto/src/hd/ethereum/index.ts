@@ -9,64 +9,59 @@ import { hmacSha512 } from '../../hmac';
 import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '../../secp256k1';
 import { HARDENED, hdValidatePath } from '../validatePath';
 
+interface CodedKeypair extends Keypair {
+  chainCode: Uint8Array;
+}
+
 const MASTER_SECRET = stringToU8a('Bitcoin seed');
 
-export class HDKey {
-  readonly chainCode: Uint8Array;
-  readonly publicKey: Uint8Array;
-  readonly secretKey: Uint8Array;
+function createCoded (secretKey: Uint8Array, chainCode: Uint8Array): CodedKeypair {
+  return {
+    chainCode,
+    publicKey: secp256k1KeypairFromSeed(secretKey).publicKey,
+    secretKey
+  };
+}
 
-  constructor (secretKey: Uint8Array, chainCode: Uint8Array) {
-    this.secretKey = secretKey;
-    this.publicKey = secp256k1KeypairFromSeed(secretKey).publicKey;
-    this.chainCode = chainCode;
-  }
+function deriveChild (hd: CodedKeypair, index: number): CodedKeypair {
+  const indexBuffer = bnToU8a(index, { bitLength: 32, isLe: false });
+  const data = index >= HARDENED
+    ? u8aConcat(new Uint8Array(1), hd.secretKey, indexBuffer)
+    : u8aConcat(hd.publicKey, indexBuffer);
 
-  public derive (path: string): HDKey {
-    if (path === 'm' || path === 'M' || path === "m'" || path === "M'") {
-      return this;
-    }
+  try {
+    const I = hmacSha512(hd.chainCode, data);
 
-    assert(hdValidatePath(path), 'Invalid derivation path');
-
-    return path
-      .split('/')
-      .slice(1)
-      .reduce((hd: HDKey, c): HDKey => hd.deriveChild(
-        parseInt(c, 10) + (
-          (c.length > 1) && c.endsWith("'")
-            ? HARDENED
-            : 0
-        )
-      ), this);
-  }
-
-  private deriveChild (index: number): HDKey {
-    const indexBuffer = bnToU8a(index, { bitLength: 32, isLe: false });
-    const data = index >= HARDENED
-      ? u8aConcat(new Uint8Array(1), this.secretKey, indexBuffer)
-      : u8aConcat(this.publicKey, indexBuffer);
-
-    try {
-      const I = hmacSha512(this.chainCode, data);
-
-      return new HDKey(
-        secp256k1PrivateKeyTweakAdd(this.secretKey, I.slice(0, 32)),
-        I.slice(32)
-      );
-    } catch (err) {
-      // In case parse256(IL) >= n or ki == 0, proceed with the next value for i
-      return this.deriveChild(index + 1);
-    }
+    return createCoded(
+      secp256k1PrivateKeyTweakAdd(hd.secretKey, I.slice(0, 32)),
+      I.slice(32)
+    );
+  } catch (err) {
+    // In case parse256(IL) >= n or ki == 0, proceed with the next value for i
+    return deriveChild(hd, index + 1);
   }
 }
 
 export function hdEthereum (seed: Uint8Array, path = ''): Keypair {
   const I = hmacSha512(MASTER_SECRET, seed);
-  const hdkey = new HDKey(I.slice(0, 32), I.slice(32));
-  const { publicKey, secretKey } = path
-    ? hdkey.derive(path)
-    : hdkey;
+  const hd = createCoded(I.slice(0, 32), I.slice(32));
 
-  return { publicKey, secretKey };
+  if (!path || path === 'm' || path === 'M' || path === "m'" || path === "M'") {
+    return hd;
+  }
+
+  assert(hdValidatePath(path), 'Invalid derivation path');
+
+  return path
+    .split('/')
+    .slice(1)
+    .reduce((hd: CodedKeypair, c): CodedKeypair =>
+      deriveChild(
+        hd, parseInt(c, 10) + (
+          (c.length > 1) && c.endsWith("'")
+            ? HARDENED
+            : 0
+        )
+      ), hd
+    );
 }
