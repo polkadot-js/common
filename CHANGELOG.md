@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 5.8.1 Feb 26, 2021
+
+Contributed:
+
+- Add ss58 information for HydraDX (Thanks to https://github.com/jak-pan)
+- HD derivation for Ethereum (Thanks to https://github.com/joelamouche)
+
+Changes:
+
+- Adjust base64 encoding/decoding to not rely on Buffer being available
+- Rework Ethereum derivation to only use Uint8Array internally
+- Shared HD path validation for Ledger & Ethereum
+- Additional derivation, encoding and decoding tests on keyring
+- Align networks with upstream ss58 registry
+- `@polkadot/wasm-crypto` 3.2.4
+
+
 ## 5.7.1 Feb 21, 2021
 
 **Breaking change** The signature of `pair.verify` now requires the signer public key as a parameter. If using `pair.verify` pass the publicKey (hex or Uint8Array) of the signer.
