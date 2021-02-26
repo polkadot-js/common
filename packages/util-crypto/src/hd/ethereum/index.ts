@@ -22,7 +22,6 @@ export class HDKey {
     this.chainCode = chainCode;
   }
 
-  // derive
   public derive (path: string): HDKey {
     if (path === 'm' || path === 'M' || path === "m'" || path === "M'") {
       return this;
@@ -42,14 +41,12 @@ export class HDKey {
       ), this);
   }
 
-  // deriveChild
   private deriveChild (index: number): HDKey {
     const indexBuffer = bnToU8a(index, { bitLength: 32, isLe: false });
     const data = index >= HARDENED
       ? u8aConcat(new Uint8Array(1), this.secretKey, indexBuffer)
       : u8aConcat(this.publicKey, indexBuffer);
 
-    // Private parent key -> private child key
     try {
       const I = hmacSha512(this.chainCode, data);
 
@@ -58,9 +55,7 @@ export class HDKey {
         I.slice(32)
       );
     } catch (err) {
-      console.log('error when secp256k1PrivateKeyTweakAdd in eth key derivation', err);
-
-      // In case parse256(IL) >= n or ki == 0, one should proceed with the next value for i
+      // In case parse256(IL) >= n or ki == 0, proceed with the next value for i
       return this.deriveChild(index + 1);
     }
   }

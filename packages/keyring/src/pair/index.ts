@@ -173,7 +173,8 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       );
     },
     toJson: (passphrase?: string): KeyringPair$Json => {
-      // For ecdsa and ethereum, address and publicKey are not the same (and not bijective). We want the publicKey here
+      // NOTE: For ecdsa and ethereum, the publicKey cannot be extracted from the address. For these
+      // pass the hex-encoded publicKey through to the address portion of the JSON (before decoding)
       const address = ['ecdsa', 'ethereum'].includes(type)
         ? u8aToHex(secp256k1Compress(publicKey))
         : encodeAddress();
