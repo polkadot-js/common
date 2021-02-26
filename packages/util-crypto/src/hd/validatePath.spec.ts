@@ -14,6 +14,7 @@ const VECTORS: [string, boolean][] = [
   ['m/123x', false],
   ['m/123"', false],
   ["m/123''", false],
+  ["m/123'0'", false],
   [`m/${0x80000000}`, false],
   ['m/-1', false]
 ];
