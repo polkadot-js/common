@@ -8,9 +8,11 @@ export function hdValidatePath (path: string): boolean {
     return false;
   }
 
-  return !path
-    .split('/')
-    .slice(1)
-    .map((n) => parseInt(n.replace("'", ''), 10))
-    .some((n) => isNaN(n) && n < HARDENED);
+  const parts = path.split('/').slice(1);
+
+  return parts.every((n) => /^\d+'?$/.test(n)) && (
+    !parts
+      .map((n) => parseInt(n.replace("'", ''), 10))
+      .some((n) => isNaN(n) || (n >= HARDENED) || (n < 0))
+  );
 }
