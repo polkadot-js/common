@@ -16,7 +16,7 @@
 //
 // With the above we additionally need a .d.ts to just export the packageInfo
 
-import { packageInfo as transportInfo } from '@polkadot/hw-ledger-transports';
+import { packageInfo as transportInfo } from '@polkadot/hw-ledger-transports/packageInfo';
 import { detectPackage, packageInfo as utilInfo } from '@polkadot/util';
 
 import { packageInfo } from './packageInfo';

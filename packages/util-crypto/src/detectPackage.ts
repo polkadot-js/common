@@ -16,7 +16,7 @@
 //
 // With the above we additionally need a .d.ts to just export the packageInfo
 
-import { packageInfo as netInfo } from '@polkadot/networks';
+import { packageInfo as netInfo } from '@polkadot/networks/packageInfo';
 import { detectPackage, packageInfo as utilInfo } from '@polkadot/util';
 import { packageInfo as randomInfo } from '@polkadot/x-randomvalues';
 
