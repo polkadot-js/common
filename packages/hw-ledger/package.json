@@ -12,7 +12,7 @@
     "./detectPackage.mjs"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.13.7",
+    "@babel/runtime": "^7.13.8",
     "@polkadot/hw-ledger-transports": "5.8.2-4",
     "@polkadot/util": "^5.8.2-4",
     "@zondax/ledger-polkadot": "^0.13.1"
