@@ -26,10 +26,7 @@ interface PjsChecks extends This {
 type PjsWindow = (Window & This) & PjsChecks;
 type FnString = () => string | undefined;
 
-/** @internal */
-function expandPath (path?: string): string {
-  return (!path || path.length < 5) ? '<unknown>' : path;
-}
+const DEDUPE = 'Either remove and explicitly install a single version or deupe using your package manager.\nThe following conflicting packages were found:';
 
 /** @internal */
 function getEntry (name: string): VersionPath[] {
@@ -46,9 +43,13 @@ function getEntry (name: string): VersionPath[] {
   return _global.__polkadotjs[name];
 }
 
+function getVersionLength (all: { version: string }[]): number {
+  return all.reduce((max, { version }) => Math.max(max, version.length), 0);
+}
+
 /** @internal */
 function flattenInfos (all: PackageJson[]): string {
-  const verLength = all.reduce((max, { version }) => Math.max(max, version.length), 0);
+  const verLength = getVersionLength(all);
 
   return all
     .map(({ name, version }) => `\t${version.padEnd(verLength)}\t${name}`)
@@ -62,10 +63,10 @@ function flattenVersions (entry: VersionPath[]): string {
       ? { version }
       : version
   );
-  const verLength = all.reduce((max, { version }) => Math.max(max, version.length), 0);
+  const verLength = getVersionLength(all);
 
   return all
-    .map(({ path, version }) => `\t${version.padEnd(verLength)}\t${expandPath(path)}`)
+    .map(({ path, version }) => `\t${version.padEnd(verLength)}\t${(!path || path.length < 5) ? '<unknown>' : path}`)
     .join('\n');
 }
 
@@ -86,20 +87,20 @@ function getPath (pathOrFn?: FnString | string | false): false | string | undefi
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
  */
-export function detectPackage (info: PackageJson, pathOrFn?: FnString | string | false, deps: PackageJson[] = []): void {
-  assert(info.name.startsWith('@polkadot'), `Invalid package descriptor ${info.name}`);
+export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnString | string | false, deps: PackageJson[] = []): void {
+  assert(name.startsWith('@polkadot'), `Invalid package descriptor ${name}`);
 
-  const entry = getEntry(info.name);
+  const entry = getEntry(name);
 
-  entry.push({ path: getPath(pathOrFn) || '', version: info.version });
+  entry.push({ path: getPath(pathOrFn) || '', version });
 
   if (entry.length !== 1) {
-    console.warn(`${info.name} has multiple versions, ensure that there is only one package in your dependency tree. The following were found:\n${flattenVersions(entry)}`);
-  }
+    console.warn(`${name} has multiple versions, ensure that there is only one in your dependency tree.\n${DEDUPE}\n${flattenVersions(entry)}`);
+  } else {
+    const mismatches = deps.filter((d) => d && d.version !== version);
 
-  const mismatches = deps.filter((d) => !!d).filter(({ version }) => info.version !== version);
-
-  if (mismatches.length) {
-    console.warn(`${info.name} requires direct dependencies matching version ${info.version}. The following mismatches were found:\n${flattenInfos(mismatches)}`);
+    if (mismatches.length) {
+      console.warn(`${name} requires direct dependencies exactly matching version ${version}.\n${DEDUPE}\n\n${flattenInfos(mismatches)}`);
+    }
   }
 }
