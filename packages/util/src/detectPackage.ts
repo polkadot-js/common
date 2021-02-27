@@ -19,7 +19,8 @@
 import { packageInfo as decoderInfo } from '@polkadot/x-textdecoder';
 import { packageInfo as encoderInfo } from '@polkadot/x-textencoder';
 
-import { detectPackage, detectPackageDeps, packageInfo } from './index';
+import { packageInfo } from './packageInfo';
+import { detectPackage, detectPackageDeps } from './versionDetect';
 
 detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname);
 detectPackageDeps(packageInfo, [decoderInfo, encoderInfo]);
