@@ -11,6 +11,8 @@ import { xglobal } from '@polkadot/x-global';
 
 import { insecureRandomValues } from './fallback';
 
+export { packageInfo } from './packageInfo';
+
 interface RNExt {
   RNGetRandomValues: {
     getRandomBase64: (length: number) => string;

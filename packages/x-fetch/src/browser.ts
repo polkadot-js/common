@@ -3,4 +3,6 @@
 
 import { xglobal } from '@polkadot/x-global';
 
+export { packageInfo } from './packageInfo';
+
 export const fetch = xglobal.fetch;

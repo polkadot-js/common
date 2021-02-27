@@ -10,6 +10,8 @@ import './detectPackage';
 
 import type { Network, NetworkFromSubstrate, NetworkFromSubstrateNamed } from './types';
 
+export { packageInfo } from './packageInfo';
+
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
 

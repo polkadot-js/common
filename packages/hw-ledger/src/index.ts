@@ -11,6 +11,8 @@ import { newDockApp, newKusamaApp, newPolkadotApp, newPolymeshApp, ResponseBase,
 import { transports } from '@polkadot/hw-ledger-transports';
 import { assert, u8aToBuffer } from '@polkadot/util';
 
+export { packageInfo } from './packageInfo';
+
 export const LEDGER_DEFAULT_ACCOUNT = 0x80000000;
 
 export const LEDGER_DEFAULT_CHANGE = 0x80000000;

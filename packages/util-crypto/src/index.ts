@@ -4,6 +4,8 @@
 import './cryptoInit';
 import './detectPackage';
 
+export { packageInfo } from './packageInfo';
+
 // all internal exports
 export * from './address';
 export * from './base32';

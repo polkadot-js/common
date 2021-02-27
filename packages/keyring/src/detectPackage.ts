@@ -16,9 +16,8 @@
 //
 // With the above we additionally need a .d.ts to just export the packageInfo
 
-import { detectPackage, detectPackageDeps } from '@polkadot/util';
-import { packageInfo as utilInfo } from '@polkadot/util/packageInfo';
-import { packageInfo as cryptoInfo } from '@polkadot/util-crypto/packageInfo';
+import { detectPackage, detectPackageDeps, packageInfo as utilInfo } from '@polkadot/util';
+import { packageInfo as cryptoInfo } from '@polkadot/util-crypto';
 
 import { packageInfo } from './packageInfo';
 

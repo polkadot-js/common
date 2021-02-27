@@ -1,112 +1,25 @@
-// Copyright 2017-2021 @polkadot/util authors & contributors
+// Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { xglobal } from '@polkadot/x-global';
+// For esm, this should be import.meta.url or to get the same behavior as __dirname, we can use
+//
+//   new URL(import.meta.url).pathname)
+//
+// The issue is the WP4 has "some" issues with import.meta.url. So because of bundlers, we can't have
+// nice things... In this case it is even worse since import.meta.url won't even make it compile, so
+// there is a complete dead end with usage thereof
+//
+// When that is fixed, a solution is to have both .js & .mjs files, with the following content -
+//
+// cjs: util.detectPackage(packageInfo, () => __dirname);
+// esm: detectPackage(packageInfo, () => import.meta.url);
+//
+// With the above we additionally need a .d.ts to just export the packageInfo
 
-import { isFunction } from './is/function';
-import { isString } from './is/string';
-import { assert } from './assert';
+import { packageInfo as decoderInfo } from '@polkadot/x-textdecoder';
+import { packageInfo as encoderInfo } from '@polkadot/x-textencoder';
 
-// eslint-disable-next-line no-undef
-type This = typeof globalThis;
+import { detectPackage, detectPackageDeps, packageInfo } from './index';
 
-interface PackageJson {
-  name: string;
-  version: string;
-}
-
-interface VersionPath {
-  path?: string;
-  version: string;
-}
-
-interface PjsChecks extends This {
-  __polkadotjs: Record<string, VersionPath[]>;
-}
-
-type PjsWindow = (Window & This) & PjsChecks;
-type FnString = () => string | undefined;
-
-/** @internal */
-function expandPath (path?: string): string {
-  return (!path || path.length < 5) ? '<unknown>' : path;
-}
-
-/** @internal */
-function getEntry (name: string): VersionPath[] {
-  const _global = xglobal as PjsWindow;
-
-  if (!_global.__polkadotjs) {
-    _global.__polkadotjs = {};
-  }
-
-  if (!_global.__polkadotjs[name]) {
-    _global.__polkadotjs[name] = [];
-  }
-
-  return _global.__polkadotjs[name];
-}
-
-/** @internal */
-function flattenInfos (all: PackageJson[]): string {
-  const verLength = all.reduce((max, { version }) => Math.max(max, version.length), 0);
-
-  return all
-    .map(({ name, version }) => `\t${version.padEnd(verLength)}\t${name}`)
-    .join('\n');
-}
-
-/** @internal */
-function flattenVersions (entry: VersionPath[]): string {
-  const all = entry.map((version: VersionPath | string): VersionPath =>
-    isString(version)
-      ? { version }
-      : version
-  );
-  const verLength = all.reduce((max, { version }) => Math.max(max, version.length), 0);
-
-  return all
-    .map(({ path, version }) => `\t${version.padEnd(verLength)}\t${expandPath(path)}`)
-    .join('\n');
-}
-
-/** @internal */
-function getPath (pathOrFn?: FnString | string | false): false | string | undefined {
-  if (isFunction(pathOrFn)) {
-    try {
-      return pathOrFn();
-    } catch (error) {
-      return undefined;
-    }
-  }
-
-  return pathOrFn;
-}
-
-/**
- * @name detectPackage
- * @summary Checks that a specific package is only imported once
- */
-export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnString | string | false): void {
-  assert(name.startsWith('@polkadot'), `Invalid package descriptor ${name}`);
-
-  const entry = getEntry(name);
-
-  entry.push({ path: getPath(pathOrFn) || '', version });
-
-  if (entry.length !== 1) {
-    console.warn(`Multiple instances of ${name} detected, ensure that there is only one package in your dependency tree.\n${flattenVersions(entry)}`);
-  }
-}
-
-/**
- * @name detectPackageDeps
- * @summary Checks that dependencies match the exact version of the parent package
- */
-export function detectPackageDeps ({ name, version }: PackageJson, deps: PackageJson[]): void {
-  const mismatches = deps.filter((d) => d.version !== version);
-
-  if (mismatches.length) {
-    console.warn(`${name} ${version} requires direct dependencies with the same version. The following mismatches were found:\n${flattenInfos(mismatches)}`);
-  }
-}
+detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname);
+detectPackageDeps(packageInfo, [decoderInfo, encoderInfo]);

@@ -7,6 +7,8 @@ import { Keyring } from './keyring';
 
 export { decodeAddress, encodeAddress, setSS58Format } from '@polkadot/util-crypto';
 
+export { packageInfo } from './packageInfo';
+
 export default Keyring;
 
 export { Keyring };

@@ -5,6 +5,8 @@ import { xglobal } from '@polkadot/x-global';
 
 import { TextDecoder as Fallback } from './fallback';
 
+export { packageInfo } from './packageInfo';
+
 export const TextDecoder = (
   typeof xglobal.TextDecoder === 'undefined'
     ? Fallback as unknown as typeof xglobal.TextDecoder

@@ -6,6 +6,8 @@ import type { TransportDef } from './types';
 
 import LedgerWebUSB from '@ledgerhq/hw-transport-webusb';
 
+export { packageInfo } from './packageInfo';
+
 export const transports: TransportDef[] = [
   // deprecated
   // import LedgerU2F from '@ledgerhq/hw-transport-u2f';
