@@ -25,7 +25,7 @@ const logTo = {
 function formatOther (value: unknown): unknown {
   if (value && isObject(value) && value.constructor === Object) {
     return Object.keys(value).reduce((result: Record<string, unknown>, key): Record<string, unknown> => {
-      result[key] = format(value[key]);
+      result[key] = loggerFormat(value[key]);
 
       return result;
     }, {});
@@ -34,9 +34,9 @@ function formatOther (value: unknown): unknown {
   return value;
 }
 
-export function format (value: unknown): unknown {
+export function loggerFormat (value: unknown): unknown {
   if (Array.isArray(value)) {
-    return value.map(format);
+    return value.map(loggerFormat);
   } else if (isBn(value)) {
     return value.toString();
   } else if (isU8a(value) || isBuffer(value)) {
@@ -57,7 +57,7 @@ function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): 
     formatDate(new Date()),
     type,
     ...values
-      .map(format)
+      .map(loggerFormat)
       .map((v) => {
         if (maxSize <= 0) {
           return v;

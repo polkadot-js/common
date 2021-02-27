@@ -4,21 +4,19 @@
 /**
  * @summary Utility methods for this package are split into groups
  */
-
-export { assert, assertReturn } from './assert';
-export { detectPackage } from './detectPackage';
-export { extractTime } from './extractTime';
-export { logger } from './logger';
-export { memoize } from './memoize';
-export { promisify } from './promisify';
-
 export * from './array';
+export * from './assert';
 export * from './bn';
 export * from './buffer';
 export * from './compact';
+export * from './detectPackage';
+export * from './extractTime';
 export * from './format';
 export * from './hex';
 export * from './is';
+export * from './logger';
+export * from './memoize';
 export * from './number';
+export * from './promisify';
 export * from './string';
 export * from './u8a';
