@@ -9,10 +9,12 @@ describe('detectPackage', (): void => {
   const VER2 = '9.7.1';
   const VER3 = '9.6.1';
   const PATH = '/Users/jaco/Projects/polkadot-js/api/node_modules/@polkadot/util';
-  const RES2 = `@polkadot/util has multiple versions, ensure that there is only one installed.
+
+  const MISMATCH = `@polkadot/util has multiple versions, ensure that there is only one installed.
 Either remove and explicitly install matching versions or deupe using your package manager.
-The following conflicting packages were found:\n\t${VER1}\t${PATH}/01\n\t${VER2}        \t${PATH}/02`;
-  const RES3 = `${RES2}\n\t${VER3}        \t${PATH}/03`;
+The following conflicting packages were found:
+\t${VER1}\t${PATH}/01
+\t${VER2}        \t${PATH}/02`;
 
   it('should not log the first time', (): void => {
     const spy = jest.spyOn(console, 'warn');
@@ -26,7 +28,7 @@ The following conflicting packages were found:\n\t${VER1}\t${PATH}/01\n\t${VER2}
     const spy = jest.spyOn(console, 'warn');
 
     detectPackage({ name: PKG, version: VER2 }, `${PATH}/02`);
-    expect(spy).toHaveBeenCalledWith(RES2);
+    expect(spy).toHaveBeenCalledWith(MISMATCH);
     spy.mockRestore();
   });
 
@@ -34,7 +36,8 @@ The following conflicting packages were found:\n\t${VER1}\t${PATH}/01\n\t${VER2}
     const spy = jest.spyOn(console, 'warn');
 
     detectPackage({ name: PKG, version: VER3 }, () => `${PATH}/03`);
-    expect(spy).toHaveBeenCalledWith(RES3);
+    expect(spy).toHaveBeenCalledWith(`${MISMATCH}
+\t${VER3}        \t${PATH}/03`);
     spy.mockRestore();
   });
 });
