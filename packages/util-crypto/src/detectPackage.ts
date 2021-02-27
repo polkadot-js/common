@@ -16,8 +16,11 @@
 //
 // With the above we additionally need a .d.ts to just export the packageInfo
 
-import { detectPackage } from '@polkadot/util';
+import { packageInfo as netInfo } from '@polkadot/networks/packageInfo';
+import { detectPackage, detectPackageDeps } from '@polkadot/util';
+import { packageInfo as utilInfo } from '@polkadot/util/packageInfo';
 
 import { packageInfo } from './packageInfo';
 
 detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname);
+detectPackageDeps(packageInfo, [netInfo, utilInfo]);

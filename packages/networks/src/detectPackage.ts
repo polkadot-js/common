@@ -18,9 +18,8 @@
 
 import { detectPackage, detectPackageDeps } from '@polkadot/util';
 import { packageInfo as utilInfo } from '@polkadot/util/packageInfo';
-import { packageInfo as cryptoInfo } from '@polkadot/util-crypto/packageInfo';
 
 import { packageInfo } from './packageInfo';
 
 detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname);
-detectPackageDeps(packageInfo, [utilInfo, cryptoInfo]);
+detectPackageDeps(packageInfo, [utilInfo]);

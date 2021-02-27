@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import './detectPackage';
+
 import type Transport from '@ledgerhq/hw-transport';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types';
 

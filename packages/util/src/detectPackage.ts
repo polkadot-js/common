@@ -48,6 +48,15 @@ function getEntry (name: string): VersionPath[] {
 }
 
 /** @internal */
+function flattenInfos (all: PackageJson[]): string {
+  const verLength = all.reduce((max, { version }) => Math.max(max, version.length), 0);
+
+  return all
+    .map(({ name, version }) => `\t${version.padEnd(verLength)}\t${name}`)
+    .join('\n');
+}
+
+/** @internal */
 function flattenVersions (entry: VersionPath[]): string {
   const all = entry.map((version: VersionPath | string): VersionPath =>
     isString(version)
@@ -87,5 +96,17 @@ export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnStri
 
   if (entry.length !== 1) {
     console.warn(`Multiple instances of ${name} detected, ensure that there is only one package in your dependency tree.\n${flattenVersions(entry)}`);
+  }
+}
+
+/**
+ * @name detectPackageDeps
+ * @summary Checks that dependencies match the exact version of the parent package
+ */
+export function detectPackageDeps ({ name, version }: PackageJson, deps: PackageJson[]): void {
+  const mismatches = deps.filter((d) => d.version !== version);
+
+  if (mismatches.length) {
+    console.warn(`${name} ${version} requires direct dependencies with the same version. The following mismatches were found:\n${flattenInfos(mismatches)}`);
   }
 }
