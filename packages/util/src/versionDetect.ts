@@ -26,7 +26,7 @@ interface PjsChecks extends This {
 type PjsWindow = (Window & This) & PjsChecks;
 type FnString = () => string | undefined;
 
-const DEDUPE = 'Either remove and explicitly install a single version or deupe using your package manager.\nThe following conflicting packages were found:';
+const DEDUPE = 'Either remove and explicitly install matching versions or deupe using your package manager.\nThe following conflicting packages were found:';
 
 /** @internal */
 function getEntry (name: string): VersionPath[] {
@@ -95,12 +95,12 @@ export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnStri
   entry.push({ path: getPath(pathOrFn) || '', version });
 
   if (entry.length !== 1) {
-    console.warn(`${name} has multiple versions, ensure that there is only one in your dependency tree.\n${DEDUPE}\n${flattenVersions(entry)}`);
+    console.warn(`${name} has multiple versions, ensure that there is only one installed.\n${DEDUPE}\n${flattenVersions(entry)}`);
   } else {
     const mismatches = deps.filter((d) => d && d.version !== version);
 
     if (mismatches.length) {
-      console.warn(`${name} requires direct dependencies exactly matching version ${version}.\n${DEDUPE}\n\n${flattenInfos(mismatches)}`);
+      console.warn(`${name} requires direct dependencies exactly matching version ${version}.\n${DEDUPE}\n${flattenInfos(mismatches)}`);
     }
   }
 }
