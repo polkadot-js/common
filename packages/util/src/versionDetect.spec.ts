@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { detectPackage, detectPackageDeps } from '.';
+import { detectPackage } from './versionDetect';
 
 describe('detectPackage', (): void => {
   const PKG = '@polkadot/util';
@@ -38,7 +38,7 @@ describe('detectPackage', (): void => {
 });
 
 describe('detectPackageDeps', (): void => {
-  const PKG = { name: '@polkadot/keyring', version: '1.1.1' };
+  const DEP0 = { name: '@polkadot/keyring', version: '1.1.1' };
   const DEP1 = { name: '@polkadot/util', version: '1.1.2' };
   const DEP2 = { name: '@polkadot/util-crypto', version: '1.1.3' };
   const DEP3 = { name: '@polkadot/networks', version: '1.1.1' };
@@ -46,7 +46,7 @@ describe('detectPackageDeps', (): void => {
   it('should not log when no mismatches are found', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackageDeps(PKG, [DEP3]);
+    detectPackage({ name: '@polkadot/one', version: '1.1.1' }, false, [DEP0, DEP3]);
     expect(spy).not.toHaveBeenCalled();
     spy.mockRestore();
   });
@@ -54,7 +54,7 @@ describe('detectPackageDeps', (): void => {
   it('should log when mismatches are found', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackageDeps(PKG, [DEP1, DEP2, DEP3]);
+    detectPackage({ name: '@polkadot/two', version: '1.1.1' }, false, [DEP0, DEP1, DEP2, DEP3]);
     expect(spy).toHaveBeenCalled();
     spy.mockRestore();
   });

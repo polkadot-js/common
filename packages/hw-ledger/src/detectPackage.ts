@@ -17,9 +17,8 @@
 // With the above we additionally need a .d.ts to just export the packageInfo
 
 import { packageInfo as transportInfo } from '@polkadot/hw-ledger-transports';
-import { detectPackage, detectPackageDeps, packageInfo as utilInfo } from '@polkadot/util';
+import { detectPackage, packageInfo as utilInfo } from '@polkadot/util';
 
 import { packageInfo } from './packageInfo';
 
-detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname);
-detectPackageDeps(packageInfo, [transportInfo, utilInfo]);
+detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [transportInfo, utilInfo]);

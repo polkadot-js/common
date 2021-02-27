@@ -16,10 +16,9 @@
 //
 // With the above we additionally need a .d.ts to just export the packageInfo
 
-import { detectPackage, detectPackageDeps, packageInfo as utilInfo } from '@polkadot/util';
+import { detectPackage, packageInfo as utilInfo } from '@polkadot/util';
 import { packageInfo as fetchInfo } from '@polkadot/x-fetch';
 
 import { packageInfo } from './packageInfo';
 
-detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname);
-detectPackageDeps(packageInfo, [utilInfo, fetchInfo]);
+detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [utilInfo, fetchInfo]);

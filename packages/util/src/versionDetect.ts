@@ -84,29 +84,30 @@ function getPath (pathOrFn?: FnString | string | false): false | string | undefi
 }
 
 /**
- * @name detectPackage
- * @summary Checks that a specific package is only imported once
+ * @internal
  */
-export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnString | string | false): void {
-  assert(name.startsWith('@polkadot'), `Invalid package descriptor ${name}`);
+function detectPackageDeps (info: PackageJson, deps: PackageJson[]): void {
+  const mismatches = deps.filter((d) => !!d).filter(({ version }) => info.version !== version);
 
-  const entry = getEntry(name);
-
-  entry.push({ path: getPath(pathOrFn) || '', version });
-
-  if (entry.length !== 1) {
-    console.warn(`Multiple instances of ${name} detected, ensure that there is only one package in your dependency tree.\n${flattenVersions(entry)}`);
+  if (mismatches.length) {
+    console.warn(`${info.name} ${info.version} requires direct dependencies with the same version. The following mismatches were found:\n${flattenInfos(mismatches)}`);
   }
 }
 
 /**
- * @name detectPackageDeps
- * @summary Checks that dependencies match the exact version of the parent package
+ * @name detectPackage
+ * @summary Checks that a specific package is only imported once
  */
-export function detectPackageDeps ({ name, version }: PackageJson, deps: PackageJson[]): void {
-  const mismatches = deps.filter((d) => !!d).filter((d) => d.version !== version);
+export function detectPackage (info: PackageJson, pathOrFn?: FnString | string | false, deps: PackageJson[] = []): void {
+  assert(info.name.startsWith('@polkadot'), `Invalid package descriptor ${info.name}`);
 
-  if (mismatches.length) {
-    console.warn(`${name} ${version} requires direct dependencies with the same version. The following mismatches were found:\n${flattenInfos(mismatches)}`);
+  const entry = getEntry(info.name);
+
+  entry.push({ path: getPath(pathOrFn) || '', version: info.version });
+
+  if (entry.length !== 1) {
+    console.warn(`Multiple instances of ${info.name} detected, ensure that there is only one package in your dependency tree.\n${flattenVersions(entry)}`);
   }
+
+  detectPackageDeps(info, deps);
 }
