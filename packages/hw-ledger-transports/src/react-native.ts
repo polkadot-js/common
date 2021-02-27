@@ -3,4 +3,6 @@
 
 import type { TransportDef } from './types';
 
+export { packageInfo } from './packageInfo';
+
 export const transports: TransportDef[] = [];

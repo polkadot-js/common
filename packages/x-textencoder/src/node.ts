@@ -5,6 +5,8 @@ import util from 'util';
 
 import { xglobal } from '@polkadot/x-global';
 
+export { packageInfo } from './packageInfo';
+
 class NodeFallback {
   #encoder: util.TextEncoder;
 

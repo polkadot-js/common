@@ -5,6 +5,8 @@ import util from 'util';
 
 import { xglobal } from '@polkadot/x-global';
 
+export { packageInfo } from './packageInfo';
+
 export const TextDecoder = (
   typeof xglobal.TextDecoder === 'undefined'
     ? util.TextDecoder as unknown as typeof xglobal.TextDecoder

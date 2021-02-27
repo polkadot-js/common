@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import './detectPackage';
+
 import type Transport from '@ledgerhq/hw-transport';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types';
 
@@ -8,6 +10,8 @@ import { newDockApp, newKusamaApp, newPolkadotApp, newPolymeshApp, ResponseBase,
 
 import { transports } from '@polkadot/hw-ledger-transports';
 import { assert, u8aToBuffer } from '@polkadot/util';
+
+export { packageInfo } from './packageInfo';
 
 export const LEDGER_DEFAULT_ACCOUNT = 0x80000000;
 

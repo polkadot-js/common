@@ -3,7 +3,10 @@
   "version": "5.8.2-3",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
-  "sideEffects": false,
+  "sideEffects": [
+    "./detectPackage.js",
+    "./detectPackage.mjs"
+  ],
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],

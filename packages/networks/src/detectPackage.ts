@@ -1,4 +1,4 @@
-// Copyright 2017-2021 @polkadot/util authors & contributors
+// Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // For esm, this should be import.meta.url or to get the same behavior as __dirname, we can use
@@ -16,10 +16,9 @@
 //
 // With the above we additionally need a .d.ts to just export the packageInfo
 
-import { packageInfo as decoderInfo } from '@polkadot/x-textdecoder';
-import { packageInfo as encoderInfo } from '@polkadot/x-textencoder';
+import { detectPackage, packageInfo as utilInfo } from '@polkadot/util';
+import { packageInfo as fetchInfo } from '@polkadot/x-fetch';
 
 import { packageInfo } from './packageInfo';
-import { detectPackage } from './versionDetect';
 
-detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [decoderInfo, encoderInfo]);
+detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [utilInfo, fetchInfo]);
