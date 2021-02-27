@@ -71,16 +71,16 @@ function flattenVersions (entry: VersionPath[]): string {
 }
 
 /** @internal */
-function getPath (pathOrFn?: FnString | string | false): false | string | undefined {
+function getPath (pathOrFn?: FnString | string | false): string {
   if (isFunction(pathOrFn)) {
     try {
-      return pathOrFn();
+      return pathOrFn() || '';
     } catch (error) {
-      return undefined;
+      return '';
     }
   }
 
-  return pathOrFn;
+  return pathOrFn || '';
 }
 
 /**
@@ -92,7 +92,7 @@ export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnStri
 
   const entry = getEntry(name);
 
-  entry.push({ path: getPath(pathOrFn) || '', version });
+  entry.push({ path: getPath(pathOrFn), version });
 
   if (entry.length !== 1) {
     console.warn(`${name} has multiple versions, ensure that there is only one installed.\n${DEDUPE}\n${flattenVersions(entry)}`);
