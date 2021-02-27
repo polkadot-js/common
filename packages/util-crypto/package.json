@@ -15,7 +15,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.7",
+    "@babel/runtime": "^7.13.8",
     "@polkadot/networks": "5.8.2-4",
     "@polkadot/util": "5.8.2-4",
     "@polkadot/wasm-crypto": "^3.2.4",

@@ -7,7 +7,6 @@ import { isFunction } from './is/function';
 import { isString } from './is/string';
 import { assert } from './assert';
 
-// eslint-disable-next-line no-undef
 type This = typeof globalThis;
 
 interface PackageJson {
@@ -84,17 +83,6 @@ function getPath (pathOrFn?: FnString | string | false): false | string | undefi
 }
 
 /**
- * @internal
- */
-function detectPackageDeps (info: PackageJson, deps: PackageJson[]): void {
-  const mismatches = deps.filter((d) => !!d).filter(({ version }) => info.version !== version);
-
-  if (mismatches.length) {
-    console.warn(`${info.name} ${info.version} requires direct dependencies with the same version. The following mismatches were found:\n${flattenInfos(mismatches)}`);
-  }
-}
-
-/**
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
  */
@@ -106,8 +94,12 @@ export function detectPackage (info: PackageJson, pathOrFn?: FnString | string |
   entry.push({ path: getPath(pathOrFn) || '', version: info.version });
 
   if (entry.length !== 1) {
-    console.warn(`Multiple instances of ${info.name} detected, ensure that there is only one package in your dependency tree.\n${flattenVersions(entry)}`);
+    console.warn(`${info.name} has multiple versions, ensure that there is only one package in your dependency tree. The following were found:\n${flattenVersions(entry)}`);
   }
 
-  detectPackageDeps(info, deps);
+  const mismatches = deps.filter((d) => !!d).filter(({ version }) => info.version !== version);
+
+  if (mismatches.length) {
+    console.warn(`${info.name} requires direct dependencies matching version ${info.version}. The following mismatches were found:\n${flattenInfos(mismatches)}`);
+  }
 }
