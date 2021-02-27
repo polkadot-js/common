@@ -5,6 +5,8 @@ import nodeFetch from 'node-fetch';
 
 import { xglobal } from '@polkadot/x-global';
 
-export const fetch = typeof xglobal.fetch === 'undefined'
-  ? nodeFetch as unknown as typeof global.fetch
-  : xglobal.fetch;
+export const fetch = (
+  typeof xglobal.fetch === 'undefined'
+    ? nodeFetch as unknown as typeof global.fetch
+    : xglobal.fetch
+);

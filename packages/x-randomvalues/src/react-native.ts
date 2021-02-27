@@ -31,9 +31,11 @@ function getRandomValuesGlobal <T extends Uint8Array> (arr: T): T {
   return crypto.getRandomValues(arr);
 }
 
-export const getRandomValues = typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function'
-  ? getRandomValuesGlobal
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-explicit-any
-  : (typeof (xglobal as any).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
-    ? insecureRandomValues
-    : getRandomValuesNative;
+export const getRandomValues = (
+  typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function'
+    ? getRandomValuesGlobal
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-explicit-any
+    : (typeof (xglobal as any).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
+      ? insecureRandomValues
+      : getRandomValuesNative
+);

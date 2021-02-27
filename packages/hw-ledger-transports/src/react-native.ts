@@ -3,6 +3,4 @@
 
 import type { TransportDef } from './types';
 
-const transports: TransportDef[] = [];
-
-export { transports };
+export const transports: TransportDef[] = [];
