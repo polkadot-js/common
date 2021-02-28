@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 5.9.2 Feb 28, 2021
+
+Changes:
+
+- Fix package detection for `@polkadot/networks` (no dependencies)
+
+
 ## 5.9.1 Feb 28, 2021
 
 Changes:

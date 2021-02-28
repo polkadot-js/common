@@ -6,8 +6,6 @@
 //
 // Once the above is published as a package, the duplication here can be removed
 
-import './detectPackage';
-
 import type { Network, NetworkFromSubstrate, NetworkFromSubstrateNamed } from './types';
 
 export { packageInfo } from './packageInfo';
