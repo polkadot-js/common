@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 5.9.1 Feb 28, 2021
+
+Changes:
+
+- Expand `detectPackage` with optional param allowing checks for monorepo versions
+- Export logger `format` function directly as `loggerFormat`
+- Expand tests and checks for `hdValidatePath`
+- Remove `hdEthereum` class-based approach, simplify
+- Cleanup formatting on nested conditionals in the `@polkadot/x-` packages
+- All packages now export `packageInfo` from the root
+
+
 ## 5.8.1 Feb 26, 2021
 
 Contributed:
