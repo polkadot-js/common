@@ -5,8 +5,7 @@ import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta } from './types';
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
-import { base64Decode, decodeAddress, encodeAddress, ethereumEncode, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed } from '@polkadot/util-crypto';
-import { HDKeyEth } from '@polkadot/util-crypto/hd';
+import { base64Decode, decodeAddress, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
 import { createPair } from './pair';
@@ -153,6 +152,7 @@ export class Keyring implements KeyringInstance {
     const encType = !Array.isArray(type)
       ? [type]
       : type;
+      // Here the address and publicKey are 32 bytes and isomorphic. This is why the address field needs to be the public key for ethereum type pairs
     const publicKey = isHex(address)
       ? hexToU8a(address)
       : this.decodeAddress(address, ignoreChecksum);
@@ -193,18 +193,9 @@ export class Keyring implements KeyringInstance {
       }
     }
 
-    let derived: Keypair;
-
-    if (type === 'ethereum') {
-      const key = HDKeyEth.fromMasterSeed(seed);
-      const child = key.derive(derivePath.substring(1));
-
-      assert(child.publicKey && child.privateKey, 'Unable to derive HD key from path');
-
-      derived = { publicKey: child.publicKey, secretKey: child.privateKey };
-    } else {
-      derived = keyFromPath(keypairFromSeed[type](seed), path, type);
-    }
+    const derived = type === 'ethereum'
+      ? hdEthereum(seed, derivePath.substring(1))
+      : keyFromPath(keypairFromSeed[type](seed), path, type);
 
     return createPair({ toSS58: this.encodeAddress, type }, derived, meta, null);
   }
@@ -214,11 +205,9 @@ export class Keyring implements KeyringInstance {
    * @description Encodes the input into an ss58 representation
    */
   public encodeAddress = (address: Uint8Array | string, ss58Format?: number): string => {
-    if (this.type === 'ethereum') {
-      return ethereumEncode(address);
-    } else {
-      return encodeAddress(address, isUndefined(ss58Format) ? this.#ss58 : ss58Format);
-    }
+    return this.type === 'ethereum'
+      ? ethereumEncode(address)
+      : encodeAddress(address, isUndefined(ss58Format) ? this.#ss58 : ss58Format);
   }
 
   /**

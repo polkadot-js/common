@@ -18,6 +18,13 @@ const TESTS = {
       uri: `${PHRASE}//Alice`
     }
   ],
+  ethereum: [
+    {
+      pk: '0x0381351b1b46d2602b0992bb5d5531f9c1696b0812feb2534b6884adc47e2e1d8b',
+      ss: '0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d',
+      uri: "seed sock milk update focus rotate barely fade car face mechanic mercy/m/44'/60'/0'/0/0"
+    }
+  ],
   sr25519: [
     {
       pk: '0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a',

@@ -5,8 +5,7 @@ import type { Logger } from './types';
 
 import BN from 'bn.js';
 
-import { format } from './logger';
-import { logger } from '.';
+import { logger, loggerFormat } from '.';
 
 describe('logger', (): void => {
   let dateMatch: unknown;
@@ -44,13 +43,13 @@ describe('logger', (): void => {
     jest.restoreAllMocks();
   });
 
-  describe('format', (): void => {
+  describe('loggerFormat', (): void => {
     it('returns null as-is', (): void => {
-      expect(format(null)).toEqual(null);
+      expect(loggerFormat(null)).toEqual(null);
     });
 
     it('returns undefined as-is', (): void => {
-      expect(format(undefined)).toEqual(undefined);
+      expect(loggerFormat(undefined)).toEqual(undefined);
     });
   });
 

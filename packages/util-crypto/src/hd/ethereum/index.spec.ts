@@ -3,9 +3,9 @@
 
 import { mnemonicToLegacySeed } from '@polkadot/util-crypto';
 
-import { HDKeyEth } from '.';
+import { hdEthereum } from '.';
 
-describe('HDKeyEth', (): void => {
+describe('hdEthereum', (): void => {
   const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy';
   const derivationPath = 'm/44\'/60\'/0\'/0/0';
   const PUBLIC = new Uint8Array([
@@ -36,20 +36,17 @@ describe('HDKeyEth', (): void => {
     24, 217, 127, 147, 175, 105, 158, 70
   ]);
 
-  it('derives the right key pair from a mnemonic and a derivation path', (): void => {
-    // derive seed from mnemonic
-    const seed = mnemonicToLegacySeed(PHRASE, '', false, 64);
-
-    // obtain key from seed
-    const key = HDKeyEth.fromMasterSeed(seed);
+  it('derives the right key pair from a mnemonic', (): void => {
+    const key = hdEthereum(mnemonicToLegacySeed(PHRASE, '', false, 64));
 
     expect(key.publicKey).toEqual(PUBLIC);
-    expect(key.privateKey).toEqual(SECRET);
+    expect(key.secretKey).toEqual(SECRET);
+  });
 
-    // derive key from original key using derivation path
-    const { privateKey, publicKey } = key.derive(derivationPath);
+  it('derives the right key pair from a mnemonic and a derivation path', (): void => {
+    const key = hdEthereum(mnemonicToLegacySeed(PHRASE, '', false, 64), derivationPath);
 
-    expect(publicKey).toEqual(PUBLICDERIVED);
-    expect(privateKey).toEqual(SECRETDERIVED);
+    expect(key.publicKey).toEqual(PUBLICDERIVED);
+    expect(key.secretKey).toEqual(SECRETDERIVED);
   });
 });

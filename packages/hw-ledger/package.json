@@ -1,17 +1,20 @@
 {
   "name": "@polkadot/hw-ledger",
-  "version": "5.7.2-4",
+  "version": "5.9.2",
   "repository": "github:polkadot-js/common",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
   "license": "Apache-2.0",
   "main": "index.js",
-  "sideEffects": false,
+  "sideEffects": [
+    "./detectPackage.js",
+    "./detectPackage.mjs"
+  ],
   "dependencies": {
-    "@babel/runtime": "^7.13.7",
-    "@polkadot/hw-ledger-transports": "5.7.2-4",
-    "@polkadot/util": "^5.7.2-4",
+    "@babel/runtime": "^7.13.8",
+    "@polkadot/hw-ledger-transports": "5.9.2",
+    "@polkadot/util": "^5.9.2",
     "@zondax/ledger-polkadot": "^0.13.1"
   }
 }

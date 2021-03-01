@@ -8,6 +8,8 @@
 
 import type { Network, NetworkFromSubstrate, NetworkFromSubstrateNamed } from './types';
 
+export { packageInfo } from './packageInfo';
+
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
 
@@ -27,7 +29,7 @@ const createReserved = (prefix: number, displayName: string, network: string | n
   website: null
 });
 
-const all: NetworkFromSubstrate[] = [
+export const all: NetworkFromSubstrate[] = [
   {
     decimals: [10],
     displayName: 'Polkadot Relay Chain',
@@ -490,7 +492,7 @@ const all: NetworkFromSubstrate[] = [
 //   - we only include those where we have a standardAccount
 //   - when no icon has been specified, default to substrate
 //   - sort by name, however we keep 0, 2, 42 first in the list
-const available: Network[] = all
+export const available: Network[] = all
   .filter((n): n is NetworkFromSubstrateNamed => !n.isIgnored && !!n.network)
   .map((n) => ({ ...n, genesisHash: n.genesisHash || [], icon: n.icon || 'substrate' }))
   .sort((a, b) =>
@@ -504,8 +506,4 @@ const available: Network[] = all
   );
 
 // A filtered list of those chains we have details about (genesisHashes)
-const filtered: Network[] = available.filter((n) => n.genesisHash.length || n.prefix === 42);
-
-export { all, available };
-
-export default filtered;
+export default available.filter((n) => n.genesisHash.length || n.prefix === 42);

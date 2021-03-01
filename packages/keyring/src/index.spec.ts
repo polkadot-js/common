@@ -263,6 +263,25 @@ describe('keypair', (): void => {
       ).not.toThrow();
     });
 
+    it('encodes a pair toJSON (and decodes)', (): void => {
+      const pair = keyring.createFromUri('moral movie very draw assault whisper awful rebuild speed purity repeat card');
+      const json = pair.toJson('password');
+
+      expect(json.address).toEqual('0x03ddca309bd5fedd01f914d6fb76f23aa848a2a520802159215dba5085d7863619');
+      expect(json.encoding).toEqual({
+        content: ['pkcs8', 'ecdsa'],
+        type: ['scrypt', 'xsalsa20-poly1305'],
+        version: '3'
+      });
+
+      const newPair = keyring.createFromJson(json);
+
+      expect(newPair.publicKey).toEqual(pair.publicKey);
+      expect(
+        () => newPair.unlock('password')
+      ).not.toThrow();
+    });
+
     it('signs and verifies', (): void => {
       const MESSAGE = stringToU8a('this is a message');
       const pair = keyring.getPair(addressKeyOne);
@@ -309,16 +328,38 @@ describe('keypair', (): void => {
       ).toEqual(ETH_ADDRESS_ONE);
     });
 
-    it('encodes a pair toJSON', (): void => {
+    it('encodes a pair toJSON (and decodes)', (): void => {
       const pair = keyring.createFromUri(PHRASE);
       const json = pair.toJson('password');
 
-      expect(json.address).toEqual(ETH_ADDRESS_ONE);
+      expect(json.address).toEqual('0x0381351b1b46d2602b0992bb5d5531f9c1696b0812feb2534b6884adc47e2e1d8b'); // this is the public key (different from address for ethereum)
       expect(json.encoding).toEqual({
         content: ['pkcs8', 'ethereum'],
         type: ['scrypt', 'xsalsa20-poly1305'],
         version: '3'
       });
+
+      const newPair = keyring.createFromJson(json);
+
+      expect(newPair.publicKey).toEqual(pair.publicKey);
+      expect(
+        () => newPair.unlock('password')
+      ).not.toThrow();
+    });
+
+    it('encodes a pair toJSON and back', (): void => {
+      const pairOriginal = keyring.createFromUri(PHRASE);
+      const json = pairOriginal.toJson('password');
+      const pair = keyring.addFromJson(
+        json
+      );
+
+      expect(pair.address).toEqual(ETH_ADDRESS_ONE);
+
+      pair.decodePkcs8('password');
+
+      expect(pair.isLocked).toBe(false);
+      expect(pair.address).toBe(ETH_ADDRESS_ONE);
     });
 
     it('allows adding from JSON', (): void => {

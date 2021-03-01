@@ -6,12 +6,12 @@ import type { TransportDef } from './types';
 
 import LedgerHid from '@ledgerhq/hw-transport-node-hid-singleton';
 
-const transports: TransportDef[] = [
+export { packageInfo } from './packageInfo';
+
+export const transports: TransportDef[] = [
   {
     create: (): Promise<Transport> =>
       LedgerHid.create(),
     type: 'hid'
   }
 ];
-
-export { transports };

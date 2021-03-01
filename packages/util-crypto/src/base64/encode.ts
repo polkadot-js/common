@@ -1,7 +1,9 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { u8aToBuffer, u8aToU8a } from '@polkadot/util';
+import base64 from 'base64-js';
+
+import { u8aToU8a } from '@polkadot/util';
 
 /**
  * @name base64Encode
@@ -10,5 +12,5 @@ import { u8aToBuffer, u8aToU8a } from '@polkadot/util';
  * From the provided input, create the base64 and return the result as a string.
  */
 export function base64Encode (value: Uint8Array | string | Buffer | number[]): string {
-  return u8aToBuffer(u8aToU8a(value)).toString('base64');
+  return base64.fromByteArray(u8aToU8a(value));
 }

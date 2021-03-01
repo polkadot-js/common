@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-global",
-  "version": "5.7.2-4",
+  "version": "5.9.2",
   "description": "A cross-environment global replacement",
   "main": "index.js",
   "sideEffects": false,
@@ -12,7 +12,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-global#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.7",
+    "@babel/runtime": "^7.13.8",
     "@types/node-fetch": "^2.5.8",
     "node-fetch": "^2.6.1"
   }

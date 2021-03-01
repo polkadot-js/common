@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hexToU8a } from '@polkadot/util';
-import { cryptoWaitReady, encodeAddress as toSS58, secp256k1KeypairFromSeed, setSS58Format } from '@polkadot/util-crypto';
+import { hexToU8a, u8aToHex } from '@polkadot/util';
+import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkadot/util-crypto';
 
 import { PAIRSSR25519 } from '../testing';
 import { createTestPairs } from '../testingPairs';
@@ -142,12 +142,39 @@ describe('pair', (): void => {
   });
 
   describe('ethereum', (): void => {
+    const PUBLICDERIVED = new Uint8Array([
+      3, 129, 53, 27, 27, 70, 210, 96,
+      43, 9, 146, 187, 93, 85, 49, 249,
+      193, 105, 107, 8, 18, 254, 178, 83,
+      75, 104, 132, 173, 196, 126, 46, 29,
+      139
+    ]);
+    const SECRETDERIVED = new Uint8Array([
+      7, 13, 195, 17, 115, 0, 1, 25,
+      24, 226, 107, 2, 23, 105, 69, 204,
+      21, 195, 213, 72, 207, 73, 253, 132,
+      24, 217, 127, 147, 175, 105, 158, 70
+    ]);
+
     it('has a valid address from a known public', (): void => {
       const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077') });
 
       expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
       expect(pair.addressRaw).toEqual(hexToU8a('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887'));
     });
+
+    it('converts to json', (): void => {
+      const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: PUBLICDERIVED, secretKey: SECRETDERIVED });
+      const json = pair.toJson('password');
+
+      expect(json.encoding).toEqual({
+        content: ['pkcs8', 'ethereum'],
+        type: ['scrypt', 'xsalsa20-poly1305'],
+        version: '3'
+      });
+      expect(json.address).toEqual(u8aToHex(PUBLICDERIVED));
+    });
+
     it('has Gerald as test address for Ethereum type parachains', (): void => {
       const keyringEthereum = createTestPairs({ type: 'ethereum' }, false);
 

@@ -1,13 +1,17 @@
 // Copyright 2017-2021 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import './detectPackage';
+
 import type Transport from '@ledgerhq/hw-transport';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types';
 
 import { newDockApp, newKusamaApp, newPolkadotApp, newPolymeshApp, ResponseBase, SubstrateApp } from '@zondax/ledger-polkadot';
 
 import { transports } from '@polkadot/hw-ledger-transports';
-import { assert, bufferToU8a, u8aToBuffer, u8aToHex } from '@polkadot/util';
+import { assert, u8aToBuffer } from '@polkadot/util';
+
+export { packageInfo } from './packageInfo';
 
 export const LEDGER_DEFAULT_ACCOUNT = 0x80000000;
 
@@ -77,7 +81,7 @@ export class Ledger {
       const { signature } = await this.#wrapError(app.sign(account + accountOffset, change, addressIndex + addressOffset, buffer));
 
       return {
-        signature: u8aToHex(bufferToU8a(signature))
+        signature: `0x${signature.toString('hex')}`
       };
     });
   }

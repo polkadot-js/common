@@ -30,7 +30,7 @@ const TESTS = {
     ]
   },
   Polkadot: {
-    slip44: 0x80000162,
+    slip44: 0x0162,
     tests: [
       {
         ed25519: '0xe8c68348586d53e4e8d1a864b0e4e17c75e4eb06e0c63c1432bef2ba29e69d41',
