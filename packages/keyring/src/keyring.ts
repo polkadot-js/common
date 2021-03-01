@@ -174,7 +174,6 @@ export class Keyring implements KeyringInstance {
       ? `${DEV_PHRASE}${_suri}`
       : _suri;
     const { derivePath, password, path, phrase } = keyExtractSuri(suri);
-
     let seed: Uint8Array;
 
     if (isHex(phrase, 256)) {
