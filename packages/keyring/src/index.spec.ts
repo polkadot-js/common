@@ -323,6 +323,14 @@ describe('keypair', (): void => {
       ).toEqual(ETH_ADDRESS_ONE);
     });
 
+    it('creates with dev phrase from the private key in createFromUri', (): void => {
+      const pair = keyring.createFromUri(PRIV_KEY_ONE);
+
+      expect(
+        pair.address
+      ).toEqual(ETH_ADDRESS_ONE);
+    });
+
     it('creates with dev phrase with derivation path specified', (): void => {
       const pair = keyring.createFromUri(PHRASE);
 
