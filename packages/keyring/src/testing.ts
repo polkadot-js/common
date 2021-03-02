@@ -74,6 +74,42 @@ export const PAIRSSR25519: PairDef[] = [
 
 export const PAIRSETHEREUM: PairDef[] = [
   {
+    name: 'Alith',
+    publicKey: hexToU8a('0x02509540919faacf9ab52146c9aa40db68172d83777250b28e4679176e49ccdd9f'),
+    secretKey: hexToU8a('0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133'),
+    seed: 'Alith',
+    type: 'ethereum'
+  },
+  {
+    name: 'Baltathar',
+    publicKey: hexToU8a('0x033bc19e36ff1673910575b6727a974a9abd80c9a875d41ab3e2648dbfb9e4b518'),
+    secretKey: hexToU8a('0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b'),
+    seed: 'Baltathar',
+    type: 'ethereum'
+  },
+  {
+    name: 'Charleth',
+    publicKey: hexToU8a('0x0234637bdc0e89b5d46543bcbf8edff329d2702bc995e27e9af4b1ba009a3c2a5e'),
+    secretKey: hexToU8a('0x0b6e18cafb6ed99687ec547bd28139cafdd2bffe70e6b688025de6b445aa5c5b'),
+    seed: 'Charleth',
+    type: 'ethereum'
+  },
+  {
+    name: 'Ethan',
+    publicKey: hexToU8a('0x02a00d60b2b408c2a14c5d70cdd2c205db8985ef737a7e55ad20ea32cc9e7c417c'),
+    secretKey: hexToU8a('0x39539ab1876910bbf3a223d84a29e28f1cb4e2e456503e7e91ed39b2e7223d68'),
+    seed: 'Ethan',
+    type: 'ethereum'
+  },
+  {
+    name: 'Faith',
+    publicKey: hexToU8a('0x025cdc005b752651cd3f728fb9192182acb3a9c89e19072cbd5b03f3ee1f1b3ffa'),
+    secretKey: hexToU8a('0x7dce9bc8babb68fec1409be38c8e1a52650206a7ed90ff956ae8a6d15eeaaef4'),
+    seed: 'Faith',
+    type: 'ethereum'
+  },
+  // Gerald will be removed when moonbeam is done changing dev addresses (should def be done by end of march 21)
+  {
     name: 'Gerald',
     publicKey: new Uint8Array([3, 98, 79, 114, 14, 174, 103, 106,
       4, 17, 22, 49, 201, 202, 51, 140,
@@ -101,7 +137,6 @@ export function createTestKeyring (options: KeyringOptions = {}, isDerived = tru
       isTesting: true,
       name: name || seed.replace('//', '_').toLowerCase()
     };
-
     const pair = !isDerived && !name
       ? keyring.addFromUri(seed, meta, options.type)
       : keyring.addPair(
