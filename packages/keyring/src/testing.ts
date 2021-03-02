@@ -77,42 +77,42 @@ export const PAIRSETHEREUM: PairDef[] = [
     name: 'Alith',
     publicKey: hexToU8a('0x02509540919faacf9ab52146c9aa40db68172d83777250b28e4679176e49ccdd9f'),
     secretKey: hexToU8a('0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133'),
-    seed: 'Alith',
+    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   },
   {
     name: 'Baltathar',
     publicKey: hexToU8a('0x033bc19e36ff1673910575b6727a974a9abd80c9a875d41ab3e2648dbfb9e4b518'),
     secretKey: hexToU8a('0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b'),
-    seed: 'Baltathar',
+    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   },
   {
     name: 'Charleth',
     publicKey: hexToU8a('0x0234637bdc0e89b5d46543bcbf8edff329d2702bc995e27e9af4b1ba009a3c2a5e'),
     secretKey: hexToU8a('0x0b6e18cafb6ed99687ec547bd28139cafdd2bffe70e6b688025de6b445aa5c5b'),
-    seed: 'Charleth',
+    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   },
   {
     name: 'Dorothy',
     publicKey: hexToU8a('0x02a00d60b2b408c2a14c5d70cdd2c205db8985ef737a7e55ad20ea32cc9e7c417c'),
     secretKey: hexToU8a('0x39539ab1876910bbf3a223d84a29e28f1cb4e2e456503e7e91ed39b2e7223d68'),
-    seed: 'Dorothy',
+    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   },
   {
     name: 'Ethan',
     publicKey: hexToU8a('0x025cdc005b752651cd3f728fb9192182acb3a9c89e19072cbd5b03f3ee1f1b3ffa'),
     secretKey: hexToU8a('0x7dce9bc8babb68fec1409be38c8e1a52650206a7ed90ff956ae8a6d15eeaaef4'),
-    seed: 'Ethan',
+    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   },
   {
     name: 'Faith',
     publicKey: hexToU8a('0x037964b6c9d546da4646ada28a99e34acaa1d14e7aba861a9055f9bd200c8abf74'),
     secretKey: hexToU8a('0xb9d2ea9a615f3165812e8d44de0d24da9bbd164b65c4f0573e1ce2c8dbd9c8df'),
-    seed: 'Faith',
+    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   },
   // Gerald will be removed when moonbeam is done changing dev addresses (should def be done by end of march 21)
@@ -124,7 +124,7 @@ export const PAIRSETHEREUM: PairDef[] = [
       198, 190, 114, 152, 60, 235, 98, 15,
       191]),
     secretKey: hexToU8a('0x99b3c12287537e38c90a9219d4cb074a89a16e9cdb20bf85728ebd97c343e342'),
-    seed: 'Gerald',
+    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   }
 ];
