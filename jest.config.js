@@ -32,5 +32,5 @@ module.exports = Object.assign({}, config, {
     '<rootDir>/packages/x-textencoder/build',
     '<rootDir>/packages/x-ws/build'
   ],
-  transformIgnorePatterns: []
+  transformIgnorePatterns: ['/node_modules/(?!@polkadot)']
 });
