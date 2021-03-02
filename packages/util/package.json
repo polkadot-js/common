@@ -1,11 +1,12 @@
 {
   "name": "@polkadot/util",
   "version": "5.9.3-1",
+  "type": "module",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
   "sideEffects": [
     "./detectPackage.js",
-    "./detectPackage.mjs"
+    "./detectPackage.cjs"
   ],
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],

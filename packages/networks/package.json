@@ -1,6 +1,7 @@
 {
   "name": "@polkadot/networks",
   "version": "5.9.3-1",
+  "type": "module",
   "description": "A list of all available Substrate networks and their applicable prefixes",
   "main": "index.js",
   "sideEffects": false,
