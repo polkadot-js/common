@@ -175,11 +175,12 @@ export class Keyring implements KeyringInstance {
       : _suri;
     const { derivePath, password, path, phrase } = keyExtractSuri(suri);
     let seed: Uint8Array;
+    const isPhraseHex = isHex(phrase, 256);
 
-    if (isHex(phrase, 256)) {
+    if (isPhraseHex) {
       seed = hexToU8a(phrase);
     } else {
-      const str = phrase as string;
+      const str = phrase;
       const parts = str.split(' ');
 
       if ([12, 15, 18, 21, 24].includes(parts.length)) {
@@ -194,7 +195,9 @@ export class Keyring implements KeyringInstance {
     }
 
     const derived = type === 'ethereum'
-      ? hdEthereum(seed, derivePath.substring(1))
+      ? isPhraseHex
+        ? keypairFromSeed[type](seed) // for eth, if the private key is provided as suri, it must be derived only once
+        : hdEthereum(seed, derivePath.substring(1))
       : keyFromPath(keypairFromSeed[type](seed), path, type);
 
     return createPair({ toSS58: this.encodeAddress, type }, derived, meta, null);
