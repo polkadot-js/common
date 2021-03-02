@@ -95,16 +95,23 @@ export const PAIRSETHEREUM: PairDef[] = [
     type: 'ethereum'
   },
   {
-    name: 'Ethan',
+    name: 'Dorothy',
     publicKey: hexToU8a('0x02a00d60b2b408c2a14c5d70cdd2c205db8985ef737a7e55ad20ea32cc9e7c417c'),
     secretKey: hexToU8a('0x39539ab1876910bbf3a223d84a29e28f1cb4e2e456503e7e91ed39b2e7223d68'),
+    seed: 'Dorothy',
+    type: 'ethereum'
+  },
+  {
+    name: 'Ethan',
+    publicKey: hexToU8a('0x025cdc005b752651cd3f728fb9192182acb3a9c89e19072cbd5b03f3ee1f1b3ffa'),
+    secretKey: hexToU8a('0x7dce9bc8babb68fec1409be38c8e1a52650206a7ed90ff956ae8a6d15eeaaef4'),
     seed: 'Ethan',
     type: 'ethereum'
   },
   {
     name: 'Faith',
-    publicKey: hexToU8a('0x025cdc005b752651cd3f728fb9192182acb3a9c89e19072cbd5b03f3ee1f1b3ffa'),
-    secretKey: hexToU8a('0x7dce9bc8babb68fec1409be38c8e1a52650206a7ed90ff956ae8a6d15eeaaef4'),
+    publicKey: hexToU8a('0x037964b6c9d546da4646ada28a99e34acaa1d14e7aba861a9055f9bd200c8abf74'),
+    secretKey: hexToU8a('0xb9d2ea9a615f3165812e8d44de0d24da9bbd164b65c4f0573e1ce2c8dbd9c8df'),
     seed: 'Faith',
     type: 'ethereum'
   },
