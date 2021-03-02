@@ -1,6 +1,7 @@
 {
   "name": "@polkadot/keyring",
-  "version": "5.9.3-1",
+  "version": "6.0.1-2",
+  "type": "module",
   "description": "Keyring management",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
@@ -9,18 +10,18 @@
   "main": "index.js",
   "sideEffects": [
     "./detectPackage.js",
-    "./detectPackage.mjs"
+    "./detectPackage.cjs"
   ],
   "repository": "github:polkadot-js/common",
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/keyring#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.8",
-    "@polkadot/util": "5.9.3-1",
-    "@polkadot/util-crypto": "5.9.3-1"
+    "@babel/runtime": "^7.13.9",
+    "@polkadot/util": "6.0.1-2",
+    "@polkadot/util-crypto": "6.0.1-2"
   },
   "peerDependencies": {
-    "@polkadot/util": "5.9.3-1",
-    "@polkadot/util-crypto": "5.9.3-1"
+    "@polkadot/util": "6.0.1-2",
+    "@polkadot/util-crypto": "6.0.1-2"
   }
 }
