@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 6.0.2
+
+**Important** In the 6.0 version the default package type has been changed to ESM modules by default.
+
+
 ## 5.9.2 Feb 28, 2021
 
 Changes:
