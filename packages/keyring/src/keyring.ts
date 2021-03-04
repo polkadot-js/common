@@ -1,8 +1,9 @@
 // Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { EncryptedJsonEncoding } from '@polkadot/util-crypto/json/types';
 import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
-import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta } from './types';
+import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
 import { base64Decode, decodeAddress, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, schnorrkelKeypairFromSeed as schnorrkelFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed } from '@polkadot/util-crypto';
@@ -90,7 +91,7 @@ export class Keyring implements KeyringInstance {
    * of an account backup), and then generates a keyring pair from them that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
-  public addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.type, ignoreChecksum?: boolean, encType?: KeyringPair$JsonEncodingTypes[]): KeyringPair {
+  public addFromAddress (address: string | Uint8Array, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, type: KeypairType = this.type, ignoreChecksum?: boolean, encType?: EncryptedJsonEncoding[]): KeyringPair {
     const publicKey = this.decodeAddress(address, ignoreChecksum);
 
     return this.addPair(createPair({ toSS58: this.encodeAddress, type }, { publicKey, secretKey: new Uint8Array() }, meta, encoded, encType));
@@ -146,13 +147,18 @@ export class Keyring implements KeyringInstance {
    * @description Creates a pair from a JSON keyfile
    */
   public createFromJson ({ address, encoded, encoding: { content, type, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
+    assert(version !== '3' || content[0] === 'pkcs8', () => `Unable to decode non-pkcs8 type, [${content.join(',')}] found}`);
+
     const cryptoType = version === '0' || !Array.isArray(content)
       ? this.type
       : content[1];
     const encType = !Array.isArray(type)
       ? [type]
       : type;
-      // Here the address and publicKey are 32 bytes and isomorphic. This is why the address field needs to be the public key for ethereum type pairs
+
+    assert(['ed25519', 'sr25519', 'ecdsa', 'ethereum'].includes(cryptoType), `Unknown crypto type ${cryptoType}`);
+
+    // Here the address and publicKey are 32 bytes and isomorphic. This is why the address field needs to be the public key for ethereum type pairs
     const publicKey = isHex(address)
       ? hexToU8a(address)
       : this.decodeAddress(address, ignoreChecksum);
@@ -160,7 +166,7 @@ export class Keyring implements KeyringInstance {
       ? hexToU8a(encoded)
       : base64Decode(encoded);
 
-    return createPair({ toSS58: this.encodeAddress, type: cryptoType }, { publicKey, secretKey: new Uint8Array() }, meta, decoded, encType);
+    return createPair({ toSS58: this.encodeAddress, type: cryptoType as KeypairType }, { publicKey, secretKey: new Uint8Array() }, meta, decoded, encType);
   }
 
   /**
