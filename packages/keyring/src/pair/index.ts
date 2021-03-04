@@ -1,8 +1,9 @@
 // Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { EncryptedJsonEncoding } from '@polkadot/util-crypto/json/types';
 import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
-import type { KeyringPair, KeyringPair$Json, KeyringPair$JsonEncodingTypes, KeyringPair$Meta, SignOptions } from '../types';
+import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types';
 import type { PairInfo } from './types';
 
 import { assert, u8aConcat, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
@@ -87,7 +88,7 @@ function vrfHash (proof: Uint8Array, context?: string | Uint8Array, extra?: stri
  * an `encoded` property that is assigned with the encoded public key in hex format, and an `encoding`
  * property that indicates whether the public key value of the `encoded` property is encoded or not.
  */
-export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, encTypes?: KeyringPair$JsonEncodingTypes[]): KeyringPair {
+export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: PairInfo, meta: KeyringPair$Meta = {}, encoded: Uint8Array | null = null, encTypes?: EncryptedJsonEncoding[]): KeyringPair {
   const decodePkcs8 = (passphrase?: string, userEncoded?: Uint8Array | null): void => {
     const decoded = decodePair(passphrase, userEncoded || encoded, encTypes);
 

@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Prefix } from '@polkadot/util-crypto/address/types';
+import type { EncryptedJson } from '@polkadot/util-crypto/json/types';
 import type { KeypairType } from '@polkadot/util-crypto/types';
 
 export interface KeyringOptions {
@@ -11,20 +12,8 @@ export interface KeyringOptions {
 
 export type KeyringPair$Meta = Record<string, unknown>;
 
-export type KeyringPair$JsonVersion = '0' | '1' | '2' | '3';
-
-export type KeyringPair$JsonEncodingTypes = 'none' | 'scrypt' | 'xsalsa20-poly1305';
-
-export interface KeyringPair$JsonEncoding {
-  content: ['pkcs8', KeypairType];
-  type: KeyringPair$JsonEncodingTypes | KeyringPair$JsonEncodingTypes[];
-  version: KeyringPair$JsonVersion;
-}
-
-export interface KeyringPair$Json {
+export interface KeyringPair$Json extends EncryptedJson {
   address: string;
-  encoded: string;
-  encoding: KeyringPair$JsonEncoding;
   meta: KeyringPair$Meta;
 }
 
