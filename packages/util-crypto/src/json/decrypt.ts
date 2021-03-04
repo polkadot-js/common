@@ -11,12 +11,13 @@ import { jsonDecryptData } from './decryptData';
 export function jsonDecrypt ({ encoded, encoding }: EncryptedJson, passphrase?: string | null): Uint8Array {
   assert(encoded, 'No encrypted data available to decode');
 
-  const encodedU8a = isHex(encoded)
-    ? hexToU8a(encoded)
-    : base64Decode(encoded);
-  const encType = Array.isArray(encoding.type)
-    ? encoding.type
-    : [encoding.type];
-
-  return jsonDecryptData(encodedU8a, passphrase, encType);
+  return jsonDecryptData(
+    isHex(encoded)
+      ? hexToU8a(encoded)
+      : base64Decode(encoded),
+    passphrase,
+    Array.isArray(encoding.type)
+      ? encoding.type
+      : [encoding.type]
+  );
 }
