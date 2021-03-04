@@ -147,7 +147,7 @@ export class Keyring implements KeyringInstance {
    * @description Creates a pair from a JSON keyfile
    */
   public createFromJson ({ address, encoded, encoding: { content, type, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
-    assert(version !== '3' || content[0] === 'pkcs8', `Unable to decode non-pkcs8 type, [${content.join(',')}] found}`);
+    assert(version !== '3' || content[0] === 'pkcs8', () => `Unable to decode non-pkcs8 type, [${content.join(',')}] found}`);
 
     const cryptoType = version === '0' || !Array.isArray(content)
       ? this.type
