@@ -4,7 +4,7 @@
 import type { EncryptedJson, EncryptedJsonContent } from './types';
 
 import { base64Encode } from '../base64';
-import { ENCODING } from './constants';
+import { ENCODING, ENCODING_NONE, ENCODING_VERSION } from './constants';
 
 export function jsonEncryptFormat (encoded: Uint8Array, content: EncryptedJsonContent, contentExtra: string, isEncrypted: boolean): EncryptedJson {
   return {
@@ -13,8 +13,8 @@ export function jsonEncryptFormat (encoded: Uint8Array, content: EncryptedJsonCo
       content: [content, contentExtra],
       type: isEncrypted
         ? ENCODING
-        : ['none'],
-      version: '3'
+        : ENCODING_NONE,
+      version: ENCODING_VERSION
     }
   };
 }
