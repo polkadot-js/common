@@ -4,6 +4,13 @@
 
 Changes:
 
+- Add import indirection for both CJS & ESM (where generated source file is commonjs)
+
+
+## 6.0.2 Mar 5, 2021
+
+Changes:
+
 - Fix `@polkadot/x-rxjs` ESM exports for Node environments (now different due to the ESM conversion)
 
 
