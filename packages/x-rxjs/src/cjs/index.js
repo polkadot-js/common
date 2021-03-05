@@ -2,9 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // This is not great, but while having esm files, rxjs doesn't quite play nicely with
-// Node.js mjs files. (Hopefully this improves in 7.0, although no exports map as of yet)
-//
-// Generated via s/export \{ (.*) \} from .*/exports.$1 = rxjs.$1;/ on rxjs/_esm
+// Node.js esm files. (Hopefully this improves in 7.0, although no exports map as of yet)
 
 const rxjs = require('rxjs');
 

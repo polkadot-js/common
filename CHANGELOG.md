@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 6.0.3 Mar 5, 2021
+
+Changes:
+
+- Add import indirection for both CJS & ESM (where generated source file is commonjs)
+
+
 ## 6.0.2 Mar 5, 2021
 
 Changes:
