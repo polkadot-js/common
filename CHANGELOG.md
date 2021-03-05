@@ -4,7 +4,7 @@
 
 Changes:
 
-- Fix x-rxjs ESM exports (now different due to the ESM conversion)
+- Fix `@polkadot/x-rxjs` ESM exports for Node environments (now different due to the ESM conversion)
 
 
 ## 6.0.1 Mar 5, 2021
