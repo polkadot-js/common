@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 6.0.2 Mar 5, 2021
+## 6.0.3 Mar 5, 2021
 
 Changes:
 
