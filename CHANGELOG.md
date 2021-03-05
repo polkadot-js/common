@@ -1,8 +1,18 @@
 # CHANGELOG
 
-## 6.0.2
+## 6.0.1 Mar 5, 2021
 
-**Important** In the 6.0 version the default package type has been changed to ESM modules by default.
+**Important** In the 4.0 version the default package type has been changed to ESM modules by default. This should not affect usage, however since the output formats changed, a new major version is required.
+
+Contributed:
+
+- Add dev addresses for Frontier-based chains (Thanks to https://github.com/joelamouche)
+
+Changes:
+
+- Build to ESM by default (with cjs versions via export map)
+- Allow addition or raw pairs on the keyring via `{add, create}FromPair`
+- Extract re-usable json encryption/decryption functions
 
 
 ## 5.9.2 Feb 28, 2021
