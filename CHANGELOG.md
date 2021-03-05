@@ -1,8 +1,15 @@
 # CHANGELOG
 
+## 6.0.2 Mar 5, 2021
+
+Changes:
+
+- Fix x-rxjs ESM exports (now different due to the ESM conversion)
+
+
 ## 6.0.1 Mar 5, 2021
 
-**Important** In the 4.0 version the default package type has been changed to ESM modules by default. This should not affect usage, however since the output formats changed, a new major version is required.
+**Important** In the 6.0 version the default package type has been changed to ESM modules by default. This should not affect usage, however since the output formats changed, a new major version is required.
 
 Contributed:
 
