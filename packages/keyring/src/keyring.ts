@@ -121,6 +121,16 @@ export class Keyring implements KeyringInstance {
   }
 
   /**
+   * @name addFromPair
+   * @summary Stores an account created from an explicit publicKey/secreteKey combination
+   */
+  public addFromPair (pair: Keypair, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+    return this.addPair(
+      this.createFromPair(pair, meta, type)
+    );
+  }
+
+  /**
    * @name addFromSeed
    * @summary Stores an account, given seed data, as a Key/Value (public key, pair) in Keyring Pair Dictionary
    * @description Stores in a keyring pair dictionary the public key of the pair as a key and the pair as the associated value.
@@ -128,7 +138,9 @@ export class Keyring implements KeyringInstance {
    * `addPair` to store in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
    */
   public addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
-    return this.addPair(createPair({ toSS58: this.encodeAddress, type }, keypairFromSeed[type](seed), meta, null));
+    return this.addPair(
+      createPair({ toSS58: this.encodeAddress, type }, keypairFromSeed[type](seed), meta, null)
+    );
   }
 
   /**
@@ -167,6 +179,14 @@ export class Keyring implements KeyringInstance {
       : base64Decode(encoded);
 
     return createPair({ toSS58: this.encodeAddress, type: cryptoType as KeypairType }, { publicKey, secretKey: new Uint8Array() }, meta, decoded, encType);
+  }
+
+  /**
+   * @name createFromPair
+   * @summary Creates a pair from an explicit publicKey/secreteKey combination
+   */
+  public createFromPair (pair: Keypair, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+    return createPair({ toSS58: this.encodeAddress, type }, pair, meta, null);
   }
 
   /**

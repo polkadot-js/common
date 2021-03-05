@@ -1,9 +1,12 @@
 // Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hexToU8a, stringToU8a } from '@polkadot/util';
-import { cryptoWaitReady, encodeAddress, randomAsU8a, setSS58Format } from '@polkadot/util-crypto';
+import type { KeyringPair$Json } from './types';
 
+import { hexToU8a, stringToU8a } from '@polkadot/util';
+import { base64Decode, cryptoWaitReady, encodeAddress, randomAsU8a, setSS58Format } from '@polkadot/util-crypto';
+
+import { decodePair } from './pair/decode';
 import Keyring from '.';
 
 describe('keypair', (): void => {
@@ -426,6 +429,30 @@ describe('keypair', (): void => {
       expect(verifier.verify(MESSAGE, signature, signer.publicKey)).toBe(true);
       expect(verifier.verify(MESSAGE, signature, dummyPublic)).toBe(false);
       expect(verifier.verify(new Uint8Array(), signature, signer.publicKey)).toBe(false);
+    });
+  });
+
+  describe('raw pair add/create', (): void => {
+    const json = JSON.parse('{"address":"5PjeoaQzCoYbSi42aQRKB3Sx18StCaEAzCbGEEbWbZyfKS3H","encoded":"JQUl8ZpoXv2OMkL9TPylLmcIye2cYhaS9INICbFgZTsAgAAAAQAAAAgAAAAr/0hJOOzokIdBG71TstigLABX9D5xGD7L37ySxtjDrVRg26LL90jLQ47quT9o3bq6ppXMVL6USk7Q4p3WU66bojTFuCDyhpYRhNbUqU6s0rD3S4bhv9lG+pG9vQ4eD5PVQUvxdANmJpYuDg45nrTmsMC5AHGdFGkHW/LHnkmbFid1cvPYkdiBoef5CIEdoly512pxMupVxnJWF1NT","encoding":{"content":["pkcs8","sr25519"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{"name":"hello"}}') as KeyringPair$Json;
+    const decoded = decodePair('1', base64Decode(json.encoded), json.encoding.type);
+    const keyring = new Keyring({ ss58Format: 44 });
+
+    it('creates a pair from a private/public combo', (): void => {
+      const pair = keyring.createFromPair(decoded, json.meta, 'sr25519');
+
+      expect(pair.address).toEqual('5PjeoaQzCoYbSi42aQRKB3Sx18StCaEAzCbGEEbWbZyfKS3H');
+      expect(pair.isLocked).toEqual(false);
+      expect(pair.meta.name).toEqual('hello');
+    });
+
+    it('adds a pair from a private/public combo', (): void => {
+      keyring.addFromPair(decoded, json.meta, 'sr25519');
+
+      const pair = keyring.getPairs()[0];
+
+      expect(pair.address).toEqual('5PjeoaQzCoYbSi42aQRKB3Sx18StCaEAzCbGEEbWbZyfKS3H');
+      expect(pair.isLocked).toEqual(false);
+      expect(pair.meta.name).toEqual('hello');
     });
   });
 

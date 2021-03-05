@@ -3,7 +3,7 @@
 
 import type { Prefix } from '@polkadot/util-crypto/address/types';
 import type { EncryptedJson } from '@polkadot/util-crypto/json/types';
-import type { KeypairType } from '@polkadot/util-crypto/types';
+import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 
 export interface KeyringOptions {
   ss58Format?: Prefix;
@@ -62,9 +62,11 @@ export interface KeyringInstance {
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, encoded?: Uint8Array | null, type?: KeypairType, ignoreChecksum?: boolean): KeyringPair;
   addFromJson (pair: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair;
   addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
+  addFromPair (pair: Keypair, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair
   addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
   addFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
   createFromJson (json: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair;
+  createFromPair (pair: Keypair, meta: KeyringPair$Meta, type: KeypairType): KeyringPair
   createFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
   getPair (address: string | Uint8Array): KeyringPair;
   getPairs (): KeyringPair[];
