@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 6.0.4 Mar 7, 2021
+
+Contributed:
+
+- Enhance check for global process existence (Thanks to https://github.com/Yuripetusko)
+
+Changes:
+
+- Dedupe & optimize logger process.env checks
+
+
 ## 6.0.3 Mar 5, 2021
 
 Changes:
