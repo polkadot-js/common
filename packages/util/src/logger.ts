@@ -77,10 +77,10 @@ function noop (): void {
 }
 
 function parseEnv (type: string): [boolean, number] {
-  const maxSize = parseInt(process?.env?.DEBUG_MAX || '-1', 10);
+  const maxSize = parseInt((typeof process === 'object' ? process : {})?.env?.DEBUG_MAX || '-1', 10);
 
   return [
-    (process?.env?.DEBUG || '').toLowerCase().split(',').some((e) => !!e && (e === '*' || type.startsWith(e))),
+    ((typeof process === 'object' ? process : {})?.env?.DEBUG || '').toLowerCase().split(',').some((e) => !!e && (e === '*' || type.startsWith(e))),
     isNaN(maxSize) ? -1 : maxSize
   ];
 }
