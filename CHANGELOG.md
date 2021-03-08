@@ -1,5 +1,45 @@
 # CHANGELOG
 
+## 6.0.4 Mar 7, 2021
+
+Contributed:
+
+- Enhance check for global process existence (Thanks to https://github.com/Yuripetusko)
+
+Changes:
+
+- Dedupe & optimize logger process.env checks
+
+
+## 6.0.3 Mar 5, 2021
+
+Changes:
+
+- Add import indirection for both CJS & ESM (where generated source file is commonjs)
+
+
+## 6.0.2 Mar 5, 2021
+
+Changes:
+
+- Fix `@polkadot/x-rxjs` ESM exports for Node environments (now different due to the ESM conversion)
+
+
+## 6.0.1 Mar 5, 2021
+
+**Important** In the 6.0 version the default package type has been changed to ESM modules by default. This should not affect usage, however since the output formats changed, a new major version is required.
+
+Contributed:
+
+- Add dev addresses for Frontier-based chains (Thanks to https://github.com/joelamouche)
+
+Changes:
+
+- Build to ESM by default (with cjs versions via export map)
+- Allow addition or raw pairs on the keyring via `{add, create}FromPair`
+- Extract re-usable json encryption/decryption functions
+
+
 ## 5.9.2 Feb 28, 2021
 
 Changes:

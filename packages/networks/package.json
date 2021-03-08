@@ -1,6 +1,7 @@
 {
   "name": "@polkadot/networks",
-  "version": "5.9.3-1",
+  "version": "6.0.4",
+  "type": "module",
   "description": "A list of all available Substrate networks and their applicable prefixes",
   "main": "index.js",
   "sideEffects": false,
@@ -12,10 +13,10 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/networks#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.8"
+    "@babel/runtime": "^7.13.9"
   },
   "devDependencies": {
-    "@polkadot/util": "5.9.3-1",
-    "@polkadot/x-fetch": "5.9.3-1"
+    "@polkadot/util": "6.0.4",
+    "@polkadot/x-fetch": "6.0.4"
   }
 }

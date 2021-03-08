@@ -1,8 +1,10 @@
 // Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { NONCE_LENGTH, SCRYPT_LENGTH } from '@polkadot/util-crypto/json/constants';
+
 import { createTestPairs } from '../testingPairs';
-import { NONCE_LENGTH, PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SCRYPT_LENGTH, SEC_LENGTH } from './defaults';
+import { PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH } from './defaults';
 
 const PKCS8_LENGTH = PKCS8_DIVIDER.length + PKCS8_HEADER.length + PUB_LENGTH + SEC_LENGTH;
 const ENCODED_LENGTH = 16 + PKCS8_LENGTH + NONCE_LENGTH + SCRYPT_LENGTH;
