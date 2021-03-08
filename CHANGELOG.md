@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 6.0.5 Mar 8, 2021
+
+Changes:
+
+- Fix for `@polkadot/x-rxjs` in Node CJS environments (no Node-specific import)
+
+
 ## 6.0.4 Mar 7, 2021
 
 Contributed:
