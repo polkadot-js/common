@@ -72,14 +72,14 @@ export const all: NetworkFromSubstrate[] = [
     website: null
   },
   {
-    decimals: null,
+    decimals: [15],
     displayName: 'Plasm Network',
     genesisHash: ['0x3e86364d4b4894021cb2a0390bcf2feb5517d5292f2de2bb9404227e908b0b8b'],
     network: 'plasm',
     prefix: 5,
     standardAccount: '*25519',
     symbols: ['PLM'],
-    website: null
+    website: 'https://plasmnet.io'
   },
   {
     decimals: [12],
