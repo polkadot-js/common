@@ -15,7 +15,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-fetch#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.9",
+    "@babel/runtime": "^7.13.10",
     "@polkadot/x-global": "6.0.6-1",
     "@types/node-fetch": "^2.5.8",
     "node-fetch": "^2.6.1"
