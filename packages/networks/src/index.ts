@@ -484,6 +484,15 @@ export const all: NetworkFromSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['CRU'],
     website: 'https://crust.network'
+  },
+  {
+    decimals: [18],
+    displayName: 'Social Network',
+    network: 'social-network',
+    prefix: 252,
+    standardAccount: '*25519',
+    symbols: ['NET'],
+    website: 'https://social.network'
   }
 ];
 
