@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util",
-  "version": "6.0.4",
+  "version": "6.0.6-3",
   "type": "module",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
@@ -16,9 +16,9 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.9",
-    "@polkadot/x-textdecoder": "6.0.4",
-    "@polkadot/x-textencoder": "6.0.4",
+    "@babel/runtime": "^7.13.10",
+    "@polkadot/x-textdecoder": "6.0.6-3",
+    "@polkadot/x-textencoder": "6.0.6-3",
     "@types/bn.js": "^4.11.6",
     "bn.js": "^4.11.9",
     "camelcase": "^5.3.1",

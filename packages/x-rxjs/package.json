@@ -1,18 +1,10 @@
 {
   "name": "@polkadot/x-rxjs",
-  "version": "6.0.4",
+  "version": "6.0.6-3",
   "type": "module",
   "description": "A pass-through interface for RxJs (allowing node + mjs usage)",
   "main": "index.js",
   "sideEffects": false,
-  "exports": {
-    ".": {
-      "node": "./index.js"
-    },
-    "./operators": {
-      "node": "./operators.js"
-    }
-  },
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
@@ -21,7 +13,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-rxjs#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.9",
-    "rxjs": "^6.6.6"
+    "@babel/runtime": "^7.13.10",
+    "rxjs": "^6.6.7"
   }
 }
