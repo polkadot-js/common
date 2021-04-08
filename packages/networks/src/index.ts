@@ -139,7 +139,7 @@ export const all: NetworkFromSubstrate[] = [
   {
     decimals: [6],
     displayName: 'Polymesh',
-    genesisHash: ['0x12fddc9e2128b3fe571e4e5427addcb87fcaf08493867a68dd6ae44b406b39c7'],
+    genesisHash: ['0x9deeb940c92ae02111c3bd5baca89970384f4c9849f02a1b2e53e66414d30f9f'],
     hasLedgerSupport: true,
     network: 'polymesh',
     prefix: 12,
