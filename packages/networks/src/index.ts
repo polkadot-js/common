@@ -428,6 +428,17 @@ export const all: NetworkFromSubstrate[] = [
     symbols: null,
     website: 'https://substrate.dev/'
   },
+  {
+    decimals: [12],
+    displayName: 'Crust Maxwell',
+    genesisHash: ['0xb19e8874eb2013dc100534fafa322e105eea53c0aa02cd17cf94a2df35fbd41f'],
+    hasLedgerSupport: true,
+    network: 'crust',
+    prefix: 42,
+    standardAccount: '*25519',
+    symbols: ['CRU'],
+    website: 'https://crust.network'
+  },
   createReserved(43, 'Bare 32-bit ECDSA SECP-256k1 public key.'),
   {
     decimals: [8],
