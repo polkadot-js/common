@@ -494,7 +494,7 @@ export const all: NetworkFromSubstrate[] = [
     symbols: ['NET'],
     website: 'https://social.network'
   },
-    {
+  {
     decimals: [18],
     displayName: 'SORA',
     network: 'sora',
