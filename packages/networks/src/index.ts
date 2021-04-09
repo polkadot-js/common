@@ -493,6 +493,15 @@ export const all: NetworkFromSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['NET'],
     website: 'https://social.network'
+  },
+    {
+    decimals: [18],
+    displayName: 'SORA',
+    network: 'sora',
+    prefix: 69,
+    standardAccount: '*25519',
+    symbols: ['XOR'],
+    website: 'https://sora.org/'
   }
 ];
 
