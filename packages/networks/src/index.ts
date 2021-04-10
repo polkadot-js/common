@@ -6,14 +6,43 @@
 //
 // Once the above is published as a package, the duplication here can be removed
 
-import type { Network, NetworkFromSubstrateNamed } from './types';
+import type { Network, NetworkFromSubstrate, NetworkFromSubstrateNamed } from './types';
 
-import { all } from './registry';
+import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './known';
+import { knownSubstrate } from './knownSubstrate';
 
 export { packageInfo } from './packageInfo';
 
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
+
+export const all: NetworkFromSubstrate[] = knownSubstrate
+  .map((o): NetworkFromSubstrate => {
+    const n = o as NetworkFromSubstrate;
+    const genesis = knownGenesis.find(({ network }) => n.network === network);
+    const icon = knownIcon.find(({ network }) => n.network === network);
+    const ledger = knownLedger.find(({ network }) => n.network === network);
+    const test = knownTestnet.find(({ network }) => n.network === network);
+
+    if (ledger) {
+      n.hasLedgerSupport = true;
+      n.slip44 = ledger.slip44;
+    } else {
+      n.hasLedgerSupport = false;
+    }
+
+    n.genesisHash = genesis
+      ? genesis.genesisHash
+      : [];
+
+    n.icon = icon
+      ? icon.icon
+      : 'substrate';
+
+    n.isIgnored = !!test;
+
+    return n;
+  });
 
 // The list of available/claimed prefixes
 //   - no testnets
@@ -22,7 +51,6 @@ const UNSORTED = [0, 2, 42];
 //   - sort by name, however we keep 0, 2, 42 first in the list
 export const available: Network[] = all
   .filter((n): n is NetworkFromSubstrateNamed => !n.isIgnored && !!n.network)
-  .map((n) => ({ ...n, genesisHash: n.genesisHash || [], icon: n.icon || 'substrate' }))
   .sort((a, b) =>
     UNSORTED.includes(a.prefix) && UNSORTED.includes(b.prefix)
       ? 0
