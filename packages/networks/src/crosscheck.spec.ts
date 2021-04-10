@@ -7,10 +7,10 @@ import fs from 'fs';
 
 import { fetch } from '@polkadot/x-fetch';
 
-import { SUBSTRATE_REGISTRY } from './constants';
 import { all } from './';
 
 const OUTPUT = './.github/ss58-check.md';
+const SUBSTRATE_REGISTRY = 'https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json';
 
 function assertAndLog (check: boolean, error: string): void {
   if (!check) {
