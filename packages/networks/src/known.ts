@@ -3,6 +3,10 @@
 
 import type { KnownGenesis, KnownIcon, KnownLedger, KnownTestnet } from './types';
 
+// NOTE: In the case where the network was hard-spooned and multiple genesisHashes
+// are provided, it needs to be in reverse order, i.e. most-recent first, oldest
+// last. This make lookups for the current a simple genesisHash[0]
+// (See Kusama as an example)
 export const knownGenesis: KnownGenesis[] = [
   {
     genesisHash: ['0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3'],

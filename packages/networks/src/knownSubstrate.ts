@@ -8,11 +8,6 @@
 
 import type { KnownSubstrate } from './types';
 
-// NOTE: In the case where the network was hard-spooned and multiple genesisHashes
-// are provided, it needs to be in reverse order, i.e. most-recent first, oldest
-// last. This make lookups for the current a simple genesisHash[0]
-// (See Kusama as an example)
-
 const createReserved = (prefix: number, displayName: string, network: string | null = null): KnownSubstrate => ({
   decimals: null,
   displayName,
