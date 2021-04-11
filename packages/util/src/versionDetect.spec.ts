@@ -11,7 +11,7 @@ describe('detectPackage', (): void => {
   const PATH = '/Users/jaco/Projects/polkadot-js/api/node_modules/@polkadot/util';
 
   const MISMATCH = `@polkadot/util has multiple versions, ensure that there is only one installed.
-Either remove and explicitly install matching versions or deupe using your package manager.
+Either remove and explicitly install matching versions or dedupe using your package manager.
 The following conflicting packages were found:
 \t${VER1}\t${PATH}/01
 \t${VER2}        \t${PATH}/02`;
