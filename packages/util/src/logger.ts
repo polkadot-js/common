@@ -80,11 +80,23 @@ function parseEnv (type: string): [boolean, number] {
   const env = (typeof process === 'object' ? process : {}).env || {};
   const maxSize = parseInt(env.DEBUG_MAX || '-1', 10);
 
+  let isDebugOn = false;
+
+  (env.DEBUG || '')
+    .toLowerCase()
+    .split(',')
+    .forEach((e) => {
+      if (!!e && (e === '*' || type === e || (e.endsWith('*') && type.startsWith(e.slice(0, -1))))) {
+        isDebugOn = true;
+      }
+
+      if (!!e && e.startsWith('-') && (type === e.slice(1) || (e.endsWith('*') && type.startsWith(e.slice(1, -1))))) {
+        isDebugOn = false;
+      }
+    });
+
   return [
-    (env.DEBUG || '')
-      .toLowerCase()
-      .split(',')
-      .some((e) => !!e && (e === '*' || type.startsWith(e))),
+    isDebugOn,
     isNaN(maxSize)
       ? -1
       : maxSize
