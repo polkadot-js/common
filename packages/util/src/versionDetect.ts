@@ -26,7 +26,7 @@ interface PjsChecks extends This {
 type PjsWindow = (Window & This) & PjsChecks;
 type FnString = () => string | undefined;
 
-const DEDUPE = 'Either remove and explicitly install matching versions or deupe using your package manager.\nThe following conflicting packages were found:';
+const DEDUPE = 'Either remove and explicitly install matching versions or dedupe using your package manager.\nThe following conflicting packages were found:';
 
 /** @internal */
 function getEntry (name: string): VersionPath[] {
