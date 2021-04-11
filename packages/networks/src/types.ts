@@ -21,7 +21,7 @@ export type KnownGenesis = Record<string, string[]>;
 
 export type KnownTestnet = Record<string, true>;
 
-export interface NetworkFromSubstrate extends KnownSubstrate {
+export interface SubstrateNetwork extends KnownSubstrate {
   genesisHash: string[];
   hasLedgerSupport: boolean;
   icon: Icon;
@@ -29,12 +29,8 @@ export interface NetworkFromSubstrate extends KnownSubstrate {
   slip44?: number | null;
 }
 
-export interface NetworkFromSubstrateNamed extends NetworkFromSubstrate {
+export interface Network extends SubstrateNetwork {
   network: string;
-}
-
-export interface Network extends NetworkFromSubstrateNamed {
-  icon: Icon;
 }
 
 export interface Ss58Registry {
