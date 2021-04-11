@@ -11,7 +11,7 @@ describe('detectPackage', (): void => {
   const PATH = '/Users/jaco/Projects/polkadot-js/api/node_modules/@polkadot/util';
 
   const MISMATCH = `@polkadot/util has multiple versions, ensure that there is only one installed.
-Either remove and explicitly install matching versions or deupe using your package manager.
+Either remove and explicitly install matching versions or dedupe using your package manager.
 The following conflicting packages were found:
 \t${VER1}\t${PATH}/01
 \t${VER2}        \t${PATH}/02`;
@@ -61,7 +61,7 @@ describe('detectPackageDeps', (): void => {
 
     detectPackage({ name: '@polkadot/two', version: '1.1.1' }, false, [DEP0, DEP1, DEP2, DEP3]);
     expect(spy).toHaveBeenCalledWith(`@polkadot/two requires direct dependencies exactly matching version 1.1.1.
-Either remove and explicitly install matching versions or deupe using your package manager.
+Either remove and explicitly install matching versions or dedupe using your package manager.
 The following conflicting packages were found:
 \t1.1.2\t@polkadot/util
 \t1.1.3\t@polkadot/util-crypto`);
