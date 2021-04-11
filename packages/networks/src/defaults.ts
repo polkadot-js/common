@@ -1,13 +1,13 @@
 // Copyright 2017-2021 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Icon, KnownGenesis, KnownIcon, KnownLedger, KnownTestnet } from './types';
+import type { KnownGenesis, KnownIcon, KnownLedger, KnownTestnet } from './types';
 
 // NOTE: In the case where the network was hard-spooned and multiple genesisHashes
 // are provided, it needs to be in reverse order, i.e. most-recent first, oldest
 // last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
-export const knownGenesis = Object.entries({
+export const knownGenesis: KnownGenesis = {
   'dock-mainnet': [
     '0xf73467c6544aa68df2ee546b135f955c46b90fa627e9b5d7935f41061bb8a5a9'
   ],
@@ -34,26 +34,26 @@ export const knownGenesis = Object.entries({
   subsocial: [
     '0x0bd72c1c305172e1275278aaeb3f161e02eccb7a819e63f62d47bd53a28189f8'
   ]
-}).reduce<KnownGenesis[]>((all, [network, genesisHash]) => [...all, { genesisHash, network }], []);
+};
 
 // these are icon overrides
-export const knownIcon = Object.entries({
+export const knownIcon: KnownIcon = {
   kusama: 'polkadot',
   polkadot: 'polkadot'
-}).reduce<KnownIcon[]>((all, [network, icon]) => [...all, { icon: icon as Icon, network }], []);
+};
 
 // support for ledger
-export const knownLedger = Object.entries({
+export const knownLedger: KnownLedger = {
   'dock-mainnet': 0x00000252,
   kusama: 0x000001b2,
   polkadot: 0x00000162,
   polymesh: 0x00000253
-}).reduce<KnownLedger[]>((all, [network, slip44]) => [...all, { network, slip44 }], []);
+};
 
 // testenets should not allow selection
-export const knownTestnet = Object.entries({
+export const knownTestnet: KnownTestnet = {
   'dock-testnet': true,
   jupiter: true,
   'mathchain-testnet': true,
   'zero-alphaville': true
-}).reduce<KnownTestnet[]>((all, [network]) => [...all, { network }], []);
+};

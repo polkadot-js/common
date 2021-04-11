@@ -3,32 +3,23 @@
 
 export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate';
 
-export interface BaseDef {
-  network: string | null;
-}
-
-export interface KnownSubstrate extends BaseDef {
+export interface KnownSubstrate {
   decimals: number[] | null,
   displayName: string;
+  network: string | null;
   prefix: number;
   standardAccount: '*25519' | null;
   symbols: string[] | null;
   website: string | null;
 }
 
-export interface KnownIcon extends BaseDef {
-  icon: Icon;
-}
+export type KnownIcon = Record<string, Icon>;
 
-export interface KnownLedger extends BaseDef {
-  slip44: number;
-}
+export type KnownLedger = Record<string, number>;
 
-export interface KnownGenesis extends BaseDef {
-  genesisHash: string[];
-}
+export type KnownGenesis = Record<string, string[]>;
 
-export type KnownTestnet = BaseDef;
+export type KnownTestnet = Record<string, true>;
 
 export interface NetworkFromSubstrate extends KnownSubstrate {
   genesisHash: string[];

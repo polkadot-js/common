@@ -13,28 +13,15 @@ const UNSORTED = [0, 2, 42];
 
 export const all: NetworkFromSubstrate[] = knownSubstrate
   .map((o): NetworkFromSubstrate => {
+    const network = o.network || '';
     const n = o as NetworkFromSubstrate;
-    const genesis = knownGenesis.find(({ network }) => n.network === network);
-    const icon = knownIcon.find(({ network }) => n.network === network);
-    const ledger = knownLedger.find(({ network }) => n.network === network);
-    const test = knownTestnet.find(({ network }) => n.network === network);
 
-    if (ledger) {
-      n.hasLedgerSupport = true;
-      n.slip44 = ledger.slip44;
-    } else {
-      n.hasLedgerSupport = false;
-    }
+    n.slip44 = knownLedger[network];
+    n.hasLedgerSupport = !!n.slip44;
 
-    n.genesisHash = genesis
-      ? genesis.genesisHash
-      : [];
-
-    n.icon = icon
-      ? icon.icon
-      : 'substrate';
-
-    n.isIgnored = !!test || !n.network || n.network.startsWith('reserved');
+    n.genesisHash = knownGenesis[network] || [];
+    n.icon = knownIcon[network] || 'substrate';
+    n.isIgnored = !network || !!knownTestnet[network] || network.startsWith('reserved');
 
     return n;
   });

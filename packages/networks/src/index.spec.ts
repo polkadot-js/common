@@ -21,7 +21,7 @@ describe('filtered', (): void => {
 
   it('has all genesis information', (): void => {
     expect(
-      knownGenesis.filter(({ genesisHash, network }) =>
+      Object.entries(knownGenesis).filter(([network, genesisHash]) =>
         available.some((a) =>
           a.network === network &&
           genesisHash.some((g, index) => a.genesisHash[index] !== g)
@@ -32,7 +32,7 @@ describe('filtered', (): void => {
 
   it('has all ledger details', (): void => {
     expect(
-      knownLedger.filter(({ network, slip44 }) =>
+      Object.entries(knownLedger).filter(([network, slip44]) =>
         available.some((a) =>
           a.network === network && (
             a.slip44 !== slip44 ||
@@ -46,7 +46,7 @@ describe('filtered', (): void => {
 
   it('has no testnets exposed', (): void => {
     expect(
-      knownTestnet.filter(({ network }) =>
+      Object.keys(knownTestnet).filter((network) =>
         available.some((a) =>
           a.network === network
         )
@@ -58,10 +58,7 @@ describe('filtered', (): void => {
     expect(
       available.filter(({ icon, network }) =>
         icon !== 'substrate' &&
-        knownIcon.some((i) =>
-          i.network === network &&
-          i.icon !== icon
-        )
+        knownIcon[network] !== icon
       )
     ).toEqual([]);
   });
