@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 6.1.1 Apr 11, 2021
+
+Contributed:
+
+- Adjust Polymath genesis in `@polkadot/networks` (Thanks to https://github.com/adamdossa)
+- Adjust `@polkadot/util` logger for +/-/* compat (Thanks to https://github.com/Lezek123)
+- Fix typo in `@polkadot/util` detect messaging (Thanks to https://github.com/amphineko)
+
+Changes:
+
+- Remove `@polkadot/networks` code duplication, manages data via script from upstream
+- Align ss58 registry with upstream Substrate
+
+
 ## 6.0.5 Mar 8, 2021
 
 Changes:
