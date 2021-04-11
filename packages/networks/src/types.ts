@@ -3,7 +3,7 @@
 
 export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate';
 
-interface BaseDef {
+export interface BaseDef {
   network: string | null;
 }
 

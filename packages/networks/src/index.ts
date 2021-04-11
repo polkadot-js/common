@@ -1,15 +1,10 @@
 // Copyright 2017-2021 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// This contains exactly the same information as available in (with some extensions)
-// https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json
-//
-// Once the above is published as a package, the duplication here can be removed
-
 import type { Network, NetworkFromSubstrate, NetworkFromSubstrateNamed } from './types';
 
-import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './known';
-import { knownSubstrate } from './knownSubstrate';
+import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults';
+import { knownSubstrate } from './substrate';
 
 export { packageInfo } from './packageInfo';
 
