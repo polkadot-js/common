@@ -15,6 +15,7 @@
     "lint": "polkadot-dev-run-lint",
     "clean": "polkadot-dev-clean-build",
     "networks:crosscheck": "polkadot-dev-run-test packages/networks/src/crosscheck",
+    "networks:sync": "node packages/networks/scripts/fromSubstrate.mjs",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns crosscheck",
     "test:one": "polkadot-dev-run-test"
