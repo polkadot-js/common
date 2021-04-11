@@ -5,7 +5,7 @@
 //
 // Do not edit, rather
 //   - make a PR to the upstream registry as per https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json
-//   - yarn build:networks
+//   - yarn networks:sync
 //
 
 import type { KnownSubstrate } from './types';
@@ -487,4 +487,5 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['NET'],
     website: 'https://social.network'
-  }];
+  }
+];

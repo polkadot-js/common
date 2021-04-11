@@ -22,13 +22,13 @@ async function getSubstrateRegistry () {
 
   return json.registry
     .map((e) =>
-      `\n  {\n${Object
+      `  {\n${Object
         .entries(e)
         .sort(([a], [b]) => a.localeCompare(b))
         .map(([k, v]) => `    ${k}: ${outputField(v)}`)
         .join(',\n')}\n  }`
     )
-    .join(',');
+    .join(',\n');
 }
 
 getSubstrateRegistry()
@@ -40,12 +40,12 @@ getSubstrateRegistry()
 //
 // Do not edit, rather
 //   - make a PR to the upstream registry as per ${SUBSTRATE_REGISTRY}
-//   - yarn build:networks
+//   - yarn networks:sync
 //
 
 import type { KnownSubstrate } from './types';
 
-export const knownSubstrate: KnownSubstrate[] = [${entries}];
+export const knownSubstrate: KnownSubstrate[] = [\n${entries}\n];
 `);
 
     process.exit(0);

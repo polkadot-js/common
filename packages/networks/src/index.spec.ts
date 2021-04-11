@@ -14,6 +14,10 @@ describe('filtered', (): void => {
     expect(available.some(({ isIgnored }) => isIgnored)).toEqual(false);
   });
 
+  it('has no reserved networks', (): void => {
+    expect(available.some(({ prefix }) => prefix === 47)).toEqual(false);
+  });
+
   it('has no ss58 duplicates', (): void => {
     const dupes: NetworkFromSubstrate[] = [];
     const uniques: NetworkFromSubstrate[] = [];

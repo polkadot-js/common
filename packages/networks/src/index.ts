@@ -39,7 +39,7 @@ export const all: NetworkFromSubstrate[] = knownSubstrate
       ? icon.icon
       : 'substrate';
 
-    n.isIgnored = !!test || !!n.network || !!(n.network && n.network.startsWith('reserved'));
+    n.isIgnored = !!test || !n.network || n.network.startsWith('reserved');
 
     return n;
   });
