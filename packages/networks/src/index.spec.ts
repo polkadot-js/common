@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { NetworkFromSubstrate } from './types';
+import type { SubstrateNetwork } from './types';
 
 import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults';
 import filtered, { all, available } from '.';
@@ -64,8 +64,8 @@ describe('filtered', (): void => {
   });
 
   it('has no ss58 duplicates', (): void => {
-    const dupes: NetworkFromSubstrate[] = [];
-    const uniques: NetworkFromSubstrate[] = [];
+    const dupes: SubstrateNetwork[] = [];
+    const uniques: SubstrateNetwork[] = [];
 
     all.forEach((a): void => {
       if (uniques.some((u) => u.prefix === a.prefix)) {
