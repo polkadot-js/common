@@ -13,13 +13,13 @@
   "sideEffects": false,
   "dependencies": {
     "@babel/runtime": "^7.13.10",
-    "@ledgerhq/hw-transport-webusb": "^5.48.0"
+    "@ledgerhq/hw-transport-webusb": "^5.49.0"
   },
   "devDependencies": {
     "@types/ledgerhq__hw-transport-node-hid": "^4.22.2",
     "@types/ledgerhq__hw-transport-webusb": "^4.70.1"
   },
   "optionalDependencies": {
-    "@ledgerhq/hw-transport-node-hid-singleton": "^5.48.0"
+    "@ledgerhq/hw-transport-node-hid-singleton": "^5.49.0"
   }
 }
