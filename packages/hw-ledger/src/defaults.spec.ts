@@ -3,20 +3,20 @@
 
 import { knownLedger } from '@polkadot/networks/defaults';
 
-import { LEDGER_APPS } from './defaults';
+import { ledgerApps } from './defaults';
 
 describe('defaults', (): void => {
   it('has entries for each of the apps (hwledger -> networks)', (): void => {
     expect(
       Object.keys(knownLedger).filter((network) =>
-        !LEDGER_APPS[network]
+        !ledgerApps[network]
       )
     ).toEqual([]);
   });
 
   it('has entries for each of the apps (networks -> hwledger)', (): void => {
     expect(
-      Object.keys(LEDGER_APPS).filter((network) =>
+      Object.keys(ledgerApps).filter((network) =>
         !knownLedger[network]
       )
     ).toEqual([]);

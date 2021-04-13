@@ -11,11 +11,11 @@ import { transports } from '@polkadot/hw-ledger-transports';
 import { assert, u8aToBuffer } from '@polkadot/util';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants';
-import { LEDGER_APPS } from './defaults';
+import { ledgerApps } from './defaults';
 
 export { packageInfo } from './packageInfo';
 
-type Chain = keyof typeof LEDGER_APPS;
+type Chain = keyof typeof ledgerApps;
 
 // A very basic wrapper for a ledger app -
 //  - it connects automatically, creating an app as required
@@ -30,7 +30,7 @@ export class Ledger {
   constructor (transport: LedgerTypes, chain: Chain) {
     // u2f is deprecated
     assert(['hid', 'webusb'].includes(transport), `Unsupported transport ${transport}`);
-    assert(Object.keys(LEDGER_APPS).includes(chain), `Unsupported chain ${chain}`);
+    assert(Object.keys(ledgerApps).includes(chain), `Unsupported chain ${chain}`);
 
     this.#chain = chain;
     this.#transport = transport;
@@ -78,7 +78,7 @@ export class Ledger {
 
       const transport = await def.create();
 
-      this.#app = LEDGER_APPS[this.#chain](transport);
+      this.#app = ledgerApps[this.#chain](transport);
     }
 
     return this.#app;

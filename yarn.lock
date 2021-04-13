@@ -1307,7 +1307,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.13.9, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.13.9, @babel/runtime@npm:^7.8.4":
   version: 7.13.10
   resolution: "@babel/runtime@npm:7.13.10"
   dependencies:
@@ -1605,81 +1605,81 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/devices@npm:^5.48.0":
-  version: 5.48.0
-  resolution: "@ledgerhq/devices@npm:5.48.0"
+"@ledgerhq/devices@npm:^5.49.0":
+  version: 5.49.0
+  resolution: "@ledgerhq/devices@npm:5.49.0"
   dependencies:
-    "@ledgerhq/errors": ^5.48.0
-    "@ledgerhq/logs": ^5.48.0
+    "@ledgerhq/errors": ^5.49.0
+    "@ledgerhq/logs": ^5.49.0
     rxjs: ^6.6.7
     semver: ^7.3.5
-  checksum: 5b8bd1f54fdde55cdc30fd7327d723f3079774761f6b485f53667877abd109de589f0f1d093a47c82d19a5c20a02aac329bdcf6189d4a94c501cbd388a63016e
+  checksum: 101362f042e7c306e4fc7001a7aa7b6b7d72343d748428f0a93e46997bb501ae06060de5189524953712da8893ce7c6c1e8d6815021540fdcb6f2370b366667c
   languageName: node
   linkType: hard
 
-"@ledgerhq/errors@npm:^5.48.0":
-  version: 5.48.0
-  resolution: "@ledgerhq/errors@npm:5.48.0"
-  checksum: 268edf7d32a0b31425a88c063e6c72418130c6eaf3d6ccfb6f292a476e11fcf468a7864d77e396a5b9d85de2a568fe556f319ab1a7817dccfdac6b38de248ef7
+"@ledgerhq/errors@npm:^5.49.0":
+  version: 5.49.0
+  resolution: "@ledgerhq/errors@npm:5.49.0"
+  checksum: 8d36c203d801235327cc42a94cd8f3bed101237bcfef92912416490a0826f3ed6e10fd043051ca3e72027323044043b31a78333fdd27e6a96e4741b6b4c66b60
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-node-hid-noevents@npm:^5.48.0":
-  version: 5.48.0
-  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:5.48.0"
+"@ledgerhq/hw-transport-node-hid-noevents@npm:^5.49.0":
+  version: 5.49.0
+  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:5.49.0"
   dependencies:
-    "@ledgerhq/devices": ^5.48.0
-    "@ledgerhq/errors": ^5.48.0
-    "@ledgerhq/hw-transport": ^5.48.0
-    "@ledgerhq/logs": ^5.48.0
+    "@ledgerhq/devices": ^5.49.0
+    "@ledgerhq/errors": ^5.49.0
+    "@ledgerhq/hw-transport": ^5.49.0
+    "@ledgerhq/logs": ^5.49.0
     node-hid: 2.1.1
-  checksum: b4f68073d91ea62ed565b491d0f76768087e7e3d69c5f0bd2db27dd129c2339ae7b56cd197176680f988ccee0b8c4360ad396c3b6f7a720a0795e8a70cb897ad
+  checksum: bffb2ae6abb96a668d57105df5ba1045983be669df8e55ba6f5e5dfcecb94980ac34694a96adf64b4b749578a85ad11d679f725ec16c0804bd900c65c32b3b04
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-node-hid-singleton@npm:^5.48.0":
-  version: 5.48.0
-  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:5.48.0"
+"@ledgerhq/hw-transport-node-hid-singleton@npm:^5.49.0":
+  version: 5.49.0
+  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:5.49.0"
   dependencies:
-    "@ledgerhq/devices": ^5.48.0
-    "@ledgerhq/errors": ^5.48.0
-    "@ledgerhq/hw-transport": ^5.48.0
-    "@ledgerhq/hw-transport-node-hid-noevents": ^5.48.0
-    "@ledgerhq/logs": ^5.48.0
+    "@ledgerhq/devices": ^5.49.0
+    "@ledgerhq/errors": ^5.49.0
+    "@ledgerhq/hw-transport": ^5.49.0
+    "@ledgerhq/hw-transport-node-hid-noevents": ^5.49.0
+    "@ledgerhq/logs": ^5.49.0
     lodash: ^4.17.21
     node-hid: 2.1.1
     usb-detection: ^4.10.0
-  checksum: 684df473c879b555d23eb6fd9808b756631ecb0079abf2911c47c223d49e28e47e3f90a5683b5fec064941f56ae84f48b606a8b11a62004b472378973a9e0494
+  checksum: 4a9e3b2ac4074336487b5305caad72124540ccedd529c58adeebc1099cfedd69e4452caf8f1cca7d6cf88ea8a1c380bf3ef8e9f675651e69fd6035aabe11d5f3
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-webusb@npm:^5.48.0":
-  version: 5.48.0
-  resolution: "@ledgerhq/hw-transport-webusb@npm:5.48.0"
+"@ledgerhq/hw-transport-webusb@npm:^5.49.0":
+  version: 5.49.0
+  resolution: "@ledgerhq/hw-transport-webusb@npm:5.49.0"
   dependencies:
-    "@ledgerhq/devices": ^5.48.0
-    "@ledgerhq/errors": ^5.48.0
-    "@ledgerhq/hw-transport": ^5.48.0
-    "@ledgerhq/logs": ^5.48.0
-  checksum: 89e786cd1db598b0914a8414d8324c43095700fd2303ece9876f4d601f789d9db7bb9b47abd770f88be879ae84e3e8e41e77b295333e686e7872b32f9db8233e
+    "@ledgerhq/devices": ^5.49.0
+    "@ledgerhq/errors": ^5.49.0
+    "@ledgerhq/hw-transport": ^5.49.0
+    "@ledgerhq/logs": ^5.49.0
+  checksum: d4bbb22985aebad1eae0f01ca5b2391c85894d7e887edd39edac8acca3ce3af063b3e56c5ca786b7b5e330b48e3a784b02bbde18651fa7b59fbee6df81e9a5e0
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport@npm:^5.38.0, @ledgerhq/hw-transport@npm:^5.48.0":
-  version: 5.48.0
-  resolution: "@ledgerhq/hw-transport@npm:5.48.0"
+"@ledgerhq/hw-transport@npm:^5.49.0":
+  version: 5.49.0
+  resolution: "@ledgerhq/hw-transport@npm:5.49.0"
   dependencies:
-    "@ledgerhq/devices": ^5.48.0
-    "@ledgerhq/errors": ^5.48.0
+    "@ledgerhq/devices": ^5.49.0
+    "@ledgerhq/errors": ^5.49.0
     events: ^3.3.0
-  checksum: a9866fca8e060afcb03b2b592b2e076627e19b2af68ae5bea9db84c8184c5904d8d0f595c92072674ad84e48d75710226219056b68d8d6f62bc90ff80618c181
+  checksum: e8fbf49c1935166e1222220be9fe315cf6e39c9671940fea7c25e748b4b9d3ff4df148bd694deed9da06f7811c14a978acc612101f35f05244f10b046c69f0a2
   languageName: node
   linkType: hard
 
-"@ledgerhq/logs@npm:^5.48.0":
-  version: 5.48.0
-  resolution: "@ledgerhq/logs@npm:5.48.0"
-  checksum: 661c3669a31062584c783ae4c0403e4d8ba58fd1dd4a0ebc74da64912055e9e778de72fd863b24fb399206d05284f7ab5b2cc254b7ae14ae2213815bc9bb9f79
+"@ledgerhq/logs@npm:^5.49.0":
+  version: 5.49.0
+  resolution: "@ledgerhq/logs@npm:5.49.0"
+  checksum: 1930c44a14f2a95e8920d38cdd50e0732471fa1e2b466c5997e1fdc1f5a8a297c153ac4193f7148157a97de1e52964ce661b5a6ec603925fa4068bffcfc06604
   languageName: node
   linkType: hard
 
@@ -1953,8 +1953,8 @@ __metadata:
   resolution: "@polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports"
   dependencies:
     "@babel/runtime": ^7.13.10
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.48.0
-    "@ledgerhq/hw-transport-webusb": ^5.48.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.49.0
+    "@ledgerhq/hw-transport-webusb": ^5.49.0
     "@types/ledgerhq__hw-transport-node-hid": ^4.22.2
     "@types/ledgerhq__hw-transport-webusb": ^4.70.1
   dependenciesMeta:
@@ -1970,7 +1970,7 @@ __metadata:
     "@babel/runtime": ^7.13.10
     "@polkadot/hw-ledger-transports": 6.1.1
     "@polkadot/util": ^6.1.1
-    "@zondax/ledger-polkadot": ^0.13.4
+    "@zondax/ledger-polkadot": ^0.13.6
   languageName: unknown
   linkType: soft
 
@@ -2416,6 +2416,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:10.12.18":
+  version: 10.12.18
+  resolution: "@types/node@npm:10.12.18"
+  checksum: 64cc1c5105bcb7c27917c30c4de8d50931c9539bde52e0e8fae0c562a62ba38b9eab1bb1420eabf246f727845cac3109c83b4cba00abf93b6a73327bbdf141b5
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:11.11.6":
+  version: 11.11.6
+  resolution: "@types/node@npm:11.11.6"
+  checksum: 2b64bfc2344f60fdcf3baea2f9f2e065189cee3a6144d3dbdcb32cb6728dd64933808e2da8bd4d69033f04510f7de1397c08d54d8f89d505b3a957b24dcc583f
+  languageName: node
+  linkType: hard
+
 "@types/normalize-package-data@npm:^2.4.0":
   version: 2.4.0
   resolution: "@types/normalize-package-data@npm:2.4.0"
@@ -2635,13 +2649,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zondax/ledger-polkadot@npm:^0.13.4":
-  version: 0.13.4
-  resolution: "@zondax/ledger-polkadot@npm:0.13.4"
+"@zondax/ledger-polkadot@npm:^0.13.6":
+  version: 0.13.6
+  resolution: "@zondax/ledger-polkadot@npm:0.13.6"
   dependencies:
-    "@babel/runtime": ^7.12.5
-    "@ledgerhq/hw-transport": ^5.38.0
-  checksum: 01ea2200e183f479cfa08b09df5e3f4f74296f64db91f6902e12cbdb55cd77048d6b76c3133b55a0dbf9d5ab6e3e666ab26d953addb00774ebebfb96033c32ca
+    "@babel/runtime": ^7.13.10
+    "@ledgerhq/hw-transport": ^5.49.0
+    bip32: 2.0.6
+    bip32-ed25519: "git+https://github.com/Zondax/bip32-ed25519.git"
+    bip39: 3.0.3
+    blakejs: ^1.1.0
+    bs58: ^4.0.1
+  checksum: 154dd560161ec90c59a5d86e9db2ab9174ddef435dc072bdabef2c6076fc9f99e34c9c301a1319a3fdf62e83c88b47c614b096be5dd1917668d89b117508a56b
   languageName: node
   linkType: hard
 
@@ -3214,7 +3233,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"base-x@npm:^3.0.8":
+"base-x@npm:^3.0.2, base-x@npm:^3.0.8":
   version: 3.0.8
   resolution: "base-x@npm:3.0.8"
   dependencies:
@@ -3284,6 +3303,44 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bip32-ed25519@git+https://github.com/Zondax/bip32-ed25519.git":
+  version: 0.0.4
+  resolution: "bip32-ed25519@https://github.com/Zondax/bip32-ed25519.git#commit=0949df01b5c93885339bc28116690292088f6134"
+  dependencies:
+    bn.js: ^5.1.1
+    elliptic: ^6.4.1
+    hash.js: ^1.1.7
+  checksum: 65cc1f5610ff8150a310d4089c799af535cd87cc3aee526abc0b586b003055c1f9668957a60c770290120e1b9e9c42e8758db15fb2712a10c9cedeb1203f2898
+  languageName: node
+  linkType: hard
+
+"bip32@npm:2.0.6":
+  version: 2.0.6
+  resolution: "bip32@npm:2.0.6"
+  dependencies:
+    "@types/node": 10.12.18
+    bs58check: ^2.1.1
+    create-hash: ^1.2.0
+    create-hmac: ^1.1.7
+    tiny-secp256k1: ^1.1.3
+    typeforce: ^1.11.5
+    wif: ^2.0.6
+  checksum: 603c494576f60922d1550ebf43e8a3a2019f93f41ff786204cc3a556826d71167f5fc60c5d9ef64d3633a97b24d52d782b418abd5267ea99c0472ea5dae7e6b9
+  languageName: node
+  linkType: hard
+
+"bip39@npm:3.0.3":
+  version: 3.0.3
+  resolution: "bip39@npm:3.0.3"
+  dependencies:
+    "@types/node": 11.11.6
+    create-hash: ^1.1.0
+    pbkdf2: ^3.0.9
+    randombytes: ^2.0.1
+  checksum: 948443cd3713921ea1a5a5d15b52cd62280d0c30fc4a5cee3df261567808cde5e11622c0d34bccee8fadefdffa7db4244682a5567be6b9f70e195948b9d23bf8
+  languageName: node
+  linkType: hard
+
 "bl@npm:^4.0.3":
   version: 4.0.3
   resolution: "bl@npm:4.0.3"
@@ -3309,10 +3366,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bn.js@npm:^4.11.9":
-  version: 4.11.9
-  resolution: "bn.js@npm:4.11.9"
-  checksum: 31630d3560b28931010980886a0f657b37ce818ba237867cd838e89a1a0b71044fb4977aa56376616997b372bbb3f55d3bb25e5378c48c1d24a47bfb4235b60e
+"bn.js@npm:^4.11.8, bn.js@npm:^4.11.9":
+  version: 4.12.0
+  resolution: "bn.js@npm:4.12.0"
+  checksum: cfe7494de9c8a472c3534418f64f9c30a3f18134a8ad0c3ba4e0e934feb5d1a9110bba049a47ec6b79a1d649467df212f64ba6b22aaccbea0c3c208bef0b4110
+  languageName: node
+  linkType: hard
+
+"bn.js@npm:^5.1.1":
+  version: 5.2.0
+  resolution: "bn.js@npm:5.2.0"
+  checksum: 7a73bdbba63013a7f9953fbbd6ea3351e4cf36d6fdbb5adf7969fcd65255b9c04f2994b0132d89d74ffe608a0eb5a48322526bee20c0e03e71e502603b420f63
   languageName: node
   linkType: hard
 
@@ -3395,6 +3459,26 @@ __metadata:
   bin:
     browserslist: cli.js
   checksum: dfab0d3c3d9a3517cf3f8a274bc4e8245f3a02c1a5ae2a0e01498273d363952d11ee09fdce3b0ce551f6cab9d619ed2d9facf7b6471c9190df949a5ad39665c5
+  languageName: node
+  linkType: hard
+
+"bs58@npm:^4.0.0, bs58@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "bs58@npm:4.0.1"
+  dependencies:
+    base-x: ^3.0.2
+  checksum: 0da897a0e527b31ec0fd7ce4d84a86278196acb4fa4f5010dce38a7b83b8b0bbe26909843878c2aa32bdbe00b93a68408d42c74a1cfaa05ca64f29bd5dff4187
+  languageName: node
+  linkType: hard
+
+"bs58check@npm:<3.0.0, bs58check@npm:^2.1.1":
+  version: 2.1.2
+  resolution: "bs58check@npm:2.1.2"
+  dependencies:
+    bs58: ^4.0.0
+    create-hash: ^1.1.0
+    safe-buffer: ^5.1.2
+  checksum: 43e75980883bff36a591a8ecf790e3b1f4d7cf03bf2a4866f371355e2de121f9130ac41e1abf28451ccf808e32f589048da6250fa9e15d3f766d871ca39f6d67
   languageName: node
   linkType: hard
 
@@ -3617,7 +3701,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cipher-base@npm:^1.0.1":
+"cipher-base@npm:^1.0.1, cipher-base@npm:^1.0.3":
   version: 1.0.4
   resolution: "cipher-base@npm:1.0.4"
   dependencies:
@@ -3920,7 +4004,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-hash@npm:^1.2.0":
+"create-hash@npm:^1.1.0, create-hash@npm:^1.1.2, create-hash@npm:^1.2.0":
   version: 1.2.0
   resolution: "create-hash@npm:1.2.0"
   dependencies:
@@ -3930,6 +4014,20 @@ __metadata:
     ripemd160: ^2.0.1
     sha.js: ^2.4.0
   checksum: 5565182efc3603e4d34c3ce13fd0765a058b27f91e49ba8e720e30ba8bfc53e9cd835e5343136000b6f210a979fe1041a4f3fe728e866e64f34db04b068fd725
+  languageName: node
+  linkType: hard
+
+"create-hmac@npm:^1.1.4, create-hmac@npm:^1.1.7":
+  version: 1.1.7
+  resolution: "create-hmac@npm:1.1.7"
+  dependencies:
+    cipher-base: ^1.0.3
+    create-hash: ^1.1.0
+    inherits: ^2.0.1
+    ripemd160: ^2.0.0
+    safe-buffer: ^5.0.1
+    sha.js: ^2.4.8
+  checksum: 98957676a93081678a2a915ae14898d65aac9b5651ffa55b8888484dd9d79c06d3cb3f85b137cd833ab536d87adee17394bb2b0efc591ea0e34110266d5bcd75
   languageName: node
   linkType: hard
 
@@ -4458,7 +4556,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"elliptic@npm:^6.5.4":
+"elliptic@npm:^6.4.0, elliptic@npm:^6.4.1, elliptic@npm:^6.5.4":
   version: 6.5.4
   resolution: "elliptic@npm:6.5.4"
   dependencies:
@@ -8626,6 +8724,19 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"pbkdf2@npm:^3.0.9":
+  version: 3.1.2
+  resolution: "pbkdf2@npm:3.1.2"
+  dependencies:
+    create-hash: ^1.1.2
+    create-hmac: ^1.1.4
+    ripemd160: ^2.0.1
+    safe-buffer: ^5.0.1
+    sha.js: ^2.4.8
+  checksum: 12ac46c71db0613f5e45824d65598a31b4fb09bb860cde8024919778be7971468f2c6b010250d5bc9907a247f85580b560fd5b78b09263d207e8bdf3963c83c7
+  languageName: node
+  linkType: hard
+
 "performance-now@npm:^2.1.0":
   version: 2.1.0
   resolution: "performance-now@npm:2.1.0"
@@ -9024,6 +9135,15 @@ fsevents@~2.1.2:
     object-assign: ^4.1.0
     strict-uri-encode: ^1.0.0
   checksum: fcdbc2e76024a3afd0c5ea3addda75311d5d10402ddb5a03542dec430d36dbc44c87a11765ffa952d53e0b96e187298929561b88cc196a828f8728d2a3545ab8
+  languageName: node
+  linkType: hard
+
+"randombytes@npm:^2.0.1":
+  version: 2.1.0
+  resolution: "randombytes@npm:2.1.0"
+  dependencies:
+    safe-buffer: ^5.1.0
+  checksum: ede2693af09732ceab1c273dd70db787f34a7b8d95bab13f1aca763483c0113452a78e53d61ff18d393dcea586d388e01f198a5132a4a85cebba31ec54164b75
   languageName: node
   linkType: hard
 
@@ -9501,7 +9621,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"ripemd160@npm:^2.0.1":
+"ripemd160@npm:^2.0.0, ripemd160@npm:^2.0.1":
   version: 2.0.2
   resolution: "ripemd160@npm:2.0.2"
   dependencies:
@@ -9552,7 +9672,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.2, safe-buffer@npm:^5.2.0, safe-buffer@npm:~5.2.0":
+"safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.0, safe-buffer@npm:^5.1.2, safe-buffer@npm:^5.2.0, safe-buffer@npm:~5.2.0":
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: 0bb57f0d8f9d1fa4fe35ad8a2db1f83a027d48f2822d59ede88fd5cd4ddad83c0b497213feb7a70fbf90597a70c5217f735b0eb1850df40ce9b4ae81dd22b3f9
@@ -9694,7 +9814,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"sha.js@npm:^2.4.0":
+"sha.js@npm:^2.4.0, sha.js@npm:^2.4.8":
   version: 2.4.11
   resolution: "sha.js@npm:2.4.11"
   dependencies:
@@ -10451,6 +10571,20 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"tiny-secp256k1@npm:^1.1.3":
+  version: 1.1.6
+  resolution: "tiny-secp256k1@npm:1.1.6"
+  dependencies:
+    bindings: ^1.3.0
+    bn.js: ^4.11.8
+    create-hmac: ^1.1.7
+    elliptic: ^6.4.0
+    nan: ^2.13.2
+    node-gyp: latest
+  checksum: d032de6164942cd811e38e3ca2f255fe7e4079945700a40a37f4618454576a45bb429f912591acfd568628e69f0c418a01e30c8223e7e92051d698fa5cda312f
+  languageName: node
+  linkType: hard
+
 "tmp@npm:^0.0.33":
   version: 0.0.33
   resolution: "tmp@npm:0.0.33"
@@ -10686,6 +10820,13 @@ fsevents@~2.1.2:
   dependencies:
     is-typedarray: ^1.0.0
   checksum: e6e0e6812acc3496612d81abe026bb6c71bfc0f3daa00716a3236fe37c46a81508de8306df8a29ae81e2a2c4293b6b8067c77b65003e0022134d544902b9acec
+  languageName: node
+  linkType: hard
+
+"typeforce@npm:^1.11.5":
+  version: 1.18.0
+  resolution: "typeforce@npm:1.18.0"
+  checksum: f5bf1d06f97fd1b45d236cf7b694ebe3665cba01961d2665be0264a50048d93551edf44e919f8f81962f3169f8f3aedf85f7ed9ccfac8a0cf9888ba9694f6851
   languageName: node
   linkType: hard
 
@@ -11110,6 +11251,15 @@ fsevents@~2.1.2:
   dependencies:
     string-width: ^4.0.0
   checksum: 729c30582e49bdcb1372216eedfd71d1640a1344a4b4e970bc9f33d575b56b130f530b383fbab2cf2bcffb76ea4357e6a66939778d8de91ca66037651d94e01a
+  languageName: node
+  linkType: hard
+
+"wif@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "wif@npm:2.0.6"
+  dependencies:
+    bs58check: <3.0.0
+  checksum: 0880ce99c8490be97ee1bff1d984a95b2b7a1d6f73824086da278f49bf68d1373f9af89c093d2514cf3dc08cd11ff60c3787f494e25326aa30f9ff81e34757a8
   languageName: node
   linkType: hard
 
