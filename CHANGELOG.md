@@ -4,7 +4,9 @@
 
 Changes:
 
+- Add `isAddress` and `validateAddress` functions (the latter will throw if invalid)
 - Check `@polkadot/hw-ledger` against `@polkadot/networks` for discrepancies (test-only)
+
 
 ## 6.1.1 Apr 11, 2021
 

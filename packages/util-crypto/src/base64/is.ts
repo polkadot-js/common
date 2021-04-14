@@ -3,7 +3,7 @@
 
 import { base64Validate } from './validate';
 
-export function isBase64 (value?: string | null): boolean {
+export function isBase64 (value?: string | null): value is string {
   try {
     return base64Validate(value);
   } catch (error) {

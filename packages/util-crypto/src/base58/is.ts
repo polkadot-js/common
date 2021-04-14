@@ -4,6 +4,6 @@
 import { testValidator } from '../base32/is';
 import { base58Validate } from './validate';
 
-export function isBase58 (value?: string | null, ipfsCompat?: boolean): boolean {
+export function isBase58 (value?: string | null, ipfsCompat?: boolean): value is string {
   return testValidator(base58Validate, value, ipfsCompat);
 }
