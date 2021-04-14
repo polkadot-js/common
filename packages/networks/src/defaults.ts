@@ -14,6 +14,9 @@ export const knownGenesis: KnownGenesis = {
   edgeware: [
     '0x742a2ca70c2fda6cee4f8df98d64c4c670a052d9568058982dad9d5a7a135c5b'
   ],
+  hydradx: [
+    '0x3d75507dd46301767e601265791da1d9cb47b6ebc94e87347b635e5bf58bd047'
+  ],
   kulupu: [
     '0xf7a99d3cb92853d00d5275c971c132c074636256583fee53b3bbe60d7b8769ba'
   ],
