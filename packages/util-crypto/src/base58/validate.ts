@@ -28,8 +28,8 @@ export function validateChars ({ alphabet, ipfsChar, type }: CheckConfig, value?
  * @name base58Validate
  * @summary Validates a base58 value.
  * @description
- * Validates the the supplied value is valid base58
+ * Validates that the supplied value is valid base58
  */
-export function base58Validate (value?: string | null, ipfsCompat?: boolean): true {
+export function base58Validate (value?: string | null, ipfsCompat?: boolean): value is string {
   return validateChars(BASE_CONFIG, value, ipfsCompat);
 }

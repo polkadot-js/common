@@ -10,7 +10,9 @@ import { base58Decode } from '../base58/decode';
 import { checkAddressChecksum } from './checksum';
 import { defaults } from './defaults';
 
-export function decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: boolean, ss58Format: Prefix = -1): Uint8Array {
+export function decodeAddress (encoded?: string | Uint8Array | null, ignoreChecksum?: boolean, ss58Format: Prefix = -1): Uint8Array {
+  assert(encoded, 'Invalid empty address passed');
+
   if (isU8a(encoded) || isHex(encoded)) {
     return u8aToU8a(encoded);
   }
