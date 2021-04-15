@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-rxjs",
-  "version": "6.1.2-2",
+  "version": "6.1.2-3",
   "type": "module",
   "description": "A pass-through interface for RxJs (allowing node + mjs usage)",
   "main": "index.js",
