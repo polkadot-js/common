@@ -1,11 +1,16 @@
 # CHANGELOG
 
-## 6.x
+## 6.2.1 Apr 18, 2021
+
+Contributed:
+
+- Added HydraDx genesis (Thanks to https://github.com/jak-pan)
 
 Changes:
 
 - Add `isAddress` and `validateAddress` functions (the latter will throw if invalid)
 - Check `@polkadot/hw-ledger` against `@polkadot/networks` for discrepancies (test-only)
+- Align ss58 registry with upstream Substrate
 
 
 ## 6.1.1 Apr 11, 2021
