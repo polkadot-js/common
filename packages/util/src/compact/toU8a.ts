@@ -45,10 +45,8 @@ export function compactToU8a (_value: BN | BigInt | number): Uint8Array {
   assert(length >= 4, 'Previous tests match anyting less than 2^30; qed');
 
   return u8aConcat(
-    new Uint8Array([
-      // substract 4 as minimum (also catered for in decoding)
-      ((length - 4) << 2) + 0b11
-    ]),
+    // subtract 4 as minimum (also catered for in decoding)
+    [((length - 4) << 2) + 0b11],
     u8a.subarray(0, length)
   );
 }

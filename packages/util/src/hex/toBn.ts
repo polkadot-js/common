@@ -16,7 +16,7 @@ function reverse (value: string): string {
 
 /**
  * @name hexToBn
- * @summary Creates a BN.js bignumber object from a hex string.
+ * @summary Creates a BN.js object from a hex string.
  * @description
  * `null` inputs returns a `BN(0)` result. Hex input values return the actual value converted to a BN. Anything that is not a hex string (including the `0x` prefix) throws an error.
  * @param _value The value to convert
@@ -43,7 +43,6 @@ export function hexToBn (value?: string | number | null, options: ToBnOptions | 
     // Backwards-compatibility
     ...(isBoolean(options) ? { isLe: options } : options)
   };
-
   const _value = hexStripPrefix(value as string);
 
   // FIXME: Use BN's 3rd argument `isLe` once this issue is fixed
