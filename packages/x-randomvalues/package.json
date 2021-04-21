@@ -15,10 +15,10 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-randomvalues#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.10",
+    "@babel/runtime": "^7.13.17",
     "@polkadot/x-global": "6.2.1"
   },
   "devDependencies": {
-    "@types/react-native": "^0.64.2"
+    "@types/react-native": "^0.64.4"
   }
 }
