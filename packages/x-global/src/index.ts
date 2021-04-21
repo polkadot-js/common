@@ -4,11 +4,13 @@
 export { packageInfo } from './packageInfo';
 
 export const xglobal = (
-  typeof global !== 'undefined'
-    ? global
-    : typeof self !== 'undefined'
-      ? self
-      : typeof window !== 'undefined'
-        ? window
-        : this as unknown as (Window & typeof globalThis)
+  typeof globalThis !== 'undefined'
+    ? globalThis
+    : typeof global !== 'undefined'
+      ? global
+      : typeof self !== 'undefined'
+        ? self
+        : typeof window !== 'undefined'
+          ? window
+          : this as unknown as (Window & typeof globalThis)
 );
