@@ -88,7 +88,7 @@ function getPath (pathOrFn?: FnString | string | false): string {
  * @summary Checks that a specific package is only imported once
  */
 export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnString | string | false, deps: PackageJson[] = []): void {
-  assert(name.startsWith('@polkadot'), `Invalid package descriptor ${name}`);
+  assert(name.startsWith('@polkadot'), () => `Invalid package descriptor ${name}`);
 
   const entry = getEntry(name);
 

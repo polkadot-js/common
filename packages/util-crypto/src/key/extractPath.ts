@@ -28,7 +28,7 @@ export function keyExtractPath (derivePath: string): ExtractResult {
     });
   }
 
-  assert(constructed === derivePath, `Re-constructed path "${constructed}" does not match input`);
+  assert(constructed === derivePath, () => `Re-constructed path "${constructed}" does not match input`);
 
   return {
     parts,

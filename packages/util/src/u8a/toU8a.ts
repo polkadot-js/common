@@ -35,7 +35,7 @@ export function u8aToU8a (value?: number[] | Buffer | Uint8Array | string | null
     return new Uint8Array(value);
   }
 
-  assert(isU8a(value), `Unable to convert ${value.toString()} (typeof ${typeof value}) to a Uint8Array`);
+  assert(isU8a(value), () => `Unable to convert ${value.toString()} (typeof ${typeof value}) to a Uint8Array`);
 
   return value;
 }

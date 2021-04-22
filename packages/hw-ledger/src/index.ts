@@ -28,8 +28,8 @@ export class Ledger {
 
   constructor (transport: LedgerTypes, chain: Chain) {
     // u2f is deprecated
-    assert(['hid', 'webusb'].includes(transport), `Unsupported transport ${transport}`);
-    assert(Object.keys(ledgerApps).includes(chain), `Unsupported chain ${chain}`);
+    assert(['hid', 'webusb'].includes(transport), () => `Unsupported transport ${transport}`);
+    assert(Object.keys(ledgerApps).includes(chain), () => `Unsupported chain ${chain}`);
 
     this.#chain = chain;
     this.#transport = transport;
@@ -73,7 +73,7 @@ export class Ledger {
     if (!this.#app) {
       const def = transports.find(({ type }) => type === this.#transport);
 
-      assert(def, `Unable to find a transport for ${this.#transport}`);
+      assert(def, () => `Unable to find a transport for ${this.#transport}`);
 
       const transport = await def.create();
 
@@ -98,7 +98,7 @@ export class Ledger {
   #wrapError = async <T extends ResponseBase> (promise: Promise<T>): Promise<T> => {
     const result = await promise;
 
-    assert(result.return_code === LEDGER_SUCCESS_CODE, result.error_message);
+    assert(result.return_code === LEDGER_SUCCESS_CODE, () => result.error_message);
 
     return result;
   };

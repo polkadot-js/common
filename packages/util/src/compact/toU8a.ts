@@ -42,7 +42,7 @@ export function compactToU8a (_value: BN | BigInt | number): Uint8Array {
     length--;
   }
 
-  assert(length >= 4, 'Previous tests match anyting less than 2^30; qed');
+  assert(length >= 4, 'Invalid length, previous checks match anything less than 2^30');
 
   return u8aConcat(
     // subtract 4 as minimum (also catered for in decoding)
