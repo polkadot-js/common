@@ -25,7 +25,7 @@ export function decodeAddress (encoded?: string | Uint8Array | null, ignoreCheck
     const [isValid, endPos, ss58Length, ss58Decoded] = checkAddressChecksum(decoded);
 
     assert(ignoreChecksum || isValid, 'Invalid decoded address checksum');
-    assert([-1, ss58Decoded].includes(ss58Format), `Expected ss58Format ${ss58Format}, received ${ss58Decoded}`);
+    assert([-1, ss58Decoded].includes(ss58Format), () => `Expected ss58Format ${ss58Format}, received ${ss58Decoded}`);
 
     return decoded.slice(ss58Length, endPos);
   } catch (error) {

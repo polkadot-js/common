@@ -16,7 +16,7 @@ export function encodeAddress (key: Uint8Array | string, ss58Format: Prefix = de
   const u8a = decodeAddress(key);
 
   assert(ss58Format >= 0 && ss58Format <= 16383 && ![46, 47].includes(ss58Format), 'Out of range ss58Format specified');
-  assert(defaults.allowedDecodedLengths.includes(u8a.length), `Expected a valid key to convert, with length ${defaults.allowedDecodedLengths.join(', ')}`);
+  assert(defaults.allowedDecodedLengths.includes(u8a.length), () => `Expected a valid key to convert, with length ${defaults.allowedDecodedLengths.join(', ')}`);
 
   const input = u8aConcat(
     ss58Format < 64
