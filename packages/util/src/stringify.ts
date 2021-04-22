@@ -3,7 +3,7 @@
 
 import { isBigInt } from './is/bigInt';
 
-export function stringify (args: unknown, space?: string | number | undefined): string {
+export function stringify (args: unknown, space?: string | number): string {
   return JSON.stringify(
     args,
     (_, value: unknown) =>
