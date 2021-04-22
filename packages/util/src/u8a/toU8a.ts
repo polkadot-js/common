@@ -1,10 +1,12 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { assert } from '../assert';
 import { hexToU8a } from '../hex/toU8a';
 import { isBuffer } from '../is/buffer';
 import { isHex } from '../is/hex';
 import { isString } from '../is/string';
+import { isU8a } from '../is/u8a';
 import { stringToU8a } from '../string/toU8a';
 
 /**
@@ -29,9 +31,11 @@ export function u8aToU8a (value?: number[] | Buffer | Uint8Array | string | null
     return isHex(value)
       ? hexToU8a(value)
       : stringToU8a(value);
+  } else if (Array.isArray(value) || isBuffer(value)) {
+    return new Uint8Array(value);
   }
 
-  return Array.isArray(value) || isBuffer(value)
-    ? new Uint8Array(value)
-    : value;
+  assert(isU8a(value), `Unable to convert ${value.toString()} (typeof ${typeof value}) to a Uint8Array`);
+
+  return value;
 }
