@@ -18,6 +18,12 @@ describe('stringify', (): void => {
     ).toEqual('["a",1,"2","3"]');
   });
 
+  it('stringifies an array of values (with spaces)', (): void => {
+    expect(
+      stringify(['a', 1, 2n, new BN(3)], 2)
+    ).toEqual('[\n  "a",\n  1,\n  "2",\n  "3"\n]');
+  });
+
   it('stringifies a nested object', (): void => {
     expect(
       stringify({ a: 'a', b: 1, c: { d: 2n, e: new BN(3) } })
