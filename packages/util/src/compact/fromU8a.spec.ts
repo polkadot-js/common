@@ -47,4 +47,12 @@ describe('compactFromU8a', (): void => {
       )
     ).toEqual([7, new BN('5af3107a4000', 16)]);
   });
+
+  it('decodes an actual value', (): void => {
+    expect(
+      compactFromU8a(
+        hexToU8a('0x0284d717')
+      )[1].toString()
+    ).toEqual('100000000');
+  });
 });
