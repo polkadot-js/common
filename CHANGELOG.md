@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Additional input asserts for non-convertable values in `u8aToU8a`
+- Adapt `@polkadot/x-global` to return `globalThis` as available
+- Minor readability cleanups
+
+
 ## 6.2.1 Apr 18, 2021
 
 Contributed:

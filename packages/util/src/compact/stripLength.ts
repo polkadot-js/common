@@ -1,9 +1,6 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BitLength } from './types';
-
-import { DEFAULT_BITLENGTH } from './defaults';
 import { compactFromU8a } from './fromU8a';
 
 /**
@@ -18,8 +15,8 @@ import { compactFromU8a } from './fromU8a';
  * console.log(compactStripLength(new Uint8Array([2 << 2, 0xde, 0xad]))); // [2, Uint8Array[0xde, 0xad]]
  * ```
  */
-export function compactStripLength (input: Uint8Array, bitLength: BitLength = DEFAULT_BITLENGTH): [number, Uint8Array] {
-  const [offset, length] = compactFromU8a(input, bitLength);
+export function compactStripLength (input: Uint8Array): [number, Uint8Array] {
+  const [offset, length] = compactFromU8a(input);
   const total = offset + length.toNumber();
 
   return [
