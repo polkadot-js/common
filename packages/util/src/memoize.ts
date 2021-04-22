@@ -3,8 +3,8 @@
 
 import type { Memoized } from './types';
 
-import { isBigInt } from './is/bigInt';
 import { isUndefined } from './is/undefined';
+import { stringify } from './stringify';
 
 interface Options {
   getInstanceId?: () => string;
@@ -14,20 +14,12 @@ function defaultGetId (): string {
   return 'none';
 }
 
-function normalize (args: unknown[]): string {
-  return JSON.stringify(args, (_, value: unknown) =>
-    isBigInt(value)
-      ? value.toString()
-      : value
-  );
-}
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function memoize <T, F extends (...args: any[]) => T> (fn: F, { getInstanceId = defaultGetId }: Options = {}): Memoized<F> {
   const cache: Record<string, Record<string, T>> = {};
 
   const memoized = (...args: unknown[]): T => {
-    const stringParams = normalize(args);
+    const stringParams = stringify(args);
     const instanceId = getInstanceId();
 
     if (!cache[instanceId]) {
@@ -42,7 +34,7 @@ export function memoize <T, F extends (...args: any[]) => T> (fn: F, { getInstan
   };
 
   memoized.unmemoize = (...args: unknown[]): void => {
-    const stringParams = normalize(args);
+    const stringParams = stringify(args);
     const instanceId = getInstanceId();
 
     if (cache[instanceId] && !isUndefined(cache[instanceId][stringParams])) {
