@@ -3,6 +3,7 @@
 
 import BN from 'bn.js';
 
+import { BN_FOUR } from '../bn';
 import { u8aToBn, u8aToU8a } from '../u8a';
 
 /**
@@ -24,17 +25,17 @@ export function compactFromU8a (_input: Buffer | Uint8Array | string | number[])
   const flag = input[0] & 0b11;
 
   if (flag === 0b00) {
-    return [1, new BN(input[0]).shrn(2)];
+    return [1, new BN(input[0]).ishrn(2)];
   } else if (flag === 0b01) {
-    return [2, u8aToBn(input.slice(0, 2), true).shrn(2)];
+    return [2, u8aToBn(input.slice(0, 2), true).ishrn(2)];
   } else if (flag === 0b10) {
-    return [4, u8aToBn(input.slice(0, 4), true).shrn(2)];
+    return [4, u8aToBn(input.slice(0, 4), true).ishrn(2)];
   }
 
   const offset = 1 + (
     new BN(input[0])
-      .shrn(2) // clear flag
-      .addn(4) // add 4 for base length
+      .ishrn(2) // clear flag
+      .iadd(BN_FOUR) // add 4 for base length
       .toNumber()
   );
 

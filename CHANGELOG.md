@@ -8,6 +8,7 @@ Changes:
 - Additional input asserts for non-convertable values in `u8aToU8a`
 - Adapt `@polkadot/x-global` to return `globalThis` as available
 - Minor readability cleanups
+- BN manipulation via in-place shifts (as applicable)
 
 
 ## 6.2.1 Apr 18, 2021
