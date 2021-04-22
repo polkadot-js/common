@@ -25,7 +25,7 @@ export function hexToU8a (_value?: string | null, bitLength = -1): Uint8Array {
     return new Uint8Array();
   }
 
-  assert(isHex(_value), `Expected hex value to convert, found '${_value}'`);
+  assert(isHex(_value), () => `Expected hex value to convert, found '${_value}'`);
 
   const value = hexStripPrefix(_value);
   const valLength = value.length / 2;
