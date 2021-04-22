@@ -59,7 +59,7 @@ describe('u8aToU8a', (): void => {
   it('fails to create from unknown typed values', (): void => {
     expect(
       // this is where completely invalid data is being passed
-      u8aToU8a(123 as unknown as Uint8Array)
-    ).toThrow(/Unable to convert 123 (typeof number) to a Uint8Array/);
+      () => u8aToU8a(123 as unknown as Uint8Array)
+    ).toThrow('Unable to convert 123 (typeof number) to a Uint8Array');
   });
 });
