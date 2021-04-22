@@ -29,9 +29,9 @@ export function compactToU8a (_value: BN | BigInt | number): Uint8Array {
   if (value.lte(MAX_U8)) {
     return new Uint8Array([value.toNumber() << 2]);
   } else if (value.lte(MAX_U16)) {
-    return bnToU8a(value.ishln(2).iadd(BN_ONE), 16, true);
+    return bnToU8a(value.shln(2).iadd(BN_ONE), 16, true);
   } else if (value.lte(MAX_U32)) {
-    return bnToU8a(value.ishln(2).iadd(BN_TWO), 32, true);
+    return bnToU8a(value.shln(2).iadd(BN_TWO), 32, true);
   }
 
   const u8a = bnToU8a(value);

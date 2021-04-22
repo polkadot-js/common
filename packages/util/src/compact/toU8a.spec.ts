@@ -72,6 +72,13 @@ describe('encode', (): void => {
     );
   });
 
+  it('does not modify the original', (): void => {
+    const original = new BN(123456);
+
+    expect(compactToU8a(original)).toEqual(new Uint8Array([2, 137, 7, 0]));
+    expect(original.toString()).toEqual('123456');
+  });
+
   describe('from Rust', (): void => {
     // Copied from https://github.com/paritytech/parity-codec/blob/master/src/codec.rs
     const testCases = [
