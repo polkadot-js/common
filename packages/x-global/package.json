@@ -5,6 +5,9 @@
   "description": "A cross-environment global replacement",
   "main": "index.js",
   "sideEffects": false,
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],

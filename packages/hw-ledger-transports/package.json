@@ -11,6 +11,9 @@
   "browser": "browser.js",
   "react-native": "react-native.js",
   "sideEffects": false,
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "@babel/runtime": "^7.13.17",
     "@ledgerhq/hw-transport-webusb": "^5.49.0"

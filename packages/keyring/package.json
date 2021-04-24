@@ -12,6 +12,9 @@
     "./detectPackage.js",
     "./detectPackage.cjs"
   ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "repository": "github:polkadot-js/common",
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/keyring#readme",
