@@ -5,10 +5,11 @@
 Changes:
 
 - Added `stringify` util to correctly handle `JSON.stringify` with `BigInt` values
-- Additional input asserts for non-convertable values in `u8aToU8a`
+- Additional input asserts for non-convertible values in `u8aToU8a`
 - Adapt `@polkadot/x-global` to return `globalThis` as available
 - Minor readability cleanups
 - BN manipulation via in-place shifts (as applicable)
+- Add explicit `engines` config to `package.json`
 
 
 ## 6.2.1 Apr 18, 2021

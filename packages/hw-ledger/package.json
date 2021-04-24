@@ -12,6 +12,9 @@
     "./detectPackage.js",
     "./detectPackage.cjs"
   ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "@babel/runtime": "^7.13.17",
     "@polkadot/hw-ledger-transports": "6.2.2-7",
