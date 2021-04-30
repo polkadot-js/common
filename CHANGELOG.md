@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Added additional double-byte ss58 tests
+
+
 ## 6.3.1 Apr 25, 2021
 
 Changes:
