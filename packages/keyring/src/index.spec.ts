@@ -121,6 +121,14 @@ describe('keypair', (): void => {
       ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY');
     });
 
+    it('creates via dev seed (2-byte encoding)', (): void => {
+      keyring.setSS58Format(252);
+
+      expect(
+        keyring.addFromUri('//Alice').address
+      ).toEqual('xw8P6urbSAronL3zZFB7dg8p7LLSgKCUFDUgjohnf1iP434ic');
+    });
+
     it('adds the pair', (): void => {
       expect(
         keyring.addFromSeed(seedTwo, {}).publicKey
