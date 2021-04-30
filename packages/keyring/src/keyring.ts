@@ -86,7 +86,7 @@ export class Keyring implements KeyringInstance {
   /**
    * @name addFromAddress
    * @summary Stores an account, given an account address, as a Key/Value (public key, pair) in Keyring Pair Dictionary
-   * @description Allows user to explicitely provide separate inputs including account address or public key, and optionally
+   * @description Allows user to explicitly provide separate inputs including account address or public key, and optionally
    * the associated account metadata, and the default encoded value as arguments (that may be obtained from the json file
    * of an account backup), and then generates a keyring pair from them that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
