@@ -27,10 +27,22 @@ const SUBKEY = [
     ss58Format: 66
   },
   {
+    // sora
+    address: 'cnVRwXfAnz3RSVQyBUC8f8McrK3YBX2QYd4WoctpeSC6VTJYm',
+    publicKey: '0xae640d53cfa815f4a6a50ae70235cd7d9d134d0f1c3a4ccd118e321dfb6ab51f',
+    ss58Format: 69
+  },
+  {
     // ecdsa
     address: '4pbsSkWcBaYoFHrKJZp5fDVUKbqSYD9dhZZGvpp3vQ5ysVs5ybV',
     publicKey: '0x035676109c54b9a16d271abeb4954316a40a32bcce023ac14c8e26e958aa68fba9',
     ss58Format: 200
+  },
+  {
+    // social-network
+    address: 'xw5g1Eec8LT99pZLZMaTWwrwvNtfM6vrSuZeVbtEszCDUwByg',
+    publicKey: '0x5c64f1151f0ce4358c27238fb20c88e7c899825436f565410724c8c2c5add869',
+    ss58Format: 252
   },
   {
     address: 'yGF4JP7q5AK46d1FPCEm9sYQ4KooSjHMpyVAjLnsCSWVafPnf',

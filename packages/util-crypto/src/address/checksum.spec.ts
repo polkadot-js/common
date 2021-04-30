@@ -17,6 +17,18 @@ describe('checkAddressChecksum', (): void => {
     ).toEqual([true, 34, 2, 66]);
   });
 
+  it('correctly extracts the info from a 2-byte-prefix address (69)', (): void => {
+    expect(
+      checkAddressChecksum(base58Decode('cnVvyMzRdqjwejTFuByQQ4w2yu78V2hpFixjHQz5zr6NSYsxA'))
+    ).toEqual([true, 34, 2, 69]);
+  });
+
+  it('correctly extracts the info from a 2-byte-prefix address (252)', (): void => {
+    expect(
+      checkAddressChecksum(base58Decode('xw8Ffc2SZtDqUJKd9Ky4vc7PRz2D2asuVkEEzf3WGAbw9cnfq'))
+    ).toEqual([true, 34, 2, 252]);
+  });
+
   it('correctly extracts the info from a 2-byte-prefix address (255)', (): void => {
     expect(
       checkAddressChecksum(base58Decode('yGHU8YKprxHbHdEv7oUK4rzMZXtsdhcXVG2CAMyC9WhzhjH2k'))

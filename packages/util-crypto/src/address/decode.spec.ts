@@ -89,6 +89,22 @@ describe('decodeAddress', (): void => {
     );
   });
 
+  it('decodes a 2-byte prefix (69)', (): void => {
+    expect(
+      decodeAddress('cnUaoo5wodnTVA4bnr4woSweto8hWZADUvLFXkR9Q6U7BRsbF')
+    ).toEqual(
+      hexToU8a('0x88eafe0305d460d1695cf34c2f786050df8e40d215e488790cc70929c9e8316d')
+    );
+  });
+
+  it('decodes a 2-byte prefix (252)', (): void => {
+    expect(
+      decodeAddress('xw9Hca4RJTmBRgzJT4ieJBh7XCK9gE3NXBDSEmgGHd4TCrbnG')
+    ).toEqual(
+      hexToU8a('0xfc422da6c3bc6dfa2a436a506428072941662f816987baaa8914e02ff5947f4b')
+    );
+  });
+
   it('decodes a 2-byte prefix (255)', (): void => {
     expect(
       decodeAddress('yGHU8YKprxHbHdEv7oUK4rzMZXtsdhcXVG2CAMyC9WhzhjH2k')
@@ -101,12 +117,6 @@ describe('decodeAddress', (): void => {
     expect(
       u8aToHex(decodeAddress('4pbsSkWcBaYoFHrKJZp5fDVUKbqSYD9dhZZGvpp3vQ5ysVs5ybV'))
     ).toEqual('0x035676109c54b9a16d271abeb4954316a40a32bcce023ac14c8e26e958aa68fba9');
-  });
-
-  it.skip('allows invalid prefix (in list)', (): void => {
-    expect(
-      (): Uint8Array => decodeAddress('6GfvWUvHvU8otbZ7sFhXH4eYeMcKdUkL61P3nFy52efEPVUx')
-    ).toThrow(/address prefix/);
   });
 
   it('fails when length is invalid', (): void => {
