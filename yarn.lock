@@ -2170,7 +2170,7 @@ __metadata:
   resolution: "@polkadot/x-rxjs@workspace:packages/x-rxjs"
   dependencies:
     "@babel/runtime": ^7.14.0
-    rxjs: ^6.6.7
+    rxjs: ^7.0.0
   languageName: unknown
   linkType: soft
 
@@ -9774,6 +9774,15 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"rxjs@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "rxjs@npm:7.0.0"
+  dependencies:
+    tslib: ~2.1.0
+  checksum: e0d08420f94474c73a14e57b7a1bcbf7010791817e06e5a16a998a8e151b89bd0b4a4883203cb86906a81b0e052cb99cfe3d96b652de4c744282f4d60a51d73e
+  languageName: node
+  linkType: hard
+
 "safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.0, safe-buffer@npm:^5.1.2, safe-buffer@npm:^5.2.0, safe-buffer@npm:~5.2.0":
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
@@ -10821,6 +10830,13 @@ resolve@^2.0.0-next.3:
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: f44fe7f216946b17d3e3074df3746372703cf24e9127b4c045511456e8e4bf25515fb0a1bb3937676cc305651c5d4fcb6377b0588a4c6a957e748c4c28905d17
+  languageName: node
+  linkType: hard
+
+"tslib@npm:~2.1.0":
+  version: 2.1.0
+  resolution: "tslib@npm:2.1.0"
+  checksum: d8f5bdd067611651c6b846c2388f4dc8ba1f5af124e66105f5263d1ad56da17f4b8c6566887ca2f205c5a9758451871ceca87d5d06087af2dca1699c5e33db69
   languageName: node
   linkType: hard
 
