@@ -6,7 +6,7 @@ import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types';
 import type { PairInfo } from './types';
 
-import { assert, u8aConcat, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
+import { assert, hexToU8a, u8aConcat, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
 import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
@@ -44,7 +44,13 @@ const TYPE_SIGNATURE = {
 const TYPE_ADDRESS = {
   ecdsa: (p: Uint8Array) => p.length > 32 ? blake2AsU8a(p) : p,
   ed25519: (p: Uint8Array) => p,
-  ethereum: (p: Uint8Array) => keccakAsU8a(secp256k1Expand(p)),
+  ethereum: (p: Uint8Array) => {
+    if (p.length === 20) {
+      return (p);
+    } else {
+      return hexToU8a(ethereumEncode(keccakAsU8a(secp256k1Expand(p))));
+    }
+  },
   sr25519: (p: Uint8Array) => p
 };
 
@@ -113,14 +119,9 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
   };
 
   const encodeAddress = (): string => {
-    // Need to be able to add from an eth address
-    if (type === 'ethereum' && publicKey.length === 20) {
-      return u8aToHex(publicKey);
-    } else {
-      const raw = TYPE_ADDRESS[type](publicKey);
+    const raw = TYPE_ADDRESS[type](publicKey);
 
-      return type === 'ethereum' ? ethereumEncode(raw) : toSS58(raw);
-    }
+    return type === 'ethereum' ? (u8aToHex(raw)) : toSS58(raw);
   };
 
   return {
@@ -128,13 +129,12 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       return encodeAddress();
     },
     get addressRaw (): Uint8Array {
-      if (type === 'ethereum' && publicKey.length === 20) { return (publicKey); } else {
-        const raw = TYPE_ADDRESS[type](publicKey);
+      const raw = TYPE_ADDRESS[type](publicKey);
 
-        return type === 'ethereum'
-          ? raw.slice(-20)
-          : raw;
-      }
+      return type === 'ethereum' &&
+          raw.length > 20
+        ? (raw).slice(-20)
+        : raw;
     },
     get isLocked (): boolean {
       return isLocked(secretKey);

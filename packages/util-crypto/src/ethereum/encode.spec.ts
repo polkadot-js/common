@@ -32,17 +32,17 @@ describe('formatAddress', () => {
   });
 
   describe('from publicKey', (): void => {
-    const ADDRESS = '0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887';
+    const ADDRESS = '0x4119b2e6c3cb618f4f0b93ac77f9beec7ff02887';
 
     it('encodes a compressed publicKey', (): void => {
       expect(
-        ethereumEncode('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077')
+        ethereumEncode('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077').toLowerCase()
       ).toEqual(ADDRESS);
     });
 
     it('encodes an expanded publicKey', (): void => {
       expect(
-        ethereumEncode('0x04b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb1307763fe926c273235fd979a134076d00fd1683cbd35868cb485d4a3a640e52184af')
+        ethereumEncode('0x04b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb1307763fe926c273235fd979a134076d00fd1683cbd35868cb485d4a3a640e52184af').toLowerCase()
       ).toEqual(ADDRESS);
     });
 
@@ -50,7 +50,7 @@ describe('formatAddress', () => {
       expect(
         ethereumEncode(
           keccakAsU8a('0xb9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb1307763fe926c273235fd979a134076d00fd1683cbd35868cb485d4a3a640e52184af')
-        )
+        ).toLowerCase()
       ).toEqual(ADDRESS);
     });
   });
