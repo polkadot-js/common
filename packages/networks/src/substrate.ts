@@ -255,15 +255,6 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://jupiter.patract.io'
   },
   {
-    decimals: [10, 12],
-    displayName: 'Patract',
-    network: 'patract',
-    prefix: 27,
-    standardAccount: '*25519',
-    symbols: ['pDOT', 'pKSM'],
-    website: 'https://patract.network'
-  },
-  {
     decimals: null,
     displayName: 'Subsocial',
     network: 'subsocial',
