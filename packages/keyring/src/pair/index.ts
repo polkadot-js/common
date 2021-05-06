@@ -46,7 +46,7 @@ const TYPE_ADDRESS = {
   ed25519: (p: Uint8Array) => p,
   ethereum: (p: Uint8Array) => {
     if (p.length === 20) {
-      return (p);
+      return p;
     } else {
       return hexToU8a(ethereumEncode(keccakAsU8a(secp256k1Expand(p))));
     }
