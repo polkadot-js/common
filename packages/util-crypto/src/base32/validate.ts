@@ -10,8 +10,8 @@ const BASE_CONFIG = { alphabet: BASE32_ALPHABET, ipfsChar: 'b', type: 'base32' }
  * @name base32Validate
  * @summary Validates a base32 value.
  * @description
- * Validates the the supplied value is valid base32
+ * Validates that the supplied value is valid base32
  */
-export function base32Validate (value?: string | null, ipfsCompat?: boolean): true {
+export function base32Validate (value?: string | null, ipfsCompat?: boolean): value is string {
   return validateChars(BASE_CONFIG, value, ipfsCompat);
 }

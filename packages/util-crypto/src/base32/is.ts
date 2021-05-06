@@ -11,6 +11,6 @@ export function testValidator (validate: (value?: string | null, ipfsCompat?: bo
   }
 }
 
-export function isBase32 (value?: string | null, ipfsCompat?: boolean): boolean {
+export function isBase32 (value?: string | null, ipfsCompat?: boolean): value is string {
   return testValidator(base32Validate, value, ipfsCompat);
 }

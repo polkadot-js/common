@@ -118,6 +118,8 @@ describe('logger', (): void => {
   });
 
   it('does debug log when DEBUG partial specified', (): void => {
+    process.env.DEBUG = 'test*';
+
     l = logger('testing');
     l.debug('test');
 
@@ -159,5 +161,32 @@ describe('logger', (): void => {
     ln.debug('test');
 
     expect(spy.log).not.toHaveBeenCalled();
+  });
+
+  it('does not debug log when explicitly excluded', (): void => {
+    process.env.DEBUG = '*,-test';
+
+    l = logger('test');
+    l.debug('test');
+
+    expect(spy.log).not.toHaveBeenCalled();
+  });
+
+  it('does not debug log when part of exclusion group', (): void => {
+    process.env.DEBUG = '*,-test:*';
+
+    l = logger('test:sub');
+    l.debug('test');
+
+    expect(spy.log).not.toHaveBeenCalled();
+  });
+
+  it('does debug log when not part of exclusion groups', (): void => {
+    process.env.DEBUG = '*,-test:*,-tes,-a:*';
+
+    l = logger('test');
+    l.debug('test');
+
+    expect(spy.log).toHaveBeenCalled();
   });
 });

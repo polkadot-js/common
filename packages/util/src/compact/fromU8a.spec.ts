@@ -15,25 +15,28 @@ describe('compactFromU8a', (): void => {
 
   it('decodes from same u16 encoded value', (): void => {
     expect(
-      compactFromU8a(new Uint8Array([0b11111101, 0b00000111]), 32)
+      compactFromU8a(new Uint8Array([0b11111101, 0b00000111]))
     ).toEqual([2, new BN(511)]);
   });
 
   it('decodes from same u32 encoded value (short)', (): void => {
     expect(
-      compactFromU8a(new Uint8Array([254, 255, 3, 0]), 32)
-    ).toEqual([4, new BN(0xffff)]);
+      compactFromU8a(new Uint8Array([254, 255, 3, 0]))
+    ).toEqual(
+      // since we use in-place, the words are different... HACK it
+      [4, new BN(0xffff).ishln(16).ishrn(16)]
+    );
   });
 
   it('decodes from same u32 encoded value (full)', (): void => {
     expect(
-      compactFromU8a(new Uint8Array([3, 249, 255, 255, 255]), 32)
+      compactFromU8a(new Uint8Array([3, 249, 255, 255, 255]))
     ).toEqual([5, new BN(0xfffffff9)]);
   });
 
   it('decodes from same u32 as u64 encoded value (full, default)', (): void => {
     expect(
-      compactFromU8a(new Uint8Array([3 + ((4 - 4) << 2), 249, 255, 255, 255]), 64)
+      compactFromU8a(new Uint8Array([3 + ((4 - 4) << 2), 249, 255, 255, 255]))
     ).toEqual([5, new BN(0xfffffff9)]);
   });
 
@@ -43,5 +46,13 @@ describe('compactFromU8a', (): void => {
         hexToU8a('0x0b00407a10f35a')
       )
     ).toEqual([7, new BN('5af3107a4000', 16)]);
+  });
+
+  it('decodes an actual value', (): void => {
+    expect(
+      compactFromU8a(
+        hexToU8a('0x0284d717')
+      )[1].toString()
+    ).toEqual('100000000');
   });
 });

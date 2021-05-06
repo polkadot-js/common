@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util-crypto",
-  "version": "6.0.6-3",
+  "version": "6.3.2-3",
   "type": "module",
   "description": "A collection of useful crypto utilities for @polkadot",
   "main": "index.js",
@@ -8,6 +8,9 @@
     "./detectPackage.js",
     "./detectPackage.cjs"
   ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
@@ -16,11 +19,11 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@polkadot/networks": "6.0.6-3",
-    "@polkadot/util": "6.0.6-3",
+    "@babel/runtime": "^7.14.0",
+    "@polkadot/networks": "6.3.2-3",
+    "@polkadot/util": "6.3.2-3",
     "@polkadot/wasm-crypto": "^4.0.2",
-    "@polkadot/x-randomvalues": "6.0.6-3",
+    "@polkadot/x-randomvalues": "6.3.2-3",
     "base-x": "^3.0.8",
     "base64-js": "^1.5.1",
     "blakejs": "^1.1.0",
@@ -41,6 +44,6 @@
     "@types/xxhashjs": "^0.2.2"
   },
   "peerDependencies": {
-    "@polkadot/util": "6.0.6-3"
+    "@polkadot/util": "6.3.2-3"
   }
 }

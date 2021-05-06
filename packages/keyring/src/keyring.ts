@@ -47,7 +47,7 @@ export class Keyring implements KeyringInstance {
   constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
 
-    assert(options && ['ecdsa', 'ethereum', 'ed25519', 'sr25519'].includes(options.type || 'undefined'), `Expected a keyring type of either 'ed25519', 'sr25519', 'ethereum' or 'ecdsa', found '${options.type}`);
+    assert(['ecdsa', 'ethereum', 'ed25519', 'sr25519'].includes(options.type || 'undefined'), () => `Expected a keyring type of either 'ed25519', 'sr25519', 'ethereum' or 'ecdsa', found '${options.type || 'unknown'}`);
 
     this.#pairs = new Pairs();
     this.#ss58 = options.ss58Format;
@@ -86,7 +86,7 @@ export class Keyring implements KeyringInstance {
   /**
    * @name addFromAddress
    * @summary Stores an account, given an account address, as a Key/Value (public key, pair) in Keyring Pair Dictionary
-   * @description Allows user to explicitely provide separate inputs including account address or public key, and optionally
+   * @description Allows user to explicitly provide separate inputs including account address or public key, and optionally
    * the associated account metadata, and the default encoded value as arguments (that may be obtained from the json file
    * of an account backup), and then generates a keyring pair from them that it passes to
    * `addPair` to stores in a keyring pair dictionary the public key of the generated pair as a key and the pair as the associated value.
@@ -168,7 +168,7 @@ export class Keyring implements KeyringInstance {
       ? [type]
       : type;
 
-    assert(['ed25519', 'sr25519', 'ecdsa', 'ethereum'].includes(cryptoType), `Unknown crypto type ${cryptoType}`);
+    assert(['ed25519', 'sr25519', 'ecdsa', 'ethereum'].includes(cryptoType), () => `Unknown crypto type ${cryptoType}`);
 
     // Here the address and publicKey are 32 bytes and isomorphic. This is why the address field needs to be the public key for ethereum type pairs
     const publicKey = isHex(address)

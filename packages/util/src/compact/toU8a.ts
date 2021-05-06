@@ -4,7 +4,7 @@
 import BN from 'bn.js';
 
 import { assert } from '../assert';
-import { bnToBn, bnToU8a } from '../bn';
+import { BN_ONE, BN_TWO, bnToBn, bnToU8a } from '../bn';
 import { u8aConcat } from '../u8a';
 
 const MAX_U8 = new BN(2).pow(new BN(8 - 2)).subn(1);
@@ -29,9 +29,9 @@ export function compactToU8a (_value: BN | BigInt | number): Uint8Array {
   if (value.lte(MAX_U8)) {
     return new Uint8Array([value.toNumber() << 2]);
   } else if (value.lte(MAX_U16)) {
-    return bnToU8a(value.shln(2).addn(0b01), 16, true);
+    return bnToU8a(value.shln(2).iadd(BN_ONE), 16, true);
   } else if (value.lte(MAX_U32)) {
-    return bnToU8a(value.shln(2).addn(0b10), 32, true);
+    return bnToU8a(value.shln(2).iadd(BN_TWO), 32, true);
   }
 
   const u8a = bnToU8a(value);
@@ -42,13 +42,11 @@ export function compactToU8a (_value: BN | BigInt | number): Uint8Array {
     length--;
   }
 
-  assert(length >= 4, 'Previous tests match anyting less than 2^30; qed');
+  assert(length >= 4, 'Invalid length, previous checks match anything less than 2^30');
 
   return u8aConcat(
-    new Uint8Array([
-      // substract 4 as minimum (also catered for in decoding)
-      ((length - 4) << 2) + 0b11
-    ]),
+    // subtract 4 as minimum (also catered for in decoding)
+    [((length - 4) << 2) + 0b11],
     u8a.subarray(0, length)
   );
 }

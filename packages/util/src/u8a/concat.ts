@@ -23,11 +23,10 @@ import { u8aToU8a } from './toU8a';
 export function u8aConcat (...list: (Buffer | Uint8Array | number[] | string)[]): Uint8Array {
   let length = 0;
   let offset = 0;
-  const u8as = new Array(list.length) as Uint8Array[];
+  const u8as = new Array<Uint8Array>(list.length);
 
   for (let i = 0; i < list.length; i++) {
     u8as[i] = u8aToU8a(list[i]);
-
     length += u8as[i].length;
   }
 

@@ -1,5 +1,52 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Added additional double-byte ss58 tests
+- Aligned ss58 registry with Substrate
+
+
+## 6.3.1 Apr 25, 2021
+
+Changes:
+
+- Added `stringify` util to correctly handle `JSON.stringify` with `BigInt` values
+- Additional input asserts for non-convertible values in `u8aToU8a`
+- Adapt `@polkadot/x-global` to return `globalThis` as available
+- Minor readability cleanups
+- BN manipulation via in-place shifts (as applicable)
+- Add explicit `engines` config to `package.json`
+
+
+## 6.2.1 Apr 18, 2021
+
+Contributed:
+
+- Added HydraDx genesis (Thanks to https://github.com/jak-pan)
+
+Changes:
+
+- Add `isAddress` and `validateAddress` functions (the latter will throw if invalid)
+- Check `@polkadot/hw-ledger` against `@polkadot/networks` for discrepancies (test-only)
+- Align ss58 registry with upstream Substrate
+
+
+## 6.1.1 Apr 11, 2021
+
+Contributed:
+
+- Adjust Polymath genesis in `@polkadot/networks` (Thanks to https://github.com/adamdossa)
+- Adjust `@polkadot/util` logger for +/-/* compat (Thanks to https://github.com/Lezek123)
+- Fix typo in `@polkadot/util` detect messaging (Thanks to https://github.com/amphineko)
+
+Changes:
+
+- Remove `@polkadot/networks` code duplication, manages data via script from upstream
+- Align ss58 registry with upstream Substrate
+
+
 ## 6.0.5 Mar 8, 2021
 
 Changes:

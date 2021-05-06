@@ -1,12 +1,10 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BitLength } from './types';
-
 import BN from 'bn.js';
 
+import { BN_FOUR } from '../bn';
 import { u8aToBn, u8aToU8a } from '../u8a';
-import { DEFAULT_BITLENGTH } from './defaults';
 
 /**
  * @name compactFromU8a
@@ -17,29 +15,29 @@ import { DEFAULT_BITLENGTH } from './defaults';
  * ```javascript
  * import { compactFromU8a } from '@polkadot/util';
  *
- * const [offset, length] = compactFromU8a(new Uint8Array([254, 255, 3, 0]), 32));
+ * const [offset, length] = compactFromU8a(new Uint8Array([254, 255, 3, 0]));
  *
  * console.log('value offset=', offset, 'length=', length); // 4, 0xffff
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function compactFromU8a (_input: Uint8Array | string, bitLength: BitLength = DEFAULT_BITLENGTH): [number, BN] {
+export function compactFromU8a (_input: Buffer | Uint8Array | string | number[]): [number, BN] {
   const input = u8aToU8a(_input);
   const flag = input[0] & 0b11;
 
   if (flag === 0b00) {
-    return [1, new BN(input[0]).shrn(2)];
+    return [1, new BN(input[0]).ishrn(2)];
   } else if (flag === 0b01) {
-    return [2, u8aToBn(input.slice(0, 2), true).shrn(2)];
+    return [2, u8aToBn(input.slice(0, 2), true).ishrn(2)];
   } else if (flag === 0b10) {
-    return [4, u8aToBn(input.slice(0, 4), true).shrn(2)];
+    return [4, u8aToBn(input.slice(0, 4), true).ishrn(2)];
   }
 
-  const length = new BN(input[0])
-    .shrn(2) // clear flag
-    .addn(4) // add 4 for base length
-    .toNumber();
-  const offset = 1 + length;
+  const offset = 1 + (
+    new BN(input[0])
+      .ishrn(2) // clear flag
+      .iadd(BN_FOUR) // add 4 for base length
+      .toNumber()
+  );
 
   return [offset, u8aToBn(input.subarray(1, offset), true)];
 }

@@ -26,7 +26,7 @@ interface PjsChecks extends This {
 type PjsWindow = (Window & This) & PjsChecks;
 type FnString = () => string | undefined;
 
-const DEDUPE = 'Either remove and explicitly install matching versions or deupe using your package manager.\nThe following conflicting packages were found:';
+const DEDUPE = 'Either remove and explicitly install matching versions or dedupe using your package manager.\nThe following conflicting packages were found:';
 
 /** @internal */
 function getEntry (name: string): VersionPath[] {
@@ -88,7 +88,7 @@ function getPath (pathOrFn?: FnString | string | false): string {
  * @summary Checks that a specific package is only imported once
  */
 export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnString | string | false, deps: PackageJson[] = []): void {
-  assert(name.startsWith('@polkadot'), `Invalid package descriptor ${name}`);
+  assert(name.startsWith('@polkadot'), () => `Invalid package descriptor ${name}`);
 
   const entry = getEntry(name);
 

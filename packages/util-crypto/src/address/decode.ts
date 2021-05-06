@@ -10,7 +10,9 @@ import { base58Decode } from '../base58/decode';
 import { checkAddressChecksum } from './checksum';
 import { defaults } from './defaults';
 
-export function decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: boolean, ss58Format: Prefix = -1): Uint8Array {
+export function decodeAddress (encoded?: string | Uint8Array | null, ignoreChecksum?: boolean, ss58Format: Prefix = -1): Uint8Array {
+  assert(encoded, 'Invalid empty address passed');
+
   if (isU8a(encoded) || isHex(encoded)) {
     return u8aToU8a(encoded);
   }
@@ -23,7 +25,7 @@ export function decodeAddress (encoded: string | Uint8Array, ignoreChecksum?: bo
     const [isValid, endPos, ss58Length, ss58Decoded] = checkAddressChecksum(decoded);
 
     assert(ignoreChecksum || isValid, 'Invalid decoded address checksum');
-    assert([-1, ss58Decoded].includes(ss58Format), `Expected ss58Format ${ss58Format}, received ${ss58Decoded}`);
+    assert([-1, ss58Decoded].includes(ss58Format), () => `Expected ss58Format ${ss58Format}, received ${ss58Decoded}`);
 
     return decoded.slice(ss58Length, endPos);
   } catch (error) {

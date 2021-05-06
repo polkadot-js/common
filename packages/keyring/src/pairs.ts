@@ -24,13 +24,11 @@ export class Pairs implements KeyringPairs {
   public get (address: string | Uint8Array): KeyringPair {
     const pair = this.#map[decodeAddress(address).toString()];
 
-    assert(pair, (): string => {
-      const formatted: string = isU8a(address) || isHex(address)
+    assert(pair, () => `Unable to retrieve keypair '${
+      isU8a(address) || isHex(address)
         ? u8aToHex(u8aToU8a(address))
-        : address;
-
-      return `Unable to retrieve keypair '${formatted}'`;
-    });
+        : address
+    }'`);
 
     return pair;
   }
