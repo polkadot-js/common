@@ -164,7 +164,7 @@ describe('pair', (): void => {
     });
 
     it('has a valid address from a known ethereum address (20 length)', (): void => {
-      const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: new Uint8Array([75, 32, 205, 127, 248, 119, 52, 31, 46, 171, 170, 23, 158, 23, 46, 108, 95, 180, 186, 168]) ,secretKey:new Uint8Array([])});
+      const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: new Uint8Array([75, 32, 205, 127, 248, 119, 52, 31, 46, 171, 170, 23, 158, 23, 46, 108, 95, 180, 186, 168]), secretKey: new Uint8Array([]) });
 
       expect(pair.address).toEqual('0x4b20cd7ff877341f2eabaa179e172e6c5fb4baa8');
       expect(pair.addressRaw).toEqual(hexToU8a('0x4b20cd7ff877341f2eabaa179e172e6c5fb4baa8'));
