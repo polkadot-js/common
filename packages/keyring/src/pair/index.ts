@@ -113,11 +113,13 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
   };
 
   const encodeAddress = (): string => {
-    const raw = TYPE_ADDRESS[type](publicKey);
-
-    return type === 'ethereum'
-      ? ethereumEncode(raw)
-      : toSS58(raw);
+    // Need to be able to add from an eth address
+    if (type === 'ethereum' &&publicKey.length===20){
+      return u8aToHex(publicKey)
+    } else {
+      const raw = TYPE_ADDRESS[type](publicKey);
+      return type === 'ethereum' ? ethereumEncode(raw) : toSS58(raw);
+    }
   };
 
   return {
@@ -125,11 +127,13 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       return encodeAddress();
     },
     get addressRaw (): Uint8Array {
-      const raw = TYPE_ADDRESS[type](publicKey);
-
-      return type === 'ethereum'
-        ? raw.slice(-20)
-        : raw;
+      if (type === 'ethereum' &&publicKey.length===20){return (publicKey)}else {
+        const raw = TYPE_ADDRESS[type](publicKey);
+  
+        return type === 'ethereum'
+          ? raw.slice(-20)
+          : raw;
+        }
     },
     get isLocked (): boolean {
       return isLocked(secretKey);
