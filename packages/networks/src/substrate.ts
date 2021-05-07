@@ -471,6 +471,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://crust.network'
   },
   {
+    decimals: [0, 9, 9, 9, 9, 9, 9, 9],
+    displayName: 'Equilibrium Network',
+    network: 'equilibrium',
+    prefix: 67,
+    standardAccount: '*25519',
+    symbols: ['Unknown', 'USD', 'EQ', 'ETH', 'BTC', 'EOS', 'DOT', 'CRV'],
+    website: 'https://equilibrium.io'
+  },
+  {
     decimals: [18],
     displayName: 'SORA Network',
     network: 'sora',
