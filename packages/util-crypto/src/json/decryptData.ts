@@ -11,7 +11,7 @@ import { ENCODING, NONCE_LENGTH, SCRYPT_LENGTH } from './constants';
 
 export function jsonDecryptData (encrypted?: Uint8Array | null, passphrase?: string | null, encType: EncryptedJsonEncoding[] = ENCODING): Uint8Array {
   assert(encrypted, 'No encrypted data available to decode');
-  assert(passphrase || !encType.includes('xsalsa20-poly1305'), 'Password required to decode encypted data');
+  assert(passphrase || !encType.includes('xsalsa20-poly1305'), 'Password required to decode encrypted data');
 
   let encoded: Uint8Array | null = encrypted;
 
