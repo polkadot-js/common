@@ -127,9 +127,8 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     get addressRaw (): Uint8Array {
       const raw = TYPE_ADDRESS[type](publicKey);
 
-      return type === 'ethereum' &&
-          raw.length > 20
-        ? (raw).slice(-20)
+      return type === 'ethereum'
+        ? raw.slice(-20)
         : raw;
     },
     get isLocked (): boolean {
