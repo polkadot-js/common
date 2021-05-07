@@ -115,7 +115,9 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
   const encodeAddress = (): string => {
     const raw = TYPE_ADDRESS[type](publicKey);
 
-    return type === 'ethereum' ? (ethereumEncode(raw)) : toSS58(raw);
+    return type === 'ethereum'
+      ? ethereumEncode(raw)
+      : toSS58(raw);
   };
 
   return {
