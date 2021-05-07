@@ -318,8 +318,8 @@ describe('keypair', (): void => {
     // combine mnemonic with derivation path
     const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy' + '/m/44\'/60\'/0\'/0/0';
     const PRIV_KEY_ONE = '0x070dc3117300011918e26b02176945cc15c3d548cf49fd8418d97f93af699e46';
-    const ETH_ADDRESS_ONE = '0x31ea8795ee32d782c8ff41a5c68dcbf0f5b27f6d';
-    const ETH_ADDRESS_TWO = '0x4119b2e6c3cb618f4f0b93ac77f9beec7ff02887';
+    const ETH_ADDRESS_ONE = '0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d';
+    const ETH_ADDRESS_TWO = '0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887';
 
     let keyring: Keyring;
 

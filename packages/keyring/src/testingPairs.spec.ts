@@ -7,7 +7,7 @@ import { cryptoWaitReady } from '@polkadot/util-crypto';
 import { createTestPairs } from './testingPairs';
 import Keyring from '.';
 
-const TEST_ADD = '0xf24ff3a9cf04c71dbc94d0b566f7a27b94566cac';
+const TEST_ADD = '0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac';
 
 describe('testingPairs', (): void => {
   beforeEach(async (): Promise<void> => {

@@ -21,7 +21,7 @@ const TESTS = {
   ethereum: [
     {
       pk: '0x0381351b1b46d2602b0992bb5d5531f9c1696b0812feb2534b6884adc47e2e1d8b',
-      ss: '0x31ea8795ee32d782c8ff41a5c68dcbf0f5b27f6d',
+      ss: '0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d',
       uri: "seed sock milk update focus rotate barely fade car face mechanic mercy/m/44'/60'/0'/0/0"
     }
   ],

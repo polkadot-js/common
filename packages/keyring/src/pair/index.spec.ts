@@ -10,7 +10,7 @@ import { createPair } from '.';
 
 const keyring = createTestPairs({ type: 'ed25519' }, false);
 
-const TEST_ADDRESS = '0x4119b2e6c3cb618f4f0b93ac77f9beec7ff02887';
+const TEST_ADDRESS = '0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887';
 
 describe('pair', (): void => {
   beforeEach(async (): Promise<void> => {
@@ -187,7 +187,7 @@ describe('pair', (): void => {
     it('has Gerald as test address for Ethereum type parachains', (): void => {
       const keyringEthereum = createTestPairs({ type: 'ethereum' }, false);
 
-      expect(keyringEthereum.Gerald.address).toEqual('0x6be02d1d3665660d22ff9624b7be0551ee1ac91b');
+      expect(keyringEthereum.Gerald.address).toEqual('0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b');
     });
   });
 });
