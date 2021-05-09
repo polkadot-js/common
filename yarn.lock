@@ -1657,15 +1657,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/devices@npm:^5.51.0":
-  version: 5.51.0
-  resolution: "@ledgerhq/devices@npm:5.51.0"
+"@ledgerhq/devices@npm:^5.51.1":
+  version: 5.51.1
+  resolution: "@ledgerhq/devices@npm:5.51.1"
   dependencies:
     "@ledgerhq/errors": ^5.50.0
     "@ledgerhq/logs": ^5.50.0
-    rxjs: ^7.0.0
+    rxjs: 6
     semver: ^7.3.5
-  checksum: c58812d232ec8cd476fe77362ace26738ca2545500d1086aa9546a7ffa0a30ef51e4a00aa1f3328d5b089fa3304d8be339806c9304a0d4fbb9f71ec1ebc33e4b
+  checksum: 384520c271ef4c961f96cb1085d33c1ecf763a3da8ffd917546076974208c38678797f157c2984c6f6e464d1df3a8b4417ace35e0b33197e8bee061eef27fad0
   languageName: node
   linkType: hard
 
@@ -1676,55 +1676,55 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-node-hid-noevents@npm:^5.51.0":
-  version: 5.51.0
-  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:5.51.0"
+"@ledgerhq/hw-transport-node-hid-noevents@npm:^5.51.1":
+  version: 5.51.1
+  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:5.51.1"
   dependencies:
-    "@ledgerhq/devices": ^5.51.0
+    "@ledgerhq/devices": ^5.51.1
     "@ledgerhq/errors": ^5.50.0
-    "@ledgerhq/hw-transport": ^5.51.0
+    "@ledgerhq/hw-transport": ^5.51.1
     "@ledgerhq/logs": ^5.50.0
     node-hid: 2.1.1
-  checksum: 951e2f1a7685baae72358233309d4b9590213340a468408b60b7888dd443dbfdf2c7b376daab656dc2e7072cba06dee5b11f12b6c42e42f26b0bf85d768cfb09
+  checksum: d80fa9717352b31e93c1898a5302b7fd15632b363f13693321a682aeefc17ee70beafdaa0de9caab82eddb4ea0eaf1de7f371fbbe9e594e850735482bdb22981
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-node-hid-singleton@npm:^5.51.0":
-  version: 5.51.0
-  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:5.51.0"
+"@ledgerhq/hw-transport-node-hid-singleton@npm:^5.51.1":
+  version: 5.51.1
+  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:5.51.1"
   dependencies:
-    "@ledgerhq/devices": ^5.51.0
+    "@ledgerhq/devices": ^5.51.1
     "@ledgerhq/errors": ^5.50.0
-    "@ledgerhq/hw-transport": ^5.51.0
-    "@ledgerhq/hw-transport-node-hid-noevents": ^5.51.0
+    "@ledgerhq/hw-transport": ^5.51.1
+    "@ledgerhq/hw-transport-node-hid-noevents": ^5.51.1
     "@ledgerhq/logs": ^5.50.0
     lodash: ^4.17.21
     node-hid: 2.1.1
     usb-detection: ^4.10.0
-  checksum: 02080d1e5baffed5b588b53cc787c712d6686612331502ae84c5df40df57ca2006aaa8ccecaf3c7f537ccbf06322d62fa78fda22f1bb72f06105651702874445
+  checksum: c320ebd7cfd2f3e512dd3c75785a54ed50e62208b24bb8de5f13c1c7c012add7f710d5f4aaf08ed5da324450d3da6955bbedb4f81f3f43845bf06f98a822fe19
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-webusb@npm:^5.51.0":
-  version: 5.51.0
-  resolution: "@ledgerhq/hw-transport-webusb@npm:5.51.0"
+"@ledgerhq/hw-transport-webusb@npm:^5.51.1":
+  version: 5.51.1
+  resolution: "@ledgerhq/hw-transport-webusb@npm:5.51.1"
   dependencies:
-    "@ledgerhq/devices": ^5.51.0
+    "@ledgerhq/devices": ^5.51.1
     "@ledgerhq/errors": ^5.50.0
-    "@ledgerhq/hw-transport": ^5.51.0
+    "@ledgerhq/hw-transport": ^5.51.1
     "@ledgerhq/logs": ^5.50.0
-  checksum: e670e1aa0832cf9b72e19e7927512f201ef460484b2c7e3018675cf246bf752175af566b13508a0df2283383d864e3bad52d5f9787b3ac1e3f8f850d9485385b
+  checksum: 78adbf0c6885caf4ae63ee25df9bde801f1c30fbb1a92af7c6a104c58dffe068908673a6ff91d5f0811937096484babbc70aedb669a4c0c2754dcfb6f8550259
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport@npm:^5.49.0, @ledgerhq/hw-transport@npm:^5.51.0":
-  version: 5.51.0
-  resolution: "@ledgerhq/hw-transport@npm:5.51.0"
+"@ledgerhq/hw-transport@npm:^5.49.0, @ledgerhq/hw-transport@npm:^5.51.1":
+  version: 5.51.1
+  resolution: "@ledgerhq/hw-transport@npm:5.51.1"
   dependencies:
-    "@ledgerhq/devices": ^5.51.0
+    "@ledgerhq/devices": ^5.51.1
     "@ledgerhq/errors": ^5.50.0
     events: ^3.3.0
-  checksum: f43373482dfd58ba93b31d009f7455e24b36df832fac41fc397fe71382cf7b669eb3a31c33afd0c9870a9daa130ffa8b5797e0de2f3012f84d03b195992f0f28
+  checksum: 1372387e825b3b61a83ec0863452762904e48eecfa18910d8492abf6f7e733a78e634a70df3562174ba6698cc06c92b1ca5d8e49571070285ce411390a4b7b9b
   languageName: node
   linkType: hard
 
@@ -2005,8 +2005,8 @@ __metadata:
   resolution: "@polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports"
   dependencies:
     "@babel/runtime": ^7.14.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.51.0
-    "@ledgerhq/hw-transport-webusb": ^5.51.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.51.1
+    "@ledgerhq/hw-transport-webusb": ^5.51.1
     "@types/ledgerhq__hw-transport-node-hid": ^4.22.2
     "@types/ledgerhq__hw-transport-webusb": ^4.70.1
   dependenciesMeta:
@@ -2161,7 +2161,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.14.0
     "@polkadot/x-global": 6.3.2-8
-    "@types/react-native": ^0.64.4
+    "@types/react-native": ^0.64.5
   languageName: unknown
   linkType: soft
 
@@ -2503,12 +2503,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.64.4":
-  version: 0.64.4
-  resolution: "@types/react-native@npm:0.64.4"
+"@types/react-native@npm:^0.64.5":
+  version: 0.64.5
+  resolution: "@types/react-native@npm:0.64.5"
   dependencies:
     "@types/react": "*"
-  checksum: 21b2e31746f251d38d280af640df78dd76d288d951681088afb75606101befcabb5529958e5b3c8f117ee3b77164982e3714c35185ba3b8227db197649455fa9
+  checksum: ca9ff52b7e61cbafb7e6f58d21febd4f129ea60cb809dc8e9dd785f3e7586fd1fcc6bba812189188d1d79641eed4def7d7066f390126111aa113965d074f9cea
   languageName: node
   linkType: hard
 
@@ -9757,7 +9757,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^6.6.0, rxjs@npm:^6.6.7":
+"rxjs@npm:6, rxjs@npm:^6.6.0":
   version: 6.6.7
   resolution: "rxjs@npm:6.6.7"
   dependencies:
