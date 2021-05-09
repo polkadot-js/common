@@ -255,15 +255,6 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://jupiter.patract.io'
   },
   {
-    decimals: [10, 12],
-    displayName: 'Patract',
-    network: 'patract',
-    prefix: 27,
-    standardAccount: '*25519',
-    symbols: ['pDOT', 'pKSM'],
-    website: 'https://patract.network'
-  },
-  {
     decimals: null,
     displayName: 'Subsocial',
     network: 'subsocial',
@@ -478,6 +469,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['CRU'],
     website: 'https://crust.network'
+  },
+  {
+    decimals: [0, 9, 9, 9, 9, 9, 9, 9],
+    displayName: 'Equilibrium Network',
+    network: 'equilibrium',
+    prefix: 67,
+    standardAccount: '*25519',
+    symbols: ['Unknown', 'USD', 'EQ', 'ETH', 'BTC', 'EOS', 'DOT', 'CRV'],
+    website: 'https://equilibrium.io'
   },
   {
     decimals: [18],
