@@ -56,7 +56,7 @@ export const knownLedger: KnownLedger = {
   polymesh: 0x00000253
 };
 
-// testenets should not allow selection
+// testnets should not allow selection
 export const knownTestnet: KnownTestnet = {
   'dock-testnet': true,
   jupiter: true,
