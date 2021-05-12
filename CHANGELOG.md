@@ -11,7 +11,7 @@ Changes:
 
 - Added additional double-byte ss58 tests
 - Aligned ss58 registry with Substrate
-- Add explicit log for deprecation onf `setSS58Format`
+- Add explicit log for deprecation of `setSS58Format`
 
 
 ## 6.3.1 Apr 25, 2021
