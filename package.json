@@ -21,10 +21,10 @@
     "test:one": "polkadot-dev-run-test"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.0",
+    "@babel/core": "^7.14.2",
     "@polkadot/dev": "^0.62.14",
-    "@polkadot/ts": "^0.3.65",
+    "@polkadot/ts": "^0.3.66",
     "@types/jest": "^26.0.23"
   },
-  "version": "6.3.2-13"
+  "version": "6.4.0"
 }
