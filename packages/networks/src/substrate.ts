@@ -84,13 +84,13 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://edgewa.re'
   },
   {
-    decimals: [18],
-    displayName: 'Acala Karura Canary',
+    decimals: [12],
+    displayName: 'Karura',
     network: 'karura',
     prefix: 8,
     standardAccount: '*25519',
     symbols: ['KAR'],
-    website: 'https://acala.network/'
+    website: 'https://karura.network/'
   },
   {
     decimals: [18],
@@ -102,7 +102,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'http://laminar.network/'
   },
   {
-    decimals: [18],
+    decimals: [12],
     displayName: 'Acala',
     network: 'acala',
     prefix: 10,

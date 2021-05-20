@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Sync with Substrate ss58 registry
+
+
 ## 6.4.1 May 15, 2021
 
 Contributed:
