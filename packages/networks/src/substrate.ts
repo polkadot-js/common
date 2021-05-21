@@ -496,5 +496,14 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['NET'],
     website: 'https://social.network'
+  },
+  {
+    decimals: [12],
+    displayName: 'Basilisk',
+    network: 'basilisk',
+    prefix: 10041,
+    standardAccount: '*25519',
+    symbols: ['BSX'],
+    website: 'https://bsx.fi'
   }
 ];
