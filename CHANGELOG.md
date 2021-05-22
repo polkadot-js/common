@@ -4,6 +4,7 @@
 
 Changes:
 
+- Allow hdLedger derivation with optional 25th word password
 - Sync with Substrate ss58 registry
 
 
