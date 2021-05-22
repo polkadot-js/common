@@ -7,6 +7,7 @@ import { hdLedger } from '..';
 
 const MNE_0 = 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about';
 const MNE_1 = 'open jelly jeans corn ketchup supreme brief element armed lens vault weather original scissors rug priority vicious lesson raven spot gossip powder person volcano';
+const MNE_P = `${MNE_1} testing`;
 
 const TESTS = {
   Kusama: {
@@ -36,6 +37,11 @@ const TESTS = {
         ed25519: '0xe8c68348586d53e4e8d1a864b0e4e17c75e4eb06e0c63c1432bef2ba29e69d41',
         index: [0, 0],
         mnemonic: MNE_0
+      },
+      {
+        ed25519: '0x3890e8db837eba3f8f25215c753e1091062298ce671a51441e7ef89a7adc4f48',
+        index: [0, 0],
+        mnemonic: MNE_P
       }
     ]
   }
