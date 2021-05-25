@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## master
+## 6.5.1 May 22, 2021
 
 Changes:
 
+- Allow hdLedger derivation with optional 25th word password
 - Sync with Substrate ss58 registry
 
 

@@ -9,8 +9,8 @@ import { mnemonicToSeedSync } from '../../mnemonic/bip39';
 const ED25519_CRYPTO = 'ed25519 seed';
 
 // gets an xprv from a mnemonic
-export function ledgerMaster (mnemonic: string): Uint8Array {
-  const seed = mnemonicToSeedSync(mnemonic);
+export function ledgerMaster (mnemonic: string, password?: string): Uint8Array {
+  const seed = mnemonicToSeedSync(mnemonic, password);
   const chainCode = hmacSha256(ED25519_CRYPTO, new Uint8Array([1, ...seed]));
   let priv;
 
