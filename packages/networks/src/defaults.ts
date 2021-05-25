@@ -14,6 +14,9 @@ export const knownGenesis: KnownGenesis = {
   edgeware: [
     '0x742a2ca70c2fda6cee4f8df98d64c4c670a052d9568058982dad9d5a7a135c5b'
   ],
+  equilibrium: [
+    '0x6f1a800de3daff7f5e037ddf66ab22ce03ab91874debeddb1086f5f7dbd48925'
+  ],
   hydradx: [
     '0xd2a620c27ec5cbc5621ff9a522689895074f7cca0d08e7134a7804e1a3ba86fc', // Snakenet Gen3-1
     '0x10af6e84234477d84dc572bac0789813b254aa490767ed06fb9591191d1073f9', // Snakenet Gen3
@@ -51,6 +54,7 @@ export const knownIcon: KnownIcon = {
 // support for ledger
 export const knownLedger: KnownLedger = {
   'dock-mainnet': 0x00000252,
+  equilibrium: 0x05f5e0fd,
   kusama: 0x000001b2,
   polkadot: 0x00000162,
   polymesh: 0x00000253
