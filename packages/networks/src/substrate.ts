@@ -489,6 +489,24 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://sora.org'
   },
   {
+    decimals: [12],
+    displayName: 'Manta network',
+    network: 'manta',
+    prefix: 77,
+    standardAccount: '*25519',
+    symbols: ['MA'],
+    website: 'https://manta.network'
+  },
+  {
+    decimals: [12],
+    displayName: 'Calamari: Manta Canary Network',
+    network: 'calamari',
+    prefix: 78,
+    standardAccount: '*25519',
+    symbols: ['KMA'],
+    website: 'https://manta.network'
+  },
+  {
     decimals: [18],
     displayName: 'Social Network',
     network: 'social-network',
@@ -496,5 +514,14 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['NET'],
     website: 'https://social.network'
+  },
+  {
+    decimals: [12],
+    displayName: 'Basilisk',
+    network: 'basilisk',
+    prefix: 10041,
+    standardAccount: '*25519',
+    symbols: ['BSX'],
+    website: 'https://bsx.fi'
   }
 ];
