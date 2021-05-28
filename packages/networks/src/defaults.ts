@@ -14,9 +14,14 @@ export const knownGenesis: KnownGenesis = {
   edgeware: [
     '0x742a2ca70c2fda6cee4f8df98d64c4c670a052d9568058982dad9d5a7a135c5b'
   ],
+  equilibrium: [
+    '0x6f1a800de3daff7f5e037ddf66ab22ce03ab91874debeddb1086f5f7dbd48925'
+  ],
   hydradx: [
-    '0x3d75507dd46301767e601265791da1d9cb47b6ebc94e87347b635e5bf58bd047',
-    '0x0ed32bfcab4a83517fac88f2aa7cbc2f88d3ab93be9a12b6188a036bf8a943c2'
+    '0xd2a620c27ec5cbc5621ff9a522689895074f7cca0d08e7134a7804e1a3ba86fc', // Snakenet Gen3-1
+    '0x10af6e84234477d84dc572bac0789813b254aa490767ed06fb9591191d1073f9', // Snakenet Gen3
+    '0x3d75507dd46301767e601265791da1d9cb47b6ebc94e87347b635e5bf58bd047', // Snakenet Gen2
+    '0x0ed32bfcab4a83517fac88f2aa7cbc2f88d3ab93be9a12b6188a036bf8a943c2' // Snakenet Gen1
   ],
   kulupu: [
     '0xf7a99d3cb92853d00d5275c971c132c074636256583fee53b3bbe60d7b8769ba'
@@ -49,12 +54,13 @@ export const knownIcon: KnownIcon = {
 // support for ledger
 export const knownLedger: KnownLedger = {
   'dock-mainnet': 0x00000252,
+  equilibrium: 0x05f5e0fd,
   kusama: 0x000001b2,
   polkadot: 0x00000162,
   polymesh: 0x00000253
 };
 
-// testenets should not allow selection
+// testnets should not allow selection
 export const knownTestnet: KnownTestnet = {
   'dock-testnet': true,
   jupiter: true,

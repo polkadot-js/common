@@ -4,8 +4,30 @@
 
 Changes:
 
+- Adjust HD path validation & replacement
+- Sync with Substrate ss58 registry
+
+
+## 6.5.1 May 22, 2021
+
+Changes:
+
+- Allow hdLedger derivation with optional 25th word password
+- Sync with Substrate ss58 registry
+
+
+## 6.4.1 May 15, 2021
+
+Contributed:
+
+- Update genesis for HydraDx gen-3 (Thanks to https://github.com/jak-pan)
+- Allow Ethereum pair in keyring addAddress (Thanks to https://github.com/joelamouche)
+
+Changes:
+
 - Added additional double-byte ss58 tests
 - Aligned ss58 registry with Substrate
+- Add explicit log for deprecation of `setSS58Format`
 
 
 ## 6.3.1 Apr 25, 2021

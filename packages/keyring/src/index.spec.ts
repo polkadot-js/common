@@ -319,6 +319,7 @@ describe('keypair', (): void => {
     const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy' + '/m/44\'/60\'/0\'/0/0';
     const PRIV_KEY_ONE = '0x070dc3117300011918e26b02176945cc15c3d548cf49fd8418d97f93af699e46';
     const ETH_ADDRESS_ONE = '0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d';
+    const ETH_ADDRESS_TWO = '0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887';
 
     let keyring: Keyring;
 
@@ -396,13 +397,13 @@ describe('keypair', (): void => {
       );
 
       expect(pair.publicKey).toEqual(hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077'));
-      expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
+      expect(pair.address).toEqual(ETH_ADDRESS_TWO);
 
       pair.decodePkcs8('password');
 
       expect(pair.isLocked).toBe(false);
       expect(pair.publicKey).toEqual(hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077'));
-      expect(pair.address).toBe('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
+      expect(pair.address).toBe(ETH_ADDRESS_TWO);
     });
 
     it('allows for signing/verification', (): void => {
