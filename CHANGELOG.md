@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Adjust HD path validation & replacement
+- Sync with Substrate ss58 registry
+
+
 ## 6.5.1 May 22, 2021
 
 Changes:
