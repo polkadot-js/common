@@ -1922,9 +1922,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.62.17":
-  version: 0.62.17
-  resolution: "@polkadot/dev@npm:0.62.17"
+"@polkadot/dev@npm:^0.62.18":
+  version: 0.62.18
+  resolution: "@polkadot/dev@npm:0.62.18"
   dependencies:
     "@babel/cli": ^7.14.3
     "@babel/core": ^7.14.3
@@ -2004,7 +2004,7 @@ __metadata:
     polkadot-exec-prettier: scripts/polkadot-exec-prettier.cjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: cadc8991ae42432b4b1f15e052e99766a2eda45c65392a6298deb9dcc502dc966c238f8979d4690ca5b91b4fddb16deaeef6df1d88bffdc2c9878c9a58efc2a3
+  checksum: 6000cc61736269053ba572bc227a11ceb2d2cf75f0c4340fbabf96065b34eb124c04a945e666b1d9672cbefd3a62c651465a2c6a27de013f58a40f9fbe126e36
   languageName: node
   linkType: hard
 
@@ -2169,7 +2169,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.14.0
     "@polkadot/x-global": 6.5.2-2
-    "@types/react-native": ^0.64.6
+    "@types/react-native": ^0.64.7
   languageName: unknown
   linkType: soft
 
@@ -2511,12 +2511,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.64.6":
-  version: 0.64.6
-  resolution: "@types/react-native@npm:0.64.6"
+"@types/react-native@npm:^0.64.7":
+  version: 0.64.7
+  resolution: "@types/react-native@npm:0.64.7"
   dependencies:
     "@types/react": "*"
-  checksum: 80404084f8310b101fcedd138c750249be6d1682a68d78e6e0055e78ee58ac5c99aee3f478af8737113a3411fe2851de345fe724b4f11417a6f5db21a7b3101e
+  checksum: ed0538eaa6dfec68815a1f5b3e77f6c8b48db8ffed82e742a91995ea8de02adca6218400b9f38f4e419817642f10fa69d081938d94ec7c6d6ee052856fdcc4c3
   languageName: node
   linkType: hard
 
@@ -9776,7 +9776,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.14.3
-    "@polkadot/dev": ^0.62.17
+    "@polkadot/dev": ^0.62.18
     "@polkadot/ts": ^0.3.66
     "@types/jest": ^26.0.23
   languageName: unknown

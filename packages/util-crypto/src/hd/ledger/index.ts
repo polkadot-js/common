@@ -30,7 +30,7 @@ export function hdLedger (_mnemonic: string, path: string): Keypair {
     path
       .split('/')
       .slice(1)
-      .map((n) => parseInt(n.replace("'", ''), 10))
+      .map((n) => parseInt(n.replace(/'$/, ''), 10))
       .map((n) => (n < HARDENED) ? (n + HARDENED) : n)
       .reduce((x, n) => ledgerDerivePrivate(x, n), ledgerMaster(mnemonic, password))
       .slice(0, 32)
