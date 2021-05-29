@@ -12,7 +12,7 @@ export function hdValidatePath (path: string): boolean {
 
   return parts.every((n) => /^\d+'?$/.test(n)) && (
     !parts
-      .map((n) => parseInt(n.replace("'", ''), 10))
+      .map((n) => parseInt(n.replace(/'$/, ''), 10))
       .some((n) => isNaN(n) || (n >= HARDENED) || (n < 0))
   );
 }

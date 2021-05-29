@@ -1,6 +1,22 @@
 # CHANGELOG
 
-## master
+## 6.6.1 May 29, 2021
+
+Changes:
+
+- Adjust HD path validation & replacement
+- Sync with Substrate ss58 registry
+
+
+## 6.5.1 May 22, 2021
+
+Changes:
+
+- Allow hdLedger derivation with optional 25th word password
+- Sync with Substrate ss58 registry
+
+
+## 6.4.1 May 15, 2021
 
 Contributed:
 
