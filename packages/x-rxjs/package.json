@@ -17,6 +17,6 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-rxjs#readme",
   "dependencies": {
     "@babel/runtime": "^7.14.0",
-    "rxjs": "^7.0.1"
+    "rxjs": "^7.1.0"
   }
 }
