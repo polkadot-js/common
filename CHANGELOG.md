@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 6.6.1 May 29, 2021
 
 Changes:
 
