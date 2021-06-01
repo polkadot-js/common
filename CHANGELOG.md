@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Remove old `Gerald` key for Moonbeam
+- Cleanup testing keyring based on semgrep recommendations
+
+
 ## 6.6.1 May 29, 2021
 
 Changes:
