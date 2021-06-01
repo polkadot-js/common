@@ -183,11 +183,5 @@ describe('pair', (): void => {
       });
       expect(json.address).toEqual(u8aToHex(PUBLICDERIVED));
     });
-
-    it('has Gerald as test address for Ethereum type parachains', (): void => {
-      const keyringEthereum = createTestPairs({ type: 'ethereum' }, false);
-
-      expect(keyringEthereum.Gerald.address).toEqual('0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b');
-    });
   });
 });
