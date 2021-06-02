@@ -1713,6 +1713,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ledgerhq/hw-transport-webhid@npm:^5.51.1":
+  version: 5.51.1
+  resolution: "@ledgerhq/hw-transport-webhid@npm:5.51.1"
+  dependencies:
+    "@ledgerhq/devices": ^5.51.1
+    "@ledgerhq/errors": ^5.50.0
+    "@ledgerhq/hw-transport": ^5.51.1
+    "@ledgerhq/logs": ^5.50.0
+  checksum: 5082457cdc60a6600f808d81fba0f7a2754eadad9d841420400325fa8e2d28a7e8467ff361ab55854b098dec2bd84f467ef484e1acf9507e5756686ff3ab8e9c
+  languageName: node
+  linkType: hard
+
 "@ledgerhq/hw-transport-webusb@npm:^5.51.1":
   version: 5.51.1
   resolution: "@ledgerhq/hw-transport-webusb@npm:5.51.1"
@@ -2008,12 +2020,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/hw-ledger-transports@6.6.2-7, @polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports":
+"@polkadot/hw-ledger-transports@npm:6.6.2-7":
+  version: 6.6.2-7
+  resolution: "@polkadot/hw-ledger-transports@npm:6.6.2-7"
+  dependencies:
+    "@babel/runtime": ^7.14.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.51.1
+    "@ledgerhq/hw-transport-webusb": ^5.51.1
+  dependenciesMeta:
+    "@ledgerhq/hw-transport-node-hid-singleton":
+      optional: true
+  checksum: e2e57617f44c5ee48f056f68309130cd45f15f6041aa62ac14bd64c269adf1fd9539c6bb7a2f1660e2aab625f2584ea65f56f3ce354368d01f58dedb09c601f0
+  languageName: node
+  linkType: hard
+
+"@polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports":
   version: 0.0.0-use.local
   resolution: "@polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports"
   dependencies:
     "@babel/runtime": ^7.14.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.51.1
+    "@ledgerhq/hw-transport-webhid": ^5.51.1
     "@ledgerhq/hw-transport-webusb": ^5.51.1
     "@types/ledgerhq__hw-transport-node-hid": ^4.22.2
     "@types/ledgerhq__hw-transport-webusb": ^4.70.1
