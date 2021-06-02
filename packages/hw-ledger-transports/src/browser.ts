@@ -4,7 +4,8 @@
 import type Transport from '@ledgerhq/hw-transport';
 import type { TransportDef } from './types';
 
-import LedgerWebUSB from '@ledgerhq/hw-transport-webusb';
+import LedgerWebHid from '@ledgerhq/hw-transport-webhid';
+import LedgerWebUsb from '@ledgerhq/hw-transport-webusb';
 
 export { packageInfo } from './packageInfo';
 
@@ -18,7 +19,12 @@ export const transports: TransportDef[] = [
   // },
   {
     create: (): Promise<Transport> =>
-      LedgerWebUSB.create(),
+      LedgerWebUsb.create(),
     type: 'webusb'
+  },
+  {
+    create: (): Promise<Transport> =>
+      LedgerWebHid.create(),
+    type: 'hid'
   }
 ];
