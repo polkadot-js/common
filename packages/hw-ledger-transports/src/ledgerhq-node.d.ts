@@ -4,7 +4,7 @@
 declare module '@ledgerhq/hw-transport-node-hid-noevents' {
   import Transport from '@ledgerhq/hw-transport';
 
-  export default class TransportNodeHidNoEvents extends Transport<string> {}
+  export default class TransportNodeHidNoEvents extends Transport {}
   export function getDevices(): Array<unknown>
 }
 
