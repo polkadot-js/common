@@ -1725,15 +1725,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-webusb@npm:^5.51.1":
-  version: 5.51.1
-  resolution: "@ledgerhq/hw-transport-webusb@npm:5.51.1"
+"@ledgerhq/hw-transport-webusb@npm:^5.53.0":
+  version: 5.53.0
+  resolution: "@ledgerhq/hw-transport-webusb@npm:5.53.0"
   dependencies:
     "@ledgerhq/devices": ^5.51.1
     "@ledgerhq/errors": ^5.50.0
     "@ledgerhq/hw-transport": ^5.51.1
     "@ledgerhq/logs": ^5.50.0
-  checksum: f03bbb38c46653f368cb6cc3b9978c462cf105e62ac86676b767eff07e14a917f830e6b58cbbf1b7b8a124631e779076a7f13430f0a79bd904b4d8054c473a59
+  checksum: 97f55a58528d411671d1f0bbf30dfa08e743bce229f0f71b69c52ff5c8da05d8e96c2b71eee0dc45d4dd581a88d262f9f5a943bc7f5db2789edc6b559e040d13
   languageName: node
   linkType: hard
 
@@ -1934,9 +1934,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.62.25":
-  version: 0.62.25
-  resolution: "@polkadot/dev@npm:0.62.25"
+"@polkadot/dev@npm:^0.62.30":
+  version: 0.62.30
+  resolution: "@polkadot/dev@npm:0.62.30"
   dependencies:
     "@babel/cli": ^7.14.3
     "@babel/core": ^7.14.3
@@ -2016,7 +2016,7 @@ __metadata:
     polkadot-exec-prettier: scripts/polkadot-exec-prettier.cjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: 56b2f51cbd35b79765bbd343f179a719edb0530db46771255ac65d7fdb9cf3c4647694835238f848ee31660f4df78e4522e07ff64bddd39238bbb0e20e7395ab
+  checksum: ab8b37d80a6c9ecd3490331eb87dd71a006dd07b4240c6b88803ea875fb54c208c530842b4d47ee0d6867cfd2e9d61df8bbb149d0e43061fde94ec190cb8caae
   languageName: node
   linkType: hard
 
@@ -2027,7 +2027,7 @@ __metadata:
     "@babel/runtime": ^7.14.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.51.1
     "@ledgerhq/hw-transport-webhid": ^5.51.1
-    "@ledgerhq/hw-transport-webusb": ^5.51.1
+    "@ledgerhq/hw-transport-webusb": ^5.53.0
     "@types/ledgerhq__hw-transport-node-hid": ^4.22.2
     "@types/ledgerhq__hw-transport-webusb": ^4.70.1
   dependenciesMeta:
@@ -2070,12 +2070,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/ts@npm:^0.3.73":
-  version: 0.3.73
-  resolution: "@polkadot/ts@npm:0.3.73"
+"@polkadot/ts@npm:^0.3.78":
+  version: 0.3.78
+  resolution: "@polkadot/ts@npm:0.3.78"
   dependencies:
     "@types/chrome": ^0.0.143
-  checksum: e13194c9b509bde9a763a59126b08181d11763b6a6781315a5d5bae47eaea1447c864fb89bfa2f9a8b2fc43bcead61020d8c8e7d92b6b64885b2288a0a75769b
+  checksum: d15417f527022d22e560440d167cfdc8fc2beeda8cbad0b409b65067e0e155ec35ca6b351f69d9e857f418e94aafafc14532499f578dc2234d30a58f87c31f60
   languageName: node
   linkType: hard
 
@@ -2182,7 +2182,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.14.0
     "@polkadot/x-global": 6.6.2-9
-    "@types/react-native": ^0.64.7
+    "@types/react-native": ^0.64.10
   languageName: unknown
   linkType: soft
 
@@ -2524,12 +2524,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.64.7":
-  version: 0.64.7
-  resolution: "@types/react-native@npm:0.64.7"
+"@types/react-native@npm:^0.64.10":
+  version: 0.64.10
+  resolution: "@types/react-native@npm:0.64.10"
   dependencies:
     "@types/react": "*"
-  checksum: 80a8f5f3a204d1d409d061e0a89e8e10a7a08c78e26afc6d8413fb78619420b3991772e303a03ebb583c339b87a085de56d9fcfb75fec691aa30c5151f79c380
+  checksum: 8bdeb8958d5ee6209162a6ab6a47997bb2f34f6555ae2484e316ec6a191c66c62a47c0e504504afc840b4a4cefd75ed8eea98a44bee23dfb9a7646d5dbb36ba3
   languageName: node
   linkType: hard
 
@@ -9788,8 +9788,8 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.14.3
-    "@polkadot/dev": ^0.62.25
-    "@polkadot/ts": ^0.3.73
+    "@polkadot/dev": ^0.62.30
+    "@polkadot/ts": ^0.3.78
     "@types/jest": ^26.0.23
   languageName: unknown
   linkType: soft
