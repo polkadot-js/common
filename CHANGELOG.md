@@ -5,6 +5,7 @@
 Changes:
 
 - Add WebHID transport for Ledger
+- Update to latest Ledger transports
 - Remove old `Gerald` key for Moonbeam
 - Cleanup testing keyring semgrep recommendations
 
