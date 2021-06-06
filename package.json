@@ -22,9 +22,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
-    "@polkadot/dev": "^0.62.33",
-    "@polkadot/ts": "^0.3.81",
+    "@polkadot/dev": "^0.62.38",
+    "@polkadot/ts": "^0.3.86",
     "@types/jest": "^26.0.23"
   },
-  "version": "6.6.2-18"
+  "version": "6.7.0"
 }

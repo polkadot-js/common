@@ -1,11 +1,11 @@
 # CHANGELOG
 
-## master
+## 6.7.1 Jun 6, 2021
 
 Changes:
 
 - Add WebHID transport for Ledger
-- Update to latest Ledger transports
+- Update to latest Ledger transport packages
 - Remove old `Gerald` key for Moonbeam
 - Cleanup testing keyring semgrep recommendations
 
