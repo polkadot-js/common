@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/networks",
-  "version": "6.7.1",
+  "version": "6.7.2-0",
   "type": "module",
   "description": "A list of all available Substrate networks and their applicable prefixes",
   "main": "index.js",
@@ -19,7 +19,7 @@
     "@babel/runtime": "^7.14.0"
   },
   "devDependencies": {
-    "@polkadot/util": "6.7.1",
-    "@polkadot/x-fetch": "6.7.1"
+    "@polkadot/util": "6.7.2-0",
+    "@polkadot/x-fetch": "6.7.2-0"
   }
 }
