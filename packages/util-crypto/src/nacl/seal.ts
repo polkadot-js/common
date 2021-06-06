@@ -19,7 +19,7 @@ interface Sealed {
  * <BR>
  *
  * ```javascript
- * import { naclEncrypt } from '@polkadot/util-crypto';
+ * import { naclSeal } from '@polkadot/util-crypto';
  *
  * naclSeal([...], [...], [...], [...]); // => [...]
  * ```
