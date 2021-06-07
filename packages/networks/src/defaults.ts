@@ -54,6 +54,7 @@ export const knownIcon: KnownIcon = {
 // support for ledger
 export const knownLedger: KnownLedger = {
   'dock-mainnet': 0x00000252,
+  edgeware: 0x0000020b,
   equilibrium: 0x05f5e0fd,
   kusama: 0x000001b2,
   polkadot: 0x00000162,
