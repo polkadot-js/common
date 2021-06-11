@@ -31,7 +31,7 @@ function reverse (value: string): string {
  * hexToBn('0x123480001f'); // => BN(0x123480001f)
  * ```
  */
-export function hexToBn (value?: string | number | null, options: ToBnOptions | boolean = { isLe: false, isNegative: false }): BN {
+export function hexToBn (value?: string | null, options: ToBnOptions | boolean = { isLe: false, isNegative: false }): BN {
   if (!value) {
     return new BN(0);
   }
@@ -40,9 +40,13 @@ export function hexToBn (value?: string | number | null, options: ToBnOptions | 
     isLe: false,
     isNegative: false,
     // Backwards-compatibility
-    ...(isBoolean(options) ? { isLe: options } : options)
+    ...(
+      isBoolean(options)
+        ? { isLe: options }
+        : options
+    )
   };
-  const _value = hexStripPrefix(value as string);
+  const _value = hexStripPrefix(value);
 
   // FIXME: Use BN's 3rd argument `isLe` once this issue is fixed
   // https://github.com/indutny/bn.js/issues/208
@@ -50,5 +54,7 @@ export function hexToBn (value?: string | number | null, options: ToBnOptions | 
 
   // fromTwos takes as parameter the number of bits, which is the hex length
   // multiplied by 4.
-  return _options.isNegative ? bn.fromTwos(_value.length * 4) : bn;
+  return _options.isNegative
+    ? bn.fromTwos(_value.length * 4)
+    : bn;
 }
