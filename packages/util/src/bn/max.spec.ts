@@ -1,9 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import BN from 'bn.js';
-
-import { bnMax } from '.';
+import { BN, bnMax } from '.';
 
 describe('bnMax', (): void => {
   it('finds BN maximum', (): void => {

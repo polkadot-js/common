@@ -3,8 +3,7 @@
 
 import type { Logger } from './types';
 
-import BN from 'bn.js';
-
+import { BN } from './bn';
 import { logger, loggerFormat } from '.';
 
 describe('logger', (): void => {
