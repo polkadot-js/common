@@ -4,7 +4,8 @@
 import type { ToBn } from '../types';
 
 import { assert } from '../assert';
-import { BN, BN_MAX_INTEGER, BN_ONE, BN_ZERO } from '../bn';
+import { BN } from './bn';
+import { BN_MAX_INTEGER, BN_ONE, BN_ZERO } from './consts';
 import { bnToBn } from './toBn';
 
 const SQRT_MAX_SAFE_INTEGER = new BN(94906265);

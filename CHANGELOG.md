@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Add Ledger support for Edgeware (Thanks to https://github.com/raykyri)
+- Fix `naclSeal` doc types (Thanks to https://github.com/agustinustheo)
+
+Changes:
+
+- Export `BN` in `@polkadot/util`
+
+
 ## 6.7.1 Jun 6, 2021
 
 Changes:
