@@ -3,12 +3,11 @@
 
 import type { ToBn } from '../types';
 
-import BN from 'bn.js';
-
 import { hexToBn } from '../hex/toBn';
 import { isBigInt } from '../is/bigInt';
 import { isHex } from '../is/hex';
 import { isToBn } from '../is/toBn';
+import { BN } from './consts';
 
 /**
  * @name bnToBn

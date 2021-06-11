@@ -1,9 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import BN from 'bn.js';
-
-import { BN_FOUR } from '../bn';
+import { BN, BN_FOUR } from '../bn';
 import { u8aToBn, u8aToU8a } from '../u8a';
 
 /**

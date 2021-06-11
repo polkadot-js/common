@@ -3,6 +3,8 @@
 
 import BN from 'bn.js';
 
+export { BN };
+
 /**
  * @name BN_ZERO
  * @summary BN constant for 0.

@@ -3,8 +3,7 @@
 
 import type { ToBnOptions } from '../types';
 
-import BN from 'bn.js';
-
+import { BN } from '../bn/consts';
 import { isBoolean } from '../is/boolean';
 import { hexStripPrefix } from './stripPrefix';
 
