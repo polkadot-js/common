@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { BN } from '../bn/consts';
+import { BN } from '../bn/bn';
 import { hexToU8a } from '../hex/toU8a';
 import { compactFromU8a } from '.';
 

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ToBn, ToBnOptions } from '../types';
-import type { BN } from './consts';
+import type { BN } from './bn';
 
 import { isNumber } from '../is/number';
 import { bnToBn } from './toBn';

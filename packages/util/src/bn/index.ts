@@ -7,6 +7,7 @@
 
 export * from './consts';
 
+export { BN } from './bn';
 export { bnFromHex } from './fromHex';
 export { bnMax } from './max';
 export { bnMin } from './min';

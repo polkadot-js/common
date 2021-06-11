@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from './consts';
+import type { BN } from './bn';
 
 import { checkMaxMin } from './util';
 
