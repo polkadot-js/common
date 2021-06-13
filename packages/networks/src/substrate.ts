@@ -516,6 +516,24 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://social.network'
   },
   {
+    decimals: [18],
+    displayName: 'Moonbeam',
+    network: 'moonbeam',
+    prefix: 1284,
+    standardAccount: '*25519',
+    symbols: ['GLMR'],
+    website: 'https://moonbeam.network'
+  },
+  {
+    decimals: [18],
+    displayName: 'Moonriver',
+    network: 'moonriver',
+    prefix: 1285,
+    standardAccount: '*25519',
+    symbols: ['MOVR'],
+    website: 'https://moonbeam.network'
+  },
+  {
     decimals: [12],
     displayName: 'Basilisk',
     network: 'basilisk',
