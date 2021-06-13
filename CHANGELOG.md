@@ -10,6 +10,7 @@ Contributed:
 Changes:
 
 - Export `BN` in `@polkadot/util`
+- Sync with upstream Substrate ss58 registry
 
 
 ## 6.7.1 Jun 6, 2021

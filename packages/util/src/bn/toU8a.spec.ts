@@ -1,9 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import BN from 'bn.js';
-
-import { bnToU8a } from '.';
+import { BN, bnToU8a } from '.';
 
 describe('bnToU8a', (): void => {
   it('converts null values to 0x00', (): void => {
