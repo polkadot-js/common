@@ -39,7 +39,7 @@ function compare (a: Uint8Array, b: Uint8Array): number {
  * <BR>
  *
  * ```javascript
- * import { u8aCmp} from '@polkadot/util';
+ * import { u8aCmp } from '@polkadot/util';
  *
  * u8aCmp(new Uint8Array([0x67, 0x65]), new Uint8Array([0x68, 0x65])); // -1
  * u8aCmp(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // 0
