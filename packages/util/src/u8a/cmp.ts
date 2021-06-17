@@ -28,8 +28,6 @@ function compare (a: Uint8Array, b: Uint8Array): number {
 
     i++;
   }
-
-  return 0;
 }
 
 /**
