@@ -19,14 +19,14 @@ function equals (a: Uint8Array, b: Uint8Array): boolean {
 
 /**
  * @name u8aEq
- * @summary Compares two Uint8Arrays.
+ * @summary Compares two Uint8Arrays for equality.
  * @description
  * For `UInt8Array` (or hex string) input values true if there is a match.
  * @example
  * <BR>
  *
  * ```javascript
- * import { { u8aEq } from '@polkadot/util';
+ * import { u8aEq } from '@polkadot/util';
  *
  * u8aEq(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // true
  * ```
