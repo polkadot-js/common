@@ -32,9 +32,9 @@ function compare (a: Uint8Array, b: Uint8Array): number {
 
 /**
  * @name u8aCmp
- * @summary Compares two Uint8Arrays.
+ * @summary Compares two Uint8Arrays for sorting.
  * @description
- * For `UInt8Array` (or hex string) input values returning -, 0 or +1
+ * For `UInt8Array` (or hex string) input values returning -1, 0 or +1
  * @example
  * <BR>
  *
