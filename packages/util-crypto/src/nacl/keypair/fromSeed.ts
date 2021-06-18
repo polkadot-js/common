@@ -21,8 +21,8 @@ import { ed25519KeypairFromSeed, isReady } from '@polkadot/wasm-crypto';
  * naclKeypairFromSeed(...); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export function naclKeypairFromSeed (seed: Uint8Array): Keypair {
-  if (isReady()) {
+export function naclKeypairFromSeed (seed: Uint8Array, onlyJs = false): Keypair {
+  if (!onlyJs && isReady()) {
     const full = ed25519KeypairFromSeed(seed);
 
     return {
