@@ -27,12 +27,12 @@ describe.each([true, false])('mnemonicToMiniSecret (compare), onlyJsMnemonic=%p'
 
       describe(mnemonic, (): void => {
         // do iterations to check and re-check that all matches
-        it.concurrent.each(arrayRange(NUM_CHECKS))('check=%p', (): void => {
-          const minisecret = mnemonicToMiniSecret(mnemonic, '', onlyJsMnemonic);
+        it.concurrent.each(arrayRange(NUM_CHECKS))('check=%p', (count): void => {
+          const minisecret = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMnemonic);
           const edpub = naclKeypairFromSeed(minisecret).publicKey;
           const srpub = schnorrkelKeypairFromSeed(minisecret).publicKey;
 
-          const testmini = mnemonicToMiniSecret(mnemonic, '', onlyJsMini);
+          const testmini = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMini);
 
           // explicit minisecret compare
           expect(
