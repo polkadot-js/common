@@ -5,7 +5,7 @@ import { arrayRange, u8aEq } from '@polkadot/util';
 
 import { cryptoWaitReady, mnemonicGenerate, mnemonicToMiniSecret, naclKeypairFromSeed, schnorrkelKeypairFromSeed } from '..';
 
-describe.skip('mnemonicToMiniSecret (compare)', (): void => {
+describe('mnemonicToMiniSecret (compare)', (): void => {
   [true, false].forEach((onlyJsMnemonic): void => {
     // generate either a JS or WASM mnemonic
     describe(`onlyJs=${onlyJsMnemonic.toString()}`, (): void => {
