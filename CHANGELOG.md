@@ -5,6 +5,8 @@
 Changes:
 
 - Added `u8aCmp(a, b)` to do sorting compares
+- Added `arrayRange(size, startAt = 0)` to create a range of numbers
+- Added extensive mnemonic compare test (optional, skipped)
 
 
 ## 6.8.1 Jun 14, 2021
