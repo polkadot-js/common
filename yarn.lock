@@ -2078,7 +2078,7 @@ __metadata:
     "@babel/runtime": ^7.14.6
     "@polkadot/hw-ledger-transports": 6.9.2-2
     "@polkadot/util": ^6.9.2-2
-    "@zondax/ledger-polkadot": ^0.14.0
+    "@zondax/ledger-substrate": ^0.15.0
   languageName: unknown
   linkType: soft
 
@@ -2105,12 +2105,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/ts@npm:^0.3.90":
-  version: 0.3.90
-  resolution: "@polkadot/ts@npm:0.3.90"
+"@polkadot/ts@npm:^0.3.91":
+  version: 0.3.91
+  resolution: "@polkadot/ts@npm:0.3.91"
   dependencies:
     "@types/chrome": ^0.0.145
-  checksum: b598aa900a64ac269e5ca6ec32cd28c90f588d1ab1e43a454268e364a98ea4981d9bd7ecd60cc7986e24dbc2bba6a8c6f5d8b584b7631b3b4cf9c5b573a1373f
+  checksum: 1ab644ebac9a1263b28f7bd21b7a2ae3243e472248e61049550849242a8ddd3643db622f41c0b82b694a273fea80ed996fba2b48d5c26232194aab4bd1ae5b6f
   languageName: node
   linkType: hard
 
@@ -2726,9 +2726,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zondax/ledger-polkadot@npm:^0.14.0":
-  version: 0.14.0
-  resolution: "@zondax/ledger-polkadot@npm:0.14.0"
+"@zondax/ledger-substrate@npm:^0.15.0":
+  version: 0.15.0
+  resolution: "@zondax/ledger-substrate@npm:0.15.0"
   dependencies:
     "@babel/runtime": ^7.13.10
     "@ledgerhq/hw-transport": ^5.49.0
@@ -2738,7 +2738,7 @@ __metadata:
     blakejs: ^1.1.0
     bs58: ^4.0.1
     hash.js: ^1.1.7
-  checksum: 77aaa5b1e1f0679083b505571960f42067594277957141a88461815cadcc0f33400f2e324b550f0ca960d92da136404b8227848dcbbfbdb9deaeb6422ca962d3
+  checksum: afce244eb25666aab13226c746bc16da5571844a056f9ce493cd6896008ced92e3ad7e2338f771a67d217879e3d59321f1d3b2456efea46d361cf5c9b6e57b90
   languageName: node
   linkType: hard
 
@@ -9706,7 +9706,7 @@ resolve@^2.0.0-next.3:
   dependencies:
     "@babel/core": ^7.14.6
     "@polkadot/dev": ^0.62.43
-    "@polkadot/ts": ^0.3.90
+    "@polkadot/ts": ^0.3.91
     "@types/jest": ^26.0.23
   languageName: unknown
   linkType: soft
