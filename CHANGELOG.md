@@ -4,7 +4,8 @@
 
 Changes:
 
-- Added `arrayShuffle(input)` to shuffle an array into a new output
+- `isHex(value)` will now explicitly check for only `0x${string}` (No `String` classes)
+- Added `arrayShuffle(array)` to shuffle an array into a new output
 
 
 ## 6.9.1 Jun 19, 2021
