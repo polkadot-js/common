@@ -3,7 +3,7 @@
 
 import './detectPackage';
 
-import type { ResponseBase, SubstrateApp } from '@zondax/ledger-polkadot';
+import type { ResponseBase, SubstrateApp } from '@zondax/ledger-substrate';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types';
 
 import { transports } from '@polkadot/hw-ledger-transports';

@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type Transport from '@ledgerhq/hw-transport';
-import type { SubstrateApp } from '@zondax/ledger-polkadot';
+import type { SubstrateApp } from '@zondax/ledger-substrate';
 
-import { newDockApp, newEdgewareApp, newEquilibriumApp, newKusamaApp, newPolkadotApp, newPolymeshApp } from '@zondax/ledger-polkadot';
+import { newDockApp, newEdgewareApp, newEquilibriumApp, newKusamaApp, newPolkadotApp, newPolymeshApp } from '@zondax/ledger-substrate';
 
 // These match up with the network keys in the @polkadot/networks package
 // (which is turn aligns with the substrate/ss58-registry.json as the single
