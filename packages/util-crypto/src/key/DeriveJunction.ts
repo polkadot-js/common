@@ -60,13 +60,11 @@ export class DeriveJunction {
   public soft (value: number | string | BigInt | BN | Uint8Array): DeriveJunction {
     if (isNumber(value) || isBn(value) || isBigInt(value)) {
       return this.soft(bnToHex(value, BN_OPTIONS));
+    } else if (isHex(value)) {
+      return this.soft(hexToU8a(value));
     } else if (isString(value)) {
-      return isHex(value)
-        ? this.soft(hexToU8a(value))
-        : this.soft(compactAddLength(stringToU8a(value)));
-    }
-
-    if (value.length > JUNCTION_ID_LEN) {
+      return this.soft(compactAddLength(stringToU8a(value)));
+    } else if (value.length > JUNCTION_ID_LEN) {
       return this.soft(blake2AsU8a(value));
     }
 
