@@ -10,7 +10,7 @@ describe('arrayShuffle', (): void => {
 
     expect(inp).toHaveLength(out.length);
 
-    // this may actually fail in some cases, i.e. teh sorted may end up being the same
+    // this may actually fail in some cases, i.e. the sorted may end up being the same
     expect(
       inp.filter((v) => !out.includes(v))
     ).toEqual([]);
