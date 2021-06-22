@@ -16,7 +16,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/networks#readme",
   "dependencies": {
-    "@babel/runtime": "^7.14.5"
+    "@babel/runtime": "^7.14.6"
   },
   "devDependencies": {
     "@polkadot/util": "6.9.2-0",
