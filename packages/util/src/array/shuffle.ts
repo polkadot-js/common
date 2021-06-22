@@ -3,16 +3,14 @@
 
 export function arrayShuffle <T> (input: T[]): T[] {
   const result = [...input];
-  let currentIndex = result.length;
+  let curr = result.length;
 
-  while (currentIndex !== 0) {
-    const randomIndex = Math.floor(Math.random() * currentIndex);
+  while (curr !== 0) {
+    const rand = Math.floor(Math.random() * curr);
 
-    currentIndex--;
+    curr--;
 
-    [result[currentIndex], result[randomIndex]] = [
-      result[randomIndex], result[currentIndex]
-    ];
+    [result[curr], result[rand]] = [result[rand], result[curr]];
   }
 
   return result;
