@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Added `arrayShuffle(input)` to shuffle an array into a new output
+
+
 ## 6.9.1 Jun 19, 2021
 
 Changes:
