@@ -4,6 +4,18 @@
 import { arrayRange, arrayShuffle } from '.';
 
 describe('arrayShuffle', (): void => {
+  it('returns an empty array as-is', (): void => {
+    expect(
+      arrayShuffle([])
+    ).toEqual([]);
+  });
+
+  it('returns a single array as-is', (): void => {
+    expect(
+      arrayShuffle([100])
+    ).toEqual([100]);
+  });
+
   it('shuffles an array', (): void => {
     const inp = arrayRange(100);
     const out = arrayShuffle(inp);
