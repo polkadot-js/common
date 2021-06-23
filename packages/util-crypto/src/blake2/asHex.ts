@@ -19,8 +19,8 @@ import { blake2AsU8a } from './asU8a';
  * blake2AsHex('abc'); // => 0xba80a53f981c4d0d
  * ```
  */
-export function blake2AsHex (data: Uint8Array | string, bitLength = 256): string {
+export function blake2AsHex (data: Uint8Array | string, bitLength = 256, key?: Uint8Array | null, onlyJs = false): string {
   return u8aToHex(
-    blake2AsU8a(data, bitLength)
+    blake2AsU8a(data, bitLength, key, onlyJs)
   );
 }

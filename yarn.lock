@@ -2062,6 +2062,7 @@ __metadata:
   resolution: "@polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports"
   dependencies:
     "@babel/runtime": ^7.14.6
+    "@ledgerhq/hw-transport": ^6.0.2
     "@ledgerhq/hw-transport-node-hid-singleton": ^6.0.2
     "@ledgerhq/hw-transport-webhid": ^6.0.2
     "@ledgerhq/hw-transport-webusb": ^6.0.2
@@ -2105,12 +2106,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/ts@npm:^0.3.91":
-  version: 0.3.91
-  resolution: "@polkadot/ts@npm:0.3.91"
+"@polkadot/ts@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "@polkadot/ts@npm:0.4.1"
   dependencies:
     "@types/chrome": ^0.0.145
-  checksum: 1ab644ebac9a1263b28f7bd21b7a2ae3243e472248e61049550849242a8ddd3643db622f41c0b82b694a273fea80ed996fba2b48d5c26232194aab4bd1ae5b6f
+  checksum: 12698097281fdaf13b627bf992dad3c700512963353dab348498d53fd980292d1e24c7406560e5e7e1b07add77fe79e430d10f5c0da643019a24783c0974e5b7
   languageName: node
   linkType: hard
 
@@ -2130,7 +2131,7 @@ __metadata:
     "@types/xxhashjs": ^0.2.2
     base-x: ^3.0.8
     base64-js: ^1.5.1
-    blakejs: ^1.1.0
+    blakejs: ^1.1.1
     bn.js: ^4.11.9
     create-hash: ^1.2.0
     elliptic: ^6.5.4
@@ -3448,10 +3449,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"blakejs@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "blakejs@npm:1.1.0"
-  checksum: 69df62aee27e30ff2af8d709dd4676e037f2e92ded09b0d1a8187d1a69edaf05f4e63f3f473a0e44576e517196e54193641eec345bcc505c8a221940ec491141
+"blakejs@npm:^1.1.0, blakejs@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "blakejs@npm:1.1.1"
+  checksum: 77a0875af41fe0a6b15feacc69a4a730063df697b2932adbde15aa2c9c58a592870cd511a494ceee59cc8143ae64964dfa1bf301dab275b330debcd12c2b3db9
   languageName: node
   linkType: hard
 
@@ -9706,7 +9707,7 @@ resolve@^2.0.0-next.3:
   dependencies:
     "@babel/core": ^7.14.6
     "@polkadot/dev": ^0.62.43
-    "@polkadot/ts": ^0.3.91
+    "@polkadot/ts": ^0.4.1
     "@types/jest": ^26.0.23
   languageName: unknown
   linkType: soft

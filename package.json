@@ -19,12 +19,12 @@
     "postinstall": "polkadot-dev-yarn-only",
     "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns crosscheck --testPathIgnorePatterns toMiniSecretCmp",
     "test:mnemonicCmp": "polkadot-dev-run-test packages/util-crypto/src/mnemonic/toMiniSecretCmp.spec.ts",
-    "test:one": "polkadot-dev-run-test"
+    "test:one": "polkadot-dev-run-test --runInBand"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@polkadot/dev": "^0.62.43",
-    "@polkadot/ts": "^0.3.91",
+    "@polkadot/ts": "^0.4.1",
     "@types/jest": "^26.0.23"
   },
   "version": "6.9.2-5"
