@@ -2,10 +2,16 @@
 
 ## master
 
+Contributed:
+
+- Add Karura genesisHash (Thanks to https://github.com/ntduan)
+
 Changes:
 
 - `isHex(value)` will now explicitly check for only `0x${string}` (No `String` classes)
 - Added `arrayShuffle(array)` to shuffle an array into a new output
+- Sync with upstream Substrate ss58 registry
+- Simplify tests to use `{describe/it}.each` where applicable
 
 
 ## 6.9.1 Jun 19, 2021
