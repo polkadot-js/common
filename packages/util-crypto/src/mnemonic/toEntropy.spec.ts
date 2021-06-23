@@ -12,9 +12,9 @@ describe('mnemonicToEntropy', (): void => {
     await cryptoWaitReady();
   });
 
-  tests.forEach(([mnemonic, entropy], index): void => {
-    [false, true].forEach((onlyJs): void => {
-      it(`Created correct entropy for ${index} (onlyJs = ${onlyJs.toString()})`, (): void => {
+  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+    tests.forEach(([mnemonic, entropy], index): void => {
+      it(`Created correct entropy for ${index}`, (): void => {
         expect(u8aToHex(mnemonicToEntropy(mnemonic, onlyJs))).toEqual(entropy);
       });
     });

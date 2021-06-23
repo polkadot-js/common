@@ -10,8 +10,8 @@ describe('sha512AsU8a', (): void => {
     await waitReady();
   });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`creates a sha-512 hash (onlyJs=${onlyJs.toString()})`, (): void => {
+  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+    it('creates a sha-512 hash', (): void => {
       expect(
         sha512AsU8a(Uint8Array.from([0x61, 0x62, 0x63, 0x64]), onlyJs)
       ).toEqual(

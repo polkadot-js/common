@@ -6,8 +6,6 @@ import { waitReady } from '@polkadot/wasm-crypto';
 
 import { keccakAsU8a } from '.';
 
-const BITS: (256 | 512)[] = [256, 512];
-
 describe('keccakAsU8a', (): void => {
   beforeEach(async (): Promise<void> => {
     await waitReady();
@@ -23,29 +21,21 @@ describe('keccakAsU8a', (): void => {
     )
   };
 
-  BITS.forEach((bitLength): void => {
-    [false, true].forEach((onlyJs): void => {
-      it(`returns an hex representation (string, bitLength=${bitLength}, onlyJs=${onlyJs.toString()})`, (): void => {
+  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+    describe.each([256, 512] as (256 | 512)[])('bitLength=$p', (bitLength): void => {
+      it('returns an hex representation (string)', (): void => {
         expect(
           keccakAsU8a(input, bitLength, onlyJs)
         ).toEqual(output[bitLength]);
       });
-    });
-  });
 
-  BITS.forEach((bitLength): void => {
-    [false, true].forEach((onlyJs): void => {
-      it(`returns an hex representation (Buffer, bitLength=${bitLength}, onlyJs=${onlyJs.toString()})`, (): void => {
+      it('returns an hex representation (Buffer)', (): void => {
         expect(
           keccakAsU8a(Buffer.from(input), bitLength, onlyJs)
         ).toEqual(output[bitLength]);
       });
-    });
-  });
 
-  BITS.forEach((bitLength): void => {
-    [false, true].forEach((onlyJs): void => {
-      it(`returns an hex representation (Uint8Array, bitLength=${bitLength}, onlyJs=${onlyJs.toString()})`, (): void => {
+      it('returns an hex representation (Uint8Array)', (): void => {
         expect(
           keccakAsU8a(stringToU8a(input), bitLength, onlyJs)
         ).toEqual(output[bitLength]);
