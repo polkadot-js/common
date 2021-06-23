@@ -25,5 +25,5 @@ export function blake2AsU8a (data: Uint8Array | string, bitLength = 256, key: Ui
 
   return isReady() && !onlyJs
     ? blake2b(u8aToU8a(data), u8aToU8a(key), byteLength)
-    : js.blake2b(u8aToU8a(data), key, byteLength);
+    : js.blake2b(u8aToU8a(data), key || undefined, byteLength);
 }
