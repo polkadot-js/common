@@ -22,5 +22,6 @@ export * from './memoize';
 export * from './number';
 export * from './promisify';
 export * from './string';
+export * from './stringify';
 export * from './u8a';
 export * from './versionDetect';

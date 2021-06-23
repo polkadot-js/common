@@ -1,11 +1,13 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const ALPHABET = new Array(256).fill(0).map((_, n) => n.toString(16).padStart(2, '0'));
+import { arrayRange } from '../array';
+
+const ALPHABET = arrayRange(256).map((n) => n.toString(16).padStart(2, '0'));
 
 /** @internal */
 function extract (value: Uint8Array): string {
-  const result = new Array(value.length) as string[];
+  const result = new Array<string>(value.length);
 
   for (let i = 0; i < value.length; i++) {
     result[i] = ALPHABET[value[i]];
@@ -44,8 +46,9 @@ export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed 
 
   const byteLength = Math.ceil(bitLength / 8);
 
-  return prefix + ((byteLength > 0 && value.length > byteLength)
-    ? trim(value, Math.ceil(byteLength / 2))
-    : extract(value)
+  return prefix + (
+    (byteLength > 0 && value.length > byteLength)
+      ? trim(value, Math.ceil(byteLength / 2))
+      : extract(value)
   );
 }

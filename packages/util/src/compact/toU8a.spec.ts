@@ -1,8 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import BN from 'bn.js';
-
+import { BN } from '../bn';
 import { compactToU8a } from '.';
 
 describe('encode', (): void => {
@@ -70,6 +69,13 @@ describe('encode', (): void => {
     ).toEqual(
       new Uint8Array([3 + ((6 - 4) << 2), 0x00, 0x40, 0x7a, 0x10, 0xf3, 0x5a])
     );
+  });
+
+  it('does not modify the original', (): void => {
+    const original = new BN(123456);
+
+    expect(compactToU8a(original)).toEqual(new Uint8Array([2, 137, 7, 0]));
+    expect(original.toString()).toEqual('123456');
   });
 
   describe('from Rust', (): void => {

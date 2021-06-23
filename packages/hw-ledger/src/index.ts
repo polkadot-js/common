@@ -3,35 +3,18 @@
 
 import './detectPackage';
 
-import type Transport from '@ledgerhq/hw-transport';
+import type { ResponseBase, SubstrateApp } from '@zondax/ledger-substrate';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types';
-
-import { newDockApp, newKusamaApp, newPolkadotApp, newPolymeshApp, ResponseBase, SubstrateApp } from '@zondax/ledger-polkadot';
 
 import { transports } from '@polkadot/hw-ledger-transports';
 import { assert, u8aToBuffer } from '@polkadot/util';
 
+import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants';
+import { ledgerApps } from './defaults';
+
 export { packageInfo } from './packageInfo';
 
-export const LEDGER_DEFAULT_ACCOUNT = 0x80000000;
-
-export const LEDGER_DEFAULT_CHANGE = 0x80000000;
-
-export const LEDGER_DEFAULT_INDEX = 0x80000000;
-
-const SUCCESS_CODE = 0x9000;
-
-// These match up with the network keys in the @polkadot/networks package
-// (which is turn aligns with the substrate/ss58-registry.json as the single
-// source of truth)
-const APPS: Record<string, (transport: Transport) => SubstrateApp> = {
-  dock: newDockApp,
-  kusama: newKusamaApp,
-  polkadot: newPolkadotApp,
-  polymesh: newPolymeshApp
-};
-
-type Chain = keyof typeof APPS;
+type Chain = keyof typeof ledgerApps;
 
 // A very basic wrapper for a ledger app -
 //  - it connects automatically, creating an app as required
@@ -45,8 +28,8 @@ export class Ledger {
 
   constructor (transport: LedgerTypes, chain: Chain) {
     // u2f is deprecated
-    assert(['hid', 'webusb'].includes(transport), `Unsupported transport ${transport}`);
-    assert(Object.keys(APPS).includes(chain), `Unsupported chain ${chain}`);
+    assert(['hid', 'webusb'].includes(transport), () => `Unsupported transport ${transport}`);
+    assert(Object.keys(ledgerApps).includes(chain), () => `Unsupported chain ${chain}`);
 
     this.#chain = chain;
     this.#transport = transport;
@@ -90,11 +73,11 @@ export class Ledger {
     if (!this.#app) {
       const def = transports.find(({ type }) => type === this.#transport);
 
-      assert(def, `Unable to find a transport for ${this.#transport}`);
+      assert(def, () => `Unable to find a transport for ${this.#transport}`);
 
       const transport = await def.create();
 
-      this.#app = APPS[this.#chain](transport);
+      this.#app = ledgerApps[this.#chain](transport);
     }
 
     return this.#app;
@@ -115,7 +98,7 @@ export class Ledger {
   #wrapError = async <T extends ResponseBase> (promise: Promise<T>): Promise<T> => {
     const result = await promise;
 
-    assert(result.return_code === SUCCESS_CODE, result.error_message);
+    assert(result.return_code === LEDGER_SUCCESS_CODE, () => result.error_message);
 
     return result;
   };

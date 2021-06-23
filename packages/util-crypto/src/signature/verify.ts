@@ -54,7 +54,7 @@ function verifyDetect (result: VerifyResult, { message, publicKey, signature }: 
 }
 
 function verifyMultisig (result: VerifyResult, { message, publicKey, signature }: VerifyInput): VerifyResult {
-  assert([0, 1, 2].includes(signature[0]), `Unknown crypto type, expected signature prefix [0..2], found ${signature[0]}`);
+  assert([0, 1, 2].includes(signature[0]), () => `Unknown crypto type, expected signature prefix [0..2], found ${signature[0]}`);
 
   const type = CRYPTO_TYPES[signature[0]] || 'none';
 
@@ -77,7 +77,7 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
 export function signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrPublicKey: Uint8Array | string): VerifyResult {
   const signatureU8a = u8aToU8a(signature);
 
-  assert([64, 65, 66].includes(signatureU8a.length), `Invalid signature length, expected [64..66] bytes, found ${signatureU8a.length}`);
+  assert([64, 65, 66].includes(signatureU8a.length), () => `Invalid signature length, expected [64..66] bytes, found ${signatureU8a.length}`);
 
   const publicKey = decodeAddress(addressOrPublicKey);
   const input = { message, publicKey, signature: signatureU8a };

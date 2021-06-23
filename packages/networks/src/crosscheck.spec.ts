@@ -1,16 +1,17 @@
 // Copyright 2017-2021 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Ss58Registry } from './types';
+import type { KnownSubstrate, Ss58Registry } from './types';
 
 import fs from 'fs';
 
+import { stringify } from '@polkadot/util';
 import { fetch } from '@polkadot/x-fetch';
 
 import { all } from './';
 
-const ORIGINAL = 'https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json';
 const OUTPUT = './.github/ss58-check.md';
+const SUBSTRATE_REGISTRY = 'https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json';
 
 function assertAndLog (check: boolean, error: string): void {
   if (!check) {
@@ -27,7 +28,7 @@ describe('check latest Substrate ss58 registry', (): void => {
   let original: Ss58Registry;
 
   beforeAll(async (): Promise<void> => {
-    original = (await (await fetch(ORIGINAL)).json()) as Ss58Registry;
+    original = (await (await fetch(SUBSTRATE_REGISTRY)).json()) as Ss58Registry;
   });
 
   it('has the same number as the original', (): void => {
@@ -39,7 +40,7 @@ describe('check latest Substrate ss58 registry', (): void => {
       .filter(({ prefix }) => !all.some((n) => n.prefix === prefix))
       .map(({ displayName, prefix }) => `${displayName} (${prefix})`);
 
-    assertAndLog(!missing.length, `Missing entries found: ${JSON.stringify(missing, null, 2)}`);
+    assertAndLog(!missing.length, `Missing entries found: ${stringify(missing, 2)}`);
   });
 
   it('has no extra entries', (): void => {
@@ -47,11 +48,11 @@ describe('check latest Substrate ss58 registry', (): void => {
       .filter(({ prefix }) => !original.registry.some((n) => n.prefix === prefix))
       .map(({ displayName, prefix }) => `${displayName} (${prefix})`);
 
-    assertAndLog(!missing.length, `Extra entries found: ${JSON.stringify(missing, null, 2)}`);
+    assertAndLog(!missing.length, `Extra entries found: ${stringify(missing, 2)}`);
   });
 
   it('has the same values as the original', (): void => {
-    const fields = Object.keys(original.schema);
+    const fields = Object.keys(original.schema) as (keyof KnownSubstrate)[];
     const errors = original.registry
       .map((n): [string, string[]] => {
         const other = all.find(({ prefix }) => prefix === n.prefix);
@@ -59,14 +60,12 @@ describe('check latest Substrate ss58 registry', (): void => {
         return [
           `${n.displayName} (${n.prefix})`,
           other
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            ? fields.filter((f) => JSON.stringify(n[f]) !== JSON.stringify(other[f]))
+            ? fields.filter((f) => stringify(n[f]) !== stringify(other[f]))
             : []
         ];
       })
       .filter(([, fields]) => fields.length);
 
-    assertAndLog(!errors.length, `Mismatches found: ${JSON.stringify(errors.map(([name, m]) => `${name}:: ${m.join(', ')}`), null, 2)}`);
+    assertAndLog(!errors.length, `Mismatches found: ${stringify(errors.map(([n, m]) => `${n}:: ${m.join(', ')}`), 2)}`);
   });
 });

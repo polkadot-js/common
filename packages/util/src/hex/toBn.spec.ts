@@ -6,7 +6,7 @@ import { hexToBn } from '.';
 describe('hexToBn', (): void => {
   it('converts prefixed hex values to BN', (): void => {
     expect(
-      hexToBn(0x81).toString(16)
+      hexToBn('0x81').toString(16)
     ).toBe('81');
   });
 

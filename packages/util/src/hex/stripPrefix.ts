@@ -22,13 +22,9 @@ const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
 export function hexStripPrefix (value?: string | null): string {
   if (!value) {
     return '';
-  }
-
-  if (hexHasPrefix(value)) {
+  } else if (hexHasPrefix(value)) {
     return value.substr(2);
-  }
-
-  if (UNPREFIX_HEX_REGEX.test(value)) {
+  } else if (UNPREFIX_HEX_REGEX.test(value)) {
     return value;
   }
 

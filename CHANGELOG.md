@@ -1,5 +1,120 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Add Karura genesisHash (Thanks to https://github.com/ntduan)
+
+Changes:
+
+- `isHex(value)` will now explicitly check for only `0x${string}` (No `String` classes)
+- Added `arrayShuffle(array)` to shuffle an array into a new output
+- Sync with upstream Substrate ss58 registry
+- Simplify tests to use `{describe/it}.each` where applicable
+
+
+## 6.9.1 Jun 19, 2021
+
+Changes:
+
+- Added `u8aCmp(a, b)` to do sorting compares
+- Added `arrayRange(size, startAt = 0)` to create a range of numbers
+- Added extensive mnemonic compare test (optional, skipped)
+
+
+## 6.8.1 Jun 14, 2021
+
+Contributed:
+
+- Add Ledger support for Edgeware (Thanks to https://github.com/raykyri)
+- Fix `naclSeal` doc types (Thanks to https://github.com/agustinustheo)
+
+Changes:
+
+- Export `BN` in `@polkadot/util`
+- Sync with upstream Substrate ss58 registry
+
+
+## 6.7.1 Jun 6, 2021
+
+Changes:
+
+- Add WebHID transport for Ledger
+- Update to latest Ledger transport packages
+- Remove old `Gerald` key for Moonbeam
+- Cleanup testing keyring semgrep recommendations
+
+
+## 6.6.1 May 29, 2021
+
+Changes:
+
+- Adjust HD path validation & replacement
+- Sync with Substrate ss58 registry
+
+
+## 6.5.1 May 22, 2021
+
+Changes:
+
+- Allow hdLedger derivation with optional 25th word password
+- Sync with Substrate ss58 registry
+
+
+## 6.4.1 May 15, 2021
+
+Contributed:
+
+- Update genesis for HydraDx gen-3 (Thanks to https://github.com/jak-pan)
+- Allow Ethereum pair in keyring addAddress (Thanks to https://github.com/joelamouche)
+
+Changes:
+
+- Added additional double-byte ss58 tests
+- Aligned ss58 registry with Substrate
+- Add explicit log for deprecation of `setSS58Format`
+
+
+## 6.3.1 Apr 25, 2021
+
+Changes:
+
+- Added `stringify` util to correctly handle `JSON.stringify` with `BigInt` values
+- Additional input asserts for non-convertible values in `u8aToU8a`
+- Adapt `@polkadot/x-global` to return `globalThis` as available
+- Minor readability cleanups
+- BN manipulation via in-place shifts (as applicable)
+- Add explicit `engines` config to `package.json`
+
+
+## 6.2.1 Apr 18, 2021
+
+Contributed:
+
+- Added HydraDx genesis (Thanks to https://github.com/jak-pan)
+
+Changes:
+
+- Add `isAddress` and `validateAddress` functions (the latter will throw if invalid)
+- Check `@polkadot/hw-ledger` against `@polkadot/networks` for discrepancies (test-only)
+- Align ss58 registry with upstream Substrate
+
+
+## 6.1.1 Apr 11, 2021
+
+Contributed:
+
+- Adjust Polymath genesis in `@polkadot/networks` (Thanks to https://github.com/adamdossa)
+- Adjust `@polkadot/util` logger for +/-/* compat (Thanks to https://github.com/Lezek123)
+- Fix typo in `@polkadot/util` detect messaging (Thanks to https://github.com/amphineko)
+
+Changes:
+
+- Remove `@polkadot/networks` code duplication, manages data via script from upstream
+- Align ss58 registry with upstream Substrate
+
+
 ## 6.0.5 Mar 8, 2021
 
 Changes:

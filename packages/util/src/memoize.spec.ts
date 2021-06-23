@@ -70,7 +70,7 @@ describe('memoize', (): void => {
   });
 
   it('normalizes BigInt values as well', (): void => {
-    const fn = memoize((a: BigInt, b: BigInt) => BigInt(a) + BigInt(b));
+    const fn = memoize((a: bigint, b: bigint) => a + b);
 
     expect(fn(1n, 2n).toString()).toEqual('3');
   });

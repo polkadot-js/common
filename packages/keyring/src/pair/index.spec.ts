@@ -10,6 +10,8 @@ import { createPair } from '.';
 
 const keyring = createTestPairs({ type: 'ed25519' }, false);
 
+const TEST_ADDRESS = '0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887';
+
 describe('pair', (): void => {
   beforeEach(async (): Promise<void> => {
     await cryptoWaitReady();
@@ -159,8 +161,15 @@ describe('pair', (): void => {
     it('has a valid address from a known public', (): void => {
       const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077') });
 
-      expect(pair.address).toEqual('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887');
-      expect(pair.addressRaw).toEqual(hexToU8a('0x4119b2e6c3Cb618F4f0B93ac77f9BeeC7FF02887'));
+      expect(pair.address).toEqual(TEST_ADDRESS);
+      expect(pair.addressRaw).toEqual(hexToU8a(TEST_ADDRESS));
+    });
+
+    it('has a valid address from a known ethereum address (20 length)', (): void => {
+      const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: new Uint8Array([75, 32, 205, 127, 248, 119, 52, 31, 46, 171, 170, 23, 158, 23, 46, 108, 95, 180, 186, 168]), secretKey: new Uint8Array([]) });
+
+      expect(pair.address.toLowerCase()).toEqual('0x4b20cd7ff877341f2eabaa179e172e6c5fb4baa8');
+      expect(pair.addressRaw).toEqual(hexToU8a('0x4b20cd7ff877341f2eabaa179e172e6c5fb4baa8'));
     });
 
     it('converts to json', (): void => {
@@ -173,12 +182,6 @@ describe('pair', (): void => {
         version: '3'
       });
       expect(json.address).toEqual(u8aToHex(PUBLICDERIVED));
-    });
-
-    it('has Gerald as test address for Ethereum type parachains', (): void => {
-      const keyringEthereum = createTestPairs({ type: 'ethereum' }, false);
-
-      expect(keyringEthereum.Gerald.address).toEqual('0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b');
     });
   });
 });

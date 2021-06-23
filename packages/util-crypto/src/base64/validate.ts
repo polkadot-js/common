@@ -7,10 +7,10 @@ import { assert } from '@polkadot/util';
  * @name base64Validate
  * @summary Validates a base64 value.
  * @description
- * Validates the the supplied value is valid base64
+ * Validates that the supplied value is valid base64
  */
-export function base64Validate (value?: string | null): true {
-  assert(value, 'Expected non-null, non-empty base64 input');
+export function base64Validate (value?: string | null): value is string {
+  assert(value && typeof value === 'string', 'Expected non-null, non-empty base64 string input');
   assert(/^(?:[A-Za-z0-9+/]{2}[A-Za-z0-9+/]{2})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(value), 'Invalid base64 encoding');
 
   return true;
