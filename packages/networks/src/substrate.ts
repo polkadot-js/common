@@ -508,6 +508,24 @@ export const knownSubstrate: KnownSubstrate[] = [
   },
   {
     decimals: [18],
+    displayName: 'PolkaSmith Canary Network',
+    network: 'polkasmith',
+    prefix: 98,
+    standardAccount: '*25519',
+    symbols: ['PKS'],
+    website: 'https://polkafoundry.com'
+  },
+  {
+    decimals: [18],
+    displayName: 'PolkaFoundry Network',
+    network: 'polkafoundry',
+    prefix: 99,
+    standardAccount: '*25519',
+    symbols: ['PKF'],
+    website: 'https://polkafoundry.com'
+  },
+  {
+    decimals: [18],
     displayName: 'Social Network',
     network: 'social-network',
     prefix: 252,
