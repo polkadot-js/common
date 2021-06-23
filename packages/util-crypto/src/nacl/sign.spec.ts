@@ -11,8 +11,8 @@ describe('naclSign', (): void => {
     await waitReady();
   });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`returns a valid signature for the message (onlyJs=${onlyJs.toString()})`, (): void => {
+  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+    it('returns a valid signature for the message', (): void => {
       expect(
         naclSign(
           new Uint8Array([0x61, 0x62, 0x63, 0x64]),

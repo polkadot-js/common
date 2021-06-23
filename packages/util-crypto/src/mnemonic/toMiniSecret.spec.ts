@@ -15,28 +15,30 @@ describe('mnemonicToMiniSecret', (): void => {
     await cryptoWaitReady();
   });
 
-  [undefined, 'foo', 'bar'].forEach((password): void => {
-    it(`generates Wasm & Js equivalents (password = ${password || 'undefined'})`, (): void => {
-      expect(
-        u8aEq(
-          mnemonicToMiniSecret(MNEMONIC, password, true),
-          mnemonicToMiniSecret(MNEMONIC, password, false)
-        )
-      ).toEqual(true);
-    });
+  it.each([undefined, 'foo', 'bar'])('generates Wasm & Js equivalents for password = %p', (password): void => {
+    expect(
+      u8aEq(
+        mnemonicToMiniSecret(MNEMONIC, password, true),
+        mnemonicToMiniSecret(MNEMONIC, password, false)
+      )
+    ).toEqual(true);
   });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`generates a valid seed (onlyJs = ${onlyJs.toString()})`, (): void => {
+  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+    it('generates a valid seed', (): void => {
       expect(
         u8aToHex(mnemonicToMiniSecret(MNEMONIC, undefined, onlyJs))
       ).toEqual(SEED);
     });
-  });
 
-  tests.forEach(([mnemonic, , seed], index): void => {
-    [false, true].forEach((onlyJs): void => {
-      it(`Created correct seed for ${index} (onlyJs = ${onlyJs.toString()})`, (): void => {
+    it('fails with non-mnemonics', (): void => {
+      expect(
+        () => mnemonicToMiniSecret('foo bar baz', undefined, onlyJs)
+      ).toThrow(/mnemonic specified/);
+    });
+
+    tests.forEach(([mnemonic, , seed], index): void => {
+      it(`Created correct seed for ${index}`, (): void => {
         expect(
           u8aToHex(mnemonicToMiniSecret(mnemonic, 'Substrate', onlyJs))
         ).toEqual(
@@ -44,14 +46,6 @@ describe('mnemonicToMiniSecret', (): void => {
           seed.substr(0, 66)
         );
       });
-    });
-  });
-
-  [false, true].forEach((onlyJs): void => {
-    it(`fails with non-mnemonics (onlyJs = ${onlyJs.toString()})`, (): void => {
-      expect(
-        () => mnemonicToMiniSecret('foo bar baz', undefined, onlyJs)
-      ).toThrow(/mnemonic specified/);
     });
   });
 });
