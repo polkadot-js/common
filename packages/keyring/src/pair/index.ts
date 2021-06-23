@@ -177,7 +177,6 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       // NOTE: For ecdsa and ethereum, the publicKey cannot be extracted from the address. For these
       // pass the hex-encoded publicKey through to the address portion of the JSON (before decoding)
       // unless the publicKey is already an address
-      console.log('publicKey.length', publicKey.length);
       const address = ['ecdsa', 'ethereum'].includes(type)
         ? publicKey.length === 21 ? u8aToHex(secp256k1Compress(publicKey)) : u8aToHex(publicKey)
         : encodeAddress();
