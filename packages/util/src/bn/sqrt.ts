@@ -3,11 +3,12 @@
 
 import type { ToBn } from '../types';
 
-import BN from 'bn.js';
-
 import { assert } from '../assert';
-import { BN_MAX_INTEGER, BN_ONE, BN_ZERO } from '../bn';
+import { BN } from './bn';
+import { BN_MAX_INTEGER, BN_ONE, BN_ZERO } from './consts';
 import { bnToBn } from './toBn';
+
+const SQRT_MAX_SAFE_INTEGER = new BN(94906265);
 
 /**
  * @name bnSqrt
@@ -35,7 +36,7 @@ export function bnSqrt <ExtToBn extends ToBn> (value: ExtToBn | BN | BigInt | st
 
   // Use sqrt(MAX_SAFE_INTEGER) as starting point. since we already know the
   // output will be larger than this, we expect this to be a safe start
-  let x0 = new BN(94906265);
+  let x0 = SQRT_MAX_SAFE_INTEGER.clone();
 
   while (true) {
     const x1 = n.div(x0).iadd(x0).ishrn(1);

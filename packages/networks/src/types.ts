@@ -3,32 +3,38 @@
 
 export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate';
 
-export interface NetworkFromSubstrate {
+export interface KnownSubstrate {
   decimals: number[] | null,
   displayName: string;
   network: string | null;
   prefix: number;
-  genesisHash?: string[] | null;
-  hasLedgerSupport?: boolean;
-  icon?: Icon | null;
-  isIgnored?: boolean;
-  slip44?: number;
   standardAccount: '*25519' | null;
   symbols: string[] | null;
   website: string | null;
 }
 
-export interface NetworkFromSubstrateNamed extends NetworkFromSubstrate {
+export type KnownIcon = Record<string, Icon>;
+
+export type KnownLedger = Record<string, number>;
+
+export type KnownGenesis = Record<string, string[]>;
+
+export type KnownTestnet = Record<string, true>;
+
+export interface SubstrateNetwork extends KnownSubstrate {
+  genesisHash: string[];
+  hasLedgerSupport: boolean;
+  icon: Icon;
+  isIgnored: boolean;
+  slip44?: number | null;
+}
+
+export interface Network extends SubstrateNetwork {
   network: string;
 }
 
-export interface Network extends NetworkFromSubstrateNamed {
-  genesisHash: string[];
-  icon: Icon;
-}
-
 export interface Ss58Registry {
-  registry: NetworkFromSubstrate[];
+  registry: KnownSubstrate[];
   specification: string;
   schema: Record<string, string>;
 }

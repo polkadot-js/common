@@ -11,27 +11,27 @@ import { decodeAddress } from './decode';
 import { defaults } from './defaults';
 import { sshash } from './sshash';
 
-export function encodeAddress (_key: Uint8Array | string, ss58Format: Prefix = defaults.prefix): string {
+export function encodeAddress (key: Uint8Array | string, ss58Format: Prefix = defaults.prefix): string {
   // decode it, this means we can re-encode an address
-  const key = decodeAddress(_key);
+  const u8a = decodeAddress(key);
 
   assert(ss58Format >= 0 && ss58Format <= 16383 && ![46, 47].includes(ss58Format), 'Out of range ss58Format specified');
-  assert(defaults.allowedDecodedLengths.includes(key.length), `Expected a valid key to convert, with length ${defaults.allowedDecodedLengths.join(', ')}`);
+  assert(defaults.allowedDecodedLengths.includes(u8a.length), () => `Expected a valid key to convert, with length ${defaults.allowedDecodedLengths.join(', ')}`);
 
-  const isPublicKey = [32, 33].includes(key.length);
   const input = u8aConcat(
-    new Uint8Array(
-      ss58Format < 64
-        ? [ss58Format]
-        : [
-          ((ss58Format & 0b0000_0000_1111_1100) >> 2) | 0b0100_0000,
-          (ss58Format >> 8) | ((ss58Format & 0b0000_0000_0000_0011) << 6)
-        ]
-    ),
-    key
+    ss58Format < 64
+      ? [ss58Format]
+      : [
+        ((ss58Format & 0b0000_0000_1111_1100) >> 2) | 0b0100_0000,
+        (ss58Format >> 8) | ((ss58Format & 0b0000_0000_0000_0011) << 6)
+      ],
+    u8a
   );
 
   return base58Encode(
-    u8aConcat(input, sshash(input).subarray(0, isPublicKey ? 2 : 1))
+    u8aConcat(
+      input,
+      sshash(input).subarray(0, [32, 33].includes(u8a.length) ? 2 : 1)
+    )
   );
 }

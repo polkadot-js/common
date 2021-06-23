@@ -1,28 +1,22 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isUndefined } from '../is/undefined';
+import { u8aCmp } from './cmp';
 
+/**
+ * @name u8aSorted
+ * @summary Sorts an array of Uint8Arrays
+ * @description
+ * For input `UInt8Array[]` return the sorted result
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { u8aSorted} from '@polkadot/util';
+ *
+ * u8aSorted([new Uint8Array([0x69]), new Uint8Array([0x68])]); // [0x68, 0x69]
+ * ```
+ */
 export function u8aSorted (u8as: Uint8Array[]): Uint8Array[] {
-  return u8as.sort((a, b): number => {
-    let i = 0;
-
-    while (true) {
-      if (isUndefined(a[i]) && isUndefined(b[i])) {
-        return 0;
-      } else if (isUndefined(a[i])) {
-        return -1;
-      } else if (isUndefined(b[i])) {
-        return 1;
-      }
-
-      const cmp = a[i] - b[i];
-
-      if (cmp !== 0) {
-        return cmp;
-      }
-
-      i++;
-    }
-  });
+  return u8as.sort(u8aCmp);
 }

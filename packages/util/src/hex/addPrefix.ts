@@ -22,9 +22,5 @@ export function hexAddPrefix (value?: string | null): string {
     return value;
   }
 
-  const prefix = value && value.length % 2 === 1
-    ? '0'
-    : '';
-
-  return `0x${prefix}${value || ''}`;
+  return `0x${value && value.length % 2 === 1 ? '0' : ''}${value || ''}`;
 }

@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/util",
-  "version": "6.0.6-3",
+  "version": "6.9.2-8",
   "type": "module",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
@@ -8,6 +8,9 @@
     "./detectPackage.js",
     "./detectPackage.cjs"
   ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
@@ -16,9 +19,9 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@polkadot/x-textdecoder": "6.0.6-3",
-    "@polkadot/x-textencoder": "6.0.6-3",
+    "@babel/runtime": "^7.14.6",
+    "@polkadot/x-textdecoder": "6.9.2-8",
+    "@polkadot/x-textencoder": "6.9.2-8",
     "@types/bn.js": "^4.11.6",
     "bn.js": "^4.11.9",
     "camelcase": "^5.3.1",

@@ -3,20 +3,11 @@
 
 import type { ToBn } from '../types';
 
-import BN from 'bn.js';
-
 import { hexToBn } from '../hex/toBn';
 import { isBigInt } from '../is/bigInt';
 import { isHex } from '../is/hex';
 import { isToBn } from '../is/toBn';
-
-function numberToBn <ExtToBn extends ToBn> (value: number | ExtToBn | BN): BN {
-  return BN.isBN(value)
-    ? value
-    : isToBn(value)
-      ? value.toBn()
-      : new BN(value);
-}
+import { BN } from './bn';
 
 /**
  * @name bnToBn
@@ -43,5 +34,9 @@ export function bnToBn <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | s
     return new BN(value.toString());
   }
 
-  return numberToBn(value);
+  return BN.isBN(value)
+    ? value
+    : isToBn(value)
+      ? value.toBn()
+      : new BN(value);
 }

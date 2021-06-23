@@ -1,10 +1,13 @@
 {
   "name": "@polkadot/x-global",
-  "version": "6.0.6-3",
+  "version": "6.9.2-8",
   "type": "module",
   "description": "A cross-environment global replacement",
   "main": "index.js",
   "sideEffects": false,
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
@@ -13,8 +16,8 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-global#readme",
   "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@types/node-fetch": "^2.5.8",
+    "@babel/runtime": "^7.14.6",
+    "@types/node-fetch": "^2.5.10",
     "node-fetch": "^2.6.1"
   }
 }
