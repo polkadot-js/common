@@ -29,6 +29,6 @@ export function decodeAddress (encoded?: string | Uint8Array | null, ignoreCheck
 
     return decoded.slice(ss58Length, endPos);
   } catch (error) {
-    throw new Error(`Decoding ${encoded}: ${(error as Error).message}`);
+    throw new Error(`Decoding ${encoded as string}: ${(error as Error).message}`);
   }
 }
