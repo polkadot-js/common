@@ -8,7 +8,7 @@ Contributed:
 
 Changes:
 
-- `isHex(value)` will now explicitly check for only `0x${string}` (No `String` classes)
+- `isHex(value)` will now check for only `string` types (No `String` classes)
 - Added `arrayShuffle(array)` to shuffle an array into a new output
 - Sync with upstream Substrate ss58 registry
 - Simplify tests to use `{describe/it}.each` where applicable
