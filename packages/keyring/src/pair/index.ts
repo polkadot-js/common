@@ -178,7 +178,9 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       // pass the hex-encoded publicKey through to the address portion of the JSON (before decoding)
       // unless the publicKey is already an address
       const address = ['ecdsa', 'ethereum'].includes(type)
-        ? publicKey.length === 21 ? u8aToHex(secp256k1Compress(publicKey)) : u8aToHex(publicKey)
+        ? publicKey.length === 20
+          ? u8aToHex(publicKey)
+          : u8aToHex(secp256k1Compress(publicKey))
         : encodeAddress();
 
       return pairToJson(type, { address, meta }, recode(passphrase), !!passphrase);
