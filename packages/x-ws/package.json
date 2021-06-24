@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-ws",
-  "version": "6.9.2-9",
+  "version": "6.9.2-10",
   "type": "module",
   "description": "A cross-environment WebSocket replacement",
   "browser": "browser.js",
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-ws#readme",
   "dependencies": {
     "@babel/runtime": "^7.14.6",
-    "@polkadot/x-global": "6.9.2-9",
+    "@polkadot/x-global": "6.9.2-10",
     "@types/websocket": "^1.0.2",
     "websocket": "^1.0.34"
   }
