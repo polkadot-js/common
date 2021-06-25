@@ -8,7 +8,7 @@ export interface KnownSubstrate {
   displayName: string;
   network: string | null;
   prefix: number;
-  standardAccount: '*25519' | null;
+  standardAccount: '*25519' | 'secp256k1' | null;
   symbols: string[] | null;
   website: string | null;
 }
