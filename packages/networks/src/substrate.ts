@@ -526,6 +526,15 @@ export const knownSubstrate: KnownSubstrate[] = [
   },
   {
     decimals: [18],
+    displayName: 'OriginTrail Parachain',
+    network: 'origintrail-parachain',
+    prefix: 101,
+    standardAccount: 'secp256k1',
+    symbols: ['TRAC'],
+    website: 'https://origintrail.io'
+  },
+  {
+    decimals: [18],
     displayName: 'Social Network',
     network: 'social-network',
     prefix: 252,

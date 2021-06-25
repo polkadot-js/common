@@ -10,8 +10,8 @@ Changes:
 
 - `isHex(value)` will now check for only `string` types (No `String` classes)
 - Added `arrayShuffle(array)` to shuffle an array into a new output
-- Sync with upstream Substrate ss58 registry
 - Simplify tests to use `{describe/it}.each` where applicable
+- Sync with upstream Substrate ss58 registry
 
 
 ## 6.9.1 Jun 19, 2021
