@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/hw-ledger",
-  "version": "6.10.0",
+  "version": "6.10.1",
   "type": "module",
   "repository": "github:polkadot-js/common",
   "author": "Jaco Greeff <jacogr@gmail.com>",
@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.6",
-    "@polkadot/hw-ledger-transports": "6.10.0",
-    "@polkadot/util": "^6.10.0",
+    "@polkadot/hw-ledger-transports": "6.10.1",
+    "@polkadot/util": "^6.10.1",
     "@zondax/ledger-substrate": "^0.15.0"
   }
 }
