@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 6.10.1 Jun 26, 2021
 
 Contributed:
 
@@ -10,7 +10,8 @@ Changes:
 
 - `isHex(value)` will now check for only `string` types (No `String` classes)
 - Added `arrayShuffle(array)` to shuffle an array into a new output
-- Simplify tests to use `{describe/it}.each` where applicable
+- Added Statemine Ledger app information
+- Simplify tests to use `{describe|it}.each` where applicable
 - Sync with upstream Substrate ss58 registry
 
 
