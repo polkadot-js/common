@@ -332,7 +332,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     network: 'centrifuge',
     prefix: 36,
     standardAccount: '*25519',
-    symbols: ['RAD'],
+    symbols: ['CFG'],
     website: 'https://centrifuge.io/'
   },
   {
@@ -532,6 +532,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: 'secp256k1',
     symbols: ['TRAC'],
     website: 'https://origintrail.io'
+  },
+  {
+    decimals: [18],
+    displayName: 'Altair',
+    network: 'altair',
+    prefix: 136,
+    standardAccount: '*25519',
+    symbols: ['AIR'],
+    website: 'https://centrifuge.io/'
   },
   {
     decimals: [18],
