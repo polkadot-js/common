@@ -2207,8 +2207,6 @@ __metadata:
   resolution: "@polkadot/x-global@workspace:packages/x-global"
   dependencies:
     "@babel/runtime": ^7.14.6
-    "@types/node-fetch": ^2.5.10
-    node-fetch: ^2.6.1
   languageName: unknown
   linkType: soft
 
