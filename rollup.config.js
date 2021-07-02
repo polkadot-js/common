@@ -3,9 +3,48 @@
 
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 export default [
+  {
+    external: [
+      '@polkadot/util',
+      '@polkadot/util-crypto'
+    ],
+    input: 'packages/keyring/build/index.js',
+    output: {
+      file: 'build/keyring/bundle/polkadotKeyring.js',
+      format: 'iife',
+      globals: {
+        '@polkadot/util': 'polkadotUtil',
+        '@polkadot/util-crypto': 'polkadotUtilCrypto'
+      },
+      name: 'polkadotKeyring'
+    },
+    plugins: [
+      alias({}),
+      nodeResolve(),
+      commonjs()
+    ]
+  },
+  {
+    external: [
+    ],
+    input: 'packages/networks/build/index.js',
+    output: {
+      file: 'build/networks/bundle/polkadotNetworks.js',
+      format: 'iife',
+      globals: {
+      },
+      name: 'polkadotNetworks'
+    },
+    plugins: [
+      alias({}),
+      nodeResolve(),
+      commonjs()
+    ]
+  },
   {
     external: [
       '@polkadot/x-global',
@@ -29,27 +68,32 @@ export default [
       commonjs()
     ]
   },
-  // {
-  //   external: [
-  //     '@polkadot/util',
-  //     '@polkadot/x-randomvalues'
-  //   ],
-  //   input: 'packages/util-crypto/build/index.js',
-  //   output: {
-  //     file: 'build/util-crypto/bundle/polkadotUtilCrypto.js',
-  //     format: 'iife',
-  //     globals: {
-  //       '@polkadot/util': 'polkadotUtil',
-  //       '@polkadot/x-randomvalues': 'polkadotXRandomvalues'
-  //     },
-  //     name: 'polkadotUtilCrypto'
-  //   },
-  //   plugins: [
-  //     alias({}),
-  //     nodeResolve(),
-  //     commonjs()
-  //   ]
-  // },
+  {
+    external: [
+      '@polkadot/networks',
+      '@polkadot/util',
+      '@polkadot/wasm-crypto',
+      '@polkadot/x-randomvalues'
+    ],
+    input: 'packages/util-crypto/build/index.js',
+    output: {
+      file: 'build/util-crypto/bundle/polkadotUtilCrypto.js',
+      format: 'iife',
+      globals: {
+        '@polkadot/networks': 'polkadotNetworks',
+        '@polkadot/util': 'polkadotUtil',
+        '@polkadot/wasm-crypto': 'polkadotWasmCrypto',
+        '@polkadot/x-randomvalues': 'polkadotXRandomvalues'
+      },
+      name: 'polkadotUtilCrypto'
+    },
+    plugins: [
+      alias({}),
+      json(),
+      nodeResolve(),
+      commonjs()
+    ]
+  },
   {
     external: [
       '@polkadot/x-global'
