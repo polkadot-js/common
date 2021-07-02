@@ -19,6 +19,6 @@
     "@babel/runtime": "^7.14.6",
     "@polkadot/hw-ledger-transports": "6.10.2-2",
     "@polkadot/util": "^6.10.2-2",
-    "@zondax/ledger-substrate": "^0.15.0"
+    "@zondax/ledger-substrate": "^0.16.1"
   }
 }
