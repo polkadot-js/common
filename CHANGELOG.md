@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 6.11.1 Jul 5, 2021
+
+Changes:
+
+- Cleanup unneeded dependencies for `@polkadot/x-global`
+- Sync with upstream Substrate ss58 registry
+- Bump Zondax dependencies (Statemine slip44 fix)
+
+
 ## 6.10.1 Jun 26, 2021
 
 Contributed:
