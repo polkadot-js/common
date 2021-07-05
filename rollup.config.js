@@ -6,223 +6,119 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 
+const external = [
+  '@polkadot/networks',
+  '@polkadot/util',
+  '@polkadot/util-crypto',
+  '@polkadot/wasm-crypto',
+  '@polkadot/x-global',
+  '@polkadot/x-randomvalues',
+  '@polkadot/x-textdecoder',
+  '@polkadot/x-textencoder'
+];
+
+const globals = {
+  '@polkadot/networks': 'polkadotNetworks',
+  '@polkadot/util': 'polkadotUtil',
+  '@polkadot/util-crypto': 'polkadotUtilCrypto',
+  '@polkadot/wasm-crypto': 'polkadotWasmCrypto',
+  '@polkadot/x-global': 'polkadotXGlobal',
+  '@polkadot/x-randomvalues': 'polkadotXRandomvalues',
+  '@polkadot/x-textdecoder': 'polkadotXTextdecoder',
+  '@polkadot/x-textencoder': 'polkadotXTextencoder'
+};
+
+function createPlugins (entries = []) {
+  return [
+    alias({ entries }),
+    json(),
+    nodeResolve(),
+    commonjs()
+  ];
+}
+
+function createOutput (name, out) {
+  return {
+    file: `${out}/${name}.js`,
+    format: 'iife',
+    globals,
+    name
+  };
+}
+
 export default [
   {
-    external: [
-      '@polkadot/util',
-      '@polkadot/util-crypto'
-    ],
+    external,
+    input: 'packages/hw-ledger/build/index.js',
+    output: createOutput('polkadotHwLedger', 'build/networks/bundle'),
+    plugins: createPlugins([
+      { find: '@polkadot/hw-ledger-transports', replacement: '../../hw-ledger-transports/build' }
+    ])
+  },
+  {
+    external,
     input: 'packages/keyring/build/index.js',
-    output: {
-      file: 'build/keyring/bundle/polkadotKeyring.js',
-      format: 'iife',
-      globals: {
-        '@polkadot/util': 'polkadotUtil',
-        '@polkadot/util-crypto': 'polkadotUtilCrypto'
-      },
-      name: 'polkadotKeyring'
-    },
-    plugins: [
-      alias({}),
-      nodeResolve(),
-      commonjs()
-    ]
+    output: createOutput('polkadotKeyring', 'build/keyring/bundle'),
+    plugins: createPlugins()
   },
   {
-    external: [
-    ],
+    external,
     input: 'packages/networks/build/index.js',
-    output: {
-      file: 'build/networks/bundle/polkadotNetworks.js',
-      format: 'iife',
-      globals: {
-      },
-      name: 'polkadotNetworks'
-    },
-    plugins: [
-      alias({}),
-      nodeResolve(),
-      commonjs()
-    ]
+    output: createOutput('polkadotNetworks', 'build/networks/bundle'),
+    plugins: createPlugins()
   },
   {
-    external: [
-      '@polkadot/x-global',
-      '@polkadot/x-textdecoder',
-      '@polkadot/x-textencoder'
-    ],
+    external,
     input: 'packages/util/build/index.js',
-    output: {
-      file: 'build/util/bundle/polkadotUtil.js',
-      format: 'iife',
-      globals: {
-        '@polkadot/x-global': 'polkadotXGlobal',
-        '@polkadot/x-textdecoder': 'polkadotXTextdecoder',
-        '@polkadot/x-textencoder': 'polkadotXTextencoder'
-      },
-      name: 'polkadotUtil'
-    },
-    plugins: [
-      alias({}),
-      nodeResolve(),
-      commonjs()
-    ]
+    output: createOutput('polkadotUtil', 'build/util/bundle'),
+    plugins: createPlugins()
   },
   {
-    external: [
-      '@polkadot/networks',
-      '@polkadot/util',
-      '@polkadot/wasm-crypto',
-      '@polkadot/x-randomvalues'
-    ],
+    external,
     input: 'packages/util-crypto/build/index.js',
-    output: {
-      file: 'build/util-crypto/bundle/polkadotUtilCrypto.js',
-      format: 'iife',
-      globals: {
-        '@polkadot/networks': 'polkadotNetworks',
-        '@polkadot/util': 'polkadotUtil',
-        '@polkadot/wasm-crypto': 'polkadotWasmCrypto',
-        '@polkadot/x-randomvalues': 'polkadotXRandomvalues'
-      },
-      name: 'polkadotUtilCrypto'
-    },
-    plugins: [
-      alias({}),
-      json(),
-      nodeResolve(),
-      commonjs()
-    ]
+    output: createOutput('polkadotUtilCrypto', 'build/util-crypto/bundle'),
+    plugins: createPlugins()
   },
   {
-    external: [
-      '@polkadot/x-global'
-    ],
+    external,
     input: 'packages/x-fetch/build/browser.js',
-    output: {
-      file: 'build/x-fetch/bundle/polkadotXFetch.js',
-      format: 'iife',
-      globals: {
-        '@polkadot/x-global': 'polkadotXGlobal'
-      },
-      name: 'polkadotXFetch'
-    },
-    plugins: [
-      alias({}),
-      nodeResolve(),
-      commonjs()
-    ]
+    output: createOutput('polkadotXFetch', 'build/x-fetch/bundle'),
+    plugins: createPlugins()
   },
   {
-    external: [
-    ],
+    external,
     input: 'packages/x-global/build/index.js',
-    output: {
-      file: 'build/x-global/bundle/polkadotXGlobal.js',
-      format: 'iife',
-      globals: {
-      },
-      name: 'polkadotXGlobal'
-    },
-    plugins: [
-      alias({}),
-      nodeResolve(),
-      commonjs()
-    ]
+    output: createOutput('polkadotXGlobal', 'build/x-global/bundle'),
+    plugins: createPlugins()
   },
   {
-    external: [
-      '@polkadot/x-global'
-    ],
+    external,
     input: 'packages/x-randomvalues/build/browser.js',
-    output: {
-      file: 'build/x-randomvalues/bundle/polkadotXRandomvalues.js',
-      format: 'iife',
-      globals: {
-        '@polkadot/x-global': 'polkadotXGlobal'
-      },
-      name: 'polkadotXRandomvalues'
-    },
-    plugins: [
-      alias({}),
-      nodeResolve(),
-      commonjs()
-    ]
+    output: createOutput('polkadotXRandomvalues', 'build/x-randomvalues/bundle'),
+    plugins: createPlugins()
   },
   {
-    external: [
-      '@polkadot/x-global'
-    ],
+    external,
     input: 'packages/x-rxjs/build/index.js',
-    output: {
-      file: 'build/x-rxjs/bundle/polkadotXRxjs.js',
-      format: 'iife',
-      globals: {
-        '@polkadot/x-global': 'polkadotXGlobal'
-      },
-      name: 'polkadotXRxjs'
-    },
-    plugins: [
-      alias({}),
-      nodeResolve(),
-      commonjs()
-    ]
+    output: createOutput('polkadotXRxjs', 'build/x-rxjs/bundle'),
+    plugins: createPlugins()
   },
   {
-    external: [
-      '@polkadot/x-global'
-    ],
+    external,
     input: 'packages/x-textdecoder/build/browser.js',
-    output: {
-      file: 'build/x-textdecoder/bundle/polkadotXTextdecoder.js',
-      format: 'iife',
-      globals: {
-        '@polkadot/x-global': 'polkadotXGlobal'
-      },
-      name: 'polkadotXTextdecoder'
-    },
-    plugins: [
-      alias({}),
-      nodeResolve(),
-      commonjs()
-    ]
+    output: createOutput('polkadotXTextdecoder', 'build/x-textdecoder/bundle'),
+    plugins: createPlugins()
   },
   {
-    external: [
-      '@polkadot/x-global'
-    ],
+    external,
     input: 'packages/x-textencoder/build/browser.js',
-    output: {
-      file: 'build/x-textencoder/bundle/polkadotXTextencoder.js',
-      format: 'iife',
-      globals: {
-        '@polkadot/x-global': 'polkadotXGlobal'
-      },
-      name: 'polkadotXTextencoder'
-    },
-    plugins: [
-      alias({}),
-      nodeResolve(),
-      commonjs()
-    ]
+    output: createOutput('polkadotXTextencoder', 'build/x-textencoder/bundle'),
+    plugins: createPlugins()
   },
   {
-    external: [
-      '@polkadot/x-global'
-    ],
+    external,
     input: 'packages/x-ws/build/browser.js',
-    output: {
-      file: 'build/x-ws/bundle/polkadotXWs.js',
-      format: 'iife',
-      globals: {
-        '@polkadot/x-global': 'polkadotXGlobal'
-      },
-      name: 'polkadotXWs'
-    },
-    plugins: [
-      alias({}),
-      nodeResolve(),
-      commonjs()
-    ]
+    output: createOutput('polkadotXWs', 'build/x-ws/bundle'),
+    plugins: createPlugins()
   }
 ];
