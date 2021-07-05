@@ -32,7 +32,7 @@ function createPlugins (entries = []) {
   return [
     alias({ entries }),
     json(),
-    nodeResolve(),
+    nodeResolve({ browser: true }),
     commonjs()
   ];
 }
