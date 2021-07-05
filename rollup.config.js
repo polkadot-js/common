@@ -50,7 +50,7 @@ export default [
   {
     external,
     input: 'packages/hw-ledger/build/index.js',
-    output: createOutput('polkadotHwLedger', 'build/networks/bundle'),
+    output: createOutput('polkadotHwLedger', 'build/hw-ledger/bundle'),
     plugins: createPlugins([
       { find: '@polkadot/hw-ledger-transports', replacement: '../../hw-ledger-transports/build' }
     ])
