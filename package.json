@@ -27,5 +27,5 @@
     "@polkadot/ts": "^0.4.2",
     "@types/jest": "^26.0.23"
   },
-  "version": "6.11.1"
+  "version": "6.11.2-0"
 }
