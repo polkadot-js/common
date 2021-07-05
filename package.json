@@ -25,7 +25,7 @@
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@polkadot/dev": "^0.62.44",
-    "@polkadot/ts": "^0.4.1",
+    "@polkadot/ts": "^0.4.2",
     "@rollup/plugin-alias": "^3.1.2",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-json": "^4.1.0",
@@ -33,5 +33,5 @@
     "@types/jest": "^26.0.23",
     "rollup": "^2.52.7"
   },
-  "version": "6.10.2-1"
+  "version": "6.11.0"
 }
