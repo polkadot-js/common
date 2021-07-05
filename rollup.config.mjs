@@ -18,7 +18,7 @@ export default [
   {
     external,
     input: createInput('hw-ledger'),
-    output: createOutput('hw-ledger', external),
+    output: createOutput('hw-ledger/bundle', external),
     plugins: createPlugins([
       { find: '@polkadot/hw-ledger-transports', replacement: '../../hw-ledger-transports/build' }
     ])
