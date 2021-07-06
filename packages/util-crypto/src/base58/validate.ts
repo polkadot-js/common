@@ -13,8 +13,8 @@ interface CheckConfig {
 
 const BASE_CONFIG = { alphabet: BASE58_ALPHABET, ipfsChar: 'z', type: 'base58' };
 
-export function validateChars ({ alphabet, ipfsChar, type }: CheckConfig, value?: string | null, ipfsCompat?: boolean): true {
-  assert(value, () => `Expected non-null, non-empty ${type} input`);
+export function validateChars ({ alphabet, ipfsChar, type }: CheckConfig, value?: unknown, ipfsCompat?: boolean): true {
+  assert(value && typeof value === 'string', () => `Expected non-null, non-empty ${type} string input`);
   assert(!ipfsCompat || value[0] === ipfsChar, () => `Expected ${type} to start with '${ipfsChar}'`);
 
   for (let i = (ipfsCompat ? 1 : 0); i < value.length; i++) {

@@ -1,9 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import BN from 'bn.js';
-
-import { bnSqrt } from '.';
+import { BN, bnSqrt } from '.';
 
 const TESTS: [string | number | BN | BigInt, string | number][] = [
   [0, 0],

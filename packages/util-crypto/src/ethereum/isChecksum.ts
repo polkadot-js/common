@@ -6,7 +6,11 @@ import { u8aToHex } from '@polkadot/util';
 import { keccakAsU8a } from '../keccak';
 
 function isInvalidChar (char: string, byte: number): boolean {
-  return (byte > 7 && char !== char.toUpperCase()) || (byte <= 7 && char !== char.toLowerCase());
+  return char !== (
+    byte > 7
+      ? char.toUpperCase()
+      : char.toLowerCase()
+  );
 }
 
 export function isEthereumChecksum (_address: string): boolean {

@@ -332,7 +332,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     network: 'centrifuge',
     prefix: 36,
     standardAccount: '*25519',
-    symbols: ['RAD'],
+    symbols: ['CFG'],
     website: 'https://centrifuge.io/'
   },
   {
@@ -508,12 +508,66 @@ export const knownSubstrate: KnownSubstrate[] = [
   },
   {
     decimals: [18],
+    displayName: 'PolkaSmith Canary Network',
+    network: 'polkasmith',
+    prefix: 98,
+    standardAccount: '*25519',
+    symbols: ['PKS'],
+    website: 'https://polkafoundry.com'
+  },
+  {
+    decimals: [18],
+    displayName: 'PolkaFoundry Network',
+    network: 'polkafoundry',
+    prefix: 99,
+    standardAccount: '*25519',
+    symbols: ['PKF'],
+    website: 'https://polkafoundry.com'
+  },
+  {
+    decimals: [18],
+    displayName: 'OriginTrail Parachain',
+    network: 'origintrail-parachain',
+    prefix: 101,
+    standardAccount: 'secp256k1',
+    symbols: ['TRAC'],
+    website: 'https://origintrail.io'
+  },
+  {
+    decimals: [18],
+    displayName: 'Altair',
+    network: 'altair',
+    prefix: 136,
+    standardAccount: '*25519',
+    symbols: ['AIR'],
+    website: 'https://centrifuge.io/'
+  },
+  {
+    decimals: [18],
     displayName: 'Social Network',
     network: 'social-network',
     prefix: 252,
     standardAccount: '*25519',
     symbols: ['NET'],
     website: 'https://social.network'
+  },
+  {
+    decimals: [18],
+    displayName: 'Moonbeam',
+    network: 'moonbeam',
+    prefix: 1284,
+    standardAccount: '*25519',
+    symbols: ['GLMR'],
+    website: 'https://moonbeam.network'
+  },
+  {
+    decimals: [18],
+    displayName: 'Moonriver',
+    network: 'moonriver',
+    prefix: 1285,
+    standardAccount: '*25519',
+    symbols: ['MOVR'],
+    website: 'https://moonbeam.network'
   },
   {
     decimals: [12],

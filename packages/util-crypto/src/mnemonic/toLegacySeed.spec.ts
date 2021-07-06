@@ -15,35 +15,29 @@ describe('mnemonicToLegacySeed', (): void => {
     await waitReady();
   });
 
-  [undefined, 'foo', 'bar'].forEach((password): void => {
-    it(`generates Wasm & Js equivalents (password = ${password || 'undefined'})`, (): void => {
-      expect(
-        u8aEq(
-          mnemonicToLegacySeed(MNEMONIC, password, true),
-          mnemonicToLegacySeed(MNEMONIC, password, false)
-        )
-      ).toEqual(true);
-    });
+  it.each([undefined, 'foo', 'bar'])('generates Wasm & Js equivalents (password = %p', (password): void => {
+    expect(
+      u8aEq(
+        mnemonicToLegacySeed(MNEMONIC, password, true),
+        mnemonicToLegacySeed(MNEMONIC, password, false)
+      )
+    ).toEqual(true);
   });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`generates a valid 64bytes seed (onlyJs = ${onlyJs.toString()})`, (): void => {
+  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+    it('generates a valid 64bytes seed', (): void => {
       expect(
         u8aToHex(mnemonicToLegacySeed(MNEMONIC, undefined, onlyJs, 64))
       ).toEqual(SEED_64);
     });
-  });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`generates a valid 32bytes seed (onlyJs = ${onlyJs.toString()})`, (): void => {
+    it('generates a valid 32bytes seed', (): void => {
       expect(
         u8aToHex(mnemonicToLegacySeed(MNEMONIC, undefined, onlyJs))
       ).toEqual(SEED_32);
     });
-  });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`fails with non-mnemonics (onlyJs = ${onlyJs.toString()})`, (): void => {
+    it('fails with non-mnemonics', (): void => {
       expect(
         () => mnemonicToLegacySeed('foo bar baz', undefined, onlyJs)
       ).toThrow(/mnemonic specified/);

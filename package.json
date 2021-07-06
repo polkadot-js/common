@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "resolutions": {
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.5"
   },
   "scripts": {
     "build": "polkadot-dev-build-ts",
@@ -17,14 +17,15 @@
     "networks:crosscheck": "polkadot-dev-run-test packages/networks/src/crosscheck",
     "networks:sync": "node packages/networks/scripts/fromSubstrate.mjs",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns crosscheck",
-    "test:one": "polkadot-dev-run-test"
+    "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns crosscheck --testPathIgnorePatterns toMiniSecretCmp",
+    "test:mnemonicCmp": "polkadot-dev-run-test packages/util-crypto/src/mnemonic/toMiniSecretCmp.spec.ts",
+    "test:one": "polkadot-dev-run-test --runInBand"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@polkadot/dev": "^0.62.20",
-    "@polkadot/ts": "^0.3.69",
+    "@babel/core": "^7.14.6",
+    "@polkadot/dev": "^0.62.52",
+    "@polkadot/ts": "^0.4.3",
     "@types/jest": "^26.0.23"
   },
-  "version": "6.6.1"
+  "version": "6.11.2-3"
 }

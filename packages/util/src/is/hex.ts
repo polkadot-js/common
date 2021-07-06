@@ -1,8 +1,6 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isString } from './string';
-
 const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
 
 /**
@@ -20,13 +18,10 @@ const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
  * isHex('0x1234', 8); // => false
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function isHex (value: unknown, bitLength = -1, ignoreLength = false): value is string | String {
-  const isValidHex = value === '0x' || (isString(value) && HEX_REGEX.test(value.toString()));
-
-  if (isValidHex && bitLength !== -1) {
-    return (value as string).length === (2 + Math.ceil(bitLength / 4));
-  }
-
-  return isValidHex && (ignoreLength || ((value as string).length % 2 === 0));
+export function isHex (value: unknown, bitLength = -1, ignoreLength = false): value is string {
+  return (typeof value === 'string' && (value === '0x' || HEX_REGEX.test(value)))
+    ? bitLength === -1
+      ? ((value.length % 2 === 0) || ignoreLength)
+      : (value.length === (2 + Math.ceil(bitLength / 4)))
+    : false;
 }

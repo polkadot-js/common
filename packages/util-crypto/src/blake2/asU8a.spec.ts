@@ -11,38 +11,32 @@ describe('blake2AsU8a', (): void => {
     await waitReady();
   });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`returns a 64-bit value by default (onlyJs=${onlyJs.toString()})`, (): void => {
+  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+    it('returns a 64-bit value by default', (): void => {
       expect(
         blake2AsU8a('abc', undefined, undefined, onlyJs)
       ).toEqual(
         new Uint8Array([189, 221, 129, 60, 99, 66, 57, 114, 49, 113, 239, 63, 238, 152, 87, 155, 148, 150, 78, 59, 177, 203, 62, 66, 114, 98, 200, 192, 104, 213, 35, 25])
       );
     });
-  });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`returns a 128-bit value (as specified, onlyJs=${onlyJs.toString()})`, (): void => {
+    it('returns a 128-bit value (as specified,)', (): void => {
       expect(
         blake2AsU8a('abc', 128, undefined, onlyJs)
       ).toEqual(
         new Uint8Array([207, 74, 183, 145, 198, 43, 141, 43, 33, 9, 201, 2, 117, 40, 120, 22])
       );
     });
-  });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`returns a 256-bit value (as specified, onlyJs=${onlyJs.toString()})`, (): void => {
+    it('returns a 256-bit value (as specified)', (): void => {
       expect(
         blake2AsU8a('abc', 256, undefined, onlyJs)
       ).toEqual(
         new Uint8Array([189, 221, 129, 60, 99, 66, 57, 114, 49, 113, 239, 63, 238, 152, 87, 155, 148, 150, 78, 59, 177, 203, 62, 66, 114, 98, 200, 192, 104, 213, 35, 25])
       );
     });
-  });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`returns a 512-bit value (as specified, onlyJs=${onlyJs.toString()})`, (): void => {
+    it('returns a 512-bit value (as specified)', (): void => {
       expect(
         blake2AsU8a('abc', 512, undefined, onlyJs)
       ).toEqual(

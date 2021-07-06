@@ -31,8 +31,10 @@ describe('naclKeypairFromSeed', (): void => {
   });
 
   it('generates a valid publicKey/secretKey pair (u8a)', (): void => {
-    expect(
-      naclKeypairFromSeed(TEST)
-    ).toEqual(RESULT);
+    [true, false].forEach((onlyJs): void => {
+      expect(
+        naclKeypairFromSeed(TEST, onlyJs)
+      ).toEqual(RESULT);
+    });
   });
 });

@@ -27,10 +27,10 @@ import { stringToU8a } from '../string/toU8a';
 export function u8aToU8a (value?: number[] | Buffer | Uint8Array | string | null): Uint8Array {
   if (!value) {
     return new Uint8Array();
+  } else if (isHex(value)) {
+    return hexToU8a(value);
   } else if (isString(value)) {
-    return isHex(value)
-      ? hexToU8a(value)
-      : stringToU8a(value);
+    return stringToU8a(value);
   } else if (Array.isArray(value) || isBuffer(value)) {
     return new Uint8Array(value);
   }

@@ -11,28 +11,24 @@ describe('xxhashAsU8a', (): void => {
     await waitReady();
   });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`returns a 64-bit value by default (onlyJs=${onlyJs.toString()})`, (): void => {
+  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+    it('returns a 64-bit value by default', (): void => {
       expect(
         xxhashAsU8a('abc', undefined, onlyJs)
       ).toEqual(
         hexToU8a('0x990977adf52cbc44')
       );
     });
-  });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`returns a 128-bit value (as specified, onlyJs=${onlyJs.toString()})`, (): void => {
+    it('returns a 128-bit value (as specified', (): void => {
       expect(
         xxhashAsU8a('abc', 128, onlyJs)
       ).toEqual(
         hexToU8a('0x990977adf52cbc440889329981caa9be')
       );
     });
-  });
 
-  [false, true].forEach((onlyJs): void => {
-    it(`returns a 256-bit value (as specified, onlyJs=${onlyJs.toString()})`, (): void => {
+    it('returns a 256-bit value (as specified)', (): void => {
       expect(
         xxhashAsU8a('abc', 256, onlyJs)
       ).toEqual(

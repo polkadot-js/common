@@ -1,5 +1,61 @@
 # CHANGELOG
 
+## 6.11.1 Jul 5, 2021
+
+Changes:
+
+- Cleanup unneeded dependencies for `@polkadot/x-global`
+- Sync with upstream Substrate ss58 registry
+- Bump Zondax dependencies (Statemine slip44 fix)
+
+
+## 6.10.1 Jun 26, 2021
+
+Contributed:
+
+- Add Karura genesisHash (Thanks to https://github.com/ntduan)
+
+Changes:
+
+- `isHex(value)` will now check for only `string` types (No `String` classes)
+- Added `arrayShuffle(array)` to shuffle an array into a new output
+- Added Statemine Ledger app information
+- Simplify tests to use `{describe|it}.each` where applicable
+- Sync with upstream Substrate ss58 registry
+
+
+## 6.9.1 Jun 19, 2021
+
+Changes:
+
+- Added `u8aCmp(a, b)` to do sorting compares
+- Added `arrayRange(size, startAt = 0)` to create a range of numbers
+- Added extensive mnemonic compare test (optional, skipped)
+
+
+## 6.8.1 Jun 14, 2021
+
+Contributed:
+
+- Add Ledger support for Edgeware (Thanks to https://github.com/raykyri)
+- Fix `naclSeal` doc types (Thanks to https://github.com/agustinustheo)
+
+Changes:
+
+- Export `BN` in `@polkadot/util`
+- Sync with upstream Substrate ss58 registry
+
+
+## 6.7.1 Jun 6, 2021
+
+Changes:
+
+- Add WebHID transport for Ledger
+- Update to latest Ledger transport packages
+- Remove old `Gerald` key for Moonbeam
+- Cleanup testing keyring semgrep recommendations
+
+
 ## 6.6.1 May 29, 2021
 
 Changes:

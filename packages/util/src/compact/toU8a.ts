@@ -1,10 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import BN from 'bn.js';
-
 import { assert } from '../assert';
-import { BN_ONE, BN_TWO, bnToBn, bnToU8a } from '../bn';
+import { BN, BN_ONE, BN_TWO, bnToBn, bnToU8a } from '../bn';
 import { u8aConcat } from '../u8a';
 
 const MAX_U8 = new BN(2).pow(new BN(8 - 2)).subn(1);
