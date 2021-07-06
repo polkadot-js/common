@@ -9,12 +9,12 @@ const pkgs = [
   '@polkadot/networks',
   '@polkadot/util',
   '@polkadot/util-crypto',
-  '@polkadot/x-fetch', // browser
+  '@polkadot/x-fetch',
   '@polkadot/x-global',
-  '@polkadot/x-randomvalues', // browser
+  '@polkadot/x-randomvalues',
   '@polkadot/x-rxjs',
-  '@polkadot/x-textdecoder', // browser
-  '@polkadot/x-textencoder', // browser
+  '@polkadot/x-textdecoder',
+  '@polkadot/x-textencoder',
   '@polkadot/x-ws'
 ];
 
