@@ -47,5 +47,5 @@ const overrides = {
 };
 
 export default pkgs.map((pkg) =>
-  createBundle({ ...(overrides[pkg] || {}), external, pkg })
+  createBundle({ external, pkg, ...(overrides[pkg] || {}) })
 );
