@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Update `@polkadot/x-rxjs` to use 7.2.0 (operator & root imports the same)
+
+
 ## 6.11.1 Jul 5, 2021
 
 Changes:
