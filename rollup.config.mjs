@@ -25,9 +25,11 @@ const external = [
 
 const overrides = {
   '@polkadot/hwledger': {
-    entries: [
-      { find: '@polkadot/hw-ledger-transports', replacement: '../../hw-ledger-transports/build' }
-    ]
+    entries: ['bip39', 'hash.js', 'bip32-ed25519', 'bs58', 'blakejs']
+      .map((find) => ({ find, replacement: 'empty/object.js' }))
+      .concat(
+        { find: '@polkadot/hw-ledger-transports', replacement: '../../hw-ledger-transports/build' }
+      )
   }
 };
 
