@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import path from 'path';
+
 import { createBundle } from '@polkadot/dev/config/rollup';
 
 const pkgs = [
@@ -24,12 +26,13 @@ const external = [
 ];
 
 const overrides = {
-  '@polkadot/hwledger': {
-    entries: ['bip39', 'hash.js', 'bip32-ed25519', 'bs58', 'blakejs']
-      .map((find) => ({ find, replacement: 'empty/object.js' }))
-      .concat(
-        { find: '@polkadot/hw-ledger-transports', replacement: '../../hw-ledger-transports/build' }
-      )
+  '@polkadot/hw-ledger': {
+    entries: [
+      ...['bip39', 'hash.js', 'bip32-ed25519', 'bs58', 'blakejs'].map((find) => ({
+        find, replacement: path.resolve(process.cwd(), 'node_modules/empty/object.js')
+      })),
+      { find: '@polkadot/hw-ledger-transports', replacement: '../../hw-ledger-transports/build' }
+    ]
   }
 };
 
