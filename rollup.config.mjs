@@ -9,12 +9,12 @@ const pkgs = [
   '@polkadot/networks',
   '@polkadot/util',
   '@polkadot/util-crypto',
-  '@polkadot/x-fetch', // browser
+  '@polkadot/x-fetch',
   '@polkadot/x-global',
-  '@polkadot/x-randomvalues', // browser
+  '@polkadot/x-randomvalues',
   '@polkadot/x-rxjs',
-  '@polkadot/x-textdecoder', // browser
-  '@polkadot/x-textencoder', // browser
+  '@polkadot/x-textdecoder',
+  '@polkadot/x-textencoder',
   '@polkadot/x-ws'
 ];
 
@@ -28,21 +28,6 @@ const overrides = {
     entries: [
       { find: '@polkadot/hw-ledger-transports', replacement: '../../hw-ledger-transports/build' }
     ]
-  },
-  '@polkadot/x-fetch': {
-    index: 'browser.js'
-  },
-  '@polkadot/x-randomvalues': {
-    index: 'browser.js'
-  },
-  '@polkadot/x-textdecoder': {
-    index: 'browser.js'
-  },
-  '@polkadot/x-textencoder': {
-    index: 'browser.js'
-  },
-  '@polkadot/x-ws': {
-    index: 'browser.js'
   }
 };
 
