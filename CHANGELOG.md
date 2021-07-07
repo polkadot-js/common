@@ -6,7 +6,7 @@
 
 Changes:
 
-- The `@polkadot/x-rxjs` package has been removed
+- Remove `@polkadot/x-rxjs`, direct import from `rxjs >= 7.2.0` required
 
 
 ## 6.11.1 Jul 5, 2021
