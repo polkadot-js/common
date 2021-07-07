@@ -2,9 +2,11 @@
 
 ## master
 
+- **Breaking change** The `@polkadot/x-rxjs` package has been removed. In `rxjs` 7.2.0 the compatibility issues at the base layer has been solved.
+
 Changes:
 
-- Update `@polkadot/x-rxjs` to use 7.2.0 (operator & root imports the same)
+- The `@polkadot/x-rxjs` package has been removed
 
 
 ## 6.11.1 Jul 5, 2021
