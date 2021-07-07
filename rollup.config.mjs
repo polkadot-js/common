@@ -14,8 +14,7 @@ const pkgs = [
 ];
 
 const external = [
-  ...pkgs,
-  '@polkadot/wasm-crypto'
+  ...pkgs
 ];
 
 const entries = ['hw-ledger-transports', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].map((p) => ({
@@ -25,10 +24,19 @@ const entries = ['hw-ledger-transports', 'x-fetch', 'x-global', 'x-randomvalues'
 
 const overrides = {
   '@polkadot/hw-ledger': {
+    // these are all in the un-shakable and unused hdDerivation stuff from the Zondax libs, ignore
     entries: ['bip39', 'hash.js', 'bip32-ed25519', 'bs58', 'blakejs'].map((find) => ({
       find,
       replacement: path.resolve(process.cwd(), 'node_modules/empty/object.js')
     }))
+  },
+  '@polkadot/util-crypto': {
+    entries: [
+      {
+        find: '@polkadot/wasm-crypto',
+        replacement: path.resolve(process.cwd(), 'node_modules/@polkadot/wasm-crypto/bundle.js')
+      }
+    ]
   }
 };
 
