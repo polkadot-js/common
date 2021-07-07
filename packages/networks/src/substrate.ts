@@ -577,5 +577,23 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['BSX'],
     website: 'https://bsx.fi'
+  },
+  {
+    decimals: [12],
+    displayName: 'Heiko',
+    network: 'heiko',
+    prefix: 110,
+    standardAccount: '*25519',
+    symbols: ['HKO'],
+    website: 'https://parallel.fi/'
+  },
+  {
+    decimals: [12],
+    displayName: 'Parallel',
+    network: 'parallel',
+    prefix: 172,
+    standardAccount: '*25519',
+    symbols: ['PARA'],
+    website: 'https://parallel.fi/'
   }
 ];
