@@ -18,9 +18,9 @@ const external = [
   '@polkadot/wasm-crypto'
 ];
 
-const entries = ['hw-ledger-transports', 'x-fetch', 'x-global', 'x-randomvalues', 'x-rxjs', 'x-textdecoder', 'x-textencoder', 'x-ws'].map((p) => ({
+const entries = ['hw-ledger-transports', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].map((p) => ({
   find: `@polkadot/${p}`,
-  replacement: `../../${p}/build`
+  replacement: path.resolve(process.cwd(), `packages/${p}/build`)
 }));
 
 const overrides = {
