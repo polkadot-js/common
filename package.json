@@ -21,6 +21,9 @@
     "test:mnemonicCmp": "polkadot-dev-run-test packages/util-crypto/src/mnemonic/toMiniSecretCmp.spec.ts",
     "test:one": "polkadot-dev-run-test --runInBand"
   },
+  "dependencies": {
+    "empty": "^0.10.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@polkadot/dev": "^0.62.52",

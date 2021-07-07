@@ -3,12 +3,8 @@
 
 import './detectPackage';
 
-import { Keyring } from './keyring';
+import { Keyring } from './bundle';
 
-export { decodeAddress, encodeAddress, setSS58Format } from '@polkadot/util-crypto';
-
-export { packageInfo } from './packageInfo';
+export * from './bundle';
 
 export default Keyring;
-
-export { Keyring };

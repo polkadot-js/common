@@ -5,6 +5,8 @@
   "description": "A collection of useful crypto utilities for @polkadot",
   "main": "index.js",
   "sideEffects": [
+    "./cryptoInit.js",
+    "./cryptoInit.cjs",
     "./detectPackage.js",
     "./detectPackage.cjs"
   ],
