@@ -10,14 +10,7 @@ const pkgs = [
   '@polkadot/keyring',
   '@polkadot/networks',
   '@polkadot/util',
-  '@polkadot/util-crypto',
-  '@polkadot/x-fetch',
-  '@polkadot/x-global',
-  '@polkadot/x-randomvalues',
-  '@polkadot/x-rxjs',
-  '@polkadot/x-textdecoder',
-  '@polkadot/x-textencoder',
-  '@polkadot/x-ws'
+  '@polkadot/util-crypto'
 ];
 
 const external = [
@@ -25,17 +18,27 @@ const external = [
   '@polkadot/wasm-crypto'
 ];
 
+const entries = ['hw-ledger-transports', 'x-fetch', 'x-global', 'x-randomvalues', 'x-rxjs', 'x-textdecoder', 'x-textencoder', 'x-ws'].map((p) => ({
+  find: `@polkadot/${p}`,
+  replacement: `../../${p}/build`
+}));
+
 const overrides = {
   '@polkadot/hw-ledger': {
-    entries: [
-      ...['bip39', 'hash.js', 'bip32-ed25519', 'bs58', 'blakejs'].map((find) => ({
-        find, replacement: path.resolve(process.cwd(), 'node_modules/empty/object.js')
-      })),
-      { find: '@polkadot/hw-ledger-transports', replacement: '../../hw-ledger-transports/build' }
-    ]
+    entries: ['bip39', 'hash.js', 'bip32-ed25519', 'bs58', 'blakejs'].map((find) => ({
+      find,
+      replacement: path.resolve(process.cwd(), 'node_modules/empty/object.js')
+    }))
   }
 };
 
-export default pkgs.map((pkg) =>
-  createBundle({ external, pkg, ...(overrides[pkg] || {}) })
-);
+export default pkgs.map((pkg) => {
+  const override = (overrides[pkg] || {});
+
+  return createBundle({
+    external,
+    pkg,
+    ...override,
+    entries: entries.concat(...(override.entries || []))
+  });
+});
