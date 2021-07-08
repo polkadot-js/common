@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.6",
-    "@ledgerhq/hw-transport": "^6.0.2",
-    "@ledgerhq/hw-transport-webhid": "^6.0.2",
-    "@ledgerhq/hw-transport-webusb": "^6.0.2"
+    "@ledgerhq/hw-transport": "^6.1.0",
+    "@ledgerhq/hw-transport-webhid": "^6.1.0",
+    "@ledgerhq/hw-transport-webusb": "^6.1.0"
   },
   "optionalDependencies": {
-    "@ledgerhq/hw-transport-node-hid-singleton": "^6.0.2"
+    "@ledgerhq/hw-transport-node-hid-singleton": "^6.1.0"
   }
 }
