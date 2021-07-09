@@ -17,26 +17,36 @@ const external = [
   ...pkgs
 ];
 
-const entries = ['hw-ledger-transports', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].map((p) => ({
-  find: `@polkadot/${p}`,
-  replacement: path.resolve(process.cwd(), `packages/${p}/build`)
-}));
+const entries = ['hw-ledger-transports', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].reduce((all, p) => ({
+  ...all,
+  [`@polkadot/${p}`]: path.resolve(process.cwd(), `packages/${p}/build`)
+}), {});
 
 const overrides = {
   '@polkadot/hw-ledger': {
     // these are all in the un-shakable and unused hdDerivation stuff from the Zondax libs, ignore
-    entries: ['bip39', 'hash.js', 'bip32-ed25519', 'bs58', 'blakejs'].map((find) => ({
-      find,
-      replacement: path.resolve(process.cwd(), 'node_modules/empty/object.js')
-    }))
+    entries: {
+      'bip32-ed25519': path.resolve(process.cwd(), 'packages/x-bundle/build/empty.js'),
+      bip39: path.resolve(process.cwd(), 'packages/x-bundle/build/empty.js'),
+      blakejs: path.resolve(process.cwd(), 'packages/x-bundle/build/empty.js'),
+      bs58: path.resolve(process.cwd(), 'packages/x-bundle/build/empty.js'),
+      events: path.resolve(process.cwd(), 'packages/x-bundle/build/empty.js'),
+      'hash.js': path.resolve(process.cwd(), 'packages/x-bundle/build/empty.js')
+    }
   },
   '@polkadot/util-crypto': {
-    entries: [
-      {
-        find: '@polkadot/wasm-crypto',
-        replacement: path.resolve(process.cwd(), 'node_modules/@polkadot/wasm-crypto/bundle.js')
-      }
-    ]
+    entries: {
+      '@polkadot/wasm-crypto': path.resolve(process.cwd(), 'node_modules/@polkadot/wasm-crypto/bundle.js'),
+      'bn.js': path.resolve(process.cwd(), 'packages/x-bundle/build/bn.cjs'),
+      buffer: path.resolve(process.cwd(), 'packages/x-bundle/build/buffer.js'),
+      crypto: path.resolve(process.cwd(), 'packages/x-bundle/build/crypto.js')
+    },
+    inject: {
+      Buffer: path.resolve(process.cwd(), 'packages/x-bundle/build/buffer.js'),
+      crypto: path.resolve(process.cwd(), 'packages/x-bundle/build/crypto.js'),
+      inherits: path.resolve(process.cwd(), 'packages/x-bundle/build/inherits.js')
+    },
+    polyfill: false
   }
 };
 
@@ -47,6 +57,9 @@ export default pkgs.map((pkg) => {
     external,
     pkg,
     ...override,
-    entries: entries.concat(...(override.entries || []))
+    entries: {
+      ...entries,
+      ...(override.entries || {})
+    }
   });
 });

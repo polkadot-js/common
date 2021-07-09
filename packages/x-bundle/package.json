@@ -1,0 +1,23 @@
+{
+  "name": "@polkadot/x-bundle",
+  "version": "6.11.2-12",
+  "type": "module",
+  "description": "A bundler helper",
+  "main": "index.js",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "maintainers": [],
+  "contributors": [],
+  "license": "Apache-2.0",
+  "repository": "github:polkadot-js/common",
+  "bugs": "https://github.com/polkadot-js/common/issues",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-bundle#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.14.6",
+    "@polkadot/util": "^6.11.2-12",
+    "buffer-es6": "^4.9.3"
+  }
+}
