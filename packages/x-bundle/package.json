@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-bundle",
-  "version": "6.11.2-15",
+  "version": "6.11.2-16",
   "type": "module",
   "description": "A bundler helper",
   "main": "index.js",
@@ -17,7 +17,7 @@
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-bundle#readme",
   "dependencies": {
     "@babel/runtime": "^7.14.6",
-    "@polkadot/util": "^6.11.2-15",
+    "@polkadot/util": "^6.11.2-16",
     "buffer-es6": "^4.9.3"
   }
 }
