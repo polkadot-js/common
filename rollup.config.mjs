@@ -16,13 +16,10 @@ const external = [
   ...pkgs
 ];
 
-const entries = ['hw-ledger-transports', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].reduce((all, p) => ({
+const entries = ['hw-ledger-transports', 'networks', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].reduce((all, p) => ({
   ...all,
   [`@polkadot/${p}`]: path.resolve(process.cwd(), `packages/${p}/build`)
-}), {
-  // this one we do have a bundle for (no default export)
-  '@polkadot/networks': path.resolve(process.cwd(), 'packages/networks/build/bundle.js')
-});
+}), {});
 
 const overrides = {
   '@polkadot/hw-ledger': {
