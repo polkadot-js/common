@@ -2139,7 +2139,6 @@ __metadata:
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
     "@babel/runtime": ^7.14.6
-    "@polkadot/networks": 6.11.2-13
     "@polkadot/x-textdecoder": 6.11.2-13
     "@polkadot/x-textencoder": 6.11.2-13
     "@types/bn.js": ^4.11.6
