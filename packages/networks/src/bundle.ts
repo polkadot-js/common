@@ -11,7 +11,7 @@ export { packageInfo } from './packageInfo';
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
 
-export const all = knownSubstrate.map((o): SubstrateNetwork => {
+export const allNetworks = knownSubstrate.map((o): SubstrateNetwork => {
   const network = o.network || '';
   const n = o as SubstrateNetwork;
 
@@ -30,7 +30,7 @@ export const all = knownSubstrate.map((o): SubstrateNetwork => {
 //   - we only include those where we have a standardAccount
 //   - when no icon has been specified, default to substrate
 //   - sort by name, however we keep 0, 2, 42 first in the list
-export const available = all
+export const availableNetworks = allNetworks
   .filter((n): n is Network => !n.isIgnored && !!n.network)
   .sort((a, b) =>
     UNSORTED.includes(a.prefix) === UNSORTED.includes(b.prefix)
@@ -42,9 +42,5 @@ export const available = all
           : a.displayName.localeCompare(b.displayName)
   );
 
-export const allNetworks = all;
-
-export const availableNetworks = available;
-
 // A filtered list of those chains we have details about (genesisHashes)
-export const selectableNetworks = available.filter((n) => n.genesisHash.length || n.prefix === 42);
+export const selectableNetworks = availableNetworks.filter((n) => n.genesisHash.length || n.prefix === 42);
