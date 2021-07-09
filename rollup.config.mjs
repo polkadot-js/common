@@ -20,6 +20,7 @@ const entries = ['hw-ledger-transports', 'x-fetch', 'x-global', 'x-randomvalues'
   ...all,
   [`@polkadot/${p}`]: path.resolve(process.cwd(), `packages/${p}/build`)
 }), {
+  // this one we do have a bundle for (no default export)
   '@polkadot/networks': path.resolve(process.cwd(), 'packages/networks/build/bundle.js')
 });
 
