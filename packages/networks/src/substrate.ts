@@ -534,6 +534,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://origintrail.io'
   },
   {
+    decimals: [12],
+    displayName: 'Heiko',
+    network: 'heiko',
+    prefix: 110,
+    standardAccount: '*25519',
+    symbols: ['HKO'],
+    website: 'https://parallel.fi/'
+  },
+  {
     decimals: [18],
     displayName: 'Altair',
     network: 'altair',
@@ -541,6 +550,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['AIR'],
     website: 'https://centrifuge.io/'
+  },
+  {
+    decimals: [12],
+    displayName: 'Parallel',
+    network: 'parallel',
+    prefix: 172,
+    standardAccount: '*25519',
+    symbols: ['PARA'],
+    website: 'https://parallel.fi/'
   },
   {
     decimals: [18],
