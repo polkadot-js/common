@@ -3,9 +3,11 @@
 ## master
 
 - **Breaking change** The `@polkadot/x-rxjs` package has been removed. In `rxjs` 7.2.0 the compatibility issues at the base layer has been solved.
+- **Breaking change** The named exports in `@polkadot/networks` has been changed
 
 Changes:
 
+- Adjust `@polkadot/networks` to fully-descriptive exports
 - Remove `@polkadot/x-rxjs`, direct import from `rxjs >= 7.2.0` required
 - Allow building as a completely stand-alone browser bundle (experimental)
 

@@ -8,7 +8,6 @@ import { createBundle } from '@polkadot/dev/config/rollup';
 const pkgs = [
   '@polkadot/hw-ledger',
   '@polkadot/keyring',
-  '@polkadot/networks',
   '@polkadot/util',
   '@polkadot/util-crypto'
 ];
@@ -17,7 +16,7 @@ const external = [
   ...pkgs
 ];
 
-const entries = ['hw-ledger-transports', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].reduce((all, p) => ({
+const entries = ['hw-ledger-transports', 'networks', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].reduce((all, p) => ({
   ...all,
   [`@polkadot/${p}`]: path.resolve(process.cwd(), `packages/${p}/build`)
 }), {});
