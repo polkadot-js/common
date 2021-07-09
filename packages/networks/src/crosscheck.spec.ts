@@ -8,7 +8,7 @@ import fs from 'fs';
 import { stringify } from '@polkadot/util';
 import { fetch } from '@polkadot/x-fetch';
 
-import { all } from './';
+import { allNetworks } from './';
 
 const OUTPUT = './.github/ss58-check.md';
 const SUBSTRATE_REGISTRY = 'https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json';
@@ -32,19 +32,19 @@ describe('check latest Substrate ss58 registry', (): void => {
   });
 
   it('has the same number as the original', (): void => {
-    assertAndLog(all.length === original.registry.length, `Number of entries mismatched:: Expected ${original.registry.length} found ${all.length}`);
+    assertAndLog(allNetworks.length === original.registry.length, `Number of entries mismatched:: Expected ${original.registry.length} found ${allNetworks.length}`);
   });
 
   it('has no missing any entries', (): void => {
     const missing = original.registry
-      .filter(({ prefix }) => !all.some((n) => n.prefix === prefix))
+      .filter(({ prefix }) => !allNetworks.some((n) => n.prefix === prefix))
       .map(({ displayName, prefix }) => `${displayName} (${prefix})`);
 
     assertAndLog(!missing.length, `Missing entries found: ${stringify(missing, 2)}`);
   });
 
   it('has no extra entries', (): void => {
-    const missing = all
+    const missing = allNetworks
       .filter(({ prefix }) => !original.registry.some((n) => n.prefix === prefix))
       .map(({ displayName, prefix }) => `${displayName} (${prefix})`);
 
@@ -55,7 +55,7 @@ describe('check latest Substrate ss58 registry', (): void => {
     const fields = Object.keys(original.schema) as (keyof KnownSubstrate)[];
     const errors = original.registry
       .map((n): [string, string[]] => {
-        const other = all.find(({ prefix }) => prefix === n.prefix);
+        const other = allNetworks.find(({ prefix }) => prefix === n.prefix);
 
         return [
           `${n.displayName} (${n.prefix})`,
