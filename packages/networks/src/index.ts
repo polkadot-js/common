@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { known } from './bundle';
+import { selectable } from './bundle';
 
 export * from './bundle';
 
-export default known;
+export default selectable;

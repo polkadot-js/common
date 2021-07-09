@@ -34,11 +34,11 @@
     <script>
       log('polkadotUtil');
 
-      const { availableNetworks, bnToBn, u8aToHex } = polkadotUtil;
+      const { bnToBn, selectableNetworks, u8aToHex } = polkadotUtil;
 
       log('u8aToHex', u8aToHex(new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8])));
       log('bnToBn', bnToBn(123).addn(1).toString());
-      log('availableNetworks', availableNetworks.map(({ displayName }) => displayName).join('; '));
+      log('selectableNetworks', selectableNetworks.map(({ displayName }) => displayName).join('; '));
     </script>
     <script src="packages/util-crypto/build/bundle-polkadot-util-crypto.js"></script>
     <script>

@@ -43,4 +43,4 @@ export const available = all
   );
 
 // A filtered list of those chains we have details about (genesisHashes)
-export const known = available.filter((n) => n.genesisHash.length || n.prefix === 42);
+export const selectable = available.filter((n) => n.genesisHash.length || n.prefix === 42);
