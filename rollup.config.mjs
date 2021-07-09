@@ -8,7 +8,6 @@ import { createBundle } from '@polkadot/dev/config/rollup';
 const pkgs = [
   '@polkadot/hw-ledger',
   '@polkadot/keyring',
-  '@polkadot/networks',
   '@polkadot/util',
   '@polkadot/util-crypto'
 ];
@@ -20,7 +19,9 @@ const external = [
 const entries = ['hw-ledger-transports', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].reduce((all, p) => ({
   ...all,
   [`@polkadot/${p}`]: path.resolve(process.cwd(), `packages/${p}/build`)
-}), {});
+}), {
+  '@polkadot/networks': path.resolve(process.cwd(), 'packages/networks/build/bundle.js')
+});
 
 const overrides = {
   '@polkadot/hw-ledger': {
