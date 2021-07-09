@@ -42,5 +42,9 @@ export const available = all
           : a.displayName.localeCompare(b.displayName)
   );
 
+export const allNetworks = all;
+
+export const availableNetworks = available;
+
 // A filtered list of those chains we have details about (genesisHashes)
-export const selectable = available.filter((n) => n.genesisHash.length || n.prefix === 42);
+export const selectableNetworks = available.filter((n) => n.genesisHash.length || n.prefix === 42);

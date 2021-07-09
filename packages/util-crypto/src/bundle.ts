@@ -19,6 +19,7 @@ export * from './json';
 export * from './keccak';
 export * from './key';
 export * from './mnemonic';
+export * from './networks';
 export * from './nacl';
 export * from './pbkdf2';
 export * from './random';

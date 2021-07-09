@@ -17,7 +17,6 @@ export * from './hex';
 export * from './is';
 export * from './logger';
 export * from './memoize';
-export * from './networks';
 export * from './number';
 export * from './promisify';
 export * from './string';
