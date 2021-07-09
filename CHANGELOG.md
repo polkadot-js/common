@@ -6,8 +6,8 @@
 
 Changes:
 
-- Allow building as a completely stand-alone browser bundle
 - Remove `@polkadot/x-rxjs`, direct import from `rxjs >= 7.2.0` required
+- Allow building as a completely stand-alone browser bundle (experimental)
 
 
 ## 6.11.1 Jul 5, 2021

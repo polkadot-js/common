@@ -19,6 +19,7 @@
       "@polkadot/util-crypto/*": [ "packages/util-crypto/src/*" ],
       "@polkadot/util": [ "packages/util/src" ],
       "@polkadot/util/*": [ "packages/util/src/*" ],
+      "@polkadot/x-bundle/*": [ "packages/x-bundle/src/*" ],
       "@polkadot/x-fetch": [ "packages/x-fetch/src/browser" ],
       "@polkadot/x-global": [ "packages/x-global/src" ],
       "@polkadot/x-randomvalues": [ "packages/x-randomvalues/src/browser" ],
