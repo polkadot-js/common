@@ -1,15 +1,20 @@
 # CHANGELOG
 
-## master
+## 7.0.1 Jul 11, 2021
 
 - **Breaking change** The `@polkadot/x-rxjs` package has been removed. In `rxjs` 7.2.0 the compatibility issues at the base layer has been solved.
 - **Breaking change** The named exports in `@polkadot/networks` has been changed
+
+Contributed:
+
+- Add Ledger config for Centrifuge (Thanks to https://github.com/mikiquantum)
 
 Changes:
 
 - Adjust `@polkadot/networks` to fully-descriptive exports
 - Remove `@polkadot/x-rxjs`, direct import from `rxjs >= 7.2.0` required
 - Allow building as a completely stand-alone browser bundle (experimental)
+- Sync with upstream Substrate ss58 registry
 
 
 ## 6.11.1 Jul 5, 2021
