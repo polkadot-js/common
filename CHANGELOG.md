@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Added `isCompact` utility for check on compact-like types
+
+
 ## 7.0.1 Jul 11, 2021
 
 - **Breaking change** The `@polkadot/x-rxjs` package has been removed. In `rxjs` 7.2.0 the compatibility issues at the base layer has been solved.
