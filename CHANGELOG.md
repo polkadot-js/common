@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## master
+## 7.0.2 Jul 19, 2021
 
 Changes:
 
 - Added `isCompact` utility for check on compact-like types
+- Sync with upstream Substrate ss58 registry
 
 
 ## 7.0.1 Jul 11, 2021

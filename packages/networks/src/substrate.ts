@@ -574,7 +574,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     displayName: 'Moonbeam',
     network: 'moonbeam',
     prefix: 1284,
-    standardAccount: '*25519',
+    standardAccount: 'secp256k1',
     symbols: ['GLMR'],
     website: 'https://moonbeam.network'
   },
@@ -583,7 +583,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     displayName: 'Moonriver',
     network: 'moonriver',
     prefix: 1285,
-    standardAccount: '*25519',
+    standardAccount: 'secp256k1',
     symbols: ['MOVR'],
     website: 'https://moonbeam.network'
   },
