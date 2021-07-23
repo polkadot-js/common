@@ -489,6 +489,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://sora.org'
   },
   {
+    decimals: [10],
+    displayName: 'Zeitgeist',
+    network: 'zeitgeist',
+    prefix: 73,
+    standardAccount: '*25519',
+    symbols: ['ZTG'],
+    website: 'https://zeitgeist.pm'
+  },
+  {
     decimals: [12],
     displayName: 'Manta network',
     network: 'manta',

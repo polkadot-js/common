@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Sync with upstream Substrate ss58 registry
+
+
 ## 7.0.2 Jul 19, 2021
 
 Changes:
