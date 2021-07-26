@@ -7,7 +7,7 @@ import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } fro
 import type { PairInfo } from './types';
 
 import { assert, u8aConcat, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
-import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
+import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, naclSeal, naclOpen, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
 import { encodePair } from './encode';
@@ -190,6 +190,31 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     },
     verify: (message: string | Uint8Array, signature: Uint8Array, _signerPublic: string | Uint8Array): boolean => {
       return signatureVerify(message, signature, TYPE_ADDRESS[type](u8aToU8a(_signerPublic))).isValid;
+    },
+    encryptMessage: (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, _nonce?: Uint8Array): Uint8Array => {
+      assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
+
+      const _secretKey = convertSecretKeyToCurve25519(secretKey);
+      const _recipientPublicKey = convertPublicKeyToCurve25519(u8aToU8a(recipientPublicKey));
+
+      const { nonce, sealed } = naclSeal(u8aToU8a(message), _secretKey, _recipientPublicKey, _nonce);
+
+      return u8aConcat(nonce, sealed);
+    },
+    decryptMessage: (encryptedMessageWithNonce: string | Uint8Array, senderPublicKey: string | Uint8Array): Uint8Array | null=> {
+      assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
+
+      const _secretKey = convertSecretKeyToCurve25519(secretKey);
+      const _senderPublicKey = convertPublicKeyToCurve25519(u8aToU8a(senderPublicKey));
+
+      const message = naclOpen(
+        u8aToU8a(encryptedMessageWithNonce.slice(24, encryptedMessageWithNonce.length)),
+        u8aToU8a(encryptedMessageWithNonce.slice(0, 24)),
+        _senderPublicKey,
+        _secretKey
+      );
+
+      return message;
     },
     vrfSign: (message: string | Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');

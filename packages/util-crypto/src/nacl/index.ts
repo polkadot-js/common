@@ -15,3 +15,7 @@ export { naclVerify } from './verify';
 export { naclBoxKeypairFromSecret } from './box/fromSecret';
 export { naclOpen } from './open';
 export { naclSeal } from './seal';
+export { 
+  convertSecretKeyToCurve25519,
+  convertPublicKeyToCurve25519,
+} from './convertKey'
