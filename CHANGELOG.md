@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## master
+## 7.0.3 Jul 26, 2021
 
 Changes:
 
 - Sync with upstream Substrate ss58 registry
+- Bump Ledger libraries to latest versions
 
 
 ## 7.0.2 Jul 19, 2021

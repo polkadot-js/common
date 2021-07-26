@@ -23,10 +23,10 @@
     "test:one": "polkadot-dev-run-test --runInBand"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
+    "@babel/core": "^7.14.8",
     "@polkadot/dev": "^0.62.57",
     "@polkadot/ts": "^0.4.4",
     "@types/jest": "^26.0.24"
   },
-  "version": "7.0.3-0"
+  "version": "7.0.3"
 }
