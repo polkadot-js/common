@@ -148,6 +148,43 @@ describe('pair', (): void => {
     ).toEqual(null);
   });
 
+  it('validates encryption between ed25519 & sr25519 key pairs', (): void => {
+    const PASS = 'testing';
+    const encodedA = keyring.alice.encodePkcs8(PASS);
+    const encodedB = keyring.bob.encodePkcs8(PASS);
+
+    const pairA = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.alice.publicKey });
+    const pairB = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.bob.publicKey });
+
+    pairA.decodePkcs8(PASS, encodedA);
+    pairB.decodePkcs8(PASS, encodedB);
+    const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
+
+    // alice-sr25519 -> bob-ed25519
+    const encrypted1 = pairA.encryptMessage(message, keyring.bob.publicKey)
+
+    // alice-sr25519 -> bob-sr25519
+    const encrypted2 = pairA.encryptMessage(message, pairB.publicKey)
+
+    // alice-ed25519 -> bob-sr25519
+    const encrypted3 = keyring.alice.encryptMessage(message, pairB.publicKey)
+
+    // decrypt: Bob-ed25519 - use alice-ed25519 pubkey
+    expect(
+      keyring.bob.decryptMessage(encrypted3, keyring.alice.publicKey)
+    ).toEqual(message);
+
+    // decrypt: Bob-ed25519 - use alice-sr25519 pubkey
+    expect(
+      keyring.bob.decryptMessage(encrypted1, pairA.publicKey)
+    ).toEqual(message);
+
+    // decrypt: Bob-sr25519 - use alice-sr25519 pubkey
+    expect(
+      pairB.decryptMessage(encrypted2, pairA.publicKey)
+    ).toEqual(message);
+  });
+
   it('allows setting/getting of meta', (): void => {
     keyring.bob.setMeta({ foo: 'bar', something: 'else' });
 
