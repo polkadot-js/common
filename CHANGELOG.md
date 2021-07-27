@@ -1,6 +1,48 @@
 # CHANGELOG
 
-## master
+## 7.0.3 Jul 26, 2021
+
+Changes:
+
+- Sync with upstream Substrate ss58 registry
+- Bump Ledger libraries to latest versions
+
+
+## 7.0.2 Jul 19, 2021
+
+Changes:
+
+- Added `isCompact` utility for check on compact-like types
+- Sync with upstream Substrate ss58 registry
+
+
+## 7.0.1 Jul 11, 2021
+
+- **Breaking change** The `@polkadot/x-rxjs` package has been removed. In `rxjs` 7.2.0 the compatibility issues at the base layer has been solved.
+- **Breaking change** The named exports in `@polkadot/networks` has been changed
+
+Contributed:
+
+- Add Ledger config for Centrifuge (Thanks to https://github.com/mikiquantum)
+
+Changes:
+
+- Adjust `@polkadot/networks` to fully-descriptive exports
+- Remove `@polkadot/x-rxjs`, direct import from `rxjs >= 7.2.0` required
+- Allow building as a completely stand-alone browser bundle (experimental)
+- Sync with upstream Substrate ss58 registry
+
+
+## 6.11.1 Jul 5, 2021
+
+Changes:
+
+- Cleanup unneeded dependencies for `@polkadot/x-global`
+- Sync with upstream Substrate ss58 registry
+- Bump Zondax dependencies (Statemine slip44 fix)
+
+
+## 6.10.1 Jun 26, 2021
 
 Contributed:
 
@@ -8,10 +50,11 @@ Contributed:
 
 Changes:
 
-- `isHex(value)` will now explicitly check for only `0x${string}` (No `String` classes)
+- `isHex(value)` will now check for only `string` types (No `String` classes)
 - Added `arrayShuffle(array)` to shuffle an array into a new output
+- Added Statemine Ledger app information
+- Simplify tests to use `{describe|it}.each` where applicable
 - Sync with upstream Substrate ss58 registry
-- Simplify tests to use `{describe/it}.each` where applicable
 
 
 ## 6.9.1 Jun 19, 2021

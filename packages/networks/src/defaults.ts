@@ -8,6 +8,9 @@ import type { KnownGenesis, KnownIcon, KnownLedger, KnownTestnet } from './types
 // last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
 export const knownGenesis: KnownGenesis = {
+  centrifuge: [
+    '0x67dddf2673b69e5f875f6f25277495834398eafd67f492e09f3f3345e003d1b5'
+  ],
   'dock-mainnet': [
     '0xf73467c6544aa68df2ee546b135f955c46b90fa627e9b5d7935f41061bb8a5a9'
   ],
@@ -43,6 +46,9 @@ export const knownGenesis: KnownGenesis = {
   polymesh: [
     '0x9deeb940c92ae02111c3bd5baca89970384f4c9849f02a1b2e53e66414d30f9f'
   ],
+  statemine: [
+    '0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a'
+  ],
   subsocial: [
     '0x0bd72c1c305172e1275278aaeb3f161e02eccb7a819e63f62d47bd53a28189f8'
   ]
@@ -50,18 +56,26 @@ export const knownGenesis: KnownGenesis = {
 
 // these are icon overrides
 export const knownIcon: KnownIcon = {
+  centrifuge: 'polkadot',
   kusama: 'polkadot',
-  polkadot: 'polkadot'
+  polkadot: 'polkadot',
+  statemine: 'polkadot',
+  statemint: 'polkadot',
+  westmint: 'polkadot'
 };
 
-// support for ledger
+// These match up with the keys of the ledgerApps object in the @polkadot/hw-ledger/defaults.ts
+// and maps to the known slip44 (minus the `0x8` hard derivation flag)
+// NOTE: Any network here needs to have a genesisHash attached in the config above
 export const knownLedger: KnownLedger = {
+  centrifuge: 0x000002eb,
   'dock-mainnet': 0x00000252,
   edgeware: 0x0000020b,
   equilibrium: 0x05f5e0fd,
   kusama: 0x000001b2,
   polkadot: 0x00000162,
-  polymesh: 0x00000253
+  polymesh: 0x00000253,
+  statemine: 0x000001b2 // common-good on Kusama, shares derivation
 };
 
 // testnets should not allow selection

@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-textencoder",
-  "version": "6.9.2-8",
+  "version": "7.0.3",
   "type": "module",
   "description": "A TextDecoder replacement",
   "browser": "browser.js",
@@ -18,7 +18,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-textencoder#readme",
   "dependencies": {
-    "@babel/runtime": "^7.14.6",
-    "@polkadot/x-global": "6.9.2-8"
+    "@babel/runtime": "^7.14.8",
+    "@polkadot/x-global": "7.0.3"
   }
 }

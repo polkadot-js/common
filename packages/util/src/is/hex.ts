@@ -18,7 +18,7 @@ const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
  * isHex('0x1234', 8); // => false
  * ```
  */
-export function isHex (value: unknown, bitLength = -1, ignoreLength = false): value is `0x${string}` {
+export function isHex (value: unknown, bitLength = -1, ignoreLength = false): value is string {
   return (typeof value === 'string' && (value === '0x' || HEX_REGEX.test(value)))
     ? bitLength === -1
       ? ((value.length % 2 === 0) || ignoreLength)

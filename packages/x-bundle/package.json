@@ -1,8 +1,8 @@
 {
-  "name": "@polkadot/x-rxjs",
-  "version": "6.9.2-8",
+  "name": "@polkadot/x-bundle",
+  "version": "7.0.3",
   "type": "module",
-  "description": "A pass-through interface for RxJs (allowing node + mjs usage)",
+  "description": "A bundler helper",
   "main": "index.js",
   "sideEffects": false,
   "engines": {
@@ -14,9 +14,10 @@
   "license": "Apache-2.0",
   "repository": "github:polkadot-js/common",
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-rxjs#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-bundle#readme",
   "dependencies": {
-    "@babel/runtime": "^7.14.6",
-    "rxjs": "^6.6.7"
+    "@babel/runtime": "^7.14.8",
+    "@polkadot/util": "^7.0.3",
+    "buffer-es6": "^4.9.3"
   }
 }

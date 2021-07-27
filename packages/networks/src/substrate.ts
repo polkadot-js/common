@@ -332,7 +332,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     network: 'centrifuge',
     prefix: 36,
     standardAccount: '*25519',
-    symbols: ['RAD'],
+    symbols: ['CFG'],
     website: 'https://centrifuge.io/'
   },
   {
@@ -489,6 +489,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://sora.org'
   },
   {
+    decimals: [10],
+    displayName: 'Zeitgeist',
+    network: 'zeitgeist',
+    prefix: 73,
+    standardAccount: '*25519',
+    symbols: ['ZTG'],
+    website: 'https://zeitgeist.pm'
+  },
+  {
     decimals: [12],
     displayName: 'Manta network',
     network: 'manta',
@@ -526,6 +535,42 @@ export const knownSubstrate: KnownSubstrate[] = [
   },
   {
     decimals: [18],
+    displayName: 'OriginTrail Parachain',
+    network: 'origintrail-parachain',
+    prefix: 101,
+    standardAccount: 'secp256k1',
+    symbols: ['TRAC'],
+    website: 'https://origintrail.io'
+  },
+  {
+    decimals: [12],
+    displayName: 'Heiko',
+    network: 'heiko',
+    prefix: 110,
+    standardAccount: '*25519',
+    symbols: ['HKO'],
+    website: 'https://parallel.fi/'
+  },
+  {
+    decimals: [18],
+    displayName: 'Altair',
+    network: 'altair',
+    prefix: 136,
+    standardAccount: '*25519',
+    symbols: ['AIR'],
+    website: 'https://centrifuge.io/'
+  },
+  {
+    decimals: [12],
+    displayName: 'Parallel',
+    network: 'parallel',
+    prefix: 172,
+    standardAccount: '*25519',
+    symbols: ['PARA'],
+    website: 'https://parallel.fi/'
+  },
+  {
+    decimals: [18],
     displayName: 'Social Network',
     network: 'social-network',
     prefix: 252,
@@ -538,7 +583,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     displayName: 'Moonbeam',
     network: 'moonbeam',
     prefix: 1284,
-    standardAccount: '*25519',
+    standardAccount: 'secp256k1',
     symbols: ['GLMR'],
     website: 'https://moonbeam.network'
   },
@@ -547,7 +592,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     displayName: 'Moonriver',
     network: 'moonriver',
     prefix: 1285,
-    standardAccount: '*25519',
+    standardAccount: 'secp256k1',
     symbols: ['MOVR'],
     website: 'https://moonbeam.network'
   },
