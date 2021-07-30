@@ -161,13 +161,13 @@ describe('pair', (): void => {
     const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
 
     // alice-sr25519 -> bob-ed25519
-    const encrypted1 = pairA.encryptMessage(message, keyring.bob.publicKey)
+    const encrypted1 = pairA.encryptMessage(message, keyring.bob.publicKey);
 
     // alice-sr25519 -> bob-sr25519
-    const encrypted2 = pairA.encryptMessage(message, pairB.publicKey)
+    const encrypted2 = pairA.encryptMessage(message, pairB.publicKey);
 
     // alice-ed25519 -> bob-sr25519
-    const encrypted3 = keyring.alice.encryptMessage(message, pairB.publicKey)
+    const encrypted3 = keyring.alice.encryptMessage(message, pairB.publicKey);
 
     // decrypt: Bob-ed25519 - use alice-ed25519 pubkey
     expect(
@@ -273,6 +273,23 @@ describe('pair', (): void => {
         version: '3'
       });
       expect(json.address).toEqual(u8aToHex(PUBLICDERIVED));
+    });
+
+    it('denies access to encryptMessage/decryptMessage API', (): void => {
+      const PASS = 'testing';
+      const encoded = keyring.alice.encodePkcs8(PASS);
+
+      const pair = createPair({ toSS58, type: 'ethereum' }, { publicKey: keyring.alice.publicKey });
+
+      pair.decodePkcs8(PASS, encoded);
+
+      expect(
+        () => pair.encryptMessage(
+          new Uint8Array(4), // null message
+          keyring.bob.publicKey,
+          new Uint8Array(24)
+        )
+      ).toThrow('Secp256k1 not supported yet');
     });
   });
 });
