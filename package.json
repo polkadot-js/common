@@ -26,6 +26,7 @@
     "@babel/core": "^7.14.8",
     "@polkadot/dev": "^0.62.57",
     "@polkadot/ts": "^0.4.4",
+    "@types/ed2curve": "^0.2.2",
     "@types/jest": "^26.0.24"
   },
   "version": "7.0.3"

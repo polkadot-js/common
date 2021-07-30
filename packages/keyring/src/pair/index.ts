@@ -148,17 +148,12 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     decryptMessage: (encryptedMessageWithNonce: string | Uint8Array, senderPublicKey: string | Uint8Array): Uint8Array | null => {
       assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
 
-      const _secretKey = convertSecretKeyToCurve25519(secretKey);
-      const _senderPublicKey = convertPublicKeyToCurve25519(u8aToU8a(senderPublicKey));
-
-      const message = naclOpen(
+      return naclOpen(
         u8aToU8a(encryptedMessageWithNonce.slice(24, encryptedMessageWithNonce.length)),
         u8aToU8a(encryptedMessageWithNonce.slice(0, 24)),
-        _senderPublicKey,
-        _secretKey
+        convertPublicKeyToCurve25519(u8aToU8a(senderPublicKey)),
+        convertSecretKeyToCurve25519(secretKey)
       );
-
-      return message;
     },
     derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair => {
       assert(type !== 'ethereum', 'Unable to derive on this keypair');
@@ -175,10 +170,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     encryptMessage: (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, _nonce?: Uint8Array): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
 
-      const _secretKey = convertSecretKeyToCurve25519(secretKey);
-      const _recipientPublicKey = convertPublicKeyToCurve25519(u8aToU8a(recipientPublicKey));
-
-      const { nonce, sealed } = naclSeal(u8aToU8a(message), _secretKey, _recipientPublicKey, _nonce);
+      const { nonce, sealed } = naclSeal(u8aToU8a(message), convertSecretKeyToCurve25519(secretKey), convertPublicKeyToCurve25519(u8aToU8a(recipientPublicKey)), _nonce);
 
       return u8aConcat(nonce, sealed);
     },
