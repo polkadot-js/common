@@ -147,8 +147,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     decodePkcs8,
     decryptMessage: (encryptedMessageWithNonce: string | Uint8Array, senderPublicKey: string | Uint8Array): Uint8Array | null => {
       assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
-      assert(type !== 'ecdsa', 'Secp256k1 not supported yet');
-      assert(type !== 'ethereum', 'Secp256k1 not supported yet');
+      assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
 
       return naclOpen(
         u8aToU8a(encryptedMessageWithNonce.slice(24, encryptedMessageWithNonce.length)),
