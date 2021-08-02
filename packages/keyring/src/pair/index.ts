@@ -7,7 +7,7 @@ import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } fro
 import type { PairInfo } from './types';
 
 import { assert, u8aConcat, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
-import { blake2AsU8a, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
+import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclOpen, naclSeal, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
 import { encodePair } from './encode';
@@ -145,6 +145,17 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     },
     // eslint-disable-next-line sort-keys
     decodePkcs8,
+    decryptMessage: (encryptedMessageWithNonce: string | Uint8Array, senderPublicKey: string | Uint8Array): Uint8Array | null => {
+      assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
+      assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
+
+      return naclOpen(
+        u8aToU8a(encryptedMessageWithNonce.slice(24, encryptedMessageWithNonce.length)),
+        u8aToU8a(encryptedMessageWithNonce.slice(0, 24)),
+        convertPublicKeyToCurve25519(u8aToU8a(senderPublicKey)),
+        convertSecretKeyToCurve25519(secretKey)
+      );
+    },
     derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair => {
       assert(type !== 'ethereum', 'Unable to derive on this keypair');
       assert(!isLocked(secretKey), 'Cannot derive on a locked keypair');
@@ -156,6 +167,14 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     },
     encodePkcs8: (passphrase?: string): Uint8Array => {
       return recode(passphrase);
+    },
+    encryptMessage: (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, _nonce?: Uint8Array): Uint8Array => {
+      assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
+      assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
+
+      const { nonce, sealed } = naclSeal(u8aToU8a(message), convertSecretKeyToCurve25519(secretKey), convertPublicKeyToCurve25519(u8aToU8a(recipientPublicKey)), _nonce);
+
+      return u8aConcat(nonce, sealed);
     },
     lock: (): void => {
       secretKey = new Uint8Array();
