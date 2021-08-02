@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 7.1.1 Aug 2, 2021
+
+Contributed:
+
+- Add keyring encrypt/decrypt functionality (Thanks to https://github.com/RoyTimes)
+
+Changes:
+
+- Bump Ledger libraries to latest versions
+
+
 ## 7.0.3 Jul 26, 2021
 
 Changes:
