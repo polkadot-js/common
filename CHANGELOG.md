@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Minor TS style cleanups in `@polkadot/x-bundle`
+
+
 ## 7.1.1 Aug 2, 2021
 
 Contributed:
