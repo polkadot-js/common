@@ -8,6 +8,9 @@ import type { KnownGenesis, KnownIcon, KnownLedger, KnownTestnet } from './types
 // last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
 export const knownGenesis: KnownGenesis = {
+  sora: [
+    '0x7e4e32d0feafd4f9c9414b0be86373f9a1efa904809b683453a9af6856d38ad5'
+  ],
   centrifuge: [
     '0x67dddf2673b69e5f875f6f25277495834398eafd67f492e09f3f3345e003d1b5'
   ],
@@ -56,6 +59,7 @@ export const knownGenesis: KnownGenesis = {
 
 // these are icon overrides
 export const knownIcon: KnownIcon = {
+  sora: 'substrate',
   centrifuge: 'polkadot',
   kusama: 'polkadot',
   polkadot: 'polkadot',
@@ -68,6 +72,7 @@ export const knownIcon: KnownIcon = {
 // and maps to the known slip44 (minus the `0x8` hard derivation flag)
 // NOTE: Any network here needs to have a genesisHash attached in the config above
 export const knownLedger: KnownLedger = {
+  sora: 0x00000269,
   centrifuge: 0x000002eb,
   'dock-mainnet': 0x00000252,
   edgeware: 0x0000020b,
@@ -80,6 +85,7 @@ export const knownLedger: KnownLedger = {
 
 // testnets should not allow selection
 export const knownTestnet: KnownTestnet = {
+  'sora-testnet': true,
   'dock-testnet': true,
   jupiter: true,
   'mathchain-testnet': true,
