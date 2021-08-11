@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## master
+## 7.1.2 Aug 11, 2021
 
 Changes:
 
+- Ensure `@polkadot/util-crypto` doesn't re-export `packageInfo` from `@polkadot/networks`
 - Minor TS style cleanups in `@polkadot/x-bundle`
 
 
