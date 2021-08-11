@@ -4,7 +4,7 @@
 
 Changes:
 
-- Ensure `@polkadot/util-crypto` doesn't re-export `pcakgeInfo` from `@polkadot/networks`
+- Ensure `@polkadot/util-crypto` doesn't re-export `packageInfo` from `@polkadot/networks`
 - Minor TS style cleanups in `@polkadot/x-bundle`
 
 
