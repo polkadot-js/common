@@ -8,6 +8,7 @@ import { newCentrifugeApp, newDockApp, newEdgewareApp, newEquilibriumApp, newKus
 
 // These match up with the keys of the knownLedger object in the @polkadot/networks/defaults.ts
 export const ledgerApps: Record<string, (transport: Transport) => SubstrateApp> = {
+  sora: newSoraApp,
   centrifuge: newCentrifugeApp,
   'dock-mainnet': newDockApp,
   edgeware: newEdgewareApp,
