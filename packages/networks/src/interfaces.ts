@@ -9,17 +9,6 @@ import { knownSubstrate } from './substrate';
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
 
-// Sort by name, however we keep 0, 2, 42 first in the list
-function sortNetworks (a: Network, b: Network): number {
-  return UNSORTED.includes(a.prefix) === UNSORTED.includes(b.prefix)
-    ? 0
-    : UNSORTED.includes(a.prefix)
-      ? -1
-      : UNSORTED.includes(b.prefix)
-        ? 1
-        : a.displayName.localeCompare(b.displayName);
-}
-
 export const allNetworks = knownSubstrate.map((o): SubstrateNetwork => {
   const network = o.network || '';
   const n = o as SubstrateNetwork;
@@ -37,9 +26,18 @@ export const allNetworks = knownSubstrate.map((o): SubstrateNetwork => {
 // The list of available/claimed prefixes
 //   - no testnets
 //   - we only include those where we have a standardAccount
+//   - sort by name, however we keep 0, 2, 42 first in the list
 export const availableNetworks = allNetworks
   .filter((n): n is Network => !n.isIgnored && !!n.network)
-  .sort(sortNetworks);
+  .sort((a, b) =>
+    UNSORTED.includes(a.prefix) === UNSORTED.includes(b.prefix)
+      ? 0
+      : UNSORTED.includes(a.prefix)
+        ? -1
+        : UNSORTED.includes(b.prefix)
+          ? 1
+          : a.displayName.localeCompare(b.displayName)
+  );
 
 // A filtered list of those chains we have details about (genesisHashes)
 export const selectableNetworks = availableNetworks.filter((n) => n.genesisHash.length || n.prefix === 42);
