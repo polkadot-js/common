@@ -23,7 +23,7 @@ const SQRT_MAX_SAFE_INTEGER = new BN(94906265);
  * bnSqrt(new BN(16)).toString(); // => '4'
  * ```
  */
-export function bnSqrt <ExtToBn extends ToBn> (value: ExtToBn | BN | BigInt | string | number | null): BN {
+export function bnSqrt <ExtToBn extends ToBn> (value: ExtToBn | BN | bigint | string | number | null): BN {
   const n = bnToBn(value);
 
   assert(n.gte(BN_ZERO), 'square root of negative numbers is not supported');

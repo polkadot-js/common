@@ -3,7 +3,7 @@
 
 import { BN, bnSqrt } from '.';
 
-const TESTS: [string | number | BN | BigInt, string | number][] = [
+const TESTS: [string | number | BN | bigint, string | number][] = [
   [0, 0],
   [1, 1],
   [4, 2],

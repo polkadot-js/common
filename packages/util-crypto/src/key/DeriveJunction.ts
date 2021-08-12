@@ -47,7 +47,7 @@ export class DeriveJunction {
     return !this.#isHard;
   }
 
-  public hard (value: number | string | BigInt | BN | Uint8Array): DeriveJunction {
+  public hard (value: number | string | bigint | BN | Uint8Array): DeriveJunction {
     return this.soft(value).harden();
   }
 
@@ -57,7 +57,7 @@ export class DeriveJunction {
     return this;
   }
 
-  public soft (value: number | string | BigInt | BN | Uint8Array): DeriveJunction {
+  public soft (value: number | string | bigint | BN | Uint8Array): DeriveJunction {
     if (isNumber(value) || isBn(value) || isBigInt(value)) {
       return this.soft(bnToHex(value, BN_OPTIONS));
     } else if (isHex(value)) {
