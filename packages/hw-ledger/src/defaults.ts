@@ -15,5 +15,6 @@ export const ledgerApps: Record<string, (transport: Transport) => SubstrateApp> 
   kusama: newKusamaApp,
   polkadot: newPolkadotApp,
   polymesh: newPolymeshApp,
+  sora: newSoraApp,
   statemine: newStatemineApp
 };
