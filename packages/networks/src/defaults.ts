@@ -46,6 +46,9 @@ export const knownGenesis: KnownGenesis = {
   polymesh: [
     '0x9deeb940c92ae02111c3bd5baca89970384f4c9849f02a1b2e53e66414d30f9f'
   ],
+  sora: [
+    '0x7e4e32d0feafd4f9c9414b0be86373f9a1efa904809b683453a9af6856d38ad5'
+  ],
   statemine: [
     '0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a'
   ],
@@ -59,6 +62,7 @@ export const knownIcon: KnownIcon = {
   centrifuge: 'polkadot',
   kusama: 'polkadot',
   polkadot: 'polkadot',
+  sora: 'substrate',
   statemine: 'polkadot',
   statemint: 'polkadot',
   westmint: 'polkadot'
@@ -75,6 +79,7 @@ export const knownLedger: KnownLedger = {
   kusama: 0x000001b2,
   polkadot: 0x00000162,
   polymesh: 0x00000253,
+  sora: 0x00000269,
   statemine: 0x000001b2 // common-good on Kusama, shares derivation
 };
 
@@ -83,5 +88,6 @@ export const knownTestnet: KnownTestnet = {
   'dock-testnet': true,
   jupiter: true,
   'mathchain-testnet': true,
+  'sora-testnet': true,
   'zero-alphaville': true
 };
