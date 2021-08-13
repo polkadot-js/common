@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Always use `bigint` type to indicate instance (Thanks to https://github.com/ntduan)
+
+Changes:
+
+- Cleanup additional circular dependency detected by rollup
+
+
 ## 7.1.2 Aug 11, 2021
 
 Changes:
