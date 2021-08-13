@@ -4,7 +4,7 @@
 
 Contributed:
 
-- Always use `bigint` type ro indicate instance (Thanks to https://github.com/ntduan)
+- Always use `bigint` type to indicate instance (Thanks to https://github.com/ntduan)
 
 Changes:
 
