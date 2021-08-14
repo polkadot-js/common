@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 7.2.1 Aug 14, 2021
 
 Contributed:
 
@@ -8,7 +8,8 @@ Contributed:
 
 Changes:
 
-- Cleanup additional circular dependency detected by rollup
+- Added `isU8aEmpty` check, all 0 or no length
+- Cleanup additional circular dependencies detected by rollup
 
 
 ## 7.1.2 Aug 11, 2021
