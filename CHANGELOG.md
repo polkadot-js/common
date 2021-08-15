@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 7.2.1 Aug 14, 2021
+## 7.2.1 Aug 15, 2021
 
 Contributed:
 
