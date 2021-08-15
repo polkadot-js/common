@@ -8,7 +8,7 @@ Contributed:
 
 Changes:
 
-- Added `isU8aEmpty` check, all 0 or no length
+- Added `u8aEmpty` helper check, all 0 or no length
 - Cleanup additional circular dependencies detected by rollup
 
 

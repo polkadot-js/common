@@ -25,7 +25,6 @@ export { isString } from './string';
 export { isTestChain } from './testChain';
 export { isToBn } from './toBn';
 export { isU8a } from './u8a';
-export { isU8aEmpty } from './u8aEmpty';
 export { isUndefined } from './undefined';
 export { isUtf8 } from './utf8';
 export { isWasm } from './wasm';

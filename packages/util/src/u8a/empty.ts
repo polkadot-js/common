@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /**
- * @name isU8aEmpty
+ * @name u8aEmpty
  * @summary Tests for a `Uint8Array` for emptyness
  * @description
  * Checks to see if the input `Uint8Array` has zero length or contains all 0 values.
  */
-export function isU8aEmpty (value: Uint8Array): boolean {
+export function u8aEmpty (value: Uint8Array): boolean {
   return value.length === 0 || value.every((v) => !v);
 }
