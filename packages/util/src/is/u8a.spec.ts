@@ -3,7 +3,7 @@
 
 import { isU8a } from '.';
 
-describe('isUint8Array', (): void => {
+describe('isU8a', (): void => {
   it('returns false on undefined values', (): void => {
     expect(
       isU8a()
