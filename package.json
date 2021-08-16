@@ -27,7 +27,7 @@
     "@polkadot/dev": "^0.62.59",
     "@polkadot/ts": "^0.4.4",
     "@types/ed2curve": "^0.2.2",
-    "@types/jest": "^26.0.24"
+    "@types/jest": "^27.0.1"
   },
   "version": "7.2.1",
   "packageManager": "yarn@3.0.1"
