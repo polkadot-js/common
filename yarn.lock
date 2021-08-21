@@ -2082,12 +2082,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/ts@npm:^0.4.4":
-  version: 0.4.4
-  resolution: "@polkadot/ts@npm:0.4.4"
+"@polkadot/ts@npm:^0.4.5":
+  version: 0.4.5
+  resolution: "@polkadot/ts@npm:0.4.5"
   dependencies:
-    "@types/chrome": ^0.0.145
-  checksum: ef4cd0e3978b2e9e5b6ffb9d1e482c5f4ad800c7d570037df2472e9f34a07c2812b14e84ffd9272c09ae6afeb2c686b98a1baa302b5428afbd9c8140c46cca72
+    "@types/chrome": ^0.0.154
+  checksum: 0c802dd758bf7449bdafa23e64de7546d00e792ee1e520dcc9632c54f3f4fa5ee784a16594e0e6be457e647dac774f0baeb77d4d6818b80d38d8ec94d5a49d81
   languageName: node
   linkType: hard
 
@@ -2415,13 +2415,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:^0.0.145":
-  version: 0.0.145
-  resolution: "@types/chrome@npm:0.0.145"
+"@types/chrome@npm:^0.0.154":
+  version: 0.0.154
+  resolution: "@types/chrome@npm:0.0.154"
   dependencies:
     "@types/filesystem": "*"
     "@types/har-format": "*"
-  checksum: f53387d77157bb7cf549dd4ee037f29bbe9f2eb3723d02e77aa80c3d8497be0fdce555b2cca2d3045818a0e80779e83a8d0a02e694978fb98f3b397c1fa6742f
+  checksum: 143fb34b7e283415b6a839748f1b5ff0422fc27b6c7052b7ba5c033d8d313bc911fea68f595b170e4e649b448a159415a77465ff1cf63d8ed6f7d6a10d825734
   languageName: node
   linkType: hard
 
@@ -9836,7 +9836,7 @@ resolve@^2.0.0-next.3:
   dependencies:
     "@babel/core": ^7.15.0
     "@polkadot/dev": ^0.62.61
-    "@polkadot/ts": ^0.4.4
+    "@polkadot/ts": ^0.4.5
     "@types/ed2curve": ^0.2.2
     "@types/jest": ^27.0.1
   languageName: unknown
