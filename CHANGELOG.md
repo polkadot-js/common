@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Bump Zondax libs
+
+
 ## 7.2.1 Aug 15, 2021
 
 Contributed:
