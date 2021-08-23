@@ -37,6 +37,9 @@ export const knownGenesis: KnownGenesis = {
     '0xe3777fa922cafbff200cadeaea1a76bd7898ad5b89f7848999058b50e715f636', // Kusama CC2
     '0x3fd7b9eb6a00376e5be61f01abb429ffb0b104be05eaff4d458da48fcd425baf' // Kusama CC1
   ],
+  'nodle-chain': [
+    '0xa3d114c2b8d0627c1aa9b134eafcf7d05ca561fdc19fb388bb9457f81809fb23'
+  ],
   plasm: [
     '0x3e86364d4b4894021cb2a0390bcf2feb5517d5292f2de2bb9404227e908b0b8b'
   ],
@@ -73,6 +76,7 @@ export const knownLedger: KnownLedger = {
   edgeware: 0x0000020b,
   equilibrium: 0x05f5e0fd,
   kusama: 0x000001b2,
+  'nodle-chain': 0x000003eb,
   polkadot: 0x00000162,
   polymesh: 0x00000253,
   statemine: 0x000001b2 // common-good on Kusama, shares derivation
