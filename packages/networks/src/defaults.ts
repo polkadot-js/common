@@ -8,6 +8,9 @@ import type { KnownGenesis, KnownIcon, KnownLedger, KnownTestnet } from './types
 // last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
 export const knownGenesis: KnownGenesis = {
+  bifrost: [
+    '0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed'
+  ],
   centrifuge: [
     '0x67dddf2673b69e5f875f6f25277495834398eafd67f492e09f3f3345e003d1b5'
   ],
