@@ -129,13 +129,13 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://polymath.network/'
   },
   {
-    decimals: null,
-    displayName: 'SubstraTEE',
-    network: 'substratee',
+    decimals: [12],
+    displayName: 'Integritee',
+    network: 'integritee',
     prefix: 13,
     standardAccount: '*25519',
-    symbols: null,
-    website: 'https://www.substratee.com'
+    symbols: ['TEER'],
+    website: 'https://integritee.network'
   },
   {
     decimals: [0],
@@ -550,6 +550,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['HKO'],
     website: 'https://parallel.fi/'
+  },
+  {
+    decimals: null,
+    displayName: 'Integritee Incognito',
+    network: 'integritee-incognito',
+    prefix: 113,
+    standardAccount: '*25519',
+    symbols: null,
+    website: 'https://integritee.network'
   },
   {
     decimals: [18],
