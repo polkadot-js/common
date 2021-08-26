@@ -207,8 +207,8 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     unlock: (passphrase?: string): void => {
       return decodePkcs8(passphrase);
     },
-    verify: (message: string | Uint8Array, signature: Uint8Array, _signerPublic: string | Uint8Array): boolean => {
-      return signatureVerify(message, signature, TYPE_ADDRESS[type](u8aToU8a(_signerPublic))).isValid;
+    verify: (message: string | Uint8Array, signature: Uint8Array, signerPublic: string | Uint8Array): boolean => {
+      return signatureVerify(message, signature, TYPE_ADDRESS[type](u8aToU8a(signerPublic))).isValid;
     },
     vrfSign: (message: string | Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
@@ -221,14 +221,12 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
 
       return u8aConcat(vrfHash(proof, context, extra), proof);
     },
-    vrfVerify: (message: string | Uint8Array, vrfResult: Uint8Array, _signerPublic: Uint8Array | string, context?: string | Uint8Array, extra?: string | Uint8Array): boolean => {
-      const signerPublic = TYPE_ADDRESS[type](u8aToU8a(_signerPublic));
-
+    vrfVerify: (message: string | Uint8Array, vrfResult: Uint8Array, signerPublic: Uint8Array | string, context?: string | Uint8Array, extra?: string | Uint8Array): boolean => {
       if (type === 'sr25519') {
         return schnorrkelVrfVerify(message, vrfResult, publicKey, context, extra);
       }
 
-      const result = signatureVerify(message, u8aConcat(TYPE_PREFIX[type], vrfResult.subarray(32)), signerPublic);
+      const result = signatureVerify(message, u8aConcat(TYPE_PREFIX[type], vrfResult.subarray(32)), TYPE_ADDRESS[type](u8aToU8a(signerPublic)));
 
       return result.isValid && u8aEq(vrfResult.subarray(0, 32), vrfHash(vrfResult.subarray(32), context, extra));
     }
