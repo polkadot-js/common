@@ -168,11 +168,11 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     encodePkcs8: (passphrase?: string): Uint8Array => {
       return recode(passphrase);
     },
-    encryptMessage: (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, _nonce?: Uint8Array): Uint8Array => {
+    encryptMessage: (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, nonceIn?: Uint8Array): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
       assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
 
-      const { nonce, sealed } = naclSeal(u8aToU8a(message), convertSecretKeyToCurve25519(secretKey), convertPublicKeyToCurve25519(u8aToU8a(recipientPublicKey)), _nonce);
+      const { nonce, sealed } = naclSeal(u8aToU8a(message), convertSecretKeyToCurve25519(secretKey), convertPublicKeyToCurve25519(u8aToU8a(recipientPublicKey)), nonceIn);
 
       return u8aConcat(nonce, sealed);
     },
