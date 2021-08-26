@@ -2,9 +2,17 @@
 
 ## master
 
+Contributed:
+
+- Added Bifrost genesisHash (Thanks to https://github.com/awesomepan)
+- Add Ledger support for Nodle (Thanks to https://github.com/ETeissonniere)
+
 Changes:
 
-- Bump Zondax libs
+- Add support for `schnorrkelAgreement` (as exposed by new `wasm-crypto)
+- Ensure `schnorrkel*` functions allows hex inputs
+- `@polkadot/wasm-crypto` 4.2.1
+- Sync with upstream Substrate ss58 registry
 
 
 ## 7.2.1 Aug 15, 2021

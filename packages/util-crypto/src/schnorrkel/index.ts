@@ -1,6 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+export { schnorrkelAgreement } from './agreement';
 export { schnorrkelDeriveHard } from './deriveHard';
 export { schnorrkelDerivePublic } from './derivePublic';
 export { schnorrkelDeriveSoft } from './deriveSoft';
