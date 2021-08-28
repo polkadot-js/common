@@ -52,6 +52,9 @@ export const knownGenesis: KnownGenesis = {
   polymesh: [
     '0x9deeb940c92ae02111c3bd5baca89970384f4c9849f02a1b2e53e66414d30f9f'
   ],
+  stafi: [
+    '0x290a4149f09ea0e402c74c1c7e96ae4239588577fe78932f94f5404c68243d80'
+  ],
   statemine: [
     '0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a'
   ],
