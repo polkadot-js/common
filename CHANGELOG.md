@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## master
+## 7.3.1 Aug 28, 2021
 
 Contributed:
 
 - Added Bifrost genesisHash (Thanks to https://github.com/awesomepan)
+- Added Stafi genesisHash (Thanks to https://github.com/Tore19)
 - Add Ledger support for Nodle (Thanks to https://github.com/ETeissonniere)
 
 Changes:
