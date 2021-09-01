@@ -16,21 +16,5 @@ module.exports = Object.assign({}, config, {
     '@polkadot/x-(fetch|randomvalues|textdecoder|textencoder|ws)(.*)$': '<rootDir>/packages/x-$1/src/node',
     '@polkadot/x-global(.*)$': '<rootDir>/packages/x-global/src/$1',
     '@polkadot/x-rxjs(.*)$': '<rootDir>/packages/x-rxjs/src/$1'
-  },
-  modulePathIgnorePatterns: [
-    '<rootDir>/packages/hw-ledger/build',
-    '<rootDir>/packages/hw-ledger-transports/build',
-    '<rootDir>/packages/keyring/build',
-    '<rootDir>/packages/networks/build',
-    '<rootDir>/packages/util/build',
-    '<rootDir>/packages/util-crypto/build',
-    '<rootDir>/packages/x-fetch/build',
-    '<rootDir>/packages/x-global/build',
-    '<rootDir>/packages/x-randomvalues/build',
-    '<rootDir>/packages/x-rxjs/build',
-    '<rootDir>/packages/x-textdecoder/build',
-    '<rootDir>/packages/x-textencoder/build',
-    '<rootDir>/packages/x-ws/build'
-  ],
-  transformIgnorePatterns: ['/node_modules/(?!@polkadot)']
+  }
 });
