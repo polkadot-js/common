@@ -206,7 +206,7 @@ export class Keyring implements KeyringInstance {
     if (isPhraseHex) {
       seed = hexToU8a(phrase);
     } else {
-      const str = phrase;
+      const str = phrase as string;
       const parts = str.split(' ');
 
       if ([12, 15, 18, 21, 24].includes(parts.length)) {
