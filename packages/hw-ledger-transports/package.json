@@ -15,7 +15,7 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.15.3",
+    "@babel/runtime": "^7.15.4",
     "@ledgerhq/hw-transport": "^6.3.0",
     "@ledgerhq/hw-transport-webhid": "^6.4.1",
     "@ledgerhq/hw-transport-webusb": "^6.3.0"
