@@ -1,6 +1,7 @@
 // Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
 import type { Prefix } from '@polkadot/util-crypto/address/types';
 import type { EncryptedJson } from '@polkadot/util-crypto/json/types';
 import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
@@ -13,7 +14,7 @@ export interface KeyringOptions {
 export type KeyringPair$Meta = Record<string, unknown>;
 
 export interface KeyringPair$Json extends EncryptedJson {
-  address: string;
+  address: string | HexString;
   meta: KeyringPair$Meta;
 }
 

@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ToBn } from '../types';
+import type { HexString, ToBn } from '../types';
 
 import { hexToBn } from '../hex/toBn';
 import { isBigInt } from '../is/bigInt';
@@ -25,7 +25,7 @@ import { BN } from './bn';
  * bnToBn(new BN(0x1234)); // => BN(0x1234)
  * ```
  */
-export function bnToBn <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | string | number | null): BN {
+export function bnToBn <ExtToBn extends ToBn> (value?: HexString | ExtToBn | BN | bigint | string | number | null): BN {
   if (!value) {
     return new BN(0);
   } else if (isHex(value)) {

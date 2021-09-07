@@ -51,3 +51,5 @@ export interface Time {
 export type Memoized<F> = F & {
   unmemoize: (...args: unknown[]) => void;
 }
+
+export type HexString = `0x${string}`;

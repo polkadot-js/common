@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '../types';
+
 import { assert } from '../assert';
 import { hexToU8a } from '../hex/toU8a';
 import { isBuffer } from '../is/buffer';
@@ -24,7 +26,7 @@ import { stringToU8a } from '../string/toU8a';
  * u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
  * ```
  */
-export function u8aToU8a (value?: number[] | Buffer | Uint8Array | string | null): Uint8Array {
+export function u8aToU8a (value?: HexString | number[] | Buffer | Uint8Array | string | null): Uint8Array {
   if (!value) {
     return new Uint8Array();
   } else if (isHex(value)) {
