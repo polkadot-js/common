@@ -206,17 +206,16 @@ export class Keyring implements KeyringInstance {
     if (isPhraseHex) {
       seed = hexToU8a(phrase);
     } else {
-      const str = phrase;
-      const parts = str.split(' ');
+      const parts = phrase.split(' ');
 
       if ([12, 15, 18, 21, 24].includes(parts.length)) {
         seed = type === 'ethereum'
           ? mnemonicToLegacySeed(phrase, '', false, 64)
           : mnemonicToMiniSecret(phrase, password);
       } else {
-        assert(str.length <= 32, 'specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
+        assert(phrase.length <= 32, 'specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
 
-        seed = stringToU8a(str.padEnd(32));
+        seed = stringToU8a(phrase.padEnd(32));
       }
     }
 
