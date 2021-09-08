@@ -53,3 +53,5 @@ export type Memoized<F> = F & {
 }
 
 export type HexString = `0x${string}`;
+
+export type U8aLike = HexString | number[] | Buffer | Uint8Array | string;

@@ -13,7 +13,7 @@ const EMPTY_U8A = new Uint8Array();
  * @name schnorrkelVrfSign
  * @description Sign with sr25519 vrf signing (deterministic)
  */
-export function schnorrkelVrfSign (message: HexString | Uint8Array | string, { secretKey }: Partial<Keypair>, context: HexString | string | Uint8Array = EMPTY_U8A, extra: string | Uint8Array = EMPTY_U8A): Uint8Array {
+export function schnorrkelVrfSign (message: HexString | Uint8Array | string, { secretKey }: Partial<Keypair>, context: HexString | string | Uint8Array = EMPTY_U8A, extra: HexString | string | Uint8Array = EMPTY_U8A): Uint8Array {
   assert(secretKey?.length === 64, 'Invalid secretKey, expected 64-bytes');
 
   return vrfSign(secretKey, u8aToU8a(context), u8aToU8a(message), u8aToU8a(extra));

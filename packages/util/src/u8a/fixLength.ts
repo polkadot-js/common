@@ -28,11 +28,7 @@ export function u8aFixLength (value: Uint8Array, bitLength = -1, atStart = false
 
   const result = new Uint8Array(byteLength);
 
-  if (atStart) {
-    result.set(value, 0);
-  } else {
-    result.set(value, byteLength - value.length);
-  }
+  result.set(value, atStart ? 0 : (byteLength - value.length));
 
   return result;
 }

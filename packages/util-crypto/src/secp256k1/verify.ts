@@ -1,6 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
 import type { HashType } from './types';
 
 import { assert, u8aEq, u8aToU8a } from '@polkadot/util';
@@ -13,7 +14,7 @@ import { secp256k1 } from './secp256k1';
  * @name secp256k1Verify
  * @description Verifies the signature of `message`, using the supplied pair
  */
-export function secp256k1Verify (message: Uint8Array | string, signature: Uint8Array | string, address: Uint8Array | string, hashType: HashType = 'blake2'): boolean {
+export function secp256k1Verify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, address: HexString | Uint8Array | string, hashType: HashType = 'blake2'): boolean {
   const isEthereum = hashType === 'keccak';
   const u8a = u8aToU8a(signature);
 
