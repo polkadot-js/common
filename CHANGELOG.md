@@ -18,7 +18,7 @@ Contributed:
 
 Changes:
 
-- Add support for `schnorrkelAgreement` (as exposed by new `wasm-crypto)
+- Add support for `schnorrkelAgreement` (as exposed by new `wasm-crypto`)
 - Ensure `schnorrkel*` functions allows hex inputs
 - `@polkadot/wasm-crypto` 4.2.1
 - Sync with upstream Substrate ss58 registry
