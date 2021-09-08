@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Adjust `isHex` return to `0x${string}` under TypeScript
+- Adjust shared repo Jest config
+
+
 ## 7.3.1 Aug 28, 2021
 
 Contributed:
