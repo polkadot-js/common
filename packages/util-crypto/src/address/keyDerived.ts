@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
+import type { HexString } from '@polkadot/util/types';
 
 import { bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
@@ -10,7 +11,7 @@ import { decodeAddress } from './decode';
 
 const PREFIX = stringToU8a('modlpy/utilisuba');
 
-export function createKeyDerived (who: Uint8Array | string, index: bigint | BN | number): Uint8Array {
+export function createKeyDerived (who: HexString | Uint8Array | string, index: bigint | BN | number): Uint8Array {
   return blake2AsU8a(
     u8aConcat(
       PREFIX,

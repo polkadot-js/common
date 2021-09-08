@@ -3,6 +3,8 @@
 
 // adapted from https://github.com/multiformats/js-multibase/blob/424709195b46ffb1d6f2f69a7707598ebe751e5e/src/rfc4648.js
 
+import type { HexString } from '@polkadot/util/types';
+
 import { u8aToU8a } from '@polkadot/util';
 
 import { BASE32_ALPHABET, BITS_PER_CHAR } from './bs32';
@@ -15,7 +17,7 @@ const MASK = (1 << BITS_PER_CHAR) - 1;
  * @description
  * From the provided input, create the base32 and return the result as a string.
  */
-export function base32Encode (value: Uint8Array | string | Buffer | number[], ipfsCompat = false): string {
+export function base32Encode (value: HexString | Uint8Array | string | Buffer | number[], ipfsCompat = false): string {
   const u8a = u8aToU8a(value);
   let out = '';
   let bits = 0;

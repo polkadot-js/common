@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
+
 import { u8aToU8a } from '@polkadot/util';
 import { isReady, pbkdf2 } from '@polkadot/wasm-crypto';
 
@@ -13,7 +15,7 @@ interface Result {
   salt: Uint8Array;
 }
 
-export function pbkdf2Encode (passphrase?: Buffer | Uint8Array | string, salt: Buffer | Uint8Array = randomAsU8a(), rounds = 2048, onlyJs = false): Result {
+export function pbkdf2Encode (passphrase?: HexString | Buffer | Uint8Array | string, salt: Buffer | Uint8Array = randomAsU8a(), rounds = 2048, onlyJs = false): Result {
   const u8aPass = u8aToU8a(passphrase);
   const u8aSalt = u8aToU8a(salt);
   const password = isReady() && !onlyJs

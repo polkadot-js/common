@@ -1,6 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
 import type { Keypair } from '../../types';
 
 import { assert, u8aToU8a } from '@polkadot/util';
@@ -9,7 +10,7 @@ const SEC_LEN = 64;
 const PUB_LEN = 32;
 const TOT_LEN = SEC_LEN + PUB_LEN;
 
-export function schnorrkelKeypairFromU8a (full: Uint8Array | string): Keypair {
+export function schnorrkelKeypairFromU8a (full: HexString | Uint8Array | string): Keypair {
   const fullU8a = u8aToU8a(full);
 
   assert(fullU8a.length === TOT_LEN, () => `Expected keypair with ${TOT_LEN} bytes, found ${fullU8a.length}`);

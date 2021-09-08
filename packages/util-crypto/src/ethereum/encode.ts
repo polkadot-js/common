@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
+
 import { assert, u8aToHex, u8aToU8a } from '@polkadot/util';
 
 import { keccakAsU8a } from '../keccak';
@@ -14,7 +16,7 @@ function getH160 (u8a: Uint8Array): Uint8Array {
   return u8a.slice(-20);
 }
 
-export function ethereumEncode (addressOrPublic?: string | Uint8Array): string {
+export function ethereumEncode (addressOrPublic?: HexString | string | Uint8Array): string {
   if (!addressOrPublic) {
     return '0x';
   }

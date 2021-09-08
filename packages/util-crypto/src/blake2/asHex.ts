@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
+
 import { u8aToHex } from '@polkadot/util';
 
 import { blake2AsU8a } from './asU8a';
@@ -19,7 +21,7 @@ import { blake2AsU8a } from './asU8a';
  * blake2AsHex('abc'); // => 0xba80a53f981c4d0d
  * ```
  */
-export function blake2AsHex (data: Uint8Array | string, bitLength = 256, key?: Uint8Array | null, onlyJs = false): string {
+export function blake2AsHex (data: HexString | Uint8Array | string, bitLength = 256, key?: Uint8Array | null, onlyJs = false): string {
   return u8aToHex(
     blake2AsU8a(data, bitLength, key, onlyJs)
   );
