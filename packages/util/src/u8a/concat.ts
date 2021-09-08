@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '../types';
+import type { U8aLike } from '../types';
 
 import { u8aToU8a } from './toU8a';
 
@@ -22,7 +22,7 @@ import { u8aToU8a } from './toU8a';
  * ); // [1, 2, 3, 4, 5, 6]
  * ```
  */
-export function u8aConcat (...list: (HexString | Buffer | Uint8Array | number[] | string)[]): Uint8Array {
+export function u8aConcat (...list: U8aLike[]): Uint8Array {
   let length = 0;
   let offset = 0;
   const u8as = new Array<Uint8Array>(list.length);
