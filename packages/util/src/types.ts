@@ -52,6 +52,9 @@ export type Memoized<F> = F & {
   unmemoize: (...args: unknown[]) => void;
 }
 
+export type HexDigit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | 'a' | 'b' | 'c' | 'd' | 'e' | 'f';
+
+// One day when template strings support regex, we can improve this
 export type HexString = `0x${string}`;
 
 export type U8aLike = HexString | number[] | Buffer | Uint8Array | string;

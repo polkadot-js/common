@@ -21,7 +21,7 @@ import { xxhashAsU8a } from './asU8a';
  * xxhashAsHex('abc'); // => 0x44bc2cf5ad770999
  * ```
  */
-export function xxhashAsHex (data: HexString | Buffer | Uint8Array | string, bitLength = 64): string {
+export function xxhashAsHex (data: HexString | Buffer | Uint8Array | string, bitLength = 64): HexString {
   return u8aToHex(
     xxhashAsU8a(data, bitLength)
   );

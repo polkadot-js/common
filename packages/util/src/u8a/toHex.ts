@@ -1,13 +1,17 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexDigit, HexString } from '../types';
+
 import { arrayRange } from '../array';
 
-const ALPHABET = arrayRange(256).map((n) => n.toString(16).padStart(2, '0'));
+type HexByte = `${HexDigit}${HexDigit}`;
+
+const ALPHABET = arrayRange(256).map((n) => n.toString(16).padStart(2, '0') as HexByte);
 
 /** @internal */
 function extract (value: Uint8Array): string {
-  const result = new Array<string>(value.length);
+  const result = new Array<HexByte>(value.length);
 
   for (let i = 0; i < value.length; i++) {
     result[i] = ALPHABET[value[i]];
@@ -17,8 +21,17 @@ function extract (value: Uint8Array): string {
 }
 
 /** @internal */
+function unprefixed (value: Uint8Array, bitLength = -1): string {
+  const byteLength = Math.ceil(bitLength / 8);
+
+  return (byteLength > 0 && value.length > byteLength)
+    ? trim(value, Math.ceil(byteLength / 2))
+    : extract(value);
+}
+
+/** @internal */
 function trim (value: Uint8Array, halfLength: number): string {
-  return `${u8aToHex(value.subarray(0, halfLength), -1, false)}…${u8aToHex(value.subarray(value.length - halfLength), -1, false)}`;
+  return `${unprefixed(value.subarray(0, halfLength))}…${unprefixed(value.subarray(value.length - halfLength))}`;
 }
 
 /**
@@ -35,20 +48,10 @@ function trim (value: Uint8Array, halfLength: number): string {
  * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```
  */
-export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed = true): string {
-  const prefix = isPrefixed
-    ? '0x'
-    : '';
-
-  if (!value?.length) {
-    return prefix;
-  }
-
-  const byteLength = Math.ceil(bitLength / 8);
-
-  return prefix + (
-    (byteLength > 0 && value.length > byteLength)
-      ? trim(value, Math.ceil(byteLength / 2))
-      : extract(value)
-  );
+export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed = true): HexString {
+  return `${isPrefixed ? '0x' : ''}${
+    !value || !value.length
+      ? ''
+      : unprefixed(value, bitLength)
+  }` as HexString;
 }
