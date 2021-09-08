@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
+
 import { u8aToHex } from '@polkadot/util';
 
 import { randomAsU8a } from './asU8a';
@@ -19,7 +21,7 @@ import { randomAsU8a } from './asU8a';
  * randomAsHex(); // => 0x...
  * ```
  */
-export function randomAsHex (length = 32): string {
+export function randomAsHex (length = 32): HexString {
   return u8aToHex(
     randomAsU8a(length)
   );

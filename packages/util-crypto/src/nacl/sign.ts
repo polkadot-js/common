@@ -1,6 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
 import type { Keypair } from '../types';
 
 import nacl from 'tweetnacl';
@@ -22,7 +23,7 @@ import { ed25519Sign, isReady } from '@polkadot/wasm-crypto';
  * naclSign([...], [...]); // => [...]
  * ```
  */
-export function naclSign (message: Uint8Array | string, { publicKey, secretKey }: Partial<Keypair>, onlyJs = false): Uint8Array {
+export function naclSign (message: HexString | Uint8Array | string, { publicKey, secretKey }: Partial<Keypair>, onlyJs = false): Uint8Array {
   assert(secretKey, 'Expected a valid secretKey');
 
   const messageU8a = u8aToU8a(message);

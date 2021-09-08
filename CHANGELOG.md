@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Adjust `isHex` return to `0x${string}` under TypeScript
+- Adjust shared repo Jest config
+
+
 ## 7.3.1 Aug 28, 2021
 
 Contributed:
@@ -10,7 +18,7 @@ Contributed:
 
 Changes:
 
-- Add support for `schnorrkelAgreement` (as exposed by new `wasm-crypto)
+- Add support for `schnorrkelAgreement` (as exposed by new `wasm-crypto`)
 - Ensure `schnorrkel*` functions allows hex inputs
 - `@polkadot/wasm-crypto` 4.2.1
 - Sync with upstream Substrate ss58 registry

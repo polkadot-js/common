@@ -1,6 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
 import type { Prefix } from './types';
 
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L6
@@ -10,7 +11,7 @@ import { base58Decode } from '../base58/decode';
 import { checkAddressChecksum } from './checksum';
 import { defaults } from './defaults';
 
-export function decodeAddress (encoded?: string | Uint8Array | null, ignoreChecksum?: boolean, ss58Format: Prefix = -1): Uint8Array {
+export function decodeAddress (encoded?: HexString | string | Uint8Array | null, ignoreChecksum?: boolean, ss58Format: Prefix = -1): Uint8Array {
   assert(encoded, 'Invalid empty address passed');
 
   if (isU8a(encoded) || isHex(encoded)) {
@@ -29,6 +30,6 @@ export function decodeAddress (encoded?: string | Uint8Array | null, ignoreCheck
 
     return decoded.slice(ss58Length, endPos);
   } catch (error) {
-    throw new Error(`Decoding ${encoded as string}: ${(error as Error).message}`);
+    throw new Error(`Decoding ${encoded}: ${(error as Error).message}`);
   }
 }

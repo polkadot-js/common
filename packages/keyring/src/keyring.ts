@@ -1,8 +1,7 @@
 // Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EncryptedJsonEncoding } from '@polkadot/util-crypto/json/types';
-import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
+import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
@@ -206,17 +205,16 @@ export class Keyring implements KeyringInstance {
     if (isPhraseHex) {
       seed = hexToU8a(phrase);
     } else {
-      const str = phrase as string;
-      const parts = str.split(' ');
+      const parts = phrase.split(' ');
 
       if ([12, 15, 18, 21, 24].includes(parts.length)) {
         seed = type === 'ethereum'
           ? mnemonicToLegacySeed(phrase, '', false, 64)
           : mnemonicToMiniSecret(phrase, password);
       } else {
-        assert(str.length <= 32, 'specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
+        assert(phrase.length <= 32, 'specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
 
-        seed = stringToU8a(str.padEnd(32));
+        seed = stringToU8a(phrase.padEnd(32));
       }
     }
 

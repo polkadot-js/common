@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '../types';
+
 import { u8aToHex } from '../u8a/toHex';
 import { stringToU8a } from './toU8a';
 
@@ -19,7 +21,7 @@ import { stringToU8a } from './toU8a';
  * ```
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
-export function stringToHex (value?: String | string): string {
+export function stringToHex (value?: String | string): HexString {
   return u8aToHex(
     stringToU8a(value)
   );

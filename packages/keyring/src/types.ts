@@ -1,9 +1,8 @@
 // Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Prefix } from '@polkadot/util-crypto/address/types';
-import type { EncryptedJson } from '@polkadot/util-crypto/json/types';
-import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
+import type { HexString } from '@polkadot/util/types';
+import type { EncryptedJson, Keypair, KeypairType, Prefix } from '@polkadot/util-crypto/types';
 
 export interface KeyringOptions {
   ss58Format?: Prefix;
@@ -13,7 +12,7 @@ export interface KeyringOptions {
 export type KeyringPair$Meta = Record<string, unknown>;
 
 export interface KeyringPair$Json extends EncryptedJson {
-  address: string;
+  address: string | HexString;
   meta: KeyringPair$Meta;
 }
 
@@ -34,14 +33,14 @@ export interface KeyringPair {
   encodePkcs8 (passphrase?: string): Uint8Array;
   lock (): void;
   setMeta (meta: KeyringPair$Meta): void;
-  sign (message: string | Uint8Array, options?: SignOptions): Uint8Array;
+  sign (message: HexString | string | Uint8Array, options?: SignOptions): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;
   unlock (passphrase?: string): void;
-  encryptMessage (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, nonce?: Uint8Array): Uint8Array;
-  decryptMessage (encryptedMessageWithNonce: string | Uint8Array, senderPublicKey: string | Uint8Array): Uint8Array | null;
-  verify (message: string | Uint8Array, signature: Uint8Array, signerPublic: string | Uint8Array): boolean;
-  vrfSign (message: string | Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array;
-  vrfVerify (message: string | Uint8Array, vrfResult: Uint8Array, signerPublic: Uint8Array | string, context?: string | Uint8Array, extra?: string | Uint8Array): boolean;
+  encryptMessage (message: HexString | string | Uint8Array, recipientPublicKey: HexString | string | Uint8Array, nonce?: Uint8Array): Uint8Array;
+  decryptMessage (encryptedMessageWithNonce: HexString | string | Uint8Array, senderPublicKey: HexString | string | Uint8Array): Uint8Array | null;
+  verify (message: HexString | string | Uint8Array, signature: Uint8Array, signerPublic: HexString | string | Uint8Array): boolean;
+  vrfSign (message: HexString | string | Uint8Array, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): Uint8Array;
+  vrfVerify (message: HexString | string | Uint8Array, vrfResult: Uint8Array, signerPublic: HexString | Uint8Array | string, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): boolean;
 }
 
 export interface KeyringPairs {

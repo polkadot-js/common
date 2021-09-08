@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '../types';
+
 import { hexAddPrefix } from './addPrefix';
 import { hexStripPrefix } from './stripPrefix';
 
@@ -20,7 +22,7 @@ import { hexStripPrefix } from './stripPrefix';
  * console.log('fixed', hexFixLength('0x0012', 8)); // => 0x12
  * ```
  */
-export function hexFixLength (value: string, bitLength = -1, withPadding = false): string {
+export function hexFixLength (value: string, bitLength = -1, withPadding = false): HexString {
   const strLength = Math.ceil(bitLength / 4);
   const hexLength = strLength + 2;
 

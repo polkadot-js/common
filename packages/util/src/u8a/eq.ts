@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '../types';
+
 import { u8aCmp } from './cmp';
 import { u8aToU8a } from './toU8a';
 
@@ -22,6 +24,6 @@ function equals (a: Uint8Array, b: Uint8Array): boolean {
  * u8aEq(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // true
  * ```
  */
-export function u8aEq (a: Uint8Array | string, b: Uint8Array | string): boolean {
+export function u8aEq (a: HexString | Uint8Array | string, b: HexString | Uint8Array | string): boolean {
   return equals(u8aToU8a(a), u8aToU8a(b));
 }

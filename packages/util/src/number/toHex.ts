@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '../types';
+
 import { hexFixLength } from '../hex/fixLength';
 import { isNull } from '../is/null';
 import { isUndefined } from '../is/undefined';
@@ -20,7 +22,7 @@ import { isUndefined } from '../is/undefined';
  * numberToHex(0x1234, 32); // => 0x00001234
  * ```
  */
-export function numberToHex (value?: number | null, bitLength = -1): string {
+export function numberToHex (value?: number | null, bitLength = -1): HexString {
   if (isUndefined(value) || isNull(value) || isNaN(value)) {
     return '0x';
   }

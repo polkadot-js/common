@@ -10,7 +10,7 @@
 //   - Adjust formatting (just eslint differences)
 //   - Only English wordlist (this aligns with the wasm-crypto implementation)
 //   - Use util-crypto randomAsU8a (instead of randombytes)
-//   - Remove setting of wordlost passing of wordlist in functions
+//   - Remove setting of wordlist passing of wordlist in functions
 //   - Remove mnemonicToSeed (we only use the sync variant)
 
 import hash from 'hash.js';
@@ -34,7 +34,7 @@ function binaryToByte (bin: string): number {
 }
 
 function bytesToBinary (bytes: number[]): string {
-  return bytes.map((x: number) => x.toString(2).padStart(8, '0')).join('');
+  return bytes.map((x) => x.toString(2).padStart(8, '0')).join('');
 }
 
 function deriveChecksumBits (entropyBuffer: Uint8Array): string {

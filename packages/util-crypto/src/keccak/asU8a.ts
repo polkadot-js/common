@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
+
 import js from 'js-sha3';
 
 import { u8aToU8a } from '@polkadot/util';
@@ -20,7 +22,7 @@ import { isReady, keccak256 } from '@polkadot/wasm-crypto';
  * keccakAsU8a('123'); // => Uint8Array
  * ```
  */
-export function keccakAsU8a (value: Buffer | Uint8Array | string, bitLength: 256 | 512 = 256, onlyJs = false): Uint8Array {
+export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: 256 | 512 = 256, onlyJs = false): Uint8Array {
   const is256 = bitLength === 256;
 
   return isReady() && is256 && !onlyJs

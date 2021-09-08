@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EncryptedJsonEncoding } from '@polkadot/util-crypto/json/types';
-import type { Keypair, KeypairType } from '@polkadot/util-crypto/types';
+import type { HexString } from '@polkadot/util/types';
+import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types';
 import type { PairInfo } from './types';
 
@@ -145,13 +145,15 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     },
     // eslint-disable-next-line sort-keys
     decodePkcs8,
-    decryptMessage: (encryptedMessageWithNonce: string | Uint8Array, senderPublicKey: string | Uint8Array): Uint8Array | null => {
+    decryptMessage: (encryptedMessageWithNonce: HexString | string | Uint8Array, senderPublicKey: HexString | string | Uint8Array): Uint8Array | null => {
       assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
       assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
 
+      const messageU8a = u8aToU8a(encryptedMessageWithNonce);
+
       return naclOpen(
-        u8aToU8a(encryptedMessageWithNonce.slice(24, encryptedMessageWithNonce.length)),
-        u8aToU8a(encryptedMessageWithNonce.slice(0, 24)),
+        messageU8a.slice(24, messageU8a.length),
+        messageU8a.slice(0, 24),
         convertPublicKeyToCurve25519(u8aToU8a(senderPublicKey)),
         convertSecretKeyToCurve25519(secretKey)
       );
@@ -168,7 +170,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     encodePkcs8: (passphrase?: string): Uint8Array => {
       return recode(passphrase);
     },
-    encryptMessage: (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, nonceIn?: Uint8Array): Uint8Array => {
+    encryptMessage: (message: HexString | string | Uint8Array, recipientPublicKey: HexString | string | Uint8Array, nonceIn?: Uint8Array): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
       assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
 
@@ -182,7 +184,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     setMeta: (additional: KeyringPair$Meta): void => {
       meta = { ...meta, ...additional };
     },
-    sign: (message: string | Uint8Array, options: SignOptions = {}): Uint8Array => {
+    sign: (message: HexString | string | Uint8Array, options: SignOptions = {}): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
 
       return u8aConcat(
@@ -207,10 +209,10 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     unlock: (passphrase?: string): void => {
       return decodePkcs8(passphrase);
     },
-    verify: (message: string | Uint8Array, signature: Uint8Array, signerPublic: string | Uint8Array): boolean => {
+    verify: (message: HexString | string | Uint8Array, signature: HexString | string | Uint8Array, signerPublic: HexString | string | Uint8Array): boolean => {
       return signatureVerify(message, signature, TYPE_ADDRESS[type](u8aToU8a(signerPublic))).isValid;
     },
-    vrfSign: (message: string | Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array => {
+    vrfSign: (message: HexString | string | Uint8Array, context?: HexString | string | Uint8Array, extra?: string | Uint8Array): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
 
       if (type === 'sr25519') {
@@ -221,7 +223,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
 
       return u8aConcat(vrfHash(proof, context, extra), proof);
     },
-    vrfVerify: (message: string | Uint8Array, vrfResult: Uint8Array, signerPublic: Uint8Array | string, context?: string | Uint8Array, extra?: string | Uint8Array): boolean => {
+    vrfVerify: (message: HexString | string | Uint8Array, vrfResult: Uint8Array, signerPublic: HexString | Uint8Array | string, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): boolean => {
       if (type === 'sr25519') {
         return schnorrkelVrfVerify(message, vrfResult, publicKey, context, extra);
       }

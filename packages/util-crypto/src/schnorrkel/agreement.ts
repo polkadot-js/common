@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
+
 import { assert, u8aToU8a } from '@polkadot/util';
 import { sr25519Agree } from '@polkadot/wasm-crypto';
 
@@ -8,7 +10,7 @@ import { sr25519Agree } from '@polkadot/wasm-crypto';
  * @name schnorrkelAgreement
  * @description Key agreement between other's public key and self secret key
  */
-export function schnorrkelAgreement (secretKey: Uint8Array | string, publicKey: Uint8Array | string): Uint8Array {
+export function schnorrkelAgreement (secretKey: HexString | Uint8Array | string, publicKey: HexString | Uint8Array | string): Uint8Array {
   const secretKeyU8a = u8aToU8a(secretKey);
   const publicKeyU8a = u8aToU8a(publicKey);
 
