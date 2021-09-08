@@ -10,7 +10,7 @@
 //   - Adjust formatting (just eslint differences)
 //   - Only English wordlist (this aligns with the wasm-crypto implementation)
 //   - Use util-crypto randomAsU8a (instead of randombytes)
-//   - Remove setting of wordlost passing of wordlist in functions
+//   - Remove setting of wordlist passing of wordlist in functions
 //   - Remove mnemonicToSeed (we only use the sync variant)
 
 import hash from 'hash.js';
