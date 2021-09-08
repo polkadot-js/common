@@ -34,7 +34,7 @@ function binaryToByte (bin: string): number {
 }
 
 function bytesToBinary (bytes: number[]): string {
-  return bytes.map((x: number) => x.toString(2).padStart(8, '0')).join('');
+  return bytes.map((x) => x.toString(2).padStart(8, '0')).join('');
 }
 
 function deriveChecksumBits (entropyBuffer: Uint8Array): string {
