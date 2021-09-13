@@ -445,6 +445,24 @@ export const knownSubstrate: KnownSubstrate[] = [
   },
   {
     decimals: [12],
+    displayName: 'Picasso',
+    network: 'picasso',
+    prefix: 49,
+    standardAccount: '*25519',
+    symbols: ['PICA'],
+    website: 'https://picasso.composable.finance'
+  },
+  {
+    decimals: [12],
+    displayName: 'Composable',
+    network: 'composable',
+    prefix: 50,
+    standardAccount: '*25519',
+    symbols: ['LAYR'],
+    website: 'https://composable.finance'
+  },
+  {
+    decimals: [12],
     displayName: 'HydraDX',
     network: 'hydradx',
     prefix: 63,
