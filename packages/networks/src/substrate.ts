@@ -580,6 +580,15 @@ export const knownSubstrate: KnownSubstrate[] = [
   },
   {
     decimals: [18],
+    displayName: 'Clover Finance',
+    network: 'clover',
+    prefix: 128,
+    standardAccount: '*25519',
+    symbols: ['CLV'],
+    website: 'https://clover.finance'
+  },
+  {
+    decimals: [18],
     displayName: 'Altair',
     network: 'altair',
     prefix: 136,
