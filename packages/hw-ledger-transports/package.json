@@ -18,9 +18,9 @@
     "@babel/runtime": "^7.15.4",
     "@ledgerhq/hw-transport": "^6.3.0",
     "@ledgerhq/hw-transport-webhid": "^6.4.1",
-    "@ledgerhq/hw-transport-webusb": "^6.3.0"
+    "@ledgerhq/hw-transport-webusb": "^6.6.0"
   },
   "optionalDependencies": {
-    "@ledgerhq/hw-transport-node-hid-singleton": "^6.3.0"
+    "@ledgerhq/hw-transport-node-hid-singleton": "^6.6.0"
   }
 }
