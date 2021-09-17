@@ -83,31 +83,20 @@ export function signatureVerify (message: HexString | Uint8Array | string, signa
   const publicKey = decodeAddress(addressOrPublicKey);
   const input = { message: u8aToU8a(message), publicKey, signature: signatureU8a };
   const result: VerifyResult = { crypto: 'none', isValid: false, isWrapped: u8aIsWrapped(input.message, true), publicKey };
-  const isMulti = [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length);
+  const isWrappedBytes = u8aIsWrapped(input.message, false);
+  const verifyFn = [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length)
+    ? verifyMultisig
+    : verifyDetect;
 
-  if (isMulti) {
-    verifyMultisig(result, input);
-  } else {
-    verifyDetect(result, input);
+  verifyFn(result, input);
+
+  if (result.crypto !== 'none' || (result.isWrapped && !isWrappedBytes)) {
+    return result;
   }
 
-  if (result.crypto === 'none') {
-    const isWrappedBytes = u8aIsWrapped(input.message, false);
+  input.message = isWrappedBytes
+    ? u8aUnwrapBytes(input.message)
+    : u8aWrapBytes(input.message);
 
-    if (result.isWrapped && !isWrappedBytes) {
-      return result;
-    }
-
-    input.message = isWrappedBytes
-      ? u8aUnwrapBytes(input.message)
-      : u8aWrapBytes(input.message);
-
-    if (isMulti) {
-      verifyMultisig(result, input);
-    } else {
-      verifyDetect(result, input);
-    }
-  }
-
-  return result;
+  return verifyFn(result, input);
 }
