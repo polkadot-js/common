@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// Originally from https://github.com/polkadot-js/extension/pull/743
+
 import type { U8aLike } from '../types';
 
 import { u8aConcat } from './concat';
