@@ -19,6 +19,8 @@ interface VerifyInput {
 
 type Verifier = [KeypairType, (message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array) => boolean];
 
+type VerifyFn = (result: VerifyResult, input: VerifyInput) => VerifyResult;
+
 const secp256k1VerifyHasher = (hashType: 'blake2' | 'keccak') =>
   (message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array) =>
     secp256k1Verify(message, signature, publicKey, hashType);
@@ -75,6 +77,12 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
   return result;
 }
 
+function getVerifyFn (signature: Uint8Array): VerifyFn {
+  return [0, 1, 2].includes(signature[0]) && [65, 66].includes(signature.length)
+    ? verifyMultisig
+    : verifyDetect;
+}
+
 export function signatureVerify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, addressOrPublicKey: HexString | Uint8Array | string): VerifyResult {
   const signatureU8a = u8aToU8a(signature);
 
@@ -84,9 +92,7 @@ export function signatureVerify (message: HexString | Uint8Array | string, signa
   const input = { message: u8aToU8a(message), publicKey, signature: signatureU8a };
   const result: VerifyResult = { crypto: 'none', isValid: false, isWrapped: u8aIsWrapped(input.message, true), publicKey };
   const isWrappedBytes = u8aIsWrapped(input.message, false);
-  const verifyFn = [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length)
-    ? verifyMultisig
-    : verifyDetect;
+  const verifyFn = getVerifyFn(signatureU8a);
 
   verifyFn(result, input);
 
