@@ -95,11 +95,20 @@ describe('signatureVerify', (): void => {
       });
     });
 
-    it('verifies an sr25519 signature (with wrapper)', (): void => {
+    it('verifies an sr25519 signature (with msg wrapper, without wrapped sig)', (): void => {
       expect(signatureVerify(u8aWrapBytes(MESSAGE), SIG_SR_WRAP, ADDR_SR_WRAP)).toEqual({
         crypto: 'sr25519',
         isValid: true,
         isWrapped: true,
+        publicKey: decodeAddress(ADDR_SR_WRAP)
+      });
+    });
+
+    it('verifies an sr25519 signature (without msg wrapper, with wrapped sig)', (): void => {
+      expect(signatureVerify(MESSAGE, SIG_SR_WRAP, ADDR_SR_WRAP)).toEqual({
+        crypto: 'sr25519',
+        isValid: true,
+        isWrapped: false,
         publicKey: decodeAddress(ADDR_SR_WRAP)
       });
     });
