@@ -19,5 +19,6 @@ export type KeypairType = 'ed25519' | 'sr25519' | 'ecdsa' | 'ethereum';
 export interface VerifyResult {
   crypto: 'none' | KeypairType;
   isValid: boolean;
+  isWrapped: boolean;
   publicKey: Uint8Array;
 }

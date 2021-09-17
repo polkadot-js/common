@@ -4,6 +4,8 @@
 
 Changes:
 
+- Add `u8aWrapBytes` & `u8aUnwrapBytes` (originally from `@polkadot/extension-dapp`)
+- Verify both wrapped and unwrapped signatures transparently
 - Adjust `isHex` return to `0x${string}` under TypeScript
 - Adjust shared repo Jest config
 
