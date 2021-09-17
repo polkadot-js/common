@@ -4,7 +4,7 @@
 import type { HexString } from '@polkadot/util/types';
 import type { KeypairType, VerifyResult } from '../types';
 
-import { assert, u8aToU8a } from '@polkadot/util';
+import { assert, u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from '@polkadot/util';
 
 import { decodeAddress } from '../address/decode';
 import { naclVerify } from '../nacl/verify';
@@ -12,7 +12,7 @@ import { schnorrkelVerify } from '../schnorrkel/verify';
 import { secp256k1Verify } from '../secp256k1/verify';
 
 interface VerifyInput {
-  message: Uint8Array | string;
+  message: Uint8Array;
   publicKey: Uint8Array;
   signature: Uint8Array;
 }
@@ -81,10 +81,34 @@ export function signatureVerify (message: HexString | Uint8Array | string, signa
   assert([64, 65, 66].includes(signatureU8a.length), () => `Invalid signature length, expected [64..66] bytes, found ${signatureU8a.length}`);
 
   const publicKey = decodeAddress(addressOrPublicKey);
-  const input = { message, publicKey, signature: signatureU8a };
+  const input = { message: u8aToU8a(message), publicKey, signature: signatureU8a };
   const result: VerifyResult = { crypto: 'none', isValid: false, publicKey };
+  const isMulti = [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length);
 
-  return [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length)
-    ? verifyMultisig(result, input)
-    : verifyDetect(result, input);
+  if (isMulti) {
+    verifyMultisig(result, input);
+  } else {
+    verifyDetect(result, input);
+  }
+
+  if (result.crypto === 'none') {
+    const isWrappedAny = u8aIsWrapped(input.message, true);
+    const isWrappedBytes = u8aIsWrapped(input.message, false);
+
+    if (isWrappedAny && !isWrappedBytes) {
+      return result;
+    }
+
+    input.message = isWrappedBytes
+      ? u8aUnwrapBytes(input.message)
+      : u8aWrapBytes(input.message);
+
+    if (isMulti) {
+      verifyMultisig(result, input);
+    } else {
+      verifyDetect(result, input);
+    }
+  }
+
+  return result;
 }
