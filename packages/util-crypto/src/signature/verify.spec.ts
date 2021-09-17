@@ -39,6 +39,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, SIG_ED, ADDR_ED)).toEqual({
         crypto: 'ed25519',
         isValid: true,
+        isWrapped: false,
         publicKey: decodeAddress(ADDR_ED)
       });
     });
@@ -47,6 +48,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, SIG_EC, ADDR_EC)).toEqual({
         crypto: 'ecdsa',
         isValid: true,
+        isWrapped: false,
         publicKey: decodeAddress(ADDR_EC)
       });
     });
@@ -55,6 +57,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, SIG_ET, ADDR_ET)).toEqual({
         crypto: 'ethereum',
         isValid: true,
+        isWrapped: false,
         publicKey: hexToU8a(ADDR_ET)
       });
     });
@@ -69,6 +72,7 @@ describe('signatureVerify', (): void => {
       )).toEqual({
         crypto: 'ethereum',
         isValid: true,
+        isWrapped: true,
         publicKey: hexToU8a('0x002309df96687e44280bb72c3818358faeeb699c')
       });
     });
@@ -77,6 +81,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, SIG_EC, ADDR_ET)).toEqual({
         crypto: 'none',
         isValid: false,
+        isWrapped: false,
         publicKey: hexToU8a(ADDR_ET)
       });
     });
@@ -85,6 +90,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, SIG_SR, ADDR_SR)).toEqual({
         crypto: 'sr25519',
         isValid: true,
+        isWrapped: false,
         publicKey: decodeAddress(ADDR_SR)
       });
     });
@@ -93,6 +99,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(u8aWrapBytes(MESSAGE), SIG_SR_WRAP, ADDR_SR_WRAP)).toEqual({
         crypto: 'sr25519',
         isValid: true,
+        isWrapped: true,
         publicKey: decodeAddress(ADDR_SR_WRAP)
       });
     });
@@ -101,6 +108,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(stringToU8a(MESSAGE), hexToU8a(SIG_ED), decodeAddress(ADDR_ED))).toEqual({
         crypto: 'ed25519',
         isValid: true,
+        isWrapped: false,
         publicKey: decodeAddress(ADDR_ED)
       });
     });
@@ -109,6 +117,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, SIG_SR, ADDR_ED)).toEqual({
         crypto: 'none',
         isValid: false,
+        isWrapped: false,
         publicKey: decodeAddress(ADDR_ED)
       });
     });
@@ -119,6 +128,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, MUL_ED, ADDR_ED)).toEqual({
         crypto: 'ed25519',
         isValid: true,
+        isWrapped: false,
         publicKey: decodeAddress(ADDR_ED)
       });
     });
@@ -127,6 +137,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, MUL_EC, ADDR_EC)).toEqual({
         crypto: 'ecdsa',
         isValid: true,
+        isWrapped: false,
         publicKey: decodeAddress(ADDR_EC)
       });
     });
@@ -135,6 +146,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, MUL_ET, ADDR_ET)).toEqual({
         crypto: 'ethereum',
         isValid: true,
+        isWrapped: false,
         publicKey: hexToU8a(ADDR_ET)
       });
     });
@@ -143,6 +155,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, MUL_SR, ADDR_SR)).toEqual({
         crypto: 'sr25519',
         isValid: true,
+        isWrapped: false,
         publicKey: decodeAddress(ADDR_SR)
       });
     });
@@ -151,6 +164,7 @@ describe('signatureVerify', (): void => {
       expect(signatureVerify(MESSAGE, MUL_SR, ADDR_ED)).toEqual({
         crypto: 'sr25519',
         isValid: false,
+        isWrapped: false,
         publicKey: new Uint8Array([61, 12, 55, 211, 0, 211, 97, 199, 4, 37, 17, 213, 81, 175, 166, 23, 251, 199, 144, 210, 19, 83, 186, 1, 196, 231, 14, 156, 171, 46, 141, 146])
       });
     });

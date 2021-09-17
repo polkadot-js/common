@@ -82,7 +82,7 @@ export function signatureVerify (message: HexString | Uint8Array | string, signa
 
   const publicKey = decodeAddress(addressOrPublicKey);
   const input = { message: u8aToU8a(message), publicKey, signature: signatureU8a };
-  const result: VerifyResult = { crypto: 'none', isValid: false, publicKey };
+  const result: VerifyResult = { crypto: 'none', isValid: false, isWrapped: u8aIsWrapped(input.message, true), publicKey };
   const isMulti = [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length);
 
   if (isMulti) {
@@ -92,10 +92,9 @@ export function signatureVerify (message: HexString | Uint8Array | string, signa
   }
 
   if (result.crypto === 'none') {
-    const isWrappedAny = u8aIsWrapped(input.message, true);
     const isWrappedBytes = u8aIsWrapped(input.message, false);
 
-    if (isWrappedAny && !isWrappedBytes) {
+    if (result.isWrapped && !isWrappedBytes) {
       return result;
     }
 
