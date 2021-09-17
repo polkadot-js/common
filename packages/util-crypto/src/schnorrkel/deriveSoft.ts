@@ -4,14 +4,10 @@
 import type { HexString } from '@polkadot/util/types';
 import type { Keypair } from '../types';
 
-import { u8aToU8a } from '@polkadot/util';
 import { sr25519DeriveKeypairSoft } from '@polkadot/wasm-crypto';
 
-import { schnorrkelKeypairFromU8a } from './keypair/fromU8a';
-import { schnorrkelKeypairToU8a } from './keypair/toU8a';
+import { schnorrkelDerive } from './derive';
 
 export function schnorrkelDeriveSoft (keypair: Keypair, chainCode: HexString | Uint8Array | string): Keypair {
-  return schnorrkelKeypairFromU8a(
-    sr25519DeriveKeypairSoft(schnorrkelKeypairToU8a(keypair), u8aToU8a(chainCode))
-  );
+  return schnorrkelDerive(sr25519DeriveKeypairSoft, keypair, chainCode);
 }
