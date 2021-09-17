@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 7.4.1 Sep 17, 2021
 
 Changes:
 
@@ -8,6 +8,7 @@ Changes:
 - Verify both wrapped and unwrapped signatures transparently
 - Adjust `isHex` return to `0x${string}` under TypeScript
 - Adjust shared repo Jest config
+- Sync with upstream Substrate ss58 registry
 
 
 ## 7.3.1 Aug 28, 2021
