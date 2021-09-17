@@ -4,5 +4,5 @@
 import { hmacSha } from './sha';
 
 export function hmacSha256 (key: Uint8Array | string, data: Uint8Array): Uint8Array {
-  return hmacSha(hash.sha256, key, data);
+  return hmacSha(key, data, false);
 }

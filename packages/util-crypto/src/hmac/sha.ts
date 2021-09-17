@@ -3,12 +3,12 @@
 
 import hash from 'hash.js';
 
-export function hmacSha (type: typeof hash.sha256 | typeof hash.sha512, key: Uint8Array | string, data: Uint8Array): Uint8Array {
+export function hmacSha (key: Uint8Array | string, data: Uint8Array, is512: boolean): Uint8Array {
   return Uint8Array.from(
     hash
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      .hmac(type, key)
+      .hmac(is512 ? hash.sha512 : hash.sha256, key)
       .update(data)
       .digest());
 }
