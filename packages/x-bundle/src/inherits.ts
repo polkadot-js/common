@@ -5,22 +5,16 @@
 // The ISC License
 // Copyright (c) Isaac Z. Schlueter
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/explicit-module-boundary-types
-function inherits (ctor: any, superCtor: any): any {
+export default function inherits (ctor: Record<string, unknown>, superCtor: Record<string, unknown>): void {
   if (superCtor) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
     ctor.super_ = superCtor;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
-    ctor.prototype = Object.create(superCtor.prototype, {
+    ctor.prototype = Object.create(superCtor.prototype as null, {
       constructor: {
         configurable: true,
         enumerable: false,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         value: ctor,
         writable: true
       }
     });
   }
 }
-
-export default inherits;

@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
+import type { HexString } from '@polkadot/util/types';
 import type { Prefix } from './types';
 
 import { decodeAddress } from './decode';
@@ -14,6 +15,6 @@ import { createKeyDerived } from './keyDerived';
  * @description
  * Creates a Substrate derived address based on the input address/publicKey and the index supplied.
  */
-export function encodeDerivedAddress (who: Uint8Array | string, index: BigInt | BN | number, ss58Format?: Prefix): string {
+export function encodeDerivedAddress (who: HexString | Uint8Array | string, index: bigint | BN | number, ss58Format?: Prefix): string {
   return encodeAddress(createKeyDerived(decodeAddress(who), index), ss58Format);
 }

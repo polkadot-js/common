@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { U8aLike } from '../types';
+
 import { BN, BN_FOUR } from '../bn';
 import { u8aToBn, u8aToU8a } from '../u8a';
 
@@ -18,7 +20,7 @@ import { u8aToBn, u8aToU8a } from '../u8a';
  * console.log('value offset=', offset, 'length=', length); // 4, 0xffff
  * ```
  */
-export function compactFromU8a (_input: Buffer | Uint8Array | string | number[]): [number, BN] {
+export function compactFromU8a (_input: U8aLike): [number, BN] {
   const input = u8aToU8a(_input);
   const flag = input[0] & 0b11;
 

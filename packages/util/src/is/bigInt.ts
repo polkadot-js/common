@@ -15,6 +15,6 @@
  * console.log('isBigInt', isBigInt(123_456n)); // => true
  * ```
  */
-export function isBigInt (value: unknown): value is BigInt {
+export function isBigInt (value: unknown): value is bigint {
   return typeof value === 'bigint';
 }

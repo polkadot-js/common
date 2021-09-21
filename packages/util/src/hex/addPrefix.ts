@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '../types';
+
 import { hexHasPrefix } from './hasPrefix';
 
 /**
@@ -17,7 +19,7 @@ import { hexHasPrefix } from './hasPrefix';
  * console.log('With prefix', hexAddPrefix('0a0b12')); // => 0x0a0b12
  * ```
  */
-export function hexAddPrefix (value?: string | null): string {
+export function hexAddPrefix (value?: string | null): HexString {
   if (value && hexHasPrefix(value)) {
     return value;
   }

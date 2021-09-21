@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/hw-ledger-transports",
-  "version": "7.0.3",
+  "version": "7.4.1",
   "type": "module",
   "repository": "github:polkadot-js/common",
   "author": "Jaco Greeff <jacogr@gmail.com>",
@@ -15,12 +15,12 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.14.8",
-    "@ledgerhq/hw-transport": "^6.2.0",
-    "@ledgerhq/hw-transport-webhid": "^6.2.0",
-    "@ledgerhq/hw-transport-webusb": "^6.2.0"
+    "@babel/runtime": "^7.15.4",
+    "@ledgerhq/hw-transport": "^6.7.0",
+    "@ledgerhq/hw-transport-webhid": "^6.7.0",
+    "@ledgerhq/hw-transport-webusb": "^6.7.0"
   },
   "optionalDependencies": {
-    "@ledgerhq/hw-transport-node-hid-singleton": "^6.2.0"
+    "@ledgerhq/hw-transport-node-hid-singleton": "^6.7.0"
   }
 }

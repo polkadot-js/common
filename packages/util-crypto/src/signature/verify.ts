@@ -1,9 +1,10 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
 import type { KeypairType, VerifyResult } from '../types';
 
-import { assert, u8aToU8a } from '@polkadot/util';
+import { assert, u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from '@polkadot/util';
 
 import { decodeAddress } from '../address/decode';
 import { naclVerify } from '../nacl/verify';
@@ -11,12 +12,14 @@ import { schnorrkelVerify } from '../schnorrkel/verify';
 import { secp256k1Verify } from '../secp256k1/verify';
 
 interface VerifyInput {
-  message: Uint8Array | string;
+  message: Uint8Array;
   publicKey: Uint8Array;
   signature: Uint8Array;
 }
 
 type Verifier = [KeypairType, (message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array) => boolean];
+
+type VerifyFn = (result: VerifyResult, input: VerifyInput) => VerifyResult;
 
 const secp256k1VerifyHasher = (hashType: 'blake2' | 'keccak') =>
   (message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array) =>
@@ -74,16 +77,32 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
   return result;
 }
 
-export function signatureVerify (message: Uint8Array | string, signature: Uint8Array | string, addressOrPublicKey: Uint8Array | string): VerifyResult {
+function getVerifyFn (signature: Uint8Array): VerifyFn {
+  return [0, 1, 2].includes(signature[0]) && [65, 66].includes(signature.length)
+    ? verifyMultisig
+    : verifyDetect;
+}
+
+export function signatureVerify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, addressOrPublicKey: HexString | Uint8Array | string): VerifyResult {
   const signatureU8a = u8aToU8a(signature);
 
   assert([64, 65, 66].includes(signatureU8a.length), () => `Invalid signature length, expected [64..66] bytes, found ${signatureU8a.length}`);
 
   const publicKey = decodeAddress(addressOrPublicKey);
-  const input = { message, publicKey, signature: signatureU8a };
-  const result: VerifyResult = { crypto: 'none', isValid: false, publicKey };
+  const input = { message: u8aToU8a(message), publicKey, signature: signatureU8a };
+  const result: VerifyResult = { crypto: 'none', isValid: false, isWrapped: u8aIsWrapped(input.message, true), publicKey };
+  const isWrappedBytes = u8aIsWrapped(input.message, false);
+  const verifyFn = getVerifyFn(signatureU8a);
 
-  return [0, 1, 2].includes(signatureU8a[0]) && [65, 66].includes(signatureU8a.length)
-    ? verifyMultisig(result, input)
-    : verifyDetect(result, input);
+  verifyFn(result, input);
+
+  if (result.crypto !== 'none' || (result.isWrapped && !isWrappedBytes)) {
+    return result;
+  }
+
+  input.message = isWrappedBytes
+    ? u8aUnwrapBytes(input.message)
+    : u8aWrapBytes(input.message);
+
+  return verifyFn(result, input);
 }

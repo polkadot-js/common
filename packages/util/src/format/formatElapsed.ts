@@ -18,7 +18,7 @@ function formatValue (elapsed: number): string {
   return `${elapsed / 3600 | 0}h`;
 }
 
-export function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: BigInt | BN | ExtToBn | Date | number | null): string {
+export function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: bigint | BN | ExtToBn | Date | number | null): string {
   const tsNow = (now && now.getTime()) || 0;
   const tsValue = value instanceof Date
     ? value.getTime()

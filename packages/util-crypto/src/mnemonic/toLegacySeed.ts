@@ -8,7 +8,7 @@ import { mnemonicToSeedSync } from './bip39';
 import { mnemonicValidate } from './validate';
 
 /**
- * @name toSeed
+ * @name mnemonicToLegacySeed
  * @summary Creates a valid Ethereum/Bitcoin-compatible seed from a mnemonic input
  * @example
  * <BR>
@@ -28,13 +28,13 @@ export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs = 
   assert(mnemonicValidate(mnemonic), 'Invalid bip39 mnemonic specified');
   assert([32, 64].includes(byteLength), () => `Invalid seed length ${byteLength}, expected 32 or 64`);
 
-  if (byteLength && byteLength === 32) {
+  if (byteLength === 32) {
     return isReady() && !onlyJs
       ? bip39ToSeed(mnemonic, password)
       : mnemonicToSeedSync(mnemonic, password).subarray(0, 32);
   } else if (byteLength === 64) {
     return mnemonicToSeedSync(mnemonic, password);
-  } else {
-    return new Uint8Array();
   }
+
+  return new Uint8Array();
 }

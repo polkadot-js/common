@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
+
 import { u8aToU8a } from '@polkadot/util';
 import { isReady, twox } from '@polkadot/wasm-crypto';
 
@@ -20,7 +22,7 @@ import xxhash64AsBn from './xxhash64/asBn';
  * xxhashAsU8a('abc'); // => 0x44bc2cf5ad770999
  * ```
  */
-export function xxhashAsU8a (data: Buffer | Uint8Array | string, bitLength = 64, onlyJs = false): Uint8Array {
+export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bitLength = 64, onlyJs = false): Uint8Array {
   const iterations = Math.ceil(bitLength / 64);
 
   if (isReady() && !onlyJs) {

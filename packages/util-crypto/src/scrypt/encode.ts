@@ -1,6 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
 import type { Params } from './types';
 
 import scryptsy from 'scryptsy';
@@ -17,7 +18,7 @@ interface Result {
   salt: Uint8Array;
 }
 
-export function scryptEncode (passphrase?: Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS): Result {
+export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS): Result {
   const password = isReady()
     ? scrypt(u8aToU8a(passphrase), salt, Math.log2(params.N), params.r, params.p)
     : bufferToU8a(

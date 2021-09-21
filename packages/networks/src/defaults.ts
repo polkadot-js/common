@@ -8,6 +8,9 @@ import type { KnownGenesis, KnownIcon, KnownLedger, KnownTestnet } from './types
 // last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
 export const knownGenesis: KnownGenesis = {
+  bifrost: [
+    '0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed'
+  ],
   centrifuge: [
     '0x67dddf2673b69e5f875f6f25277495834398eafd67f492e09f3f3345e003d1b5'
   ],
@@ -37,6 +40,9 @@ export const knownGenesis: KnownGenesis = {
     '0xe3777fa922cafbff200cadeaea1a76bd7898ad5b89f7848999058b50e715f636', // Kusama CC2
     '0x3fd7b9eb6a00376e5be61f01abb429ffb0b104be05eaff4d458da48fcd425baf' // Kusama CC1
   ],
+  'nodle-chain': [
+    '0xa3d114c2b8d0627c1aa9b134eafcf7d05ca561fdc19fb388bb9457f81809fb23'
+  ],
   plasm: [
     '0x3e86364d4b4894021cb2a0390bcf2feb5517d5292f2de2bb9404227e908b0b8b'
   ],
@@ -45,6 +51,9 @@ export const knownGenesis: KnownGenesis = {
   ],
   polymesh: [
     '0x9deeb940c92ae02111c3bd5baca89970384f4c9849f02a1b2e53e66414d30f9f'
+  ],
+  stafi: [
+    '0x290a4149f09ea0e402c74c1c7e96ae4239588577fe78932f94f5404c68243d80'
   ],
   statemine: [
     '0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a'
@@ -73,6 +82,7 @@ export const knownLedger: KnownLedger = {
   edgeware: 0x0000020b,
   equilibrium: 0x05f5e0fd,
   kusama: 0x000001b2,
+  'nodle-chain': 0x000003eb,
   polkadot: 0x00000162,
   polymesh: 0x00000253,
   statemine: 0x000001b2 // common-good on Kusama, shares derivation

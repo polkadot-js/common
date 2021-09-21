@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '../types';
+
 import { assert } from '../assert';
 import { isHex } from '../is/hex';
 import { hexStripPrefix } from './stripPrefix';
@@ -20,7 +22,7 @@ import { hexStripPrefix } from './stripPrefix';
  * hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
  * ```
  */
-export function hexToU8a (_value?: string | null, bitLength = -1): Uint8Array {
+export function hexToU8a (_value?: HexString | string | null, bitLength = -1): Uint8Array {
   if (!_value) {
     return new Uint8Array();
   }

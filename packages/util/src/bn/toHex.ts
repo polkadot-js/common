@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ToBn, ToBnOptions } from '../types';
+import type { HexString, ToBn, ToBnOptions } from '../types';
 import type { BN } from './bn';
 
 import { isNumber } from '../is/number';
@@ -29,9 +29,9 @@ interface Options extends ToBnOptions {
  * bnToHex(new BN(0x123456)); // => '0x123456'
  * ```
  */
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, options?: Options): string;
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, bitLength?: number, isLe?: boolean): string;
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | BigInt | number | null, arg1: number | Options = { bitLength: -1, isLe: false, isNegative: false }, arg2?: boolean): string {
+function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, options?: Options): HexString;
+function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): HexString;
+function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | Options = { bitLength: -1, isLe: false, isNegative: false }, arg2?: boolean): HexString {
   if (!value) {
     return ZERO_STR;
   }

@@ -3,6 +3,8 @@
 
 // Adapted from https://github.com/JulienPalard/is_utf8/blob/master/is_utf8.c
 
+import type { HexString } from '../types';
+
 import { u8aToU8a } from '../u8a/toU8a';
 import { isString } from './string';
 
@@ -12,7 +14,7 @@ import { isString } from './string';
  * @description
  * Checks to see if the input string or Uint8Array is valid Utf8
  */
-export function isUtf8 (value?: number[] | Buffer | Uint8Array | string | null): boolean {
+export function isUtf8 (value?: HexString | number[] | Buffer | Uint8Array | string | null): boolean {
   if (!value) {
     return isString(value);
   }

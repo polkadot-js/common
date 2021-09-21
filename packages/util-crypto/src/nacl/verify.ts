@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
+
 import nacl from 'tweetnacl';
 
 import { assert, u8aToU8a } from '@polkadot/util';
@@ -20,7 +22,7 @@ import { ed25519Verify, isReady } from '@polkadot/wasm-crypto';
  * naclVerify([...], [...], [...]); // => true/false
  * ```
  */
-export function naclVerify (message: Uint8Array | string, signature: Uint8Array | string, publicKey: Uint8Array | string, onlyJs = false): boolean {
+export function naclVerify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, publicKey: HexString | Uint8Array | string, onlyJs = false): boolean {
   const messageU8a = u8aToU8a(message);
   const publicKeyU8a = u8aToU8a(publicKey);
   const signatureU8a = u8aToU8a(signature);

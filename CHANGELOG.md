@@ -1,5 +1,63 @@
 # CHANGELOG
 
+## 7.4.1 Sep 17, 2021
+
+Changes:
+
+- Add `u8aWrapBytes` & `u8aUnwrapBytes` (originally from `@polkadot/extension-dapp`)
+- Verify both wrapped and unwrapped signatures transparently
+- Adjust `isHex` return to `0x${string}` under TypeScript
+- Adjust shared repo Jest config
+- Sync with upstream Substrate ss58 registry
+
+
+## 7.3.1 Aug 28, 2021
+
+Contributed:
+
+- Added Bifrost genesisHash (Thanks to https://github.com/awesomepan)
+- Added Stafi genesisHash (Thanks to https://github.com/Tore19)
+- Add Ledger support for Nodle (Thanks to https://github.com/ETeissonniere)
+
+Changes:
+
+- Add support for `schnorrkelAgreement` (as exposed by new `wasm-crypto`)
+- Ensure `schnorrkel*` functions allows hex inputs
+- `@polkadot/wasm-crypto` 4.2.1
+- Sync with upstream Substrate ss58 registry
+
+
+## 7.2.1 Aug 15, 2021
+
+Contributed:
+
+- Always use `bigint` type to indicate instance (Thanks to https://github.com/ntduan)
+
+Changes:
+
+- Added `u8aEmpty` helper check, all 0 or no length
+- Cleanup additional circular dependencies detected by rollup
+
+
+## 7.1.2 Aug 11, 2021
+
+Changes:
+
+- Ensure `@polkadot/util-crypto` doesn't re-export `packageInfo` from `@polkadot/networks`
+- Minor TS style cleanups in `@polkadot/x-bundle`
+
+
+## 7.1.1 Aug 2, 2021
+
+Contributed:
+
+- Add keyring encrypt/decrypt functionality (Thanks to https://github.com/RoyTimes)
+
+Changes:
+
+- Bump Ledger libraries to latest versions
+
+
 ## 7.0.3 Jul 26, 2021
 
 Changes:

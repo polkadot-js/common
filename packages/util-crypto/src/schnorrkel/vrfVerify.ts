@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
+
 import { assert, u8aToU8a } from '@polkadot/util';
 import { vrfVerify } from '@polkadot/wasm-crypto';
 
@@ -10,7 +12,7 @@ const EMPTY_U8A = new Uint8Array();
  * @name schnorrkelVrfVerify
  * @description Verify with sr25519 vrf verification
  */
-export function schnorrkelVrfVerify (message: Uint8Array | string, signOutput: string | Uint8Array, publicKey: Uint8Array | string, context: string | Uint8Array = EMPTY_U8A, extra: string | Uint8Array = EMPTY_U8A): boolean {
+export function schnorrkelVrfVerify (message: HexString | Uint8Array | string, signOutput: HexString | string | Uint8Array, publicKey: HexString | Uint8Array | string, context: HexString | string | Uint8Array = EMPTY_U8A, extra: HexString | string | Uint8Array = EMPTY_U8A): boolean {
   const publicKeyU8a = u8aToU8a(publicKey);
   const proofU8a = u8aToU8a(signOutput);
 

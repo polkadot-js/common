@@ -129,13 +129,13 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://polymath.network/'
   },
   {
-    decimals: null,
-    displayName: 'SubstraTEE',
-    network: 'substratee',
+    decimals: [12],
+    displayName: 'Integritee',
+    network: 'integritee',
     prefix: 13,
     standardAccount: '*25519',
-    symbols: null,
-    website: 'https://www.substratee.com'
+    symbols: ['TEER'],
+    website: 'https://integritee.network'
   },
   {
     decimals: [0],
@@ -445,6 +445,24 @@ export const knownSubstrate: KnownSubstrate[] = [
   },
   {
     decimals: [12],
+    displayName: 'Picasso',
+    network: 'picasso',
+    prefix: 49,
+    standardAccount: '*25519',
+    symbols: ['PICA'],
+    website: 'https://picasso.composable.finance'
+  },
+  {
+    decimals: [12],
+    displayName: 'Composable',
+    network: 'composable',
+    prefix: 50,
+    standardAccount: '*25519',
+    symbols: ['LAYR'],
+    website: 'https://composable.finance'
+  },
+  {
+    decimals: [12],
     displayName: 'HydraDX',
     network: 'hydradx',
     prefix: 63,
@@ -550,6 +568,24 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['HKO'],
     website: 'https://parallel.fi/'
+  },
+  {
+    decimals: null,
+    displayName: 'Integritee Incognito',
+    network: 'integritee-incognito',
+    prefix: 113,
+    standardAccount: '*25519',
+    symbols: null,
+    website: 'https://integritee.network'
+  },
+  {
+    decimals: [18],
+    displayName: 'Clover Finance',
+    network: 'clover',
+    prefix: 128,
+    standardAccount: '*25519',
+    symbols: ['CLV'],
+    website: 'https://clover.finance'
   },
   {
     decimals: [18],
