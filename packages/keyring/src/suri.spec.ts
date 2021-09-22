@@ -10,7 +10,7 @@ import { KeypairType } from '@polkadot/util-crypto/types';
 import Keyring from '.';
 
 const PHRASE = 'bottom drive obey lake curtain smoke basket hold race lonely fit walk';
-const ETHEREUM_PHRASE='seed sock milk update focus rotate barely fade car face mechanic mercy'
+const ETHEREUM_PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy';
 
 const TESTS = {
   ecdsa: [
@@ -88,12 +88,12 @@ const TESTS = {
 
 describe('keyring.addFromUri', (): void => {
   Object.entries(TESTS).forEach(([type, tests]): void => {
-    const keyring = new Keyring({ type :type as KeypairType});
-  
+    const keyring = new Keyring({ type: type as KeypairType });
+
     beforeEach(async (): Promise<void> => {
       await cryptoWaitReady();
     });
-  
+
     describe(type, (): void => {
       tests.forEach(({ pk, ss, uri }): void => {
         it(`creates ${uri}`, (): void => {
