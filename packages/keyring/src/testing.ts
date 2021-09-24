@@ -122,12 +122,13 @@ export function createTestKeyring (options: KeyringOptions = {}, isDerived = tru
   const pairs: PairDef[] = (options.type && options.type === 'ethereum') ? PAIRSETHEREUM : PAIRSSR25519;
 
   pairs.forEach(({ name, publicKey, secretKey, seed, type }): void => {
-    if (!name&&!seed){
-      throw new Error("Testing pair should have either a name or a seed")
+    if (!name && !seed) {
+      throw new Error('Testing pair should have either a name or a seed');
     }
+
     const meta = {
       isTesting: true,
-      name: name || (seed&&seed.replace('//', '_').toLowerCase())
+      name: name || (seed && seed.replace('//', '_').toLowerCase())
     };
     const pair = !isDerived && !name && seed
       ? keyring.addFromUri(seed, meta, options.type)
