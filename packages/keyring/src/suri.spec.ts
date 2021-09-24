@@ -3,12 +3,15 @@
 
 // From https://github.com/paritytech/substrate/wiki/Secret-URI-Test-Vectors
 
+import type { KeypairType } from '@polkadot/util-crypto/types';
+
 import { u8aToHex } from '@polkadot/util';
 import { cryptoWaitReady } from '@polkadot/util-crypto';
 
 import Keyring from '.';
 
 const PHRASE = 'bottom drive obey lake curtain smoke basket hold race lonely fit walk';
+const ETHEREUM_PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy';
 
 const TESTS = {
   ecdsa: [
@@ -22,7 +25,17 @@ const TESTS = {
     {
       pk: '0x0381351b1b46d2602b0992bb5d5531f9c1696b0812feb2534b6884adc47e2e1d8b',
       ss: '0x31ea8795EE32D782C8ff41a5C68Dcbf0F5B27f6d',
-      uri: "seed sock milk update focus rotate barely fade car face mechanic mercy/m/44'/60'/0'/0/0"
+      uri: `${ETHEREUM_PHRASE}/m/44'/60'/0'/0/0`
+    },
+    {
+      pk: '0x02509540919faacf9ab52146c9aa40db68172d83777250b28e4679176e49ccdd9f',
+      ss: '0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac',
+      uri: `${PHRASE}/m/44'/60'/0'/0/0`
+    },
+    {
+      pk: '0x033bc19e36ff1673910575b6727a974a9abd80c9a875d41ab3e2648dbfb9e4b518',
+      ss: '0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0',
+      uri: `${PHRASE}/m/44'/60'/0'/0/1`
     }
   ],
   sr25519: [
@@ -75,17 +88,17 @@ const TESTS = {
 };
 
 describe('keyring.addFromUri', (): void => {
-  const keyring = new Keyring({ type: 'sr25519' });
-
-  beforeEach(async (): Promise<void> => {
-    await cryptoWaitReady();
-  });
-
   Object.entries(TESTS).forEach(([type, tests]): void => {
+    const keyring = new Keyring({ type: type as KeypairType });
+
+    beforeEach(async (): Promise<void> => {
+      await cryptoWaitReady();
+    });
+
     describe(type, (): void => {
       tests.forEach(({ pk, ss, uri }): void => {
         it(`creates ${uri}`, (): void => {
-          const pair = keyring.addFromUri(uri, {}, type as 'sr25519');
+          const pair = keyring.addFromUri(uri, {}, type as KeypairType);
 
           expect(u8aToHex(pair.publicKey)).toEqual(pk);
           expect(pair.address).toEqual(ss);
