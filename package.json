@@ -24,10 +24,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
-    "@polkadot/dev": "^0.62.67",
+    "@polkadot/dev": "^0.62.68",
     "@polkadot/ts": "^0.4.8",
     "@types/ed2curve": "^0.2.2",
-    "@types/jest": "^27.0.1"
+    "@types/jest": "^27.0.2"
   },
   "version": "7.4.2-0",
   "packageManager": "yarn@3.0.1"
