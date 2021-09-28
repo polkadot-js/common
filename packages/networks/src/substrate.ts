@@ -534,6 +534,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://manta.network'
   },
   {
+    decimals: [12],
+    displayName: 'Polkadex Mainnet',
+    network: 'polkadex',
+    prefix: 88,
+    standardAccount: '*25519',
+    symbols: ['PDEX'],
+    website: 'https://polkadex.trade'
+  },
+  {
     decimals: [18],
     displayName: 'PolkaSmith Canary Network',
     network: 'polkasmith',
