@@ -18,7 +18,7 @@ export const allNetworks = knownSubstrate.map((o): SubstrateNetwork => {
 
   n.genesisHash = knownGenesis[network] || [];
   n.icon = knownIcon[network] || 'substrate';
-  n.isIgnored = !network || !!knownTestnet[network] || network.startsWith('reserved');
+  n.isIgnored = !network || !!knownTestnet[network] || !o.standardAccount;
 
   return n;
 });
