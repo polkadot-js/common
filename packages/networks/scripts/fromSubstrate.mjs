@@ -13,7 +13,7 @@ function outputField (k, v) {
     // new format is [] to indicate optionality
     return (['decimals', 'symbols'].includes(k) && !v.length)
       ? null
-      : `[${v.map((v) => outputField(v)).join(', ')}]`;
+      : `[${v.map((v) => outputField(k, v)).join(', ')}]`;
   }
 
   return v;
