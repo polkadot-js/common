@@ -60,7 +60,11 @@ describe('check latest Substrate ss58 registry', (): void => {
         return [
           `${n.displayName} (${n.prefix})`,
           other
-            ? fields.filter((f) => stringify(n[f]) !== stringify(other[f]))
+            ? fields.filter((f) =>
+              ['decimals', 'symbols'].includes(f)
+                ? stringify(n[f] || []) !== stringify(other[f] || [])
+                : stringify(n[f]) !== stringify(other[f])
+            )
             : []
         ];
       })

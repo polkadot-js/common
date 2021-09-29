@@ -6,11 +6,14 @@ import fetch from 'node-fetch';
 
 const SUBSTRATE_REGISTRY = 'https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json';
 
-function outputField (v) {
+function outputField (k, v) {
   if (typeof v === 'string') {
     return `'${v}'`;
   } else if (Array.isArray(v)) {
-    return `[${v.map((v) => outputField(v)).join(', ')}]`;
+    // new format is [] to indicate optionality
+    return (['decimals', 'symbols'].includes(k) && !v.length)
+      ? null
+      : `[${v.map((v) => outputField(v)).join(', ')}]`;
   }
 
   return v;
@@ -25,7 +28,7 @@ async function getSubstrateRegistry () {
       `  {\n${Object
         .entries(e)
         .sort(([a], [b]) => a.localeCompare(b))
-        .map(([k, v]) => `    ${k}: ${outputField(v)}`)
+        .map(([k, v]) => `    ${k}: ${outputField(k, v)}`)
         .join(',\n')}\n  }`
     )
     .join(',\n');
