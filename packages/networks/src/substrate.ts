@@ -642,6 +642,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://moonbeam.network'
   },
   {
+    decimals: [18],
+    displayName: 'Automata Mainnet',
+    network: 'automata',
+    prefix: 2349,
+    standardAccount: '*25519',
+    symbols: ['ATA'],
+    website: 'https://ata.network'
+  },
+  {
     decimals: [12],
     displayName: 'Basilisk',
     network: 'basilisk',
@@ -649,5 +658,14 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['BSX'],
     website: 'https://bsx.fi'
+  },
+  {
+    decimals: [18],
+    displayName: 'Automata ContextFree',
+    network: 'contextfree',
+    prefix: 11820,
+    standardAccount: '*25519',
+    symbols: ['CTX'],
+    website: 'https://ata.network'
   }
 ];
