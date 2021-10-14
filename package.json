@@ -29,6 +29,6 @@
     "@types/ed2curve": "^0.2.2",
     "@types/jest": "^27.0.2"
   },
-  "version": "7.4.2-6",
+  "version": "7.4.2-7",
   "packageManager": "yarn@3.0.1"
 }
