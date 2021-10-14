@@ -121,6 +121,18 @@ describe('keypair', (): void => {
       ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY');
     });
 
+    it('creates with integer derivations', (): void => {
+      // MAX_SAFE_INTEGER
+      expect(
+        keyring.createFromUri('//9007199254740991').address
+      ).toEqual('5CDsyNZyqxLpHnTvknr68anUcYoBFjZbFKiEJJf4prB75Uog');
+
+      // MAX_SAFE_INTEGER + extra digits
+      expect(
+        keyring.createFromUri('//900719925474099999').address
+      ).toEqual('5GHj2D7RG2m2DXYwGSDpXwuuxn53G987i7p2EQVDqP4NYu4q');
+    });
+
     it('creates via dev seed (2-byte encoding)', (): void => {
       keyring.setSS58Format(252);
 
