@@ -387,7 +387,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     prefix: 42,
     standardAccount: '*25519',
     symbols: null,
-    website: 'https://substrate.dev/'
+    website: 'https://docs.substrate.io/'
   },
   {
     decimals: null,
