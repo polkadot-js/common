@@ -28,7 +28,7 @@ export class DeriveJunction {
 
     result.soft(
       RE_NUMBER.test(code)
-        ? parseInt(code, 10)
+        ? new BN(code, 10)
         : code
     );
 
