@@ -1,9 +1,17 @@
 # CHANGELOG
 
-## master
+## 7.5.1 Oct 16, 2021
+
+Contributed:
+
+- Fix comment on `blake2AsU8a` (Thanks to https://github.com/tomokazukozuma)
+- Update Ethereum derivation process (Thanks to https://github.com/joelamouche)
+
+Changes:
 
 - Derivation paths now caters for > `MAX_SAFE_INTEGER` unsigned values
 - Sync with upstream Substrate ss58 registry
+- Update ss58 registry handling (both previous and current versions)
 
 
 ## 7.4.1 Sep 17, 2021
