@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## master
+## 7.5.1 Oct 16, 2021
+
+Changes:
 
 - Derivation paths now caters for > `MAX_SAFE_INTEGER` unsigned values
 - Sync with upstream Substrate ss58 registry
