@@ -235,7 +235,7 @@ export class Keyring implements KeyringInstance {
     return this.type === 'ethereum'
       ? ethereumEncode(address)
       : encodeAddress(address, isUndefined(ss58Format) ? this.#ss58 : ss58Format);
-  }
+  };
 
   /**
    * @name getPair

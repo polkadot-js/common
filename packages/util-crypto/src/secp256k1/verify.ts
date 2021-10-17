@@ -21,7 +21,7 @@ export function secp256k1Verify (message: HexString | Uint8Array | string, signa
   assert(u8a.length === 65, `Expected signature with 65 bytes, ${u8a.length} found instead`);
 
   const publicKey = new Uint8Array(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument
     secp256k1
       .recoverPubKey(
         secp256k1Hasher(hashType, message),

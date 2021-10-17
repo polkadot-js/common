@@ -9,7 +9,7 @@ import { secp256k1 } from './secp256k1';
  */
 export function secp256k1Recover (message: Uint8Array, signature: Uint8Array, recovery: number): Uint8Array {
   return new Uint8Array(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument
     secp256k1
       .recoverPubKey(message, { r: signature.slice(0, 32), s: signature.slice(32, 64) }, recovery)
       .encode(null, true)
