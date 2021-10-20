@@ -24,16 +24,17 @@ import xxhash64AsBn from './xxhash64/asBn';
  */
 export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bitLength = 64, onlyJs = false): Uint8Array {
   const iterations = Math.ceil(bitLength / 64);
+  const u8a = u8aToU8a(data);
 
   if (isReady() && !onlyJs) {
-    return twox(u8aToU8a(data), iterations);
+    return twox(u8a, iterations);
   }
 
-  const u8a = new Uint8Array(Math.ceil(bitLength / 8));
+  const result = new Uint8Array(Math.ceil(bitLength / 8));
 
   for (let seed = 0; seed < iterations; seed++) {
-    u8a.set(xxhash64AsBn(data, seed).toArray('le', 8), seed * 8);
+    result.set(xxhash64AsBn(u8a, seed).toArray('le', 8), seed * 8);
   }
 
-  return u8a;
+  return result;
 }

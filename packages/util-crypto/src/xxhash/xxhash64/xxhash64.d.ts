@@ -3,7 +3,7 @@
 
 declare module 'xxhashjs' {
   export interface HashInterface {
-    (data: string | Buffer, seed: number): number;
+    (data: string | Buffer | ArrayBuffer, seed: number): number;
   }
 
   const h64: HashInterface;
