@@ -7,8 +7,9 @@ export function hmacSha (key: Uint8Array | string, data: Uint8Array, is512: bool
   return Uint8Array.from(
     hash
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+      // @ts-ignore The definition is incorrect, it needs a constructor
       .hmac(is512 ? hash.sha512 : hash.sha256, key)
       .update(data)
-      .digest());
+      .digest()
+  );
 }
