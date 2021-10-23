@@ -3,7 +3,7 @@
 
 export { packageInfo } from './packageInfo';
 
-type GlobalThis = Window & typeof globalThis;
+type GlobalThis = typeof globalThis;
 
 function returnThis (fn: (code: string) => unknown): GlobalThis {
   return fn('return this') as GlobalThis;
