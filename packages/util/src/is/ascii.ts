@@ -4,6 +4,7 @@
 import type { U8aLike } from '../types';
 
 import { u8aToU8a } from '../u8a/toU8a';
+import { isHex } from './hex';
 import { isString } from './string';
 
 const FORMAT = [9, 10, 13];
@@ -15,7 +16,12 @@ const FORMAT = [9, 10, 13];
  * Checks to see if the input string or Uint8Array is printable ASCII, 32-127 + formatters
  */
 export function isAscii (value?: U8aLike | null): boolean {
+  const isStringIn = isString(value);
+
   return value
-    ? !u8aToU8a(value).some((byte) => (byte >= 127) || (byte < 32 && !FORMAT.includes(byte)))
-    : isString(value);
+    ? (isStringIn && !isHex(value)
+      ? value.toString().split('').map((s) => s.charCodeAt(0))
+      : u8aToU8a(value)
+    ).some((b) => (b >= 127) || ((b < 32) && !FORMAT.includes(b)))
+    : isStringIn;
 }

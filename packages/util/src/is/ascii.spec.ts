@@ -27,4 +27,8 @@ describe('isAscii', (): void => {
   it('returns false for non-printable characters', (): void => {
     expect(isAscii(new Uint8Array([5]))).toEqual(false);
   });
+
+  it('returns false for hex input, non-ascii', (): void => {
+    expect(isAscii('0x010203')).toEqual(false);
+  });
 });
