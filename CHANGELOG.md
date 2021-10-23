@@ -1,12 +1,14 @@
 # CHANGELOG
 
-## master
+## 7.6.1 Oct 23, 2021
 
 Changes:
 
 - Update `xxhash*` to only use `Uint8Array` internally, no `Buffer`
 - Adjust `isAscii` to check against original string codepoints (when provided)
 - Adjust networks to sync with `paritytech/ss58-registry`
+- Dedupe internal sr25519/ed25519 derivation functions
+- Bump Ledger libraries to latest versions
 
 
 ## 7.5.1 Oct 16, 2021
@@ -32,6 +34,7 @@ Changes:
 - Adjust `isHex` return to `0x${string}` under TypeScript
 - Adjust shared repo Jest config
 - Sync with upstream Substrate ss58 registry
+- Cleanup rollup build where `x-global` yields undefined
 
 
 ## 7.3.1 Aug 28, 2021
