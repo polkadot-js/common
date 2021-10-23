@@ -10,14 +10,16 @@ import { sr25519DeriveKeypairHard, sr25519DeriveKeypairSoft } from '@polkadot/wa
 import { schnorrkelKeypairFromU8a } from './keypair/fromU8a';
 import { schnorrkelKeypairToU8a } from './keypair/toU8a';
 
-export function schnorrkelDerive (keypair: Keypair, chainCode: HexString | Uint8Array | string, isHard: boolean): Keypair {
-  return schnorrkelKeypairFromU8a(
-    (isHard
-      ? sr25519DeriveKeypairHard
-      : sr25519DeriveKeypairSoft
-    )(
-      schnorrkelKeypairToU8a(keypair),
-      u8aToU8a(chainCode)
-    )
-  );
+export function schnorrkelDerive (isHard: boolean): (keypair: Keypair, chainCode: HexString | Uint8Array | string) => Keypair {
+  const deriveFn = isHard
+    ? sr25519DeriveKeypairHard
+    : sr25519DeriveKeypairSoft;
+
+  return (keypair: Keypair, chainCode: HexString | Uint8Array | string) =>
+    schnorrkelKeypairFromU8a(
+      deriveFn(
+        schnorrkelKeypairToU8a(keypair),
+        u8aToU8a(chainCode)
+      )
+    );
 }
