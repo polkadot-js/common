@@ -22,6 +22,6 @@ export function isAscii (value?: U8aLike | null): boolean {
     ? (isStringIn && !isHex(value)
       ? value.toString().split('').map((s) => s.charCodeAt(0))
       : u8aToU8a(value)
-    ).some((b) => (b >= 127) || ((b < 32) && !FORMAT.includes(b)))
+    ).every((b) => (b < 127) && ((b >= 32) || FORMAT.includes(b)))
     : isStringIn;
 }
