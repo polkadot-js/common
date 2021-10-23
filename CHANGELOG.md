@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Update `xxhash*` to only use `Uint8Array` internally, no `Buffer`
+
+
 ## 7.5.1 Oct 16, 2021
 
 Contributed:
