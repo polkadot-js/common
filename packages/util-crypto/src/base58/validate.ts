@@ -11,17 +11,17 @@ interface CheckConfig {
   type: string;
 }
 
-const BASE_CONFIG = { alphabet: BASE58_ALPHABET, ipfsChar: 'z', type: 'base58' };
+export function createValidateFn ({ alphabet, ipfsChar, type }: CheckConfig): (value?: unknown, ipfsCompat?: boolean) => value is string {
+  return (value?: unknown, ipfsCompat?: boolean): value is string => {
+    assert(value && typeof value === 'string', () => `Expected non-null, non-empty ${type} string input`);
+    assert(!ipfsCompat || value[0] === ipfsChar, () => `Expected ${type} to start with '${ipfsChar}'`);
 
-export function validateChars ({ alphabet, ipfsChar, type }: CheckConfig, value?: unknown, ipfsCompat?: boolean): true {
-  assert(value && typeof value === 'string', () => `Expected non-null, non-empty ${type} string input`);
-  assert(!ipfsCompat || value[0] === ipfsChar, () => `Expected ${type} to start with '${ipfsChar}'`);
+    for (let i = (ipfsCompat ? 1 : 0); i < value.length; i++) {
+      assert(alphabet.includes(value[i]), () => `Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`);
+    }
 
-  for (let i = (ipfsCompat ? 1 : 0); i < value.length; i++) {
-    assert(alphabet.includes(value[i]), () => `Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`);
-  }
-
-  return true;
+    return true;
+  };
 }
 
 /**
@@ -30,6 +30,4 @@ export function validateChars ({ alphabet, ipfsChar, type }: CheckConfig, value?
  * @description
  * Validates that the supplied value is valid base58
  */
-export function base58Validate (value?: string | null, ipfsCompat?: boolean): value is string {
-  return validateChars(BASE_CONFIG, value, ipfsCompat);
-}
+export const base58Validate = createValidateFn({ alphabet: BASE58_ALPHABET, ipfsChar: 'z', type: 'base58' });
