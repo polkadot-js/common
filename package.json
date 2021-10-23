@@ -24,11 +24,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
-    "@polkadot/dev": "^0.63.2",
-    "@polkadot/ts": "^0.4.9",
+    "@polkadot/dev": "^0.63.6",
+    "@polkadot/ts": "^0.4.10",
     "@types/ed2curve": "^0.2.2",
     "@types/jest": "^27.0.2"
   },
-  "version": "7.5.2-4",
+  "version": "7.6.0",
   "packageManager": "yarn@3.0.1"
 }
