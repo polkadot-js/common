@@ -4,7 +4,7 @@
 import fs from 'fs';
 import fetch from 'node-fetch';
 
-import SUBSTRATE_REGISTRY from '../src/substrateRegistry.cjs';
+import { substrateRegistry } from '../build/defaults';
 
 function outputField (k, v) {
   if (typeof v === 'string') {
@@ -20,7 +20,7 @@ function outputField (k, v) {
 }
 
 async function getSubstrateRegistry () {
-  const original = await fetch(SUBSTRATE_REGISTRY);
+  const original = await fetch(substrateRegistry);
   const json = await original.json();
 
   return json.registry

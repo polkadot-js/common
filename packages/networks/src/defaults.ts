@@ -3,6 +3,8 @@
 
 import type { KnownGenesis, KnownIcon, KnownLedger, KnownTestnet } from './types';
 
+export const substrateRegistry = 'https://raw.githubusercontent.com/paritytech/ss58-registry/main/ss58-registry.json';
+
 // NOTE: In the case where the network was hard-spooned and multiple genesisHashes
 // are provided, it needs to be in reverse order, i.e. most-recent first, oldest
 // last. This make lookups for the current a simple genesisHash[0]
