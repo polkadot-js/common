@@ -3,6 +3,6 @@
 
 import { naclDeriveHard } from '../nacl/deriveHard';
 import { naclKeypairFromSeed } from '../nacl/keypair/fromSeed';
-import { keyHdkdDerive } from './hdkdDerive';
+import { createSeedDeriveFn } from './hdkdDerive';
 
-export const keyHdkdEd25519 = keyHdkdDerive(naclKeypairFromSeed, naclDeriveHard);
+export const keyHdkdEd25519 = createSeedDeriveFn(naclKeypairFromSeed, naclDeriveHard);

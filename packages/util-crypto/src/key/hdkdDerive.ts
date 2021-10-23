@@ -7,7 +7,7 @@ import { assert } from '@polkadot/util';
 
 import { DeriveJunction } from './DeriveJunction';
 
-export function keyHdkdDerive (fromSeed: (seed: Uint8Array) => Keypair, derive: (seed: Uint8Array, chainCode: Uint8Array) => Uint8Array): (keypair: Keypair, junction: DeriveJunction) => Keypair {
+export function createSeedDeriveFn (fromSeed: (seed: Uint8Array) => Keypair, derive: (seed: Uint8Array, chainCode: Uint8Array) => Uint8Array): (keypair: Keypair, junction: DeriveJunction) => Keypair {
   return (keypair: Keypair, { chainCode, isHard }: DeriveJunction): Keypair => {
     assert(isHard, 'A soft key was found in the path and is not supported');
 

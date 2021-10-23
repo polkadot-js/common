@@ -3,6 +3,6 @@
 
 import { secp256k1DeriveHard } from '../secp256k1/deriveHard';
 import { secp256k1KeypairFromSeed } from '../secp256k1/keypair/fromSeed';
-import { keyHdkdDerive } from './hdkdDerive';
+import { createSeedDeriveFn } from './hdkdDerive';
 
-export const keyHdkdEcdsa = keyHdkdDerive(secp256k1KeypairFromSeed, secp256k1DeriveHard);
+export const keyHdkdEcdsa = createSeedDeriveFn(secp256k1KeypairFromSeed, secp256k1DeriveHard);
