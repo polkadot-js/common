@@ -8,6 +8,10 @@ describe('isAscii', (): void => {
     expect(isAscii('Hello\tWorld!\n\rTesting')).toEqual(true);
   });
 
+  it('returns false on an non-ascii string', (): void => {
+    expect(isAscii('你好，世界')).toEqual(false);
+  });
+
   it('returns true for ASCII bytes', (): void => {
     expect(isAscii(new Uint8Array([0x31, 0x32, 0x20, 10]))).toEqual(true);
   });
@@ -26,5 +30,9 @@ describe('isAscii', (): void => {
 
   it('returns false for non-printable characters', (): void => {
     expect(isAscii(new Uint8Array([5]))).toEqual(false);
+  });
+
+  it('returns false for hex input, non-ascii', (): void => {
+    expect(isAscii('0x010203')).toEqual(false);
   });
 });

@@ -5,6 +5,7 @@
 Changes:
 
 - Update `xxhash*` to only use `Uint8Array` internally, no `Buffer`
+- Adjust `isAscii` to check against original string codepoints (when provided)
 
 
 ## 7.5.1 Oct 16, 2021
