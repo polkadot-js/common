@@ -5,7 +5,7 @@ export { packageInfo } from './packageInfo';
 
 type GlobalThis = typeof globalThis;
 
-function returnThis (fn: (code: string) => unknown): GlobalThis {
+function evaluateThis (fn: (code: string) => unknown): GlobalThis {
   return fn('return this') as GlobalThis;
 }
 
@@ -18,5 +18,5 @@ export const xglobal = (
         ? self
         : typeof window !== 'undefined'
           ? window
-          : returnThis(Function)
+          : evaluateThis(Function)
 );
