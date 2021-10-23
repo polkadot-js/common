@@ -5,19 +5,14 @@ import type { HexString } from '@polkadot/util/types';
 import type { Keypair } from '../types';
 
 import { u8aToU8a } from '@polkadot/util';
-import { sr25519DeriveKeypairHard, sr25519DeriveKeypairSoft } from '@polkadot/wasm-crypto';
 
 import { schnorrkelKeypairFromU8a } from './keypair/fromU8a';
 import { schnorrkelKeypairToU8a } from './keypair/toU8a';
 
-export function schnorrkelDerive (isHard: boolean): (keypair: Keypair, chainCode: HexString | Uint8Array | string) => Keypair {
-  const deriveFn = isHard
-    ? sr25519DeriveKeypairHard
-    : sr25519DeriveKeypairSoft;
-
+export function createDeriveFn (derive: (pair: Uint8Array, cc: Uint8Array) => Uint8Array): (keypair: Keypair, chainCode: HexString | Uint8Array | string) => Keypair {
   return (keypair: Keypair, chainCode: HexString | Uint8Array | string) =>
     schnorrkelKeypairFromU8a(
-      deriveFn(
+      derive(
         schnorrkelKeypairToU8a(keypair),
         u8aToU8a(chainCode)
       )
