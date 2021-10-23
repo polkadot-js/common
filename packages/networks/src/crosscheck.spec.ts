@@ -11,7 +11,7 @@ import { fetch } from '@polkadot/x-fetch';
 import { allNetworks } from './';
 
 const OUTPUT = './.github/ss58-check.md';
-const SUBSTRATE_REGISTRY = 'https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json';
+const SUBSTRATE_REGISTRY = 'https://raw.githubusercontent.com/paritytech/ss58-registry/main/ss58-registry.json';
 
 function assertAndLog (check: boolean, error: string): void {
   if (!check) {

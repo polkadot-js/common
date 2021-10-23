@@ -4,7 +4,7 @@
 import fs from 'fs';
 import fetch from 'node-fetch';
 
-const SUBSTRATE_REGISTRY = 'https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json';
+const SUBSTRATE_REGISTRY = 'https://raw.githubusercontent.com/paritytech/ss58-registry/main/ss58-registry.json';
 
 function outputField (k, v) {
   if (typeof v === 'string') {
