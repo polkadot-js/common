@@ -9,6 +9,7 @@ import { DeriveJunction } from './DeriveJunction';
 
 export function createSeedDeriveFn (fromSeed: (seed: Uint8Array) => Keypair, derive: (seed: Uint8Array, chainCode: Uint8Array) => Uint8Array): (keypair: Keypair, junction: DeriveJunction) => Keypair {
   return (keypair: Keypair, { chainCode, isHard }: DeriveJunction): Keypair => {
+    assert(chainCode.length === 32, 'Invalid chainCode passed to derive');
     assert(isHard, 'A soft key was found in the path and is not supported');
 
     return fromSeed(

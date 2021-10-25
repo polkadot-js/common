@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Assert `chainCode` inputs to `derive*`, protecting against misuse
+
+
 ## 7.6.1 Oct 23, 2021
 
 Changes:
