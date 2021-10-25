@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/hw-ledger-transports",
-  "version": "7.6.2-0",
+  "version": "7.6.2-1",
   "license": "Apache-2.0",
   "type": "module",
   "main": "node.js",

@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-textencoder",
-  "version": "7.6.2-0",
+  "version": "7.6.2-1",
   "license": "Apache-2.0",
   "type": "module",
   "description": "A TextDecoder replacement",
@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
-    "@polkadot/x-global": "7.6.2-0"
+    "@polkadot/x-global": "7.6.2-1"
   }
 }

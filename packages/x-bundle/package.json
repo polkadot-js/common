@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/x-bundle",
-  "version": "7.6.2-0",
+  "version": "7.6.2-1",
   "license": "Apache-2.0",
   "type": "module",
   "description": "A bundler helper",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
-    "@polkadot/util": "7.6.2-0",
+    "@polkadot/util": "7.6.2-1",
     "buffer-es6": "^4.9.3"
   }
 }
