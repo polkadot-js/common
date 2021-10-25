@@ -2,10 +2,16 @@
   "name": "@polkadot/hw-ledger",
   "version": "7.6.2-0",
   "type": "module",
-  "repository": "github:polkadot-js/common",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
+  "bugs": "https://github.com/polkadot-js/common/issues",
+  "homepage": "https://github.com/polkadot-js/common#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polkadot-js/common.git",
+    "directory": "packages/hw-ledger"
+  },
   "license": "Apache-2.0",
   "main": "index.js",
   "sideEffects": [
