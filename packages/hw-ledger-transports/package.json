@@ -9,7 +9,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/hw-ledger-transports",
-  "private": false,
   "repository": {
     "directory": "packages/hw-ledger-transports",
     "type": "git",
@@ -21,7 +20,6 @@
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
-  "bin": {},
   "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
@@ -29,10 +27,7 @@
     "@ledgerhq/hw-transport-webhid": "^6.11.0",
     "@ledgerhq/hw-transport-webusb": "^6.11.0"
   },
-  "devDependencies": {},
   "optionalDependencies": {
     "@ledgerhq/hw-transport-node-hid-singleton": "^6.11.0"
-  },
-  "peerDependencies": {},
-  "resolutions": {}
+  }
 }

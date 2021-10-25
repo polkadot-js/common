@@ -15,7 +15,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "bin": {},
   "scripts": {
     "build": "polkadot-dev-build-ts",
     "build:release": "polkadot-ci-ghact-build",
@@ -29,16 +28,13 @@
     "test:mnemonicCmp": "polkadot-dev-run-test packages/util-crypto/src/mnemonic/toMiniSecretCmp.spec.ts",
     "test:one": "polkadot-dev-run-test --runInBand"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.15.8",
-    "@polkadot/dev": "^0.63.8",
+    "@polkadot/dev": "^0.63.9",
     "@polkadot/ts": "^0.4.12",
     "@types/ed2curve": "^0.2.2",
     "@types/jest": "^27.0.2"
   },
-  "optionalDependencies": {},
-  "peerDependencies": {},
   "resolutions": {
     "typescript": "^4.4.4"
   }

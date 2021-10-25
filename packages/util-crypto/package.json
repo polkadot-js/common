@@ -10,7 +10,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/util-crypto",
-  "private": false,
   "repository": {
     "directory": "packages/util-crypto",
     "type": "git",
@@ -25,7 +24,6 @@
   "type": "module",
   "version": "7.6.2-2",
   "main": "index.js",
-  "bin": {},
   "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
@@ -53,9 +51,7 @@
     "@types/scryptsy": "^2.0.0",
     "@types/xxhashjs": "^0.2.2"
   },
-  "optionalDependencies": {},
   "peerDependencies": {
     "@polkadot/util": "7.6.2-2"
-  },
-  "resolutions": {}
+  }
 }

@@ -10,7 +10,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/x-global",
-  "private": false,
   "repository": {
     "directory": "packages/x-global",
     "type": "git",
@@ -20,13 +19,8 @@
   "type": "module",
   "version": "7.6.2-2",
   "main": "index.js",
-  "bin": {},
   "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4"
-  },
-  "devDependencies": {},
-  "optionalDependencies": {},
-  "peerDependencies": {},
-  "resolutions": {}
+  }
 }
