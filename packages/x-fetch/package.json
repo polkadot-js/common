@@ -10,7 +10,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/x-fetch",
-  "private": false,
   "repository": {
     "directory": "packages/x-fetch",
     "type": "git",
@@ -22,16 +21,11 @@
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
-  "bin": {},
   "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@polkadot/x-global": "7.6.2-2",
     "@types/node-fetch": "^2.5.12",
     "node-fetch": "^2.6.5"
-  },
-  "devDependencies": {},
-  "optionalDependencies": {},
-  "peerDependencies": {},
-  "resolutions": {}
+  }
 }

@@ -10,7 +10,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/keyring",
-  "private": false,
   "repository": {
     "directory": "packages/keyring",
     "type": "git",
@@ -23,18 +22,14 @@
   "type": "module",
   "version": "7.6.2-2",
   "main": "index.js",
-  "bin": {},
   "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@polkadot/util": "7.6.2-2",
     "@polkadot/util-crypto": "7.6.2-2"
   },
-  "devDependencies": {},
-  "optionalDependencies": {},
   "peerDependencies": {
     "@polkadot/util": "7.6.2-2",
     "@polkadot/util-crypto": "7.6.2-2"
-  },
-  "resolutions": {}
+  }
 }

@@ -1918,9 +1918,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.63.8":
-  version: 0.63.8
-  resolution: "@polkadot/dev@npm:0.63.8"
+"@polkadot/dev@npm:^0.63.9":
+  version: 0.63.9
+  resolution: "@polkadot/dev@npm:0.63.9"
   dependencies:
     "@babel/cli": ^7.15.7
     "@babel/core": ^7.15.8
@@ -2008,7 +2008,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.cjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: fffded848488ff49fb9955db25b9a1c2a30bfc94ecedf37d614a6b6c82d6a8314753226c02067c76ec4aadba0c75c83c3c1202ba1a5820f5cef92a74c58e2df7
+  checksum: b569cab03503a3de225a573d2246e7cacedf2fa4fa22e0ff58ad50248aeca9782fb577d071d2e388f6413eb86cd82e4479da529baaba6a5ce79c81bd5d56cf9b
   languageName: node
   linkType: hard
 
@@ -2182,7 +2182,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.15.4
     "@polkadot/x-global": 7.6.2-2
-    "@types/react-native": ^0.66.0
+    "@types/react-native": ^0.66.1
   languageName: unknown
   linkType: soft
 
@@ -2580,12 +2580,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.66.0":
-  version: 0.66.0
-  resolution: "@types/react-native@npm:0.66.0"
+"@types/react-native@npm:^0.66.1":
+  version: 0.66.1
+  resolution: "@types/react-native@npm:0.66.1"
   dependencies:
     "@types/react": "*"
-  checksum: 4e8e43a15f2ac1e22aa336cba8312d47ec2a3970003bb72b5685f946ea236819e1e57d1ba2462c7edfa40908759d8fc799baec2e45a17a2cbad6905c5d95953c
+  checksum: 0b8eedf5ed6404dafda4599a79acb85a831e6a94a2f9fc68dee7bf31676b66b71609779a43570edfe404a91643e56dd05dc3ef9488fb712894e60aa4b07d8d3a
   languageName: node
   linkType: hard
 
@@ -9192,7 +9192,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.15.8
-    "@polkadot/dev": ^0.63.8
+    "@polkadot/dev": ^0.63.9
     "@polkadot/ts": ^0.4.12
     "@types/ed2curve": ^0.2.2
     "@types/jest": ^27.0.2

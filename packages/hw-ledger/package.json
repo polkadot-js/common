@@ -9,7 +9,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/hw-ledger",
-  "private": false,
   "repository": {
     "directory": "packages/hw-ledger",
     "type": "git",
@@ -22,16 +21,11 @@
   "type": "module",
   "version": "7.6.2-2",
   "main": "index.js",
-  "bin": {},
   "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@polkadot/hw-ledger-transports": "7.6.2-2",
     "@polkadot/util": "7.6.2-2",
     "@zondax/ledger-substrate": "^0.18.0"
-  },
-  "devDependencies": {},
-  "optionalDependencies": {},
-  "peerDependencies": {},
-  "resolutions": {}
+  }
 }
