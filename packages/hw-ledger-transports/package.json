@@ -9,6 +9,7 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/hw-ledger-transports",
+  "private": false,
   "repository": {
     "directory": "packages/hw-ledger-transports",
     "type": "git",
@@ -16,11 +17,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "7.6.2-2",
+  "version": "7.6.2-3",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
-  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@ledgerhq/hw-transport": "^6.11.0",

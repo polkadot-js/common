@@ -10,6 +10,7 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/x-randomvalues",
+  "private": false,
   "repository": {
     "directory": "packages/x-randomvalues",
     "type": "git",
@@ -17,14 +18,13 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "7.6.2-2",
+  "version": "7.6.2-3",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
-  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
-    "@polkadot/x-global": "7.6.2-2"
+    "@polkadot/x-global": "7.6.2-3"
   },
   "devDependencies": {
     "@types/react-native": "^0.66.1"

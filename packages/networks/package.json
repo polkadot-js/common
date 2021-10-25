@@ -10,6 +10,7 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/networks",
+  "private": false,
   "repository": {
     "directory": "packages/networks",
     "type": "git",
@@ -17,14 +18,13 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "7.6.2-2",
+  "version": "7.6.2-3",
   "main": "index.js",
-  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4"
   },
   "devDependencies": {
-    "@polkadot/util": "7.6.2-2",
-    "@polkadot/x-fetch": "7.6.2-2"
+    "@polkadot/util": "7.6.2-3",
+    "@polkadot/x-fetch": "7.6.2-3"
   }
 }

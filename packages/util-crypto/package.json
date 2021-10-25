@@ -10,6 +10,7 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/util-crypto",
+  "private": false,
   "repository": {
     "directory": "packages/util-crypto",
     "type": "git",
@@ -22,15 +23,14 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "7.6.2-2",
+  "version": "7.6.2-3",
   "main": "index.js",
-  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
-    "@polkadot/networks": "7.6.2-2",
-    "@polkadot/util": "7.6.2-2",
+    "@polkadot/networks": "7.6.2-3",
+    "@polkadot/util": "7.6.2-3",
     "@polkadot/wasm-crypto": "^4.2.1",
-    "@polkadot/x-randomvalues": "7.6.2-2",
+    "@polkadot/x-randomvalues": "7.6.2-3",
     "base-x": "^3.0.9",
     "base64-js": "^1.5.1",
     "blakejs": "^1.1.1",
@@ -52,6 +52,6 @@
     "@types/xxhashjs": "^0.2.2"
   },
   "peerDependencies": {
-    "@polkadot/util": "7.6.2-2"
+    "@polkadot/util": "7.6.2-3"
   }
 }
