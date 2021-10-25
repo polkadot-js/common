@@ -1,15 +1,21 @@
 {
   "name": "@polkadot/hw-ledger-transports",
   "version": "7.6.2-0",
-  "type": "module",
-  "repository": "github:polkadot-js/common",
-  "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [],
-  "contributors": [],
   "license": "Apache-2.0",
+  "type": "module",
   "main": "node.js",
   "browser": "browser.js",
   "react-native": "react-native.js",
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "maintainers": [],
+  "contributors": [],
+  "bugs": "https://github.com/polkadot-js/common/issues",
+  "homepage": "https://github.com/polkadot-js/common#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polkadot-js/common.git",
+    "directory": "packages/hw-ledger-transports"
+  },
   "sideEffects": false,
   "engines": {
     "node": ">=14.0.0"

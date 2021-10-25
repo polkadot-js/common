@@ -1,22 +1,26 @@
 {
   "name": "@polkadot/x-fetch",
   "version": "7.6.2-0",
+  "license": "Apache-2.0",
   "type": "module",
   "description": "A cross-environment fetch replacement",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "maintainers": [],
+  "contributors": [],
+  "bugs": "https://github.com/polkadot-js/common/issues",
+  "homepage": "https://github.com/polkadot-js/common#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polkadot-js/common.git",
+    "directory": "packages/x-fethc"
+  },
   "sideEffects": false,
   "engines": {
     "node": ">=14.0.0"
   },
-  "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [],
-  "contributors": [],
-  "license": "Apache-2.0",
-  "repository": "github:polkadot-js/common",
-  "bugs": "https://github.com/polkadot-js/common/issues",
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-fetch#readme",
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@polkadot/x-global": "7.6.2-0",
