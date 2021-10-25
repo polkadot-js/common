@@ -1,32 +1,38 @@
 {
-  "name": "@polkadot/hw-ledger-transports",
-  "version": "7.6.2-1",
-  "license": "Apache-2.0",
-  "type": "module",
-  "main": "node.js",
-  "browser": "browser.js",
-  "react-native": "react-native.js",
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [],
-  "contributors": [],
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "homepage": "https://github.com/polkadot-js/common#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/polkadot-js/common.git",
-    "directory": "packages/hw-ledger-transports"
-  },
-  "sideEffects": false,
+  "contributors": [],
   "engines": {
     "node": ">=14.0.0"
   },
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/hw-ledger-transports#readme",
+  "license": "Apache-2.0",
+  "maintainers": [],
+  "name": "@polkadot/hw-ledger-transports",
+  "private": false,
+  "repository": {
+    "directory": "packages/hw-ledger-transports",
+    "type": "git",
+    "url": "https://github.com/polkadot-js/common.git"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "7.6.2-1",
+  "browser": "browser.js",
+  "main": "node.js",
+  "react-native": "react-native.js",
+  "bin": {},
+  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@ledgerhq/hw-transport": "^6.11.0",
     "@ledgerhq/hw-transport-webhid": "^6.11.0",
     "@ledgerhq/hw-transport-webusb": "^6.11.0"
   },
+  "devDependencies": {},
   "optionalDependencies": {
     "@ledgerhq/hw-transport-node-hid-singleton": "^6.11.0"
-  }
+  },
+  "peerDependencies": {},
+  "resolutions": {}
 }

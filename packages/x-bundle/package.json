@@ -1,27 +1,34 @@
 {
-  "name": "@polkadot/x-bundle",
-  "version": "7.6.2-1",
-  "license": "Apache-2.0",
-  "type": "module",
-  "description": "A bundler helper",
-  "main": "index.js",
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [],
-  "contributors": [],
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "homepage": "https://github.com/polkadot-js/common#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/polkadot-js/common.git",
-    "directory": "packages/x-bundle"
-  },
-  "sideEffects": false,
+  "contributors": [],
+  "description": "A bundler helper",
   "engines": {
     "node": ">=14.0.0"
   },
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-bundle#readme",
+  "license": "Apache-2.0",
+  "maintainers": [],
+  "name": "@polkadot/x-bundle",
+  "private": false,
+  "repository": {
+    "directory": "packages/x-bundle",
+    "type": "git",
+    "url": "https://github.com/polkadot-js/common.git"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "7.6.2-1",
+  "main": "index.js",
+  "bin": {},
+  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@polkadot/util": "7.6.2-1",
     "buffer-es6": "^4.9.3"
-  }
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "peerDependencies": {},
+  "resolutions": {}
 }

@@ -1,25 +1,32 @@
 {
-  "name": "@polkadot/x-global",
-  "version": "7.6.2-1",
-  "license": "Apache-2.0",
-  "type": "module",
-  "description": "A cross-environment global replacement",
-  "main": "index.js",
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [],
-  "contributors": [],
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "homepage": "https://github.com/polkadot-js/common#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/polkadot-js/common.git",
-    "directory": "packages/x-global"
-  },
-  "sideEffects": false,
+  "contributors": [],
+  "description": "A cross-environment global replacement",
   "engines": {
     "node": ">=14.0.0"
   },
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-global#readme",
+  "license": "Apache-2.0",
+  "maintainers": [],
+  "name": "@polkadot/x-global",
+  "private": false,
+  "repository": {
+    "directory": "packages/x-global",
+    "type": "git",
+    "url": "https://github.com/polkadot-js/common.git"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "7.6.2-1",
+  "main": "index.js",
+  "bin": {},
+  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4"
-  }
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "peerDependencies": {},
+  "resolutions": {}
 }

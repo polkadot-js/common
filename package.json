@@ -1,20 +1,27 @@
 {
-  "repository": "https://github.com/polkadot-js/common",
   "author": "Jaco Greeff <jacogr@gmail.com>",
+  "bugs": "https://github.com/polkadot-js/common/issues",
+  "engines": {},
+  "homepage": "https://github.com/polkadot-js/common#readme",
   "license": "Apache-2",
+  "packageManager": "yarn@3.0.1",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polkadot-js/common.git"
+  },
+  "sideEffects": false,
+  "version": "7.6.2-1",
   "workspaces": [
     "packages/*"
   ],
-  "resolutions": {
-    "typescript": "^4.4.4"
-  },
+  "bin": {},
   "scripts": {
     "build": "polkadot-dev-build-ts",
     "build:release": "polkadot-ci-ghact-build",
     "build:rollup": "polkadot-exec-rollup --config",
-    "lint": "polkadot-dev-run-lint",
     "clean": "polkadot-dev-clean-build",
+    "lint": "polkadot-dev-run-lint",
     "networks:crosscheck": "polkadot-dev-run-test packages/networks/src/crosscheck",
     "networks:sync": "node packages/networks/scripts/fromSubstrate.mjs",
     "postinstall": "polkadot-dev-yarn-only",
@@ -22,13 +29,17 @@
     "test:mnemonicCmp": "polkadot-dev-run-test packages/util-crypto/src/mnemonic/toMiniSecretCmp.spec.ts",
     "test:one": "polkadot-dev-run-test --runInBand"
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.15.8",
-    "@polkadot/dev": "^0.63.6",
-    "@polkadot/ts": "^0.4.10",
+    "@polkadot/dev": "^0.63.8",
+    "@polkadot/ts": "^0.4.12",
     "@types/ed2curve": "^0.2.2",
     "@types/jest": "^27.0.2"
   },
-  "version": "7.6.2-1",
-  "packageManager": "yarn@3.0.1"
+  "optionalDependencies": {},
+  "peerDependencies": {},
+  "resolutions": {
+    "typescript": "^4.4.4"
+  }
 }
