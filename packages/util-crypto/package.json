@@ -1,19 +1,20 @@
 {
-  "name": "@polkadot/util-crypto",
-  "version": "7.6.2-1",
-  "license": "Apache-2.0",
-  "type": "module",
-  "description": "A collection of useful crypto utilities for @polkadot",
-  "main": "index.js",
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [],
-  "contributors": [],
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "homepage": "https://github.com/polkadot-js/common#readme",
+  "contributors": [],
+  "description": "A collection of useful crypto utilities for @polkadot",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
+  "license": "Apache-2.0",
+  "maintainers": [],
+  "name": "@polkadot/util-crypto",
+  "private": false,
   "repository": {
+    "directory": "packages/util-crypto",
     "type": "git",
-    "url": "https://github.com/polkadot-js/common.git",
-    "directory": "packages/util-crypto"
+    "url": "https://github.com/polkadot-js/common.git"
   },
   "sideEffects": [
     "./cryptoInit.js",
@@ -21,9 +22,11 @@
     "./detectPackage.js",
     "./detectPackage.cjs"
   ],
-  "engines": {
-    "node": ">=14.0.0"
-  },
+  "type": "module",
+  "version": "7.6.2-1",
+  "main": "index.js",
+  "bin": {},
+  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@polkadot/networks": "7.6.2-1",
@@ -50,7 +53,9 @@
     "@types/scryptsy": "^2.0.0",
     "@types/xxhashjs": "^0.2.2"
   },
+  "optionalDependencies": {},
   "peerDependencies": {
     "@polkadot/util": "7.6.2-1"
-  }
+  },
+  "resolutions": {}
 }

@@ -1,27 +1,30 @@
 {
-  "name": "@polkadot/util",
-  "version": "7.6.2-1",
-  "license": "Apache-2.0",
-  "type": "module",
-  "description": "A collection of useful utilities for @polkadot",
-  "main": "index.js",
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [],
-  "contributors": [],
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "homepage": "https://github.com/polkadot-js/common#readme",
+  "contributors": [],
+  "description": "A collection of useful utilities for @polkadot",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util#readme",
+  "license": "Apache-2.0",
+  "maintainers": [],
+  "name": "@polkadot/util",
+  "private": false,
   "repository": {
+    "directory": "packages/util",
     "type": "git",
-    "url": "https://github.com/polkadot-js/common.git",
-    "directory": "packages/util"
+    "url": "https://github.com/polkadot-js/common.git"
   },
   "sideEffects": [
     "./detectPackage.js",
     "./detectPackage.cjs"
   ],
-  "engines": {
-    "node": ">=14.0.0"
-  },
+  "type": "module",
+  "version": "7.6.2-1",
+  "main": "index.js",
+  "bin": {},
+  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@polkadot/x-textdecoder": "7.6.2-1",
@@ -30,5 +33,9 @@
     "bn.js": "^4.12.0",
     "camelcase": "^6.2.0",
     "ip-regex": "^4.3.0"
-  }
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "peerDependencies": {},
+  "resolutions": {}
 }

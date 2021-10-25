@@ -1,31 +1,37 @@
 {
-  "name": "@polkadot/x-randomvalues",
-  "version": "7.6.2-1",
-  "license": "Apache-2.0",
-  "type": "module",
-  "description": "A cross-environment window.crypto.getRandomValues replacement",
-  "browser": "browser.js",
-  "main": "node.js",
-  "react-native": "react-native.js",
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [],
-  "contributors": [],
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "homepage": "https://github.com/polkadot-js/common#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/polkadot-js/common.git",
-    "directory": "packages/x-randomvalues"
-  },
-  "sideEffects": false,
+  "contributors": [],
+  "description": "A cross-environment window.crypto.getRandomValues replacement",
   "engines": {
     "node": ">=14.0.0"
   },
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-randomvalues#readme",
+  "license": "Apache-2.0",
+  "maintainers": [],
+  "name": "@polkadot/x-randomvalues",
+  "private": false,
+  "repository": {
+    "directory": "packages/x-randomvalues",
+    "type": "git",
+    "url": "https://github.com/polkadot-js/common.git"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "7.6.2-1",
+  "browser": "browser.js",
+  "main": "node.js",
+  "react-native": "react-native.js",
+  "bin": {},
+  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@polkadot/x-global": "7.6.2-1"
   },
   "devDependencies": {
     "@types/react-native": "^0.66.0"
-  }
+  },
+  "optionalDependencies": {},
+  "peerDependencies": {},
+  "resolutions": {}
 }
