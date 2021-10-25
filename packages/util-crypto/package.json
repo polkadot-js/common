@@ -1,18 +1,10 @@
 {
   "name": "@polkadot/util-crypto",
   "version": "7.6.2-0",
+  "license": "Apache-2.0",
   "type": "module",
   "description": "A collection of useful crypto utilities for @polkadot",
   "main": "index.js",
-  "sideEffects": [
-    "./cryptoInit.js",
-    "./cryptoInit.cjs",
-    "./detectPackage.js",
-    "./detectPackage.cjs"
-  ],
-  "engines": {
-    "node": ">=14.0.0"
-  },
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
@@ -23,7 +15,15 @@
     "url": "https://github.com/polkadot-js/common.git",
     "directory": "packages/util-crypto"
   },
-  "license": "Apache-2.0",
+  "sideEffects": [
+    "./cryptoInit.js",
+    "./cryptoInit.cjs",
+    "./detectPackage.js",
+    "./detectPackage.cjs"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@polkadot/networks": "7.6.2-0",

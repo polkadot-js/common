@@ -1,7 +1,9 @@
 {
   "name": "@polkadot/hw-ledger",
   "version": "7.6.2-0",
+  "license": "Apache-2.0",
   "type": "module",
+  "main": "index.js",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
@@ -12,8 +14,6 @@
     "url": "https://github.com/polkadot-js/common.git",
     "directory": "packages/hw-ledger"
   },
-  "license": "Apache-2.0",
-  "main": "index.js",
   "sideEffects": [
     "./detectPackage.js",
     "./detectPackage.cjs"

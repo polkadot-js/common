@@ -1,16 +1,10 @@
 {
   "name": "@polkadot/util",
   "version": "7.6.2-0",
+  "license": "Apache-2.0",
   "type": "module",
   "description": "A collection of useful utilities for @polkadot",
   "main": "index.js",
-  "sideEffects": [
-    "./detectPackage.js",
-    "./detectPackage.cjs"
-  ],
-  "engines": {
-    "node": ">=14.0.0"
-  },
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
@@ -21,7 +15,13 @@
     "url": "https://github.com/polkadot-js/common.git",
     "directory": "packages/util"
   },
-  "license": "Apache-2.0",
+  "sideEffects": [
+    "./detectPackage.js",
+    "./detectPackage.cjs"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@polkadot/x-textdecoder": "7.6.2-0",
