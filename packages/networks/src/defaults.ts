@@ -25,6 +25,9 @@ export const knownGenesis: KnownGenesis = {
   equilibrium: [
     '0x6f1a800de3daff7f5e037ddf66ab22ce03ab91874debeddb1086f5f7dbd48925'
   ],
+  genshiro: [
+    '0x9b8cefc0eb5c568b527998bdd76c184e2b76ae561be76e4667072230217ea243'
+  ],
   hydradx: [
     '0xd2a620c27ec5cbc5621ff9a522689895074f7cca0d08e7134a7804e1a3ba86fc', // Snakenet Gen3-1
     '0x10af6e84234477d84dc572bac0789813b254aa490767ed06fb9591191d1073f9', // Snakenet Gen3
@@ -83,6 +86,7 @@ export const knownLedger: KnownLedger = {
   'dock-mainnet': 0x00000252,
   edgeware: 0x0000020b,
   equilibrium: 0x05f5e0fd,
+  genshiro: 0x05f5e0fc,
   kusama: 0x000001b2,
   'nodle-chain': 0x000003eb,
   polkadot: 0x00000162,
