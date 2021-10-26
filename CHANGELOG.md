@@ -5,6 +5,7 @@
 Changes:
 
 - Assert `chainCode` inputs to `derive*`, protecting against misuse
+- Adjust testnet detection in `@polkadot/networks`
 
 
 ## 7.6.1 Oct 23, 2021

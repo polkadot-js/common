@@ -10,7 +10,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/util",
-  "private": false,
   "repository": {
     "directory": "packages/util",
     "type": "git",

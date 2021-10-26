@@ -8,9 +8,11 @@ import { knownSubstrate } from './substrate';
 
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
+const TESTNETS = ['testnet'];
 
 export const allNetworks = knownSubstrate.map((o): SubstrateNetwork => {
   const network = o.network || '';
+  const nameParts = network.replace(/_/g, '-').split('-');
   const n = o as SubstrateNetwork;
 
   n.slip44 = knownLedger[network];
@@ -18,7 +20,8 @@ export const allNetworks = knownSubstrate.map((o): SubstrateNetwork => {
 
   n.genesisHash = knownGenesis[network] || [];
   n.icon = knownIcon[network] || 'substrate';
-  n.isIgnored = !!knownTestnet[network] || (!(o.standardAccount && o.decimals && o.symbols) && o.prefix !== 42);
+  n.isTestnet = !!knownTestnet[network] || TESTNETS.includes(nameParts[nameParts.length - 1]);
+  n.isIgnored = n.isTestnet || (!(o.standardAccount && o.decimals && o.symbols) && o.prefix !== 42);
 
   return n;
 });

@@ -26,6 +26,7 @@ export interface SubstrateNetwork extends KnownSubstrate {
   hasLedgerSupport: boolean;
   icon: Icon;
   isIgnored: boolean;
+  isTestnet: boolean;
   slip44?: number | null;
 }
 

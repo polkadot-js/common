@@ -10,7 +10,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/keyring",
-  "private": false,
   "repository": {
     "directory": "packages/keyring",
     "type": "git",
