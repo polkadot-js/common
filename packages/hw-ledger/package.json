@@ -9,7 +9,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/hw-ledger",
-  "private": false,
   "repository": {
     "directory": "packages/hw-ledger",
     "type": "git",

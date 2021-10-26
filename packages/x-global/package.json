@@ -10,7 +10,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/x-global",
-  "private": false,
   "repository": {
     "directory": "packages/x-global",
     "type": "git",

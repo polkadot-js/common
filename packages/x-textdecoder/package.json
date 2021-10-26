@@ -10,7 +10,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/x-textdecoder",
-  "private": false,
   "repository": {
     "directory": "packages/x-textdecoder",
     "type": "git",

@@ -9,7 +9,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/hw-ledger-transports",
-  "private": false,
   "repository": {
     "directory": "packages/hw-ledger-transports",
     "type": "git",

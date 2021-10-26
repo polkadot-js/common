@@ -10,7 +10,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/x-bundle",
-  "private": false,
   "repository": {
     "directory": "packages/x-bundle",
     "type": "git",
