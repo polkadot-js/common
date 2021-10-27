@@ -504,15 +504,6 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://equilibrium.io'
   },
   {
-    decimals: [9],
-    displayName: 'Genshiro Network',
-    network: 'genshiro',
-    prefix: 67,
-    standardAccount: '*25519',
-    symbols: ['TOKEN'],
-    website: 'https://genshiro.equilibrium.io'
-  },
-  {
     decimals: [18],
     displayName: 'SORA Network',
     network: 'sora',
