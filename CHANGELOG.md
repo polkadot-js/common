@@ -2,10 +2,15 @@
 
 ## master
 
+Contributed:
+
+- Add Genshiro support (Thanks to https://github.com/Overseven)
+
 Changes:
 
 - Assert `chainCode` inputs to `derive*`, protecting against misuse
 - Adjust testnet detection in `@polkadot/networks`
+- Bump Ledger libraries to latest versions
 
 
 ## 7.6.1 Oct 23, 2021
