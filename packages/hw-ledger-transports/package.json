@@ -16,7 +16,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "7.6.2-5",
+  "version": "7.6.2-6",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
