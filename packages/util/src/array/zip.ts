@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 export function arrayZip <K, V> (keys: K[], values: V[]): [K, V][] {
-  const result: [K, V][] = new Array(keys.length);
+  const result = new Array<[K, V]>(keys.length);
 
   for (let i = 0; i < keys.length; i++) {
     result[i] = [keys[i], values[i]];
