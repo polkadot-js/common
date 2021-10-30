@@ -16,12 +16,6 @@ describe('arrayZip', (): void => {
     ).toEqual([['a', 1], ['b', 2], ['c', 3]]);
   });
 
-  it('zips where values > keys', (): void => {
-    expect(
-      arrayZip(['a', 'b', 'c'], [1, 2, 3, 4])
-    ).toEqual([['a', 1], ['b', 2], ['c', 3]]);
-  });
-
   it('zips where values < keys', (): void => {
     expect(
       arrayZip(['a', 'b', 'c'], [1, 2])
