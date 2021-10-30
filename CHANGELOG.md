@@ -8,6 +8,7 @@ Contributed:
 
 Changes:
 
+- Add `arrayZip` to combine a key + value array into entries-like
 - Assert `chainCode` inputs to `derive*`, protecting against misuse
 - Adjust testnet detection in `@polkadot/networks`
 - Bump Ledger libraries to latest versions
