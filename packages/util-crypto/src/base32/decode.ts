@@ -9,13 +9,11 @@ import { BASE32_ALPHABET, BITS_PER_CHAR } from './bs32';
 import { base32Validate } from './validate';
 
 // Build the character lookup table:
-const LOOKUP = BASE32_ALPHABET
-  .split('')
-  .reduce<Record<string, number>>((lookup, char: string, index: number) => {
-    lookup[char] = index;
+const LOOKUP = BASE32_ALPHABET.split('').reduce<Record<string, number>>((lookup, a, i) => {
+  lookup[a] = i;
 
-    return lookup;
-  }, {});
+  return lookup;
+}, {});
 
 /** @internal */
 function decode (output: Uint8Array, input: string, offset: number): [Uint8Array, number, number] {
