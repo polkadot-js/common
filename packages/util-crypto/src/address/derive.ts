@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
+import type { DeriveJunction } from '../key/DeriveJunction';
 import type { Prefix } from './types';
 
 import { assert } from '@polkadot/util';
@@ -10,6 +11,10 @@ import { keyExtractPath } from '../key';
 import { schnorrkelDerivePublic } from '../schnorrkel';
 import { decodeAddress } from './decode';
 import { encodeAddress } from './encode';
+
+function filterHard ({ isHard }: DeriveJunction): boolean {
+  return isHard;
+}
 
 /**
  * @name deriveAddress
@@ -20,7 +25,7 @@ import { encodeAddress } from './encode';
 export function deriveAddress (who: HexString | Uint8Array | string, suri: string, ss58Format?: Prefix): string {
   const { path } = keyExtractPath(suri);
 
-  assert(path.length && !path.some((p) => p.isHard), 'Expected suri to contain a combination of non-hard paths');
+  assert(path.length && path.every(filterHard), 'Expected suri to contain a combination of non-hard paths');
 
   let publicKey = decodeAddress(who);
 
