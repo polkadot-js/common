@@ -25,7 +25,7 @@ function filterHard ({ isHard }: DeriveJunction): boolean {
 export function deriveAddress (who: HexString | Uint8Array | string, suri: string, ss58Format?: Prefix): string {
   const { path } = keyExtractPath(suri);
 
-  assert(path.length && path.every(filterHard), 'Expected suri to contain a combination of non-hard paths');
+  assert(path.length && !path.every(filterHard), 'Expected suri to contain a combination of non-hard paths');
 
   let publicKey = decodeAddress(who);
 
