@@ -1,7 +1,6 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "engines": {},
   "homepage": "https://github.com/polkadot-js/common#readme",
   "license": "Apache-2",
   "packageManager": "yarn@3.0.1",
@@ -11,7 +10,7 @@
     "url": "https://github.com/polkadot-js/common.git"
   },
   "sideEffects": false,
-  "version": "7.7.0",
+  "version": "7.7.1",
   "workspaces": [
     "packages/*"
   ],
