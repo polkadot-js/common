@@ -34,16 +34,19 @@ function filterSelectable ({ genesisHash, prefix }: Network): boolean {
   return !!genesisHash.length || prefix === 42;
 }
 
-function filterNetworks (n: SubstrateNetwork): n is Network {
+function filterAvailable (n: SubstrateNetwork): n is Network {
   return !n.isIgnored && !!n.network;
 }
 
 function sortNetworks (a: Network, b: Network): number {
-  return UNSORTED.includes(a.prefix) === UNSORTED.includes(b.prefix)
+  const isUnSortedA = UNSORTED.includes(a.prefix);
+  const isUnSortedB = UNSORTED.includes(b.prefix);
+
+  return isUnSortedA === isUnSortedB
     ? 0
-    : UNSORTED.includes(a.prefix)
+    : isUnSortedA
       ? -1
-      : UNSORTED.includes(b.prefix)
+      : isUnSortedB
         ? 1
         : a.displayName.localeCompare(b.displayName);
 }
@@ -55,9 +58,7 @@ export const allNetworks = knownSubstrate.map(toExpanded);
 //   - no testnets
 //   - we only include those where we have a standardAccount
 //   - sort by name, however we keep 0, 2, 42 first in the list
-export const availableNetworks = allNetworks
-  .filter(filterNetworks)
-  .sort(sortNetworks);
+export const availableNetworks = allNetworks.filter(filterAvailable).sort(sortNetworks);
 
 // A filtered list of those chains we have details about (genesisHashes)
 export const selectableNetworks = availableNetworks.filter(filterSelectable);
