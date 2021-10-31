@@ -24,5 +24,8 @@ interface Observable {
  * ```
  */
 export function isObservable (value: unknown): value is Observable {
-  return isObject(value) && isFunction((value as Observable).next);
+  return (
+    isObject(value) &&
+    isFunction((value as Observable).next)
+  );
 }

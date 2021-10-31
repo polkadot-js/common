@@ -9,6 +9,19 @@ import { isString } from './string';
 
 const FORMAT = [9, 10, 13];
 
+/** @internal */
+function getCharCode0 (s: string): number {
+  return s.charCodeAt(0);
+}
+
+/** @internal */
+function isAsciiByte (b: number): boolean {
+  return (b < 127) && (
+    (b >= 32) ||
+    FORMAT.includes(b)
+  );
+}
+
 /**
  * @name isAscii
  * @summary Tests if the input is printable ASCII
@@ -18,10 +31,13 @@ const FORMAT = [9, 10, 13];
 export function isAscii (value?: U8aLike | null): boolean {
   const isStringIn = isString(value);
 
-  return value
-    ? (isStringIn && !isHex(value)
-      ? value.toString().split('').map((s) => s.charCodeAt(0))
-      : u8aToU8a(value)
-    ).every((b) => (b < 127) && ((b >= 32) || FORMAT.includes(b)))
-    : isStringIn;
+  if (value) {
+    return (
+      isStringIn && !isHex(value)
+        ? value.toString().split('').map(getCharCode0)
+        : u8aToU8a(value)
+    ).every(isAsciiByte);
+  }
+
+  return isStringIn;
 }

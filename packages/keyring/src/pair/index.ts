@@ -6,7 +6,7 @@ import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types';
 import type { PairInfo } from './types';
 
-import { assert, u8aConcat, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
+import { assert, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
 import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclOpen, naclSeal, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
@@ -48,9 +48,8 @@ const TYPE_ADDRESS = {
   sr25519: (p: Uint8Array) => p
 };
 
-// Not 100% correct, since it can be a Uint8Array, but an invalid one - just say "undefined" is anything non-valid
 function isLocked (secretKey?: Uint8Array): secretKey is undefined {
-  return !secretKey || secretKey.length === 0 || secretKey.every((b) => b === 0);
+  return !secretKey || u8aEmpty(secretKey);
 }
 
 function vrfHash (proof: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array {

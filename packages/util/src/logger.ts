@@ -48,6 +48,20 @@ export function loggerFormat (value: unknown): unknown {
   return formatOther(value);
 }
 
+function formatWithLength (maxLength: number): (v: unknown) => unknown {
+  return (v: unknown): unknown => {
+    if (maxLength <= 0) {
+      return v;
+    }
+
+    const r = `${v as string}`;
+
+    return r.length < maxLength
+      ? v
+      : `${r.substr(0, maxLength)} ...`;
+  };
+}
+
 function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): void {
   if (values.length === 1 && isFunction(values[0])) {
     const fnResult = values[0]() as unknown;
@@ -60,17 +74,7 @@ function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): 
     type,
     ...values
       .map(loggerFormat)
-      .map((v) => {
-        if (maxSize <= 0) {
-          return v;
-        }
-
-        const r = `${v as string}`;
-
-        return r.length < maxSize
-          ? v
-          : `${r.substr(0, maxSize)} ...`;
-      })
+      .map(formatWithLength(maxSize))
   );
 }
 
@@ -78,27 +82,50 @@ function noop (): void {
   // noop
 }
 
+function isDebugOn (e: string, type: string): boolean {
+  return !!e && (
+    e === '*' ||
+    type === e ||
+    (
+      e.endsWith('*') &&
+      type.startsWith(e.slice(0, -1))
+    )
+  );
+}
+
+function isDebugOff (e: string, type: string): boolean {
+  return !!e && (
+    e.startsWith('-') &&
+    (
+      type === e.slice(1) ||
+      (
+        e.endsWith('*') &&
+        type.startsWith(e.slice(1, -1))
+      )
+    )
+  );
+}
+
+function getDebugFlag (env: string[], type: string): boolean {
+  let flag = false;
+
+  for (const e of env) {
+    if (isDebugOn(e, type)) {
+      flag = true;
+    } else if (isDebugOff(e, type)) {
+      flag = false;
+    }
+  }
+
+  return flag;
+}
+
 function parseEnv (type: string): [boolean, number] {
   const env = (typeof process === 'object' ? process : {}).env || {};
   const maxSize = parseInt(env.DEBUG_MAX || '-1', 10);
 
-  let isDebugOn = false;
-
-  (env.DEBUG || '')
-    .toLowerCase()
-    .split(',')
-    .forEach((e) => {
-      if (!!e && (e === '*' || type === e || (e.endsWith('*') && type.startsWith(e.slice(0, -1))))) {
-        isDebugOn = true;
-      }
-
-      if (!!e && e.startsWith('-') && (type === e.slice(1) || (e.endsWith('*') && type.startsWith(e.slice(1, -1))))) {
-        isDebugOn = false;
-      }
-    });
-
   return [
-    isDebugOn,
+    getDebugFlag((env.DEBUG || '').toLowerCase().split(','), type),
     isNaN(maxSize)
       ? -1
       : maxSize
