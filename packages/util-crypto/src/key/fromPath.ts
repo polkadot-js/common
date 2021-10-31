@@ -19,7 +19,11 @@ const generators = {
 export function keyFromPath (pair: Keypair, path: DeriveJunction[], type: KeypairType): Keypair {
   const keyHdkd = generators[type];
 
-  return path.reduce((pair, junction): Keypair => {
-    return keyHdkd(pair, junction);
-  }, pair);
+  let result = pair;
+
+  for (const p of path) {
+    result = keyHdkd(pair, p);
+  }
+
+  return result;
 }

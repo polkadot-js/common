@@ -7,7 +7,6 @@ import type { Prefix } from './types';
 import { assert } from '@polkadot/util';
 
 import { keyExtractPath } from '../key';
-import { DeriveJunction } from '../key/DeriveJunction';
 import { schnorrkelDerivePublic } from '../schnorrkel';
 import { decodeAddress } from './decode';
 import { encodeAddress } from './encode';
@@ -23,7 +22,11 @@ export function deriveAddress (who: HexString | Uint8Array | string, suri: strin
 
   assert(path.length && !path.some((path) => path.isHard), 'Expected suri to contain a combination of non-hard paths');
 
-  return encodeAddress(path.reduce((publicKey: Uint8Array, path: DeriveJunction): Uint8Array => {
-    return schnorrkelDerivePublic(publicKey, path.chainCode);
-  }, decodeAddress(who)), ss58Format);
+  let publicKey = decodeAddress(who);
+
+  for (const { chainCode } of path) {
+    publicKey = schnorrkelDerivePublic(publicKey, chainCode);
+  }
+
+  return encodeAddress(publicKey, ss58Format);
 }

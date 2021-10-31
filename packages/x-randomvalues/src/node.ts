@@ -5,10 +5,12 @@ import crypto from 'crypto';
 
 export { packageInfo } from './packageInfo';
 
-export function getRandomValues <T extends Uint8Array> (arr: T): T {
-  return crypto.randomBytes(arr.length).reduce((arr, value, index) => {
-    arr[index] = value;
+export function getRandomValues <T extends Uint8Array> (output: T): T {
+  const bytes = crypto.randomBytes(output.length);
 
-    return arr;
-  }, arr);
+  for (let i = 0; i < bytes.length; i++) {
+    output[i] = bytes[i];
+  }
+
+  return output;
 }

@@ -20,15 +20,19 @@
  */
 export function arrayFlatten <T> (arrays: T[][]): T[] {
   // pre-allocate based on the combined size
-  const output = new Array<T>(arrays.reduce((length, array) => length + array.length, 0));
+  let size = 0;
+
+  for (const a of arrays) {
+    size += a.length;
+  }
+
+  const output = new Array<T>(size);
   let index = -1;
 
-  for (let a = 0; a < arrays.length; a++) {
-    const array = arrays[a];
-
+  for (const a of arrays) {
     // instead of pushing, we just set the entries
-    for (let e = 0; e < array.length; e++) {
-      output[++index] = array[e];
+    for (let e = 0; e < a.length; e++) {
+      output[++index] = a[e];
     }
   }
 
