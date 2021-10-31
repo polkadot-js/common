@@ -9,8 +9,12 @@ export class TextDecoder {
   }
 
   decode (value: Uint8Array): string {
-    return value.reduce((str, code): string => {
-      return str + String.fromCharCode(code);
-    }, '');
+    let result = '';
+
+    for (const c of value) {
+      result += String.fromCharCode(c);
+    }
+
+    return result;
   }
 }

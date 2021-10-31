@@ -15,11 +15,9 @@ export function createTestPairs (options?: KeyringOptions, isDerived = true): Te
   const pairs = keyring.getPairs();
   const map: TestKeyringMap = { nobody: nobody() };
 
-  return pairs.reduce((result, pair): TestKeyringMap => {
-    const { name } = pair.meta;
+  for (const p of pairs) {
+    map[p.meta.name as string] = p;
+  }
 
-    result[name as string] = pair;
-
-    return result;
-  }, map);
+  return map;
 }

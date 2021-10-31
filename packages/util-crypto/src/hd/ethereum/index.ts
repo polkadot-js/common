@@ -44,7 +44,7 @@ function deriveChild (hd: CodedKeypair, index: number): CodedKeypair {
 
 export function hdEthereum (seed: Uint8Array, path = ''): Keypair {
   const I = hmacSha512(MASTER_SECRET, seed);
-  const hd = createCoded(I.slice(0, 32), I.slice(32));
+  let hd = createCoded(I.slice(0, 32), I.slice(32));
 
   if (!path || path === 'm' || path === 'M' || path === "m'" || path === "M'") {
     return hd;
@@ -52,16 +52,15 @@ export function hdEthereum (seed: Uint8Array, path = ''): Keypair {
 
   assert(hdValidatePath(path), 'Invalid derivation path');
 
-  return path
-    .split('/')
-    .slice(1)
-    .reduce((hd: CodedKeypair, c): CodedKeypair =>
-      deriveChild(
-        hd, parseInt(c, 10) + (
-          (c.length > 1) && c.endsWith("'")
-            ? HARDENED
-            : 0
-        )
-      ), hd
-    );
+  const parts = path.split('/').slice(1);
+
+  for (const p of parts) {
+    hd = deriveChild(hd, parseInt(p, 10) + (
+      (p.length > 1) && p.endsWith("'")
+        ? HARDENED
+        : 0
+    ));
+  }
+
+  return hd;
 }

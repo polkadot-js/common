@@ -44,7 +44,13 @@ function getEntry (name: string): VersionPath[] {
 }
 
 function getVersionLength (all: { version: string }[]): number {
-  return all.reduce((max, { version }) => Math.max(max, version.length), 0);
+  let length = 0;
+
+  for (const { version } of all) {
+    length = Math.max(length, version.length);
+  }
+
+  return length;
 }
 
 /** @internal */

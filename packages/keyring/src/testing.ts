@@ -121,7 +121,7 @@ export function createTestKeyring (options: KeyringOptions = {}, isDerived = tru
   const keyring = new Keyring(options);
   const pairs: PairDef[] = (options.type && options.type === 'ethereum') ? PAIRSETHEREUM : PAIRSSR25519;
 
-  pairs.forEach(({ name, publicKey, secretKey, seed, type }): void => {
+  for (const { name, publicKey, secretKey, seed, type } of pairs) {
     if (!name && !seed) {
       throw new Error('Testing pair should have either a name or a seed');
     }
@@ -139,7 +139,7 @@ export function createTestKeyring (options: KeyringOptions = {}, isDerived = tru
     pair.lock = (): void => {
       // we don't have lock/unlock functionality here
     };
-  });
+  }
 
   return keyring;
 }

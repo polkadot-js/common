@@ -19,18 +19,18 @@ interface RNExt {
   }
 }
 
-function getRandomValuesNative <T extends Uint8Array> (arr: T): T {
-  return Buffer
-    .from((NativeModules as RNExt).RNGetRandomValues.getRandomBase64(arr.length), 'base64')
-    .reduce((arr, byte, index): T => {
-      arr[index] = byte;
+function getRandomValuesNative <T extends Uint8Array> (output: T): T {
+  const bytes = Buffer.from((NativeModules as RNExt).RNGetRandomValues.getRandomBase64(output.length), 'base64');
 
-      return arr;
-    }, arr);
+  for (let i = 0; i < bytes.length; i++) {
+    output[i] = bytes[i];
+  }
+
+  return output;
 }
 
-function getRandomValuesGlobal <T extends Uint8Array> (arr: T): T {
-  return crypto.getRandomValues(arr);
+function getRandomValuesGlobal <T extends Uint8Array> (output: T): T {
+  return crypto.getRandomValues(output);
 }
 
 export const getRandomValues = (

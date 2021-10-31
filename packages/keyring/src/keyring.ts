@@ -262,11 +262,7 @@ export class Keyring implements KeyringInstance {
    * @description Returns an array list of all the public keys associated with each of the keyring pair values that are stored in the keyring pair dictionary.
    */
   public getPublicKeys (): Uint8Array[] {
-    return this.#pairs
-      .all()
-      .map(({ publicKey }): Uint8Array =>
-        publicKey
-      );
+    return this.#pairs.all().map(({ publicKey }) => publicKey);
   }
 
   /**

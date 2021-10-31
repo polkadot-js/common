@@ -24,11 +24,13 @@ const logTo = {
 
 function formatOther (value: unknown): unknown {
   if (value && isObject(value) && value.constructor === Object) {
-    return Object.keys(value).reduce((result: Record<string, unknown>, key): Record<string, unknown> => {
-      result[key] = loggerFormat(value[key]);
+    const result: Record<string, unknown> = {};
 
-      return result;
-    }, {});
+    for (const k of Object.keys(value)) {
+      result[k] = loggerFormat(value[k]);
+    }
+
+    return result;
   }
 
   return value;
