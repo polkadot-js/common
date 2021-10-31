@@ -28,6 +28,10 @@ interface Options {
   withUnit?: boolean | string;
 }
 
+interface OptionsWithDecimals extends Options {
+  decimals: number;
+}
+
 interface BalanceFormatter {
   <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, options?: Options, decimals?: number): string;
   calcSi (text: string, decimals?: number): SiDef;
@@ -43,8 +47,22 @@ const DEFAULT_UNIT = SI[SI_MID].text;
 let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
+function getUnits (si: SiDef, { withSi = true, withSiFull = false, withUnit = true }: Options): string {
+  return withSi || withSiFull
+    ? si.value === '-'
+      ? withUnit
+        ? ` ${isBoolean(withUnit) ? si.text : withUnit}`
+        : ''
+      : ` ${withSiFull ? si.text : si.value}${withUnit ? `${withSiFull ? ' ' : ''}${(isBoolean(withUnit) ? SI[SI_MID].text : withUnit)}` : ''}`
+    : '';
+}
+
+function getPostfix (text: string, padding: number, mid: number): string {
+  return `${`${new Array(padding + 1).join('0')}${text}`.substr(mid < 0 ? 0 : mid)}0000`.substr(0, 4);
+}
+
 // Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, options: Options | boolean = true, optDecimals: number = defaultDecimals): string {
+function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, options: Options | boolean = true, decimals: number = defaultDecimals): string {
   let text = bnToBn(input).toString();
 
   if (text.length === 0 || text === '0') {
@@ -60,27 +78,18 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | b
   }
 
   // extract options - the boolean case is for backwards-compat
-  const { decimals = optDecimals, forceUnit = undefined, withSi = true, withSiFull = false, withUnit = true } = isBoolean(options)
-    ? { withSi: options }
-    : options;
+  const o: OptionsWithDecimals = isBoolean(options)
+    ? { decimals, withSi: options }
+    : { decimals, ...options };
 
   // NOTE We start at midpoint (8) minus 1 - this means that values display as
   // 123.456 instead of 0.123k (so always 6 relevant). Additionally we use ceil
   // so there are at most 3 decimal before the decimal separator
-  const si = calcSi(text, decimals, forceUnit);
-  const mid = text.length - (decimals + si.power);
-  const prefix = text.substr(0, mid);
-  const padding = mid < 0 ? 0 - mid : 0;
-  const postfix = `${`${new Array(padding + 1).join('0')}${text}`.substr(mid < 0 ? 0 : mid)}0000`.substr(0, 4);
-  const units = withSi || withSiFull
-    ? si.value === '-'
-      ? withUnit
-        ? ` ${isBoolean(withUnit) ? si.text : withUnit}`
-        : ''
-      : ` ${withSiFull ? si.text : si.value}${withUnit ? `${withSiFull ? ' ' : ''}${(isBoolean(withUnit) ? SI[SI_MID].text : withUnit)}` : ''}`
-    : '';
+  const si = calcSi(text, o.decimals, o.forceUnit);
+  const mid = text.length - (o.decimals + si.power);
+  const padding = mid < 0 ? (0 - mid) : 0;
 
-  return `${isNegative ? '-' : ''}${formatDecimal(prefix || '0')}.${postfix}${units}`;
+  return `${isNegative ? '-' : ''}${formatDecimal(text.substr(0, mid) || '0')}.${getPostfix(text, padding, mid)}${getUnits(si, o)}`;
 }
 
 const formatBalance = _formatBalance as BalanceFormatter;
