@@ -83,7 +83,7 @@ function noop (): void {
 }
 
 function isDebugOn (e: string, type: string): boolean {
-  return (
+  return !!e && (
     e === '*' ||
     type === e ||
     (
@@ -94,7 +94,7 @@ function isDebugOn (e: string, type: string): boolean {
 }
 
 function isDebugOff (e: string, type: string): boolean {
-  return (
+  return !!e && (
     e.startsWith('-') &&
     (
       type === e.slice(1) ||
@@ -106,18 +106,14 @@ function isDebugOff (e: string, type: string): boolean {
   );
 }
 
-function getDebugFlag (env: string, type: string): boolean {
+function getDebugFlag (env: string[], type: string): boolean {
   let flag = false;
 
-  for (const e of env.toLowerCase().split(',')) {
-    if (e) {
-      if (isDebugOn(e, type)) {
-        flag = true;
-      }
-
-      if (isDebugOff(e, type)) {
-        flag = false;
-      }
+  for (const e of env) {
+    if (isDebugOn(e, type)) {
+      flag = true;
+    } else if (isDebugOff(e, type)) {
+      flag = false;
     }
   }
 
@@ -129,7 +125,7 @@ function parseEnv (type: string): [boolean, number] {
   const maxSize = parseInt(env.DEBUG_MAX || '-1', 10);
 
   return [
-    getDebugFlag(env.DEBUG || '', type),
+    getDebugFlag((env.DEBUG || '').toLowerCase().split(','), type),
     isNaN(maxSize)
       ? -1
       : maxSize
