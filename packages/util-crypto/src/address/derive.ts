@@ -20,7 +20,7 @@ import { encodeAddress } from './encode';
 export function deriveAddress (who: HexString | Uint8Array | string, suri: string, ss58Format?: Prefix): string {
   const { path } = keyExtractPath(suri);
 
-  assert(path.length && !path.some((path) => path.isHard), 'Expected suri to contain a combination of non-hard paths');
+  assert(path.length && !path.some((p) => p.isHard), 'Expected suri to contain a combination of non-hard paths');
 
   let publicKey = decodeAddress(who);
 
