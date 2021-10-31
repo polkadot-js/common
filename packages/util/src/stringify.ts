@@ -3,13 +3,13 @@
 
 import { isBigInt } from './is/bigInt';
 
+/** @internal */
+function replacer (_: unknown, v: unknown): unknown {
+  return isBigInt(v)
+    ? v.toString()
+    : v;
+}
+
 export function stringify (args: unknown, space?: string | number): string {
-  return JSON.stringify(
-    args,
-    (_, value: unknown) =>
-      isBigInt(value)
-        ? value.toString()
-        : value,
-    space
-  );
+  return JSON.stringify(args, replacer, space);
 }
