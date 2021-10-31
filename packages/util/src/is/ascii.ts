@@ -16,7 +16,10 @@ function getCharCode0 (s: string): number {
 
 /** @internal */
 function isAsciiByte (b: number): boolean {
-  return (b < 127) && ((b >= 32) || FORMAT.includes(b));
+  return (b < 127) && (
+    (b >= 32) ||
+    FORMAT.includes(b)
+  );
 }
 
 /**
