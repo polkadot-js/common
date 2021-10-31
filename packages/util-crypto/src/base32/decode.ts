@@ -11,7 +11,7 @@ import { base32Validate } from './validate';
 // Build the character lookup table:
 const LOOKUP = BASE32_ALPHABET
   .split('')
-  .reduce((lookup: Record<string, number>, char: string, index: number): Record<string, number> => {
+  .reduce<Record<string, number>>((lookup, char: string, index: number) => {
     lookup[char] = index;
 
     return lookup;

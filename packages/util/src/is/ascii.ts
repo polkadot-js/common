@@ -9,6 +9,10 @@ import { isString } from './string';
 
 const FORMAT = [9, 10, 13];
 
+function getCharCode0 (s: string): number {
+  return s.charCodeAt(0);
+}
+
 /**
  * @name isAscii
  * @summary Tests if the input is printable ASCII
@@ -20,7 +24,7 @@ export function isAscii (value?: U8aLike | null): boolean {
 
   return value
     ? (isStringIn && !isHex(value)
-      ? value.toString().split('').map((s) => s.charCodeAt(0))
+      ? value.toString().split('').map(getCharCode0)
       : u8aToU8a(value)
     ).every((b) => (b < 127) && ((b >= 32) || FORMAT.includes(b)))
     : isStringIn;

@@ -55,22 +55,24 @@ function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): 
     return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult], maxSize);
   }
 
+  const withSize = (v: unknown): unknown => {
+    if (maxSize <= 0) {
+      return v;
+    }
+
+    const r = `${v as string}`;
+
+    return r.length < maxSize
+      ? v
+      : `${r.substr(0, maxSize)} ...`;
+  };
+
   console[logTo[log] as 'log'](
     formatDate(new Date()),
     type,
     ...values
       .map(loggerFormat)
-      .map((v) => {
-        if (maxSize <= 0) {
-          return v;
-        }
-
-        const r = `${v as string}`;
-
-        return r.length < maxSize
-          ? v
-          : `${r.substr(0, maxSize)} ...`;
-      })
+      .map(withSize)
   );
 }
 

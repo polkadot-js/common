@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 7.7.1 Oct 31, 2021
 
 Contributed:
 
@@ -10,8 +10,8 @@ Changes:
 
 - Add `arrayZip` to combine a key + value array into entries-like
 - Assert `chainCode` inputs to `derive*`, protecting against misuse
-- Adjust base library usage of `for` vs `reduce/map`
 - Adjust testnet detection in `@polkadot/networks`
+- Adjust base library usage of `for` vs `reduce/map`
 - Bump Ledger libraries to latest versions
 
 
