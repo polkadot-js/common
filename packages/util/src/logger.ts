@@ -48,6 +48,20 @@ export function loggerFormat (value: unknown): unknown {
   return formatOther(value);
 }
 
+function formatWithLength (maxLength: number): (v: unknown) => unknown {
+  return (v: unknown): unknown => {
+    if (maxLength <= 0) {
+      return v;
+    }
+
+    const r = `${v as string}`;
+
+    return r.length < maxLength
+      ? v
+      : `${r.substr(0, maxLength)} ...`;
+  };
+}
+
 function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): void {
   if (values.length === 1 && isFunction(values[0])) {
     const fnResult = values[0]() as unknown;
@@ -55,24 +69,12 @@ function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): 
     return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult], maxSize);
   }
 
-  const withSize = (v: unknown): unknown => {
-    if (maxSize <= 0) {
-      return v;
-    }
-
-    const r = `${v as string}`;
-
-    return r.length < maxSize
-      ? v
-      : `${r.substr(0, maxSize)} ...`;
-  };
-
   console[logTo[log] as 'log'](
     formatDate(new Date()),
     type,
     ...values
       .map(loggerFormat)
-      .map(withSize)
+      .map(formatWithLength(maxSize))
   );
 }
 
@@ -80,27 +82,54 @@ function noop (): void {
   // noop
 }
 
+function isDebugOn (e: string, type: string): boolean {
+  return (
+    e === '*' ||
+    type === e ||
+    (
+      e.endsWith('*') &&
+      type.startsWith(e.slice(0, -1))
+    )
+  );
+}
+
+function isDebugOff (e: string, type: string): boolean {
+  return (
+    e.startsWith('-') &&
+    (
+      type === e.slice(1) ||
+      (
+        e.endsWith('*') &&
+        type.startsWith(e.slice(1, -1))
+      )
+    )
+  );
+}
+
+function getDebugFlag (env: string, type: string): boolean {
+  let flag = false;
+
+  for (const e of env.toLowerCase().split(',')) {
+    if (e) {
+      if (isDebugOn(e, type)) {
+        flag = true;
+      }
+
+      if (isDebugOff(e, type)) {
+        flag = false;
+      }
+    }
+  }
+
+  return flag;
+}
+
 function parseEnv (type: string): [boolean, number] {
   const env = (typeof process === 'object' ? process : {}).env || {};
   const maxSize = parseInt(env.DEBUG_MAX || '-1', 10);
 
-  let isDebugOn = false;
-
-  (env.DEBUG || '')
-    .toLowerCase()
-    .split(',')
-    .forEach((e) => {
-      if (!!e && (e === '*' || type === e || (e.endsWith('*') && type.startsWith(e.slice(0, -1))))) {
-        isDebugOn = true;
-      }
-
-      if (!!e && e.startsWith('-') && (type === e.slice(1) || (e.endsWith('*') && type.startsWith(e.slice(1, -1))))) {
-        isDebugOn = false;
-      }
-    });
-
   return [
-    isDebugOn,
+    getDebugFlag(env.DEBUG || '', type),
     isNaN(maxSize)
       ? -1
       : maxSize
