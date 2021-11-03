@@ -28,8 +28,8 @@
     "test:one": "polkadot-dev-run-test --runInBand"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@polkadot/dev": "^0.63.18",
+    "@babel/core": "^7.16.0",
+    "@polkadot/dev": "^0.63.20",
     "@polkadot/ts": "^0.4.12",
     "@types/ed2curve": "^0.2.2",
     "@types/jest": "^27.0.2"
