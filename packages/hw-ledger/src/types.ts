@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
+
 export type LedgerTypes = 'hid' | 'u2f' | 'webusb';
 
 export interface AccountOptions {
@@ -15,7 +17,7 @@ export interface LedgerAddress {
 }
 
 export interface LedgerSignature {
-  signature: string;
+  signature: HexString;
 }
 
 export interface LedgerVersion {
