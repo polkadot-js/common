@@ -1930,9 +1930,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.63.20":
-  version: 0.63.20
-  resolution: "@polkadot/dev@npm:0.63.20"
+"@polkadot/dev@npm:^0.63.22":
+  version: 0.63.22
+  resolution: "@polkadot/dev@npm:0.63.22"
   dependencies:
     "@babel/cli": ^7.16.0
     "@babel/core": ^7.16.0
@@ -2020,7 +2020,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: eb1991e43ef8bcc545768534765fa66bdb6877555b748abe100e4272bb75b71ccb9b924827567e4a8eaa9048c0913f7e402a6a3700a1057ded269854479c7f6f
+  checksum: 1c7e0685a6a041699276a2a3c7bc995fe8ad4ef22dcbd263607092db457c18939ede48018cef5da0eb850ebcd79e5a95b3cd58077f433abe80364af8606ee866
   languageName: node
   linkType: hard
 
@@ -2073,12 +2073,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/ts@npm:^0.4.12":
-  version: 0.4.12
-  resolution: "@polkadot/ts@npm:0.4.12"
+"@polkadot/ts@npm:^0.4.13":
+  version: 0.4.13
+  resolution: "@polkadot/ts@npm:0.4.13"
   dependencies:
-    "@types/chrome": ^0.0.159
-  checksum: 9000d625a52bcbd473c090e35989394706104fb8bfdd52f13e8dd0b81bd5061a132f89b0e3f7a04cf449eab34b944be222aa78340b2e381e3773a4466caea172
+    "@types/chrome": ^0.0.162
+  checksum: cc7922740164de7eccd31beb197646bb2175a9a5a91c89461cc75718ce2d67664fca96681e53acd9b0789fd86b5bcc9b47998e20fab287923968004b1e67832b
   languageName: node
   linkType: hard
 
@@ -2406,13 +2406,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:^0.0.159":
-  version: 0.0.159
-  resolution: "@types/chrome@npm:0.0.159"
+"@types/chrome@npm:^0.0.162":
+  version: 0.0.162
+  resolution: "@types/chrome@npm:0.0.162"
   dependencies:
     "@types/filesystem": "*"
     "@types/har-format": "*"
-  checksum: 4da826d8f7755333e7519b6e1d8c691d1aba0eb84d4ec93e854650cf09a40c0ce6cefcaecde71b1c0af74d538a6f2e1721cfc4deeab0c8db6cb392214eb030b4
+  checksum: 3f403051de07f5d5d6b3bcb8ded1e104e2c73f1add84e41317da05a3bbfa20e3ad50c41be34aecee16f9bebef7453c7ac5a2afd394669677730c115cd4e0faaa
   languageName: node
   linkType: hard
 
@@ -9195,8 +9195,8 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.16.0
-    "@polkadot/dev": ^0.63.20
-    "@polkadot/ts": ^0.4.12
+    "@polkadot/dev": ^0.63.22
+    "@polkadot/ts": ^0.4.13
     "@types/ed2curve": ^0.2.2
     "@types/jest": ^27.0.2
   languageName: unknown
