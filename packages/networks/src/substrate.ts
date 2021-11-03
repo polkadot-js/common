@@ -270,13 +270,13 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: null
   },
   {
-    decimals: [18],
-    displayName: 'Dhiway CORD Network',
+    decimals: [12, 12],
+    displayName: 'CORD Network',
     network: 'cord',
     prefix: 29,
     standardAccount: '*25519',
-    symbols: ['DCU'],
-    website: 'https://dhiway.com/'
+    symbols: ['DHI', 'WAY'],
+    website: 'https://cord.network/'
   },
   {
     decimals: [12],

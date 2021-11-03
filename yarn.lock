@@ -2164,7 +2164,7 @@ __metadata:
     "@babel/runtime": ^7.15.4
     "@polkadot/x-global": 7.7.1
     "@types/node-fetch": ^2.5.12
-    node-fetch: ^2.6.5
+    node-fetch: ^2.6.6
   languageName: unknown
   linkType: soft
 
@@ -2182,7 +2182,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.15.4
     "@polkadot/x-global": 7.7.1
-    "@types/react-native": ^0.66.1
+    "@types/react-native": ^0.66.2
   languageName: unknown
   linkType: soft
 
@@ -2580,12 +2580,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.66.1":
-  version: 0.66.1
-  resolution: "@types/react-native@npm:0.66.1"
+"@types/react-native@npm:^0.66.2":
+  version: 0.66.2
+  resolution: "@types/react-native@npm:0.66.2"
   dependencies:
     "@types/react": "*"
-  checksum: 0b8eedf5ed6404dafda4599a79acb85a831e6a94a2f9fc68dee7bf31676b66b71609779a43570edfe404a91643e56dd05dc3ef9488fb712894e60aa4b07d8d3a
+  checksum: fe6f569f1b42218ca3c690cd0a184b5cebc8494c13a4abe9d21938cdca745a4245e850a518147c71f7be81b29ff5a5c922b2e6305900fbb90d52ec6abb11a69d
   languageName: node
   linkType: hard
 
@@ -7932,12 +7932,12 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.5":
-  version: 2.6.5
-  resolution: "node-fetch@npm:2.6.5"
+"node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.6":
+  version: 2.6.6
+  resolution: "node-fetch@npm:2.6.6"
   dependencies:
     whatwg-url: ^5.0.0
-  checksum: 4e83db450718e70762882f00d96f647a7f2f3170035225934ddd5450cb1d91ef339ceb180d3687bcb0a6ed78c3fa5636ce8d3e44ec81ab59e0224ebf8965f65f
+  checksum: ee8290626bdb73629c59722b75dcf4b9b6a67c1ed7eb9102e368479c4a13b56a48c2bb3ad71571e378e98c8b2c64c820e11f9cd39e4b8557dd138ad571ef9a42
   languageName: node
   linkType: hard
 
