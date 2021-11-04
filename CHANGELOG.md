@@ -5,6 +5,7 @@
 Changes:
 
 - Add `objectClear` and `objectSpread` utility functions
+- Add `lazyMethod` & `lazyMethods` utility functions
 - Sync with upstream Substrate ss58 registry
 
 

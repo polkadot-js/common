@@ -15,6 +15,7 @@ export * from './extractTime';
 export * from './format';
 export * from './hex';
 export * from './is';
+export * from './lazy';
 export * from './logger';
 export * from './memoize';
 export * from './number';
