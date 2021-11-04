@@ -5,6 +5,7 @@ import type { HexString, ToBn, ToBnOptions } from '../types';
 import type { BN } from './bn';
 
 import { isNumber } from '../is/number';
+import { objectSpread } from '../object/spread';
 import { u8aToHex } from '../u8a';
 import { bnToU8a } from './toU8a';
 
@@ -36,14 +37,14 @@ function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number 
     return ZERO_STR;
   }
 
-  const _options = {
-    isLe: false,
-    isNegative: false,
-    // Backwards-compatibility
-    ...(isNumber(arg1) ? { bitLength: arg1, isLe: arg2 } : arg1)
-  };
-
-  return u8aToHex(bnToU8a(value, _options));
+  return u8aToHex(
+    bnToU8a(value, objectSpread(
+      { isLe: false, isNegative: false },
+      isNumber(arg1)
+        ? { bitLength: arg1, isLe: arg2 }
+        : arg1
+    ))
+  );
 }
 
 export { bnToHex };

@@ -5,6 +5,7 @@ import type { ToBnOptions } from '../types';
 
 import { BN } from '../bn/bn';
 import { isBoolean } from '../is/boolean';
+import { objectSpread } from '../object/spread';
 import { hexStripPrefix } from './stripPrefix';
 
 function reverse (value: string): string {
@@ -36,16 +37,12 @@ export function hexToBn (value?: string | null, options: ToBnOptions | boolean =
     return new BN(0);
   }
 
-  const _options: ToBnOptions = {
-    isLe: false,
-    isNegative: false,
-    // Backwards-compatibility
-    ...(
-      isBoolean(options)
-        ? { isLe: options }
-        : options
-    )
-  };
+  const _options: ToBnOptions = objectSpread(
+    { isLe: false, isNegative: false },
+    isBoolean(options)
+      ? { isLe: options }
+      : options
+  );
   const _value = hexStripPrefix(value);
 
   // FIXME: Use BN's 3rd argument `isLe` once this issue is fixed
