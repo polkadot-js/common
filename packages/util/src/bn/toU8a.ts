@@ -5,6 +5,7 @@ import type { ToBn, ToBnOptions } from '../types';
 import type { BN } from './bn';
 
 import { isNumber } from '../is/number';
+import { objectSpread } from '../object/spread';
 import { bnToBn } from './toBn';
 
 interface Options extends ToBnOptions {
@@ -43,12 +44,12 @@ function createValue (valueBn: BN, byteLength: number, { isLe, isNegative }: Opt
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, options?: Options): Uint8Array;
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | Options = { bitLength: -1, isLe: true, isNegative: false }, arg2?: boolean): Uint8Array {
-  const options: Options = {
-    bitLength: -1,
-    isLe: true,
-    isNegative: false,
-    ...isNumber(arg1) ? { bitLength: arg1, isLe: arg2 } : arg1
-  };
+  const options: Options = objectSpread(
+    { bitLength: -1, isLe: true, isNegative: false },
+    isNumber(arg1)
+      ? { bitLength: arg1, isLe: arg2 }
+      : arg1
+  );
 
   const valueBn = bnToBn(value);
   const byteLength = options.bitLength === -1

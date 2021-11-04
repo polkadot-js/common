@@ -6,7 +6,7 @@ import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types';
 import type { PairInfo } from './types';
 
-import { assert, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
+import { assert, objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
 import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclOpen, naclSeal, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
@@ -181,7 +181,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       secretKey = new Uint8Array();
     },
     setMeta: (additional: KeyringPair$Meta): void => {
-      meta = { ...meta, ...additional };
+      meta = objectSpread({}, meta, additional);
     },
     sign: (message: HexString | string | Uint8Array, options: SignOptions = {}): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');

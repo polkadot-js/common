@@ -18,6 +18,7 @@ export * from './is';
 export * from './logger';
 export * from './memoize';
 export * from './number';
+export * from './object';
 export * from './promisify';
 export * from './string';
 export * from './stringify';

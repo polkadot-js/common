@@ -3,6 +3,8 @@
 
 import type { Time } from './types';
 
+import { objectSpread } from './object/spread';
+
 const HRS = 60 * 60;
 const DAY = HRS * 24;
 
@@ -21,12 +23,12 @@ function addTime (a: Time, b: Time): Time {
   };
 }
 
-const ZERO = { days: 0, hours: 0, milliseconds: 0, minutes: 0, seconds: 0 };
+const ZERO: Time = { days: 0, hours: 0, milliseconds: 0, minutes: 0, seconds: 0 };
 
 function extractDays (milliseconds: number, hrs: number): Time {
   const days = Math.floor(hrs / 24);
 
-  return addTime({ ...ZERO, days }, extractTime(milliseconds - (days * DAY * 1000)));
+  return addTime(objectSpread({}, ZERO, { days }), extractTime(milliseconds - (days * DAY * 1000)));
 }
 
 function extractHrs (milliseconds: number, mins: number): Time {
@@ -35,7 +37,7 @@ function extractHrs (milliseconds: number, mins: number): Time {
   if (hrs < 24) {
     const hours = Math.floor(hrs);
 
-    return addTime({ ...ZERO, hours }, extractTime(milliseconds - (hours * HRS * 1000)));
+    return addTime(objectSpread({}, ZERO, { hours }), extractTime(milliseconds - (hours * HRS * 1000)));
   }
 
   return extractDays(milliseconds, hrs);
@@ -47,7 +49,7 @@ function extractMins (milliseconds: number, secs: number): Time {
   if (mins < 60) {
     const minutes = Math.floor(mins);
 
-    return addTime({ ...ZERO, minutes }, extractTime(milliseconds - (minutes * 60 * 1000)));
+    return addTime(objectSpread({}, ZERO, { minutes }), extractTime(milliseconds - (minutes * 60 * 1000)));
   }
 
   return extractHrs(milliseconds, mins);
@@ -59,7 +61,7 @@ function extractSecs (milliseconds: number): Time {
   if (secs < 60) {
     const seconds = Math.floor(secs);
 
-    return addTime({ ...ZERO, seconds }, extractTime(milliseconds - (seconds * 1000)));
+    return addTime(objectSpread({}, ZERO, { seconds }), extractTime(milliseconds - (seconds * 1000)));
   }
 
   return extractMins(milliseconds, secs);
@@ -81,7 +83,7 @@ export function extractTime (milliseconds?: number): Time {
   if (!milliseconds) {
     return ZERO;
   } else if (milliseconds < 1000) {
-    return { ...ZERO, milliseconds };
+    return objectSpread({}, ZERO, { milliseconds });
   }
 
   return extractSecs(milliseconds);

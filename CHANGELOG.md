@@ -4,6 +4,7 @@
 
 Changes:
 
+- Add `objectClear` and `objectSpread` utility functions
 - Sync with upstream Substrate ss58 registry
 
 
