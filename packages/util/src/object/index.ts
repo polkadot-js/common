@@ -2,4 +2,5 @@
 // SPDX-License-Identifier: Apache-2.0
 
 export { objectClear } from './clear';
+export { objectCopy } from './copy';
 export { objectSpread } from './spread';
