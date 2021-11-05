@@ -10,6 +10,9 @@ export const substrateRegistry = 'https://raw.githubusercontent.com/paritytech/s
 // last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
 export const knownGenesis: KnownGenesis = {
+  acala: [
+    '0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c'
+  ],
   bifrost: [
     '0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed'
   ],
