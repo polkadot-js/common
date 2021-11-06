@@ -1,8 +1,6 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isInstanceOf } from './instanceOf';
-
 /**
  * @name isU8a
  * @summary Tests for a `Uint8Array` object instance.
@@ -18,5 +16,5 @@ import { isInstanceOf } from './instanceOf';
  * ```
  */
 export function isU8a (value?: unknown): value is Uint8Array {
-  return isInstanceOf(value, Uint8Array);
+  return value instanceof Uint8Array;
 }
