@@ -4,6 +4,7 @@
 /**
  * @summary Type checking utilities
  */
+export { isArray } from './array';
 export { isAscii } from './ascii';
 export { isBigInt } from './bigInt';
 export { isBn } from './bn';
