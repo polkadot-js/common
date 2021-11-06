@@ -640,6 +640,15 @@ export const knownSubstrate: KnownSubstrate[] = [
   },
   {
     decimals: [18],
+    displayName: 'Pioneer Network by Bit.Country',
+    network: 'pioneer_network',
+    prefix: 268,
+    standardAccount: '*25519',
+    symbols: ['NEER'],
+    website: 'https://bit.country'
+  },
+  {
+    decimals: [18],
     displayName: 'Moonbeam',
     network: 'moonbeam',
     prefix: 1284,
