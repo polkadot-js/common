@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## master
+## 7.8.1 Nov 6, 2021
+
+Contributed:
+
+- Added Acala genesisHash (Thanks to https://github.com/qwer951123)
 
 Changes:
 
