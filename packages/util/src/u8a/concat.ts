@@ -32,6 +32,10 @@ export function u8aConcat (...list: U8aLike[]): Uint8Array {
     length += u8as[i].length;
   }
 
+  if (typeof Buffer !== 'undefined') {
+    return Uint8Array.from(Buffer.concat(u8as));
+  }
+
   const result = new Uint8Array(length);
 
   for (let i = 0; i < u8as.length; i++) {

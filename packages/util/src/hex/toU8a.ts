@@ -30,6 +30,11 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
   assert(isHex(_value), () => `Expected hex value to convert, found '${_value}'`);
 
   const value = hexStripPrefix(_value);
+
+  if (bitLength === -1 && typeof Buffer !== 'undefined') {
+    return Uint8Array.from(Buffer.from(value, 'hex'));
+  }
+
   const valLength = value.length / 2;
   const bufLength = Math.ceil(
     bitLength === -1

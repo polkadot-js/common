@@ -52,6 +52,10 @@ export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed 
   return `${isPrefixed ? '0x' : ''}${
     !value || !value.length
       ? ''
-      : unprefixed(value, bitLength)
+      : (
+        bitLength === -1 && typeof Buffer !== 'undefined'
+          ? Buffer.from(value).toString('hex')
+          : unprefixed(value, bitLength)
+      )
   }` as HexString;
 }
