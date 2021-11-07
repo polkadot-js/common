@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 7.8.2 Nov 7, 2021
+
+Changes:
+
+- Expose internal `isArray` check
+- Move `object{Property, Properties}` from api repo
+
+
 ## 7.8.1 Nov 6, 2021
 
 Contributed:
