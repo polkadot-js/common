@@ -3,4 +3,5 @@
 
 export { objectClear } from './clear';
 export { objectCopy } from './copy';
+export { objectProperty, objectProperties } from './property';
 export { objectSpread } from './spread';
