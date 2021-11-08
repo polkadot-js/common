@@ -1,11 +1,11 @@
 // Copyright 2017-2021 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KnownSubstrate, Ss58Registry } from './types';
+import type { Ss58Registry } from './types';
 
 import fs from 'fs';
 
-import { stringify } from '@polkadot/util';
+import { objectKeys, stringify } from '@polkadot/util';
 import { fetch } from '@polkadot/x-fetch';
 
 import { substrateRegistry } from './defaults';
@@ -52,7 +52,7 @@ describe('check latest Substrate ss58 registry', (): void => {
   });
 
   it('has the same values as the original', (): void => {
-    const fields = Object.keys(original.schema) as (keyof KnownSubstrate)[];
+    const fields = objectKeys(original.schema);
     const errors = original.registry
       .map((n): [string, string[]] => {
         const other = allNetworks.find(({ prefix }) => prefix === n.prefix);
