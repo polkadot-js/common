@@ -1,15 +1,16 @@
 // Copyright 2017-2021 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Ss58Registry } from './types';
+import type { KnownSubstrate, Ss58Registry } from './types';
 
 import fs from 'fs';
 
-import { objectKeys, stringify } from '@polkadot/util';
+import { stringify } from '@polkadot/util';
 import { fetch } from '@polkadot/x-fetch';
 
 import { substrateRegistry } from './defaults';
 import { allNetworks } from './';
+import { objectKeys } from '@polkadot/util/object/keys';
 
 const OUTPUT = './.github/ss58-check.md';
 
