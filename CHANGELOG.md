@@ -5,6 +5,7 @@
 Changes:
 
 - Add `stringPascalCase` utility
+- Add strongly typed `object{Entries, Keys, Values}` utilities
 
 
 ## 7.8.2 Nov 7, 2021
