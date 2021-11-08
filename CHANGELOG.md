@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Add `stringPascalCase` utility
+
+
 ## 7.8.2 Nov 7, 2021
 
 Changes:

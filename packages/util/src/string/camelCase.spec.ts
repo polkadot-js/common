@@ -6,13 +6,13 @@ import { stringCamelCase } from '.';
 describe('stringCamelCase', (): void => {
   it('works correctly', (): void => {
     expect(
-      stringCamelCase('Snake_case')
-    ).toBe('snakeCase');
+      stringCamelCase('Snake_case-Something    spaced')
+    ).toBe('snakeCaseSomethingSpaced');
   });
 
   it('works correctly for String (class', (): void => {
     expect(
-      stringCamelCase(String('Snake_case'))
-    ).toBe('snakeCase');
+      stringCamelCase(String('Foo_bar-baz---test'))
+    ).toBe('fooBarBazTest');
   });
 });
