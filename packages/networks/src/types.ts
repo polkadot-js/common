@@ -37,5 +37,5 @@ export interface Network extends SubstrateNetwork {
 export interface Ss58Registry {
   registry: KnownSubstrate[];
   specification: string;
-  schema: Record<string, string>;
+  schema: Record<keyof KnownSubstrate, string>;
 }
