@@ -22,14 +22,14 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "7.8.3-3",
+  "version": "7.8.3-4",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@polkadot/networks": "7.8.3-3",
-    "@polkadot/util": "7.8.3-3",
+    "@polkadot/networks": "7.8.3-4",
+    "@polkadot/util": "7.8.3-4",
     "@polkadot/wasm-crypto": "^4.2.1",
-    "@polkadot/x-randomvalues": "7.8.3-3",
+    "@polkadot/x-randomvalues": "7.8.3-4",
     "base-x": "^3.0.9",
     "base64-js": "^1.5.1",
     "blakejs": "^1.1.1",
@@ -51,6 +51,6 @@
     "@types/xxhashjs": "^0.2.2"
   },
   "peerDependencies": {
-    "@polkadot/util": "7.8.3-3"
+    "@polkadot/util": "7.8.3-4"
   }
 }
