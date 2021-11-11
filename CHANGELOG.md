@@ -6,6 +6,7 @@ Changes:
 
 - Add `stringPascalCase` utility
 - Add strongly typed `object{Entries, Keys, Values}` utilities
+- Expand tests for uncovered functions
 
 
 ## 7.8.2 Nov 7, 2021
