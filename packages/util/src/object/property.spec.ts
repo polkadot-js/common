@@ -25,11 +25,28 @@ describe('objectProperty/objectProperties', (): void => {
   });
 
   it('does not override an existing property (inherited)', (): void => {
-    class Parent {
-      a = 1;
+    class Parent extends Map<string, unknown> {
+      constructor () {
+        super();
+
+        this.set('a', 1);
+      }
+
+      get a (): unknown {
+        return this.get('a');
+      }
     }
+
     class Child extends Parent {
-      b = 1;
+      constructor () {
+        super();
+
+        this.set('b', 1);
+      }
+
+      get b (): unknown {
+        return this.get('b');
+      }
     }
 
     const test = new Child() as unknown as Record<string, unknown>;
@@ -43,6 +60,22 @@ describe('objectProperty/objectProperties', (): void => {
     expect(test.a).toEqual(1);
     expect(test.b).toEqual(1);
     expect(test.c).toEqual(2);
+  });
+
+  it('works with this used in classes', (): void => {
+    class Test extends Map<string, unknown> {
+      constructor () {
+        super();
+
+        this.set('a', 1);
+
+        objectProperty(this, 'a', (k) => this.get(k));
+      }
+    }
+
+    const test = new Test() as unknown as Record<string, unknown>;
+
+    expect(test.a).toEqual(1);
   });
 
   it('calls back with the key name (single)', (): void => {
