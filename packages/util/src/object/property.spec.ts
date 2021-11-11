@@ -78,6 +78,24 @@ describe('objectProperty/objectProperties', (): void => {
     expect(test.a).toEqual(1);
   });
 
+  it('works with this used in classes (multiples)', (): void => {
+    class Test extends Map<string, unknown> {
+      constructor () {
+        super();
+
+        this.set('a', 1);
+        this.set('b', 2);
+
+        objectProperties(this, ['a', 'b'], (k) => this.get(k));
+      }
+    }
+
+    const test = new Test() as unknown as Record<string, unknown>;
+
+    expect(test.a).toEqual(1);
+    expect(test.b).toEqual(2);
+  });
+
   it('calls back with the key name (single)', (): void => {
     const test: Record<string, unknown> = {};
     const getter = jest.fn(() => 123);
