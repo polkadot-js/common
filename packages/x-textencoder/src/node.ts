@@ -16,9 +16,7 @@ class NodeFallback {
 
   // For a Jest 26.0.1 environment, Buffer !== Uint8Array
   encode (value: string): Uint8Array {
-    const encoded = this.#encoder.encode(value);
-
-    return Uint8Array.from(encoded);
+    return Uint8Array.from(this.#encoder.encode(value));
   }
 }
 
