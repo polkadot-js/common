@@ -13,7 +13,7 @@ interface PairStateJson {
 }
 
 export function pairToJson (type: KeypairType, { address, meta }: PairStateJson, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
-  return objectSpread({}, jsonEncryptFormat(encoded, ['pkcs8', type], isEncrypted), {
+  return objectSpread(jsonEncryptFormat(encoded, ['pkcs8', type], isEncrypted), {
     address,
     meta
   });
