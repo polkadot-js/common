@@ -9,11 +9,11 @@ import { objectSpread } from '../object/spread';
 import { u8aToHex } from '../u8a';
 import { bnToU8a } from './toU8a';
 
-const ZERO_STR = '0x00';
-
 interface Options extends ToBnOptions {
   bitLength?: number;
 }
+
+const ZERO_STR = '0x00';
 
 /**
  * @name bnToHex
