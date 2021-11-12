@@ -16,8 +16,9 @@ interface Compact<T> {
  * @name isCompact
  * @summary Tests for SCALE-Compact-like object instance.
  */
-export function isCompact <T> (value: unknown): value is Compact<T> {
+export function isCompact <T> (value?: unknown): value is Compact<T> {
   return (
+    !!value &&
     isFunction((value as Compact<T>).toBigInt) &&
     isFunction((value as Compact<T>).toBn) &&
     isFunction((value as Compact<T>).toNumber) &&
