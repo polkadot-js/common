@@ -3,7 +3,7 @@
 
 import type { BN } from './bn';
 
-import { checkMaxMin } from './util';
+import { checkMaxMin } from './max';
 
 /**
  * @name bnMin

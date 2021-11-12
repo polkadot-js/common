@@ -5,6 +5,7 @@
 
 import { bnToU8a, u8aConcat } from '@polkadot/util';
 
+import { BN_BE_32_OPTS } from '../bn';
 import { hmacSha512 } from '../hmac';
 
 export function pbkdf2Sync (password: Uint8Array, salt: Uint8Array, rounds: number, len = 64): Uint8Array {
@@ -14,7 +15,7 @@ export function pbkdf2Sync (password: Uint8Array, salt: Uint8Array, rounds: numb
 
   while (out.length < len) {
     num++;
-    block.set(bnToU8a(num, { bitLength: 32, isLe: false }), salt.length);
+    block.set(bnToU8a(num, BN_BE_32_OPTS), salt.length);
 
     let prev = hmacSha512(password, block);
     const md = prev;

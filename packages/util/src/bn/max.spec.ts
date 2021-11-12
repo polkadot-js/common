@@ -15,4 +15,16 @@ describe('bnMax', (): void => {
       bnMax(new BN(2), new BN(3), new BN(1))
     ).toEqual(new BN(3));
   });
+
+  it('returns a single item', (): void => {
+    expect(
+      bnMax(new BN(1))
+    ).toEqual(new BN(1));
+  });
+
+  it('fails when no items are available', (): void => {
+    expect(
+      () => bnMax()
+    ).toThrow(/Must provide one or more BN arguments/);
+  });
 });
