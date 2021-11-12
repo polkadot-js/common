@@ -3,7 +3,8 @@
 
 import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
-import { EXPAND_OPT, secp256k1 } from './secp256k1';
+import { BN_BE_256_OPTS } from '../bn';
+import { secp256k1 } from './secp256k1';
 
 export function secp256k1Expand (publicKey: Uint8Array): Uint8Array {
   assert([33, 65].includes(publicKey.length), 'Invalid publicKey provided');
@@ -13,7 +14,7 @@ export function secp256k1Expand (publicKey: Uint8Array): Uint8Array {
     .getPublic();
 
   return u8aConcat(
-    bnToU8a(expanded.getX(), EXPAND_OPT),
-    bnToU8a(expanded.getY(), EXPAND_OPT)
+    bnToU8a(expanded.getX(), BN_BE_256_OPTS),
+    bnToU8a(expanded.getY(), BN_BE_256_OPTS)
   );
 }

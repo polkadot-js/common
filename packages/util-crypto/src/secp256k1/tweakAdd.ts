@@ -3,6 +3,7 @@
 
 import { assert, BN, bnToU8a, isU8a } from '@polkadot/util';
 
+import { BN_BE_256_OPTS } from '../bn';
 import { secp256k1 } from './secp256k1';
 
 const ecparams = secp256k1.curve as { n: BN };
@@ -23,5 +24,5 @@ export function secp256k1PrivateKeyTweakAdd (seckey: Uint8Array, tweak: Uint8Arr
 
   assert(!bn.isZero(), 'Invalid resulting private key');
 
-  return bnToU8a(bn, { bitLength: 256, isLe: false });
+  return bnToU8a(bn, BN_BE_256_OPTS);
 }

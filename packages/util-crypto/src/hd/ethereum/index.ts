@@ -5,6 +5,7 @@ import type { Keypair } from '../../types';
 
 import { assert, bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
+import { BN_BE_32_OPTS } from '../../bn';
 import { hmacSha512 } from '../../hmac';
 import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '../../secp256k1';
 import { HARDENED, hdValidatePath } from '../validatePath';
@@ -24,7 +25,7 @@ function createCoded (secretKey: Uint8Array, chainCode: Uint8Array): CodedKeypai
 }
 
 function deriveChild (hd: CodedKeypair, index: number): CodedKeypair {
-  const indexBuffer = bnToU8a(index, { bitLength: 32, isLe: false });
+  const indexBuffer = bnToU8a(index, BN_BE_32_OPTS);
   const data = index >= HARDENED
     ? u8aConcat(new Uint8Array(1), hd.secretKey, indexBuffer)
     : u8aConcat(hd.publicKey, indexBuffer);
