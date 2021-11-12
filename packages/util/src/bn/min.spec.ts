@@ -9,4 +9,10 @@ describe('bnMin', (): void => {
       bnMin(new BN(2), new BN(1), new BN(3))
     ).toEqual(new BN(1));
   });
+
+  it('returns a single item', (): void => {
+    expect(
+      bnMin(new BN(1))
+    ).toEqual(new BN(1));
+  });
 });
