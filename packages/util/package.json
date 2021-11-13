@@ -18,6 +18,12 @@
         "require": "./u8a/concatBuffer.cjs",
         "default": "./u8a/concatBuffer.js"
       }
+    },
+    "./u8a/toHex": {
+      "node": {
+        "require": "./u8a/toHexBuffer.cjs",
+        "default": "./u8a/toHexBuffer.js"
+      }
     }
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util#readme",
