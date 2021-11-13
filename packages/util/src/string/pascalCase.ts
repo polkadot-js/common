@@ -5,10 +5,12 @@ import type { AnyString } from '../types';
 
 import camelcase from 'camelcase';
 
+const OPTS = { pascalCase: true };
+
 /**
  * @name stringPascalCase
  * @summary Convert a dash/dot/underscore/space separated string/String to PascalCase
  */
 export function stringPascalCase (value: AnyString): string {
-  return camelcase(value.toString(), { pascalCase: true });
+  return camelcase(value.toString(), OPTS);
 }
