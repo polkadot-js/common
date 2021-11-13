@@ -7,6 +7,7 @@ Changes:
 - Add `stringPascalCase` utility
 - Add strongly typed `object{Entries, Keys, Values}` utilities
 - Adjust util-crypto BN conversion to use named constants
+- Add optimized Node-specific `hexToU8a` variant
 - Expand tests for uncovered functions
 
 
