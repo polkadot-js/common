@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { AnyString } from '../types';
+
 import { TextEncoder } from '@polkadot/x-textencoder';
 
 const encoder = new TextEncoder();
@@ -20,7 +22,7 @@ const encoder = new TextEncoder();
  * ```
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
-export function stringToU8a (value?: String | string): Uint8Array {
+export function stringToU8a (value?: AnyString): Uint8Array {
   return value
     ? encoder.encode(value.toString())
     : new Uint8Array();

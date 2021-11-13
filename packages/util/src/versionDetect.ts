@@ -92,6 +92,7 @@ function getPath (pathOrFn?: FnString | string | false): string {
 /**
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
+ * @description A `@polkadot/*` version detection utility, checking for one occurence of a package in addition to checking for ddependency versions.
  */
 export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnString | string | false, deps: PackageJson[] = []): void {
   assert(name.startsWith('@polkadot'), () => `Invalid package descriptor ${name}`);

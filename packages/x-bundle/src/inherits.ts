@@ -5,14 +5,14 @@
 // The ISC License
 // Copyright (c) Isaac Z. Schlueter
 
-export default function inherits (ctor: Record<string, unknown>, superCtor: Record<string, unknown>): void {
-  if (superCtor) {
-    ctor.super_ = superCtor;
-    ctor.prototype = Object.create(superCtor.prototype as null, {
+export default function inherits (child: Record<string, unknown>, parent: Record<string, unknown>): void {
+  if (parent) {
+    child.super_ = parent;
+    child.prototype = Object.create(parent.prototype as object, {
       constructor: {
         configurable: true,
         enumerable: false,
-        value: ctor,
+        value: child,
         writable: true
       }
     });
