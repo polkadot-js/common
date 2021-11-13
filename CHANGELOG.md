@@ -7,6 +7,7 @@ Changes:
 - Add `stringPascalCase` utility
 - Add strongly typed `object{Entries, Keys, Values}` utilities
 - Expand tests for uncovered functions
+- Sync with upstream Substrate ss58 registry
 
 
 ## 7.8.2 Nov 7, 2021

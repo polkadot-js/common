@@ -468,6 +468,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://composable.finance'
   },
   {
+    decimals: [9],
+    displayName: 'xx network',
+    network: 'xxnetwork',
+    prefix: 55,
+    standardAccount: '*25519',
+    symbols: ['XX'],
+    website: 'https://xx.network'
+  },
+  {
     decimals: [12],
     displayName: 'HydraDX',
     network: 'hydradx',
@@ -664,6 +673,24 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: 'secp256k1',
     symbols: ['MOVR'],
     website: 'https://moonbeam.network'
+  },
+  {
+    decimals: [18],
+    displayName: 'Subspace testnet',
+    network: 'subspace_testnet',
+    prefix: 2254,
+    standardAccount: '*25519',
+    symbols: ['tSSC'],
+    website: 'https://subspace.network'
+  },
+  {
+    decimals: [18],
+    displayName: 'Subspace',
+    network: 'subspace',
+    prefix: 6094,
+    standardAccount: '*25519',
+    symbols: ['SSC'],
+    website: 'https://subspace.network'
   },
   {
     decimals: [12],
