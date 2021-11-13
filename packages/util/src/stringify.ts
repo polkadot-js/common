@@ -10,6 +10,11 @@ function replacer (_: unknown, v: unknown): unknown {
     : v;
 }
 
-export function stringify (args: unknown, space?: string | number): string {
-  return JSON.stringify(args, replacer, space);
+/**
+ * @name stringify
+ * @summary Performs a JSON.stringify, with BigInt handling
+ * @description A wrapper for JSON.stringify that handles BigInt values transparently, converting them to string. No differences from the native JSON.stringify function otherwise.
+ */
+export function stringify (value: unknown, space?: string | number): string {
+  return JSON.stringify(value, replacer, space);
 }

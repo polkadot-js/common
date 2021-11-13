@@ -5,9 +5,9 @@ import { assert } from '../assert';
 import { BN, BN_ONE, BN_TWO, bnToBn, bnToU8a } from '../bn';
 import { u8aConcat } from '../u8a';
 
-const MAX_U8 = new BN(2).pow(new BN(8 - 2)).subn(1);
-const MAX_U16 = new BN(2).pow(new BN(16 - 2)).subn(1);
-const MAX_U32 = new BN(2).pow(new BN(32 - 2)).subn(1);
+const MAX_U8 = BN_TWO.pow(new BN(8 - 2)).isub(BN_ONE);
+const MAX_U16 = BN_TWO.pow(new BN(16 - 2)).isub(BN_ONE);
+const MAX_U32 = BN_TWO.pow(new BN(32 - 2)).isub(BN_ONE);
 
 /**
  * @name compactToU8a
