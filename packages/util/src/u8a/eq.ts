@@ -37,7 +37,7 @@ function equals (a: Uint8Array, b: Uint8Array): boolean {
   if (a.length === b.length) {
     // NOTE: We don't do BigUint64Array, at this point it is significantly slower
     return a.length % Uint32Array.BYTES_PER_ELEMENT
-      ? Uint16Array.BYTES_PER_ELEMENT
+      ? a.length % Uint16Array.BYTES_PER_ELEMENT
         ? equalsArray(a, b)
         : equalsArray(createArray(Uint16Array, a), createArray(Uint16Array, b))
       : equalsArray(createArray(Uint32Array, a), createArray(Uint32Array, b));
