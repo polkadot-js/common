@@ -5,18 +5,18 @@ import type { HexString } from '../types';
 
 import { u8aToU8a } from './toU8a';
 
-export interface Constructor<T extends Uint32Array | Uint16Array | Uint8Array> {
+export interface Constructor<T extends Float64Array | Uint32Array | Uint16Array | Uint8Array> {
   new(...args: unknown[]): T;
 }
 
 // Creates a Uint8Array, ensuring that the alignment is correct
-function createUxA <T extends Uint32Array | Uint16Array | Uint8Array> (Clazz: Constructor<T>, value: Uint8Array, align: 2 | 4): T {
+function createUxA <T extends Float64Array | Uint32Array | Uint16Array | Uint8Array> (Clazz: Constructor<T>, value: Uint8Array, align: 2 | 4 | 8): T {
   return value.byteOffset % align
     ? new Clazz(value.buffer.slice(value.byteOffset), 0, value.length / align)
     : new Clazz(value.buffer, value.byteOffset, value.length / align);
 }
 
-function equalsUxA <T extends Uint32Array | Uint16Array | Uint8Array> (a: T, b: T): boolean {
+function equalsUxA <T extends Float64Array | Uint32Array | Uint16Array | Uint8Array> (a: T, b: T): boolean {
   for (let i = 0; i < a.length; i++) {
     if (a[i] !== b[i]) {
       return false;
@@ -28,11 +28,13 @@ function equalsUxA <T extends Uint32Array | Uint16Array | Uint8Array> (a: T, b: 
 
 function equals (a: Uint8Array, b: Uint8Array): boolean {
   if (a.length === b.length) {
-    return a.length % 4
-      ? a.length % 2
-        ? equalsUxA(a, b)
-        : equalsUxA(createUxA(Uint16Array, a, 2), createUxA(Uint16Array, b, 2))
-      : equalsUxA(createUxA(Uint32Array, a, 4), createUxA(Uint32Array, b, 4));
+    return a.length % 8
+      ? a.length % 4
+        ? a.length % 2
+          ? equalsUxA(a, b)
+          : equalsUxA(createUxA(Uint16Array, a, 2), createUxA(Uint16Array, b, 2))
+        : equalsUxA(createUxA(Uint32Array, a, 4), createUxA(Uint32Array, b, 4))
+      : equalsUxA(createUxA(Float64Array, a, 8), createUxA(Float64Array, b, 8));
   }
 
   return false;
