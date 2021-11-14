@@ -43,8 +43,7 @@ export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed 
     !value || !value.length
       ? ''
       : (length > 0 && value.length > length)
-        // Since we work with the internal buffer above, we need to slice here
-        ? `${hex(value.slice(0, length / 2))}…${hex(value.slice(value.length - length / 2))}`
+        ? `${hex(value.subarray(0, length / 2))}…${hex(value.subarray(value.length - length / 2))}`
         : hex(value)
   }` as HexString;
 }

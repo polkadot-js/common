@@ -20,8 +20,8 @@ function equals (a: Uint8Array, b: Uint8Array): boolean {
     return a.length % 4
       ? a.length % 2
         ? equalsUxA(a, b)
-        : equalsUxA(new Uint16Array(a.buffer), new Uint16Array(b.buffer))
-      : equalsUxA(new Uint32Array(a.buffer), new Uint32Array(b.buffer));
+        : equalsUxA(new Uint16Array(a.buffer.slice(0, a.length)), new Uint16Array(b.buffer.slice(0, a.length)))
+      : equalsUxA(new Uint32Array(a.buffer.slice(0, a.length)), new Uint32Array(b.buffer.slice(0, a.length)));
   }
 
   return false;
