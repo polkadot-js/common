@@ -20,5 +20,5 @@ import { isHex } from '../is/hex';
  * ```
  */
 export function hexHasPrefix (value?: string | null): value is HexString {
-  return !!value && isHex(value, -1, true);
+  return !!value && isHex(value, -1);
 }
