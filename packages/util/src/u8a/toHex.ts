@@ -11,7 +11,7 @@ const U16_SIZE = Uint16Array.BYTES_PER_ELEMENT;
 function hex (value: Uint8Array): string {
   const mod = value.length % U16_SIZE;
 
-  // We need alignment of the Uint16Array, see u8aEq for rationale
+  // We need alignment of the Uint16Array, see u8aEq for further details
   const u16 = value.byteOffset % U16_SIZE
     ? new Uint16Array(value.buffer.slice(value.byteOffset), 0, (value.length - mod) / U16_SIZE)
     : new Uint16Array(value.buffer, value.byteOffset, (value.length - mod) / U16_SIZE);
