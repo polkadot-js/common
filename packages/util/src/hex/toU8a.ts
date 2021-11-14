@@ -40,10 +40,10 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
   const result = new Uint8Array(resultLength);
   const offset = Math.max(0, resultLength - valLength);
 
-  for (let index = 0; index < resultLength; index++) {
+  for (let i = 0; i < resultLength; i++) {
     // TODO With some magic we can use the HEX_TO_U16 lookups here as well
     // (and then finally HEX_TO_U8 for the overflows)
-    result[index + offset] = HEX_TO_U8[value.substr(index * 2, 2)];
+    result[i + offset] = HEX_TO_U8[value.substr(i * 2, 2)];
   }
 
   return result;

@@ -27,12 +27,12 @@ export function arrayFlatten <T> (arrays: T[][]): T[] {
   }
 
   const output = new Array<T>(size);
-  let index = -1;
+  let i = -1;
 
   for (const a of arrays) {
     // instead of pushing, we just set the entries
     for (let e = 0; e < a.length; e++) {
-      output[++index] = a[e];
+      output[++i] = a[e];
     }
   }
 
