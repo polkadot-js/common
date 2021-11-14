@@ -38,7 +38,9 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     return Uint8Array.from(buf);
   }
 
-  const offset = Math.max(0, resultLength - valLength);
+  const offset = resultLength > valLength
+    ? resultLength - valLength
+    : 0;
 
   if (offset) {
     const u8a = new Uint8Array(resultLength);
