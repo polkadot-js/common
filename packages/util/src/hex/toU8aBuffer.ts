@@ -22,15 +22,16 @@ import { hexStripPrefix } from './stripPrefix';
  * hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
  * ```
  */
-export function hexToU8a (value?: HexString | string | null, bitLength = -1): Uint8Array {
-  if (!value) {
+export function hexToU8a (_value?: HexString | string | null, bitLength = -1): Uint8Array {
+  if (!_value) {
     return new Uint8Array();
   }
 
-  assert(isHex(value), () => `Expected hex value to convert, found '${value}'`);
+  assert(isHex(_value), () => `Expected hex value to convert, found '${_value}'`);
 
-  const buf = Buffer.from(hexStripPrefix(value), 'hex');
-  const valLength = buf.length / 2;
+  const value = hexStripPrefix(_value);
+  const buf = Buffer.from(value, 'hex');
+  const valLength = value.length / 2;
   const resultLength = Math.ceil(
     bitLength === -1
       ? valLength
