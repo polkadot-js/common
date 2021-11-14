@@ -22,14 +22,16 @@ export function arrayFlatten <T> (arrays: T[][]): T[] {
   // pre-allocate based on the combined size
   let size = 0;
 
-  for (const a of arrays) {
-    size += a.length;
+  for (let i = 0; i < arrays.length; i++) {
+    size += arrays[i].length;
   }
 
   const output = new Array<T>(size);
   let i = -1;
 
-  for (const a of arrays) {
+  for (let j = 0; j < arrays.length; j++) {
+    const a = arrays[j];
+
     // instead of pushing, we just set the entries
     for (let e = 0; e < a.length; e++) {
       output[++i] = a[e];

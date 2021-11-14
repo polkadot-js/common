@@ -21,9 +21,9 @@ describe('hexToU8a', (): void => {
 
   it('returns a Uint8Array with the correct values (bitLength > provided)', (): void => {
     expect(
-      hexToU8a('0x80000A', 32)
+      hexToU8a('0x80000A', 64)
     ).toEqual(
-      new Uint8Array([0, 128, 0, 10])
+      new Uint8Array([0, 0, 0, 0, 0, 128, 0, 10])
     );
   });
 
@@ -37,20 +37,20 @@ describe('hexToU8a', (): void => {
 
   it('fails when non-hex value provided', (): void => {
     expect(
-      (): Uint8Array => hexToU8a('notahex')
+      () => hexToU8a('notahex')
     ).toThrow(/hex value to convert/);
   });
 
-  it.skip('performance', (): void => {
+  it.only('performance', (): void => {
     let a = '0x';
 
-    for (let i = 0; i < 8192; i++) {
-      a += U16_TO_HEX[i];
+    for (let i = 0; i < 640000; i++) {
+      a += U16_TO_HEX[i % (256 * 256)];
     }
 
     console.time('hexToU8a:performance');
 
-    for (let i = 0; i < 8192; i++) {
+    for (let i = 0; i < 64; i++) {
       hexToU8a(a);
     }
 
