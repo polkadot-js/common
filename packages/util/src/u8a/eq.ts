@@ -11,6 +11,8 @@ export interface Constructor<T extends Float64Array | Uint32Array | Uint16Array 
 
 // Creates a Uint8Array, ensuring that the alignment is correct
 function createArray <T extends Float64Array | Uint32Array | Uint16Array | Uint8Array> (Clazz: Constructor<T>, value: Uint8Array, align: 2 | 4 | 8): T {
+  // The byteOffset needs to match the size of the data, i.e. for 32 it needs to be 4
+  // NOTE: DataView doesn't have this limitation, but getters are slower
   return value.byteOffset % align
     ? new Clazz(value.buffer.slice(value.byteOffset), 0, value.length / align)
     : new Clazz(value.buffer, value.byteOffset, value.length / align);
