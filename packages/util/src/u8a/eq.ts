@@ -10,13 +10,13 @@ export interface Constructor<T extends Float64Array | Uint32Array | Uint16Array 
 }
 
 // Creates a Uint8Array, ensuring that the alignment is correct
-function createUxA <T extends Float64Array | Uint32Array | Uint16Array | Uint8Array> (Clazz: Constructor<T>, value: Uint8Array, align: 2 | 4 | 8): T {
+function createArray <T extends Float64Array | Uint32Array | Uint16Array | Uint8Array> (Clazz: Constructor<T>, value: Uint8Array, align: 2 | 4 | 8): T {
   return value.byteOffset % align
     ? new Clazz(value.buffer.slice(value.byteOffset), 0, value.length / align)
     : new Clazz(value.buffer, value.byteOffset, value.length / align);
 }
 
-function equalsUxA <T extends Float64Array | Uint32Array | Uint16Array | Uint8Array> (a: T, b: T): boolean {
+function equalsArray <T extends Float64Array | Uint32Array | Uint16Array | Uint8Array> (a: T, b: T): boolean {
   for (let i = 0; i < a.length; i++) {
     if (a[i] !== b[i]) {
       return false;
@@ -31,10 +31,10 @@ function equals (a: Uint8Array, b: Uint8Array): boolean {
     return a.length % 8
       ? a.length % 4
         ? a.length % 2
-          ? equalsUxA(a, b)
-          : equalsUxA(createUxA(Uint16Array, a, 2), createUxA(Uint16Array, b, 2))
-        : equalsUxA(createUxA(Uint32Array, a, 4), createUxA(Uint32Array, b, 4))
-      : equalsUxA(createUxA(Float64Array, a, 8), createUxA(Float64Array, b, 8));
+          ? equalsArray(a, b)
+          : equalsArray(createArray(Uint16Array, a, 2), createArray(Uint16Array, b, 2))
+        : equalsArray(createArray(Uint32Array, a, 4), createArray(Uint32Array, b, 4))
+      : equalsArray(createArray(Float64Array, a, 8), createArray(Float64Array, b, 8));
   }
 
   return false;
