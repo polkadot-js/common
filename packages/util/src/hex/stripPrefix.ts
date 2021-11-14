@@ -18,7 +18,7 @@ import { REGEX_HEX_NOPREFIX, REGEX_HEX_PREFIXED } from '../is/hex';
  * ```
  */
 export function hexStripPrefix (value?: string | null): string {
-  if (!value) {
+  if (!value || value === '0x') {
     return '';
   } else if (REGEX_HEX_PREFIXED.test(value)) {
     return value.substr(2);

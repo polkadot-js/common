@@ -41,7 +41,7 @@ describe('hexToU8a', (): void => {
     ).toThrow(/hex value to convert/);
   });
 
-  it('performance', (): void => {
+  it.skip('performance', (): void => {
     let a = '0x';
 
     for (let i = 0; i < 640000; i++) {
