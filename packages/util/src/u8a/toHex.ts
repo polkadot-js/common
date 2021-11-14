@@ -8,7 +8,7 @@ import { U8_TO_HEX, U16_TO_HEX } from '../hex/alphabet';
 /** @internal */
 function hex (value: Uint8Array): string {
   const mod = value.length % 2;
-  const u16 = new Uint16Array(value.buffer.slice(0, value.length - mod));
+  const u16 = new Uint16Array(value.buffer, value.byteOffset, (value.length - mod) / 2);
   let result = '';
 
   for (let i = 0; i < u16.length; i++) {
@@ -43,7 +43,7 @@ export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed 
     !value || !value.length
       ? ''
       : (length > 0 && value.length > length)
-        ? `${hex(value.subarray(0, length / 2))}…${hex(value.subarray(value.length - length / 2))}`
+        ? `${hex(value.slice(0, length / 2))}…${hex(value.slice(value.length - length / 2))}`
         : hex(value)
   }` as HexString;
 }
