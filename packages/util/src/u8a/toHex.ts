@@ -1,23 +1,31 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexDigit, HexString } from '../types';
+import type { HexString } from '../types';
 
-import { arrayRange } from '../array';
+import { U8_TO_HEX, U16_TO_HEX } from '../hex/alphabet';
 
-type HexByte = `${HexDigit}${HexDigit}`;
-
-const ALPHABET = arrayRange(256).map((n) => n.toString(16).padStart(2, '0') as HexByte);
+const U16_SIZE = Uint16Array.BYTES_PER_ELEMENT;
 
 /** @internal */
 function hex (value: Uint8Array): string {
-  const result = new Array<HexByte>(value.length);
+  const mod = value.length % U16_SIZE;
 
-  for (let i = 0; i < value.length; i++) {
-    result[i] = ALPHABET[value[i]];
+  // We need alignment of the Uint16Array, see u8aEq for further details
+  const u16 = value.byteOffset % U16_SIZE
+    ? new Uint16Array(value.buffer.slice(value.byteOffset), 0, (value.length - mod) / U16_SIZE)
+    : new Uint16Array(value.buffer, value.byteOffset, (value.length - mod) / U16_SIZE);
+  let result = '';
+
+  for (let i = 0; i < u16.length; i++) {
+    result += U16_TO_HEX[u16[i]];
   }
 
-  return result.join('');
+  if (mod) {
+    result += U8_TO_HEX[value[value.length - 1]];
+  }
+
+  return result;
 }
 
 /**

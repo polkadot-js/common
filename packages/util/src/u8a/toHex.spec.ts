@@ -57,4 +57,20 @@ describe('u8aToHex', (): void => {
       )
     ).toEqual('0x8000…0c0d');
   });
+
+  it.skip('performance', (): void => {
+    const a = new Uint8Array(32768);
+
+    for (let i = 0; i < a.length; i++) {
+      a[i] = i % 256;
+    }
+
+    console.time('u8aToHex:performance');
+
+    for (let i = 0; i < 65536; i++) {
+      u8aToHex(a);
+    }
+
+    console.timeEnd('u8aToHex:performance');
+  });
 });

@@ -27,9 +27,9 @@ export function compactFromU8a (_input: U8aLike): [number, BN] {
   if (flag === 0b00) {
     return [1, new BN(input[0]).ishrn(2)];
   } else if (flag === 0b01) {
-    return [2, u8aToBn(input.slice(0, 2), true).ishrn(2)];
+    return [2, u8aToBn(input.subarray(0, 2), true).ishrn(2)];
   } else if (flag === 0b10) {
-    return [4, u8aToBn(input.slice(0, 4), true).ishrn(2)];
+    return [4, u8aToBn(input.subarray(0, 4), true).ishrn(2)];
   }
 
   const offset = 1 + (

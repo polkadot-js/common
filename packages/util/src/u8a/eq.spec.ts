@@ -39,4 +39,32 @@ describe('u8aEq', (): void => {
       )
     ).toEqual(true);
   });
+
+  it('works on aubarray values', (): void => {
+    const a = new Uint8Array(16);
+
+    for (let i = 0; i < a.length; i++) {
+      a[i] = i;
+    }
+
+    expect(
+      u8aEq(a.subarray(0, 5), a.subarray(0, 5))
+    ).toEqual(true);
+  });
+
+  it.skip('performance', (): void => {
+    const a = new Uint8Array(32768);
+
+    for (let i = 0; i < a.length; i++) {
+      a[i] = i % 256;
+    }
+
+    console.time('u8aEq:performance');
+
+    for (let i = 0; i < 65536; i++) {
+      u8aEq(a, a);
+    }
+
+    console.timeEnd('u8aEq:performance');
+  });
 });

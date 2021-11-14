@@ -5,6 +5,7 @@ import type { HexString } from '../types';
 
 import { assert } from '../assert';
 import { isHex } from '../is/hex';
+import { HEX_TO_U8 } from './alphabet';
 import { hexStripPrefix } from './stripPrefix';
 
 /**
@@ -29,7 +30,7 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
 
   assert(isHex(_value), () => `Expected hex value to convert, found '${_value}'`);
 
-  const value = hexStripPrefix(_value);
+  const value = hexStripPrefix(_value).toLowerCase();
   const valLength = value.length / 2;
   const resultLength = Math.ceil(
     bitLength === -1
@@ -40,7 +41,9 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
   const offset = Math.max(0, resultLength - valLength);
 
   for (let index = 0; index < resultLength; index++) {
-    result[index + offset] = parseInt(value.substr(index * 2, 2), 16);
+    // TODO With some magic we can use the HEX_TO_U16 lookups here as well
+    // (and then finally HEX_TO_U8 for the overflows)
+    result[index + offset] = HEX_TO_U8[value.substr(index * 2, 2)];
   }
 
   return result;
