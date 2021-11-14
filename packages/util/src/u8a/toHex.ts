@@ -8,15 +8,17 @@ import { U8_TO_HEX, U16_TO_HEX } from '../hex/alphabet';
 /** @internal */
 function hex (value: Uint8Array): string {
   const mod = value.length % 2;
-  const u16 = new Uint16Array(value.buffer, value.byteOffset, (value.length - mod) / 2);
+  const last = value.length - mod;
+  const count = last / 2;
+  const dv = new DataView(value.buffer, value.byteOffset);
   let result = '';
 
-  for (let i = 0; i < u16.length; i++) {
-    result += U16_TO_HEX[u16[i]];
+  for (let i = 0; i < count; i++) {
+    result += U16_TO_HEX[dv.getUint16(i * 2, true)];
   }
 
   if (mod) {
-    result += U8_TO_HEX[value[value.length - 1]];
+    result += U8_TO_HEX[value[last]];
   }
 
   return result;

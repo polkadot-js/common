@@ -21,12 +21,12 @@ function equals (a: Uint8Array, b: Uint8Array): boolean {
       ? a.length % 2
         ? equalsUxA(a, b)
         : equalsUxA(
-          new Uint16Array(a.buffer, a.byteOffset, a.length / 2),
-          new Uint16Array(b.buffer, b.byteOffset, b.length / 2)
+          new Uint16Array(a.buffer.slice(a.byteOffset), 0, a.length / 2),
+          new Uint16Array(b.buffer.slice(b.byteOffset), 0, b.length / 2)
         )
       : equalsUxA(
-        new Uint32Array(a.buffer, a.byteOffset, a.length / 4),
-        new Uint32Array(b.buffer, b.byteOffset, b.length / 4)
+        new Uint32Array(a.buffer.slice(a.byteOffset), 0, a.length / 4),
+        new Uint32Array(b.buffer.slice(b.byteOffset), 0, b.length / 4)
       );
   }
 
