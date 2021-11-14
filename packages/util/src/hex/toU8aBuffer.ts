@@ -3,8 +3,6 @@
 
 import type { HexString } from '../types';
 
-import { assert } from '../assert';
-import { isHex } from '../is/hex';
 import { hexStripPrefix } from './stripPrefix';
 
 /**
@@ -27,8 +25,6 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     return new Uint8Array();
   }
 
-  assert(isHex(_value), () => `Expected hex value to convert, found '${_value}'`);
-
   const value = hexStripPrefix(_value);
   const buf = Buffer.from(value, 'hex');
   const valLength = value.length / 2;
@@ -42,7 +38,9 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     return Uint8Array.from(buf);
   }
 
-  const offset = Math.max(0, resultLength - valLength);
+  const offset = resultLength > valLength
+    ? resultLength - valLength
+    : 0;
 
   if (offset) {
     const u8a = new Uint8Array(resultLength);

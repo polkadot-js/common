@@ -27,5 +27,7 @@ export function numberToHex (value?: number | null, bitLength = -1): HexString {
     return '0x';
   }
 
-  return hexFixLength(value.toString(16), bitLength, true);
+  const hex = value.toString(16);
+
+  return hexFixLength(hex.length % 2 ? `0${hex}` : hex, bitLength, true);
 }

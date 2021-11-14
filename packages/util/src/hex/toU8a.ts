@@ -3,9 +3,7 @@
 
 import type { HexString } from '../types';
 
-import { assert } from '../assert';
-import { isHex } from '../is/hex';
-import { HEX_TO_U8 } from './alphabet';
+import { HEX_TO_U8, HEX_TO_U16 } from './alphabet';
 import { hexStripPrefix } from './stripPrefix';
 
 /**
@@ -28,8 +26,6 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     return new Uint8Array();
   }
 
-  assert(isHex(_value), () => `Expected hex value to convert, found '${_value}'`);
-
   const value = hexStripPrefix(_value).toLowerCase();
   const valLength = value.length / 2;
   const resultLength = Math.ceil(
@@ -38,12 +34,31 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
       : bitLength / 8
   );
   const result = new Uint8Array(resultLength);
-  const offset = Math.max(0, resultLength - valLength);
+  const offset = resultLength > valLength
+    ? resultLength - valLength
+    : 0;
 
-  for (let i = 0; i < resultLength; i++) {
-    // TODO With some magic we can use the HEX_TO_U16 lookups here as well
-    // (and then finally HEX_TO_U8 for the overflows)
-    result[i + offset] = HEX_TO_U8[value.substr(i * 2, 2)];
+  // With offsets, it becomes slightly trickier since we need to ensure the U16
+  // is at the correct alignment as well. Due to this, we just focus on the simple
+  // case where we do no bitlength conversions (which is the most-taken path)
+  if (offset) {
+    for (let i = 0; i < resultLength; i++) {
+      result[i + offset] = HEX_TO_U8[value.substr(i * 2, 2)];
+    }
+  } else {
+    // NOTE: It is only _slightly_ more optimal to use HEX_TO_U16 here as
+    // well. The overhead does not seem to be in the lookup map iteration,
+    // even with 640k inputs
+    const mod = resultLength % 2;
+    const u16 = new Uint16Array(result.buffer, 0, (resultLength - mod) / 2);
+
+    for (let i = 0; i < u16.length; i++) {
+      u16[i] = HEX_TO_U16[value.substr(i * 4, 4)];
+    }
+
+    if (mod) {
+      result[resultLength - 1] = HEX_TO_U8[value.substr(value.length - 2, 2)];
+    }
   }
 
   return result;

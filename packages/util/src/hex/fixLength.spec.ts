@@ -10,12 +10,6 @@ describe('hexFixLength', (): void => {
     ).toEqual('0x12345678');
   });
 
-  it('returns bitLength === -1 as-is (adding missing 0)', (): void => {
-    expect(
-      hexFixLength('0x1234567')
-    ).toEqual('0x01234567');
-  });
-
   it('does not change when bitlength === length', (): void => {
     expect(
       hexFixLength('0x12345678', 32)
