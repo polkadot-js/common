@@ -34,9 +34,9 @@ function equalsArray <T extends Float64Array | Uint32Array | Uint16Array | Uint8
 
 function equals (a: Uint8Array, b: Uint8Array): boolean {
   if (a.length === b.length) {
-    return a.length % 8
-      ? a.length % 4
-        ? a.length % 2
+    return a.length % Float64Array.BYTES_PER_ELEMENT
+      ? a.length % Uint32Array.BYTES_PER_ELEMENT
+        ? a.length % Uint16Array.BYTES_PER_ELEMENT
           ? equalsArray(a, b)
           : equalsArray(createArray(Uint16Array, a), createArray(Uint16Array, b))
         : equalsArray(createArray(Uint32Array, a), createArray(Uint32Array, b))
