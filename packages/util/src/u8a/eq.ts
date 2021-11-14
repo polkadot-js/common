@@ -5,15 +5,14 @@ import type { HexString } from '../types';
 
 import { u8aToU8a } from './toU8a';
 
-interface Constructor<T extends BigUint64Array | Uint32Array | Uint16Array | Uint8Array> {
+interface Constructor<T extends Uint32Array | Uint16Array | Uint8Array> {
   BYTES_PER_ELEMENT: number;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  new(...args: any[]): T;
+  new(...args: unknown[]): T;
 }
 
 // Creates a Uint8Array, ensuring that the alignment is correct
-function createArray <T extends BigUint64Array | Uint32Array | Uint16Array | Uint8Array> (Clazz: Constructor<T>, value: Uint8Array): T {
+function createArray <T extends Uint32Array | Uint16Array | Uint8Array> (Clazz: Constructor<T>, value: Uint8Array): T {
   // The byteOffset needs to match the size of the data, i.e. for Uint32 it needs to be 4
   // NOTE: DataView doesn't have this limitation, but getters are slower
   const align = Clazz.BYTES_PER_ELEMENT;
@@ -23,7 +22,7 @@ function createArray <T extends BigUint64Array | Uint32Array | Uint16Array | Uin
     : new Clazz(value.buffer, value.byteOffset, value.length / align);
 }
 
-function equalsArray <T extends BigUint64Array | Uint32Array | Uint16Array | Uint8Array> (a: T, b: T): boolean {
+function equalsArray <T extends Uint32Array | Uint16Array | Uint8Array> (a: T, b: T): boolean {
   for (let i = 0; i < a.length; i++) {
     if (a[i] !== b[i]) {
       return false;
