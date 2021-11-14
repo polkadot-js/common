@@ -6,13 +6,17 @@ import type { HexString } from '../types';
 import { u8aToU8a } from './toU8a';
 
 export interface Constructor<T extends Float64Array | Uint32Array | Uint16Array | Uint8Array> {
+  BYTES_PER_ELEMENT: number;
+
   new(...args: unknown[]): T;
 }
 
 // Creates a Uint8Array, ensuring that the alignment is correct
-function createArray <T extends Float64Array | Uint32Array | Uint16Array | Uint8Array> (Clazz: Constructor<T>, value: Uint8Array, align: 2 | 4 | 8): T {
-  // The byteOffset needs to match the size of the data, i.e. for 32 it needs to be 4
+function createArray <T extends Float64Array | Uint32Array | Uint16Array | Uint8Array> (Clazz: Constructor<T>, value: Uint8Array): T {
+  // The byteOffset needs to match the size of the data, i.e. for Uint32 it needs to be 4
   // NOTE: DataView doesn't have this limitation, but getters are slower
+  const align = Clazz.BYTES_PER_ELEMENT;
+
   return value.byteOffset % align
     ? new Clazz(value.buffer.slice(value.byteOffset), 0, value.length / align)
     : new Clazz(value.buffer, value.byteOffset, value.length / align);
@@ -34,9 +38,9 @@ function equals (a: Uint8Array, b: Uint8Array): boolean {
       ? a.length % 4
         ? a.length % 2
           ? equalsArray(a, b)
-          : equalsArray(createArray(Uint16Array, a, 2), createArray(Uint16Array, b, 2))
-        : equalsArray(createArray(Uint32Array, a, 4), createArray(Uint32Array, b, 4))
-      : equalsArray(createArray(Float64Array, a, 8), createArray(Float64Array, b, 8));
+          : equalsArray(createArray(Uint16Array, a), createArray(Uint16Array, b))
+        : equalsArray(createArray(Uint32Array, a), createArray(Uint32Array, b))
+      : equalsArray(createArray(Float64Array, a), createArray(Float64Array, b));
   }
 
   return false;

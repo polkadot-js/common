@@ -5,12 +5,16 @@ import type { HexString } from '../types';
 
 import { U8_TO_HEX, U16_TO_HEX } from '../hex/alphabet';
 
+const U16_SIZE = Uint16Array.BYTES_PER_ELEMENT;
+
 /** @internal */
 function hex (value: Uint8Array): string {
-  const mod = value.length % 2;
-  const u16 = value.byteOffset % 2
-    ? new Uint16Array(value.buffer.slice(value.byteOffset), 0, (value.length - mod) / 2)
-    : new Uint16Array(value.buffer, value.byteOffset, (value.length - mod) / 2);
+  const mod = value.length % U16_SIZE;
+
+  // We need alignment of the Uint16Array, see u8aEq for rationale
+  const u16 = value.byteOffset % U16_SIZE
+    ? new Uint16Array(value.buffer.slice(value.byteOffset), 0, (value.length - mod) / U16_SIZE)
+    : new Uint16Array(value.buffer, value.byteOffset, (value.length - mod) / U16_SIZE);
   let result = '';
 
   for (let i = 0; i < u16.length; i++) {
