@@ -8,6 +8,8 @@ Changes:
 - Add strongly typed `object{Entries, Keys, Values}` utilities
 - Expand tests for uncovered functions
 - Sync with upstream Substrate ss58 registry
+- Optimizations for hex <-> u8a functions
+- Allow `u8aEq` to use `Uint{8, 16, 32}Array` with correct alignment
 
 
 ## 7.8.2 Nov 7, 2021

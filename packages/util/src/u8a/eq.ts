@@ -3,11 +3,28 @@
 
 import type { HexString } from '../types';
 
-import { u8aCmp } from './cmp';
 import { u8aToU8a } from './toU8a';
 
+function equalsUxA <T extends Uint32Array | Uint16Array | Uint8Array> (a: T, b: T): boolean {
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function equals (a: Uint8Array, b: Uint8Array): boolean {
-  return (a.length === b.length) && (u8aCmp(a, b) === 0);
+  if (a.length === b.length) {
+    return a.length % 4
+      ? a.length % 2
+        ? equalsUxA(a, b)
+        : equalsUxA(new Uint16Array(a.buffer), new Uint16Array(b.buffer))
+      : equalsUxA(new Uint32Array(a.buffer), new Uint32Array(b.buffer));
+  }
+
+  return false;
 }
 
 /**

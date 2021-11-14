@@ -1,23 +1,25 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexDigit, HexString } from '../types';
+import type { HexString } from '../types';
 
-import { arrayRange } from '../array';
-
-type HexByte = `${HexDigit}${HexDigit}`;
-
-const ALPHABET = arrayRange(256).map((n) => n.toString(16).padStart(2, '0') as HexByte);
+import { U8_TO_HEX, U16_TO_HEX } from '../hex/alphabet';
 
 /** @internal */
 function hex (value: Uint8Array): string {
-  const result = new Array<HexByte>(value.length);
+  const mod = value.length % 2;
+  const u16 = new Uint16Array(value.buffer.slice(0, value.length - mod));
+  let result = '';
 
-  for (let i = 0; i < value.length; i++) {
-    result[i] = ALPHABET[value[i]];
+  for (let i = 0; i < u16.length; i++) {
+    result += U16_TO_HEX[u16[i]];
   }
 
-  return result.join('');
+  if (mod) {
+    result += U8_TO_HEX[value[value.length - 1]];
+  }
+
+  return result;
 }
 
 /**
@@ -41,7 +43,8 @@ export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed 
     !value || !value.length
       ? ''
       : (length > 0 && value.length > length)
-        ? `${hex(value.subarray(0, length / 2))}…${hex(value.subarray(value.length - length / 2))}`
+        // Since we work with the internal buffer above, we need to slice here
+        ? `${hex(value.slice(0, length / 2))}…${hex(value.slice(value.length - length / 2))}`
         : hex(value)
   }` as HexString;
 }
