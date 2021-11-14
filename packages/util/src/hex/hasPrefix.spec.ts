@@ -6,7 +6,7 @@ import { hexHasPrefix } from '.';
 describe('hexHasPrefix', (): void => {
   it('returns true when hex prefix is found', (): void => {
     expect(
-      hexHasPrefix('0x123')
+      hexHasPrefix('0x1234')
     ).toEqual(true);
   });
 
