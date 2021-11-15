@@ -88,7 +88,7 @@ describe('u8aEq', (): void => {
     ).toEqual(true);
   });
 
-  it('performance', (): void => {
+  it.skip('performance', (): void => {
     const a = new Uint8Array(32768);
 
     for (let i = 0; i < a.length; i++) {
