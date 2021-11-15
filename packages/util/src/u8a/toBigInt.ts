@@ -21,12 +21,10 @@ export function u8aToBigInt (value: Uint8Array, options: ToBnOptions = { isLe: t
       : options
   );
 
-  const hex = u8aToHex(value, -1, false);
-  const input = isLe
-    ? reverseHex(hex)
-    : hex;
+  const stripped = u8aToHex(value, -1, false);
+  const hex = `0x${isLe ? reverseHex(stripped) : stripped}`;
 
   return isNegative
-    ? (BigInt(u8aToHex(twoComplement(hexToU8a(input)))) * -1n) - 1n
-    : BigInt(input);
+    ? (BigInt(u8aToHex(twoComplement(hexToU8a(hex)))) * -1n) - 1n
+    : BigInt(hex);
 }

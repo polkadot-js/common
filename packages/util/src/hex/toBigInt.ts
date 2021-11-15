@@ -25,12 +25,10 @@ export function hexToBigInt (value?: string | null, options: ToBnOptions = { isL
       ? { isLe: options }
       : options
   );
-  const hex = hexStripPrefix(value);
-  const input = isLe
-    ? reverseHex(hex)
-    : hex;
+  const stripped = hexStripPrefix(value);
+  const hex = `0x${isLe ? reverseHex(stripped) : stripped}`;
 
   return isNegative
-    ? (BigInt(u8aToHex(twoComplement(hexToU8a(input)))) * -1n) - 1n
-    : BigInt(`0x${input}`);
+    ? (BigInt(u8aToHex(twoComplement(hexToU8a(hex)))) * -1n) - 1n
+    : BigInt(hex);
 }
