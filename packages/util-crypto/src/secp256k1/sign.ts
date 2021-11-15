@@ -4,11 +4,16 @@
 import type { Keypair } from '../types';
 import type { HashType } from './types';
 
+import { Signature, signSync, utils } from '@noble/secp256k1';
+
 import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
 import { BN_BE_256_OPTS } from '../bn';
+import { hmacSha256 } from '../hmac';
 import { secp256k1Hasher } from './hasher';
-import { secp256k1 } from './secp256k1';
+
+// This needs to be set on the @noble/secp256k1 library
+utils.hmacSha256Sync = hmacSha256;
 
 /**
  * @name secp256k1Sign
@@ -17,12 +22,16 @@ import { secp256k1 } from './secp256k1';
 export function secp256k1Sign (message: Uint8Array | string, { secretKey }: Partial<Keypair>, hashType: HashType = 'blake2'): Uint8Array {
   assert(secretKey?.length === 32, 'Expected valid secp256k1 secretKey, 32-bytes');
 
-  const key = secp256k1.keyFromPrivate(secretKey);
-  const ecsig = key.sign(secp256k1Hasher(hashType, message));
+  const [sigBytes, recoveryParam] = signSync(
+    secp256k1Hasher(hashType, message),
+    secretKey,
+    { canonical: true, recovered: true }
+  );
+  const { r, s } = Signature.fromHex(sigBytes);
 
   return u8aConcat(
-    bnToU8a(ecsig.r, BN_BE_256_OPTS),
-    bnToU8a(ecsig.s, BN_BE_256_OPTS),
-    new Uint8Array([ecsig.recoveryParam || 0])
+    bnToU8a(r, BN_BE_256_OPTS),
+    bnToU8a(s, BN_BE_256_OPTS),
+    new Uint8Array([recoveryParam || 0])
   );
 }
