@@ -11,6 +11,7 @@ export { u8aEmpty } from './empty';
 export { u8aEq } from './eq';
 export { u8aFixLength } from './fixLength';
 export { u8aSorted } from './sorted';
+export { u8aToBigInt } from './toBigInt';
 export { u8aToBn } from './toBn';
 export { u8aToBuffer } from './toBuffer';
 export { u8aToHex } from './toHex';
