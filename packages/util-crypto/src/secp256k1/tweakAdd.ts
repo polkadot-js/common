@@ -8,7 +8,7 @@ import { BN_BE_256_OPTS } from '../bn';
 // pre-defined curve param as lifted form elliptic
 // https://github.com/indutny/elliptic/blob/e71b2d9359c5fe9437fbf46f1f05096de447de57/lib/elliptic/curves.js#L182
 const N = new BN(
-  'ffffffff ffffffff ffffffff fffffffe baaedce6 af48a03b bfd25e8c d0364141'.replace(' ', ''),
+  'ffffffff ffffffff ffffffff fffffffe baaedce6 af48a03b bfd25e8c d0364141'.replace(/ /g, ''),
   'hex'
 );
 
