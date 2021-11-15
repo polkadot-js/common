@@ -21,10 +21,13 @@ export function u8aToBigInt (value: Uint8Array, options: ToBnOptions = { isLe: t
   );
 
   const hex = u8aToHex(value, -1, false);
-
-  return BigInt(`${isNegative ? '-' : ''}0x${
+  const bi = BigInt(`0x${
     isLe
       ? reverseHex(hex)
       : hex
   }`);
+
+  return isNegative
+    ? bi * -1n
+    : bi;
 }

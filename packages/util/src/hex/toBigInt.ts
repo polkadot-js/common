@@ -24,10 +24,13 @@ export function hexToBigInt (value?: string | null, options: ToBnOptions = { isL
       : options
   );
   const stripped = hexStripPrefix(value);
-
-  return BigInt(`${isNegative ? '-' : ''}0x${
+  const bi = BigInt(`0x${
     isLe
       ? reverseHex(stripped)
       : stripped
   }`);
+
+  return isNegative
+    ? bi * -1n
+    : bi;
 }
