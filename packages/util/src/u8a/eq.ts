@@ -5,14 +5,14 @@ import type { HexString } from '../types';
 
 import { u8aToU8a } from './toU8a';
 
-interface Constructor<T extends Uint32Array | Uint16Array | Uint8Array> {
+interface Constructor<T extends Uint32Array | Uint16Array > {
   BYTES_PER_ELEMENT: number;
 
   new(...args: unknown[]): T;
 }
 
-// Creates a Uint8Array, ensuring that the alignment is correct
-function createArray <T extends Uint32Array | Uint16Array | Uint8Array> (Clazz: Constructor<T>, value: Uint8Array): T {
+// Creates a Uint{16, 32}Array, ensuring that the alignment is correct
+function createArray <T extends Uint32Array | Uint16Array> (Clazz: Constructor<T>, value: Uint8Array): T {
   // The byteOffset needs to match the size of the data, i.e. for Uint32 it needs to be 4
   // NOTE: DataView doesn't have this limitation, but getters are slower
   const align = Clazz.BYTES_PER_ELEMENT;
