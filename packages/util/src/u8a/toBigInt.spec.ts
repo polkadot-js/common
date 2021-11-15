@@ -24,10 +24,10 @@ describe('u8aToBigInt', (): void => {
   it('converts values (little-endian)', (): void => {
     expect(
       u8aToBigInt(
-        new Uint8Array([0x12, 0x34]),
+        new Uint8Array([0x12, 0x34, 0x56]),
         { isLe: true }
       )
-    ).toEqual(0x3412n);
+    ).toEqual(0x563412n);
   });
 
   it('converts empty', (): void => {

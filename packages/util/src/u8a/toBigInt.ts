@@ -5,21 +5,39 @@ import type { ToBnOptions } from '../types';
 
 import { objectSpread } from '../object/spread';
 
+const U8_MULT = 256n;
+const U16_MUL = U8_MULT * U8_MULT;
+
 function xor (input: Uint8Array): Uint8Array {
   const result = new Uint8Array(input.length);
+  const dvI = new DataView(input.buffer, input.byteOffset);
+  const dvO = new DataView(result.buffer);
+  const mod = input.length % 2;
+  const length = input.length - mod;
 
-  for (let i = 0; i < input.length; i++) {
-    result[i] = input[i] ^ 0xff;
+  for (let i = 0; i < length; i += 2) {
+    dvO.setUint16(i, dvI.getUint16(i) ^ 0xffff);
+  }
+
+  if (mod) {
+    dvO.setUint8(length, dvI.getUint8(length) ^ 0xff);
   }
 
   return result;
 }
 
 function toBigInt (input: Uint8Array): bigint {
+  const dvI = new DataView(input.buffer, input.byteOffset);
+  const mod = input.length % 2;
+  const length = input.length - mod;
   let result = BigInt(0);
 
-  for (let i = 0; i < input.length; i++) {
-    result = (result * 256n) + BigInt(input[i]);
+  for (let i = 0; i < length; i += 2) {
+    result = (result * U16_MUL) + BigInt(dvI.getUint16(i));
+  }
+
+  if (mod) {
+    result = (result * U8_MULT) + BigInt(dvI.getUint8(length));
   }
 
   return result;

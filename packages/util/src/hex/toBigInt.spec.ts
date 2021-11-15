@@ -24,8 +24,8 @@ describe('hexToBigInt', (): void => {
 
   it('should convert with Big Endian by default', (): void => {
     expect(
-      hexToBigInt('0x0100')
-    ).toEqual(256n);
+      hexToBigInt('0x0100123456')
+    ).toEqual(0x0100123456n);
   });
 
   it('converts 0x values to BN(0) (LE)', (): void => {
