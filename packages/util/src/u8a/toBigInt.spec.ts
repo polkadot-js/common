@@ -9,15 +9,16 @@ describe('u8aToBigInt', (): void => {
       u8aToBigInt(
         new Uint8Array([0x12, 0x34])
       )
-    ).toEqual(3412n);
+    ).toEqual(0x3412n);
   });
+
   it('converts values (big-endian)', (): void => {
     expect(
       u8aToBigInt(
         new Uint8Array([0x12, 0x34]),
         { isLe: false }
       )
-    ).toEqual(1234n);
+    ).toEqual(0x1234n);
   });
 
   it('converts values (little-endian)', (): void => {
@@ -26,7 +27,7 @@ describe('u8aToBigInt', (): void => {
         new Uint8Array([0x12, 0x34]),
         { isLe: true }
       )
-    ).toEqual(3412n);
+    ).toEqual(0x3412n);
   });
 
   it('converts empty', (): void => {

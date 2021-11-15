@@ -1,29 +1,45 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString, ToBnOptions } from '../types';
+import type { ToBnOptions } from '../types';
 
-import { hexToBigInt2s, reverseHex } from '../hex/util';
-import { isBoolean } from '../is/boolean';
 import { objectSpread } from '../object/spread';
-import { u8aToHex } from './toHex';
+
+function xor (input: Uint8Array): Uint8Array {
+  const result = new Uint8Array(input.length);
+
+  for (let i = 0; i < input.length; i++) {
+    result[i] = input[i] ^ 0xff;
+  }
+
+  return result;
+}
+
+function toBigInt (input: Uint8Array): bigint {
+  let result = BigInt(0);
+
+  for (let i = 0; i < input.length; i++) {
+    result = (result * 256n) + BigInt(input[i]);
+  }
+
+  return result;
+}
 
 /**
  * @name u8aToBigInt
  * @summary Creates a BigInt from a Uint8Array object.
  */
-export function u8aToBigInt (value: Uint8Array, options: ToBnOptions = { isLe: true, isNegative: false }): bigint {
-  const { isLe, isNegative }: ToBnOptions = objectSpread(
-    { isLe: true, isNegative: false },
-    isBoolean(options)
-      ? { isLe: options }
-      : options
-  );
+export function u8aToBigInt (value: Uint8Array, options: ToBnOptions = {}): bigint {
+  if (!value || !value.length) {
+    return BigInt(0);
+  }
 
-  const stripped = u8aToHex(value, -1, false);
-  const hex: HexString = `0x${isLe ? reverseHex(stripped) : stripped}`;
+  const { isLe, isNegative }: ToBnOptions = objectSpread({ isLe: true, isNegative: false }, options);
+  const u8a = isLe
+    ? value.reverse()
+    : value;
 
   return isNegative
-    ? hexToBigInt2s(hex)
-    : BigInt(hex);
+    ? ((toBigInt(xor(u8a)) * -1n) - 1n)
+    : toBigInt(u8a);
 }
