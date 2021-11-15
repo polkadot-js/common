@@ -31,6 +31,42 @@ describe('u8aEq', (): void => {
     ).toEqual(true);
   });
 
+  it('returns false when the contents do not match (with u32 start)', (): void => {
+    expect(
+      u8aEq(
+        new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3]),
+        new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 4])
+      )
+    ).toEqual(false);
+  });
+
+  it('returns true when the contents do match (with u32 start)', (): void => {
+    expect(
+      u8aEq(
+        new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3]),
+        new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3])
+      )
+    ).toEqual(true);
+  });
+
+  it('returns false when the contents do not match (u32 only)', (): void => {
+    expect(
+      u8aEq(
+        new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]),
+        new Uint8Array([1, 2, 3, 4, 5, 6, 7, 9])
+      )
+    ).toEqual(false);
+  });
+
+  it('returns true when the contents do match (u32 only)', (): void => {
+    expect(
+      u8aEq(
+        new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]),
+        new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8])
+      )
+    ).toEqual(true);
+  });
+
   it('returns true with equalvalent hex & Uint8array', (): void => {
     expect(
       u8aEq(
