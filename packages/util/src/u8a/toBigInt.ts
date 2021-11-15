@@ -1,10 +1,9 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ToBnOptions } from '../types';
+import type { HexString, ToBnOptions } from '../types';
 
-import { hexToU8a } from '../hex/toU8a';
-import { reverseHex, twoComplement } from '../hex/util';
+import { hexToBigInt2s, reverseHex } from '../hex/util';
 import { isBoolean } from '../is/boolean';
 import { objectSpread } from '../object/spread';
 import { u8aToHex } from './toHex';
@@ -22,9 +21,9 @@ export function u8aToBigInt (value: Uint8Array, options: ToBnOptions = { isLe: t
   );
 
   const stripped = u8aToHex(value, -1, false);
-  const hex = `0x${isLe ? reverseHex(stripped) : stripped}`;
+  const hex: HexString = `0x${isLe ? reverseHex(stripped) : stripped}`;
 
   return isNegative
-    ? (BigInt(u8aToHex(twoComplement(hexToU8a(hex)))) * -1n) - 1n
+    ? hexToBigInt2s(hex)
     : BigInt(hex);
 }
