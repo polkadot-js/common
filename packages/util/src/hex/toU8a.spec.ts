@@ -35,6 +35,12 @@ describe('hexToU8a', (): void => {
     );
   });
 
+  it('converts known bytes to their correct values', (): void => {
+    expect(
+      hexToU8a('0x68656c6c6f') // hello
+    ).toEqual(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f]));
+  });
+
   it('fails when non-hex value provided', (): void => {
     expect(
       () => hexToU8a('notahex')

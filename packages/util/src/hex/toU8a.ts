@@ -39,14 +39,14 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     : 0;
   const dv = new DataView(result.buffer, offset);
   const mod = (endLength - offset) % 2;
-  const length = (endLength - offset - mod) / 2;
+  const length = endLength - offset - mod;
 
   for (let i = 0; i < length; i += 2) {
     dv.setUint16(i, HEX_TO_U16[value.substr(i * 2, 4)]);
   }
 
   if (mod) {
-    dv.setUint8(length + 1, HEX_TO_U8[value.substr(value.length - 2, 2)]);
+    dv.setUint8(length, HEX_TO_U8[value.substr(value.length - 2, 2)]);
   }
 
   return result;
