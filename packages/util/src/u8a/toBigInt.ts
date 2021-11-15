@@ -3,7 +3,8 @@
 
 import type { ToBnOptions } from '../types';
 
-import { reverseHex } from '../hex/util';
+import { hexToU8a } from '../hex/toU8a';
+import { reverseHex, twoComplement } from '../hex/util';
 import { isBoolean } from '../is/boolean';
 import { objectSpread } from '../object/spread';
 import { u8aToHex } from './toHex';
@@ -21,13 +22,11 @@ export function u8aToBigInt (value: Uint8Array, options: ToBnOptions = { isLe: t
   );
 
   const hex = u8aToHex(value, -1, false);
-  const bi = BigInt(`0x${
-    isLe
-      ? reverseHex(hex)
-      : hex
-  }`);
+  const input = isLe
+    ? reverseHex(hex)
+    : hex;
 
   return isNegative
-    ? bi * -1n
-    : bi;
+    ? (BigInt(u8aToHex(twoComplement(hexToU8a(input)))) * -1n) - 1n
+    : BigInt(input);
 }

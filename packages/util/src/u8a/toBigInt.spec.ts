@@ -55,13 +55,4 @@ describe('u8aToBigInt', (): void => {
       )
     ).toEqual(-1234n);
   });
-
-  it('handles overflows correctly (little-endian)', (): void => {
-    expect(
-      u8aToBigInt(
-        new Uint8Array([0, 1, 0, 0, 0, 0, 0, 0]),
-        { isLe: true }
-      )
-    ).toEqual(256n);
-  });
 });

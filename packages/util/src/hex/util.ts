@@ -6,3 +6,13 @@ export function reverseHex (value: string): string {
     .reverse()
     .join('');
 }
+
+export function twoComplement (value: Uint8Array): Uint8Array {
+  const result = new Uint8Array(value.length);
+
+  for (let i = 0; i < value.length; i++) {
+    result[i] = 0xff - value[i];
+  }
+
+  return result;
+}

@@ -5,8 +5,10 @@ import type { ToBnOptions } from '../types';
 
 import { isBoolean } from '../is/boolean';
 import { objectSpread } from '../object/spread';
+import { u8aToHex } from '../u8a/toHex';
 import { hexStripPrefix } from './stripPrefix';
-import { reverseHex } from './util';
+import { hexToU8a } from './toU8a';
+import { reverseHex, twoComplement } from './util';
 
 /**
  * @name hexToBigInt
@@ -23,14 +25,12 @@ export function hexToBigInt (value?: string | null, options: ToBnOptions = { isL
       ? { isLe: options }
       : options
   );
-  const stripped = hexStripPrefix(value);
-  const bi = BigInt(`0x${
-    isLe
-      ? reverseHex(stripped)
-      : stripped
-  }`);
+  const hex = hexStripPrefix(value);
+  const input = isLe
+    ? reverseHex(hex)
+    : hex;
 
   return isNegative
-    ? bi * -1n
-    : bi;
+    ? (BigInt(u8aToHex(twoComplement(hexToU8a(input)))) * -1n) - 1n
+    : BigInt(`0x${input}`);
 }
