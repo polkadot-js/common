@@ -10,16 +10,15 @@ import { isString } from './string';
 const FORMAT = [9, 10, 13];
 
 /** @internal */
-function getCharCode0 (s: string): number {
-  return s.charCodeAt(0);
-}
-
-/** @internal */
 function isAsciiByte (b: number): boolean {
   return (b < 127) && (
     (b >= 32) ||
     FORMAT.includes(b)
   );
+}
+
+function isAsciiChar (s: string): boolean {
+  return isAsciiByte(s.charCodeAt(0));
 }
 
 /**
@@ -32,11 +31,9 @@ export function isAscii (value?: U8aLike | null): boolean {
   const isStringIn = isString(value);
 
   if (value) {
-    return (
-      isStringIn && !isHex(value)
-        ? value.toString().split('').map(getCharCode0)
-        : u8aToU8a(value)
-    ).every(isAsciiByte);
+    return isStringIn && !isHex(value)
+      ? value.toString().split('').every(isAsciiChar)
+      : u8aToU8a(value).every(isAsciiByte);
   }
 
   return isStringIn;
