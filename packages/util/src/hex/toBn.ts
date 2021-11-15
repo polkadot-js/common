@@ -29,7 +29,7 @@ const DEFAULT_OPTS: ToBnOptions = { isLe: false, isNegative: false };
  * ```
  */
 export function hexToBn (value?: string | null, options: ToBnOptions | boolean = DEFAULT_OPTS): BN {
-  if (!value) {
+  if (!value || value === '0x') {
     return new BN(0);
   }
 
@@ -40,7 +40,7 @@ export function hexToBn (value?: string | null, options: ToBnOptions | boolean =
       : options
   );
   const stripped = hexStripPrefix(value);
-  const bn = new BN(stripped || '00', 16, isLe ? 'le' : 'be');
+  const bn = new BN(stripped, 16, isLe ? 'le' : 'be');
 
   // fromTwos takes as parameter the number of bits, which is the hex length
   // multiplied by 4.
