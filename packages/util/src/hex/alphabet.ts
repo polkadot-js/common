@@ -17,7 +17,7 @@ for (let n = 0; n < 256; n++) {
 for (let i = 0; i < 256; i++) {
   for (let j = 0; j < 256; j++) {
     const hex = U8_TO_HEX[i] + U8_TO_HEX[j];
-    const n = (j * 256) + i;
+    const n = (i * 256) + j;
 
     U16_TO_HEX[n] = hex;
     HEX_TO_U16[hex] = n;
