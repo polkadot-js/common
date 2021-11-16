@@ -2097,7 +2097,6 @@ __metadata:
     "@polkadot/wasm-crypto": ^4.2.1
     "@polkadot/x-randomvalues": 7.8.3-19
     "@types/bn.js": ^4.11.6
-    "@types/create-hash": ^1.2.2
     "@types/elliptic": ^6.4.14
     "@types/xxhashjs": ^0.2.2
     base-x: ^3.0.9
@@ -2412,15 +2411,6 @@ __metadata:
     "@types/filesystem": "*"
     "@types/har-format": "*"
   checksum: 3f403051de07f5d5d6b3bcb8ded1e104e2c73f1add84e41317da05a3bbfa20e3ad50c41be34aecee16f9bebef7453c7ac5a2afd394669677730c115cd4e0faaa
-  languageName: node
-  linkType: hard
-
-"@types/create-hash@npm:^1.2.2":
-  version: 1.2.2
-  resolution: "@types/create-hash@npm:1.2.2"
-  dependencies:
-    "@types/node": "*"
-  checksum: 6ed989e87efe9efc67890f7587abdbb7cb6d4509684bd545520103d7eb37d76fb46eae693a19fb235b4ca4c76e2bc7d934329f3b5a105136d4b829878f51c244
   languageName: node
   linkType: hard
 
