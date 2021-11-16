@@ -30,7 +30,7 @@ const TESTS: [string | number | BN | bigint, string | number][] = [
 describe('biSqrt', (): void => {
   it('fails on < 0 roots', (): void => {
     expect(
-      () => biSqrt(new BN(-1))
+      () => biSqrt(-1n)
     ).toThrow(/negative numbers is not supported/);
   });
 
