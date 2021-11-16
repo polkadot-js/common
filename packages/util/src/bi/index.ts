@@ -10,5 +10,7 @@ export * from './consts';
 export { BigIntClass } from './class';
 export { biSqrt } from './sqrt';
 export { biToBigInt } from './toBigInt';
+export { biMax } from './max';
+export { biMin } from './min';
 export { biToHex } from './toHex';
 export { biToU8a } from './toU8a';
