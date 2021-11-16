@@ -2,34 +2,38 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // See https://stackoverflow.com/questions/58207487/extend-object-wrappers-for-modern-primitives
-// See https://stackoverflow.com/questions/1382107/whats-a-good-way-to-extend-error-in-javascript
 
-interface BigIntCreator {
-  new (value: string | number | bigint | boolean): BigInt;
+interface IBigIntConstructor {
+  new (value: string | number | bigint | boolean): bigint;
+
+  /**
+  * Interprets the low bits of a BigInt as a 2's-complement signed integer.
+  * All higher bits are discarded.
+  * @param bits The number of low bits to use
+  * @param int The BigInt whose bits to extract
+  */
+  asIntN (bits: number, int: bigint): bigint;
+  /**
+  * Interprets the low bits of a BigInt as an unsigned integer.
+  * All higher bits are discarded.
+  * @param bits The number of low bits to use
+  * @param int The BigInt whose bits to extract
+  */
+  asUintN (bits: number, int: bigint): bigint;
 }
 
-const BigIntClass = function BigIntClass (value: string | number | bigint | boolean): bigint {
-  const instance = Object(BigInt(value)) as bigint;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export class BigIntImpl extends BigInt implements BigInt {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  constructor (value: string | number | bigint | boolean): bigint {
+    const self = Object(BigInt(value)) as bigint;
 
-  Object.setPrototypeOf(instance, BigInt.prototype);
+    Object.setPrototypeOf(self, new.target.prototype);
 
-  return instance;
-} as unknown as BigIntCreator;
-
-(BigIntClass as unknown as Record<string, unknown>).prototype = Object.create(BigInt.prototype, {
-  constructor: {
-    configurable: true,
-    enumerable: false,
-    value: BigInt,
-    writable: true
+    return self;
   }
-});
-
-if (Object.setPrototypeOf) {
-  Object.setPrototypeOf(BigIntClass, BigInt);
-} else {
-  // eslint-disable-next-line no-proto
-  (BigIntClass as unknown as Record<string, unknown>).__proto__ = BigInt;
 }
 
-export { BigIntClass };
+export const BigIntClass = BigIntImpl as IBigIntConstructor;
