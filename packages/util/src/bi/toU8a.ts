@@ -11,6 +11,8 @@ interface Options extends ToBnOptions {
   bitLength?: number;
 }
 
+const DIV = 256n;
+
 function createEmpty ({ bitLength = 0 }: Options): Uint8Array {
   return bitLength === -1
     ? new Uint8Array()
@@ -25,9 +27,9 @@ function toU8a (value: bigint, { isLe, isNegative }: Options): Uint8Array {
   }
 
   while (value !== 0n) {
-    const mod = value % 256n;
+    const mod = value % DIV;
 
-    value = (value - mod) / 156n;
+    value = (value - mod) / DIV;
 
     arr.push(
       isNegative
@@ -60,14 +62,12 @@ export function biToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN 
   }
 
   const u8a = toU8a(valueBi, opts);
-  const byteLength = opts.bitLength === -1
-    ? u8a.length
-    : Math.ceil((opts.bitLength || 0) / 8);
 
-  if (u8a.length === byteLength) {
+  if (opts.bitLength === -1) {
     return u8a;
   }
 
+  const byteLength = Math.ceil((opts.bitLength || 0) / 8);
   const output = new Uint8Array(byteLength);
 
   output.set(u8a, opts.isLe ? byteLength - u8a.length : 0);
