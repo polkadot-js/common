@@ -4,13 +4,10 @@
 import type { HexString } from '@polkadot/util/types';
 import type { HashType } from './types';
 
-import { recoverPublicKey, Signature } from '@noble/secp256k1';
-
 import { assert, u8aEq, u8aToU8a } from '@polkadot/util';
 
-import { secp256k1Compress } from './compress';
-import { secp256k1Expand } from './expand';
 import { secp256k1Hasher } from './hasher';
+import { secp256k1Recover } from './recover';
 
 /**
  * @name secp256k1Verify
@@ -22,19 +19,16 @@ export function secp256k1Verify (message: HexString | Uint8Array | string, signa
 
   assert(u8a.length === 65, `Expected signature with 65 bytes, ${u8a.length} found instead`);
 
-  const publicKey = recoverPublicKey(
+  const publicKey = secp256k1Recover(
     secp256k1Hasher(hashType, message),
-    Signature.fromCompact(u8aToU8a(signature).subarray(0, 64)).toRawBytes(),
-    u8a[64]
-  ) as Uint8Array;
-
-  const signingAddress = secp256k1Hasher(
-    hashType,
-    (isEthereum
-      ? secp256k1Expand
-      : secp256k1Compress
-    )(publicKey)
+    u8aToU8a(signature),
+    u8a[64],
+    hashType
   );
+
+  assert(publicKey, 'Unable to recover publicKey from signature');
+
+  const signingAddress = secp256k1Hasher(hashType, publicKey);
   const inputAddress = u8aToU8a(address);
 
   // for Ethereum (keccak) the last 20 bytes is the address
