@@ -7,3 +7,5 @@
 
 export * from './consts';
 export { biToBigInt } from './toBigInt';
+export { biToHex } from './toHex';
+export { biToU8a } from './toU8a';
