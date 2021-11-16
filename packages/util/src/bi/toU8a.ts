@@ -29,13 +29,13 @@ function toU8a (value: bigint, { isLe, isNegative }: Options): Uint8Array {
   while (value !== 0n) {
     const mod = value % DIV;
 
-    value = (value - mod) / DIV;
-
     arr.push(
       isNegative
         ? Number(mod) ^ 0xff
         : Number(mod)
     );
+
+    value = (value - mod) / DIV;
   }
 
   return Uint8Array.from(
