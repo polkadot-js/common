@@ -38,18 +38,18 @@ function bytesToBinary (bytes: number[]): string {
 }
 
 function deriveChecksumBits (entropyBuffer: Uint8Array): string {
-  const ENT = entropyBuffer.length * 8;
-  const CS = ENT / 32;
-  const result = hash.sha256().update(entropyBuffer).digest();
-
-  return bytesToBinary(Array.from(result)).slice(0, CS);
+  return bytesToBinary(
+    Array.from(
+      hash.sha256().update(entropyBuffer).digest()
+    )
+  ).slice(0, (entropyBuffer.length * 8) / 32);
 }
 
 export function mnemonicToSeedSync (mnemonic: string, password?: string): Uint8Array {
-  const mnemonicBuffer = stringToU8a(normalize(mnemonic));
-  const saltBuffer = stringToU8a(`mnemonic${normalize(password)}`);
-
-  return pbkdf2Encode(mnemonicBuffer, saltBuffer).password;
+  return pbkdf2Encode(
+    stringToU8a(normalize(mnemonic)),
+    stringToU8a(`mnemonic${normalize(password)}`)
+  ).password;
 }
 
 export function mnemonicToEntropy (mnemonic: string): Uint8Array {
