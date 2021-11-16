@@ -42,7 +42,7 @@ function deriveChecksumBits (entropyBuffer: Uint8Array): string {
     Array.from(
       sha256(entropyBuffer)
     )
-  ).slice(0, (entropyBuffer.length) * 8 / 32);
+  ).slice(0, (entropyBuffer.length * 8) / 32);
 }
 
 export function mnemonicToSeedSync (mnemonic: string, password?: string): Uint8Array {
