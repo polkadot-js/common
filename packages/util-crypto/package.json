@@ -27,8 +27,8 @@
   "dependencies": {
     "@babel/runtime": "^7.16.3",
     "@noble/hashes": "^0.4.1",
-    "@polkadot/networks": "7.8.3-16",
-    "@polkadot/util": "7.8.3-16",
+    "@polkadot/networks": "7.8.3-19",
+    "@polkadot/util": "7.8.3-19",
     "@polkadot/wasm-crypto": "^4.2.1",
     "@polkadot/x-randomvalues": "7.8.3-19",
     "base-x": "^3.0.9",
