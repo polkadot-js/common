@@ -28,21 +28,22 @@ function toU8a (value: bigint, { isLe, isNegative }: Options): Uint8Array {
 
   while (value !== 0n) {
     const mod = value % DIV;
-
-    arr.push(
+    const val = Number(
       isNegative
-        ? Number(mod) ^ 0xff
-        : Number(mod)
+        ? mod ^ 0xffn
+        : mod
     );
+
+    if (isLe) {
+      arr.push(val);
+    } else {
+      arr.unshift(val);
+    }
 
     value = (value - mod) / DIV;
   }
 
-  return Uint8Array.from(
-    isLe
-      ? arr.reverse()
-      : arr
-  );
+  return Uint8Array.from(arr);
 }
 
 /**
@@ -70,7 +71,11 @@ export function biToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN 
   const byteLength = Math.ceil((opts.bitLength || 0) / 8);
   const output = new Uint8Array(byteLength);
 
-  output.set(u8a, opts.isLe ? byteLength - u8a.length : 0);
+  if (opts.isNegative) {
+    output.fill(0xff);
+  }
+
+  output.set(u8a, opts.isLe ? 0 : byteLength - u8a.length);
 
   return output;
 }

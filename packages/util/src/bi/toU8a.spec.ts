@@ -16,13 +16,13 @@ describe('biToU8a', (): void => {
     ).toEqual(new Uint8Array([0, 0, 0, 0]));
   });
 
-  it('converts BN values to a prefixed hex representation', (): void => {
+  it('converts values to a prefixed hex representation', (): void => {
     expect(
       biToU8a(0x123456n, { isLe: false })
     ).toEqual(new Uint8Array([0x12, 0x34, 0x56]));
   });
 
-  it('converts BN values to a prefixed hex representation (bitLength)', (): void => {
+  it('converts values to a prefixed hex representation (bitLength)', (): void => {
     expect(
       biToU8a(0x123456n, { bitLength: 32, isLe: false })
     ).toEqual(new Uint8Array([0x00, 0x12, 0x34, 0x56]));
