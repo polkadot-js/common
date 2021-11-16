@@ -6,10 +6,12 @@ Changes:
 
 - Add `stringPascalCase` utility
 - Add strongly typed `object{Entries, Keys, Values}` utilities
+- Add `{hex, u8a}ToBigInt` utilities
 - Expand tests for uncovered functions
 - Sync with upstream Substrate ss58 registry
 - Optimize for `hexToU8a` and `u8aToHex` functions
 - Optimize `u8aEq` to use `DataView` for compares
+- Space optimization for bip39 wordlists
 
 
 ## 7.8.2 Nov 7, 2021
