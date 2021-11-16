@@ -8,6 +8,7 @@ export { packageInfo } from './packageInfo';
 
 export * from './array';
 export * from './assert';
+export * from './bi';
 export * from './bn';
 export * from './buffer';
 export * from './compact';

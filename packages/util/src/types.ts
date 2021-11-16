@@ -9,6 +9,10 @@ export interface Constructor<T = any> {
   new(...value: any[]): T;
 }
 
+export interface ToBigInt {
+  toBigInt: () => bigint;
+}
+
 export interface ToBn {
   toBn: () => BN;
 }
