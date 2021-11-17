@@ -22,9 +22,21 @@ describe('hexStripPrefix', (): void => {
     ).toEqual('1223');
   });
 
+  it('strips the prefix from hex strings (non 2 lnegth)', (): void => {
+    expect(
+      hexStripPrefix('0x123')
+    ).toEqual('123');
+  });
+
   it('returns un-prefixed hex as-is', (): void => {
     expect(
       hexStripPrefix('abcd1223')
     ).toEqual('abcd1223');
+  });
+
+  it('throws when invalid hex', (): void => {
+    expect(
+      () => hexStripPrefix('0x0x01ab')
+    ).toThrow(/Expected hex value to convert/);
   });
 });

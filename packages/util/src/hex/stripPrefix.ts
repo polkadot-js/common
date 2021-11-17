@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { REGEX_HEX_NOPREFIX_IGNORE, REGEX_HEX_PREFIXED_IGNORE } from '../is/hex';
+
 /**
  * @name hexStripPrefix
  * @summary Strips any leading `0x` prefix.
@@ -16,9 +18,13 @@
  * ```
  */
 export function hexStripPrefix (value?: string | null): string {
-  return (!value || value === '0x')
-    ? ''
-    : value.startsWith('0x')
-      ? value.substr(2)
-      : value;
+  if (!value || value === '0x') {
+    return '';
+  } else if (REGEX_HEX_PREFIXED_IGNORE.test(value)) {
+    return value.substr(2);
+  } else if (REGEX_HEX_NOPREFIX_IGNORE.test(value)) {
+    return value;
+  }
+
+  throw new Error(`Expected hex value to convert, found '${value}'`);
 }
