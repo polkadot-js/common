@@ -7,6 +7,8 @@ export const REGEX_HEX_PREFIXED = /^0x([\da-fA-F]{2})+$/;
 
 export const REGEX_HEX_NOPREFIX = /^([\da-fA-F]{2})+$/;
 
+const REGEX_HEX_PREFIXED_IGNORE = /^0x[\da-fA-F]+$/;
+
 /**
  * @name isHex
  * @summary Tests for a hex string.
@@ -22,8 +24,16 @@ export const REGEX_HEX_NOPREFIX = /^([\da-fA-F]{2})+$/;
  * isHex('0x1234', 8); // => false
  * ```
  */
-export function isHex (value: unknown, bitLength = -1): value is HexString {
-  return (typeof value === 'string' && (value === '0x' || REGEX_HEX_PREFIXED.test(value)))
+export function isHex (value: unknown, bitLength = -1, ignoreLength = false): value is HexString {
+  return (
+    typeof value === 'string' && (
+      value === '0x' || (
+        ignoreLength
+          ? REGEX_HEX_PREFIXED_IGNORE.test(value)
+          : REGEX_HEX_PREFIXED.test(value)
+      )
+    )
+  )
     ? bitLength === -1
       ? true
       : (value.length === (2 + Math.ceil(bitLength / 4)))
