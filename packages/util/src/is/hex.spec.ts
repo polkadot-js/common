@@ -59,4 +59,13 @@ describe('isHex', (): void => {
       isHex('0x1234', 8)
     ).toEqual(false);
   });
+
+  it('does ignore lengths as required', (): void => {
+    expect(
+      isHex('0x123')
+    ).toEqual(false);
+    expect(
+      isHex('0x123', -1, true)
+    ).toEqual(true);
+  });
 });
