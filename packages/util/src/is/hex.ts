@@ -7,7 +7,7 @@ export const REGEX_HEX_PREFIXED = /^0x([\da-fA-F]{2})+$/;
 
 export const REGEX_HEX_NOPREFIX = /^([\da-fA-F]{2})+$/;
 
-const REGEX_HEX_PREFIXED_IGNORE = /^0x([\da-fA-F]{2})+$/;
+const REGEX_HEX_PREFIXED_IGNORE = /^0x[\da-fA-F]+$/;
 
 /**
  * @name isHex
