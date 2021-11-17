@@ -24,6 +24,7 @@ export { isObject } from './object';
 export { isObservable } from './observable';
 export { isString } from './string';
 export { isTestChain } from './testChain';
+export { isToBigInt } from './toBigInt';
 export { isToBn } from './toBn';
 export { isU8a } from './u8a';
 export { isUndefined } from './undefined';
