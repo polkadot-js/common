@@ -4,10 +4,11 @@
 
 Changes:
 
-- Add `stringPascalCase` utility
 - Add strongly typed `object{Entries, Keys, Values}` utilities
 - Add `{hex, u8a}ToBigInt` utilities
 - Add `bi*` utilities for `bigint` operations (mirror of `bn*`)
+- Add `stringPascalCase` utility
+- Add `isCodec` to check for Codec-like structures
 - Optimize for `hexToU8a` and `u8aToHex` functions
 - Optimize `u8aEq` to use `DataView` for compares
 - Space optimization for bip39 wordlists

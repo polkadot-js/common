@@ -21,6 +21,6 @@ interface ObjectIndexed {
  * isObject('something'); // => false
  * ```
  */
-export function isObject (value: unknown): value is ObjectIndexed {
-  return typeof value === 'object';
+export function isObject <T extends ObjectIndexed = ObjectIndexed> (value?: unknown): value is T {
+  return !!value && typeof value === 'object';
 }

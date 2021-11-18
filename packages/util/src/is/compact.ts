@@ -4,6 +4,7 @@
 import type { BN } from '../bn/bn';
 
 import { isFunction } from './function';
+import { isObject } from './object';
 
 interface Compact<T> {
   toBigInt (): bigint;
@@ -18,10 +19,10 @@ interface Compact<T> {
  */
 export function isCompact <T> (value?: unknown): value is Compact<T> {
   return (
-    !!value &&
-    isFunction((value as Compact<T>).toBigInt) &&
-    isFunction((value as Compact<T>).toBn) &&
-    isFunction((value as Compact<T>).toNumber) &&
-    isFunction((value as Compact<T>).unwrap)
+    isObject<Compact<T>>(value) &&
+    isFunction(value.toBigInt) &&
+    isFunction(value.toBn) &&
+    isFunction(value.toNumber) &&
+    isFunction(value.unwrap)
   );
 }
