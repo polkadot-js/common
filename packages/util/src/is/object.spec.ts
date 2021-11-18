@@ -15,4 +15,10 @@ describe('isObject', (): void => {
       isObject('notAnObject')
     ).toEqual(false);
   });
+
+  it('returns false on null', (): void => {
+    expect(
+      isObject(null)
+    ).toEqual(false);
+  });
 });
