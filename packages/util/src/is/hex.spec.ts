@@ -68,4 +68,16 @@ describe('isHex', (): void => {
       isHex('0x123', -1, true)
     ).toEqual(true);
   });
+
+  it.skip('performance', (): void => {
+    const test = '0x1234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef1';
+
+    console.time('performance:isHex');
+
+    for (let i = 0; i < 512000; i++) {
+      isHex(test);
+    }
+
+    console.timeEnd('performance:isHex');
+  });
 });
