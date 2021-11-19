@@ -1,8 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import base64 from 'base64-js';
-
+import { base64 } from './bs64';
 import { base64Validate } from './validate';
 
 /**
@@ -14,5 +13,5 @@ import { base64Validate } from './validate';
 export function base64Decode (value: string): Uint8Array {
   base64Validate(value);
 
-  return base64.toByteArray(value);
+  return base64.decode(value);
 }

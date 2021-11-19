@@ -1,38 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// adapted from https://github.com/multiformats/js-multibase/blob/424709195b46ffb1d6f2f69a7707598ebe751e5e/src/rfc4648.js
-
-import { assert } from '@polkadot/util';
-
-import { BASE32_ALPHABET, BITS_PER_CHAR } from './bs32';
+import { base32 } from './bs32';
 import { base32Validate } from './validate';
-
-// Build the character lookup table:
-const LOOKUP = BASE32_ALPHABET.split('').reduce<Record<string, number>>((lookup, a, i) => {
-  lookup[a] = i;
-
-  return lookup;
-}, {});
-
-/** @internal */
-function decode (output: Uint8Array, input: string, offset: number): [Uint8Array, number, number] {
-  let bits = 0;
-  let buffer = 0;
-  let written = 0;
-
-  for (let i = offset; i < input.length; i++) {
-    buffer = (buffer << BITS_PER_CHAR) | LOOKUP[input[i]];
-    bits += BITS_PER_CHAR;
-
-    if (bits >= 8) {
-      bits -= 8;
-      output[written++] = 0xff & (buffer >> bits);
-    }
-  }
-
-  return [output, bits, buffer];
-}
 
 /**
  * @name base32Decode
@@ -43,14 +13,9 @@ function decode (output: Uint8Array, input: string, offset: number): [Uint8Array
 export function base32Decode (value: string, ipfsCompat = false): Uint8Array {
   base32Validate(value, ipfsCompat);
 
-  const offset = (ipfsCompat ? 1 : 0);
-  const [output, bits, buffer] = decode(
-    new Uint8Array(((value.length - offset) * BITS_PER_CHAR / 8) | 0),
-    value,
-    offset
+  return base32.decode(
+    ipfsCompat
+      ? value.substr(1)
+      : value
   );
-
-  assert(!(bits >= BITS_PER_CHAR || 0xff & (buffer << (8 - bits))), 'Unexpected end of data');
-
-  return output;
 }
