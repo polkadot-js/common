@@ -1,11 +1,9 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { arrayRange } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { performanceTest } from '../../test/performance';
-import { randomAsU8a } from '../random/asU8a';
 import { DEFAULT_PARAMS } from './defaults';
 import { scryptEncode } from '.';
 
@@ -16,8 +14,6 @@ export const KNOWN_PASS = new Uint8Array([223, 185, 241, 135, 125, 17, 195, 27, 
 export const KNOWN_SALT = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8]);
 
 describe('scryptEncode', (): void => {
-  const randoms = arrayRange(64).map(() => randomAsU8a());
-
   beforeEach(async (): Promise<void> => {
     await waitReady();
   });
