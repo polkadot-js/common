@@ -17,8 +17,8 @@ import { assert, stringToU8a, u8aToU8a } from '@polkadot/util';
 
 import { pbkdf2Encode } from '../pbkdf2';
 import { randomAsU8a } from '../random/asU8a';
+import { sha256AsU8a } from '../sha256/asU8a';
 import DEFAULT_WORDLIST from './bip39-en';
-import { sha256 } from './sha';
 
 const INVALID_MNEMONIC = 'Invalid mnemonic';
 const INVALID_ENTROPY = 'Invalid entropy';
@@ -38,9 +38,7 @@ function bytesToBinary (bytes: number[]): string {
 
 function deriveChecksumBits (entropyBuffer: Uint8Array): string {
   return bytesToBinary(
-    Array.from(
-      sha256(entropyBuffer)
-    )
+    Array.from(sha256AsU8a(entropyBuffer))
   ).slice(0, (entropyBuffer.length * 8) / 32);
 }
 

@@ -10,13 +10,13 @@ describe('assert', (): void => {
 
   it('should throw an error when test is not true', (): void => {
     expect(
-      (): void => assert(false, 'error thrown')
+      () => assert(false, 'error thrown')
     ).toThrow(/error thrown/);
   });
 
   it('should throw an error when message: () => string', (): void => {
     expect(
-      (): void => assert(false, (): string => 'message from function')
+      () => assert(false, (): string => 'message from function')
     ).toThrow(/message from function/);
   });
 });

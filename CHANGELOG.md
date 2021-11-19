@@ -2,6 +2,10 @@
 
 ## master
 
+Contributed:
+
+- Updated Polymesh genesisHash (Thanks to https://github.com/adamdossa)
+
 Changes:
 
 - Add strongly typed `object{Entries, Keys, Values}` utilities
@@ -10,6 +14,7 @@ Changes:
 - Add `stringPascalCase` utility
 - Add `isCodec` to check for Codec-like structures
 - Add `has*` detection shortcuts (e.g. `hasWasm` or `hasBuffer`)
+- Add `sha256AsU8a` util (& replace use internally)
 - Optimize for `hexToU8a` and `u8aToHex` functions
 - Optimize `u8aEq` to use `DataView` for compares
 - Align base{32, 58, 64} around (audited) `micro-base`

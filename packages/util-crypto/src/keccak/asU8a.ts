@@ -5,8 +5,8 @@ import type { HexString } from '@polkadot/util/types';
 
 import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from '@noble/hashes/lib/sha3';
 
-import { assert, hasBigInt, u8aToU8a } from '@polkadot/util';
-import { isReady, keccak256 } from '@polkadot/wasm-crypto';
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
+import { isReady, keccak256, keccak512 } from '@polkadot/wasm-crypto';
 
 /**
  * @name keccakAsU8a
@@ -24,12 +24,13 @@ import { isReady, keccak256 } from '@polkadot/wasm-crypto';
  */
 export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: 256 | 512 = 256, onlyJs = false): Uint8Array {
   const is256 = bitLength === 256;
+  const u8a = u8aToU8a(value);
 
-  assert(hasBigInt || is256, 'BigInt is required for keccak512 operations');
-
-  return !hasBigInt || (isReady() && is256 && !onlyJs)
-    ? keccak256(u8aToU8a(value))
+  return !hasBigInt || (isReady() && !onlyJs)
+    ? is256
+      ? keccak256(u8a)
+      : keccak512(u8a)
     : is256
-      ? keccak256Js(u8aToU8a(value))
-      : keccak512Js(u8aToU8a(value));
+      ? keccak256Js(u8a)
+      : keccak512Js(u8a);
 }

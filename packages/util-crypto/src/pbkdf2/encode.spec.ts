@@ -7,7 +7,12 @@ import { waitReady } from '@polkadot/wasm-crypto';
 import { randomAsU8a } from '../random/asU8a';
 import { pbkdf2Encode } from '.';
 
-const KNOWN_SALT = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]);
+const KNOWN_SALT = new Uint8Array([
+  1, 2, 3, 4, 5, 6, 7, 8,
+  9, 10, 11, 12, 13, 14, 15, 16,
+  17, 18, 19, 20, 21, 22, 23, 24,
+  25, 26, 27, 28, 29, 30, 31, 32
+]);
 const TEST_PASSWORD = 'test password';
 
 describe('pbkdf2Encode', (): void => {
