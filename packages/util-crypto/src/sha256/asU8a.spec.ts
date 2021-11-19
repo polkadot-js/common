@@ -40,5 +40,5 @@ describe('sha256AsU8a', (): void => {
         sha256AsU8a(hexToU8a(input), onlyJs)
       ).toEqual(hexToU8a(output));
     });
-  )};
+  });
 });
