@@ -4,6 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
+import { performanceTest } from '../../test/performance';
 import { blake2AsU8a } from '.';
 
 describe('blake2AsU8a', (): void => {
@@ -59,25 +60,9 @@ describe('blake2AsU8a', (): void => {
     expect(a).toEqual(b);
   });
 
-  it.skip.each([false, true])('performance: onlyJs=%p', (onlyJs): void => {
-    const label = `blake2AsU8a:onlyJs=${onlyJs.toString()}`;
-    const test = new Uint8Array([
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8
-    ]);
-
-    console.time(label);
-
-    for (let i = 0; i < 32768; i++) {
-      blake2AsU8a(test);
-    }
-
-    console.timeEnd(label);
+  describe.each([256, 512] as (256 | 512)[])('bitLength=$p', (bitLength): void => {
+    performanceTest(`blake2AsU8a, bitLength=${bitLength}`, 64000, (input, onlyJs) =>
+      blake2AsU8a(input, bitLength, null, onlyJs)
+    );
   });
 });
