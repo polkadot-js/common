@@ -5,7 +5,7 @@ import type { HexString } from '@polkadot/util/types';
 
 import { blake2b as blake2bJs } from '@noble/hashes/lib/blake2b';
 
-import { u8aToU8a } from '@polkadot/util';
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { blake2b, isReady } from '@polkadot/wasm-crypto';
 
 /**
@@ -25,7 +25,7 @@ import { blake2b, isReady } from '@polkadot/wasm-crypto';
 export function blake2AsU8a (data: HexString | Uint8Array | string, bitLength = 256, key?: Uint8Array | null, onlyJs = false): Uint8Array {
   const byteLength = Math.ceil(bitLength / 8);
 
-  return isReady() && !onlyJs
+  return !hasBigInt || (isReady() && !onlyJs)
     ? blake2b(u8aToU8a(data), u8aToU8a(key), byteLength)
     : blake2bJs(u8aToU8a(data), { dkLen: byteLength, key: key || undefined });
 }

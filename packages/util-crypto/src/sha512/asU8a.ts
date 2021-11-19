@@ -3,6 +3,7 @@
 
 import { sha512 as sha512Js } from '@noble/hashes/lib/sha512';
 
+import { hasBigInt } from '@polkadot/util';
 import { isReady, sha512 } from '@polkadot/wasm-crypto';
 
 /**
@@ -20,7 +21,7 @@ import { isReady, sha512 } from '@polkadot/wasm-crypto';
  * ```
  */
 export function sha512AsU8a (data: Uint8Array, onlyJs = false): Uint8Array {
-  return isReady() && !onlyJs
+  return !hasBigInt || (isReady() && !onlyJs)
     ? sha512(data)
     : sha512Js(data);
 }

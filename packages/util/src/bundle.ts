@@ -14,6 +14,7 @@ export * from './buffer';
 export * from './compact';
 export * from './extractTime';
 export * from './format';
+export * from './has';
 export * from './hex';
 export * from './is';
 export * from './lazy';

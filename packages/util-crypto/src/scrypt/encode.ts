@@ -6,7 +6,7 @@ import type { Params } from './types';
 
 import { scrypt as scryptJs } from '@noble/hashes/lib/scrypt';
 
-import { objectSpread, u8aToU8a } from '@polkadot/util';
+import { hasBigInt, objectSpread, u8aToU8a } from '@polkadot/util';
 import { isReady, scrypt } from '@polkadot/wasm-crypto';
 
 import { randomAsU8a } from '../random/asU8a';
@@ -18,10 +18,12 @@ interface Result {
   salt: Uint8Array;
 }
 
-export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS): Result {
-  const password = isReady()
-    ? scrypt(u8aToU8a(passphrase), salt, Math.log2(params.N), params.r, params.p)
-    : scryptJs(u8aToU8a(passphrase), salt, objectSpread({ dkLen: 64 }, params));
-
-  return { params, password, salt };
+export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS, onlyJs = false): Result {
+  return {
+    params,
+    password: !hasBigInt || (isReady() && !onlyJs)
+      ? scrypt(u8aToU8a(passphrase), salt, Math.log2(params.N), params.r, params.p)
+      : scryptJs(u8aToU8a(passphrase), salt, objectSpread({ dkLen: 64 }, params)),
+    salt
+  };
 }
