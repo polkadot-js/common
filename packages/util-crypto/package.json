@@ -9,8 +9,8 @@
   "exports": {
     "./scrypt/encode": {
       "react-native": {
-        "require": "./encodeLegacy.cjs",
-        "default": "./encodeLegacy.js"
+        "require": "./scrypt/encodeLegacy.cjs",
+        "default": "./scrypt/encodeLegacy.js"
       }
     }
   },
