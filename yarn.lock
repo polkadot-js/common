@@ -2097,6 +2097,7 @@ __metadata:
     "@polkadot/wasm-crypto": ^4.3.1
     "@polkadot/x-randomvalues": 7.8.3-38
     "@types/bn.js": ^4.11.6
+    "@types/ed2curve": ^0.2.2
     "@types/elliptic": ^6.4.14
     "@types/xxhashjs": ^0.2.2
     bn.js: ^4.12.0
@@ -2411,6 +2412,15 @@ __metadata:
     "@types/filesystem": "*"
     "@types/har-format": "*"
   checksum: dac80221ac60545a3c9c615cc02a7329e9c661a5b8f0fa6d0c384d2d49f7a0a5d8ea37009aa66d4b65fe97f591436e3a8111619a03bbead868bf6f6cd73dddee
+  languageName: node
+  linkType: hard
+
+"@types/ed2curve@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@types/ed2curve@npm:0.2.2"
+  dependencies:
+    tweetnacl: ^1.0.0
+  checksum: f1ab16d46c5eed50d51539effef76c87806bb53ab45ecff78c19a632e63825fd08d604984b08778f8201c79be0bd43120565dad38cc5d45ba65a6c7de5bf4ace
   languageName: node
   linkType: hard
 
@@ -10024,7 +10034,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"tweetnacl@npm:1.x.x, tweetnacl@npm:^1.0.3":
+"tweetnacl@npm:1.x.x, tweetnacl@npm:^1.0.0, tweetnacl@npm:^1.0.3":
   version: 1.0.3
   resolution: "tweetnacl@npm:1.0.3"
   checksum: e4a57cac188f0c53f24c7a33279e223618a2bfb5fea426231991652a13247bea06b081fd745d71291fcae0f4428d29beba1b984b1f1ce6f66b06a6d1ab90645c
