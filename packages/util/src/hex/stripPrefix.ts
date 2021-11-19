@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { REGEX_HEX_NOPREFIX_IGNORE, REGEX_HEX_PREFIXED_IGNORE } from '../is/hex';
+import { REGEX_HEX_NOPREFIX, REGEX_HEX_PREFIXED } from '../is/hex';
 
 /**
  * @name hexStripPrefix
@@ -20,9 +20,9 @@ import { REGEX_HEX_NOPREFIX_IGNORE, REGEX_HEX_PREFIXED_IGNORE } from '../is/hex'
 export function hexStripPrefix (value?: string | null): string {
   if (!value || value === '0x') {
     return '';
-  } else if (REGEX_HEX_PREFIXED_IGNORE.test(value)) {
+  } else if (REGEX_HEX_PREFIXED.test(value)) {
     return value.substr(2);
-  } else if (REGEX_HEX_NOPREFIX_IGNORE.test(value)) {
+  } else if (REGEX_HEX_NOPREFIX.test(value)) {
     return value;
   }
 
