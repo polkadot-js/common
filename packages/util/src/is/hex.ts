@@ -3,9 +3,9 @@
 
 import type { HexString } from '../types';
 
-export const REGEX_HEX_PREFIXED = /^0x([\da-fA-F]{2})+$/;
+export const REGEX_HEX_PREFIXED = /^0x[\da-fA-F]+$/;
 
-export const REGEX_HEX_NOPREFIX = /^([\da-fA-F]{2})+$/;
+export const REGEX_HEX_NOPREFIX = /^[\da-fA-F]+$/;
 
 /**
  * @name isHex
@@ -22,10 +22,17 @@ export const REGEX_HEX_NOPREFIX = /^([\da-fA-F]{2})+$/;
  * isHex('0x1234', 8); // => false
  * ```
  */
-export function isHex (value: unknown, bitLength = -1): value is HexString {
-  return (typeof value === 'string' && (value === '0x' || REGEX_HEX_PREFIXED.test(value)))
+export function isHex (value: unknown, bitLength = -1, ignoreLength = false): value is HexString {
+  return (
+    typeof value === 'string' && (
+      value === '0x' ||
+      REGEX_HEX_PREFIXED.test(value)
+    )
+  )
     ? bitLength === -1
-      ? true
+      ? ignoreLength
+        ? true
+        : (value.length % 2 === 0)
       : (value.length === (2 + Math.ceil(bitLength / 4)))
     : false;
 }

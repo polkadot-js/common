@@ -11,6 +11,7 @@ export { isBn } from './bn';
 export { isBuffer } from './buffer';
 export { isBoolean } from './boolean';
 export { isChildClass } from './childClass';
+export { isCodec } from './codec';
 export { isCompact } from './compact';
 export { isError } from './error';
 export { isFunction } from './function';

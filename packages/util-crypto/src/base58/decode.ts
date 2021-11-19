@@ -1,9 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { bufferToU8a } from '@polkadot/util';
-
-import { bs58 } from './bs58';
+import { base58 } from './bs58';
 import { base58Validate } from './validate';
 
 /**
@@ -15,5 +13,9 @@ import { base58Validate } from './validate';
 export function base58Decode (value: string, ipfsCompat?: boolean): Uint8Array {
   base58Validate(value, ipfsCompat);
 
-  return bufferToU8a(bs58.decode(value.substr(ipfsCompat ? 1 : 0)));
+  return base58.decode(
+    ipfsCompat
+      ? value.substr(1)
+      : value
+  );
 }

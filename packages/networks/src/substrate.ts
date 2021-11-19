@@ -149,7 +149,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     network: 'totem',
     prefix: 14,
     standardAccount: '*25519',
-    symbols: ['XTX'],
+    symbols: ['TOTEM'],
     website: 'https://totemaccounting.com'
   },
   {
@@ -673,6 +673,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: 'secp256k1',
     symbols: ['MOVR'],
     website: 'https://moonbeam.network'
+  },
+  {
+    decimals: [12],
+    displayName: 'Kapex',
+    network: 'kapex',
+    prefix: 2007,
+    standardAccount: '*25519',
+    symbols: ['KAPEX'],
+    website: 'https://totemaccounting.com'
   },
   {
     decimals: [18],
