@@ -7,7 +7,6 @@
 
 export * from './consts';
 
-export { BigIntClass } from './class';
 export { biSqrt } from './sqrt';
 export { biToBigInt } from './toBigInt';
 export { biMax } from './max';
