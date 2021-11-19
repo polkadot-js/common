@@ -4,16 +4,12 @@
 import type { Keypair } from '../types';
 import type { HashType } from './types';
 
-import { Signature, signSync, utils } from '@noble/secp256k1';
+import { Signature, signSync } from '@noble/secp256k1';
 
 import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
 
 import { BN_BE_256_OPTS } from '../bn';
-import { hmacSha256 } from '../hmac';
 import { secp256k1Hasher } from './hasher';
-
-// This needs to be set on the @noble/secp256k1 library
-utils.hmacSha256Sync = hmacSha256;
 
 /**
  * @name secp256k1Sign
