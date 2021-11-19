@@ -6,7 +6,7 @@ import type { HexString } from '@polkadot/util/types';
 import js from 'js-sha3';
 
 import { u8aToU8a } from '@polkadot/util';
-import { isReady, keccak256 } from '@polkadot/wasm-crypto';
+import { isReady, keccak256, keccak512 } from '@polkadot/wasm-crypto';
 
 /**
  * @name keccakAsU8a
@@ -24,10 +24,13 @@ import { isReady, keccak256 } from '@polkadot/wasm-crypto';
  */
 export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: 256 | 512 = 256, onlyJs = false): Uint8Array {
   const is256 = bitLength === 256;
+  const u8a = u8aToU8a(value);
 
-  return isReady() && is256 && !onlyJs
-    ? keccak256(u8aToU8a(value))
+  return isReady() && !onlyJs
+    ? is256
+      ? keccak256(u8a)
+      : keccak512(u8a)
     : new Uint8Array(
-      (is256 ? js.keccak256 : js.keccak512).update(u8aToU8a(value)).arrayBuffer()
+      (is256 ? js.keccak256 : js.keccak512).update(u8a).arrayBuffer()
     );
 }

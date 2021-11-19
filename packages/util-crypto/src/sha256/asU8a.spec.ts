@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { hexToU8a } from '@polkadot/util';
+import { waitReady } from '@polkadot/wasm-crypto';
 
 import { sha256AsU8a } from '.';
 
@@ -29,9 +30,37 @@ const TESTS = [
 ];
 
 describe('sha256AsU8a', (): void => {
-  it.each(TESTS)('creates known sha-256 hash', ({ input, output }): void => {
-    expect(
-      sha256AsU8a(hexToU8a(input))
-    ).toEqual(hexToU8a(output));
+  beforeEach(async (): Promise<void> => {
+    await waitReady();
+  });
+
+  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+    it.each(TESTS)('creates known sha-256 hash', ({ input, output }): void => {
+      expect(
+        sha256AsU8a(hexToU8a(input), onlyJs)
+      ).toEqual(hexToU8a(output));
+    });
+  });
+
+  it.skip.each([false, true])('performance: onlyJs=%p', (onlyJs): void => {
+    const label = `sha256AsU8a:onlyJs=${onlyJs.toString()}`;
+    const test = new Uint8Array([
+      1, 2, 3, 4, 5, 6, 7, 8,
+      1, 2, 3, 4, 5, 6, 7, 8,
+      1, 2, 3, 4, 5, 6, 7, 8,
+      1, 2, 3, 4, 5, 6, 7, 8,
+      1, 2, 3, 4, 5, 6, 7, 8,
+      1, 2, 3, 4, 5, 6, 7, 8,
+      1, 2, 3, 4, 5, 6, 7, 8,
+      1, 2, 3, 4, 5, 6, 7, 8
+    ]);
+
+    console.time(label);
+
+    for (let i = 0; i < 128000; i++) {
+      sha256AsU8a(test, onlyJs);
+    }
+
+    console.timeEnd(label);
   });
 });
