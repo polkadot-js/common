@@ -2,6 +2,10 @@
 
 ## master
 
+Contributed:
+
+- Updated Polymesh genesisHash (Thanks to https://github.com/adamdossa)
+
 Changes:
 
 - Add strongly typed `object{Entries, Keys, Values}` utilities
