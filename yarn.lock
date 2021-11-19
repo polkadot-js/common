@@ -2090,6 +2090,7 @@ __metadata:
     "@polkadot/x-randomvalues": 7.8.3-33
     "@types/bn.js": ^4.11.6
     "@types/create-hash": ^1.2.2
+    "@types/ed2curve": ^0.2.2
     "@types/elliptic": ^6.4.14
     "@types/scryptsy": ^2.0.0
     "@types/xxhashjs": ^0.2.2
@@ -9198,7 +9199,6 @@ resolve@^2.0.0-next.3:
     "@babel/core": ^7.16.0
     "@polkadot/dev": ^0.63.29
     "@polkadot/ts": ^0.4.14
-    "@types/ed2curve": ^0.2.2
     "@types/jest": ^27.0.2
   languageName: unknown
   linkType: soft
