@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { assert } from '@polkadot/util';
+import { assert, hasBigInt } from '@polkadot/util';
 import { bip39ToSeed, isReady } from '@polkadot/wasm-crypto';
 
 import { mnemonicToSeedSync } from './bip39';
@@ -29,10 +29,12 @@ export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs = 
   assert([32, 64].includes(byteLength), () => `Invalid seed length ${byteLength}, expected 32 or 64`);
 
   if (byteLength === 32) {
-    return isReady() && !onlyJs
+    return !hasBigInt || (isReady() && !onlyJs)
       ? bip39ToSeed(mnemonic, password)
       : mnemonicToSeedSync(mnemonic, password).subarray(0, 32);
   } else if (byteLength === 64) {
+    assert(hasBigInt, 'BigInt is required for legacy seed (64-byte) operations');
+
     return mnemonicToSeedSync(mnemonic, password);
   }
 

@@ -13,13 +13,12 @@
 //   - Remove setting of wordlist passing of wordlist in functions
 //   - Remove mnemonicToSeed (we only use the sync variant)
 
-import { sha256 } from '@noble/hashes/lib/sha256';
-
 import { assert, stringToU8a, u8aToU8a } from '@polkadot/util';
 
 import { pbkdf2Encode } from '../pbkdf2';
 import { randomAsU8a } from '../random/asU8a';
 import DEFAULT_WORDLIST from './bip39-en';
+import { sha256 } from './sha';
 
 const INVALID_MNEMONIC = 'Invalid mnemonic';
 const INVALID_ENTROPY = 'Invalid entropy';

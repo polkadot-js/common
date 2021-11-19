@@ -1,6 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { hasBigInt } from '@polkadot/util';
 import { bip39Generate, isReady } from '@polkadot/wasm-crypto';
 
 import { generateMnemonic } from './bip39';
@@ -29,7 +30,7 @@ const STRENGTH_MAP = {
  * ```
  */
 export function mnemonicGenerate (numWords: WordCount = 12, onlyJs = false): string {
-  return isReady() && !onlyJs
+  return !hasBigInt || (isReady() && !onlyJs)
     ? bip39Generate(numWords)
     : generateMnemonic(STRENGTH_MAP[numWords]);
 }
