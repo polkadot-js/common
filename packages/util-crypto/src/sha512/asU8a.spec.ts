@@ -23,7 +23,7 @@ describe('sha512AsU8a', (): void => {
     });
   });
 
-  performanceTest('sha256AsU8a', 64000, (input, onlyJs) =>
+  performanceTest('sha512AsU8a', 64000, (input, onlyJs) =>
     sha512AsU8a(input, onlyJs)
   );
 });
