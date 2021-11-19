@@ -17,7 +17,7 @@ import { assert, stringToU8a, u8aToU8a } from '@polkadot/util';
 
 import { pbkdf2Encode } from '../pbkdf2';
 import { randomAsU8a } from '../random/asU8a';
-import { sha256AsU8a } from '../sha256/asU8a';
+import { sha256AsU8a } from '../sha/asU8a256';
 import DEFAULT_WORDLIST from './bip39-en';
 
 const INVALID_MNEMONIC = 'Invalid mnemonic';
