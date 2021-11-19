@@ -4,6 +4,7 @@
 import { arrayRange } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
+import { performanceTest } from '../../test/performance';
 import { randomAsU8a } from '../random/asU8a';
 import { DEFAULT_PARAMS } from './defaults';
 import { scryptEncode } from '.';
@@ -31,18 +32,9 @@ describe('scryptEncode', (): void => {
         salt: KNOWN_SALT
       });
     });
-
-    // @noble/hashes is faster than wasm...
-    it.skip('performance', (): void => {
-      const label = `performance:scryptEncode(onlyJs=${onlyJs.toString()})`;
-
-      console.time(label);
-
-      for (let i = 0; i < randoms.length; i++) {
-        scryptEncode(randoms[i], randoms[i], undefined, onlyJs);
-      }
-
-      console.timeEnd(label);
-    });
   });
+
+  performanceTest('scryptEncode', 4, (input, onlyJs) =>
+    scryptEncode(input, input, undefined, onlyJs)
+  );
 });

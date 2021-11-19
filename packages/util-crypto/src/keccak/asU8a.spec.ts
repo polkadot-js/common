@@ -4,6 +4,7 @@
 import { hexToU8a, stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
+import { performanceTest } from '../../test/performance';
 import { keccakAsU8a } from '.';
 
 describe('keccakAsU8a', (): void => {
@@ -21,8 +22,8 @@ describe('keccakAsU8a', (): void => {
     )
   };
 
-  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-    describe.each([256, 512] as (256 | 512)[])('bitLength=$p', (bitLength): void => {
+  describe.each([256, 512] as (256 | 512)[])('bitLength=$p', (bitLength): void => {
+    describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
       it('returns an hex representation (string)', (): void => {
         expect(
           keccakAsU8a(input, bitLength, onlyJs)
@@ -41,27 +42,9 @@ describe('keccakAsU8a', (): void => {
         ).toEqual(output[bitLength]);
       });
     });
-  });
 
-  it.skip.each([false, true])('performance: onlyJs=%p', (onlyJs): void => {
-    const label = `keccakAsU8a:onlyJs=${onlyJs.toString()}`;
-    const test = new Uint8Array([
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8,
-      1, 2, 3, 4, 5, 6, 7, 8
-    ]);
-
-    console.time(label);
-
-    for (let i = 0; i < 128000; i++) {
-      keccakAsU8a(test, undefined, onlyJs);
-    }
-
-    console.timeEnd(label);
+    performanceTest(`keccakAsU8a, bitLength=${bitLength}`, 128000, (input, onlyJs) =>
+      keccakAsU8a(input, bitLength, onlyJs)
+    );
   });
 });
