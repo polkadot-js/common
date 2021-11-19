@@ -26,3 +26,6 @@ export * from './string';
 export * from './stringify';
 export * from './u8a';
 export * from './versionDetect';
+
+export const hasBigInt = typeof BigInt !== 'undefined';
+export const hasBuffer = typeof Buffer !== 'undefined';
