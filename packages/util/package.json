@@ -40,12 +40,12 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "7.8.3-21",
+  "version": "7.8.3-29",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@polkadot/x-textdecoder": "7.8.3-21",
-    "@polkadot/x-textencoder": "7.8.3-21",
+    "@polkadot/x-textdecoder": "7.8.3-29",
+    "@polkadot/x-textencoder": "7.8.3-29",
     "@types/bn.js": "^4.11.6",
     "bn.js": "^4.12.0",
     "camelcase": "^6.2.1",

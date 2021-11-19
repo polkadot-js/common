@@ -5,33 +5,6 @@ import type { HexString } from '../types';
 
 import { u8aToU8a } from './toU8a';
 
-function compare (a: Uint8Array, b: Uint8Array): number {
-  let i = 0;
-
-  while (true) {
-    const overA = i >= a.length;
-    const overB = i >= b.length;
-
-    if (overA && overB) {
-      // both ends reached
-      return 0;
-    } else if (overA) {
-      // a has no more data, b has data
-      return -1;
-    } else if (overB) {
-      // b has no more data, a has data
-      return 1;
-    } else if (a[i] !== b[i]) {
-      // the number in this index doesn't match
-      return a[i] > b[i]
-        ? 1
-        : -1;
-    }
-
-    i++;
-  }
-}
-
 /**
  * @name u8aCmp
  * @summary Compares two Uint8Arrays for sorting.
@@ -49,5 +22,30 @@ function compare (a: Uint8Array, b: Uint8Array): number {
  * ```
  */
 export function u8aCmp (a: HexString | Uint8Array | string, b: HexString | Uint8Array | string): number {
-  return compare(u8aToU8a(a), u8aToU8a(b));
+  const u8aa = u8aToU8a(a);
+  const u8ab = u8aToU8a(b);
+  let i = 0;
+
+  while (true) {
+    const overA = i >= u8aa.length;
+    const overB = i >= u8ab.length;
+
+    if (overA && overB) {
+      // both ends reached
+      return 0;
+    } else if (overA) {
+      // a has no more data, b has data
+      return -1;
+    } else if (overB) {
+      // b has no more data, a has data
+      return 1;
+    } else if (u8aa[i] !== u8ab[i]) {
+      // the number in this index doesn't match
+      return u8aa[i] > u8ab[i]
+        ? 1
+        : -1;
+    }
+
+    i++;
+  }
 }
