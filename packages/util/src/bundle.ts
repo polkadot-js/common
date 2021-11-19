@@ -14,6 +14,7 @@ export * from './buffer';
 export * from './compact';
 export * from './extractTime';
 export * from './format';
+export * from './has';
 export * from './hex';
 export * from './is';
 export * from './lazy';
@@ -26,6 +27,3 @@ export * from './string';
 export * from './stringify';
 export * from './u8a';
 export * from './versionDetect';
-
-export const hasBigInt = typeof BigInt !== 'undefined';
-export const hasBuffer = typeof Buffer !== 'undefined';
