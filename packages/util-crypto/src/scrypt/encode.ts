@@ -15,7 +15,6 @@ import { DEFAULT_PARAMS } from './defaults';
 export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS, onlyJs = false): Result {
   return {
     params,
-    // while we have the lagacy override, we still protect against non-BigInt platforms
     password: !hasBigInt || (isReady() && !onlyJs)
       ? scrypt(u8aToU8a(passphrase), salt, Math.log2(params.N), params.r, params.p)
       : scryptJs(u8aToU8a(passphrase), salt, objectSpread({ dkLen: 64 }, params)),
