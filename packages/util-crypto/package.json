@@ -6,6 +6,14 @@
   "engines": {
     "node": ">=14.0.0"
   },
+  "exports": {
+    "./scrypt/encode": {
+      "react-native": {
+        "require": "./encodeLegacy.cjs",
+        "default": "./encodeLegacy.js"
+      }
+    }
+  },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme",
   "license": "Apache-2.0",
   "maintainers": [],
@@ -26,6 +34,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
+    "@noble/hashes": "^0.4.1",
     "@polkadot/networks": "7.8.3-29",
     "@polkadot/util": "7.8.3-29",
     "@polkadot/wasm-crypto": "^4.2.1",

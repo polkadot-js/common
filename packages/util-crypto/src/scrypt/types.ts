@@ -6,3 +6,9 @@ export interface Params {
   p: number;
   r: number;
 }
+
+export interface Result {
+  params: Params,
+  password: Uint8Array;
+  salt: Uint8Array;
+}

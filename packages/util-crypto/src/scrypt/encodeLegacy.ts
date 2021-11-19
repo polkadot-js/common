@@ -4,9 +4,9 @@
 import type { HexString } from '@polkadot/util/types';
 import type { Result } from './types';
 
-import { scrypt as scryptJs } from '@noble/hashes/lib/scrypt';
+import scryptsy from 'scryptsy';
 
-import { objectSpread, u8aToU8a } from '@polkadot/util';
+import { bufferToU8a, u8aToBuffer, u8aToU8a } from '@polkadot/util';
 import { isReady, scrypt } from '@polkadot/wasm-crypto';
 
 import { randomAsU8a } from '../random/asU8a';
@@ -17,7 +17,9 @@ export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt
     params,
     password: isReady() && !onlyJs
       ? scrypt(u8aToU8a(passphrase), salt, Math.log2(params.N), params.r, params.p)
-      : scryptJs(u8aToU8a(passphrase), salt, objectSpread({ dkLen: 64 }, params)),
+      : bufferToU8a(
+        scryptsy(u8aToBuffer(u8aToU8a(passphrase)), u8aToBuffer(salt), params.N, params.r, params.p, 64)
+      ),
     salt
   };
 }
