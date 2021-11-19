@@ -42,4 +42,17 @@ describe('keccakAsU8a', (): void => {
       });
     });
   });
+
+  it.skip.each([false, true])('performance: onlyJs=%p', (onlyJs): void => {
+    const label = `keccakAsU8a:onlyJs=${onlyJs.toString()}`;
+    const test = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8]);
+
+    console.time(label);
+
+    for (let i = 0; i < 128000; i++) {
+      keccakAsU8a(test, undefined, onlyJs);
+    }
+
+    console.timeEnd(label);
+  });
 });
