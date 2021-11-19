@@ -26,7 +26,6 @@ export * from './random';
 export * from './schnorrkel';
 export * from './scrypt';
 export * from './secp256k1';
-export * from './sha256';
-export * from './sha512';
+export * from './sha';
 export * from './signature';
 export * from './xxhash';
