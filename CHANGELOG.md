@@ -9,8 +9,10 @@ Changes:
 - Add `bi*` utilities for `bigint` operations (mirror of `bn*`)
 - Add `stringPascalCase` utility
 - Add `isCodec` to check for Codec-like structures
+- Add `has*` detection shortcuts (e.g. `hasWasm` or `hasBuffer`)
 - Optimize for `hexToU8a` and `u8aToHex` functions
 - Optimize `u8aEq` to use `DataView` for compares
+- Align base{32, 58, 64} around (audited) `micro-base`
 - Space optimization for bip39 wordlists
 - Sync with upstream Substrate ss58 registry
 - Expand tests for uncovered functions

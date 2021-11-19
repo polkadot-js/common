@@ -3,9 +3,9 @@
 
 import type { U8aLike } from '@polkadot/util/types';
 
-import base64 from 'base64-js';
-
 import { u8aToU8a } from '@polkadot/util';
+
+import { base64 } from './bs64';
 
 /**
  * @name base64Encode
@@ -14,5 +14,5 @@ import { u8aToU8a } from '@polkadot/util';
  * From the provided input, create the base64 and return the result as a string.
  */
 export function base64Encode (value: U8aLike): string {
-  return base64.fromByteArray(u8aToU8a(value));
+  return base64.encode(u8aToU8a(value));
 }
