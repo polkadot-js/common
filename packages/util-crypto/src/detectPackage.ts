@@ -2,9 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { packageInfo as netInfo } from '@polkadot/networks/packageInfo';
-import { detectPackage, packageInfo as utilInfo } from '@polkadot/util';
+import { detectPackage, hasBigInt, packageInfo as utilInfo } from '@polkadot/util';
 import { packageInfo as randomInfo } from '@polkadot/x-randomvalues';
 
 import { packageInfo } from './packageInfo';
 
 detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [netInfo, utilInfo, randomInfo]);
+
+if (!hasBigInt) {
+  console.warn('Your environment does not support JS BigInt, legacy fallbacks would be used for certain operations');
+}
