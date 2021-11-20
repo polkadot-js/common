@@ -105,20 +105,12 @@ function init (input: Uint8Array, seed: bigint): State {
 
 export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Array {
   const { memory, memsize, seed, v1, v2, v3, v4 } = init(input, BigInt(initSeed));
-  let h64: bigint;
   let p = 0;
-
-  if (input.length >= 32) {
-    h64 = U64 & (rotl(v1, 1n) + rotl(v2, 7n) + rotl(v3, 12n) + rotl(v4, 18n));
-    h64 = U64 & ((h64 ^ (P64_1 * rotl(v1 * P64_2, 31n))) * P64_1 + P64_4);
-    h64 = U64 & ((h64 ^ (P64_1 * rotl(v2 * P64_2, 31n))) * P64_1 + P64_4);
-    h64 = U64 & ((h64 ^ (P64_1 * rotl(v3 * P64_2, 31n))) * P64_1 + P64_4);
-    h64 = U64 & ((h64 ^ (P64_1 * rotl(v4 * P64_2, 31n))) * P64_1 + P64_4);
-  } else {
-    h64 = U64 & (seed + P64_5);
-  }
-
-  h64 = U64 & (h64 + BigInt(input.length));
+  let h64 = U64 & (BigInt(input.length) + (
+    input.length >= 32
+      ? (((U64 & (((U64 & (((U64 & (((U64 & (rotl(v1, 1n) + rotl(v2, 7n) + rotl(v3, 12n) + rotl(v4, 18n))) ^ (P64_1 * rotl(v1 * P64_2, 31n))) * P64_1 + P64_4)) ^ (P64_1 * rotl(v2 * P64_2, 31n))) * P64_1 + P64_4)) ^ (P64_1 * rotl(v3 * P64_2, 31n))) * P64_1 + P64_4)) ^ (P64_1 * rotl(v4 * P64_2, 31n))) * P64_1 + P64_4)
+      : (seed + P64_5)
+  ));
 
   while (p <= (memsize - 8)) {
     h64 = U64 & (P64_4 + P64_1 * rotl(h64 ^ (P64_1 * rotl(P64_2 * fromMemory(memory, p), 31n)), 27n));
