@@ -3,7 +3,7 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import { u8aToU8a } from '@polkadot/util';
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, twox } from '@polkadot/wasm-crypto';
 
 import { xxhash64 } from './xxhash64';
@@ -26,7 +26,7 @@ export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bit
   const iterations = Math.ceil(bitLength / 64);
   const u8a = u8aToU8a(data);
 
-  if (isReady() && !onlyJs) {
+  if (!hasBigInt || (isReady() && !onlyJs)) {
     return twox(u8a, iterations);
   }
 
