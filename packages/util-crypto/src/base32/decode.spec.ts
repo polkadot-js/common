@@ -3,7 +3,7 @@
 
 import { u8aToString } from '@polkadot/util';
 
-import { base32Decode } from './';
+import { base32Decode } from '.';
 
 describe('base32Decode', (): void => {
   it('decodes a base32', (): void => {
