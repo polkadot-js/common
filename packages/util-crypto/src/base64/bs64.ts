@@ -7,9 +7,11 @@ import { assert } from '@polkadot/util';
 
 import { createDecode, createEncode, createIs } from '../base32/helpers';
 
-// const BASE64_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+const BASE64_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 const BASE64_REGEX = /^(?:[A-Za-z0-9+/]{2}[A-Za-z0-9+/]{2})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
+
+const BASE64_CONFIG = { alphabet: BASE64_ALPHABET, type: 'base64' };
 
 /**
  * @name base64Validate
@@ -44,4 +46,4 @@ export const base64Decode = createDecode(base64, base64Validate);
  * @description
  * From the provided input, create the base64 and return the result as a string.
  */
-export const base64Encode = createEncode(base64);
+export const base64Encode = createEncode(BASE64_CONFIG, base64);

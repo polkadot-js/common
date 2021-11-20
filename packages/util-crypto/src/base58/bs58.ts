@@ -8,13 +8,15 @@ import { createDecode, createEncode, createIs, createValidate } from '../base32/
 // https://github.com/cryptocoinjs/base-x#alphabets
 const BASE58_ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
 
+const BASE58_CONFIG = { alphabet: BASE58_ALPHABET, ipfsChar: 'z', type: 'base58' };
+
 /**
  * @name base58Validate
  * @summary Validates a base58 value.
  * @description
  * Validates that the supplied value is valid base58, throwing exceptions if not
  */
-export const base58Validate = createValidate({ alphabet: BASE58_ALPHABET, ipfsChar: 'z', type: 'base58' });
+export const base58Validate = createValidate(BASE58_CONFIG);
 
 /**
  * @name base58Decode
@@ -30,7 +32,7 @@ export const base58Decode = createDecode(base58, base58Validate);
 * @description
 * From the provided input, create the base58 and return the result as a string.
 */
-export const base58Encode = createEncode(base58, 'z');
+export const base58Encode = createEncode(BASE58_CONFIG, base58);
 
 /**
 * @name isBase58

@@ -7,6 +7,8 @@ import { createDecode, createEncode, createIs, createValidate } from './helpers'
 
 const BASE32_ALPHABET = 'abcdefghijklmnopqrstuvwxyz234567';
 
+const BASE32_CONFIG = { alphabet: BASE32_ALPHABET, ipfsChar: 'b', type: 'base32' };
+
 // We define our own chain, the default base32 has padding
 const base32 = utils.chain(
   utils.radix2(5),
@@ -23,7 +25,7 @@ const base32 = utils.chain(
  * @description
  * Validates that the supplied value is valid base32, throwing exceptions if not
  */
-export const base32Validate = createValidate({ alphabet: BASE32_ALPHABET, ipfsChar: 'b', type: 'base32' });
+export const base32Validate = createValidate(BASE32_CONFIG);
 
 /**
 * @name isBase32
@@ -45,4 +47,4 @@ export const base32Decode = createDecode(base32, base32Validate);
 * @description
 * From the provided input, create the base32 and return the result as a string.
 */
-export const base32Encode = createEncode(base32, 'b');
+export const base32Encode = createEncode(BASE32_CONFIG, base32);

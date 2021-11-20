@@ -12,7 +12,7 @@ interface BaseCoder {
 
 interface Config {
   alphabet: string;
-  ipfsChar: string;
+  ipfsChar?: string;
   type: string;
 }
 
@@ -34,7 +34,7 @@ export function createDecode (base: BaseCoder, validate: ValidateFn): DecodeFn {
   };
 }
 
-export function createEncode (base: BaseCoder, ipfsChar?: string): EncodeFn {
+export function createEncode ({ ipfsChar }: Config, base: BaseCoder): EncodeFn {
   return (value: U8aLike, ipfsCompat?: boolean): string => {
     const out = base.encode(u8aToU8a(value));
 
@@ -57,7 +57,10 @@ export function createIs (validate: ValidateFn): ValidateFn {
 export function createValidate ({ alphabet, ipfsChar, type }: Config): ValidateFn {
   return (value?: unknown, ipfsCompat?: boolean): value is string => {
     assert(value && typeof value === 'string', () => `Expected non-null, non-empty ${type} string input`);
-    assert(!ipfsCompat || value[0] === ipfsChar, () => `Expected ${type} to start with '${ipfsChar}'`);
+
+    if (ipfsChar) {
+      assert(!ipfsCompat || value[0] === ipfsChar, () => `Expected ${type} to start with '${ipfsChar}'`);
+    }
 
     for (let i = (ipfsCompat ? 1 : 0); i < value.length; i++) {
       assert(alphabet.includes(value[i]), () => `Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`);
