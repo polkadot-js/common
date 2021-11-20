@@ -5,14 +5,16 @@ import { utils } from 'micro-base';
 
 import { createDecode, createEncode, createIs, createValidate } from './helpers';
 
-const BASE32_ALPHABET = 'abcdefghijklmnopqrstuvwxyz234567';
-
-const BASE32_CONFIG = { alphabet: BASE32_ALPHABET, ipfsChar: 'b', type: 'base32' };
+const BASE32_CONFIG = {
+  alphabet: 'abcdefghijklmnopqrstuvwxyz234567',
+  ipfsChar: 'b',
+  type: 'base32'
+};
 
 // We define our own chain, the default base32 has padding
 const base32 = utils.chain(
   utils.radix2(5),
-  utils.alphabet(BASE32_ALPHABET),
+  utils.alphabet(BASE32_CONFIG.alphabet),
   {
     decode: (input: string) => input.split(''),
     encode: (input: string[]) => input.join('')

@@ -5,10 +5,11 @@ import { base58 } from 'micro-base';
 
 import { createDecode, createEncode, createIs, createValidate } from '../base32/helpers';
 
-// https://github.com/cryptocoinjs/base-x#alphabets
-const BASE58_ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
-
-const BASE58_CONFIG = { alphabet: BASE58_ALPHABET, ipfsChar: 'z', type: 'base58' };
+const BASE58_CONFIG = {
+  alphabet: '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
+  ipfsChar: 'z',
+  type: 'base58'
+};
 
 /**
  * @name base58Validate

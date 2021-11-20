@@ -13,6 +13,7 @@ interface BaseCoder {
 interface Config {
   alphabet: string;
   ipfsChar?: string;
+  regex?: RegExp;
   type: string;
 }
 
@@ -54,7 +55,7 @@ export function createIs (validate: ValidateFn): ValidateFn {
   };
 }
 
-export function createValidate ({ alphabet, ipfsChar, type }: Config): ValidateFn {
+export function createValidate ({ alphabet, ipfsChar, regex, type }: Config): ValidateFn {
   return (value?: unknown, ipfsCompat?: boolean): value is string => {
     assert(value && typeof value === 'string', () => `Expected non-null, non-empty ${type} string input`);
 
@@ -62,8 +63,12 @@ export function createValidate ({ alphabet, ipfsChar, type }: Config): ValidateF
       assert(!ipfsCompat || value[0] === ipfsChar, () => `Expected ${type} to start with '${ipfsChar}'`);
     }
 
-    for (let i = (ipfsCompat ? 1 : 0); i < value.length; i++) {
-      assert(alphabet.includes(value[i]), () => `Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`);
+    if (regex) {
+      assert(regex.test(value), `Invalid ${type} encoding`);
+    } else {
+      for (let i = (ipfsCompat ? 1 : 0); i < value.length; i++) {
+        assert(alphabet.includes(value[i]), () => `Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`);
+      }
     }
 
     return true;

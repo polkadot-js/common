@@ -3,15 +3,13 @@
 
 import { base64 } from 'micro-base';
 
-import { assert } from '@polkadot/util';
+import { createDecode, createEncode, createIs, createValidate } from '../base32/helpers';
 
-import { createDecode, createEncode, createIs } from '../base32/helpers';
-
-const BASE64_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-
-const BASE64_REGEX = /^(?:[A-Za-z0-9+/]{2}[A-Za-z0-9+/]{2})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
-
-const BASE64_CONFIG = { alphabet: BASE64_ALPHABET, type: 'base64' };
+const BASE64_CONFIG = {
+  alphabet: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
+  regex: /^(?:[A-Za-z0-9+/]{2}[A-Za-z0-9+/]{2})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/,
+  type: 'base64'
+};
 
 /**
  * @name base64Validate
@@ -19,12 +17,7 @@ const BASE64_CONFIG = { alphabet: BASE64_ALPHABET, type: 'base64' };
  * @description
  * Validates that the supplied value is valid base64
  */
-export function base64Validate (value?: unknown): value is string {
-  assert(value && typeof value === 'string', 'Expected non-null, non-empty base64 string input');
-  assert(BASE64_REGEX.test(value), 'Invalid base64 encoding');
-
-  return true;
-}
+export const base64Validate = createValidate(BASE64_CONFIG);
 
 /**
  * @name isBase64
