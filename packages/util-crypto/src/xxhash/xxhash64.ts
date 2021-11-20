@@ -105,7 +105,7 @@ function init (input: Uint8Array, seed: bigint): State {
 
 export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Array {
   const { memory, memsize, seed, v1, v2, v3, v4 } = init(input, BigInt(initSeed));
-  let h64 = 0n;
+  let h64: bigint;
   let p = 0;
 
   if (input.length >= 32) {
