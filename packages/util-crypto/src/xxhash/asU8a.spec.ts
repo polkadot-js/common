@@ -1,10 +1,11 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hexToU8a } from '@polkadot/util';
+import { hexToU8a, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { performanceTest } from '../../test/performance';
+import { randomAsU8a } from '../random';
 import { xxhashAsU8a } from '.';
 
 describe('xxhashAsU8a', (): void => {
@@ -36,6 +37,14 @@ describe('xxhashAsU8a', (): void => {
         hexToU8a('0x990977adf52cbc440889329981caa9bef7da5770b2b8a05303b75d95360dd62b')
       );
     });
+  });
+
+  it('has equivalent results', (): void => {
+    const test = randomAsU8a();
+    const a = u8aToHex(xxhashAsU8a(test, undefined, true));
+    const b = u8aToHex(xxhashAsU8a(test, undefined, false));
+
+    expect(a).toEqual(b);
   });
 
   performanceTest('xxhashAsU8a', 8000, (input, onlyJs) =>

@@ -6,7 +6,7 @@ import type { HexString } from '@polkadot/util/types';
 import { u8aToU8a } from '@polkadot/util';
 import { isReady, twox } from '@polkadot/wasm-crypto';
 
-import xxhash64AsBn from './xxhash64/asBn';
+import { xxhash64 } from './xxhash64';
 
 /**
  * @name xxhashAsU8a
@@ -33,7 +33,7 @@ export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bit
   const result = new Uint8Array(Math.ceil(bitLength / 8));
 
   for (let seed = 0; seed < iterations; seed++) {
-    result.set(xxhash64AsBn(u8a, seed).toArray('le', 8), seed * 8);
+    result.set(xxhash64(u8a, seed).reverse(), seed * 8);
   }
 
   return result;
