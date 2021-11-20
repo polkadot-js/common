@@ -48,6 +48,15 @@ function combine (...values: number[]): bigint {
   return result;
 }
 
+function fromMemory (memory: Uint8Array, p: number): bigint {
+  return combine(
+    (memory[p + 1] << 8) | memory[p],
+    (memory[p + 3] << 8) | memory[p + 2],
+    (memory[p + 5] << 8) | memory[p + 4],
+    (memory[p + 7] << 8) | memory[p + 6]
+  );
+}
+
 function init (input: Uint8Array, seed: bigint): State {
   const state: State = {
     memory: new Uint8Array(32),
@@ -71,16 +80,7 @@ function init (input: Uint8Array, seed: bigint): State {
 
   if (limit >= 0) {
     const adjustV = (v: bigint) =>
-      P64_1 * rotl(
-        v + (
-          P64_2 * combine(
-            (input[p + 1] << 8) | input[p],
-            (input[p + 3] << 8) | input[p + 2],
-            (input[p + 5] << 8) | input[p + 4],
-            (input[p + 7] << 8) | input[p + 6]
-          )
-        ), 31n
-      );
+      P64_1 * rotl(v + P64_2 * fromMemory(input, p), 31n);
 
     do {
       state.v1 = adjustV(state.v1);
@@ -122,14 +122,7 @@ export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Ar
   while (p <= (memsize - 8)) {
     h64 = U64 & (P64_4 + P64_1 * rotl(
       h64 ^ (
-        P64_1 * rotl(
-          P64_2 * combine(
-            (memory[p + 1] << 8) | memory[p],
-            (memory[p + 3] << 8) | memory[p + 2],
-            (memory[p + 5] << 8) | memory[p + 4],
-            (memory[p + 7] << 8) | memory[p + 6]
-          ), 31n
-        )
+        P64_1 * rotl(P64_2 * fromMemory(memory, p), 31n)
       ), 27n
     ));
     p += 8;
