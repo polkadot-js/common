@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { arrayRange, formatNumber } from '@polkadot/util';
+import { arrayRange } from '@polkadot/util';
 import { randomAsU8a } from '@polkadot/util-crypto';
 
 const GENERATED = arrayRange(64).map(() => randomAsU8a());
@@ -21,7 +21,7 @@ function perSecond (count: number, time: number): string {
   const ops = 1_000_000 / micro;
 
   return `
-                 ${formatNumber(ops).padStart(10)} ops/s
+                 ${ops.toFixed(2).padStart(10)} ops/s
                  ${micro.toFixed(2).padStart(10)} μs/op`;
 }
 

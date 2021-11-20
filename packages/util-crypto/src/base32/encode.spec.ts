@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { base58Decode } from '../base58';
-import { base32Encode } from './';
+import { base32Encode } from '.';
 
 describe('base32Encode', (): void => {
   it('encodes to a base32', (): void => {

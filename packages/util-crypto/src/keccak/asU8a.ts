@@ -31,6 +31,8 @@ export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bi
       ? keccak256(u8a)
       : keccak512(u8a)
     : new Uint8Array(
-      (is256 ? js.keccak256 : js.keccak512).update(u8a).arrayBuffer()
+      is256
+        ? js.keccak256.update(u8a).arrayBuffer()
+        : js.keccak512.update(u8a).arrayBuffer()
     );
 }
