@@ -5,21 +5,22 @@ import { utils } from 'micro-base';
 
 import { createDecode, createEncode, createIs, createValidate } from './helpers';
 
+const BASE32_ALPHABET = 'abcdefghijklmnopqrstuvwxyz234567';
+
 const BASE32_CONFIG = {
-  alphabet: 'abcdefghijklmnopqrstuvwxyz234567',
+  alphabet: BASE32_ALPHABET,
+  coder: utils.chain(
+    // We define our own chain, the default base32 has padding
+    utils.radix2(5),
+    utils.alphabet(BASE32_ALPHABET),
+    {
+      decode: (input: string) => input.split(''),
+      encode: (input: string[]) => input.join('')
+    }
+  ),
   ipfsChar: 'b',
   type: 'base32'
 };
-
-// We define our own chain, the default base32 has padding
-const base32 = utils.chain(
-  utils.radix2(5),
-  utils.alphabet(BASE32_CONFIG.alphabet),
-  {
-    decode: (input: string) => input.split(''),
-    encode: (input: string[]) => input.join('')
-  }
-);
 
 /**
  * @name base32Validate
@@ -41,7 +42,7 @@ export const isBase32 = createIs(base32Validate);
  * @description
  * From the provided input, decode the base32 and return the result as an `Uint8Array`.
  */
-export const base32Decode = createDecode(base32, base32Validate);
+export const base32Decode = createDecode(BASE32_CONFIG, base32Validate);
 
 /**
 * @name base32Encode
@@ -49,4 +50,4 @@ export const base32Decode = createDecode(base32, base32Validate);
 * @description
 * From the provided input, create the base32 and return the result as a string.
 */
-export const base32Encode = createEncode(BASE32_CONFIG, base32);
+export const base32Encode = createEncode(BASE32_CONFIG);

@@ -7,6 +7,7 @@ import { createDecode, createEncode, createIs, createValidate } from '../base32/
 
 const BASE58_CONFIG = {
   alphabet: '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
+  coder: base58,
   ipfsChar: 'z',
   type: 'base58'
 };
@@ -25,7 +26,7 @@ export const base58Validate = createValidate(BASE58_CONFIG);
  * @description
  * From the provided input, decode the base58 and return the result as an `Uint8Array`.
  */
-export const base58Decode = createDecode(base58, base58Validate);
+export const base58Decode = createDecode(BASE58_CONFIG, base58Validate);
 
 /**
 * @name base58Encode
@@ -33,7 +34,7 @@ export const base58Decode = createDecode(base58, base58Validate);
 * @description
 * From the provided input, create the base58 and return the result as a string.
 */
-export const base58Encode = createEncode(BASE58_CONFIG, base58);
+export const base58Encode = createEncode(BASE58_CONFIG);
 
 /**
 * @name isBase58

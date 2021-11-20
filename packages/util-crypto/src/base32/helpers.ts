@@ -5,13 +5,14 @@ import type { U8aLike } from '@polkadot/util/types';
 
 import { assert, u8aToU8a } from '@polkadot/util';
 
-interface BaseCoder {
+interface Coder {
   decode: (value: string) => Uint8Array;
   encode: (value: Uint8Array) => string;
 }
 
 interface Config {
   alphabet: string;
+  coder: Coder;
   ipfsChar?: string;
   regex?: RegExp;
   type: string;
@@ -23,21 +24,21 @@ type EncodeFn = (value: U8aLike, ipfsCompat?: boolean) => string;
 
 type ValidateFn = (value?: unknown, ipfsCompat?: boolean) => value is string;
 
-export function createDecode (base: BaseCoder, validate: ValidateFn): DecodeFn {
+export function createDecode ({ coder, ipfsChar }: Config, validate: ValidateFn): DecodeFn {
   return (value: string, ipfsCompat?: boolean): Uint8Array => {
     validate(value, ipfsCompat);
 
-    return base.decode(
-      ipfsCompat
+    return coder.decode(
+      ipfsChar && ipfsCompat
         ? value.substr(1)
         : value
     );
   };
 }
 
-export function createEncode ({ ipfsChar }: Config, base: BaseCoder): EncodeFn {
+export function createEncode ({ coder, ipfsChar }: Config): EncodeFn {
   return (value: U8aLike, ipfsCompat?: boolean): string => {
-    const out = base.encode(u8aToU8a(value));
+    const out = coder.encode(u8aToU8a(value));
 
     return ipfsChar && ipfsCompat
       ? `${ipfsChar}${out}`
