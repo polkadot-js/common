@@ -59,8 +59,8 @@ export function createValidate ({ alphabet, ipfsChar, regex, type }: Config): Va
   return (value?: unknown, ipfsCompat?: boolean): value is string => {
     assert(value && typeof value === 'string', () => `Expected non-null, non-empty ${type} string input`);
 
-    if (ipfsChar) {
-      assert(!ipfsCompat || value[0] === ipfsChar, () => `Expected ${type} to start with '${ipfsChar}'`);
+    if (ipfsChar && ipfsCompat) {
+      assert(value[0] === ipfsChar, () => `Expected ipfs-compatible ${type} to start with '${ipfsChar}'`);
     }
 
     if (regex) {
