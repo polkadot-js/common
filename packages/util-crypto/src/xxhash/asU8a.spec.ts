@@ -39,14 +39,6 @@ describe('xxhashAsU8a', (): void => {
     });
   });
 
-  it('has equivalent results', (): void => {
-    const test = randomAsU8a();
-    const a = u8aToHex(xxhashAsU8a(test, undefined, true));
-    const b = u8aToHex(xxhashAsU8a(test, undefined, false));
-
-    expect(a).toEqual(b);
-  });
-
   performanceTest('xxhashAsU8a', 8000, (input, onlyJs) =>
     xxhashAsU8a(input, 128, onlyJs)
   );
