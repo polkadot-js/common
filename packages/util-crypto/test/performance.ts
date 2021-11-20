@@ -1,14 +1,16 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { arrayRange, u8aEq } from '@polkadot/util';
+import { arrayRange } from '@polkadot/util';
 import { randomAsU8a } from '@polkadot/util-crypto';
+
+type ExecFn = (input: Uint8Array, onlyJs: boolean) => unknown;
 
 const GENERATED = arrayRange(256).map(() => randomAsU8a());
 
-function loop (count: number, onlyJs: boolean, exec: (input: Uint8Array, onlyJs: boolean) => Uint8Array): [number, Uint8Array[]] {
+function loop (count: number, onlyJs: boolean, exec: ExecFn): [number, unknown[]] {
   const start = Date.now();
-  const results = new Array<Uint8Array>(GENERATED.length);
+  const results = new Array<unknown>(GENERATED.length);
 
   for (let i = 0; i < count; i++) {
     const result = exec(GENERATED[i % GENERATED.length], onlyJs);
@@ -30,7 +32,7 @@ function perSecond (count: number, time: number): string {
                  ${micro.toFixed(2).padStart(10)} μs/op`;
 }
 
-export function performanceTest (name: string, count: number, exec: (input: Uint8Array, onlyJs: boolean) => Uint8Array): void {
+export function performanceTest (name: string, count: number, exec: ExecFn): void {
   it(`performance: ${name}`, (): void => {
     const [ws, rws] = loop(count, false, exec);
     const [js, rjs] = loop(count, true, exec);
@@ -43,7 +45,9 @@ performance run for ${name} completed with ${count} iterations.
      JavaScript: ${js.toString().padStart(10)} ms ${ws > js ? '(fastest)' : `(slowest, ${(js / ws).toFixed(2)}x)`}${perSecond(count, js)}
 `);
 
-    const unmatched = rws.filter((r, i) => !u8aEq(rjs[i], r));
+    const unmatched = rws.filter((r, i) =>
+      JSON.stringify(rjs[i]) !== JSON.stringify(r)
+    );
 
     expect(unmatched.length).toEqual(0);
   });
