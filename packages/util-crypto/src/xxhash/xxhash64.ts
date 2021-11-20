@@ -12,6 +12,7 @@
 //   - uses native JS BigInt (no external dependencies)
 //   - support only for Uint8Array inputs
 //   - no constructor function, straight fill & digest
+//   - update code removed, only called once, no streams
 
 interface State {
   memory: Uint8Array;
