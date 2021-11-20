@@ -1,11 +1,10 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hexToU8a, u8aToHex } from '@polkadot/util';
+import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { performanceTest } from '../../test/performance';
-import { randomAsU8a } from '../random';
 import { xxhashAsU8a } from '.';
 
 describe('xxhashAsU8a', (): void => {
