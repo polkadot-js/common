@@ -71,7 +71,7 @@ function init (input: Uint8Array, seed: bigint): State {
 
   if (input.length < 32) {
     state.u8a.set(input);
-    state.u8asize += input.length;
+    state.u8asize = input.length;
 
     return state;
   }
