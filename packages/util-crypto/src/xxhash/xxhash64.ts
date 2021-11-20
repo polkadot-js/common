@@ -58,7 +58,6 @@ function init (input: Uint8Array, seed: bigint): State {
     v3: seed,
     v4: seed - P64_1
   };
-  let p = 0;
 
   if (input.length < 32) {
     state.memory.set(input);
@@ -68,59 +67,29 @@ function init (input: Uint8Array, seed: bigint): State {
   }
 
   const limit = input.length - 32;
+  let p = 0;
 
   if (limit >= 0) {
+    const adjustV = (v: bigint) =>
+      P64_1 * rotl(
+        v + (
+          P64_2 * combine(
+            (input[p + 1] << 8) | input[p],
+            (input[p + 3] << 8) | input[p + 2],
+            (input[p + 5] << 8) | input[p + 4],
+            (input[p + 7] << 8) | input[p + 6]
+          )
+        ), 31n
+      );
+
     do {
-      state.v1 = P64_1 * rotl(
-        state.v1 + (
-          P64_2 * combine(
-            (input[p + 1] << 8) | input[p],
-            (input[p + 3] << 8) | input[p + 2],
-            (input[p + 5] << 8) | input[p + 4],
-            (input[p + 7] << 8) | input[p + 6]
-          )
-        ), 31n
-      );
-
+      state.v1 = adjustV(state.v1);
       p += 8;
-
-      state.v2 = P64_1 * rotl(
-        state.v2 + (
-          P64_2 * combine(
-            (input[p + 1] << 8) | input[p],
-            (input[p + 3] << 8) | input[p + 2],
-            (input[p + 5] << 8) | input[p + 4],
-            (input[p + 7] << 8) | input[p + 6]
-          )
-        ), 31n
-      );
-
+      state.v2 = adjustV(state.v2);
       p += 8;
-
-      state.v3 = P64_1 * rotl(
-        state.v3 + (
-          P64_2 * combine(
-            (input[p + 1] << 8) | input[p],
-            (input[p + 3] << 8) | input[p + 2],
-            (input[p + 5] << 8) | input[p + 4],
-            (input[p + 7] << 8) | input[p + 6]
-          )
-        ), 31n
-      );
-
+      state.v3 = adjustV(state.v3);
       p += 8;
-
-      state.v4 = P64_1 * rotl(
-        state.v4 + (
-          P64_2 * combine(
-            (input[p + 1] << 8) | input[p],
-            (input[p + 3] << 8) | input[p + 2],
-            (input[p + 5] << 8) | input[p + 4],
-            (input[p + 7] << 8) | input[p + 6]
-          )
-        ), 31n
-      );
-
+      state.v4 = adjustV(state.v4);
       p += 8;
     } while (p <= limit);
   }
