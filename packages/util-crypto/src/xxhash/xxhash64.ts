@@ -108,7 +108,7 @@ export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Ar
   let p = 0;
   let h64 = U64 & (BigInt(input.length) + (
     input.length >= 32
-      ? (((U64 & (((U64 & (((U64 & (((U64 & (rotl(v1, 1n) + rotl(v2, 7n) + rotl(v3, 12n) + rotl(v4, 18n))) ^ (P64_1 * rotl(v1 * P64_2, 31n))) * P64_1 + P64_4)) ^ (P64_1 * rotl(v2 * P64_2, 31n))) * P64_1 + P64_4)) ^ (P64_1 * rotl(v3 * P64_2, 31n))) * P64_1 + P64_4)) ^ (P64_1 * rotl(v4 * P64_2, 31n))) * P64_1 + P64_4)
+      ? (((((((((rotl(v1, 1n) + rotl(v2, 7n) + rotl(v3, 12n) + rotl(v4, 18n)) ^ (P64_1 * rotl(v1 * P64_2, 31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v2 * P64_2, 31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v3 * P64_2, 31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v4 * P64_2, 31n))) * P64_1 + P64_4)
       : (seed + P64_5)
   ));
 
