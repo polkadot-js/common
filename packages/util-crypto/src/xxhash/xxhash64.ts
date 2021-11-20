@@ -49,12 +49,12 @@ function combine (...values: number[]): bigint {
   return result;
 }
 
-function fromU8a (memory: Uint8Array, p: number): bigint {
+function fromU8a (u8a: Uint8Array, p: number): bigint {
   return combine(
-    (memory[p + 1] << 8) | memory[p],
-    (memory[p + 3] << 8) | memory[p + 2],
-    (memory[p + 5] << 8) | memory[p + 4],
-    (memory[p + 7] << 8) | memory[p + 6]
+    (u8a[p + 1] << 8) | u8a[p],
+    (u8a[p + 3] << 8) | u8a[p + 2],
+    (u8a[p + 5] << 8) | u8a[p + 4],
+    (u8a[p + 7] << 8) | u8a[p + 6]
   );
 }
 
