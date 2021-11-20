@@ -120,11 +120,7 @@ export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Ar
   h64 = U64 & (h64 + BigInt(input.length));
 
   while (p <= (memsize - 8)) {
-    h64 = U64 & (P64_4 + P64_1 * rotl(
-      h64 ^ (
-        P64_1 * rotl(P64_2 * fromMemory(memory, p), 31n)
-      ), 27n
-    ));
+    h64 = U64 & (P64_4 + P64_1 * rotl(h64 ^ (P64_1 * rotl(P64_2 * fromMemory(memory, p), 31n)), 27n));
     p += 8;
   }
 
