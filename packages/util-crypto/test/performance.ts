@@ -34,8 +34,8 @@ function perSecond (count: number, time: number): string {
   const ops = 1_000_000 / micro;
 
   return `
-                 ${formatFixed(ops).padStart(15)} ops/s
-                 ${formatFixed(micro).padStart(15)} μs/op`;
+${formatFixed(ops).padStart(15 + 20)} ops/s
+${formatFixed(micro).padStart(15 + 20)} μs/op`;
 }
 
 export function performanceTest (name: string, count: number, exec: ExecFn): void {
@@ -46,9 +46,9 @@ export function performanceTest (name: string, count: number, exec: ExecFn): voi
     console.log(`
 performance run for ${name} completed with ${count} iterations.
 
-    WebAssembly: ${ws.toString().padStart(15)} ms ${ws < js ? '(fastest)' : `(slowest, ${(ws / js).toFixed(2)}x)`}${perSecond(count, ws)}
+${'WebAssembly:'.padStart(19)} ${ws.toString().padStart(15)} ms ${ws < js ? '(fastest)' : `(slowest, ${(ws / js).toFixed(2)}x)`}${perSecond(count, ws)}
 
-     JavaScript: ${js.toString().padStart(15)} ms ${ws > js ? '(fastest)' : `(slowest, ${(js / ws).toFixed(2)}x)`}${perSecond(count, js)}
+${'JavaScript:'.padStart(19)} ${js.toString().padStart(15)} ms ${ws > js ? '(fastest)' : `(slowest, ${(js / ws).toFixed(2)}x)`}${perSecond(count, js)}
 `);
 
     const unmatched = rws.filter((r, i) =>
