@@ -13,7 +13,7 @@ function createSha (bitLength: 256 | 512 = 256): HashFn {
     hmacShaAsU8a(key, data, bitLength, onlyJs);
 }
 
-export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLength: 256 | 512 = 256, onlyJs = false): Uint8Array {
+export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLength: 256 | 512 = 256, onlyJs?: boolean): Uint8Array {
   const is256 = bitLength === 256;
   const u8aKey = u8aToU8a(key);
 

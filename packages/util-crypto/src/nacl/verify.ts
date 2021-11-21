@@ -22,7 +22,7 @@ import { ed25519Verify, isReady } from '@polkadot/wasm-crypto';
  * naclVerify([...], [...], [...]); // => true/false
  * ```
  */
-export function naclVerify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, publicKey: HexString | Uint8Array | string, onlyJs = false): boolean {
+export function naclVerify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, publicKey: HexString | Uint8Array | string, onlyJs?: boolean): boolean {
   const messageU8a = u8aToU8a(message);
   const publicKeyU8a = u8aToU8a(publicKey);
   const signatureU8a = u8aToU8a(signature);
