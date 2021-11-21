@@ -6,7 +6,9 @@ import type { HexString } from '@polkadot/util/types';
 import nacl from 'tweetnacl';
 
 import { assert, u8aToU8a } from '@polkadot/util';
-import { ed25519Verify, isReady } from '@polkadot/wasm-crypto';
+import { ed25519Verify } from '@polkadot/wasm-crypto';
+
+import { isWasmOnly } from '../helpers';
 
 /**
  * @name naclSign
@@ -30,7 +32,7 @@ export function naclVerify (message: HexString | Uint8Array | string, signature:
   assert(publicKeyU8a.length === 32, () => `Invalid publicKey, received ${publicKeyU8a.length}, expected 32`);
   assert(signatureU8a.length === 64, () => `Invalid signature, received ${signatureU8a.length} bytes, expected 64`);
 
-  return isReady() && !onlyJs
+  return isWasmOnly(onlyJs)
     ? ed25519Verify(signatureU8a, messageU8a, publicKeyU8a)
     : nacl.sign.detached.verify(messageU8a, signatureU8a, publicKeyU8a);
 }

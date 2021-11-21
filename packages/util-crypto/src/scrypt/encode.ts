@@ -7,8 +7,9 @@ import type { Params } from './types';
 import scryptsy from 'scryptsy';
 
 import { bufferToU8a, u8aToBuffer, u8aToU8a } from '@polkadot/util';
-import { isReady, scrypt } from '@polkadot/wasm-crypto';
+import { scrypt } from '@polkadot/wasm-crypto';
 
+import { isWasmOnly } from '../helpers';
 import { randomAsU8a } from '../random/asU8a';
 import { DEFAULT_PARAMS } from './defaults';
 
@@ -23,7 +24,7 @@ export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt
 
   return {
     params,
-    password: isReady() && !onlyJs
+    password: isWasmOnly(onlyJs)
       ? scrypt(u8a, salt, Math.log2(params.N), params.r, params.p)
       : bufferToU8a(
         scryptsy(u8aToBuffer(u8a), u8aToBuffer(salt), params.N, params.r, params.p, 64)
