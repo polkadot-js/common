@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { packageInfo as netInfo } from '@polkadot/networks/packageInfo';
-import { detectPackage, hasBigInt, packageInfo as utilInfo } from '@polkadot/util';
+import { detectPackage, packageInfo as utilInfo } from '@polkadot/util';
 import { packageInfo as randomInfo } from '@polkadot/x-randomvalues';
 
 import { packageInfo } from './packageInfo';
