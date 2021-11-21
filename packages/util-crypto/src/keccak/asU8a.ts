@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { BitLength } from './types';
 
 import js from 'js-sha3';
 
@@ -10,6 +9,8 @@ import { u8aToU8a } from '@polkadot/util';
 import { keccak256, keccak512 } from '@polkadot/wasm-crypto';
 
 import { createAsHex, createBitHasher, isWasmOnly } from '../helpers';
+
+type BitLength = 256 | 512;
 
 /**
  * @name keccakAsU8a

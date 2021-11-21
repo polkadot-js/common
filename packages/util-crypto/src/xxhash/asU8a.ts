@@ -2,13 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { BitLength } from './types';
 
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { twox } from '@polkadot/wasm-crypto';
 
 import { createAsHex, isWasmOnly } from '../helpers';
 import { xxhash64 } from './xxhash64';
+
+type BitLength = 64 | 128 | 192 | 256 | 320 | 384 | 448 | 512;
 
 /**
  * @name xxhashAsU8a
