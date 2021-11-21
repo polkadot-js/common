@@ -7,7 +7,9 @@ import type { Keypair } from '../types';
 import nacl from 'tweetnacl';
 
 import { assert, u8aToU8a } from '@polkadot/util';
-import { ed25519Sign, isReady } from '@polkadot/wasm-crypto';
+import { ed25519Sign } from '@polkadot/wasm-crypto';
+
+import { isWasmOnly } from '../helpers';
 
 /**
  * @name naclSign
@@ -28,7 +30,7 @@ export function naclSign (message: HexString | Uint8Array | string, { publicKey,
 
   const messageU8a = u8aToU8a(message);
 
-  return isReady() && !onlyJs
+  return isWasmOnly(onlyJs)
     ? ed25519Sign(publicKey as Uint8Array, secretKey.subarray(0, 32), messageU8a)
     : nacl.sign.detached(messageU8a, secretKey);
 }
