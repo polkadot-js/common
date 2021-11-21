@@ -18,7 +18,7 @@ interface Result {
   salt: Uint8Array;
 }
 
-export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS, onlyJs = false): Result {
+export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS, onlyJs?: boolean): Result {
   return {
     params,
     password: !hasBigInt || (isReady() && !onlyJs)

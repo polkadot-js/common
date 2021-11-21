@@ -29,7 +29,7 @@ const STRENGTH_MAP = {
  * const mnemonic = mnemonicGenerate(); // => string
  * ```
  */
-export function mnemonicGenerate (numWords: WordCount = 12, onlyJs = false): string {
+export function mnemonicGenerate (numWords: WordCount = 12, onlyJs?: boolean): string {
   return !hasBigInt || (isReady() && !onlyJs)
     ? bip39Generate(numWords)
     : generateMnemonic(STRENGTH_MAP[numWords]);

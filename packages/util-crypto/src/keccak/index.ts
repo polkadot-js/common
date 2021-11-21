@@ -6,4 +6,4 @@
  */
 
 export { keccakAsHex } from './asHex';
-export { keccakAsU8a } from './asU8a';
+export { keccakAsU8a, keccak256AsU8a, keccak512AsU8a } from './asU8a';
