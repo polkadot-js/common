@@ -18,11 +18,15 @@ export function ledgerDerivePrivate (xprv: Uint8Array, index: number): Uint8Arra
 
   return u8aConcat(
     bnToU8a(
-      u8aToBn(kl, BN_LE_OPTS).iadd(u8aToBn(z.subarray(0, 28), BN_LE_OPTS).imul(BN_EIGHT)),
+      u8aToBn(kl, BN_LE_OPTS).iadd(
+        u8aToBn(z.subarray(0, 28), BN_LE_OPTS).imul(BN_EIGHT)
+      ),
       BN_LE_512_OPTS
     ).subarray(0, 32),
     bnToU8a(
-      u8aToBn(kr, BN_LE_OPTS).iadd(u8aToBn(z.subarray(32, 64), BN_LE_OPTS)),
+      u8aToBn(kr, BN_LE_OPTS).iadd(
+        u8aToBn(z.subarray(32, 64), BN_LE_OPTS)
+      ),
       BN_LE_512_OPTS
     ).subarray(0, 32),
     hmacSha512(cc, data).subarray(32, 64)

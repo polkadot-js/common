@@ -4,7 +4,12 @@
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
+import { performanceTest } from '../../test/performance';
 import { naclKeypairFromSeed, naclSign } from '.';
+
+const PAIR = naclKeypairFromSeed(
+  stringToU8a('12345678901234567890123456789012')
+);
 
 describe('naclSign', (): void => {
   beforeEach(async (): Promise<void> => {
@@ -16,9 +21,7 @@ describe('naclSign', (): void => {
       expect(
         naclSign(
           new Uint8Array([0x61, 0x62, 0x63, 0x64]),
-          naclKeypairFromSeed(
-            stringToU8a('12345678901234567890123456789012')
-          ),
+          PAIR,
           onlyJs
         )
       ).toEqual(
@@ -26,4 +29,8 @@ describe('naclSign', (): void => {
       );
     });
   });
+
+  performanceTest('naclSign', 250, (input, onlyJs) =>
+    naclSign(input, PAIR, onlyJs)
+  );
 });

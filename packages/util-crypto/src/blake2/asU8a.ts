@@ -24,8 +24,9 @@ import { blake2b, isReady } from '@polkadot/wasm-crypto';
  */
 export function blake2AsU8a (data: HexString | Uint8Array | string, bitLength = 256, key?: Uint8Array | null, onlyJs = false): Uint8Array {
   const byteLength = Math.ceil(bitLength / 8);
+  const u8a = u8aToU8a(data);
 
   return !hasBigInt || (isReady() && !onlyJs)
-    ? blake2b(u8aToU8a(data), u8aToU8a(key), byteLength)
-    : blake2bJs(u8aToU8a(data), { dkLen: byteLength, key: key || undefined });
+    ? blake2b(u8a, u8aToU8a(key), byteLength)
+    : blake2bJs(u8a, { dkLen: byteLength, key: key || undefined });
 }
