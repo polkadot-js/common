@@ -3,9 +3,7 @@
 
 import { isReady, waitReady } from '@polkadot/wasm-crypto';
 
-export function cryptoIsReady (): boolean {
-  return isReady();
-}
+export const cryptoIsReady = isReady;
 
 export function cryptoWaitReady (): Promise<boolean> {
   return waitReady()

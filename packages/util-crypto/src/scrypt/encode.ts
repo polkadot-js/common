@@ -18,11 +18,13 @@ interface Result {
   salt: Uint8Array;
 }
 
-export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS): Result {
-  const password = isReady()
-    ? scrypt(u8aToU8a(passphrase), salt, Math.log2(params.N), params.r, params.p)
+export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS, onlyJs = false): Result {
+  const u8a = u8aToU8a(passphrase);
+
+  const password = isReady() && !onlyJs
+    ? scrypt(u8a, salt, Math.log2(params.N), params.r, params.p)
     : bufferToU8a(
-      scryptsy(u8aToBuffer(u8aToU8a(passphrase)), u8aToBuffer(salt), params.N, params.r, params.p, 64)
+      scryptsy(u8aToBuffer(u8a), u8aToBuffer(salt), params.N, params.r, params.p, 64)
     );
 
   return { params, password, salt };

@@ -585,6 +585,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://origintrail.io'
   },
   {
+    decimals: [10],
+    displayName: 'Pontem Network',
+    network: 'pontem-network',
+    prefix: 105,
+    standardAccount: '*25519',
+    symbols: ['PONT'],
+    website: 'https://pontem.network'
+  },
+  {
     decimals: [12],
     displayName: 'Heiko',
     network: 'heiko',

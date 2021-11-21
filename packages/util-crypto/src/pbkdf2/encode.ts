@@ -18,9 +18,12 @@ interface Result {
 export function pbkdf2Encode (passphrase?: HexString | Buffer | Uint8Array | string, salt: Buffer | Uint8Array = randomAsU8a(), rounds = 2048, onlyJs = false): Result {
   const u8aPass = u8aToU8a(passphrase);
   const u8aSalt = u8aToU8a(salt);
-  const password = isReady() && !onlyJs
-    ? pbkdf2(u8aPass, u8aSalt, rounds)
-    : pbkdf2Sync(u8aPass, u8aSalt, rounds);
 
-  return { password, rounds, salt };
+  return {
+    password: isReady() && !onlyJs
+      ? pbkdf2(u8aPass, u8aSalt, rounds)
+      : pbkdf2Sync(u8aPass, u8aSalt, rounds),
+    rounds,
+    salt
+  };
 }

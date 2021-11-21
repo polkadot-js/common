@@ -13,12 +13,11 @@
 //   - Remove setting of wordlist passing of wordlist in functions
 //   - Remove mnemonicToSeed (we only use the sync variant)
 
-import hash from 'hash.js';
-
 import { assert, stringToU8a, u8aToU8a } from '@polkadot/util';
 
 import { pbkdf2Encode } from '../pbkdf2';
-import { randomAsU8a } from '../random/asU8a';
+import { randomAsU8a } from '../random';
+import { sha256AsU8a } from '../sha';
 import DEFAULT_WORDLIST from './bip39-en';
 
 const INVALID_MNEMONIC = 'Invalid mnemonic';
@@ -39,9 +38,7 @@ function bytesToBinary (bytes: number[]): string {
 
 function deriveChecksumBits (entropyBuffer: Uint8Array): string {
   return bytesToBinary(
-    Array.from(
-      hash.sha256().update(entropyBuffer).digest()
-    )
+    Array.from(sha256AsU8a(entropyBuffer))
   ).slice(0, (entropyBuffer.length * 8) / 32);
 }
 
