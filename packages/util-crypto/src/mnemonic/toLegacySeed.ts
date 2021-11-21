@@ -24,7 +24,7 @@ import { mnemonicValidate } from './validate';
  * }
  * ```
  */
-export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs = false, byteLength: 32 | 64 = 32): Uint8Array {
+export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs?: boolean, byteLength: 32 | 64 = 32): Uint8Array {
   assert(mnemonicValidate(mnemonic), 'Invalid bip39 mnemonic specified');
   assert([32, 64].includes(byteLength), () => `Invalid seed length ${byteLength}, expected 32 or 64`);
 

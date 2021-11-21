@@ -4,7 +4,7 @@
 import { BN_EIGHT, bnToU8a, u8aConcat, u8aToBn } from '@polkadot/util';
 
 import { BN_LE_32_OPTS, BN_LE_512_OPTS, BN_LE_OPTS } from '../../bn';
-import { hmacSha512 } from '../../hmac';
+import { hmacShaAsU8a } from '../../hmac';
 
 // performs hard-only derivation on the xprv
 export function ledgerDerivePrivate (xprv: Uint8Array, index: number): Uint8Array {
@@ -12,7 +12,7 @@ export function ledgerDerivePrivate (xprv: Uint8Array, index: number): Uint8Arra
   const kr = xprv.subarray(32, 64);
   const cc = xprv.subarray(64, 96);
   const data = u8aConcat([0], kl, kr, bnToU8a(index, BN_LE_32_OPTS));
-  const z = hmacSha512(cc, data);
+  const z = hmacShaAsU8a(cc, data, 512);
 
   data[0] = 0x01;
 
@@ -29,6 +29,6 @@ export function ledgerDerivePrivate (xprv: Uint8Array, index: number): Uint8Arra
       ),
       BN_LE_512_OPTS
     ).subarray(0, 32),
-    hmacSha512(cc, data).subarray(32, 64)
+    hmacShaAsU8a(cc, data, 512).subarray(32, 64)
   );
 }
