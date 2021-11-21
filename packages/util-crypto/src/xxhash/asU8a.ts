@@ -6,6 +6,7 @@ import type { HexString } from '@polkadot/util/types';
 import { u8aToU8a } from '@polkadot/util';
 import { isReady, twox } from '@polkadot/wasm-crypto';
 
+import { createAsHex } from '../helpers';
 import xxhash64AsBn from './xxhash64/asBn';
 
 /**
@@ -38,3 +39,9 @@ export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bit
 
   return result;
 }
+
+/**
+ * @name xxhashAsHex
+ * @description Creates a xxhash64 hex from the input.
+ */
+export const xxhashAsHex = createAsHex(xxhashAsU8a);

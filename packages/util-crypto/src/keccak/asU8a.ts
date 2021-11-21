@@ -8,6 +8,8 @@ import js from 'js-sha3';
 import { u8aToU8a } from '@polkadot/util';
 import { isReady, keccak256, keccak512 } from '@polkadot/wasm-crypto';
 
+import { createAsHex } from '../helpers';
+
 type HashFn = (value: HexString | Buffer | Uint8Array | string, onlyJs?: boolean) => Uint8Array;
 
 function createKeccak (bitLength: 256 | 512 = 256): HashFn {
@@ -44,5 +46,20 @@ export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bi
     );
 }
 
+/**
+ * @name keccak256AsU8a
+ * @description Creates a keccak256 Uint8Array from the input.
+ */
 export const keccak256AsU8a = createKeccak(256);
+
+/**
+ * @name keccak512AsU8a
+ * @description Creates a keccak512 Uint8Array from the input.
+ */
 export const keccak512AsU8a = createKeccak(512);
+
+/**
+ * @name keccakAsHex
+ * @description Creates a keccak hex string from the input.
+ */
+export const keccakAsHex = createAsHex(keccakAsU8a);
