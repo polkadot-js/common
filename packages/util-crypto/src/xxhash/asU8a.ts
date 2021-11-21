@@ -8,6 +8,8 @@ import { isReady, twox } from '@polkadot/wasm-crypto';
 
 import { xxhash64 } from './xxhash64';
 
+type BitLength = 64 | 128 | 192 | 256 | 320 | 384 | 448 | 512;
+
 /**
  * @name xxhashAsU8a
  * @summary Creates a xxhash64 u8a from the input.
@@ -22,7 +24,7 @@ import { xxhash64 } from './xxhash64';
  * xxhashAsU8a('abc'); // => 0x44bc2cf5ad770999
  * ```
  */
-export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bitLength = 64, onlyJs?: boolean): Uint8Array {
+export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bitLength: BitLength = 64, onlyJs?: boolean): Uint8Array {
   const rounds = Math.ceil(bitLength / 64);
   const u8a = u8aToU8a(data);
 
