@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
+import type { BitLength } from './types';
 
 import { u8aToHex } from '@polkadot/util';
 
@@ -21,7 +22,7 @@ import { blake2AsU8a } from './asU8a';
  * blake2AsHex('abc'); // => 0xba80a53f981c4d0d
  * ```
  */
-export function blake2AsHex (data: HexString | Uint8Array | string, bitLength = 256, key?: Uint8Array | null, onlyJs?: boolean): HexString {
+export function blake2AsHex (data: HexString | Uint8Array | string, bitLength?: BitLength, key?: Uint8Array | null, onlyJs?: boolean): HexString {
   return u8aToHex(
     blake2AsU8a(data, bitLength, key, onlyJs)
   );
