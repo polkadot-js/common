@@ -58,7 +58,7 @@ function fromU8a (u8a: Uint8Array, p: number): bigint {
   );
 }
 
-function initState (initSeed: bigint | number): State {
+function state (initSeed: bigint | number): State {
   const seed = BigInt(initSeed);
 
   return {
@@ -72,7 +72,7 @@ function initState (initSeed: bigint | number): State {
   };
 }
 
-function init (input: Uint8Array, state: State): State {
+function init (state: State, input: Uint8Array): State {
   if (input.length < 32) {
     state.u8a.set(input);
     state.u8asize = input.length;
@@ -108,7 +108,7 @@ function init (input: Uint8Array, state: State): State {
 }
 
 export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Array {
-  const { seed, u8a, u8asize, v1, v2, v3, v4 } = init(input, initState(initSeed));
+  const { seed, u8a, u8asize, v1, v2, v3, v4 } = init(state(initSeed), input);
   let p = 0;
   let h64 = U64 & (BigInt(input.length) + (
     input.length >= 32
