@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 7.9.1 Nov 21, 2021
 
 Contributed:
 
@@ -17,7 +17,7 @@ Changes:
 - Add `sha256AsU8a` util (& replace use internally)
 - Optimize for `hexToU8a` and `u8aToHex` functions
 - Optimize `u8aEq` to use `DataView` for compares
-- Align base{32, 58, 64} around (audited) `micro-base`
+- Align `base{32, 58, 64}*` around (audited) `micro-base`
 - Space optimization for bip39 wordlists
 - Sync with upstream Substrate ss58 registry
 - Expand tests for uncovered functions
