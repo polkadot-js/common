@@ -26,6 +26,5 @@ export function randomAsU8a (length = 32): Uint8Array {
 /**
  * @name randomAsHex
  * @description Creates a hex string filled with random bytes.
- * ```
  */
 export const randomAsHex = createAsHex(randomAsU8a);
