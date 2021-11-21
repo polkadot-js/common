@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
+import type { BitLength } from './types';
 
 import { u8aToHex } from '@polkadot/util';
 
@@ -21,7 +22,7 @@ import { keccakAsU8a } from './asU8a';
  * keccakAsHex('123'); // => 0x...
  * ```
  */
-export function keccakAsHex (value: HexString | Buffer | Uint8Array | string, bitLength?: 256 | 512): HexString {
+export function keccakAsHex (value: HexString | Buffer | Uint8Array | string, bitLength?: BitLength): HexString {
   return u8aToHex(
     keccakAsU8a(value, bitLength)
   );

@@ -6,14 +6,16 @@ import hash from 'hash.js';
 import { u8aToU8a } from '@polkadot/util';
 import { hmacSha256, hmacSha512, isReady } from '@polkadot/wasm-crypto';
 
+type BitLength = 256 | 512;
+
 type HashFn = (key: Uint8Array | string, data: Uint8Array, onlyJs?: boolean) => Uint8Array;
 
-function createSha (bitLength: 256 | 512 = 256): HashFn {
+function createSha (bitLength: BitLength): HashFn {
   return (key: Uint8Array | string, data: Uint8Array, onlyJs?: boolean): Uint8Array =>
     hmacShaAsU8a(key, data, bitLength, onlyJs);
 }
 
-export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLength: 256 | 512 = 256, onlyJs?: boolean): Uint8Array {
+export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLength: BitLength = 256, onlyJs?: boolean): Uint8Array {
   const is256 = bitLength === 256;
   const u8aKey = u8aToU8a(key);
 

@@ -8,9 +8,11 @@ import hash from 'hash.js';
 import { u8aToU8a } from '@polkadot/util';
 import { isReady, sha256, sha512 } from '@polkadot/wasm-crypto';
 
+type BitLength = 256 | 512;
+
 type HashFn = (value: HexString | Buffer | Uint8Array | string, onlyJs?: boolean) => Uint8Array;
 
-function createSha (bitLength: 256 | 512 = 256): HashFn {
+function createSha (bitLength: BitLength): HashFn {
   return (value: HexString | Buffer | Uint8Array | string, onlyJs?: boolean): Uint8Array =>
     shaAsU8a(value, bitLength, onlyJs);
 }
@@ -19,7 +21,7 @@ function createSha (bitLength: 256 | 512 = 256): HashFn {
  * @name shaAsU8a
  * @summary Creates a sha Uint8Array from the input.
  */
-export function shaAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: 256 | 512 = 256, onlyJs?: boolean): Uint8Array {
+export function shaAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: BitLength = 256, onlyJs?: boolean): Uint8Array {
   const is256 = bitLength === 256;
   const u8a = u8aToU8a(value);
 
