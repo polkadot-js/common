@@ -22,7 +22,7 @@ export function pbkdf2Encode (passphrase?: HexString | Buffer | Uint8Array | str
   const u8aSalt = u8aToU8a(salt);
 
   return {
-    password: !hasBigInt && (isReady() && !onlyJs)
+    password: !hasBigInt || (isReady() && !onlyJs)
       ? pbkdf2(u8aPass, u8aSalt, rounds)
       : pbkdf2Js(sha512, u8aPass, u8aSalt, { c: rounds, dkLen: 64 }),
     rounds,
