@@ -8,7 +8,7 @@ import { pbkdf2Encode } from '../pbkdf2';
 import { mnemonicToEntropy } from './toEntropy';
 import { mnemonicValidate } from './validate';
 
-export function mnemonicToMiniSecret (mnemonic: string, password = '', onlyJs = false): Uint8Array {
+export function mnemonicToMiniSecret (mnemonic: string, password = '', onlyJs?: boolean): Uint8Array {
   assert(mnemonicValidate(mnemonic), 'Invalid bip39 mnemonic specified');
 
   if (isReady() && !onlyJs) {

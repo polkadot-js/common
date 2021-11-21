@@ -8,6 +8,13 @@ import js from 'js-sha3';
 import { u8aToU8a } from '@polkadot/util';
 import { isReady, keccak256, keccak512 } from '@polkadot/wasm-crypto';
 
+type HashFn = (value: HexString | Buffer | Uint8Array | string, onlyJs?: boolean) => Uint8Array;
+
+function createKeccak (bitLength: 256 | 512 = 256): HashFn {
+  return (value: HexString | Buffer | Uint8Array | string, onlyJs?: boolean): Uint8Array =>
+    keccakAsU8a(value, bitLength, onlyJs);
+}
+
 /**
  * @name keccakAsU8a
  * @summary Creates a keccak Uint8Array from the input.
@@ -22,7 +29,7 @@ import { isReady, keccak256, keccak512 } from '@polkadot/wasm-crypto';
  * keccakAsU8a('123'); // => Uint8Array
  * ```
  */
-export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: 256 | 512 = 256, onlyJs = false): Uint8Array {
+export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: 256 | 512 = 256, onlyJs?: boolean): Uint8Array {
   const is256 = bitLength === 256;
   const u8a = u8aToU8a(value);
 
@@ -36,3 +43,6 @@ export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bi
         : js.keccak512.update(u8a).arrayBuffer()
     );
 }
+
+export const keccak256AsU8a = createKeccak(256);
+export const keccak512AsU8a = createKeccak(512);
