@@ -10,13 +10,15 @@ import { isWasmOnly } from '../helpers';
 
 type BitLength = 256 | 512;
 
-type HashFn = (key: Uint8Array | string, data: Uint8Array, onlyJs?: boolean) => Uint8Array;
-
-function createSha (bitLength: BitLength): HashFn {
+function createSha (bitLength: BitLength): (key: Uint8Array | string, data: Uint8Array, onlyJs?: boolean) => Uint8Array {
   return (key: Uint8Array | string, data: Uint8Array, onlyJs?: boolean): Uint8Array =>
     hmacShaAsU8a(key, data, bitLength, onlyJs);
 }
 
+/**
+ * @name hmacShaAsU8a
+ * @description creates a Hmac Sha (256/512) Uint8Array from the key & data
+ */
 export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLength: BitLength = 256, onlyJs?: boolean): Uint8Array {
   const is256 = bitLength === 256;
   const u8aKey = u8aToU8a(key);
@@ -36,5 +38,14 @@ export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLen
     );
 }
 
+/**
+ * @name hmacSha256AsU8a
+ * @description creates a Hmac Sha256 Uint8Array from the key & data
+ */
 export const hmacSha256AsU8a = createSha(256);
+
+/**
+ * @name hmacSha512AsU8a
+ * @description creates a Hmac Sha512 Uint8Array from the key & data
+ */
 export const hmacSha512AsU8a = createSha(512);
