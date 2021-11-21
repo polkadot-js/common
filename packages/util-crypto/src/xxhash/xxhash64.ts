@@ -56,6 +56,18 @@ function fromU8a (u8a: Uint8Array, p: number, count: 2 | 4): bigint {
   return result;
 }
 
+function toU8a (h64: bigint): Uint8Array {
+  const result = new Uint8Array(8);
+
+  for (let i = 7; i >= 0; i--) {
+    result[i] = Number(h64 % 256n);
+
+    h64 = h64 / 256n;
+  }
+
+  return result;
+}
+
 function state (initSeed: bigint | number): State {
   const seed = BigInt(initSeed);
 
@@ -86,14 +98,10 @@ function init (state: State, input: Uint8Array): State {
       P64_1 * rotl(v + P64_2 * fromU8a(input, p, 4), 31n);
 
     do {
-      state.v1 = adjustV(state.v1);
-      p += 8;
-      state.v2 = adjustV(state.v2);
-      p += 8;
-      state.v3 = adjustV(state.v3);
-      p += 8;
-      state.v4 = adjustV(state.v4);
-      p += 8;
+      state.v1 = adjustV(state.v1); p += 8;
+      state.v2 = adjustV(state.v2); p += 8;
+      state.v3 = adjustV(state.v3); p += 8;
+      state.v4 = adjustV(state.v4); p += 8;
     } while (p <= limit);
   }
 
@@ -130,15 +138,6 @@ export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Ar
 
   h64 = U64 & (P64_2 * (h64 ^ (h64 >> 33n)));
   h64 = U64 & (P64_3 * (h64 ^ (h64 >> 29n)));
-  h64 = U64 & (h64 ^ (h64 >> 32n));
 
-  const result = new Uint8Array(8);
-
-  for (let i = 7; i >= 0; i--) {
-    result[i] = Number(h64 % 256n);
-
-    h64 = h64 / 256n;
-  }
-
-  return result;
+  return toU8a(U64 & (h64 ^ (h64 >> 32n)));
 }
