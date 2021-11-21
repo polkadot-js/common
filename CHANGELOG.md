@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Provide JS/Wasm interfaces for `hmacShaAsU8a`
+
+
 ## 7.9.1 Nov 21, 2021
 
 Contributed:
