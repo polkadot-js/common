@@ -3,14 +3,17 @@
 
 import { utils as utilsNobleSecp256k1 } from '@noble/secp256k1';
 
-import { hmacSha256 } from './hmac/sha256';
+import { u8aConcat } from '@polkadot/util';
+
 import { randomAsU8a } from './random/asU8a';
 import { cryptoWaitReady } from './crypto';
+import { hmacSha256AsU8a } from './hmac';
 
 // Set overrides on the secp256k1 utils
 //   - hmacShaSync - This needs to be set, unset by default
 //   - randomBytes - Use our implementation for full platform support
-utilsNobleSecp256k1.hmacSha256Sync = hmacSha256;
+utilsNobleSecp256k1.hmacSha256Sync = (key: Uint8Array, ...messages: Uint8Array[]) =>
+  hmacSha256AsU8a(key, u8aConcat(...messages));
 utilsNobleSecp256k1.randomBytes = randomAsU8a;
 
 // start init process immediately

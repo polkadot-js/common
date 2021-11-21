@@ -6,7 +6,7 @@ import type { Keypair } from '../../types';
 import { assert, bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
 import { BN_BE_32_OPTS } from '../../bn';
-import { hmacSha512 } from '../../hmac';
+import { hmacShaAsU8a } from '../../hmac';
 import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '../../secp256k1';
 import { HARDENED, hdValidatePath } from '../validatePath';
 
@@ -31,7 +31,7 @@ function deriveChild (hd: CodedKeypair, index: number): CodedKeypair {
     : u8aConcat(hd.publicKey, indexBuffer);
 
   try {
-    const I = hmacSha512(hd.chainCode, data);
+    const I = hmacShaAsU8a(hd.chainCode, data, 512);
 
     return createCoded(
       secp256k1PrivateKeyTweakAdd(hd.secretKey, I.slice(0, 32)),
@@ -44,7 +44,7 @@ function deriveChild (hd: CodedKeypair, index: number): CodedKeypair {
 }
 
 export function hdEthereum (seed: Uint8Array, path = ''): Keypair {
-  const I = hmacSha512(MASTER_SECRET, seed);
+  const I = hmacShaAsU8a(MASTER_SECRET, seed, 512);
   let hd = createCoded(I.slice(0, 32), I.slice(32));
 
   if (!path || path === 'm' || path === 'M' || path === "m'" || path === "M'") {
