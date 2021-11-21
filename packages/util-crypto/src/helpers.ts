@@ -12,6 +12,11 @@ export function createAsHex <T extends (...args: any[]) => Uint8Array> (fn: T): 
     u8aToHex(fn(...args));
 }
 
+export function createBitHasher <T> (bitLength: T, fn: (data: HexString | Buffer | Uint8Array | string, bitLength: T, onlyJs?: boolean) => Uint8Array): (data: HexString | Buffer | Uint8Array | string, onlyJs?: boolean) => Uint8Array {
+  return (data: HexString | Buffer | Uint8Array | string, onlyJs?: boolean): Uint8Array =>
+    fn(data, bitLength, onlyJs);
+}
+
 export function isWasmOnly (onlyJs?: boolean): boolean {
   return isReady() && !onlyJs;
 }
