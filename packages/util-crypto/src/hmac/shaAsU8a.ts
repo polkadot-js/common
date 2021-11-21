@@ -1,9 +1,11 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import hash from 'hash.js';
+import { hmac } from '@noble/hashes/lib/hmac';
+import { sha256 } from '@noble/hashes/lib/sha256';
+import { sha512 } from '@noble/hashes/lib/sha512';
 
-import { u8aToU8a } from '@polkadot/util';
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { hmacSha256, hmacSha512, isReady } from '@polkadot/wasm-crypto';
 
 type HashFn = (key: Uint8Array | string, data: Uint8Array, onlyJs?: boolean) => Uint8Array;
@@ -17,19 +19,13 @@ export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLen
   const is256 = bitLength === 256;
   const u8aKey = u8aToU8a(key);
 
-  return isReady() && !onlyJs
+  return !hasBigInt || (isReady() && !onlyJs)
     ? is256
       ? hmacSha256(u8aKey, data)
       : hmacSha512(u8aKey, data)
-    : new Uint8Array(
-      is256
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        ? hash.hmac(hash.sha256, u8aKey).update(data).digest()
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        : hash.hmac(hash.sha512, u8aKey).update(data).digest()
-    );
+    : is256
+      ? hmac(sha256, u8aKey, data)
+      : hmac(sha512, u8aKey, data);
 }
 
 export const hmacSha256AsU8a = createSha(256);

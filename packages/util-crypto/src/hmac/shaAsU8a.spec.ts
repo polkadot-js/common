@@ -23,7 +23,7 @@ describe('hmacShaAsU8a', (): void => {
     )
   };
 
-  describe.each([256, 512] as (256 | 512)[])('bitLength=$p', (bitLength): void => {
+  describe.each([256, 512] as (256 | 512)[])('bitLength=%p', (bitLength): void => {
     describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
       it('returns an hex representation (string)', (): void => {
         expect(
