@@ -8,7 +8,3 @@ import { packageInfo as randomInfo } from '@polkadot/x-randomvalues';
 import { packageInfo } from './packageInfo';
 
 detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [netInfo, utilInfo, randomInfo]);
-
-if (!hasBigInt) {
-  console.warn('Your environment does not support JS BigInt, legacy fallbacks would be used for certain operations');
-}
