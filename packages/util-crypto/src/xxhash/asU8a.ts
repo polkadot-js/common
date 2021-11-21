@@ -23,16 +23,16 @@ import { xxhash64 } from './xxhash64';
  * ```
  */
 export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bitLength = 64, onlyJs = false): Uint8Array {
-  const iterations = Math.ceil(bitLength / 64);
+  const rounds = Math.ceil(bitLength / 64);
   const u8a = u8aToU8a(data);
 
   if (!hasBigInt || (isReady() && !onlyJs)) {
-    return twox(u8a, iterations);
+    return twox(u8a, rounds);
   }
 
-  const result = new Uint8Array(Math.ceil(bitLength / 8));
+  const result = new Uint8Array(rounds * 8);
 
-  for (let seed = 0; seed < iterations; seed++) {
+  for (let seed = 0; seed < rounds; seed++) {
     result.set(xxhash64(u8a, seed).reverse(), seed * 8);
   }
 
