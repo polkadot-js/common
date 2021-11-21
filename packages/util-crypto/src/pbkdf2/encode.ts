@@ -4,8 +4,9 @@
 import type { HexString } from '@polkadot/util/types';
 
 import { u8aToU8a } from '@polkadot/util';
-import { isReady, pbkdf2 } from '@polkadot/wasm-crypto';
+import { pbkdf2 } from '@polkadot/wasm-crypto';
 
+import { isWasmOnly } from '../helpers';
 import { randomAsU8a } from '../random/asU8a';
 import { pbkdf2Sync } from './pbkdf2';
 
@@ -20,7 +21,7 @@ export function pbkdf2Encode (passphrase?: HexString | Buffer | Uint8Array | str
   const u8aSalt = u8aToU8a(salt);
 
   return {
-    password: isReady() && !onlyJs
+    password: isWasmOnly(onlyJs)
       ? pbkdf2(u8aPass, u8aSalt, rounds)
       : pbkdf2Sync(u8aPass, u8aSalt, rounds),
     rounds,

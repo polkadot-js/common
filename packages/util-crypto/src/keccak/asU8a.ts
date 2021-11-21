@@ -6,9 +6,9 @@ import type { HexString } from '@polkadot/util/types';
 import js from 'js-sha3';
 
 import { u8aToU8a } from '@polkadot/util';
-import { isReady, keccak256, keccak512 } from '@polkadot/wasm-crypto';
+import { keccak256, keccak512 } from '@polkadot/wasm-crypto';
 
-import { createAsHex } from '../helpers';
+import { createAsHex, isWasmOnly } from '../helpers';
 
 type HashFn = (value: HexString | Buffer | Uint8Array | string, onlyJs?: boolean) => Uint8Array;
 
@@ -35,7 +35,7 @@ export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bi
   const is256 = bitLength === 256;
   const u8a = u8aToU8a(value);
 
-  return isReady() && !onlyJs
+  return isWasmOnly(onlyJs)
     ? is256
       ? keccak256(u8a)
       : keccak512(u8a)
