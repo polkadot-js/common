@@ -11,9 +11,9 @@ import type { AnyString } from '../types';
 //
 // original: 20.88 μs/op
 //     this:  2.06 μs/op
-function converter (replacer: (w: string, i: number) => string): (str: AnyString) => string {
-  return (str: AnyString): string =>
-    str
+function converter (replacer: (w: string, i: number) => string): (value: AnyString) => string {
+  return (value: AnyString): string =>
+    value
       .toString()
       .replace(/[-_ ]+/g, ' ')
       .replace(/(?:^\w|[A-Z]|\b\w)/g, replacer)
