@@ -8,7 +8,7 @@ import js from 'blakejs';
 import { u8aToU8a } from '@polkadot/util';
 import { blake2b } from '@polkadot/wasm-crypto';
 
-import { createAsHex, isWasmOnly } from '../helpers';
+import { createAsHex } from '../helpers';
 
 /**
  * @name blake2AsU8a
@@ -28,7 +28,7 @@ export function blake2AsU8a (data: HexString | Uint8Array | string, bitLength = 
   const byteLength = Math.ceil(bitLength / 8);
   const u8a = u8aToU8a(data);
 
-  return isWasmOnly(onlyJs)
+  return !onlyJs && isReady()
     ? blake2b(u8a, u8aToU8a(key), byteLength)
     : js.blake2b(u8a, key || undefined, byteLength);
 }
