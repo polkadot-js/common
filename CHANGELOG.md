@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## master
+## 7.9.2 Nov 22, 2021
 
 Changes:
 
+- Fix TS compiled definitions for `base*` types
 - Provide JS/Wasm interfaces for `hmacShaAsU8a`
 
 
