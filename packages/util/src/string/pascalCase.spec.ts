@@ -12,7 +12,7 @@ describe('stringPascalCase', (): void => {
 
   it('works correctly for String (class)', (): void => {
     expect(
-      stringPascalCase(String('foo_bar-baz'))
-    ).toBe('FooBarBaz');
+      stringPascalCase(String('foo_bar--  __baz Bob'))
+    ).toBe('FooBarBazBob');
   });
 });
