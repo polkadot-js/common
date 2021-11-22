@@ -4,7 +4,7 @@
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceTest } from '../../test/performance';
+import { performanceWasm } from '../../test/performance';
 import { naclKeypairFromSeed, naclSign } from '.';
 
 const PAIR = naclKeypairFromSeed(
@@ -30,7 +30,7 @@ describe('naclSign', (): void => {
     });
   });
 
-  performanceTest('naclSign', 250, (input, onlyJs) =>
+  performanceWasm('naclSign', 250, (input, onlyJs) =>
     naclSign(input, PAIR, onlyJs)
   );
 });
