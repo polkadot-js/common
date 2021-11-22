@@ -2,9 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { assert } from '@polkadot/util';
-import { bip39ToSeed } from '@polkadot/wasm-crypto';
+import { bip39ToSeed, isReady } from '@polkadot/wasm-crypto';
 
-import { isWasmOnly } from '../helpers';
 import { mnemonicToSeedSync } from './bip39';
 import { mnemonicValidate } from './validate';
 
@@ -30,7 +29,7 @@ export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs?: 
   assert([32, 64].includes(byteLength), () => `Invalid seed length ${byteLength}, expected 32 or 64`);
 
   if (byteLength === 32) {
-    return isWasmOnly(onlyJs)
+    return !onlyJs && isReady()
       ? bip39ToSeed(mnemonic, password)
       : mnemonicToSeedSync(mnemonic, password).subarray(0, 32);
   } else if (byteLength === 64) {

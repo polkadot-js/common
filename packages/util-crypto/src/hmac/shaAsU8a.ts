@@ -4,9 +4,7 @@
 import hash from 'hash.js';
 
 import { u8aToU8a } from '@polkadot/util';
-import { hmacSha256, hmacSha512 } from '@polkadot/wasm-crypto';
-
-import { isWasmOnly } from '../helpers';
+import { hmacSha256, hmacSha512, isReady } from '@polkadot/wasm-crypto';
 
 type HashFn = (key: Uint8Array | string, data: Uint8Array, onlyJs?: boolean) => Uint8Array;
 
@@ -19,7 +17,7 @@ export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLen
   const is256 = bitLength === 256;
   const u8aKey = u8aToU8a(key);
 
-  return isWasmOnly(onlyJs)
+  return !onlyJs && isReady()
     ? is256
       ? hmacSha256(u8aKey, data)
       : hmacSha512(u8aKey, data)

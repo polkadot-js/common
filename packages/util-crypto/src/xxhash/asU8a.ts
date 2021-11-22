@@ -4,9 +4,9 @@
 import type { HexString } from '@polkadot/util/types';
 
 import { u8aToU8a } from '@polkadot/util';
-import { twox } from '@polkadot/wasm-crypto';
+import { isReady, twox } from '@polkadot/wasm-crypto';
 
-import { createAsHex, isWasmOnly } from '../helpers';
+import { createAsHex } from '../helpers';
 import xxhash64AsBn from './xxhash64/asBn';
 
 /**
@@ -27,7 +27,7 @@ export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bit
   const iterations = Math.ceil(bitLength / 64);
   const u8a = u8aToU8a(data);
 
-  if (isWasmOnly(onlyJs)) {
+  if (!onlyJs && isReady()) {
     return twox(u8a, iterations);
   }
 
