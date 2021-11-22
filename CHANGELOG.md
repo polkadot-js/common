@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Replace camelcase dep with simplified/optimized version
+
+
 ## 7.9.2 Nov 22, 2021
 
 Changes:

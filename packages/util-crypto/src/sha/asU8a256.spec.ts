@@ -4,7 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceTest } from '../../test/performance';
+import { performanceWasm } from '../../test/performance';
 import { sha256AsU8a } from '.';
 
 const TESTS = [
@@ -43,7 +43,7 @@ describe('sha256AsU8a', (): void => {
     });
   });
 
-  performanceTest('sha256AsU8a', 128000, (input, onlyJs) =>
+  performanceWasm('sha256AsU8a', 128000, (input, onlyJs) =>
     sha256AsU8a(input, onlyJs)
   );
 });

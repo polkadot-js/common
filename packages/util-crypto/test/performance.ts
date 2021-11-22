@@ -1,8 +1,10 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { arrayRange, formatDecimal } from '@polkadot/util';
+import { arrayRange } from '@polkadot/util';
 import { randomAsU8a } from '@polkadot/util-crypto';
+
+import { formatOps, performanceJs } from '../../util/test/performance';
 
 type ExecFn = (input: Uint8Array, onlyJs: boolean) => unknown;
 
@@ -23,22 +25,7 @@ function loop (count: number, onlyJs: boolean, exec: ExecFn): [number, unknown[]
   return [Date.now() - start, results];
 }
 
-function formatFixed (value: number): string {
-  const [a, b] = value.toFixed(2).split('.');
-
-  return [formatDecimal(a), b].join('.');
-}
-
-function perSecond (count: number, time: number): string {
-  const micro = (time * 1000) / count;
-  const ops = 1_000_000 / micro;
-
-  return `
-${formatFixed(ops).padStart(15 + 20)} ops/s
-${formatFixed(micro).padStart(15 + 20)} μs/op`;
-}
-
-export function performanceTest (name: string, count: number, exec: ExecFn): void {
+export function performanceWasm (name: string, count: number, exec: ExecFn): void {
   it(`performance: ${name}`, (): void => {
     const [ws, rws] = loop(count, false, exec);
     const [js, rjs] = loop(count, true, exec);
@@ -46,9 +33,9 @@ export function performanceTest (name: string, count: number, exec: ExecFn): voi
     console.log(`
 performance run for ${name} completed with ${count} iterations.
 
-${'WebAssembly:'.padStart(19)} ${ws.toString().padStart(15)} ms ${ws < js ? '(fastest)' : `(slowest, ${(ws / js).toFixed(2)}x)`}${perSecond(count, ws)}
+${'WebAssembly:'.padStart(19)} ${ws.toString().padStart(15)} ms ${ws < js ? '(fastest)' : `(slowest, ${(ws / js).toFixed(2)}x)`}${formatOps(count, ws)}
 
-${'JavaScript:'.padStart(19)} ${js.toString().padStart(15)} ms ${ws > js ? '(fastest)' : `(slowest, ${(js / ws).toFixed(2)}x)`}${perSecond(count, js)}
+${'JavaScript:'.padStart(19)} ${js.toString().padStart(15)} ms ${ws > js ? '(fastest)' : `(slowest, ${(js / ws).toFixed(2)}x)`}${formatOps(count, js)}
 `);
 
     const unmatched = rws.filter((r, i) =>
@@ -58,3 +45,5 @@ ${'JavaScript:'.padStart(19)} ${js.toString().padStart(15)} ms ${ws > js ? '(fas
     expect(unmatched.length).toEqual(0);
   });
 }
+
+export { performanceJs };
