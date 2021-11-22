@@ -2,9 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { assert, stringToU8a } from '@polkadot/util';
-import { bip39ToMiniSecret } from '@polkadot/wasm-crypto';
+import { bip39ToMiniSecret, isReady } from '@polkadot/wasm-crypto';
 
-import { isWasmOnly } from '../helpers';
 import { pbkdf2Encode } from '../pbkdf2';
 import { mnemonicToEntropy } from './toEntropy';
 import { mnemonicValidate } from './validate';
@@ -12,7 +11,7 @@ import { mnemonicValidate } from './validate';
 export function mnemonicToMiniSecret (mnemonic: string, password = '', onlyJs?: boolean): Uint8Array {
   assert(mnemonicValidate(mnemonic), 'Invalid bip39 mnemonic specified');
 
-  if (isWasmOnly(onlyJs)) {
+  if (!onlyJs && isReady()) {
     return bip39ToMiniSecret(mnemonic, password);
   }
 
