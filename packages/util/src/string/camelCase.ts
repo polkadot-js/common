@@ -15,6 +15,8 @@ const RE_JOIN = /\s/g;
 //
 // original: 20.88 μs/op
 //     this:  1.70 μs/op
+//
+// Caveat of this: only Ascii, but acceptable for the intended usecase
 function converter (replacer: (w: string, i: number) => string): (value: AnyString) => string {
   return (value: AnyString): string =>
     value
@@ -26,7 +28,7 @@ function converter (replacer: (w: string, i: number) => string): (value: AnyStri
 
 /**
  * @name stringCamelCase
- * @summary Convert a dash/dot/underscore/space separated string/String to camelCase
+ * @summary Convert a dash/dot/underscore/space separated Ascii string/String to camelCase
  */
 export const stringCamelCase = converter((w: string, i: number) =>
   i === 0
@@ -36,7 +38,7 @@ export const stringCamelCase = converter((w: string, i: number) =>
 
 /**
  * @name stringPascalCase
- * @summary Convert a dash/dot/underscore/space separated string/String to PascalCase
+ * @summary Convert a dash/dot/underscore/space separated Ascii string/String to PascalCase
  */
 export const stringPascalCase = converter((w: string) =>
   w.toUpperCase()
