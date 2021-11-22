@@ -28,5 +28,14 @@ export function shaAsU8a (value: HexString | Buffer | Uint8Array | string, bitLe
       : sha512Js(u8a);
 }
 
+/**
+ * @name sha256AsU8a
+ * @summary Creates a sha256 Uint8Array from the input.
+ */
 export const sha256AsU8a = createBitHasher(256, shaAsU8a);
+
+/**
+ * @name sha512AsU8a
+ * @summary Creates a sha256 Uint8Array from the input.
+ */
 export const sha512AsU8a = createBitHasher(512, shaAsU8a);
