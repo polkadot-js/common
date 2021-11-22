@@ -10,7 +10,7 @@ import { assert, u8aToU8a } from '@polkadot/util';
 //
 // ends up in the build-generated code as
 //
-//   import("../../../util/src/types").U8aLike
+//   impor("../../../util/src/types").U8aLike
 //
 // eslint-disable-next-line @typescript-eslint/ban-types
 type U8aLike = number[] | Buffer | Uint8Array | string | String;
