@@ -3,7 +3,7 @@
 
 import type { AnyString } from '../types';
 
-const RE_WHITE = /[-_ ]+/g;
+const RE_WHITE = /[-_., ]+/g;
 const RE_WORDS = /(?:^\w|[A-Z]|\b\w)/g;
 const RE_JOIN = /\s/g;
 

@@ -8,7 +8,7 @@ import { performanceJs } from '../../test/performance';
 import { arrayRange } from '../array';
 import { stringCamelCase, stringUpperFirst } from '.';
 
-const SEPS = [' ', '_', '-'];
+const SEPS = [' ', '_', '-', '.', ','];
 
 const randomWords = arrayRange(256).map((): [string] => {
   let result = '';
@@ -33,14 +33,14 @@ const randomWords = arrayRange(256).map((): [string] => {
 describe('stringCamelCase', (): void => {
   it('works correctly', (): void => {
     expect(
-      stringCamelCase('Snake_case-Something    spaced')
+      stringCamelCase('Snake_case-...Something    spaced')
     ).toBe('snakeCaseSomethingSpaced');
   });
 
   it('works correctly for String (class', (): void => {
     expect(
-      stringCamelCase(String('Foo_bar-baz---test-_ spaced'))
-    ).toBe('fooBarBazTestSpaced');
+      stringCamelCase(String('Foo_bar-baz---test-_ spaced....Extra'))
+    ).toBe('fooBarBazTestSpacedExtra');
   });
 
   performanceJs('stringCamelCase', 64000, randomWords, stringCamelCase);
