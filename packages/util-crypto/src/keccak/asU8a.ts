@@ -8,12 +8,7 @@ import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from '@noble/has
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, keccak256, keccak512 } from '@polkadot/wasm-crypto';
 
-type HashFn = (value: HexString | Buffer | Uint8Array | string, onlyJs?: boolean) => Uint8Array;
-
-function createKeccak (bitLength: 256 | 512 = 256): HashFn {
-  return (value: HexString | Buffer | Uint8Array | string, onlyJs?: boolean): Uint8Array =>
-    keccakAsU8a(value, bitLength, onlyJs);
-}
+import { createAsHex, createBitHasher } from '../helpers';
 
 /**
  * @name keccakAsU8a
@@ -42,5 +37,20 @@ export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bi
       : keccak512Js(u8a);
 }
 
-export const keccak256AsU8a = createKeccak(256);
-export const keccak512AsU8a = createKeccak(512);
+/**
+ * @name keccak256AsU8a
+ * @description Creates a keccak256 Uint8Array from the input.
+ */
+export const keccak256AsU8a = createBitHasher(256, keccakAsU8a);
+
+/**
+ * @name keccak512AsU8a
+ * @description Creates a keccak512 Uint8Array from the input.
+ */
+export const keccak512AsU8a = createBitHasher(512, keccakAsU8a);
+
+/**
+ * @name keccakAsHex
+ * @description Creates a keccak hex string from the input.
+ */
+export const keccakAsHex = createAsHex(keccakAsU8a);

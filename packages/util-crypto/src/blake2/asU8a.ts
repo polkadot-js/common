@@ -8,6 +8,8 @@ import { blake2b as blake2bJs } from '@noble/hashes/lib/blake2b';
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { blake2b, isReady } from '@polkadot/wasm-crypto';
 
+import { createAsHex } from '../helpers';
+
 /**
  * @name blake2AsU8a
  * @summary Creates a blake2b u8a from the input.
@@ -30,3 +32,9 @@ export function blake2AsU8a (data: HexString | Uint8Array | string, bitLength = 
     ? blake2b(u8a, u8aToU8a(key), byteLength)
     : blake2bJs(u8a, { dkLen: byteLength, key: key || undefined });
 }
+
+/**
+ * @name blake2AsHex
+ * @description Creates a blake2b hex from the input.
+ */
+export const blake2AsHex = createAsHex(blake2AsU8a);

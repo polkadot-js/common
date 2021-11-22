@@ -3,6 +3,8 @@
 
 import { getRandomValues } from '@polkadot/x-randomvalues';
 
+import { createAsHex } from '../helpers';
+
 /**
  * @name randomAsU8a
  * @summary Creates a Uint8Array filled with random bytes.
@@ -20,3 +22,9 @@ import { getRandomValues } from '@polkadot/x-randomvalues';
 export function randomAsU8a (length = 32): Uint8Array {
   return getRandomValues(new Uint8Array(length));
 }
+
+/**
+ * @name randomAsHex
+ * @description Creates a hex string filled with random bytes.
+ */
+export const randomAsHex = createAsHex(randomAsU8a);

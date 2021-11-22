@@ -9,12 +9,7 @@ import { sha512 as sha512Js } from '@noble/hashes/lib/sha512';
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, sha256, sha512 } from '@polkadot/wasm-crypto';
 
-type HashFn = (value: HexString | Buffer | Uint8Array | string, onlyJs?: boolean) => Uint8Array;
-
-function createSha (bitLength: 256 | 512 = 256): HashFn {
-  return (value: HexString | Buffer | Uint8Array | string, onlyJs?: boolean): Uint8Array =>
-    shaAsU8a(value, bitLength, onlyJs);
-}
+import { createBitHasher } from '../helpers';
 
 /**
  * @name shaAsU8a
@@ -33,5 +28,5 @@ export function shaAsU8a (value: HexString | Buffer | Uint8Array | string, bitLe
       : sha512Js(u8a);
 }
 
-export const sha256AsU8a = createSha(256);
-export const sha512AsU8a = createSha(512);
+export const sha256AsU8a = createBitHasher(256, shaAsU8a);
+export const sha512AsU8a = createBitHasher(512, shaAsU8a);
