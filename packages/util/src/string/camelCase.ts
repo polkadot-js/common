@@ -14,7 +14,7 @@ const RE_JOIN = /\s/g;
 // improvement over the original camelcase npm package (at running)
 //
 // original: 20.88 μs/op
-//     this:  1.70 μs/op
+//     this:  1.67 μs/op
 //
 // Caveat of this: only Ascii, but acceptable for the intended usecase
 function converter (replacer: (w: string, i: number) => string): (value: AnyString) => string {
@@ -30,16 +30,10 @@ function converter (replacer: (w: string, i: number) => string): (value: AnyStri
  * @name stringCamelCase
  * @summary Convert a dash/dot/underscore/space separated Ascii string/String to camelCase
  */
-export const stringCamelCase = converter((w: string, i: number) =>
-  i === 0
-    ? w.toLowerCase()
-    : w.toUpperCase()
-);
+export const stringCamelCase = converter((w, i) => i ? w.toUpperCase() : w.toLowerCase());
 
 /**
  * @name stringPascalCase
  * @summary Convert a dash/dot/underscore/space separated Ascii string/String to PascalCase
  */
-export const stringPascalCase = converter((w: string) =>
-  w.toUpperCase()
-);
+export const stringPascalCase = converter((w) => w.toUpperCase());
