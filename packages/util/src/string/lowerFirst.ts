@@ -3,10 +3,10 @@
 
 import type { AnyString } from '../types';
 
-function converter (replacer: (value: string) => string): (value?: AnyString | null) => string {
+function converter (fn: (value: string) => string): (value?: AnyString | null) => string {
   return (value?: AnyString | null): string =>
     value
-      ? replacer(value[0]) + value.slice(1)
+      ? fn(value[0]) + value.slice(1)
       : '';
 }
 

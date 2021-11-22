@@ -17,12 +17,12 @@ const RE_JOIN = /\s/g;
 //     this:  1.67 μs/op
 //
 // Caveat of this: only Ascii, but acceptable for the intended usecase
-function converter (replacer: (w: string, i: number) => string): (value: AnyString) => string {
+function converter (fn: (w: string, i: number) => string): (value: AnyString) => string {
   return (value: AnyString): string =>
     value
       .toString()
       .replace(RE_WHITE, ' ')
-      .replace(RE_WORDS, replacer)
+      .replace(RE_WORDS, fn)
       .replace(RE_JOIN, '');
 }
 
