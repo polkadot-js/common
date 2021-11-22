@@ -4,7 +4,7 @@
 import hash from 'hash.js';
 
 import { u8aToU8a } from '@polkadot/util';
-import { hmacSha256, hmacSha512 } from '@polkadot/wasm-crypto';
+import { hmacSha256, hmacSha512, isReady } from '@polkadot/wasm-crypto';
 
 type HashFn = (key: Uint8Array | string, data: Uint8Array, onlyJs?: boolean) => Uint8Array;
 
