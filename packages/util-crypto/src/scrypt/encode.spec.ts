@@ -3,7 +3,7 @@
 
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceTest } from '../../test/performance';
+import { performanceWasm } from '../../test/performance';
 import { DEFAULT_PARAMS } from './defaults';
 import { scryptEncode } from '.';
 
@@ -30,7 +30,7 @@ describe('scryptEncode', (): void => {
     });
   });
 
-  performanceTest('scryptEncode', 4, (input, onlyJs) =>
+  performanceWasm('scryptEncode', 4, (input, onlyJs) =>
     scryptEncode(input, input, undefined, onlyJs)
   );
 });
