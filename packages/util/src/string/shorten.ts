@@ -18,9 +18,7 @@ import type { AnyString } from '../types';
  * ```
  */
 export function stringShorten (value: AnyString, prefixLength = 6): string {
-  if (value.length <= 2 + 2 * prefixLength) {
-    return value.toString();
-  }
-
-  return `${value.substr(0, prefixLength)}…${value.slice(-prefixLength)}`;
+  return value.length <= 2 + 2 * prefixLength
+    ? value.toString()
+    : `${value.substr(0, prefixLength)}…${value.slice(-prefixLength)}`;
 }

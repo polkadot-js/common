@@ -6,8 +6,7 @@
  */
 
 export { stringCamelCase, stringPascalCase } from './camelCase';
-export { stringLowerFirst } from './lowerFirst';
+export { stringLowerFirst, stringUpperFirst } from './lowerFirst';
 export { stringShorten } from './shorten';
 export { stringToHex } from './toHex';
 export { stringToU8a } from './toU8a';
-export { stringUpperFirst } from './upperFirst';
