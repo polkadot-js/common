@@ -15,9 +15,9 @@ function converter (replacer: (w: string, i: number) => string): (str: AnyString
   return (str: AnyString): string =>
     str
       .toString()
-      .replace(/[-_ {2}]/g, ' ')
+      .replace(/[-_ ]+/g, ' ')
       .replace(/(?:^\w|[A-Z]|\b\w)/g, replacer)
-      .replace(/\s+/g, '');
+      .replace(/\s/g, '');
 }
 
 /**

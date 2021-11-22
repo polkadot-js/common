@@ -43,5 +43,5 @@ describe('stringCamelCase', (): void => {
     ).toBe('fooBarBazTestSpaced');
   });
 
-  performanceJs('stringCamelCase', 16000, randomWords, stringCamelCase);
+  performanceJs('stringCamelCase', 64000, randomWords, stringCamelCase);
 });
