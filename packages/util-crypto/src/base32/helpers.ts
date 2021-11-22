@@ -13,9 +13,7 @@ import { assert, u8aToU8a } from '@polkadot/util';
 //   import("../../../util/src/types").U8aLike
 //
 // eslint-disable-next-line @typescript-eslint/ban-types
-type AnyString = string | String;
-type HexString = `0x${string}`;
-type U8aLike = HexString | number[] | Buffer | Uint8Array | AnyString;
+type U8aLike = number[] | Buffer | Uint8Array | string | String;
 
 interface Coder {
   decode: (value: string) => Uint8Array;
