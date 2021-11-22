@@ -26,7 +26,7 @@ export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bit
   const iterations = Math.ceil(bitLength / 64);
   const u8a = u8aToU8a(data);
 
-  if (isReady() && !onlyJs) {
+  if (!onlyJs && isReady()) {
     return twox(u8a, iterations);
   }
 

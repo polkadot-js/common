@@ -21,7 +21,7 @@ interface Result {
 export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS, onlyJs?: boolean): Result {
   return {
     params,
-    password: !hasBigInt || (isReady() && !onlyJs)
+    password: !hasBigInt || (!onlyJs && isReady())
       ? scrypt(u8aToU8a(passphrase), salt, Math.log2(params.N), params.r, params.p)
       : scryptJs(u8aToU8a(passphrase), salt, objectSpread({ dkLen: 64 }, params)),
     salt

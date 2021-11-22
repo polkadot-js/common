@@ -24,7 +24,7 @@ export function shaAsU8a (value: HexString | Buffer | Uint8Array | string, bitLe
   const is256 = bitLength === 256;
   const u8a = u8aToU8a(value);
 
-  return !hasBigInt || (isReady() && !onlyJs)
+  return !hasBigInt || (!onlyJs && isReady())
     ? is256
       ? sha256(u8a)
       : sha512(u8a)

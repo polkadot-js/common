@@ -19,7 +19,7 @@ export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLen
   const is256 = bitLength === 256;
   const u8aKey = u8aToU8a(key);
 
-  return !hasBigInt || (isReady() && !onlyJs)
+  return !hasBigInt || (!onlyJs && isReady())
     ? is256
       ? hmacSha256(u8aKey, data)
       : hmacSha512(u8aKey, data)

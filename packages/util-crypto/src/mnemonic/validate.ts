@@ -20,7 +20,7 @@ import { validateMnemonic } from './bip39';
  * ```
  */
 export function mnemonicValidate (mnemonic: string, onlyJs?: boolean): boolean {
-  return !hasBigInt || (isReady() && !onlyJs)
+  return !hasBigInt || (!onlyJs && isReady())
     ? bip39Validate(mnemonic)
     : validateMnemonic(mnemonic);
 }
