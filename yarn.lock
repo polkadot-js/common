@@ -2099,13 +2099,11 @@ __metadata:
     "@types/bn.js": ^4.11.6
     "@types/ed2curve": ^0.2.2
     "@types/elliptic": ^6.4.14
-    "@types/xxhashjs": ^0.2.2
     bn.js: ^4.12.0
     ed2curve: ^0.3.0
     elliptic: ^6.5.4
     micro-base: ^0.9.0
     tweetnacl: ^1.0.3
-    xxhashjs: ^0.2.2
   peerDependencies:
     "@polkadot/util": 7.9.3-3
   languageName: unknown
@@ -2630,15 +2628,6 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 969a1586e9c08c4812bf7fc3a51fb5fbc3c2d2b19bc1e605a8277d2d48c36b9dc917ea90d5648cc9dc317775ffd206cf75788fc55dc2b7116ed567dae6f32ea3
-  languageName: node
-  linkType: hard
-
-"@types/xxhashjs@npm:^0.2.2":
-  version: 0.2.2
-  resolution: "@types/xxhashjs@npm:0.2.2"
-  dependencies:
-    "@types/node": "*"
-  checksum: 2195cd97c32dfb0ab37fd831368ad106c43c4d2450dda441b493875ad476b00ccee5e3a676971cf8a6f7518c23d527a6791b8b005f7e52c9d3b39bc7286f1615
   languageName: node
   linkType: hard
 
@@ -4122,13 +4111,6 @@ __metadata:
   version: 3.0.5
   resolution: "csstype@npm:3.0.5"
   checksum: bf6a7c84c246b09e4ac21c4890f3e9f7cd203e819fa5f59fee4b642e6a11d403abc5e5fb611367737caec69dec9ccaaa92397d4d528dd99ff0f03791687dd136
-  languageName: node
-  linkType: hard
-
-"cuint@npm:^0.2.2":
-  version: 0.2.2
-  resolution: "cuint@npm:0.2.2"
-  checksum: b8127a93a7f16ce120ffcb22108014327c9808b258ee20e7dbb4c6740d7cb0f0c12d18a054eb716b0f2470090666abaae8a082d3cd5ef0e94fa447dd155842c4
   languageName: node
   linkType: hard
 
@@ -10608,15 +10590,6 @@ resolve@^2.0.0-next.3:
   version: 4.0.2
   resolution: "xtend@npm:4.0.2"
   checksum: ac5dfa738b21f6e7f0dd6e65e1b3155036d68104e67e5d5d1bde74892e327d7e5636a076f625599dc394330a731861e87343ff184b0047fef1360a7ec0a5a36a
-  languageName: node
-  linkType: hard
-
-"xxhashjs@npm:^0.2.2":
-  version: 0.2.2
-  resolution: "xxhashjs@npm:0.2.2"
-  dependencies:
-    cuint: ^0.2.2
-  checksum: cf6baf05bafe5651dbf108008bafdb1ebe972f65228633f00b56c49d7a1e614a821fe3345c4eb27462994c7c954d982eae05871be6a48146f30803dd87f3c3b6
   languageName: node
   linkType: hard
 

@@ -10,6 +10,8 @@ import { blake2b, isReady } from '@polkadot/wasm-crypto';
 
 import { createAsHex } from '../helpers';
 
+type BitLength = 64 | 128 | 256 | 384 | 512;
+
 /**
  * @name blake2AsU8a
  * @summary Creates a blake2b u8a from the input.
@@ -24,7 +26,7 @@ import { createAsHex } from '../helpers';
  * blake2AsU8a('abc'); // => [0xba, 0x80, 0xa5, 0x3f, 0x98, 0x1c, 0x4d, 0x0d]
  * ```
  */
-export function blake2AsU8a (data: HexString | Uint8Array | string, bitLength = 256, key?: Uint8Array | null, onlyJs?: boolean): Uint8Array {
+export function blake2AsU8a (data: HexString | Uint8Array | string, bitLength: BitLength = 256, key?: Uint8Array | null, onlyJs?: boolean): Uint8Array {
   const byteLength = Math.ceil(bitLength / 8);
   const u8a = u8aToU8a(data);
 

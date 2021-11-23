@@ -19,11 +19,13 @@ interface Result {
 }
 
 export function scryptEncode (passphrase?: HexString | Uint8Array | string, salt = randomAsU8a(), params = DEFAULT_PARAMS, onlyJs?: boolean): Result {
+  const u8a = u8aToU8a(passphrase);
+
   return {
     params,
     password: !hasBigInt || (!onlyJs && isReady())
-      ? scrypt(u8aToU8a(passphrase), salt, Math.log2(params.N), params.r, params.p)
-      : scryptJs(u8aToU8a(passphrase), salt, objectSpread({ dkLen: 64 }, params)),
+      ? scrypt(u8a, salt, Math.log2(params.N), params.r, params.p)
+      : scryptJs(u8a, salt, objectSpread({ dkLen: 64 }, params)),
     salt
   };
 }
