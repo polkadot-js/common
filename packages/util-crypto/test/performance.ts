@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { arrayRange } from '@polkadot/util';
+import { arrayRange, formatNumber } from '@polkadot/util';
 import { randomAsU8a } from '@polkadot/util-crypto';
 
 import { formatOps, performanceJs } from '../../util/test/performance';
@@ -31,7 +31,7 @@ export function performanceWasm (name: string, count: number, exec: ExecFn): voi
     const [js, rjs] = loop(count, true, exec);
 
     console.log(`
-performance run for ${name} completed with ${count} iterations.
+performance run for ${name} completed with ${formatNumber(count)} iterations.
 
 ${'WebAssembly:'.padStart(19)} ${ws.toString().padStart(15)} ms ${ws < js ? '(fastest)' : `(slowest, ${(ws / js).toFixed(2)}x)`}${formatOps(count, ws)}
 
