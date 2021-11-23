@@ -28,15 +28,9 @@ export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs?: 
   assert(mnemonicValidate(mnemonic), 'Invalid bip39 mnemonic specified');
   assert([32, 64].includes(byteLength), () => `Invalid seed length ${byteLength}, expected 32 or 64`);
 
-  if (byteLength === 32) {
-    return !hasBigInt || (!onlyJs && isReady())
+  return byteLength === 32
+    ? !hasBigInt || (!onlyJs && isReady())
       ? bip39ToSeed(mnemonic, password)
-      : mnemonicToSeedSync(mnemonic, password).subarray(0, 32);
-  } else if (byteLength === 64) {
-    assert(hasBigInt, 'BigInt is required for legacy seed (64-byte) operations');
-
-    return mnemonicToSeedSync(mnemonic, password);
-  }
-
-  return new Uint8Array();
+      : mnemonicToSeedSync(mnemonic, password).subarray(0, 32)
+    : mnemonicToSeedSync(mnemonic, password);
 }
