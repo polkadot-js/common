@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performanceJs } from '../../test/performance';
+import { performance } from '../../test/performance';
 import { u8aEq } from '.';
 
 const ptest = new Uint8Array(32768);
@@ -95,5 +95,5 @@ describe('u8aEq', (): void => {
     ).toEqual(true);
   });
 
-  performanceJs('u8aEq (32k cmp)', 50000, [[ptest, ptest]], u8aEq);
+  performance('u8aEq (32k cmp)', 50000, [[ptest, ptest]], u8aEq);
 });

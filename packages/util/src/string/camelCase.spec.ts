@@ -4,7 +4,7 @@
 import { randomAsNumber } from '@polkadot/util-crypto';
 import words from '@polkadot/util-crypto/mnemonic/bip39-en';
 
-import { performanceJs } from '../../test/performance';
+import { performance } from '../../test/performance';
 import { arrayRange } from '../array';
 import { stringCamelCase, stringUpperFirst } from '.';
 
@@ -43,5 +43,5 @@ describe('stringCamelCase', (): void => {
     ).toBe('fooBarBazTestSpacedExtra');
   });
 
-  performanceJs('stringCamelCase', 64000, randomWords, stringCamelCase);
+  performance('stringCamelCase', 64000, randomWords, stringCamelCase);
 });
