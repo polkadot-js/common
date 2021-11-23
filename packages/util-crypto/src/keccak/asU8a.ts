@@ -10,6 +10,8 @@ import { isReady, keccak256, keccak512 } from '@polkadot/wasm-crypto';
 
 import { createAsHex, createBitHasher } from '../helpers';
 
+type BitLength = 256 | 512;
+
 /**
  * @name keccakAsU8a
  * @summary Creates a keccak Uint8Array from the input.
@@ -24,7 +26,7 @@ import { createAsHex, createBitHasher } from '../helpers';
  * keccakAsU8a('123'); // => Uint8Array
  * ```
  */
-export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: 256 | 512 = 256, onlyJs?: boolean): Uint8Array {
+export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: BitLength = 256, onlyJs?: boolean): Uint8Array {
   const is256 = bitLength === 256;
   const u8a = u8aToU8a(value);
 

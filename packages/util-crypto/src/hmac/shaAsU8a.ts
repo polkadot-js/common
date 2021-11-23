@@ -6,14 +6,18 @@ import hash from 'hash.js';
 import { u8aToU8a } from '@polkadot/util';
 import { hmacSha256, hmacSha512, isReady } from '@polkadot/wasm-crypto';
 
-type HashFn = (key: Uint8Array | string, data: Uint8Array, onlyJs?: boolean) => Uint8Array;
+type BitLength = 256 | 512;
 
-function createSha (bitLength: 256 | 512 = 256): HashFn {
+function createSha (bitLength: BitLength): (key: Uint8Array | string, data: Uint8Array, onlyJs?: boolean) => Uint8Array {
   return (key: Uint8Array | string, data: Uint8Array, onlyJs?: boolean): Uint8Array =>
     hmacShaAsU8a(key, data, bitLength, onlyJs);
 }
 
-export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLength: 256 | 512 = 256, onlyJs?: boolean): Uint8Array {
+/**
+ * @name hmacShaAsU8a
+ * @description creates a Hmac Sha (256/512) Uint8Array from the key & data
+ */
+export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLength: BitLength = 256, onlyJs?: boolean): Uint8Array {
   const is256 = bitLength === 256;
   const u8aKey = u8aToU8a(key);
 
@@ -32,5 +36,14 @@ export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLen
     );
 }
 
+/**
+ * @name hmacSha256AsU8a
+ * @description creates a Hmac Sha256 Uint8Array from the key & data
+ */
 export const hmacSha256AsU8a = createSha(256);
+
+/**
+ * @name hmacSha512AsU8a
+ * @description creates a Hmac Sha512 Uint8Array from the key & data
+ */
 export const hmacSha512AsU8a = createSha(512);

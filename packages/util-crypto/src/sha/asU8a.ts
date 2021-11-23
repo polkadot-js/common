@@ -10,11 +10,13 @@ import { isReady, sha256, sha512 } from '@polkadot/wasm-crypto';
 
 import { createBitHasher } from '../helpers';
 
+type BitLength = 256 | 512;
+
 /**
  * @name shaAsU8a
  * @summary Creates a sha Uint8Array from the input.
  */
-export function shaAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: 256 | 512 = 256, onlyJs?: boolean): Uint8Array {
+export function shaAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: BitLength = 256, onlyJs?: boolean): Uint8Array {
   const is256 = bitLength === 256;
   const u8a = u8aToU8a(value);
 
@@ -29,5 +31,14 @@ export function shaAsU8a (value: HexString | Buffer | Uint8Array | string, bitLe
     );
 }
 
+/**
+ * @name sha256AsU8a
+ * @summary Creates a sha256 Uint8Array from the input.
+ */
 export const sha256AsU8a = createBitHasher(256, shaAsU8a);
+
+/**
+ * @name sha512AsU8a
+ * @summary Creates a sha512 Uint8Array from the input.
+ */
 export const sha512AsU8a = createBitHasher(512, shaAsU8a);
