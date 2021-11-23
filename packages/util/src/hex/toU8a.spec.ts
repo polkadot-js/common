@@ -1,8 +1,15 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performanceJs } from '../../test/performance';
 import { U16_TO_HEX } from './alphabet';
 import { hexToU8a } from '.';
+
+let ptest = '0x';
+
+for (let i = 0; i < 640 * 1024; i++) {
+  ptest += U16_TO_HEX[i % (256 * 256)];
+}
 
 describe('hexToU8a', (): void => {
   it('returns an empty Uint8Array when null provided', (): void => {
@@ -47,19 +54,5 @@ describe('hexToU8a', (): void => {
     ).toThrow(/hex value to convert/);
   });
 
-  it.skip('performance', (): void => {
-    let a = '0x';
-
-    for (let i = 0; i < 640000; i++) {
-      a += U16_TO_HEX[i % (256 * 256)];
-    }
-
-    console.time('hexToU8a:performance');
-
-    for (let i = 0; i < 64; i++) {
-      hexToU8a(a);
-    }
-
-    console.timeEnd('hexToU8a:performance');
-  });
+  performanceJs('hexToU8a (640k input)', 10, [[ptest]], hexToU8a);
 });
