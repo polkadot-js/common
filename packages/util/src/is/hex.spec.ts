@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performanceJs } from '../../test/performance';
+import { performance } from '../../test/performance';
 import { isHex } from '.';
 
 describe('isHex', (): void => {
@@ -71,5 +71,5 @@ describe('isHex', (): void => {
     ).toEqual(true);
   });
 
-  performanceJs('isHex (1024-bit)', 1000000, [[ptest]], isHex);
+  performance('isHex (1024-bit)', 1000000, [[ptest]], isHex);
 });

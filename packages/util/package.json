@@ -13,12 +13,6 @@
         "default": "./hex/toU8aBuffer.js"
       }
     },
-    "./u8a/concat": {
-      "node": {
-        "require": "./u8a/concatBuffer.cjs",
-        "default": "./u8a/concatBuffer.js"
-      }
-    },
     "./u8a/toHex": {
       "node": {
         "require": "./u8a/toHexBuffer.cjs",
