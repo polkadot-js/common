@@ -4,7 +4,7 @@
 import { u8aEq, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceTest } from '../../test/performance';
+import { performanceWasm } from '../../test/performance';
 import { randomAsU8a } from '../random/asU8a';
 import { pbkdf2Encode } from '.';
 
@@ -42,7 +42,7 @@ describe('pbkdf2Encode', (): void => {
     });
   });
 
-  performanceTest('pbkdf2Encode', 8, (input, onlyJs) =>
+  performanceWasm('pbkdf2Encode', 8, (input, onlyJs) =>
     pbkdf2Encode(input, input, undefined, onlyJs)
   );
 });
