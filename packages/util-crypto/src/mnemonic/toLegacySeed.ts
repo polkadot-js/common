@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { assert } from '@polkadot/util';
+import { assert, hasBigInt } from '@polkadot/util';
 import { bip39ToSeed, isReady } from '@polkadot/wasm-crypto';
 
 import { mnemonicToSeedSync } from './bip39';
@@ -28,13 +28,9 @@ export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs?: 
   assert(mnemonicValidate(mnemonic), 'Invalid bip39 mnemonic specified');
   assert([32, 64].includes(byteLength), () => `Invalid seed length ${byteLength}, expected 32 or 64`);
 
-  if (byteLength === 32) {
-    return !onlyJs && isReady()
+  return byteLength === 32
+    ? !hasBigInt || (!onlyJs && isReady())
       ? bip39ToSeed(mnemonic, password)
-      : mnemonicToSeedSync(mnemonic, password).subarray(0, 32);
-  } else if (byteLength === 64) {
-    return mnemonicToSeedSync(mnemonic, password);
-  }
-
-  return new Uint8Array();
+      : mnemonicToSeedSync(mnemonic, password).subarray(0, 32)
+    : mnemonicToSeedSync(mnemonic, password);
 }

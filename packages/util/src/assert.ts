@@ -35,7 +35,7 @@ export function assert (condition: unknown, message: string | MessageFn): assert
 
 /**
  * @name assertReturn
- * @summart Returns when the value is not undefined, otherwise throws assertion error
+ * @description Returns when the value is not undefined/null, otherwise throws assertion error
  */
 export function assertReturn <T> (value: T | undefined | null, message: string | MessageFn): T {
   assert(!isUndefined(value) && !isNull(value), message);

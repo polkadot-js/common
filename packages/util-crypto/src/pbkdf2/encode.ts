@@ -3,11 +3,13 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import { u8aToU8a } from '@polkadot/util';
+import { pbkdf2 as pbkdf2Js } from '@noble/hashes/lib/pbkdf2';
+import { sha512 } from '@noble/hashes/lib/sha512';
+
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, pbkdf2 } from '@polkadot/wasm-crypto';
 
 import { randomAsU8a } from '../random/asU8a';
-import { pbkdf2Sync } from './pbkdf2';
 
 interface Result {
   password: Uint8Array;
@@ -20,9 +22,9 @@ export function pbkdf2Encode (passphrase?: HexString | Buffer | Uint8Array | str
   const u8aSalt = u8aToU8a(salt);
 
   return {
-    password: !onlyJs && isReady()
+    password: !hasBigInt || (!onlyJs && isReady())
       ? pbkdf2(u8aPass, u8aSalt, rounds)
-      : pbkdf2Sync(u8aPass, u8aSalt, rounds),
+      : pbkdf2Js(sha512, u8aPass, u8aSalt, { c: rounds, dkLen: 64 }),
     rounds,
     salt
   };

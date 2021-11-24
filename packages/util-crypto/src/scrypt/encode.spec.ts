@@ -30,7 +30,7 @@ describe('scryptEncode', (): void => {
     });
   });
 
-  performanceWasm('scryptEncode', 2, (input, onlyJs) =>
+  performanceWasm('scryptEncode', 4, (input, onlyJs) =>
     scryptEncode(input, input, undefined, onlyJs)
   );
 });

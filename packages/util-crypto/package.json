@@ -26,27 +26,21 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
+    "@noble/hashes": "^0.4.1",
     "@polkadot/networks": "7.9.3-7",
     "@polkadot/util": "7.9.3-7",
     "@polkadot/wasm-crypto": "^4.4.1",
     "@polkadot/x-randomvalues": "7.9.3-7",
-    "blakejs": "^1.1.1",
     "bn.js": "^4.12.0",
-    "create-hash": "^1.2.0",
     "ed2curve": "^0.3.0",
     "elliptic": "^6.5.4",
-    "hash.js": "^1.1.7",
-    "js-sha3": "^0.8.0",
     "micro-base": "^0.9.0",
-    "scryptsy": "^2.1.0",
     "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
     "@types/bn.js": "^4.11.6",
-    "@types/create-hash": "^1.2.2",
     "@types/ed2curve": "^0.2.2",
-    "@types/elliptic": "^6.4.14",
-    "@types/scryptsy": "^2.0.0"
+    "@types/elliptic": "^6.4.14"
   },
   "peerDependencies": {
     "@polkadot/util": "7.9.3-7"

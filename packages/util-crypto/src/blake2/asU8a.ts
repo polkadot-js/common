@@ -3,9 +3,9 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import js from 'blakejs';
+import { blake2b as blake2bJs } from '@noble/hashes/lib/blake2b';
 
-import { u8aToU8a } from '@polkadot/util';
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { blake2b, isReady } from '@polkadot/wasm-crypto';
 
 import { createAsHex } from '../helpers';
@@ -30,9 +30,9 @@ export function blake2AsU8a (data: HexString | Uint8Array | string, bitLength: B
   const byteLength = Math.ceil(bitLength / 8);
   const u8a = u8aToU8a(data);
 
-  return !onlyJs && isReady()
+  return !hasBigInt || (!onlyJs && isReady())
     ? blake2b(u8a, u8aToU8a(key), byteLength)
-    : js.blake2b(u8a, key || undefined, byteLength);
+    : blake2bJs(u8a, { dkLen: byteLength, key: key || undefined });
 }
 
 /**

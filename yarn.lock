@@ -1770,6 +1770,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@noble/hashes@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "@noble/hashes@npm:0.4.1"
+  checksum: 3c706beec3bcd9e43f2b88c0791f022b645b5c0a9dd76889dfc189e51da2f0c692ef846b5889e074338353e335269c14f4c0ea34329b4d7dd45ae82c482b4605
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.4":
   version: 2.1.4
   resolution: "@nodelib/fs.scandir@npm:2.1.4"
@@ -2084,24 +2091,18 @@ __metadata:
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.16.3
+    "@noble/hashes": ^0.4.1
     "@polkadot/networks": 7.9.3-7
     "@polkadot/util": 7.9.3-7
     "@polkadot/wasm-crypto": ^4.4.1
     "@polkadot/x-randomvalues": 7.9.3-7
     "@types/bn.js": ^4.11.6
-    "@types/create-hash": ^1.2.2
     "@types/ed2curve": ^0.2.2
     "@types/elliptic": ^6.4.14
-    "@types/scryptsy": ^2.0.0
-    blakejs: ^1.1.1
     bn.js: ^4.12.0
-    create-hash: ^1.2.0
     ed2curve: ^0.3.0
     elliptic: ^6.5.4
-    hash.js: ^1.1.7
-    js-sha3: ^0.8.0
     micro-base: ^0.9.0
-    scryptsy: ^2.1.0
     tweetnacl: ^1.0.3
   peerDependencies:
     "@polkadot/util": 7.9.3-7
@@ -2410,15 +2411,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/create-hash@npm:^1.2.2":
-  version: 1.2.2
-  resolution: "@types/create-hash@npm:1.2.2"
-  dependencies:
-    "@types/node": "*"
-  checksum: 6ed989e87efe9efc67890f7587abdbb7cb6d4509684bd545520103d7eb37d76fb46eae693a19fb235b4ca4c76e2bc7d934329f3b5a105136d4b829878f51c244
-  languageName: node
-  linkType: hard
-
 "@types/ed2curve@npm:^0.2.2":
   version: 0.2.2
   resolution: "@types/ed2curve@npm:0.2.2"
@@ -2620,15 +2612,6 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: e99fc7cc6265407987b30deda54c1c24bb1478803faf6037557a774b2f034c5b097ffd65847daa87e82a61a250d919f35c3588654b0fdaa816906650f596d1b0
-  languageName: node
-  linkType: hard
-
-"@types/scryptsy@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@types/scryptsy@npm:2.0.0"
-  dependencies:
-    "@types/node": "*"
-  checksum: e3b138417f81537f99d9787317ccc088bab90eda5f813e1464ddcd89b2850c9b71b28105b4517ed87d22b743211fe558393be130f19abe2489dd8d7d18a9e764
   languageName: node
   linkType: hard
 
@@ -7135,13 +7118,6 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"js-sha3@npm:^0.8.0":
-  version: 0.8.0
-  resolution: "js-sha3@npm:0.8.0"
-  checksum: 75df77c1fc266973f06cce8309ce010e9e9f07ec35ab12022ed29b7f0d9c8757f5a73e1b35aa24840dced0dea7059085aa143d817aea9e188e2a80d569d9adce
-  languageName: node
-  linkType: hard
-
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -9245,13 +9221,6 @@ resolve@^2.0.0-next.3:
   dependencies:
     xmlchars: ^2.2.0
   checksum: 5636b55cf15f7cf0baa73f2797bf992bdcf75d1b39d82c0aa4608555c774368f6ac321cb641fd5f3d3ceb87805122cd47540da6a7b5960fe0dbdb8f8c263f000
-  languageName: node
-  linkType: hard
-
-"scryptsy@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "scryptsy@npm:2.1.0"
-  checksum: 46eee33a59895fbdc920da97446572083667512d8408548cc0d5f190eb4b84aa5d75a4bc8d0495530ff6a62d980497c72eb6fe8e6ab9c26aaa3d4dacb7954d08
   languageName: node
   linkType: hard
 
