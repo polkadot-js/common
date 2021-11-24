@@ -1,6 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { hasBigInt } from '@polkadot/util';
 import { bip39Validate, isReady } from '@polkadot/wasm-crypto';
 
 import { validateMnemonic } from './bip39';
@@ -19,7 +20,7 @@ import { validateMnemonic } from './bip39';
  * ```
  */
 export function mnemonicValidate (mnemonic: string, onlyJs?: boolean): boolean {
-  return isReady() && !onlyJs
+  return !hasBigInt || (!onlyJs && isReady())
     ? bip39Validate(mnemonic)
     : validateMnemonic(mnemonic);
 }

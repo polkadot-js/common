@@ -4,7 +4,7 @@
 import { hexToU8a, stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceTest } from '../../test/performance';
+import { performanceWasm } from '../../test/performance';
 import { hmacShaAsU8a } from '.';
 
 describe('hmacShaAsU8a', (): void => {
@@ -23,7 +23,7 @@ describe('hmacShaAsU8a', (): void => {
     )
   };
 
-  describe.each([256, 512] as (256 | 512)[])('bitLength=$p', (bitLength): void => {
+  describe.each([256, 512] as (256 | 512)[])('bitLength=%p', (bitLength): void => {
     describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
       it('returns an hex representation (string)', (): void => {
         expect(
@@ -32,7 +32,7 @@ describe('hmacShaAsU8a', (): void => {
       });
     });
 
-    performanceTest(`hmacShaAsU8a, bitLength=${bitLength}`, 16000, (input, onlyJs) =>
+    performanceWasm(`hmacShaAsU8a, bitLength=${bitLength}`, 16000, (input, onlyJs) =>
       hmacShaAsU8a(input, input, bitLength, onlyJs)
     );
   });

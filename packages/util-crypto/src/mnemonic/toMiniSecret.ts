@@ -11,7 +11,7 @@ import { mnemonicValidate } from './validate';
 export function mnemonicToMiniSecret (mnemonic: string, password = '', onlyJs?: boolean): Uint8Array {
   assert(mnemonicValidate(mnemonic), 'Invalid bip39 mnemonic specified');
 
-  if (isReady() && !onlyJs) {
+  if (!onlyJs && isReady()) {
     return bip39ToMiniSecret(mnemonic, password);
   }
 
