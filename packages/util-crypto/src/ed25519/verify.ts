@@ -3,10 +3,10 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import ed25519 from 'tweeted25519';
+import nacl from 'tweetnacl';
 
 import { assert, u8aToU8a } from '@polkadot/util';
-import { ed25519Verify, isReady } from '@polkadot/wasm-crypto';
+import { ed25519Verify as wasmVerify, isReady } from '@polkadot/wasm-crypto';
 
 /**
  * @name ed25519Sign
@@ -31,6 +31,6 @@ export function ed25519Verify (message: HexString | Uint8Array | string, signatu
   assert(signatureU8a.length === 64, () => `Invalid signature, received ${signatureU8a.length} bytes, expected 64`);
 
   return !onlyJs && isReady()
-    ? ed25519Verify(signatureU8a, messageU8a, publicKeyU8a)
-    : ed25519.sign.detached.verify(messageU8a, signatureU8a, publicKeyU8a);
+    ? wasmVerify(signatureU8a, messageU8a, publicKeyU8a)
+    : nacl.sign.detached.verify(messageU8a, signatureU8a, publicKeyU8a);
 }

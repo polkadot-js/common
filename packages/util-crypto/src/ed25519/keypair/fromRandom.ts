@@ -3,10 +3,10 @@
 
 import type { Keypair } from '../../types';
 
-import ed25519 from 'tweeted25519';
+import nacl from 'tweetnacl';
 
 /**
- * @name ed25519KeypairFromRandom
+ * @name ed25519PairFromRandom
  * @summary Creates a new public/secret keypair.
  * @description
  * Returns a new generate object containing a `publicKey` & `secretKey`.
@@ -14,11 +14,11 @@ import ed25519 from 'tweeted25519';
  * <BR>
  *
  * ```javascript
- * import { ed25519KeypairFromRandom } from '@polkadot/util-crypto';
+ * import { ed25519PairFromRandom } from '@polkadot/util-crypto';
  *
- * ed25519KeypairFromRandom(); // => { secretKey: [...], publicKey: [...] }
+ * ed25519PairFromRandom(); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export function ed25519KeypairFromRandom (): Keypair {
-  return ed25519.sign.keyPair();
+export function ed25519PairFromRandom (): Keypair {
+  return nacl.sign.keyPair();
 }

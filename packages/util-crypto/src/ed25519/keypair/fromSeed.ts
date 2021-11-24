@@ -3,12 +3,12 @@
 
 import type { Keypair } from '../../types';
 
-import ed25519 from 'tweeted25519';
+import nacl from 'tweetnacl';
 
 import { ed25519KeypairFromSeed, isReady } from '@polkadot/wasm-crypto';
 
 /**
- * @name ed25519KeypairFromSeed
+ * @name ed25519PairFromSeed
  * @summary Creates a new public/secret keypair from a seed.
  * @description
  * Returns a object containing a `publicKey` & `secretKey` generated from the supplied seed.
@@ -16,12 +16,12 @@ import { ed25519KeypairFromSeed, isReady } from '@polkadot/wasm-crypto';
  * <BR>
  *
  * ```javascript
- * import { ed25519KeypairFromSeed } from '@polkadot/util-crypto';
+ * import { ed25519PairFromSeed } from '@polkadot/util-crypto';
  *
- * ed25519KeypairFromSeed(...); // => { secretKey: [...], publicKey: [...] }
+ * ed25519PairFromSeed(...); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export function ed25519KeypairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypair {
+export function ed25519PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypair {
   if (!onlyJs && isReady()) {
     const full = ed25519KeypairFromSeed(seed);
 
@@ -31,5 +31,5 @@ export function ed25519KeypairFromSeed (seed: Uint8Array, onlyJs?: boolean): Key
     };
   }
 
-  return ed25519.sign.keyPair.fromSeed(seed);
+  return nacl.sign.keyPair.fromSeed(seed);
 }

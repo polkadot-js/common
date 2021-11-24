@@ -3,8 +3,8 @@
 
 import type { Keypair } from '../types';
 
-import { sr25519DeriveHard } from '../25519sr/deriveHard';
-import { sr25519DeriveSoft } from '../25519sr/deriveSoft';
+import { sr25519DeriveHard } from '../sr25519/deriveHard';
+import { sr25519DeriveSoft } from '../sr25519/deriveSoft';
 import { DeriveJunction } from './DeriveJunction';
 
 export function keyHdkdSr25519 (keypair: Keypair, { chainCode, isSoft }: DeriveJunction): Keypair {

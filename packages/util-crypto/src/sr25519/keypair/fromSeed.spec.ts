@@ -5,10 +5,10 @@ import { stringToU8a, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { mnemonicToMiniSecret } from '../../mnemonic';
-import { sr25519KeypairFromSeed } from '..';
+import { sr25519PairFromSeed } from '..';
 import tests from './testing';
 
-describe('sr25519KeypairFromSeed', (): void => {
+describe('sr25519PairFromSeed', (): void => {
   const TEST = stringToU8a('12345678901234567890123456789012');
   const RESULT = {
     publicKey: new Uint8Array([116, 28, 8, 160, 111, 65, 197, 150, 96, 143, 103, 116, 37, 155, 217, 4, 51, 4, 173, 250, 93, 62, 234, 98, 118, 11, 217, 190, 151, 99, 77, 99]),
@@ -21,14 +21,14 @@ describe('sr25519KeypairFromSeed', (): void => {
 
   it('generates a valid publicKey/secretKey pair (u8a)', (): void => {
     expect(
-      sr25519KeypairFromSeed(TEST)
+      sr25519PairFromSeed(TEST)
     ).toEqual(RESULT);
   });
 
   tests.forEach(([mnemonic, , , secret], index): void => {
     it(`creates valid against known (${index})`, (): void => {
       const seed = mnemonicToMiniSecret(mnemonic, 'Substrate');
-      const pair = sr25519KeypairFromSeed(seed);
+      const pair = sr25519PairFromSeed(seed);
 
       expect(
         u8aToHex(pair.secretKey)

@@ -5,9 +5,9 @@ import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { performanceWasm } from '../../test/performance';
-import { ed25519KeypairFromSeed, ed25519Sign } from '.';
+import { ed25519PairFromSeed, ed25519Sign } from '.';
 
-const PAIR = ed25519KeypairFromSeed(
+const PAIR = ed25519PairFromSeed(
   stringToU8a('12345678901234567890123456789012')
 );
 

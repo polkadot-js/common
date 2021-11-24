@@ -6,10 +6,10 @@ import type { Keypair } from '../../types';
 import { stringToU8a } from '@polkadot/util';
 
 import { blake2AsU8a } from '../../blake2/asU8a';
-import { ed25519KeypairFromSeed } from './fromSeed';
+import { ed25519PairFromSeed } from './fromSeed';
 
 /**
- * @name ed25519KeypairFromString
+ * @name ed25519PairFromString
  * @summary Creates a new public/secret keypair from a string.
  * @description
  * Returns a object containing a `publicKey` & `secretKey` generated from the supplied string. The string is hashed and the value used as the input seed.
@@ -17,13 +17,13 @@ import { ed25519KeypairFromSeed } from './fromSeed';
  * <BR>
  *
  * ```javascript
- * import { ed25519KeypairFromString } from '@polkadot/util-crypto';
+ * import { ed25519PairFromString } from '@polkadot/util-crypto';
  *
- * ed25519KeypairFromString('test'); // => { secretKey: [...], publicKey: [...] }
+ * ed25519PairFromString('test'); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export function ed25519KeypairFromString (value: string): Keypair {
-  return ed25519KeypairFromSeed(
+export function ed25519PairFromString (value: string): Keypair {
+  return ed25519PairFromSeed(
     blake2AsU8a(
       stringToU8a(value),
       256

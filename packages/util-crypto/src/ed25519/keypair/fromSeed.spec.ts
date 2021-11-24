@@ -4,9 +4,9 @@
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { ed25519KeypairFromSeed } from '..';
+import { ed25519PairFromSeed } from '..';
 
-describe('ed25519KeypairFromSeed', (): void => {
+describe('ed25519PairFromSeed', (): void => {
   // NOTE: Aligned with Rust test, b"12345678901234567890123456789012"
   const TEST = stringToU8a('12345678901234567890123456789012');
   const RESULT = {
@@ -33,7 +33,7 @@ describe('ed25519KeypairFromSeed', (): void => {
   it('generates a valid publicKey/secretKey pair (u8a)', (): void => {
     [true, false].forEach((onlyJs): void => {
       expect(
-        ed25519KeypairFromSeed(TEST, onlyJs)
+        ed25519PairFromSeed(TEST, onlyJs)
       ).toEqual(RESULT);
     });
   });

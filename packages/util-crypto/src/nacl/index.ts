@@ -6,6 +6,6 @@
  */
 export { naclDecrypt } from './decrypt';
 export { naclEncrypt } from './encrypt';
-export { naclBoxKeypairFromSecret } from './box/fromSecret';
+export { naclBoxPairFromSecret } from './box/fromSecret';
 export { naclOpen } from './open';
 export { naclSeal } from './seal';

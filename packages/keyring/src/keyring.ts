@@ -5,15 +5,15 @@ import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
-import { base64Decode, decodeAddress, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, naclKeypairFromSeed as naclFromSeed, secp256k1KeypairFromSeed as secp256k1FromSeed, sr25519KeypairFromSeed as sr25519FromSeed } from '@polkadot/util-crypto';
+import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
 import { createPair } from './pair';
 import { Pairs } from './pairs';
 
-const keypairFromSeed = {
+const PairFromSeed = {
   ecdsa: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
-  ed25519: (seed: Uint8Array): Keypair => naclFromSeed(seed),
+  ed25519: (seed: Uint8Array): Keypair => ed25519FromSeed(seed),
   ethereum: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
   sr25519: (seed: Uint8Array): Keypair => sr25519FromSeed(seed)
 };
@@ -142,7 +142,7 @@ export class Keyring implements KeyringInstance {
    */
   public addFromSeed (seed: Uint8Array, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
     return this.addPair(
-      createPair({ toSS58: this.encodeAddress, type }, keypairFromSeed[type](seed), meta, null)
+      createPair({ toSS58: this.encodeAddress, type }, PairFromSeed[type](seed), meta, null)
     );
   }
 
@@ -224,9 +224,9 @@ export class Keyring implements KeyringInstance {
 
     const derived = type === 'ethereum'
       ? isPhraseHex
-        ? keypairFromSeed[type](seed) // for eth, if the private key is provided as suri, it must be derived only once
+        ? PairFromSeed[type](seed) // for eth, if the private key is provided as suri, it must be derived only once
         : hdEthereum(seed, derivePath.substring(1))
-      : keyFromPath(keypairFromSeed[type](seed), path, type);
+      : keyFromPath(PairFromSeed[type](seed), path, type);
 
     return createPair({ toSS58: this.encodeAddress, type }, derived, meta, null);
   }

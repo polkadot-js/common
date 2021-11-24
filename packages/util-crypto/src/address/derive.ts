@@ -7,8 +7,8 @@ import type { Prefix } from './types';
 
 import { assert } from '@polkadot/util';
 
-import { sr25519DerivePublic } from '../25519sr';
 import { keyExtractPath } from '../key';
+import { sr25519DerivePublic } from '../sr25519';
 import { decodeAddress } from './decode';
 import { encodeAddress } from './encode';
 

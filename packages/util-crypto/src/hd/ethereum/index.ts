@@ -7,7 +7,7 @@ import { assert, bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
 import { BN_BE_32_OPTS } from '../../bn';
 import { hmacShaAsU8a } from '../../hmac';
-import { secp256k1KeypairFromSeed, secp256k1PrivateKeyTweakAdd } from '../../secp256k1';
+import { secp256k1PairFromSeed, secp256k1PrivateKeyTweakAdd } from '../../secp256k1';
 import { HARDENED, hdValidatePath } from '../validatePath';
 
 interface CodedKeypair extends Keypair {
@@ -19,7 +19,7 @@ const MASTER_SECRET = stringToU8a('Bitcoin seed');
 function createCoded (secretKey: Uint8Array, chainCode: Uint8Array): CodedKeypair {
   return {
     chainCode,
-    publicKey: secp256k1KeypairFromSeed(secretKey).publicKey,
+    publicKey: secp256k1PairFromSeed(secretKey).publicKey,
     secretKey
   };
 }

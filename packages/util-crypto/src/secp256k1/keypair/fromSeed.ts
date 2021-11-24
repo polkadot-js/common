@@ -9,10 +9,10 @@ import { BN_BE_256_OPTS } from '../../bn';
 import { secp256k1 } from '../secp256k1';
 
 /**
- * @name secp256k1KeypairFromSeed
+ * @name secp256k1PairFromSeed
  * @description Returns a object containing a `publicKey` & `secretKey` generated from the supplied seed.
  */
-export function secp256k1KeypairFromSeed (seed: Uint8Array): Keypair {
+export function secp256k1PairFromSeed (seed: Uint8Array): Keypair {
   assert(seed.length === 32, 'Expected valid 32-byte private key as a seed');
 
   const key = secp256k1.keyFromPrivate(seed);

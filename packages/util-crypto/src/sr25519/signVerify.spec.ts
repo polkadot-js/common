@@ -5,7 +5,7 @@ import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { randomAsU8a } from '../random/asU8a';
-import { sr25519KeypairFromSeed } from './keypair/fromSeed';
+import { sr25519PairFromSeed } from './keypair/fromSeed';
 import { sr25519Sign } from './sign';
 import { sr25519Verify } from './verify';
 
@@ -17,13 +17,13 @@ describe('sign and verify', (): void => {
   });
 
   it('has 64-byte signatures', (): void => {
-    const pair = sr25519KeypairFromSeed(randomAsU8a());
+    const pair = sr25519PairFromSeed(randomAsU8a());
 
     expect(sr25519Sign(MESSAGE, pair)).toHaveLength(64);
   });
 
   it('can sign and verify a message', (): void => {
-    const pair = sr25519KeypairFromSeed(randomAsU8a());
+    const pair = sr25519PairFromSeed(randomAsU8a());
     const signature = sr25519Sign(MESSAGE, pair);
 
     expect(sr25519Verify(MESSAGE, signature, pair.publicKey)).toBe(true);

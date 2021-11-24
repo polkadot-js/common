@@ -1,9 +1,9 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { ed25519KeypairFromSecret } from '..';
+import { ed25519PairFromSecret } from '..';
 
-describe('ed25519KeypairFromSecret', (): void => {
+describe('ed25519PairFromSecret', (): void => {
   const secretKey = new Uint8Array([
     18, 52, 86, 120, 144, 18, 52, 86,
     120, 144, 18, 52, 86, 120, 144, 18,
@@ -17,7 +17,7 @@ describe('ed25519KeypairFromSecret', (): void => {
 
   it('generates a valid publicKey/secretKey pair', (): void => {
     expect(
-      ed25519KeypairFromSecret(secretKey)
+      ed25519PairFromSecret(secretKey)
     ).toEqual({
       publicKey: new Uint8Array([
         180, 114, 93, 155, 165, 255, 217, 82,

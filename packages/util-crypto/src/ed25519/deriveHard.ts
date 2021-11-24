@@ -7,7 +7,7 @@ import { blake2AsU8a } from '../blake2/asU8a';
 
 const HDKD = compactAddLength(stringToU8a('Ed25519HDKD'));
 
-export function naclDeriveHard (seed: Uint8Array, chainCode: Uint8Array): Uint8Array {
+export function ed25519DeriveHard (seed: Uint8Array, chainCode: Uint8Array): Uint8Array {
   assert(isU8a(chainCode) && chainCode.length === 32, 'Invalid chainCode passed to derive');
 
   return blake2AsU8a(
