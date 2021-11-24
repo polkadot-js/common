@@ -5,13 +5,13 @@
  * @name BI_MILLION
  * @summary BigInt constant for 1,000,000.
  */
-export const BI_MILLION = BigInt(1_000_000);
+export const BI_MILLION = 1_000_000n;
 
 /**
 * @name BI_BILLION
 * @summary BigInt constant for 1,000,000,000.
 */
-export const BI_BILLION = BigInt(1_000_000_000);
+export const BI_BILLION = 1_000_000_000n;
 
 /**
 * @name BI_QUINTILL
