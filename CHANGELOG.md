@@ -2,9 +2,14 @@
 
 ## master
 
+**Important** In the 8.0 version the hashing utilities have been consolidated around an optimized and audited version. The happy-path with WASM-first is in-place and these fallbacks won't be used when `BigInt` is not available in your environment (as required by the new hashing implementations).
+
 Changes:
 
 - Replace camelcase dep with simplified/optimized version
+- Replace (most) hashing operations with `@noble/hashes`
+- Replace JS fallback for `xxhash`
+- Extend performance tests with implementation compares
 
 
 ## 7.9.2 Nov 22, 2021
