@@ -6,9 +6,9 @@ import type { KeypairType, VerifyResult } from '../types';
 
 import { assert, u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from '@polkadot/util';
 
+import { sr25519Verify } from '../25519sr/verify';
 import { decodeAddress } from '../address/decode';
 import { naclVerify } from '../nacl/verify';
-import { schnorrkelVerify } from '../schnorrkel/verify';
 import { secp256k1Verify } from '../secp256k1/verify';
 
 interface VerifyInput {
@@ -32,7 +32,7 @@ const VERIFIERS_ECDSA: Verifier[] = [
 
 const VERIFIERS: Verifier[] = [
   ['ed25519', naclVerify],
-  ['sr25519', schnorrkelVerify],
+  ['sr25519', sr25519Verify],
   ...VERIFIERS_ECDSA
 ];
 
@@ -68,7 +68,7 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
       ecdsa: () => verifyDetect(result, { message, publicKey, signature: signature.subarray(1) }, VERIFIERS_ECDSA).isValid,
       ed25519: () => naclVerify(message, signature.subarray(1), publicKey),
       none: () => { throw Error('no verify for `none` crypto type'); },
-      sr25519: () => schnorrkelVerify(message, signature.subarray(1), publicKey)
+      sr25519: () => sr25519Verify(message, signature.subarray(1), publicKey)
     }[type]();
   } catch (error) {
     // ignore, result.isValid still set to false

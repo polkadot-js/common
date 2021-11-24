@@ -6,6 +6,8 @@ import './cryptoInit';
 export { packageInfo } from './packageInfo';
 
 // all internal exports
+export * from './25519ed';
+export * from './25519sr';
 export * from './address';
 export * from './base32';
 export * from './base58';
@@ -23,7 +25,6 @@ export * from './networks';
 export * from './nacl';
 export * from './pbkdf2';
 export * from './random';
-export * from './schnorrkel';
 export * from './scrypt';
 export * from './secp256k1';
 export * from './sha';

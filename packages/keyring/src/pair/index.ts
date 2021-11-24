@@ -7,7 +7,7 @@ import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } fro
 import type { PairInfo } from './types';
 
 import { assert, objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
-import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclOpen, naclSeal, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
+import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclOpen, naclSeal, naclSign, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519KeypairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
 import { encodePair } from './encode';
@@ -24,7 +24,7 @@ const TYPE_FROM_SEED = {
   ecdsa: secp256k1FromSeed,
   ed25519: naclFromSeed,
   ethereum: secp256k1FromSeed,
-  sr25519: schnorrkelFromSeed
+  sr25519: sr25519FromSeed
 };
 
 const TYPE_PREFIX = {
@@ -38,7 +38,7 @@ const TYPE_SIGNATURE = {
   ecdsa: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'blake2'),
   ed25519: naclSign,
   ethereum: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'keccak'),
-  sr25519: schnorrkelSign
+  sr25519: sr25519Sign
 };
 
 const TYPE_ADDRESS = {
@@ -215,7 +215,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
 
       if (type === 'sr25519') {
-        return schnorrkelVrfSign(message, { secretKey }, context, extra);
+        return sr25519VrfSign(message, { secretKey }, context, extra);
       }
 
       const proof = TYPE_SIGNATURE[type](u8aToU8a(message), { publicKey, secretKey });
@@ -224,7 +224,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     },
     vrfVerify: (message: HexString | string | Uint8Array, vrfResult: Uint8Array, signerPublic: HexString | Uint8Array | string, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): boolean => {
       if (type === 'sr25519') {
-        return schnorrkelVrfVerify(message, vrfResult, publicKey, context, extra);
+        return sr25519VrfVerify(message, vrfResult, publicKey, context, extra);
       }
 
       const result = signatureVerify(message, u8aConcat(TYPE_PREFIX[type], vrfResult.subarray(32)), TYPE_ADDRESS[type](u8aToU8a(signerPublic)));

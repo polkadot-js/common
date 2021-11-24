@@ -7,8 +7,8 @@ import type { Prefix } from './types';
 
 import { assert } from '@polkadot/util';
 
+import { sr25519DerivePublic } from '../25519sr';
 import { keyExtractPath } from '../key';
-import { schnorrkelDerivePublic } from '../schnorrkel';
 import { decodeAddress } from './decode';
 import { encodeAddress } from './encode';
 
@@ -30,7 +30,7 @@ export function deriveAddress (who: HexString | Uint8Array | string, suri: strin
   let publicKey = decodeAddress(who);
 
   for (const { chainCode } of path) {
-    publicKey = schnorrkelDerivePublic(publicKey, chainCode);
+    publicKey = sr25519DerivePublic(publicKey, chainCode);
   }
 
   return encodeAddress(publicKey, ss58Format);
