@@ -8,6 +8,7 @@
 
 Changes:
 
+- Introduce `ed25519*` & `sr25519*` functions
 - Replace camelcase dep with simplified/optimized version
 - Replace (most) hashing operations with `@noble/hashes`
 - Replace JS fallback for `xxhash`
