@@ -5,7 +5,7 @@ import type { HexString } from '@polkadot/util/types';
 import type { Keypair } from '../types';
 
 import { assert, u8aToU8a } from '@polkadot/util';
-import { sr25519Sign } from '@polkadot/wasm-crypto';
+import { sr25519Sign as wasmSign } from '@polkadot/wasm-crypto';
 
 /**
  * @name sr25519Sign
@@ -15,5 +15,5 @@ export function sr25519Sign (message: HexString | Uint8Array | string, { publicK
   assert(publicKey?.length === 32, 'Expected a valid publicKey, 32-bytes');
   assert(secretKey?.length === 64, 'Expected a valid secretKey, 64-bytes');
 
-  return sr25519Sign(publicKey, secretKey, u8aToU8a(message));
+  return wasmSign(publicKey, secretKey, u8aToU8a(message));
 }

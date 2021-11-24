@@ -4,7 +4,7 @@
 import type { HexString } from '@polkadot/util/types';
 
 import { assert, u8aToU8a } from '@polkadot/util';
-import { sr25519Verify } from '@polkadot/wasm-crypto';
+import { sr25519Verify as wasmVerify } from '@polkadot/wasm-crypto';
 
 /**
  * @name sr25519Verify
@@ -17,5 +17,5 @@ export function sr25519Verify (message: HexString | Uint8Array | string, signatu
   assert(publicKeyU8a.length === 32, () => `Invalid publicKey, received ${publicKeyU8a.length} bytes, expected 32`);
   assert(signatureU8a.length === 64, () => `Invalid signature, received ${signatureU8a.length} bytes, expected 64`);
 
-  return sr25519Verify(signatureU8a, u8aToU8a(message), publicKeyU8a);
+  return wasmVerify(signatureU8a, u8aToU8a(message), publicKeyU8a);
 }
