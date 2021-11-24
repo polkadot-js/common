@@ -5,7 +5,7 @@ import { stringToU8a } from '@polkadot/util';
 
 import { randomAsU8a } from '../random/asU8a';
 import { secp256k1Hasher } from './hasher';
-import { secp256k1Expand, secp256k1KeypairFromSeed, secp256k1Sign, secp256k1Verify } from '.';
+import { secp256k1Expand, secp256k1PairFromSeed, secp256k1Sign, secp256k1Verify } from '.';
 
 const MESSAGE = stringToU8a('this is a message');
 
@@ -19,13 +19,13 @@ describe('sign and verify', (): void => {
   });
 
   it('has 65-byte signatures', (): void => {
-    const pair = secp256k1KeypairFromSeed(randomAsU8a());
+    const pair = secp256k1PairFromSeed(randomAsU8a());
 
     expect(secp256k1Sign(MESSAGE, pair)).toHaveLength(65);
   });
 
   it('signs/verifies a message by random key (blake2)', (): void => {
-    const pair = secp256k1KeypairFromSeed(randomAsU8a());
+    const pair = secp256k1PairFromSeed(randomAsU8a());
     const signature = secp256k1Sign(MESSAGE, pair);
     const address = secp256k1Hasher('blake2', pair.publicKey);
 
@@ -33,7 +33,7 @@ describe('sign and verify', (): void => {
   });
 
   it('signs/verifies a message by random key (keccak)', (): void => {
-    const pair = secp256k1KeypairFromSeed(randomAsU8a());
+    const pair = secp256k1PairFromSeed(randomAsU8a());
     const signature = secp256k1Sign(MESSAGE, pair, 'keccak');
     const address = secp256k1Hasher('keccak', secp256k1Expand(pair.publicKey));
 
@@ -41,7 +41,7 @@ describe('sign and verify', (): void => {
   });
 
   it('fails verification on hasher mismatches', (): void => {
-    const pair = secp256k1KeypairFromSeed(randomAsU8a());
+    const pair = secp256k1PairFromSeed(randomAsU8a());
     const signature = secp256k1Sign(MESSAGE, pair, 'keccak');
     const address = secp256k1Hasher('keccak', secp256k1Expand(pair.publicKey));
 
@@ -50,7 +50,7 @@ describe('sign and verify', (): void => {
 
   it('works over a range of random keys (blake2)', (): void => {
     for (let i = 0; i < 256; i++) {
-      const pair = secp256k1KeypairFromSeed(randomAsU8a());
+      const pair = secp256k1PairFromSeed(randomAsU8a());
 
       try {
         expect(
@@ -70,7 +70,7 @@ describe('sign and verify', (): void => {
 
   it('works over a range of random keys (keccak)', (): void => {
     for (let i = 0; i < 256; i++) {
-      const pair = secp256k1KeypairFromSeed(randomAsU8a());
+      const pair = secp256k1PairFromSeed(randomAsU8a());
 
       try {
         expect(
