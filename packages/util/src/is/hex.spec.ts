@@ -1,10 +1,12 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performance } from '../../test/performance';
 import { isHex } from '.';
 
 describe('isHex', (): void => {
   const test = '1234abcd';
+  const ptest = '0x1234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef1';
 
   it('returns true on 0x hex values', (): void => {
     expect(
@@ -69,15 +71,5 @@ describe('isHex', (): void => {
     ).toEqual(true);
   });
 
-  it.skip('performance', (): void => {
-    const test = '0x1234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef1';
-
-    console.time('performance:isHex');
-
-    for (let i = 0; i < 512000; i++) {
-      isHex(test);
-    }
-
-    console.timeEnd('performance:isHex');
-  });
+  performance('isHex (1024-bit)', 1000000, [[ptest]], isHex);
 });
