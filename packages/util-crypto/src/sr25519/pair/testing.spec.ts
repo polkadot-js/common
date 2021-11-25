@@ -152,3 +152,7 @@ const tests: Test[] = [
 ];
 
 export default tests;
+
+it('has a test', (): void => {
+  expect(true).toEqual(true);
+});
