@@ -1,26 +1,50 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { hasBigInt } from '../has';
+
+export function newBigInt (n: bigint | number | string): bigint {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  return hasBigInt
+    ? BigInt(n)
+    : undefined;
+}
+
+/**
+ * @name BI_ZERO
+ * @summary BigInt constant for 0.
+ */
+export const BI_ZERO = newBigInt(0);
+
+/**
+ * @name BI_ONE
+ * @summary BigInt constant for 0.
+ */
+export const BI_ONE = newBigInt(1);
+
 /**
  * @name BI_MILLION
  * @summary BigInt constant for 1,000,000.
  */
-export const BI_MILLION = 1_000_000n;
+export const BI_MILLION = newBigInt(1_000_000);
 
 /**
 * @name BI_BILLION
 * @summary BigInt constant for 1,000,000,000.
 */
-export const BI_BILLION = 1_000_000_000n;
+export const BI_BILLION = newBigInt(1_000_000_000);
 
 /**
 * @name BI_QUINTILL
 * @summary BigInt constant for 1,000,000,000,000,000,000.
 */
-export const BI_QUINTILL = BI_BILLION * BI_BILLION;
+export const BI_QUINTILL = BI_BILLION
+  ? BI_BILLION * BI_BILLION
+  : undefined;
 
 /**
 * @name BI_MAX_INTEGER
 * @summary BigInt constant for MAX_SAFE_INTEGER
 */
-export const BI_MAX_INTEGER = BigInt(Number.MAX_SAFE_INTEGER);
+export const BI_MAX_INTEGER = newBigInt(Number.MAX_SAFE_INTEGER);
