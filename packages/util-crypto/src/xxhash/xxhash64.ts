@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { _BigInt } from '@polkadot/util';
+import { _n } from '@polkadot/util';
 
 // Adapted from https://github.com/pierrec/js-xxhash/blob/0504e76f3d31a21ae8528a7f590c7289c9e431d2/lib/xxhash64.js
 //
@@ -26,31 +26,31 @@ interface State {
   v4: bigint;
 }
 
-const P64_1 = _BigInt('11400714785074694791');
-const P64_2 = _BigInt('14029467366897019727');
-const P64_3 = _BigInt('1609587929392839161');
-const P64_4 = _BigInt('9650029242287828579');
-const P64_5 = _BigInt('2870177450012600261');
+const P64_1 = _n('11400714785074694791');
+const P64_2 = _n('14029467366897019727');
+const P64_3 = _n('1609587929392839161');
+const P64_4 = _n('9650029242287828579');
+const P64_5 = _n('2870177450012600261');
 
 // mask for a u64, all bits set
-const U64 = _BigInt('0xffffffffffffffff');
+const U64 = _n('0xffffffffffffffff');
 
 // various constants
-const _0n = _BigInt(0);
-const _1n = _BigInt(1);
-const _7n = _BigInt(7);
-const _11n = _BigInt(11);
-const _12n = _BigInt(12);
-const _16n = _BigInt(16);
-const _18n = _BigInt(18);
-const _23n = _BigInt(23);
-const _27n = _BigInt(27);
-const _29n = _BigInt(29);
-const _31n = _BigInt(31);
-const _32n = _BigInt(32);
-const _33n = _BigInt(33);
-const _64n = _BigInt(64);
-const _256n = _BigInt(256);
+const _0n = _n(0);
+const _1n = _n(1);
+const _7n = _n(7);
+const _11n = _n(11);
+const _12n = _n(12);
+const _16n = _n(16);
+const _18n = _n(18);
+const _23n = _n(23);
+const _27n = _n(27);
+const _29n = _n(29);
+const _31n = _n(31);
+const _32n = _n(32);
+const _33n = _n(33);
+const _64n = _n(64);
+const _256n = _n(256);
 
 function rotl (a: bigint, b: bigint): bigint {
   const c = a & U64;

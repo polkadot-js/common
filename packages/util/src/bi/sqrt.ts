@@ -5,10 +5,10 @@ import type { BN } from '../bn';
 import type { ToBigInt, ToBn } from '../types';
 
 import { assert } from '../assert';
-import { _BigInt, BI_MAX_INTEGER, BI_ONE, BI_ZERO } from './consts';
+import { _n, BI_MAX_INTEGER, BI_ONE, BI_ZERO } from './consts';
 import { biToBigInt } from './toBigInt';
 
-const SQRT_MAX_SAFE_INTEGER = _BigInt(94906265);
+const SQRT_MAX_SAFE_INTEGER = _n(94906265);
 
 /**
  * @name biSqrt

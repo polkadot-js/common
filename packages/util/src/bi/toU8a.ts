@@ -5,15 +5,15 @@ import type { BN } from '../bn/bn';
 import type { ToBigInt, ToBn, ToBnOptions } from '../types';
 
 import { objectSpread } from '../object/spread';
-import { _BigInt, BI_ONE, BI_ZERO } from './consts';
+import { _n, BI_ONE, BI_ZERO } from './consts';
 import { biToBigInt } from './toBigInt';
 
 interface Options extends ToBnOptions {
   bitLength?: number;
 }
 
-const DIV = _BigInt(256);
-const NEG_MASK = _BigInt(0xff);
+const DIV = _n(256);
+const NEG_MASK = _n(0xff);
 
 function createEmpty ({ bitLength = 0 }: Options): Uint8Array {
   return bitLength === -1
