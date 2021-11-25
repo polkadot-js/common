@@ -54,6 +54,9 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
   // const length = endLength - offset - mod;
   const endStart = value.length - (mod * 2);
 
+  // 104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100
+  // 104, 101, 104, 101, 114, 108,   0,   0,   0,   0, 0
+
   console.log('mod=', mod, 'length=', length, 'endStart=', endStart, value.substr(endStart), result);
 
   for (let i = 0; i < mod; i++) {
