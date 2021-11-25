@@ -2,7 +2,7 @@
 
 ## master
 
-**Important** In the 8.0 version the hashing utilities have been consolidated around an optimized and audited version. The happy-path with WASM-first is in-place and these fallbacks won't be used when `BigInt` is not available in your environment (as required by the new hashing implementations).
+**Important** In the 8.0 version the hashing utilities have been consolidated around an optimized and audited version from `@noble/hashes`. As in the past the WASM hashing will be used by default if the environment is initialized.
 
 **Breaking change** The `schnorrkel*` functions have been renamed to `sr25519*`. Likewise the `ed25519` operations have been renamed from `nacl*` to `ed25519*`. Additionally the `{ed, sr}25519KeyPairFrom*` functions have been renamed to `{ed, sr}25519PairFrom*`.
 
@@ -12,7 +12,9 @@ Changes:
 - Replace camelcase dep with simplified/optimized version
 - Replace (most) hashing operations with `@noble/hashes`
 - Replace JS fallback for `xxhash`
+- Adjust `BigInt` utility exports (with capability detection)
 - Extend performance tests with implementation compares
+- Remove non-significant Node Buffer concat fill
 
 
 ## 7.9.2 Nov 22, 2021
