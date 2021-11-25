@@ -5,7 +5,7 @@ import type { BN } from '../bn/bn';
 import type { ToBigInt, ToBn, ToBnOptions } from '../types';
 
 import { objectSpread } from '../object/spread';
-import { _n, BI_ONE, BI_ZERO } from './consts';
+import { _0n, _1n, _n } from './consts';
 import { biToBigInt } from './toBigInt';
 
 interface Options extends ToBnOptions {
@@ -25,10 +25,10 @@ function toU8a (value: bigint, { isLe, isNegative }: Options): Uint8Array {
   const arr: number[] = [];
 
   if (isNegative) {
-    value = (value + BI_ONE) * -BI_ONE;
+    value = (value + _1n) * -_1n;
   }
 
-  while (value !== BI_ZERO) {
+  while (value !== _0n) {
     const mod = value % DIV;
     const val = Number(
       isNegative
@@ -60,7 +60,7 @@ export function biToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN 
 
   const valueBi = biToBigInt(value);
 
-  if (valueBi === BI_ZERO) {
+  if (valueBi === _0n) {
     return createEmpty(opts);
   }
 

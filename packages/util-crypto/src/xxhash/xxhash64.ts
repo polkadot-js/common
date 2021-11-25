@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { _n } from '@polkadot/util';
+import { _0n, _1n, _n } from '@polkadot/util';
 
 // Adapted from https://github.com/pierrec/js-xxhash/blob/0504e76f3d31a21ae8528a7f590c7289c9e431d2/lib/xxhash64.js
 //
@@ -36,8 +36,6 @@ const P64_5 = _n('2870177450012600261');
 const U64 = _n('0xffffffffffffffff');
 
 // various constants
-const _0n = _n(0);
-const _1n = _n(1);
 const _7n = _n(7);
 const _11n = _n(11);
 const _12n = _n(12);

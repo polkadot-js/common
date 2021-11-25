@@ -5,7 +5,7 @@ import type { BN } from '../bn';
 import type { ToBigInt, ToBn } from '../types';
 
 import { assert } from '../assert';
-import { _n, BI_MAX_INTEGER, BI_ONE, BI_ZERO } from './consts';
+import { _0n, _1n, _n, BI_MAX_INTEGER } from './consts';
 import { biToBigInt } from './toBigInt';
 
 const SQRT_MAX_SAFE_INTEGER = _n(94906265);
@@ -17,7 +17,7 @@ const SQRT_MAX_SAFE_INTEGER = _n(94906265);
 export function biSqrt <ExtToBn extends ToBn | ToBigInt> (value: ExtToBn | BN | bigint | string | number | null): bigint {
   const n = biToBigInt(value);
 
-  assert(n >= BI_ZERO, 'square root of negative numbers is not supported');
+  assert(n >= _0n, 'square root of negative numbers is not supported');
 
   // https://stackoverflow.com/questions/53683995/javascript-big-integer-square-root/
   // shortcut <= 2^53 - 1 to use the JS utils
@@ -30,9 +30,9 @@ export function biSqrt <ExtToBn extends ToBn | ToBigInt> (value: ExtToBn | BN | 
   let x0 = SQRT_MAX_SAFE_INTEGER;
 
   while (true) {
-    const x1 = ((n / x0) + x0) >> BI_ONE;
+    const x1 = ((n / x0) + x0) >> _1n;
 
-    if (x0 === x1 || (x0 === (x1 - BI_ONE))) {
+    if (x0 === x1 || (x0 === (x1 - _1n))) {
       return x0;
     }
 

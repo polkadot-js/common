@@ -12,16 +12,16 @@ export const _n: NewBigInt = typeof BigInt !== 'undefined'
   : () => Number.NaN as unknown as bigint;
 
 /**
- * @name BI_ZERO
+ * @name _0n
  * @summary BigInt constant for 0.
  */
-export const BI_ZERO = _n(0);
+export const _0n = _n(0);
 
 /**
- * @name BI_ONE
+ * @name _1n
  * @summary BigInt constant for 1.
  */
-export const BI_ONE = _n(1);
+export const _1n = _n(1);
 
 /**
  * @name BI_MILLION
