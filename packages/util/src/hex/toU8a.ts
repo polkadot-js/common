@@ -38,19 +38,15 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     ? endLength - valLength
     : 0;
   const dv = new DataView(result.buffer, offset);
-
-  // since the setUint* is expensive, do 32-bits at a go (not 16)
-  const mod = (endLength - offset) % 4;
+  const mod = (endLength - offset) % 2;
   const length = endLength - offset - mod;
 
-  for (let i = 0; i < length; i += 4) {
-    dv.setUint32(i, HEX_TO_U16[value.substr(i * 2, 4)] << 16 | HEX_TO_U16[value.substr(i * 2 + 4, 4)]);
+  for (let i = 0; i < length; i += 2) {
+    dv.setUint16(i, HEX_TO_U16[value.substr(i * 2, 4)]);
   }
 
-  const endStart = value.length - (mod * 2);
-
-  for (let i = 0; i < mod; i++) {
-    dv.setUint8(length + i, HEX_TO_U8[value.substr(endStart + (i * 2), 2)]);
+  if (mod) {
+    dv.setUint8(length, HEX_TO_U8[value.substr(value.length - 2, 2)]);
   }
 
   return result;
