@@ -26,7 +26,6 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@noble/hashes": "^0.4.1",
     "@polkadot/networks": "7.9.3-17",
     "@polkadot/util": "7.9.3-17",
     "@polkadot/wasm-crypto": "^4.4.1",
