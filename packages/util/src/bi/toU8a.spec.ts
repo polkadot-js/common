@@ -1,7 +1,11 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performance } from '../../test/performance';
+import { arrayRange } from '../array';
 import { biToU8a } from '.';
+
+const ptest = arrayRange(65536).map((v) => [v]);
 
 describe('biToU8a', (): void => {
   it('converts null values to 0x00', (): void => {
@@ -51,4 +55,6 @@ describe('biToU8a', (): void => {
       biToU8a(-1234n, { bitLength: 32, isNegative: true })
     ).toEqual(new Uint8Array([46, 251, 255, 255]));
   });
+
+  performance('biToU8a', 250000, ptest, biToU8a);
 });

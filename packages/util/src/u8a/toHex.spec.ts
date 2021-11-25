@@ -66,7 +66,7 @@ describe('u8aToHex', (): void => {
     ).toEqual('0x8000…0c0d');
   });
 
-  performanceCmp('u8aToHex (32k input)', ['Node + Buffer', 'Uint8Array'], 2000, [[ptest]], (s: Uint8Array, isSecond) =>
+  performanceCmp('u8aToHex', ['u8aToHexBuffer', 'u8aToHex'], 2000, [[ptest]], (s: Uint8Array, isSecond) =>
     isSecond
       ? u8aToHex(s)
       : u8aToHexBuffer(s)
