@@ -44,20 +44,10 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
   const length = endLength - offset - mod;
 
   for (let i = 0; i < length; i += 4) {
-    dv.setUint16(i, HEX_TO_U16[value.substr(i << 2, 4)]);
-    dv.setUint16(i + 2, HEX_TO_U16[value.substr(i << 2 + 4, 4)]);
-
-    // dv.setUint32(i, HEX_TO_U16[value.substr(i << 2, 4)] + HEX_TO_U16[value.substr(i << 2 + 4, 4)] << 16);
+    dv.setUint32(i, HEX_TO_U16[value.substr(i * 2, 4)] << 16 | HEX_TO_U16[value.substr(i * 2 + 4, 4)]);
   }
 
-  // const mod = endLength - offset;
-  // const length = endLength - offset - mod;
   const endStart = value.length - (mod * 2);
-
-  // 104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100
-  // 104, 101, 104, 101, 114, 108,   0,   0,   0,   0, 0
-
-  console.log('mod=', mod, 'length=', length, 'endStart=', endStart, value.substr(endStart), result);
 
   for (let i = 0; i < mod; i++) {
     dv.setUint8(length + i, HEX_TO_U8[value.substr(endStart + (i * 2), 2)]);
