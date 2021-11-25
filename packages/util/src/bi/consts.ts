@@ -1,11 +1,13 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+type NewBigInt = (value: string | number | bigint | boolean) => bigint;
+
 /**
  * @name _BigInt
  * @description Creates a new instance of BigInt in environments that do support it
  */
-export const _BigInt = typeof BigInt !== 'undefined'
+export const _BigInt: NewBigInt = typeof BigInt !== 'undefined'
   ? BigInt
   : () => Number.NaN as unknown as bigint;
 
