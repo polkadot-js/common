@@ -3,7 +3,7 @@
 
 import { u8aToHex } from '@polkadot/util';
 
-import tests from '../sr25519/pair/testing';
+import tests from '../sr25519/pair/testing.spec';
 import { cryptoWaitReady } from '..';
 import { mnemonicToEntropy } from './toEntropy';
 
