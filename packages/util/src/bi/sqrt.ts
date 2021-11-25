@@ -5,7 +5,8 @@ import type { BN } from '../bn';
 import type { ToBigInt, ToBn } from '../types';
 
 import { assert } from '../assert';
-import { BI_MAX_INTEGER, BI_ONE, BI_ZERO, newBigInt } from './consts';
+import { BI_MAX_INTEGER, BI_ONE, BI_ZERO } from './consts';
+import { newBigInt } from './new';
 import { biToBigInt } from './toBigInt';
 
 const SQRT_MAX_SAFE_INTEGER = newBigInt(94906265);

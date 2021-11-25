@@ -5,7 +5,8 @@ import type { BN } from '../bn/bn';
 import type { ToBigInt, ToBn, ToBnOptions } from '../types';
 
 import { objectSpread } from '../object/spread';
-import { BI_ONE, BI_ZERO, newBigInt } from './consts';
+import { BI_ONE, BI_ZERO } from './consts';
+import { newBigInt } from './new';
 import { biToBigInt } from './toBigInt';
 
 interface Options extends ToBnOptions {
