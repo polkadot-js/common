@@ -36,26 +36,26 @@ const P64_5 = newBigInt('2870177450012600261');
 const U64 = newBigInt('0xffffffffffffffff');
 
 // various constants
-const N0 = newBigInt(0);
-const N1 = newBigInt(1);
-const N7 = newBigInt(7);
-const N11 = newBigInt(11);
-const N12 = newBigInt(12);
-const N16 = newBigInt(16);
-const N18 = newBigInt(18);
-const N23 = newBigInt(23);
-const N27 = newBigInt(27);
-const N29 = newBigInt(29);
-const N31 = newBigInt(31);
-const N32 = newBigInt(32);
-const N33 = newBigInt(33);
-const N64 = newBigInt(64);
-const N256 = newBigInt(256);
+const _0n = newBigInt(0);
+const _1n = newBigInt(1);
+const _7n = newBigInt(7);
+const _11n = newBigInt(11);
+const _12n = newBigInt(12);
+const _16n = newBigInt(16);
+const _18n = newBigInt(18);
+const _23n = newBigInt(23);
+const _27n = newBigInt(27);
+const _29n = newBigInt(29);
+const _31n = newBigInt(31);
+const _32n = newBigInt(32);
+const _33n = newBigInt(33);
+const _64n = newBigInt(64);
+const _256n = newBigInt(256);
 
 function rotl (a: bigint, b: bigint): bigint {
   const c = a & U64;
 
-  return ((c << b) | (c >> (N64 - b))) & U64;
+  return ((c << b) | (c >> (_64n - b))) & U64;
 }
 
 function fromU8a (u8a: Uint8Array, p: number, count: 2 | 4): bigint {
@@ -66,10 +66,10 @@ function fromU8a (u8a: Uint8Array, p: number, count: 2 | 4): bigint {
     bigints[i] = BigInt(u8a[p + offset] | (u8a[p + 1 + offset] << 8));
   }
 
-  let result = N0;
+  let result = _0n;
 
   for (let i = count - 1; i >= 0; i--) {
-    result = (result << N16) + bigints[i];
+    result = (result << _16n) + bigints[i];
   }
 
   return result;
@@ -79,9 +79,9 @@ function toU8a (h64: bigint): Uint8Array {
   const result = new Uint8Array(8);
 
   for (let i = 7; i >= 0; i--) {
-    result[i] = Number(h64 % N256);
+    result[i] = Number(h64 % _256n);
 
-    h64 = h64 / N256;
+    h64 = h64 / _256n;
   }
 
   return result;
@@ -114,7 +114,7 @@ function init (state: State, input: Uint8Array): State {
 
   if (limit >= 0) {
     const adjustV = (v: bigint) =>
-      P64_1 * rotl(v + P64_2 * fromU8a(input, p, 4), N31);
+      P64_1 * rotl(v + P64_2 * fromU8a(input, p, 4), _31n);
 
     do {
       state.v1 = adjustV(state.v1); p += 8;
@@ -137,26 +137,26 @@ export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Ar
   let p = 0;
   let h64 = U64 & (BigInt(input.length) + (
     input.length >= 32
-      ? (((((((((rotl(v1, N1) + rotl(v2, N7) + rotl(v3, N12) + rotl(v4, N18)) ^ (P64_1 * rotl(v1 * P64_2, N31))) * P64_1 + P64_4) ^ (P64_1 * rotl(v2 * P64_2, N31))) * P64_1 + P64_4) ^ (P64_1 * rotl(v3 * P64_2, N31))) * P64_1 + P64_4) ^ (P64_1 * rotl(v4 * P64_2, N31))) * P64_1 + P64_4)
+      ? (((((((((rotl(v1, _1n) + rotl(v2, _7n) + rotl(v3, _12n) + rotl(v4, _18n)) ^ (P64_1 * rotl(v1 * P64_2, _31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v2 * P64_2, _31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v3 * P64_2, _31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v4 * P64_2, _31n))) * P64_1 + P64_4)
       : (seed + P64_5)
   ));
 
   while (p <= (u8asize - 8)) {
-    h64 = U64 & (P64_4 + P64_1 * rotl(h64 ^ (P64_1 * rotl(P64_2 * fromU8a(u8a, p, 4), N31)), N27));
+    h64 = U64 & (P64_4 + P64_1 * rotl(h64 ^ (P64_1 * rotl(P64_2 * fromU8a(u8a, p, 4), _31n)), _27n));
     p += 8;
   }
 
   if ((p + 4) <= u8asize) {
-    h64 = U64 & (P64_3 + P64_2 * rotl(h64 ^ (P64_1 * fromU8a(u8a, p, 2)), N23));
+    h64 = U64 & (P64_3 + P64_2 * rotl(h64 ^ (P64_1 * fromU8a(u8a, p, 2)), _23n));
     p += 4;
   }
 
   while (p < u8asize) {
-    h64 = U64 & (P64_1 * rotl(h64 ^ (P64_5 * BigInt(u8a[p++])), N11));
+    h64 = U64 & (P64_1 * rotl(h64 ^ (P64_5 * BigInt(u8a[p++])), _11n));
   }
 
-  h64 = U64 & (P64_2 * (h64 ^ (h64 >> N33)));
-  h64 = U64 & (P64_3 * (h64 ^ (h64 >> N29)));
+  h64 = U64 & (P64_2 * (h64 ^ (h64 >> _33n)));
+  h64 = U64 & (P64_3 * (h64 ^ (h64 >> _29n)));
 
-  return toU8a(U64 & (h64 ^ (h64 >> N32)));
+  return toU8a(U64 & (h64 ^ (h64 >> _32n)));
 }
