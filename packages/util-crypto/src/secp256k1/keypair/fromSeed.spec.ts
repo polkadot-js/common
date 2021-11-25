@@ -4,7 +4,7 @@
 import { hexToU8a, u8aToHex } from '@polkadot/util';
 
 import { mnemonicToMiniSecret } from '../../mnemonic';
-import { secp256k1KeypairFromSeed } from '..';
+import { secp256k1PairFromSeed } from '..';
 
 // mnemonic, secret, public, account_id
 type Test = [string, string, string, string];
@@ -36,7 +36,7 @@ const tests: Test[] = [
   ]
 ];
 
-describe('secp256k1KeypairFromSeed', (): void => {
+describe('secp256k1PairFromSeed', (): void => {
   const TEST = hexToU8a('0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae');
   const RESULT = {
     publicKey: hexToU8a('0x03fd8c74f795ced92064b86191cb2772b1e3a0947740aa0a5a6e379592471fd85b'),
@@ -44,13 +44,13 @@ describe('secp256k1KeypairFromSeed', (): void => {
   };
 
   it('generates a valid publicKey/secretKey pair (u8a)', (): void => {
-    expect(secp256k1KeypairFromSeed(TEST)).toEqual(RESULT);
+    expect(secp256k1PairFromSeed(TEST)).toEqual(RESULT);
   });
 
   tests.forEach(([mnemonic, secretKey, publicKey], index): void => {
     it(`creates valid against known (${index})`, (): void => {
       const seed = mnemonicToMiniSecret(mnemonic);
-      const pair = secp256k1KeypairFromSeed(seed);
+      const pair = secp256k1PairFromSeed(seed);
 
       expect(u8aToHex(pair.secretKey)).toEqual(secretKey);
       expect(u8aToHex(pair.publicKey)).toEqual(publicKey);

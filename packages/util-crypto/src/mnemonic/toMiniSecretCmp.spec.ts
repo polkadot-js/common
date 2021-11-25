@@ -3,7 +3,7 @@
 
 import { arrayRange, u8aEq } from '@polkadot/util';
 
-import { cryptoWaitReady, mnemonicGenerate, mnemonicToMiniSecret, naclKeypairFromSeed, schnorrkelKeypairFromSeed } from '..';
+import { cryptoWaitReady, ed25519PairFromSeed, mnemonicGenerate, mnemonicToMiniSecret, sr25519PairFromSeed } from '..';
 
 // NOTE: This basically controls how long stuff runs for, YMMV
 //
@@ -29,8 +29,8 @@ describe.each([true, false])('mnemonicToMiniSecret (compare), onlyJsMnemonic=%p'
         // do iterations to check and re-check that all matches
         it.concurrent.each(arrayRange(NUM_CHECKS))('check=%p', (count): void => {
           const minisecret = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMnemonic);
-          const edpub = naclKeypairFromSeed(minisecret).publicKey;
-          const srpub = schnorrkelKeypairFromSeed(minisecret).publicKey;
+          const edpub = ed25519PairFromSeed(minisecret).publicKey;
+          const srpub = sr25519PairFromSeed(minisecret).publicKey;
 
           const testmini = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMini);
 
@@ -41,13 +41,13 @@ describe.each([true, false])('mnemonicToMiniSecret (compare), onlyJsMnemonic=%p'
 
           // compare the sr25519 keypair generated
           expect(
-            u8aEq(srpub, schnorrkelKeypairFromSeed(testmini).publicKey)
+            u8aEq(srpub, sr25519PairFromSeed(testmini).publicKey)
           ).toEqual(true);
 
           // compare ed both in WASM and JS
           [true, false].forEach((onlyJsEd): void => {
             expect(
-              u8aEq(edpub, naclKeypairFromSeed(testmini, onlyJsEd).publicKey)
+              u8aEq(edpub, ed25519PairFromSeed(testmini, onlyJsEd).publicKey)
             ).toEqual(true);
           });
         });

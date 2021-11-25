@@ -5,8 +5,8 @@ import type { Keypair } from '../../types';
 
 import { assert } from '@polkadot/util';
 
+import { ed25519PairFromSeed } from '../../ed25519';
 import { mnemonicValidate } from '../../mnemonic';
-import { naclKeypairFromSeed } from '../../nacl';
 import { HARDENED, hdValidatePath } from '../validatePath';
 import { ledgerDerivePrivate } from './derivePrivate';
 import { ledgerMaster } from './master';
@@ -35,5 +35,5 @@ export function hdLedger (_mnemonic: string, path: string): Keypair {
     seed = ledgerDerivePrivate(seed, (n < HARDENED) ? (n + HARDENED) : n);
   }
 
-  return naclKeypairFromSeed(seed.slice(0, 32));
+  return ed25519PairFromSeed(seed.slice(0, 32));
 }

@@ -4,7 +4,7 @@
 import type { KeyringPair } from '../types';
 
 import { u8aToHex } from '@polkadot/util';
-import { cryptoWaitReady, encodeAddress as toSS58, naclKeypairFromSeed, randomAsU8a, schnorrkelKeypairFromSeed, secp256k1KeypairFromSeed } from '@polkadot/util-crypto';
+import { cryptoWaitReady, ed25519PairFromSeed, encodeAddress as toSS58, randomAsU8a, secp256k1PairFromSeed, sr25519PairFromSeed } from '@polkadot/util-crypto';
 
 import { createPair } from '.';
 
@@ -19,9 +19,9 @@ describe('vrf', (): void => {
   beforeAll(async (): Promise<void> => {
     await cryptoWaitReady();
 
-    ecdsa = createPair({ toSS58, type: 'ecdsa' }, secp256k1KeypairFromSeed(randomAsU8a()));
-    ed25519 = createPair({ toSS58, type: 'ed25519' }, naclKeypairFromSeed(randomAsU8a()));
-    sr25519 = createPair({ toSS58, type: 'sr25519' }, schnorrkelKeypairFromSeed(randomAsU8a()));
+    ecdsa = createPair({ toSS58, type: 'ecdsa' }, secp256k1PairFromSeed(randomAsU8a()));
+    ed25519 = createPair({ toSS58, type: 'ed25519' }, ed25519PairFromSeed(randomAsU8a()));
+    sr25519 = createPair({ toSS58, type: 'sr25519' }, sr25519PairFromSeed(randomAsU8a()));
   });
 
   it('has deterministic signature values for ecdsa', (): void => {
