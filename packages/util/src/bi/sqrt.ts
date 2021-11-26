@@ -5,8 +5,10 @@ import type { BN } from '../bn';
 import type { ToBigInt, ToBn } from '../types';
 
 import { assert } from '../assert';
-import { _0n, _1n, _2pow53n } from './consts';
+import { _0n, _1n, _2pow53n, _n } from './consts';
 import { biToBigInt } from './toBigInt';
+
+const _sqrt2pow53n = _n(94906265);
 
 /**
  * @name biSqrt
@@ -25,7 +27,7 @@ export function biSqrt <ExtToBn extends ToBn | ToBigInt> (value: ExtToBn | BN | 
 
   // Use sqrt(MAX_SAFE_INTEGER) as starting point. since we already know the
   // output will be larger than this, we expect this to be a safe start
-  let x0 = BigInt(94906265);
+  let x0 = _sqrt2pow53n;
 
   while (true) {
     const x1 = ((n / x0) + x0) >> _1n;
