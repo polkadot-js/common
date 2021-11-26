@@ -38,7 +38,6 @@
     "ed2curve": "^0.3.0",
     "elliptic": "^6.5.4",
     "micro-base": "^0.9.0",
-    "patch-package": "^6.4.7",
     "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
