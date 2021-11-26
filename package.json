@@ -22,7 +22,7 @@
     "lint": "polkadot-dev-run-lint",
     "networks:crosscheck": "polkadot-dev-run-test packages/networks/src/crosscheck",
     "networks:sync": "yarn build && node packages/networks/scripts/fromSubstrate.mjs",
-    "postinstall": "polkadot-dev-yarn-only",
+    "postinstall": "polkadot-dev-yarn-only && patch-package --error-on-fail --patch-dir packages/util-crypto/src/patches",
     "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns crosscheck --testPathIgnorePatterns toMiniSecretCmp",
     "test:mnemonicCmp": "polkadot-dev-run-test packages/util-crypto/src/mnemonic/toMiniSecretCmp.spec.ts",
     "test:one": "polkadot-dev-run-test --runInBand"
@@ -31,7 +31,8 @@
     "@babel/core": "^7.16.0",
     "@polkadot/dev": "^0.63.30",
     "@polkadot/ts": "^0.4.14",
-    "@types/jest": "^27.0.3"
+    "@types/jest": "^27.0.3",
+    "patch-package": "^6.4.7"
   },
   "resolutions": {
     "typescript": "^4.5.2"

@@ -15,6 +15,9 @@
     "type": "git",
     "url": "https://github.com/polkadot-js/common.git"
   },
+  "scripts": {
+    "postinstall": "patch-package --error-on-fail"
+  },
   "sideEffects": [
     "./cryptoInit.js",
     "./cryptoInit.cjs",
@@ -26,7 +29,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@noble/hashes": "^0.4.1",
+    "@noble/hashes": "0.4.1",
     "@polkadot/networks": "7.9.3-18",
     "@polkadot/util": "7.9.3-18",
     "@polkadot/wasm-crypto": "^4.4.1",
@@ -35,6 +38,7 @@
     "ed2curve": "^0.3.0",
     "elliptic": "^6.5.4",
     "micro-base": "^0.9.0",
+    "patch-package": "^6.4.7",
     "tweetnacl": "^1.0.3"
   },
   "devDependencies": {

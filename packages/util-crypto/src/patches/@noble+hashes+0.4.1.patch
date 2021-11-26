@@ -1,0 +1,268 @@
+diff --git a/node_modules/@noble/hashes/lib/_sha2.js b/node_modules/@noble/hashes/lib/_sha2.js
+index 3a7e7d7..0517727 100644
+--- a/node_modules/@noble/hashes/lib/_sha2.js
++++ b/node_modules/@noble/hashes/lib/_sha2.js
+@@ -2,12 +2,14 @@
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.SHA2 = void 0;
+ const utils_1 = require("./utils");
++const _32n = (0, utils_1._n)(32);
++const _u32_max = (0, utils_1._n)(0xffffffff);
+ // Polyfill for Safari 14
+ function setBigUint64(view, byteOffset, value, isLE) {
+     if (typeof view.setBigUint64 === 'function')
+         return view.setBigUint64(byteOffset, value, isLE);
+-    const wh = Number((value >> 32n) & 0xffffffffn);
+-    const wl = Number(value & 0xffffffffn);
++    const wh = Number((value >> _32n) & _u32_max);
++    const wl = Number(value & _u32_max);
+     const [h, l] = isLE ? [4, 0] : [0, 4];
+     view.setUint32(byteOffset + h, wh, isLE);
+     view.setUint32(byteOffset + l, wl, isLE);
+diff --git a/node_modules/@noble/hashes/lib/_u64.js b/node_modules/@noble/hashes/lib/_u64.js
+index 396889a..f958bd5 100644
+--- a/node_modules/@noble/hashes/lib/_u64.js
++++ b/node_modules/@noble/hashes/lib/_u64.js
+@@ -1,11 +1,13 @@
+ "use strict";
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.add5H = exports.add5L = exports.add4H = exports.add4L = exports.add3H = exports.add3L = exports.add = exports.rotlBL = exports.rotlBH = exports.rotlSL = exports.rotlSH = exports.rotr32L = exports.rotr32H = exports.rotrBL = exports.rotrBH = exports.rotrSL = exports.rotrSH = exports.shrSL = exports.shrSH = exports.toBig = exports.split = exports.fromBig = void 0;
+-const U32_MASK64 = 2n ** 32n - 1n;
++const utils_1 = require("./utils");
++const U32_MASK64 = (0, utils_1._n)(2 ** 32 - 1);
++const _32n = (0, utils_1._n)(32);
+ function fromBig(n, le = false) {
+     if (le)
+-        return { h: Number(n & U32_MASK64), l: Number((n >> 32n) & U32_MASK64) };
+-    return { h: Number((n >> 32n) & U32_MASK64) | 0, l: Number(n & U32_MASK64) | 0 };
++        return { h: Number(n & U32_MASK64), l: Number((n >> _32n) & U32_MASK64) };
++    return { h: Number((n >> _32n) & U32_MASK64) | 0, l: Number(n & U32_MASK64) | 0 };
+ }
+ exports.fromBig = fromBig;
+ function split(lst, le = false) {
+@@ -17,7 +19,7 @@ function split(lst, le = false) {
+     return [Ah, Al];
+ }
+ exports.split = split;
+-const toBig = (h, l) => (BigInt(h >>> 0) << 32n) | BigInt(l >>> 0);
++const toBig = (h, l) => (BigInt(h >>> 0) << _32n) | BigInt(l >>> 0);
+ exports.toBig = toBig;
+ // for Shift in [0, 32)
+ const shrSH = (h, l, s) => h >>> s;
+diff --git a/node_modules/@noble/hashes/lib/blake3.d.ts b/node_modules/@noble/hashes/lib/blake3.d.ts
+index 80f8856..3ab02fc 100644
+--- a/node_modules/@noble/hashes/lib/blake3.d.ts
++++ b/node_modules/@noble/hashes/lib/blake3.d.ts
+@@ -27,8 +27,8 @@ declare class BLAKE3 extends blake2.BLAKE2<BLAKE3> implements HashXOF<BLAKE3> {
+     private b2CompressOut;
+     protected finish(): void;
+     private writeInto;
+-    XOFInto(out: Uint8Array): Uint8Array;
+-    XOF(bytes: number): Uint8Array;
++    xofInto(out: Uint8Array): Uint8Array;
++    xof(bytes: number): Uint8Array;
+     digestInto(out: Uint8Array): Uint8Array;
+     digest(): Uint8Array;
+ }
+diff --git a/node_modules/@noble/hashes/lib/blake3.js b/node_modules/@noble/hashes/lib/blake3.js
+index bfc7a19..52b28f0 100644
+--- a/node_modules/@noble/hashes/lib/blake3.js
++++ b/node_modules/@noble/hashes/lib/blake3.js
+@@ -229,14 +229,14 @@ class BLAKE3 extends blake2.BLAKE2 {
+         }
+         return out;
+     }
+-    XOFInto(out) {
++    xofInto(out) {
+         if (!this.enableXOF)
+             throw new Error('XOF impossible after digest call');
+         return this.writeInto(out);
+     }
+-    XOF(bytes) {
++    xof(bytes) {
+         (0, utils_1.assertNumber)(bytes);
+-        return this.XOFInto(new Uint8Array(bytes));
++        return this.xofInto(new Uint8Array(bytes));
+     }
+     digestInto(out) {
+         if (out.length < this.outputLen)
+diff --git a/node_modules/@noble/hashes/lib/sha3-addons.js b/node_modules/@noble/hashes/lib/sha3-addons.js
+index 51793e2..6a9eef7 100644
+--- a/node_modules/@noble/hashes/lib/sha3-addons.js
++++ b/node_modules/@noble/hashes/lib/sha3-addons.js
+@@ -321,7 +321,7 @@ class KeccakPRG extends sha3_1.Keccak {
+         throw new Error('KeccakPRG: digest is not allowed, please use .fetch instead.');
+     }
+     fetch(bytes) {
+-        return this.XOF(bytes);
++        return this.xof(bytes);
+     }
+     // Ensure irreversibility (even if state leaked previous outputs cannot be computed)
+     forget() {
+diff --git a/node_modules/@noble/hashes/lib/sha3.d.ts b/node_modules/@noble/hashes/lib/sha3.d.ts
+index 6f0a062..1105727 100644
+--- a/node_modules/@noble/hashes/lib/sha3.d.ts
++++ b/node_modules/@noble/hashes/lib/sha3.d.ts
+@@ -17,8 +17,8 @@ export declare class Keccak extends Hash<Keccak> implements HashXOF<Keccak> {
+     update(data: Input): this;
+     protected finish(): void;
+     protected writeInto(out: Uint8Array): Uint8Array;
+-    XOFInto(out: Uint8Array): Uint8Array;
+-    XOF(bytes: number): Uint8Array;
++    xofInto(out: Uint8Array): Uint8Array;
++    xof(bytes: number): Uint8Array;
+     digestInto(out: Uint8Array): Uint8Array;
+     digest(): Uint8Array;
+     destroy(): void;
+diff --git a/node_modules/@noble/hashes/lib/sha3.js b/node_modules/@noble/hashes/lib/sha3.js
+index 91adaf4..41a84b4 100644
+--- a/node_modules/@noble/hashes/lib/sha3.js
++++ b/node_modules/@noble/hashes/lib/sha3.js
+@@ -22,20 +22,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.shake256 = exports.shake128 = exports.keccak_512 = exports.keccak_384 = exports.keccak_256 = exports.keccak_224 = exports.sha3_512 = exports.sha3_384 = exports.sha3_256 = exports.sha3_224 = exports.Keccak = exports.keccakP = void 0;
+ const u64 = __importStar(require("./_u64"));
+ const utils_1 = require("./utils");
++const _0n = (0, utils_1._n)(0);
++const _1n = (0, utils_1._n)(1);
++const _2n = (0, utils_1._n)(2);
++const _7n = (0, utils_1._n)(7);
++const _256n = (0, utils_1._n)(256);
++const _0x71n = (0, utils_1._n)(0x71);
+ // Various per round constants calculations
+ const [SHA3_PI, SHA3_ROTL, _SHA3_IOTA] = [[], [], []];
+-for (let round = 0, R = 1n, x = 1, y = 0; round < 24; round++) {
++for (let round = 0, R = _1n, x = 1, y = 0; round < 24; round++) {
+     // Pi
+     [x, y] = [y, (2 * x + 3 * y) % 5];
+     SHA3_PI.push(2 * (5 * y + x));
+     // Rotational
+     SHA3_ROTL.push((((round + 1) * (round + 2)) / 2) % 64);
+     // Iota
+-    let t = 0n;
++    let t = _0n;
+     for (let j = 0; j < 7; j++) {
+-        R = ((R << 1n) ^ ((R >> 7n) * 0x71n)) % 256n;
+-        if (R & 2n)
+-            t ^= 1n << ((1n << BigInt(j)) - 1n);
++        R = ((R << _1n) ^ ((R >> _7n) * _0x71n)) % _256n;
++        if (R & _2n)
++            t ^= _1n << ((_1n << BigInt(j)) - _1n);
+     }
+     _SHA3_IOTA.push(t);
+ }
+@@ -161,15 +167,15 @@ class Keccak extends utils_1.Hash {
+         }
+         return out;
+     }
+-    XOFInto(out) {
++    xofInto(out) {
+         // Sha3/Keccak usage with XOF is probably mistake, only SHAKE instances can do XOF
+         if (!this.enableXOF)
+             throw new Error('XOF is not possible for this instance');
+         return this.writeInto(out);
+     }
+-    XOF(bytes) {
++    xof(bytes) {
+         (0, utils_1.assertNumber)(bytes);
+-        return this.XOFInto(new Uint8Array(bytes));
++        return this.xofInto(new Uint8Array(bytes));
+     }
+     digestInto(out) {
+         if (out.length < this.outputLen)
+diff --git a/node_modules/@noble/hashes/lib/sha512.js b/node_modules/@noble/hashes/lib/sha512.js
+index 567bd80..0a733ab 100644
+--- a/node_modules/@noble/hashes/lib/sha512.js
++++ b/node_modules/@noble/hashes/lib/sha512.js
+@@ -26,26 +26,26 @@ const utils_1 = require("./utils");
+ // Round contants (first 32 bits of the fractional parts of the cube roots of the first 80 primes 2..409):
+ // prettier-ignore
+ const [SHA512_Kh, SHA512_Kl] = u64.split([
+-    0x428a2f98d728ae22n, 0x7137449123ef65cdn, 0xb5c0fbcfec4d3b2fn, 0xe9b5dba58189dbbcn,
+-    0x3956c25bf348b538n, 0x59f111f1b605d019n, 0x923f82a4af194f9bn, 0xab1c5ed5da6d8118n,
+-    0xd807aa98a3030242n, 0x12835b0145706fben, 0x243185be4ee4b28cn, 0x550c7dc3d5ffb4e2n,
+-    0x72be5d74f27b896fn, 0x80deb1fe3b1696b1n, 0x9bdc06a725c71235n, 0xc19bf174cf692694n,
+-    0xe49b69c19ef14ad2n, 0xefbe4786384f25e3n, 0x0fc19dc68b8cd5b5n, 0x240ca1cc77ac9c65n,
+-    0x2de92c6f592b0275n, 0x4a7484aa6ea6e483n, 0x5cb0a9dcbd41fbd4n, 0x76f988da831153b5n,
+-    0x983e5152ee66dfabn, 0xa831c66d2db43210n, 0xb00327c898fb213fn, 0xbf597fc7beef0ee4n,
+-    0xc6e00bf33da88fc2n, 0xd5a79147930aa725n, 0x06ca6351e003826fn, 0x142929670a0e6e70n,
+-    0x27b70a8546d22ffcn, 0x2e1b21385c26c926n, 0x4d2c6dfc5ac42aedn, 0x53380d139d95b3dfn,
+-    0x650a73548baf63den, 0x766a0abb3c77b2a8n, 0x81c2c92e47edaee6n, 0x92722c851482353bn,
+-    0xa2bfe8a14cf10364n, 0xa81a664bbc423001n, 0xc24b8b70d0f89791n, 0xc76c51a30654be30n,
+-    0xd192e819d6ef5218n, 0xd69906245565a910n, 0xf40e35855771202an, 0x106aa07032bbd1b8n,
+-    0x19a4c116b8d2d0c8n, 0x1e376c085141ab53n, 0x2748774cdf8eeb99n, 0x34b0bcb5e19b48a8n,
+-    0x391c0cb3c5c95a63n, 0x4ed8aa4ae3418acbn, 0x5b9cca4f7763e373n, 0x682e6ff3d6b2b8a3n,
+-    0x748f82ee5defb2fcn, 0x78a5636f43172f60n, 0x84c87814a1f0ab72n, 0x8cc702081a6439ecn,
+-    0x90befffa23631e28n, 0xa4506cebde82bde9n, 0xbef9a3f7b2c67915n, 0xc67178f2e372532bn,
+-    0xca273eceea26619cn, 0xd186b8c721c0c207n, 0xeada7dd6cde0eb1en, 0xf57d4f7fee6ed178n,
+-    0x06f067aa72176fban, 0x0a637dc5a2c898a6n, 0x113f9804bef90daen, 0x1b710b35131c471bn,
+-    0x28db77f523047d84n, 0x32caab7b40c72493n, 0x3c9ebe0a15c9bebcn, 0x431d67c49c100d4cn,
+-    0x4cc5d4becb3e42b6n, 0x597f299cfc657e2an, 0x5fcb6fab3ad6faecn, 0x6c44198c4a475817n
++    (0, utils_1._n)('0x428a2f98d728ae22'), (0, utils_1._n)('0x7137449123ef65cd'), (0, utils_1._n)('0xb5c0fbcfec4d3b2f'), (0, utils_1._n)('0xe9b5dba58189dbbc'),
++    (0, utils_1._n)('0x3956c25bf348b538'), (0, utils_1._n)('0x59f111f1b605d019'), (0, utils_1._n)('0x923f82a4af194f9b'), (0, utils_1._n)('0xab1c5ed5da6d8118'),
++    (0, utils_1._n)('0xd807aa98a3030242'), (0, utils_1._n)('0x12835b0145706fbe'), (0, utils_1._n)('0x243185be4ee4b28c'), (0, utils_1._n)('0x550c7dc3d5ffb4e2'),
++    (0, utils_1._n)('0x72be5d74f27b896f'), (0, utils_1._n)('0x80deb1fe3b1696b1'), (0, utils_1._n)('0x9bdc06a725c71235'), (0, utils_1._n)('0xc19bf174cf692694'),
++    (0, utils_1._n)('0xe49b69c19ef14ad2'), (0, utils_1._n)('0xefbe4786384f25e3'), (0, utils_1._n)('0x0fc19dc68b8cd5b5'), (0, utils_1._n)('0x240ca1cc77ac9c65'),
++    (0, utils_1._n)('0x2de92c6f592b0275'), (0, utils_1._n)('0x4a7484aa6ea6e483'), (0, utils_1._n)('0x5cb0a9dcbd41fbd4'), (0, utils_1._n)('0x76f988da831153b5'),
++    (0, utils_1._n)('0x983e5152ee66dfab'), (0, utils_1._n)('0xa831c66d2db43210'), (0, utils_1._n)('0xb00327c898fb213f'), (0, utils_1._n)('0xbf597fc7beef0ee4'),
++    (0, utils_1._n)('0xc6e00bf33da88fc2'), (0, utils_1._n)('0xd5a79147930aa725'), (0, utils_1._n)('0x06ca6351e003826f'), (0, utils_1._n)('0x142929670a0e6e70'),
++    (0, utils_1._n)('0x27b70a8546d22ffc'), (0, utils_1._n)('0x2e1b21385c26c926'), (0, utils_1._n)('0x4d2c6dfc5ac42aed'), (0, utils_1._n)('0x53380d139d95b3df'),
++    (0, utils_1._n)('0x650a73548baf63de'), (0, utils_1._n)('0x766a0abb3c77b2a8'), (0, utils_1._n)('0x81c2c92e47edaee6'), (0, utils_1._n)('0x92722c851482353b'),
++    (0, utils_1._n)('0xa2bfe8a14cf10364'), (0, utils_1._n)('0xa81a664bbc423001'), (0, utils_1._n)('0xc24b8b70d0f89791'), (0, utils_1._n)('0xc76c51a30654be30'),
++    (0, utils_1._n)('0xd192e819d6ef5218'), (0, utils_1._n)('0xd69906245565a910'), (0, utils_1._n)('0xf40e35855771202a'), (0, utils_1._n)('0x106aa07032bbd1b8'),
++    (0, utils_1._n)('0x19a4c116b8d2d0c8'), (0, utils_1._n)('0x1e376c085141ab53'), (0, utils_1._n)('0x2748774cdf8eeb99'), (0, utils_1._n)('0x34b0bcb5e19b48a8'),
++    (0, utils_1._n)('0x391c0cb3c5c95a63'), (0, utils_1._n)('0x4ed8aa4ae3418acb'), (0, utils_1._n)('0x5b9cca4f7763e373'), (0, utils_1._n)('0x682e6ff3d6b2b8a3'),
++    (0, utils_1._n)('0x748f82ee5defb2fc'), (0, utils_1._n)('0x78a5636f43172f60'), (0, utils_1._n)('0x84c87814a1f0ab72'), (0, utils_1._n)('0x8cc702081a6439ec'),
++    (0, utils_1._n)('0x90befffa23631e28'), (0, utils_1._n)('0xa4506cebde82bde9'), (0, utils_1._n)('0xbef9a3f7b2c67915'), (0, utils_1._n)('0xc67178f2e372532b'),
++    (0, utils_1._n)('0xca273eceea26619c'), (0, utils_1._n)('0xd186b8c721c0c207'), (0, utils_1._n)('0xeada7dd6cde0eb1e'), (0, utils_1._n)('0xf57d4f7fee6ed178'),
++    (0, utils_1._n)('0x06f067aa72176fba'), (0, utils_1._n)('0x0a637dc5a2c898a6'), (0, utils_1._n)('0x113f9804bef90dae'), (0, utils_1._n)('0x1b710b35131c471b'),
++    (0, utils_1._n)('0x28db77f523047d84'), (0, utils_1._n)('0x32caab7b40c72493'), (0, utils_1._n)('0x3c9ebe0a15c9bebc'), (0, utils_1._n)('0x431d67c49c100d4c'),
++    (0, utils_1._n)('0x4cc5d4becb3e42b6'), (0, utils_1._n)('0x597f299cfc657e2a'), (0, utils_1._n)('0x5fcb6fab3ad6faec'), (0, utils_1._n)('0x6c44198c4a475817')
+ ]);
+ // Temporary buffer, not used to store anything between runs
+ const SHA512_W_H = new Uint32Array(80);
+diff --git a/node_modules/@noble/hashes/lib/utils.d.ts b/node_modules/@noble/hashes/lib/utils.d.ts
+index 8233e80..67c4246 100644
+--- a/node_modules/@noble/hashes/lib/utils.d.ts
++++ b/node_modules/@noble/hashes/lib/utils.d.ts
+@@ -1,5 +1,6 @@
+ /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
+ export declare type TypedArray = Int8Array | Uint8ClampedArray | Uint8Array | Uint16Array | Int16Array | Uint32Array | Int32Array;
++export declare const _n: (value: string | number | bigint | boolean) => bigint;
+ export declare const u8: (arr: TypedArray) => Uint8Array;
+ export declare const u32: (arr: TypedArray) => Uint32Array;
+ export declare const createView: (arr: TypedArray) => DataView;
+@@ -24,8 +25,8 @@ export declare abstract class Hash<T extends Hash<T>> {
+     clone(): T;
+ }
+ export declare type HashXOF<T extends Hash<T>> = Hash<T> & {
+-    XOF(bytes: number): Uint8Array;
+-    XOFInto(buf: Uint8Array): Uint8Array;
++    xof(bytes: number): Uint8Array;
++    xofInto(buf: Uint8Array): Uint8Array;
+ };
+ declare type EmptyObj = {};
+ export declare function checkOpts<T1 extends EmptyObj, T2 extends EmptyObj>(def: T1, _opts?: T2): T1 & T2;
+@@ -46,7 +47,7 @@ export declare function wrapConstructorWithOpts<H extends Hash<H>, T extends Obj
+ };
+ export declare const crypto: {
+     node?: any;
+-    web?: Crypto;
++    web?: any;
+ };
+ export declare function randomBytes(bytesLength?: number): Uint8Array;
+ export {};
+diff --git a/node_modules/@noble/hashes/lib/utils.js b/node_modules/@noble/hashes/lib/utils.js
+index 1d45928..3811cf9 100644
+--- a/node_modules/@noble/hashes/lib/utils.js
++++ b/node_modules/@noble/hashes/lib/utils.js
+@@ -1,7 +1,9 @@
+ "use strict";
+ /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
+ Object.defineProperty(exports, "__esModule", { value: true });
+-exports.randomBytes = exports.crypto = exports.wrapConstructorWithOpts = exports.wrapConstructor = exports.checkOpts = exports.Hash = exports.assertHash = exports.assertBool = exports.assertNumber = exports.toBytes = exports.asyncLoop = exports.nextTick = exports.bytesToHex = exports.isLE = exports.rotr = exports.createView = exports.u32 = exports.u8 = void 0;
++exports.randomBytes = exports.crypto = exports.wrapConstructorWithOpts = exports.wrapConstructor = exports.checkOpts = exports.Hash = exports.assertHash = exports.assertBool = exports.assertNumber = exports.toBytes = exports.asyncLoop = exports.nextTick = exports.bytesToHex = exports.isLE = exports.rotr = exports.createView = exports.u32 = exports.u8 = exports._n = void 0;
++// helper to protect against older bundlers
++exports._n = typeof BigInt !== 'undefined' ? BigInt : () => Number.NaN;
+ // Cast array to different type
+ const u8 = (arr) => new Uint8Array(arr.buffer, arr.byteOffset, arr.byteLength);
+ exports.u8 = u8;
