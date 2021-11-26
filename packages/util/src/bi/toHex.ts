@@ -6,7 +6,7 @@ import type { HexString, ToBigInt, ToBn, ToBnOptions } from '../types';
 
 import { objectSpread } from '../object/spread';
 import { u8aToHex } from '../u8a';
-import { biToU8a } from './toU8a';
+import { nToU8a } from './toU8a';
 
 interface Options extends ToBnOptions {
   bitLength?: number;
@@ -15,16 +15,16 @@ interface Options extends ToBnOptions {
 const ZERO_STR = '0x00';
 
 /**
- * @name biToHex
+ * @name nToHex
  * @summary Creates a hex value from a bigint object.
  */
-export function biToHex <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN | bigint | number | null, options?: Options): HexString {
+export function nToHex <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN | bigint | number | null, options?: Options): HexString {
   if (!value) {
     return ZERO_STR;
   }
 
   return u8aToHex(
-    biToU8a(value, objectSpread(
+    nToU8a(value, objectSpread(
       // We spread here, the default for hex values is BE (JSONRPC via substrate)
       { isLe: false, isNegative: false },
       options

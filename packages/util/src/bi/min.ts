@@ -4,10 +4,10 @@
 import { assert } from '../assert';
 
 /**
- * @name biMin
+ * @name nMin
  * @summary Finds and returns the lowest value in an array of bigint.
  */
-export function biMin (...items: bigint[]): bigint {
+export function nMin (...items: bigint[]): bigint {
   assert(items.length >= 1, 'Must provide one or more bigint arguments');
 
   let result = items[0];

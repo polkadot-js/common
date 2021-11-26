@@ -7,9 +7,9 @@
 
 export * from './consts';
 
-export { biSqrt } from './sqrt';
-export { biToBigInt } from './toBigInt';
-export { biMax } from './max';
-export { biMin } from './min';
-export { biToHex } from './toHex';
-export { biToU8a } from './toU8a';
+export { nSqrt } from './sqrt';
+export { nToBigInt } from './toBigInt';
+export { nMax } from './max';
+export { nMin } from './min';
+export { nToHex } from './toHex';
+export { nToU8a } from './toU8a';

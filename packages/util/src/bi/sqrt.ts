@@ -6,16 +6,16 @@ import type { ToBigInt, ToBn } from '../types';
 
 import { assert } from '../assert';
 import { _0n, _1n, _2pow53n, _n } from './consts';
-import { biToBigInt } from './toBigInt';
+import { nToBigInt } from './toBigInt';
 
 const _sqrt2pow53n = _n(94906265);
 
 /**
- * @name biSqrt
+ * @name nSqrt
  * @summary Calculates the integer square root of a bigint
  */
-export function biSqrt <ExtToBn extends ToBn | ToBigInt> (value: ExtToBn | BN | bigint | string | number | null): bigint {
-  const n = biToBigInt(value);
+export function nSqrt <ExtToBn extends ToBn | ToBigInt> (value: ExtToBn | BN | bigint | string | number | null): bigint {
+  const n = nToBigInt(value);
 
   assert(n >= _0n, 'square root of negative numbers is not supported');
 

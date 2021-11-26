@@ -13,6 +13,7 @@ Changes:
 - Replace (most) hashing operations with `@noble/hashes`
 - Replace JS fallback for `xxhash`
 - Adjust `BigInt` utility exports (with capability detection)
+- Previously added `bi*` functions renamed to `n*`
 - Extend performance tests with implementation compares
 - Remove non-significant Node Buffer concat fill
 
