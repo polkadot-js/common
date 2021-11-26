@@ -1770,6 +1770,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@noble/hashes@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "@noble/hashes@npm:0.4.1"
+  checksum: 3c706beec3bcd9e43f2b88c0791f022b645b5c0a9dd76889dfc189e51da2f0c692ef846b5889e074338353e335269c14f4c0ea34329b4d7dd45ae82c482b4605
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.4":
   version: 2.1.4
   resolution: "@nodelib/fs.scandir@npm:2.1.4"
@@ -2084,6 +2091,7 @@ __metadata:
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.16.3
+    "@noble/hashes": ^0.4.1
     "@polkadot/networks": 7.9.3-18
     "@polkadot/util": 7.9.3-18
     "@polkadot/wasm-crypto": ^4.4.1
