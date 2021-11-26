@@ -11,10 +11,10 @@ import { isToBigInt } from '../is/toBigInt';
 import { isToBn } from '../is/toBn';
 
 /**
- * @name biToBigInt
+ * @name nToBigInt
  * @summary Creates a bigInt value from a BN, bigint, string (base 10 or hex) or number input.
  */
-export function biToBigInt <ExtToBn extends ToBigInt | ToBn> (value?: HexString | ExtToBn | BN | bigint | string | number | null): bigint {
+export function nToBigInt <ExtToBn extends ToBigInt | ToBn> (value?: HexString | ExtToBn | BN | bigint | string | number | null): bigint {
   return typeof value === 'bigint'
     ? value
     : !value

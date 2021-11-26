@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { BN } from '../bn';
-import { biSqrt } from '.';
+import { nSqrt } from '.';
 
 const TESTS: [string | number | BN | bigint, string | number][] = [
   [0, 0],
@@ -27,16 +27,16 @@ const TESTS: [string | number | BN | bigint, string | number][] = [
   ]
 ];
 
-describe('biSqrt', (): void => {
+describe('nSqrt', (): void => {
   it('fails on < 0 roots', (): void => {
     expect(
-      () => biSqrt(-1n)
+      () => nSqrt(-1n)
     ).toThrow(/negative numbers is not supported/);
   });
 
   TESTS.forEach(([value, expected], index): void => {
     it(`calcs for test #${index}`, (): void => {
-      expect(biSqrt(value) === BigInt(expected)).toEqual(true);
+      expect(nSqrt(value) === BigInt(expected)).toEqual(true);
     });
   });
 });
