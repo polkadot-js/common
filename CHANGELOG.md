@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 8.0.2
+
+Changes:
+
+- Explicitly include BigInt patched versions
+
+
 ## 8.0.1 Nov 26, 2021
 
 **Important** In the 8.0 version the hashing utilities have been consolidated around an optimized and audited version from `@noble/hashes`. As in the past the WASM hashing will be used by default if the environment is initialized.
