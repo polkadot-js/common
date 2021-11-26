@@ -24,25 +24,25 @@ export const _0n = _n(0);
 export const _1n = _n(1);
 
 /**
- * @name BI_MILLION
+ * @name _1Mn
  * @summary BigInt constant for 1,000,000.
  */
-export const BI_MILLION = _n(1_000_000);
+export const _1Mn = _n(1_000_000);
 
 /**
-* @name BI_BILLION
+* @name _1Bn
 * @summary BigInt constant for 1,000,000,000.
 */
-export const BI_BILLION = _n(1_000_000_000);
+export const _1Bn = _n(1_000_000_000);
 
 /**
-* @name BI_QUINTILL
+* @name _1Qn
 * @summary BigInt constant for 1,000,000,000,000,000,000.
 */
-export const BI_QUINTILL = BI_BILLION * BI_BILLION;
+export const _1Qn = _1Bn * _1Bn;
 
 /**
-* @name BI_MAX_INTEGER
+* @name _2pow53n
 * @summary BigInt constant for MAX_SAFE_INTEGER
 */
-export const BI_MAX_INTEGER = _n(Number.MAX_SAFE_INTEGER);
+export const _2pow53n = _n(Number.MAX_SAFE_INTEGER);

@@ -4,10 +4,10 @@
 import { assert } from '../assert';
 
 /**
- * @name biMax
+ * @name nMax
  * @summary Finds and returns the highest value in an array of bigint.
  */
-export function biMax (...items: bigint[]): bigint {
+export function nMax (...items: bigint[]): bigint {
   assert(items.length >= 1, 'Must provide one or more bigint arguments');
 
   let result = items[0];

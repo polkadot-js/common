@@ -5,29 +5,29 @@ import type { BN } from '../bn';
 import type { ToBigInt, ToBn } from '../types';
 
 import { assert } from '../assert';
-import { _0n, _1n, _n, BI_MAX_INTEGER } from './consts';
-import { biToBigInt } from './toBigInt';
+import { _0n, _1n, _2pow53n, _n } from './consts';
+import { nToBigInt } from './toBigInt';
 
-const SQRT_MAX_SAFE_INTEGER = _n(94906265);
+const _sqrt2pow53n = _n(94906265);
 
 /**
- * @name biSqrt
+ * @name nSqrt
  * @summary Calculates the integer square root of a bigint
  */
-export function biSqrt <ExtToBn extends ToBn | ToBigInt> (value: ExtToBn | BN | bigint | string | number | null): bigint {
-  const n = biToBigInt(value);
+export function nSqrt <ExtToBn extends ToBn | ToBigInt> (value: ExtToBn | BN | bigint | string | number | null): bigint {
+  const n = nToBigInt(value);
 
   assert(n >= _0n, 'square root of negative numbers is not supported');
 
   // https://stackoverflow.com/questions/53683995/javascript-big-integer-square-root/
   // shortcut <= 2^53 - 1 to use the JS utils
-  if (n <= BI_MAX_INTEGER) {
+  if (n <= _2pow53n) {
     return BigInt(Math.floor(Math.sqrt(Number(n))));
   }
 
   // Use sqrt(MAX_SAFE_INTEGER) as starting point. since we already know the
   // output will be larger than this, we expect this to be a safe start
-  let x0 = SQRT_MAX_SAFE_INTEGER;
+  let x0 = _sqrt2pow53n;
 
   while (true) {
     const x1 = ((n / x0) + x0) >> _1n;

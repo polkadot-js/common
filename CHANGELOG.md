@@ -4,7 +4,7 @@
 
 **Important** In the 8.0 version the hashing utilities have been consolidated around an optimized and audited version from `@noble/hashes`. As in the past the WASM hashing will be used by default if the environment is initialized.
 
-**Breaking change** The `schnorrkel*` functions have been renamed to `sr25519*`. Likewise the `ed25519` operations have been renamed from `nacl*` to `ed25519*`. Additionally the `{ed, sr}25519KeyPairFrom*` functions have been renamed to `{ed, sr}25519PairFrom*`.
+**Breaking change** The `schnorrkel*` functions have been renamed to `sr25519*`. Likewise the `ed25519` operations have been renamed from `nacl*` to `ed25519*`. Additionally the `{ed, sr, secp256k1}25519KeyPairFrom*` functions have been renamed to `{ed, sr, secp256k1}25519PairFrom*`.
 
 Changes:
 
@@ -13,6 +13,7 @@ Changes:
 - Replace (most) hashing operations with `@noble/hashes`
 - Replace JS fallback for `xxhash`
 - Adjust `BigInt` utility exports (with capability detection)
+- Previously added `bi*` functions renamed to `n*`
 - Extend performance tests with implementation compares
 - Remove non-significant Node Buffer concat fill
 
