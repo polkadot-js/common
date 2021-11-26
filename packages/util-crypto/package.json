@@ -15,9 +15,6 @@
     "type": "git",
     "url": "https://github.com/polkadot-js/common.git"
   },
-  "scripts": {
-    "postinstall": "patch-package --error-on-fail"
-  },
   "sideEffects": [
     "./cryptoInit.js",
     "./cryptoInit.cjs",
@@ -27,6 +24,9 @@
   "type": "module",
   "version": "7.9.3-18",
   "main": "index.js",
+  "scripts": {
+    "postinstall": "patch-package --error-on-fail"
+  },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
     "@noble/hashes": "0.4.1",
