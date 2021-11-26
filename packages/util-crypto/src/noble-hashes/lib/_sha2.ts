@@ -1,3 +1,5 @@
+/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
+// https://github.com/paulmillr/noble-hashes/pull/13
 import { _n, Hash, createView, Input, toBytes } from './utils';
 
 const _32n = _n(32);

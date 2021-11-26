@@ -1,3 +1,5 @@
+/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
+// https://github.com/paulmillr/noble-hashes/pull/13
 // prettier-ignore
 import {
   assertHash, assertNumber, CHash, Input, toBytes

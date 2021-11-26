@@ -1,3 +1,5 @@
+/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
+// https://github.com/paulmillr/noble-hashes/pull/13
 import { _n } from './utils';
 
 const U32_MASK64 = _n(2 ** 32 - 1);

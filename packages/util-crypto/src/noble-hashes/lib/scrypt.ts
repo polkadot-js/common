@@ -1,3 +1,5 @@
+/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
+// https://github.com/paulmillr/noble-hashes/pull/13
 import { sha256 } from './sha256';
 import { pbkdf2 } from './pbkdf2';
 import { assertNumber, asyncLoop, checkOpts, Input, u32 } from './utils';
