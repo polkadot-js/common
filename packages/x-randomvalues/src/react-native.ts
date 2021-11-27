@@ -9,6 +9,7 @@ import { NativeModules } from 'react-native';
 
 import { xglobal } from '@polkadot/x-global';
 
+import { base64Decode } from './base64';
 import { insecureRandomValues } from './fallback';
 
 export { packageInfo } from './packageInfo';
@@ -20,7 +21,9 @@ interface RNExt {
 }
 
 function getRandomValuesNative <T extends Uint8Array> (output: T): T {
-  const bytes = Buffer.from((NativeModules as RNExt).RNGetRandomValues.getRandomBase64(output.length), 'base64');
+  const bytes = base64Decode(
+    (NativeModules as RNExt).RNGetRandomValues.getRandomBase64(output.length)
+  );
 
   for (let i = 0; i < bytes.length; i++) {
     output[i] = bytes[i];

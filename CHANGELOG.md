@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Remove `Buffer` usage in `x-randomvalues`
+
+
 ## 8.0.2
 
 Changes:
