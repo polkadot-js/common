@@ -5,10 +5,9 @@ import { base64 } from 'micro-base';
 
 import { createDecode, createEncode, createIs, createValidate } from '../base32/helpers';
 
-const BASE64_CONFIG = {
-  alphabet: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
+const config = {
+  chars: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
   coder: base64,
-  regex: /^(?:[A-Za-z0-9+/]{2}[A-Za-z0-9+/]{2})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/,
   type: 'base64'
 };
 
@@ -18,7 +17,7 @@ const BASE64_CONFIG = {
  * @description
  * Validates that the supplied value is valid base64
  */
-export const base64Validate = createValidate(BASE64_CONFIG);
+export const base64Validate = createValidate(config);
 
 /**
  * @name isBase64
@@ -32,7 +31,7 @@ export const isBase64 = createIs(base64Validate);
  * @description
  * From the provided input, decode the base64 and return the result as an `Uint8Array`.
  */
-export const base64Decode = createDecode(BASE64_CONFIG, base64Validate);
+export const base64Decode = createDecode(config, base64Validate);
 
 /**
  * @name base64Encode
@@ -40,4 +39,4 @@ export const base64Decode = createDecode(BASE64_CONFIG, base64Validate);
  * @description
  * From the provided input, create the base64 and return the result as a string.
  */
-export const base64Encode = createEncode(BASE64_CONFIG);
+export const base64Encode = createEncode(config);
