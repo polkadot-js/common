@@ -4,7 +4,7 @@
 // A tiny base64 decoder for RN usage when atob is not available.
 // The alternative would be to rely on Buffer with 'base64'
 
-const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 export function base64Decode (data: string): Uint8Array {
   const bytes = [];
@@ -13,7 +13,7 @@ export function base64Decode (data: string): Uint8Array {
 
   for (let i = 0; i < data.length && data[i] !== '='; i++) {
     // each character represents 6 bits
-    byte = (byte << 6) | ALPHABET.indexOf(data[i]);
+    byte = (byte << 6) | chars.indexOf(data[i]);
 
     // each byte needs to contain 8 bits
     if ((bits += 6) >= 8) {
