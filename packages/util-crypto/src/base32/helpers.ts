@@ -21,9 +21,9 @@ interface Coder {
 }
 
 interface Config {
-  alphabet: string;
+  chars: string;
   coder: Coder;
-  ipfsChar?: string;
+  ipfs?: string;
   regex?: RegExp;
   type: string;
 }
@@ -34,24 +34,24 @@ type EncodeFn = (value: U8aLike, ipfsCompat?: boolean) => string;
 
 type ValidateFn = (value?: unknown, ipfsCompat?: boolean) => value is string;
 
-export function createDecode ({ coder, ipfsChar }: Config, validate: ValidateFn): DecodeFn {
+export function createDecode ({ coder, ipfs }: Config, validate: ValidateFn): DecodeFn {
   return (value: string, ipfsCompat?: boolean): Uint8Array => {
     validate(value, ipfsCompat);
 
     return coder.decode(
-      ipfsChar && ipfsCompat
+      ipfs && ipfsCompat
         ? value.substr(1)
         : value
     );
   };
 }
 
-export function createEncode ({ coder, ipfsChar }: Config): EncodeFn {
+export function createEncode ({ coder, ipfs }: Config): EncodeFn {
   return (value: U8aLike, ipfsCompat?: boolean): string => {
     const out = coder.encode(u8aToU8a(value));
 
-    return ipfsChar && ipfsCompat
-      ? `${ipfsChar}${out}`
+    return ipfs && ipfsCompat
+      ? `${ipfs}${out}`
       : out;
   };
 }
@@ -66,20 +66,24 @@ export function createIs (validate: ValidateFn): ValidateFn {
   };
 }
 
-export function createValidate ({ alphabet, ipfsChar, regex, type }: Config): ValidateFn {
+export function createValidate ({ chars, ipfs, type }: Config): ValidateFn {
   return (value?: unknown, ipfsCompat?: boolean): value is string => {
     assert(value && typeof value === 'string', () => `Expected non-null, non-empty ${type} string input`);
 
-    if (ipfsChar && ipfsCompat) {
-      assert(value[0] === ipfsChar, () => `Expected ipfs-compatible ${type} to start with '${ipfsChar}'`);
+    if (ipfs && ipfsCompat) {
+      assert(value[0] === ipfs, () => `Expected ipfs-compatible ${type} to start with '${ipfs}'`);
     }
 
-    if (regex) {
-      assert(regex.test(value), `Invalid ${type} encoding`);
-    } else {
-      for (let i = (ipfsCompat ? 1 : 0); i < value.length; i++) {
-        assert(alphabet.includes(value[i]), () => `Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`);
-      }
+    for (let i = (ipfsCompat ? 1 : 0); i < value.length; i++) {
+      assert(
+        chars.includes(value[i]) || (
+          value[i] === '=' && (
+            (i === value.length - 1) ||
+            !chars.includes(value[i + 1])
+          )
+        ),
+        () => `Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`
+      );
     }
 
     return true;
