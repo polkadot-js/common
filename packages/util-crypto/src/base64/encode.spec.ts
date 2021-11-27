@@ -9,10 +9,4 @@ describe('base64Encode', (): void => {
       base64Encode('hello world Приветствую ми 你好')
     ).toEqual('aGVsbG8gd29ybGQg0J/RgNC40LLQtdGC0YHRgtCy0YPRjiDQvNC4IOS9oOWlvQ==');
   });
-
-  it('encodes a small Uint8Array', (): void => {
-    expect(
-      base64Encode(new Uint8Array([0]))
-    ).toEqual('AA==');
-  });
 });
