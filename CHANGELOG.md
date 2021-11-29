@@ -5,6 +5,7 @@
 Changes:
 
 - Remove `Buffer` usage in `x-randomvalues`
+- Adjust `stringCaleCase` for all-caps parts
 
 
 ## 8.0.2
