@@ -43,5 +43,11 @@ describe('stringCamelCase', (): void => {
     ).toBe('fooBarBazTestSpacedExtra');
   });
 
+  it('adjusts all-uppercase', (): void => {
+    expect(
+      stringCamelCase('DEDUP_KEY_PREFIX')
+    ).toEqual('dedupKeyPrefix');
+  });
+
   performance('stringCamelCase', 64000, randomWords, stringCamelCase);
 });
