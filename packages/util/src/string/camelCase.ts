@@ -22,7 +22,7 @@ function converter (fn: (w: string, i: number) => string): (value: AnyString) =>
       .split(' ')
       .map((w, i) =>
         fn(w[0], i) + (
-          w.toUpperCase() === w
+          /^[A-Z0-9]*$/.test(w)
             ? w.slice(1).toLowerCase()
             : w.slice(1)
         )

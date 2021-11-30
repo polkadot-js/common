@@ -49,6 +49,12 @@ describe('stringCamelCase', (): void => {
     ).toEqual('dedupKeyPrefix');
   });
 
+  it('adjusts all-uppercase + digits', (): void => {
+    expect(
+      stringCamelCase('SS58 PreFIX')
+    ).toEqual('ss58PreFIX');
+  });
+
   it('adjusts with leading _', (): void => {
     expect(
       stringCamelCase('_reserved')
