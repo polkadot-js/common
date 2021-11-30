@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 8.0.3 Nov 30, 2021
 
 Changes:
 
@@ -8,7 +8,7 @@ Changes:
 - Adjust `stringCaleCase` for all-caps parts
 
 
-## 8.0.2
+## 8.0.2 Nov 26, 2021
 
 Changes:
 
