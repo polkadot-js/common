@@ -1,11 +1,18 @@
 # CHANGELOG
 
+## 8.0.4 Nov 30, 2021
+
+Changes:
+
+- Adjust `stringCamelCase` with leading `_`
+
+
 ## 8.0.3 Nov 30, 2021
 
 Changes:
 
 - Remove `Buffer` usage in `x-randomvalues`
-- Adjust `stringCaleCase` for all-caps parts
+- Adjust `stringCamelCase` for all-caps parts
 
 
 ## 8.0.2 Nov 26, 2021

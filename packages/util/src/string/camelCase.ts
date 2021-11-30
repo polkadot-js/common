@@ -18,6 +18,7 @@ function converter (fn: (w: string, i: number) => string): (value: AnyString) =>
     value
       .toString()
       .replace(/[-_., ]+/g, ' ')
+      .trim()
       .split(' ')
       .map((w, i) =>
         fn(w[0], i) + (

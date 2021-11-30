@@ -49,5 +49,17 @@ describe('stringCamelCase', (): void => {
     ).toEqual('dedupKeyPrefix');
   });
 
+  it('adjusts with leading _', (): void => {
+    expect(
+      stringCamelCase('_reserved')
+    ).toEqual('reserved');
+  });
+
+  it('adjusts with minimal chars per part', (): void => {
+    expect(
+      stringCamelCase('_a_b_c_def')
+    ).toEqual('aBCDef');
+  });
+
   performance('stringCamelCase', 64000, randomWords, stringCamelCase);
 });
