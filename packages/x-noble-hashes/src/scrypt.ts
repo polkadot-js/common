@@ -1,14 +1,14 @@
 /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
 // https://github.com/paulmillr/noble-hashes/pull/13
-import { pbkdf2 } from './pbkdf2';
 import { sha256 } from './sha256';
+import { pbkdf2 } from './pbkdf2';
 import { assertNumber, asyncLoop, checkOpts, Input, u32 } from './utils';
 
 // Left rotate for uint32
 const rotl = (a: number, b: number) => (a << b) | (a >>> (32 - b));
 
 // prettier-ignore
-function XorAndSalsa (
+function XorAndSalsa(
   prev: Uint32Array,
   pi: number,
   input: Uint32Array,
@@ -18,40 +18,38 @@ function XorAndSalsa (
 ) {
   // Based on https://cr.yp.to/salsa20.html
   // Xor blocks
-  const y00 = prev[pi++] ^ input[ii++]; const y01 = prev[pi++] ^ input[ii++];
-  const y02 = prev[pi++] ^ input[ii++]; const y03 = prev[pi++] ^ input[ii++];
-  const y04 = prev[pi++] ^ input[ii++]; const y05 = prev[pi++] ^ input[ii++];
-  const y06 = prev[pi++] ^ input[ii++]; const y07 = prev[pi++] ^ input[ii++];
-  const y08 = prev[pi++] ^ input[ii++]; const y09 = prev[pi++] ^ input[ii++];
-  const y10 = prev[pi++] ^ input[ii++]; const y11 = prev[pi++] ^ input[ii++];
-  const y12 = prev[pi++] ^ input[ii++]; const y13 = prev[pi++] ^ input[ii++];
-  const y14 = prev[pi++] ^ input[ii++]; const y15 = prev[pi++] ^ input[ii++];
+  let y00 = prev[pi++] ^ input[ii++], y01 = prev[pi++] ^ input[ii++];
+  let y02 = prev[pi++] ^ input[ii++], y03 = prev[pi++] ^ input[ii++];
+  let y04 = prev[pi++] ^ input[ii++], y05 = prev[pi++] ^ input[ii++];
+  let y06 = prev[pi++] ^ input[ii++], y07 = prev[pi++] ^ input[ii++];
+  let y08 = prev[pi++] ^ input[ii++], y09 = prev[pi++] ^ input[ii++];
+  let y10 = prev[pi++] ^ input[ii++], y11 = prev[pi++] ^ input[ii++];
+  let y12 = prev[pi++] ^ input[ii++], y13 = prev[pi++] ^ input[ii++];
+  let y14 = prev[pi++] ^ input[ii++], y15 = prev[pi++] ^ input[ii++];
   // Save state to temporary variables (salsa)
-  let x00 = y00; let x01 = y01; let x02 = y02; let x03 = y03;
-  let x04 = y04; let x05 = y05; let x06 = y06; let x07 = y07;
-  let x08 = y08; let x09 = y09; let x10 = y10; let x11 = y11;
-  let x12 = y12; let x13 = y13; let x14 = y14; let x15 = y15;
-
+  let x00 = y00, x01 = y01, x02 = y02, x03 = y03,
+      x04 = y04, x05 = y05, x06 = y06, x07 = y07,
+      x08 = y08, x09 = y09, x10 = y10, x11 = y11,
+      x12 = y12, x13 = y13, x14 = y14, x15 = y15;
   // Main loop (salsa)
   for (let i = 0; i < 8; i += 2) {
-    x04 ^= rotl(x00 + x12 | 0, 7); x08 ^= rotl(x04 + x00 | 0, 9);
+    x04 ^= rotl(x00 + x12 | 0,  7); x08 ^= rotl(x04 + x00 | 0,  9);
     x12 ^= rotl(x08 + x04 | 0, 13); x00 ^= rotl(x12 + x08 | 0, 18);
-    x09 ^= rotl(x05 + x01 | 0, 7); x13 ^= rotl(x09 + x05 | 0, 9);
+    x09 ^= rotl(x05 + x01 | 0,  7); x13 ^= rotl(x09 + x05 | 0,  9);
     x01 ^= rotl(x13 + x09 | 0, 13); x05 ^= rotl(x01 + x13 | 0, 18);
-    x14 ^= rotl(x10 + x06 | 0, 7); x02 ^= rotl(x14 + x10 | 0, 9);
+    x14 ^= rotl(x10 + x06 | 0,  7); x02 ^= rotl(x14 + x10 | 0,  9);
     x06 ^= rotl(x02 + x14 | 0, 13); x10 ^= rotl(x06 + x02 | 0, 18);
-    x03 ^= rotl(x15 + x11 | 0, 7); x07 ^= rotl(x03 + x15 | 0, 9);
+    x03 ^= rotl(x15 + x11 | 0,  7); x07 ^= rotl(x03 + x15 | 0,  9);
     x11 ^= rotl(x07 + x03 | 0, 13); x15 ^= rotl(x11 + x07 | 0, 18);
-    x01 ^= rotl(x00 + x03 | 0, 7); x02 ^= rotl(x01 + x00 | 0, 9);
+    x01 ^= rotl(x00 + x03 | 0,  7); x02 ^= rotl(x01 + x00 | 0,  9);
     x03 ^= rotl(x02 + x01 | 0, 13); x00 ^= rotl(x03 + x02 | 0, 18);
-    x06 ^= rotl(x05 + x04 | 0, 7); x07 ^= rotl(x06 + x05 | 0, 9);
+    x06 ^= rotl(x05 + x04 | 0,  7); x07 ^= rotl(x06 + x05 | 0,  9);
     x04 ^= rotl(x07 + x06 | 0, 13); x05 ^= rotl(x04 + x07 | 0, 18);
-    x11 ^= rotl(x10 + x09 | 0, 7); x08 ^= rotl(x11 + x10 | 0, 9);
+    x11 ^= rotl(x10 + x09 | 0,  7); x08 ^= rotl(x11 + x10 | 0,  9);
     x09 ^= rotl(x08 + x11 | 0, 13); x10 ^= rotl(x09 + x08 | 0, 18);
-    x12 ^= rotl(x15 + x14 | 0, 7); x13 ^= rotl(x12 + x15 | 0, 9);
+    x12 ^= rotl(x15 + x14 | 0,  7); x13 ^= rotl(x12 + x15 | 0,  9);
     x14 ^= rotl(x13 + x12 | 0, 13); x15 ^= rotl(x14 + x13 | 0, 18);
   }
-
   // Write output (salsa)
   out[oi++] = (y00 + x00) | 0; out[oi++] = (y01 + x01) | 0;
   out[oi++] = (y02 + x02) | 0; out[oi++] = (y03 + x03) | 0;
@@ -63,12 +61,10 @@ function XorAndSalsa (
   out[oi++] = (y14 + x14) | 0; out[oi++] = (y15 + x15) | 0;
 }
 
-function BlockMix (input: Uint32Array, ii: number, out: Uint32Array, oi: number, r: number) {
+function BlockMix(input: Uint32Array, ii: number, out: Uint32Array, oi: number, r: number) {
   // The block B is r 128-byte chunks (which is equivalent of 2r 64-byte chunks)
   let [head, tail] = [oi + 0, oi + 16 * r];
-
   for (let i = 0; i < 16; i++) out[tail + i] = input[ii + (2 * r - 1) * 16 + i]; // X ← B[2r−1]
-
   for (let i = 0; i < r; i++, head += 16, ii += 16) {
     // We write odd & even Yi at same time. Even: 0bXXXXX0 Odd:  0bXXXXX1
     XorAndSalsa(out, tail, input, ii, out, head); // head[i] = Salsa(blockIn[2*i] ^ tail[i-1])
@@ -89,30 +85,27 @@ export type ScryptOpts = {
 };
 
 // Common prologue and epilogue for sync/async functions
-function scryptInit (password: Input, salt: Input, _opts?: ScryptOpts) {
+function scryptInit(password: Input, salt: Input, _opts?: ScryptOpts) {
   // Maxmem - 1GB+1KB by default
   const opts = checkOpts(
     {
       dkLen: 32,
       asyncTick: 10,
-      maxmem: 1024 ** 3 + 1024
+      maxmem: 1024 ** 3 + 1024,
     },
     _opts
   );
-  const { N, asyncTick, dkLen, maxmem, onProgress, p, r } = opts;
-
+  const { N, r, p, dkLen, asyncTick, maxmem, onProgress } = opts;
   assertNumber(N);
   assertNumber(r);
   assertNumber(p);
   assertNumber(dkLen);
   assertNumber(asyncTick);
   assertNumber(maxmem);
-
-  if (onProgress !== undefined && typeof onProgress !== 'function') { throw new Error('progressCb should be function'); }
-
+  if (onProgress !== undefined && typeof onProgress !== 'function')
+    throw new Error('progressCb should be function');
   const blockSize = 128 * r;
   const blockSize32 = blockSize / 4;
-
   if (N <= 1 || (N & (N - 1)) !== 0 || N >= 2 ** (blockSize / 8) || N > 2 ** 32) {
     // NOTE: we limit N to be less than 2**32 because of 32 bit variant of Integrify function
     // There is no JS engines that allows alocate more than 4GB per single Uint8Array for now, but can change in future.
@@ -120,27 +113,22 @@ function scryptInit (password: Input, salt: Input, _opts?: ScryptOpts) {
       'Scrypt: N must be larger than 1, a power of 2, less than 2^(128 * r / 8) and less than 2^32'
     );
   }
-
   if (p < 0 || p > ((2 ** 32 - 1) * 32) / blockSize) {
     throw new Error(
       'Scrypt: p must be a positive integer less than or equal to ((2^32 - 1) * 32) / (128 * r)'
     );
   }
-
   if (dkLen < 0 || dkLen > (2 ** 32 - 1) * 32) {
     throw new Error(
       'Scrypt: dkLen should be positive integer less than or equal to (2^32 - 1) * 32'
     );
   }
-
   const memUsed = blockSize * (N + p);
-
   if (memUsed > maxmem) {
     throw new Error(
       `Scrypt: parameters too large, ${memUsed} (128 * r * (N + p)) > ${maxmem} (maxmem)`
     );
   }
-
   // [B0...Bp−1] ← PBKDF2HMAC-SHA256(Passphrase, Salt, 1, blockSize*ParallelizationFactor)
   // Since it has only one iteration there is no reason to use async variant
   const B = pbkdf2(sha256, password, salt, { c: 1, dkLen: blockSize * p });
@@ -148,27 +136,23 @@ function scryptInit (password: Input, salt: Input, _opts?: ScryptOpts) {
   // Re-used between parallel iterations. Array(iterations) of B
   const V = u32(new Uint8Array(blockSize * N));
   const tmp = u32(new Uint8Array(blockSize));
-
   let blockMixCb = () => {};
-
   if (onProgress) {
     const totalBlockMix = 2 * N * p;
     // Invoke callback if progress changes from 10.01 to 10.02
     // Allows to draw smooth progress bar on up to 8K screen
     const callbackPer = Math.max(Math.floor(totalBlockMix / 10000), 1);
     let blockMixCnt = 0;
-
     blockMixCb = () => {
       blockMixCnt++;
-
-      if (onProgress && (!(blockMixCnt % callbackPer) || blockMixCnt === totalBlockMix)) { onProgress(blockMixCnt / totalBlockMix); }
+      if (onProgress && (!(blockMixCnt % callbackPer) || blockMixCnt === totalBlockMix))
+        onProgress(blockMixCnt / totalBlockMix);
     };
   }
-
   return { N, r, p, dkLen, blockSize32, V, B32, B, tmp, blockMixCb, asyncTick };
 }
 
-function scryptOutput (
+function scryptOutput(
   password: Input,
   dkLen: number,
   B: Uint8Array,
@@ -176,60 +160,48 @@ function scryptOutput (
   tmp: Uint32Array
 ) {
   const res = pbkdf2(sha256, password, B, { c: 1, dkLen });
-
   B.fill(0);
   V.fill(0);
   tmp.fill(0);
-
   return res;
 }
 
-export function scrypt (password: Input, salt: Input, _opts: ScryptOpts) {
-  const { B, B32, N, V, blockMixCb, blockSize32, dkLen, p, r, tmp } = scryptInit(
+export function scrypt(password: Input, salt: Input, _opts: ScryptOpts) {
+  const { N, r, p, dkLen, blockSize32, V, B32, B, tmp, blockMixCb } = scryptInit(
     password,
     salt,
     _opts
   );
-
   for (let pi = 0; pi < p; pi++) {
     const Pi = blockSize32 * pi;
-
     for (let i = 0; i < blockSize32; i++) V[i] = B32[Pi + i]; // V[0] = B[i]
-
     for (let i = 0, pos = 0; i < N - 1; i++) {
       BlockMix(V, pos, V, (pos += blockSize32), r); // V[i] = BlockMix(V[i-1]);
       blockMixCb();
     }
-
     BlockMix(V, (N - 1) * blockSize32, B32, Pi, r); // Process last element
     blockMixCb();
-
     for (let i = 0; i < N; i++) {
       // First u32 of the last 64-byte block (u32 is LE)
       const j = B32[Pi + blockSize32 - 16] % N; // j = Integrify(X) % iterations
-
       for (let k = 0; k < blockSize32; k++) tmp[k] = B32[Pi + k] ^ V[j * blockSize32 + k]; // tmp = B ^ V[j]
       BlockMix(tmp, 0, B32, Pi, r); // B = BlockMix(B ^ V[j])
       blockMixCb();
     }
   }
-
   return scryptOutput(password, dkLen, B, V, tmp);
 }
 
-export async function scryptAsync (password: Uint8Array, salt: Uint8Array, _opts: ScryptOpts) {
-  const { B, B32, N, V, asyncTick, blockMixCb, blockSize32, dkLen, p, r, tmp } = scryptInit(
+export async function scryptAsync(password: Uint8Array, salt: Uint8Array, _opts: ScryptOpts) {
+  const { N, r, p, dkLen, blockSize32, V, B32, B, tmp, blockMixCb, asyncTick } = scryptInit(
     password,
     salt,
     _opts
   );
-
   for (let pi = 0; pi < p; pi++) {
     const Pi = blockSize32 * pi;
-
     for (let i = 0; i < blockSize32; i++) V[i] = B32[Pi + i]; // V[0] = B[i]
     let pos = 0;
-
     await asyncLoop(N - 1, asyncTick, (i) => {
       BlockMix(V, pos, V, (pos += blockSize32), r); // V[i] = BlockMix(V[i-1]);
       blockMixCb();
@@ -239,12 +211,10 @@ export async function scryptAsync (password: Uint8Array, salt: Uint8Array, _opts
     await asyncLoop(N, asyncTick, (i) => {
       // First u32 of the last 64-byte block (u32 is LE)
       const j = B32[Pi + blockSize32 - 16] % N; // j = Integrify(X) % iterations
-
       for (let k = 0; k < blockSize32; k++) tmp[k] = B32[Pi + k] ^ V[j * blockSize32 + k]; // tmp = B ^ V[j]
       BlockMix(tmp, 0, B32, Pi, r); // B = BlockMix(B ^ V[j])
       blockMixCb();
     });
   }
-
   return scryptOutput(password, dkLen, B, V, tmp);
 }

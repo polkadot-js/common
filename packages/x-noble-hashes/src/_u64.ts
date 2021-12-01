@@ -6,21 +6,17 @@ const U32_MASK64 = _n(2 ** 32 - 1);
 
 const _32n = _n(32);
 
-export function fromBig (n: bigint, le = false) {
+export function fromBig(n: bigint, le = false) {
   if (le) return { h: Number(n & U32_MASK64), l: Number((n >> _32n) & U32_MASK64) };
-
   return { h: Number((n >> _32n) & U32_MASK64) | 0, l: Number(n & U32_MASK64) | 0 };
 }
 
-export function split (lst: bigint[], le = false) {
-  const [Ah, Al] = [new Uint32Array(lst.length), new Uint32Array(lst.length)];
-
+export function split(lst: bigint[], le = false) {
+  let [Ah, Al] = [new Uint32Array(lst.length), new Uint32Array(lst.length)];
   for (let i = 0; i < lst.length; i++) {
     const { h, l } = fromBig(lst[i], le);
-
     [Ah[i], Al[i]] = [h, l];
   }
-
   return [Ah, Al];
 }
 
@@ -46,12 +42,10 @@ export const rotlBL = (h: number, l: number, s: number) => (h << (s - 32)) | (l 
 
 // JS uses 32-bit signed integers for bitwise operations which means we cannot
 // simple take carry out of low bit sum by shift, we need to use division.
-export function add (Ah: number, Al: number, Bh: number, Bl: number) {
+export function add(Ah: number, Al: number, Bh: number, Bl: number) {
   const l = (Al >>> 0) + (Bl >>> 0);
-
   return { h: (Ah + Bh + ((l / 2 ** 32) | 0)) | 0, l: l | 0 };
 }
-
 // Addition with more than 2 elements
 export const add3L = (Al: number, Bl: number, Cl: number) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0);
 export const add3H = (low: number, Ah: number, Bh: number, Ch: number) =>

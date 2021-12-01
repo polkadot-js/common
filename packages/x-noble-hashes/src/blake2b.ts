@@ -14,16 +14,15 @@ const IV = new Uint32Array([
 const BUF = new Uint32Array(32);
 
 // Mixing function G splitted in two halfs
-function G1 (a: number, b: number, c: number, d: number, msg: Uint32Array, x: number) {
+function G1(a: number, b: number, c: number, d: number, msg: Uint32Array, x: number) {
   // NOTE: V is LE here
-  const Xl = msg[x]; const Xh = msg[x + 1]; // prettier-ignore
-  let Al = BUF[2 * a]; let Ah = BUF[2 * a + 1]; // prettier-ignore
-  let Bl = BUF[2 * b]; let Bh = BUF[2 * b + 1]; // prettier-ignore
-  let Cl = BUF[2 * c]; let Ch = BUF[2 * c + 1]; // prettier-ignore
-  let Dl = BUF[2 * d]; let Dh = BUF[2 * d + 1]; // prettier-ignore
+  const Xl = msg[x], Xh = msg[x + 1]; // prettier-ignore
+  let Al = BUF[2 * a], Ah = BUF[2 * a + 1]; // prettier-ignore
+  let Bl = BUF[2 * b], Bh = BUF[2 * b + 1]; // prettier-ignore
+  let Cl = BUF[2 * c], Ch = BUF[2 * c + 1]; // prettier-ignore
+  let Dl = BUF[2 * d], Dh = BUF[2 * d + 1]; // prettier-ignore
   // v[a] = (v[a] + v[b] + x) | 0;
-  const ll = u64.add3L(Al, Bl, Xl);
-
+  let ll = u64.add3L(Al, Bl, Xl);
   Ah = u64.add3H(ll, Ah, Bh, Xh);
   Al = ll | 0;
   // v[d] = rotr(v[d] ^ v[a], 32)
@@ -40,16 +39,15 @@ function G1 (a: number, b: number, c: number, d: number, msg: Uint32Array, x: nu
   (BUF[2 * d] = Dl), (BUF[2 * d + 1] = Dh);
 }
 
-function G2 (a: number, b: number, c: number, d: number, msg: Uint32Array, x: number) {
+function G2(a: number, b: number, c: number, d: number, msg: Uint32Array, x: number) {
   // NOTE: V is LE here
-  const Xl = msg[x]; const Xh = msg[x + 1]; // prettier-ignore
-  let Al = BUF[2 * a]; let Ah = BUF[2 * a + 1]; // prettier-ignore
-  let Bl = BUF[2 * b]; let Bh = BUF[2 * b + 1]; // prettier-ignore
-  let Cl = BUF[2 * c]; let Ch = BUF[2 * c + 1]; // prettier-ignore
-  let Dl = BUF[2 * d]; let Dh = BUF[2 * d + 1]; // prettier-ignore
+  const Xl = msg[x], Xh = msg[x + 1]; // prettier-ignore
+  let Al = BUF[2 * a], Ah = BUF[2 * a + 1]; // prettier-ignore
+  let Bl = BUF[2 * b], Bh = BUF[2 * b + 1]; // prettier-ignore
+  let Cl = BUF[2 * c], Ch = BUF[2 * c + 1]; // prettier-ignore
+  let Dl = BUF[2 * d], Dh = BUF[2 * d + 1]; // prettier-ignore
   // v[a] = (v[a] + v[b] + x) | 0;
-  const ll = u64.add3L(Al, Bl, Xl);
-
+  let ll = u64.add3L(Al, Bl, Xl);
   Ah = u64.add3H(ll, Ah, Bh, Xh);
   Al = ll | 0;
   // v[d] = rotr(v[d] ^ v[a], 16)
@@ -85,51 +83,41 @@ class BLAKE2b extends blake2.BLAKE2<BLAKE2b> {
   private v7l = IV[14] | 0;
   private v7h = IV[15] | 0;
 
-  constructor (opts: blake2.BlakeOpts = {}) {
+  constructor(opts: blake2.BlakeOpts = {}) {
     super(128, opts.dkLen === undefined ? 64 : opts.dkLen, opts, 64, 16, 16);
     const keyLength = opts.key ? opts.key.length : 0;
-
     this.v0l ^= this.outputLen | (keyLength << 8) | (0x01 << 16) | (0x01 << 24);
-
     if (opts.salt) {
       const salt = u32(toBytes(opts.salt));
-
       this.v4l ^= salt[0];
       this.v4h ^= salt[1];
       this.v5l ^= salt[2];
       this.v5h ^= salt[3];
     }
-
     if (opts.personalization) {
       const pers = u32(toBytes(opts.personalization));
-
       this.v6l ^= pers[0];
       this.v6h ^= pers[1];
       this.v7l ^= pers[2];
       this.v7h ^= pers[3];
     }
-
     if (opts.key) {
       // Pad to blockLen and update
       const tmp = new Uint8Array(this.blockLen);
-
       tmp.set(toBytes(opts.key));
       this.update(tmp);
     }
   }
-
   // prettier-ignore
-  protected get (): [
+  protected get(): [
     number, number, number, number, number, number, number, number,
     number, number, number, number, number, number, number, number
   ] {
-    const { v0h, v0l, v1h, v1l, v2h, v2l, v3h, v3l, v4h, v4l, v5h, v5l, v6h, v6l, v7h, v7l } = this;
-
+    let {v0l, v0h, v1l, v1h, v2l, v2h, v3l, v3h, v4l, v4h, v5l, v5h, v6l, v6h, v7l, v7h} = this;
     return [v0l, v0h, v1l, v1h, v2l, v2h, v3l, v3h, v4l, v4h, v5l, v5h, v6l, v6h, v7l, v7h];
   }
-
   // prettier-ignore
-  protected set (
+  protected set(
     v0l: number, v0h: number, v1l: number, v1h: number,
     v2l: number, v2h: number, v3l: number, v3h: number,
     v4l: number, v4h: number, v5l: number, v5h: number,
@@ -152,24 +140,19 @@ class BLAKE2b extends blake2.BLAKE2<BLAKE2b> {
     this.v7l = v7l | 0;
     this.v7h = v7h | 0;
   }
-
-  protected compress (msg: Uint32Array, offset: number, isLast: boolean) {
+  protected compress(msg: Uint32Array, offset: number, isLast: boolean) {
     this.get().forEach((v, i) => (BUF[i] = v)); // First half from state.
     BUF.set(IV, 16); // Second half from IV.
-    const { h, l } = u64.fromBig(BigInt(this.length));
-
+    let { h, l } = u64.fromBig(BigInt(this.length));
     BUF[24] = IV[8] ^ l; // Low word of the offset.
     BUF[25] = IV[9] ^ h; // High word.
-
     // Invert all bits for last block
     if (isLast) {
       BUF[28] = ~BUF[28];
       BUF[29] = ~BUF[29];
     }
-
     let j = 0;
     const s = blake2.SIGMA;
-
     for (let i = 0; i < 12; i++) {
       G1(0, 4, 8, 12, msg, offset + 2 * s[j++]);
       G2(0, 4, 8, 12, msg, offset + 2 * s[j++]);
@@ -189,7 +172,6 @@ class BLAKE2b extends blake2.BLAKE2<BLAKE2b> {
       G1(3, 4, 9, 14, msg, offset + 2 * s[j++]);
       G2(3, 4, 9, 14, msg, offset + 2 * s[j++]);
     }
-
     this.v0l ^= BUF[0] ^ BUF[16];
     this.v0h ^= BUF[1] ^ BUF[17];
     this.v1l ^= BUF[2] ^ BUF[18];
@@ -208,8 +190,7 @@ class BLAKE2b extends blake2.BLAKE2<BLAKE2b> {
     this.v7h ^= BUF[15] ^ BUF[31];
     BUF.fill(0);
   }
-
-  destroy () {
+  destroy() {
     this.destroyed = true;
     this.buffer32.fill(0);
     this.set(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);

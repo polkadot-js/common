@@ -31,7 +31,6 @@ const IV = new Uint32Array([
 // Temporary buffer, not used to store anything between runs
 // Named this way because it matches specification.
 const SHA256_W = new Uint32Array(64);
-
 class SHA256 extends SHA2<SHA256> {
   // We cannot use array here since array allows indexing by variable
   // which means optimizer/compiler cannot use registers.
@@ -44,18 +43,15 @@ class SHA256 extends SHA2<SHA256> {
   private G = IV[6] | 0;
   private H = IV[7] | 0;
 
-  constructor () {
+  constructor() {
     super(64, 32, 8, false);
   }
-
-  protected get (): [number, number, number, number, number, number, number, number] {
+  protected get(): [number, number, number, number, number, number, number, number] {
     const { A, B, C, D, E, F, G, H } = this;
-
     return [A, B, C, D, E, F, G, H];
   }
-
   // prettier-ignore
-  protected set (
+  protected set(
     A: number, B: number, C: number, D: number, E: number, F: number, G: number, H: number
   ) {
     this.A = A | 0;
@@ -67,29 +63,23 @@ class SHA256 extends SHA2<SHA256> {
     this.G = G | 0;
     this.H = H | 0;
   }
-
-  protected process (view: DataView, offset: number): void {
+  protected process(view: DataView, offset: number): void {
     // Extend the first 16 words into the remaining 48 words w[16..63] of the message schedule array
     for (let i = 0; i < 16; i++, offset += 4) SHA256_W[i] = view.getUint32(offset, false);
-
     for (let i = 16; i < 64; i++) {
       const W15 = SHA256_W[i - 15];
       const W2 = SHA256_W[i - 2];
       const s0 = rotr(W15, 7) ^ rotr(W15, 18) ^ (W15 >>> 3);
       const s1 = rotr(W2, 17) ^ rotr(W2, 19) ^ (W2 >>> 10);
-
       SHA256_W[i] = (s1 + SHA256_W[i - 7] + s0 + SHA256_W[i - 16]) | 0;
     }
-
     // Compression function main loop, 64 rounds
     let { A, B, C, D, E, F, G, H } = this;
-
     for (let i = 0; i < 64; i++) {
       const sigma1 = rotr(E, 6) ^ rotr(E, 11) ^ rotr(E, 25);
       const T1 = (H + sigma1 + Chi(E, F, G) + SHA256_K[i] + SHA256_W[i]) | 0;
       const sigma0 = rotr(A, 2) ^ rotr(A, 13) ^ rotr(A, 22);
       const T2 = (sigma0 + Maj(A, B, C)) | 0;
-
       H = G;
       G = F;
       F = E;
@@ -99,7 +89,6 @@ class SHA256 extends SHA2<SHA256> {
       B = A;
       A = (T1 + T2) | 0;
     }
-
     // Add the compressed chunk to the current hash value
     A = (A + this.A) | 0;
     B = (B + this.B) | 0;
@@ -111,12 +100,10 @@ class SHA256 extends SHA2<SHA256> {
     H = (H + this.H) | 0;
     this.set(A, B, C, D, E, F, G, H);
   }
-
-  protected roundClean () {
+  protected roundClean() {
     SHA256_W.fill(0);
   }
-
-  destroy () {
+  destroy() {
     this.set(0, 0, 0, 0, 0, 0, 0, 0);
     this.buffer.fill(0);
   }

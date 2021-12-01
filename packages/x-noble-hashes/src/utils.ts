@@ -3,11 +3,11 @@
 
 // prettier-ignore
 export type TypedArray = Int8Array | Uint8ClampedArray | Uint8Array |
-Uint16Array | Int16Array | Uint32Array | Int32Array;
+  Uint16Array | Int16Array | Uint32Array | Int32Array;
 
 // helper to protect against older bundlers
 export const _n: (value: string | number | bigint | boolean) => bigint =
-  typeof BigInt !== 'undefined' ? BigInt : () => Number.NaN as unknown as bigint;
+  typeof BigInt !== 'undefined' ? (n: string | number | bigint | boolean) => BigInt(n) : () => Number.NaN as unknown as bigint;
 
 // Cast array to different type
 export const u8 = (arr: TypedArray) => new Uint8Array(arr.buffer, arr.byteOffset, arr.byteLength);
@@ -27,15 +27,12 @@ export const isLE = new Uint8Array(new Uint32Array([0x11223344]).buffer)[0] === 
 if (!isLE) throw new Error('Non little-endian hardware is not supported');
 
 const hexes = Array.from({ length: 256 }, (v, i) => i.toString(16).padStart(2, '0'));
-
-export function bytesToHex (uint8a: Uint8Array): string {
+export function bytesToHex(uint8a: Uint8Array): string {
   // pre-caching chars could speed this up 6x.
   let hex = '';
-
   for (let i = 0; i < uint8a.length; i++) {
     hex += hexes[uint8a[i]];
   }
-
   return hex;
 }
 
@@ -46,27 +43,22 @@ export const nextTick: () => Promise<unknown> = (() => {
     typeof module !== 'undefined' &&
     typeof module.require === 'function' &&
     module.require.bind(module);
-
   try {
     if (nodeRequire) {
       const { setImmediate } = nodeRequire('timers');
-
       return () => new Promise((resolve) => setImmediate(resolve));
     }
   } catch (e) {}
-
   return () => new Promise((resolve) => setTimeout(resolve, 0));
 })();
 
 // Returns control to thread each 'tick' ms to avoid blocking
-export async function asyncLoop (iters: number, tick: number, cb: (i: number) => void) {
+export async function asyncLoop(iters: number, tick: number, cb: (i: number) => void) {
   let ts = Date.now();
-
   for (let i = 0; i < iters; i++) {
     cb(i);
     // Date.now() is not monotonic, so in case if clock goes backwards we return return control too
     const diff = Date.now() - ts;
-
     if (diff >= 0 && diff < tick) continue;
     await nextTick();
     ts += diff;
@@ -74,28 +66,26 @@ export async function asyncLoop (iters: number, tick: number, cb: (i: number) =>
 }
 
 export type Input = Uint8Array | string;
-
-export function toBytes (data: Input) {
+export function toBytes(data: Input) {
   if (typeof data === 'string') data = new TextEncoder().encode(data);
-
-  if (!(data instanceof Uint8Array)) { throw new TypeError(`Expected input type is Uint8Array (got ${typeof data})`); }
-
+  if (!(data instanceof Uint8Array))
+    throw new TypeError(`Expected input type is Uint8Array (got ${typeof data})`);
   return data;
 }
 
-export function assertNumber (n: number) {
+export function assertNumber(n: number) {
   if (!Number.isSafeInteger(n)) throw new Error(`Wrong integer: ${n}`);
 }
 
-export function assertBool (b: boolean) {
+export function assertBool(b: boolean) {
   if (typeof b !== 'boolean') {
     throw new Error(`Expected boolean, not ${b}`);
   }
 }
 
-export function assertHash (hash: CHash) {
-  if (typeof hash !== 'function' || typeof hash.init !== 'function') { throw new Error('Hash should be wrapped by utils.wrapConstructor'); }
-
+export function assertHash(hash: CHash) {
+  if (typeof hash !== 'function' || typeof hash.init !== 'function')
+    throw new Error('Hash should be wrapped by utils.wrapConstructor');
   assertNumber(hash.outputLen);
   assertNumber(hash.blockLen);
 }
@@ -118,7 +108,7 @@ export abstract class Hash<T extends Hash<T>> {
   // We don't provide any guarantees about cleanup (it is impossible to!), so should be enough for now.
   abstract _cloneInto(to?: T): T;
   // Safe version that clones internal state
-  clone (): T {
+  clone(): T {
     return this._cloneInto();
   }
 }
@@ -136,54 +126,47 @@ const isPlainObject = (obj: any) =>
   Object.prototype.toString.call(obj) === '[object Object]' && obj.constructor === Object;
 
 type EmptyObj = {};
-
-export function checkOpts<T1 extends EmptyObj, T2 extends EmptyObj> (def: T1, _opts?: T2): T1 & T2 {
-  if (_opts !== undefined && (typeof _opts !== 'object' || !isPlainObject(_opts))) { throw new TypeError('Options should be object or undefined'); }
-
+export function checkOpts<T1 extends EmptyObj, T2 extends EmptyObj>(def: T1, _opts?: T2): T1 & T2 {
+  if (_opts !== undefined && (typeof _opts !== 'object' || !isPlainObject(_opts)))
+    throw new TypeError('Options should be object or undefined');
   const opts = Object.assign(def, _opts);
-
   return opts as T1 & T2;
 }
 
 export type CHash = ReturnType<typeof wrapConstructor>;
 
-export function wrapConstructor<T extends Hash<T>> (hashConstructor: () => Hash<T>) {
+export function wrapConstructor<T extends Hash<T>>(hashConstructor: () => Hash<T>) {
   const hashC = (message: Input): Uint8Array => hashConstructor().update(toBytes(message)).digest();
   const tmp = hashConstructor();
-
   hashC.outputLen = tmp.outputLen;
   hashC.blockLen = tmp.blockLen;
   hashC.create = () => hashConstructor();
   hashC.init = hashC.create;
-
   return hashC;
 }
 
-export function wrapConstructorWithOpts<H extends Hash<H>, T extends Object> (
+export function wrapConstructorWithOpts<H extends Hash<H>, T extends Object>(
   hashCons: (opts?: T) => Hash<H>
 ) {
   const hashC = (msg: Input, opts?: T): Uint8Array => hashCons(opts).update(toBytes(msg)).digest();
   const tmp = hashCons({} as T);
-
   hashC.outputLen = tmp.outputLen;
   hashC.blockLen = tmp.blockLen;
   hashC.create = (opts: T) => hashCons(opts);
   hashC.init = hashC.create;
-
   return hashC;
 }
 
 export const crypto: { node?: any; web?: any } = (() => {
   const webCrypto = typeof self === 'object' && 'crypto' in self ? self.crypto : undefined;
   const nodeRequire = typeof module !== 'undefined' && typeof require === 'function';
-
   return {
     node: nodeRequire && !webCrypto ? require('crypto') : undefined,
-    web: webCrypto
+    web: webCrypto,
   };
 })();
 
-export function randomBytes (bytesLength = 32): Uint8Array {
+export function randomBytes(bytesLength = 32): Uint8Array {
   if (crypto.web) {
     return crypto.web.getRandomValues(new Uint8Array(bytesLength));
   } else if (crypto.node) {

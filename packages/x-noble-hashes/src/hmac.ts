@@ -1,7 +1,6 @@
 /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
 // https://github.com/paulmillr/noble-hashes/pull/13
-import { assertHash, CHash, Hash, Input, toBytes } from './utils';
-
+import { assertHash, Hash, CHash, Input, toBytes } from './utils';
 // HMAC (RFC 2104)
 class HMAC<T extends Hash<T>> extends Hash<HMAC<T>> {
   oHash: T;
@@ -11,20 +10,16 @@ class HMAC<T extends Hash<T>> extends Hash<HMAC<T>> {
   private finished = false;
   private destroyed = false;
 
-  constructor (hash: CHash, _key: Input) {
+  constructor(hash: CHash, _key: Input) {
     super();
     assertHash(hash);
     const key = toBytes(_key);
-
     this.iHash = hash.create() as T;
-
-    if (!(this.iHash instanceof Hash)) { throw new TypeError('Expected instance of class which extends utils.Hash'); }
-
+    if (!(this.iHash instanceof Hash))
+      throw new TypeError('Expected instance of class which extends utils.Hash');
     const blockLen = (this.blockLen = this.iHash.blockLen);
-
     this.outputLen = this.iHash.outputLen;
     const pad = new Uint8Array(blockLen);
-
     // blockLen can be bigger than outputLen
     pad.set(key.length > this.iHash.blockLen ? hash.create().update(key).digest() : key);
     for (let i = 0; i < pad.length; i++) pad[i] ^= 0x36;
@@ -36,19 +31,15 @@ class HMAC<T extends Hash<T>> extends Hash<HMAC<T>> {
     this.oHash.update(pad);
     pad.fill(0);
   }
-
-  update (buf: Input) {
+  update(buf: Input) {
     if (this.destroyed) throw new Error('instance is destroyed');
     this.iHash.update(buf);
-
     return this;
   }
-
-  digestInto (out: Uint8Array) {
+  digestInto(out: Uint8Array) {
     if (this.destroyed) throw new Error('instance is destroyed');
-
-    if (!(out instanceof Uint8Array) || out.length !== this.outputLen) { throw new Error('HMAC: Invalid output buffer'); }
-
+    if (!(out instanceof Uint8Array) || out.length !== this.outputLen)
+      throw new Error('HMAC: Invalid output buffer');
     if (this.finished) throw new Error('digest() was already called');
     this.finished = true;
     this.iHash.digestInto(out);
@@ -56,20 +47,15 @@ class HMAC<T extends Hash<T>> extends Hash<HMAC<T>> {
     this.oHash.digestInto(out);
     this.destroy();
   }
-
-  digest () {
+  digest() {
     const out = new Uint8Array(this.oHash.outputLen);
-
     this.digestInto(out);
-
     return out;
   }
-
-  _cloneInto (to?: HMAC<T>): HMAC<T> {
+  _cloneInto(to?: HMAC<T>): HMAC<T> {
     // Create new instance without calling constructor since key already in state and we don't know it.
     to ||= Object.create(Object.getPrototypeOf(this), {});
-    const { blockLen, destroyed, finished, iHash, oHash, outputLen } = this;
-
+    const { oHash, iHash, finished, destroyed, blockLen, outputLen } = this;
     to = to as this;
     to.finished = finished;
     to.destroyed = destroyed;
@@ -77,11 +63,9 @@ class HMAC<T extends Hash<T>> extends Hash<HMAC<T>> {
     to.outputLen = outputLen;
     to.oHash = oHash._cloneInto(to.oHash);
     to.iHash = iHash._cloneInto(to.iHash);
-
     return to;
   }
-
-  destroy () {
+  destroy() {
     this.destroyed = true;
     this.oHash.destroy();
     this.iHash.destroy();

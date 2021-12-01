@@ -1,8 +1,8 @@
 /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
 // https://github.com/paulmillr/noble-hashes/pull/13
-import * as blake2 from './_blake2';
 import * as u64 from './_u64';
-import { rotr, toBytes, u32, wrapConstructorWithOpts } from './utils';
+import * as blake2 from './_blake2';
+import { rotr, toBytes, wrapConstructorWithOpts, u32 } from './utils';
 
 // Initial state:
 // first 32 bits of the fractional parts of the square roots of the first 8 primes 2..19)
@@ -13,31 +13,27 @@ export const IV = new Uint32Array([
 ]);
 
 // Mixing function G splitted in two halfs
-function G1 (a: number, b: number, c: number, d: number, x: number) {
+function G1(a: number, b: number, c: number, d: number, x: number) {
   a = (a + b + x) | 0;
   d = rotr(d ^ a, 16);
   c = (c + d) | 0;
   b = rotr(b ^ c, 12);
-
   return { a, b, c, d };
 }
 
-function G2 (a: number, b: number, c: number, d: number, x: number) {
+function G2(a: number, b: number, c: number, d: number, x: number) {
   a = (a + b + x) | 0;
   d = rotr(d ^ a, 8);
   c = (c + d) | 0;
   b = rotr(b ^ c, 7);
-
   return { a, b, c, d };
 }
-
 // prettier-ignore
-export function compress (s: Uint8Array, offset: number, msg: Uint32Array, rounds: number,
-  v0: number, v1: number, v2: number, v3: number, v4: number, v5: number, v6: number, v7: number,
-  v8: number, v9: number, v10: number, v11: number, v12: number, v13: number, v14: number, v15: number
+export function compress(s: Uint8Array, offset: number, msg: Uint32Array, rounds: number,
+  v0: number, v1: number,  v2: number,  v3: number,  v4: number,  v5: number,  v6: number,  v7: number,
+  v8: number, v9: number, v10: number, v11: number, v12: number, v13: number, v14: number, v15: number,
 ) {
   let j = 0;
-
   for (let i = 0; i < rounds; i++) {
     ({ a: v0, b: v4, c: v8, d: v12 } = G1(v0, v4, v8, v12, msg[offset + s[j++]]));
     ({ a: v0, b: v4, c: v8, d: v12 } = G2(v0, v4, v8, v12, msg[offset + s[j++]]));
@@ -57,7 +53,6 @@ export function compress (s: Uint8Array, offset: number, msg: Uint32Array, round
     ({ a: v3, b: v4, c: v9, d: v14 } = G1(v3, v4, v9, v14, msg[offset + s[j++]]));
     ({ a: v3, b: v4, c: v9, d: v14 } = G2(v3, v4, v9, v14, msg[offset + s[j++]]));
   }
-
   return { v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15 };
 }
 
@@ -72,43 +67,33 @@ class BLAKE2s extends blake2.BLAKE2<BLAKE2s> {
   private v6 = IV[6] | 0;
   private v7 = IV[7] | 0;
 
-  constructor (opts: blake2.BlakeOpts = {}) {
+  constructor(opts: blake2.BlakeOpts = {}) {
     super(64, opts.dkLen === undefined ? 32 : opts.dkLen, opts, 32, 8, 8);
     const keyLength = opts.key ? opts.key.length : 0;
-
     this.v0 ^= this.outputLen | (keyLength << 8) | (0x01 << 16) | (0x01 << 24);
-
     if (opts.salt) {
       const salt = u32(toBytes(opts.salt));
-
       this.v4 ^= salt[0];
       this.v5 ^= salt[1];
     }
-
     if (opts.personalization) {
       const pers = u32(toBytes(opts.personalization));
-
       this.v6 ^= pers[0];
       this.v7 ^= pers[1];
     }
-
     if (opts.key) {
       // Pad to blockLen and update
       const tmp = new Uint8Array(this.blockLen);
-
       tmp.set(toBytes(opts.key));
       this.update(tmp);
     }
   }
-
-  protected get (): [number, number, number, number, number, number, number, number] {
+  protected get(): [number, number, number, number, number, number, number, number] {
     const { v0, v1, v2, v3, v4, v5, v6, v7 } = this;
-
     return [v0, v1, v2, v3, v4, v5, v6, v7];
   }
-
   // prettier-ignore
-  protected set (
+  protected set(
     v0: number, v1: number, v2: number, v3: number, v4: number, v5: number, v6: number, v7: number
   ) {
     this.v0 = v0 | 0;
@@ -120,8 +105,7 @@ class BLAKE2s extends blake2.BLAKE2<BLAKE2s> {
     this.v6 = v6 | 0;
     this.v7 = v7 | 0;
   }
-
-  protected compress (msg: Uint32Array, offset: number, isLast: boolean) {
+  protected compress(msg: Uint32Array, offset: number, isLast: boolean) {
     const { h, l } = u64.fromBig(BigInt(this.length));
     // prettier-ignore
     const { v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15 } =
@@ -130,7 +114,6 @@ class BLAKE2s extends blake2.BLAKE2<BLAKE2s> {
         this.v0, this.v1, this.v2, this.v3, this.v4, this.v5, this.v6, this.v7,
         IV[0], IV[1], IV[2], IV[3], l ^ IV[4], h ^ IV[5], isLast ? ~IV[6] : IV[6], IV[7]
       );
-
     this.v0 ^= v0 ^ v8;
     this.v1 ^= v1 ^ v9;
     this.v2 ^= v2 ^ v10;
@@ -140,8 +123,7 @@ class BLAKE2s extends blake2.BLAKE2<BLAKE2s> {
     this.v6 ^= v6 ^ v14;
     this.v7 ^= v7 ^ v15;
   }
-
-  destroy () {
+  destroy() {
     this.destroyed = true;
     this.buffer32.fill(0);
     this.set(0, 0, 0, 0, 0, 0, 0, 0);
