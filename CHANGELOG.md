@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Add Picasso genesisHash (Thanks to https://github.com/hussein-aitlahcen)
+
+Changes:
+
+- Ensure consequtive capitals in `stringCamelCase` are lowercased
+
+
 ## 8.0.5 Dec 1, 2021
 
 Changes:
