@@ -2095,6 +2095,7 @@ __metadata:
     "@polkadot/networks": 8.0.6-3
     "@polkadot/util": 8.0.6-3
     "@polkadot/wasm-crypto": ^4.4.1
+    "@polkadot/x-noble-hashes": 8.0.6-3
     "@polkadot/x-randomvalues": 8.0.6-3
     "@stablelib/ed25519": ^1.0.2
     "@types/bn.js": ^4.11.6
@@ -2179,6 +2180,12 @@ __metadata:
   resolution: "@polkadot/x-global@workspace:packages/x-global"
   dependencies:
     "@babel/runtime": ^7.16.3
+  languageName: unknown
+  linkType: soft
+
+"@polkadot/x-noble-hashes@8.0.6-3, @polkadot/x-noble-hashes@workspace:packages/x-noble-hashes":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/x-noble-hashes@workspace:packages/x-noble-hashes"
   languageName: unknown
   linkType: soft
 
