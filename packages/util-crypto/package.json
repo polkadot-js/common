@@ -5,9 +5,6 @@
     "stream": false
   },
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "bundledDependencies": [
-    "@noble/hashes"
-  ],
   "contributors": [],
   "description": "A collection of useful crypto utilities for @polkadot",
   "engines": {
