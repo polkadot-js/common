@@ -25,15 +25,15 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "8.0.4",
+  "version": "8.0.5",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
     "@noble/hashes": "0.4.1",
-    "@polkadot/networks": "8.0.4",
-    "@polkadot/util": "8.0.4",
+    "@polkadot/networks": "8.0.5",
+    "@polkadot/util": "8.0.5",
     "@polkadot/wasm-crypto": "^4.4.1",
-    "@polkadot/x-randomvalues": "8.0.4",
+    "@polkadot/x-randomvalues": "8.0.5",
     "bn.js": "^4.12.0",
     "ed2curve": "^0.3.0",
     "elliptic": "^6.5.4",
@@ -46,6 +46,6 @@
     "@types/elliptic": "^6.4.14"
   },
   "peerDependencies": {
-    "@polkadot/util": "8.0.4"
+    "@polkadot/util": "8.0.5"
   }
 }
