@@ -4,11 +4,13 @@
 import type { BN } from '../bn';
 import type { ToBigInt, ToBn } from '../types';
 
+import { BigInt } from '@polkadot/x-bigint';
+
 import { assert } from '../assert';
-import { _0n, _1n, _2pow53n, _n } from './consts';
+import { _0n, _1n, _2pow53n } from './consts';
 import { nToBigInt } from './toBigInt';
 
-const _sqrt2pow53n = _n(94906265);
+const _sqrt2pow53n = BigInt(94906265);
 
 /**
  * @name nSqrt

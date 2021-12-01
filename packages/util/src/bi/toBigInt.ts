@@ -4,7 +4,8 @@
 import type { BN } from '../bn/bn';
 import type { HexString, ToBigInt, ToBn } from '../types';
 
-import { _n } from '../bi/consts';
+import { BigInt } from '@polkadot/x-bigint';
+
 import { hexToBigInt } from '../hex/toBigInt';
 import { isBn } from '../is/bn';
 import { isHex } from '../is/hex';
@@ -19,14 +20,14 @@ export function nToBigInt <ExtToBn extends ToBigInt | ToBn> (value?: HexString |
   return typeof value === 'bigint'
     ? value
     : !value
-      ? _n(0)
+      ? BigInt(0)
       : isHex(value)
         ? hexToBigInt(value.toString())
         : isBn(value)
-          ? _n(value.toString())
+          ? BigInt(value.toString())
           : isToBigInt(value)
             ? value.toBigInt()
             : isToBn(value)
-              ? _n(value.toBn().toString())
-              : _n(value);
+              ? BigInt(value.toBn().toString())
+              : BigInt(value);
 }

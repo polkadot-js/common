@@ -1,8 +1,9 @@
 /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
 // https://github.com/paulmillr/noble-hashes/pull/13
+import { BigInt } from '@polkadot/x-bigint';
 import * as blake2 from './_blake2';
 import * as u64 from './_u64';
-import { _n, toBytes, u32, wrapConstructorWithOpts } from './utils';
+import { toBytes, u32, wrapConstructorWithOpts } from './utils';
 
 // Same as SHA-512 but LE
 // prettier-ignore
@@ -143,7 +144,7 @@ class BLAKE2b extends blake2.BLAKE2<BLAKE2b> {
   protected compress(msg: Uint32Array, offset: number, isLast: boolean) {
     this.get().forEach((v, i) => (BUF[i] = v)); // First half from state.
     BUF.set(IV, 16); // Second half from IV.
-    let { h, l } = u64.fromBig(_n(this.length));
+    let { h, l } = u64.fromBig(BigInt(this.length));
     BUF[24] = IV[8] ^ l; // Low word of the offset.
     BUF[25] = IV[9] ^ h; // High word.
     // Invert all bits for last block

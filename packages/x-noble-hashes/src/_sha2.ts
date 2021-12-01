@@ -1,9 +1,10 @@
 /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
 // https://github.com/paulmillr/noble-hashes/pull/13
-import { _n, Hash, createView, Input, toBytes } from './utils';
+import { BigInt } from '@polkadot/x-bigint';
+import { Hash, createView, Input, toBytes } from './utils';
 
-const _32n = _n(32);
-const _u32_max = _n(0xffffffff);
+const _32n = BigInt(32);
+const _u32_max = BigInt(0xffffffff);
 
 // Polyfill for Safari 14
 function setBigUint64(view: DataView, byteOffset: number, value: bigint, isLE: boolean): void {
@@ -90,7 +91,7 @@ export abstract class SHA2<T extends SHA2<T>> extends Hash<T> {
     // NOTE: sha512 requires length to be 128bit integer, but length in JS will overflow before that
     // You need to write around 2 exabytes (u64_max / 8 / (1024**6)) for this to happen.
     // So we just write lowest 64bit of that value.
-    setBigUint64(view, blockLen - 8, _n(this.length * 8), isLE);
+    setBigUint64(view, blockLen - 8, BigInt(this.length * 8), isLE);
     this.process(view, 0);
     const oview = createView(out);
     this.get().forEach((v, i) => oview.setUint32(4 * i, v, isLE));
