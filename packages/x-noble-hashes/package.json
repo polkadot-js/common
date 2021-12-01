@@ -6,7 +6,7 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-randomvalues#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-noble-hashes#readme",
   "license": "MIT",
   "maintainers": [],
   "name": "@polkadot/x-noble-hashes",
