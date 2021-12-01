@@ -1,1 +1,1 @@
-packages/util-crypto/src/noble-hashes/lib/*.ts
+packages/x-noble-hashes/**/*.ts

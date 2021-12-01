@@ -5,9 +5,9 @@ import type { HexString } from '@polkadot/util/types';
 
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { blake2b, isReady } from '@polkadot/wasm-crypto';
+import { blake2b as blake2bJs } from '@polkadot/x-noble-hashes/blake2b';
 
 import { createAsHex } from '../helpers';
-import { blake2b as blake2bJs } from '../noble-hashes/lib/blake2b';
 
 type BitLength = 64 | 128 | 256 | 384 | 512;
 

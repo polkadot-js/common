@@ -22,6 +22,7 @@
       "@polkadot/x-bundle/*": [ "packages/x-bundle/src/*" ],
       "@polkadot/x-fetch": [ "packages/x-fetch/src/browser" ],
       "@polkadot/x-global": [ "packages/x-global/src" ],
+      "@polkadot/x-noble-hashes/*": [ "packages/x-noble-hashes/src/*" ],
       "@polkadot/x-randomvalues": [ "packages/x-randomvalues/src/browser" ],
       "@polkadot/x-textdecoder": [ "packages/x-textdecoder/src/browser" ],
       "@polkadot/x-textencoder": [ "packages/x-textencoder/src/browser" ],

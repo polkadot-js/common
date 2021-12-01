@@ -8,7 +8,7 @@ type NewBigInt = (value: string | number | bigint | boolean) => bigint;
  * @description Creates a new instance of BigInt in environments that do support it
  */
 export const _n: NewBigInt = typeof BigInt !== 'undefined'
-  ? BigInt
+  ? (n: string | number | bigint | boolean) => BigInt(n)
   : () => Number.NaN as unknown as bigint;
 
 /**
