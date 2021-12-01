@@ -1,6 +1,7 @@
 /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
 // https://github.com/paulmillr/noble-hashes/pull/13
 import { assertNumber, Hash, Input, toBytes, u32 } from './utils';
+
 // prettier-ignore
 export const SIGMA = new Uint8Array([
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
@@ -15,7 +16,7 @@ export const SIGMA = new Uint8Array([
   10, 2, 8, 4, 7, 6, 1, 5, 15, 11, 9, 14, 3, 12, 13, 0,
   // For BLAKE2b, the two extra permutations for rounds 10 and 11 are SIGMA[10..11] = SIGMA[0..1].
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
-  14, 10, 4, 8, 9, 15, 13, 6, 1, 12, 0, 2, 11, 7, 5, 3,
+  14, 10, 4, 8, 9, 15, 13, 6, 1, 12, 0, 2, 11, 7, 5, 3
 ]);
 
 export type BlakeOpts = {
@@ -32,12 +33,12 @@ export abstract class BLAKE2<T extends BLAKE2<T>> extends Hash<T> {
   abstract override destroy(): void;
   protected buffer: Uint8Array;
   protected buffer32: Uint32Array;
-  protected length: number = 0;
-  protected pos: number = 0;
+  protected length = 0;
+  protected pos = 0;
   protected finished = false;
   protected destroyed = false;
 
-  constructor(
+  constructor (
     readonly blockLen: number,
     public outputLen: number,
     opts: BlakeOpts = {},
@@ -49,72 +50,92 @@ export abstract class BLAKE2<T extends BLAKE2<T>> extends Hash<T> {
     assertNumber(blockLen);
     assertNumber(outputLen);
     assertNumber(keyLen);
-    if (outputLen < 0 || outputLen > keyLen)
-      throw new Error('Blake2: outputLen bigger than keyLen');
-    if (opts.key !== undefined && (opts.key.length < 1 || opts.key.length > keyLen))
-      throw new Error(`Key should be up 1..${keyLen} byte long or undefined`);
-    if (opts.salt !== undefined && opts.salt.length !== saltLen)
-      throw new Error(`Salt should be ${saltLen} byte long or undefined`);
-    if (opts.personalization !== undefined && opts.personalization.length !== persLen)
-      throw new Error(`Personalization should be ${persLen} byte long or undefined`);
+
+    if (outputLen < 0 || outputLen > keyLen) { throw new Error('Blake2: outputLen bigger than keyLen'); }
+
+    if (opts.key !== undefined && (opts.key.length < 1 || opts.key.length > keyLen)) { throw new Error(`Key should be up 1..${keyLen} byte long or undefined`); }
+
+    if (opts.salt !== undefined && opts.salt.length !== saltLen) { throw new Error(`Salt should be ${saltLen} byte long or undefined`); }
+
+    if (opts.personalization !== undefined && opts.personalization.length !== persLen) { throw new Error(`Personalization should be ${persLen} byte long or undefined`); }
+
     this.buffer32 = u32((this.buffer = new Uint8Array(blockLen)));
   }
-  update(data: Input) {
+
+  update (data: Input) {
     if (this.destroyed) throw new Error('instance is destroyed');
     // Main difference with other hashes: there is flag for last block,
     // so we cannot process current block before we know that there
     // is the next one. This significantly complicates logic and reduces ability
     // to do zero-copy processing
-    const { finished, blockLen, buffer, buffer32 } = this;
+    const { blockLen, buffer, buffer32, finished } = this;
+
     if (finished) throw new Error('digest() was already called');
     data = toBytes(data);
     const len = data.length;
-    for (let pos = 0; pos < len; ) {
+
+    for (let pos = 0; pos < len;) {
       // If buffer is full and we still have input (don't process last block, same as blake2s)
       if (this.pos === blockLen) {
         this.compress(buffer32, 0, false);
         this.pos = 0;
       }
+
       const take = Math.min(blockLen - this.pos, len - pos);
       const dataOffset = data.byteOffset + pos;
+
       // full block && aligned to 4 bytes && not last in input
       if (take === blockLen && !(dataOffset % 4) && pos + take < len) {
         const data32 = new Uint32Array(data.buffer, dataOffset, Math.floor((len - pos) / 4));
+
         for (let pos32 = 0; pos + blockLen < len; pos32 += buffer32.length, pos += blockLen) {
           this.length += blockLen;
           this.compress(data32, pos32, false);
         }
+
         continue;
       }
+
       buffer.set(data.subarray(pos, pos + take), this.pos);
       this.pos += take;
       this.length += take;
       pos += take;
     }
+
     return this;
   }
-  digestInto(out: Uint8Array) {
+
+  digestInto (out: Uint8Array) {
     if (this.destroyed) throw new Error('instance is destroyed');
-    if (!(out instanceof Uint8Array) || out.length < this.outputLen)
-      throw new Error('_Blake2: Invalid output buffer');
-    const { finished, pos, buffer32 } = this;
+
+    if (!(out instanceof Uint8Array) || out.length < this.outputLen) { throw new Error('_Blake2: Invalid output buffer'); }
+
+    const { buffer32, finished, pos } = this;
+
     if (finished) throw new Error('digest() was already called');
     this.finished = true;
     // Padding
     this.buffer.subarray(pos).fill(0);
     this.compress(buffer32, 0, true);
     const out32 = u32(out);
+
     this.get().forEach((v, i) => (out32[i] = v));
   }
-  digest() {
+
+  digest () {
     const { buffer, outputLen } = this;
+
     this.digestInto(buffer);
     const res = buffer.slice(0, outputLen);
+
     this.destroy();
+
     return res;
   }
-  _cloneInto(to?: T): T {
-    const { buffer, length, finished, destroyed, outputLen, pos } = this;
+
+  _cloneInto (to?: T): T {
+    const { buffer, destroyed, finished, length, outputLen, pos } = this;
+
     to ||= new (this.constructor as any)({ dkLen: outputLen }) as T;
     to.set(...this.get());
     to.length = length;
@@ -123,6 +144,7 @@ export abstract class BLAKE2<T extends BLAKE2<T>> extends Hash<T> {
     to.outputLen = outputLen;
     to.buffer.set(buffer);
     to.pos = pos;
+
     return to;
   }
 }

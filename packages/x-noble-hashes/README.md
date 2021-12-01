@@ -38,7 +38,7 @@ Use NPM in node.js / browser, or include single file from
 The library does not have an entry point. It allows you to select specific primitives and drop everything else. If you only want to use sha256, just use the library with rollup or other bundlers. This is done to make your bundles tiny.
 
 ```js
-const { sha256 } = require('../noble-hashes/lib/sha256');
+const { sha256 } = require('@polkadot/x-noble-hashes/sha256');
 console.log(sha256(new Uint8Array([1, 2, 3])));
 // Uint8Array(32) [3, 144,  88, 198, 242, 192, 203,  73, ...]
 
@@ -46,30 +46,30 @@ console.log(sha256(new Uint8Array([1, 2, 3])));
 console.log(sha256('abc'))); // == sha256(new TextEncoder().encode('abc'))
 
 // sha384 is here, because it uses same internals as sha512
-const { sha512, sha512_256, sha384 } = require('../noble-hashes/lib/sha512');
+const { sha512, sha512_256, sha384 } = require('@polkadot/x-noble-hashes/sha512');
 // prettier-ignore
 const {
   sha3_224, sha3_256, sha3_384, sha3_512,
   keccak_224, keccak_256, keccak_384, keccak_512,
   shake128, shake256
-} = require('../noble-hashes/lib/sha3');
+} = require('@polkadot/x-noble-hashes/sha3');
 // prettier-ignore
 const {
   cshake128, cshake256, kmac128, kmac256,
   k12, m14,
   tuplehash256, parallelhash256, keccakprg
-} = require('../noble-hashes/lib/sha3-addons');
-const { ripemd160 } = require('../noble-hashes/lib/ripemd160');
-const { blake3 } = require('../noble-hashes/lib/blake3');
-const { blake2b } = require('../noble-hashes/lib/blake2b');
-const { blake2s } = require('../noble-hashes/lib/blake2s');
-const { hmac } = require('../noble-hashes/lib/hmac');
-const { hkdf } = require('../noble-hashes/lib/hkdf');
-const { pbkdf2, pbkdf2Async } = require('../noble-hashes/lib/pbkdf2');
-const { scrypt, scryptAsync } = require('../noble-hashes/lib/scrypt');
+} = require('@polkadot/x-noble-hashes/sha3-addons');
+const { ripemd160 } = require('@polkadot/x-noble-hashes/ripemd160');
+const { blake3 } = require('@polkadot/x-noble-hashes/blake3');
+const { blake2b } = require('@polkadot/x-noble-hashes/blake2b');
+const { blake2s } = require('@polkadot/x-noble-hashes/blake2s');
+const { hmac } = require('@polkadot/x-noble-hashes/hmac');
+const { hkdf } = require('@polkadot/x-noble-hashes/hkdf');
+const { pbkdf2, pbkdf2Async } = require('@polkadot/x-noble-hashes/pbkdf2');
+const { scrypt, scryptAsync } = require('@polkadot/x-noble-hashes/scrypt');
 
 // small utility method that converts bytes to hex
-const { bytesToHex as toHex } = require('../noble-hashes/lib/utils');
+const { bytesToHex as toHex } = require('@polkadot/x-noble-hashes/utils');
 console.log(toHex(sha256('abc')));
 // ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
 ```
@@ -124,7 +124,7 @@ _Some_ hash functions can also receive `options` object, which can be either pas
 ##### SHA2 (sha256, sha384, sha512, sha512_256)
 
 ```typescript
-import { sha256 } from '../noble-hashes/lib/sha256.js';
+import { sha256 } from '@polkadot/x-noble-hashes/sha256.js';
 const h1a = sha256('abc');
 const h1b = sha256
   .create()
@@ -133,7 +133,7 @@ const h1b = sha256
 ```
 
 ```typescript
-import { sha512 } from '../noble-hashes/lib/sha512.js';
+import { sha512 } from '@polkadot/x-noble-hashes/sha512.js';
 const h2a = sha512('abc');
 const h2b = sha512
   .create()
@@ -141,7 +141,7 @@ const h2b = sha512
   .digest();
 
 // SHA512/256 variant
-import { sha512_256 } from '../noble-hashes/lib/sha512.js';
+import { sha512_256 } from '@polkadot/x-noble-hashes/sha512.js';
 const h3a = sha512_256('abc');
 const h3b = sha512_256
   .create()
@@ -149,7 +149,7 @@ const h3b = sha512_256
   .digest();
 
 // SHA384
-import { sha384 } from '../noble-hashes/lib/sha512.js';
+import { sha384 } from '@polkadot/x-noble-hashes/sha512.js';
 const h4a = sha384('abc');
 const h4b = sha384
   .create()
@@ -173,7 +173,7 @@ import {
   keccak_512,
   shake128,
   shake256,
-} from '../noble-hashes/lib/sha3.js';
+} from '@polkadot/x-noble-hashes/sha3.js';
 const h5a = sha3_256('abc');
 const h5b = sha3_256
   .create()
@@ -203,7 +203,7 @@ import {
   parallelhash128,
   parallelhash256,
   keccakprg,
-} from '../noble-hashes/lib/sha3-addons.js';
+} from '@polkadot/x-noble-hashes/sha3-addons.js';
 const h7c = cshake128('abc', { personalization: 'def' });
 const h7d = cshake256('abc', { personalization: 'def' });
 const h7e = kmac128('key', 'message');
@@ -228,7 +228,7 @@ const rand1b = p.fetch(1);
 ##### RIPEMD-160
 
 ```typescript
-import { ripemd160 } from '../noble-hashes/lib/ripemd160.js';
+import { ripemd160 } from '@polkadot/x-noble-hashes/ripemd160.js';
 // function ripemd160(data: Uint8Array): Uint8Array;
 const hash8 = ripemd160('abc');
 const hash9 = ripemd160()
@@ -242,8 +242,8 @@ See [RFC 2286](https://datatracker.ietf.org/doc/html/rfc2286), [Website](https:/
 ##### BLAKE2b, BLAKE2s
 
 ```typescript
-import { blake2b } from '../noble-hashes/lib/blake2b.js';
-import { blake2s } from '../noble-hashes/lib/blake2s.js';
+import { blake2b } from '@polkadot/x-noble-hashes/blake2b.js';
+import { blake2s } from '@polkadot/x-noble-hashes/blake2s.js';
 const h10a = blake2s('abc');
 const b2params = { key: new Uint8Array([1]), personalization: t, salt: t, dkLen: 32 };
 const h10b = blake2s('abc', b2params);
@@ -258,7 +258,7 @@ See [RFC 7693](https://datatracker.ietf.org/doc/html/rfc7693), [Website](https:/
 ##### BLAKE3
 
 ```typescript
-import { blake3 } from '../noble-hashes/lib/blake3.js';
+import { blake3 } from '@polkadot/x-noble-hashes/blake3.js';
 // All params are optional
 const h11 = blake3('abc', { dkLen: 256, key: 'def', context: 'fji' });
 ```
@@ -268,8 +268,8 @@ See [Website](https://blake3.io).
 ##### HMAC
 
 ```typescript
-import { hmac } from '../noble-hashes/lib/hmac.js';
-import { sha256 } from '../noble-hashes/lib/sha256.js';
+import { hmac } from '@polkadot/x-noble-hashes/hmac.js';
+import { sha256 } from '@polkadot/x-noble-hashes/sha256.js';
 const mac1 = hmac(sha256, 'key', 'message');
 const mac2 = hmac.create(sha256, Uint8Array.from([1, 2, 3])).update(Uint8Array.from([4, 5, 6]).digest();
 ```
@@ -279,8 +279,8 @@ Matches [RFC 2104](https://datatracker.ietf.org/doc/html/rfc2104).
 ##### HKDF
 
 ```typescript
-import { hkdf } from '../noble-hashes/lib/kdf.js';
-import { sha256 } from '../noble-hashes/lib/sha256.js';
+import { hkdf } from '@polkadot/x-noble-hashes/kdf.js';
+import { sha256 } from '@polkadot/x-noble-hashes/sha256.js';
 import { randomBytes } from '../noble-hashes/utils.js';
 const inputKey = randomBytes(32);
 const salt = randomBytes(32);
@@ -289,8 +289,8 @@ const dkLen = 32;
 const hk1 = hkdf(sha256, inputKey, salt, info, dkLen);
 
 // == same as
-import { hkdf_extract, hkdf_expand } from '../noble-hashes/lib/kdf.js';
-import { sha256 } from '../noble-hashes/lib/sha256.js';
+import { hkdf_extract, hkdf_expand } from '@polkadot/x-noble-hashes/kdf.js';
+import { sha256 } from '@polkadot/x-noble-hashes/sha256.js';
 const prk = hkdf_extract(sha256, inputKey, salt);
 const hk2 = hkdf_expand(sha256, prk, info, dkLen);
 ```
@@ -300,8 +300,8 @@ Matches [RFC 5869](https://datatracker.ietf.org/doc/html/rfc5869).
 ##### PBKDF2
 
 ```typescript
-import { pbkdf2, pbkdf2Async } from '../noble-hashes/lib/pbkdf2.js';
-import { sha256 } from '../noble-hashes/lib/sha256.js';
+import { pbkdf2, pbkdf2Async } from '@polkadot/x-noble-hashes/pbkdf2.js';
+import { sha256 } from '@polkadot/x-noble-hashes/sha256.js';
 const pbkey1 = pbkdf2(sha256, 'password', 'salt', { c: 32, dkLen: 32 });
 const pbkey2 = await pbkdf2Async(sha256, 'password', 'salt', { c: 32, dkLen: 32 });
 const pbkey3 = await pbkdf2Async(sha256, Uint8Array.from([1, 2, 3]), Uint8Array.from([4, 5, 6]), {
@@ -315,7 +315,7 @@ Matches [RFC 2898](https://datatracker.ietf.org/doc/html/rfc2898).
 ##### Scrypt
 
 ```typescript
-import { scrypt, scryptAsync } from '../noble-hashes/lib/scrypt.js';
+import { scrypt, scryptAsync } from '@polkadot/x-noble-hashes/scrypt.js';
 const scr1 = scrypt('password', 'salt', { N: 2 ** 16, r: 8, p: 1, dkLen: 32 });
 const scr2 = await scryptAsync('password', 'salt', { N: 2 ** 16, r: 8, p: 1, dkLen: 32 });
 const scr3 = await scryptAsync(Uint8Array.from([1, 2, 3]), Uint8Array.from([4, 5, 6]), {
@@ -348,7 +348,7 @@ arrays bigger than 4GB impossible, but we're looking into other possible solutio
 ##### utils
 
 ```typescript
-import { bytesToHex as toHex, randomBytes } from '../noble-hashes/lib/scrypt.js';
+import { bytesToHex as toHex, randomBytes } from '@polkadot/x-noble-hashes/scrypt.js';
 console.log(toHex(randomBytes(32)));
 ```
 

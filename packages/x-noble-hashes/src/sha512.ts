@@ -55,19 +55,22 @@ export class SHA512 extends SHA2<SHA512> {
   Hh = 0x5be0cd19 | 0;
   Hl = 0x137e2179 | 0;
 
-  constructor() {
+  constructor () {
     super(128, 64, 16, false);
   }
+
   // prettier-ignore
-  protected get(): [
+  protected get (): [
     number, number, number, number, number, number, number, number,
     number, number, number, number, number, number, number, number
   ] {
     const { Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl } = this;
+
     return [Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl];
   }
+
   // prettier-ignore
-  protected set(
+  protected set (
     Ah: number, Al: number, Bh: number, Bl: number, Ch: number, Cl: number, Dh: number, Dl: number,
     Eh: number, El: number, Fh: number, Fl: number, Gh: number, Gl: number, Hh: number, Hl: number
   ) {
@@ -88,12 +91,14 @@ export class SHA512 extends SHA2<SHA512> {
     this.Hh = Hh | 0;
     this.Hl = Hl | 0;
   }
-  protected process(view: DataView, offset: number) {
+
+  protected process (view: DataView, offset: number) {
     // Extend the first 16 words into the remaining 64 words w[16..79] of the message schedule array
     for (let i = 0; i < 16; i++, offset += 4) {
       SHA512_W_H[i] = view.getUint32(offset);
       SHA512_W_L[i] = view.getUint32((offset += 4));
     }
+
     for (let i = 16; i < 80; i++) {
       // s0 := (w[i-15] rightrotate 1) xor (w[i-15] rightrotate 8) xor (w[i-15] rightshift 7)
       const W15h = SHA512_W_H[i - 15] | 0;
@@ -108,16 +113,19 @@ export class SHA512 extends SHA2<SHA512> {
       // SHA256_W[i] = s0 + s1 + SHA256_W[i - 7] + SHA256_W[i - 16];
       const SUMl = u64.add4L(s0l, s1l, SHA512_W_L[i - 7], SHA512_W_L[i - 16]);
       const SUMh = u64.add4H(SUMl, s0h, s1h, SHA512_W_H[i - 7], SHA512_W_H[i - 16]);
+
       SHA512_W_H[i] = SUMh | 0;
       SHA512_W_L[i] = SUMl | 0;
     }
+
     let { Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl } = this;
+
     // Compression function main loop, 80 rounds
     for (let i = 0; i < 80; i++) {
       // S1 := (e rightrotate 14) xor (e rightrotate 18) xor (e rightrotate 41)
       const sigma1h = u64.rotrSH(Eh, El, 14) ^ u64.rotrSH(Eh, El, 18) ^ u64.rotrBH(Eh, El, 41);
       const sigma1l = u64.rotrSL(Eh, El, 14) ^ u64.rotrSL(Eh, El, 18) ^ u64.rotrBL(Eh, El, 41);
-      //const T1 = (H + sigma1 + Chi(E, F, G) + SHA256_K[i] + SHA256_W[i]) | 0;
+      // const T1 = (H + sigma1 + Chi(E, F, G) + SHA256_K[i] + SHA256_W[i]) | 0;
       const CHIh = (Eh & Fh) ^ (~Eh & Gh);
       const CHIl = (El & Fl) ^ (~El & Gl);
       // T1 = H + sigma1 + Chi(E, F, G) + SHA512_K[i] + SHA512_W[i]
@@ -130,6 +138,7 @@ export class SHA512 extends SHA2<SHA512> {
       const sigma0l = u64.rotrSL(Ah, Al, 28) ^ u64.rotrBL(Ah, Al, 34) ^ u64.rotrBL(Ah, Al, 39);
       const MAJh = (Ah & Bh) ^ (Ah & Ch) ^ (Bh & Ch);
       const MAJl = (Al & Bl) ^ (Al & Cl) ^ (Bl & Cl);
+
       Hh = Gh | 0;
       Hl = Gl | 0;
       Gh = Fh | 0;
@@ -144,9 +153,11 @@ export class SHA512 extends SHA2<SHA512> {
       Bh = Ah | 0;
       Bl = Al | 0;
       const All = u64.add3L(T1l, sigma0l, MAJl);
+
       Ah = u64.add3H(All, T1h, sigma0h, MAJh);
       Al = All | 0;
     }
+
     // Add the compressed chunk to the current hash value
     ({ h: Ah, l: Al } = u64.add(this.Ah | 0, this.Al | 0, Ah | 0, Al | 0));
     ({ h: Bh, l: Bl } = u64.add(this.Bh | 0, this.Bl | 0, Bh | 0, Bl | 0));
@@ -158,11 +169,13 @@ export class SHA512 extends SHA2<SHA512> {
     ({ h: Hh, l: Hl } = u64.add(this.Hh | 0, this.Hl | 0, Hh | 0, Hl | 0));
     this.set(Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl);
   }
-  protected roundClean() {
+
+  protected roundClean () {
     SHA512_W_H.fill(0);
     SHA512_W_L.fill(0);
   }
-  destroy() {
+
+  destroy () {
     this.buffer.fill(0);
     this.set(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   }
@@ -187,7 +200,7 @@ class SHA512_256 extends SHA512 {
   override Hh = 0x0eb72ddc | 0;
   override Hl = 0x81c52ca2 | 0;
 
-  constructor() {
+  constructor () {
     super();
     this.outputLen = 32;
   }
@@ -212,7 +225,7 @@ class SHA384 extends SHA512 {
   override Hh = 0x47b5481d | 0;
   override Hl = 0xbefa4fa4 | 0;
 
-  constructor() {
+  constructor () {
     super();
     this.outputLen = 48;
   }
