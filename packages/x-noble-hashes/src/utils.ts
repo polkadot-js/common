@@ -7,7 +7,7 @@ export type TypedArray = Int8Array | Uint8ClampedArray | Uint8Array |
 
 // helper to protect against older bundlers
 export function _n (n: string | number | bigint | boolean): bigint {
-  return typeof BigInt === 'function'
+  return typeof BigInt === 'function' && typeof BigInt.asIntN === 'function'
     ? BigInt(n)
     : Number.NaN as unknown as bigint;
 }

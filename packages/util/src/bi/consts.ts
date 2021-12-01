@@ -6,7 +6,7 @@
  * @description Creates a new instance of BigInt in environments that do support it
  */
 export function _n (n: string | number | bigint | boolean): bigint {
-  return typeof BigInt === 'function'
+  return typeof BigInt === 'function' && typeof BigInt.asIntN === 'function'
     ? BigInt(n)
     : Number.NaN as unknown as bigint;
 }
