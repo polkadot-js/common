@@ -2095,7 +2095,7 @@ __metadata:
     "@polkadot/networks": 8.0.6-3
     "@polkadot/util": 8.0.6-3
     "@polkadot/wasm-crypto": ^4.4.1
-    "@polkadot/x-randomvalues": 8.0.6-2
+    "@polkadot/x-randomvalues": 8.0.6-3
     "@types/bn.js": ^4.11.6
     "@types/ed2curve": ^0.2.2
     "@types/elliptic": ^6.4.14
@@ -2183,26 +2183,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-global@npm:8.0.6-2":
-  version: 8.0.6-2
-  resolution: "@polkadot/x-global@npm:8.0.6-2"
-  dependencies:
-    "@babel/runtime": ^7.16.3
-  checksum: b9b54801c5c1068a7543fcf0853f6b38dea4678b26d9e2c29373bb6ff9f6008d9f98729d5ea89efd38e08fdfb0d41ca53cf7adef6ac0c1f6c83c8763fcffb208
-  languageName: node
-  linkType: hard
-
-"@polkadot/x-randomvalues@npm:8.0.6-2":
-  version: 8.0.6-2
-  resolution: "@polkadot/x-randomvalues@npm:8.0.6-2"
-  dependencies:
-    "@babel/runtime": ^7.16.3
-    "@polkadot/x-global": 8.0.6-2
-  checksum: 65368182a1029e42614218a6cc23d935acade67bd719f818a20a73deced78d94e86e469f0d5b1545c081a55d278d5d791383ed14c3c23df36ed089e23e603b74
-  languageName: node
-  linkType: hard
-
-"@polkadot/x-randomvalues@workspace:packages/x-randomvalues":
+"@polkadot/x-randomvalues@8.0.6-3, @polkadot/x-randomvalues@workspace:packages/x-randomvalues":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
