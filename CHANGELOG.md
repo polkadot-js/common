@@ -2,6 +2,10 @@
 
 ## master
 
+Contributed:
+
+- Add Picasso genesisHash (Thanks to https://github.com/hussein-aitlahcen)
+
 Changes:
 
 - Ensure consequtive capitals in `stringCamelCase` are lowercased
