@@ -20,7 +20,7 @@ export function split(lst: bigint[], le = false) {
   return [Ah, Al];
 }
 
-export const toBig = (h: number, l: number) => (BigInt(h >>> 0) << _32n) | BigInt(l >>> 0);
+export const toBig = (h: number, l: number) => (_n(h >>> 0) << _32n) | _n(l >>> 0);
 // for Shift in [0, 32)
 export const shrSH = (h: number, l: number, s: number) => h >>> s;
 export const shrSL = (h: number, l: number, s: number) => (h << (32 - s)) | (l >>> s);

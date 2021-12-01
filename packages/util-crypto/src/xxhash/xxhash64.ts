@@ -61,7 +61,7 @@ function fromU8a (u8a: Uint8Array, p: number, count: 2 | 4): bigint {
   let offset = 0;
 
   for (let i = 0; i < count; i++, offset += 2) {
-    bigints[i] = BigInt(u8a[p + offset] | (u8a[p + 1 + offset] << 8));
+    bigints[i] = _n(u8a[p + offset] | (u8a[p + 1 + offset] << 8));
   }
 
   let result = _0n;
@@ -86,7 +86,7 @@ function toU8a (h64: bigint): Uint8Array {
 }
 
 function state (initSeed: bigint | number): State {
-  const seed = BigInt(initSeed);
+  const seed = _n(initSeed);
 
   return {
     seed,
@@ -133,7 +133,7 @@ function init (state: State, input: Uint8Array): State {
 export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Array {
   const { seed, u8a, u8asize, v1, v2, v3, v4 } = init(state(initSeed), input);
   let p = 0;
-  let h64 = U64 & (BigInt(input.length) + (
+  let h64 = U64 & (_n(input.length) + (
     input.length >= 32
       ? (((((((((rotl(v1, _1n) + rotl(v2, _7n) + rotl(v3, _12n) + rotl(v4, _18n)) ^ (P64_1 * rotl(v1 * P64_2, _31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v2 * P64_2, _31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v3 * P64_2, _31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v4 * P64_2, _31n))) * P64_1 + P64_4)
       : (seed + P64_5)
@@ -150,7 +150,7 @@ export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Ar
   }
 
   while (p < u8asize) {
-    h64 = U64 & (P64_1 * rotl(h64 ^ (P64_5 * BigInt(u8a[p++])), _11n));
+    h64 = U64 & (P64_1 * rotl(h64 ^ (P64_5 * _n(u8a[p++])), _11n));
   }
 
   h64 = U64 & (P64_2 * (h64 ^ (h64 >> _33n)));

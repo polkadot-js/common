@@ -3,6 +3,7 @@
 
 import type { ToBnOptions } from '../types';
 
+import { _n } from '../bi/consts';
 import { objectSpread } from '../object/spread';
 import { u8aToBigInt } from '../u8a/toBigInt';
 import { hexToU8a } from './toU8a';
@@ -13,7 +14,7 @@ import { hexToU8a } from './toU8a';
  */
 export function hexToBigInt (value?: string | null, options: ToBnOptions = {}): bigint {
   if (!value || value === '0x') {
-    return BigInt(0);
+    return _n(0);
   }
 
   return u8aToBigInt(

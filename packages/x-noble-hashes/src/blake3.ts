@@ -3,7 +3,7 @@
 import * as u64 from './_u64';
 import * as blake2 from './_blake2';
 import * as blake2s from './blake2s';
-import { Input, u8, u32, toBytes, wrapConstructorWithOpts, assertNumber, HashXOF } from './utils';
+import { _n, Input, u8, u32, toBytes, wrapConstructorWithOpts, assertNumber, HashXOF } from './utils';
 
 // Flag bitset
 enum Flags {
@@ -84,7 +84,7 @@ class BLAKE3 extends blake2.BLAKE2<BLAKE3> implements HashXOF<BLAKE3> {
   protected set() {}
   private b2Compress(counter: number, flags: number, buf: Uint32Array, bufPos: number = 0) {
     const { state, pos } = this;
-    const { h, l } = u64.fromBig(BigInt(counter), true);
+    const { h, l } = u64.fromBig(_n(counter), true);
     // prettier-ignore
     const { v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15 } =
       blake2s.compress(
@@ -160,7 +160,7 @@ class BLAKE3 extends blake2.BLAKE2<BLAKE3> implements HashXOF<BLAKE3> {
   // Same as b2Compress, but doesn't modify state and returns 16 u32 array (instead of 8)
   private b2CompressOut() {
     const { state, pos, flags, buffer32, bufferOut32 } = this;
-    const { h, l } = u64.fromBig(BigInt(this.chunkOut++));
+    const { h, l } = u64.fromBig(_n(this.chunkOut++));
     // prettier-ignore
     const { v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15 } =
       blake2s.compress(
