@@ -2095,11 +2095,12 @@ __metadata:
     "@polkadot/networks": 8.0.6-3
     "@polkadot/util": 8.0.6-3
     "@polkadot/wasm-crypto": ^4.4.1
-    "@polkadot/x-randomvalues": 8.0.6-3
-    "@stablelib/ed25519": ^1.0.2
+    "@polkadot/x-randomvalues": 8.0.6-2
     "@types/bn.js": ^4.11.6
+    "@types/ed2curve": ^0.2.2
     "@types/elliptic": ^6.4.14
     bn.js: ^4.12.0
+    ed2curve: ^0.3.0
     elliptic: ^6.5.4
     micro-base: ^0.9.0
     tweetnacl: ^1.0.3
@@ -2182,7 +2183,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-randomvalues@8.0.6-3, @polkadot/x-randomvalues@workspace:packages/x-randomvalues":
+"@polkadot/x-global@npm:8.0.6-2":
+  version: 8.0.6-2
+  resolution: "@polkadot/x-global@npm:8.0.6-2"
+  dependencies:
+    "@babel/runtime": ^7.16.3
+  checksum: b9b54801c5c1068a7543fcf0853f6b38dea4678b26d9e2c29373bb6ff9f6008d9f98729d5ea89efd38e08fdfb0d41ca53cf7adef6ac0c1f6c83c8763fcffb208
+  languageName: node
+  linkType: hard
+
+"@polkadot/x-randomvalues@npm:8.0.6-2":
+  version: 8.0.6-2
+  resolution: "@polkadot/x-randomvalues@npm:8.0.6-2"
+  dependencies:
+    "@babel/runtime": ^7.16.3
+    "@polkadot/x-global": 8.0.6-2
+  checksum: 65368182a1029e42614218a6cc23d935acade67bd719f818a20a73deced78d94e86e469f0d5b1545c081a55d278d5d791383ed14c3c23df36ed089e23e603b74
+  languageName: node
+  linkType: hard
+
+"@polkadot/x-randomvalues@workspace:packages/x-randomvalues":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
@@ -2334,68 +2354,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stablelib/binary@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@stablelib/binary@npm:1.0.1"
-  dependencies:
-    "@stablelib/int": ^1.0.1
-  checksum: dca9b98eb1f56a4002b5b9e7351fbc49f3d8616af87007c01e833bd763ac89214eb5f3b7e18673c91ce59d4a0e4856a2eb661ace33d39f17fb1ad267271fccd8
-  languageName: node
-  linkType: hard
-
-"@stablelib/ed25519@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@stablelib/ed25519@npm:1.0.2"
-  dependencies:
-    "@stablelib/random": ^1.0.1
-    "@stablelib/sha512": ^1.0.1
-    "@stablelib/wipe": ^1.0.1
-  checksum: 07cacaf599a2f23a565f0d5720a23de913407c3003a12920cad11c8096074fca6e6a1a660ead88dfe9241f0d39ad50ada2d7ec0b85858089fbc2655a90482389
-  languageName: node
-  linkType: hard
-
-"@stablelib/hash@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@stablelib/hash@npm:1.0.1"
-  checksum: 3ff1f12d1a4082aaf4b6cdf40c2010aabe5c4209d3b40b97b5bbb0d9abc0ee94abdc545e57de0614afaea807ca0212ac870e247ec8f66cdce91ec39ce82948cf
-  languageName: node
-  linkType: hard
-
-"@stablelib/int@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@stablelib/int@npm:1.0.1"
-  checksum: 65bfbf50a382eea70c68e05366bf379cfceff8fbc076f1c267ef2f2411d7aed64fd140c415cb6c29f19a3910d3b8b7805d4b32ad5721a5007a8e744a808c7ae3
-  languageName: node
-  linkType: hard
-
-"@stablelib/random@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@stablelib/random@npm:1.0.1"
-  dependencies:
-    "@stablelib/binary": ^1.0.1
-    "@stablelib/wipe": ^1.0.1
-  checksum: f63275079a588dab1594949996dbd564f3754d313368be8c70c06eea9c9a4fba9059962dcd114cafcca48b3b73707774ce8af2c94b7be79b662cde35d0049846
-  languageName: node
-  linkType: hard
-
-"@stablelib/sha512@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@stablelib/sha512@npm:1.0.1"
-  dependencies:
-    "@stablelib/binary": ^1.0.1
-    "@stablelib/hash": ^1.0.1
-    "@stablelib/wipe": ^1.0.1
-  checksum: b7c82f7608a35948a2147a534c0c9afc80deab3fd5f72a2e27b2454e7c0c6944d39381be3abcb1b7fac5b824ba030ae3e98209d517a579c143d8ed63930b042f
-  languageName: node
-  linkType: hard
-
-"@stablelib/wipe@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@stablelib/wipe@npm:1.0.1"
-  checksum: 287802eb146810a46ba72af70b82022caf83a8aeebde23605f5ee0decf64fe2b97a60c856e43b6617b5801287c30cfa863cfb0469e7fcde6f02d143cf0c6cbf4
-  languageName: node
-  linkType: hard
-
 "@szmarczak/http-timer@npm:^1.1.2":
   version: 1.1.2
   resolution: "@szmarczak/http-timer@npm:1.1.2"
@@ -2469,6 +2427,15 @@ __metadata:
     "@types/filesystem": "*"
     "@types/har-format": "*"
   checksum: dac80221ac60545a3c9c615cc02a7329e9c661a5b8f0fa6d0c384d2d49f7a0a5d8ea37009aa66d4b65fe97f591436e3a8111619a03bbead868bf6f6cd73dddee
+  languageName: node
+  linkType: hard
+
+"@types/ed2curve@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@types/ed2curve@npm:0.2.2"
+  dependencies:
+    tweetnacl: ^1.0.0
+  checksum: f1ab16d46c5eed50d51539effef76c87806bb53ab45ecff78c19a632e63825fd08d604984b08778f8201c79be0bd43120565dad38cc5d45ba65a6c7de5bf4ace
   languageName: node
   linkType: hard
 
@@ -4568,6 +4535,15 @@ __metadata:
     jsbn: ~0.1.0
     safer-buffer: ^2.1.0
   checksum: 22fef4b6203e5f31d425f5b711eb389e4c6c2723402e389af394f8411b76a488fa414d309d866e2b577ce3e8462d344205545c88a8143cc21752a5172818888a
+  languageName: node
+  linkType: hard
+
+"ed2curve@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "ed2curve@npm:0.3.0"
+  dependencies:
+    tweetnacl: 1.x.x
+  checksum: 6dfbe2310aa5a47372c9dd2fd920be140c8d52aea5793d716a3e3865d2ceaeaf639a7653e5492dfe3b4910eaf65c09a1d5132580afe2fdca18a75ebb428a52f2
   languageName: node
   linkType: hard
 
@@ -10057,17 +10033,17 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"tweetnacl@npm:1.x.x, tweetnacl@npm:^1.0.0, tweetnacl@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tweetnacl@npm:1.0.3"
+  checksum: e4a57cac188f0c53f24c7a33279e223618a2bfb5fea426231991652a13247bea06b081fd745d71291fcae0f4428d29beba1b984b1f1ce6f66b06a6d1ab90645c
+  languageName: node
+  linkType: hard
+
 "tweetnacl@npm:^0.14.3, tweetnacl@npm:~0.14.0":
   version: 0.14.5
   resolution: "tweetnacl@npm:0.14.5"
   checksum: 6061daba1724f59473d99a7bb82e13f211cdf6e31315510ae9656fefd4779851cb927adad90f3b488c8ed77c106adc0421ea8055f6f976ff21b27c5c4e918487
-  languageName: node
-  linkType: hard
-
-"tweetnacl@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "tweetnacl@npm:1.0.3"
-  checksum: e4a57cac188f0c53f24c7a33279e223618a2bfb5fea426231991652a13247bea06b081fd745d71291fcae0f4428d29beba1b984b1f1ce6f66b06a6d1ab90645c
   languageName: node
   linkType: hard
 
