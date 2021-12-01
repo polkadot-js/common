@@ -10,23 +10,24 @@ import type { AnyString } from '../types';
 // a 10+x improvement over the original camelcase npm package (at running)
 //
 // original: 20.88 μs/op
-//     this:  1.75 μs/op
+//     this:  1.91 μs/op
 //
 // Caveat of this: only Ascii, but acceptable for the intended usecase
 function converter (fn: (w: string, i: number) => string): (value: AnyString) => string {
   return (value: AnyString): string =>
     value
       .toString()
+      // replace all seperators (including consequtive) with spaces
       .replace(/[-_., ]+/g, ' ')
+      // we don't want leading or trailing spaces
       .trim()
+      // all consequtive capitals are changed to lowercase
+      .replace(/[A-Z]{2,}/g, (w) => w.toLowerCase())
+      // split into words
       .split(' ')
-      .map((w, i) =>
-        fn(w[0], i) + (
-          /^[A-Z0-9]*$/.test(w)
-            ? w.slice(1).toLowerCase()
-            : w.slice(1)
-        )
-      )
+      // apply the function to the first letter, the rest as-is
+      .map((w, i) => fn(w[0], i) + w.slice(1))
+      // combine into a single word
       .join('');
 }
 
