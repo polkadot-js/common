@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 8.0.5 Dec 1, 2021
+
+Changes:
+
+- Adjust sha3 expectation of `BigInt` availability
+
+
 ## 8.0.4 Nov 30, 2021
 
 Changes:
