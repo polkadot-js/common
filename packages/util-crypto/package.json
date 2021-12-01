@@ -1,9 +1,5 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "browser": {
-    "crypto": false,
-    "stream": false
-  },
   "bugs": "https://github.com/polkadot-js/common/issues",
   "contributors": [],
   "description": "A collection of useful crypto utilities for @polkadot",
@@ -26,15 +22,19 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "8.0.6-2",
+  "version": "8.0.6-3",
+  "browser": {
+    "crypto": false,
+    "stream": false
+  },
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
     "@noble/hashes": "0.4.1",
-    "@polkadot/networks": "8.0.6-2",
-    "@polkadot/util": "8.0.6-2",
+    "@polkadot/networks": "8.0.6-3",
+    "@polkadot/util": "8.0.6-3",
     "@polkadot/wasm-crypto": "^4.4.1",
-    "@polkadot/x-randomvalues": "8.0.6-2",
+    "@polkadot/x-randomvalues": "8.0.6-3",
     "@stablelib/ed25519": "^1.0.2",
     "bn.js": "^4.12.0",
     "elliptic": "^6.5.4",
@@ -46,6 +46,6 @@
     "@types/elliptic": "^6.4.14"
   },
   "peerDependencies": {
-    "@polkadot/util": "8.0.6-2"
+    "@polkadot/util": "8.0.6-3"
   }
 }
