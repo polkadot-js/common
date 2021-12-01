@@ -5,13 +5,15 @@ import type { BN } from '../bn/bn';
 import type { ToBigInt, ToBn, ToBnOptions } from '../types';
 
 import { objectSpread } from '../object/spread';
-import { biToBigInt } from './toBigInt';
+import { _0n, _1n, _n } from './consts';
+import { nToBigInt } from './toBigInt';
 
 interface Options extends ToBnOptions {
   bitLength?: number;
 }
 
-const DIV = 256n;
+const DIV = _n(256);
+const NEG_MASK = _n(0xff);
 
 function createEmpty ({ bitLength = 0 }: Options): Uint8Array {
   return bitLength === -1
@@ -23,14 +25,14 @@ function toU8a (value: bigint, { isLe, isNegative }: Options): Uint8Array {
   const arr: number[] = [];
 
   if (isNegative) {
-    value = (value + 1n) * -1n;
+    value = (value + _1n) * -_1n;
   }
 
-  while (value !== 0n) {
+  while (value !== _0n) {
     const mod = value % DIV;
     const val = Number(
       isNegative
-        ? mod ^ 0xffn
+        ? mod ^ NEG_MASK
         : mod
     );
 
@@ -47,18 +49,18 @@ function toU8a (value: bigint, { isLe, isNegative }: Options): Uint8Array {
 }
 
 /**
- * @name biToU8a
+ * @name nToU8a
  * @summary Creates a Uint8Array object from a bigint.
  */
-export function biToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN | bigint | number | null, options?: Options): Uint8Array {
+export function nToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN | bigint | number | null, options?: Options): Uint8Array {
   const opts: Options = objectSpread(
     { bitLength: -1, isLe: true, isNegative: false },
     options
   );
 
-  const valueBi = biToBigInt(value);
+  const valueBi = nToBigInt(value);
 
-  if (valueBi === 0n) {
+  if (valueBi === _0n) {
     return createEmpty(opts);
   }
 

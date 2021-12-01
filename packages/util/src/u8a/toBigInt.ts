@@ -3,10 +3,11 @@
 
 import type { ToBnOptions } from '../types';
 
+import { _1n, _n } from '../bi/consts';
 import { objectSpread } from '../object/spread';
 
-const U8_MAX = 256n;
-const U16_MAX = U8_MAX * U8_MAX;
+const U8_MAX = _n(256);
+const U16_MAX = _n(256 * 256);
 
 function xor (input: Uint8Array): Uint8Array {
   const result = new Uint8Array(input.length);
@@ -58,6 +59,6 @@ export function u8aToBigInt (value: Uint8Array, options: ToBnOptions = {}): bigi
     : value;
 
   return isNegative
-    ? ((toBigInt(xor(u8a)) * -1n) - 1n)
+    ? ((toBigInt(xor(u8a)) * -_1n) - _1n)
     : toBigInt(u8a);
 }

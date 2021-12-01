@@ -43,7 +43,7 @@ export function performance (name: string, count: number, inputs: unknown[][], e
     console.log(`
 performance run for ${name} completed with ${formatNumber(count)} iterations.
 
-${'JavaScript:'.padStart(19)} ${time.toString().padStart(15)} ms${formatOps(count, time)}
+${`${name}:`.padStart(19)} ${time.toString().padStart(15)} ms${formatOps(count, time)}
 `);
   });
 }

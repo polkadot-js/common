@@ -33,14 +33,50 @@ const randomWords = arrayRange(256).map((): [string] => {
 describe('stringCamelCase', (): void => {
   it('works correctly', (): void => {
     expect(
-      stringCamelCase('Snake_case-...Something    spaced')
-    ).toBe('snakeCaseSomethingSpaced');
+      stringCamelCase('Snake_case-...SomethingSomething    spaced')
+    ).toBe('snakeCaseSomethingSomethingSpaced');
   });
 
   it('works correctly for String (class', (): void => {
     expect(
       stringCamelCase(String('Foo_bar-baz---test-_ spaced....Extra'))
     ).toBe('fooBarBazTestSpacedExtra');
+  });
+
+  it('adjusts all-uppercase', (): void => {
+    expect(
+      stringCamelCase('DEDUP_KEY_PREFIX')
+    ).toEqual('dedupKeyPrefix');
+    expect(
+      stringCamelCase('SOMETHING')
+    ).toEqual('something');
+  });
+
+  it('adjusts all-uppercase + digits', (): void => {
+    expect(
+      stringCamelCase('SS58 PreFIX')
+    ).toEqual('ss58Prefix');
+    expect(
+      stringCamelCase('SS58Prefix')
+    ).toEqual('ss58Prefix');
+    expect(
+      stringCamelCase('UUID64')
+    ).toEqual('uuid64');
+    expect(
+      stringCamelCase('BLAKE2B')
+    ).toEqual('blake2B');
+  });
+
+  it('adjusts with leading _', (): void => {
+    expect(
+      stringCamelCase('_reserved')
+    ).toEqual('reserved');
+  });
+
+  it('adjusts with minimal chars per part', (): void => {
+    expect(
+      stringCamelCase('_a_b_c_def')
+    ).toEqual('aBCDef');
   });
 
   performance('stringCamelCase', 64000, randomWords, stringCamelCase);

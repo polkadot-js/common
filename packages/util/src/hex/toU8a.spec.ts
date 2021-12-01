@@ -8,7 +8,7 @@ import { hexToU8a } from '.';
 
 let ptest = '0x';
 
-for (let i = 0; i < 640 * 1024; i++) {
+for (let i = 0; i < 500000; i++) {
   ptest += U16_TO_HEX[i % (256 * 256)];
 }
 
@@ -55,7 +55,7 @@ describe('hexToU8a', (): void => {
     ).toThrow(/hex value to convert/);
   });
 
-  performanceCmp('hexToU8a (640k input)', ['Node + Buffer', 'Uint8Array'], 10, [[ptest]], (s: string, isSecond) =>
+  performanceCmp('hexToU8a', ['hexToU8aBuffer', 'hexToU8a'], 10, [[ptest]], (s: string, isSecond) =>
     isSecond
       ? hexToU8a(s)
       : hexToU8aBuffer(s)

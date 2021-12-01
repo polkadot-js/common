@@ -5,10 +5,10 @@ import { base58 } from 'micro-base';
 
 import { createDecode, createEncode, createIs, createValidate } from '../base32/helpers';
 
-const BASE58_CONFIG = {
-  alphabet: '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
+const config = {
+  chars: '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
   coder: base58,
-  ipfsChar: 'z',
+  ipfs: 'z',
   type: 'base58'
 };
 
@@ -18,7 +18,7 @@ const BASE58_CONFIG = {
  * @description
  * Validates that the supplied value is valid base58, throwing exceptions if not
  */
-export const base58Validate = createValidate(BASE58_CONFIG);
+export const base58Validate = createValidate(config);
 
 /**
  * @name base58Decode
@@ -26,7 +26,7 @@ export const base58Validate = createValidate(BASE58_CONFIG);
  * @description
  * From the provided input, decode the base58 and return the result as an `Uint8Array`.
  */
-export const base58Decode = createDecode(BASE58_CONFIG, base58Validate);
+export const base58Decode = createDecode(config, base58Validate);
 
 /**
 * @name base58Encode
@@ -34,7 +34,7 @@ export const base58Decode = createDecode(BASE58_CONFIG, base58Validate);
 * @description
 * From the provided input, create the base58 and return the result as a string.
 */
-export const base58Encode = createEncode(BASE58_CONFIG);
+export const base58Encode = createEncode(config);
 
 /**
 * @name isBase58

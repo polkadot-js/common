@@ -5,7 +5,7 @@ import { stringToU8a, u8aEq } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { randomAsU8a } from '../random/asU8a';
-import { sr25519PairFromSeed } from './keypair/fromSeed';
+import { sr25519PairFromSeed } from './pair/fromSeed';
 import { sr25519VrfSign } from './vrfSign';
 import { sr25519VrfVerify } from './vrfVerify';
 
