@@ -51,6 +51,9 @@ export const knownGenesis: KnownGenesis = {
   'nodle-chain': [
     '0xa3d114c2b8d0627c1aa9b134eafcf7d05ca561fdc19fb388bb9457f81809fb23'
   ],
+  picasso: [
+    '0xe8e7f0f4c4f5a00720b4821dbfddefea7490bcf0b19009961cc46957984e2c1c'
+  ],
   plasm: [
     '0x3e86364d4b4894021cb2a0390bcf2feb5517d5292f2de2bb9404227e908b0b8b'
   ],
