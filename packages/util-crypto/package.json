@@ -36,14 +36,15 @@
     "@polkadot/wasm-crypto": "^4.4.1",
     "@polkadot/x-noble-hashes": "8.0.6-3",
     "@polkadot/x-randomvalues": "8.0.6-3",
-    "@stablelib/ed25519": "^1.0.2",
     "bn.js": "^4.12.0",
+    "ed2curve": "^0.3.0",
     "elliptic": "^6.5.4",
     "micro-base": "^0.9.0",
     "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
     "@types/bn.js": "^4.11.6",
+    "@types/ed2curve": "^0.2.2",
     "@types/elliptic": "^6.4.14"
   },
   "peerDependencies": {
