@@ -1,5 +1,9 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
+  "browser": {
+    "crypto": false,
+    "stream": false
+  },
   "bugs": "https://github.com/polkadot-js/common/issues",
   "bundledDependencies": [
     "@noble/hashes"
