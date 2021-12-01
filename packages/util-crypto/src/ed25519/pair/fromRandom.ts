@@ -3,7 +3,8 @@
 
 import type { Keypair } from '../../types';
 
-import nacl from 'tweetnacl';
+import { randomAsU8a } from '../../random';
+import { ed25519PairFromSeed } from './fromSeed';
 
 /**
  * @name ed25519PairFromRandom
@@ -20,5 +21,5 @@ import nacl from 'tweetnacl';
  * ```
  */
 export function ed25519PairFromRandom (): Keypair {
-  return nacl.sign.keyPair();
+  return ed25519PairFromSeed(randomAsU8a());
 }
