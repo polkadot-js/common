@@ -90,7 +90,7 @@ export abstract class SHA2<T extends SHA2<T>> extends Hash<T> {
     // NOTE: sha512 requires length to be 128bit integer, but length in JS will overflow before that
     // You need to write around 2 exabytes (u64_max / 8 / (1024**6)) for this to happen.
     // So we just write lowest 64bit of that value.
-    setBigUint64(view, blockLen - 8, BigInt(this.length * 8), isLE);
+    setBigUint64(view, blockLen - 8, _n(this.length * 8), isLE);
     this.process(view, 0);
     const oview = createView(out);
     this.get().forEach((v, i) => oview.setUint32(4 * i, v, isLE));

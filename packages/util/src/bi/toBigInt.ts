@@ -4,6 +4,7 @@
 import type { BN } from '../bn/bn';
 import type { HexString, ToBigInt, ToBn } from '../types';
 
+import { _n } from '../bi/consts';
 import { hexToBigInt } from '../hex/toBigInt';
 import { isBn } from '../is/bn';
 import { isHex } from '../is/hex';
@@ -18,14 +19,14 @@ export function nToBigInt <ExtToBn extends ToBigInt | ToBn> (value?: HexString |
   return typeof value === 'bigint'
     ? value
     : !value
-      ? BigInt(0)
+      ? _n(0)
       : isHex(value)
         ? hexToBigInt(value.toString())
         : isBn(value)
-          ? BigInt(value.toString())
+          ? _n(value.toString())
           : isToBigInt(value)
             ? value.toBigInt()
             : isToBn(value)
-              ? BigInt(value.toBn().toString())
-              : BigInt(value);
+              ? _n(value.toBn().toString())
+              : _n(value);
 }
