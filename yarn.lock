@@ -2115,7 +2115,7 @@ __metadata:
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
     "@babel/runtime": ^7.16.3
-    "@polkadot/x-bigint": 8.0.6-7
+    "@polkadot/x-bigint": 8.0.6-8
     "@polkadot/x-global": 8.0.6-8
     "@polkadot/x-textdecoder": 8.0.6-8
     "@polkadot/x-textencoder": 8.0.6-8
@@ -2157,12 +2157,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/x-bigint@8.0.6-7, @polkadot/x-bigint@workspace:packages/x-bigint":
+"@polkadot/x-bigint@8.0.6-8, @polkadot/x-bigint@workspace:packages/x-bigint":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-bigint@workspace:packages/x-bigint"
   dependencies:
     "@babel/runtime": ^7.16.3
-    "@polkadot/x-global": 8.0.6-7
+    "@polkadot/x-global": 8.0.6-8
   languageName: unknown
   linkType: soft
 
@@ -2200,7 +2200,7 @@ __metadata:
   resolution: "@polkadot/x-noble-hashes@workspace:packages/x-noble-hashes"
   dependencies:
     "@babel/runtime": ^7.16.3
-    "@polkadot/x-bigint": 8.0.6-7
+    "@polkadot/x-bigint": 8.0.6-8
   languageName: unknown
   linkType: soft
 
