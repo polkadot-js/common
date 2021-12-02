@@ -1,5 +1,8 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
+  "browser": {
+    "crypto": false
+  },
   "bugs": "https://github.com/polkadot-js/common/issues",
   "contributors": [],
   "description": "An fork of @noble/hashes with extra protection on BigInt usage",
