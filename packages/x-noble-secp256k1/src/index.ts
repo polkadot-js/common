@@ -216,7 +216,7 @@ class JacobianPoint {
     const windows = USE_ENDOMORPHISM ? 128 / W + 1 : 256 / W + 1;
     let points: JacobianPoint[] = [];
     let p: JacobianPoint = this;
-    let base = p;
+    let base: JacobianPoint;
     for (let window = 0; window < windows; window++) {
       base = p;
       points.push(base);
