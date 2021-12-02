@@ -2095,6 +2095,7 @@ __metadata:
     "@polkadot/networks": 8.0.6-8
     "@polkadot/util": 8.0.6-8
     "@polkadot/wasm-crypto": ^4.4.1
+    "@polkadot/x-bigint": 8.0.6-8
     "@polkadot/x-noble-hashes": 8.0.6-8
     "@polkadot/x-randomvalues": 8.0.6-8
     "@types/bn.js": ^4.11.6
@@ -2115,6 +2116,7 @@ __metadata:
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
     "@babel/runtime": ^7.16.3
+    "@polkadot/x-bigint": 8.0.6-8
     "@polkadot/x-global": 8.0.6-8
     "@polkadot/x-textdecoder": 8.0.6-8
     "@polkadot/x-textencoder": 8.0.6-8
@@ -2156,6 +2158,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@polkadot/x-bigint@8.0.6-8, @polkadot/x-bigint@workspace:packages/x-bigint":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/x-bigint@workspace:packages/x-bigint"
+  dependencies:
+    "@babel/runtime": ^7.16.3
+    "@polkadot/x-global": 8.0.6-8
+  languageName: unknown
+  linkType: soft
+
 "@polkadot/x-bundle@workspace:packages/x-bundle":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-bundle@workspace:packages/x-bundle"
@@ -2188,6 +2199,9 @@ __metadata:
 "@polkadot/x-noble-hashes@8.0.6-8, @polkadot/x-noble-hashes@workspace:packages/x-noble-hashes":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-noble-hashes@workspace:packages/x-noble-hashes"
+  dependencies:
+    "@babel/runtime": ^7.16.3
+    "@polkadot/x-bigint": 8.0.6-8
   languageName: unknown
   linkType: soft
 

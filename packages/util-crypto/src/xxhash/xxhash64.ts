@@ -1,7 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { _0n, _1n, _n } from '@polkadot/util';
+import { _0n, _1n } from '@polkadot/util';
+import { BigInt } from '@polkadot/x-bigint';
 
 // Adapted from https://github.com/pierrec/js-xxhash/blob/0504e76f3d31a21ae8528a7f590c7289c9e431d2/lib/xxhash64.js
 //
@@ -26,29 +27,29 @@ interface State {
   v4: bigint;
 }
 
-const P64_1 = _n('11400714785074694791');
-const P64_2 = _n('14029467366897019727');
-const P64_3 = _n('1609587929392839161');
-const P64_4 = _n('9650029242287828579');
-const P64_5 = _n('2870177450012600261');
+const P64_1 = BigInt('11400714785074694791');
+const P64_2 = BigInt('14029467366897019727');
+const P64_3 = BigInt('1609587929392839161');
+const P64_4 = BigInt('9650029242287828579');
+const P64_5 = BigInt('2870177450012600261');
 
 // mask for a u64, all bits set
-const U64 = _n('0xffffffffffffffff');
+const U64 = BigInt('0xffffffffffffffff');
 
 // various constants
-const _7n = _n(7);
-const _11n = _n(11);
-const _12n = _n(12);
-const _16n = _n(16);
-const _18n = _n(18);
-const _23n = _n(23);
-const _27n = _n(27);
-const _29n = _n(29);
-const _31n = _n(31);
-const _32n = _n(32);
-const _33n = _n(33);
-const _64n = _n(64);
-const _256n = _n(256);
+const _7n = BigInt(7);
+const _11n = BigInt(11);
+const _12n = BigInt(12);
+const _16n = BigInt(16);
+const _18n = BigInt(18);
+const _23n = BigInt(23);
+const _27n = BigInt(27);
+const _29n = BigInt(29);
+const _31n = BigInt(31);
+const _32n = BigInt(32);
+const _33n = BigInt(33);
+const _64n = BigInt(64);
+const _256n = BigInt(256);
 
 function rotl (a: bigint, b: bigint): bigint {
   const c = a & U64;
@@ -61,7 +62,7 @@ function fromU8a (u8a: Uint8Array, p: number, count: 2 | 4): bigint {
   let offset = 0;
 
   for (let i = 0; i < count; i++, offset += 2) {
-    bigints[i] = _n(u8a[p + offset] | (u8a[p + 1 + offset] << 8));
+    bigints[i] = BigInt(u8a[p + offset] | (u8a[p + 1 + offset] << 8));
   }
 
   let result = _0n;
@@ -86,7 +87,7 @@ function toU8a (h64: bigint): Uint8Array {
 }
 
 function state (initSeed: bigint | number): State {
-  const seed = _n(initSeed);
+  const seed = BigInt(initSeed);
 
   return {
     seed,
@@ -133,7 +134,7 @@ function init (state: State, input: Uint8Array): State {
 export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Array {
   const { seed, u8a, u8asize, v1, v2, v3, v4 } = init(state(initSeed), input);
   let p = 0;
-  let h64 = U64 & (_n(input.length) + (
+  let h64 = U64 & (BigInt(input.length) + (
     input.length >= 32
       ? (((((((((rotl(v1, _1n) + rotl(v2, _7n) + rotl(v3, _12n) + rotl(v4, _18n)) ^ (P64_1 * rotl(v1 * P64_2, _31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v2 * P64_2, _31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v3 * P64_2, _31n))) * P64_1 + P64_4) ^ (P64_1 * rotl(v4 * P64_2, _31n))) * P64_1 + P64_4)
       : (seed + P64_5)
@@ -150,7 +151,7 @@ export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Ar
   }
 
   while (p < u8asize) {
-    h64 = U64 & (P64_1 * rotl(h64 ^ (P64_5 * _n(u8a[p++])), _11n));
+    h64 = U64 & (P64_1 * rotl(h64 ^ (P64_5 * BigInt(u8a[p++])), _11n));
   }
 
   h64 = U64 & (P64_2 * (h64 ^ (h64 >> _33n)));

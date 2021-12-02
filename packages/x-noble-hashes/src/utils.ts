@@ -5,25 +5,6 @@
 export type TypedArray = Int8Array | Uint8ClampedArray | Uint8Array |
   Uint16Array | Int16Array | Uint32Array | Int32Array;
 
-const xglobal = (
-  typeof globalThis !== 'undefined'
-    ? globalThis
-    : typeof global !== 'undefined'
-      ? global
-      : typeof self !== 'undefined'
-        ? self
-        : typeof window !== 'undefined'
-          ? window
-          : this as unknown as typeof globalThis
-);
-
-// helper to protect against older bundlers
-export function _n (n: string | number | bigint | boolean): bigint {
-  return typeof xglobal.BigInt === 'function' && typeof xglobal.BigInt.asIntN === 'function'
-    ? xglobal.BigInt(n)
-    : Number.NaN as unknown as bigint;
-}
-
 // Cast array to different type
 export const u8 = (arr: TypedArray) => new Uint8Array(arr.buffer, arr.byteOffset, arr.byteLength);
 export const u32 = (arr: TypedArray) =>

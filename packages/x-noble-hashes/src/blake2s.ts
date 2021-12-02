@@ -1,8 +1,9 @@
 /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
 // https://github.com/paulmillr/noble-hashes/pull/13
+import { BigInt } from '@polkadot/x-bigint';
 import * as u64 from './_u64';
 import * as blake2 from './_blake2';
-import { _n, rotr, toBytes, wrapConstructorWithOpts, u32 } from './utils';
+import { rotr, toBytes, wrapConstructorWithOpts, u32 } from './utils';
 
 // Initial state:
 // first 32 bits of the fractional parts of the square roots of the first 8 primes 2..19)
@@ -106,7 +107,7 @@ class BLAKE2s extends blake2.BLAKE2<BLAKE2s> {
     this.v7 = v7 | 0;
   }
   protected compress(msg: Uint32Array, offset: number, isLast: boolean) {
-    const { h, l } = u64.fromBig(_n(this.length));
+    const { h, l } = u64.fromBig(BigInt(this.length));
     // prettier-ignore
     const { v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15 } =
       compress(

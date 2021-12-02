@@ -8,6 +8,8 @@ Contributed:
 
 Changes:
 
+- Adjust `isBigInt` to not do `instanceof` check
+- Use `@polkadot/x-bigint` for `BigInt` constructor
 - Ensure consequtive capitals in `stringCamelCase` are lowercased
 
 

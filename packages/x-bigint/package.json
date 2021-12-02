@@ -2,27 +2,24 @@
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/common/issues",
   "contributors": [],
-  "description": "An fork of @noble/hashes with extra protection on BigInt usage",
+  "description": "A cross-environment BigInt replacement",
   "engines": {
     "node": ">=14.0.0"
   },
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-noble-hashes#readme",
-  "license": "MIT",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-bigint#readme",
+  "license": "Apache-2.0",
   "maintainers": [],
-  "name": "@polkadot/x-noble-hashes",
+  "name": "@polkadot/x-bigint",
   "repository": {
-    "directory": "packages/x-noble-hashes",
+    "directory": "packages/x-bigint",
     "type": "git",
     "url": "https://github.com/polkadot-js/common.git"
   },
   "sideEffects": false,
   "type": "module",
   "version": "8.0.6-8",
-  "browser": {
-    "crypto": false
-  },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@polkadot/x-bigint": "8.0.6-8"
+    "@polkadot/x-global": "8.0.6-8"
   }
 }

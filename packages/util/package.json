@@ -38,6 +38,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
+    "@polkadot/x-bigint": "8.0.6-8",
     "@polkadot/x-global": "8.0.6-8",
     "@polkadot/x-textdecoder": "8.0.6-8",
     "@polkadot/x-textencoder": "8.0.6-8",

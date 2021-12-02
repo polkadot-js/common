@@ -3,11 +3,13 @@
 
 import type { ToBnOptions } from '../types';
 
-import { _1n, _n } from '../bi/consts';
+import { BigInt } from '@polkadot/x-bigint';
+
+import { _1n } from '../bi/consts';
 import { objectSpread } from '../object/spread';
 
-const U8_MAX = _n(256);
-const U16_MAX = _n(256 * 256);
+const U8_MAX = BigInt(256);
+const U16_MAX = BigInt(256 * 256);
 
 function xor (input: Uint8Array): Uint8Array {
   const result = new Uint8Array(input.length);
@@ -31,14 +33,14 @@ function toBigInt (input: Uint8Array): bigint {
   const dvI = new DataView(input.buffer, input.byteOffset);
   const mod = input.length % 2;
   const length = input.length - mod;
-  let result = _n(0);
+  let result = BigInt(0);
 
   for (let i = 0; i < length; i += 2) {
-    result = (result * U16_MAX) + _n(dvI.getUint16(i));
+    result = (result * U16_MAX) + BigInt(dvI.getUint16(i));
   }
 
   if (mod) {
-    result = (result * U8_MAX) + _n(dvI.getUint8(length));
+    result = (result * U8_MAX) + BigInt(dvI.getUint8(length));
   }
 
   return result;
@@ -50,7 +52,7 @@ function toBigInt (input: Uint8Array): bigint {
  */
 export function u8aToBigInt (value: Uint8Array, options: ToBnOptions = {}): bigint {
   if (!value || !value.length) {
-    return _n(0);
+    return BigInt(0);
   }
 
   const { isLe, isNegative }: ToBnOptions = objectSpread({ isLe: true, isNegative: false }, options);
