@@ -152,22 +152,3 @@ export function wrapConstructorWithOpts<H extends Hash<H>, T extends Object>(
   hashC.init = hashC.create;
   return hashC;
 }
-
-export const crypto: { node?: any; web?: any } = (() => {
-  const webCrypto = typeof self === 'object' && 'crypto' in self ? self.crypto : undefined;
-  const nodeRequire = typeof module !== 'undefined' && typeof require === 'function';
-  return {
-    node: nodeRequire && !webCrypto ? require('crypto') : undefined,
-    web: webCrypto,
-  };
-})();
-
-export function randomBytes(bytesLength = 32): Uint8Array {
-  if (crypto.web) {
-    return crypto.web.getRandomValues(new Uint8Array(bytesLength));
-  } else if (crypto.node) {
-    return new Uint8Array(crypto.node.randomBytes(bytesLength).buffer);
-  } else {
-    throw new Error("The environment doesn't have randomBytes function");
-  }
-}
