@@ -19,7 +19,7 @@ describe('sign', (): void => {
     it('generates a known signature', (): void => {
       expect(
         secp256k1Sign(msg, pair, undefined, onlyJs)
-      ).toBe(hexToU8a(
+      ).toEqual(hexToU8a(
         '0xdf92f73d9f060cefacf187b5414491cb992998ace017fa48839b5cda3e264ba8c4efa521361678d9b8582744d77aa4b8d886d7380b7808a683174afad9c4700300'
       ));
     });
