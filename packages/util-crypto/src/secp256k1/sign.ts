@@ -18,7 +18,7 @@ import { secp256k1 } from './secp256k1';
 export function secp256k1Sign (message: Uint8Array | string, { secretKey }: Partial<Keypair>, hashType: HashType = 'blake2', onlyJs?: boolean): Uint8Array {
   assert(secretKey?.length === 32, 'Expected valid secp256k1 secretKey, 32-bytes');
 
-  const data = secp256k1Hasher(hashType, message);
+  const data = secp256k1Hasher(hashType, message, onlyJs);
 
   if (!onlyJs && isReady()) {
     return wasm(data, secretKey);
