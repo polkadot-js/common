@@ -3,9 +3,8 @@
 
 import type { HashType } from './types';
 
-import { recoverPublicKey, Signature } from '@noble/secp256k1';
-
-import { assert } from '@polkadot/util';
+import { assert, assertBigInt } from '@polkadot/util';
+import { recoverPublicKey, Signature } from '@polkadot/x-noble-secp256k1';
 
 import { secp256k1Compress } from './compress';
 import { secp256k1Expand } from './expand';
@@ -15,6 +14,8 @@ import { secp256k1Expand } from './expand';
  * @description Recovers a publicKey from the supplied signature
  */
 export function secp256k1Recover (message: Uint8Array, signature: Uint8Array, recovery: number, hashType: HashType = 'blake2'): Uint8Array {
+  assertBigInt();
+
   const publicKey = recoverPublicKey(
     message,
     Signature.fromCompact(signature.subarray(0, 64)).toRawBytes(),

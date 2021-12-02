@@ -1,9 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { utils as utilsNobleSecp256k1 } from '@noble/secp256k1';
-
 import { u8aConcat } from '@polkadot/util';
+import { utils as utilsNobleSecp256k1 } from '@polkadot/x-noble-secp256k1';
 
 import { randomAsU8a } from './random/asU8a';
 import { cryptoWaitReady } from './crypto';
