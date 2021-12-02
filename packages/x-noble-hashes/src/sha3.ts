@@ -1,8 +1,8 @@
 /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
 // https://github.com/paulmillr/noble-hashes/pull/13
+import { BigInt } from '@polkadot/x-bigint';
 import * as u64 from './_u64';
 import {
-  _n,
   Hash,
   u32,
   Input,
@@ -13,12 +13,12 @@ import {
   HashXOF,
 } from './utils';
 
-const _0n = _n(0);
-const _1n = _n(1);
-const _2n = _n(2);
-const _7n = _n(7);
-const _256n = _n(256);
-const _0x71n = _n(0x71);
+const _0n = BigInt(0);
+const _1n = BigInt(1);
+const _2n = BigInt(2);
+const _7n = BigInt(7);
+const _256n = BigInt(256);
+const _0x71n = BigInt(0x71);
 
 // Various per round constants calculations
 const [SHA3_PI, SHA3_ROTL, _SHA3_IOTA]: [number[], number[], bigint[]] = [[], [], []];
@@ -32,7 +32,7 @@ for (let round = 0, R = _1n, x = 1, y = 0; round < 24; round++) {
   let t = _0n;
   for (let j = 0; j < 7; j++) {
     R = ((R << _1n) ^ ((R >> _7n) * _0x71n)) % _256n;
-    if (R & _2n) t ^= _1n << ((_1n << _n(j)) - _1n);
+    if (R & _2n) t ^= _1n << ((_1n << BigInt(j)) - _1n);
   }
   _SHA3_IOTA.push(t);
 }

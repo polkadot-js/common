@@ -4,6 +4,8 @@
 import type { BN } from '../bn/bn';
 import type { HexString, ToBigInt, ToBn } from '../types';
 
+import { BigInt } from '@polkadot/x-bigint';
+
 import { hexToBigInt } from '../hex/toBigInt';
 import { isBn } from '../is/bn';
 import { isHex } from '../is/hex';

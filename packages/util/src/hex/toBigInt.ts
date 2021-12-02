@@ -3,6 +3,8 @@
 
 import type { ToBnOptions } from '../types';
 
+import { BigInt } from '@polkadot/x-bigint';
+
 import { objectSpread } from '../object/spread';
 import { u8aToBigInt } from '../u8a/toBigInt';
 import { hexToU8a } from './toU8a';

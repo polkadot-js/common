@@ -25,8 +25,7 @@ import { ed25519PairFromSeed } from './fromSeed';
 export function ed25519PairFromString (value: string): Keypair {
   return ed25519PairFromSeed(
     blake2AsU8a(
-      stringToU8a(value),
-      256
+      stringToU8a(value)
     )
   );
 }

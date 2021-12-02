@@ -3,11 +3,13 @@
 
 import type { ToBnOptions } from '../types';
 
-import { _1n, _n } from '../bi/consts';
+import { BigInt } from '@polkadot/x-bigint';
+
+import { _1n } from '../bi/consts';
 import { objectSpread } from '../object/spread';
 
-const U8_MAX = _n(256);
-const U16_MAX = _n(256 * 256);
+const U8_MAX = BigInt(256);
+const U16_MAX = BigInt(256 * 256);
 
 function xor (input: Uint8Array): Uint8Array {
   const result = new Uint8Array(input.length);

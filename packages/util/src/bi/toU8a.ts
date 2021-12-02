@@ -4,16 +4,18 @@
 import type { BN } from '../bn/bn';
 import type { ToBigInt, ToBn, ToBnOptions } from '../types';
 
+import { BigInt } from '@polkadot/x-bigint';
+
 import { objectSpread } from '../object/spread';
-import { _0n, _1n, _n } from './consts';
+import { _0n, _1n } from './consts';
 import { nToBigInt } from './toBigInt';
 
 interface Options extends ToBnOptions {
   bitLength?: number;
 }
 
-const DIV = _n(256);
-const NEG_MASK = _n(0xff);
+const DIV = BigInt(256);
+const NEG_MASK = BigInt(0xff);
 
 function createEmpty ({ bitLength = 0 }: Options): Uint8Array {
   return bitLength === -1

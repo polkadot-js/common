@@ -1,10 +1,10 @@
 /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
 // https://github.com/paulmillr/noble-hashes/pull/13
-import { _n } from './utils';
+import { BigInt } from '@polkadot/x-bigint';
 
-const U32_MASK64 = _n(2 ** 32 - 1);
+const U32_MASK64 = BigInt(2 ** 32 - 1);
 
-const _32n = _n(32);
+const _32n = BigInt(32);
 
 export function fromBig(n: bigint, le = false) {
   if (le) return { h: Number(n & U32_MASK64), l: Number((n >> _32n) & U32_MASK64) };
