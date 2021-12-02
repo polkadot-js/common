@@ -1153,15 +1153,6 @@ Point.BASE._setWindowSize(8);
 type Sha256FnSync = undefined | ((...messages: Uint8Array[]) => Uint8Array);
 type HmacFnSync = undefined | ((key: Uint8Array, ...messages: Uint8Array[]) => Uint8Array);
 
-const crypto: { node?: any; web?: Crypto } = (() => {
-  const webCrypto = typeof self === 'object' && 'crypto' in self ? self.crypto : undefined;
-  const nodeRequire = typeof module !== 'undefined' && typeof require === 'function';
-  return {
-    node: nodeRequire && !webCrypto ? require('crypto') : undefined,
-    web: webCrypto,
-  };
-})();
-
 export const utils = {
   isValidPrivateKey(privateKey: PrivKey) {
     try {
@@ -1172,64 +1163,15 @@ export const utils = {
     }
   },
 
-  randomBytes: (bytesLength: number = 32): Uint8Array => {
-    if (crypto.web) {
-      return crypto.web.getRandomValues(new Uint8Array(bytesLength));
-    } else if (crypto.node) {
-      const { randomBytes } = crypto.node;
-      return new Uint8Array(randomBytes(bytesLength).buffer);
-    } else {
-      throw new Error("The environment doesn't have randomBytes function");
-    }
-  },
+  randomBytes: undefined,
 
   // NIST SP 800-56A rev 3, section 5.6.1.2.2
   // https://research.kudelskisecurity.com/2020/07/28/the-definitive-guide-to-modulo-bias-and-how-to-avoid-it/
-  randomPrivateKey: (): Uint8Array => {
-    let i = 8;
-    while (i--) {
-      const b32 = utils.randomBytes(32);
-      const num = bytesToNumber(b32);
-      if (isWithinCurveOrder(num) && num !== _1n) return b32;
-    }
-    throw new Error('Valid private key was not found in 8 iterations. PRNG is broken');
-  },
+  randomPrivateKey: undefined,
 
-  sha256: async (message: Uint8Array): Promise<Uint8Array> => {
-    if (crypto.web) {
-      const buffer = await crypto.web.subtle.digest('SHA-256', message.buffer);
-      return new Uint8Array(buffer);
-    } else if (crypto.node) {
-      const { createHash } = crypto.node;
-      return Uint8Array.from(createHash('sha256').update(message).digest());
-    } else {
-      throw new Error("The environment doesn't have sha256 function");
-    }
-  },
+  sha256: undefined,
 
-  hmacSha256: async (key: Uint8Array, ...messages: Uint8Array[]): Promise<Uint8Array> => {
-    if (crypto.web) {
-      const ckey = await crypto.web.subtle.importKey(
-        'raw',
-        key,
-        { name: 'HMAC', hash: { name: 'SHA-256' } },
-        false,
-        ['sign']
-      );
-      const message = concatBytes(...messages);
-      const buffer = await crypto.web.subtle.sign('HMAC', ckey, message);
-      return new Uint8Array(buffer);
-    } else if (crypto.node) {
-      const { createHmac } = crypto.node;
-      const hash = createHmac('sha256', key);
-      for (let message of messages) {
-        hash.update(message);
-      }
-      return Uint8Array.from(hash.digest());
-    } else {
-      throw new Error("The environment doesn't have hmac-sha256 function");
-    }
-  },
+  hmacSha256: undefined,
 
   sha256Sync: undefined as Sha256FnSync,
   hmacSha256Sync: undefined as HmacFnSync,
