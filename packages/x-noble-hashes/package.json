@@ -1,8 +1,5 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "browser": {
-    "crypto": false
-  },
   "bugs": "https://github.com/polkadot-js/common/issues",
   "contributors": [],
   "description": "An fork of @noble/hashes with extra protection on BigInt usage",
@@ -21,6 +18,9 @@
   "sideEffects": false,
   "type": "module",
   "version": "8.0.6-8",
+  "browser": {
+    "crypto": false
+  },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
     "@polkadot/x-bigint": "8.0.6-8"
