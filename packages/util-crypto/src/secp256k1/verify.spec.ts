@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import '../cryptoInit';
+
 import { secp256k1Verify } from '.';
 
 describe('secp256k1Verify', (): void => {

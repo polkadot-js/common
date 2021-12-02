@@ -1,6 +1,8 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import '../cryptoInit';
+
 import { stringToU8a } from '@polkadot/util';
 
 import { randomAsU8a } from '../random/asU8a';
