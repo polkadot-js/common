@@ -27,7 +27,7 @@ describe('secp256k1Verify', (): void => {
     });
   });
 
-  performanceWasm('secp256k1Sign', 200, (_, onlyJs) =>
+  performanceWasm('secp256k1Verify', 200, (_, onlyJs) =>
     secp256k1Verify(
       `\x19Ethereum Signed Message:\n${message.length.toString()}${message}`,
       '0x55bd020bdbbdc02de34e915effc9b18a99002f4c29f64e22e8dcbb69e722ea6c28e1bb53b9484063fbbfd205e49dcc1f620929f520c9c4c3695150f05a28f52a01',
