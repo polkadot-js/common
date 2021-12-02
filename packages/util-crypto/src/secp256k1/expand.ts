@@ -9,13 +9,13 @@ import { secp256k1 } from './secp256k1';
 
 export function secp256k1Expand (publicKey: Uint8Array, onlyJs?: boolean): Uint8Array {
   if (publicKey.length === 65) {
-    return publicKey;
+    return publicKey.subarray(1);
   }
 
   assert(publicKey.length === 33, 'Invalid publicKey provided');
 
   if (!onlyJs && isReady()) {
-    return wasm(publicKey);
+    return wasm(publicKey).subarray(1);
   }
 
   const expanded = secp256k1
