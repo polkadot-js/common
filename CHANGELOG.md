@@ -10,7 +10,8 @@ Changes:
 
 - Adjust `isBigInt` to not do `instanceof` check
 - Use `@polkadot/x-bigint` for `BigInt` constructor
-- Split `@noble/hashes` fork into `x-noble-hashes` (with above `BigInt`)
+- Split `@noble/hashes` fork into `x-noble-hashes` (w/ above `BigInt`)
+- Add `@noble/hashes` fork as `x-noble-secp256k1` (w/ above `BigInt`), replaces `elliptic`
 - Ensure consequtive capitals in `stringCamelCase` are lowercased
 
 
