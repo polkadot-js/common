@@ -22,7 +22,7 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "8.0.6-10",
+  "version": "8.0.6-11",
   "browser": {
     "crypto": false,
     "stream": false
@@ -49,6 +49,6 @@
     "@types/elliptic": "^6.4.14"
   },
   "peerDependencies": {
-    "@polkadot/util": "8.0.6-10"
+    "@polkadot/util": "8.0.6-11"
   }
 }
