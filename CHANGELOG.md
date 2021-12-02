@@ -10,6 +10,7 @@ Changes:
 
 - Adjust `isBigInt` to not do `instanceof` check
 - Use `@polkadot/x-bigint` for `BigInt` constructor
+- Split `@noble/hashes` fork into `x-noble-hashes` (with above `BigInt`)
 - Ensure consequtive capitals in `stringCamelCase` are lowercased
 
 
