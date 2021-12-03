@@ -1,10 +1,12 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import '../cryptoInit';
+
 import { stringToU8a } from '@polkadot/util';
 
 import { randomAsU8a } from '../random/asU8a';
-import { secp256k1Hasher } from './hasher';
+import { hasher } from './hasher';
 import { secp256k1Expand, secp256k1PairFromSeed, secp256k1Sign, secp256k1Verify } from '.';
 
 const MESSAGE = stringToU8a('this is a message');
@@ -27,7 +29,7 @@ describe('sign and verify', (): void => {
   it('signs/verifies a message by random key (blake2)', (): void => {
     const pair = secp256k1PairFromSeed(randomAsU8a());
     const signature = secp256k1Sign(MESSAGE, pair);
-    const address = secp256k1Hasher('blake2', pair.publicKey);
+    const address = hasher('blake2', pair.publicKey);
 
     expect(secp256k1Verify(MESSAGE, signature, address)).toEqual(true);
   });
@@ -35,7 +37,7 @@ describe('sign and verify', (): void => {
   it('signs/verifies a message by random key (keccak)', (): void => {
     const pair = secp256k1PairFromSeed(randomAsU8a());
     const signature = secp256k1Sign(MESSAGE, pair, 'keccak');
-    const address = secp256k1Hasher('keccak', secp256k1Expand(pair.publicKey));
+    const address = hasher('keccak', secp256k1Expand(pair.publicKey));
 
     expect(secp256k1Verify(MESSAGE, signature, address, 'keccak')).toEqual(true);
   });
@@ -43,7 +45,7 @@ describe('sign and verify', (): void => {
   it('fails verification on hasher mismatches', (): void => {
     const pair = secp256k1PairFromSeed(randomAsU8a());
     const signature = secp256k1Sign(MESSAGE, pair, 'keccak');
-    const address = secp256k1Hasher('keccak', secp256k1Expand(pair.publicKey));
+    const address = hasher('keccak', secp256k1Expand(pair.publicKey));
 
     expect(secp256k1Verify(MESSAGE, signature, address, 'blake2')).toEqual(false);
   });
@@ -57,7 +59,7 @@ describe('sign and verify', (): void => {
           secp256k1Verify(
             MESSAGE,
             secp256k1Sign(MESSAGE, pair, 'blake2'),
-            secp256k1Hasher('blake2', pair.publicKey),
+            hasher('blake2', pair.publicKey),
             'blake2'
           )
         ).toEqual(true);
@@ -77,7 +79,7 @@ describe('sign and verify', (): void => {
           secp256k1Verify(
             MESSAGE,
             secp256k1Sign(MESSAGE, pair, 'keccak'),
-            secp256k1Hasher('keccak', secp256k1Expand(pair.publicKey)),
+            hasher('keccak', secp256k1Expand(pair.publicKey)),
             'keccak'
           )
         ).toEqual(true);

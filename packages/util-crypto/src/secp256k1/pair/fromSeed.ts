@@ -3,11 +3,9 @@
 
 import type { Keypair } from '../../types';
 
-import { assert, bnToU8a } from '@polkadot/util';
+import { assert, hasBigInt } from '@polkadot/util';
 import { isReady, secp256k1FromSeed } from '@polkadot/wasm-crypto';
-
-import { BN_BE_256_OPTS } from '../../bn';
-import { secp256k1 } from '../secp256k1';
+import { getPublicKey } from '@polkadot/x-noble-secp256k1';
 
 /**
  * @name secp256k1PairFromSeed
@@ -16,7 +14,7 @@ import { secp256k1 } from '../secp256k1';
 export function secp256k1PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypair {
   assert(seed.length === 32, 'Expected valid 32-byte private key as a seed');
 
-  if (!onlyJs && isReady()) {
+  if (!hasBigInt || (!onlyJs && isReady())) {
     const full = secp256k1FromSeed(seed);
 
     return {
@@ -25,10 +23,8 @@ export function secp256k1PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keyp
     };
   }
 
-  const key = secp256k1.keyFromPrivate(seed);
-
   return {
-    publicKey: new Uint8Array(key.getPublic().encodeCompressed()),
-    secretKey: bnToU8a(key.getPrivate(), BN_BE_256_OPTS)
+    publicKey: getPublicKey(seed, true),
+    secretKey: seed
   };
 }
