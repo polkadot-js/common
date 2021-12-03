@@ -25,11 +25,10 @@ export function secp256k1Verify (message: HexString | Uint8Array | string, signa
     hashType,
     onlyJs
   );
-  const signingAddress = secp256k1Hasher(hashType, publicKey, onlyJs);
   const inputAddress = u8aToU8a(address);
 
   // for Ethereum (keccak) the last 20 bytes is the address
   return hashType === 'keccak'
-    ? u8aEq(signingAddress.slice(-20), inputAddress.slice(-20))
-    : u8aEq(signingAddress, inputAddress);
+    ? u8aEq(secp256k1Hasher(hashType, publicKey, onlyJs).slice(-20), inputAddress.slice(-20))
+    : u8aEq(publicKey, inputAddress);
 }
