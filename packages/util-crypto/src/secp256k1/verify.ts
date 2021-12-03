@@ -20,7 +20,7 @@ export function secp256k1Verify (message: HexString | Uint8Array | string, signa
 
   const publicKey = secp256k1Recover(
     secp256k1Hasher(hashType, message),
-    u8aToU8a(signature),
+    u8a.subarray(0, 64),
     u8a[64],
     hashType,
     onlyJs

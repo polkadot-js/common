@@ -21,7 +21,7 @@ describe('secp256k1Recover', (): void => {
       const pubKey = '0x93a9fc7154c6da3c826415df01eb0e37fb4da4b0';
       const res = keccakAsU8a(secp256k1Recover(msg, sig, 0, undefined, onlyJs));
 
-      expect(u8aToHex(res.subarray(12))).toEqual(pubKey);
+      expect(u8aToHex(res.subarray(-20))).toEqual(pubKey);
     });
   });
 
