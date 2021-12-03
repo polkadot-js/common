@@ -20,6 +20,7 @@ describe('sign', (): void => {
       expect(
         secp256k1Sign(msg, pair, undefined, onlyJs)
       ).toEqual(hexToU8a(
+        // as of libsecp256k1 0.7.0 the wasm yields different s & v values
         onlyJs
           ? '0xdf92f73d9f060cefacf187b5414491cb992998ace017fa48839b5cda3e264ba8c4efa521361678d9b8582744d77aa4b8d886d7380b7808a683174afad9c4700300'
           : '0xdf92f73d9f060cefacf187b5414491cb992998ace017fa48839b5cda3e264ba83b105adec9e9872647a7d8bb28855b45e22805aea3d097953cbb1391f671d13e01'
