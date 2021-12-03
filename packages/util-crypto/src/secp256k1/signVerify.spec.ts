@@ -17,7 +17,7 @@ describe('sign and verify', (): void => {
     const sig = '0x92fcacf0946bbd10b31dfe16d567ed1d3014e81007dd9e5256e19c0f07eacc1643b151ca29e449a765e16a7ce59b88d800467d6b3412d30ea8ad22307a59664b00';
     const msg = stringToU8a('secp256k1');
 
-    expect(secp256k1Verify(msg, sig, address)).toBe(true);
+    expect(secp256k1Verify(msg, sig, address)).toEqual(true);
   });
 
   it('has 65-byte signatures', (): void => {
@@ -31,7 +31,7 @@ describe('sign and verify', (): void => {
     const signature = secp256k1Sign(MESSAGE, pair);
     const address = secp256k1Hasher('blake2', pair.publicKey);
 
-    expect(secp256k1Verify(MESSAGE, signature, address)).toBe(true);
+    expect(secp256k1Verify(MESSAGE, signature, address)).toEqual(true);
   });
 
   it('signs/verifies a message by random key (keccak)', (): void => {
@@ -39,7 +39,7 @@ describe('sign and verify', (): void => {
     const signature = secp256k1Sign(MESSAGE, pair, 'keccak');
     const address = secp256k1Hasher('keccak', secp256k1Expand(pair.publicKey));
 
-    expect(secp256k1Verify(MESSAGE, signature, address, 'keccak')).toBe(true);
+    expect(secp256k1Verify(MESSAGE, signature, address, 'keccak')).toEqual(true);
   });
 
   it('fails verification on hasher mismatches', (): void => {
@@ -47,7 +47,7 @@ describe('sign and verify', (): void => {
     const signature = secp256k1Sign(MESSAGE, pair, 'keccak');
     const address = secp256k1Hasher('keccak', secp256k1Expand(pair.publicKey));
 
-    expect(secp256k1Verify(MESSAGE, signature, address, 'blake2')).toBe(false);
+    expect(secp256k1Verify(MESSAGE, signature, address, 'blake2')).toEqual(false);
   });
 
   it('works over a range of random keys (blake2)', (): void => {
@@ -62,7 +62,7 @@ describe('sign and verify', (): void => {
             secp256k1Hasher('blake2', pair.publicKey),
             'blake2'
           )
-        ).toBe(true);
+        ).toEqual(true);
       } catch (error) {
         console.error(`blake2 failed on #${i}`);
         throw error;
@@ -82,7 +82,7 @@ describe('sign and verify', (): void => {
             secp256k1Hasher('keccak', secp256k1Expand(pair.publicKey)),
             'keccak'
           )
-        ).toBe(true);
+        ).toEqual(true);
       } catch (error) {
         console.error(`keccak failed on #${i}`);
         throw error;

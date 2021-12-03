@@ -2,7 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { hexToU8a, u8aToHex } from '@polkadot/util';
+import { waitReady } from '@polkadot/wasm-crypto';
 
+import { performanceWasm } from '../../../test/performance';
 import { mnemonicToMiniSecret } from '../../mnemonic';
 import { secp256k1PairFromSeed } from '..';
 
@@ -37,23 +39,33 @@ const tests: Test[] = [
 ];
 
 describe('secp256k1PairFromSeed', (): void => {
+  beforeEach(async (): Promise<void> => {
+    await waitReady();
+  });
+
   const TEST = hexToU8a('0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae');
   const RESULT = {
     publicKey: hexToU8a('0x03fd8c74f795ced92064b86191cb2772b1e3a0947740aa0a5a6e379592471fd85b'),
     secretKey: hexToU8a('0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae')
   };
 
-  it('generates a valid publicKey/secretKey pair (u8a)', (): void => {
-    expect(secp256k1PairFromSeed(TEST)).toEqual(RESULT);
-  });
+  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+    it('generates a valid publicKey/secretKey pair (u8a)', (): void => {
+      expect(secp256k1PairFromSeed(TEST, onlyJs)).toEqual(RESULT);
+    });
 
-  tests.forEach(([mnemonic, secretKey, publicKey], index): void => {
-    it(`creates valid against known (${index})`, (): void => {
-      const seed = mnemonicToMiniSecret(mnemonic);
-      const pair = secp256k1PairFromSeed(seed);
+    tests.forEach(([mnemonic, secretKey, publicKey], index): void => {
+      it(`creates valid against known (${index})`, (): void => {
+        const seed = mnemonicToMiniSecret(mnemonic);
+        const pair = secp256k1PairFromSeed(seed, onlyJs);
 
-      expect(u8aToHex(pair.secretKey)).toEqual(secretKey);
-      expect(u8aToHex(pair.publicKey)).toEqual(publicKey);
+        expect(u8aToHex(pair.secretKey)).toEqual(secretKey);
+        expect(u8aToHex(pair.publicKey)).toEqual(publicKey);
+      });
     });
   });
+
+  performanceWasm('secp256k1PairFromSeed', 500, (input, onlyJs) =>
+    secp256k1PairFromSeed(input, onlyJs)
+  );
 });

@@ -1,6 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+export const BN_BE_OPTS = { isLe: false };
 export const BN_LE_OPTS = { isLe: true };
 
 export const BN_LE_16_OPTS = { bitLength: 16, isLe: true };

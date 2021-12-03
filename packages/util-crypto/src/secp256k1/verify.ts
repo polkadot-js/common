@@ -13,8 +13,7 @@ import { secp256k1Recover } from './recover';
  * @name secp256k1Verify
  * @description Verifies the signature of `message`, using the supplied pair
  */
-export function secp256k1Verify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, address: HexString | Uint8Array | string, hashType: HashType = 'blake2'): boolean {
-  const isEthereum = hashType === 'keccak';
+export function secp256k1Verify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, address: HexString | Uint8Array | string, hashType: HashType = 'blake2', onlyJs?: boolean): boolean {
   const u8a = u8aToU8a(signature);
 
   assert(u8a.length === 65, `Expected signature with 65 bytes, ${u8a.length} found instead`);
@@ -23,16 +22,19 @@ export function secp256k1Verify (message: HexString | Uint8Array | string, signa
     secp256k1Hasher(hashType, message),
     u8aToU8a(signature),
     u8a[64],
-    hashType
+    hashType,
+    onlyJs
   );
 
   assert(publicKey, 'Unable to recover publicKey from signature');
 
-  const signingAddress = secp256k1Hasher(hashType, publicKey);
-  const inputAddress = u8aToU8a(address);
+  const signerAddr = secp256k1Hasher(hashType, publicKey, onlyJs);
+  const inputAddr = u8aToU8a(address);
 
   // for Ethereum (keccak) the last 20 bytes is the address
-  return isEthereum
-    ? u8aEq(signingAddress.slice(-20), inputAddress.slice(-20))
-    : u8aEq(signingAddress, inputAddress);
+  return u8aEq(publicKey, inputAddr) || (
+    hashType === 'keccak'
+      ? u8aEq(signerAddr.slice(-20), inputAddr.slice(-20))
+      : u8aEq(signerAddr, inputAddr)
+  );
 }
