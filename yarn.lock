@@ -1937,9 +1937,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.63.34":
-  version: 0.63.34
-  resolution: "@polkadot/dev@npm:0.63.34"
+"@polkadot/dev@npm:^0.63.35":
+  version: 0.63.35
+  resolution: "@polkadot/dev@npm:0.63.35"
   dependencies:
     "@babel/cli": ^7.16.0
     "@babel/core": ^7.16.0
@@ -1989,9 +1989,9 @@ __metadata:
     gh-release: ^6.0.1
     glob: ^7.2.0
     glob2base: ^0.0.12
-    jest: ^27.4.2
-    jest-cli: ^27.4.2
-    jest-config: ^27.4.2
+    jest: ^27.4.3
+    jest-cli: ^27.4.3
+    jest-config: ^27.4.3
     jest-haste-map: ^27.4.2
     jest-resolve: ^27.4.2
     madge: ^5.0.1
@@ -2023,7 +2023,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 2e1dcc028b0af7d6fd352f4f3e1d21833116b1139e63993f4062f60657da4cadf9d66d04e80f8150cf06e08e1c8853f377022a46332c9cf12e96ec6281c481b9
+  checksum: 53370203938939e84aa0d1529bf49355dc32c8093417e8d5dd2eccf3641bb42d0e1eb772687f1aacf31d14e96dc94ea0e7274c43a5f9612b886230e21d4a1f23
   languageName: node
   linkType: hard
 
@@ -2093,7 +2093,7 @@ __metadata:
     "@noble/hashes": 0.4.1
     "@polkadot/networks": 8.0.6-11
     "@polkadot/util": 8.0.6-11
-    "@polkadot/wasm-crypto": ^4.4.1
+    "@polkadot/wasm-crypto": ^4.5.1
     "@polkadot/x-bigint": 8.0.6-11
     "@polkadot/x-noble-hashes": 8.0.6-11
     "@polkadot/x-randomvalues": 8.0.6-11
@@ -2125,35 +2125,35 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-asmjs@npm:^4.4.1":
-  version: 4.4.1
-  resolution: "@polkadot/wasm-crypto-asmjs@npm:4.4.1"
+"@polkadot/wasm-crypto-asmjs@npm:^4.5.1":
+  version: 4.5.1
+  resolution: "@polkadot/wasm-crypto-asmjs@npm:4.5.1"
   dependencies:
     "@babel/runtime": ^7.16.3
-  checksum: 3df73641ec52d69e91be56f6010db0960556ee26ea2a43586d0dd1a2b7ec483b6bea1c7b1cf6aa6b16a88f771d3ba55b38e1b685a9d9b9a18b861de6b1e837b7
+  checksum: 93233bc91043c0023466def87a4559b98908841f0628544fcc77f4599acda1d4a0c2673948021de8b5da0c5dd10ef10a01141dfb960d5c32d95b81ac1060cfe5
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto-wasm@npm:^4.4.1":
-  version: 4.4.1
-  resolution: "@polkadot/wasm-crypto-wasm@npm:4.4.1"
+"@polkadot/wasm-crypto-wasm@npm:^4.5.1":
+  version: 4.5.1
+  resolution: "@polkadot/wasm-crypto-wasm@npm:4.5.1"
   dependencies:
     "@babel/runtime": ^7.16.3
-  checksum: 315696bfe78e45ef46e6f484b59eeb29afea68f635bec2916123bdba2a414c6ba557d7c8eb547c4541d663580c41ae925e839ba80a7c7f25e5ceaf53de780e15
+  checksum: b44833a47f87af19b8724d310e64a10c8a3a4499d6af247d48e76dfe0dbbf5c40a21681dbb97297f1ea31a0d66518093ed14509ace16087293cf93e97b28ee73
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto@npm:^4.4.1":
-  version: 4.4.1
-  resolution: "@polkadot/wasm-crypto@npm:4.4.1"
+"@polkadot/wasm-crypto@npm:^4.5.1":
+  version: 4.5.1
+  resolution: "@polkadot/wasm-crypto@npm:4.5.1"
   dependencies:
     "@babel/runtime": ^7.16.3
-    "@polkadot/wasm-crypto-asmjs": ^4.4.1
-    "@polkadot/wasm-crypto-wasm": ^4.4.1
+    "@polkadot/wasm-crypto-asmjs": ^4.5.1
+    "@polkadot/wasm-crypto-wasm": ^4.5.1
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
-  checksum: 853d4e4cf291de73830cb7398f3fdcdbdb277b98f8c66f7f8555fe10e75cdfed2669df2201c361ef7a7a5972d92bc594777e08ac138660512c10c7fbf51dd920
+  checksum: d73b8696c3aa9b9bb18a1914b11ca0133d9189fd9264170912228c497517997d2b8f5f8b19eb5b1a8ef1be9edbdd63d2013633c0262167b61e2afc6333feef91
   languageName: node
   linkType: hard
 
@@ -6683,7 +6683,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"jest-cli@npm:^27.4.2, jest-cli@npm:^27.4.3":
+"jest-cli@npm:^27.4.3":
   version: 27.4.3
   resolution: "jest-cli@npm:27.4.3"
   dependencies:
@@ -6710,7 +6710,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"jest-config@npm:^27.4.2, jest-config@npm:^27.4.3":
+"jest-config@npm:^27.4.3":
   version: 27.4.3
   resolution: "jest-config@npm:27.4.3"
   dependencies:
@@ -7122,7 +7122,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"jest@npm:^27.4.2":
+"jest@npm:^27.4.3":
   version: 27.4.3
   resolution: "jest@npm:27.4.3"
   dependencies:
@@ -9176,7 +9176,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.16.0
-    "@polkadot/dev": ^0.63.34
+    "@polkadot/dev": ^0.63.35
     "@polkadot/ts": ^0.4.16
     "@types/jest": ^27.0.3
   languageName: unknown
