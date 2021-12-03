@@ -2204,6 +2204,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@polkadot/x-noble-secp256k1@workspace:packages/x-noble-secp256k1":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/x-noble-secp256k1@workspace:packages/x-noble-secp256k1"
+  dependencies:
+    "@babel/runtime": ^7.16.3
+    "@polkadot/x-bigint": 8.0.6-12
+  languageName: unknown
+  linkType: soft
+
 "@polkadot/x-randomvalues@8.0.6-12, @polkadot/x-randomvalues@workspace:packages/x-randomvalues":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
