@@ -2066,16 +2066,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/networks@npm:8.0.6-10":
-  version: 8.0.6-10
-  resolution: "@polkadot/networks@npm:8.0.6-10"
-  dependencies:
-    "@babel/runtime": ^7.16.3
-  checksum: 0fbc45f63e193a58562e0b73246ebe92fc21e90503042977022bfc0024aa4d51e4654c9663b13295c20355febd4f20348293ee38cedec80829f9cb8e91711883
-  languageName: node
-  linkType: hard
-
-"@polkadot/networks@workspace:packages/networks":
+"@polkadot/networks@8.0.6-11, @polkadot/networks@workspace:packages/networks":
   version: 0.0.0-use.local
   resolution: "@polkadot/networks@workspace:packages/networks"
   dependencies:
@@ -2100,12 +2091,12 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.16.3
     "@noble/hashes": 0.4.1
-    "@polkadot/networks": 8.0.6-10
-    "@polkadot/util": 8.0.6-10
+    "@polkadot/networks": 8.0.6-11
+    "@polkadot/util": 8.0.6-11
     "@polkadot/wasm-crypto": ^4.5.1
-    "@polkadot/x-bigint": 8.0.6-10
-    "@polkadot/x-noble-hashes": 8.0.6-10
-    "@polkadot/x-randomvalues": 8.0.6-10
+    "@polkadot/x-bigint": 8.0.6-11
+    "@polkadot/x-noble-hashes": 8.0.6-11
+    "@polkadot/x-randomvalues": 8.0.6-11
     "@types/bn.js": ^4.11.6
     "@types/ed2curve": ^0.2.2
     "@types/elliptic": ^6.4.14
@@ -2133,22 +2124,6 @@ __metadata:
     ip-regex: ^4.3.0
   languageName: unknown
   linkType: soft
-
-"@polkadot/util@npm:8.0.6-10":
-  version: 8.0.6-10
-  resolution: "@polkadot/util@npm:8.0.6-10"
-  dependencies:
-    "@babel/runtime": ^7.16.3
-    "@polkadot/x-bigint": 8.0.6-10
-    "@polkadot/x-global": 8.0.6-10
-    "@polkadot/x-textdecoder": 8.0.6-10
-    "@polkadot/x-textencoder": 8.0.6-10
-    "@types/bn.js": ^4.11.6
-    bn.js: ^4.12.0
-    ip-regex: ^4.3.0
-  checksum: 84c6dfe3ff1e0dcb26419613d9d25ef76c878973051448f10bacc87f190a0fd00a1d5c3c0d84ed3bbe06cd7a9eb1d0ede09ada8a996420049ef76bf4df558633
-  languageName: node
-  linkType: hard
 
 "@polkadot/wasm-crypto-asmjs@npm:^4.5.1":
   version: 4.5.1
@@ -2191,16 +2166,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-bigint@npm:8.0.6-10":
-  version: 8.0.6-10
-  resolution: "@polkadot/x-bigint@npm:8.0.6-10"
-  dependencies:
-    "@babel/runtime": ^7.16.3
-    "@polkadot/x-global": 8.0.6-10
-  checksum: d98c2f9cc8d4cee5c3c682a887b5c1c22af38e7fafa035c8219d8812aa482cdabbb6a317ef127a3232cf1c5e5ec6654b4dcb74997e96204a75dfd030236efd57
-  languageName: node
-  linkType: hard
-
 "@polkadot/x-bundle@workspace:packages/x-bundle":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-bundle@workspace:packages/x-bundle"
@@ -2230,26 +2195,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-global@npm:8.0.6-10":
-  version: 8.0.6-10
-  resolution: "@polkadot/x-global@npm:8.0.6-10"
-  dependencies:
-    "@babel/runtime": ^7.16.3
-  checksum: 075a743601e9f80911e80c50c109d752272c9916952f39c07781c0ac2ad53d56aba0b7c207779ac352107a1c40e783cd531ffa09fd47be1c0427d674d2abde84
-  languageName: node
-  linkType: hard
-
-"@polkadot/x-noble-hashes@npm:8.0.6-10":
-  version: 8.0.6-10
-  resolution: "@polkadot/x-noble-hashes@npm:8.0.6-10"
-  dependencies:
-    "@babel/runtime": ^7.16.3
-    "@polkadot/x-bigint": 8.0.6-10
-  checksum: f9a39c58fc2f0f006018cafe6b053b3e1526851529b187d4eae7fe1b9fb1cb691ccacbb1daa2f90983174637d18572cff537c5d1b6a6603a0d301ce22099faf9
-  languageName: node
-  linkType: hard
-
-"@polkadot/x-noble-hashes@workspace:packages/x-noble-hashes":
+"@polkadot/x-noble-hashes@8.0.6-11, @polkadot/x-noble-hashes@workspace:packages/x-noble-hashes":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-noble-hashes@workspace:packages/x-noble-hashes"
   dependencies:
@@ -2258,17 +2204,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-randomvalues@npm:8.0.6-10":
-  version: 8.0.6-10
-  resolution: "@polkadot/x-randomvalues@npm:8.0.6-10"
-  dependencies:
-    "@babel/runtime": ^7.16.3
-    "@polkadot/x-global": 8.0.6-10
-  checksum: c190e96760a544c589ec69fda762b52246422eb6f7122af5a8aaf9643e261bdaf01e5f7647b4eee65536c5b0b05ebd4d7113ee3ce6bd1e5ba6374677f87905d9
-  languageName: node
-  linkType: hard
-
-"@polkadot/x-randomvalues@workspace:packages/x-randomvalues":
+"@polkadot/x-randomvalues@8.0.6-11, @polkadot/x-randomvalues@workspace:packages/x-randomvalues":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
@@ -2287,16 +2223,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-textdecoder@npm:8.0.6-10":
-  version: 8.0.6-10
-  resolution: "@polkadot/x-textdecoder@npm:8.0.6-10"
-  dependencies:
-    "@babel/runtime": ^7.16.3
-    "@polkadot/x-global": 8.0.6-10
-  checksum: 0dca10772cb41eae9481131b3062e935c4c3fc14a8aeae66bf7510ed88362e2aef8ecf5f6b4c3d80854094d19109c64d4f94312eb6a688bfab5b1571c0ba4ffd
-  languageName: node
-  linkType: hard
-
 "@polkadot/x-textencoder@8.0.6-11, @polkadot/x-textencoder@workspace:packages/x-textencoder":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-textencoder@workspace:packages/x-textencoder"
@@ -2305,16 +2231,6 @@ __metadata:
     "@polkadot/x-global": 8.0.6-11
   languageName: unknown
   linkType: soft
-
-"@polkadot/x-textencoder@npm:8.0.6-10":
-  version: 8.0.6-10
-  resolution: "@polkadot/x-textencoder@npm:8.0.6-10"
-  dependencies:
-    "@babel/runtime": ^7.16.3
-    "@polkadot/x-global": 8.0.6-10
-  checksum: a65030828bd6bc0786935fce6564200cb1fefadc98411680c798c8c5d05c6a69de8e5ced9fb6813e12e93e540277a5280cbf1173a170df8ec9940ba7a1bf7ed9
-  languageName: node
-  linkType: hard
 
 "@polkadot/x-ws@workspace:packages/x-ws":
   version: 0.0.0-use.local
