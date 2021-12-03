@@ -16,7 +16,7 @@ import { secp256k1 } from './secp256k1';
  */
 export function secp256k1Recover (message: Uint8Array, signature: Uint8Array, recovery: number, hashType: HashType = 'blake2', onlyJs?: boolean): Uint8Array {
   const publicKey = !onlyJs && isReady()
-    ? wasm(message, signature, recovery)
+    ? wasm(message, signature.slice(0, 64), recovery)
     : new Uint8Array(
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument
       secp256k1
