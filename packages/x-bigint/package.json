@@ -17,9 +17,9 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "8.0.6-9",
+  "version": "8.0.6-11",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@polkadot/x-global": "8.0.6-9"
+    "@polkadot/x-global": "8.0.6-11"
   }
 }
