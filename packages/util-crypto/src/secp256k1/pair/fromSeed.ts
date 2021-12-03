@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types';
 
-import { assert, assertBigInt } from '@polkadot/util';
+import { assert } from '@polkadot/util';
 import { getPublicKey } from '@polkadot/x-noble-secp256k1';
 
 /**
@@ -11,7 +11,6 @@ import { getPublicKey } from '@polkadot/x-noble-secp256k1';
  * @description Returns a object containing a `publicKey` & `secretKey` generated from the supplied seed.
  */
 export function secp256k1PairFromSeed (seed: Uint8Array): Keypair {
-  assertBigInt();
   assert(seed.length === 32, 'Expected valid 32-byte private key as a seed');
 
   return {
