@@ -2104,6 +2104,7 @@ __metadata:
     "@polkadot/wasm-crypto": ^4.5.1
     "@polkadot/x-bigint": 8.0.6-11
     "@polkadot/x-noble-hashes": 8.0.6-11
+    "@polkadot/x-noble-secp256k1": 8.0.6-11
     "@polkadot/x-randomvalues": 8.0.6-11
     "@types/ed2curve": ^0.2.2
     ed2curve: ^0.3.0
@@ -2208,7 +2209,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-noble-secp256k1@workspace:packages/x-noble-secp256k1":
+"@polkadot/x-noble-secp256k1@8.0.6-11, @polkadot/x-noble-secp256k1@workspace:packages/x-noble-secp256k1":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-noble-secp256k1@workspace:packages/x-noble-secp256k1"
   dependencies:
