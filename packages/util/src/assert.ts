@@ -4,7 +4,6 @@
 import { isFunction } from './is/function';
 import { isNull } from './is/null';
 import { isUndefined } from './is/undefined';
-import { hasBigInt } from './has';
 
 type MessageFn = () => string;
 
@@ -42,8 +41,4 @@ export function assertReturn <T> (value: T | undefined | null, message: string |
   assert(!isUndefined(value) && !isNull(value), message);
 
   return value;
-}
-
-export function assertBigInt (): void {
-  assert(hasBigInt, 'This operation is not supported in your environment, BigInt support is required');
 }
