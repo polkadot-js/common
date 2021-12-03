@@ -594,17 +594,17 @@ export const SignResult = Signature; // backwards compatibility
 
 // Concatenates two Uint8Arrays into one.
 // TODO: check if we're copying data instead of moving it and if that's ok
-function concatBytes(...arrays: Uint8Array[]): Uint8Array {
-  if (arrays.length === 1) return arrays[0];
-  const length = arrays.reduce((a, arr) => a + arr.length, 0);
-  const result = new Uint8Array(length);
-  for (let i = 0, pad = 0; i < arrays.length; i++) {
-    const arr = arrays[i];
-    result.set(arr, pad);
-    pad += arr.length;
-  }
-  return result;
-}
+// function concatBytes(...arrays: Uint8Array[]): Uint8Array {
+//   if (arrays.length === 1) return arrays[0];
+//   const length = arrays.reduce((a, arr) => a + arr.length, 0);
+//   const result = new Uint8Array(length);
+//   for (let i = 0, pad = 0; i < arrays.length; i++) {
+//     const arr = arrays[i];
+//     result.set(arr, pad);
+//     pad += arr.length;
+//   }
+//   return result;
+// }
 
 // Convert between types
 // ---------------------
@@ -816,26 +816,26 @@ function _abc6979(msgHash: Hex, privateKey: bigint): [U8A, bigint, U8A, U8A, U8A
 // Deterministic k generation as per RFC6979.
 // Generates k, and then calculates Q & Signature {r, s} based on it.
 // https://tools.ietf.org/html/rfc6979#section-3.1
-async function getQRSrfc6979(msgHash: Hex, privateKey: PrivKey): Promise<QRS> {
-  const privKey = normalizePrivateKey(privateKey);
-  let [h1, h1n, x, v, k, b0, b1] = _abc6979(msgHash, privKey);
-  const hmac = utils.hmacSha256;
-  // Steps D, E, F, G
-  k = await hmac(k, v, b0, x, h1);
-  v = await hmac(k, v);
-  k = await hmac(k, v, b1, x, h1);
-  v = await hmac(k, v);
-  // Step H3, repeat until 1 < T < n - 1
-  for (let i = 0; i < 1000; i++) {
-    v = await hmac(k, v);
-    let qrs = calcQRSFromK(v, h1n, privKey);
-    if (qrs) return qrs;
-    k = await hmac(k, v, b0);
-    v = await hmac(k, v);
-  }
+// async function getQRSrfc6979(msgHash: Hex, privateKey: PrivKey): Promise<QRS> {
+//   const privKey = normalizePrivateKey(privateKey);
+//   let [h1, h1n, x, v, k, b0, b1] = _abc6979(msgHash, privKey);
+//   const hmac = utils.hmacSha256;
+//   // Steps D, E, F, G
+//   k = await hmac(k, v, b0, x, h1);
+//   v = await hmac(k, v);
+//   k = await hmac(k, v, b1, x, h1);
+//   v = await hmac(k, v);
+//   // Step H3, repeat until 1 < T < n - 1
+//   for (let i = 0; i < 1000; i++) {
+//     v = await hmac(k, v);
+//     let qrs = calcQRSFromK(v, h1n, privKey);
+//     if (qrs) return qrs;
+//     k = await hmac(k, v, b0);
+//     v = await hmac(k, v);
+//   }
 
-  throw new TypeError('secp256k1: Tried 1,000 k values for sign(), all were invalid');
-}
+//   throw new TypeError('secp256k1: Tried 1,000 k values for sign(), all were invalid');
+// }
 
 // Same thing, but for synchronous utils.hmacSha256()
 function getQRSrfc6979Sync(msgHash: Hex, privateKey: PrivKey): QRS {
@@ -987,14 +987,14 @@ function QRSToSig(qrs: QRS, opts: OptsNoRecov | OptsRecov, str = false): SignOut
 
 // https://www.secg.org/sec1-v2.pdf, section 4.1.3
 // We are using deterministic signature scheme instead of letting user specify random `k`.
-async function sign(msgHash: U8A, privKey: PrivKey, opts: OptsRecov): Promise<[U8A, number]>;
-async function sign(msgHash: string, privKey: PrivKey, opts: OptsRecov): Promise<[string, number]>;
-async function sign(msgHash: U8A, privKey: PrivKey, opts?: OptsNoRecov): Promise<U8A>;
-async function sign(msgHash: string, privKey: PrivKey, opts?: OptsNoRecov): Promise<string>;
-async function sign(msgHash: string, privKey: PrivKey, opts?: OptsNoRecov): Promise<string>;
-async function sign(msgHash: Hex, privKey: PrivKey, opts: Opts = {}): Promise<SignOutput> {
-  return QRSToSig(await getQRSrfc6979(msgHash, privKey), opts, typeof msgHash === 'string');
-}
+// async function sign(msgHash: U8A, privKey: PrivKey, opts: OptsRecov): Promise<[U8A, number]>;
+// async function sign(msgHash: string, privKey: PrivKey, opts: OptsRecov): Promise<[string, number]>;
+// async function sign(msgHash: U8A, privKey: PrivKey, opts?: OptsNoRecov): Promise<U8A>;
+// async function sign(msgHash: string, privKey: PrivKey, opts?: OptsNoRecov): Promise<string>;
+// async function sign(msgHash: string, privKey: PrivKey, opts?: OptsNoRecov): Promise<string>;
+// async function sign(msgHash: Hex, privKey: PrivKey, opts: Opts = {}): Promise<SignOutput> {
+//   return QRSToSig(await getQRSrfc6979(msgHash, privKey), opts, typeof msgHash === 'string');
+// }
 
 function signSync(msgHash: U8A, privKey: PrivKey, opts: OptsRecov): [U8A, number];
 function signSync(msgHash: string, privKey: PrivKey, opts: OptsRecov): [string, number];
@@ -1004,7 +1004,7 @@ function signSync(msgHash: string, privKey: PrivKey, opts?: OptsNoRecov): string
 function signSync(msgHash: Hex, privKey: PrivKey, opts: Opts = {}): SignOutput {
   return QRSToSig(getQRSrfc6979Sync(msgHash, privKey), opts, typeof msgHash === 'string');
 }
-export { sign, signSync };
+export { /*sign,*/ signSync };
 
 // https://www.secg.org/sec1-v2.pdf, section 4.1.4
 export function verify(signature: Sig, msgHash: Hex, publicKey: PubKey): boolean {
@@ -1032,22 +1032,22 @@ export function verify(signature: Sig, msgHash: Hex, publicKey: PubKey): boolean
 // Schnorr-specific code as per BIP0340.
 
 // Strip first byte that signifies whether y is positive or negative, leave only x.
-async function taggedHash(tag: string, ...messages: Uint8Array[]): Promise<bigint> {
-  const tagB = new Uint8Array(tag.split('').map((c) => c.charCodeAt(0)));
-  const tagH = await utils.sha256(tagB);
-  const h = await utils.sha256(concatBytes(tagH, tagH, ...messages));
-  return bytesToNumber(h);
-}
+// async function taggedHash(tag: string, ...messages: Uint8Array[]): Promise<bigint> {
+//   const tagB = new Uint8Array(tag.split('').map((c) => c.charCodeAt(0)));
+//   const tagH = await utils.sha256(tagB);
+//   const h = await utils.sha256(concatBytes(tagH, tagH, ...messages));
+//   return bytesToNumber(h);
+// }
 
-async function createChallenge(x: bigint, P: Point, message: Uint8Array) {
-  const rx = pad32b(x);
-  const t = await taggedHash('BIP0340/challenge', rx, P.toRawX(), message);
-  return mod(t, CURVE.n);
-}
+// async function createChallenge(x: bigint, P: Point, message: Uint8Array) {
+//   const rx = pad32b(x);
+//   const t = await taggedHash('BIP0340/challenge', rx, P.toRawX(), message);
+//   return mod(t, CURVE.n);
+// }
 
-function hasEvenY(point: Point) {
-  return mod(point.y, _2n) === _0n;
-}
+// function hasEvenY(point: Point) {
+//   return mod(point.y, _2n) === _0n;
+// }
 
 class SchnorrSignature {
   constructor(readonly r: bigint, readonly s: bigint) {
@@ -1079,72 +1079,72 @@ function schnorrGetPublicKey(privateKey: PrivKey): Hex {
 }
 
 // Schnorr signature verifies itself before producing an output, which makes it safer
-async function schnorrSign(msgHash: string, privateKey: string, auxRand?: Hex): Promise<string>;
-async function schnorrSign(
-  msgHash: Uint8Array,
-  privateKey: Uint8Array,
-  auxRand?: Hex
-): Promise<Uint8Array>;
-async function schnorrSign(
-  msgHash: Hex,
-  privateKey: PrivKey,
-  auxRand: Hex = utils.randomBytes()
-): Promise<Hex> {
-  if (msgHash == null) throw new TypeError(`sign: Expected valid message, not "${msgHash}"`);
-  // if (privateKey == null) throw new TypeError('Expected valid private key');
-  if (!privateKey) privateKey = _0n;
-  const { n } = CURVE;
-  const m = ensureBytes(msgHash);
-  const d0 = normalizePrivateKey(privateKey); // <== does isWithinCurveOrder check
-  const rand = ensureBytes(auxRand);
-  if (rand.length !== 32) throw new TypeError('sign: Expected 32 bytes of aux randomness');
+// async function schnorrSign(msgHash: string, privateKey: string, auxRand?: Hex): Promise<string>;
+// async function schnorrSign(
+//   msgHash: Uint8Array,
+//   privateKey: Uint8Array,
+//   auxRand?: Hex
+// ): Promise<Uint8Array>;
+// async function schnorrSign(
+//   msgHash: Hex,
+//   privateKey: PrivKey,
+//   auxRand: Hex = utils.randomBytes()
+// ): Promise<Hex> {
+//   if (msgHash == null) throw new TypeError(`sign: Expected valid message, not "${msgHash}"`);
+//   // if (privateKey == null) throw new TypeError('Expected valid private key');
+//   if (!privateKey) privateKey = _0n;
+//   const { n } = CURVE;
+//   const m = ensureBytes(msgHash);
+//   const d0 = normalizePrivateKey(privateKey); // <== does isWithinCurveOrder check
+//   const rand = ensureBytes(auxRand);
+//   if (rand.length !== 32) throw new TypeError('sign: Expected 32 bytes of aux randomness');
 
-  const P = Point.fromPrivateKey(d0);
-  const d = hasEvenY(P) ? d0 : n - d0;
+//   const P = Point.fromPrivateKey(d0);
+//   const d = hasEvenY(P) ? d0 : n - d0;
 
-  const t0h = await taggedHash('BIP0340/aux', rand);
-  const t = d ^ t0h;
+//   const t0h = await taggedHash('BIP0340/aux', rand);
+//   const t = d ^ t0h;
 
-  const k0h = await taggedHash('BIP0340/nonce', pad32b(t), P.toRawX(), m);
-  const k0 = mod(k0h, n);
-  if (k0 === _0n) throw new Error('sign: Creation of signature failed. k is zero');
+//   const k0h = await taggedHash('BIP0340/nonce', pad32b(t), P.toRawX(), m);
+//   const k0 = mod(k0h, n);
+//   if (k0 === _0n) throw new Error('sign: Creation of signature failed. k is zero');
 
-  // R = k'⋅G
-  const R = Point.fromPrivateKey(k0);
-  const k = hasEvenY(R) ? k0 : n - k0;
-  const e = await createChallenge(R.x, P, m);
-  const sig = new SchnorrSignature(R.x, mod(k + e * d, n));
-  const isValid = await schnorrVerify(sig.toRawBytes(), m, P.toRawX());
+//   // R = k'⋅G
+//   const R = Point.fromPrivateKey(k0);
+//   const k = hasEvenY(R) ? k0 : n - k0;
+//   const e = await createChallenge(R.x, P, m);
+//   const sig = new SchnorrSignature(R.x, mod(k + e * d, n));
+//   const isValid = await schnorrVerify(sig.toRawBytes(), m, P.toRawX());
 
-  if (!isValid) throw new Error('sign: Invalid signature produced');
-  return typeof msgHash === 'string' ? sig.toHex() : sig.toRawBytes();
-}
+//   if (!isValid) throw new Error('sign: Invalid signature produced');
+//   return typeof msgHash === 'string' ? sig.toHex() : sig.toRawBytes();
+// }
 
 // no schnorrSignSync() for now
 
 // Also used in sign() function.
-async function schnorrVerify(signature: Hex, msgHash: Hex, publicKey: Hex): Promise<boolean> {
-  const sig =
-    signature instanceof SchnorrSignature ? signature : SchnorrSignature.fromHex(signature);
-  const m = typeof msgHash === 'string' ? hexToBytes(msgHash) : msgHash;
+// async function schnorrVerify(signature: Hex, msgHash: Hex, publicKey: Hex): Promise<boolean> {
+//   const sig =
+//     signature instanceof SchnorrSignature ? signature : SchnorrSignature.fromHex(signature);
+//   const m = typeof msgHash === 'string' ? hexToBytes(msgHash) : msgHash;
 
-  const P = normalizePublicKey(publicKey);
-  const e = await createChallenge(sig.r, P, m);
+//   const P = normalizePublicKey(publicKey);
+//   const e = await createChallenge(sig.r, P, m);
 
-  // R = s⋅G - e⋅P
-  const sG = Point.fromPrivateKey(sig.s);
-  const eP = P.multiply(e);
-  const R = sG.subtract(eP);
+//   // R = s⋅G - e⋅P
+//   const sG = Point.fromPrivateKey(sig.s);
+//   const eP = P.multiply(e);
+//   const R = sG.subtract(eP);
 
-  if (R.equals(Point.BASE) || !hasEvenY(R) || R.x !== sig.r) return false;
-  return true;
-}
+//   if (R.equals(Point.BASE) || !hasEvenY(R) || R.x !== sig.r) return false;
+//   return true;
+// }
 
 export const schnorr = {
   Signature: SchnorrSignature,
   getPublicKey: schnorrGetPublicKey,
-  sign: schnorrSign,
-  verify: schnorrVerify,
+  // sign: schnorrSign,
+  // verify: schnorrVerify,
 };
 
 // Enable precomputes. Slows down first publicKey computation by 20ms.
