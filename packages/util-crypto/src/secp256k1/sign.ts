@@ -9,7 +9,7 @@ import { isReady, secp256k1Sign as wasm } from '@polkadot/wasm-crypto';
 import { Signature, signSync } from '@polkadot/x-noble-secp256k1';
 
 import { BN_BE_256_OPTS } from '../bn';
-import { secp256k1Hasher } from './hasher';
+import { hasher } from './hasher';
 
 /**
  * @name secp256k1Sign
@@ -18,7 +18,7 @@ import { secp256k1Hasher } from './hasher';
 export function secp256k1Sign (message: Uint8Array | string, { secretKey }: Partial<Keypair>, hashType: HashType = 'blake2', onlyJs?: boolean): Uint8Array {
   assert(secretKey?.length === 32, 'Expected valid secp256k1 secretKey, 32-bytes');
 
-  const data = secp256k1Hasher(hashType, message, onlyJs);
+  const data = hasher(hashType, message, onlyJs);
 
   if (!hasBigInt || (!onlyJs && isReady())) {
     return wasm(data, secretKey);

@@ -7,7 +7,7 @@ import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { performanceWasm } from '../../test/performance';
-import { secp256k1Hasher } from './hasher';
+import { hasher } from './hasher';
 import { secp256k1PairFromSeed, secp256k1Verify } from '.';
 
 const message = 'Pay KSMs to the Kusama account:88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee';
@@ -35,7 +35,7 @@ describe('secp256k1Verify', (): void => {
       const msg = hexToU8a('0xa30b64ce1eedf409c8afb801d72c05234e64849ea538c15dd3c8cf4ffcf166c9');
       const addr = isPublic
         ? pair.publicKey
-        : secp256k1Hasher('blake2', pair.publicKey, onlyJs);
+        : hasher('blake2', pair.publicKey, onlyJs);
 
       it('signature from JS', (): void => {
         expect(
