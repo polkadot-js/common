@@ -17,11 +17,11 @@ export function secp256k1PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keyp
   assert(seed.length === 32, 'Expected valid 32-byte private key as a seed');
 
   if (!onlyJs && isReady()) {
-    const pair = secp256k1FromSeed(seed);
+    const full = secp256k1FromSeed(seed);
 
     return {
-      publicKey: pair.subarray(32),
-      secretKey: pair.subarray(0, 32)
+      publicKey: full.slice(32),
+      secretKey: full.slice(0, 32)
     };
   }
 
