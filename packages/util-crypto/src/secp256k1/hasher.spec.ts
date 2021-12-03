@@ -4,12 +4,6 @@
 import { secp256k1Hasher } from './hasher';
 
 describe('secp256k1Hasher', (): void => {
-  it('fails with unknown hasher', (): void => {
-    expect(
-      () => secp256k1Hasher('unknown' as 'blake2', 'testing')
-    ).toThrow(/Unsupported secp256k1 hasher 'unknown', expected one of blake2, keccak/);
-  });
-
   it('creates a blake2 hash', (): void => {
     expect(
       secp256k1Hasher('blake2', 'abc')
