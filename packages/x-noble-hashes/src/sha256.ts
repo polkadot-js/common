@@ -1,5 +1,3 @@
-/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
-// https://github.com/paulmillr/noble-hashes/pull/13
 import { SHA2 } from './_sha2';
 import { rotr, wrapConstructor } from './utils';
 

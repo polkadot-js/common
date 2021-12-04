@@ -1,17 +1,14 @@
-/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
-// https://github.com/paulmillr/noble-hashes/pull/13
-import { BigInt } from '@polkadot/x-bigint';
 import { Hash, createView, Input, toBytes } from './utils';
-
-const _32n = BigInt(32);
-const _u32_max = BigInt(0xffffffff);
 
 // Polyfill for Safari 14
 function setBigUint64(view: DataView, byteOffset: number, value: bigint, isLE: boolean): void {
   if (typeof view.setBigUint64 === 'function') return view.setBigUint64(byteOffset, value, isLE);
+  const _32n = BigInt(32);
+  const _u32_max = BigInt(0xffffffff);
   const wh = Number((value >> _32n) & _u32_max);
   const wl = Number(value & _u32_max);
-  const [h, l] = isLE ? [4, 0] : [0, 4];
+  const h = isLE ? 4 : 0;
+  const l = isLE ? 0 : 4;
   view.setUint32(byteOffset + h, wh, isLE);
   view.setUint32(byteOffset + l, wl, isLE);
 }

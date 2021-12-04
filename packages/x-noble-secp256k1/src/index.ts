@@ -1,7 +1,5 @@
 /*! noble-secp256k1 - MIT License (c) Paul Miller (paulmillr.com) */
 
-import { BigInt } from '@polkadot/x-bigint';
-
 const _0n = BigInt(0);
 const _1n = BigInt(1);
 const _2n = BigInt(2);
@@ -15,8 +13,8 @@ const _23n = BigInt(23);
 const _32n = BigInt(32);
 const _44n = BigInt(44);
 const _88n = BigInt(88);
-const _256n = BigInt(256);
 const _128n = BigInt(128);
+const _256n = BigInt(256);
 const _977n = BigInt(977);
 
 // https://www.secg.org/sec2-v2.pdf
@@ -177,8 +175,8 @@ class JacobianPoint {
   // It's faster, but should only be used when you don't care about
   // an exposed private key e.g. sig verification, which works over *public* keys.
   multiplyUnsafe(scalar: bigint): JacobianPoint {
-    if (!isValidScalar(scalar)) throw new TypeError('Point#multiply: expected valid scalar');
-    let n = mod(BigInt(scalar), CURVE.n);
+    let n = normalizeScalar(scalar);
+    // The condition is not executed unless you change global var
     if (!USE_ENDOMORPHISM) {
       let p = JacobianPoint.ZERO;
       let d: JacobianPoint = this;
@@ -189,11 +187,10 @@ class JacobianPoint {
       }
       return p;
     }
-    let [k1neg, k1, k2neg, k2] = splitScalarEndo(n);
+    let { k1neg, k1, k2neg, k2 } = splitScalarEndo(n);
     let k1p = JacobianPoint.ZERO;
     let k2p = JacobianPoint.ZERO;
     let d: JacobianPoint = this;
-    // TODO: see if we need to check for both zeros instead of one
     while (k1 > _0n || k2 > _0n) {
       if (k1 & _1n) k1p = k1p.add(d);
       if (k2 & _1n) k2p = k2p.add(d);
@@ -216,7 +213,7 @@ class JacobianPoint {
     const windows = USE_ENDOMORPHISM ? 128 / W + 1 : 256 / W + 1;
     let points: JacobianPoint[] = [];
     let p: JacobianPoint = this;
-    let base: JacobianPoint;
+    let base = p;
     for (let window = 0; window < windows; window++) {
       base = p;
       points.push(base);
@@ -231,7 +228,7 @@ class JacobianPoint {
 
   // Implements w-ary non-adjacent form for calculating ec multiplication
   // Optional `affinePoint` argument is used to save cached precompute windows on it.
-  private wNAF(n: bigint, affinePoint?: Point): [JacobianPoint, JacobianPoint] {
+  private wNAF(n: bigint, affinePoint?: Point): { p: JacobianPoint; f: JacobianPoint } {
     if (!affinePoint && this.equals(JacobianPoint.BASE)) affinePoint = Point.BASE;
     const W = (affinePoint && affinePoint._WINDOW_SIZE) || 1;
     if (256 % W) {
@@ -278,36 +275,40 @@ class JacobianPoint {
       // Add random point inside current window to f.
       if (wbits === 0) {
         // The most important part for const-time getPublicKey
-        f = f.add(window % 2 ? precomputes[offset].negate() : precomputes[offset]);
+        let pr = precomputes[offset];
+        if (window % 2) pr = pr.negate();
+        f = f.add(pr);
       } else {
-        const cached = precomputes[offset + Math.abs(wbits) - 1];
-        p = p.add(wbits < 0 ? cached.negate() : cached);
+        let cached = precomputes[offset + Math.abs(wbits) - 1];
+        if (wbits < 0) cached = cached.negate();
+        p = p.add(cached);
       }
     }
-    return [p, f];
+    return { p, f };
   }
 
   // Constant time multiplication.
   // Uses wNAF method. Windowed method may be 10% faster,
   // but takes 2x longer to generate and consumes 2x memory.
   multiply(scalar: number | bigint, affinePoint?: Point): JacobianPoint {
-    if (!isValidScalar(scalar)) throw new TypeError('Point#multiply: expected valid scalar');
-    let n = mod(BigInt(scalar), CURVE.n);
+    let n = normalizeScalar(scalar);
     // Real point.
     let point: JacobianPoint;
     // Fake point, we use it to achieve constant-time multiplication.
     let fake: JacobianPoint;
     if (USE_ENDOMORPHISM) {
-      const [k1neg, k1, k2neg, k2] = splitScalarEndo(n);
-      let k1p, k2p, f1p, f2p;
-      [k1p, f1p] = this.wNAF(k1, affinePoint);
-      [k2p, f2p] = this.wNAF(k2, affinePoint);
+      let { k1neg, k1, k2neg, k2 } = splitScalarEndo(n);
+      let { p: k1p, f: f1p } = this.wNAF(k1, affinePoint);
+      let { p: k2p, f: f2p } = this.wNAF(k2, affinePoint);
       if (k1neg) k1p = k1p.negate();
       if (k2neg) k2p = k2p.negate();
       k2p = new JacobianPoint(mod(k2p.x * CURVE.beta), k2p.y, k2p.z);
-      [point, fake] = [k1p.add(k2p), f1p.add(f2p)];
+      point = k1p.add(k2p);
+      fake = f1p.add(f2p);
     } else {
-      [point, fake] = this.wNAF(n, affinePoint);
+      let { p, f } = this.wNAF(n, affinePoint);
+      point = p;
+      fake = f;
     }
     // Normalize `z` for both points, but return only real one
     return JacobianPoint.normalizeZ([point, fake])[0];
@@ -594,17 +595,17 @@ export const SignResult = Signature; // backwards compatibility
 
 // Concatenates two Uint8Arrays into one.
 // TODO: check if we're copying data instead of moving it and if that's ok
-// function concatBytes(...arrays: Uint8Array[]): Uint8Array {
-//   if (arrays.length === 1) return arrays[0];
-//   const length = arrays.reduce((a, arr) => a + arr.length, 0);
-//   const result = new Uint8Array(length);
-//   for (let i = 0, pad = 0; i < arrays.length; i++) {
-//     const arr = arrays[i];
-//     result.set(arr, pad);
-//     pad += arr.length;
-//   }
-//   return result;
-// }
+function concatBytes(...arrays: Uint8Array[]): Uint8Array {
+  if (arrays.length === 1) return arrays[0];
+  const length = arrays.reduce((a, arr) => a + arr.length, 0);
+  const result = new Uint8Array(length);
+  for (let i = 0, pad = 0; i < arrays.length; i++) {
+    const arr = arrays[i];
+    result.set(arr, pad);
+    pad += arr.length;
+  }
+  return result;
+}
 
 // Convert between types
 // ---------------------
@@ -664,10 +665,10 @@ function parseByte(str: string): number {
   return Number.parseInt(str, 16) * 2;
 }
 
-function isValidScalar(num: number | bigint): boolean {
-  if (typeof num === 'bigint' && num > _0n) return true;
-  if (typeof num === 'number' && num > 0 && Number.isSafeInteger(num)) return true;
-  return false;
+function normalizeScalar(num: number | bigint): bigint {
+  if (typeof num === 'number' && num > 0 && Number.isSafeInteger(num)) return BigInt(num);
+  if (typeof num === 'bigint' && isWithinCurveOrder(num)) return num;
+  throw new TypeError('Expected valid private scalar: 0 < scalar < curve.n');
 }
 
 // -------------------------
@@ -720,15 +721,15 @@ function invert(number: bigint, modulo: bigint = CURVE.P): bigint {
   // Eucledian GCD https://brilliant.org/wiki/extended-euclidean-algorithm/
   let a = mod(number, modulo);
   let b = modulo;
-  let [x, y, u, v] = [_0n, _1n, _1n, _0n];
+  // prettier-ignore
+  let x = _0n, y = _1n, u = _1n, v = _0n;
   while (a !== _0n) {
     const q = b / a;
     const r = b % a;
     const m = x - u * q;
     const n = y - v * q;
-    [b, a] = [a, r];
-    [x, y] = [u, v];
-    [u, v] = [m, n];
+    // prettier-ignore
+    b = a, a = r, x = u, y = v, u = m, v = n;
   }
   const gcd = b;
   if (gcd !== _1n) throw new Error('invert: does not exist');
@@ -759,7 +760,7 @@ const divNearest = (a: bigint, b: bigint) => (a + b / _2n) / b;
 const POW_2_128 = _2n ** _128n;
 // Split 256-bit K into 2 128-bit (k1, k2) for which k1 + k2 * lambda = K.
 // Used for endomorphism https://gist.github.com/paulmillr/eb670806793e84df628a7c434a873066
-function splitScalarEndo(k: bigint): [boolean, bigint, boolean, bigint] {
+function splitScalarEndo(k: bigint) {
   const { n } = CURVE;
   const a1 = BigInt('0x3086d221a7d46bcde86c90e49284eb15');
   const b1 = -_1n * BigInt('0xe4437ed6010e88286f547fa90abfe4c3');
@@ -774,7 +775,7 @@ function splitScalarEndo(k: bigint): [boolean, bigint, boolean, bigint] {
   if (k1neg) k1 = n - k1;
   if (k2neg) k2 = n - k2;
   if (k1 > POW_2_128 || k2 > POW_2_128) throw new Error('splitScalarEndo: Endomorphism failed');
-  return [k1neg, k1, k2neg, k2];
+  return { k1neg, k1, k2neg, k2 };
 }
 
 function truncateHash(hash: string | Uint8Array): bigint {
@@ -796,7 +797,7 @@ type QRS = [Point, bigint, bigint];
 type U8A = Uint8Array;
 
 // Steps A, B and C of RFC6979.
-function _abc6979(msgHash: Hex, privateKey: bigint): [U8A, bigint, U8A, U8A, U8A, U8A, U8A] {
+function _abc6979(msgHash: Hex, privateKey: bigint) {
   if (msgHash == null) throw new Error(`sign: expected valid msgHash, not "${msgHash}"`);
   const num = typeof msgHash === 'string' ? hexToNumber(msgHash) : bytesToNumber(msgHash);
   // Step A is ignored, since we already provide hash instead of msg
@@ -810,37 +811,37 @@ function _abc6979(msgHash: Hex, privateKey: bigint): [U8A, bigint, U8A, U8A, U8A
   let k = new Uint8Array(32).fill(0);
   const b0 = Uint8Array.from([0x00]);
   const b1 = Uint8Array.from([0x01]);
-  return [h1, h1n, x, v, k, b0, b1];
+  return { h1, h1n, x, v, k, b0, b1 };
 }
 
 // Deterministic k generation as per RFC6979.
 // Generates k, and then calculates Q & Signature {r, s} based on it.
 // https://tools.ietf.org/html/rfc6979#section-3.1
-// async function getQRSrfc6979(msgHash: Hex, privateKey: PrivKey): Promise<QRS> {
-//   const privKey = normalizePrivateKey(privateKey);
-//   let [h1, h1n, x, v, k, b0, b1] = _abc6979(msgHash, privKey);
-//   const hmac = utils.hmacSha256;
-//   // Steps D, E, F, G
-//   k = await hmac(k, v, b0, x, h1);
-//   v = await hmac(k, v);
-//   k = await hmac(k, v, b1, x, h1);
-//   v = await hmac(k, v);
-//   // Step H3, repeat until 1 < T < n - 1
-//   for (let i = 0; i < 1000; i++) {
-//     v = await hmac(k, v);
-//     let qrs = calcQRSFromK(v, h1n, privKey);
-//     if (qrs) return qrs;
-//     k = await hmac(k, v, b0);
-//     v = await hmac(k, v);
-//   }
+async function getQRSrfc6979(msgHash: Hex, privateKey: PrivKey): Promise<QRS> {
+  const privKey = normalizePrivateKey(privateKey);
+  let { h1, h1n, x, v, k, b0, b1 } = _abc6979(msgHash, privKey);
+  const hmac = utils.hmacSha256;
+  // Steps D, E, F, G
+  k = await hmac(k, v, b0, x, h1);
+  v = await hmac(k, v);
+  k = await hmac(k, v, b1, x, h1);
+  v = await hmac(k, v);
+  // Step H3, repeat until 1 < T < n - 1
+  for (let i = 0; i < 1000; i++) {
+    v = await hmac(k, v);
+    let qrs = calcQRSFromK(v, h1n, privKey);
+    if (qrs) return qrs;
+    k = await hmac(k, v, b0);
+    v = await hmac(k, v);
+  }
 
-//   throw new TypeError('secp256k1: Tried 1,000 k values for sign(), all were invalid');
-// }
+  throw new TypeError('secp256k1: Tried 1,000 k values for sign(), all were invalid');
+}
 
 // Same thing, but for synchronous utils.hmacSha256()
 function getQRSrfc6979Sync(msgHash: Hex, privateKey: PrivKey): QRS {
   const privKey = normalizePrivateKey(privateKey);
-  let [h1, h1n, x, v, k, b0, b1] = _abc6979(msgHash, privKey);
+  let { h1, h1n, x, v, k, b0, b1 } = _abc6979(msgHash, privKey);
   const hmac = utils.hmacSha256Sync;
   if (!hmac) throw new Error('utils.hmacSha256Sync is undefined, you need to set it');
   // Steps D, E, F, G
@@ -987,14 +988,14 @@ function QRSToSig(qrs: QRS, opts: OptsNoRecov | OptsRecov, str = false): SignOut
 
 // https://www.secg.org/sec1-v2.pdf, section 4.1.3
 // We are using deterministic signature scheme instead of letting user specify random `k`.
-// async function sign(msgHash: U8A, privKey: PrivKey, opts: OptsRecov): Promise<[U8A, number]>;
-// async function sign(msgHash: string, privKey: PrivKey, opts: OptsRecov): Promise<[string, number]>;
-// async function sign(msgHash: U8A, privKey: PrivKey, opts?: OptsNoRecov): Promise<U8A>;
-// async function sign(msgHash: string, privKey: PrivKey, opts?: OptsNoRecov): Promise<string>;
-// async function sign(msgHash: string, privKey: PrivKey, opts?: OptsNoRecov): Promise<string>;
-// async function sign(msgHash: Hex, privKey: PrivKey, opts: Opts = {}): Promise<SignOutput> {
-//   return QRSToSig(await getQRSrfc6979(msgHash, privKey), opts, typeof msgHash === 'string');
-// }
+async function sign(msgHash: U8A, privKey: PrivKey, opts: OptsRecov): Promise<[U8A, number]>;
+async function sign(msgHash: string, privKey: PrivKey, opts: OptsRecov): Promise<[string, number]>;
+async function sign(msgHash: U8A, privKey: PrivKey, opts?: OptsNoRecov): Promise<U8A>;
+async function sign(msgHash: string, privKey: PrivKey, opts?: OptsNoRecov): Promise<string>;
+async function sign(msgHash: string, privKey: PrivKey, opts?: OptsNoRecov): Promise<string>;
+async function sign(msgHash: Hex, privKey: PrivKey, opts: Opts = {}): Promise<SignOutput> {
+  return QRSToSig(await getQRSrfc6979(msgHash, privKey), opts, typeof msgHash === 'string');
+}
 
 function signSync(msgHash: U8A, privKey: PrivKey, opts: OptsRecov): [U8A, number];
 function signSync(msgHash: string, privKey: PrivKey, opts: OptsRecov): [string, number];
@@ -1004,7 +1005,7 @@ function signSync(msgHash: string, privKey: PrivKey, opts?: OptsNoRecov): string
 function signSync(msgHash: Hex, privKey: PrivKey, opts: Opts = {}): SignOutput {
   return QRSToSig(getQRSrfc6979Sync(msgHash, privKey), opts, typeof msgHash === 'string');
 }
-export { /*sign,*/ signSync };
+export { sign, signSync };
 
 // https://www.secg.org/sec1-v2.pdf, section 4.1.4
 export function verify(signature: Sig, msgHash: Hex, publicKey: PubKey): boolean {
@@ -1032,22 +1033,22 @@ export function verify(signature: Sig, msgHash: Hex, publicKey: PubKey): boolean
 // Schnorr-specific code as per BIP0340.
 
 // Strip first byte that signifies whether y is positive or negative, leave only x.
-// async function taggedHash(tag: string, ...messages: Uint8Array[]): Promise<bigint> {
-//   const tagB = new Uint8Array(tag.split('').map((c) => c.charCodeAt(0)));
-//   const tagH = await utils.sha256(tagB);
-//   const h = await utils.sha256(concatBytes(tagH, tagH, ...messages));
-//   return bytesToNumber(h);
-// }
+async function taggedHash(tag: string, ...messages: Uint8Array[]): Promise<bigint> {
+  const tagB = new Uint8Array(tag.split('').map((c) => c.charCodeAt(0)));
+  const tagH = await utils.sha256(tagB);
+  const h = await utils.sha256(concatBytes(tagH, tagH, ...messages));
+  return bytesToNumber(h);
+}
 
-// async function createChallenge(x: bigint, P: Point, message: Uint8Array) {
-//   const rx = pad32b(x);
-//   const t = await taggedHash('BIP0340/challenge', rx, P.toRawX(), message);
-//   return mod(t, CURVE.n);
-// }
+async function createChallenge(x: bigint, P: Point, message: Uint8Array) {
+  const rx = pad32b(x);
+  const t = await taggedHash('BIP0340/challenge', rx, P.toRawX(), message);
+  return mod(t, CURVE.n);
+}
 
-// function hasEvenY(point: Point) {
-//   return mod(point.y, _2n) === _0n;
-// }
+function hasEvenY(point: Point) {
+  return mod(point.y, _2n) === _0n;
+}
 
 class SchnorrSignature {
   constructor(readonly r: bigint, readonly s: bigint) {
@@ -1079,72 +1080,72 @@ function schnorrGetPublicKey(privateKey: PrivKey): Hex {
 }
 
 // Schnorr signature verifies itself before producing an output, which makes it safer
-// async function schnorrSign(msgHash: string, privateKey: string, auxRand?: Hex): Promise<string>;
-// async function schnorrSign(
-//   msgHash: Uint8Array,
-//   privateKey: Uint8Array,
-//   auxRand?: Hex
-// ): Promise<Uint8Array>;
-// async function schnorrSign(
-//   msgHash: Hex,
-//   privateKey: PrivKey,
-//   auxRand: Hex = utils.randomBytes()
-// ): Promise<Hex> {
-//   if (msgHash == null) throw new TypeError(`sign: Expected valid message, not "${msgHash}"`);
-//   // if (privateKey == null) throw new TypeError('Expected valid private key');
-//   if (!privateKey) privateKey = _0n;
-//   const { n } = CURVE;
-//   const m = ensureBytes(msgHash);
-//   const d0 = normalizePrivateKey(privateKey); // <== does isWithinCurveOrder check
-//   const rand = ensureBytes(auxRand);
-//   if (rand.length !== 32) throw new TypeError('sign: Expected 32 bytes of aux randomness');
+async function schnorrSign(msgHash: string, privateKey: string, auxRand?: Hex): Promise<string>;
+async function schnorrSign(
+  msgHash: Uint8Array,
+  privateKey: Uint8Array,
+  auxRand?: Hex
+): Promise<Uint8Array>;
+async function schnorrSign(
+  msgHash: Hex,
+  privateKey: PrivKey,
+  auxRand: Hex = utils.randomBytes()
+): Promise<Hex> {
+  if (msgHash == null) throw new TypeError(`sign: Expected valid message, not "${msgHash}"`);
+  // if (privateKey == null) throw new TypeError('Expected valid private key');
+  if (!privateKey) privateKey = _0n;
+  const { n } = CURVE;
+  const m = ensureBytes(msgHash);
+  const d0 = normalizePrivateKey(privateKey); // <== does isWithinCurveOrder check
+  const rand = ensureBytes(auxRand);
+  if (rand.length !== 32) throw new TypeError('sign: Expected 32 bytes of aux randomness');
 
-//   const P = Point.fromPrivateKey(d0);
-//   const d = hasEvenY(P) ? d0 : n - d0;
+  const P = Point.fromPrivateKey(d0);
+  const d = hasEvenY(P) ? d0 : n - d0;
 
-//   const t0h = await taggedHash('BIP0340/aux', rand);
-//   const t = d ^ t0h;
+  const t0h = await taggedHash('BIP0340/aux', rand);
+  const t = d ^ t0h;
 
-//   const k0h = await taggedHash('BIP0340/nonce', pad32b(t), P.toRawX(), m);
-//   const k0 = mod(k0h, n);
-//   if (k0 === _0n) throw new Error('sign: Creation of signature failed. k is zero');
+  const k0h = await taggedHash('BIP0340/nonce', pad32b(t), P.toRawX(), m);
+  const k0 = mod(k0h, n);
+  if (k0 === _0n) throw new Error('sign: Creation of signature failed. k is zero');
 
-//   // R = k'⋅G
-//   const R = Point.fromPrivateKey(k0);
-//   const k = hasEvenY(R) ? k0 : n - k0;
-//   const e = await createChallenge(R.x, P, m);
-//   const sig = new SchnorrSignature(R.x, mod(k + e * d, n));
-//   const isValid = await schnorrVerify(sig.toRawBytes(), m, P.toRawX());
+  // R = k'⋅G
+  const R = Point.fromPrivateKey(k0);
+  const k = hasEvenY(R) ? k0 : n - k0;
+  const e = await createChallenge(R.x, P, m);
+  const sig = new SchnorrSignature(R.x, mod(k + e * d, n));
+  const isValid = await schnorrVerify(sig.toRawBytes(), m, P.toRawX());
 
-//   if (!isValid) throw new Error('sign: Invalid signature produced');
-//   return typeof msgHash === 'string' ? sig.toHex() : sig.toRawBytes();
-// }
+  if (!isValid) throw new Error('sign: Invalid signature produced');
+  return typeof msgHash === 'string' ? sig.toHex() : sig.toRawBytes();
+}
 
 // no schnorrSignSync() for now
 
 // Also used in sign() function.
-// async function schnorrVerify(signature: Hex, msgHash: Hex, publicKey: Hex): Promise<boolean> {
-//   const sig =
-//     signature instanceof SchnorrSignature ? signature : SchnorrSignature.fromHex(signature);
-//   const m = typeof msgHash === 'string' ? hexToBytes(msgHash) : msgHash;
+async function schnorrVerify(signature: Hex, msgHash: Hex, publicKey: Hex): Promise<boolean> {
+  const sig =
+    signature instanceof SchnorrSignature ? signature : SchnorrSignature.fromHex(signature);
+  const m = typeof msgHash === 'string' ? hexToBytes(msgHash) : msgHash;
 
-//   const P = normalizePublicKey(publicKey);
-//   const e = await createChallenge(sig.r, P, m);
+  const P = normalizePublicKey(publicKey);
+  const e = await createChallenge(sig.r, P, m);
 
-//   // R = s⋅G - e⋅P
-//   const sG = Point.fromPrivateKey(sig.s);
-//   const eP = P.multiply(e);
-//   const R = sG.subtract(eP);
+  // R = s⋅G - e⋅P
+  const sG = Point.fromPrivateKey(sig.s);
+  const eP = P.multiply(e);
+  const R = sG.subtract(eP);
 
-//   if (R.equals(Point.BASE) || !hasEvenY(R) || R.x !== sig.r) return false;
-//   return true;
-// }
+  if (R.equals(Point.BASE) || !hasEvenY(R) || R.x !== sig.r) return false;
+  return true;
+}
 
 export const schnorr = {
   Signature: SchnorrSignature,
   getPublicKey: schnorrGetPublicKey,
-  // sign: schnorrSign,
-  // verify: schnorrVerify,
+  sign: schnorrSign,
+  verify: schnorrVerify,
 };
 
 // Enable precomputes. Slows down first publicKey computation by 20ms.
@@ -1152,6 +1153,16 @@ Point.BASE._setWindowSize(8);
 
 type Sha256FnSync = undefined | ((...messages: Uint8Array[]) => Uint8Array);
 type HmacFnSync = undefined | ((key: Uint8Array, ...messages: Uint8Array[]) => Uint8Array);
+// Global symbol available in browsers only
+declare const self: Record<string, any> | undefined;
+const crypto: { node?: any; web?: any } = (() => {
+  const webCrypto = typeof self === 'object' && 'crypto' in self ? self.crypto : undefined;
+  const nodeRequire = typeof module !== 'undefined' && typeof require === 'function';
+  return {
+    node: nodeRequire && !webCrypto ? require('crypto') : undefined,
+    web: webCrypto,
+  };
+})();
 
 export const utils = {
   isValidPrivateKey(privateKey: PrivKey) {
@@ -1163,15 +1174,64 @@ export const utils = {
     }
   },
 
-  randomBytes: undefined,
+  randomBytes: (bytesLength: number = 32): Uint8Array => {
+    if (crypto.web) {
+      return crypto.web.getRandomValues(new Uint8Array(bytesLength));
+    } else if (crypto.node) {
+      const { randomBytes } = crypto.node;
+      return new Uint8Array(randomBytes(bytesLength).buffer);
+    } else {
+      throw new Error("The environment doesn't have randomBytes function");
+    }
+  },
 
   // NIST SP 800-56A rev 3, section 5.6.1.2.2
   // https://research.kudelskisecurity.com/2020/07/28/the-definitive-guide-to-modulo-bias-and-how-to-avoid-it/
-  randomPrivateKey: undefined,
+  randomPrivateKey: (): Uint8Array => {
+    let i = 8;
+    while (i--) {
+      const b32 = utils.randomBytes(32);
+      const num = bytesToNumber(b32);
+      if (isWithinCurveOrder(num) && num !== _1n) return b32;
+    }
+    throw new Error('Valid private key was not found in 8 iterations. PRNG is broken');
+  },
 
-  sha256: undefined,
+  sha256: async (message: Uint8Array): Promise<Uint8Array> => {
+    if (crypto.web) {
+      const buffer = await crypto.web.subtle.digest('SHA-256', message.buffer);
+      return new Uint8Array(buffer);
+    } else if (crypto.node) {
+      const { createHash } = crypto.node;
+      return Uint8Array.from(createHash('sha256').update(message).digest());
+    } else {
+      throw new Error("The environment doesn't have sha256 function");
+    }
+  },
 
-  hmacSha256: undefined,
+  hmacSha256: async (key: Uint8Array, ...messages: Uint8Array[]): Promise<Uint8Array> => {
+    if (crypto.web) {
+      const ckey = await crypto.web.subtle.importKey(
+        'raw',
+        key,
+        { name: 'HMAC', hash: { name: 'SHA-256' } },
+        false,
+        ['sign']
+      );
+      const message = concatBytes(...messages);
+      const buffer = await crypto.web.subtle.sign('HMAC', ckey, message);
+      return new Uint8Array(buffer);
+    } else if (crypto.node) {
+      const { createHmac } = crypto.node;
+      const hash = createHmac('sha256', key);
+      for (let message of messages) {
+        hash.update(message);
+      }
+      return Uint8Array.from(hash.digest());
+    } else {
+      throw new Error("The environment doesn't have hmac-sha256 function");
+    }
+  },
 
   sha256Sync: undefined as Sha256FnSync,
   hmacSha256Sync: undefined as HmacFnSync,

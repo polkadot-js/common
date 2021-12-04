@@ -1,6 +1,3 @@
-/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
-// https://github.com/paulmillr/noble-hashes/pull/13
-import { BigInt } from '@polkadot/x-bigint';
 import { SHA2 } from './_sha2';
 import * as u64 from './_u64';
 import { wrapConstructor } from './utils';
@@ -28,7 +25,7 @@ const [SHA512_Kh, SHA512_Kl] = u64.split([
   '0x06f067aa72176fba', '0x0a637dc5a2c898a6', '0x113f9804bef90dae', '0x1b710b35131c471b',
   '0x28db77f523047d84', '0x32caab7b40c72493', '0x3c9ebe0a15c9bebc', '0x431d67c49c100d4c',
   '0x4cc5d4becb3e42b6', '0x597f299cfc657e2a', '0x5fcb6fab3ad6faec', '0x6c44198c4a475817'
-].map((n) => BigInt(n)));
+].map(n => BigInt(n)));
 
 // Temporary buffer, not used to store anything between runs
 const SHA512_W_H = new Uint32Array(80);

@@ -1,9 +1,4 @@
-/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
-// https://github.com/paulmillr/noble-hashes/pull/13
-import { BigInt } from '@polkadot/x-bigint';
-
 const U32_MASK64 = BigInt(2 ** 32 - 1);
-
 const _32n = BigInt(32);
 
 export function fromBig(n: bigint, le = false) {
@@ -12,7 +7,8 @@ export function fromBig(n: bigint, le = false) {
 }
 
 export function split(lst: bigint[], le = false) {
-  let [Ah, Al] = [new Uint32Array(lst.length), new Uint32Array(lst.length)];
+  let Ah = new Uint32Array(lst.length);
+  let Al = new Uint32Array(lst.length);
   for (let i = 0; i < lst.length; i++) {
     const { h, l } = fromBig(lst[i], le);
     [Ah[i], Al[i]] = [h, l];

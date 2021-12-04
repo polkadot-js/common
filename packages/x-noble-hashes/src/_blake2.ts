@@ -1,5 +1,3 @@
-/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
-// https://github.com/paulmillr/noble-hashes/pull/13
 import { assertNumber, Hash, Input, toBytes, u32 } from './utils';
 // prettier-ignore
 export const SIGMA = new Uint8Array([

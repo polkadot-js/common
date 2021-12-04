@@ -1,5 +1,3 @@
-/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
-// https://github.com/paulmillr/noble-hashes/pull/13
 import { Input, toBytes, wrapConstructorWithOpts, assertNumber, u32, Hash, HashXOF } from './utils';
 import { Keccak, ShakeOpts } from './sha3';
 // cSHAKE && KMAC (NIST SP800-185)

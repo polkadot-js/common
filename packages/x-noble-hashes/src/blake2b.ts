@@ -1,6 +1,3 @@
-/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
-// https://github.com/paulmillr/noble-hashes/pull/13
-import { BigInt } from '@polkadot/x-bigint';
 import * as blake2 from './_blake2';
 import * as u64 from './_u64';
 import { toBytes, u32, wrapConstructorWithOpts } from './utils';

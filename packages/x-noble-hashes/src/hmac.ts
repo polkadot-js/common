@@ -1,5 +1,3 @@
-/*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
-// https://github.com/paulmillr/noble-hashes/pull/13
 import { assertHash, Hash, CHash, Input, toBytes } from './utils';
 // HMAC (RFC 2104)
 class HMAC<T extends Hash<T>> extends Hash<HMAC<T>> {

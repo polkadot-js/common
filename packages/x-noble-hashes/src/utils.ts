@@ -1,5 +1,8 @@
 /*! noble-hashes - MIT License (c) 2021 Paul Miller (paulmillr.com) */
-// https://github.com/paulmillr/noble-hashes/pull/13
+
+// The import here is via the package name. This is to ensure
+// that exports mapping/resolution does fall into place.
+import { crypto } from '@polkadot/x-noble-hashes/crypto';
 
 // prettier-ignore
 export type TypedArray = Int8Array | Uint8ClampedArray | Uint8Array |
@@ -61,6 +64,14 @@ export async function asyncLoop(iters: number, tick: number, cb: (i: number) => 
   }
 }
 
+// Global symbols in both browsers and Node.js since v11
+// https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder
+// https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder
+// https://nodejs.org/docs/latest-v12.x/api/util.html#util_class_util_textencoder
+// https://nodejs.org/docs/latest-v12.x/api/util.html#util_class_util_textdecoder
+// See https://github.com/microsoft/TypeScript/issues/31535
+declare const TextEncoder: any;
+declare const TextDecoder: any;
 export type Input = Uint8Array | string;
 export function toBytes(data: Input) {
   if (typeof data === 'string') data = new TextEncoder().encode(data);
@@ -151,4 +162,14 @@ export function wrapConstructorWithOpts<H extends Hash<H>, T extends Object>(
   hashC.create = (opts: T) => hashCons(opts);
   hashC.init = hashC.create;
   return hashC;
+}
+
+export function randomBytes(bytesLength = 32): Uint8Array {
+  if (crypto.web) {
+    return crypto.web.getRandomValues(new Uint8Array(bytesLength));
+  } else if (crypto.node) {
+    return new Uint8Array(crypto.node.randomBytes(bytesLength).buffer);
+  } else {
+    throw new Error("The environment doesn't have randomBytes function");
+  }
 }
