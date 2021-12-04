@@ -15,7 +15,10 @@
     "type": "git",
     "url": "https://github.com/polkadot-js/common.git"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "./shim.js",
+    "./shim.cjs"
+  ],
   "type": "module",
   "version": "8.0.6-15",
   "dependencies": {
