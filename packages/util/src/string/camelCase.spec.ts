@@ -67,7 +67,7 @@ describe('stringCamelCase', (): void => {
     ).toEqual('uuid64');
     expect(
       stringCamelCase('BLAKE2B')
-    ).toEqual('blake2B');
+    ).toEqual('blake2b');
   });
 
   it('adjusts with leading _', (): void => {

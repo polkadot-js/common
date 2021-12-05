@@ -3,17 +3,19 @@
 
 import type { AnyString } from '../types';
 
-// Adapted from https://stackoverflow.com/a/2970667
+// Inspired from https://stackoverflow.com/a/2970667
 //
-// this is not as optimal as the original asnwer (we split into multiple),
+// this is not as optimal as the original answer (we split into multiple),
 // however it does pass the tests (which the original doesn't) and it is still
 // a 10+x improvement over the original camelcase npm package (at running)
 //
 // original: 20.88 μs/op
-//     this:  1.91 μs/op
+//     this:  2.97 μs/op
 //
 // Caveat of this: only Ascii, but acceptable for the intended usecase
 function converter (fn: (w: string, i: number) => string): (value: AnyString) => string {
+  const format = (w: string, i: number) => fn(w[0], i) + w.slice(1);
+
   return (value: AnyString): string =>
     value
       .toString()
@@ -23,10 +25,17 @@ function converter (fn: (w: string, i: number) => string): (value: AnyString) =>
       .trim()
       // split into words
       .split(' ')
-      // all fully-uppercase words are changes to mixed
-      .map((w) => w.toUpperCase() === w ? w.toLowerCase() : w)
-      // apply the function to the first letter, the rest as-is
-      .map((w, i) => fn(w[0], i) + w.slice(1))
+      // apply the formatting
+      .map((w, i) =>
+        format(
+          w.toUpperCase() === w
+            // all full uppercase + letters are changed to lowercase
+            ? w.toLowerCase()
+            // all consecutive capitals + letters are changed to lowercase
+            : w.replace(/[A-Z]+[0-9]+/g, (w) => w.toLowerCase()),
+          i
+        )
+      )
       // combine into a single word
       .join('');
 }
