@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 8.1.2 Dec 5, 2021
+
+Changes:
+
+- Adjustment to non-full-word consecutive uppercase via `string{Camel, Pascal}Case`
+
+
 ## 8.1.1 Dec 5, 2021
 
 Contributed:
