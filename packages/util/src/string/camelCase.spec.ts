@@ -50,12 +50,15 @@ describe('stringCamelCase', (): void => {
     expect(
       stringCamelCase('SOMETHING')
     ).toEqual('something');
+    expect(
+      stringCamelCase('NMap')
+    ).toEqual('nMap');
   });
 
   it('adjusts all-uppercase + digits', (): void => {
     expect(
       stringCamelCase('SS58 PreFIX')
-    ).toEqual('ss58Prefix');
+    ).toEqual('ss58PreFIX');
     expect(
       stringCamelCase('SS58Prefix')
     ).toEqual('ss58Prefix');

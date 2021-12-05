@@ -21,10 +21,10 @@ function converter (fn: (w: string, i: number) => string): (value: AnyString) =>
       .replace(/[-_., ]+/g, ' ')
       // we don't want leading or trailing spaces
       .trim()
-      // all consequtive capitals are changed to lowercase
-      .replace(/[A-Z]{2,}/g, (w) => w.toLowerCase())
       // split into words
       .split(' ')
+      // all fully-uppercase words are changes to mixed
+      .map((w) => w.toUpperCase() === w ? w.toLowerCase() : w)
       // apply the function to the first letter, the rest as-is
       .map((w, i) => fn(w[0], i) + w.slice(1))
       // combine into a single word
