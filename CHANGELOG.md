@@ -8,11 +8,12 @@ Contributed:
 
 Changes:
 
+- Allow for use of `secp256k1` from `@polkadot/wasm-crypto`
 - Adjust `isBigInt` to not do `instanceof` check
-- Use `@polkadot/x-bigint` for `BigInt` constructor
-- Split `@noble/hashes` fork into `x-noble-hashes` (w/ above `BigInt`)
-- Add `@noble/hashes` fork as `x-noble-secp256k1` (w/ above `BigInt`), replaces `elliptic`
 - Ensure consequtive capitals in `stringCamelCase` are lowercased
+- Use `@polkadot/x-bigint` for `BigInt` constructor
+- Split `@noble/hashes` fork into `x-noble-hashes`
+- Add `@noble/secp256k1` fork into `x-noble-secp256k1`, replaces `elliptic`
 
 
 ## 8.0.5 Dec 1, 2021
