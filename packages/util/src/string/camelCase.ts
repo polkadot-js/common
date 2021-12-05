@@ -32,7 +32,7 @@ function converter (fn: (w: string, i: number) => string): (value: AnyString) =>
             // all full uppercase + letters are changed to lowercase
             ? w.toLowerCase()
             // all consecutive capitals + letters are changed to lowercase
-            : w.replace(/[A-Z]+[0-9]+/g, (w) => w.toLowerCase()),
+            : w.replace(/[A-Z]{2,}[0-9]{2,}/g, (w) => w.toLowerCase()),
           i
         )
       )
