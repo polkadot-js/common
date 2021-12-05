@@ -2205,7 +2205,6 @@ __metadata:
   resolution: "@polkadot/x-noble-hashes@workspace:packages/x-noble-hashes"
   dependencies:
     "@babel/runtime": ^7.16.3
-    "@polkadot/x-bigint": 8.0.6-17
   languageName: unknown
   linkType: soft
 
@@ -2214,7 +2213,6 @@ __metadata:
   resolution: "@polkadot/x-noble-secp256k1@workspace:packages/x-noble-secp256k1"
   dependencies:
     "@babel/runtime": ^7.16.3
-    "@polkadot/x-bigint": 8.0.6-17
   languageName: unknown
   linkType: soft
 

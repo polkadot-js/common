@@ -22,7 +22,6 @@
     "crypto": false
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
-    "@polkadot/x-bigint": "8.0.6-17"
+    "@babel/runtime": "^7.16.3"
   }
 }
