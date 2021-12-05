@@ -17,13 +17,13 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "8.0.6-18",
+  "version": "8.1.0",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.3"
   },
   "devDependencies": {
-    "@polkadot/util": "8.0.6-18",
-    "@polkadot/x-fetch": "8.0.6-18"
+    "@polkadot/util": "8.1.0",
+    "@polkadot/x-fetch": "8.1.0"
   }
 }
