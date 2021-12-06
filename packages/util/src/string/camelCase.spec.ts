@@ -72,6 +72,9 @@ describe('stringCamelCase', (): void => {
       stringCamelCase('NFTOrder')
     ).toEqual('nftOrder');
     expect(
+      stringCamelCase('EVM')
+    ).toEqual('evm');
+    expect(
       stringCamelCase('A')
     ).toEqual('a');
     expect(
