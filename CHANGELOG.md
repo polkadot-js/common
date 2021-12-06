@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Swap to upstream `@noble/hashes`
+
+
 ## 8.1.2 Dec 5, 2021
 
 Changes:

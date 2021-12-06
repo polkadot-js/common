@@ -3,9 +3,9 @@
 
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { hmacSha256, hmacSha512, isReady } from '@polkadot/wasm-crypto';
-import { hmac } from '@polkadot/x-noble-hashes/hmac';
-import { sha256 } from '@polkadot/x-noble-hashes/sha256';
-import { sha512 } from '@polkadot/x-noble-hashes/sha512';
+import { hmac } from '@noble/hashes/lib/hmac';
+import { sha256 } from '@noble/hashes/lib/sha256';
+import { sha512 } from '@noble/hashes/lib/sha512';
 
 type BitLength = 256 | 512;
 
