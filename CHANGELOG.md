@@ -5,6 +5,7 @@
 Changes:
 
 - Swap to upstream `@noble/hashes`
+- Preserve all-caps word splits in `stringCamelCase`
 
 
 ## 8.1.2 Dec 5, 2021

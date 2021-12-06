@@ -68,6 +68,27 @@ describe('stringCamelCase', (): void => {
     expect(
       stringCamelCase('BLAKE2B')
     ).toEqual('blake2b');
+    expect(
+      stringCamelCase('NFTOrder')
+    ).toEqual('nftOrder');
+    expect(
+      stringCamelCase('EVM')
+    ).toEqual('evm');
+    expect(
+      stringCamelCase('A')
+    ).toEqual('a');
+    expect(
+      stringCamelCase('A1')
+    ).toEqual('a1');
+    expect(
+      stringCamelCase('A1b')
+    ).toEqual('a1b');
+    expect(
+      stringCamelCase('A1B')
+    ).toEqual('a1b');
+    expect(
+      stringCamelCase('RawVRFOutput')
+    ).toEqual('rawVRFOutput');
   });
 
   it('adjusts with leading _', (): void => {
