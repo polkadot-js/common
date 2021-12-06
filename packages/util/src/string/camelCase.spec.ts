@@ -83,6 +83,9 @@ describe('stringCamelCase', (): void => {
     expect(
       stringCamelCase('A1B')
     ).toEqual('a1b');
+    expect(
+      stringCamelCase('RawVRFOutput')
+    ).toEqual('rawVRFOutput');
   });
 
   it('adjusts with leading _', (): void => {
