@@ -71,6 +71,18 @@ describe('stringCamelCase', (): void => {
     expect(
       stringCamelCase('NFTOrder')
     ).toEqual('nftOrder');
+    expect(
+      stringCamelCase('A')
+    ).toEqual('a');
+    expect(
+      stringCamelCase('A1')
+    ).toEqual('a1');
+    expect(
+      stringCamelCase('A1b')
+    ).toEqual('a1b');
+    expect(
+      stringCamelCase('A1B')
+    ).toEqual('a1b');
   });
 
   it('adjusts with leading _', (): void => {

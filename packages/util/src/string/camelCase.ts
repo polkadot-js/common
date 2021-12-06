@@ -10,7 +10,7 @@ import type { AnyString } from '../types';
 // a 10+x improvement over the original camelcase npm package (at running)
 //
 // original: 20.88 μs/op
-//     this:  3.05 μs/op
+//     this:  2.86 μs/op
 //
 // Caveat of this: only Ascii, but acceptable for the intended usecase
 function converter (fn: (w: string, i: number) => string): (value: AnyString) => string {
@@ -33,7 +33,7 @@ function converter (fn: (w: string, i: number) => string): (value: AnyString) =>
             ? w.toLowerCase()
             // all consecutive capitals + letters are changed to lowercase
             // e.g. UUID64 -> uuid64, while preserving splits, eg. NFTOrder -> nftOrder
-            : w.replace(/^[A-Z0-9]{1,}[^a-z]/, (w) =>
+            : w.replace(/^[A-Z0-9]{2,}[^a-z]/, (w) =>
               w.slice(0, w.length - 1).toLowerCase() + w.slice(-1).toUpperCase()
             ),
           i
