@@ -68,6 +68,9 @@ describe('stringCamelCase', (): void => {
     expect(
       stringCamelCase('BLAKE2B')
     ).toEqual('blake2b');
+    expect(
+      stringCamelCase('NFTOrder')
+    ).toEqual('nftOrder');
   });
 
   it('adjusts with leading _', (): void => {
