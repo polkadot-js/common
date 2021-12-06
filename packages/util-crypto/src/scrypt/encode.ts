@@ -4,9 +4,10 @@
 import type { HexString } from '@polkadot/util/types';
 import type { Params } from './types';
 
+import { scrypt as scryptJs } from '@noble/hashes/lib/scrypt';
+
 import { hasBigInt, objectSpread, u8aToU8a } from '@polkadot/util';
 import { isReady, scrypt } from '@polkadot/wasm-crypto';
-import { scrypt as scryptJs } from '@polkadot/x-noble-hashes/scrypt';
 
 import { randomAsU8a } from '../random/asU8a';
 import { DEFAULT_PARAMS } from './defaults';

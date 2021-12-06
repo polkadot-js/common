@@ -1770,10 +1770,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/hashes@npm:0.4.1":
-  version: 0.4.1
-  resolution: "@noble/hashes@npm:0.4.1"
-  checksum: 3c706beec3bcd9e43f2b88c0791f022b645b5c0a9dd76889dfc189e51da2f0c692ef846b5889e074338353e335269c14f4c0ea34329b4d7dd45ae82c482b4605
+"@noble/hashes@npm:^0.4.3":
+  version: 0.4.3
+  resolution: "@noble/hashes@npm:0.4.3"
+  checksum: d477167bf45273bfc0927b7325b10b33050600dfe9c713cf70f83d5dde61c6d9118e8802164a58eb4c936c52d694609d41b597d10d534e72bb4bddc158b38396
   languageName: node
   linkType: hard
 
@@ -2097,13 +2097,12 @@ __metadata:
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.16.3
-    "@noble/hashes": 0.4.1
+    "@noble/hashes": ^0.4.3
     "@noble/secp256k1": ^1.3.0
     "@polkadot/networks": 8.1.2
     "@polkadot/util": 8.1.2
     "@polkadot/wasm-crypto": ^4.5.1
     "@polkadot/x-bigint": 8.1.2
-    "@polkadot/x-noble-hashes": 8.1.2
     "@polkadot/x-noble-secp256k1": 8.1.2
     "@polkadot/x-randomvalues": 8.1.2
     "@types/ed2curve": ^0.2.2
@@ -2200,14 +2199,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-noble-hashes@8.1.2, @polkadot/x-noble-hashes@workspace:packages/x-noble-hashes":
-  version: 0.0.0-use.local
-  resolution: "@polkadot/x-noble-hashes@workspace:packages/x-noble-hashes"
-  dependencies:
-    "@babel/runtime": ^7.16.3
-  languageName: unknown
-  linkType: soft
-
 "@polkadot/x-noble-secp256k1@8.1.2, @polkadot/x-noble-secp256k1@workspace:packages/x-noble-secp256k1":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-noble-secp256k1@workspace:packages/x-noble-secp256k1"
@@ -2222,7 +2213,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.16.3
     "@polkadot/x-global": 8.1.2
-    "@types/react-native": ^0.66.6
+    "@types/react-native": ^0.66.8
   languageName: unknown
   linkType: soft
 
@@ -2602,12 +2593,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.66.6":
-  version: 0.66.6
-  resolution: "@types/react-native@npm:0.66.6"
+"@types/react-native@npm:^0.66.8":
+  version: 0.66.8
+  resolution: "@types/react-native@npm:0.66.8"
   dependencies:
     "@types/react": "*"
-  checksum: fba05b80bf2cf973f4448e9561df567f55988729a0a3b5ad633f07c9ab06f850658bf2ccf2a52cc947827322ecf120241a4f7a4e55485b9c6cdbbbad154d8635
+  checksum: 0d903eb8b25e445c86d3f8544ce825dd1aa2cbabbb24a65ed01270acd0b0047c87d716e48f3c1386bd2562a64bfe587ec7ac25b72380599806a369a99c846428
   languageName: node
   linkType: hard
 
