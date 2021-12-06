@@ -3,9 +3,10 @@
 
 import type { HexString } from '@polkadot/util/types';
 
+import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from '@noble/hashes/lib/sha3';
+
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, keccak256, keccak512 } from '@polkadot/wasm-crypto';
-import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from '@noble/hashes/lib/sha3';
 
 import { createAsHex, createBitHasher } from '../helpers';
 

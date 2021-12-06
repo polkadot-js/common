@@ -1,11 +1,12 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hasBigInt, u8aToU8a } from '@polkadot/util';
-import { hmacSha256, hmacSha512, isReady } from '@polkadot/wasm-crypto';
 import { hmac } from '@noble/hashes/lib/hmac';
 import { sha256 } from '@noble/hashes/lib/sha256';
 import { sha512 } from '@noble/hashes/lib/sha512';
+
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
+import { hmacSha256, hmacSha512, isReady } from '@polkadot/wasm-crypto';
 
 type BitLength = 256 | 512;
 

@@ -3,10 +3,11 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import { hasBigInt, u8aToU8a } from '@polkadot/util';
-import { isReady, pbkdf2 } from '@polkadot/wasm-crypto';
 import { pbkdf2 as pbkdf2Js } from '@noble/hashes/lib/pbkdf2';
 import { sha512 } from '@noble/hashes/lib/sha512';
+
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
+import { isReady, pbkdf2 } from '@polkadot/wasm-crypto';
 
 import { randomAsU8a } from '../random/asU8a';
 
