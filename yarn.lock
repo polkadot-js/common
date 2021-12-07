@@ -2104,6 +2104,7 @@ __metadata:
     "@polkadot/util": 8.1.3-3
     "@polkadot/wasm-crypto": ^4.5.1
     "@polkadot/x-bigint": 8.1.3-3
+    "@polkadot/x-noble-hashes": 8.1.3-3
     "@polkadot/x-noble-secp256k1": 8.1.3-3
     "@polkadot/x-randomvalues": 8.1.3-3
     "@types/ed2curve": ^0.2.2
@@ -2195,6 +2196,14 @@ __metadata:
 "@polkadot/x-global@8.1.3-3, @polkadot/x-global@workspace:packages/x-global":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-global@workspace:packages/x-global"
+  dependencies:
+    "@babel/runtime": ^7.16.3
+  languageName: unknown
+  linkType: soft
+
+"@polkadot/x-noble-hashes@8.1.3-3, @polkadot/x-noble-hashes@workspace:packages/x-noble-hashes":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/x-noble-hashes@workspace:packages/x-noble-hashes"
   dependencies:
     "@babel/runtime": ^7.16.3
   languageName: unknown
