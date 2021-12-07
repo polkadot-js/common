@@ -2057,7 +2057,7 @@ __metadata:
     "@babel/runtime": ^7.16.3
     "@polkadot/hw-ledger-transports": 8.1.3-5
     "@polkadot/util": 8.1.3-5
-    "@zondax/ledger-substrate": ^0.18.0
+    "@zondax/ledger-substrate": ^0.20.0
   languageName: unknown
   linkType: soft
 
@@ -2084,12 +2084,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/ts@npm:^0.4.16":
-  version: 0.4.16
-  resolution: "@polkadot/ts@npm:0.4.16"
+"@polkadot/ts@npm:^0.4.17":
+  version: 0.4.17
+  resolution: "@polkadot/ts@npm:0.4.17"
   dependencies:
-    "@types/chrome": ^0.0.165
-  checksum: dcee9e20e87339b012afae4d0e7a6d75486e72a864617ed0acb55129cafaf9977925c4808370252cac2960016e6c1d4943826ed867f8aa5d43d73e845ef5488e
+    "@types/chrome": ^0.0.168
+  checksum: 0b6860435d378b3c4eed39eb00afec82e3a1ed5c225f2a9083865cab4babe29661b3ba2488dc633680b14ee5823f24558427332c56d8dc9e4deffc5f1326843e
   languageName: node
   linkType: hard
 
@@ -2435,13 +2435,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:^0.0.165":
-  version: 0.0.165
-  resolution: "@types/chrome@npm:0.0.165"
+"@types/chrome@npm:^0.0.168":
+  version: 0.0.168
+  resolution: "@types/chrome@npm:0.0.168"
   dependencies:
     "@types/filesystem": "*"
     "@types/har-format": "*"
-  checksum: e9f5752775ffe2b1704c4ef12b7863bbc3464eac8e6ec04575e60082bd9c58609a6a83c5914edcd7482d647f975bb60efe4ca407fc6faa17e942b3c242d4eb93
+  checksum: 8c69c9c1c258f9b46f86b31a594286731d7e792182e3acfea1f8177d5fde6522d591353d72cd51c978b4a2b919615597d7c7c4c24c24822dc06b043a57506bd0
   languageName: node
   linkType: hard
 
@@ -2827,9 +2827,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zondax/ledger-substrate@npm:^0.18.0":
-  version: 0.18.0
-  resolution: "@zondax/ledger-substrate@npm:0.18.0"
+"@zondax/ledger-substrate@npm:^0.20.0":
+  version: 0.20.0
+  resolution: "@zondax/ledger-substrate@npm:0.20.0"
   dependencies:
     "@babel/runtime": ^7.14.8
     "@ledgerhq/hw-transport": ^6.2.0
@@ -2839,7 +2839,7 @@ __metadata:
     blakejs: ^1.1.1
     bs58: ^4.0.1
     hash.js: ^1.1.7
-  checksum: cd3678d66f8756d87b422abc582a8fe23ec3ead1ee991058353171cf54b85df5e9ebe33bf0786394bd38320b460a091133b4c6f2078e14aa9341464f5b346a15
+  checksum: 5096ed97b54f81b0a4ede9c751736096bc20c442a5d2572ba5ad4b786c8d769e8d4d322f0567d74fd25f63d34660cda6b23e2435f75b6d50035925efa898b222
   languageName: node
   linkType: hard
 
@@ -9227,7 +9227,7 @@ resolve@^2.0.0-next.3:
   dependencies:
     "@babel/core": ^7.16.0
     "@polkadot/dev": ^0.63.37
-    "@polkadot/ts": ^0.4.16
+    "@polkadot/ts": ^0.4.17
     "@types/jest": ^27.0.3
   languageName: unknown
   linkType: soft
