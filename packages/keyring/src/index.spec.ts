@@ -369,6 +369,14 @@ describe('keypair', (): void => {
       ).toEqual(ETH_ADDRESS_ONE);
     });
 
+    it('creates with dev phrase with derivation path specified - addFromUri with type', (): void => {
+      let keyringUntyped = new Keyring();
+
+      expect(
+        keyringUntyped.addFromUri(PHRASE,{},"ethereum").address
+      ).toEqual(ETH_ADDRESS_ONE);
+    });
+
     it('encodes a pair toJSON (and decodes)', (): void => {
       const pair = keyring.createFromUri(PHRASE);
       const json = pair.toJson('password');
