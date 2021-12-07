@@ -370,10 +370,10 @@ describe('keypair', (): void => {
     });
 
     it('creates with dev phrase with derivation path specified - addFromUri with type', (): void => {
-      let keyringUntyped = new Keyring();
+      const keyringUntyped = new Keyring();
 
       expect(
-        keyringUntyped.addFromUri(PHRASE,{},"ethereum").address
+        keyringUntyped.addFromUri(PHRASE, {}, 'ethereum').address
       ).toEqual(ETH_ADDRESS_ONE);
     });
 
