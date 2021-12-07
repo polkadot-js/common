@@ -74,7 +74,7 @@ describe('keypair', (): void => {
     it('allows adding from JSON', (): void => {
       expect(
         keyring.addFromJson(
-          JSON.parse('{"address":"5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua","encoded":"0xb4a14995d25ab609f3686e9fa45f1fb237cd833f33f00d4b12c51858ca070d96972e47d73aae5eeb0fc06f923826cf0943fdb02c2c2ee30ef52a7912663053940d1da4da66b3a3f520ae07422c1c94b2d95690fca9d1f4a997623bb2923a8833280e19e7f72c3c5cfa343974e60e2b3dc53b404fdaf330756daad5e4e3","encoding":{"content":"pkcs8","type":"xsalsa20-poly1305","version":"0"},"meta":{"isTesting":true,"name":"alice"}}')
+          JSON.parse('{"address":"5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua","encoded":"0xb4a14995d25ab609f3686e9fa45f1fb237cd833f33f00d4b12c51858ca070d96972e47d73aae5eeb0fc06f923826cf0943fdb02c2c2ee30ef52a7912663053940d1da4da66b3a3f520ae07422c1c94b2d95690fca9d1f4a997623bb2923a8833280e19e7f72c3c5cfa343974e60e2b3dc53b404fdaf330756daad5e4e3","encoding":{"content":"pkcs8","type":"xsalsa20-poly1305","version":"0"},"meta":{"isTesting":true,"name":"alice"}}') as KeyringPair$Json
         ).publicKey
       ).toEqual(
         new Uint8Array([209, 114, 167, 76, 218, 76, 134, 89, 18, 195, 43, 160, 168, 10, 87, 174, 105, 171, 174, 65, 14, 92, 203, 89, 222, 232, 78, 47, 68, 50, 219, 79])
@@ -121,6 +121,18 @@ describe('keypair', (): void => {
       ).toEqual('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY');
     });
 
+    it('creates with integer derivations', (): void => {
+      // MAX_SAFE_INTEGER
+      expect(
+        keyring.createFromUri('//9007199254740991').address
+      ).toEqual('5CDsyNZyqxLpHnTvknr68anUcYoBFjZbFKiEJJf4prB75Uog');
+
+      // MAX_SAFE_INTEGER + extra digits
+      expect(
+        keyring.createFromUri('//900719925474099999').address
+      ).toEqual('5GHj2D7RG2m2DXYwGSDpXwuuxn53G987i7p2EQVDqP4NYu4q');
+    });
+
     it('creates via dev seed (2-byte encoding)', (): void => {
       keyring.setSS58Format(252);
 
@@ -160,7 +172,7 @@ describe('keypair', (): void => {
     it('allows adding from JSON', (): void => {
       expect(
         keyring.addFromJson(
-          JSON.parse('{"address":"5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua","encoded":"0xb4a14995d25ab609f3686e9fa45f1fb237cd833f33f00d4b12c51858ca070d96972e47d73aae5eeb0fc06f923826cf0943fdb02c2c2ee30ef52a7912663053940d1da4da66b3a3f520ae07422c1c94b2d95690fca9d1f4a997623bb2923a8833280e19e7f72c3c5cfa343974e60e2b3dc53b404fdaf330756daad5e4e3","encoding":{"content":"pkcs8","type":"xsalsa20-poly1305","version":"0"},"meta":{"isTesting":true,"name":"alice"}}')
+          JSON.parse('{"address":"5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua","encoded":"0xb4a14995d25ab609f3686e9fa45f1fb237cd833f33f00d4b12c51858ca070d96972e47d73aae5eeb0fc06f923826cf0943fdb02c2c2ee30ef52a7912663053940d1da4da66b3a3f520ae07422c1c94b2d95690fca9d1f4a997623bb2923a8833280e19e7f72c3c5cfa343974e60e2b3dc53b404fdaf330756daad5e4e3","encoding":{"content":"pkcs8","type":"xsalsa20-poly1305","version":"0"},"meta":{"isTesting":true,"name":"alice"}}') as KeyringPair$Json
         ).publicKey
       ).toEqual(
         new Uint8Array([209, 114, 167, 76, 218, 76, 134, 89, 18, 195, 43, 160, 168, 10, 87, 174, 105, 171, 174, 65, 14, 92, 203, 89, 222, 232, 78, 47, 68, 50, 219, 79])
@@ -239,7 +251,7 @@ describe('keypair', (): void => {
     it('allows adding from JSON', (): void => {
       expect(
         keyring.addFromJson(
-          JSON.parse('{"address":"5DzMsaYFhmpRdErWrP6K6PD7UXzYoeETToSBUrZSvxasqWRz","encoded":"0xa192d39b42bc1601bf61df31039a554228593fadf870bc837b658a5114627aca199fff596260c95fe8994c66a47636cf0270aa08f402ba5541038753960d00e6c3af5e239ec58fb1eef3db7d6bc266f4853bdfe4ed17122d9092d879014d53980d2ee57f6f55a88c38836447d8645008e8815379626addc8f81f80cd49a2","encoding":{"content":"pkcs8","type":"xsalsa20-poly1305","version":"2"},"meta":{}}')
+          JSON.parse('{"address":"5DzMsaYFhmpRdErWrP6K6PD7UXzYoeETToSBUrZSvxasqWRz","encoded":"0xa192d39b42bc1601bf61df31039a554228593fadf870bc837b658a5114627aca199fff596260c95fe8994c66a47636cf0270aa08f402ba5541038753960d00e6c3af5e239ec58fb1eef3db7d6bc266f4853bdfe4ed17122d9092d879014d53980d2ee57f6f55a88c38836447d8645008e8815379626addc8f81f80cd49a2","encoding":{"content":"pkcs8","type":"xsalsa20-poly1305","version":"2"},"meta":{}}') as KeyringPair$Json
         ).address
       ).toEqual('5DzMsaYFhmpRdErWrP6K6PD7UXzYoeETToSBUrZSvxasqWRz');
     });
@@ -247,7 +259,7 @@ describe('keypair', (): void => {
     it('allows creation from JSON', (): void => {
       keyring.setSS58Format(2);
       const pair = keyring.createFromJson(
-        JSON.parse('{"address":"0x02fde629668eb2bcc7d748f40a7e597f7c7b363498ff3db31f03ce4854937883ad","encoded":"qIhAhKqtf2iyEoWEr8nmBdksSI8EHHCpgJHToqd6Pl8AgAAAAQAAAAgAAADDZ//fj/BRRj+0+bl1KAlYgoPJp6nEUwiw0fVqO2BW4mjEgQ+iWwJEgDf1JUtecbzOlfhTXBzqX/dIYzLgUADrF4EFEPpboCWiU1iN7W/3DM1cOTRVvTGcbdIqW//z3axhz961qzeJVUIFgllwGe/euLUPIlKbIkiN/CsRYdQ=","encoding":{"content":["pkcs8","ecdsa"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{"genesisHash":"0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe","name":"ecdsa","tags":[],"whenCreated":1600925898271}}')
+        JSON.parse('{"address":"0x02fde629668eb2bcc7d748f40a7e597f7c7b363498ff3db31f03ce4854937883ad","encoded":"qIhAhKqtf2iyEoWEr8nmBdksSI8EHHCpgJHToqd6Pl8AgAAAAQAAAAgAAADDZ//fj/BRRj+0+bl1KAlYgoPJp6nEUwiw0fVqO2BW4mjEgQ+iWwJEgDf1JUtecbzOlfhTXBzqX/dIYzLgUADrF4EFEPpboCWiU1iN7W/3DM1cOTRVvTGcbdIqW//z3axhz961qzeJVUIFgllwGe/euLUPIlKbIkiN/CsRYdQ=","encoding":{"content":["pkcs8","ecdsa"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{"genesisHash":"0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe","name":"ecdsa","tags":[],"whenCreated":1600925898271}}') as KeyringPair$Json
       );
 
       expect(pair.address).toEqual('DHL8HKFuTTR55JzzLmkJRCAfPBbuevKaT9cXikxbEV97Ko8');
@@ -256,7 +268,7 @@ describe('keypair', (): void => {
 
     it('fails toJson() when password is incorrect', (): void => {
       const pair = keyring.createFromJson(
-        JSON.parse('{"address":"0x02fde629668eb2bcc7d748f40a7e597f7c7b363498ff3db31f03ce4854937883ad","encoded":"qIhAhKqtf2iyEoWEr8nmBdksSI8EHHCpgJHToqd6Pl8AgAAAAQAAAAgAAADDZ//fj/BRRj+0+bl1KAlYgoPJp6nEUwiw0fVqO2BW4mjEgQ+iWwJEgDf1JUtecbzOlfhTXBzqX/dIYzLgUADrF4EFEPpboCWiU1iN7W/3DM1cOTRVvTGcbdIqW//z3axhz961qzeJVUIFgllwGe/euLUPIlKbIkiN/CsRYdQ=","encoding":{"content":["pkcs8","ecdsa"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{"genesisHash":"0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe","name":"ecdsa","tags":[],"whenCreated":1600925898271}}')
+        JSON.parse('{"address":"0x02fde629668eb2bcc7d748f40a7e597f7c7b363498ff3db31f03ce4854937883ad","encoded":"qIhAhKqtf2iyEoWEr8nmBdksSI8EHHCpgJHToqd6Pl8AgAAAAQAAAAgAAADDZ//fj/BRRj+0+bl1KAlYgoPJp6nEUwiw0fVqO2BW4mjEgQ+iWwJEgDf1JUtecbzOlfhTXBzqX/dIYzLgUADrF4EFEPpboCWiU1iN7W/3DM1cOTRVvTGcbdIqW//z3axhz961qzeJVUIFgllwGe/euLUPIlKbIkiN/CsRYdQ=","encoding":{"content":["pkcs8","ecdsa"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{"genesisHash":"0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe","name":"ecdsa","tags":[],"whenCreated":1600925898271}}') as KeyringPair$Json
       );
 
       expect(
@@ -266,7 +278,7 @@ describe('keypair', (): void => {
 
     it('pass toJson() when password is correct', (): void => {
       const pair = keyring.createFromJson(
-        JSON.parse('{"address":"0x02fde629668eb2bcc7d748f40a7e597f7c7b363498ff3db31f03ce4854937883ad","encoded":"qIhAhKqtf2iyEoWEr8nmBdksSI8EHHCpgJHToqd6Pl8AgAAAAQAAAAgAAADDZ//fj/BRRj+0+bl1KAlYgoPJp6nEUwiw0fVqO2BW4mjEgQ+iWwJEgDf1JUtecbzOlfhTXBzqX/dIYzLgUADrF4EFEPpboCWiU1iN7W/3DM1cOTRVvTGcbdIqW//z3axhz961qzeJVUIFgllwGe/euLUPIlKbIkiN/CsRYdQ=","encoding":{"content":["pkcs8","ecdsa"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{"genesisHash":"0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe","name":"ecdsa","tags":[],"whenCreated":1600925898271}}')
+        JSON.parse('{"address":"0x02fde629668eb2bcc7d748f40a7e597f7c7b363498ff3db31f03ce4854937883ad","encoded":"qIhAhKqtf2iyEoWEr8nmBdksSI8EHHCpgJHToqd6Pl8AgAAAAQAAAAgAAADDZ//fj/BRRj+0+bl1KAlYgoPJp6nEUwiw0fVqO2BW4mjEgQ+iWwJEgDf1JUtecbzOlfhTXBzqX/dIYzLgUADrF4EFEPpboCWiU1iN7W/3DM1cOTRVvTGcbdIqW//z3axhz961qzeJVUIFgllwGe/euLUPIlKbIkiN/CsRYdQ=","encoding":{"content":["pkcs8","ecdsa"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{"genesisHash":"0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe","name":"ecdsa","tags":[],"whenCreated":1600925898271}}') as KeyringPair$Json
       );
 
       expect(
@@ -393,7 +405,7 @@ describe('keypair', (): void => {
 
     it('allows adding from JSON', (): void => {
       const pair = keyring.addFromJson(
-        JSON.parse('{"address":"KWCv1L3QX9LDPwY4VzvLmarEmXjVJidUzZcinvVnmxAJJCBou","encoded":"U8qFEaghhmNV2PgFhjqzmhyUy37Ok7abfFU2MNsBd0sAgAAAAQAAAAgAAAA3+NniKogzNphiMNueB1X0sGA07B6CaXWfpXPx45iSXoTTprwzU5mOoSqUWO0GKHROI72LN+uJ8Yfv6Ll6JOOV3VPKfoVoFmYm+zDrrMPa0gk5E5kUuSijxADcE6zUrliPVr0Ix/qaghu5SJ7RtWDQLBf4Hp86SJ8Gg6gTSSk=","encoding":{"content":["pkcs8","ethereum"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{}}')
+        JSON.parse('{"address":"KWCv1L3QX9LDPwY4VzvLmarEmXjVJidUzZcinvVnmxAJJCBou","encoded":"U8qFEaghhmNV2PgFhjqzmhyUy37Ok7abfFU2MNsBd0sAgAAAAQAAAAgAAAA3+NniKogzNphiMNueB1X0sGA07B6CaXWfpXPx45iSXoTTprwzU5mOoSqUWO0GKHROI72LN+uJ8Yfv6Ll6JOOV3VPKfoVoFmYm+zDrrMPa0gk5E5kUuSijxADcE6zUrliPVr0Ix/qaghu5SJ7RtWDQLBf4Hp86SJ8Gg6gTSSk=","encoding":{"content":["pkcs8","ethereum"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{}}') as KeyringPair$Json
       );
 
       expect(pair.publicKey).toEqual(hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077'));
@@ -410,7 +422,7 @@ describe('keypair', (): void => {
       const MESSAGE = stringToU8a('just some test message');
       const signer = keyring.createFromUri(PHRASE);
       const verifier = keyring.addFromJson(
-        JSON.parse('{"address":"KWCv1L3QX9LDPwY4VzvLmarEmXjVJidUzZcinvVnmxAJJCBou","encoded":"U8qFEaghhmNV2PgFhjqzmhyUy37Ok7abfFU2MNsBd0sAgAAAAQAAAAgAAAA3+NniKogzNphiMNueB1X0sGA07B6CaXWfpXPx45iSXoTTprwzU5mOoSqUWO0GKHROI72LN+uJ8Yfv6Ll6JOOV3VPKfoVoFmYm+zDrrMPa0gk5E5kUuSijxADcE6zUrliPVr0Ix/qaghu5SJ7RtWDQLBf4Hp86SJ8Gg6gTSSk=","encoding":{"content":["pkcs8","ethereum"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{}}')
+        JSON.parse('{"address":"KWCv1L3QX9LDPwY4VzvLmarEmXjVJidUzZcinvVnmxAJJCBou","encoded":"U8qFEaghhmNV2PgFhjqzmhyUy37Ok7abfFU2MNsBd0sAgAAAAQAAAAgAAAA3+NniKogzNphiMNueB1X0sGA07B6CaXWfpXPx45iSXoTTprwzU5mOoSqUWO0GKHROI72LN+uJ8Yfv6Ll6JOOV3VPKfoVoFmYm+zDrrMPa0gk5E5kUuSijxADcE6zUrliPVr0Ix/qaghu5SJ7RtWDQLBf4Hp86SJ8Gg6gTSSk=","encoding":{"content":["pkcs8","ethereum"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{}}') as KeyringPair$Json
       );
 
       const signature = signer.sign(MESSAGE);
@@ -427,7 +439,7 @@ describe('keypair', (): void => {
       const MESSAGE = stringToU8a('just some test message');
       const signer = keyring.createFromUri(PHRASE);
       const verifier = keyring.addFromJson(
-        JSON.parse('{"address":"KWCv1L3QX9LDPwY4VzvLmarEmXjVJidUzZcinvVnmxAJJCBou","encoded":"U8qFEaghhmNV2PgFhjqzmhyUy37Ok7abfFU2MNsBd0sAgAAAAQAAAAgAAAA3+NniKogzNphiMNueB1X0sGA07B6CaXWfpXPx45iSXoTTprwzU5mOoSqUWO0GKHROI72LN+uJ8Yfv6Ll6JOOV3VPKfoVoFmYm+zDrrMPa0gk5E5kUuSijxADcE6zUrliPVr0Ix/qaghu5SJ7RtWDQLBf4Hp86SJ8Gg6gTSSk=","encoding":{"content":["pkcs8","ethereum"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{}}')
+        JSON.parse('{"address":"KWCv1L3QX9LDPwY4VzvLmarEmXjVJidUzZcinvVnmxAJJCBou","encoded":"U8qFEaghhmNV2PgFhjqzmhyUy37Ok7abfFU2MNsBd0sAgAAAAQAAAAgAAAA3+NniKogzNphiMNueB1X0sGA07B6CaXWfpXPx45iSXoTTprwzU5mOoSqUWO0GKHROI72LN+uJ8Yfv6Ll6JOOV3VPKfoVoFmYm+zDrrMPa0gk5E5kUuSijxADcE6zUrliPVr0Ix/qaghu5SJ7RtWDQLBf4Hp86SJ8Gg6gTSSk=","encoding":{"content":["pkcs8","ethereum"],"type":["scrypt","xsalsa20-poly1305"],"version":"3"},"meta":{}}') as KeyringPair$Json
       );
 
       const signature = signer.sign(MESSAGE, { withType: true });
@@ -496,7 +508,7 @@ describe('keypair', (): void => {
     });
 
     it('can decode from a version 2 JSON file', (): void => {
-      const pair = keyring.addFromJson(JSON.parse(PAIR));
+      const pair = keyring.addFromJson(JSON.parse(PAIR) as KeyringPair$Json);
 
       pair.decodePkcs8(PASS2);
 
@@ -526,7 +538,7 @@ describe('keypair', (): void => {
     });
 
     it('can decode from a version 3 JSON file', (): void => {
-      const pair = keyring.addFromJson(JSON.parse(PAIR));
+      const pair = keyring.addFromJson(JSON.parse(PAIR) as KeyringPair$Json);
 
       pair.decodePkcs8(PASS3);
 
@@ -545,7 +557,7 @@ describe('keypair', (): void => {
     });
 
     it('can decode from a version 3 JSON file', (): void => {
-      const pair = keyring.addFromJson(JSON.parse(PAIR));
+      const pair = keyring.addFromJson(JSON.parse(PAIR) as KeyringPair$Json);
 
       pair.decodePkcs8(PASS3);
 

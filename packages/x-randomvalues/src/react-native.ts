@@ -9,6 +9,8 @@ import { NativeModules } from 'react-native';
 
 import { xglobal } from '@polkadot/x-global';
 
+import { base64Decode } from './base64';
+import { getRandomValues as getRandomValuesGlobal } from './browser';
 import { insecureRandomValues } from './fallback';
 
 export { packageInfo } from './packageInfo';
@@ -19,25 +21,26 @@ interface RNExt {
   }
 }
 
-function getRandomValuesNative <T extends Uint8Array> (arr: T): T {
-  return Buffer
-    .from((NativeModules as RNExt).RNGetRandomValues.getRandomBase64(arr.length), 'base64')
-    .reduce((arr, byte, index): T => {
-      arr[index] = byte;
-
-      return arr;
-    }, arr);
+interface GlobalExt extends Window {
+  nativeCallSyncHook: unknown;
 }
 
-function getRandomValuesGlobal <T extends Uint8Array> (arr: T): T {
-  return crypto.getRandomValues(arr);
+function getRandomValuesNative <T extends Uint8Array> (output: T): T {
+  const bytes = base64Decode(
+    (NativeModules as RNExt).RNGetRandomValues.getRandomBase64(output.length)
+  );
+
+  for (let i = 0; i < bytes.length; i++) {
+    output[i] = bytes[i];
+  }
+
+  return output;
 }
 
 export const getRandomValues = (
   typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function'
     ? getRandomValuesGlobal
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-explicit-any
-    : (typeof (xglobal as any).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
+    : (typeof (xglobal as unknown as GlobalExt).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
       ? insecureRandomValues
       : getRandomValuesNative
 );

@@ -5,9 +5,9 @@ import { assert } from '../assert';
 import { BN, BN_ONE, BN_TWO, bnToBn, bnToU8a } from '../bn';
 import { u8aConcat } from '../u8a';
 
-const MAX_U8 = new BN(2).pow(new BN(8 - 2)).subn(1);
-const MAX_U16 = new BN(2).pow(new BN(16 - 2)).subn(1);
-const MAX_U32 = new BN(2).pow(new BN(32 - 2)).subn(1);
+const MAX_U8 = BN_TWO.pow(new BN(8 - 2)).isub(BN_ONE);
+const MAX_U16 = BN_TWO.pow(new BN(16 - 2)).isub(BN_ONE);
+const MAX_U32 = BN_TWO.pow(new BN(32 - 2)).isub(BN_ONE);
 
 /**
  * @name compactToU8a
@@ -21,18 +21,18 @@ const MAX_U32 = new BN(2).pow(new BN(32 - 2)).subn(1);
  * console.log(compactToU8a(511, 32)); // Uint8Array([0b11111101, 0b00000111])
  * ```
  */
-export function compactToU8a (_value: BN | bigint | number): Uint8Array {
-  const value = bnToBn(_value);
+export function compactToU8a (value: BN | bigint | number): Uint8Array {
+  const bn = bnToBn(value);
 
-  if (value.lte(MAX_U8)) {
-    return new Uint8Array([value.toNumber() << 2]);
-  } else if (value.lte(MAX_U16)) {
-    return bnToU8a(value.shln(2).iadd(BN_ONE), 16, true);
-  } else if (value.lte(MAX_U32)) {
-    return bnToU8a(value.shln(2).iadd(BN_TWO), 32, true);
+  if (bn.lte(MAX_U8)) {
+    return new Uint8Array([bn.toNumber() << 2]);
+  } else if (bn.lte(MAX_U16)) {
+    return bnToU8a(bn.shln(2).iadd(BN_ONE), 16, true);
+  } else if (bn.lte(MAX_U32)) {
+    return bnToU8a(bn.shln(2).iadd(BN_TWO), 32, true);
   }
 
-  const u8a = bnToU8a(value);
+  const u8a = bnToU8a(bn);
   let length = u8a.length;
 
   // adjust to the minimum number of bytes

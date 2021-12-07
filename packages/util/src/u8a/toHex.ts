@@ -1,37 +1,26 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexDigit, HexString } from '../types';
+import type { HexString } from '../types';
 
-import { arrayRange } from '../array';
-
-type HexByte = `${HexDigit}${HexDigit}`;
-
-const ALPHABET = arrayRange(256).map((n) => n.toString(16).padStart(2, '0') as HexByte);
+import { U8_TO_HEX, U16_TO_HEX } from '../hex/alphabet';
 
 /** @internal */
-function extract (value: Uint8Array): string {
-  const result = new Array<HexByte>(value.length);
+function hex (value: Uint8Array): string {
+  const mod = value.length % 2;
+  const length = value.length - mod;
+  const dv = new DataView(value.buffer, value.byteOffset);
+  let result = '';
 
-  for (let i = 0; i < value.length; i++) {
-    result[i] = ALPHABET[value[i]];
+  for (let i = 0; i < length; i += 2) {
+    result += U16_TO_HEX[dv.getUint16(i)];
   }
 
-  return result.join('');
-}
+  if (mod) {
+    result += U8_TO_HEX[dv.getUint8(length)];
+  }
 
-/** @internal */
-function unprefixed (value: Uint8Array, bitLength = -1): string {
-  const byteLength = Math.ceil(bitLength / 8);
-
-  return (byteLength > 0 && value.length > byteLength)
-    ? trim(value, Math.ceil(byteLength / 2))
-    : extract(value);
-}
-
-/** @internal */
-function trim (value: Uint8Array, halfLength: number): string {
-  return `${unprefixed(value.subarray(0, halfLength))}…${unprefixed(value.subarray(value.length - halfLength))}`;
+  return result;
 }
 
 /**
@@ -49,9 +38,13 @@ function trim (value: Uint8Array, halfLength: number): string {
  * ```
  */
 export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed = true): HexString {
+  const length = Math.ceil(bitLength / 8);
+
   return `${isPrefixed ? '0x' : ''}${
     !value || !value.length
       ? ''
-      : unprefixed(value, bitLength)
+      : (length > 0 && value.length > length)
+        ? `${hex(value.subarray(0, length / 2))}…${hex(value.subarray(value.length - length / 2))}`
+        : hex(value)
   }` as HexString;
 }

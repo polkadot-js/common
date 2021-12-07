@@ -17,8 +17,8 @@ export function isEthereumChecksum (_address: string): boolean {
   const address = _address.replace('0x', '');
   const hash = u8aToHex(keccakAsU8a(address.toLowerCase()), -1, false);
 
-  for (let index = 0; index < 40; index++) {
-    if (isInvalidChar(address[index], parseInt(hash[index], 16))) {
+  for (let i = 0; i < 40; i++) {
+    if (isInvalidChar(address[i], parseInt(hash[i], 16))) {
       return false;
     }
   }

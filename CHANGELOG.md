@@ -1,5 +1,175 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Swap to upstream `@noble/hashes`
+- Preserve all-caps word splits in `stringCamelCase`
+
+
+## 8.1.2 Dec 5, 2021
+
+Changes:
+
+- Adjustment to non-full-word consecutive uppercase via `string{Camel, Pascal}Case`
+
+
+## 8.1.1 Dec 5, 2021
+
+Contributed:
+
+- Add Picasso genesisHash (Thanks to https://github.com/hussein-aitlahcen)
+
+Changes:
+
+- Allow for use of `secp256k1` from `@polkadot/wasm-crypto`
+- Adjust `isBigInt` to not do `instanceof` check
+- Ensure consequtive capitals in `stringCamelCase` are lowercased
+- Use `@polkadot/x-bigint` for `BigInt` constructor
+- Split `@noble/hashes` fork into `x-noble-hashes`
+- Add `@noble/secp256k1` fork into `x-noble-secp256k1`, replaces `elliptic`
+
+
+## 8.0.5 Dec 1, 2021
+
+Changes:
+
+- Adjust sha3 expectation of `BigInt` availability
+
+
+## 8.0.4 Nov 30, 2021
+
+Changes:
+
+- Adjust `stringCamelCase` with leading `_`
+
+
+## 8.0.3 Nov 30, 2021
+
+Changes:
+
+- Remove `Buffer` usage in `x-randomvalues`
+- Adjust `stringCamelCase` for all-caps parts
+
+
+## 8.0.2 Nov 26, 2021
+
+Changes:
+
+- Explicitly include BigInt patched versions
+
+
+## 8.0.1 Nov 26, 2021
+
+**Important** In the 8.0 version the hashing utilities have been consolidated around an optimized and audited version from `@noble/hashes`. As in the past the WASM hashing will be used by default if the environment is initialized.
+
+**Breaking change** The `schnorrkel*` functions have been renamed to `sr25519*`. Likewise the `ed25519` operations have been renamed from `nacl*` to `ed25519*`. Additionally the `{ed, sr, secp256k1}25519KeyPairFrom*` functions have been renamed to `{ed, sr, secp256k1}25519PairFrom*`.
+
+Changes:
+
+- Introduce `ed25519*` & `sr25519*` functions
+- Replace camelcase dep with simplified/optimized version
+- Replace (most) hashing operations with `@noble/hashes`
+- Replace JS fallback for `xxhash`
+- Adjust `BigInt` utility exports (with capability detection)
+- Previously added `bi*` functions renamed to `n*`
+- Extend performance tests with implementation compares
+- Remove non-significant Node Buffer concat fill
+
+
+## 7.9.2 Nov 22, 2021
+
+Changes:
+
+- Fix TS compiled definitions for `base*` types
+- Provide JS/Wasm interfaces for `hmacShaAsU8a`
+
+
+## 7.9.1 Nov 21, 2021
+
+Contributed:
+
+- Updated Polymesh genesisHash (Thanks to https://github.com/adamdossa)
+
+Changes:
+
+- Add strongly typed `object{Entries, Keys, Values}` utilities
+- Add `{hex, u8a}ToBigInt` utilities
+- Add `bi*` utilities for `bigint` operations (mirror of `bn*`)
+- Add `stringPascalCase` utility
+- Add `isCodec` to check for Codec-like structures
+- Add `has*` detection shortcuts (e.g. `hasWasm` or `hasBuffer`)
+- Add `sha256AsU8a` util (& replace use internally)
+- Optimize for `hexToU8a` and `u8aToHex` functions
+- Optimize `u8aEq` to use `DataView` for compares
+- Align `base{32, 58, 64}*` around (audited) `micro-base`
+- Space optimization for bip39 wordlists
+- Sync with upstream Substrate ss58 registry
+- Expand tests for uncovered functions
+
+
+## 7.8.2 Nov 7, 2021
+
+Changes:
+
+- Expose internal `isArray` check
+- Move `object{Property, Properties}` from api repo
+
+
+## 7.8.1 Nov 6, 2021
+
+Contributed:
+
+- Added Acala genesisHash (Thanks to https://github.com/qwer951123)
+
+Changes:
+
+- Add `objectClear` and `objectSpread` utility functions
+- Add `lazyMethod` & `lazyMethods` utility functions
+- Sync with upstream Substrate ss58 registry
+
+
+## 7.7.1 Oct 31, 2021
+
+Contributed:
+
+- Add Genshiro support (Thanks to https://github.com/Overseven)
+
+Changes:
+
+- Add `arrayZip` to combine a key + value array into entries-like
+- Assert `chainCode` inputs to `derive*`, protecting against misuse
+- Adjust testnet detection in `@polkadot/networks`
+- Adjust base library usage of `for` vs `reduce/map`
+- Bump Ledger libraries to latest versions
+
+
+## 7.6.1 Oct 23, 2021
+
+Changes:
+
+- Update `xxhash*` to only use `Uint8Array` internally, no `Buffer`
+- Adjust `isAscii` to check against original string codepoints (when provided)
+- Adjust networks to sync with `paritytech/ss58-registry`
+- Dedupe internal sr25519/ed25519 derivation functions
+- Bump Ledger libraries to latest versions
+
+
+## 7.5.1 Oct 16, 2021
+
+Contributed:
+
+- Fix comment on `blake2AsU8a` (Thanks to https://github.com/tomokazukozuma)
+- Update Ethereum derivation process (Thanks to https://github.com/joelamouche)
+
+Changes:
+
+- Derivation paths now caters for > `MAX_SAFE_INTEGER` unsigned values
+- Sync with upstream Substrate ss58 registry
+- Update ss58 registry handling (both previous and current versions)
+
+
 ## 7.4.1 Sep 17, 2021
 
 Changes:
@@ -9,6 +179,7 @@ Changes:
 - Adjust `isHex` return to `0x${string}` under TypeScript
 - Adjust shared repo Jest config
 - Sync with upstream Substrate ss58 registry
+- Cleanup rollup build where `x-global` yields undefined
 
 
 ## 7.3.1 Aug 28, 2021

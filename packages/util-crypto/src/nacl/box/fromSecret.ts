@@ -6,7 +6,7 @@ import type { Keypair } from '../../types';
 import nacl from 'tweetnacl';
 
 /**
- * @name naclBoxKeypairFromSecret
+ * @name naclBoxPairFromSecret
  * @summary Creates a new public/secret box keypair from a secret.
  * @description
  * Returns a object containing a box `publicKey` & `secretKey` generated from the supplied secret.
@@ -14,11 +14,11 @@ import nacl from 'tweetnacl';
  * <BR>
  *
  * ```javascript
- * import { naclBoxKeypairFromSecret } from '@polkadot/util-crypto';
+ * import { naclBoxPairFromSecret } from '@polkadot/util-crypto';
  *
- * naclBoxKeypairFromSecret(...); // => { secretKey: [...], publicKey: [...] }
+ * naclBoxPairFromSecret(...); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export function naclBoxKeypairFromSecret (secret: Uint8Array): Keypair {
+export function naclBoxPairFromSecret (secret: Uint8Array): Keypair {
   return nacl.box.keyPair.fromSecretKey(secret.slice(0, 32));
 }

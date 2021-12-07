@@ -13,6 +13,7 @@ jobs:
         CI_LOG: 123
       run: |
         yarn install --immutable | grep -v 'YN0013'
+        yarn build
         yarn networks:crosscheck
 
     - name: issue

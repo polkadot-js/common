@@ -1,7 +1,13 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { randomAsU8a } from '@polkadot/util-crypto';
+
+import { performance } from '../../test/performance';
+import { arrayRange } from '../array';
 import { u8aConcat } from '.';
+
+const ptest = arrayRange(10).map(() => randomAsU8a());
 
 describe('u8aConcat', (): void => {
   it('concatenates arrays', (): void => {
@@ -27,4 +33,6 @@ describe('u8aConcat', (): void => {
       new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9])
     );
   });
+
+  performance('u8aConcat', 50000, [[ptest]], u8aConcat);
 });

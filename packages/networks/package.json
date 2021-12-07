@@ -1,25 +1,29 @@
 {
-  "name": "@polkadot/networks",
-  "version": "7.4.1",
-  "type": "module",
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "bugs": "https://github.com/polkadot-js/common/issues",
+  "contributors": [],
   "description": "A list of all available Substrate networks and their applicable prefixes",
-  "main": "index.js",
-  "sideEffects": false,
   "engines": {
     "node": ">=14.0.0"
   },
-  "repository": "github:polkadot-js/common",
-  "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [],
-  "contributors": [],
-  "license": "Apache-2.0",
-  "bugs": "https://github.com/polkadot-js/common/issues",
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/networks#readme",
+  "license": "Apache-2.0",
+  "maintainers": [],
+  "name": "@polkadot/networks",
+  "repository": {
+    "directory": "packages/networks",
+    "type": "git",
+    "url": "https://github.com/polkadot-js/common.git"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "8.1.3-3",
+  "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.15.4"
+    "@babel/runtime": "^7.16.3"
   },
   "devDependencies": {
-    "@polkadot/util": "7.4.1",
-    "@polkadot/x-fetch": "7.4.1"
+    "@polkadot/util": "8.1.3-3",
+    "@polkadot/x-fetch": "8.1.3-3"
   }
 }

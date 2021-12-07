@@ -1,30 +1,34 @@
 {
-  "name": "@polkadot/keyring",
-  "version": "7.4.1",
-  "type": "module",
-  "description": "Keyring management",
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [],
+  "bugs": "https://github.com/polkadot-js/common/issues",
   "contributors": [],
+  "description": "Keyring management",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/keyring#readme",
   "license": "Apache-2.0",
-  "main": "index.js",
+  "maintainers": [],
+  "name": "@polkadot/keyring",
+  "repository": {
+    "directory": "packages/keyring",
+    "type": "git",
+    "url": "https://github.com/polkadot-js/common.git"
+  },
   "sideEffects": [
     "./detectPackage.js",
     "./detectPackage.cjs"
   ],
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "repository": "github:polkadot-js/common",
-  "bugs": "https://github.com/polkadot-js/common/issues",
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/keyring#readme",
+  "type": "module",
+  "version": "8.1.3-3",
+  "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.15.4",
-    "@polkadot/util": "7.4.1",
-    "@polkadot/util-crypto": "7.4.1"
+    "@babel/runtime": "^7.16.3",
+    "@polkadot/util": "8.1.3-3",
+    "@polkadot/util-crypto": "8.1.3-3"
   },
   "peerDependencies": {
-    "@polkadot/util": "7.4.1",
-    "@polkadot/util-crypto": "7.4.1"
+    "@polkadot/util": "8.1.3-3",
+    "@polkadot/util-crypto": "8.1.3-3"
   }
 }

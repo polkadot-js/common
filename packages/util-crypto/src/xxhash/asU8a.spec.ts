@@ -4,6 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
+import { performanceWasm } from '../../test/performance';
 import { xxhashAsU8a } from '.';
 
 describe('xxhashAsU8a', (): void => {
@@ -36,4 +37,8 @@ describe('xxhashAsU8a', (): void => {
       );
     });
   });
+
+  performanceWasm('xxhashAsU8a', 8000, (input, onlyJs) =>
+    xxhashAsU8a(input, 128, onlyJs)
+  );
 });

@@ -5,7 +5,4 @@
  * @summary Encode and decode base58 values
  */
 
-export { base58Decode } from './decode';
-export { base58Encode } from './encode';
-export { base58Validate } from './validate';
-export { isBase58 } from './is';
+export { base58Decode, base58Encode, base58Validate, isBase58 } from './bs58';

@@ -21,4 +21,16 @@ describe('stringShorten', (): void => {
       stringShorten(String('0123456789'), 3)
     ).toEqual('012…789');
   });
+
+  it('returns the value as-is when <= maxLength (defaults)', (): void => {
+    expect(
+      stringShorten('012345', 4)
+    ).toEqual('012345');
+  });
+
+  it('returns the shortened value when > maxLength (defaults)', (): void => {
+    expect(
+      stringShorten('01234567890123456789')
+    ).toEqual('012345…456789');
+  });
 });

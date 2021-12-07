@@ -1,18 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair } from '../types';
+import { ed25519DeriveHard, ed25519PairFromSeed } from '../ed25519';
+import { createSeedDeriveFn } from './hdkdDerive';
 
-import { assert } from '@polkadot/util';
-
-import { naclDeriveHard } from '../nacl/deriveHard';
-import { naclKeypairFromSeed } from '../nacl/keypair/fromSeed';
-import { DeriveJunction } from './DeriveJunction';
-
-export function keyHdkdEd25519 (keypair: Keypair, { chainCode, isHard }: DeriveJunction): Keypair {
-  assert(isHard, 'A soft key was found in the path (and is unsupported)');
-
-  return naclKeypairFromSeed(
-    naclDeriveHard(keypair.secretKey.subarray(0, 32), chainCode)
-  );
-}
+export const keyHdkdEd25519 = createSeedDeriveFn(ed25519PairFromSeed, ed25519DeriveHard);

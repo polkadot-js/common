@@ -4,6 +4,7 @@
 import type { KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringPair$Json, KeyringPair$Meta } from '../types';
 
+import { objectSpread } from '@polkadot/util';
 import { jsonEncryptFormat } from '@polkadot/util-crypto';
 
 interface PairStateJson {
@@ -12,9 +13,8 @@ interface PairStateJson {
 }
 
 export function pairToJson (type: KeypairType, { address, meta }: PairStateJson, encoded: Uint8Array, isEncrypted: boolean): KeyringPair$Json {
-  return {
-    ...jsonEncryptFormat(encoded, ['pkcs8', type], isEncrypted),
+  return objectSpread(jsonEncryptFormat(encoded, ['pkcs8', type], isEncrypted), {
     address,
     meta
-  };
+  });
 }

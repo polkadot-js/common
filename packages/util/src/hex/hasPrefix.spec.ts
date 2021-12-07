@@ -6,7 +6,7 @@ import { hexHasPrefix } from '.';
 describe('hexHasPrefix', (): void => {
   it('returns true when hex prefix is found', (): void => {
     expect(
-      hexHasPrefix('0x123')
+      hexHasPrefix('0x1234')
     ).toEqual(true);
   });
 
@@ -24,8 +24,7 @@ describe('hexHasPrefix', (): void => {
 
   it('returns false when non-string value supplied', (): void => {
     expect(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      hexHasPrefix(false as any)
+      hexHasPrefix(false as unknown as string)
     ).toEqual(false);
   });
 });

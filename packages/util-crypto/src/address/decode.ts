@@ -7,7 +7,7 @@ import type { Prefix } from './types';
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L6
 import { assert, isHex, isU8a, u8aToU8a } from '@polkadot/util';
 
-import { base58Decode } from '../base58/decode';
+import { base58Decode } from '../base58';
 import { checkAddressChecksum } from './checksum';
 import { defaults } from './defaults';
 

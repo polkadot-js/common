@@ -19,10 +19,10 @@ export function arrayChunk <T> (array: T[], chunkSize: number): T[][] {
   const outputSize = Math.ceil(array.length / chunkSize);
   const output = Array<T[]>(outputSize);
 
-  for (let index = 0; index < outputSize; index++) {
-    const offset = index * chunkSize;
+  for (let i = 0; i < outputSize; i++) {
+    const offset = i * chunkSize;
 
-    output[index] = array.slice(offset, offset + chunkSize);
+    output[i] = array.slice(offset, offset + chunkSize);
   }
 
   return output;

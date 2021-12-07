@@ -8,7 +8,7 @@ export interface KnownSubstrate {
   displayName: string;
   network: string | null;
   prefix: number;
-  standardAccount: '*25519' | 'secp256k1' | null;
+  standardAccount: '*25519' | 'Ed25519' | 'Sr25519' | 'secp256k1' | null;
   symbols: string[] | null;
   website: string | null;
 }
@@ -26,6 +26,7 @@ export interface SubstrateNetwork extends KnownSubstrate {
   hasLedgerSupport: boolean;
   icon: Icon;
   isIgnored: boolean;
+  isTestnet: boolean;
   slip44?: number | null;
 }
 
@@ -36,5 +37,5 @@ export interface Network extends SubstrateNetwork {
 export interface Ss58Registry {
   registry: KnownSubstrate[];
   specification: string;
-  schema: Record<string, string>;
+  schema: Record<keyof KnownSubstrate, string>;
 }

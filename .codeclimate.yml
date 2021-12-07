@@ -3,3 +3,5 @@ exclude_patterns:
 - "**/*.spec.ts"
 - "packages/networks/src/substrate.ts"
 - "packages/util/src/is/utf8.ts"
+- "packages/x-noble-hashes/src/**.ts"
+- "packages/x-noble-secp256k1/src/**.ts"

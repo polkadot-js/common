@@ -1,0 +1,2 @@
+packages/x-noble-hashes/**/*.ts
+packages/x-noble-secp256k1/**/*.ts

@@ -3,11 +3,16 @@
 
 import type { KnownGenesis, KnownIcon, KnownLedger, KnownTestnet } from './types';
 
+export const substrateRegistry = 'https://raw.githubusercontent.com/paritytech/ss58-registry/main/ss58-registry.json';
+
 // NOTE: In the case where the network was hard-spooned and multiple genesisHashes
 // are provided, it needs to be in reverse order, i.e. most-recent first, oldest
 // last. This make lookups for the current a simple genesisHash[0]
 // (See Kusama as an example)
 export const knownGenesis: KnownGenesis = {
+  acala: [
+    '0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c'
+  ],
   bifrost: [
     '0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed'
   ],
@@ -22,6 +27,9 @@ export const knownGenesis: KnownGenesis = {
   ],
   equilibrium: [
     '0x6f1a800de3daff7f5e037ddf66ab22ce03ab91874debeddb1086f5f7dbd48925'
+  ],
+  genshiro: [
+    '0x9b8cefc0eb5c568b527998bdd76c184e2b76ae561be76e4667072230217ea243'
   ],
   hydradx: [
     '0xd2a620c27ec5cbc5621ff9a522689895074f7cca0d08e7134a7804e1a3ba86fc', // Snakenet Gen3-1
@@ -43,6 +51,9 @@ export const knownGenesis: KnownGenesis = {
   'nodle-chain': [
     '0xa3d114c2b8d0627c1aa9b134eafcf7d05ca561fdc19fb388bb9457f81809fb23'
   ],
+  picasso: [
+    '0xe8e7f0f4c4f5a00720b4821dbfddefea7490bcf0b19009961cc46957984e2c1c'
+  ],
   plasm: [
     '0x3e86364d4b4894021cb2a0390bcf2feb5517d5292f2de2bb9404227e908b0b8b'
   ],
@@ -50,7 +61,7 @@ export const knownGenesis: KnownGenesis = {
     '0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3'
   ],
   polymesh: [
-    '0x9deeb940c92ae02111c3bd5baca89970384f4c9849f02a1b2e53e66414d30f9f'
+    '0x6fbd74e5e1d0a61d52ccfe9d4adaed16dd3a7caa37c6bc4d0c2fa12e8b2f4063'
   ],
   stafi: [
     '0x290a4149f09ea0e402c74c1c7e96ae4239588577fe78932f94f5404c68243d80'
@@ -81,6 +92,7 @@ export const knownLedger: KnownLedger = {
   'dock-mainnet': 0x00000252,
   edgeware: 0x0000020b,
   equilibrium: 0x05f5e0fd,
+  genshiro: 0x05f5e0fc,
   kusama: 0x000001b2,
   'nodle-chain': 0x000003eb,
   polkadot: 0x00000162,
@@ -90,8 +102,11 @@ export const knownLedger: KnownLedger = {
 
 // testnets should not allow selection
 export const knownTestnet: KnownTestnet = {
+  '': true, // this is the default non-network entry
+  'cess-testnet': true,
   'dock-testnet': true,
   jupiter: true,
   'mathchain-testnet': true,
+  subspace_testnet: true,
   'zero-alphaville': true
 };

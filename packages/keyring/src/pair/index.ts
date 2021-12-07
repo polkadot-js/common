@@ -6,8 +6,8 @@ import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types';
 import type { PairInfo } from './types';
 
-import { assert, u8aConcat, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
-import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclKeypairFromSeed as naclFromSeed, naclOpen, naclSeal, naclSign, schnorrkelKeypairFromSeed as schnorrkelFromSeed, schnorrkelSign, schnorrkelVrfSign, schnorrkelVrfVerify, secp256k1Compress, secp256k1Expand, secp256k1KeypairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify } from '@polkadot/util-crypto';
+import { assert, objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
+import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclOpen, naclSeal, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
 import { encodePair } from './encode';
@@ -22,9 +22,9 @@ const SIG_TYPE_NONE = new Uint8Array();
 
 const TYPE_FROM_SEED = {
   ecdsa: secp256k1FromSeed,
-  ed25519: naclFromSeed,
+  ed25519: ed25519FromSeed,
   ethereum: secp256k1FromSeed,
-  sr25519: schnorrkelFromSeed
+  sr25519: sr25519FromSeed
 };
 
 const TYPE_PREFIX = {
@@ -36,9 +36,9 @@ const TYPE_PREFIX = {
 
 const TYPE_SIGNATURE = {
   ecdsa: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'blake2'),
-  ed25519: naclSign,
+  ed25519: ed25519Sign,
   ethereum: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'keccak'),
-  sr25519: schnorrkelSign
+  sr25519: sr25519Sign
 };
 
 const TYPE_ADDRESS = {
@@ -48,9 +48,8 @@ const TYPE_ADDRESS = {
   sr25519: (p: Uint8Array) => p
 };
 
-// Not 100% correct, since it can be a Uint8Array, but an invalid one - just say "undefined" is anything non-valid
 function isLocked (secretKey?: Uint8Array): secretKey is undefined {
-  return !secretKey || secretKey.length === 0 || secretKey.every((b) => b === 0);
+  return !secretKey || u8aEmpty(secretKey);
 }
 
 function vrfHash (proof: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array {
@@ -182,7 +181,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       secretKey = new Uint8Array();
     },
     setMeta: (additional: KeyringPair$Meta): void => {
-      meta = { ...meta, ...additional };
+      meta = objectSpread({}, meta, additional);
     },
     sign: (message: HexString | string | Uint8Array, options: SignOptions = {}): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
@@ -216,7 +215,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
 
       if (type === 'sr25519') {
-        return schnorrkelVrfSign(message, { secretKey }, context, extra);
+        return sr25519VrfSign(message, { secretKey }, context, extra);
       }
 
       const proof = TYPE_SIGNATURE[type](u8aToU8a(message), { publicKey, secretKey });
@@ -225,7 +224,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     },
     vrfVerify: (message: HexString | string | Uint8Array, vrfResult: Uint8Array, signerPublic: HexString | Uint8Array | string, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): boolean => {
       if (type === 'sr25519') {
-        return schnorrkelVrfVerify(message, vrfResult, publicKey, context, extra);
+        return sr25519VrfVerify(message, vrfResult, publicKey, context, extra);
       }
 
       const result = signatureVerify(message, u8aConcat(TYPE_PREFIX[type], vrfResult.subarray(32)), TYPE_ADDRESS[type](u8aToU8a(signerPublic)));

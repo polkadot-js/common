@@ -5,8 +5,7 @@ import { isFunction } from './function';
 import { isObject } from './object';
 
 interface Observable {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  next: (...params: any[]) => any;
+  next: (...params: unknown[]) => unknown;
 }
 
 /**
@@ -24,5 +23,8 @@ interface Observable {
  * ```
  */
 export function isObservable (value: unknown): value is Observable {
-  return isObject(value) && isFunction((value as Observable).next);
+  return (
+    isObject(value) &&
+    isFunction((value as Observable).next)
+  );
 }

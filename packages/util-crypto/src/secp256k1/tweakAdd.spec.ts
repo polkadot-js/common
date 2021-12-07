@@ -4,28 +4,28 @@
 import { secp256k1PrivateKeyTweakAdd } from './tweakAdd';
 
 describe('TweakAdd', (): void => {
-  describe('PrivateKey TweakAdd', (): void => {
+  it('fails for wrong array length', (): void => {
+    const A = new Uint8Array([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]);
+    const B = new Uint8Array([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]);
+
+    expect(
+      () => secp256k1PrivateKeyTweakAdd(A, B)
+    ).toThrow(/Expected tweak to be an Uint8Array/);
+  });
+
+  describe.each([false, true])('onlyBn=%p', (onlyBn): void => {
     it('succeeds for a simple case', (): void => {
       const A = new Uint8Array([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]);
       const B = new Uint8Array([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]);
 
       expect(
-        secp256k1PrivateKeyTweakAdd(A, B)
+        secp256k1PrivateKeyTweakAdd(A, B, onlyBn)
       ).toEqual(new Uint8Array([
         3, 4, 3, 4, 3, 4, 3, 4, 3,
         4, 3, 4, 3, 4, 3, 4, 3, 4,
         3, 4, 3, 4, 3, 4, 3, 4, 3,
         4, 3, 4, 3, 4
       ]));
-    });
-
-    it('fails for wrong array length', (): void => {
-      const A = new Uint8Array([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]);
-      const B = new Uint8Array([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]);
-
-      expect(
-        () => secp256k1PrivateKeyTweakAdd(A, B)
-      ).toThrow(/Expected tweak to be an Uint8Array/);
     });
   });
 });

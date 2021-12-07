@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 export function arrayShuffle <T> (input: T[]): T[] {
-  const result = [...input];
+  const result = input.slice();
   let curr = result.length;
 
   if (curr === 1) {

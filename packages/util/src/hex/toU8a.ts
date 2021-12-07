@@ -3,8 +3,7 @@
 
 import type { HexString } from '../types';
 
-import { assert } from '../assert';
-import { isHex } from '../is/hex';
+import { HEX_TO_U8, HEX_TO_U16 } from './alphabet';
 import { hexStripPrefix } from './stripPrefix';
 
 /**
@@ -27,20 +26,27 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     return new Uint8Array();
   }
 
-  assert(isHex(_value), () => `Expected hex value to convert, found '${_value}'`);
-
-  const value = hexStripPrefix(_value);
+  const value = hexStripPrefix(_value).toLowerCase();
   const valLength = value.length / 2;
-  const bufLength = Math.ceil(
+  const endLength = Math.ceil(
     bitLength === -1
       ? valLength
       : bitLength / 8
   );
-  const result = new Uint8Array(bufLength);
-  const offset = Math.max(0, bufLength - valLength);
+  const result = new Uint8Array(endLength);
+  const offset = endLength > valLength
+    ? endLength - valLength
+    : 0;
+  const dv = new DataView(result.buffer, offset);
+  const mod = (endLength - offset) % 2;
+  const length = endLength - offset - mod;
 
-  for (let index = 0; index < bufLength; index++) {
-    result[index + offset] = parseInt(value.substr(index * 2, 2), 16);
+  for (let i = 0; i < length; i += 2) {
+    dv.setUint16(i, HEX_TO_U16[value.substr(i * 2, 4)]);
+  }
+
+  if (mod) {
+    dv.setUint8(length, HEX_TO_U8[value.substr(value.length - 2, 2)]);
   }
 
   return result;

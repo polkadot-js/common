@@ -23,9 +23,9 @@ export function keyExtractPath (derivePath: string): ExtractResult {
   if (parts) {
     constructed = parts.join('');
 
-    parts.forEach((value: string): void => {
-      path.push(DeriveJunction.from(value.substr(1)));
-    });
+    for (const p of parts) {
+      path.push(DeriveJunction.from(p.substr(1)));
+    }
   }
 
   assert(constructed === derivePath, () => `Re-constructed path "${constructed}" does not match input`);

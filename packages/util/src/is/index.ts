@@ -4,12 +4,14 @@
 /**
  * @summary Type checking utilities
  */
+export { isArray } from './array';
 export { isAscii } from './ascii';
 export { isBigInt } from './bigInt';
 export { isBn } from './bn';
 export { isBuffer } from './buffer';
 export { isBoolean } from './boolean';
 export { isChildClass } from './childClass';
+export { isCodec } from './codec';
 export { isCompact } from './compact';
 export { isError } from './error';
 export { isFunction } from './function';
@@ -23,6 +25,7 @@ export { isObject } from './object';
 export { isObservable } from './observable';
 export { isString } from './string';
 export { isTestChain } from './testChain';
+export { isToBigInt } from './toBigInt';
 export { isToBn } from './toBn';
 export { isU8a } from './u8a';
 export { isUndefined } from './undefined';

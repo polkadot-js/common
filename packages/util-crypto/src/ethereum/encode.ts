@@ -29,8 +29,8 @@ export function ethereumEncode (addressOrPublic?: HexString | string | Uint8Arra
   const hash = u8aToHex(keccakAsU8a(address), -1, false);
   let result = '';
 
-  for (let index = 0; index < 40; index++) {
-    result = `${result}${parseInt(hash[index], 16) > 7 ? address[index].toUpperCase() : address[index]}`;
+  for (let i = 0; i < 40; i++) {
+    result = `${result}${parseInt(hash[i], 16) > 7 ? address[i].toUpperCase() : address[i]}`;
   }
 
   return `0x${result}`;

@@ -4,7 +4,7 @@
 import type { HexString } from '@polkadot/util/types';
 import type { Prefix } from './types';
 
-import { base58Decode } from '../base58/decode';
+import { base58Decode } from '../base58';
 import { checkAddressChecksum } from './checksum';
 import { defaults } from './defaults';
 

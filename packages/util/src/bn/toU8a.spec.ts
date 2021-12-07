@@ -1,7 +1,11 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performance } from '../../test/performance';
+import { arrayRange } from '../array';
 import { BN, bnToU8a } from '.';
+
+const ptest = arrayRange(65536).map((v) => [v]);
 
 describe('bnToU8a', (): void => {
   it('converts null values to 0x00', (): void => {
@@ -59,4 +63,6 @@ describe('bnToU8a', (): void => {
       bnToU8a(new BN(1234), { bitLength: 32, isLe: false })
     );
   });
+
+  performance('bnToU8a', 250000, ptest, bnToU8a);
 });

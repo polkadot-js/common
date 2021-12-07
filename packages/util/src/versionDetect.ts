@@ -44,30 +44,36 @@ function getEntry (name: string): VersionPath[] {
 }
 
 function getVersionLength (all: { version: string }[]): number {
-  return all.reduce((max, { version }) => Math.max(max, version.length), 0);
+  let length = 0;
+
+  for (const { version } of all) {
+    length = Math.max(length, version.length);
+  }
+
+  return length;
 }
 
 /** @internal */
 function flattenInfos (all: PackageJson[]): string {
   const verLength = getVersionLength(all);
+  const stringify = ({ name, version }: PackageJson) =>
+    `\t${version.padEnd(verLength)}\t${name}`;
 
-  return all
-    .map(({ name, version }) => `\t${version.padEnd(verLength)}\t${name}`)
-    .join('\n');
+  return all.map(stringify).join('\n');
 }
 
 /** @internal */
 function flattenVersions (entry: VersionPath[]): string {
-  const all = entry.map((version: VersionPath | string): VersionPath =>
+  const toPath = (version: VersionPath | string): VersionPath =>
     isString(version)
       ? { version }
-      : version
-  );
+      : version;
+  const all = entry.map(toPath);
   const verLength = getVersionLength(all);
+  const stringify = ({ path, version }: VersionPath) =>
+    `\t${version.padEnd(verLength)}\t${(!path || path.length < 5) ? '<unknown>' : path}`;
 
-  return all
-    .map(({ path, version }) => `\t${version.padEnd(verLength)}\t${(!path || path.length < 5) ? '<unknown>' : path}`)
-    .join('\n');
+  return all.map(stringify).join('\n');
 }
 
 /** @internal */
@@ -86,6 +92,7 @@ function getPath (pathOrFn?: FnString | string | false): string {
 /**
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
+ * @description A `@polkadot/*` version detection utility, checking for one occurence of a package in addition to checking for ddependency versions.
  */
 export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnString | string | false, deps: PackageJson[] = []): void {
   assert(name.startsWith('@polkadot'), () => `Invalid package descriptor ${name}`);

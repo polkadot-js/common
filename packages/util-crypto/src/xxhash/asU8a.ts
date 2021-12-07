@@ -3,10 +3,13 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import { u8aToU8a } from '@polkadot/util';
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, twox } from '@polkadot/wasm-crypto';
 
-import xxhash64AsBn from './xxhash64/asBn';
+import { createAsHex } from '../helpers';
+import { xxhash64 } from './xxhash64';
+
+type BitLength = 64 | 128 | 192 | 256 | 320 | 384 | 448 | 512;
 
 /**
  * @name xxhashAsU8a
@@ -22,18 +25,25 @@ import xxhash64AsBn from './xxhash64/asBn';
  * xxhashAsU8a('abc'); // => 0x44bc2cf5ad770999
  * ```
  */
-export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bitLength = 64, onlyJs = false): Uint8Array {
-  const iterations = Math.ceil(bitLength / 64);
+export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bitLength: BitLength = 64, onlyJs?: boolean): Uint8Array {
+  const rounds = Math.ceil(bitLength / 64);
+  const u8a = u8aToU8a(data);
 
-  if (isReady() && !onlyJs) {
-    return twox(u8aToU8a(data), iterations);
+  if (!hasBigInt || (!onlyJs && isReady())) {
+    return twox(u8a, rounds);
   }
 
-  const u8a = new Uint8Array(Math.ceil(bitLength / 8));
+  const result = new Uint8Array(rounds * 8);
 
-  for (let seed = 0; seed < iterations; seed++) {
-    u8a.set(xxhash64AsBn(data, seed).toArray('le', 8), seed * 8);
+  for (let seed = 0; seed < rounds; seed++) {
+    result.set(xxhash64(u8a, seed).reverse(), seed * 8);
   }
 
-  return u8a;
+  return result;
 }
+
+/**
+ * @name xxhashAsHex
+ * @description Creates a xxhash64 hex from the input.
+ */
+export const xxhashAsHex = createAsHex(xxhashAsU8a);

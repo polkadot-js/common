@@ -8,5 +8,11 @@
  * Checks to see if the input `Uint8Array` has zero length or contains all 0 values.
  */
 export function u8aEmpty (value: Uint8Array): boolean {
-  return value.length === 0 || value.every((v) => !v);
+  for (let i = 0; i < value.length; i++) {
+    if (value[i]) {
+      return false;
+    }
+  }
+
+  return true;
 }

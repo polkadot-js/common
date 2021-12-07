@@ -10,9 +10,15 @@ export function hdValidatePath (path: string): boolean {
 
   const parts = path.split('/').slice(1);
 
-  return parts.every((n) => /^\d+'?$/.test(n)) && (
-    !parts
-      .map((n) => parseInt(n.replace(/'$/, ''), 10))
-      .some((n) => isNaN(n) || (n >= HARDENED) || (n < 0))
-  );
+  for (const p of parts) {
+    const n = /^\d+'?$/.test(p)
+      ? parseInt(p.replace(/'$/, ''), 10)
+      : Number.NaN;
+
+    if (isNaN(n) || (n >= HARDENED) || (n < 0)) {
+      return false;
+    }
+  }
+
+  return true;
 }

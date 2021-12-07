@@ -1,9 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hexHasPrefix } from './hasPrefix';
-
-const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
+import { REGEX_HEX_NOPREFIX, REGEX_HEX_PREFIXED } from '../is/hex';
 
 /**
  * @name hexStripPrefix
@@ -20,13 +18,13 @@ const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
  * ```
  */
 export function hexStripPrefix (value?: string | null): string {
-  if (!value) {
+  if (!value || value === '0x') {
     return '';
-  } else if (hexHasPrefix(value)) {
+  } else if (REGEX_HEX_PREFIXED.test(value)) {
     return value.substr(2);
-  } else if (UNPREFIX_HEX_REGEX.test(value)) {
+  } else if (REGEX_HEX_NOPREFIX.test(value)) {
     return value;
   }
 
-  throw new Error(`Invalid hex ${value} passed to hexStripPrefix`);
+  throw new Error(`Expected hex value to convert, found '${value}'`);
 }

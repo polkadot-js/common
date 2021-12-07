@@ -6,11 +6,13 @@ import type { Prefix } from './types';
 
 import { u8aSorted } from '@polkadot/util';
 
-import { decodeAddress } from './decode';
 import { encodeAddress } from './encode';
+import { addressToU8a } from './util';
 
 export function sortAddresses (addresses: (HexString | Uint8Array | string)[], ss58Format?: Prefix): string[] {
+  const u8aToAddress = (u8a: Uint8Array) => encodeAddress(u8a, ss58Format);
+
   return u8aSorted(
-    addresses.map((who) => decodeAddress(who))
-  ).map((u8a) => encodeAddress(u8a, ss58Format));
+    addresses.map(addressToU8a)
+  ).map(u8aToAddress);
 }

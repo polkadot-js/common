@@ -1,7 +1,15 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performanceCmp } from '../../test/performance';
+import { u8aToHex as u8aToHexBuffer } from './toHexBuffer';
 import { u8aToHex } from '.';
+
+const ptest = new Uint8Array(32768);
+
+for (let i = 0; i < ptest.length; i++) {
+  ptest[i] = i % 256;
+}
 
 describe('u8aToHex', (): void => {
   it('returns empty as 0x', (): void => {
@@ -57,4 +65,10 @@ describe('u8aToHex', (): void => {
       )
     ).toEqual('0x8000…0c0d');
   });
+
+  performanceCmp('u8aToHex', ['u8aToHexBuffer', 'u8aToHex'], 2000, [[ptest]], (s: Uint8Array, isSecond) =>
+    isSecond
+      ? u8aToHex(s)
+      : u8aToHexBuffer(s)
+  );
 });

@@ -21,5 +21,11 @@ import { assert } from '../assert';
 export function arrayRange (size: number, startAt = 0): number[] {
   assert(size > 0, 'Expected non-zero, positive number as a range size');
 
-  return new Array(size).fill(0).map((_, i) => i + startAt);
+  const result = new Array<number>(size);
+
+  for (let i = 0; i < size; i++) {
+    result[i] = i + startAt;
+  }
+
+  return result;
 }

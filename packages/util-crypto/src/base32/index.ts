@@ -5,7 +5,4 @@
  * @summary Encode and decode base32 values
  */
 
-export { base32Decode } from './decode';
-export { base32Encode } from './encode';
-export { base32Validate } from './validate';
-export { isBase32 } from './is';
+export { base32Decode, base32Encode, base32Validate, isBase32 } from './bs32';

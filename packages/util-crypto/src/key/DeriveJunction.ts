@@ -3,17 +3,14 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import { BN, bnToHex, compactAddLength, hexToU8a, isBigInt, isBn, isHex, isNumber, isString, stringToU8a } from '@polkadot/util';
+import { BN, bnToU8a, compactAddLength, hexToU8a, isBigInt, isBn, isHex, isNumber, isString, stringToU8a } from '@polkadot/util';
 
 import { blake2AsU8a } from '../blake2/asU8a';
+import { BN_LE_256_OPTS } from '../bn';
 
 const RE_NUMBER = /^\d+$/;
 
 const JUNCTION_ID_LEN = 32;
-const BN_OPTIONS = {
-  bitLength: 256,
-  isLe: true
-};
 
 export class DeriveJunction {
   readonly #chainCode: Uint8Array = new Uint8Array(32);
@@ -28,7 +25,7 @@ export class DeriveJunction {
 
     result.soft(
       RE_NUMBER.test(code)
-        ? parseInt(code, 10)
+        ? new BN(code, 10)
         : code
     );
 
@@ -61,7 +58,7 @@ export class DeriveJunction {
 
   public soft (value: HexString | number | string | bigint | BN | Uint8Array): DeriveJunction {
     if (isNumber(value) || isBn(value) || isBigInt(value)) {
-      return this.soft(bnToHex(value, BN_OPTIONS));
+      return this.soft(bnToU8a(value, BN_LE_256_OPTS));
     } else if (isHex(value)) {
       return this.soft(hexToU8a(value));
     } else if (isString(value)) {

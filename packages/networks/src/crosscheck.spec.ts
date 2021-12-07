@@ -1,17 +1,17 @@
 // Copyright 2017-2021 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KnownSubstrate, Ss58Registry } from './types';
+import type { Ss58Registry } from './types';
 
 import fs from 'fs';
 
-import { stringify } from '@polkadot/util';
+import { objectKeys, stringify } from '@polkadot/util';
 import { fetch } from '@polkadot/x-fetch';
 
+import { substrateRegistry } from './defaults';
 import { allNetworks } from './';
 
 const OUTPUT = './.github/ss58-check.md';
-const SUBSTRATE_REGISTRY = 'https://raw.githubusercontent.com/paritytech/substrate/master/ss58-registry.json';
 
 function assertAndLog (check: boolean, error: string): void {
   if (!check) {
@@ -28,7 +28,7 @@ describe('check latest Substrate ss58 registry', (): void => {
   let original: Ss58Registry;
 
   beforeAll(async (): Promise<void> => {
-    original = (await (await fetch(SUBSTRATE_REGISTRY)).json()) as Ss58Registry;
+    original = (await (await fetch(substrateRegistry)).json()) as Ss58Registry;
   });
 
   it('has the same number as the original', (): void => {
@@ -52,7 +52,7 @@ describe('check latest Substrate ss58 registry', (): void => {
   });
 
   it('has the same values as the original', (): void => {
-    const fields = Object.keys(original.schema) as (keyof KnownSubstrate)[];
+    const fields = objectKeys(original.schema);
     const errors = original.registry
       .map((n): [string, string[]] => {
         const other = allNetworks.find(({ prefix }) => prefix === n.prefix);
@@ -60,7 +60,11 @@ describe('check latest Substrate ss58 registry', (): void => {
         return [
           `${n.displayName} (${n.prefix})`,
           other
-            ? fields.filter((f) => stringify(n[f]) !== stringify(other[f]))
+            ? fields.filter((f) =>
+              ['decimals', 'symbols'].includes(f)
+                ? stringify(n[f] || []) !== stringify(other[f] || [])
+                : stringify(n[f]) !== stringify(other[f])
+            )
             : []
         ];
       })

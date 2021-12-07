@@ -12,7 +12,7 @@ import { createPair } from './pair';
 interface PairDef {
   name?: string;
   publicKey: Uint8Array;
-  seed: string;
+  seed?: string;
   secretKey?: Uint8Array;
   type: KeypairType
 }
@@ -77,42 +77,36 @@ export const PAIRSETHEREUM: PairDef[] = [
     name: 'Alith',
     publicKey: hexToU8a('0x02509540919faacf9ab52146c9aa40db68172d83777250b28e4679176e49ccdd9f'),
     secretKey: hexToU8a('0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133'), // nosemgrep
-    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   },
   {
     name: 'Baltathar',
     publicKey: hexToU8a('0x033bc19e36ff1673910575b6727a974a9abd80c9a875d41ab3e2648dbfb9e4b518'),
     secretKey: hexToU8a('0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b'), // nosemgrep
-    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   },
   {
     name: 'Charleth',
     publicKey: hexToU8a('0x0234637bdc0e89b5d46543bcbf8edff329d2702bc995e27e9af4b1ba009a3c2a5e'),
     secretKey: hexToU8a('0x0b6e18cafb6ed99687ec547bd28139cafdd2bffe70e6b688025de6b445aa5c5b'), // nosemgrep
-    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   },
   {
     name: 'Dorothy',
     publicKey: hexToU8a('0x02a00d60b2b408c2a14c5d70cdd2c205db8985ef737a7e55ad20ea32cc9e7c417c'),
     secretKey: hexToU8a('0x39539ab1876910bbf3a223d84a29e28f1cb4e2e456503e7e91ed39b2e7223d68'), // nosemgrep
-    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   },
   {
     name: 'Ethan',
     publicKey: hexToU8a('0x025cdc005b752651cd3f728fb9192182acb3a9c89e19072cbd5b03f3ee1f1b3ffa'),
     secretKey: hexToU8a('0x7dce9bc8babb68fec1409be38c8e1a52650206a7ed90ff956ae8a6d15eeaaef4'), // nosemgrep
-    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   },
   {
     name: 'Faith',
     publicKey: hexToU8a('0x037964b6c9d546da4646ada28a99e34acaa1d14e7aba861a9055f9bd200c8abf74'),
     secretKey: hexToU8a('0xb9d2ea9a615f3165812e8d44de0d24da9bbd164b65c4f0573e1ce2c8dbd9c8df'), // nosemgrep
-    seed: "m/44'/40'/0'/0",
     type: 'ethereum'
   }
 ];
@@ -127,12 +121,16 @@ export function createTestKeyring (options: KeyringOptions = {}, isDerived = tru
   const keyring = new Keyring(options);
   const pairs: PairDef[] = (options.type && options.type === 'ethereum') ? PAIRSETHEREUM : PAIRSSR25519;
 
-  pairs.forEach(({ name, publicKey, secretKey, seed, type }): void => {
+  for (const { name, publicKey, secretKey, seed, type } of pairs) {
+    if (!name && !seed) {
+      throw new Error('Testing pair should have either a name or a seed');
+    }
+
     const meta = {
       isTesting: true,
-      name: name || seed.replace('//', '_').toLowerCase()
+      name: name || (seed && seed.replace('//', '_').toLowerCase())
     };
-    const pair = !isDerived && !name
+    const pair = !isDerived && !name && seed
       ? keyring.addFromUri(seed, meta, options.type)
       : keyring.addPair(
         createPair({ toSS58: keyring.encodeAddress, type }, { publicKey, secretKey }, meta)
@@ -141,7 +139,7 @@ export function createTestKeyring (options: KeyringOptions = {}, isDerived = tru
     pair.lock = (): void => {
       // we don't have lock/unlock functionality here
     };
-  });
+  }
 
   return keyring;
 }

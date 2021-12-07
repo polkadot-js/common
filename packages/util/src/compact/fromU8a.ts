@@ -20,24 +20,24 @@ import { u8aToBn, u8aToU8a } from '../u8a';
  * console.log('value offset=', offset, 'length=', length); // 4, 0xffff
  * ```
  */
-export function compactFromU8a (_input: U8aLike): [number, BN] {
-  const input = u8aToU8a(_input);
-  const flag = input[0] & 0b11;
+export function compactFromU8a (input: U8aLike): [number, BN] {
+  const u8a = u8aToU8a(input);
+  const flag = u8a[0] & 0b11;
 
   if (flag === 0b00) {
-    return [1, new BN(input[0]).ishrn(2)];
+    return [1, new BN(u8a[0]).ishrn(2)];
   } else if (flag === 0b01) {
-    return [2, u8aToBn(input.slice(0, 2), true).ishrn(2)];
+    return [2, u8aToBn(u8a.subarray(0, 2), true).ishrn(2)];
   } else if (flag === 0b10) {
-    return [4, u8aToBn(input.slice(0, 4), true).ishrn(2)];
+    return [4, u8aToBn(u8a.subarray(0, 4), true).ishrn(2)];
   }
 
   const offset = 1 + (
-    new BN(input[0])
+    new BN(u8a[0])
       .ishrn(2) // clear flag
       .iadd(BN_FOUR) // add 4 for base length
       .toNumber()
   );
 
-  return [offset, u8aToBn(input.subarray(1, offset), true)];
+  return [offset, u8aToBn(u8a.subarray(1, offset), true)];
 }
