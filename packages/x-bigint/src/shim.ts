@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { BigInt } from '@polkadot/x-bigint';
-import { xglobal } from '@polkadot/x-global';
+import { exposeGlobal } from '@polkadot/x-global';
 
-if (typeof xglobal.BigInt !== 'function') {
-  (xglobal as Record<string, unknown>).BigInt = BigInt;
-}
+exposeGlobal('BigInt', BigInt);
