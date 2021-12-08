@@ -88,6 +88,7 @@ export const knownIcon: KnownIcon = {
 // and maps to the known slip44 (minus the `0x8` hard derivation flag)
 // NOTE: Any network here needs to have a genesisHash attached in the config above
 export const knownLedger: KnownLedger = {
+  bifrost: 0x00000314,
   centrifuge: 0x000002eb,
   'dock-mainnet': 0x00000252,
   edgeware: 0x0000020b,
