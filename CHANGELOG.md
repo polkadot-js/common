@@ -4,6 +4,7 @@
 
 Changes:
 
+- Expose `assertUnreachable` for codepaths that should not be followed
 - Swap to upstream `@noble/hashes`
 - Preserve all-caps word splits in `stringCamelCase`
 
