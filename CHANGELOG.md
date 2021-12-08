@@ -2,11 +2,17 @@
 
 ## master
 
+Contributed:
+
+- Added Bifrost Ledger capabilities (Thanks to https://github.com/awesomepan)
+
 Changes:
 
 - Expose `assertUnreachable` for codepaths that should not be followed
 - Swap to upstream `@noble/hashes`
 - Preserve all-caps word splits in `stringCamelCase`
+- Sync with upstream Substrate ss58 registry
+- Maintainability cleanups
 
 
 ## 8.1.2 Dec 5, 2021

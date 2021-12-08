@@ -741,7 +741,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     decimals: [12],
     displayName: 'CESS Testnet',
     network: 'cess-testnet',
-    prefix: 10042,
+    prefix: 11330,
     standardAccount: '*25519',
     symbols: ['TCESS'],
     website: 'https://cess.cloud'
@@ -750,7 +750,7 @@ export const knownSubstrate: KnownSubstrate[] = [
     decimals: [12],
     displayName: 'CESS',
     network: 'cess',
-    prefix: 10043,
+    prefix: 11331,
     standardAccount: '*25519',
     symbols: ['CESS'],
     website: 'https://cess.cloud'
