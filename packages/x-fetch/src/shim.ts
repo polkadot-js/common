@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { fetch } from '@polkadot/x-fetch';
-import { xglobal } from '@polkadot/x-global';
+import { exposeGlobal } from '@polkadot/x-global';
 
-if (typeof xglobal.fetch !== 'function') {
-  (xglobal as Record<string, unknown>).fetch = fetch;
-}
+exposeGlobal('fetch', fetch);

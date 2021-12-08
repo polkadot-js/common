@@ -3,11 +3,11 @@
 
 import util from 'util';
 
-import { xglobal } from '@polkadot/x-global';
+import { extractGlobal } from '@polkadot/x-global';
 
 export { packageInfo } from './packageInfo';
 
-class NodeFallback {
+class Fallback {
   #encoder: util.TextEncoder;
 
   constructor () {
@@ -20,8 +20,4 @@ class NodeFallback {
   }
 }
 
-export const TextEncoder = (
-  typeof xglobal.TextEncoder === 'undefined'
-    ? NodeFallback as unknown as typeof xglobal.TextEncoder
-    : xglobal.TextEncoder
-);
+export const TextEncoder = extractGlobal('TextEncoder', Fallback);
