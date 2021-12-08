@@ -21,7 +21,7 @@ export function secp256k1Sign (message: Uint8Array | string, { secretKey }: Part
 
   const data = hasher(hashType, message, onlyJs);
 
-  if (isWasm(onlyJS)) {
+  if (isWasm(onlyJs)) {
     return wasm(data, secretKey);
   }
 

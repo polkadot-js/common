@@ -3,8 +3,8 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import { hasBigInt, u8aToU8a } from '@polkadot/util';
-import { isReady, twox } from '@polkadot/wasm-crypto';
+import { u8aToU8a } from '@polkadot/util';
+import { twox } from '@polkadot/wasm-crypto';
 
 import { createAsHex, isWasm } from '../helpers';
 import { xxhash64 } from './xxhash64';
