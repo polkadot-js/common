@@ -4,10 +4,11 @@
 import type { HexString } from '@polkadot/util/types';
 import type { HashType } from './types';
 
-import { assert, hasBigInt, u8aToU8a } from '@polkadot/util';
-import { isReady, secp256k1Recover as wasm } from '@polkadot/wasm-crypto';
+import { assert, u8aToU8a } from '@polkadot/util';
+import { secp256k1Recover as wasm } from '@polkadot/wasm-crypto';
 import { recoverPublicKey, Signature } from '@polkadot/x-noble-secp256k1';
 
+import { isWasm } from '../helpers';
 import { secp256k1Compress } from './compress';
 import { secp256k1Expand } from './expand';
 
@@ -18,7 +19,7 @@ import { secp256k1Expand } from './expand';
 export function secp256k1Recover (msgHash: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, recovery: number, hashType: HashType = 'blake2', onlyJs?: boolean): Uint8Array {
   const sig = u8aToU8a(signature).subarray(0, 64);
   const msg = u8aToU8a(msgHash);
-  const publicKey = !hasBigInt || (!onlyJs && isReady())
+  const publicKey = isWasm(onlyJs)
     ? wasm(msg, sig, recovery)
     : recoverPublicKey(msg, Signature.fromCompact(sig).toRawBytes(), recovery);
 

@@ -3,9 +3,11 @@
 
 import type { Keypair } from '../../types';
 
-import { assert, hasBigInt } from '@polkadot/util';
-import { isReady, secp256k1FromSeed } from '@polkadot/wasm-crypto';
+import { assert } from '@polkadot/util';
+import { secp256k1FromSeed } from '@polkadot/wasm-crypto';
 import { getPublicKey } from '@polkadot/x-noble-secp256k1';
+
+import { isWasm } from '../../helpers';
 
 /**
  * @name secp256k1PairFromSeed
@@ -14,7 +16,7 @@ import { getPublicKey } from '@polkadot/x-noble-secp256k1';
 export function secp256k1PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypair {
   assert(seed.length === 32, 'Expected valid 32-byte private key as a seed');
 
-  if (!hasBigInt || (!onlyJs && isReady())) {
+  if (isWasm(onlyJs)) {
     const full = secp256k1FromSeed(seed);
 
     return {

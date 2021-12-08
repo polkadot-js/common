@@ -1,11 +1,12 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { assert, bnToU8a, hasBigInt, u8aConcat } from '@polkadot/util';
-import { isReady, secp256k1Expand as wasm } from '@polkadot/wasm-crypto';
+import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
+import { secp256k1Expand as wasm } from '@polkadot/wasm-crypto';
 import { Point } from '@polkadot/x-noble-secp256k1';
 
 import { BN_BE_256_OPTS } from '../bn';
+import { isWasm } from '../helpers';
 
 export function secp256k1Expand (publicKey: Uint8Array, onlyJs?: boolean): Uint8Array {
   if (publicKey.length === 65) {
@@ -14,7 +15,7 @@ export function secp256k1Expand (publicKey: Uint8Array, onlyJs?: boolean): Uint8
 
   assert(publicKey.length === 33, 'Invalid publicKey provided');
 
-  if (!hasBigInt || (!onlyJs && isReady())) {
+  if (isWasm(onlyJs)) {
     return wasm(publicKey).subarray(1);
   }
 

@@ -4,11 +4,12 @@
 import type { Keypair } from '../types';
 import type { HashType } from './types';
 
-import { assert, bnToU8a, hasBigInt, u8aConcat } from '@polkadot/util';
-import { isReady, secp256k1Sign as wasm } from '@polkadot/wasm-crypto';
+import { assert, bnToU8a, u8aConcat } from '@polkadot/util';
+import { secp256k1Sign as wasm } from '@polkadot/wasm-crypto';
 import { Signature, signSync } from '@polkadot/x-noble-secp256k1';
 
 import { BN_BE_256_OPTS } from '../bn';
+import { isWasm } from '../helpers';
 import { hasher } from './hasher';
 
 /**
@@ -20,7 +21,7 @@ export function secp256k1Sign (message: Uint8Array | string, { secretKey }: Part
 
   const data = hasher(hashType, message, onlyJs);
 
-  if (!hasBigInt || (!onlyJs && isReady())) {
+  if (isWasm(onlyJS)) {
     return wasm(data, secretKey);
   }
 
