@@ -9,7 +9,6 @@ export * from './consts';
 
 export { nSqrt } from './sqrt';
 export { nToBigInt } from './toBigInt';
-export { nMax } from './max';
-export { nMin } from './min';
+export { nMax, nMin } from './min';
 export { nToHex } from './toHex';
 export { nToU8a } from './toU8a';

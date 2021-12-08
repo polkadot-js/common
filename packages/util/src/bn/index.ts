@@ -9,8 +9,7 @@ export * from './consts';
 
 export { BN } from './bn';
 export { bnFromHex } from './fromHex';
-export { bnMax } from './max';
-export { bnMin } from './min';
+export { bnMax, bnMin } from './min';
 export { bnSqrt } from './sqrt';
 export { bnToBn } from './toBn';
 export { bnToHex } from './toHex';
