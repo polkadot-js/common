@@ -88,6 +88,7 @@ export const knownIcon: KnownIcon = {
 // and maps to the known slip44 (minus the `0x8` hard derivation flag)
 // NOTE: Any network here needs to have a genesisHash attached in the config above
 export const knownLedger: KnownLedger = {
+  bifrost: 0x00000314,
   centrifuge: 0x000002eb,
   'dock-mainnet': 0x00000252,
   edgeware: 0x0000020b,
@@ -97,8 +98,7 @@ export const knownLedger: KnownLedger = {
   'nodle-chain': 0x000003eb,
   polkadot: 0x00000162,
   polymesh: 0x00000253,
-  statemine: 0x000001b2, // common-good on Kusama, shares derivation
-  bifrost: 0x00000314
+  statemine: 0x000001b2 // common-good on Kusama, shares derivation
 };
 
 // testnets should not allow selection
