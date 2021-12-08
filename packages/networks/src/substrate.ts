@@ -504,12 +504,21 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://crust.network'
   },
   {
-    decimals: [0, 9, 9, 9, 9, 9, 9, 9],
-    displayName: 'Equilibrium Network',
-    network: 'equilibrium',
+    decimals: [9, 9, 9],
+    displayName: 'Genshiro Network',
+    network: 'genshiro',
     prefix: 67,
     standardAccount: '*25519',
-    symbols: ['Unknown', 'USD', 'EQ', 'ETH', 'BTC', 'EOS', 'DOT', 'CRV'],
+    symbols: ['GENS', 'EQD', 'LPT0'],
+    website: 'https://genshiro.equilibrium.io'
+  },
+  {
+    decimals: [9],
+    displayName: 'Equilibrium Network',
+    network: 'equilibrium',
+    prefix: 68,
+    standardAccount: '*25519',
+    symbols: ['EQ'],
     website: 'https://equilibrium.io'
   },
   {
@@ -531,12 +540,12 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://zeitgeist.pm'
   },
   {
-    decimals: [12],
+    decimals: [18],
     displayName: 'Manta network',
     network: 'manta',
     prefix: 77,
     standardAccount: '*25519',
-    symbols: ['MA'],
+    symbols: ['MANTA'],
     website: 'https://manta.network'
   },
   {
@@ -664,6 +673,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: '*25519',
     symbols: ['NEER'],
     website: 'https://bit.country'
+  },
+  {
+    decimals: [18],
+    displayName: 'Efinity',
+    network: 'efinity',
+    prefix: 1110,
+    standardAccount: 'Sr25519',
+    symbols: ['EFI'],
+    website: 'https://efinity.io/'
   },
   {
     decimals: [18],
