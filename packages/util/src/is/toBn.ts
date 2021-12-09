@@ -3,8 +3,6 @@
 
 import type { ToBn } from '../types';
 
-import { isFunction } from './function';
+import { isOn } from './helpers';
 
-export function isToBn (value?: unknown): value is ToBn {
-  return !!value && isFunction((value as ToBn).toBn);
-}
+export const isToBn = isOn<ToBn>('toBn');

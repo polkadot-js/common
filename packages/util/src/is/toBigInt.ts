@@ -3,8 +3,6 @@
 
 import type { ToBigInt } from '../types';
 
-import { isFunction } from './function';
+import { isOn } from './helpers';
 
-export function isToBigInt (value?: unknown): value is ToBigInt {
-  return !!value && isFunction((value as ToBigInt).toBigInt);
-}
+export const isToBigInt = isOn<ToBigInt>('toBigInt');

@@ -1,33 +1,20 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '@polkadot/util/types';
-
-import { hasBigInt, u8aToU8a } from '@polkadot/util';
-import { isReady, sha256, sha512 } from '@polkadot/wasm-crypto';
+import { sha256, sha512 } from '@polkadot/wasm-crypto';
 import { sha256 as sha256Js } from '@polkadot/x-noble-hashes/sha256';
 import { sha512 as sha512Js } from '@polkadot/x-noble-hashes/sha512';
 
-import { createBitHasher } from '../helpers';
-
-type BitLength = 256 | 512;
+import { createBitHasher, createDualHasher } from '../helpers';
 
 /**
  * @name shaAsU8a
  * @summary Creates a sha Uint8Array from the input.
  */
-export function shaAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: BitLength = 256, onlyJs?: boolean): Uint8Array {
-  const is256 = bitLength === 256;
-  const u8a = u8aToU8a(value);
-
-  return !hasBigInt || (!onlyJs && isReady())
-    ? is256
-      ? sha256(u8a)
-      : sha512(u8a)
-    : is256
-      ? sha256Js(u8a)
-      : sha512Js(u8a);
-}
+export const shaAsU8a = createDualHasher(
+  { 256: sha256, 512: sha512 },
+  { 256: sha256Js, 512: sha512Js }
+);
 
 /**
  * @name sha256AsU8a

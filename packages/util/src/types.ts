@@ -85,3 +85,7 @@ export interface IBigIntConstructor {
   */
   asUintN (bits: number, int: bigint): bigint;
 }
+
+export interface Observable {
+  next: (...params: unknown[]) => unknown;
+}
