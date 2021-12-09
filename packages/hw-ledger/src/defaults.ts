@@ -4,10 +4,11 @@
 import type Transport from '@ledgerhq/hw-transport';
 import type { SubstrateApp } from '@zondax/ledger-substrate';
 
-import { newBifrostApp, newCentrifugeApp, newDockApp, newEdgewareApp, newEquilibriumApp, newGenshiroApp, newKusamaApp, newNodleApp, newPolkadotApp, newPolymeshApp, newStatemineApp } from '@zondax/ledger-substrate';
+import { newSoraApp, newBifrostApp, newCentrifugeApp, newDockApp, newEdgewareApp, newEquilibriumApp, newGenshiroApp, newKusamaApp, newNodleApp, newPolkadotApp, newPolymeshApp, newStatemineApp } from '@zondax/ledger-substrate';
 
 // These match up with the keys of the knownLedger object in the @polkadot/networks/defaults.ts
 export const ledgerApps: Record<string, (transport: Transport) => SubstrateApp> = {
+  sora: newSoraApp,
   bifrost: newBifrostApp,
   centrifuge: newCentrifugeApp,
   'dock-mainnet': newDockApp,
