@@ -41,6 +41,7 @@ export function u8aCmp (a: HexString | Uint8Array | string, b: HexString | Uint8
       return 1;
     } else if (u8aa[i] !== u8ab[i]) {
       // the number in this index doesn't match
+      // (we don't use u8aa[i] - u8ab[i] since that doesn't match with localeCompare)
       return u8aa[i] > u8ab[i]
         ? 1
         : -1;
