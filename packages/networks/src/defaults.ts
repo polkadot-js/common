@@ -102,7 +102,6 @@ export const knownLedger: KnownLedger = {
   'nodle-chain': 0x000003eb,
   polkadot: 0x00000162,
   polymesh: 0x00000253,
-  sora: 0x00000269,
   statemine: 0x000001b2 // common-good on Kusama, shares derivation
 };
 
