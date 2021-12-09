@@ -1,12 +1,9 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isFunction } from './function';
-import { isObject } from './object';
+import type { Observable } from '../types';
 
-interface Observable {
-  next: (...params: unknown[]) => unknown;
-}
+import { isOn } from './helpers';
 
 /**
  * @name isBObservable
@@ -22,9 +19,4 @@ interface Observable {
  * console.log('isObservable', isObservable(...));
  * ```
  */
-export function isObservable (value: unknown): value is Observable {
-  return (
-    isObject(value) &&
-    isFunction((value as Observable).next)
-  );
-}
+export const isObservable = isOn<Observable>('next');

@@ -1,15 +1,10 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '@polkadot/util/types';
-
-import { hasBigInt, u8aToU8a } from '@polkadot/util';
-import { isReady, keccak256, keccak512 } from '@polkadot/wasm-crypto';
+import { keccak256, keccak512 } from '@polkadot/wasm-crypto';
 import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from '@polkadot/x-noble-hashes/sha3';
 
-import { createAsHex, createBitHasher } from '../helpers';
-
-type BitLength = 256 | 512;
+import { createAsHex, createBitHasher, createDualHasher } from '../helpers';
 
 /**
  * @name keccakAsU8a
@@ -25,18 +20,11 @@ type BitLength = 256 | 512;
  * keccakAsU8a('123'); // => Uint8Array
  * ```
  */
-export function keccakAsU8a (value: HexString | Buffer | Uint8Array | string, bitLength: BitLength = 256, onlyJs?: boolean): Uint8Array {
-  const is256 = bitLength === 256;
-  const u8a = u8aToU8a(value);
 
-  return !hasBigInt || (!onlyJs && isReady())
-    ? is256
-      ? keccak256(u8a)
-      : keccak512(u8a)
-    : is256
-      ? keccak256Js(u8a)
-      : keccak512Js(u8a);
-}
+export const keccakAsU8a = createDualHasher(
+  { 256: keccak256, 512: keccak512 },
+  { 256: keccak256Js, 512: keccak512Js }
+);
 
 /**
  * @name keccak256AsU8a
