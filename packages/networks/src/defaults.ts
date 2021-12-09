@@ -114,5 +114,5 @@ export const knownTestnet: KnownTestnet = {
   jupiter: true,
   'mathchain-testnet': true,
   subspace_testnet: true,
-  'zero-alphaville': true,
+  'zero-alphaville': true
 };
