@@ -3,7 +3,7 @@
 
 import type { KeyringInstance, KeyringOptions } from './types';
 
-import { hexToU8a } from '@polkadot/util';
+import { assert, hexToU8a } from '@polkadot/util';
 import { KeypairType } from '@polkadot/util-crypto/types';
 
 import { Keyring } from './keyring';
@@ -111,6 +111,15 @@ export const PAIRSETHEREUM: PairDef[] = [
   }
 ];
 
+function createMeta (name?: string, seed?: string) {
+  assert(name || seed, 'Testing pair should have either a name or a seed');
+
+  return {
+    isTesting: true,
+    name: name || (seed && seed.replace('//', '_').toLowerCase())
+  };
+}
+
 /**
  * @name testKeyring
  * @summary Create an instance of Keyring pre-populated with locked test accounts
@@ -119,17 +128,12 @@ export const PAIRSETHEREUM: PairDef[] = [
  */
 export function createTestKeyring (options: KeyringOptions = {}, isDerived = true): KeyringInstance {
   const keyring = new Keyring(options);
-  const pairs: PairDef[] = (options.type && options.type === 'ethereum') ? PAIRSETHEREUM : PAIRSSR25519;
+  const pairs = (options.type && options.type === 'ethereum')
+    ? PAIRSETHEREUM
+    : PAIRSSR25519;
 
   for (const { name, publicKey, secretKey, seed, type } of pairs) {
-    if (!name && !seed) {
-      throw new Error('Testing pair should have either a name or a seed');
-    }
-
-    const meta = {
-      isTesting: true,
-      name: name || (seed && seed.replace('//', '_').toLowerCase())
-    };
+    const meta = createMeta(name, seed);
     const pair = !isDerived && !name && seed
       ? keyring.addFromUri(seed, meta, options.type)
       : keyring.addPair(
