@@ -43,6 +43,33 @@ const DEFAULT_UNIT = SI[SI_MID].text;
 let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
+function getUnits (si: SiDef, withSi: boolean, withSiFull: boolean, withUnit: boolean | string): string {
+  const unit = isBoolean(withUnit)
+    ? SI[SI_MID].text
+    : withUnit;
+
+  return withSi || withSiFull
+    ? si.value === '-'
+      ? withUnit
+        ? ` ${unit}`
+        : ''
+      : ` ${withSiFull ? `${si.text}${withUnit ? ' ' : ''}` : si.value}${withUnit ? unit : ''}`
+    : '';
+}
+
+function getPrePost (text: string, decimals: number, forceUnit?: string): [SiDef, string, string] {
+  // NOTE We start at midpoint (8) minus 1 - this means that values display as
+  // 123.456 instead of 0.123k (so always 6 relevant). Additionally we use ceil
+  // so there are at most 3 decimal before the decimal separator
+  const si = calcSi(text, decimals, forceUnit);
+  const mid = text.length - (decimals + si.power);
+  const prefix = text.substring(0, mid);
+  const padding = mid < 0 ? 0 - mid : 0;
+  const postfix = `${`${new Array(padding + 1).join('0')}${text}`.substring(mid < 0 ? 0 : mid)}0000`.substring(0, 4);
+
+  return [si, prefix || '0', postfix];
+}
+
 // Formats a string/number with <prefix>.<postfix><type> notation
 function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, options: Options | boolean = true, optDecimals: number = defaultDecimals): string {
   let text = bnToBn(input).toString();
@@ -51,39 +78,27 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | b
     return '0';
   }
 
-  // strip the negative sign so we can work with clean groupings, re-add this in the
-  // end when we return the result (from here on we work with positive numbers)
-  const isNegative = text[0].startsWith('-');
-
-  if (isNegative) {
-    text = text.substr(1);
-  }
-
   // extract options - the boolean case is for backwards-compat
   const { decimals = optDecimals, forceUnit = undefined, withSi = true, withSiFull = false, withUnit = true } = isBoolean(options)
     ? { withSi: options }
     : options;
 
-  // NOTE We start at midpoint (8) minus 1 - this means that values display as
-  // 123.456 instead of 0.123k (so always 6 relevant). Additionally we use ceil
-  // so there are at most 3 decimal before the decimal separator
-  const si = calcSi(text, decimals, forceUnit);
-  const mid = text.length - (decimals + si.power);
-  const prefix = text.substr(0, mid);
-  const padding = mid < 0 ? 0 - mid : 0;
-  const postfix = `${`${new Array(padding + 1).join('0')}${text}`.substr(mid < 0 ? 0 : mid)}0000`.substr(0, 4);
-  const units = withSi || withSiFull
-    ? si.value === '-'
-      ? withUnit
-        ? ` ${isBoolean(withUnit) ? si.text : withUnit}`
-        : ''
-      : ` ${withSiFull ? si.text : si.value}${withUnit ? `${withSiFull ? ' ' : ''}${(isBoolean(withUnit) ? SI[SI_MID].text : withUnit)}` : ''}`
-    : '';
+  // strip the negative sign so we can work with clean groupings, re-add this in the
+  // end when we return the result (from here on we work with positive numbers)
+  let sign = '';
 
-  return `${isNegative ? '-' : ''}${formatDecimal(prefix || '0')}.${postfix}${units}`;
+  if (text[0].startsWith('-')) {
+    sign = '-';
+    text = text.substring(1);
+  }
+
+  const [si, prefix, postfix] = getPrePost(text, decimals, forceUnit);
+  const units = getUnits(si, withSi, withSiFull, withUnit);
+
+  return `${sign}${formatDecimal(prefix)}.${postfix}${units}`;
 }
 
-const formatBalance = _formatBalance as BalanceFormatter;
+export const formatBalance = _formatBalance as BalanceFormatter;
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.calcSi = (text: string, decimals: number = defaultDecimals): SiDef =>
@@ -126,5 +141,3 @@ formatBalance.setDefaults = ({ decimals, unit }: SetDefaults): void => {
 
   SI[SI_MID].text = defaultUnit;
 };
-
-export { formatBalance };
