@@ -3,8 +3,7 @@
 
 import type { BN } from '../bn/bn';
 
-import { isFunction } from './function';
-import { isObject } from './object';
+import { isOnObject } from './helpers';
 
 interface Compact<T> {
   toBigInt (): bigint;
@@ -13,16 +12,12 @@ interface Compact<T> {
   unwrap (): T;
 }
 
+const checker = isOnObject('toBigInt', 'toBn', 'toNumber', 'unwrap');
+
 /**
  * @name isCompact
  * @summary Tests for SCALE-Compact-like object instance.
  */
 export function isCompact <T> (value?: unknown): value is Compact<T> {
-  return (
-    isObject<Compact<T>>(value) &&
-    isFunction(value.toBigInt) &&
-    isFunction(value.toBn) &&
-    isFunction(value.toNumber) &&
-    isFunction(value.unwrap)
-  );
+  return checker(value);
 }

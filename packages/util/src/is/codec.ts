@@ -3,8 +3,7 @@
 
 import type { HexString } from '../types';
 
-import { isFunction } from './function';
-import { isObject } from './object';
+import { isOnObject } from './helpers';
 
 interface Registry {
   get: (...params: unknown[]) => unknown;
@@ -17,11 +16,12 @@ interface Codec {
   toU8a: (isBare?: unknown) => Uint8Array;
 }
 
+const checkBase = isOnObject<Codec>('toU8a');
+const checkRegistry = isOnObject<Registry>('get');
+
 export function isCodec <T extends Codec = Codec> (value?: unknown): value is T {
   return (
-    isObject<T>(value) &&
-    isFunction(value.toU8a) &&
-    isObject<Registry>(value.registry) &&
-    isFunction(value.registry.get)
+    checkBase(value) &&
+    checkRegistry(value.registry)
   );
 }

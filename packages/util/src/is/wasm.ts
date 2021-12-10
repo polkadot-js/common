@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { u8aEq } from '../u8a/eq';
+import { isU8a } from './u8a';
 
 const WASM_MAGIC = new Uint8Array([0, 97, 115, 109]); // \0asm
 
@@ -11,6 +12,6 @@ const WASM_MAGIC = new Uint8Array([0, 97, 115, 109]); // \0asm
  * @description
  * Checks to see if the input Uint8Array contains a valid WASM header
  */
-export function isWasm (value?: Uint8Array): boolean {
-  return !!value && u8aEq(value.subarray(0, 4), WASM_MAGIC);
+export function isWasm (value?: Uint8Array): value is Uint8Array {
+  return isU8a(value) && u8aEq(value.subarray(0, 4), WASM_MAGIC);
 }
