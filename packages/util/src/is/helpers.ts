@@ -4,7 +4,14 @@
 import { isFunction } from './function';
 import { isObject } from './object';
 
-export function isOn <T> (fn: keyof T): (value?: unknown) => value is T {
+export function isOn <T> (...fns: (keyof T)[]): (value?: unknown) => value is T {
   return (value?: unknown): value is T =>
-    !!value && (isObject(value) || isFunction(value)) && isFunction((value as T)[fn]);
+    (isObject(value) || isFunction(value)) &&
+    fns.every((f) => isFunction((value as T)[f]));
+}
+
+export function isOnObject <T> (...fns: (keyof T)[]): (value?: unknown) => value is T {
+  return (value?: unknown): value is T =>
+    isObject(value) &&
+    fns.every((f) => isFunction((value as T)[f]));
 }

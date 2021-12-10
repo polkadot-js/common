@@ -23,6 +23,7 @@ export { isNull } from './null';
 export { isNumber } from './number';
 export { isObject } from './object';
 export { isObservable } from './observable';
+export { isPromise } from './promise';
 export { isString } from './string';
 export { isTestChain } from './testChain';
 export { isToBigInt } from './toBigInt';

@@ -19,4 +19,22 @@ describe('isCodec', (): void => {
       })
     ).toEqual(true);
   });
+
+  it('is true when invalid codec-like signature is found', (): void => {
+    expect(
+      isCodec({
+        toHex: () => '0x',
+        toU8a: () => new Uint8Array()
+      })
+    ).toEqual(false);
+    expect(
+      isCodec({
+        registry: {
+          get: () => null
+        },
+        toHex: 1,
+        toU8a: () => new Uint8Array()
+      })
+    ).toEqual(false);
+  });
 });
