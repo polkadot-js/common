@@ -12,6 +12,6 @@ const WASM_MAGIC = new Uint8Array([0, 97, 115, 109]); // \0asm
  * @description
  * Checks to see if the input Uint8Array contains a valid WASM header
  */
-export function isWasm (value?: Uint8Array): value is Uint8Array {
+export function isWasm (value?: unknown): value is Uint8Array {
   return isU8a(value) && u8aEq(value.subarray(0, 4), WASM_MAGIC);
 }
