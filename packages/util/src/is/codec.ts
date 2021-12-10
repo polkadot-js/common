@@ -16,12 +16,9 @@ interface Codec {
   toU8a: (isBare?: unknown) => Uint8Array;
 }
 
-const checkBase = isOnObject<Codec>('toU8a');
+const checkCodec = isOnObject<Codec>('toU8a');
 const checkRegistry = isOnObject<Registry>('get');
 
 export function isCodec <T extends Codec = Codec> (value?: unknown): value is T {
-  return (
-    checkBase(value) &&
-    checkRegistry(value.registry)
-  );
+  return checkCodec(value) && checkRegistry(value.registry);
 }
