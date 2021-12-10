@@ -43,17 +43,17 @@ const DEFAULT_UNIT = SI[SI_MID].text;
 let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
-function getUnits (si: SiDef, withSi?: boolean, withSiFull?: boolean, withUnit?: boolean | string): string {
+function getUnits (si: SiDef, withSi: boolean, withSiFull: boolean, withUnit: boolean | string): string {
   const unit = isBoolean(withUnit)
-    ? ''
+    ? SI[SI_MID].text
     : withUnit;
 
   return withSi || withSiFull
     ? si.value === '-'
       ? withUnit
-        ? ` ${unit || si.text}`
+        ? ` ${unit}`
         : ''
-      : ` ${withSiFull ? si.text : si.value}${withUnit ? `${withSiFull ? ' ' : ''}${unit || SI[SI_MID].text}` : ''}`
+      : ` ${withSiFull ? `${si.text}${withUnit ? ' ' : ''}` : si.value}${withUnit ? unit : ''}`
     : '';
 }
 
