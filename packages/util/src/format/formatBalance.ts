@@ -7,7 +7,6 @@ import type { SiDef, ToBn } from '../types';
 import { bnToBn } from '../bn/toBn';
 import { isBoolean } from '../is/boolean';
 import { isUndefined } from '../is/undefined';
-import { objectSpread } from '../object/spread';
 import { formatDecimal } from './formatDecimal';
 import { calcSi, findSi, SI, SI_MID } from './si';
 
@@ -45,12 +44,16 @@ let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
 function getUnits (si: SiDef, withSi?: boolean, withSiFull?: boolean, withUnit?: boolean | string): string {
+  const unit = isBoolean(withUnit)
+    ? ''
+    : withUnit;
+
   return withSi || withSiFull
     ? si.value === '-'
       ? withUnit
-        ? ` ${isBoolean(withUnit) ? si.text : withUnit}`
+        ? ` ${unit || si.text}`
         : ''
-      : ` ${withSiFull ? si.text : si.value}${withUnit ? `${withSiFull ? ' ' : ''}${(isBoolean(withUnit) ? SI[SI_MID].text : withUnit)}` : ''}`
+      : ` ${withSiFull ? si.text : si.value}${withUnit ? `${withSiFull ? ' ' : ''}${unit || SI[SI_MID].text}` : ''}`
     : '';
 }
 
@@ -75,25 +78,24 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | b
     return '0';
   }
 
+  // extract options - the boolean case is for backwards-compat
+  const { decimals = optDecimals, forceUnit = undefined, withSi = true, withSiFull = false, withUnit = true } = isBoolean(options)
+    ? { withSi: options }
+    : options;
+
   // strip the negative sign so we can work with clean groupings, re-add this in the
   // end when we return the result (from here on we work with positive numbers)
-  const isNegative = text[0].startsWith('-');
+  let sign = '';
 
-  if (isNegative) {
+  if (text[0].startsWith('-')) {
+    sign = '-';
     text = text.substring(1);
   }
 
-  // extract options - the boolean case is for backwards-compat
-  const { decimals = optDecimals, forceUnit, withSi, withSiFull, withUnit } = objectSpread<Options>(
-    { withSi: true, withSiFull: false, withUnit: false },
-    isBoolean(options)
-      ? { withSi: options }
-      : options
-  );
   const [si, prefix, postfix] = getPrePost(text, decimals, forceUnit);
   const units = getUnits(si, withSi, withSiFull, withUnit);
 
-  return `${isNegative ? '-' : ''}${formatDecimal(prefix)}.${postfix}${units}`;
+  return `${sign}${formatDecimal(prefix)}.${postfix}${units}`;
 }
 
 export const formatBalance = _formatBalance as BalanceFormatter;
