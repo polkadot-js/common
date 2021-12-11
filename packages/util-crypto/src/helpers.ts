@@ -6,6 +6,9 @@ import type { HexString } from '@polkadot/util/types';
 import { hasBigInt, u8aToHex, u8aToU8a } from '@polkadot/util';
 import { isReady } from '@polkadot/wasm-crypto';
 
+// re-export so TS *.d.ts generation is correct
+export type { HexString } from '@polkadot/util/types';
+
 interface DualHash {
   256: (u8a: Uint8Array) => Uint8Array;
   512: (u8a: Uint8Array) => Uint8Array;

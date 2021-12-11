@@ -1,19 +1,12 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { U8aLike } from '@polkadot/util/types';
+
 import { assert, u8aToU8a } from '@polkadot/util';
 
-// NOTE: Work around a TS issue. These are re-defined like in @polkadot/util/types
-// since without it the import
-//
-//   import type { U8aLike } from '@polkadot/util/types';
-//
-// ends up in the build-generated code as
-//
-//   impor("../../../util/src/types").U8aLike
-//
-// eslint-disable-next-line @typescript-eslint/ban-types
-type U8aLike = number[] | Buffer | Uint8Array | string | String;
+// re-export the type so *.d.ts files don't have ../src imports
+export type { U8aLike } from '@polkadot/util/types';
 
 interface Coder {
   decode: (value: string) => Uint8Array;
