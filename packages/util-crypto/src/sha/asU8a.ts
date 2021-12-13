@@ -1,9 +1,10 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { sha256 as sha256Js } from '@noble/hashes/lib/sha256';
+import { sha512 as sha512Js } from '@noble/hashes/lib/sha512';
+
 import { sha256, sha512 } from '@polkadot/wasm-crypto';
-import { sha256 as sha256Js } from '@polkadot/x-noble-hashes/sha256';
-import { sha512 as sha512Js } from '@polkadot/x-noble-hashes/sha512';
 
 import { createBitHasher, createDualHasher } from '../helpers';
 

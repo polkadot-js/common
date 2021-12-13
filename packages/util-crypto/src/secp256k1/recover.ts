@@ -4,9 +4,10 @@
 import type { HexString } from '@polkadot/util/types';
 import type { HashType } from './types';
 
+import { recoverPublicKey, Signature } from '@noble/secp256k1';
+
 import { assert, hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, secp256k1Recover as wasm } from '@polkadot/wasm-crypto';
-import { recoverPublicKey, Signature } from '@polkadot/x-noble-secp256k1';
 
 import { secp256k1Compress } from './compress';
 import { secp256k1Expand } from './expand';
