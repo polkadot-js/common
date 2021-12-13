@@ -1,39 +1,10 @@
 {
-  "extends": "@polkadot/dev/config/tsconfig.json",
+  "extends": "./tsconfig.base.json",
   "exclude": [
     "build/**/*",
     "**/build/**/*"
   ],
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@polkadot/hw-ledger": [ "packages/ledger/src" ],
-      "@polkadot/hw-ledger/*": [ "packages/ledger/src/*" ],
-      "@polkadot/hw-ledger-transports": [ "packages/hw-ledger-transports/src/browser" ],
-      "@polkadot/hw-ledger-transports/*": [ "packages/hw-ledger-transports/src/browser" ],
-      "@polkadot/keyring": [ "packages/keyring/src" ],
-      "@polkadot/keyring/*": [ "packages/keyring/src/*" ],
-      "@polkadot/networks": [ "packages/networks/src" ],
-      "@polkadot/networks/*": [ "packages/networks/src/*" ],
-      "@polkadot/util-crypto": [ "packages/util-crypto/src" ],
-      "@polkadot/util-crypto/*": [ "packages/util-crypto/src/*" ],
-      "@polkadot/util": [ "packages/util/src" ],
-      "@polkadot/util/*": [ "packages/util/src/*" ],
-      "@polkadot/x-bundle/*": [ "packages/x-bundle/src/*" ],
-      "@polkadot/x-bigint": [ "packages/x-bigint/src" ],
-      "@polkadot/x-fetch": [ "packages/x-fetch/src/browser" ],
-      "@polkadot/x-global": [ "packages/x-global/src" ],
-      "@polkadot/x-noble-hashes/*": [ "packages/x-noble-hashes/src/*" ],
-      "@polkadot/x-noble-secp256k1": [ "packages/x-noble-secp256k1/src" ],
-      "@polkadot/x-randomvalues": [ "packages/x-randomvalues/src/browser" ],
-      "@polkadot/x-textdecoder": [ "packages/x-textdecoder/src/browser" ],
-      "@polkadot/x-textencoder": [ "packages/x-textencoder/src/browser" ],
-      "@polkadot/x-ws": [ "packages/x-ws/src/browser" ]
-    },
-    "skipLibCheck": true,
-    "typeRoots": [
-      "./node_modules/@polkadot/ts",
-      "./node_modules/@types"
-    ]
+    "baseUrl": "./packages"
   }
 }
