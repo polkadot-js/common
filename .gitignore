@@ -11,7 +11,9 @@ tmp/
 .env.development.local
 .env.test.local
 .env.production.local
+.idea
 .npmrc
+.vscode
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
@@ -24,5 +26,4 @@ yarn-debug.log*
 yarn-error.log*
 store.db
 store.db.compacted
-.idea
-.vscode
+tsconfig.*buildinfo
