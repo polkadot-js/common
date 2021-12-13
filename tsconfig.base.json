@@ -1,10 +1,10 @@
 {
   "extends": "@polkadot/dev/config/tsconfig.json",
-	"compilerOptions": {
-		"composite": true,
+  "compilerOptions": {
+    "composite": true,
     "declaration": true,
     "emitDeclarationOnly": true,
-		"paths": {
+    "paths": {
       "@polkadot/hw-ledger": [ "hw-ledger/src" ],
       "@polkadot/hw-ledger/*": [ "hw-ledger/src/*" ],
       "@polkadot/hw-ledger-transports": [ "hw-ledger-transports/src/browser" ],
@@ -33,5 +33,5 @@
       "./node_modules/@polkadot/ts",
       "./node_modules/@types"
     ]
-	}
+  }
  }
