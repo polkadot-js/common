@@ -3,9 +3,10 @@
 
 import type { Keypair } from '../../types';
 
+import { getPublicKey } from '@noble/secp256k1';
+
 import { assert, hasBigInt } from '@polkadot/util';
 import { isReady, secp256k1FromSeed } from '@polkadot/wasm-crypto';
-import { getPublicKey } from '@polkadot/x-noble-secp256k1';
 
 /**
  * @name secp256k1PairFromSeed

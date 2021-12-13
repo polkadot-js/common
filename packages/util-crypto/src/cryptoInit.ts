@@ -3,8 +3,9 @@
 
 import '@polkadot/x-bigint/shim';
 
+import { utils as utilsNobleSecp256k1 } from '@noble/secp256k1';
+
 import { u8aConcat } from '@polkadot/util';
-import { utils as utilsNobleSecp256k1 } from '@polkadot/x-noble-secp256k1';
 
 import { cryptoWaitReady } from './crypto';
 import { hmacSha256AsU8a } from './hmac';
