@@ -4,7 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../../test/performance';
+import { performanceWasm } from '../test/performance';
 import { blake2AsU8a } from '.';
 
 describe('blake2AsU8a', (): void => {

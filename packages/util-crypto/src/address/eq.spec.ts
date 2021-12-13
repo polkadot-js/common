@@ -1,8 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { createTestPairs } from '@polkadot/keyring/testingPairs';
-
+import { ALICE_PUBLIC_SR } from './encode.spec';
 import { addressEq } from '.';
 
 describe('addressEq', (): void => {
@@ -34,12 +33,10 @@ describe('addressEq', (): void => {
   });
 
   it('returns true for equal, address vs publicKey', (): void => {
-    const keyring = createTestPairs({ type: 'sr25519' });
-
     expect(
       addressEq(
         '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY',
-        keyring.alice.publicKey
+        ALICE_PUBLIC_SR
       )
     ).toEqual(true);
   });

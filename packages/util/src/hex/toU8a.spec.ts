@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performanceCmp } from '../../test/performance';
+import { performanceCmp } from '../test/performance';
 import { U16_TO_HEX } from './alphabet';
 import { hexToU8a as hexToU8aBuffer } from './toU8aBuffer';
 import { hexToU8a } from '.';

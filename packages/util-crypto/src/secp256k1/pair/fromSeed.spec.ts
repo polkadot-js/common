@@ -4,7 +4,7 @@
 import { hexToU8a, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../../../test/performance';
+import { performanceWasm } from '../../test/performance';
 import { mnemonicToMiniSecret } from '../../mnemonic';
 import { secp256k1PairFromSeed } from '..';
 

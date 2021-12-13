@@ -4,7 +4,7 @@
 import { u8aToHex, u8aToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../../test/performance';
+import { performanceWasm } from '../test/performance';
 import { keccakAsU8a } from '../keccak';
 import { secp256k1Recover } from '.';
 

@@ -4,7 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../../test/performance';
+import { performanceWasm } from '../test/performance';
 import { secp256k1Expand } from '.';
 
 describe('secp256k1Expand', (): void => {

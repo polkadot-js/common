@@ -1,0 +1,16 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"baseUrl": "..",
+		"outDir": "./build",
+		"rootDir": "./src"
+	},
+	"references": [
+    { "path": "../networks" },
+    { "path": "../util" },
+    { "path": "../x-bigint" },
+    { "path": "../x-noble-hashes" },
+    { "path": "../x-noble-secp256k1" },
+    { "path": "../x-randomvalues" }
+  ]
+}

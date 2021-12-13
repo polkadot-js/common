@@ -1,11 +1,11 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { createTestPairs } from '@polkadot/keyring/testingPairs';
-
 import { encodeAddress } from '.';
 
-const keyring = createTestPairs({ type: 'ed25519' }, false);
+export const ALICE_PUBLIC_SR = new Uint8Array([212, 53, 147, 199, 21, 253, 211, 28, 97, 20, 26, 189, 4, 169, 159, 214, 130, 44, 133, 88, 133, 76, 205, 227, 154, 86, 132, 231, 165, 109, 162, 125]);
+
+export const ALICE_PUBLIC_ED = new Uint8Array([209, 114, 167, 76, 218, 76, 134, 89, 18, 195, 43, 160, 168, 10, 87, 174, 105, 171, 174, 65, 14, 92, 203, 89, 222, 232, 78, 47, 68, 50, 219, 79]);
 
 const SUBKEY = [
   {
@@ -69,7 +69,7 @@ const SUBKEY = [
 describe('encode', (): void => {
   it('encodes an address to a valid value', (): void => {
     expect(
-      keyring.alice.address
+      ALICE_PUBLIC_ED
     ).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua');
   });
 
@@ -88,7 +88,7 @@ describe('encode', (): void => {
   it('fails when non-valid publicKey provided', (): void => {
     expect(
       (): string => encodeAddress(
-        keyring.alice.publicKey.slice(0, 30)
+        ALICE_PUBLIC_ED.slice(0, 30)
       )
     ).toThrow(/Expected a valid key/);
   });
@@ -141,7 +141,7 @@ describe('encode', (): void => {
 
   it('encodes with 2 byte prefix', (): void => {
     expect(
-      encodeAddress(keyring.alice.publicKey, 255)
+      encodeAddress(ALICE_PUBLIC_ED, 255)
     ).toEqual('yGHU8YKprxHbHdEv7oUK4rzMZXtsdhcXVG2CAMyC9WhzhjH2k');
   });
 
@@ -155,19 +155,19 @@ describe('encode', (): void => {
 
   it('does not encode for > 16,383, < 0', (): void => {
     expect(
-      () => encodeAddress(keyring.alice.publicKey, -1)
+      () => encodeAddress(ALICE_PUBLIC_ED, -1)
     ).toThrow(/range ss58Format specified/);
     expect(
-      () => encodeAddress(keyring.alice.publicKey, 16384)
+      () => encodeAddress(ALICE_PUBLIC_ED, 16384)
     ).toThrow(/range ss58Format specified/);
   });
 
   it('does not encode reserved', (): void => {
     expect(
-      () => encodeAddress(keyring.alice.publicKey, 46)
+      () => encodeAddress(ALICE_PUBLIC_ED, 46)
     ).toThrow(/range ss58Format specified/);
     expect(
-      () => encodeAddress(keyring.alice.publicKey, 47)
+      () => encodeAddress(ALICE_PUBLIC_ED, 47)
     ).toThrow(/range ss58Format specified/);
   });
 });

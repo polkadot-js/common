@@ -4,7 +4,7 @@
 import { u8aEq, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../../test/performance';
+import { performanceWasm } from '../test/performance';
 import { randomAsU8a } from '../random/asU8a';
 import { pbkdf2Encode } from '.';
 

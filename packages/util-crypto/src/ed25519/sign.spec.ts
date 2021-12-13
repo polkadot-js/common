@@ -4,7 +4,7 @@
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../../test/performance';
+import { performanceWasm } from '../test/performance';
 import { ed25519PairFromSeed, ed25519Sign } from '.';
 
 const PAIR = ed25519PairFromSeed(
