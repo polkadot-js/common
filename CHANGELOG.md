@@ -4,15 +4,17 @@
 
 Contributed:
 
-- Added Bifrost Ledger capabilities (Thanks to https://github.com/awesomepan)
+- Add Bifrost Ledger capabilities (Thanks to https://github.com/awesomepan)
+- Add Sora genesisHash & Ledger capabilities (Thanks to https://github.com/NoodleSploder)
 
 Changes:
 
-- Expose `assertUnreachable` for codepaths that should not be followed
-- Swap to upstream `@noble/hashes`
+- Add `isPromise` check utility function
+- Add `assertUnreachable` for codepaths that should not be followed
 - Preserve all-caps word splits in `stringCamelCase`
 - Adjust `x-*` fallbacks via `x-global/extractGlobal`
 - Sync with upstream Substrate ss58 registry
+- Additional tests for `bip39` wordlists
 - Maintainability cleanups
 
 
