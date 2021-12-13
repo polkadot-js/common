@@ -3,8 +3,8 @@
 
 import { getRandomValues } from '@polkadot/x-randomvalues';
 
-import { performance } from '../test/performance';
 import { arrayRange } from '../array';
+import { performance } from '../test/performance';
 import { u8aConcat } from '.';
 
 const ptest = arrayRange(10).map(() => getRandomValues(new Uint8Array(32)));

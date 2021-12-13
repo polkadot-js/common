@@ -3,8 +3,8 @@
 
 import { getRandomValues } from '@polkadot/x-randomvalues';
 
-import { performance } from '../test/performance';
 import { arrayRange } from '../array';
+import { performance } from '../test/performance';
 import { stringCamelCase, stringUpperFirst } from '.';
 
 const SEPS = [' ', '_', '-', '.', ','];

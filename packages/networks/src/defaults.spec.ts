@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { ledgerApps } from '@polkadot/hw-ledger/defaults';
-
 import { isHex } from '@polkadot/util';
 
 import { knownGenesis, knownLedger } from './defaults';
