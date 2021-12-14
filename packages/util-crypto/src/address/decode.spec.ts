@@ -3,21 +3,15 @@
 
 import { hexToU8a, stringToU8a, u8aToHex } from '@polkadot/util';
 
-import { createTestPairs, TestKeyringMap } from '../../../keyring/src/testingPairs';
+import { ALICE_PUBLIC_SR } from './encode.spec';
 import { decodeAddress } from '.';
 
 describe('decodeAddress', (): void => {
-  let keyring: TestKeyringMap;
-
-  beforeAll((): void => {
-    keyring = createTestPairs({ type: 'sr25519' });
-  });
-
   it('decodes an address', (): void => {
     expect(
       decodeAddress('5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY')
     ).toEqual(
-      keyring.alice.publicKey
+      ALICE_PUBLIC_SR
     );
   });
 

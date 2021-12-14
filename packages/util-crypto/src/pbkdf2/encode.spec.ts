@@ -4,8 +4,8 @@
 import { u8aEq, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../../test/performance';
 import { randomAsU8a } from '../random/asU8a';
+import { performanceWasm } from '../test/performance';
 import { pbkdf2Encode } from '.';
 
 const KNOWN_SALT = new Uint8Array([

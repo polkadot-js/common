@@ -1,14 +1,20 @@
 // Copyright 2017-2021 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { randomAsNumber } from '@polkadot/util-crypto';
-import words from '@polkadot/util-crypto/mnemonic/bip39-en';
+import { getRandomValues } from '@polkadot/x-randomvalues';
 
-import { performance } from '../../test/performance';
 import { arrayRange } from '../array';
+import { performance } from '../test/performance';
 import { stringCamelCase, stringUpperFirst } from '.';
 
 const SEPS = [' ', '_', '-', '.', ','];
+const words = 'bring|brisk|broccoli|broken|bronze|broom|brother|brown|brush|bubble|buddy|budget|buffalo|build|bulb|bulk|bullet|bundle|bunker|burden'.split('|');
+
+function randomAsNumber (): number {
+  const rand = getRandomValues(new Uint8Array(4));
+
+  return rand.reduce((v, t) => (v * t) + v, 0);
+}
 
 const randomWords = arrayRange(256).map((): [string] => {
   let result = '';

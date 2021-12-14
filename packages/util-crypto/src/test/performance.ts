@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { arrayRange } from '@polkadot/util';
-import { randomAsU8a } from '@polkadot/util-crypto';
+import { performance, performanceCmp } from '@polkadot/util/test/performance';
 
-import { performance, performanceCmp } from '../../util/test/performance';
+import { randomAsU8a } from '..';
 
 type ExecFn = (input: Uint8Array, onlyJs: boolean) => unknown;
 

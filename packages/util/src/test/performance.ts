@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { formatDecimal, formatNumber } from '@polkadot/util';
+import { formatDecimal, formatNumber } from '..';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ExecFn = (...params: any[]) => unknown;

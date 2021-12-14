@@ -1,35 +1,35 @@
 {
   "extends": "@polkadot/dev/config/tsconfig.json",
-	"compilerOptions": {
-		"composite": true,
-		"paths": {
-      "@polkadot/hw-ledger": [ "ledger/src" ],
-      "@polkadot/hw-ledger/*": [ "ledger/src/*" ],
-      "@polkadot/hw-ledger-transports": [ "hw-ledger-transports/src/browser" ],
-      "@polkadot/hw-ledger-transports/*": [ "hw-ledger-transports/src/browser" ],
-      "@polkadot/keyring": [ "keyring/src" ],
-      "@polkadot/keyring/*": [ "keyring/src/*" ],
-      "@polkadot/networks": [ "networks/src" ],
-      "@polkadot/networks/*": [ "networks/src/*" ],
-      "@polkadot/util-crypto": [ "util-crypto/src" ],
-      "@polkadot/util-crypto/*": [ "util-crypto/src/*" ],
-      "@polkadot/util": [ "util/src" ],
-      "@polkadot/util/*": [ "util/src/*" ],
-      "@polkadot/x-bundle/*": [ "x-bundle/src/*" ],
-      "@polkadot/x-bigint": [ "x-bigint/src" ],
-      "@polkadot/x-fetch": [ "x-fetch/src/browser" ],
-      "@polkadot/x-global": [ "x-global/src" ],
-      "@polkadot/x-noble-hashes/*": [ "x-noble-hashes/src/*" ],
-      "@polkadot/x-noble-secp256k1": [ "x-noble-secp256k1/src" ],
-      "@polkadot/x-randomvalues": [ "x-randomvalues/src/browser" ],
-      "@polkadot/x-textdecoder": [ "x-textdecoder/src/browser" ],
-      "@polkadot/x-textencoder": [ "x-textencoder/src/browser" ],
-      "@polkadot/x-ws": [ "x-ws/src/browser" ]
+  "compilerOptions": {
+    "composite": true,
+    "paths": {
+      "@polkadot/hw-ledger": ["hw-ledger/src"],
+      "@polkadot/hw-ledger/*": ["hw-ledger/src/*"],
+      "@polkadot/hw-ledger-transports": ["hw-ledger-transports/src/browser"],
+      "@polkadot/hw-ledger-transports/*": ["hw-ledger-transports/src/browser"],
+      "@polkadot/keyring": ["keyring/src"],
+      "@polkadot/keyring/*": ["keyring/src/*"],
+      "@polkadot/networks": ["networks/src"],
+      "@polkadot/networks/*": ["networks/src/*"],
+      "@polkadot/util-crypto": ["util-crypto/src"],
+      "@polkadot/util-crypto/*": ["util-crypto/src/*"],
+      "@polkadot/util": ["util/src"],
+      "@polkadot/util/*": ["util/src/*"],
+      "@polkadot/x-bundle/*": ["x-bundle/src/*"],
+      "@polkadot/x-bigint": ["x-bigint/src"],
+      "@polkadot/x-fetch": ["x-fetch/src/browser"],
+      "@polkadot/x-global": ["x-global/src"],
+      "@polkadot/x-noble-hashes/*": ["x-noble-hashes/src/*"],
+      "@polkadot/x-noble-secp256k1": ["x-noble-secp256k1/src"],
+      "@polkadot/x-randomvalues": ["x-randomvalues/src/browser"],
+      "@polkadot/x-textdecoder": ["x-textdecoder/src/browser"],
+      "@polkadot/x-textencoder": ["x-textencoder/src/browser"],
+      "@polkadot/x-ws": ["x-ws/src/browser"]
     },
     "skipLibCheck": true,
     "typeRoots": [
       "./node_modules/@polkadot/ts",
       "./node_modules/@types"
     ]
-	}
+  }
  }

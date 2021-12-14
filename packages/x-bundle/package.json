@@ -20,7 +20,7 @@
   "version": "8.1.3-26",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
+    "@babel/runtime": "^7.16.5",
     "@polkadot/util": "8.1.3-26",
     "buffer-es6": "^4.9.3"
   }

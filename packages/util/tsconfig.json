@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "outDir": "./build",
+    "rootDir": "./src"
+  },
+  "references": [
+    { "path": "../x-bigint" },
+    { "path": "../x-global" },
+    { "path": "../x-randomvalues" },
+    { "path": "../x-textdecoder" },
+    { "path": "../x-textencoder" }
+  ]
+}

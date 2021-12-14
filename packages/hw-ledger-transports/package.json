@@ -21,7 +21,7 @@
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
+    "@babel/runtime": "^7.16.5",
     "@ledgerhq/hw-transport": "^6.19.0",
     "@ledgerhq/hw-transport-webhid": "^6.19.0",
     "@ledgerhq/hw-transport-webusb": "^6.19.0"
