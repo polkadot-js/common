@@ -37,7 +37,7 @@ export interface KeyringPair {
   toJson (passphrase?: string): KeyringPair$Json;
   unlock (passphrase?: string): void;
   encryptMessage (message: HexString | string | Uint8Array, recipientPublicKey: HexString | string | Uint8Array, nonce?: Uint8Array): Uint8Array;
-  decryptMessage (encryptedMessageWithNonce: HexString | string | Uint8Array, senderPublicKey: HexString | string | Uint8Array): Uint8Array | null;
+  decryptMessage (encryptedMessageWithNonce: HexString | string | Uint8Array): Uint8Array | null;
   verify (message: HexString | string | Uint8Array, signature: Uint8Array, signerPublic: HexString | string | Uint8Array): boolean;
   vrfSign (message: HexString | string | Uint8Array, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): Uint8Array;
   vrfVerify (message: HexString | string | Uint8Array, vrfResult: Uint8Array, signerPublic: HexString | Uint8Array | string, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): boolean;

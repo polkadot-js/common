@@ -31,7 +31,7 @@ const pair: KeyringPair = {
   decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void =>
     undefined,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  decryptMessage: (encryptedMessageWithNonce: string | Uint8Array, senderPublicKey: string | Uint8Array): Uint8Array | null =>
+  decryptMessage: (encryptedMessageWithNonce: string | Uint8Array): Uint8Array | null =>
     null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair =>
