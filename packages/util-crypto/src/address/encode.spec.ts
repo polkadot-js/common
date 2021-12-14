@@ -69,7 +69,7 @@ const SUBKEY = [
 describe('encode', (): void => {
   it('encodes an address to a valid value', (): void => {
     expect(
-      ALICE_PUBLIC_ED
+      encodeAddress(ALICE_PUBLIC_ED)
     ).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua');
   });
 
