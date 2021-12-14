@@ -9,8 +9,6 @@
     { "path": "../networks" },
     { "path": "../util" },
     { "path": "../x-bigint" },
-    { "path": "../x-noble-hashes" },
-    { "path": "../x-noble-secp256k1" },
     { "path": "../x-randomvalues" }
   ]
 }
