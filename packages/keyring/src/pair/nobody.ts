@@ -40,8 +40,9 @@ const pair: KeyringPair = {
   encodePkcs8: (passphrase?: string): Uint8Array =>
     new Uint8Array(0),
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  encryptMessage: (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, _nonce?: Uint8Array): Uint8Array =>
+  encryptMessage: (message: string | Uint8Array, recipientEncryptionPublicKey: string | Uint8Array, _nonce?: Uint8Array): Uint8Array =>
     new Uint8Array(),
+  encryptionPublicKey: new Uint8Array(0),
   isLocked: true,
   lock: (): void => {
     // no locking, it is always locked

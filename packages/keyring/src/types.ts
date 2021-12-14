@@ -23,6 +23,7 @@ export interface SignOptions {
 export interface KeyringPair {
   readonly address: string;
   readonly addressRaw: Uint8Array;
+  readonly encryptionPublicKey: Uint8Array;
   readonly meta: KeyringPair$Meta;
   readonly isLocked: boolean;
   readonly publicKey: Uint8Array;
@@ -36,7 +37,7 @@ export interface KeyringPair {
   sign (message: HexString | string | Uint8Array, options?: SignOptions): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;
   unlock (passphrase?: string): void;
-  encryptMessage (message: HexString | string | Uint8Array, recipientPublicKey: HexString | string | Uint8Array, nonce?: Uint8Array): Uint8Array;
+  encryptMessage(message: HexString | string | Uint8Array, recipientEncryptionPublicKey: HexString | string | Uint8Array, nonce?: Uint8Array): Uint8Array;
   decryptMessage (encryptedMessageWithNonce: HexString | string | Uint8Array): Uint8Array | null;
   verify (message: HexString | string | Uint8Array, signature: Uint8Array, signerPublic: HexString | string | Uint8Array): boolean;
   vrfSign (message: HexString | string | Uint8Array, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): Uint8Array;

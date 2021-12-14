@@ -19,10 +19,10 @@ describe('pair', (): void => {
   });
 
   const SIGNATURE = new Uint8Array([80, 191, 198, 147, 225, 207, 75, 88, 126, 39, 129, 109, 191, 38, 72, 181, 75, 254, 81, 143, 244, 79, 237, 38, 236, 141, 28, 252, 134, 26, 169, 234, 79, 33, 153, 158, 151, 34, 175, 188, 235, 20, 35, 135, 83, 120, 139, 211, 233, 130, 1, 208, 201, 215, 73, 80, 56, 98, 185, 196, 11, 8, 193, 14]);
-  const ENCRYPTED = new Uint8Array([185, 28, 49, 143, 5, 202, 59, 85, 28, 78, 148, 63, 61, 45, 253, 117, 23, 140, 124, 129, 210, 170, 11, 117, 161, 185, 152, 242, 44, 29, 98, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132, 59, 53, 85, 227, 40, 107, 48, 234, 198, 238, 157, 238, 224, 235, 179, 75, 153, 241, 142, 254]);
+  const ENCRYPTED = new Uint8Array([64, 66, 233, 248, 187, 191, 112, 203, 133, 158, 33, 5, 234, 154, 152, 150, 19, 65, 210, 172, 115, 143, 130, 42, 16, 117, 169, 43, 212, 21, 198, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 5, 150, 194, 248, 135, 140, 215, 78, 199, 246, 215, 166, 202, 187, 191, 188, 77, 134, 80, 196]);
 
-  // the last byte is changed from 254 -> 253
-  const ENCRYPTED_CHANGED = new Uint8Array([185, 28, 49, 143, 5, 202, 59, 85, 28, 78, 148, 63, 61, 45, 253, 117, 23, 140, 124, 129, 210, 170, 11, 117, 161, 185, 152, 242, 44, 29, 98, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132, 59, 53, 85, 227, 40, 107, 48, 234, 198, 238, 157, 238, 224, 235, 179, 75, 153, 241, 142, 253]);
+  // the last byte is changed from 196 -> 197
+  const ENCRYPTED_CHANGED = new Uint8Array([64, 66, 233, 248, 187, 191, 112, 203, 133, 158, 33, 5, 234, 154, 152, 150, 19, 65, 210, 172, 115, 143, 130, 42, 16, 117, 169, 43, 212, 21, 198, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 5, 150, 194, 248, 135, 140, 215, 78, 199, 246, 215, 166, 202, 187, 191, 188, 77, 134, 80, 197]);
 
   it('has a publicKey', (): void => {
     expect(
@@ -105,7 +105,7 @@ describe('pair', (): void => {
     expect(
       keyring.alice.encryptMessage(
         message,
-        keyring.bob.publicKey,
+        keyring.bob.encryptionPublicKey,
         new Uint8Array(24)
       )
     ).toEqual(ENCRYPTED);
@@ -136,21 +136,21 @@ describe('pair', (): void => {
     const encodedA = keyring.alice.encodePkcs8(PASS);
     const encodedB = keyring.bob.encodePkcs8(PASS);
 
-    const pairA = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.alice.publicKey });
-    const pairB = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.bob.publicKey });
+    const pairA = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.alice.encryptionPublicKey });
+    const pairB = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.bob.encryptionPublicKey });
 
     pairA.decodePkcs8(PASS, encodedA);
     pairB.decodePkcs8(PASS, encodedB);
     const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
 
     // alice-sr25519 -> bob-ed25519
-    const encrypted1 = pairA.encryptMessage(message, keyring.bob.publicKey);
+    const encrypted1 = pairA.encryptMessage(message, keyring.bob.encryptionPublicKey);
 
     // alice-sr25519 -> bob-sr25519
-    const encrypted2 = pairA.encryptMessage(message, pairB.publicKey);
+    const encrypted2 = pairA.encryptMessage(message, pairB.encryptionPublicKey);
 
     // alice-ed25519 -> bob-sr25519
-    const encrypted3 = keyring.alice.encryptMessage(message, pairB.publicKey);
+    const encrypted3 = keyring.alice.encryptMessage(message, pairB.encryptionPublicKey);
 
     // decrypt: Bob-ed25519 - use alice-ed25519 pubkey
     expect(
@@ -173,11 +173,11 @@ describe('pair', (): void => {
 
     const keyring = new Keyring();
 
-    const senderPair = keyring.createFromUri(mnemonicGenerate(), { name: 'first pair' }, 'ed25519');
-    const receiverPair = keyring.createFromUri(mnemonicGenerate(), { name: 'second pair' }, 'ed25519');
+    const senderPair = keyring.createFromUri(mnemonicGenerate(), { name: 'first pair' }, 'sr25519');
+    const receiverPair = keyring.createFromUri(mnemonicGenerate(), { name: 'second pair' }, 'sr25519');
 
     const message = stringToU8a('This is a test.');
-    const encryptedMessage = senderPair.encryptMessage(message, receiverPair.publicKey);
+    const encryptedMessage = senderPair.encryptMessage(message, receiverPair.encryptionPublicKey);
 
     const decryptedMessage = receiverPair.decryptMessage(encryptedMessage);
 
