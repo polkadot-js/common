@@ -4,9 +4,10 @@
 import type { Keypair } from '../types';
 import type { HashType } from './types';
 
+import { Signature, signSync } from '@noble/secp256k1';
+
 import { assert, bnToU8a, hasBigInt, u8aConcat } from '@polkadot/util';
 import { isReady, secp256k1Sign as wasm } from '@polkadot/wasm-crypto';
-import { Signature, signSync } from '@polkadot/x-noble-secp256k1';
 
 import { BN_BE_256_OPTS } from '../bn';
 import { hasher } from './hasher';
