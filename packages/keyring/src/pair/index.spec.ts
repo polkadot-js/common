@@ -1,11 +1,12 @@
 // Copyright 2017-2021 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hexToU8a, u8aToHex } from '@polkadot/util';
-import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkadot/util-crypto';
+import { hexToU8a, stringToU8a, u8aToHex, u8aToString } from '@polkadot/util';
+import { cryptoWaitReady, encodeAddress as toSS58, mnemonicGenerate, setSS58Format } from '@polkadot/util-crypto';
 
 import { PAIRSSR25519 } from '../testing';
 import { createTestPairs } from '../testingPairs';
+import { Keyring } from '..';
 import { createPair } from '.';
 
 const keyring = createTestPairs({ type: 'ed25519' }, false);
@@ -18,10 +19,10 @@ describe('pair', (): void => {
   });
 
   const SIGNATURE = new Uint8Array([80, 191, 198, 147, 225, 207, 75, 88, 126, 39, 129, 109, 191, 38, 72, 181, 75, 254, 81, 143, 244, 79, 237, 38, 236, 141, 28, 252, 134, 26, 169, 234, 79, 33, 153, 158, 151, 34, 175, 188, 235, 20, 35, 135, 83, 120, 139, 211, 233, 130, 1, 208, 201, 215, 73, 80, 56, 98, 185, 196, 11, 8, 193, 14]);
-  const ENCRYPTED = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132, 59, 53, 85, 227, 40, 107, 48, 234, 198, 238, 157, 238, 224, 235, 179, 75, 153, 241, 142, 254]);
+  const ENCRYPTED = new Uint8Array([185, 28, 49, 143, 5, 202, 59, 85, 28, 78, 148, 63, 61, 45, 253, 117, 23, 140, 124, 129, 210, 170, 11, 117, 161, 185, 152, 242, 44, 29, 98, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132, 59, 53, 85, 227, 40, 107, 48, 234, 198, 238, 157, 238, 224, 235, 179, 75, 153, 241, 142, 254]);
 
   // the last byte is changed from 254 -> 253
-  const ENCRYPTED_CHANGED = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132, 59, 53, 85, 227, 40, 107, 48, 234, 198, 238, 157, 238, 224, 235, 179, 75, 153, 241, 142, 253]);
+  const ENCRYPTED_CHANGED = new Uint8Array([185, 28, 49, 143, 5, 202, 59, 85, 28, 78, 148, 63, 61, 45, 253, 117, 23, 140, 124, 129, 210, 170, 11, 117, 161, 185, 152, 242, 44, 29, 98, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132, 59, 53, 85, 227, 40, 107, 48, 234, 198, 238, 157, 238, 224, 235, 179, 75, 153, 241, 142, 253]);
 
   it('has a publicKey', (): void => {
     expect(
@@ -114,37 +115,19 @@ describe('pair', (): void => {
     const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
 
     expect(
-      keyring.bob.decryptMessage(
-        ENCRYPTED,
-        keyring.alice.publicKey
-      )
+      keyring.bob.decryptMessage(ENCRYPTED)
     ).toEqual(message);
   });
 
   it('fails a correctly encrypted message (message changed)', (): void => {
     expect(
-      keyring.bob.decryptMessage(
-        ENCRYPTED_CHANGED,
-        keyring.alice.publicKey
-      )
-    ).toEqual(null);
-  });
-
-  it('fails a correctly encrypted message (sender changed)', (): void => {
-    expect(
-      keyring.bob.decryptMessage(
-        ENCRYPTED,
-        keyring.charlie.publicKey
-      )
+      keyring.bob.decryptMessage(ENCRYPTED_CHANGED)
     ).toEqual(null);
   });
 
   it('fails a correctly encrypted message (receiver changed)', (): void => {
     expect(
-      keyring.charlie.decryptMessage(
-        ENCRYPTED,
-        keyring.alice.publicKey
-      )
+      keyring.charlie.decryptMessage(ENCRYPTED)
     ).toEqual(null);
   });
 
@@ -171,18 +154,34 @@ describe('pair', (): void => {
 
     // decrypt: Bob-ed25519 - use alice-ed25519 pubkey
     expect(
-      keyring.bob.decryptMessage(encrypted3, keyring.alice.publicKey)
+      keyring.bob.decryptMessage(encrypted3)
     ).toEqual(message);
 
     // decrypt: Bob-ed25519 - use alice-sr25519 pubkey
     expect(
-      keyring.bob.decryptMessage(encrypted1, pairA.publicKey)
+      keyring.bob.decryptMessage(encrypted1)
     ).toEqual(message);
 
     // decrypt: Bob-sr25519 - use alice-sr25519 pubkey
     expect(
-      pairB.decryptMessage(encrypted2, pairA.publicKey)
+      pairB.decryptMessage(encrypted2)
     ).toEqual(message);
+  });
+
+  it('passes the test on issue#1314', (): void => {
+    // Ref: https://github.com/polkadot-js/common/issues/1314
+
+    const keyring = new Keyring();
+
+    const senderPair = keyring.createFromUri(mnemonicGenerate(), { name: 'first pair' }, 'ed25519');
+    const receiverPair = keyring.createFromUri(mnemonicGenerate(), { name: 'second pair' }, 'ed25519');
+
+    const message = stringToU8a('This is a test.');
+    const encryptedMessage = senderPair.encryptMessage(message, receiverPair.publicKey);
+
+    const decryptedMessage = receiverPair.decryptMessage(encryptedMessage);
+
+    expect(u8aToString(message)).toEqual(u8aToString(decryptedMessage));
   });
 
   it('allows setting/getting of meta', (): void => {
