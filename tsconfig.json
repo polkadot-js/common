@@ -14,8 +14,6 @@
     { "path": "./packages/x-bundle" },
     { "path": "./packages/x-fetch" },
     { "path": "./packages/x-global" },
-    { "path": "./packages/x-noble-hashes" },
-    { "path": "./packages/x-noble-secp256k1" },
     { "path": "./packages/x-randomvalues" },
     { "path": "./packages/x-textdecoder" },
     { "path": "./packages/x-textencoder" },
