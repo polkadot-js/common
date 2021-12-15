@@ -19,8 +19,6 @@
       "@polkadot/x-bigint": ["x-bigint/src"],
       "@polkadot/x-fetch": ["x-fetch/src/browser"],
       "@polkadot/x-global": ["x-global/src"],
-      "@polkadot/x-noble-hashes/*": ["x-noble-hashes/src/*"],
-      "@polkadot/x-noble-secp256k1": ["x-noble-secp256k1/src"],
       "@polkadot/x-randomvalues": ["x-randomvalues/src/browser"],
       "@polkadot/x-textdecoder": ["x-textdecoder/src/browser"],
       "@polkadot/x-textencoder": ["x-textencoder/src/browser"],
