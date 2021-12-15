@@ -1783,17 +1783,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/hashes@npm:^0.4.4":
-  version: 0.4.4
-  resolution: "@noble/hashes@npm:0.4.4"
-  checksum: 24f0cf9e0c717ac0e70d2ccd79deb4642017301f53d9f0bd241b58dd1beccea6e7cff74ecadbc0a57471b20b643471049bcc529ce0eae85bad88e1eb601558f0
+"@noble/hashes@npm:^0.4.5":
+  version: 0.4.5
+  resolution: "@noble/hashes@npm:0.4.5"
+  checksum: 0de28bda5517989d4893db2f1913ca052d22f549a530965599b36f946753bef1d552d60a4be831723a0d81f9bcca3a5f7c9a1d30d4308d11657f9879ad288d03
   languageName: node
   linkType: hard
 
-"@noble/secp256k1@npm:^1.3.3":
-  version: 1.3.3
-  resolution: "@noble/secp256k1@npm:1.3.3"
-  checksum: 0b6224f9e8892ef16a89950dec7aec9d68970907f4462e9f2868be7a026f3ee21dabae51e514297a232ec39c20d094a4e659a96209ad77dcee976fc1720a8363
+"@noble/secp256k1@npm:^1.3.4":
+  version: 1.3.4
+  resolution: "@noble/secp256k1@npm:1.3.4"
+  checksum: af1f1e76387f1a081315550a938b6cee58ea9d844472eadde0a3cb42ad317bd5d824748e7ff96bcf23e45a346bd5a2aed536b450c635f664f3a1dce674ce7648
   languageName: node
   linkType: hard
 
@@ -2112,8 +2112,8 @@ __metadata:
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.16.5
-    "@noble/hashes": ^0.4.4
-    "@noble/secp256k1": ^1.3.3
+    "@noble/hashes": ^0.4.5
+    "@noble/secp256k1": ^1.3.4
     "@polkadot/networks": 8.1.3-27
     "@polkadot/util": 8.1.3-27
     "@polkadot/wasm-crypto": ^4.5.1
