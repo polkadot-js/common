@@ -711,6 +711,24 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://totemaccounting.com'
   },
   {
+    decimals: [10],
+    displayName: 'Interlay',
+    network: 'interlay',
+    prefix: 2032,
+    standardAccount: '*25519',
+    symbols: ['INTR'],
+    website: 'https://interlay.io/'
+  },
+  {
+    decimals: [12],
+    displayName: 'Kintsugi',
+    network: 'kintsugi',
+    prefix: 2092,
+    standardAccount: '*25519',
+    symbols: ['KINT'],
+    website: 'https://interlay.io/'
+  },
+  {
     decimals: [18],
     displayName: 'Subspace testnet',
     network: 'subspace_testnet',
