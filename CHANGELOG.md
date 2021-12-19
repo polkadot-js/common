@@ -16,7 +16,9 @@ Changes:
 - Sync with upstream Substrate ss58 registry
 - Additional tests for `bip39` wordlists
 - Maintainability cleanups
-- Updata to latest Ledger dependencies
+- Update to latest Ledger dependencies
+- Swap to upstream `@noble` packages
+- Adjust tsconfig with references
 
 
 ## 8.1.2 Dec 5, 2021
