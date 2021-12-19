@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 8.2.2 Dec 19, 2021
 
 Contributed:
 
@@ -19,6 +19,7 @@ Changes:
 - Update to latest Ledger dependencies
 - Swap to upstream `@noble` packages
 - Adjust tsconfig with references
+- 8.2.2 (8.2.1 failed CI due to incorrect CHANGELOG)
 
 
 ## 8.1.2 Dec 5, 2021
