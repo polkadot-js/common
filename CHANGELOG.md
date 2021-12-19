@@ -16,6 +16,7 @@ Changes:
 - Sync with upstream Substrate ss58 registry
 - Additional tests for `bip39` wordlists
 - Maintainability cleanups
+- Updata to latest Ledger dependencies
 
 
 ## 8.1.2 Dec 5, 2021
