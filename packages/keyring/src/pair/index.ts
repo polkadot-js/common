@@ -41,15 +41,6 @@ const TYPE_SIGNATURE = {
   sr25519: sr25519Sign
 };
 
-const TYPE_DECRYPTION = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ecdsa: (m: HexString | string | Uint8Array, p: Partial<Keypair>) => { throw new Error('Secp256k1 not supported yet'); },
-  ed25519: ed25519Decrypt,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ethereum: (m: HexString | string | Uint8Array, p: Partial<Keypair>) => { throw new Error('Secp256k1 not supported yet'); },
-  sr25519: sr25519Decrypt
-};
-
 const TYPE_ADDRESS = {
   ecdsa: (p: Uint8Array) => p.length > 32 ? blake2AsU8a(p) : p,
   ed25519: (p: Uint8Array) => p,
@@ -157,7 +148,9 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       assert(!isLocked(secretKey), 'Cannot decrypt with a locked key pair');
       assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
 
-      return TYPE_DECRYPTION[type](u8aToU8a(encryptedMessage), { publicKey, secretKey });
+      return type === 'ed25519'
+        ? ed25519Decrypt(u8aToU8a(encryptedMessage), { publicKey, secretKey })
+        : sr25519Decrypt(u8aToU8a(encryptedMessage), { publicKey, secretKey });
     },
     decryptMessage: (encryptedMessageWithNonce: HexString | string | Uint8Array, senderPublicKey: HexString | string | Uint8Array): Uint8Array | null => {
       assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
