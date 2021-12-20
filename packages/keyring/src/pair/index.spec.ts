@@ -2,10 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { hexToU8a, u8aToHex } from '@polkadot/util';
-import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkadot/util-crypto';
+import { cryptoWaitReady, encodeAddress as toSS58, mnemonicGenerate, setSS58Format } from '@polkadot/util-crypto';
 
 import { PAIRSSR25519 } from '../testing';
 import { createTestPairs } from '../testingPairs';
+import { Keyring } from '..';
 import { createPair } from '.';
 
 const keyring = createTestPairs({ type: 'ed25519' }, false);
@@ -232,6 +233,37 @@ describe('pair', (): void => {
     expect((): Uint8Array =>
       pair.sign(new Uint8Array([0]))
     ).toThrow('Cannot sign with a locked key pair');
+  });
+
+  it('allows encrypt/decrypt with ed25519 keypair', (): void => {
+    const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
+    const encryptedMessage = keyring.alice.encrypt(message);
+
+    expect(keyring.alice.decrypt(encryptedMessage)).toEqual(message);
+  });
+
+  it('allows encrypt/decrypt with sr25519 keypair', (): void => {
+    const sr25519KeyPair = new Keyring().createFromUri(mnemonicGenerate(), { name: 'sr25519 pair' }, 'sr25519');
+    const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
+    const encryptedMessage = sr25519KeyPair.encrypt(message);
+
+    expect(sr25519KeyPair.decrypt(encryptedMessage)).toEqual(message);
+  });
+
+  it('allows encrypt for an ed25519 keypair', (): void => {
+    const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
+    const encryptedMessage = new Keyring().encrypt(message, keyring.alice.publicKey, keyring.alice.type);
+
+    expect(keyring.alice.decrypt(encryptedMessage)).toEqual(message);
+  });
+
+  it('allows encrypt for an sr25519 keypair', (): void => {
+    const keyring = new Keyring();
+    const sr25519KeyPair = keyring.createFromUri(mnemonicGenerate(), { name: 'sr25519 pair' }, 'sr25519');
+    const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
+    const encryptedMessage = keyring.encrypt(message, sr25519KeyPair.publicKey, sr25519KeyPair.type);
+
+    expect(sr25519KeyPair.decrypt(encryptedMessage)).toEqual(message);
   });
 
   describe('ethereum', (): void => {

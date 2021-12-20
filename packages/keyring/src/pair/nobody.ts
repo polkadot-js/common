@@ -31,6 +31,9 @@ const pair: KeyringPair = {
   decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void =>
     undefined,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  decrypt: (encryptedMessage: string | Uint8Array): Uint8Array | null =>
+    null,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   decryptMessage: (encryptedMessageWithNonce: string | Uint8Array, senderPublicKey: string | Uint8Array): Uint8Array | null =>
     null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -39,6 +42,9 @@ const pair: KeyringPair = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   encodePkcs8: (passphrase?: string): Uint8Array =>
     new Uint8Array(0),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  encrypt: (message: string | Uint8Array): Uint8Array =>
+    new Uint8Array(),
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   encryptMessage: (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, _nonce?: Uint8Array): Uint8Array =>
     new Uint8Array(),

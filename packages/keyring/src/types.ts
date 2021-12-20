@@ -41,6 +41,8 @@ export interface KeyringPair {
   verify (message: HexString | string | Uint8Array, signature: Uint8Array, signerPublic: HexString | string | Uint8Array): boolean;
   vrfSign (message: HexString | string | Uint8Array, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): Uint8Array;
   vrfVerify (message: HexString | string | Uint8Array, vrfResult: Uint8Array, signerPublic: HexString | Uint8Array | string, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): boolean;
+  encrypt (message: HexString | string | Uint8Array): Uint8Array;
+  decrypt (encryptedMessage: HexString | string | Uint8Array): Uint8Array | null;
 }
 
 export interface KeyringPairs {
@@ -74,4 +76,5 @@ export interface KeyringInstance {
   getPublicKeys (): Uint8Array[];
   removePair (address: string | Uint8Array): void;
   toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json;
+  encrypt (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, recipientKeyType?: KeypairType): Uint8Array;
 }

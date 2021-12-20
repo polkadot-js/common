@@ -7,7 +7,7 @@ import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } fro
 import type { PairInfo } from './types';
 
 import { assert, objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
-import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclOpen, naclSeal, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
+import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ed25519Decrypt, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, encrypt as cryptoEncrypt, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclOpen, naclSeal, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519Decrypt, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
 import { encodePair } from './encode';
@@ -39,6 +39,15 @@ const TYPE_SIGNATURE = {
   ed25519: ed25519Sign,
   ethereum: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'keccak'),
   sr25519: sr25519Sign
+};
+
+const TYPE_DECRYPTION = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ecdsa: (m: HexString | string | Uint8Array, p: Partial<Keypair>) => { throw new Error('Secp256k1 not supported yet'); },
+  ed25519: ed25519Decrypt,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ethereum: (m: HexString | string | Uint8Array, p: Partial<Keypair>) => { throw new Error('Secp256k1 not supported yet'); },
+  sr25519: sr25519Decrypt
 };
 
 const TYPE_ADDRESS = {
@@ -144,6 +153,12 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     },
     // eslint-disable-next-line sort-keys
     decodePkcs8,
+    decrypt: (encryptedMessage: HexString | string | Uint8Array): Uint8Array | null => {
+      assert(!isLocked(secretKey), 'Cannot decrypt with a locked key pair');
+      assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
+
+      return TYPE_DECRYPTION[type](u8aToU8a(encryptedMessage), { publicKey, secretKey });
+    },
     decryptMessage: (encryptedMessageWithNonce: HexString | string | Uint8Array, senderPublicKey: HexString | string | Uint8Array): Uint8Array | null => {
       assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
       assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
@@ -168,6 +183,9 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     },
     encodePkcs8: (passphrase?: string): Uint8Array => {
       return recode(passphrase);
+    },
+    encrypt: (message: HexString | string | Uint8Array): Uint8Array => {
+      return cryptoEncrypt(message, publicKey, type);
     },
     encryptMessage: (message: HexString | string | Uint8Array, recipientPublicKey: HexString | string | Uint8Array, nonceIn?: Uint8Array): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');

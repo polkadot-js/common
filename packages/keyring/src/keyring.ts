@@ -5,7 +5,7 @@ import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
 
 import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
-import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from '@polkadot/util-crypto';
+import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, encrypt as cryptoEncrypt, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
 import { createPair } from './pair';
@@ -295,5 +295,15 @@ export class Keyring implements KeyringInstance {
    */
   public toJson (address: string | Uint8Array, passphrase?: string): KeyringPair$Json {
     return this.#pairs.get(address).toJson(passphrase);
+  }
+
+  /**
+   * @name encrypt
+   * @summary Encrypt a message using the given publickey
+   * @description Returns the encrypted message of the given message using the public key.
+   * The encrypted message can be decrypted by the corresponding keypair using keypair.decrypt() method
+   */
+  public encrypt (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, recipientKeyType?: KeypairType): Uint8Array {
+    return cryptoEncrypt(message, recipientPublicKey, recipientKeyType || this.type);
   }
 }
