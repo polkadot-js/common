@@ -10,3 +10,5 @@ export { sr25519Sign } from './sign';
 export { sr25519Verify } from './verify';
 export { sr25519VrfSign } from './vrfSign';
 export { sr25519VrfVerify } from './vrfVerify';
+export { sr25519Encrypt } from './encrypt';
+export { sr25519Decrypt } from './decrypt';

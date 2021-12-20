@@ -12,3 +12,5 @@ export { ed25519PairFromSeed } from './pair/fromSeed';
 export { ed25519PairFromString } from './pair/fromString';
 export { ed25519Sign } from './sign';
 export { ed25519Verify } from './verify';
+export { ed25519Encrypt } from './encrypt';
+export { ed25519Decrypt } from './decrypt';
