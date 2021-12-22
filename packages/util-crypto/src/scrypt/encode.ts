@@ -4,7 +4,7 @@
 import type { HexString } from '@polkadot/util/types';
 import type { Params } from './types';
 
-import { scrypt as scryptJs } from '@noble/hashes/lib/scrypt';
+import { scrypt as scryptJs } from '@noble/hashes/scrypt';
 
 import { hasBigInt, objectSpread, u8aToU8a } from '@polkadot/util';
 import { isReady, scrypt } from '@polkadot/wasm-crypto';
