@@ -4,13 +4,20 @@
 import type { HexString } from '@polkadot/util/types';
 import type { Keypair } from '../types';
 
-import { u8aToU8a } from '@polkadot/util';
+import { assert, u8aCmp, u8aToU8a } from '@polkadot/util';
 
 import { naclDecrypt } from '../nacl';
-import { buildSR25519EncryptionKey } from './encrypt';
+import { buildSR25519EncryptionKey, macData } from './encrypt';
+
+const nonceSize = 24;
+const keyDerivationSaltSize = 32;
+const publicKeySize = 32;
+const macValueSize = 32;
 
 interface sr25519EncryptedMessage {
   ephemeralPublicKey: Uint8Array;
+  keyDerivationSalt: Uint8Array;
+  macValue: Uint8Array;
   nonce: Uint8Array;
   sealed: Uint8Array;
 }
@@ -20,10 +27,16 @@ interface sr25519EncryptedMessage {
  * @description Returns decrypted message of `encryptedMessage`, using the supplied pair
  */
 export function sr25519Decrypt (encryptedMessage: HexString | Uint8Array | string, { secretKey }: Partial<Keypair>): Uint8Array | null {
-  const decapsulatedEncryptedMessage = sr25519DecapsulateEncryptedMessage(u8aToU8a(encryptedMessage));
-  const encryptionKey = buildSR25519EncryptionKey(decapsulatedEncryptedMessage.ephemeralPublicKey, u8aToU8a(secretKey), decapsulatedEncryptedMessage.ephemeralPublicKey);
+  const { ephemeralPublicKey, keyDerivationSalt, macValue, nonce, sealed } = sr25519DecapsulateEncryptedMessage(u8aToU8a(encryptedMessage));
+  const { encryptionKey, macKey } = buildSR25519EncryptionKey(ephemeralPublicKey,
+    u8aToU8a(secretKey),
+    ephemeralPublicKey,
+    keyDerivationSalt);
+  const decryptedMacValue = macData(nonce, sealed, ephemeralPublicKey, macKey);
 
-  return naclDecrypt(decapsulatedEncryptedMessage.sealed, decapsulatedEncryptedMessage.nonce, encryptionKey);
+  assert(u8aCmp(decryptedMacValue, macValue) === 0, "Mac values don't match");
+
+  return naclDecrypt(sealed, nonce, encryptionKey);
 }
 
 /**
@@ -31,9 +44,13 @@ export function sr25519Decrypt (encryptedMessage: HexString | Uint8Array | strin
  * @description Split raw encrypted message
  */
 function sr25519DecapsulateEncryptedMessage (encryptedMessage: Uint8Array): sr25519EncryptedMessage {
+  assert(encryptedMessage.byteLength > nonceSize + keyDerivationSaltSize + publicKeySize + macValueSize, 'Wrong encrypted message length');
+
   return {
-    ephemeralPublicKey: encryptedMessage.slice(24, 24 + 32),
-    nonce: encryptedMessage.slice(0, 24),
-    sealed: encryptedMessage.slice(24 + 32)
+    ephemeralPublicKey: encryptedMessage.slice(nonceSize + keyDerivationSaltSize, nonceSize + keyDerivationSaltSize + publicKeySize),
+    keyDerivationSalt: encryptedMessage.slice(nonceSize, nonceSize + keyDerivationSaltSize),
+    macValue: encryptedMessage.slice(nonceSize + keyDerivationSaltSize + publicKeySize, nonceSize + keyDerivationSaltSize + publicKeySize + macValueSize),
+    nonce: encryptedMessage.slice(0, nonceSize),
+    sealed: encryptedMessage.slice(nonceSize + keyDerivationSaltSize + publicKeySize + macValueSize)
   };
 }
