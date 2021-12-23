@@ -5,9 +5,8 @@
     "outDir": "./build",
     "rootDir": "./src"
   },
-  "references": [
-    { "path": "../hw-ledger" },
-    { "path": "../util" },
-    { "path": "../x-fetch" }
-  ]
+  "exclude": [
+    "**/*.spec.ts"
+  ],
+  "references": []
 }
