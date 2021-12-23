@@ -8,5 +8,9 @@
   "exclude": [
     "**/*.spec.ts"
   ],
-  "references": []
+  "references": [
+    { "path": "../hw-ledger" },
+    { "path": "../util" },
+    { "path": "../x-fetch" }
+  ]
 }
