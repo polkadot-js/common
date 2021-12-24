@@ -177,8 +177,11 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     encodePkcs8: (passphrase?: string): Uint8Array => {
       return recode(passphrase);
     },
-    encrypt: (message: HexString | string | Uint8Array): Uint8Array => {
-      return cryptoEncrypt(message, publicKey, type);
+    encrypt: (message: HexString | string | Uint8Array, recipientPublicKey: HexString | string | Uint8Array): Uint8Array => {
+      assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
+      assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
+
+      return cryptoEncrypt(message, recipientPublicKey, type, { publicKey, secretKey });
     },
     encryptMessage: (message: HexString | string | Uint8Array, recipientPublicKey: HexString | string | Uint8Array, nonceIn?: Uint8Array): Uint8Array => {
       assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');

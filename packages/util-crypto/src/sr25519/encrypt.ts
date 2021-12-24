@@ -10,6 +10,7 @@ import { mnemonicGenerate, mnemonicToMiniSecret } from '../mnemonic';
 import { naclEncrypt } from '../nacl';
 import { pbkdf2Encode } from '../pbkdf2';
 import { randomAsU8a } from '../random';
+import { Keypair } from '../types';
 import { sr25519PairFromSeed } from './pair/fromSeed';
 import { sr25519Agreement } from './agreement';
 
@@ -20,20 +21,23 @@ const macKeySize = 32;
  * @name sr25519Encrypt
  * @description Returns encrypted message of `message`, using the supplied pair
  */
-export function sr25519Encrypt (message: HexString | Uint8Array | string, publicKey: Uint8Array): Uint8Array {
-  const { encryptedMessagePairPublicKey, encryptionKey, keyDerivationSalt, macKey } = generateNewEncryptionKey(publicKey);
+export function sr25519Encrypt (message: HexString | Uint8Array | string, receiverPublicKey: Uint8Array, senderKeyPair?: Keypair): Uint8Array {
+  const messageKeyPair = senderKeyPair || generateEphemeralKeypair();
+  const { encryptionKey, keyDerivationSalt, macKey } = generateEncryptionKey(messageKeyPair, receiverPublicKey);
   const { encrypted, nonce } = naclEncrypt(u8aToU8a(message), encryptionKey);
-  const macValue = macData(nonce, encrypted, encryptedMessagePairPublicKey, macKey);
+  const macValue = macData(nonce, encrypted, messageKeyPair.publicKey, macKey);
 
-  return u8aConcat(nonce, keyDerivationSalt, encryptedMessagePairPublicKey, macValue, encrypted);
+  return u8aConcat(nonce, keyDerivationSalt, messageKeyPair.publicKey, macValue, encrypted);
 }
 
-function generateNewEncryptionKey (receiverPublicKey: Uint8Array) {
-  const encryptedMessagePair = sr25519PairFromSeed(mnemonicToMiniSecret(mnemonicGenerate()));
-  const { encryptionKey, keyDerivationSalt, macKey } = buildSR25519EncryptionKey(receiverPublicKey, encryptedMessagePair.secretKey, encryptedMessagePair.publicKey);
+function generateEphemeralKeypair (): Keypair {
+  return sr25519PairFromSeed(mnemonicToMiniSecret(mnemonicGenerate()));
+}
+
+function generateEncryptionKey (senderKeyPair: Keypair, receiverPublicKey: Uint8Array) {
+  const { encryptionKey, keyDerivationSalt, macKey } = buildSR25519EncryptionKey(receiverPublicKey, senderKeyPair.secretKey, senderKeyPair.publicKey);
 
   return {
-    encryptedMessagePairPublicKey: encryptedMessagePair.publicKey,
     encryptionKey,
     keyDerivationSalt,
     macKey

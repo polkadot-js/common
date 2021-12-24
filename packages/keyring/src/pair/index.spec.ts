@@ -237,17 +237,20 @@ describe('pair', (): void => {
 
   it('allows encrypt/decrypt with ed25519 keypair', (): void => {
     const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
-    const encryptedMessage = keyring.alice.encrypt(message);
+    const encryptedMessage = keyring.alice.encrypt(message, keyring.bob.publicKey);
 
-    expect(keyring.alice.decrypt(encryptedMessage)).toEqual(message);
+    expect(keyring.bob.decrypt(encryptedMessage)).toEqual(message);
+    expect(keyring.alice.decrypt(encryptedMessage)).toEqual(null);
   });
 
   it('allows encrypt/decrypt with sr25519 keypair', (): void => {
-    const sr25519KeyPair = new Keyring().createFromUri(mnemonicGenerate(), { name: 'sr25519 pair' }, 'sr25519');
+    const aliceSR25519KeyPair = new Keyring().createFromUri(mnemonicGenerate(), { name: 'sr25519 pair' }, 'sr25519');
+    const bobSR25519KeyPair = new Keyring().createFromUri(mnemonicGenerate(), { name: 'sr25519 pair' }, 'sr25519');
     const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
-    const encryptedMessage = sr25519KeyPair.encrypt(message);
+    const encryptedMessage = aliceSR25519KeyPair.encrypt(message, bobSR25519KeyPair.publicKey);
 
-    expect(sr25519KeyPair.decrypt(encryptedMessage)).toEqual(message);
+    expect(bobSR25519KeyPair.decrypt(encryptedMessage)).toEqual(message);
+    expect((): Uint8Array | null => aliceSR25519KeyPair.decrypt(encryptedMessage)).toThrow("Mac values don't match");
   });
 
   it('allows encrypt for an ed25519 keypair', (): void => {
@@ -264,6 +267,17 @@ describe('pair', (): void => {
     const encryptedMessage = keyring.encrypt(message, sr25519KeyPair.publicKey, sr25519KeyPair.type);
 
     expect(sr25519KeyPair.decrypt(encryptedMessage)).toEqual(message);
+  });
+
+  it('fails to encrypt when locked', (): void => {
+    const aliceSR25519KeyPair = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.alice.publicKey });
+    const bobSR25519KeyPair = createPair({ toSS58, type: 'sr25519' }, { publicKey: keyring.alice.publicKey });
+    const message = new Uint8Array([0x61, 0x62, 0x63, 0x64, 0x65]);
+
+    expect(aliceSR25519KeyPair.isLocked).toEqual(true);
+    expect((): Uint8Array =>
+      aliceSR25519KeyPair.encrypt(message, bobSR25519KeyPair.publicKey)
+    ).toThrow('Cannot encrypt with a locked key pair');
   });
 
   describe('ethereum', (): void => {
