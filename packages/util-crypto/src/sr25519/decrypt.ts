@@ -7,10 +7,8 @@ import type { Keypair } from '../types';
 import { assert, u8aCmp, u8aToU8a } from '@polkadot/util';
 
 import { naclDecrypt } from '../nacl';
-import { buildSR25519EncryptionKey, macData } from './encrypt';
+import { buildSR25519EncryptionKey, keyDerivationSaltSize, macData, nonceSize } from './encrypt';
 
-const nonceSize = 24;
-const keyDerivationSaltSize = 32;
 const publicKeySize = 32;
 const macValueSize = 32;
 
