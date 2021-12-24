@@ -8,7 +8,7 @@ import nacl from 'tweetnacl';
 
 import { assert, u8aToU8a } from '@polkadot/util';
 
-import { naclOpen } from '..';
+import { naclOpen } from '../nacl';
 import { convertPublicKeyToCurve25519, convertSecretKeyToCurve25519 } from './convertKey';
 
 interface ed25519EncryptedMessage {
