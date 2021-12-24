@@ -26,7 +26,6 @@
     },
     "skipLibCheck": true,
     "typeRoots": [
-      "./node_modules/@polkadot/ts",
       "./node_modules/@types"
     ]
   }
