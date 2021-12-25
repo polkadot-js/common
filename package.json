@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
-    "@polkadot/dev": "^0.64.20",
+    "@polkadot/dev": "^0.64.21",
     "@types/jest": "^27.0.3"
   },
   "resolutions": {
