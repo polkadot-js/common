@@ -1,5 +1,11 @@
 # CHANGELOG
 
+Changes:
+
+- Pin `@noble/hashes` to 0.5.5, 0.5.6 version is broken for rollup
+- Upgrade 3rd party dependencies
+
+
 ## 8.2.2 Dec 19, 2021
 
 Contributed:
