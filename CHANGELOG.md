@@ -3,6 +3,7 @@
 Changes:
 
 - Pin `@noble/hashes` to 0.5.5, 0.5.6 version is broken for rollup
+- Add all known Rococo genesis hashes
 - Upgrade 3rd party dependencies
 
 
