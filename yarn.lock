@@ -1957,9 +1957,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.64.24":
-  version: 0.64.24
-  resolution: "@polkadot/dev@npm:0.64.24"
+"@polkadot/dev@npm:^0.64.26":
+  version: 0.64.26
+  resolution: "@polkadot/dev@npm:0.64.26"
   dependencies:
     "@babel/cli": ^7.16.0
     "@babel/core": ^7.16.5
@@ -1979,7 +1979,7 @@ __metadata:
     "@babel/runtime": ^7.16.5
     "@rollup/plugin-alias": ^3.1.8
     "@rollup/plugin-commonjs": ^21.0.1
-    "@rollup/plugin-inject": ^4.0.3
+    "@rollup/plugin-inject": ^4.0.4
     "@rollup/plugin-json": ^4.1.0
     "@rollup/plugin-node-resolve": ^13.1.1
     "@rushstack/eslint-patch": ^1.1.0
@@ -2044,7 +2044,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 1a63260731d20b985d949fa219d81af1dee8afd3de6351644100d4c56844b6b9d7b2dc72724319fb844878adc35aaebc0a6b1f26f291e59d8c82074bd71d2138
+  checksum: 301dbde74af22ef81f28e16cae5919a83ae912f218613b7ac85c5f1a1a9f8cf8c644044c4475f496b91bfab62b7568ed8c0ab685864f799e419653246828f005
   languageName: node
   linkType: hard
 
@@ -2071,7 +2071,7 @@ __metadata:
     "@ledgerhq/hw-transport": ^6.20.0
     "@polkadot/hw-ledger-transports": 8.2.3-9
     "@polkadot/util": 8.2.3-9
-    "@zondax/ledger-substrate": ^0.23.0
+    "@zondax/ledger-substrate": ^0.24.0
   languageName: unknown
   linkType: soft
 
@@ -2273,16 +2273,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-inject@npm:^4.0.3":
-  version: 4.0.3
-  resolution: "@rollup/plugin-inject@npm:4.0.3"
+"@rollup/plugin-inject@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "@rollup/plugin-inject@npm:4.0.4"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     estree-walker: ^2.0.1
     magic-string: ^0.25.7
   peerDependencies:
     rollup: ^1.20.0 || ^2.0.0
-  checksum: d92deb7144ce84651da2ce45f137d66ede144804aa29676fd0f4313c3b5dea89087813a5c8e60bd9776779fc8a6bc751c42ae0e5bba4dac653fd654936b21b45
+  checksum: 22a1847372a96296a5b176af3d5b23ac7b48143a32c77ec4efed38daf4b0d1399a3cd144496d65731299984c5f98c9e00dc6a7f53d0fe87bd4aab2d4bd7b8289
   languageName: node
   linkType: hard
 
@@ -2783,9 +2783,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zondax/ledger-substrate@npm:^0.23.0":
-  version: 0.23.0
-  resolution: "@zondax/ledger-substrate@npm:0.23.0"
+"@zondax/ledger-substrate@npm:^0.24.0":
+  version: 0.24.0
+  resolution: "@zondax/ledger-substrate@npm:0.24.0"
   dependencies:
     "@babel/runtime": ^7.14.8
     "@ledgerhq/hw-transport": ^6.2.0
@@ -2795,7 +2795,7 @@ __metadata:
     blakejs: ^1.1.1
     bs58: ^4.0.1
     hash.js: ^1.1.7
-  checksum: 1a8b2bbf8642d8820b62076a6ea09277461b15e2ee0f56396c7f52f1f2023cbae2dc5c9b972be42e55a742d9bab02b2ea45ceda066e21ef36c814844c7c554cb
+  checksum: 9eba1cb55a14204dab7ae444d43c6bf19f8c7aad6b1af24437cfa33d13b70ba58c6d4d5e425daaa4bff2268603ca988f4d21975949b748572889ccb5baf60ecc
   languageName: node
   linkType: hard
 
@@ -9184,7 +9184,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.16.5
-    "@polkadot/dev": ^0.64.24
+    "@polkadot/dev": ^0.64.26
     "@types/jest": ^27.0.3
   languageName: unknown
   linkType: soft
