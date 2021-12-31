@@ -13,8 +13,8 @@ describe('detectPackage', (): void => {
   const MISMATCH = `@polkadot/util has multiple versions, ensure that there is only one installed.
 Either remove and explicitly install matching versions or dedupe using your package manager.
 The following conflicting packages were found:
-\t${VER1}\t${PATH}/01
-\t${VER2}        \t${PATH}/02`;
+\tcjs ${VER1}\t${PATH}/01
+\tcjs ${VER2}        \t${PATH}/02`;
 
   it('should not log the first time', (): void => {
     const spy = jest.spyOn(console, 'warn');
@@ -37,7 +37,7 @@ The following conflicting packages were found:
 
     detectPackage({ name: PKG, version: VER3 }, () => `${PATH}/03`);
     expect(spy).toHaveBeenCalledWith(`${MISMATCH}
-\t${VER3}        \t${PATH}/03`);
+\tcjs ${VER3}        \t${PATH}/03`);
     spy.mockRestore();
   });
 });

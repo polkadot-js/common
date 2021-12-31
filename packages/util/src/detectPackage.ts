@@ -16,11 +16,9 @@
 //
 // With the above we additionally need a .d.ts to just export the packageInfo
 
-import { packageInfo as decoderInfo } from '@polkadot/x-textdecoder';
-import { packageInfo as encoderInfo } from '@polkadot/x-textencoder';
-
 import __dirname from './cjs/dirname';
+import others from './detectOther';
 import { packageInfo } from './packageInfo';
 import { detectPackage } from './versionDetect';
 
-detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [decoderInfo, encoderInfo]);
+detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, others);
