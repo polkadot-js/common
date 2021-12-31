@@ -6,6 +6,7 @@ import { xglobal } from '@polkadot/x-global';
 import { isFunction } from './is/function';
 import { isString } from './is/string';
 import { assert } from './assert';
+import { hasEsm as isEsm } from './has';
 
 type This = typeof globalThis;
 
@@ -15,6 +16,7 @@ interface PackageJson {
 }
 
 interface VersionPath {
+  isEsm?: boolean;
   path?: string;
   version: string;
 }
@@ -70,8 +72,8 @@ function flattenVersions (entry: VersionPath[]): string {
       : version;
   const all = entry.map(toPath);
   const verLength = getVersionLength(all);
-  const stringify = ({ path, version }: VersionPath) =>
-    `\t${version.padEnd(verLength)}\t${(!path || path.length < 5) ? '<unknown>' : path}`;
+  const stringify = ({ isEsm, path, version }: VersionPath) =>
+    `\t${isEsm ? 'esm' : 'cjs'} ${version.padEnd(verLength)}\t${(!path || path.length < 5) ? '<unknown>' : path}`;
 
   return all.map(stringify).join('\n');
 }
@@ -99,7 +101,7 @@ export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnStri
 
   const entry = getEntry(name);
 
-  entry.push({ path: getPath(pathOrFn), version });
+  entry.push({ isEsm, path: getPath(pathOrFn), version });
 
   if (entry.length !== 1) {
     console.warn(`${name} has multiple versions, ensure that there is only one installed.\n${DEDUPE}\n${flattenVersions(entry)}`);
