@@ -22,7 +22,7 @@
   "version": "8.2.3-10",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.16.5",
+    "@babel/runtime": "^7.16.7",
     "@ledgerhq/hw-transport": "^6.20.0",
     "@polkadot/hw-ledger-transports": "8.2.3-10",
     "@polkadot/util": "8.2.3-10",
