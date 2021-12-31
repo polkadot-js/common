@@ -4,6 +4,7 @@
 import { detectPackage, packageInfo as utilInfo } from '@polkadot/util';
 import { packageInfo as cryptoInfo } from '@polkadot/util-crypto/packageInfo';
 
+import __dirname from './cjs/dirname';
 import { packageInfo } from './packageInfo';
 
 detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [utilInfo, cryptoInfo]);
