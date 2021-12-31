@@ -4,6 +4,7 @@
 import { packageInfo as transportInfo } from '@polkadot/hw-ledger-transports/packageInfo';
 import { detectPackage, packageInfo as utilInfo } from '@polkadot/util';
 
+import __dirname from './cjs/dirname';
 import { packageInfo } from './packageInfo';
 
 detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [transportInfo, utilInfo]);

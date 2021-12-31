@@ -19,6 +19,7 @@
 import { packageInfo as decoderInfo } from '@polkadot/x-textdecoder';
 import { packageInfo as encoderInfo } from '@polkadot/x-textencoder';
 
+import __dirname from './cjs/dirname';
 import { packageInfo } from './packageInfo';
 import { detectPackage } from './versionDetect';
 
