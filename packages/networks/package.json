@@ -20,11 +20,11 @@
   "version": "8.2.3-14",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.16.7"
+    "@babel/runtime": "^7.16.7",
+    "@polkadot/util": "8.2.3-14"
   },
   "devDependencies": {
     "@polkadot/hw-ledger": "8.2.3-14",
-    "@polkadot/util": "8.2.3-14",
     "@polkadot/x-fetch": "8.2.3-14"
   }
 }
