@@ -1,4 +1,4 @@
-// Copyright 2017-2021 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { _0n, assert, BN, bnToU8a, hasBigInt, isU8a, nToU8a, u8aToBigInt } from '@polkadot/util';
