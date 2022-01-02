@@ -2,10 +2,10 @@
 
 Changes:
 
-- Pin `@noble/hashes` to 0.5.5, 0.5.6 version is broken for rollup
+- Update `@noble/hashes` to 0.5.7 (0.5.6 version is broken for rollup)
 - Ensure package path is availble under ESM & CJS
 - Add all known Rococo genesis hashes
-- Upgrade 3rd party dependencies
+- Upgrade 3rd party dependencies, including `bn.js` to latest
 
 
 ## 8.2.2 Dec 19, 2021

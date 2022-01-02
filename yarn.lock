@@ -2132,8 +2132,8 @@ __metadata:
     "@polkadot/x-randomvalues": 8.2.3-16
     "@polkadot/x-textdecoder": 8.2.3-16
     "@polkadot/x-textencoder": 8.2.3-16
-    "@types/bn.js": ^4.11.6
-    bn.js: ^4.12.0
+    "@types/bn.js": ^5.1.0
+    bn.js: ^5.2.0
     ip-regex: ^4.3.0
   languageName: unknown
   linkType: soft
@@ -2214,7 +2214,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.16.7
     "@polkadot/x-global": 8.2.3-16
-    "@types/react-native": ^0.66.10
+    "@types/react-native": ^0.66.11
   languageName: unknown
   linkType: soft
 
@@ -2417,12 +2417,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/bn.js@npm:^4.11.6":
-  version: 4.11.6
-  resolution: "@types/bn.js@npm:4.11.6"
+"@types/bn.js@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "@types/bn.js@npm:5.1.0"
   dependencies:
     "@types/node": "*"
-  checksum: 7f66f2c7b7b9303b3205a57184261974b114495736b77853af5b18d857c0b33e82ce7146911e86e87a87837de8acae28986716fd381ac7c301fd6e8d8b6c811f
+  checksum: 1dc1cbbd7a1e8bf3614752e9602f558762a901031f499f3055828b5e3e2bba16e5b88c27b3c4152ad795248fbe4086c731a5c4b0f29bb243f1875beeeabee59c
   languageName: node
   linkType: hard
 
@@ -2561,12 +2561,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.66.10":
-  version: 0.66.10
-  resolution: "@types/react-native@npm:0.66.10"
+"@types/react-native@npm:^0.66.11":
+  version: 0.66.11
+  resolution: "@types/react-native@npm:0.66.11"
   dependencies:
     "@types/react": "*"
-  checksum: 5d0e6a2b4b05839fb43ea1a1bfbfd054c60ece8c1554b0c61f096c77f6fc01cddb7ac5338c5030db9296830bc4426eca7966d1249e7aa6eb6b10fea568957b7a
+  checksum: 072fd0bb041483d3d66249a190a8683b26fa9dfe1c12ed5cadfbae1fe68822eeb12087204328e0203796fe8492d8730609c6525cb6bce69b1c2b180199b620c1
   languageName: node
   linkType: hard
 
@@ -3432,14 +3432,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bn.js@npm:^4.11.8, bn.js@npm:^4.11.9, bn.js@npm:^4.12.0":
+"bn.js@npm:^4.11.8, bn.js@npm:^4.11.9":
   version: 4.12.0
   resolution: "bn.js@npm:4.12.0"
   checksum: 39afb4f15f4ea537b55eaf1446c896af28ac948fdcf47171961475724d1bb65118cca49fa6e3d67706e4790955ec0e74de584e45c8f1ef89f46c812bee5b5a12
   languageName: node
   linkType: hard
 
-"bn.js@npm:^5.1.1":
+"bn.js@npm:^5.1.1, bn.js@npm:^5.2.0":
   version: 5.2.0
   resolution: "bn.js@npm:5.2.0"
   checksum: 6117170393200f68b35a061ecbf55d01dd989302e7b3c798a3012354fa638d124f0b2f79e63f77be5556be80322a09c40339eda6413ba7468524c0b6d4b4cb7a

@@ -24,9 +24,6 @@
       "@polkadot/x-textencoder": ["x-textencoder/src/browser"],
       "@polkadot/x-ws": ["x-ws/src/browser"]
     },
-    "skipLibCheck": true,
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
+    "skipLibCheck": true
   }
  }
