@@ -14,12 +14,10 @@ import { hexToU8a } from './toU8a';
  * @summary Creates a BigInt instance object from a hex string.
  */
 export function hexToBigInt (value?: string | null, options: ToBnOptions = {}): bigint {
-  if (!value || value === '0x') {
-    return BigInt(0);
-  }
-
-  return u8aToBigInt(
-    hexToU8a(value),
-    objectSpread({ isLe: false, isNegative: false }, options)
-  );
+  return !value || value === '0x'
+    ? BigInt(0)
+    : u8aToBigInt(
+      hexToU8a(value),
+      objectSpread({ isLe: false, isNegative: false }, options)
+    );
 }

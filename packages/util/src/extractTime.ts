@@ -7,6 +7,7 @@ import { objectSpread } from './object/spread';
 
 const HRS = 60 * 60;
 const DAY = HRS * 24;
+const ZERO: Time = { days: 0, hours: 0, milliseconds: 0, minutes: 0, seconds: 0 };
 
 /**
  * @name addTime
@@ -22,8 +23,6 @@ function addTime (a: Time, b: Time): Time {
     seconds: a.seconds + b.seconds
   };
 }
-
-const ZERO: Time = { days: 0, hours: 0, milliseconds: 0, minutes: 0, seconds: 0 };
 
 function extractDays (milliseconds: number, hrs: number): Time {
   const days = Math.floor(hrs / 24);
@@ -80,11 +79,9 @@ function extractSecs (milliseconds: number): Time {
  * ```
  */
 export function extractTime (milliseconds?: number): Time {
-  if (!milliseconds) {
-    return ZERO;
-  } else if (milliseconds < 1000) {
-    return objectSpread({}, ZERO, { milliseconds });
-  }
-
-  return extractSecs(milliseconds);
+  return !milliseconds
+    ? ZERO
+    : milliseconds < 1000
+      ? objectSpread({}, ZERO, { milliseconds })
+      : extractSecs(milliseconds);
 }
