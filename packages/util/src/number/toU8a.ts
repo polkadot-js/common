@@ -21,11 +21,9 @@ import { numberToHex } from './toHex';
  * ```
  */
 export function numberToU8a (value?: number | null, bitLength = -1): Uint8Array {
-  if (isUndefined(value) || isNull(value) || isNaN(value)) {
-    return new Uint8Array();
-  }
-
-  return hexToU8a(
-    numberToHex(value, bitLength)
-  );
+  return isUndefined(value) || isNull(value) || isNaN(value)
+    ? new Uint8Array()
+    : hexToU8a(
+      numberToHex(value, bitLength)
+    );
 }

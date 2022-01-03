@@ -20,9 +20,7 @@ import { hexHasPrefix } from './hasPrefix';
  * ```
  */
 export function hexAddPrefix (value?: string | null): HexString {
-  if (value && hexHasPrefix(value)) {
-    return value;
-  }
-
-  return `0x${value && value.length % 2 === 1 ? '0' : ''}${value || ''}`;
+  return value && hexHasPrefix(value)
+    ? value
+    : `0x${value && value.length % 2 === 1 ? '0' : ''}${value || ''}`;
 }

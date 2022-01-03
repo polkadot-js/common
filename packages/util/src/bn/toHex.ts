@@ -34,19 +34,17 @@ const DEFAULT_OPTS: Options = { bitLength: -1, isLe: false, isNegative: false };
 function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, options?: Options): HexString;
 function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): HexString;
 function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | Options = DEFAULT_OPTS, arg2?: boolean): HexString {
-  if (!value) {
-    return ZERO_STR;
-  }
-
-  return u8aToHex(
-    bnToU8a(value, objectSpread(
-      // We spread here, the default for hex values is BE (JSONRPC via substrate)
-      { isLe: false, isNegative: false },
-      isNumber(arg1)
-        ? { bitLength: arg1, isLe: arg2 }
-        : arg1
-    ))
-  );
+  return !value
+    ? ZERO_STR
+    : u8aToHex(
+      bnToU8a(value, objectSpread(
+        // We spread here, the default for hex values is BE (JSONRPC via substrate)
+        { isLe: false, isNegative: false },
+        isNumber(arg1)
+          ? { bitLength: arg1, isLe: arg2 }
+          : arg1
+      ))
+    );
 }
 
 export { bnToHex };

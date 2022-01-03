@@ -19,15 +19,13 @@ const ZERO_STR = '0x00';
  * @summary Creates a hex value from a bigint object.
  */
 export function nToHex <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN | bigint | number | null, options?: Options): HexString {
-  if (!value) {
-    return ZERO_STR;
-  }
-
-  return u8aToHex(
-    nToU8a(value, objectSpread(
-      // We spread here, the default for hex values is BE (JSONRPC via substrate)
-      { isLe: false, isNegative: false },
-      options
-    ))
-  );
+  return !value
+    ? ZERO_STR
+    : u8aToHex(
+      nToU8a(value, objectSpread(
+        // We spread here, the default for hex values is BE (JSONRPC via substrate)
+        { isLe: false, isNegative: false },
+        options
+      ))
+    );
 }

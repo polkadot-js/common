@@ -1,7 +1,10 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performance } from '../test/performance';
 import { u8aEmpty } from '.';
+
+const ztest = new Uint8Array(32);
 
 describe('u8aEmpty', (): void => {
   it('returns true on zero length', (): void => {
@@ -21,4 +24,6 @@ describe('u8aEmpty', (): void => {
       u8aEmpty(new Uint8Array([0, 0, 0, 0, 0, 1]))
     ).toEqual(false);
   });
+
+  performance('u8aEmpty (32 cmp)', 1000000, [[ztest]], u8aEmpty);
 });
