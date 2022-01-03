@@ -26,11 +26,14 @@ export function u8aEq (a: HexString | Uint8Array | string, b: HexString | Uint8A
   if (u8aa.length === u8ab.length) {
     const dvA = new DataView(u8aa.buffer, u8aa.byteOffset);
     const dvB = new DataView(u8ab.buffer, u8ab.byteOffset);
-    const mod = u8aa.length % 4;
+    const mod = u8aa.length % 8;
     const length = u8aa.length - mod;
 
-    for (let i = 0; i < length; i += 4) {
-      if (dvA.getUint32(i) !== dvB.getUint32(i)) {
+    for (let i = 0; i < length; i += 8) {
+      // Use native floats for no conversions, the difference -
+      //   - u32 - 14.48 μs/op
+      //   - f64 -  7.84 μs/op
+      if (dvA.getFloat64(i) !== dvB.getFloat64(i)) {
         return false;
       }
     }
