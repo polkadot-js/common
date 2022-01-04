@@ -55,11 +55,15 @@
       log('polkadotKeyring');
 
       const { Keyring } = polkadotKeyring;
+      const { cryptoWaitReady } = polkadotUtilCrypto;
 
-      const keyring = new Keyring({ type: sr25519 });
-      const alice = keyring.addFromUri('//Alice');
+      cryptoWaitReady().then(() => {
+        const keyring = new Keyring({ type: 'sr25519' });
+        const alice = keyring.addFromUri('//Alice');
 
-      log('alice.address', alice.address);
+        log('alice.address', alice.address);
+        log('signature', u8aToHex(alice.sign('hello world')));
+      });
     </script>
   </body>
 </html>
