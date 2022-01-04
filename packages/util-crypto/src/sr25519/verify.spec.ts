@@ -11,15 +11,9 @@ import { sr25519Verify } from './verify';
 
 const MESSAGE = stringToU8a('this is a message');
 
-describe('sign and verify', (): void => {
+describe('verify', (): void => {
   beforeEach(async (): Promise<void> => {
     await waitReady();
-  });
-
-  it('has 64-byte signatures', (): void => {
-    const pair = sr25519PairFromSeed(randomAsU8a());
-
-    expect(sr25519Sign(MESSAGE, pair)).toHaveLength(64);
   });
 
   it('can sign and verify a message', (): void => {
