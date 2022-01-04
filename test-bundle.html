@@ -43,10 +43,11 @@
     <script>
       log('polkadotUtilCrypto');
 
-      const { blake2AsHex, selectableNetworks } = polkadotUtilCrypto;
+      const { blake2AsHex, randomAsHex, selectableNetworks } = polkadotUtilCrypto;
 
       log('blake2AsHex', blake2AsHex(new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8])));
       log('blake2AsHex (js)', blake2AsHex(new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]), 256, null, true));
+      log('randomAsHex', randomAsHex());
       log('selectableNetworks', selectableNetworks.map(({ displayName }) => displayName).join('; '));
     </script>
     <script src="packages/keyring/build/bundle-polkadot-keyring.js"></script>
@@ -55,7 +56,7 @@
 
       const { Keyring } = polkadotKeyring;
 
-      const keyring = new Keyring();
+      const keyring = new Keyring({ type: sr25519 });
       const alice = keyring.addFromUri('//Alice');
 
       log('alice.address', alice.address);
