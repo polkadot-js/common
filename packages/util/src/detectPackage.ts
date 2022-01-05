@@ -3,7 +3,7 @@
 
 // For esm, this should be import.meta.url or to get the same behavior as __dirname, we can use
 //
-//   new URL(import.meta.url).pathname)
+//   new URL(import.meta.url).pathname
 //
 // The issue is the WP4 has "some" issues with import.meta.url. So because of bundlers, we can't have
 // nice things... In this case it is even worse since import.meta.url won't even make it compile, so
@@ -16,9 +16,8 @@
 //
 // With the above we additionally need a .d.ts to just export the packageInfo
 
-import __dirname from './cjs/dirname';
 import others from './detectOther';
 import { packageInfo } from './packageInfo';
 import { detectPackage } from './versionDetect';
 
-detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, others);
+detectPackage(packageInfo, packageInfo.path, others);
