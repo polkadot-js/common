@@ -17,13 +17,13 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "8.2.3-24",
+  "version": "8.2.3-25",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
     "@babel/runtime": "^7.16.7",
-    "@polkadot/x-global": "8.2.3-24"
+    "@polkadot/x-global": "8.2.3-25"
   },
   "devDependencies": {
     "@types/react-native": "^0.66.11"
