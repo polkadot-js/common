@@ -13,8 +13,8 @@ describe('detectPackage', (): void => {
   const MISMATCH = `@polkadot/util has multiple versions, ensure that there is only one installed.
 Either remove and explicitly install matching versions or dedupe using your package manager.
 The following conflicting packages were found:
-\tcjs ${VER1}\t${PATH}/01
-\tcjs ${VER2}        \t${PATH}/02`;
+\t    ${VER1}\t${PATH}/01
+\tesm ${VER2}        \t${PATH}/02`;
 
   it('should not log the first time', (): void => {
     const spy = jest.spyOn(console, 'warn');
@@ -27,7 +27,7 @@ The following conflicting packages were found:
   it('should log the second time', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackage({ name: PKG, version: VER2 }, `${PATH}/02`);
+    detectPackage({ name: PKG, type: 'esm', version: VER2 }, `${PATH}/02`);
     expect(spy).toHaveBeenCalledWith(MISMATCH);
     spy.mockRestore();
   });
@@ -35,7 +35,7 @@ The following conflicting packages were found:
   it('should allow for function use', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackage({ name: PKG, version: VER3 }, () => `${PATH}/03`);
+    detectPackage({ name: PKG, type: 'cjs', version: VER3 }, () => `${PATH}/03`);
     expect(spy).toHaveBeenCalledWith(`${MISMATCH}
 \tcjs ${VER3}        \t${PATH}/03`);
     spy.mockRestore();
