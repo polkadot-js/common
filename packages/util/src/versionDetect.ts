@@ -6,18 +6,19 @@ import { xglobal } from '@polkadot/x-global';
 import { isFunction } from './is/function';
 import { isString } from './is/string';
 import { assert } from './assert';
-import { hasEsm as isEsm } from './has';
 
 type This = typeof globalThis;
 
 interface PackageJson {
   name: string;
+  path?: string;
+  type?: string;
   version: string;
 }
 
 interface VersionPath {
-  isEsm?: boolean;
   path?: string;
+  type?: string;
   version: string;
 }
 
@@ -72,15 +73,17 @@ function flattenVersions (entry: VersionPath[]): string {
       : version;
   const all = entry.map(toPath);
   const verLength = getVersionLength(all);
-  const stringify = ({ isEsm, path, version }: VersionPath) =>
-    `\t${isEsm ? 'esm' : 'cjs'} ${version.padEnd(verLength)}\t${(!path || path.length < 5) ? '<unknown>' : path}`;
+  const stringify = ({ path, type, version }: VersionPath) =>
+    `\t${`${type || ''}`.padStart(3)} ${version.padEnd(verLength)}\t${(!path || path.length < 5) ? '<unknown>' : path}`;
 
   return all.map(stringify).join('\n');
 }
 
 /** @internal */
-function getPath (pathOrFn?: FnString | string | false): string {
-  if (isFunction(pathOrFn)) {
+function getPath (infoPath?: string, pathOrFn?: FnString | string | false): string {
+  if (infoPath) {
+    return infoPath;
+  } else if (isFunction(pathOrFn)) {
     try {
       return pathOrFn() || '';
     } catch (error) {
@@ -96,12 +99,12 @@ function getPath (pathOrFn?: FnString | string | false): string {
  * @summary Checks that a specific package is only imported once
  * @description A `@polkadot/*` version detection utility, checking for one occurence of a package in addition to checking for ddependency versions.
  */
-export function detectPackage ({ name, version }: PackageJson, pathOrFn?: FnString | string | false, deps: PackageJson[] = []): void {
+export function detectPackage ({ name, path, type, version }: PackageJson, pathOrFn?: FnString | string | false, deps: PackageJson[] = []): void {
   assert(name.startsWith('@polkadot'), () => `Invalid package descriptor ${name}`);
 
   const entry = getEntry(name);
 
-  entry.push({ isEsm, path: getPath(pathOrFn), version });
+  entry.push({ path: getPath(path, pathOrFn), type, version });
 
   if (entry.length !== 1) {
     console.warn(`${name} has multiple versions, ensure that there is only one installed.\n${DEDUPE}\n${flattenVersions(entry)}`);
