@@ -1,12 +1,15 @@
 # CHANGELOG
 
+**Important** Webpack 4 has known issues with `import.meta.url` that is solvable via a rule, see https://polkadot.js.org/docs/api/FAQ/#on-webpack-4-i-have-a-parse-error-on-importmetaurl
+
 Changes:
 
 - Fix `util-crypto` bundle generation (adjust `x-randomvalues`)
 - Add all known Rococo genesis hashes
-- Upgrade 3rd party dependencies, including `bn.js` to latest
-- Pin `@noble/hashes` to 0.5.7 (0.5.6 version is broken for rollup)
 - Ensure package path is availble under ESM & CJS
+- `detectPackage` now uses optional `path` & `type` (`esm` or `cjs`) info
+- Upgrade 3rd party dependencies, including `bn.js` to latest
+- Pin `@noble/hashes` to 0.5.9 (0.5.6 version is broken for rollup, 0.5.8 is non-buildable)
 
 
 ## 8.2.2 Dec 19, 2021
