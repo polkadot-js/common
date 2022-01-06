@@ -3,9 +3,9 @@
 Changes:
 
 - Fix `util-crypto` bundle generation (adjust `x-randomvalues`)
-- Update `@noble/hashes` to 0.5.7 (0.5.6 version is broken for rollup)
 - Add all known Rococo genesis hashes
 - Upgrade 3rd party dependencies, including `bn.js` to latest
+- Pin `@noble/hashes` to 0.5.7 (0.5.6 version is broken for rollup)
 - Ensure package path is availble under ESM & CJS
 
 
