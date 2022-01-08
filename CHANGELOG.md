@@ -9,7 +9,7 @@ Changes:
 - `detectPackage` now uses optional `path` & `type` (`esm` or `cjs`) info
 - Ensure package paths are available via ESM and CJS
 - Upgrade 3rd party dependencies to latest
-- Pin `@noble/hashes` to 0.5.9 (0.5.6 version is broken for rollup, 0.5.8 is non-buildable)
+- Pin `@noble/*` to latest known tested integrated versions
 
 
 ## 8.2.2 Dec 19, 2021
