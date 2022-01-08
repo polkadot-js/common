@@ -1784,10 +1784,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/hashes@npm:0.5.9":
-  version: 0.5.9
-  resolution: "@noble/hashes@npm:0.5.9"
-  checksum: 71a8e0d13a47243a66f6b68035b29335e49a2786193c4ecd3f8e967214fdfb3d0d000b1d0e2374ee28e3d7794a484453c632e7fa75275c7cda3771fcb657d946
+"@noble/hashes@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@noble/hashes@npm:0.5.7"
+  checksum: d7c86669b326da14f0e68d77f8f5c2888c0ca910830a9d2d40a7f6364a76d9b194bb4afda36a2d0ff8cb4ef1a1c023efd4c261276b15a5a88fcfb45f5cc49a85
   languageName: node
   linkType: hard
 
@@ -1958,9 +1958,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.65.21":
-  version: 0.65.21
-  resolution: "@polkadot/dev@npm:0.65.21"
+"@polkadot/dev@npm:^0.65.22":
+  version: 0.65.22
+  resolution: "@polkadot/dev@npm:0.65.22"
   dependencies:
     "@babel/cli": ^7.16.7
     "@babel/core": ^7.16.7
@@ -2046,7 +2046,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 895f0b12b49dbac33b801d3edb41c43b5eb0bf841e0b34e995763ab540d475872039a93cb51cada2a621ebec618454cc6f21502ff191c11a4b1ace32abfcbf6f
+  checksum: fb402587f184e78c56bbc41e000aefb13206011e14e0e885529e88e525f077ed0d3e18da9a2ef7fed79b71158aaccdd44068dc2f7fbcb733d0993a651c1939cc
   languageName: node
   linkType: hard
 
@@ -2107,7 +2107,7 @@ __metadata:
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@babel/runtime": ^7.16.7
-    "@noble/hashes": 0.5.9
+    "@noble/hashes": 0.5.7
     "@noble/secp256k1": 1.3.4
     "@polkadot/networks": 8.2.3-29
     "@polkadot/util": 8.2.3-29
@@ -9176,7 +9176,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.16.7
-    "@polkadot/dev": ^0.65.21
+    "@polkadot/dev": ^0.65.22
     "@types/jest": ^27.4.0
   languageName: unknown
   linkType: soft
