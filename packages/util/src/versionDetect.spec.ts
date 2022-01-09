@@ -14,7 +14,7 @@ describe('detectPackage', (): void => {
 Either remove and explicitly install matching versions or dedupe using your package manager.
 The following conflicting packages were found:
 \t    ${VER1}\t${PATH}/01
-\tesm ${VER2}        \t${PATH}/02`;
+\tesm ${VER2}        \tpath/02`;
 
   it('should not log the first time', (): void => {
     const spy = jest.spyOn(console, 'warn');
@@ -27,7 +27,7 @@ The following conflicting packages were found:
   it('should log the second time', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackage({ name: PKG, type: 'esm', version: VER2 }, `${PATH}/02`);
+    detectPackage({ name: PKG, path: 'path/02', type: 'esm', version: VER2 });
     expect(spy).toHaveBeenCalledWith(MISMATCH);
     spy.mockRestore();
   });

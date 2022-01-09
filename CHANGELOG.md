@@ -1,6 +1,6 @@
 # CHANGELOG
 
-**Important** Webpack 4 has known issues with `import.meta.url` that is solvable via a rule, see https://polkadot.js.org/docs/usage/FAQ#on-webpack-4-i-have-a-parse-error-on-importmetaurl
+## 8.3.1 Jan 9, 2022
 
 Changes:
 
