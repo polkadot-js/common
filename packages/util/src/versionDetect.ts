@@ -80,7 +80,7 @@ function flattenVersions (entry: VersionPath[]): string {
 }
 
 /** @internal */
-function getPath (infoPath?: string, pathOrFn?: FnString | string | false): string {
+function getPath (infoPath?: string, pathOrFn?: FnString | string | false | null): string {
   if (infoPath) {
     return infoPath;
   } else if (isFunction(pathOrFn)) {
@@ -99,7 +99,7 @@ function getPath (infoPath?: string, pathOrFn?: FnString | string | false): stri
  * @summary Checks that a specific package is only imported once
  * @description A `@polkadot/*` version detection utility, checking for one occurence of a package in addition to checking for ddependency versions.
  */
-export function detectPackage ({ name, path, type, version }: PackageJson, pathOrFn?: FnString | string | false, deps: PackageJson[] = []): void {
+export function detectPackage ({ name, path, type, version }: PackageJson, pathOrFn?: FnString | string | false | null, deps: PackageJson[] = []): void {
   assert(name.startsWith('@polkadot'), () => `Invalid package descriptor ${name}`);
 
   const entry = getEntry(name);
