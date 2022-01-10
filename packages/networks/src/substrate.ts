@@ -676,6 +676,15 @@ export const knownSubstrate: KnownSubstrate[] = [
   },
   {
     decimals: [18],
+    displayName: 'SORA Kusama Parachain',
+    network: 'sora_kusama_para',
+    prefix: 420,
+    standardAccount: '*25519',
+    symbols: ['XOR'],
+    website: 'https://sora.org'
+  },
+  {
+    decimals: [18],
     displayName: 'Efinity',
     network: 'efinity',
     prefix: 1110,

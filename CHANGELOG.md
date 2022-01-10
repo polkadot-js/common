@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Sync with upstream Substrate ss58 registry
+
+
 ## 8.3.1 Jan 9, 2022
 
 Changes:
