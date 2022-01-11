@@ -1,22 +1,13 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "composite": true
+    "baseUrl": "./packages",
+    "composite": false
   },
-  "files": [],
-  "references": [
-    { "path": "./packages/hw-ledger" },
-    { "path": "./packages/hw-ledger-transports" },
-    { "path": "./packages/keyring" },
-    { "path": "./packages/networks" },
-    { "path": "./packages/util" },
-    { "path": "./packages/util-crypto" },
-    { "path": "./packages/x-bigint" },
-    { "path": "./packages/x-bundle" },
-    { "path": "./packages/x-fetch" },
-    { "path": "./packages/x-global" },
-    { "path": "./packages/x-randomvalues" },
-    { "path": "./packages/x-textdecoder" },
-    { "path": "./packages/x-textencoder" },
-    { "path": "./packages/x-ws" },
+  "include": [
+    "packages/**/src/**/*"
+  ],
+  "exclude": [
+    "**/node_modules/**/*"
   ]
 }
