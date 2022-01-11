@@ -4,7 +4,7 @@
 
 Changes:
 
-- Adjust network sortying (primary by prefix, secondary by name)
+- Adjust network sorting (primary by prefix, secondary by name)
 - Sync with upstream Substrate ss58 registry
 
 
