@@ -43,12 +43,12 @@ function sortNetworks (a: Network, b: Network): number {
   const isUnSortedB = UNSORTED.includes(b.prefix);
 
   return isUnSortedA === isUnSortedB
-    ? 0
+    ? isUnSortedA
+      ? 0
+      : a.displayName.localeCompare(b.displayName)
     : isUnSortedA
       ? -1
-      : isUnSortedB
-        ? 1
-        : a.displayName.localeCompare(b.displayName);
+      : 1;
 }
 
 // This is all the Substrate networks with our additional information
