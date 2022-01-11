@@ -63,13 +63,13 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: null
   },
   {
-    decimals: [15],
-    displayName: 'Plasm Network',
-    network: 'plasm',
+    decimals: [18],
+    displayName: 'Astar Network',
+    network: 'astar',
     prefix: 5,
     standardAccount: '*25519',
-    symbols: ['PLM'],
-    website: 'https://plasmnet.io'
+    symbols: ['ASTR'],
+    website: 'https://astar.network'
   },
   {
     decimals: [12],
