@@ -6,7 +6,8 @@
     "rootDir": "./src"
   },
   "references": [
-    { "path": "../util" },
-    { "path": "../util-crypto" }
+    {
+      "path": "../x-global/tsconfig.build.json"
+    }
   ]
 }

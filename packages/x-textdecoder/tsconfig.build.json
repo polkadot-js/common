@@ -6,8 +6,8 @@
     "rootDir": "./src"
   },
   "references": [
-    { "path": "../hw-ledger" },
-    { "path": "../util" },
-    { "path": "../x-fetch" }
+    {
+      "path": "../x-global/tsconfig.build.json"
+    }
   ]
 }

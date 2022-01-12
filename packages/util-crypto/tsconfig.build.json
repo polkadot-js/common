@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "outDir": "./build",
+    "rootDir": "./src"
+  },
+  "references": [
+    {
+      "path": "../networks/tsconfig.build.json"
+    },
+    {
+      "path": "../util/tsconfig.build.json"
+    },
+    {
+      "path": "../x-bigint/tsconfig.build.json"
+    },
+    {
+      "path": "../x-randomvalues/tsconfig.build.json"
+    }
+  ]
+}

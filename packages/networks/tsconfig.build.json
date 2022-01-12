@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "outDir": "./build",
+    "rootDir": "./src"
+  },
+  "references": [
+    {
+      "path": "../hw-ledger/tsconfig.build.json"
+    },
+    {
+      "path": "../util/tsconfig.build.json"
+    },
+    {
+      "path": "../x-fetch/tsconfig.build.json"
+    }
+  ]
+}
