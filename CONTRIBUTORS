@@ -1,4 +1,4 @@
-    1234	Jaco                          	Adjust with tsconfig.build.json inside packages (#1377)
+    1235	Jaco                          	Adjust .mailmap (#1378)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
