@@ -6,6 +6,11 @@
     "rootDir": "./src"
   },
   "references": [
-    { "path": "../util" }
+    {
+      "path": "../hw-ledger-transports/tsconfig.build.json"
+    },
+    {
+      "path": "../util/tsconfig.build.json"
+    }
   ]
 }
