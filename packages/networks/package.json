@@ -17,14 +17,14 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "8.3.2-8",
+  "version": "8.3.2-9",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.7",
-    "@polkadot/util": "8.3.2-8"
+    "@polkadot/util": "8.3.2-9"
   },
   "devDependencies": {
-    "@polkadot/hw-ledger": "8.3.2-8",
-    "@polkadot/x-fetch": "8.3.2-8"
+    "@polkadot/hw-ledger": "8.3.2-9",
+    "@polkadot/x-fetch": "8.3.2-9"
   }
 }

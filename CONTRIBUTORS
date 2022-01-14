@@ -1,4 +1,4 @@
-    1237	Jaco                          	Adjust network sorting (primary by prefix, secondary by name) (#1375)
+    1238	Jaco                          	Bump dependencies (#1379)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
