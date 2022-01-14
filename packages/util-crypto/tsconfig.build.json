@@ -6,17 +6,9 @@
     "rootDir": "./src"
   },
   "references": [
-    {
-      "path": "../networks/tsconfig.build.json"
-    },
-    {
-      "path": "../util/tsconfig.build.json"
-    },
-    {
-      "path": "../x-bigint/tsconfig.build.json"
-    },
-    {
-      "path": "../x-randomvalues/tsconfig.build.json"
-    }
+    { "path": "../networks/tsconfig.build.json" },
+    { "path": "../util/tsconfig.build.json" },
+    { "path": "../x-bigint/tsconfig.build.json" },
+    { "path": "../x-randomvalues/tsconfig.build.json" }
   ]
 }

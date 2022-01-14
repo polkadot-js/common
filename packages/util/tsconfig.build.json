@@ -6,20 +6,10 @@
     "rootDir": "./src"
   },
   "references": [
-    {
-      "path": "../x-bigint/tsconfig.build.json"
-    },
-    {
-      "path": "../x-global/tsconfig.build.json"
-    },
-    {
-      "path": "../x-randomvalues/tsconfig.build.json"
-    },
-    {
-      "path": "../x-textdecoder/tsconfig.build.json"
-    },
-    {
-      "path": "../x-textencoder/tsconfig.build.json"
-    }
+    { "path": "../x-bigint/tsconfig.build.json" },
+    { "path": "../x-global/tsconfig.build.json" },
+    { "path": "../x-randomvalues/tsconfig.build.json" },
+    { "path": "../x-textdecoder/tsconfig.build.json" },
+    { "path": "../x-textencoder/tsconfig.build.json" }
   ]
 }
