@@ -6,11 +6,7 @@
     "rootDir": "./src"
   },
   "references": [
-    {
-      "path": "../util/tsconfig.build.json"
-    },
-    {
-      "path": "../util-crypto/tsconfig.build.json"
-    }
+    { "path": "../util/tsconfig.build.json" },
+    { "path": "../util-crypto/tsconfig.build.json" }
   ]
 }

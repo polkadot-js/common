@@ -6,8 +6,6 @@
     "rootDir": "./src"
   },
   "references": [
-    {
-      "path": "../x-global/tsconfig.build.json"
-    }
+    { "path": "../x-global/tsconfig.build.json" }
   ]
 }

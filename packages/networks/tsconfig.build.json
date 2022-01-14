@@ -6,14 +6,8 @@
     "rootDir": "./src"
   },
   "references": [
-    {
-      "path": "../hw-ledger/tsconfig.build.json"
-    },
-    {
-      "path": "../util/tsconfig.build.json"
-    },
-    {
-      "path": "../x-fetch/tsconfig.build.json"
-    }
+    { "path": "../hw-ledger/tsconfig.build.json" },
+    { "path": "../util/tsconfig.build.json" },
+    { "path": "../x-fetch/tsconfig.build.json" }
   ]
 }
