@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## master
+## 8.3.2 Jan 15, 2022
 
 Changes:
 
-- Adjust network sorting (primary by prefix, secondary by name)
+- Correct network sorting (primary by prefix, secondary by name)
 - Sync with upstream Substrate ss58 registry
 
 
