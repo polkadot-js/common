@@ -6,9 +6,14 @@ import type { SubstrateNetwork } from './types';
 import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults';
 import { allNetworks, availableNetworks, selectableNetworks } from '.';
 
-describe('selectableNetworks', (): void => {
+describe('availableNetworks', (): void => {
   it('has the correct starting order', (): void => {
-    expect(selectableNetworks.slice(0, 3).map(({ prefix }) => prefix)).toEqual([0, 2, 42]);
+    expect(availableNetworks.slice(0, 3).map(({ prefix }) => prefix)).toEqual([0, 2, 42]);
+  });
+
+  it('has a sorted list (first external, last external)', (): void => {
+    expect(availableNetworks[3].displayName).toEqual('Acala');
+    expect(availableNetworks[availableNetworks.length - 1].displayName).toEqual('ZERO');
   });
 
   it('has no ignored networks', (): void => {
@@ -62,7 +67,9 @@ describe('selectableNetworks', (): void => {
       )
     ).toEqual([]);
   });
+});
 
+describe('allNetworks', (): void => {
   it('has no ss58 duplicates', (): void => {
     const dupes: SubstrateNetwork[] = [];
     const uniques: SubstrateNetwork[] = [];
@@ -76,5 +83,16 @@ describe('selectableNetworks', (): void => {
     });
 
     expect(dupes).toEqual([]);
+  });
+});
+
+describe('selectableNetworks', (): void => {
+  it('has the correct starting order', (): void => {
+    expect(selectableNetworks.slice(0, 3).map(({ prefix }) => prefix)).toEqual([0, 2, 42]);
+  });
+
+  it('has a sorted list (first external, last external)', (): void => {
+    expect(selectableNetworks[3].displayName).toEqual('Acala');
+    expect(selectableNetworks[selectableNetworks.length - 1].displayName).toEqual('Stafi');
   });
 });
