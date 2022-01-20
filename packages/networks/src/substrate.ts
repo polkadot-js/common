@@ -630,6 +630,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     website: 'https://clover.finance'
   },
   {
+    decimals: [12],
+    displayName: 'Litmus Network',
+    network: 'litmus',
+    prefix: 131,
+    standardAccount: '*25519',
+    symbols: ['LIT'],
+    website: 'https://litentry.com/'
+  },
+  {
     decimals: [18],
     displayName: 'Altair',
     network: 'altair',
@@ -709,6 +718,15 @@ export const knownSubstrate: KnownSubstrate[] = [
     standardAccount: 'secp256k1',
     symbols: ['MOVR'],
     website: 'https://moonbeam.network'
+  },
+  {
+    decimals: [12],
+    displayName: 'Ajuna Network',
+    network: 'ajuna',
+    prefix: 1337,
+    standardAccount: 'Sr25519',
+    symbols: ['AJUN'],
+    website: 'https://ajuna.io'
   },
   {
     decimals: [12],
