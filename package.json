@@ -10,7 +10,7 @@
     "url": "https://github.com/polkadot-js/common.git"
   },
   "sideEffects": false,
-  "version": "8.3.3-3",
+  "version": "8.3.3",
   "workspaces": [
     "packages/*"
   ],
@@ -28,8 +28,8 @@
     "test:one": "polkadot-dev-run-test --runInBand"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.10",
-    "@polkadot/dev": "^0.65.42",
+    "@babel/core": "^7.16.12",
+    "@polkadot/dev": "^0.65.43",
     "@types/jest": "^27.4.0"
   },
   "resolutions": {
