@@ -3,8 +3,9 @@
 
 import type { KnownSubstrate, Network, SubstrateNetwork } from './types';
 
+import knownSubstrate from '@substrate/ss58-registry';
+
 import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults';
-import { knownSubstrate } from './substrate';
 
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
@@ -25,7 +26,14 @@ function toExpanded (o: KnownSubstrate): SubstrateNetwork {
 
   // filtering
   n.isTestnet = !!knownTestnet[network] || TESTNETS.includes(nameParts[nameParts.length - 1]);
-  n.isIgnored = n.isTestnet || (!(o.standardAccount && o.decimals && o.symbols) && o.prefix !== 42);
+  n.isIgnored = n.isTestnet || (
+    !(
+      o.standardAccount &&
+      o.decimals && o.decimals.length &&
+      o.symbols && o.symbols.length
+    ) &&
+    o.prefix !== 42
+  );
 
   return n;
 }

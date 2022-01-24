@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Use upstream `@substrate/ss58-registry` (instead of duplicating here)
+
+
 ## 8.3.3 Jan 23, 2022
 
 Changes:

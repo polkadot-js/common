@@ -21,7 +21,8 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.7",
-    "@polkadot/util": "8.3.3"
+    "@polkadot/util": "8.3.3",
+    "@substrate/ss58-registry": "^1.12.0"
   },
   "devDependencies": {
     "@polkadot/hw-ledger": "8.3.3",

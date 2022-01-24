@@ -1,23 +1,17 @@
 // Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate';
+import type { RegistryEntry } from '@substrate/ss58-registry';
 
-export interface KnownSubstrate {
-  decimals: number[] | null,
-  displayName: string;
-  network: string | null;
-  prefix: number;
-  standardAccount: '*25519' | 'Ed25519' | 'Sr25519' | 'secp256k1' | null;
-  symbols: string[] | null;
-  website: string | null;
-}
+export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate';
 
 export type KnownIcon = Record<string, Icon>;
 
 export type KnownLedger = Record<string, number>;
 
 export type KnownGenesis = Record<string, string[]>;
+
+export type KnownSubstrate = RegistryEntry;
 
 export type KnownTestnet = Record<string, true>;
 
