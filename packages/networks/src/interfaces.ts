@@ -26,7 +26,14 @@ function toExpanded (o: KnownSubstrate): SubstrateNetwork {
 
   // filtering
   n.isTestnet = !!knownTestnet[network] || TESTNETS.includes(nameParts[nameParts.length - 1]);
-  n.isIgnored = n.isTestnet || (!(o.standardAccount && o.decimals && o.symbols) && o.prefix !== 42);
+  n.isIgnored = n.isTestnet || (
+    !(
+      o.standardAccount &&
+      o.decimals && o.decimals.length &&
+      o.symbols && o.symbols.length
+    ) &&
+    o.prefix !== 42
+  );
 
   return n;
 }
