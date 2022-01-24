@@ -113,6 +113,6 @@ describe('selectableNetworks', (): void => {
 
   it('has a sorted list (first external, last external)', (): void => {
     expect(selectableNetworks[3].displayName).toEqual('Acala');
-    expect(selectableNetworks[selectableNetworks.length - 1].displayName).toEqual('Stafi');
+    expect(selectableNetworks[selectableNetworks.length - 1].displayName).toEqual('Subsocial');
   });
 });
