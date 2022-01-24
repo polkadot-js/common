@@ -1958,9 +1958,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.65.43":
-  version: 0.65.43
-  resolution: "@polkadot/dev@npm:0.65.43"
+"@polkadot/dev@npm:^0.65.44":
+  version: 0.65.44
+  resolution: "@polkadot/dev@npm:0.65.44"
   dependencies:
     "@babel/cli": ^7.16.8
     "@babel/core": ^7.16.12
@@ -2046,7 +2046,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: cebdfe1fa6325a7b29599478eb3ee5350f96f1d51a781dcd5625310008ae9a884927a4b43d57c9319a1446f9e9f5db293ce74ace798cdee34e40d04277e759f2
+  checksum: 8453e5b1a176035484df1334ae3c54cb1d0d87948349e6deed3b57649fff6b4ee2a8c6c8231f1de028eee3762166d006b9babc7c82fd31d573c6ab3136655b35
   languageName: node
   linkType: hard
 
@@ -2099,6 +2099,7 @@ __metadata:
     "@polkadot/hw-ledger": 8.3.3
     "@polkadot/util": 8.3.3
     "@polkadot/x-fetch": 8.3.3
+    "@substrate/ss58-registry": ^1.12.0
   languageName: unknown
   linkType: soft
 
@@ -2358,6 +2359,13 @@ __metadata:
   dependencies:
     "@sinonjs/commons": ^1.7.0
   checksum: 97a78e6f83dd420d73b155a0438cd0fd3392e706b8314530db3d99354689cc714eb3d18540be2aedcd3a3d6070e14f509dce7c6cc817701e9538b3b8ac423eaa
+  languageName: node
+  linkType: hard
+
+"@substrate/ss58-registry@npm:^1.12.0":
+  version: 1.12.0
+  resolution: "@substrate/ss58-registry@npm:1.12.0"
+  checksum: 8273b3fa494b70512e68d81c6c77e66271e59130641c52f91ce2014485e66b5fcc70492189e9feab0d1ef44b349377455fd4c89120339390b98967e40ff09166
   languageName: node
   linkType: hard
 
@@ -9155,7 +9163,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.16.12
-    "@polkadot/dev": ^0.65.43
+    "@polkadot/dev": ^0.65.44
     "@types/jest": ^27.4.0
   languageName: unknown
   linkType: soft

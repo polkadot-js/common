@@ -3,8 +3,9 @@
 
 import type { KnownSubstrate, Network, SubstrateNetwork } from './types';
 
+import knownSubstrate from '@substrate/ss58-registry';
+
 import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults';
-import { knownSubstrate } from './substrate';
 
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
