@@ -1,4 +1,4 @@
-    1247	Jaco                          	Use upstream @substrate/ss58-registry (#1391)
+    1248	Jaco                          	Swap to @scure/base (micro-base rename) (#1392)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
