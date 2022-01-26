@@ -2115,9 +2115,9 @@ __metadata:
     "@polkadot/wasm-crypto": ^4.5.1
     "@polkadot/x-bigint": 8.3.4-0
     "@polkadot/x-randomvalues": 8.3.4-0
+    "@scure/base": 1.0.0-rc1
     "@types/ed2curve": ^0.2.2
     ed2curve: ^0.3.0
-    micro-base: ^0.10.2
     tweetnacl: ^1.0.3
   peerDependencies:
     "@polkadot/util": 8.3.4-0
@@ -2334,6 +2334,13 @@ __metadata:
   version: 1.1.0
   resolution: "@rushstack/eslint-patch@npm:1.1.0"
   checksum: 4602c23454c8bb03502da12398cb5c4c0bfb3b1772535b418ec94ab8c47824f70e6ff32206a35fe7086042d9516959edea439e2371147b1de7eee50ef03ace65
+  languageName: node
+  linkType: hard
+
+"@scure/base@npm:1.0.0-rc1":
+  version: 1.0.0-rc1
+  resolution: "@scure/base@npm:1.0.0-rc1"
+  checksum: 53a26a1cf674b845b66e480c37710101cfa72b61845aaecfef82ffe236a0a380b1f95865f41e335f7008985852b5e8211016f4413f8628af41a5ed2f0d64569a
   languageName: node
   linkType: hard
 
@@ -7649,13 +7656,6 @@ fsevents@~2.1.2:
   version: 1.4.1
   resolution: "merge2@npm:1.4.1"
   checksum: 7268db63ed5169466540b6fb947aec313200bcf6d40c5ab722c22e242f651994619bcd85601602972d3c85bd2cc45a358a4c61937e9f11a061919a1da569b0c2
-  languageName: node
-  linkType: hard
-
-"micro-base@npm:^0.10.2":
-  version: 0.10.2
-  resolution: "micro-base@npm:0.10.2"
-  checksum: 4fcc9fb80cca021c5157e63d76188e3742a8f1ac5a90b1022a34cd715bf8ab19bbd82b71b908f0cf1cf6983d39533fe1aef4f24f2c0b09ec9d862fdaf5bf26ab
   languageName: node
   linkType: hard
 
