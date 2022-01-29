@@ -5,6 +5,8 @@
 Changes:
 
 - Use upstream `@substrate/ss58-registry` (instead of duplicating here)
+- Swap `micro-base` to `@scure/base` (same package, audited)
+- Upgrade dependencies to latest stable versions
 
 
 ## 8.3.3 Jan 23, 2022
