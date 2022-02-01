@@ -11,6 +11,9 @@ export const knownGenesis: KnownGenesis = {
   acala: [
     '0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c'
   ],
+  basilisk: [
+    '0xa85cfb9b9fd4d622a5b28289a02347af987d8f73fa3108450e2b4a11c1ce5755'
+  ],
   bifrost: [
     '0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed'
   ],
