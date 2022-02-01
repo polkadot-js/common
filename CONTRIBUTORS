@@ -3,7 +3,7 @@
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
        4	Adam Dossa                    	Update Polymesh Genesis Hash (#1193)
-       3	Jakub Pánik                   	HydraDX Snakenet Gen3-1 (#977)
+       4	Jakub Pánik                   	Add basilisk 🐍 (#1396)
        3	Luke Schoen                   	docs: Fix example in readme since we use default imports (#243)
        2	AndreasGassmann               	feat(dependencies): remove moment.js (#530)
        2	Gav Wood                      	Fix stake:unstake (#182)
