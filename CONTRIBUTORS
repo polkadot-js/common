@@ -21,6 +21,7 @@
        1	Eliott Teissonniere           	add nodle ledger specs (#1089)
        1	h4x3rotab                     	Throws an error when signing with a locked keypair (#578)
        1	Harry Liu                     	Update README.md (#446)
+       1	Hoon Kim                      	replace plasm genesis with astar (#1397)
        1	Hussein Ait-Lahcen            	Add Picasso Genesis Hash (#1261)
        1	Igor                          	Support genshiro network (#1148)
        1	Jake Naviasky                 	Add evmToAddress and addressToEvm crypto utils. (#705)
