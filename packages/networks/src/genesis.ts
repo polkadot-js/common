@@ -11,6 +11,9 @@ export const knownGenesis: KnownGenesis = {
   acala: [
     '0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c'
   ],
+  astar: [
+    '0x9eb76c5184c4ab8679d2d5d819fdf90b9c001403e9e17da2e14b6d8aec4029c6'
+  ],
   basilisk: [
     '0xa85cfb9b9fd4d622a5b28289a02347af987d8f73fa3108450e2b4a11c1ce5755'
   ],
@@ -54,9 +57,6 @@ export const knownGenesis: KnownGenesis = {
   ],
   picasso: [
     '0xe8e7f0f4c4f5a00720b4821dbfddefea7490bcf0b19009961cc46957984e2c1c'
-  ],
-  plasm: [
-    '0x3e86364d4b4894021cb2a0390bcf2feb5517d5292f2de2bb9404227e908b0b8b'
   ],
   polkadot: [
     '0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3'
