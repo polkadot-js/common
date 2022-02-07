@@ -6,6 +6,7 @@ Changes:
 
 - Use upstream `@substrate/ss58-registry` (instead of duplicating here)
 - Swap `micro-base` to `@scure/base` (same package, audited)
+- Bump `bn.js` library to latest 5.2.0 (has impact on e.g. API)
 - Upgrade dependencies to latest stable versions
 
 
