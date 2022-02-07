@@ -13,19 +13,19 @@ describe('stringify', (): void => {
 
   it('stringifies an array of values', (): void => {
     expect(
-      stringify(['a', 1, 2n, new BN(3)])
-    ).toEqual('["a",1,"2","3"]');
+      stringify(['a', 1, 2n, new BN(69)])
+    ).toEqual('["a",1,"2","45"]');
   });
 
   it('stringifies an array of values (with spaces)', (): void => {
     expect(
       stringify(['a', 1, 2n, new BN(3)], 2)
-    ).toEqual('[\n  "a",\n  1,\n  "2",\n  "3"\n]');
+    ).toEqual('[\n  "a",\n  1,\n  "2",\n  "03"\n]');
   });
 
   it('stringifies a nested object', (): void => {
     expect(
       stringify({ a: 'a', b: 1, c: { d: 2n, e: new BN(3) } })
-    ).toEqual('{"a":"a","b":1,"c":{"d":"2","e":"3"}}');
+    ).toEqual('{"a":"a","b":1,"c":{"d":"2","e":"03"}}');
   });
 });
