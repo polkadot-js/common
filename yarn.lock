@@ -2133,7 +2133,7 @@ __metadata:
     "@polkadot/hw-ledger": 8.3.4-10
     "@polkadot/util": 8.3.4-10
     "@polkadot/x-fetch": 8.3.4-10
-    "@substrate/ss58-registry": ^1.12.0
+    "@substrate/ss58-registry": ^1.13.0
   languageName: unknown
   linkType: soft
 
@@ -2403,10 +2403,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@substrate/ss58-registry@npm:^1.12.0":
-  version: 1.12.0
-  resolution: "@substrate/ss58-registry@npm:1.12.0"
-  checksum: 8273b3fa494b70512e68d81c6c77e66271e59130641c52f91ce2014485e66b5fcc70492189e9feab0d1ef44b349377455fd4c89120339390b98967e40ff09166
+"@substrate/ss58-registry@npm:^1.13.0":
+  version: 1.13.0
+  resolution: "@substrate/ss58-registry@npm:1.13.0"
+  checksum: dbbdcfb205808e103c408f6d9bb4229064547291d4d7ffbf7d270e9ac1013c421804990643bec0afcf6066bb7a71aa65805318c99a0ddcb841dca6c755006fb4
   languageName: node
   linkType: hard
 

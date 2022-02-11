@@ -298,7 +298,7 @@
     "network": "zero",
     "displayName": "ZERO",
     "symbols": [
-      "PLAY"
+      "ZERO"
     ],
     "decimals": [
       18
@@ -311,7 +311,7 @@
     "network": "zero-alphaville",
     "displayName": "ZERO Alphaville",
     "symbols": [
-      "PLAY"
+      "ZERO"
     ],
     "decimals": [
       18
@@ -331,6 +331,19 @@
     ],
     "standardAccount": "*25519",
     "website": "https://jupiter.patract.io"
+  },
+  {
+    "prefix": 27,
+    "network": "kabocha",
+    "displayName": "Kabocha",
+    "symbols": [
+      "KAB"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://kabocha.network"
   },
   {
     "prefix": 28,
