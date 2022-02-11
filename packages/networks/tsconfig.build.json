@@ -6,6 +6,10 @@
     "resolveJsonModule": true,
     "rootDir": "./src"
   },
+  "include": [
+    "**/src/*.ts",
+    "**/test/*.json"
+  ],
   "references": [
     { "path": "../hw-ledger/tsconfig.build.json" },
     { "path": "../util/tsconfig.build.json" },
