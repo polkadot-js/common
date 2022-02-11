@@ -1992,9 +1992,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.65.52":
-  version: 0.65.52
-  resolution: "@polkadot/dev@npm:0.65.52"
+"@polkadot/dev@npm:^0.65.53":
+  version: 0.65.53
+  resolution: "@polkadot/dev@npm:0.65.53"
   dependencies:
     "@babel/cli": ^7.17.0
     "@babel/core": ^7.17.2
@@ -2032,7 +2032,7 @@ __metadata:
     eslint-import-resolver-node: ^0.3.6
     eslint-plugin-header: ^3.1.1
     eslint-plugin-import: ^2.25.4
-    eslint-plugin-import-newlines: ^1.1.8
+    eslint-plugin-import-newlines: ^1.2.0
     eslint-plugin-node: ^11.1.0
     eslint-plugin-promise: ^6.0.0
     eslint-plugin-react: ^7.28.0
@@ -2054,7 +2054,7 @@ __metadata:
     mkdirp: ^1.0.4
     prettier: ^2.5.1
     rimraf: ^3.0.2
-    rollup: ^2.67.1
+    rollup: ^2.67.2
     rollup-plugin-cleanup: ^3.2.1
     typescript: ^4.5.5
     yargs: ^17.3.1
@@ -2080,7 +2080,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 1c0e02fec855db73fd9d17f6051419ce278d9572d1df9c1c1f7a5f0b0e46668729015dce07197a2d2f34db4c898e564d8ffeaab9483eef5915685975bf1e317f
+  checksum: 95f77d4b38be35ff11f9d36d34a7da524096af2bf834fa6b894583984f456b8186dd1afa4485a34c34cf4b698b92a47ab3c53aef182657bb6b0602a9c2acb563
   languageName: node
   linkType: hard
 
@@ -4834,14 +4834,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import-newlines@npm:^1.1.8":
-  version: 1.1.8
-  resolution: "eslint-plugin-import-newlines@npm:1.1.8"
+"eslint-plugin-import-newlines@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "eslint-plugin-import-newlines@npm:1.2.0"
   peerDependencies:
     eslint: ">=6.0.0"
   bin:
     import-linter: lib/index.js
-  checksum: f4bffded815faed4063c4d75a5d5941d08fc13435da54a0a3ea396695bdd8d91efde2262a0eb9debb6a9e8ef00ccbe5d97d078fa521f4be26942f2e4a5897c8c
+  checksum: aa6db47826dd11e775fd18a367b1cf14d411c371c6f5d421aeaca917b426934cff6b411de5c4253b03f8f962634d8b9d247ba874d5310296dc0a43690dc17d7e
   languageName: node
   linkType: hard
 
@@ -9179,9 +9179,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.67.1":
-  version: 2.67.1
-  resolution: "rollup@npm:2.67.1"
+"rollup@npm:^2.67.2":
+  version: 2.67.2
+  resolution: "rollup@npm:2.67.2"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -9189,7 +9189,7 @@ resolve@^2.0.0-next.3:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 4320927ae9d42abf0a72ccdfd14303f7b6d6908ec94be953900a41bd4c0bbba3131887c3925dec65361a3e394cb572a4fa8e1f1be4db587a775068ad71d42acd
+  checksum: 9aca5251ba4b441064183cde2394b91567259002d68086bdd3906db66d55dd148ab27e57c51eb53830d7b9b813c2d4e834b7735d65e2a869780bc639d4a20c38
   languageName: node
   linkType: hard
 
@@ -9198,7 +9198,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.17.2
-    "@polkadot/dev": ^0.65.52
+    "@polkadot/dev": ^0.65.53
     "@types/jest": ^27.4.0
   languageName: unknown
   linkType: soft
