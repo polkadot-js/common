@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "..",
     "outDir": "./build",
+    "resolveJsonModule": true,
     "rootDir": "./src"
   },
   "references": [
