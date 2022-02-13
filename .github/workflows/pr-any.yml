@@ -8,11 +8,12 @@ jobs:
         step: ['lint', 'test', 'build']
     name: ${{ matrix.step }}
     runs-on: ubuntu-latest
+    env:
+      YARN_ENABLE_SCRIPTS: false
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
     steps:
     - uses: actions/checkout@v2
     - name: ${{ matrix.step }}
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       run: |
         yarn install --immutable | grep -v 'YN0013'
         yarn ${{ matrix.step }}
