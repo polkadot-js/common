@@ -621,6 +621,19 @@
     "website": "https://composable.finance"
   },
   {
+    "prefix": 51,
+    "network": "oak",
+    "displayName": "OAK Network",
+    "symbols": [
+      "OAK"
+    ],
+    "decimals": [
+      10
+    ],
+    "standardAccount": "*25519",
+    "website": "https://oak.tech"
+  },
+  {
     "prefix": 55,
     "network": "xxnetwork",
     "displayName": "xx network",
