@@ -34,19 +34,19 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "8.3.4-11",
+  "version": "8.3.4-12",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@polkadot/x-bigint": "8.3.4-11",
-    "@polkadot/x-global": "8.3.4-11",
-    "@polkadot/x-textdecoder": "8.3.4-11",
-    "@polkadot/x-textencoder": "8.3.4-11",
+    "@polkadot/x-bigint": "8.3.4-12",
+    "@polkadot/x-global": "8.3.4-12",
+    "@polkadot/x-textdecoder": "8.3.4-12",
+    "@polkadot/x-textencoder": "8.3.4-12",
     "@types/bn.js": "^5.1.0",
     "bn.js": "^5.2.0",
     "ip-regex": "^4.3.0"
   },
   "devDependencies": {
-    "@polkadot/x-randomvalues": "8.3.4-11"
+    "@polkadot/x-randomvalues": "8.3.4-12"
   }
 }
