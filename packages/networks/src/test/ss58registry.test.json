@@ -260,7 +260,7 @@
   },
   {
     "prefix": 21,
-    "network": "dock-testnet",
+    "network": "dock-pos-testnet",
     "displayName": "Dock Testnet",
     "symbols": [
       "DCK"
@@ -273,7 +273,7 @@
   },
   {
     "prefix": 22,
-    "network": "dock-mainnet",
+    "network": "dock-pos-mainnet",
     "displayName": "Dock Mainnet",
     "symbols": [
       "DCK"

@@ -23,8 +23,8 @@ export const knownGenesis: KnownGenesis = {
   centrifuge: [
     '0x67dddf2673b69e5f875f6f25277495834398eafd67f492e09f3f3345e003d1b5'
   ],
-  'dock-mainnet': [
-    '0xf73467c6544aa68df2ee546b135f955c46b90fa627e9b5d7935f41061bb8a5a9'
+  'dock-pos-mainnet': [
+    '0x6bfe24dca2a3be10f22212678ac13a6446ec764103c0f3471c71609eac384aae'
   ],
   edgeware: [
     '0x742a2ca70c2fda6cee4f8df98d64c4c670a052d9568058982dad9d5a7a135c5b'
