@@ -10,7 +10,7 @@ import { newBifrostApp, newCentrifugeApp, newDockApp, newEdgewareApp, newEquilib
 export const ledgerApps: Record<string, (transport: Transport) => SubstrateApp> = {
   bifrost: newBifrostApp,
   centrifuge: newCentrifugeApp,
-  'dock-mainnet': newDockApp,
+  'dock-pos-mainnet': newDockApp,
   edgeware: newEdgewareApp,
   equilibrium: newEquilibriumApp,
   genshiro: newGenshiroApp,

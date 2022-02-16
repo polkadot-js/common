@@ -24,7 +24,7 @@ export const knownIcon: KnownIcon = {
 export const knownLedger: KnownLedger = {
   bifrost: 0x00000314,
   centrifuge: 0x000002eb,
-  'dock-mainnet': 0x00000252,
+  'dock-pos-mainnet': 0x00000252,
   edgeware: 0x0000020b,
   equilibrium: 0x05f5e0fd,
   genshiro: 0x05f5e0fc,
@@ -40,7 +40,7 @@ export const knownLedger: KnownLedger = {
 export const knownTestnet: KnownTestnet = {
   '': true, // this is the default non-network entry
   'cess-testnet': true,
-  'dock-testnet': true,
+  'dock-pos-testnet': true,
   jupiter: true,
   'mathchain-testnet': true,
   subspace_testnet: true,
