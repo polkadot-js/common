@@ -634,6 +634,32 @@
     "website": "https://oak.tech"
   },
   {
+    "prefix": 52,
+    "network": "KICO",
+    "displayName": "KICO",
+    "symbols": [
+      "KICO"
+    ],
+    "decimals": [
+      14
+    ],
+    "standardAccount": "*25519",
+    "website": "https://dico.io"
+  },
+  {
+    "prefix": 53,
+    "network": "DICO",
+    "displayName": "DICO",
+    "symbols": [
+      "DICO"
+    ],
+    "decimals": [
+      14
+    ],
+    "standardAccount": "*25519",
+    "website": "https://dico.io"
+  },
+  {
     "prefix": 55,
     "network": "xxnetwork",
     "displayName": "xx network",
