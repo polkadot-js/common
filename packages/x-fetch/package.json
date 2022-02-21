@@ -24,7 +24,7 @@
   "dependencies": {
     "@babel/runtime": "^7.17.2",
     "@polkadot/x-global": "8.4.2-1",
-    "@types/node-fetch": "^2.6.0",
+    "@types/node-fetch": "^2.6.1",
     "node-fetch": "^2.6.7"
   }
 }
