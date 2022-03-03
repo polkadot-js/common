@@ -1,4 +1,4 @@
-    1267	Jaco                          	Replace mergify with action (#1419)
+    1268	Jaco                          	Remove checkout from auto-{approve, merge} actions (#1420)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
