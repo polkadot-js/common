@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Adjust for bundlers where `import.meta.url` is undefined
+- Upgrade dependencies to latest stable versions
+
+
 ## 8.4.1 Feb 14, 2022
 
 Changes:
