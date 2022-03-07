@@ -28,6 +28,6 @@
     "@polkadot/util": "8.4.2-10"
   },
   "optionalDependencies": {
-    "@ledgerhq/hw-transport-node-hid-singleton": "^6.24.1"
+    "@ledgerhq/hw-transport-node-hid-singleton": "^6.26.0"
   }
 }
