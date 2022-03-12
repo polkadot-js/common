@@ -1102,6 +1102,19 @@
     "website": "https://subspace.network"
   },
   {
+    "prefix": 7391,
+    "network": "unique_mainnet",
+    "displayName": "Unique Network",
+    "symbols": [
+      "UNQ"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://unique.network"
+  },
+  {
     "prefix": 10041,
     "network": "basilisk",
     "displayName": "Basilisk",
