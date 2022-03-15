@@ -27,6 +27,7 @@
        1	Jake Naviasky                 	Add evmToAddress and addressToEvm crypto utils. (#705)
        1	JesseAbram                    	added check if valid address to docs (#440)
        1	joe petrowski                 	Add example for multisig address creation (#590)
+       1	Kami                          	Update README.md (#1427)
        1	Lezek123                      	logger - wildcard include/exclude with DEBUG env (#932)
        1	Lovesh Harchandani            	Add Dock network id for address generation (#640)
        1	Mario Neises                  	remove redudant export (#257)
