@@ -6,7 +6,7 @@ import type { SubstrateApp } from '@zondax/ledger-substrate';
 
 import { newBifrostApp, newCentrifugeApp, newDockApp, newEdgewareApp, newEquilibriumApp, newGenshiroApp, newKusamaApp, newNodleApp, newPolkadotApp, newPolymeshApp, newSoraApp, newStatemineApp } from '@zondax/ledger-substrate';
 
-// These match up with the keys of the knownLedger object in the @polkadot/networks/defaults.ts
+// These match up with the keys of the knownLedger object in the @polkadot/networks/defaults/ledger.ts
 export const ledgerApps: Record<string, (transport: Transport) => SubstrateApp> = {
   bifrost: newBifrostApp,
   centrifuge: newCentrifugeApp,

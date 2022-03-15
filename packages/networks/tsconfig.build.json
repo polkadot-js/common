@@ -7,7 +7,7 @@
     "rootDir": "./src"
   },
   "include": [
-    "**/src/*.ts",
+    "**/src/**/*.ts",
     "**/test/*.json"
   ],
   "references": [

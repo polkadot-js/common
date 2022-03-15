@@ -8,9 +8,9 @@ import fs from 'fs';
 import { objectKeys, stringify } from '@polkadot/util';
 import { fetch } from '@polkadot/x-fetch';
 
-import { substrateRegistry } from './defaults';
 import { allNetworks } from './';
 
+const REGISTRY = 'https://raw.githubusercontent.com/paritytech/ss58-registry/main/ss58-registry.json';
 const OUTPUT = './.github/ss58-check.md';
 
 function assertAndLog (check: boolean, error: string): void {
@@ -28,7 +28,7 @@ describe('check latest Substrate ss58 registry', (): void => {
   let original: Ss58Registry;
 
   beforeAll(async (): Promise<void> => {
-    original = (await (await fetch(substrateRegistry)).json()) as Ss58Registry;
+    original = (await (await fetch(REGISTRY)).json()) as Ss58Registry;
   });
 
   it('has the same number as the original', (): void => {
