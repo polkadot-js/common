@@ -16,6 +16,9 @@ import { insecureRandomValues } from './fallback';
 export { packageInfo } from './packageInfo';
 
 interface RNExt {
+  ExpoRandom: {
+    getRandomBase64String: (length: number) => string;
+  };
   RNGetRandomValues: {
     getRandomBase64: (length: number) => string;
   }
@@ -27,7 +30,9 @@ interface GlobalExt extends Window {
 
 function getRandomValuesNative <T extends Uint8Array> (output: T): T {
   const bytes = base64Decode(
-    (NativeModules as RNExt).RNGetRandomValues.getRandomBase64(output.length)
+    (NativeModules as RNExt).RNGetRandomValues
+      ? (NativeModules as RNExt).RNGetRandomValues.getRandomBase64(output.length)
+      : (NativeModules as RNExt).ExpoRandom.getRandomBase64String(output.length)
   );
 
   for (let i = 0; i < bytes.length; i++) {
