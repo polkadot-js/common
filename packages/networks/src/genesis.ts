@@ -88,5 +88,8 @@ export const knownGenesis: KnownGenesis = {
   ],
   subsocial: [
     '0x0bd72c1c305172e1275278aaeb3f161e02eccb7a819e63f62d47bd53a28189f8'
-  ]
+  ],
+  westend:[
+    '0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e'
+  ] 
 };
