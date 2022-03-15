@@ -1,4 +1,4 @@
-    1273	Jaco                          	Aplit and organize network defaults (#1430)
+    1274	Jaco                          	Cater for Expo v41+ in getRandomValues (#1431)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
