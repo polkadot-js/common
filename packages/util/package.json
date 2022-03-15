@@ -37,7 +37,7 @@
   "version": "8.5.2-3",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.17.2",
+    "@babel/runtime": "^7.17.7",
     "@polkadot/x-bigint": "8.5.2-3",
     "@polkadot/x-global": "8.5.2-3",
     "@polkadot/x-textdecoder": "8.5.2-3",
