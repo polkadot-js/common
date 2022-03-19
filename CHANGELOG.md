@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## master
+## 8.6.1 Mar 19, 2022
+
+**Important** This contains an upgraded version of `@polkadot/wasm-crypto`. For users of asm.js, e.g. React Native, there are some additional upgrade instructions in the release notes for this version https://github.com/polkadot-js/wasm/releases/tag/v5.0.1
 
 Contributed:
 
@@ -14,6 +16,7 @@ Changes:
 - Cater for Expo v41+ in RN random value generation
 - Internal split of details in `@polkadot/networks`
 - Additional workaround for Vite bundling
+- Upgrade to `@polkadot/wasm-crypto` 5.0.1
 
 
 ## 8.5.1 Mar 12, 2022
