@@ -233,19 +233,6 @@
     "website": "https://darwinia.network/"
   },
   {
-    "prefix": 19,
-    "network": "geek",
-    "displayName": "GeekCash",
-    "symbols": [
-      "GEEK"
-    ],
-    "decimals": [
-      12
-    ],
-    "standardAccount": "*25519",
-    "website": "https://geekcash.org"
-  },
-  {
     "prefix": 20,
     "network": "stafi",
     "displayName": "Stafi",
@@ -983,6 +970,19 @@
     ],
     "standardAccount": "*25519",
     "website": "https://sora.org"
+  },
+  {
+    "prefix": 789,
+    "network": "geek",
+    "displayName": "GEEK Network",
+    "symbols": [
+      "GEEK"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://geek.gl"
   },
   {
     "prefix": 1110,
