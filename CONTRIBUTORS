@@ -1,4 +1,4 @@
-    1277	Jaco                          	Bump @polkadot/dev (#1434)
+    1278	Jaco                          	Fail on invalid secp256k1 publicKey generation (#1437)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
