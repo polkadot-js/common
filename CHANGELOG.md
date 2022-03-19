@@ -14,6 +14,7 @@ Changes:
 
 - Ensure invalid secp256k1 publicKeys are not returned
 - Cater for Expo v41+ in RN random value generation
+- Fixed for RN environment imports
 - Internal split of details in `@polkadot/networks`
 - Additional workaround for Vite bundling
 - Upgrade to `@polkadot/wasm-crypto` 5.0.1
