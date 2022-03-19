@@ -17,15 +17,15 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "8.5.2-8",
+  "version": "8.5.2-9",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.17.8",
-    "@polkadot/util": "8.5.2-8",
+    "@polkadot/util": "8.5.2-9",
     "@substrate/ss58-registry": "^1.17.0"
   },
   "devDependencies": {
-    "@polkadot/hw-ledger": "8.5.2-8",
-    "@polkadot/x-fetch": "8.5.2-8"
+    "@polkadot/hw-ledger": "8.5.2-9",
+    "@polkadot/x-fetch": "8.5.2-9"
   }
 }
