@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Add aditional Dock mainnet genesis (Thanks to https://github.com/lovesh)
+- Add Westend genesis (Thanks to https://github.com/Nick-1979)
+- Update README with ss58 links (Thanks to https://github.com/Nick-197)
+
+Changes:
+
+- Ensure invalid secp256k1 publicKeys are not returned
+- Cater for Expo v41+ in RN random value generation
+- Internal split of details in `@polkadot/networks`
+- Additional workaround for Vite bundling
+
+
 ## 8.5.1 Mar 12, 2022
 
 Changes:
