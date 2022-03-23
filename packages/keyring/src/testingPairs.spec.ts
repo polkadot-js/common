@@ -65,7 +65,9 @@ describe('testingPairs', (): void => {
     delete ring.nobody;
 
     Object.keys(ring).forEach((testKeyring, i) => {
-      if (i < 6) { expect(u8aToHex(ring[testKeyring].publicKey)).toEqual(u8aToHex(keyring.createFromUri(privKeys[i]).publicKey)); }
+      if (i < 6) {
+        expect(u8aToHex(ring[testKeyring].publicKey)).toEqual(u8aToHex(keyring.createFromUri(privKeys[i]).publicKey));
+      }
     });
   });
 });

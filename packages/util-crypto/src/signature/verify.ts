@@ -67,7 +67,9 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
     result.isValid = {
       ecdsa: () => verifyDetect(result, { message, publicKey, signature: signature.subarray(1) }, VERIFIERS_ECDSA).isValid,
       ed25519: () => ed25519Verify(message, signature.subarray(1), publicKey),
-      none: () => { throw Error('no verify for `none` crypto type'); },
+      none: () => {
+        throw Error('no verify for `none` crypto type');
+      },
       sr25519: () => sr25519Verify(message, signature.subarray(1), publicKey)
     }[type]();
   } catch (error) {
