@@ -1,4 +1,4 @@
-    1280	Jaco                          	8.6.1 (#1439)
+    1281	Jaco                          	Bump dev (#1442)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
