@@ -50,10 +50,16 @@ describe('bnToU8a', (): void => {
     ).toEqual(new Uint8Array([251, 46]));
   });
 
-  it('converts negative numbers (bitLength)', (): void => {
+  it('converts negative numbers (LE)', (): void => {
     expect(
       bnToU8a(new BN(-1234), { bitLength: 32, isNegative: true })
     ).toEqual(new Uint8Array([46, 251, 255, 255]));
+  });
+
+  it('converts negative numbers (LE, bitLength)', (): void => {
+    expect(
+      bnToU8a(new BN(-123456), { bitLength: 32, isNegative: true })
+    ).toEqual(new Uint8Array([192, 29, 254, 255]));
   });
 
   it('handles backwards compatibility', (): void => {

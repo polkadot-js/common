@@ -42,10 +42,10 @@ describe('u8aToBigInt', (): void => {
   it('handles negative numbers (little-endian)', (): void => {
     expect(
       u8aToBigInt(
-        new Uint8Array([46, 251]),
+        new Uint8Array([192, 29, 254]),
         { isLe: true, isNegative: true }
       )
-    ).toEqual(-1234n);
+    ).toEqual(-123456n);
   });
 
   it('handles negative numbers (big-endian)', (): void => {
