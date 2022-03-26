@@ -16,8 +16,8 @@
     "url": "https://github.com/polkadot-js/common.git"
   },
   "sideEffects": [
-    "./cryptoInit.js",
-    "./cryptoInit.cjs",
+    "./bundleInit.js",
+    "./bundleInit.cjs",
     "./detectPackage.js",
     "./detectPackage.cjs"
   ],
