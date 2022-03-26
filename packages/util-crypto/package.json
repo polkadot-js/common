@@ -24,6 +24,10 @@
   "type": "module",
   "version": "8.6.2-4",
   "main": "index.js",
+  "browser": {
+    "crypto": false,
+    "stream": false
+  },
   "dependencies": {
     "@babel/runtime": "^7.17.8",
     "@noble/hashes": "1.0.0",
