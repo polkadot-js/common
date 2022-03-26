@@ -19,13 +19,13 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "8.6.2-2",
+  "version": "8.6.2-3",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.17.8",
     "@ledgerhq/hw-transport": "^6.24.1",
-    "@polkadot/hw-ledger-transports": "8.6.2-2",
-    "@polkadot/util": "8.6.2-2",
+    "@polkadot/hw-ledger-transports": "8.6.2-3",
+    "@polkadot/util": "8.6.2-3",
     "@zondax/ledger-substrate": "^0.24.0"
   }
 }
