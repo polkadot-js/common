@@ -1,4 +1,4 @@
-    1282	Jaco                          	Additional BN & BigInt negative tests (#1443)
+    1283	Jaco                          	Adjust browser entry (#1444)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
