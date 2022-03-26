@@ -23,10 +23,6 @@
   ],
   "type": "module",
   "version": "8.6.2-1",
-  "browser": {
-    "crypto": false,
-    "stream": false
-  },
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.17.8",
