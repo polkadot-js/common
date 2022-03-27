@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 8.7.1 Mar 27, 2022
+
+Changes:
+
+- Fix race-condition with wasm overrides, make `cryptoWaitReady` lazy
+- Additional tests for `BN` & `BigInt` negative conversions
+- Upgrade to `@polkadot/wasm-crypto` 5.1.1
+
+
 ## 8.6.1 Mar 19, 2022
 
 **Important** This contains an upgraded version of `@polkadot/wasm-crypto`. For users of asm.js, e.g. React Native, there are some additional upgrade instructions in the release notes for this version https://github.com/polkadot-js/wasm/releases/tag/v5.0.1
