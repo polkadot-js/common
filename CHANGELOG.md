@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Be explicit in `@polkadot/util-crypto` re-exports from `@polkadot/networks`
+- Adjust build step
+
+
 ## 8.7.1 Mar 27, 2022
 
 Changes:
