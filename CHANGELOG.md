@@ -1,11 +1,14 @@
 # CHANGELOG
 
-## master
+## 9.0.1 Apr 9, 2022
+
+- **Breaking change** In this major version the commonjs outputs are moved to a sub-folder. Since the export map and main field in package.json does reflect this change, there should be no usage changes. However the packages here will all need to be on the same version for internal linkage.
 
 Changes:
 
 - Be explicit in `@polkadot/util-crypto` re-exports from `@polkadot/networks`
-- Adjust build step
+- Output commonjs files under the `cjs/**` root
+- Upgrade to `@polkadot/wasm-crypto` 6.0.1
 
 
 ## 8.7.1 Mar 27, 2022
