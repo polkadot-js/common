@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Adjust/dedupe output from `detectPackage`
+
+
 ## 9.0.1 Apr 9, 2022
 
 - **Breaking change** In this major version the commonjs outputs are moved to a sub-folder. Since the export map and main field in package.json does reflect this change, there should be no usage changes. However the packages here will all need to be on the same version for internal linkage.
