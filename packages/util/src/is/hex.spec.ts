@@ -6,7 +6,7 @@ import { isHex } from '.';
 
 describe('isHex', (): void => {
   const test = '1234abcd';
-  const ptest = '0x1234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef11234adbcdef5798351773526352876adbcdef2358735adbcdef2623587adbcdef1';
+  const ptest = `0x${'1234567890abcdef'.repeat(8192)}`;
 
   it('returns true on 0x hex values', (): void => {
     expect(
@@ -71,5 +71,5 @@ describe('isHex', (): void => {
     ).toEqual(true);
   });
 
-  performance('isHex (1024-bit)', 1000000, [[ptest]], isHex);
+  performance(`isHex (${(ptest.length - 2) / 2} bytes)`, 5000, [[ptest]], isHex);
 });
