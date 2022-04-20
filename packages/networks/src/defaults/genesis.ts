@@ -92,5 +92,8 @@ export const knownGenesis: KnownGenesis = {
   ],
   westend: [
     '0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e'
+  ],
+  xxnetwork: [
+    '0x50dd5d206917bf10502c68fb4d18a59fc8aa31586f4e8856b493e43544aa82aa'
   ]
 };
