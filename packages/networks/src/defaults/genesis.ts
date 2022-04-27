@@ -87,6 +87,9 @@ export const knownGenesis: KnownGenesis = {
   statemine: [
     '0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a'
   ],
+  statemint: [
+    '0x68d56f15f85d3136970ec16946040bc1752654e906147f7e43e9d539d7c3de2f'
+  ],
   subsocial: [
     '0x0bd72c1c305172e1275278aaeb3f161e02eccb7a819e63f62d47bd53a28189f8'
   ],
