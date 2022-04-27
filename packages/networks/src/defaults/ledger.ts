@@ -20,5 +20,6 @@ export const knownLedger: KnownLedger = {
   polymesh: 0x00000253,
   sora: 0x00000269,
   statemine: 0x000001b2, // common-good on Kusama, shares derivation
+  statemint: 0x00000162, // common-good on Polkadot, shares derivation
   xxnetwork: 0x000007a3
 };
