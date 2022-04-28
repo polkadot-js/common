@@ -2,9 +2,16 @@
 
 ## master
 
+Contributed:
+
+- Add Ledger support for Statemint (Thanks to https://github.com/carlosala)
+- Add Ledger support for xxnetwork (Thanks to https://github.com/xx-labs)
+
 Changes:
 
 - Adjust/dedupe output from `detectPackage`
+- Adjust `isHex` performance test
+- Add field-level comments to some `*Options` structures
 
 
 ## 9.0.1 Apr 9, 2022
