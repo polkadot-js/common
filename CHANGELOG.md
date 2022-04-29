@@ -12,6 +12,7 @@ Changes:
 - Adjust/dedupe output from `detectPackage`
 - Adjust `isHex` performance test
 - Add field-level comments to some `*Options` structures
+- Add new Rococo genesisHash (reset)
 
 
 ## 9.0.1 Apr 9, 2022
