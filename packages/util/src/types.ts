@@ -35,8 +35,21 @@ export interface Logger {
 }
 
 export interface ToBnOptions {
+  /**
+   * @description Convert in LE format
+   */
   isLe?: boolean;
+  /**
+   * @description Number is negative, apply two's complement
+   */
   isNegative?: boolean;
+}
+
+export interface NumberOptions extends ToBnOptions {
+  /**
+   * @description Limit to the specified bitLength, despite input length
+   */
+  bitLength?: number;
 }
 
 export type BnList = {

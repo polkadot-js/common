@@ -13,7 +13,7 @@ export interface AccountOptions {
 
 export interface LedgerAddress {
   address: string;
-  publicKey: string;
+  publicKey: HexString;
 }
 
 export interface LedgerSignature {
@@ -23,5 +23,8 @@ export interface LedgerSignature {
 export interface LedgerVersion {
   isLocked: boolean;
   isTestMode: boolean;
+  /**
+   * @description Tuple with major, minor, patch
+   */
   version: [number, number, number];
 }

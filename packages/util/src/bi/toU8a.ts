@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '../bn/bn';
-import type { ToBigInt, ToBn, ToBnOptions } from '../types';
+import type { NumberOptions, ToBigInt, ToBn } from '../types';
 
 import { BigInt } from '@polkadot/x-bigint';
 
@@ -10,20 +10,16 @@ import { objectSpread } from '../object/spread';
 import { _0n, _1n } from './consts';
 import { nToBigInt } from './toBigInt';
 
-interface Options extends ToBnOptions {
-  bitLength?: number;
-}
-
 const DIV = BigInt(256);
 const NEG_MASK = BigInt(0xff);
 
-function createEmpty ({ bitLength = 0 }: Options): Uint8Array {
+function createEmpty ({ bitLength = 0 }: NumberOptions): Uint8Array {
   return bitLength === -1
     ? new Uint8Array()
     : new Uint8Array(Math.ceil(bitLength / 8));
 }
 
-function toU8a (value: bigint, { isLe, isNegative }: Options): Uint8Array {
+function toU8a (value: bigint, { isLe, isNegative }: NumberOptions): Uint8Array {
   const arr: number[] = [];
 
   if (isNegative) {
@@ -54,8 +50,8 @@ function toU8a (value: bigint, { isLe, isNegative }: Options): Uint8Array {
  * @name nToU8a
  * @summary Creates a Uint8Array object from a bigint.
  */
-export function nToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN | bigint | number | null, options?: Options): Uint8Array {
-  const opts: Options = objectSpread(
+export function nToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions): Uint8Array {
+  const opts: NumberOptions = objectSpread(
     { bitLength: -1, isLe: true, isNegative: false },
     options
   );

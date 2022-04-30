@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString, ToBn, ToBnOptions } from '../types';
+import type { HexString, NumberOptions, ToBn } from '../types';
 import type { BN } from './bn';
 
 import { isNumber } from '../is/number';
@@ -9,12 +9,8 @@ import { objectSpread } from '../object/spread';
 import { u8aToHex } from '../u8a';
 import { bnToU8a } from './toU8a';
 
-interface Options extends ToBnOptions {
-  bitLength?: number;
-}
-
 const ZERO_STR = '0x00';
-const DEFAULT_OPTS: Options = { bitLength: -1, isLe: false, isNegative: false };
+const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: false, isNegative: false };
 
 /**
  * @name bnToHex
@@ -31,9 +27,9 @@ const DEFAULT_OPTS: Options = { bitLength: -1, isLe: false, isNegative: false };
  * bnToHex(new BN(0x123456)); // => '0x123456'
  * ```
  */
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, options?: Options): HexString;
+function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions): HexString;
 function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): HexString;
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | Options = DEFAULT_OPTS, arg2?: boolean): HexString {
+function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | NumberOptions = DEFAULT_OPTS, arg2?: boolean): HexString {
   return !value
     ? ZERO_STR
     : u8aToHex(
