@@ -3,12 +3,12 @@
 
 import type { U8aLike } from '../types';
 
-import { BN, BN_FOUR } from '../bn';
+import { BN, BN_FIVE } from '../bn';
 import { u8aToBn, u8aToU8a } from '../u8a';
 
 /**
  * @name compactFromU8a
- * @description Retrievs the offset and encoded length from a compact-prefixed value
+ * @description Retrives the offset and encoded length from a compact-prefixed value
  * @example
  * <BR>
  *
@@ -32,12 +32,10 @@ export function compactFromU8a (input: U8aLike): [number, BN] {
     return [4, u8aToBn(u8a.subarray(0, 4), true).ishrn(2)];
   }
 
-  const offset = 1 + (
-    new BN(u8a[0])
-      .ishrn(2) // clear flag
-      .iadd(BN_FOUR) // add 4 for base length
-      .toNumber()
-  );
+  const offset = new BN(u8a[0])
+    .ishrn(2) // clear flag
+    .iadd(BN_FIVE) // add 4 for base length, 1 for this byte
+    .toNumber();
 
   return [offset, u8aToBn(u8a.subarray(1, offset), true)];
 }

@@ -1,6 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performance } from '../test/performance';
 import { u8aToBigInt } from '.';
 
 describe('u8aToBigInt', (): void => {
@@ -56,4 +57,6 @@ describe('u8aToBigInt', (): void => {
       )
     ).toEqual(-1234n);
   });
+
+  performance('u8aToBigInt', 500000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBigInt);
 });

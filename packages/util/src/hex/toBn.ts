@@ -8,8 +8,6 @@ import { isBoolean } from '../is/boolean';
 import { objectSpread } from '../object/spread';
 import { hexStripPrefix } from './stripPrefix';
 
-const DEFAULT_OPTS: ToBnOptions = { isLe: false, isNegative: false };
-
 /**
  * @name hexToBn
  * @summary Creates a BN.js object from a hex string.
@@ -28,12 +26,13 @@ const DEFAULT_OPTS: ToBnOptions = { isLe: false, isNegative: false };
  * hexToBn('0x123480001f'); // => BN(0x123480001f)
  * ```
  */
-export function hexToBn (value?: string | null, options: ToBnOptions | boolean = DEFAULT_OPTS): BN {
+export function hexToBn (value?: string | null, options: ToBnOptions | boolean = {}): BN {
   if (!value || value === '0x') {
     return new BN(0);
   }
 
-  const { isLe, isNegative }: ToBnOptions = objectSpread(
+  // For hex, default to BE
+  const { isLe, isNegative } = objectSpread<ToBnOptions>(
     { isLe: false, isNegative: false },
     isBoolean(options)
       ? { isLe: options }
@@ -43,7 +42,7 @@ export function hexToBn (value?: string | null, options: ToBnOptions | boolean =
   const bn = new BN(stripped, 16, isLe ? 'le' : 'be');
 
   // fromTwos takes as parameter the number of bits, which is the hex length
-  // multiplied by 4.
+  // multiplied by 4 (2 bytes being 8 bits)
   return isNegative
     ? bn.fromTwos(stripped.length * 4)
     : bn;
