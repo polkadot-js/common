@@ -1,13 +1,11 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from '../bn/bn';
 import type { ToBnOptions } from '../types';
 
-import { hexToBn } from '../hex/toBn';
-import { u8aToHex } from './toHex';
-
-const DEFAULT_OPTS: ToBnOptions = { isLe: true, isNegative: false };
+import { BN } from '../bn/bn';
+import { isBoolean } from '../is/boolean';
+import { objectSpread } from '../object/spread';
 
 /**
  * @name u8aToBn
@@ -27,9 +25,18 @@ const DEFAULT_OPTS: ToBnOptions = { isLe: true, isNegative: false };
  * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```
  */
-export function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = DEFAULT_OPTS): BN {
-  return hexToBn(
-    u8aToHex(value),
-    options
+export function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
+  // NOTE: This is the same process as followed in the hex conversion
+  // For Uint8Array, default to LE
+  const { isLe, isNegative } = objectSpread<ToBnOptions>(
+    { isLe: true, isNegative: false },
+    isBoolean(options)
+      ? { isLe: options }
+      : options
   );
+  const bn = new BN(value, isLe ? 'le' : 'be');
+
+  return isNegative
+    ? bn.fromTwos(value.length * 8)
+    : bn;
 }

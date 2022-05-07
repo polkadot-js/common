@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Optimize `u8aToHex` with direct (non-hex) conversion
+
+
 ## 9.1.1 Apr 30, 2022
 
 Contributed:

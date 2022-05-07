@@ -55,7 +55,7 @@ export function u8aToBigInt (value: Uint8Array, options: ToBnOptions = {}): bigi
     return BigInt(0);
   }
 
-  const { isLe, isNegative }: ToBnOptions = objectSpread({ isLe: true, isNegative: false }, options);
+  const { isLe, isNegative } = objectSpread<ToBnOptions>({ isLe: true, isNegative: false }, options);
   const u8a = isLe
     ? value.reverse()
     : value;

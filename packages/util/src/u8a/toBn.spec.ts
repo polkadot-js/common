@@ -1,6 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performance } from '../test/performance';
 import { u8aToBn } from '.';
 
 describe('u8aToBn', (): void => {
@@ -89,4 +90,6 @@ describe('u8aToBn', (): void => {
       )
     ).toBe(true);
   });
+
+  performance('u8aToBn', 500000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
 });
