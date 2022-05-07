@@ -14,16 +14,17 @@ describe('compactFromU8a', (): void => {
 
   it('decodes from same u16 encoded value', (): void => {
     expect(
-      compactFromU8a(new Uint8Array([0b11111101, 0b00000111]))
-    ).toEqual([2, new BN(511)]);
+      compactFromU8a(new Uint8Array([0b11111101, 0b00000111])).toString()
+    ).toEqual(
+      [2, new BN(511)].toString()
+    );
   });
 
   it('decodes from same u32 encoded value (short)', (): void => {
     expect(
-      compactFromU8a(new Uint8Array([254, 255, 3, 0]))
+      compactFromU8a(new Uint8Array([254, 255, 3, 0])).toString()
     ).toEqual(
-      // since we use in-place, the words are different... HACK it
-      [4, new BN(0xffff).ishln(16).ishrn(16)]
+      [4, new BN(0xffff)].toString()
     );
   });
 
