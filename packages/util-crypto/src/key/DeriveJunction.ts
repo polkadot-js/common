@@ -20,7 +20,7 @@ export class DeriveJunction {
   public static from (value: string): DeriveJunction {
     const result = new DeriveJunction();
     const [code, isHard] = value.startsWith('/')
-      ? [value.substr(1), true]
+      ? [value.substring(1), true]
       : [value, false];
 
     result.soft(

@@ -21,7 +21,7 @@ export function hexStripPrefix (value?: string | null): string {
   if (!value || value === '0x') {
     return '';
   } else if (REGEX_HEX_PREFIXED.test(value)) {
-    return value.substr(2);
+    return value.substring(2);
   } else if (REGEX_HEX_NOPREFIX.test(value)) {
     return value;
   }

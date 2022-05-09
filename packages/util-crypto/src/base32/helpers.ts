@@ -33,7 +33,7 @@ export function createDecode ({ coder, ipfs }: Config, validate: ValidateFn): De
 
     return coder.decode(
       ipfs && ipfsCompat
-        ? value.substr(1)
+        ? value.substring(1)
         : value
     );
   };

@@ -59,7 +59,7 @@ function formatWithLength (maxLength: number): (v: unknown) => unknown {
 
     return r.length < maxLength
       ? v
-      : `${r.substr(0, maxLength)} ...`;
+      : `${r.substring(0, maxLength)} ...`;
   };
 }
 
