@@ -24,7 +24,7 @@ export function keyExtractPath (derivePath: string): ExtractResult {
     constructed = parts.join('');
 
     for (const p of parts) {
-      path.push(DeriveJunction.from(p.substr(1)));
+      path.push(DeriveJunction.from(p.substring(1)));
     }
   }
 

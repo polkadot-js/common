@@ -9,7 +9,7 @@ export function formatDecimal (value: string): string {
   // we rather strip and re-add the negative sign in the output
   const isNegative = value[0].startsWith('-');
   const matched = isNegative
-    ? value.substr(1).match(NUMBER_REGEX)
+    ? value.substring(1).match(NUMBER_REGEX)
     : value.match(NUMBER_REGEX);
 
   return matched

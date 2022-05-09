@@ -42,11 +42,13 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
   const length = endLength - offset - mod;
 
   for (let i = 0; i < length; i += 2) {
-    dv.setUint16(i, HEX_TO_U16[value.substr(i * 2, 4)]);
+    const idx = i * 2;
+
+    dv.setUint16(i, HEX_TO_U16[value.substring(idx, idx + 4)]);
   }
 
   if (mod) {
-    dv.setUint8(length, HEX_TO_U8[value.substr(value.length - 2, 2)]);
+    dv.setUint8(length, HEX_TO_U8[value.substring(value.length - 2)]);
   }
 
   return result;

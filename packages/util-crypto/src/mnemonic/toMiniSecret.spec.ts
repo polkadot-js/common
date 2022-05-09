@@ -43,7 +43,7 @@ describe('mnemonicToMiniSecret', (): void => {
           u8aToHex(mnemonicToMiniSecret(mnemonic, 'Substrate', onlyJs))
         ).toEqual(
           // mini returned here, only check first 32-bytes (64 hex + 2 prefix)
-          seed.substr(0, 66)
+          seed.substring(0, 66)
         );
       });
     });
