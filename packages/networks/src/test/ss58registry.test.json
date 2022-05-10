@@ -246,21 +246,8 @@
     "website": "https://stafi.io"
   },
   {
-    "prefix": 21,
-    "network": "dock-testnet",
-    "displayName": "Dock Testnet",
-    "symbols": [
-      "DCK"
-    ],
-    "decimals": [
-      6
-    ],
-    "standardAccount": "*25519",
-    "website": "https://dock.io"
-  },
-  {
     "prefix": 22,
-    "network": "dock-mainnet",
+    "network": "dock-pos-mainnet",
     "displayName": "Dock Mainnet",
     "symbols": [
       "DCK"
@@ -459,12 +446,12 @@
   {
     "prefix": 38,
     "network": "kilt",
-    "displayName": "KILT Chain",
+    "displayName": "KILT Spiritnet",
     "symbols": [
       "KILT"
     ],
     "decimals": [
-      18
+      15
     ],
     "standardAccount": "*25519",
     "website": "https://kilt.io/"
@@ -824,13 +811,13 @@
     "network": "origintrail-parachain",
     "displayName": "OriginTrail Parachain",
     "symbols": [
-      "TRAC"
+      "OTP"
     ],
     "decimals": [
-      18
+      12
     ],
-    "standardAccount": "secp256k1",
-    "website": "https://origintrail.io"
+    "standardAccount": "*25519",
+    "website": "https://parachain.origintrail.io/"
   },
   {
     "prefix": 105,
@@ -1024,7 +1011,7 @@
     "website": "https://moonbeam.network"
   },
   {
-    "prefix": 1337,
+    "prefix": 1328,
     "network": "ajuna",
     "displayName": "Ajuna Network",
     "symbols": [
@@ -1033,7 +1020,20 @@
     "decimals": [
       12
     ],
-    "standardAccount": "Sr25519",
+    "standardAccount": "*25519",
+    "website": "https://ajuna.io"
+  },
+  {
+    "prefix": 1337,
+    "network": "bajun",
+    "displayName": "Bajun Network",
+    "symbols": [
+      "BAJU"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
     "website": "https://ajuna.io"
   },
   {
