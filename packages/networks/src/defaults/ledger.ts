@@ -8,12 +8,14 @@ import type { KnownLedger } from '../types';
 //
 // NOTE: Any network here needs to have a genesisHash attached in the ./genesis.ts config
 export const knownLedger: KnownLedger = {
+  acala: 0x00000313,
   bifrost: 0x00000314,
   centrifuge: 0x000002eb,
   'dock-mainnet': 0x00000252,
   edgeware: 0x0000020b,
   equilibrium: 0x05f5e0fd,
   genshiro: 0x05f5e0fc,
+  karura: 0x000002ae,
   kusama: 0x000001b2,
   'nodle-chain': 0x000003eb,
   polkadot: 0x00000162,
