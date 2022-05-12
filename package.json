@@ -10,7 +10,7 @@
     "url": "https://github.com/polkadot-js/common.git"
   },
   "sideEffects": false,
-  "version": "9.1.2-4",
+  "version": "9.1.2-5",
   "workspaces": [
     "packages/*"
   ],
