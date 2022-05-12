@@ -30,13 +30,42 @@ describe('u8aToBn', (): void => {
     ).toBe('3412');
   });
 
-  it('converts empty', (): void => {
-    expect(
-      u8aToBn(
-        new Uint8Array(),
-        { isLe: true }
-      ).toString(16)
-    ).toBe('0');
+  describe('empty creation', (): void => {
+    it('handles unsigned (le)', (): void => {
+      expect(
+        u8aToBn(
+          new Uint8Array(),
+          { isLe: true }
+        ).toString(16)
+      ).toBe('0');
+    });
+
+    it('handles signed (le)', (): void => {
+      expect(
+        u8aToBn(
+          new Uint8Array(),
+          { isLe: true, isNegative: true }
+        ).toString(16)
+      ).toBe('0');
+    });
+
+    it('handles unsigned (be)', (): void => {
+      expect(
+        u8aToBn(
+          new Uint8Array(),
+          { isLe: false }
+        ).toString(16)
+      ).toBe('0');
+    });
+
+    it('handles signed (be)', (): void => {
+      expect(
+        u8aToBn(
+          new Uint8Array(),
+          { isLe: false, isNegative: true }
+        ).toString(16)
+      ).toBe('0');
+    });
   });
 
   it('handles negative numbers (little-endian)', (): void => {
