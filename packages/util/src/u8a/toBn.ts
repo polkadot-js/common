@@ -26,7 +26,7 @@ import { objectSpread } from '../object/spread';
  * ```
  */
 export function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
-  // NOTE: This is the same process as followed in the hex conversion
+  // NOTE: This is the same process as followed in the hextoBn conversion
   // For Uint8Array, default to LE
   const { isLe, isNegative } = objectSpread<ToBnOptions>(
     { isLe: true, isNegative: false },
@@ -36,7 +36,7 @@ export function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {})
   );
   const bn = new BN(value, isLe ? 'le' : 'be');
 
-  return isNegative
+  return isNegative && value.length
     ? bn.fromTwos(value.length * 8)
     : bn;
 }
