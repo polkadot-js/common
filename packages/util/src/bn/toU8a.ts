@@ -42,7 +42,9 @@ function createValue (valueBn: BN, byteLength: number, { isLe, isNegative }: Num
  * ```
  */
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions): Uint8Array;
+/** @deprecated Use bnToU8a(value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
+/** @deprecated Use bnToU8a(value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | NumberOptions = DEFAULT_OPTS, arg2?: boolean): Uint8Array {
   const options: NumberOptions = objectSpread(
     { bitLength: -1, isLe: true, isNegative: false },
