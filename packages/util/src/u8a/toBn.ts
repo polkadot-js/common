@@ -14,7 +14,7 @@ import { objectSpread } from '../object/spread';
  * `UInt8Array` input values return the actual BN. `null` or `undefined` values returns an `0x0` value.
  * @param value The value to convert
  * @param options Options to pass while converting
- * @param options.isLe Convert using Little Endian
+ * @param options.isLe Convert using Little Endian (default)
  * @param options.isNegative Convert using two's complement
  * @example
  * <BR>
@@ -26,7 +26,7 @@ import { objectSpread } from '../object/spread';
  * ```
  */
 export function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
-  // NOTE: This is the same process as followed in the hextoBn conversion
+  // NOTE: This is the same process as followed in the hexToBn conversion
   // For Uint8Array, default to LE
   const { isLe, isNegative } = objectSpread<ToBnOptions>(
     { isLe: true, isNegative: false },
