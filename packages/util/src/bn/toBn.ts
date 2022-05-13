@@ -27,10 +27,9 @@ import { BN } from './bn';
  * ```
  */
 export function bnToBn <ExtToBn extends ToBigInt | ToBn> (value?: HexString | ExtToBn | BN | bigint | string | number | null): BN {
-  return BN.isBN(value)
-    ? value
-    : !value
-      ? new BN(0)
+  return value
+    ? BN.isBN(value)
+      ? value
       : isHex(value)
         ? hexToBn(value.toString())
         : isBigInt(value)
@@ -39,5 +38,6 @@ export function bnToBn <ExtToBn extends ToBigInt | ToBn> (value?: HexString | Ex
             ? value.toBn()
             : isToBigInt(value)
               ? new BN(value.toBigInt().toString())
-              : new BN(value);
+              : new BN(value)
+    : new BN(0);
 }

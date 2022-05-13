@@ -28,7 +28,9 @@ const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: false, isNegative: fa
  * ```
  */
 function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions): HexString;
+/** @deprecated Use bnToHex (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
 function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): HexString;
+/** @deprecated Use bnToHex (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
 function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | NumberOptions = DEFAULT_OPTS, arg2?: boolean): HexString {
   return !value
     ? ZERO_STR
