@@ -1,4 +1,4 @@
-    1314	Jaco                          	MArk deprecated function signatures (#1487)
+    1315	Jaco                          	Additional deprecations (#1488)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
