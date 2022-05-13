@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## master
+## 9.2.1 May 13, 2022
+
+Contributed:
+
+- Add Ledger support for Acala (Thanks to https://github.com/ntduan)
 
 Changes:
 
@@ -8,6 +12,8 @@ Changes:
 - Change all occurences of `.substr(...)` to `.substring(...)`
 - Sync with upstream Substrate ss58 registry
 - Mark deprecated function signatures (no removals)
+- Re-enable auto init of `cryptoWaitReady()`
+- Upgrade to `@polkadot/wasm-crypto` 6.1.1
 
 
 ## 9.1.1 Apr 30, 2022
