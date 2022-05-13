@@ -10,23 +10,6 @@ import { bnToBn } from './toBn';
 
 const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: true, isNegative: false };
 
-function createEmpty (byteLength: number, options: NumberOptions): Uint8Array {
-  return options.bitLength === -1
-    ? new Uint8Array()
-    : new Uint8Array(byteLength);
-}
-
-function createValue (valueBn: BN, byteLength: number, { isLe, isNegative }: NumberOptions): Uint8Array {
-  const output = new Uint8Array(byteLength);
-  const bn = isNegative
-    ? valueBn.toTwos(byteLength * 8)
-    : valueBn;
-
-  output.set(bn.toArray(isLe ? 'le' : 'be', byteLength), 0);
-
-  return output;
-}
-
 /**
  * @name bnToU8a
  * @summary Creates a Uint8Array object from a BN.
@@ -46,7 +29,7 @@ function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number 
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
 /** @deprecated Use bnToU8a(value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | NumberOptions = DEFAULT_OPTS, arg2?: boolean): Uint8Array {
-  const options: NumberOptions = objectSpread(
+  const { bitLength, isLe, isNegative }: NumberOptions = objectSpread(
     { bitLength: -1, isLe: true, isNegative: false },
     isNumber(arg1)
       ? { bitLength: arg1, isLe: arg2 }
@@ -54,13 +37,24 @@ function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number 
   );
 
   const valueBn = bnToBn(value);
-  const byteLength = options.bitLength === -1
+  const byteLength = bitLength === -1
     ? Math.ceil(valueBn.bitLength() / 8)
-    : Math.ceil((options.bitLength || 0) / 8);
+    : Math.ceil((bitLength || 0) / 8);
 
-  return value
-    ? createValue(valueBn, byteLength, options)
-    : createEmpty(byteLength, options);
+  if (!value) {
+    return bitLength === -1
+      ? new Uint8Array()
+      : new Uint8Array(byteLength);
+  }
+
+  const output = new Uint8Array(byteLength);
+  const bn = isNegative
+    ? valueBn.toTwos(byteLength * 8)
+    : valueBn;
+
+  output.set(bn.toArray(isLe ? 'le' : 'be', byteLength), 0);
+
+  return output;
 }
 
 export { bnToU8a };

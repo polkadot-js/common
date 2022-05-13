@@ -13,12 +13,6 @@ import { nToBigInt } from './toBigInt';
 const DIV = BigInt(256);
 const NEG_MASK = BigInt(0xff);
 
-function createEmpty ({ bitLength = 0 }: NumberOptions): Uint8Array {
-  return bitLength === -1
-    ? new Uint8Array()
-    : new Uint8Array(Math.ceil(bitLength / 8));
-}
-
 function toU8a (value: bigint, { isLe, isNegative }: NumberOptions): Uint8Array {
   const arr: number[] = [];
 
@@ -59,7 +53,9 @@ export function nToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN |
   const valueBi = nToBigInt(value);
 
   if (valueBi === _0n) {
-    return createEmpty(opts);
+    return opts.bitLength === -1
+      ? new Uint8Array()
+      : new Uint8Array(Math.ceil((opts.bitLength || 0) / 8));
   }
 
   const u8a = toU8a(valueBi, opts);

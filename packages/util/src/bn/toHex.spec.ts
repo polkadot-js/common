@@ -46,7 +46,7 @@ describe('bnToHex', (): void => {
     ).toBe('0xfffffb2e');
   });
 
-  it('handles backwards compatibility', (): void => {
+  it('handles legacy compatibility', (): void => {
     expect(
       bnToHex(new BN(1234), 32)
     ).toBe(

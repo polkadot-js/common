@@ -25,13 +25,13 @@ import { stringToU8a } from '../string/toU8a';
  * ```
  */
 export function u8aToU8a (value?: U8aLike | null): Uint8Array {
-  return !value
-    ? new Uint8Array()
-    : Array.isArray(value) || isBuffer(value)
+  return value
+    ? Array.isArray(value) || isBuffer(value)
       ? new Uint8Array(value)
       : isU8a(value)
         ? value
         : isHex(value)
           ? hexToU8a(value)
-          : stringToU8a(value);
+          : stringToU8a(value)
+    : new Uint8Array();
 }

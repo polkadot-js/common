@@ -3,6 +3,7 @@
 
 import { BN } from '../bn/bn';
 import { hexToU8a } from '../hex/toU8a';
+import { performance } from '../test/performance';
 import { compactFromU8a } from '.';
 
 describe('compactFromU8a', (): void => {
@@ -55,4 +56,7 @@ describe('compactFromU8a', (): void => {
       )[1].toString()
     ).toEqual('100000000');
   });
+
+  performance('compactFromU8a (u8)', 1_000_000, [[new Uint8Array([63 << 2])]], compactFromU8a);
+  performance('compactFromU8a (u16)', 1_000_000, [[new Uint8Array([0b11111101, 0b00000111])]], compactFromU8a);
 });

@@ -25,11 +25,11 @@ export function compactFromU8a (input: U8aLike): [number, BN] {
   const flag = u8a[0] & 0b11;
 
   if (flag === 0b00) {
-    return [1, new BN(u8a[0]).ishrn(2)];
+    return [1, new BN(u8a[0] >> 2)];
   } else if (flag === 0b01) {
-    return [2, u8aToBn(u8a.subarray(0, 2), true).ishrn(2)];
+    return [2, new BN((u8a[0] + (u8a[1] * 256)) >> 2)];
   } else if (flag === 0b10) {
-    return [4, u8aToBn(u8a.subarray(0, 4), true).ishrn(2)];
+    return [4, u8aToBn(u8a.subarray(0, 4)).ishrn(2)];
   }
 
   const offset = new BN(u8a[0])
@@ -37,5 +37,5 @@ export function compactFromU8a (input: U8aLike): [number, BN] {
     .iadd(BN_FIVE) // add 4 for base length, 1 for this byte
     .toNumber();
 
-  return [offset, u8aToBn(u8a.subarray(1, offset), true)];
+  return [offset, u8aToBn(u8a.subarray(1, offset))];
 }
