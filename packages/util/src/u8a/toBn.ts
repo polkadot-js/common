@@ -25,7 +25,11 @@ import { objectSpread } from '../object/spread';
  * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```
  */
-export function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
+function u8aToBn (value: Uint8Array, options?: ToBnOptions): BN;
+/** @deprecated Use u8aToBn(value: Uint8Array, options?: ToBnOptions) */
+function u8aToBn (value: Uint8Array, options?: boolean): BN;
+/** @deprecated Use hexToBn (value?: string | null, options?: ToBnOptions) */
+function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
   // NOTE: This is the same process as followed in the hexToBn conversion
   // For Uint8Array, default to LE
   const { isLe, isNegative } = objectSpread<ToBnOptions>(
@@ -40,3 +44,5 @@ export function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {})
     ? bn.fromTwos(value.length * 8)
     : bn;
 }
+
+export { u8aToBn };

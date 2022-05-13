@@ -26,7 +26,11 @@ import { hexStripPrefix } from './stripPrefix';
  * hexToBn('0x123480001f'); // => BN(0x123480001f)
  * ```
  */
-export function hexToBn (value?: string | null, options: ToBnOptions | boolean = {}): BN {
+function hexToBn (value?: string | null, options?: ToBnOptions): BN;
+/** @deprecated Use hexToBn (value?: string | null, options?: ToBnOptions) */
+function hexToBn (value?: string | null, options?: boolean): BN;
+/** @deprecated Use hexToBn (value?: string | null, options?: ToBnOptions) */
+function hexToBn (value?: string | null, options: ToBnOptions | boolean = {}): BN {
   if (!value || value === '0x') {
     return new BN(0);
   }
@@ -47,3 +51,5 @@ export function hexToBn (value?: string | null, options: ToBnOptions | boolean =
     ? bn.fromTwos(stripped.length * 4)
     : bn;
 }
+
+export { hexToBn };

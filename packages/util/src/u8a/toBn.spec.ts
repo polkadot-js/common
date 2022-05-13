@@ -5,6 +5,21 @@ import { performance } from '../test/performance';
 import { u8aToBn } from '.';
 
 describe('u8aToBn', (): void => {
+  it('supports legacy compatibility', (): void => {
+    expect(
+      u8aToBn(
+        new Uint8Array([0x12, 0x34]),
+        true
+      ).toString(16)
+    ).toBe('3412');
+    expect(
+      u8aToBn(
+        new Uint8Array([0x12, 0x34]),
+        false
+      ).toString(16)
+    ).toBe('1234');
+  });
+
   it('converts little-endian by default', (): void => {
     expect(
       u8aToBn(
@@ -12,6 +27,7 @@ describe('u8aToBn', (): void => {
       ).toString(16)
     ).toBe('3412');
   });
+
   it('converts values (big-endian)', (): void => {
     expect(
       u8aToBn(

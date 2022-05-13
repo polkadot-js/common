@@ -70,7 +70,7 @@ describe('hexToBn', (): void => {
     ).toBe(256);
   });
 
-  it('handles backwards compatibility', (): void => {
+  it('handles legacy compatibility', (): void => {
     expect(
       hexToBn('0x0001000000000000', false).eq(
         hexToBn('0x0001000000000000', { isLe: false })

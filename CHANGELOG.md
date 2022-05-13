@@ -7,6 +7,7 @@ Changes:
 - Optimize `u8aToHex` with direct (non-hex) conversion
 - Change all occurences of `.substr(...)` to `.substring(...)`
 - Sync with upstream Substrate ss58 registry
+- Mark deprecated function signatures (no removals)
 
 
 ## 9.1.1 Apr 30, 2022

@@ -44,6 +44,10 @@ interface Options {
 }
 
 interface BalanceFormatter {
+  <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, options?: Options): string;
+  /** @deprecated Use balanceFormat(input?: number | string | BN | bigint | ExtToBn, options?: Options) */
+  <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, options?: boolean, decimals?: number): string;
+  /** @deprecated Use balanceFormat(input?: number | string | BN | bigint | ExtToBn, options?: Options) */
   <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, options?: Options, decimals?: number): string;
   calcSi (text: string, decimals?: number): SiDef;
   findSi (type: string): SiDef;
