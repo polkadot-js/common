@@ -18,6 +18,7 @@ export const knownLedger: KnownLedger = {
   karura: 0x000002ae,
   kusama: 0x000001b2,
   'nodle-chain': 0x000003eb,
+  parallel: 0x00000162,
   polkadot: 0x00000162,
   polymesh: 0x00000253,
   sora: 0x00000269,
