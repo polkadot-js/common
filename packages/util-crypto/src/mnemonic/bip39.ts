@@ -12,6 +12,7 @@
 //   - Use util-crypto randomAsU8a (instead of randombytes)
 //   - Remove setting of wordlist passing of wordlist in functions
 //   - Remove mnemonicToSeed (we only use the sync variant)
+//   - generateMnemonic takes number of words (instead of strength)
 
 import { assert, stringToU8a, u8aToU8a } from '@polkadot/util';
 
@@ -73,7 +74,7 @@ export function mnemonicToEntropy (mnemonic: string): Uint8Array {
   // calculate the checksum and compare
   const entropyBytes = entropyBits.match(/(.{1,8})/g)?.map(binaryToByte);
 
-  assert(entropyBytes && entropyBytes.length % 4 === 0 && entropyBytes.length >= 16 && entropyBytes.length <= 32, INVALID_ENTROPY);
+  assert(entropyBytes && (entropyBytes.length % 4 === 0) && (entropyBytes.length >= 16) && (entropyBytes.length <= 32), INVALID_ENTROPY);
 
   const entropy = u8aToU8a(entropyBytes);
   const newChecksum = deriveChecksumBits(entropy);
@@ -85,7 +86,7 @@ export function mnemonicToEntropy (mnemonic: string): Uint8Array {
 
 export function entropyToMnemonic (entropy: Uint8Array): string {
   // 128 <= ENT <= 256
-  assert(entropy.length % 4 === 0 && entropy.length >= 16 && entropy.length <= 32, INVALID_ENTROPY);
+  assert((entropy.length % 4 === 0) && (entropy.length >= 16) && (entropy.length <= 32), INVALID_ENTROPY);
 
   const entropyBits = bytesToBinary(Array.from(entropy));
   const checksumBits = deriveChecksumBits(entropy);
@@ -97,12 +98,8 @@ export function entropyToMnemonic (entropy: Uint8Array): string {
     .join(' ');
 }
 
-export function generateMnemonic (strength?: number): string {
-  strength = strength || 128;
-
-  assert(strength % 32 === 0, INVALID_ENTROPY);
-
-  return entropyToMnemonic(randomAsU8a(strength / 8));
+export function generateMnemonic (numWords: 12 | 15 | 18 | 21 | 24): string {
+  return entropyToMnemonic(randomAsU8a((numWords / 3) * 4));
 }
 
 export function validateMnemonic (mnemonic: string): boolean {
