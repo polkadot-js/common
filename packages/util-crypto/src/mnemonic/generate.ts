@@ -6,8 +6,6 @@ import { bip39Generate, isReady } from '@polkadot/wasm-crypto';
 
 import { generateMnemonic } from './bip39';
 
-export type WordCount = 12 | 15 | 18 | 21 | 24;
-
 // mapping of words to the actual strength (as expected)
 const STRENGTH_MAP = {
   12: 16 * 8,
@@ -29,7 +27,7 @@ const STRENGTH_MAP = {
  * const mnemonic = mnemonicGenerate(); // => string
  * ```
  */
-export function mnemonicGenerate (numWords: WordCount = 12, onlyJs?: boolean): string {
+export function mnemonicGenerate (numWords: 12 | 15 | 18 | 21 | 24 = 12, onlyJs?: boolean): string {
   return !hasBigInt || (!onlyJs && isReady())
     ? bip39Generate(numWords)
     : generateMnemonic(STRENGTH_MAP[numWords]);
