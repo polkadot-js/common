@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Add Ledger support for Parallel (Thanks to https://github.com/carlosala)
+
+Changes:
+
+- Internal code maintainability enhancements
+
+
 ## 9.2.1 May 13, 2022
 
 Contributed:
