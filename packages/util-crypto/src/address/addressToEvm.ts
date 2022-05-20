@@ -10,7 +10,5 @@ import { decodeAddress } from './decode';
  * @summary Converts an SS58 address to its corresponding EVM address.
  */
 export function addressToEvm (address: HexString | string | Uint8Array, ignoreChecksum?: boolean): Uint8Array {
-  const decoded = decodeAddress(address, ignoreChecksum);
-
-  return decoded.subarray(0, 20);
+  return decodeAddress(address, ignoreChecksum).subarray(0, 20);
 }
