@@ -25,15 +25,6 @@ const INVALID_MNEMONIC = 'Invalid mnemonic';
 const INVALID_ENTROPY = 'Invalid entropy';
 const INVALID_CHECKSUM = 'Invalid mnemonic checksum';
 
-// mapping of words to the actual strength (as expected)
-const STRENGTH_MAP = {
-  12: 16,
-  15: 20,
-  18: 24,
-  21: 28,
-  24: 32
-};
-
 function normalize (str?: string): string {
   return (str || '').normalize('NFKD');
 }
@@ -108,9 +99,9 @@ export function entropyToMnemonic (entropy: Uint8Array): string {
 }
 
 export function generateMnemonic (numWords: 12 | 15 | 18 | 21 | 24): string {
-  const strength = STRENGTH_MAP[numWords];
+  const strength = (numWords / 3) * 4;
 
-  assert(strength, INVALID_ENTROPY);
+  assert((strength % 4 === 0) && (strength >= 16) && (strength <= 32), INVALID_ENTROPY);
 
   return entropyToMnemonic(randomAsU8a(strength));
 }
