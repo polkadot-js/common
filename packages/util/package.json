@@ -9,13 +9,13 @@
   "exports": {
     "./hex/toU8a": {
       "node": {
-        "require": "./hex/toU8aBuffer.cjs",
+        "require": "./cjs/hex/toU8aBuffer.js",
         "default": "./hex/toU8aBuffer.js"
       }
     },
     "./u8a/toHex": {
       "node": {
-        "require": "./u8a/toHexBuffer.cjs",
+        "require": "./cjs/u8a/toHexBuffer.js",
         "default": "./u8a/toHexBuffer.js"
       }
     }
