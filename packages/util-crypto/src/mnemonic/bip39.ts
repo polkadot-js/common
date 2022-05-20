@@ -99,11 +99,7 @@ export function entropyToMnemonic (entropy: Uint8Array): string {
 }
 
 export function generateMnemonic (numWords: 12 | 15 | 18 | 21 | 24): string {
-  const strength = (numWords / 3) * 4;
-
-  assert((strength % 4 === 0) && (strength >= 16) && (strength <= 32), INVALID_ENTROPY);
-
-  return entropyToMnemonic(randomAsU8a(strength));
+  return entropyToMnemonic(randomAsU8a((numWords / 3) * 4));
 }
 
 export function validateMnemonic (mnemonic: string): boolean {
