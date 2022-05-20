@@ -14,13 +14,12 @@ interface DualHash {
   512: (u8a: Uint8Array) => Uint8Array;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function createAsHex <T extends (...args: any[]) => Uint8Array> (fn: T): (...args: Parameters<T>) => HexString {
+export function createAsHex <T extends (...args: never[]) => Uint8Array> (fn: T): (...args: Parameters<T>) => HexString {
   return (...args: Parameters<T>): HexString =>
     u8aToHex(fn(...args));
 }
 
-export function createBitHasher <T> (bitLength: T, fn: (data: HexString | Buffer | Uint8Array | string, bitLength: T, onlyJs?: boolean) => Uint8Array): (data: HexString | Buffer | Uint8Array | string, onlyJs?: boolean) => Uint8Array {
+export function createBitHasher (bitLength: 256 | 512, fn: (data: HexString | Buffer | Uint8Array | string, bitLength: 256 | 512, onlyJs?: boolean) => Uint8Array): (data: HexString | Buffer | Uint8Array | string, onlyJs?: boolean) => Uint8Array {
   return (data: HexString | Buffer | Uint8Array | string, onlyJs?: boolean): Uint8Array =>
     fn(data, bitLength, onlyJs);
 }

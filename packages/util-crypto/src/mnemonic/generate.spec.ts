@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { cryptoWaitReady } from '..';
-import { mnemonicGenerate, WordCount } from './generate';
+import { mnemonicGenerate } from './generate';
 import { mnemonicValidate } from './validate';
 
 describe('mnemonicGenerate', (): void => {
@@ -17,7 +17,7 @@ describe('mnemonicGenerate', (): void => {
   });
 
   describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-    it.each([12, 15, 18, 21, 24] as WordCount[])('generates a valid mnemonic (%p words)', (num): void => {
+    it.each([12, 15, 18, 21, 24] as 12[])('generates a valid mnemonic (%p words)', (num): void => {
       const mnemonic = mnemonicGenerate(num, onlyJs);
       const isValid = mnemonicValidate(mnemonic);
 
