@@ -13,6 +13,8 @@ function hex (value: Uint8Array): string {
   let result = '';
 
   for (let i = 0; i < length; i += 2) {
+    // we only use getUint16 here instead of getUint32 - at least in our
+    // tests this is faster to execute (both long & short strings tested)
     result += U16_TO_HEX[dv.getUint16(i)];
   }
 
@@ -43,7 +45,7 @@ export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed 
   return `${isPrefixed ? '0x' : ''}${
     !value || !value.length
       ? ''
-      : (length > 0 && value.length > length)
+      : (bitLength > 0 && value.length > length)
         ? `${hex(value.subarray(0, length / 2))}…${hex(value.subarray(value.length - length / 2))}`
         : hex(value)
   }` as HexString;

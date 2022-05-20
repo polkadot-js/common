@@ -5,10 +5,15 @@ import { performanceCmp } from '../test/performance';
 import { u8aToHex as u8aToHexBuffer } from './toHexBuffer';
 import { u8aToHex } from '.';
 
-const ptest = new Uint8Array(32768);
+const ptest32k = new Uint8Array(32768);
+const ptest256 = new Uint8Array(256);
 
-for (let i = 0; i < ptest.length; i++) {
-  ptest[i] = i % 256;
+for (let i = 0; i < ptest32k.length; i++) {
+  if (i < ptest256.length) {
+    ptest256[1] = i % 256;
+  }
+
+  ptest32k[i] = i % 256;
 }
 
 describe('u8aToHex', (): void => {
@@ -66,7 +71,19 @@ describe('u8aToHex', (): void => {
     ).toEqual('0x8000…0c0d');
   });
 
-  performanceCmp('u8aToHex', ['u8aToHexBuffer', 'u8aToHex'], 2000, [[ptest]], (s: Uint8Array, isSecond) =>
+  it('converts known bytes to their correct values', (): void => {
+    expect(
+      // hello world
+      u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64]))
+    ).toEqual('0x68656c6c6f20776f726c64');
+  });
+
+  performanceCmp('u8aToHex (32k)', ['u8aToHexBuffer', 'u8aToHex'], 2000, [[ptest32k]], (s: Uint8Array, isSecond) =>
+    isSecond
+      ? u8aToHex(s)
+      : u8aToHexBuffer(s)
+  );
+  performanceCmp('u8aToHex (128)', ['u8aToHexBuffer', 'u8aToHex'], 100000, [[ptest256]], (s: Uint8Array, isSecond) =>
     isSecond
       ? u8aToHex(s)
       : u8aToHexBuffer(s)
