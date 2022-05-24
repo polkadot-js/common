@@ -20,7 +20,7 @@ const decoder = new TextDecoder('utf-8');
  * ```
  */
 export function u8aToString (value?: Uint8Array | null): string {
-  return !value?.length
-    ? ''
-    : decoder.decode(value);
+  return value
+    ? decoder.decode(value)
+    : '';
 }
