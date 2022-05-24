@@ -17,5 +17,8 @@
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function isInstanceOf (value: unknown, clazz: Function): boolean {
-  return value instanceof clazz;
+  return (
+    ((value && (value as Record<string, unknown>).constructor) === clazz) ||
+    value instanceof Uint8Array
+  );
 }
