@@ -20,9 +20,9 @@
     "./shim.cjs"
   ],
   "type": "module",
-  "version": "9.2.2-10",
+  "version": "9.2.2-11",
   "dependencies": {
     "@babel/runtime": "^7.18.0",
-    "@polkadot/x-global": "9.2.2-10"
+    "@polkadot/x-global": "9.2.2-11"
   }
 }
