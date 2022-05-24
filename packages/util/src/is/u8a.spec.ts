@@ -20,7 +20,7 @@ describe('isU8a', (): void => {
     // under Node, Buffer implements Uint8Array
     expect(
       isU8a(Buffer.from([1, 2, 3]))
-    ).toEqual(false);
+    ).toEqual(true);
   });
 
   it('returns true on Uint8Array values', (): void => {

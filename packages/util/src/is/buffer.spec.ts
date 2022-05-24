@@ -10,9 +10,15 @@ describe('isBuffer', (): void => {
     ).toEqual(true);
   });
 
-  it('returns false on non-Buffer values', (): void => {
+  it('returns false on non-Buffer values (number)', (): void => {
     expect(
-      isBuffer(0)
+      isBuffer(123)
+    ).toEqual(false);
+  });
+
+  it('returns false on non-Buffer values (null)', (): void => {
+    expect(
+      isBuffer(null)
     ).toEqual(false);
   });
 });

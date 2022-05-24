@@ -3,8 +3,8 @@
 
 import type { U8aLike } from '../types';
 
-import { hasBuffer } from '../has';
 import { hexToU8a } from '../hex/toU8a';
+import { isBuffer } from '../is/buffer';
 import { isHex } from '../is/hex';
 import { isU8a } from '../is/u8a';
 import { stringToU8a } from '../string/toU8a';
@@ -28,7 +28,7 @@ export function u8aToU8a (value?: U8aLike | null): Uint8Array {
   return value
     ? isU8a(value)
       // under Node, Buffer implements Uint8Array, check it first
-      ? hasBuffer && typeof (value as Buffer).readDoubleLE === 'function'
+      ? isBuffer(value)
         ? new Uint8Array(value)
         : value
       : isHex(value)
