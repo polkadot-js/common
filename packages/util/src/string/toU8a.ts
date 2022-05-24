@@ -21,8 +21,7 @@ const encoder = new TextEncoder();
  * stringToU8a('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function stringToU8a (value?: AnyString): Uint8Array {
+export function stringToU8a (value?: AnyString | null): Uint8Array {
   return value
     ? encoder.encode(value.toString())
     : new Uint8Array();
