@@ -39,11 +39,24 @@ describe('u8aToU8a', (): void => {
   });
 
   it('creates from a Buffer', (): void => {
+    const input = Buffer.from([1, 2, 3, 128, 0, 10, 11, 12]);
+    const output = u8aToU8a(input);
+
     expect(
-      u8aToU8a(Buffer.from([1, 2, 3, 128, 0, 10, 11, 12]))
+      typeof input.readDoubleLE
+    ).toEqual('function');
+    expect(
+      typeof (output as Buffer).readDoubleLE
+    ).toEqual('undefined');
+
+    expect(
+      output
     ).toEqual(
       new Uint8Array([1, 2, 3, 128, 0, 10, 11, 12])
     );
+  });
+
+  it('creates from a Buffer (hex)', (): void => {
     expect(
       u8aToU8a(Buffer.from('80000a', 'hex'))
     ).toEqual(

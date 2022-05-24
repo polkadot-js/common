@@ -5,10 +5,12 @@
 Contributed:
 
 - Add Ledger support for Parallel (Thanks to https://github.com/carlosala)
+- Add Ledger support for Astar & Polkadex (Thanks to https://github.com/carlosala)
 
 Changes:
 
 - Internal code maintainability enhancements
+- Adjust `u8aToU8a` checks with better `isU8a` shortcut
 
 
 ## 9.2.1 May 13, 2022
