@@ -57,6 +57,14 @@ describe('compactFromU8a', (): void => {
     ).toEqual([7, new BN('5af3107a4000', 16)]);
   });
 
+  it('decodes an actual value (Buffer)', (): void => {
+    expect(
+      compactFromU8a(
+        Buffer.from('0b00407a10f35a', 'hex')
+      )
+    ).toEqual([7, new BN('5af3107a4000', 16)]);
+  });
+
   it('decodes an actual value', (): void => {
     expect(
       compactFromU8a(
