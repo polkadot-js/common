@@ -30,10 +30,10 @@ export function compactFromU8a (input: U8aLike): [number, BN] {
       return [1, new BN(u8a[0] >>> 2)];
 
     case 0b01:
-      return [2, new BN((u8a[0] + (u8a[1] * 0x1_00)) >>> 2)];
+      return [2, new BN((u8a[0] >>> 2) + (u8a[1] << 6))];
 
     case 0b10:
-      return [4, new BN((u8a[0] + (u8a[1] * 0x1_00) + (u8a[2] * 0x1_00_00) + (u8a[3] * 0x1_00_00_00)) >>> 2)];
+      return [4, new BN((u8a[0] >>> 2) + (u8a[1] << 6) + (u8a[2] << 14) + (u8a[3] << 22))];
 
     default: { // 0b11
       // add 5 to shifted (4 for base length, 1 for this byte)

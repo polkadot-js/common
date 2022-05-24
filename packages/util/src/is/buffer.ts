@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { hasBuffer } from '../has';
+import { isFunction } from './function';
 
 /**
  * @name isBuffer
@@ -18,5 +19,6 @@ import { hasBuffer } from '../has';
  * ```
  */
 export function isBuffer (value: unknown): value is Buffer {
-  return hasBuffer && Buffer.isBuffer(value);
+  // we do check a function first, since it is slightly faster than isBuffer itself
+  return hasBuffer && isFunction(value && (value as Buffer).readDoubleLE) && Buffer.isBuffer(value);
 }
