@@ -56,6 +56,9 @@ export const knownGenesis: KnownGenesis = {
   'nodle-chain': [
     '0xa3d114c2b8d0627c1aa9b134eafcf7d05ca561fdc19fb388bb9457f81809fb23'
   ],
+  'nodle-para': [
+    '0x97da7ede98d7bad4e36b4d734b6055425a3be036da2a332ea5a7037656427a21'
+  ],
   parallel: [
     '0xe61a41c53f5dcd0beb09df93b34402aada44cb05117b71059cce40a2723a4e97'
   ],
