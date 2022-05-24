@@ -18,7 +18,6 @@ export const ledgerApps: Record<string, (transport: Transport) => SubstrateApp> 
   genshiro: newGenshiroApp,
   karura: newKaruraApp,
   kusama: newKusamaApp,
-  'nodle-chain': newNodleApp,
   'nodle-para': newNodleApp,
   parallel: newParallelApp,
   polkadex: newPolkadexApp,

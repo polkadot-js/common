@@ -18,7 +18,6 @@ export const knownLedger: KnownLedger = {
   genshiro: 0x05f5e0fc,
   karura: 0x000002ae,
   kusama: 0x000001b2,
-  'nodle-chain': 0x000003eb,
   'nodle-para': 0x000003eb,
   parallel: 0x00000162,
   polkadex: 0x0000031f,
