@@ -65,6 +65,9 @@ export const knownGenesis: KnownGenesis = {
   picasso: [
     '0xe8e7f0f4c4f5a00720b4821dbfddefea7490bcf0b19009961cc46957984e2c1c'
   ],
+  polkadex: [
+    '0x3920bcb4960a1eef5580cd5367ff3f430eef052774f78468852f7b9cb39f8a3c'
+  ],
   polkadot: [
     '0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3'
   ],
