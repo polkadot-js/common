@@ -38,7 +38,27 @@ function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
       ? { isLe: options }
       : options
   );
-  const bn = new BN(value, isLe ? 'le' : 'be');
+  const count = value.length;
+  let bn: BN;
+
+  // shortcut for <= u48 values - in this case the manual conversion
+  // here seems to be more efficient than passing the full array
+  // (and yes, it can be u48, e.g. in compacts with variable lengths)
+  if (count <= 6) {
+    let result = 0;
+
+    for (let i = 0; i < count; i++) {
+      result = (result * 0x1_00) + (
+        isLe
+          ? value[count - 1 - i]
+          : value[i]
+      );
+    }
+
+    bn = new BN(result);
+  } else {
+    bn = new BN(value, isLe ? 'le' : 'be');
+  }
 
   return isNegative && value.length
     ? bn.fromTwos(value.length * 8)
