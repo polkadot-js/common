@@ -61,13 +61,23 @@ describe('encode', (): void => {
     );
   });
 
-  it('encodes a large value', (): void => {
+  it('encodes a large value (6 bytes)', (): void => {
     expect(
       compactToU8a(
         new BN('00005af3107a4000', 16)
       )
     ).toEqual(
       new Uint8Array([3 + ((6 - 4) << 2), 0x00, 0x40, 0x7a, 0x10, 0xf3, 0x5a])
+    );
+  });
+
+  it('encodes a large value (9 bytes)', (): void => {
+    expect(
+      compactToU8a(
+        new BN('1200005af3107a4034', 16)
+      )
+    ).toEqual(
+      new Uint8Array([23, 52, 0x40, 0x7a, 0x10, 0xf3, 0x5a, 0, 0, 18])
     );
   });
 

@@ -37,13 +37,40 @@ describe('u8aToBn', (): void => {
     ).toBe('1234');
   });
 
-  it('converts values (little-endian)', (): void => {
+  it('converts values (little-endian, u16)', (): void => {
     expect(
       u8aToBn(
         new Uint8Array([0x12, 0x34]),
         { isLe: true }
       ).toString(16)
     ).toBe('3412');
+  });
+
+  it('converts values (little-endian, u32)', (): void => {
+    expect(
+      u8aToBn(
+        new Uint8Array([0x12, 0x34, 0x56, 0x78]),
+        { isLe: true }
+      ).toString(16)
+    ).toBe('78563412');
+  });
+
+  it('converts values (big-endian, u16)', (): void => {
+    expect(
+      u8aToBn(
+        new Uint8Array([0x12, 0x34]),
+        { isLe: false }
+      ).toString(16)
+    ).toBe('1234');
+  });
+
+  it('converts values (big-endian, u32)', (): void => {
+    expect(
+      u8aToBn(
+        new Uint8Array([0x12, 0x34, 0x56, 0x78]),
+        { isLe: false }
+      ).toString(16)
+    ).toBe('12345678');
   });
 
   describe('empty creation', (): void => {
@@ -136,5 +163,6 @@ describe('u8aToBn', (): void => {
     ).toBe(true);
   });
 
-  performance('u8aToBn', 500000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
+  performance('u8aToBn (u32)', 500000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
+  performance('u8aToBn (u64)', 500000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
 });
