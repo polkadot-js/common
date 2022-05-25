@@ -5,7 +5,7 @@
 
 import type { U8aLike } from '../types';
 
-import { u8aConcat } from './concat';
+import { u8aConcatStrict } from './concat';
 import { u8aEq } from './eq';
 import { u8aToU8a } from './toU8a';
 
@@ -45,5 +45,5 @@ export function u8aWrapBytes (bytes: U8aLike): Uint8Array {
   // if Ethereum-wrapping, we don't add our wrapping bytes
   return u8aIsWrapped(u8a, true)
     ? u8a
-    : u8aConcat(U8A_WRAP_PREFIX, u8a, U8A_WRAP_POSTFIX);
+    : u8aConcatStrict([U8A_WRAP_PREFIX, u8a, U8A_WRAP_POSTFIX]);
 }

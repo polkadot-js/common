@@ -33,8 +33,16 @@ export function isAscii (value?: U8aLike | null): boolean {
   if (value) {
     return isStringIn && !isHex(value)
       ? value.toString().split('').every(isAsciiChar)
-      : u8aToU8a(value).every(isAsciiByte);
+      : isAsciiStrict(u8aToU8a(value));
   }
 
   return isStringIn;
+}
+
+/**
+ * @name isAsciiStrict
+ * @description A strict version of [[isAscii]], accepting only Uint8Array inputs
+ */
+export function isAsciiStrict (u8a: Uint8Array): boolean {
+  return u8a.every(isAsciiByte);
 }

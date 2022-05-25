@@ -19,7 +19,14 @@ export function isUtf8 (value?: HexString | number[] | Buffer | Uint8Array | str
     return isString(value);
   }
 
-  const u8a = u8aToU8a(value);
+  return isUtf8Strict(u8aToU8a(value));
+}
+
+/**
+ * @name isUtf8Strict
+ * @description A strict version of [[isUtf8]], acception only Uint8Array inpouts
+ */
+export function isUtf8Strict (u8a: Uint8Array): boolean {
   const len = u8a.length;
   let i = 0;
 

@@ -6,6 +6,9 @@ import { formatDecimal, formatNumber } from '..';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ExecFn = (...params: any[]) => unknown;
 
+const NUM_PAD = 16;
+const PRE_PAD = 32;
+
 function loop (count: number, inputs: unknown[][], exec: ExecFn): [number, unknown[]] {
   const start = Date.now();
   const results = new Array<unknown>(inputs.length);
@@ -32,8 +35,8 @@ export function formatOps (count: number, time: number): string {
   const ops = 1_000_000 / micro;
 
   return `
-${formatFixed(ops).padStart(15 + 20)} ops/s
-${formatFixed(micro).padStart(15 + 20)} μs/op`;
+${formatFixed(ops).padStart(NUM_PAD + PRE_PAD + 1)} ops/s
+${formatFixed(micro).padStart(NUM_PAD + PRE_PAD + 1)} μs/op`;
 }
 
 export function performance (name: string, count: number, inputs: unknown[][], exec: ExecFn): void {
@@ -43,7 +46,7 @@ export function performance (name: string, count: number, inputs: unknown[][], e
     console.log(`
 performance run for ${name} completed with ${formatNumber(count)} iterations.
 
-${`${name}:`.padStart(19)} ${time.toString().padStart(15)} ms${formatOps(count, time)}
+${`${name}:`.padStart(PRE_PAD)} ${time.toString().padStart(NUM_PAD)} ms${formatOps(count, time)}
 `);
   });
 }
@@ -58,9 +61,9 @@ export function performanceCmp (name: string, [first, second]: [string, string],
     console.log(`
 performance run for ${name} completed with ${formatNumber(count)} iterations.
 
-${`${first}:`.padStart(19)} ${ta.toString().padStart(15)} ms ${ta < tb ? '(fastest)' : `(slowest, ${(ta / tb).toFixed(2)}x)`}${formatOps(count, ta)}
+${`${first}:`.padStart(PRE_PAD)} ${ta.toString().padStart(NUM_PAD)} ms ${ta < tb ? '(fastest)' : `(slowest, ${(ta / tb).toFixed(2)}x)`}${formatOps(count, ta)}
 
-${`${second}:`.padStart(19)} ${tb.toString().padStart(15)} ms ${ta > tb ? '(fastest)' : `(slowest, ${(tb / ta).toFixed(2)}x)`}${formatOps(count, tb)}
+${`${second}:`.padStart(PRE_PAD)} ${tb.toString().padStart(NUM_PAD)} ms ${ta > tb ? '(fastest)' : `(slowest, ${(tb / ta).toFixed(2)}x)`}${formatOps(count, tb)}
 `);
 
     const unmatched = ra.filter((r, i) =>

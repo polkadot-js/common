@@ -1,6 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performance } from '../test/performance';
 import { u8aToU8a } from '.';
 
 describe('u8aToU8a', (): void => {
@@ -68,4 +69,8 @@ describe('u8aToU8a', (): void => {
       u8aToU8a(123 as unknown as Uint8Array)
     ).toEqual(new Uint8Array([49, 50, 51]));
   });
+
+  performance('u8aToU8a (hex)', 250_000, [['0x1234']], u8aToU8a);
+  performance('u8aToU8a (str)', 250_000, [['test']], u8aToU8a);
+  performance('u8aToU8a (u8a)', 1_000_000, [[new Uint8Array()]], u8aToU8a);
 });

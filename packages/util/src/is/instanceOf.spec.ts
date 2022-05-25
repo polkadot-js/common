@@ -10,6 +10,16 @@ describe('isInstanceOf', (): void => {
     ).toEqual(true);
   });
 
+  it('returns true on real instances (inherited)', (): void => {
+    class Test extends Array {
+      // default
+    }
+
+    expect(
+      isInstanceOf(new Test(2), Array)
+    ).toEqual(true);
+  });
+
   it('returns false on non-allocated instances', (): void => {
     expect(
       isInstanceOf([], Array)

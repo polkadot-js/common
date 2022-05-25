@@ -5,7 +5,7 @@
  * @summary Type checking utilities
  */
 export { isArray } from './array';
-export { isAscii } from './ascii';
+export { isAscii, isAsciiStrict } from './ascii';
 export { isBigInt } from './bigInt';
 export { isBn } from './bn';
 export { isBuffer } from './buffer';
@@ -30,5 +30,5 @@ export { isToBigInt } from './toBigInt';
 export { isToBn } from './toBn';
 export { isU8a } from './u8a';
 export { isUndefined } from './undefined';
-export { isUtf8 } from './utf8';
+export { isUtf8, isUtf8Strict } from './utf8';
 export { isWasm } from './wasm';

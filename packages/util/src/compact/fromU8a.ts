@@ -21,8 +21,14 @@ import { u8aToBn, u8aToU8a } from '../u8a';
  * ```
  */
 export function compactFromU8a (input: U8aLike): [number, BN] {
-  const u8a = u8aToU8a(input);
+  return compactFromU8aStrict(u8aToU8a(input));
+}
 
+/**
+ * @name compactFromU8aStrict
+ * @description A strict version of [[compactFromU8a]], accepting only Uint8Array inputs
+ */
+export function compactFromU8aStrict (u8a: Uint8Array): [number, BN] {
   // The u8a is manually converted here for 1, 2 & 4 lengths, it is 2x faster
   // than doing an additional call to u8aToBn (as with variable length)
   switch (u8a[0] & 0b11) {
