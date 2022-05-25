@@ -3,7 +3,7 @@
 
 import { assert } from '../assert';
 import { BN, BN_ONE, BN_TWO, bnToBn, bnToU8a } from '../bn';
-import { u8aConcat } from '../u8a';
+import { u8aConcatStrict } from '../u8a';
 
 const MAX_U8 = BN_TWO.pow(new BN(8 - 2)).isub(BN_ONE);
 const MAX_U16 = BN_TWO.pow(new BN(16 - 2)).isub(BN_ONE);
@@ -44,9 +44,9 @@ export function compactToU8a (value: BN | bigint | number): Uint8Array {
 
   assert(length >= 4, 'Invalid length, previous checks match anything less than 2^30');
 
-  return u8aConcat(
+  return u8aConcatStrict([
     // subtract 4 as minimum (also catered for in decoding)
-    [((length - 4) << 2) + 0b11],
+    new Uint8Array([((length - 4) << 2) + 0b11]),
     u8a.subarray(0, length)
-  );
+  ]);
 }

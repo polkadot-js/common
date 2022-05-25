@@ -17,7 +17,7 @@
  */
 export function isError (value: unknown): value is Error {
   return (
-    ((value && (value as Record<string, unknown>).constructor) === Error) ||
+    ((value && (value as Error).constructor) === Error) ||
     value instanceof Error
   );
 }
