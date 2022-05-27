@@ -5,10 +5,10 @@
  * @summary Utility methods to convert to and from `Uint8Array` objects
  */
 
-export { u8aCmp, u8aCmpStrict } from './cmp';
+export { u8aCmp } from './cmp';
 export { u8aConcat, u8aConcatStrict } from './concat';
 export { u8aEmpty } from './empty';
-export { u8aEq, u8aEqStrict } from './eq';
+export { u8aEq } from './eq';
 export { u8aFixLength } from './fixLength';
 export { u8aSorted } from './sorted';
 export { u8aToBigInt } from './toBigInt';
