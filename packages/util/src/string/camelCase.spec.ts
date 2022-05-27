@@ -109,5 +109,5 @@ describe('stringCamelCase', (): void => {
     ).toEqual('aBCDef');
   });
 
-  performance('stringCamelCase', 64000, randomWords, stringCamelCase);
+  performance('stringCamelCase', 100_000, randomWords, stringCamelCase);
 });

@@ -15,4 +15,10 @@ describe('stringPascalCase', (): void => {
       stringPascalCase(String('foo_bar--  __baz Bob'))
     ).toBe('FooBarBazBob');
   });
+
+  it('adjusts all-uppercase + digits', (): void => {
+    expect(
+      stringPascalCase('UUID64')
+    ).toEqual('Uuid64');
+  });
 });

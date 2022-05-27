@@ -10,7 +10,10 @@ Contributed:
 Changes:
 
 - Internal code maintainability enhancements
+- Add `u8a*Strict` variants with Uint8Array-only inputs
 - Adjust `u8aToU8a` checks with better `isU8a` shortcut
+- Adjust compact conversion with unrolled loops
+- Adjust `string{Camel, Pascal}Case` with loop (no map)
 
 
 ## 9.2.1 May 13, 2022
