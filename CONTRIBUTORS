@@ -1,4 +1,4 @@
-    1328	Jaco                          	Add u8a-only strict variants (#1503)
+    1329	Jaco                          	Use for loop in string{Came, Pascal}Case conversions (#1504)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
