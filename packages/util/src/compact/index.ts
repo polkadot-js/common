@@ -24,5 +24,5 @@
 
 export { compactAddLength } from './addLength';
 export { compactStripLength } from './stripLength';
-export { compactFromU8a, compactFromU8aStrict } from './fromU8a';
+export { compactFromU8a, compactFromU8aLim } from './fromU8a';
 export { compactToU8a } from './toU8a';
