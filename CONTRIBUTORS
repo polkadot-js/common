@@ -1,4 +1,4 @@
-    1329	Jaco                          	Use for loop in string{Came, Pascal}Case conversions (#1504)
+    1330	Jaco                          	Add compactFromU8aLim (Remove extraneous *Strict) (#1505)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
