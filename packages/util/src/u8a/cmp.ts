@@ -22,14 +22,8 @@ import { u8aToU8a } from './toU8a';
  * ```
  */
 export function u8aCmp (a: HexString | Uint8Array | string, b: HexString | Uint8Array | string): number {
-  return u8aCmpStrict(u8aToU8a(a), u8aToU8a(b));
-}
-
-/**
- * @name u8aCmpStrict
- * @description A strict version of [[u8aCmp]], accepting only Uint8Array inputs
- */
-export function u8aCmpStrict (u8aa: Uint8Array, u8ab: Uint8Array): number {
+  const u8aa = u8aToU8a(a);
+  const u8ab = u8aToU8a(b);
   let i = 0;
 
   while (true) {
