@@ -31,7 +31,7 @@ function converter (format: (w: string, i: number) => string): (value: AnyString
       const w = parts[i];
 
       // apply the formatting
-      result = format(
+      result += format(
         w.toUpperCase() === w
           // all full uppercase + letters are changed to lowercase
           ? w.toLowerCase()
