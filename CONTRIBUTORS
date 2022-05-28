@@ -1,4 +1,4 @@
-    1330	Jaco                          	Add compactFromU8aLim (Remove extraneous *Strict) (#1505)
+    1331	Jaco                          	Bump deps (#1506)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
