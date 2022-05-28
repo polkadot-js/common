@@ -20,9 +20,9 @@
   "version": "9.2.2-15",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.18.0",
+    "@babel/runtime": "^7.18.3",
     "@polkadot/util": "9.2.2-15",
-    "@substrate/ss58-registry": "^1.18.0"
+    "@substrate/ss58-registry": "^1.20.0"
   },
   "devDependencies": {
     "@polkadot/hw-ledger": "9.2.2-15",
