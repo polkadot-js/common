@@ -781,6 +781,32 @@
     "website": "https://polkadex.trade"
   },
   {
+    "prefix": 89,
+    "network": "polkadexparachain",
+    "displayName": "Polkadex Parachain",
+    "symbols": [
+      "PDEX"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://polkadex.trade"
+  },
+  {
+    "prefix": 93,
+    "network": "fragnova",
+    "displayName": "Fragnova Network",
+    "symbols": [
+      "NOVA"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://fragnova.com"
+  },
+  {
     "prefix": 98,
     "network": "polkasmith",
     "displayName": "PolkaSmith Canary Network",
@@ -853,6 +879,19 @@
     "decimals": [],
     "standardAccount": "*25519",
     "website": "https://integritee.network"
+  },
+  {
+    "prefix": 117,
+    "network": "tinker",
+    "displayName": "Tinker",
+    "symbols": [
+      "TNKR"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://invarch.network"
   },
   {
     "prefix": 128,
