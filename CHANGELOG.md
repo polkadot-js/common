@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 9.3.1 May 29, 2022
 
 Contributed:
 
@@ -9,12 +9,13 @@ Contributed:
 
 Changes:
 
-- Internal code maintainability enhancements
-- Add `compactFromU8a` variant with Uint8Array-only inputs
-- Add `u8aConcatStrict` variant with Uint8Array-only inputs
 - Adjust `u8aToU8a` checks with better `isU8a` shortcut
 - Adjust compact conversion with unrolled loops
 - Adjust `string{Camel, Pascal}Case` with loop (no map)
+- Add `compactFromU8aLim` variant with Uint8Array-only inputs
+- Add `u8aConcatStrict` variant with Uint8Array-only inputs
+- Internal code maintainability enhancements
+- Upgrade dependencies to latest stable versions
 
 
 ## 9.2.1 May 13, 2022

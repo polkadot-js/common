@@ -17,11 +17,11 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "9.2.2-16",
+  "version": "9.3.0",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.18.3",
-    "@polkadot/util": "9.2.2-16",
+    "@polkadot/util": "9.3.0",
     "buffer-es6": "^4.9.3"
   }
 }
