@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Add `nextTick` to `@polkadot/util` to defer execution to the queue
+- Upgrade dependencies to latest stable versions
+
+
 ## 9.3.1 May 29, 2022
 
 Contributed:

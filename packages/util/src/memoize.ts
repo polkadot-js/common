@@ -14,6 +14,10 @@ function defaultGetId (): string {
   return 'none';
 }
 
+/**
+ * @name memoize
+ * @description Memomize the function with a specific instanceId
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function memoize <T, F extends (...args: any[]) => T> (fn: F, { getInstanceId = defaultGetId }: Options = {}): Memoized<F> {
   const cache: Record<string, Record<string, T>> = {};
