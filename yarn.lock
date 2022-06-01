@@ -2040,9 +2040,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.66.31":
-  version: 0.66.31
-  resolution: "@polkadot/dev@npm:0.66.31"
+"@polkadot/dev@npm:^0.66.32":
+  version: 0.66.32
+  resolution: "@polkadot/dev@npm:0.66.32"
   dependencies:
     "@babel/cli": ^7.17.10
     "@babel/core": ^7.18.2
@@ -2103,7 +2103,7 @@ __metadata:
     mkdirp: ^1.0.4
     prettier: ^2.6.2
     rimraf: ^3.0.2
-    rollup: ^2.75.0
+    rollup: ^2.75.3
     rollup-plugin-cleanup: ^3.2.1
     typescript: ^4.7.2
     yargs: ^17.5.1
@@ -2129,7 +2129,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 3657ba41a6e7ec2fe10e89d02ff63a733779f8b1d365d571fd4ed2d9cf47955802eeda289c58e76358403964faec2ef7f291ae05e6c043ec547491db2ec1b3ae
+  checksum: 725d42db2ab7c684e91831a1da88bc39793bf836d8eaa5a97ea5ea9497682707a7f60b6674ac5dbaafc4020a036525c5fdfedf3353ec6d51b026f50bca5ac71f
   languageName: node
   linkType: hard
 
@@ -2182,7 +2182,7 @@ __metadata:
     "@polkadot/hw-ledger": 9.3.2-0
     "@polkadot/util": 9.3.2-0
     "@polkadot/x-fetch": 9.3.2-0
-    "@substrate/ss58-registry": ^1.20.0
+    "@substrate/ss58-registry": ^1.22.0
   languageName: unknown
   linkType: soft
 
@@ -2503,10 +2503,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@substrate/ss58-registry@npm:^1.20.0":
-  version: 1.20.0
-  resolution: "@substrate/ss58-registry@npm:1.20.0"
-  checksum: 4155a8fbd7c663354b2f0ae654421da397f0f5af01c8e4b1f5234dd318429c734595c4a90edb98e1cd3b2d0e727f26c57bcf557d47f9ce9a15c481f498f592cc
+"@substrate/ss58-registry@npm:^1.22.0":
+  version: 1.22.0
+  resolution: "@substrate/ss58-registry@npm:1.22.0"
+  checksum: 5674b586680bd0d83a5da1bb790f84ed5184221e1b2935aed4f539c2e72311c53affb9d8a93e9a30727a409f874f7493569bd4e6990473957409dbf0a165b24d
   languageName: node
   linkType: hard
 
@@ -9430,9 +9430,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.75.0":
-  version: 2.75.0
-  resolution: "rollup@npm:2.75.0"
+"rollup@npm:^2.75.3":
+  version: 2.75.4
+  resolution: "rollup@npm:2.75.4"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -9440,7 +9440,7 @@ resolve@^2.0.0-next.3:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: a99b63691bb63ebed81eabdff8f9c3234f3e9fe1e0be22526f036ab530f77881a93ea5ad86c1c7c161c6fb8615552e46df93792ffe212c1197b2244231715bff
+  checksum: eafa67895644fe004cd8932e67523c632a9091193aae4707a01e630faaddcfcd31470aa858bd4a5f1ffa457ea062f42c36ddef85c82f8ecbae3b14ac00668900
   languageName: node
   linkType: hard
 
@@ -9449,7 +9449,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.18.2
-    "@polkadot/dev": ^0.66.31
+    "@polkadot/dev": ^0.66.32
     "@types/jest": ^27.5.1
   languageName: unknown
   linkType: soft

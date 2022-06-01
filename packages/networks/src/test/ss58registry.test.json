@@ -634,6 +634,19 @@
     "website": "https://dico.io"
   },
   {
+    "prefix": 54,
+    "network": "cere",
+    "displayName": "Cere Network",
+    "symbols": [
+      "CERE"
+    ],
+    "decimals": [
+      10
+    ],
+    "standardAccount": "*25519",
+    "website": "https://cere.network"
+  },
+  {
     "prefix": 55,
     "network": "xxnetwork",
     "displayName": "xx network",
@@ -1141,6 +1154,19 @@
     "website": "https://subspace.network"
   },
   {
+    "prefix": 7007,
+    "network": "tidefi",
+    "displayName": "Tidefi",
+    "symbols": [
+      "TIFI"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://tidefi.com"
+  },
+  {
     "prefix": 7391,
     "network": "unique_mainnet",
     "displayName": "Unique Network",
@@ -1152,6 +1178,19 @@
     ],
     "standardAccount": "*25519",
     "website": "https://unique.network"
+  },
+  {
+    "prefix": 9807,
+    "network": "dentnet",
+    "displayName": "DENTNet",
+    "symbols": [
+      "DENTX"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://www.dentnet.io"
   },
   {
     "prefix": 10041,
@@ -1204,5 +1243,18 @@
     ],
     "standardAccount": "*25519",
     "website": "https://ata.network"
+  },
+  {
+    "prefix": 12191,
+    "network": "nftmart",
+    "displayName": "NFTMart",
+    "symbols": [
+      "NMT"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://nftmart.io"
   }
 ]

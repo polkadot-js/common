@@ -20,6 +20,7 @@ export * from './is';
 export * from './lazy';
 export * from './logger';
 export * from './memoize';
+export * from './nextTick';
 export * from './number';
 export * from './object';
 export * from './promisify';
