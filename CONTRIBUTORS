@@ -1,4 +1,4 @@
-    1335	Jaco                          	Bump dev deps (#1511)
+    1336	Jaco                          	Additional performance tests (#1512)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
