@@ -4,10 +4,20 @@
 import { performance } from '../test/performance';
 import { u8aEq } from '.';
 
-const ptest = new Uint8Array(32768);
+const ltest = new Uint8Array(32768);
+const stest = new Uint8Array(256);
+const ztest = new Uint8Array(64);
 
-for (let i = 0; i < ptest.length; i++) {
-  ptest[i] = i % 256;
+for (let i = 0; i < ltest.length; i++) {
+  if (i < ztest.length) {
+    ztest[i] = i % 256;
+  }
+
+  if (i < stest.length) {
+    stest[i] = i % 256;
+  }
+
+  ltest[i] = i % 256;
 }
 
 describe('u8aEq', (): void => {
@@ -95,5 +105,7 @@ describe('u8aEq', (): void => {
     ).toEqual(true);
   });
 
-  performance('u8aEq (32k cmp)', 50000, [[ptest, ptest]], u8aEq);
+  performance('u8aEq (64 cmp)', 200_000, [[ztest, ztest]], u8aEq);
+  performance('u8aEq (256 cmp)', 200_000, [[stest, stest]], u8aEq);
+  performance('u8aEq (32k cmp)', 10_000, [[ltest, ltest]], u8aEq);
 });
