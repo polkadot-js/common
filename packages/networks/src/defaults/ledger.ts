@@ -12,6 +12,7 @@ export const knownLedger: KnownLedger = {
   astar: 0x0000032a,
   bifrost: 0x00000314,
   centrifuge: 0x000002eb,
+  composable: 0x00000162,
   'dock-mainnet': 0x00000252,
   edgeware: 0x0000020b,
   equilibrium: 0x05f5e0fd,
