@@ -24,7 +24,8 @@ export function nSqrt <ExtToBn extends ToBn | ToBigInt> (value: ExtToBn | BN | b
   // https://stackoverflow.com/questions/53683995/javascript-big-integer-square-root/
   // shortcut <= 2^53 - 1 to use the JS utils
   if (n <= _2pow53n) {
-    return BigInt(Math.floor(Math.sqrt(Number(n))));
+    // ~~ is more performant that Math.floor
+    return BigInt(~~Math.sqrt(Number(n)));
   }
 
   // Use sqrt(MAX_SAFE_INTEGER) as starting point. since we already know the

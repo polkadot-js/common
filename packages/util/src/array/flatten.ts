@@ -19,6 +19,11 @@
  * ```
  */
 export function arrayFlatten <T> (arrays: T[][]): T[] {
+  // noop for the single-entry case
+  if (arrays.length === 1) {
+    return arrays[0];
+  }
+
   // pre-allocate based on the combined size
   let size = 0;
 
