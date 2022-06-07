@@ -25,7 +25,7 @@ function addTime (a: Time, b: Time): Time {
 }
 
 function extractDays (milliseconds: number, hrs: number): Time {
-  const days = Math.floor(hrs / 24);
+  const days = ~~(hrs / 24);
 
   return addTime(objectSpread({}, ZERO, { days }), extractTime(milliseconds - (days * DAY * 1000)));
 }
@@ -34,7 +34,7 @@ function extractHrs (milliseconds: number, mins: number): Time {
   const hrs = mins / 60;
 
   if (hrs < 24) {
-    const hours = Math.floor(hrs);
+    const hours = ~~hrs;
 
     return addTime(objectSpread({}, ZERO, { hours }), extractTime(milliseconds - (hours * HRS * 1000)));
   }
@@ -46,7 +46,7 @@ function extractMins (milliseconds: number, secs: number): Time {
   const mins = secs / 60;
 
   if (mins < 60) {
-    const minutes = Math.floor(mins);
+    const minutes = ~~mins;
 
     return addTime(objectSpread({}, ZERO, { minutes }), extractTime(milliseconds - (minutes * 60 * 1000)));
   }
@@ -58,7 +58,7 @@ function extractSecs (milliseconds: number): Time {
   const secs = milliseconds / 1000;
 
   if (secs < 60) {
-    const seconds = Math.floor(secs);
+    const seconds = ~~secs;
 
     return addTime(objectSpread({}, ZERO, { seconds }), extractTime(milliseconds - (seconds * 1000)));
   }

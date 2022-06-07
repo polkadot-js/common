@@ -5,12 +5,14 @@ export function arrayShuffle <T> (input: T[]): T[] {
   const result = input.slice();
   let curr = result.length;
 
+  // noop for the single entry
   if (curr === 1) {
     return result;
   }
 
   while (curr !== 0) {
-    const rand = Math.floor(Math.random() * curr);
+    // ~~ is more performant than Math.floor
+    const rand = ~~(Math.random() * curr);
 
     curr--;
 

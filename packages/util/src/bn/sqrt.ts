@@ -31,7 +31,8 @@ export function bnSqrt <ExtToBn extends ToBn> (value: ExtToBn | BN | bigint | st
   // https://stackoverflow.com/questions/53683995/javascript-big-integer-square-root/
   // shortcut <= 2^53 - 1 to use the JS utils
   if (n.lte(BN_MAX_INTEGER)) {
-    return new BN(Math.floor(Math.sqrt(n.toNumber())));
+    // ~~ More performant version of Math.floor
+    return new BN(~~Math.sqrt(n.toNumber()));
   }
 
   // Use sqrt(MAX_SAFE_INTEGER) as starting point. since we already know the
