@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Update Bifrost genesisHash (Thanks to https://github.com/awesomepan)
+- Add Ledger support for Composable (Thanks to https://github.com/carlosala)
+
+Changes:
+
+- Use `~~` as bitwise/faster `Math.floor` replacement
+
+
 ## 9.4.1 Jun 4, 2022
 
 Changes:
