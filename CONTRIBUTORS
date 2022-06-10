@@ -1,4 +1,4 @@
-    1340	Jaco                          	Use bitwise not as Math.floor replacement (#1518)
+    1341	Jaco                          	CHANGELOG (#1523)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
