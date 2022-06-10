@@ -11,6 +11,7 @@ export const knownLedger: KnownLedger = {
   acala: 0x00000313,
   astar: 0x0000032a,
   bifrost: 0x00000314,
+  bifrost_polkadot: 0x00000314,
   centrifuge: 0x000002eb,
   composable: 0x00000162,
   'dock-mainnet': 0x00000252,
