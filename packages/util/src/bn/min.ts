@@ -4,16 +4,6 @@
 import { createCmp } from '../bi/helpers';
 import { BN } from './bn';
 
-/** @internal */
-function gt (a: BN, b: BN): boolean {
-  return a.gt(b);
-}
-
-/** @internal */
-function lt (a: BN, b: BN): boolean {
-  return a.lt(b);
-}
-
 /**
  * @name bnMax
  * @summary Finds and returns the highest value in an array of BNs.
@@ -27,7 +17,7 @@ function lt (a: BN, b: BN): boolean {
  * bnMax([new BN(1), new BN(3), new BN(2)]).toString(); // => '3'
  * ```
  */
-export const bnMax = createCmp(gt);
+export const bnMax = createCmp<BN>((a, b) => a.gt(b));
 
 /**
  * @name bnMin
@@ -42,4 +32,4 @@ export const bnMax = createCmp(gt);
  * bnMin([new BN(1), new BN(3), new BN(2)]).toString(); // => '1'
  * ```
  */
-export const bnMin = createCmp(lt);
+export const bnMin = createCmp<BN>((a, b) => a.lt(b));

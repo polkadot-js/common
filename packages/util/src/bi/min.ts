@@ -3,24 +3,14 @@
 
 import { createCmp } from './helpers';
 
-/** @internal */
-function gt (a: bigint, b: bigint): boolean {
-  return a > b;
-}
-
-/** @internal */
-function lt (a: bigint, b: bigint): boolean {
-  return a < b;
-}
-
 /**
  * @name nMax
  * @summary Finds and returns the highest value in an array of bigint.
  */
-export const nMax = createCmp(gt);
+export const nMax = createCmp<bigint>((a, b) => a > b);
 
 /**
  * @name nMin
  * @summary Finds and returns the lowest value in an array of bigint.
  */
-export const nMin = createCmp(lt);
+export const nMin = createCmp<bigint>((a, b) => a < b);
