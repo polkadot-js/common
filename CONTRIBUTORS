@@ -1,4 +1,4 @@
-    1344	Jaco                          	Test for sqrt(MAX_SAFE_INT) (w/ comments for excluded functions) (#1526)
+    1345	Jaco                          	Shared helper function for bn/bi min/max compares (#1527)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
