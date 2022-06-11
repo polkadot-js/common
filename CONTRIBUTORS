@@ -1,4 +1,4 @@
-    1345	Jaco                          	Shared helper function for bn/bi min/max compares (#1527)
+    1346	Jaco                          	Inline function for min/max creator (#1528)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
