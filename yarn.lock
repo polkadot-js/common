@@ -2158,7 +2158,7 @@ __metadata:
     "@ledgerhq/hw-transport": ^6.27.1
     "@polkadot/hw-ledger-transports": 9.4.2-4
     "@polkadot/util": 9.4.2-4
-    "@zondax/ledger-substrate": ^0.30.0
+    "@zondax/ledger-substrate": ^0.31.0
   languageName: unknown
   linkType: soft
 
@@ -2978,9 +2978,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zondax/ledger-substrate@npm:^0.30.0":
-  version: 0.30.0
-  resolution: "@zondax/ledger-substrate@npm:0.30.0"
+"@zondax/ledger-substrate@npm:^0.31.0":
+  version: 0.31.0
+  resolution: "@zondax/ledger-substrate@npm:0.31.0"
   dependencies:
     "@babel/runtime": ^7.14.8
     "@ledgerhq/hw-transport": ^6.2.0
@@ -2990,7 +2990,7 @@ __metadata:
     blakejs: ^1.1.1
     bs58: ^4.0.1
     hash.js: ^1.1.7
-  checksum: f4aa73353f80de10f3d4b3e469c679a8282605c3270fa81be9147a7f45cc98d0f516d93c80095fba942b7105ef68ac98656f36d82b6a5d6f71ea410c5fd46930
+  checksum: ab4046a594394e2bc52a7f0e6951be80ede145303e24b90a17b42a2447375d225bcb2a9ccd97ecbccfa800b77599c7097c80b8eae87de0c9c4c3d034a22c8e37
   languageName: node
   linkType: hard
 
