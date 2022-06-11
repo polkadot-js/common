@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { BN } from '../bn';
+import { SQRT_MAX_SAFE_INTEGER } from './sqrt';
 import { nSqrt } from '.';
 
 const TESTS: [string | number | BN | bigint, string | number][] = [
@@ -34,9 +35,21 @@ describe('nSqrt', (): void => {
     ).toThrow(/negative numbers is not supported/);
   });
 
+  it('has the correct constant for sqrt(Number.MAX_SAFE_INTEGER)', (): void => {
+    expect(
+      BigInt(
+        Math.sqrt(
+          Number.MAX_SAFE_INTEGER
+        )
+      ) === SQRT_MAX_SAFE_INTEGER
+    ).toEqual(true);
+  });
+
   TESTS.forEach(([value, expected], index): void => {
     it(`calcs for test #${index}`, (): void => {
-      expect(nSqrt(value) === BigInt(expected)).toEqual(true);
+      expect(
+        nSqrt(value) === BigInt(expected)
+      ).toEqual(true);
     });
   });
 });

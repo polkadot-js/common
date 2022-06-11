@@ -3,14 +3,17 @@
 
 import { assert } from '../assert';
 
+/** @internal */
 function gt (a: bigint, b: bigint): boolean {
   return a > b;
 }
 
+/** @internal */
 function lt (a: bigint, b: bigint): boolean {
   return a < b;
 }
 
+/** @internal */
 function find (items: bigint[], cmp: (a: bigint, b: bigint) => boolean): bigint {
   assert(items.length >= 1, 'Must provide one or more bigint arguments');
 

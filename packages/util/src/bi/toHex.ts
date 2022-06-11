@@ -8,6 +8,7 @@ import { objectSpread } from '../object/spread';
 import { u8aToHex } from '../u8a';
 import { nToU8a } from './toU8a';
 
+/** @internal */
 const ZERO_STR = '0x00';
 
 /**

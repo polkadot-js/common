@@ -1,6 +1,10 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+/**
+ * @name arrayShuffle
+ * @description Shuffles the input array (unlike sort, this is not done in-place)
+ */
 export function arrayShuffle <T> (input: T[]): T[] {
   const result = input.slice();
   let curr = result.length;

@@ -3,4 +3,5 @@
 
 import type { BitLength } from './types';
 
+/** @internal */
 export const DEFAULT_BITLENGTH: BitLength = 32;

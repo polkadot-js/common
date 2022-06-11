@@ -4,6 +4,7 @@
 import { assert } from '../assert';
 import { BN } from './bn';
 
+/** @internal */
 export function find (items: BN[], cmp: (a: BN, b: BN) => BN): BN {
   assert(items.length >= 1, 'Must provide one or more BN arguments');
 

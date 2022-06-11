@@ -17,6 +17,7 @@ function isAsciiByte (b: number): boolean {
   );
 }
 
+/** @internal */
 function isAsciiChar (s: string): boolean {
   return isAsciiByte(s.charCodeAt(0));
 }

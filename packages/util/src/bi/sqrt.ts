@@ -10,7 +10,8 @@ import { assert } from '../assert';
 import { _0n, _1n, _2pow53n } from './consts';
 import { nToBigInt } from './toBigInt';
 
-const _sqrt2pow53n = BigInt(94906265);
+/** @internal */
+export const SQRT_MAX_SAFE_INTEGER = BigInt(94906265);
 
 /**
  * @name nSqrt
@@ -30,7 +31,7 @@ export function nSqrt <ExtToBn extends ToBn | ToBigInt> (value: ExtToBn | BN | b
 
   // Use sqrt(MAX_SAFE_INTEGER) as starting point. since we already know the
   // output will be larger than this, we expect this to be a safe start
-  let x0 = _sqrt2pow53n;
+  let x0 = SQRT_MAX_SAFE_INTEGER;
 
   while (true) {
     const x1 = ((n / x0) + x0) >> _1n;
