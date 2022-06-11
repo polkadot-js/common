@@ -25,6 +25,6 @@ describe('bnMax', (): void => {
   it('fails when no items are available', (): void => {
     expect(
       () => bnMax()
-    ).toThrow(/Must provide one or more BN arguments/);
+    ).toThrow(/Must provide one or more arguments/);
   });
 });

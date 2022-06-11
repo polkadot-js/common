@@ -25,6 +25,6 @@ describe('nMax', (): void => {
   it('fails when no items are available', (): void => {
     expect(
       () => nMax()
-    ).toThrow(/Must provide one or more bigint arguments/);
+    ).toThrow(/Must provide one or more arguments/);
   });
 });

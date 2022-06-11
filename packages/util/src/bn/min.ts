@@ -1,22 +1,17 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { assert } from '../assert';
+import { createCmp } from '../bi/helpers';
 import { BN } from './bn';
 
 /** @internal */
-function createCmp (cmp: (a: BN, b: BN) => BN): (...items: BN[]) => BN {
-  return (...items: BN[]): BN => {
-    assert(items.length >= 1, 'Must provide one or more BN arguments');
+function gt (a: BN, b: BN): boolean {
+  return a.gt(b);
+}
 
-    let result = items[0];
-
-    for (let i = 1; i < items.length; i++) {
-      result = cmp(result, items[i]);
-    }
-
-    return result;
-  };
+/** @internal */
+function lt (a: BN, b: BN): boolean {
+  return a.lt(b);
 }
 
 /**
@@ -32,7 +27,7 @@ function createCmp (cmp: (a: BN, b: BN) => BN): (...items: BN[]) => BN {
  * bnMax([new BN(1), new BN(3), new BN(2)]).toString(); // => '3'
  * ```
  */
-export const bnMax = createCmp(BN.max);
+export const bnMax = createCmp(gt);
 
 /**
  * @name bnMin
@@ -47,4 +42,4 @@ export const bnMax = createCmp(BN.max);
  * bnMin([new BN(1), new BN(3), new BN(2)]).toString(); // => '1'
  * ```
  */
-export const bnMin = createCmp(BN.min);
+export const bnMin = createCmp(lt);
