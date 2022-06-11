@@ -6,6 +6,7 @@ import type { ToBn } from '../types';
 
 import { bnToBn } from '../bn/toBn';
 
+/** @internal */
 function formatValue (elapsed: number): string {
   if (elapsed < 15) {
     return `${elapsed.toFixed(1)}s`;
@@ -18,6 +19,10 @@ function formatValue (elapsed: number): string {
   return `${elapsed / 3600 | 0}h`;
 }
 
+/**
+ * @name formatElapsed
+ * @description Formats an elapsed value into s, m, h or day segments
+ */
 export function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: bigint | BN | ExtToBn | Date | number | null): string {
   const tsNow = (now && now.getTime()) || 0;
   const tsValue = value instanceof Date

@@ -3,8 +3,10 @@
 
 import type { SiDef } from '../types';
 
+/** @internal */
 export const SI_MID = 8;
 
+/** @internal */
 export const SI: SiDef[] = [
   { power: -24, text: 'yocto', value: 'y' },
   { power: -21, text: 'zepto', value: 'z' },
@@ -26,6 +28,7 @@ export const SI: SiDef[] = [
 ];
 
 // Given a SI type (e.g. k, m, Y) find the SI definition
+/** @internal */
 export function findSi (type: string): SiDef {
   // use a loop here, better RN support (which doesn't have [].find)
   for (let i = 0; i < SI.length; i++) {
@@ -37,6 +40,7 @@ export function findSi (type: string): SiDef {
   return SI[SI_MID];
 }
 
+/** @internal */
 export function calcSi (text: string, decimals: number, forceUnit?: string): SiDef {
   if (forceUnit) {
     return findSi(forceUnit);

@@ -4,6 +4,10 @@
 // eslint-disable-next-line prefer-regex-literals
 const NUMBER_REGEX = new RegExp('(\\d+?)(?=(\\d{3})+(?!\\d)|$)', 'g');
 
+/**
+ * @name formatDecimal
+ * @description Formats a number into string format with thousand seperators
+ */
 export function formatDecimal (value: string): string {
   // We can do this by adjusting the regx, however for the sake of clarity
   // we rather strip and re-add the negative sign in the output
