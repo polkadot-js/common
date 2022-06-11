@@ -19,6 +19,6 @@ describe('nMin', (): void => {
   it('fails when no items are available', (): void => {
     expect(
       () => nMin()
-    ).toThrow(/Must provide one or more bigint arguments/);
+    ).toThrow(/Must provide one or more arguments/);
   });
 });

@@ -15,4 +15,10 @@ describe('bnMin', (): void => {
       bnMin(new BN(1))
     ).toEqual(new BN(1));
   });
+
+  it('fails when no items are available', (): void => {
+    expect(
+      () => bnMin()
+    ).toThrow(/Must provide one or more arguments/);
+  });
 });
