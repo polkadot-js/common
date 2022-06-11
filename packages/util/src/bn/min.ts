@@ -5,16 +5,18 @@ import { assert } from '../assert';
 import { BN } from './bn';
 
 /** @internal */
-export function find (items: BN[], cmp: (a: BN, b: BN) => BN): BN {
-  assert(items.length >= 1, 'Must provide one or more BN arguments');
+function createCmp (cmp: (a: BN, b: BN) => BN): (...items: BN[]) => BN {
+  return (...items: BN[]): BN => {
+    assert(items.length >= 1, 'Must provide one or more BN arguments');
 
-  let result = items[0];
+    let result = items[0];
 
-  for (let i = 1; i < items.length; i++) {
-    result = cmp(result, items[i]);
-  }
+    for (let i = 1; i < items.length; i++) {
+      result = cmp(result, items[i]);
+    }
 
-  return result;
+    return result;
+  };
 }
 
 /**
@@ -30,9 +32,7 @@ export function find (items: BN[], cmp: (a: BN, b: BN) => BN): BN {
  * bnMax([new BN(1), new BN(3), new BN(2)]).toString(); // => '3'
  * ```
  */
-export function bnMax (...items: BN[]): BN {
-  return find(items, BN.max);
-}
+export const bnMax = createCmp(BN.max);
 
 /**
  * @name bnMin
@@ -47,6 +47,4 @@ export function bnMax (...items: BN[]): BN {
  * bnMin([new BN(1), new BN(3), new BN(2)]).toString(); // => '1'
  * ```
  */
-export function bnMin (...items: BN[]): BN {
-  return find(items, BN.min);
-}
+export const bnMin = createCmp(BN.min);

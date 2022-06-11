@@ -38,7 +38,9 @@ describe('bnSqrt', (): void => {
     expect(
       SQRT_MAX_SAFE_INTEGER.eq(
         new BN(
-          Math.sqrt(Number.MAX_SAFE_INTEGER)
+          ~~Math.sqrt(
+            Number.MAX_SAFE_INTEGER
+          )
         )
       )
     ).toEqual(true);

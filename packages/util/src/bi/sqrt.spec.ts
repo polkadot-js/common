@@ -38,7 +38,7 @@ describe('nSqrt', (): void => {
   it('has the correct constant for sqrt(Number.MAX_SAFE_INTEGER)', (): void => {
     expect(
       BigInt(
-        Math.sqrt(
+        ~~Math.sqrt(
           Number.MAX_SAFE_INTEGER
         )
       ) === SQRT_MAX_SAFE_INTEGER
