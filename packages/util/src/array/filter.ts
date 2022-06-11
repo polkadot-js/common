@@ -19,9 +19,8 @@ import { isUndefined } from '../is/undefined';
  * arrayFilter([0, void 0, true, null, false, ''], false); // [0, true, false, '']
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function arrayFilter <T = any> (array: T[], allowNulls = true): T[] {
-  return array.filter((v) =>
+export function arrayFilter <T = unknown> (array: (T | null | undefined)[], allowNulls = true): T[] {
+  return array.filter((v): v is T =>
     !isUndefined(v) &&
     (allowNulls || !isNull(v))
   );
