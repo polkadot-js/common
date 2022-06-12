@@ -7,6 +7,11 @@ type AnyFn = (...args: unknown[]) => unknown;
 
 type WithToString = { toString: () => string };
 
+/**
+ * @name lazyMethod
+ * @description
+ * Creates a lazy, on-demand getter for the specific value. Upon get the value will be evaluated.
+ */
 export function lazyMethod <T, K> (result: Record<string, T> | AnyFn, item: K, creator: (d: K) => T, getName?: (d: K) => string): void {
   const name = getName
     ? getName(item)
@@ -46,6 +51,11 @@ export function lazyMethod <T, K> (result: Record<string, T> | AnyFn, item: K, c
   });
 }
 
+/**
+ * @name lazyMethods
+ * @description
+ * Creates lazy, on-demand getters for the specific values.
+ */
 export function lazyMethods <T, K> (result: Record<string, T>, items: K[], creator: (v: K) => T, getName?: (m: K) => string): Record<string, T> {
   for (let i = 0; i < items.length; i++) {
     lazyMethod(result, items[i], creator, getName);

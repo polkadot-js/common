@@ -11,6 +11,7 @@ import { objectSpread } from '../object/spread';
 const U8_MAX = BigInt(256);
 const U16_MAX = BigInt(256 * 256);
 
+/** @internal */
 function xor (input: Uint8Array): Uint8Array {
   const result = new Uint8Array(input.length);
   const dvI = new DataView(input.buffer, input.byteOffset);
@@ -29,6 +30,7 @@ function xor (input: Uint8Array): Uint8Array {
   return result;
 }
 
+/** @internal */
 function toBigInt (input: Uint8Array): bigint {
   const dvI = new DataView(input.buffer, input.byteOffset);
   const mod = input.length % 2;
