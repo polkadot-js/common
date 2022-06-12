@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import * as ipRegex from 'ip-regex';
+import { v4, v6 } from 'ip-regex';
 
 type IpTypes = 'v4' | 'v6';
 
@@ -24,10 +24,12 @@ type IpTypes = 'v4' | 'v6';
  */
 export function isIp (value: string, type?: IpTypes): boolean {
   if (type === 'v4') {
-    return ipRegex.v4({ exact: true }).test(value);
+    return v4({ exact: true }).test(value);
   } else if (type === 'v6') {
-    return ipRegex.v6({ exact: true }).test(value);
+    return v6({ exact: true }).test(value);
   }
 
-  return ipRegex({ exact: true }).test(value);
+  return value.includes(':')
+    ? v6({ exact: true }).test(value)
+    : v4({ exact: true }).test(value);
 }
