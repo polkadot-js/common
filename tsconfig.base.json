@@ -17,6 +17,7 @@
       "@polkadot/util/*": ["util/src/*"],
       "@polkadot/x-bundle/*": ["x-bundle/src/*"],
       "@polkadot/x-bigint": ["x-bigint/src"],
+      "@polkadot/x-bn": ["x-bn/src"],
       "@polkadot/x-fetch": ["x-fetch/src/browser"],
       "@polkadot/x-global": ["x-global/src"],
       "@polkadot/x-randomvalues": ["x-randomvalues/src/browser"],

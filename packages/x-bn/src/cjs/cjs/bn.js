@@ -3,4 +3,4 @@
 
 const { BN } = require('../bn');
 
-module.exports = BN;
+module.exports = { BN };

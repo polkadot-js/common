@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import ipRegex from 'ip-regex';
+import * as ipRegex from 'ip-regex';
 
 type IpTypes = 'v4' | 'v6';
 

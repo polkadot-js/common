@@ -1,6 +1,8 @@
 // Copyright 2017-2022 @polkadot/x-bn authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const { BN } = require('bn.js');
+import { BN as BNClass } from 'bn.js';
 
-module.exports = { BN };
+export class BN extends BNClass {
+  // empty
+}

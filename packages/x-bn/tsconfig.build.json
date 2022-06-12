@@ -5,7 +5,5 @@
     "outDir": "./build",
     "rootDir": "./src"
   },
-  "references": [
-    { "path": "../x-global/tsconfig.build.json" }
-  ]
+  "references": []
 }

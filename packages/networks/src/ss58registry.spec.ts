@@ -5,10 +5,9 @@ import known from '@substrate/ss58-registry';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import other from './test/ss58registry.test.json';
-
 describe('@substrate/ss58-registry', (): void => {
   it('has known values', (): void => {
+    const other = JSON.parse(fs.readFileSync('./test/ss58registry.test.json', 'utf-8')) as Record<string, unknown>;
     const json = JSON.stringify(known, null, 2);
 
     try {
