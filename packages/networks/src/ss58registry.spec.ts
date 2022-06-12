@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import known from '@substrate/ss58-registry';
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 import other from './test/ss58registry.test.json';
 

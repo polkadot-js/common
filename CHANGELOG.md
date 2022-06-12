@@ -10,6 +10,8 @@ Contributed:
 Changes:
 
 - Use `~~` as bitwise/faster `Math.floor` replacement
+- Dedupe `{bn, bi}{Max, Min}` with factor functions
+- Expand exported comments (additional non-covered and internal)
 
 
 ## 9.4.1 Jun 4, 2022

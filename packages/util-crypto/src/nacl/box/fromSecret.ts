@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types';
 
-import nacl from 'tweetnacl';
+import * as nacl from 'tweetnacl';
 
 /**
  * @name naclBoxPairFromSecret

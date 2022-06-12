@@ -3,7 +3,7 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import nacl from 'tweetnacl';
+import * as nacl from 'tweetnacl';
 
 import { assert, u8aToU8a } from '@polkadot/util';
 import { ed25519Verify as wasmVerify, isReady } from '@polkadot/wasm-crypto';

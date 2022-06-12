@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/x-ws authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import ws from 'websocket';
+import * as ws from 'websocket';
 
 import { extractGlobal } from '@polkadot/x-global';
 

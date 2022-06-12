@@ -16,7 +16,7 @@ const external = [
   ...pkgs
 ];
 
-const entries = ['hw-ledger-transports', 'networks', 'x-bigint', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].reduce((all, p) => ({
+const entries = ['hw-ledger-transports', 'networks', 'x-bigint', 'x-bn', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].reduce((all, p) => ({
   ...all,
   [`@polkadot/${p}`]: path.resolve(process.cwd(), `packages/${p}/build`)
 }), {});
@@ -36,7 +36,7 @@ const overrides = {
   '@polkadot/util-crypto': {
     entries: {
       '@polkadot/wasm-crypto': path.resolve(process.cwd(), 'node_modules/@polkadot/wasm-crypto/bundle.js'),
-      'bn.js': path.resolve(process.cwd(), 'packages/x-bundle/build/bn.cjs'),
+      'bn.js': path.resolve(process.cwd(), 'packages/x-bn/build/index.js'),
       buffer: path.resolve(process.cwd(), 'packages/x-bundle/build/buffer.js'),
       crypto: path.resolve(process.cwd(), 'packages/x-bundle/build/crypto.js')
     },

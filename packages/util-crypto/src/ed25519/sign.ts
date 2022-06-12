@@ -4,7 +4,7 @@
 import type { HexString } from '@polkadot/util/types';
 import type { Keypair } from '../types';
 
-import nacl from 'tweetnacl';
+import * as nacl from 'tweetnacl';
 
 import { assert, u8aToU8a } from '@polkadot/util';
 import { ed25519Sign as wasmSign, isReady } from '@polkadot/wasm-crypto';

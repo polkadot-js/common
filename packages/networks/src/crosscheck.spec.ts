@@ -3,7 +3,7 @@
 
 import type { Ss58Registry } from './types';
 
-import fs from 'fs';
+import * as fs from 'fs';
 
 import { objectKeys, stringify } from '@polkadot/util';
 import { fetch } from '@polkadot/x-fetch';
