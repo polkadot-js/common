@@ -100,7 +100,7 @@ export function compactFromU8aLim (u8a: Uint8Array): [number, number] {
     case 7:
       return [7, u8a[1] + (u8a[2] * 0x1_00) + (u8a[3] * 0x1_00_00) + (u8a[4] * 0x1_00_00_00) + (u8a[5] * 0x1_00_00_00_00) + (u8a[6] * 0x1_00_00_00_00_00)];
 
-    // for anything else, use the non-unrolled version
+    // for anything else, we are above the actual MAX_SAFE_INTEGER - bail out
     default:
       throw new Error('Compact input is > Number.MAX_SAFE_INTEGER');
   }

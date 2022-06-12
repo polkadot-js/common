@@ -9,12 +9,18 @@ import { u8aConcatStrict } from './concat';
 import { u8aEq } from './eq';
 import { u8aToU8a } from './toU8a';
 
+/** @internal */
 export const U8A_WRAP_ETHEREUM = u8aToU8a('\x19Ethereum Signed Message:\n');
+
+/** @internal */
 export const U8A_WRAP_PREFIX = u8aToU8a('<Bytes>');
+
+/** @internal */
 export const U8A_WRAP_POSTFIX = u8aToU8a('</Bytes>');
 
 const WRAP_LEN = U8A_WRAP_PREFIX.length + U8A_WRAP_POSTFIX.length;
 
+/** @internal */
 export function u8aIsWrapped (u8a: Uint8Array, withEthereum: boolean): boolean {
   return (
     (
@@ -30,6 +36,10 @@ export function u8aIsWrapped (u8a: Uint8Array, withEthereum: boolean): boolean {
   );
 }
 
+/**
+ * @name u8aUnwrapBytes
+ * @description Removes all <Bytes>...</Bytes> wrappers from the supplied value
+ */
 export function u8aUnwrapBytes (bytes: U8aLike): Uint8Array {
   const u8a = u8aToU8a(bytes);
 
@@ -39,6 +49,10 @@ export function u8aUnwrapBytes (bytes: U8aLike): Uint8Array {
     : u8a;
 }
 
+/**
+ * @name u8aWrapBytes
+ * @description Adds a <Bytes>...</Bytes> wrapper to the supplied value (if not already existing)
+ */
 export function u8aWrapBytes (bytes: U8aLike): Uint8Array {
   const u8a = u8aToU8a(bytes);
 

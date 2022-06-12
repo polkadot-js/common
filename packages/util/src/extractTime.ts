@@ -8,11 +8,7 @@ const HR_MS = MIN_MS * 60;
 const DAY_MS = HR_MS * 24;
 const ZERO: Time = { days: 0, hours: 0, milliseconds: 0, minutes: 0, seconds: 0 };
 
-/**
- * @name addTime
- * @summary Add together two Time arrays
- */
-
+/** @internal */
 function add (a: Partial<Time>, b: Time): Time {
   return {
     days: (a.days || 0) + b.days,
@@ -23,6 +19,7 @@ function add (a: Partial<Time>, b: Time): Time {
   };
 }
 
+/** @internal */
 function extractSecs (ms: number): Time {
   const s = ms / 1000;
 
