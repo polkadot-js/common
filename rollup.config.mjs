@@ -16,7 +16,7 @@ const external = [
   ...pkgs
 ];
 
-const entries = ['hw-ledger-transports', 'networks', 'x-bigint', 'x-bn', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].reduce((all, p) => ({
+const entries = ['hw-ledger-transports', 'networks', 'x-bigint', 'x-fetch', 'x-global', 'x-randomvalues', 'x-textdecoder', 'x-textencoder', 'x-ws'].reduce((all, p) => ({
   ...all,
   [`@polkadot/${p}`]: path.resolve(process.cwd(), `packages/${p}/build`)
 }), {});
