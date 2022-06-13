@@ -39,7 +39,6 @@
   "dependencies": {
     "@babel/runtime": "^7.18.3",
     "@polkadot/x-bigint": "9.4.2-12",
-    "@polkadot/x-bn": "9.4.2-12",
     "@polkadot/x-global": "9.4.2-12",
     "@polkadot/x-textdecoder": "9.4.2-12",
     "@polkadot/x-textencoder": "9.4.2-12",
