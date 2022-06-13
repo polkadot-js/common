@@ -1,3 +1,3 @@
-# @polkadot/x-bigint
+# @polkadot/x-bn
 
-A cross-environment BigInt.
+A cross-environment BN.js interface (ESM & CJS helpers).
