@@ -27,8 +27,8 @@
     "test:one": "polkadot-dev-run-test --runInBand"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.2",
-    "@polkadot/dev": "^0.66.36",
+    "@babel/core": "^7.18.5",
+    "@polkadot/dev": "^0.67.3",
     "@types/jest": "^28.1.1"
   },
   "resolutions": {
