@@ -6,7 +6,6 @@ import type { ToBnOptions } from '../types';
 import { BigInt } from '@polkadot/x-bigint';
 
 import { _1n } from '../bi/consts';
-import { objectSpread } from '../object/spread';
 
 const U8_MAX = BigInt(256);
 const U16_MAX = BigInt(256 * 256);
@@ -52,12 +51,11 @@ function toBigInt (input: Uint8Array): bigint {
  * @name u8aToBigInt
  * @summary Creates a BigInt from a Uint8Array object.
  */
-export function u8aToBigInt (value: Uint8Array, options: ToBnOptions = {}): bigint {
+export function u8aToBigInt (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): bigint {
   if (!value || !value.length) {
     return BigInt(0);
   }
 
-  const { isLe, isNegative } = objectSpread<ToBnOptions>({ isLe: true, isNegative: false }, options);
   const u8a = isLe
     ? value.reverse()
     : value;

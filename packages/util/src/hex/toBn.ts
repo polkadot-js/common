@@ -5,7 +5,6 @@ import type { ToBnOptions } from '../types';
 
 import { BN } from '../bn/bn';
 import { isBoolean } from '../is/boolean';
-import { objectSpread } from '../object/spread';
 import { hexStripPrefix } from './stripPrefix';
 
 /**
@@ -36,12 +35,9 @@ function hexToBn (value?: string | null, options: ToBnOptions | boolean = {}): B
   }
 
   // For hex, default to BE
-  const { isLe, isNegative } = objectSpread<ToBnOptions>(
-    { isLe: false, isNegative: false },
-    isBoolean(options)
-      ? { isLe: options }
-      : options
-  );
+  const { isLe = false, isNegative = false } = isBoolean(options)
+    ? { isLe: options }
+    : options;
   const stripped = hexStripPrefix(value);
   const bn = new BN(stripped, 16, isLe ? 'le' : 'be');
 

@@ -5,7 +5,6 @@ import type { ToBnOptions } from '../types';
 
 import { BN } from '../bn/bn';
 import { isBoolean } from '../is/boolean';
-import { objectSpread } from '../object/spread';
 
 /**
  * @name u8aToBn
@@ -32,12 +31,9 @@ function u8aToBn (value: Uint8Array, options?: boolean): BN;
 function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
   // NOTE: This is the same process as followed in the hexToBn conversion
   // For Uint8Array, default to LE
-  const { isLe, isNegative } = objectSpread<ToBnOptions>(
-    { isLe: true, isNegative: false },
-    isBoolean(options)
-      ? { isLe: options }
-      : options
-  );
+  const { isLe = true, isNegative = false } = isBoolean(options)
+    ? { isLe: options }
+    : options;
   const count = value.length;
   let bn: BN;
 
