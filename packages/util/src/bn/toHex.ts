@@ -31,7 +31,7 @@ function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number 
 /** @deprecated Use bnToHex (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
 function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): HexString;
 /** @deprecated Use bnToHex (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | NumberOptions = DEFAULT_OPTS, arg2?: boolean): HexString {
+function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | NumberOptions = DEFAULT_OPTS, arg2 = false): HexString {
   return !value
     ? ZERO_STR
     : u8aToHex(

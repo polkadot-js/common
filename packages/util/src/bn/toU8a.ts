@@ -5,7 +5,6 @@ import type { NumberOptions, ToBn } from '../types';
 import type { BN } from './bn';
 
 import { isNumber } from '../is/number';
-import { objectSpread } from '../object/spread';
 import { bnToBn } from './toBn';
 
 const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: true, isNegative: false };
@@ -28,13 +27,17 @@ function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number 
 /** @deprecated Use bnToU8a(value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
 function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
 /** @deprecated Use bnToU8a(value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
-function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | NumberOptions = DEFAULT_OPTS, arg2?: boolean): Uint8Array {
-  const { bitLength, isLe, isNegative }: NumberOptions = objectSpread(
-    { bitLength: -1, isLe: true, isNegative: false },
-    isNumber(arg1)
-      ? { bitLength: arg1, isLe: arg2 }
-      : arg1
-  );
+function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | NumberOptions = DEFAULT_OPTS, arg2 = true): Uint8Array {
+  // const { bitLength, isLe, isNegative }: NumberOptions = objectSpread(
+  //   { bitLength: -1, isLe: true, isNegative: false },
+  //   isNumber(arg1)
+  //     ? { bitLength: arg1, isLe: arg2 }
+  //     : arg1
+  // );
+
+  const { bitLength = -1, isLe = true, isNegative = false } = isNumber(arg1)
+    ? { bitLength: arg1, isLe: arg2 }
+    : arg1;
 
   const valueBn = bnToBn(value);
   const byteLength = bitLength === -1
