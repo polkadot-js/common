@@ -2,14 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { performanceCmp } from '../test/performance';
-import { U16_TO_HEX } from './alphabet';
 import { hexToU8a as hexToU8aBuffer } from './toU8aBuffer';
 import { hexToU8a } from '.';
 
 let ptest = '0x';
 
-for (let i = 0; i < 500000; i++) {
-  ptest += U16_TO_HEX[i % (256 * 256)];
+for (let i = 0; i < 1_000_000; i++) {
+  ptest += (i % 256).toString(16);
 }
 
 describe('hexToU8a', (): void => {
@@ -55,7 +54,7 @@ describe('hexToU8a', (): void => {
     ).toThrow(/hex value to convert/);
   });
 
-  performanceCmp('hexToU8a', ['hexToU8aBuffer', 'hexToU8a'], 10, [[ptest]], (s: string, isSecond) =>
+  performanceCmp('hexToU8a', ['hexToU8aBuffer', 'hexToU8a'], 20, [[ptest]], (s: string, isSecond) =>
     isSecond
       ? hexToU8a(s)
       : hexToU8aBuffer(s)
