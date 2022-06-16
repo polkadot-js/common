@@ -1,4 +1,4 @@
-    1353	Jaco                          	Unroll u8aToBn loops (#1535)
+    1354	Jaco                          	hexToU8a adjustments (#1536)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
