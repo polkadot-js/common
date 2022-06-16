@@ -12,20 +12,24 @@ for (let i = 0; i < CC_TO_UP.length; i++) {
 }
 
 /** @internal */
-function formatRuns (w: string): string {
+function formatAllCaps (w: string): string {
   return w.slice(0, w.length - 1).toLowerCase() + CC_TO_UP[w.charCodeAt(w.length - 1)];
 }
 
-// Inspired from https://stackoverflow.com/a/2970667
-//
-// this is not as optimal as the original answer (we split into multiple),
-// however it does pass the tests (which the original doesn't) and it is still
-// a major improvement over the original camelcase npm package (at running)
-//
-// original: 20.88 μs/op
-//     this:  1.00 μs/op
-//
-// Caveat of this: only Ascii, but acceptable for the intended usecase
+/**
+ * @internal
+ *
+ * Inspired by https://stackoverflow.com/a/2970667
+ *
+ * This is not as optimal as the original SO answer (we split into per-word),
+ * however it does pass the tests (which the SO version doesn't) and is still
+ * a major improvement over the original camelcase npm package -
+ *
+ *   camelcase: 20.88 μs/op
+ *        this:  1.00 μs/op
+ *
+ * Caveat of this: only Ascii, but acceptable for the intended usecase
+ */
 function converter (format: (w: string, i: number) => string): (value: AnyString) => string {
   return (value: AnyString): string => {
     const parts = value
@@ -43,12 +47,12 @@ function converter (format: (w: string, i: number) => string): (value: AnyString
 
       // apply the formatting
       result += format(
-        /^[A-Z0-9]+$/.test(w)
+        /^[\dA-Z]+$/.test(w)
           // all full uppercase + letters are changed to lowercase
           ? w.toLowerCase()
           // all consecutive capitals + letters are changed to lowercase
           // e.g. UUID64 -> uuid64, while preserving splits, eg. NFTOrder -> nftOrder
-          : w.replace(/^[A-Z0-9]{2,}[^a-z]/, formatRuns),
+          : w.replace(/^[\dA-Z]{2,}[^a-z]/, formatAllCaps),
         i
       );
     }
