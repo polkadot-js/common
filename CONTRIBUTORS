@@ -1,4 +1,4 @@
-    1357	Jaco                          	Use \d in regex (as applicable) (#1539)
+    1358	Jaco                          	Adjust isAscii str vs u8a loops (#1540)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
