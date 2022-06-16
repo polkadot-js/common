@@ -11,6 +11,7 @@ for (let i = 0; i < CC_TO_UP.length; i++) {
   CC_TO_UP[i] = String.fromCharCode(i).toUpperCase();
 }
 
+/** @internal */
 function formatRuns (w: string): string {
   return w.slice(0, w.length - 1).toLowerCase() + CC_TO_UP[w.charCodeAt(w.length - 1)];
 }
@@ -22,7 +23,7 @@ function formatRuns (w: string): string {
 // a major improvement over the original camelcase npm package (at running)
 //
 // original: 20.88 μs/op
-//     this:  1.09 μs/op
+//     this:  1.00 μs/op
 //
 // Caveat of this: only Ascii, but acceptable for the intended usecase
 function converter (format: (w: string, i: number) => string): (value: AnyString) => string {
@@ -42,7 +43,7 @@ function converter (format: (w: string, i: number) => string): (value: AnyString
 
       // apply the formatting
       result += format(
-        w.toUpperCase() === w
+        /^[A-Z0-9]+$/.test(w)
           // all full uppercase + letters are changed to lowercase
           ? w.toLowerCase()
           // all consecutive capitals + letters are changed to lowercase
