@@ -9,7 +9,13 @@ Contributed:
 
 Changes:
 
+- Add `u8aToNumber` (limited, <= 48 bits) function
 - Use `~~` as bitwise/faster `Math.floor` replacement
+- Remove unneeded `objectSpread` option expansions
+- Optimize `hexToU8a` operations
+- Optimize `stringCamelCase` operations
+- Optimize `u8aToBn` operations
+- Additional internal/external comments (as missing)
 
 
 ## 9.4.1 Jun 4, 2022
