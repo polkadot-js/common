@@ -1,6 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performance } from '../test/performance';
 import { isAscii } from '.';
 
 describe('isAscii', (): void => {
@@ -35,4 +36,6 @@ describe('isAscii', (): void => {
   it('returns false for hex input, non-ascii', (): void => {
     expect(isAscii('0x010203')).toEqual(false);
   });
+
+  performance('isAscii', 100_000, [[[0x31, 0x32, 0x20, 10, 9, 13, 65, 66, 67, 68, 69, 70]]], isAscii);
 });
