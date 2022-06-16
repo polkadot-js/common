@@ -7,19 +7,14 @@ const U8 = new Array<string>(256);
 const U16 = new Array<string>(256 * 256);
 
 for (let n = 0; n < 256; n++) {
-  const hex = n.toString(16).padStart(2, '0');
-
-  U8[n] = hex;
+  U8[n] = n.toString(16).padStart(2, '0');
 }
 
 for (let i = 0; i < 256; i++) {
   const s = i << 8;
 
   for (let j = 0; j < 256; j++) {
-    const hex = U8[i] + U8[j];
-    const n = s | j;
-
-    U16[n] = hex;
+    U16[s | j] = U8[i] + U8[j];
   }
 }
 
