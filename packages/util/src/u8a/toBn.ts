@@ -55,23 +55,23 @@ function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
             break;
 
           case 2:
-            result = (value[0] + (value[1] * 0x1_00)) ^ 0x0000_ffff;
+            result = (value[0] + (value[1] << 8)) ^ 0x0000_ffff;
             break;
 
           case 3:
-            result = (value[0] + (value[1] * 0x1_00) + (value[2] * 0x1_00_00)) ^ 0x00ff_ffff;
+            result = (value[0] + (value[1] << 8) + (value[2] << 16)) ^ 0x00ff_ffff;
             break;
 
           case 4:
-            result = (value[0] + (value[1] * 0x1_00) + (value[2] * 0x1_00_00) + (value[3] * 0x1_00_00_00)) ^ 0xffff_ffff;
+            result = (value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24)) ^ 0xffff_ffff;
             break;
 
           case 5:
-            result = ((value[0] + (value[1] * 0x1_00) + (value[2] * 0x1_00_00) + (value[3] * 0x1_00_00_00)) ^ 0xffff_ffff) + ((value[4] ^ 0xff) * 0x1_00_00_00_00);
+            result = ((value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24)) ^ 0xffff_ffff) + ((value[4] ^ 0xff) * 0x1_00_00_00_00);
             break;
 
           default: // 6
-            result = ((value[0] + (value[1] * 0x1_00) + (value[2] * 0x1_00_00) + (value[3] * 0x1_00_00_00)) ^ 0xffff_ffff) + ((value[4] ^ 0xff) * 0x1_00_00_00_00) + ((value[5] ^ 0xff) * 0x1_00_00_00_00_00);
+            result = ((value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24)) ^ 0xffff_ffff) + (((value[4] + (value[5] << 8)) ^ 0x0000_ffff) * 0x1_00_00_00_00);
             break;
         }
       } else {
@@ -97,19 +97,19 @@ function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
           return new BN(value[0]);
 
         case 2:
-          return new BN(value[0] + (value[1] * 0x1_00));
+          return new BN(value[0] + (value[1] << 8));
 
         case 3:
-          return new BN(value[0] + (value[1] * 0x1_00) + (value[2] * 0x1_00_00));
+          return new BN(value[0] + (value[1] << 8) + (value[2] << 16));
 
         case 4:
-          return new BN(value[0] + (value[1] * 0x1_00) + (value[2] * 0x1_00_00) + (value[3] * 0x1_00_00_00));
+          return new BN(value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24));
 
         case 5:
-          return new BN(value[0] + (value[1] * 0x1_00) + (value[2] * 0x1_00_00) + (value[3] * 0x1_00_00_00) + (value[4] * 0x1_00_00_00_00));
+          return new BN(value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24) + (value[4] * 0x1_00_00_00_00));
 
         default: // 6
-          return new BN(value[0] + (value[1] * 0x1_00) + (value[2] * 0x1_00_00) + (value[3] * 0x1_00_00_00) + (value[4] * 0x1_00_00_00_00) + (value[5] * 0x1_00_00_00_00_00));
+          return new BN(value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24) + (value[4] * 0x1_00_00_00_00) + (value[5] * 0x1_00_00_00_00_00));
       }
     } else {
       let result = 0;
