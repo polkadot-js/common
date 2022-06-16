@@ -3,6 +3,7 @@
 
 import type { ToBnOptions } from '../types';
 
+import { assertUnreachable } from '../assert';
 import { BN } from '../bn/bn';
 import { isBoolean } from '../is/boolean';
 
@@ -70,9 +71,12 @@ function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
             result = ((value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24)) ^ 0xffff_ffff) + ((value[4] ^ 0xff) * 0x1_00_00_00_00);
             break;
 
-          default: // 6
+          case 6:
             result = ((value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24)) ^ 0xffff_ffff) + (((value[4] + (value[5] << 8)) ^ 0x0000_ffff) * 0x1_00_00_00_00);
             break;
+
+          default:
+            assertUnreachable(count as never);
         }
       } else {
         for (let i = 0; i < count; i++) {
@@ -108,8 +112,11 @@ function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
         case 5:
           return new BN(value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24) + (value[4] * 0x1_00_00_00_00));
 
-        default: // 6
+        case 6:
           return new BN(value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24) + (value[4] * 0x1_00_00_00_00) + (value[5] * 0x1_00_00_00_00_00));
+
+        default:
+          assertUnreachable(count as never);
       }
     } else {
       let result = 0;
