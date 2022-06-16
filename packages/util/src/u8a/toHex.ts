@@ -3,7 +3,25 @@
 
 import type { HexString } from '../types';
 
-import { U8_TO_HEX, U16_TO_HEX } from '../hex/alphabet';
+const U8 = new Array<string>(256);
+const U16 = new Array<string>(256 * 256);
+
+for (let n = 0; n < 256; n++) {
+  const hex = n.toString(16).padStart(2, '0');
+
+  U8[n] = hex;
+}
+
+for (let i = 0; i < 256; i++) {
+  const s = i << 8;
+
+  for (let j = 0; j < 256; j++) {
+    const hex = U8[i] + U8[j];
+    const n = s | j;
+
+    U16[n] = hex;
+  }
+}
 
 /** @internal */
 function hex (value: Uint8Array): string {
@@ -15,11 +33,11 @@ function hex (value: Uint8Array): string {
   for (let i = 0; i < length; i += 2) {
     // we only use getUint16 here instead of getUint32 - at least in our
     // tests this is faster to execute (both long & short strings tested)
-    result += U16_TO_HEX[dv.getUint16(i)];
+    result += U16[dv.getUint16(i)];
   }
 
   if (mod) {
-    result += U8_TO_HEX[dv.getUint8(length)];
+    result += U8[dv.getUint8(length)];
   }
 
   return result;

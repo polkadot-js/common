@@ -10,43 +10,6 @@ import { _1n } from '../bi/consts';
 const U8_MAX = BigInt(256);
 const U16_MAX = BigInt(256 * 256);
 
-/** @internal */
-function xor (input: Uint8Array): Uint8Array {
-  const result = new Uint8Array(input.length);
-  const dvI = new DataView(input.buffer, input.byteOffset);
-  const dvO = new DataView(result.buffer);
-  const mod = input.length % 2;
-  const length = input.length - mod;
-
-  for (let i = 0; i < length; i += 2) {
-    dvO.setUint16(i, dvI.getUint16(i) ^ 0xffff);
-  }
-
-  if (mod) {
-    dvO.setUint8(length, dvI.getUint8(length) ^ 0xff);
-  }
-
-  return result;
-}
-
-/** @internal */
-function toBigInt (input: Uint8Array): bigint {
-  const dvI = new DataView(input.buffer, input.byteOffset);
-  const mod = input.length % 2;
-  const length = input.length - mod;
-  let result = BigInt(0);
-
-  for (let i = 0; i < length; i += 2) {
-    result = (result * U16_MAX) + BigInt(dvI.getUint16(i));
-  }
-
-  if (mod) {
-    result = (result * U8_MAX) + BigInt(dvI.getUint8(length));
-  }
-
-  return result;
-}
-
 /**
  * @name u8aToBigInt
  * @summary Creates a BigInt from a Uint8Array object.
@@ -57,10 +20,34 @@ export function u8aToBigInt (value: Uint8Array, { isLe = true, isNegative = fals
   }
 
   const u8a = isLe
-    ? value.reverse()
-    : value;
+    ? value
+    : value.reverse();
+
+  const dvI = new DataView(u8a.buffer, u8a.byteOffset);
+  const mod = u8a.length % 2;
+  let result = BigInt(0);
+
+  // This is mostly written for readability (with the single isNegative shortcut),
+  // as opposed to performance, e.g. `u8aToBn` does loop unrolling, etc.
+  if (isNegative) {
+    for (let i = u8a.length - 2; i >= mod; i -= 2) {
+      result = (result * U16_MAX) + BigInt(dvI.getUint16(i, true) ^ 0xffff);
+    }
+
+    if (mod) {
+      result = (result * U8_MAX) + BigInt(dvI.getUint8(0) ^ 0xff);
+    }
+  } else {
+    for (let i = u8a.length - 2; i >= mod; i -= 2) {
+      result = (result * U16_MAX) + BigInt(dvI.getUint16(i, true));
+    }
+
+    if (mod) {
+      result = (result * U8_MAX) + BigInt(dvI.getUint8(0));
+    }
+  }
 
   return isNegative
-    ? ((toBigInt(xor(u8a)) * -_1n) - _1n)
-    : toBigInt(u8a);
+    ? ((result * -_1n) - _1n)
+    : result;
 }
