@@ -1,25 +1,42 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { U8aLike } from '../types';
+import type { AnyString, U8aLike } from '../types';
 
 import { u8aToU8a } from '../u8a/toU8a';
 import { isHex } from './hex';
 import { isString } from './string';
 
-const FORMAT = [9, 10, 13];
-
 /** @internal */
-function isAsciiByte (b: number): boolean {
-  return (b < 127) && (
-    (b >= 32) ||
-    FORMAT.includes(b)
-  );
+function isAsciiStr (str: AnyString): boolean {
+  const count = str.length;
+
+  for (let i = 0; i < count; i++) {
+    const b = str.charCodeAt(i);
+
+    // check is inlined here, it is faster than making a call
+    if (!((b < 127) && ((b >= 32) || (b === 10) || (b === 9) || (b === 13)))) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 /** @internal */
-function isAsciiChar (s: string): boolean {
-  return isAsciiByte(s.charCodeAt(0));
+function isAsciiU8a (u8a: Uint8Array): boolean {
+  const count = u8a.length;
+
+  for (let i = 0; i < count; i++) {
+    const b = u8a[i];
+
+    // check is inlined here, it is faster than making a call
+    if (!((b < 127) && ((b >= 32) || (b === 10) || (b === 9) || (b === 13)))) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 /**
@@ -29,13 +46,9 @@ function isAsciiChar (s: string): boolean {
  * Checks to see if the input string or Uint8Array is printable ASCII, 32-127 + formatters
  */
 export function isAscii (value?: U8aLike | null): boolean {
-  const isStringIn = isString(value);
-
-  if (value) {
-    return isStringIn && !isHex(value)
-      ? value.toString().split('').every(isAsciiChar)
-      : u8aToU8a(value).every(isAsciiByte);
-  }
-
-  return isStringIn;
+  return isString(value) && !isHex(value)
+    ? isAsciiStr(value)
+    : value
+      ? isAsciiU8a(u8aToU8a(value))
+      : false;
 }
