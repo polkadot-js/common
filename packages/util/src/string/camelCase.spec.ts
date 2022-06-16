@@ -16,7 +16,7 @@ function randomAsNumber (): number {
   return rand.reduce((v, t) => (v * t) + v, 0);
 }
 
-export const randomWords = arrayRange(256).map((): [string] => {
+const randomWords = arrayRange(256).map((): [string] => {
   let result = '';
 
   for (let i = 0; i < 6; i++) {
