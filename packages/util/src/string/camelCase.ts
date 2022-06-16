@@ -43,12 +43,12 @@ function converter (format: (w: string, i: number) => string): (value: AnyString
 
       // apply the formatting
       result += format(
-        /^[A-Z0-9]*$/.test(w)
+        /^[A-Z\d]*$/.test(w)
           // all full uppercase + letters are changed to lowercase
           ? w.toLowerCase()
           // all consecutive capitals + letters are changed to lowercase
           // e.g. UUID64 -> uuid64, while preserving splits, eg. NFTOrder -> nftOrder
-          : w.replace(/^[A-Z0-9]{2,}[^a-z]/, formatRuns),
+          : w.replace(/^[A-Z\d]{2,}[^a-z]/, formatRuns),
         i
       );
     }
