@@ -3,6 +3,18 @@
 
 import type { AnyString } from '../types';
 
+export const CC_TO_UP = new Array<string>(256);
+export const CC_TO_LO = new Array<string>(256);
+
+for (let i = 0; i < CC_TO_UP.length; i++) {
+  CC_TO_LO[i] = String.fromCharCode(i).toLowerCase();
+  CC_TO_UP[i] = String.fromCharCode(i).toUpperCase();
+}
+
+function formatRuns (w: string): string {
+  return w.slice(0, w.length - 1).toLowerCase() + CC_TO_UP[w.charCodeAt(w.length - 1)];
+}
+
 // Inspired from https://stackoverflow.com/a/2970667
 //
 // this is not as optimal as the original answer (we split into multiple),
@@ -10,24 +22,22 @@ import type { AnyString } from '../types';
 // a major improvement over the original camelcase npm package (at running)
 //
 // original: 20.88 μs/op
-//     this:  1.20 μs/op
+//     this:  1.09 μs/op
 //
 // Caveat of this: only Ascii, but acceptable for the intended usecase
 function converter (format: (w: string, i: number) => string): (value: AnyString) => string {
-  const formatRuns = (w: string) => w.slice(0, w.length - 1).toLowerCase() + w.slice(-1).toUpperCase();
-
   return (value: AnyString): string => {
     const parts = value
-      .toString()
       // replace all seperators (including consequtive) with spaces
       .replace(/[-_., ]+/g, ' ')
       // we don't want leading or trailing spaces
       .trim()
       // split into words
       .split(' ');
+    const count = parts.length;
     let result = '';
 
-    for (let i = 0; i < parts.length; i++) {
+    for (let i = 0; i < count; i++) {
       const w = parts[i];
 
       // apply the formatting
@@ -52,7 +62,7 @@ function converter (format: (w: string, i: number) => string): (value: AnyString
  */
 export const stringCamelCase = converter((w, i) =>
   // lowercase for first letter/first word, else uppercase first, rest unchanged
-  (i ? w[0].toUpperCase() : w[0].toLowerCase()) + w.slice(1)
+  (i ? CC_TO_UP[w.charCodeAt(0)] : CC_TO_LO[w.charCodeAt(0)]) + w.slice(1)
 );
 
 /**
@@ -61,5 +71,5 @@ export const stringCamelCase = converter((w, i) =>
  */
 export const stringPascalCase = converter((w) =>
   // uppercase the first character, leave the rest unchanged
-  w[0].toUpperCase() + w.slice(1)
+  CC_TO_UP[w.charCodeAt(0)] + w.slice(1)
 );

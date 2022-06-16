@@ -54,6 +54,9 @@ describe('stringCamelCase', (): void => {
       stringCamelCase('DEDUP_KEY_PREFIX')
     ).toEqual('dedupKeyPrefix');
     expect(
+      stringCamelCase(String('DEDUP_KEY_PREFIX'))
+    ).toEqual('dedupKeyPrefix');
+    expect(
       stringCamelCase('SOMETHING')
     ).toEqual('something');
     expect(
@@ -109,5 +112,6 @@ describe('stringCamelCase', (): void => {
     ).toEqual('aBCDef');
   });
 
-  performance('stringCamelCase', 100_000, randomWords, stringCamelCase);
+  performance('stringCamelCase (random)', 100_000, randomWords, stringCamelCase);
+  performance('stringCamelCase (NFTOrder)', 100_000, [['NFTOrder']], stringCamelCase);
 });

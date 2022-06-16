@@ -1,6 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performance } from '../test/performance';
 import { stringLowerFirst } from '.';
 
 describe('stringLowerFirst', (): void => {
@@ -33,4 +34,6 @@ describe('stringLowerFirst', (): void => {
       stringLowerFirst(null)
     ).toBe('');
   });
+
+  performance('stringLowerFirst', 1_000_000, [['HelloWorldSomething']], stringLowerFirst);
 });
