@@ -16,7 +16,7 @@ function randomAsNumber (): number {
   return rand.reduce((v, t) => (v * t) + v, 0);
 }
 
-const randomWords = arrayRange(256).map((): [string] => {
+export const randomWords = arrayRange(256).map((): [string] => {
   let result = '';
 
   for (let i = 0; i < 6; i++) {
@@ -52,6 +52,9 @@ describe('stringCamelCase', (): void => {
   it('adjusts all-uppercase', (): void => {
     expect(
       stringCamelCase('DEDUP_KEY_PREFIX')
+    ).toEqual('dedupKeyPrefix');
+    expect(
+      stringCamelCase(String('DEDUP_KEY_PREFIX'))
     ).toEqual('dedupKeyPrefix');
     expect(
       stringCamelCase('SOMETHING')
@@ -109,5 +112,6 @@ describe('stringCamelCase', (): void => {
     ).toEqual('aBCDef');
   });
 
-  performance('stringCamelCase', 100_000, randomWords, stringCamelCase);
+  performance('stringCamelCase (random)', 100_000, randomWords, stringCamelCase);
+  performance('stringCamelCase (NFTOrder)', 100_000, [['NFTOrder']], stringCamelCase);
 });

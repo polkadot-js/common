@@ -3,10 +3,12 @@
 
 import type { AnyString } from '../types';
 
-function converter (fn: (value: string) => string): (value?: AnyString | null) => string {
+import { CC_TO_LO, CC_TO_UP } from './camelCase';
+
+function converter (map: string[]): (value?: AnyString | null) => string {
   return (value?: AnyString | null): string =>
     value
-      ? fn(value[0]) + value.slice(1)
+      ? map[value.charCodeAt(0)] + value.slice(1)
       : '';
 }
 
@@ -24,7 +26,7 @@ function converter (fn: (value: string) => string): (value?: AnyString | null) =
  * stringLowerFirst('ABC'); // => 'aBC'
  * ```
  */
-export const stringLowerFirst = converter((s) => s.toLowerCase());
+export const stringLowerFirst = converter(CC_TO_LO);
 
 /**
  * @name stringUpperFirst
@@ -40,4 +42,4 @@ export const stringLowerFirst = converter((s) => s.toLowerCase());
  * stringUpperFirst('abc'); // => 'Abc'
  * ```
  */
-export const stringUpperFirst = converter((s) => s.toUpperCase());
+export const stringUpperFirst = converter(CC_TO_UP);
