@@ -67,11 +67,11 @@ function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
             break;
 
           case 5:
-            result = (value[0] ^ 0xff) + ((value[1] ^ 0xff) * 0x1_00) + ((value[2] ^ 0xff) * 0x1_00_00) + ((value[3] ^ 0xff) * 0x1_00_00_00) + ((value[4] ^ 0xff) * 0x1_00_00_00_00);
+            result = ((value[0] + (value[1] * 0x1_00) + (value[2] * 0x1_00_00) + (value[3] * 0x1_00_00_00)) ^ 0xffff_ffff) + ((value[4] ^ 0xff) * 0x1_00_00_00_00);
             break;
 
           default: // 6
-            result = (value[0] ^ 0xff) + ((value[1] ^ 0xff) * 0x1_00) + ((value[2] ^ 0xff) * 0x1_00_00) + ((value[3] ^ 0xff) * 0x1_00_00_00) + ((value[4] ^ 0xff) * 0x1_00_00_00_00) + ((value[5] ^ 0xff) * 0x1_00_00_00_00_00);
+            result = ((value[0] + (value[1] * 0x1_00) + (value[2] * 0x1_00_00) + (value[3] * 0x1_00_00_00)) ^ 0xffff_ffff) + ((value[4] ^ 0xff) * 0x1_00_00_00_00) + ((value[5] ^ 0xff) * 0x1_00_00_00_00_00);
             break;
         }
       } else {
