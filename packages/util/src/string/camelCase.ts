@@ -11,6 +11,10 @@ for (let i = 0; i < CC_TO_UP.length; i++) {
   CC_TO_UP[i] = String.fromCharCode(i).toUpperCase();
 }
 
+function formatRuns (w: string): string {
+  return w.slice(0, w.length - 1).toLowerCase() + CC_TO_UP[w.charCodeAt(w.length - 1)];
+}
+
 // Inspired from https://stackoverflow.com/a/2970667
 //
 // this is not as optimal as the original answer (we split into multiple),
@@ -22,9 +26,6 @@ for (let i = 0; i < CC_TO_UP.length; i++) {
 //
 // Caveat of this: only Ascii, but acceptable for the intended usecase
 function converter (format: (w: string, i: number) => string): (value: AnyString) => string {
-  const formatRuns = (w: string) =>
-    w.slice(0, w.length - 1).toLowerCase() + CC_TO_UP[w.charCodeAt(w.length - 1)];
-
   return (value: AnyString): string => {
     const parts = value
       // replace all seperators (including consequtive) with spaces
