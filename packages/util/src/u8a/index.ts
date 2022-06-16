@@ -15,6 +15,7 @@ export { u8aToBigInt } from './toBigInt';
 export { u8aToBn } from './toBn';
 export { u8aToBuffer } from './toBuffer';
 export { u8aToHex } from './toHex';
+export { u8aToNumber } from './toNumber';
 export { u8aToString } from './toString';
 export { u8aToU8a } from './toU8a';
 export { U8A_WRAP_ETHEREUM, U8A_WRAP_POSTFIX, U8A_WRAP_PREFIX, u8aIsWrapped, u8aWrapBytes, u8aUnwrapBytes } from './wrap';

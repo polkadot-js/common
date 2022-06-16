@@ -40,7 +40,7 @@ export interface ToBnOptions {
    */
   isLe?: boolean;
   /**
-   * @description Number is negative, apply two's complement
+   * @description Number is signed, apply two's complement
    */
   isNegative?: boolean;
 }

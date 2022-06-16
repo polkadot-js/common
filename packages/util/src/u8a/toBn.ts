@@ -64,15 +64,17 @@ function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
             break;
 
           case 4:
-            result = (value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24)) ^ 0xffff_ffff;
+            // for the 3rd byte, we don't << 24 - since JS converts all bitwise operators to
+            // 32-bit, in the case where the top-most bit is set this yields a negative value
+            result = (value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] * 0x1_00_00_00)) ^ 0xffff_ffff;
             break;
 
           case 5:
-            result = ((value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24)) ^ 0xffff_ffff) + ((value[4] ^ 0xff) * 0x1_00_00_00_00);
+            result = ((value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] * 0x1_00_00_00)) ^ 0xffff_ffff) + ((value[4] ^ 0xff) * 0x1_00_00_00_00);
             break;
 
           case 6:
-            result = ((value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24)) ^ 0xffff_ffff) + (((value[4] + (value[5] << 8)) ^ 0x0000_ffff) * 0x1_00_00_00_00);
+            result = ((value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] * 0x1_00_00_00)) ^ 0xffff_ffff) + (((value[4] + (value[5] << 8)) ^ 0x0000_ffff) * 0x1_00_00_00_00);
             break;
 
           default:
@@ -107,13 +109,15 @@ function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
           return new BN(value[0] + (value[1] << 8) + (value[2] << 16));
 
         case 4:
-          return new BN(value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24));
+          // for the 3rd byte, we don't << 24 - since JS converts all bitwise operators to
+          // 32-bit, in the case where the top-most bit is set this yields a negative value
+          return new BN(value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] * 0x1_00_00_00));
 
         case 5:
-          return new BN(value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24) + (value[4] * 0x1_00_00_00_00));
+          return new BN(value[0] + (value[1] << 8) + (value[2] << 16) + ((value[3] + (value[4] << 8)) * 0x1_00_00_00));
 
         case 6:
-          return new BN(value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24) + (value[4] * 0x1_00_00_00_00) + (value[5] * 0x1_00_00_00_00_00));
+          return new BN(value[0] + (value[1] << 8) + (value[2] << 16) + ((value[3] + (value[4] << 8) + (value[5] << 16)) * 0x1_00_00_00));
 
         default:
           assertUnreachable(count as never);

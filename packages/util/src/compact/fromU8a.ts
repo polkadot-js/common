@@ -33,7 +33,9 @@ export function compactFromU8a (input: U8aLike): [number, BN] {
       return [2, new BN((u8a[0] + (u8a[1] << 8)) >>> 2)];
 
     case 0b10:
-      return [4, new BN((u8a[0] + (u8a[1] << 8) + (u8a[2] << 16) + (u8a[3] << 24)) >>> 2)];
+      // for the 3rd byte, we don't << 24 - since JS converts all bitwise operators to
+      // 32-bit, in the case where the top-most bit is set this yields a negative value
+      return [4, new BN((u8a[0] + (u8a[1] << 8) + (u8a[2] << 16) + (u8a[3] * 0x1_00_00_00)) >>> 2)];
 
     // 0b11
     default: {
@@ -44,14 +46,16 @@ export function compactFromU8a (input: U8aLike): [number, BN] {
       switch (offset) {
         // there still could be 4 bytes data, similar to 0b10 above (with offsets)
         case 5:
-          return [5, new BN(u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + (u8a[4] << 24))];
+          // for the 3rd byte, we don't << 24 - since JS converts all bitwise operators to
+          // 32-bit, in the case where the top-most bit is set this yields a negative value
+          return [5, new BN(u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + (u8a[4] * 0x1_00_00_00))];
 
         case 6:
-          return [6, new BN(u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + (u8a[4] << 24) + (u8a[5] * 0x1_00_00_00_00))];
+          return [6, new BN(u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + ((u8a[4] + (u8a[5] << 8)) * 0x1_00_00_00))];
 
         // 6 bytes data is the maximum, 48 bits (56 would overflow)
         case 7:
-          return [7, new BN(u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + (u8a[4] << 24) + (u8a[5] * 0x1_00_00_00_00) + (u8a[6] * 0x1_00_00_00_00_00))];
+          return [7, new BN(u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + ((u8a[4] + (u8a[5] << 8) + (u8a[6] << 16)) * 0x1_00_00_00))];
 
         // for anything else, use the non-unrolled version
         default:
@@ -76,7 +80,9 @@ export function compactFromU8aLim (u8a: Uint8Array): [number, number] {
       return [2, (u8a[0] + (u8a[1] << 8)) >>> 2];
 
     case 0b10:
-      return [4, (u8a[0] + (u8a[1] << 8) + (u8a[2] << 16) + (u8a[3] << 24)) >>> 2];
+      // for the 3rd byte, we don't << 24 - since JS converts all bitwise operators to
+      // 32-bit, in the case where the top-most bit is set this yields a negative value
+      return [4, (u8a[0] + (u8a[1] << 8) + (u8a[2] << 16) + (u8a[3] * 0x1_00_00_00)) >>> 2];
 
     // 0b11
     default: {
@@ -85,14 +91,14 @@ export function compactFromU8aLim (u8a: Uint8Array): [number, number] {
       switch ((u8a[0] >>> 2) + 5) {
         // there still could be 4 bytes data, similar to 0b10 above (with offsets)
         case 5:
-          return [5, u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + (u8a[4] << 24)];
+          return [5, u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + (u8a[4] * 0x1_00_00_00)];
 
         case 6:
-          return [6, u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + (u8a[4] << 24) + (u8a[5] * 0x1_00_00_00_00)];
+          return [6, u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + ((u8a[4] + (u8a[5] << 8)) * 0x1_00_00_00)];
 
         // 6 bytes data is the maximum, 48 bits (56 would overflow)
         case 7:
-          return [7, u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + (u8a[4] << 24) + (u8a[5] * 0x1_00_00_00_00) + (u8a[6] * 0x1_00_00_00_00_00)];
+          return [7, u8a[1] + (u8a[2] << 8) + (u8a[3] << 16) + ((u8a[4] + (u8a[5] << 8) + (u8a[6] << 16)) * 0x1_00_00_00)];
 
         // for anything else, we are above the actual MAX_SAFE_INTEGER - bail out
         default:
