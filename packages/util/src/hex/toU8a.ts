@@ -6,7 +6,7 @@ import type { HexString } from '../types';
 import { hexStripPrefix } from './stripPrefix';
 
 const CHARS = '0123456789abcdef';
-const UNHEX = new Array<number>(255);
+const UNHEX = new Array<number>(256);
 
 for (let i = 0; i < CHARS.length; i++) {
   UNHEX[CHARS[i].charCodeAt(0)] = i;
