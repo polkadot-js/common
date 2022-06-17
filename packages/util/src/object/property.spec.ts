@@ -17,7 +17,7 @@ describe('objectProperty/objectProperties', (): void => {
     expect(test.a).toEqual(2);
   });
 
-  it('does not override an existing property', (): void => {
+  it('does not override an existing property (record)', (): void => {
     const test: Record<string, unknown> = { a: 1 };
 
     expect(test.a).toEqual(1);
@@ -25,6 +25,27 @@ describe('objectProperty/objectProperties', (): void => {
     objectProperty(test, 'a', () => 2);
 
     expect(test.a).toEqual(1);
+  });
+
+  it('does not override an existing property (class)', (): void => {
+    class Test {
+      b = 1;
+
+      get a () {
+        return 1;
+      }
+    }
+
+    const test = new Test();
+
+    expect(test.a).toEqual(1);
+    expect(test.b).toEqual(1);
+
+    objectProperty(test, 'a', () => 2);
+    objectProperty(test, 'b', () => 2);
+
+    expect(test.a).toEqual(1);
+    expect(test.b).toEqual(1);
   });
 
   it('does not override an existing property (inherited)', (): void => {
