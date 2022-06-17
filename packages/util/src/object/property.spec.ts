@@ -1,6 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { performance } from '../test/performance';
 import { objectProperties, objectProperty } from '.';
 
 describe('objectProperty/objectProperties', (): void => {
@@ -11,6 +12,8 @@ describe('objectProperty/objectProperties', (): void => {
 
     objectProperty(test, 'a', () => 2);
 
+    expect(Object.prototype.hasOwnProperty.call(test, 'a')).toBe(true);
+    expect('a' in test).toEqual(true);
     expect(test.a).toEqual(2);
   });
 
@@ -117,4 +120,7 @@ describe('objectProperty/objectProperties', (): void => {
     expect(test.b).toEqual(123);
     expect(getter).toHaveBeenCalledWith('b', 1);
   });
+
+  performance('objectProperties (obj)', 50_000, [[]], () => objectProperties({}, ['foo', 'bar', 'baz'], (k) => k));
+  performance('objectProperties (map)', 50_000, [[]], () => objectProperties(new Map(), ['foo', 'bar', 'baz'], (k) => k));
 });
