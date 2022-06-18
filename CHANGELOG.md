@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Adjust `isUndefined` check (local variable available)
+
+
 ## 9.5.1 Jun 18, 2022
 
 Contributed:
