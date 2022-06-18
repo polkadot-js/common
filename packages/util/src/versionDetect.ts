@@ -4,7 +4,6 @@
 import { xglobal } from '@polkadot/x-global';
 
 import { isFunction } from './is/function';
-import { assert } from './assert';
 
 type This = typeof globalThis;
 
@@ -112,7 +111,9 @@ function warn <T extends { version: string }> (pre: string, all: T[], fmt: (vers
  * @description A `@polkadot/*` version detection utility, checking for one occurence of a package in addition to checking for ddependency versions.
  */
 export function detectPackage ({ name, path, type, version }: PackageJson, pathOrFn?: FnString | string | false | null, deps: PackageJson[] = []): void {
-  assert(name.startsWith('@polkadot'), () => `Invalid package descriptor ${name}`);
+  if (!name.startsWith('@polkadot')) {
+    throw new Error(`Invalid package descriptor ${name}`);
+  }
 
   const entry = getEntry(name);
 
