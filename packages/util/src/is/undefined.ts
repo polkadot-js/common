@@ -17,5 +17,5 @@
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isUndefined (value?: unknown): value is undefined {
-  return typeof value === 'undefined';
+  return value === undefined;
 }
