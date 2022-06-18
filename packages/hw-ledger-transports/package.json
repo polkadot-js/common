@@ -16,7 +16,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "9.4.2-25",
+  "version": "9.5.0",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
@@ -25,7 +25,7 @@
     "@ledgerhq/hw-transport": "^6.27.1",
     "@ledgerhq/hw-transport-webhid": "^6.27.1",
     "@ledgerhq/hw-transport-webusb": "^6.27.1",
-    "@polkadot/util": "9.4.2-25"
+    "@polkadot/util": "9.5.0"
   },
   "optionalDependencies": {
     "@ledgerhq/hw-transport-node-hid-singleton": "^6.27.1"

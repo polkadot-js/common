@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 9.5.1 Jun 18, 2022
 
 Contributed:
 
@@ -16,6 +16,7 @@ Changes:
 - Optimize `stringCamelCase` operations
 - Optimize `u8aToBn` operations
 - Additional internal/external comments (as missing)
+- Upgrade dependencies to latest stable versions
 
 
 ## 9.4.1 Jun 4, 2022
