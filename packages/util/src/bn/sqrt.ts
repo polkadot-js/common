@@ -3,9 +3,8 @@
 
 import type { ToBn } from '../types';
 
-import { assert } from '../assert';
 import { BN } from './bn';
-import { BN_MAX_INTEGER, BN_ONE, BN_ZERO } from './consts';
+import { BN_MAX_INTEGER, BN_ONE } from './consts';
 import { bnToBn } from './toBn';
 
 /** @internal */
@@ -27,7 +26,9 @@ export const SQRT_MAX_SAFE_INTEGER = new BN(94906265);
 export function bnSqrt <ExtToBn extends ToBn> (value: ExtToBn | BN | bigint | string | number | null): BN {
   const n = bnToBn(value);
 
-  assert(n.gte(BN_ZERO), 'square root of negative numbers is not supported');
+  if (n.isNeg()) {
+    throw new Error('square root of negative numbers is not supported');
+  }
 
   // https://stackoverflow.com/questions/53683995/javascript-big-integer-square-root/
   // shortcut <= 2^53 - 1 to use the JS utils

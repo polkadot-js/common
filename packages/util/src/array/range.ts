@@ -1,8 +1,6 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { assert } from '../assert';
-
 /**
  * @name arrayRange
  * @summary Returns a range of numbers ith the size and the specified offset
@@ -19,7 +17,9 @@ import { assert } from '../assert';
  * ```
  */
 export function arrayRange (size: number, startAt = 0): number[] {
-  assert(size > 0, 'Expected non-zero, positive number as a range size');
+  if (size <= 0) {
+    throw new Error('Expected non-zero, positive number as a range size');
+  }
 
   const result = new Array<number>(size);
 

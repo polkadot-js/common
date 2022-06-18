@@ -1,7 +1,6 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { assert } from '../assert';
 import { BN, BN_ONE, BN_TWO, bnToBn, bnToU8a } from '../bn';
 import { u8aConcatStrict } from '../u8a';
 
@@ -42,7 +41,9 @@ export function compactToU8a (value: BN | bigint | number): Uint8Array {
     length--;
   }
 
-  assert(length >= 4, 'Invalid length, previous checks match anything less than 2^30');
+  if (length < 4) {
+    throw new Error('Invalid length, previous checks match anything less than 2^30');
+  }
 
   return u8aConcatStrict([
     // subtract 4 as minimum (also catered for in decoding)
