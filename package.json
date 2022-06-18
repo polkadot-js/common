@@ -10,7 +10,7 @@
     "url": "https://github.com/polkadot-js/common.git"
   },
   "sideEffects": false,
-  "version": "9.4.2-25",
+  "version": "9.5.0",
   "workspaces": [
     "packages/*"
   ],
@@ -28,8 +28,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
-    "@polkadot/dev": "^0.67.3",
-    "@types/jest": "^28.1.1"
+    "@polkadot/dev": "^0.67.4",
+    "@types/jest": "^28.1.2"
   },
   "resolutions": {
     "typescript": "^4.7.3"
