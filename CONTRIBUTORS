@@ -1,4 +1,4 @@
-    1363	Jaco                          	9.5.1 (#1545)
+    1364	Jaco                          	Adjust isUndefined check (#1546)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
