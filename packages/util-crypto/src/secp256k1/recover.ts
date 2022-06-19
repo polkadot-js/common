@@ -6,7 +6,7 @@ import type { HashType } from './types';
 
 import { recoverPublicKey, Signature } from '@noble/secp256k1';
 
-import { assert, hasBigInt, u8aToU8a } from '@polkadot/util';
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, secp256k1Recover as wasm } from '@polkadot/wasm-crypto';
 
 import { secp256k1Compress } from './compress';
@@ -23,7 +23,9 @@ export function secp256k1Recover (msgHash: HexString | Uint8Array | string, sign
     ? wasm(msg, sig, recovery)
     : recoverPublicKey(msg, Signature.fromCompact(sig).toRawBytes(), recovery);
 
-  assert(publicKey, 'Unable to recover publicKey from signature');
+  if (!publicKey) {
+    throw new Error('Unable to recover publicKey from signature');
+  }
 
   return hashType === 'keccak'
     ? secp256k1Expand(publicKey, onlyJs)

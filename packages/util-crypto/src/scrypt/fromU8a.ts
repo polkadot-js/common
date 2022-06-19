@@ -23,7 +23,9 @@ export function scryptFromU8a (data: Uint8Array): Result {
   // and updates for greater security. However we need some protection against carefully-crafted params that can
   // eat up CPU since these are user inputs. So we need to get very clever here, but atm we only allow the defaults
   // and if no match, bail out
-  assert(N === DEFAULT_PARAMS.N && p === DEFAULT_PARAMS.p && r === DEFAULT_PARAMS.r, 'Invalid injected scrypt params found');
+  if (N !== DEFAULT_PARAMS.N || p !== DEFAULT_PARAMS.p || r !== DEFAULT_PARAMS.r) {
+    throw new Error('Invalid injected scrypt params found');
+  }
 
   return { params: { N, p, r }, salt };
 }

@@ -4,7 +4,7 @@
 import type { HexString } from '@polkadot/util/types';
 import type { HashType } from './types';
 
-import { assert, u8aEq, u8aToU8a } from '@polkadot/util';
+import { u8aEq, u8aToU8a } from '@polkadot/util';
 
 import { hasher } from './hasher';
 import { secp256k1Recover } from './recover';
@@ -16,7 +16,9 @@ import { secp256k1Recover } from './recover';
 export function secp256k1Verify (msgHash: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, address: HexString | Uint8Array | string, hashType: HashType = 'blake2', onlyJs?: boolean): boolean {
   const sig = u8aToU8a(signature);
 
-  assert(sig.length === 65, `Expected signature with 65 bytes, ${sig.length} found instead`);
+  if (sig.length !== 65) {
+    throw new Error(`Expected signature with 65 bytes, ${sig.length} found instead`);
+  }
 
   const publicKey = secp256k1Recover(hasher(hashType, msgHash), sig, sig[64], hashType, onlyJs);
   const signerAddr = hasher(hashType, publicKey, onlyJs);

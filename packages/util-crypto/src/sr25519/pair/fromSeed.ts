@@ -16,7 +16,9 @@ import { sr25519PairFromU8a } from './fromU8a';
 export function sr25519PairFromSeed (seed: HexString | Uint8Array | string): Keypair {
   const seedU8a = u8aToU8a(seed);
 
-  assert(seedU8a.length === 32, () => `Expected a seed matching 32 bytes, found ${seedU8a.length}`);
+  if (seedU8a.length !== 32) {
+    throw new Error(`Expected a seed matching 32 bytes, found ${seedU8a.length}`);
+  }
 
   return sr25519PairFromU8a(
     sr25519KeypairFromSeed(seedU8a)

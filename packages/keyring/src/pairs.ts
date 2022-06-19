@@ -4,7 +4,7 @@
 import type { HexString } from '@polkadot/util/types';
 import type { KeyringPair, KeyringPairs } from './types';
 
-import { assert, isHex, isU8a, u8aToHex, u8aToU8a } from '@polkadot/util';
+import { isHex, isU8a, u8aToHex, u8aToU8a } from '@polkadot/util';
 import { decodeAddress } from '@polkadot/util-crypto';
 
 type KeyringPairMap = Record<string, KeyringPair>;
@@ -25,11 +25,13 @@ export class Pairs implements KeyringPairs {
   public get (address: HexString | string | Uint8Array): KeyringPair {
     const pair = this.#map[decodeAddress(address).toString()];
 
-    assert(pair, () => `Unable to retrieve keypair '${
-      isU8a(address) || isHex(address)
-        ? u8aToHex(u8aToU8a(address))
-        : address
-    }'`);
+    if (!pair) {
+      throw new Error(`Unable to retrieve keypair '${
+        isU8a(address) || isHex(address)
+          ? u8aToHex(u8aToU8a(address))
+          : address
+      }'`);
+    }
 
     return pair;
   }

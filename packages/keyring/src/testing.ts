@@ -112,7 +112,9 @@ export const PAIRSETHEREUM: PairDef[] = [
 ];
 
 function createMeta (name?: string, seed?: string) {
-  assert(name || seed, 'Testing pair should have either a name or a seed');
+  if (!name && !seed) {
+    throw new Error('Testing pair should have either a name or a seed');
+  }
 
   return {
     isTesting: true,

@@ -5,7 +5,7 @@ import type { ResponseBase, SubstrateApp } from '@zondax/ledger-substrate';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types';
 
 import { transports } from '@polkadot/hw-ledger-transports';
-import { assert, u8aToBuffer } from '@polkadot/util';
+import { u8aToBuffer } from '@polkadot/util';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants';
 import { ledgerApps } from './defaults';
@@ -26,8 +26,11 @@ export class Ledger {
 
   constructor (transport: LedgerTypes, chain: Chain) {
     // u2f is deprecated
-    assert(['hid', 'webusb'].includes(transport), () => `Unsupported transport ${transport}`);
-    assert(Object.keys(ledgerApps).includes(chain), () => `Unsupported chain ${chain}`);
+    if (!['hid', 'webusb'].includes(transport)) {
+      throw new Error(`Unsupported transport ${transport}`);
+    } else if (!Object.keys(ledgerApps).includes(chain)) {
+      throw new Error(`Unsupported chain ${chain}`);
+    }
 
     this.#chain = chain;
     this.#transport = transport;
@@ -71,7 +74,9 @@ export class Ledger {
     if (!this.#app) {
       const def = transports.find(({ type }) => type === this.#transport);
 
-      assert(def, () => `Unable to find a transport for ${this.#transport}`);
+      if (!def) {
+        throw new Error(`Unable to find a transport for ${this.#transport}`);
+      }
 
       const transport = await def.create();
 
@@ -96,7 +101,9 @@ export class Ledger {
   #wrapError = async <T extends ResponseBase> (promise: Promise<T>): Promise<T> => {
     const result = await promise;
 
-    assert(result.return_code === LEDGER_SUCCESS_CODE, () => result.error_message);
+    if (result.return_code !== LEDGER_SUCCESS_CODE) {
+      throw new Error(result.error_message);
+    }
 
     return result;
   };

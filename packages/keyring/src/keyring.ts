@@ -4,7 +4,7 @@
 import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
 
-import { assert, hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
+import { hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
 import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
@@ -50,7 +50,9 @@ export class Keyring implements KeyringInstance {
   constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
 
-    assert(['ecdsa', 'ethereum', 'ed25519', 'sr25519'].includes(options.type || 'undefined'), () => `Expected a keyring type of either 'ed25519', 'sr25519', 'ethereum' or 'ecdsa', found '${options.type || 'unknown'}`);
+    if (!['ecdsa', 'ethereum', 'ed25519', 'sr25519'].includes(options.type || 'undefined')) {
+      throw new Error(`Expected a keyring type of either 'ed25519', 'sr25519', 'ethereum' or 'ecdsa', found '${options.type || 'unknown'}`);
+    }
 
     this.#pairs = new Pairs();
     this.#ss58 = options.ss58Format;
@@ -162,7 +164,9 @@ export class Keyring implements KeyringInstance {
    * @description Creates a pair from a JSON keyfile
    */
   public createFromJson ({ address, encoded, encoding: { content, type, version }, meta }: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair {
-    assert(version !== '3' || content[0] === 'pkcs8', () => `Unable to decode non-pkcs8 type, [${content.join(',')}] found}`);
+    if (version === '3' && content[0] !== 'pkcs8') {
+      throw new Error(`Unable to decode non-pkcs8 type, [${content.join(',')}] found}`);
+    }
 
     const cryptoType = version === '0' || !Array.isArray(content)
       ? this.type
@@ -171,7 +175,9 @@ export class Keyring implements KeyringInstance {
       ? [type]
       : type;
 
-    assert(['ed25519', 'sr25519', 'ecdsa', 'ethereum'].includes(cryptoType), () => `Unknown crypto type ${cryptoType}`);
+    if (!['ed25519', 'sr25519', 'ecdsa', 'ethereum'].includes(cryptoType)) {
+      throw new Error(`Unknown crypto type ${cryptoType}`);
+    }
 
     // Here the address and publicKey are 32 bytes and isomorphic. This is why the address field needs to be the public key for ethereum type pairs
     const publicKey = isHex(address)
@@ -216,7 +222,9 @@ export class Keyring implements KeyringInstance {
           ? mnemonicToLegacySeed(phrase, '', false, 64)
           : mnemonicToMiniSecret(phrase, password);
       } else {
-        assert(phrase.length <= 32, 'specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
+        if (phrase.length > 32) {
+          throw new Error('specified phrase is not a valid mnemonic and is invalid as a raw seed at > 32 bytes');
+        }
 
         seed = stringToU8a(phrase.padEnd(32));
       }
