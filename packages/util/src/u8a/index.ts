@@ -10,6 +10,7 @@ export { u8aConcat, u8aConcatStrict } from './concat';
 export { u8aEmpty } from './empty';
 export { u8aEq } from './eq';
 export { u8aFixLength } from './fixLength';
+export { u8aToFloat } from './toFloat';
 export { u8aSorted } from './sorted';
 export { u8aToBigInt } from './toBigInt';
 export { u8aToBn } from './toBn';

@@ -4,6 +4,7 @@
 
 Changes:
 
+- Add `floatToU8a` and `u8aToFloat` (both 32 & 64-bit, le & be)
 - Adjust `isUndefined` check (local variable available)
 
 
