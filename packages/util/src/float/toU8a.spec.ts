@@ -5,6 +5,12 @@ import { u8aToHex } from '../u8a';
 import { floatToU8a } from '.';
 
 describe('floatToU8a', (): void => {
+  it('throws on invalid bitLength', (): void => {
+    expect(
+      () => floatToU8a(123, { bitLength: 48 as 32 })
+    ).toThrow();
+  });
+
   describe('32-bit', (): void => {
     it('correctly encodes +0.0', (): void => {
       expect(

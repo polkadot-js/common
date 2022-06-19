@@ -5,6 +5,18 @@ import { hexToU8a } from '../hex';
 import { u8aToFloat } from '.';
 
 describe('u8aToFloat', (): void => {
+  it('throws on invalid bitLength', (): void => {
+    expect(
+      () => u8aToFloat(hexToU8a('0x00000000'), { bitLength: 48 as 32 })
+    ).toThrow();
+  });
+
+  it('throws on invalid input length', (): void => {
+    expect(
+      () => u8aToFloat(new Uint8Array())
+    ).toThrow();
+  });
+
   describe('32-bit', (): void => {
     it('correctly decodes +0.0', (): void => {
       expect(
