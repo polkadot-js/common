@@ -13,6 +13,7 @@ export * from './bn';
 export * from './buffer';
 export * from './compact';
 export * from './extractTime';
+export * from './float';
 export * from './format';
 export * from './has';
 export * from './hex';
