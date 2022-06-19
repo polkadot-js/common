@@ -3,7 +3,7 @@
 
 import type { KeyringInstance, KeyringOptions } from './types';
 
-import { assert, hexToU8a } from '@polkadot/util';
+import { hexToU8a } from '@polkadot/util';
 import { KeypairType } from '@polkadot/util-crypto/types';
 
 import { Keyring } from './keyring';

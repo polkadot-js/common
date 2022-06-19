@@ -4,7 +4,7 @@
 import type { HexString } from '@polkadot/util/types';
 import type { KeypairType, VerifyResult } from '../types';
 
-import { assert, u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from '@polkadot/util';
+import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from '@polkadot/util';
 
 import { decodeAddress } from '../address/decode';
 import { ed25519Verify } from '../ed25519/verify';
