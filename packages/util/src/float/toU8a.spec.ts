@@ -35,6 +35,30 @@ describe('floatToU8a', (): void => {
         u8aToHex(floatToU8a(Number.NaN, { isLe: true }))
       ).toEqual('0x0000c07f');
     });
+
+    describe('equivalency', (): void => {
+      it('encodes number 123.456', (): void => {
+        expect(
+          u8aToHex(floatToU8a(123.456))
+        ).toEqual('0x79e9f642');
+      });
+
+      it('encodes string 123.456', (): void => {
+        expect(
+          u8aToHex(floatToU8a('123.456'))
+        ).toEqual('0x79e9f642');
+      });
+
+      it('encodes Number 123.456', (): void => {
+        class Test extends Number {
+          foo = 'bar';
+        }
+
+        expect(
+          u8aToHex(floatToU8a(new Test(123.456)))
+        ).toEqual('0x79e9f642');
+      });
+    });
   });
 
   describe('64-bit', (): void => {
