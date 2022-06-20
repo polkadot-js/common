@@ -3,7 +3,7 @@
 
 import type { KeyringInstance, KeyringOptions } from './types';
 
-import { assert, hexToU8a } from '@polkadot/util';
+import { hexToU8a } from '@polkadot/util';
 import { KeypairType } from '@polkadot/util-crypto/types';
 
 import { Keyring } from './keyring';
@@ -112,7 +112,9 @@ export const PAIRSETHEREUM: PairDef[] = [
 ];
 
 function createMeta (name?: string, seed?: string) {
-  assert(name || seed, 'Testing pair should have either a name or a seed');
+  if (!name && !seed) {
+    throw new Error('Testing pair should have either a name or a seed');
+  }
 
   return {
     isTesting: true,

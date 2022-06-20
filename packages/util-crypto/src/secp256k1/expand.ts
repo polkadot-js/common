@@ -3,7 +3,7 @@
 
 import { Point } from '@noble/secp256k1';
 
-import { assert, bnToU8a, hasBigInt, u8aConcat } from '@polkadot/util';
+import { bnToU8a, hasBigInt, u8aConcat } from '@polkadot/util';
 import { isReady, secp256k1Expand as wasm } from '@polkadot/wasm-crypto';
 
 import { BN_BE_256_OPTS } from '../bn';
@@ -13,7 +13,9 @@ export function secp256k1Expand (publicKey: Uint8Array, onlyJs?: boolean): Uint8
     return publicKey.subarray(1);
   }
 
-  assert(publicKey.length === 33, 'Invalid publicKey provided');
+  if (publicKey.length !== 33) {
+    throw new Error('Invalid publicKey provided');
+  }
 
   if (!hasBigInt || (!onlyJs && isReady())) {
     return wasm(publicKey).subarray(1);

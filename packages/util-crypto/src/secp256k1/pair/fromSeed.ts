@@ -5,7 +5,7 @@ import type { Keypair } from '../../types';
 
 import { getPublicKey } from '@noble/secp256k1';
 
-import { assert, hasBigInt, u8aEmpty } from '@polkadot/util';
+import { hasBigInt, u8aEmpty } from '@polkadot/util';
 import { isReady, secp256k1FromSeed } from '@polkadot/wasm-crypto';
 
 /**
@@ -13,7 +13,9 @@ import { isReady, secp256k1FromSeed } from '@polkadot/wasm-crypto';
  * @description Returns a object containing a `publicKey` & `secretKey` generated from the supplied seed.
  */
 export function secp256k1PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypair {
-  assert(seed.length === 32, 'Expected valid 32-byte private key as a seed');
+  if (seed.length !== 32) {
+    throw new Error('Expected valid 32-byte private key as a seed');
+  }
 
   if (!hasBigInt || (!onlyJs && isReady())) {
     const full = secp256k1FromSeed(seed);
@@ -23,7 +25,9 @@ export function secp256k1PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keyp
     // it seems that the lazy static section yields invalid results on the _first_ run.
     // If this happens, fail outright, we cannot allow invalid return values
     // https://github.com/polkadot-js/wasm/issues/307
-    assert(!u8aEmpty(publicKey), 'Invalid publicKey generated from WASM interface');
+    if (u8aEmpty(publicKey)) {
+      throw new Error('Invalid publicKey generated from WASM interface');
+    }
 
     return {
       publicKey,
