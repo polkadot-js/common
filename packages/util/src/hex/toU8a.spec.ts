@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performanceCmp } from '../test/performance';
+import { perfCmp } from '../test/performance';
 import { hexToU8a as hexToU8aBuffer } from './toU8aBuffer';
 import { hexToU8a } from '.';
 
@@ -54,7 +54,7 @@ describe('hexToU8a', (): void => {
     ).toThrow(/hex value to convert/);
   });
 
-  performanceCmp('hexToU8a', ['hexToU8aBuffer', 'hexToU8a'], 20, [[ptest]], (s: string, isSecond) =>
+  perfCmp('hexToU8a', ['hexToU8aBuffer', 'hexToU8a'], 20, [[ptest]], (s: string, isSecond) =>
     isSecond
       ? hexToU8a(s)
       : hexToU8aBuffer(s)

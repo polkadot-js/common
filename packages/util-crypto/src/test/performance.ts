@@ -11,7 +11,7 @@ type ExecFn = (input: Uint8Array, onlyJs: boolean) => unknown;
 const GENERATED = arrayRange(256).map(() => [randomAsU8a()]);
 
 export function performanceWasm (name: string, count: number, exec: ExecFn, inputs = GENERATED): void {
-  performanceCmp(name, ['WebAssembly', 'JavaScript'], count, inputs, exec);
+  perfCmp(name, ['WebAssembly', 'JavaScript'], count, inputs, exec);
 }
 
 export { performance, performanceCmp };

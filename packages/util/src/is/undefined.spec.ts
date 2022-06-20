@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performance } from '../test/performance';
+import { perf } from '../test/performance';
 import { isUndefined } from '.';
 
 describe('isUndefined', (): void => {
@@ -17,5 +17,5 @@ describe('isUndefined', (): void => {
     ).toEqual(false);
   });
 
-  performance('isUndefined', 10_000_000, [[null]], isUndefined);
+  perf('isUndefined', 10_000_000, [[null]], isUndefined);
 });

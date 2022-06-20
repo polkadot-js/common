@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performance } from '../test/performance';
+import { perf } from '../test/performance';
 import { arrayRange, arrayShuffle } from '.';
 
 const ptest = arrayRange(16284);
@@ -32,5 +32,5 @@ describe('arrayShuffle', (): void => {
     ).not.toEqual(JSON.stringify(out));
   });
 
-  performance('arrayShuffle', 1000, [[ptest]], arrayShuffle);
+  perf('arrayShuffle', 1000, [[ptest]], arrayShuffle);
 });

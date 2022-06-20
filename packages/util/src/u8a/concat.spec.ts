@@ -4,7 +4,7 @@
 import { getRandomValues } from '@polkadot/x-randomvalues';
 
 import { arrayRange } from '../array';
-import { performance } from '../test/performance';
+import { perf } from '../test/performance';
 import { u8aConcat, u8aConcatStrict } from '.';
 
 const ptest = arrayRange(10).map(() => getRandomValues(new Uint8Array(32)));
@@ -34,7 +34,7 @@ describe('u8aConcat', (): void => {
     );
   });
 
-  performance('u8aConcat', 10000, [[ptest]], u8aConcat);
-  performance('u8aConcatStrict', 10000, [[[ptest]]], u8aConcatStrict);
-  performance('u8aConcatStrict (len)', 10000, [[[ptest], 320]], u8aConcatStrict);
+  perf('u8aConcat', 10000, [[ptest]], u8aConcat);
+  perf('u8aConcatStrict', 10000, [[[ptest]]], u8aConcatStrict);
+  perf('u8aConcatStrict (len)', 10000, [[[ptest], 320]], u8aConcatStrict);
 });

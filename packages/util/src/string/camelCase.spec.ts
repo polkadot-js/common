@@ -4,7 +4,7 @@
 import { getRandomValues } from '@polkadot/x-randomvalues';
 
 import { arrayRange } from '../array';
-import { performance } from '../test/performance';
+import { perf } from '../test/performance';
 import { stringCamelCase, stringUpperFirst } from '.';
 
 const SEPS = [' ', '_', '-', '.', ','];
@@ -112,6 +112,6 @@ describe('stringCamelCase', (): void => {
     ).toEqual('aBCDef');
   });
 
-  performance('stringCamelCase (random)', 100_000, randomWords, stringCamelCase);
-  performance('stringCamelCase (NFTOrder)', 100_000, [['NFTOrder']], stringCamelCase);
+  perf('stringCamelCase (random)', 100_000, randomWords, stringCamelCase);
+  perf('stringCamelCase (NFTOrder)', 100_000, [['NFTOrder']], stringCamelCase);
 });

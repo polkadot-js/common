@@ -10,7 +10,7 @@ const NUM_PAD = 16;
 const PRE_PAD = 32;
 
 function loop (count: number, inputs: unknown[][], exec: ExecFn): [number, unknown[]] {
-  const start = Date.now();
+  const start = performance.now();
   const results = new Array<unknown>(inputs.length);
 
   for (let i = 0; i < count; i++) {
@@ -21,7 +21,7 @@ function loop (count: number, inputs: unknown[][], exec: ExecFn): [number, unkno
     }
   }
 
-  return [Date.now() - start, results];
+  return [performance.now() - start, results];
 }
 
 export function formatFixed (value: number): string {
@@ -39,19 +39,19 @@ ${formatFixed(ops).padStart(NUM_PAD + PRE_PAD + 1)} ops/s
 ${formatFixed(micro).padStart(NUM_PAD + PRE_PAD + 1)} μs/op`;
 }
 
-export function performance (name: string, count: number, inputs: unknown[][], exec: ExecFn): void {
+export function perf (name: string, count: number, inputs: unknown[][], exec: ExecFn): void {
   it(`performance: ${name}`, (): void => {
     const [time] = loop(count, inputs, exec);
 
     console.log(`
 performance run for ${name} completed with ${formatNumber(count)} iterations.
 
-${`${name}:`.padStart(PRE_PAD)} ${time.toString().padStart(NUM_PAD)} ms${formatOps(count, time)}
+${`${name}:`.padStart(PRE_PAD)} ${time.toFixed(2).padStart(NUM_PAD)} ms${formatOps(count, time)}
 `);
   });
 }
 
-export function performanceCmp (name: string, [first, second]: [string, string], count: number, inputs: unknown[][], exec: ExecFn): void {
+export function perfCmp (name: string, [first, second]: [string, string], count: number, inputs: unknown[][], exec: ExecFn): void {
   it(`performance: ${name}`, (): void => {
     const pa = inputs.map((values) => [...values, false]);
     const pb = inputs.map((values) => [...values, true]);
@@ -61,9 +61,9 @@ export function performanceCmp (name: string, [first, second]: [string, string],
     console.log(`
 performance run for ${name} completed with ${formatNumber(count)} iterations.
 
-${`${first}:`.padStart(PRE_PAD)} ${ta.toString().padStart(NUM_PAD)} ms ${ta < tb ? '(fastest)' : `(slowest, ${(ta / tb).toFixed(2)}x)`}${formatOps(count, ta)}
+${`${first}:`.padStart(PRE_PAD)} ${ta.toFixed(2).padStart(NUM_PAD)} ms ${ta < tb ? '(fastest)' : `(slowest, ${(ta / tb).toFixed(2)}x)`}${formatOps(count, ta)}
 
-${`${second}:`.padStart(PRE_PAD)} ${tb.toString().padStart(NUM_PAD)} ms ${ta > tb ? '(fastest)' : `(slowest, ${(tb / ta).toFixed(2)}x)`}${formatOps(count, tb)}
+${`${second}:`.padStart(PRE_PAD)} ${tb.toFixed(2).padStart(NUM_PAD)} ms ${ta > tb ? '(fastest)' : `(slowest, ${(tb / ta).toFixed(2)}x)`}${formatOps(count, tb)}
 `);
 
     const unmatched = ra.filter((r, i) =>
