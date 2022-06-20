@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performance } from '../test/performance';
+import { perf } from '../test/performance';
 import { u8aToNumber } from '.';
 
 describe('u8aToNumber', (): void => {
@@ -130,6 +130,6 @@ describe('u8aToNumber', (): void => {
     });
   });
 
-  performance('u8aToNumber (u32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToNumber);
-  performance('u8aToNumber (i32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToNumber(v, { isNegative: true }));
+  perf('u8aToNumber (u32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToNumber);
+  perf('u8aToNumber (i32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToNumber(v, { isNegative: true }));
 });

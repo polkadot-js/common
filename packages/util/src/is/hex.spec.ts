@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performance } from '../test/performance';
+import { perf } from '../test/performance';
 import { isHex } from '.';
 
 describe('isHex', (): void => {
@@ -71,5 +71,5 @@ describe('isHex', (): void => {
     ).toEqual(true);
   });
 
-  performance(`isHex (${(ptest.length - 2) / 2} bytes)`, 5000, [[ptest]], isHex);
+  perf(`isHex (${(ptest.length - 2) / 2} bytes)`, 5000, [[ptest]], isHex);
 });

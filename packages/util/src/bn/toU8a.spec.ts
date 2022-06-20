@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { arrayRange } from '../array';
-import { performance } from '../test/performance';
+import { perf } from '../test/performance';
 import { BN, bnToU8a } from '.';
 
 const ptest = arrayRange(65536).map((v) => [v]);
@@ -108,5 +108,5 @@ describe('bnToU8a', (): void => {
     });
   });
 
-  performance('bnToU8a', 250000, ptest, bnToU8a);
+  perf('bnToU8a', 250000, ptest, bnToU8a);
 });

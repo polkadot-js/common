@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performanceCmp } from '../test/performance';
+import { perfCmp } from '../test/performance';
 import { isCodec } from '.';
 
 const ptest = {
@@ -47,7 +47,7 @@ describe('isCodec', (): void => {
     ).toEqual(false);
   });
 
-  performanceCmp('isCodec', ['isCodec', 'instanceof'], 500_000, [[ptest]], (v: unknown, isSecond) =>
+  perfCmp('isCodec', ['isCodec', 'instanceof'], 500_000, [[ptest]], (v: unknown, isSecond) =>
     isSecond
       ? !(v instanceof String)
       : isCodec(v)
