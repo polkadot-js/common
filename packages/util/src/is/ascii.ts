@@ -24,7 +24,7 @@ function isAsciiStr (str: AnyString): boolean {
 }
 
 /** @internal */
-function isAsciiU8a (u8a: Uint8Array): boolean {
+function isAsciiBytes (u8a: Uint8Array | Buffer | number[]): boolean {
   const count = u8a.length;
 
   for (let i = 0; i < count; i++) {
@@ -46,9 +46,11 @@ function isAsciiU8a (u8a: Uint8Array): boolean {
  * Checks to see if the input string or Uint8Array is printable ASCII, 32-127 + formatters
  */
 export function isAscii (value?: U8aLike | null): boolean {
-  return isString(value) && !isHex(value)
-    ? isAsciiStr(value)
+  return isString(value)
+    ? isHex(value)
+      ? isAsciiBytes(u8aToU8a(value))
+      : isAsciiStr(value)
     : value
-      ? isAsciiU8a(u8aToU8a(value))
+      ? isAsciiBytes(value)
       : false;
 }

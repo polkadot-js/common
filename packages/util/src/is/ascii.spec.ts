@@ -1,6 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { stringToU8a } from '../string';
 import { perf } from '../test/performance';
 import { isAscii } from '.';
 
@@ -37,5 +38,6 @@ describe('isAscii', (): void => {
     expect(isAscii('0x010203')).toEqual(false);
   });
 
-  perf('isAscii', 100_000, [[[0x31, 0x32, 0x20, 10, 9, 13, 65, 66, 67, 68, 69, 70]]], isAscii);
+  perf('isAscii (str)', 2_000_000, [['Hello\tWorld!\n\rTesting']], isAscii);
+  perf('isAscii (u8a)', 200_000, [[[stringToU8a('Hello\tWorld!\n\rTesting')]]], isAscii);
 });
