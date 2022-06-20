@@ -4,7 +4,7 @@
 import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util-crypto/types';
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
 
-import { hexToU8a, isHex, isUndefined, stringToU8a } from '@polkadot/util';
+import { hexToU8a, isHex, stringToU8a } from '@polkadot/util';
 import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from '@polkadot/util-crypto';
 
 import { DEV_PHRASE } from './defaults';
@@ -246,7 +246,7 @@ export class Keyring implements KeyringInstance {
   public encodeAddress = (address: Uint8Array | string, ss58Format?: number): string => {
     return this.type === 'ethereum'
       ? ethereumEncode(address)
-      : encodeAddress(address, isUndefined(ss58Format) ? this.#ss58 : ss58Format);
+      : encodeAddress(address, ss58Format === undefined ? this.#ss58 : ss58Format);
   };
 
   /**

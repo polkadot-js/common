@@ -1,9 +1,6 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isNull } from '../is/null';
-import { isUndefined } from '../is/undefined';
-
 /**
  * @name arrayFilter
  * @summary Filters undefined and (optionally) null values from an array
@@ -21,7 +18,7 @@ import { isUndefined } from '../is/undefined';
  */
 export function arrayFilter <T = unknown> (array: (T | null | undefined)[], allowNulls = true): T[] {
   return array.filter((v): v is T =>
-    !isUndefined(v) &&
-    (allowNulls || !isNull(v))
+    v !== undefined &&
+    (allowNulls || v !== null)
   );
 }

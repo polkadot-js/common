@@ -4,7 +4,7 @@
 import type { EncryptedJsonEncoding } from '@polkadot/util-crypto/types';
 import type { PairInfo } from './types';
 
-import { assert, isUndefined, u8aEq } from '@polkadot/util';
+import { assert, u8aEq } from '@polkadot/util';
 import { jsonDecryptData } from '@polkadot/util-crypto';
 
 import { PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH } from './defaults';
@@ -16,7 +16,7 @@ type DecodeResult = PairInfo & {
 };
 
 export function decodePair (passphrase?: string, encrypted?: Uint8Array | null, _encType?: EncryptedJsonEncoding | EncryptedJsonEncoding[]): DecodeResult {
-  const encType = Array.isArray(_encType) || isUndefined(_encType)
+  const encType = Array.isArray(_encType) || _encType === undefined
     ? _encType
     : [_encType];
   const decrypted = jsonDecryptData(encrypted, passphrase, encType);

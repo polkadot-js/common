@@ -6,7 +6,6 @@ import type { SiDef, ToBn } from '../types';
 
 import { bnToBn } from '../bn/toBn';
 import { isBoolean } from '../is/boolean';
-import { isUndefined } from '../is/undefined';
 import { formatDecimal } from './formatDecimal';
 import { calcSi, findSi, SI, SI_MID } from './si';
 
@@ -147,12 +146,12 @@ formatBalance.getOptions = (decimals: number = defaultDecimals): SiDef[] => {
 // Sets the default decimals to use for formatting (ui-wide)
 // eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.setDefaults = ({ decimals, unit }: SetDefaults): void => {
-  defaultDecimals = isUndefined(decimals)
+  defaultDecimals = decimals === undefined
     ? defaultDecimals
     : Array.isArray(decimals)
       ? decimals[0]
       : decimals;
-  defaultUnit = isUndefined(unit)
+  defaultUnit = unit === undefined
     ? defaultUnit
     : Array.isArray(unit)
       ? unit[0]
