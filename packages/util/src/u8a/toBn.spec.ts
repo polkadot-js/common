@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performance } from '../test/performance';
+import { perf } from '../test/performance';
 import { u8aToBn } from '.';
 
 describe('u8aToBn', (): void => {
@@ -299,7 +299,7 @@ describe('u8aToBn', (): void => {
     ).toBe(true);
   });
 
-  performance('u8aToBn (u32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
-  performance('u8aToBn (i32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToBn(v, { isNegative: true }));
-  performance('u8aToBn (u64)', 500_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
+  perf('u8aToBn (u32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
+  perf('u8aToBn (i32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToBn(v, { isNegative: true }));
+  perf('u8aToBn (u64)', 500_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
 });

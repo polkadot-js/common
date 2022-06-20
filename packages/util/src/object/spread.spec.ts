@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performance } from '../test/performance';
+import { perf } from '../test/performance';
 import { objectSpread } from '.';
 
 describe('objectSpread', (): void => {
@@ -17,5 +17,5 @@ describe('objectSpread', (): void => {
     ).toEqual({ a: 2, b: 2, c: { d: 3, e: 4 } });
   });
 
-  performance('objectSpread', 500_000, [[]], () => objectSpread({}, { a: 1, b: 2, c: 3 }, { d: 4, e: 7, f: 6 }));
+  perf('objectSpread', 500_000, [[]], () => objectSpread({}, { a: 1, b: 2, c: 3 }, { d: 4, e: 7, f: 6 }));
 });

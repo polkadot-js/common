@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { performance } from '../test/performance';
+import { perf } from '../test/performance';
 import { isU8a } from '.';
 
 describe('isU8a', (): void => {
@@ -36,5 +36,5 @@ describe('isU8a', (): void => {
     ).toEqual(true);
   });
 
-  performance('isU8a', 2_000_000, [[new Uint8Array()]], isU8a);
+  perf('isU8a', 2_000_000, [[new Uint8Array()]], isU8a);
 });
