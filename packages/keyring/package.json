@@ -20,15 +20,15 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "9.5.2-7",
+  "version": "9.5.2-8",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.18.3",
-    "@polkadot/util": "9.5.2-7",
-    "@polkadot/util-crypto": "9.5.2-7"
+    "@polkadot/util": "9.5.2-8",
+    "@polkadot/util-crypto": "9.5.2-8"
   },
   "peerDependencies": {
-    "@polkadot/util": "9.5.2-7",
-    "@polkadot/util-crypto": "9.5.2-7"
+    "@polkadot/util": "9.5.2-8",
+    "@polkadot/util-crypto": "9.5.2-8"
   }
 }
