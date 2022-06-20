@@ -3,7 +3,7 @@
 
 import type { HexString } from '../types';
 
-import { hexStripPrefix } from './stripPrefix';
+import { REGEX_HEX_NOPREFIX, REGEX_HEX_PREFIXED } from '../is/hex';
 
 const CHARS = '0123456789abcdef';
 const UNHEX = new Array<number>(256);
@@ -36,8 +36,18 @@ export function hexToU8a (value?: HexString | string | null, bitLength = -1): Ui
     return new Uint8Array();
   }
 
-  const str = hexStripPrefix(value);
-  const strLength = str.length / 2;
+  let s = 0;
+
+  // we don't use hexStringPrefix here - that has substring which adds
+  // additional overhead. Instead we duplicate the logic, just incrementing
+  // the sactual string pointer, ignoring the prefix as required
+  if (REGEX_HEX_PREFIXED.test(value)) {
+    s = 2;
+  } else if (!REGEX_HEX_NOPREFIX.test(value)) {
+    throw new Error(`Expected hex value to convert, found '${value}'`);
+  }
+
+  const strLength = (value.length - s) / 2;
   const endLength = Math.ceil(
     bitLength === -1
       ? strLength
@@ -48,12 +58,12 @@ export function hexToU8a (value?: HexString | string | null, bitLength = -1): Ui
     ? endLength - strLength
     : 0;
 
-  for (let i = offset, s = 0; i < endLength; i++, s += 2) {
+  for (let i = offset; i < endLength; i++, s += 2) {
     // The big factor here is actually the string lookups. If we do
     // HEX_TO_U16[value.substring()] we get an 10x slowdown. In the
     // same vein using charCodeAt (as opposed to value[s] or value.charAt(s)) is
     // also the faster operation by at least 2x with the character map above
-    result[i] = ((UNHEX[str.charCodeAt(s)] << 4) + UNHEX[str.charCodeAt(s + 1)]) | 0;
+    result[i] = (UNHEX[value.charCodeAt(s)] << 4) + UNHEX[value.charCodeAt(s + 1)];
   }
 
   return result;

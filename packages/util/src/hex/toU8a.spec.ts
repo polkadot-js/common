@@ -54,7 +54,7 @@ describe('hexToU8a', (): void => {
     ).toThrow(/hex value to convert/);
   });
 
-  performanceCmp('hexToU8a', ['hexToU8aBuffer', 'hexToU8a'], 20, [[ptest]], (s: string, isSecond) =>
+  performanceCmp('hexToU8a', ['hexToU8aBuffer', 'hexToU8a'], 25, [[ptest]], (s: string, isSecond) =>
     isSecond
       ? hexToU8a(s)
       : hexToU8aBuffer(s)
