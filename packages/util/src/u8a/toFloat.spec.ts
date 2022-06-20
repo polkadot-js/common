@@ -41,6 +41,19 @@ describe('u8aToFloat', (): void => {
         u8aToFloat(hexToU8a('0x0000c07f'))
       ).toEqual(Number.NaN);
     });
+
+    // https://www.h-schmidt.net/FloatConverter/IEEE754.html
+    it('decodes a known number', (): void => {
+      expect(
+        u8aToFloat(hexToU8a('0x79e9f642')).toFixed(3)
+      ).toEqual('123.456');
+    });
+
+    it('decodes a known number (BE)', (): void => {
+      expect(
+        u8aToFloat(hexToU8a('0x42f6e979'), { isLe: false }).toFixed(3)
+      ).toEqual('123.456');
+    });
   });
 
   describe('64-bit', (): void => {

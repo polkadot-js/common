@@ -54,6 +54,7 @@ describe('floatToU8a', (): void => {
           foo = 'bar';
         }
 
+        // https://www.h-schmidt.net/FloatConverter/IEEE754.html
         expect(
           u8aToHex(floatToU8a(new Test(123.456)))
         ).toEqual('0x79e9f642');
