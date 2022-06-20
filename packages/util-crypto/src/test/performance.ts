@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { arrayRange } from '@polkadot/util';
-import { performance, performanceCmp } from '@polkadot/util/test/performance';
+import { perf, perfCmp } from '@polkadot/util/test/performance';
 
 import { randomAsU8a } from '..';
 
@@ -14,4 +14,4 @@ export function performanceWasm (name: string, count: number, exec: ExecFn, inpu
   perfCmp(name, ['WebAssembly', 'JavaScript'], count, inputs, exec);
 }
 
-export { performance, performanceCmp };
+export { perf, perfCmp };
