@@ -3,7 +3,6 @@
 
 import type { Memoized } from './types';
 
-import { isUndefined } from './is/undefined';
 import { stringify } from './stringify';
 
 interface Options {
@@ -30,7 +29,7 @@ export function memoize <T, F extends (...args: any[]) => T> (fn: F, { getInstan
       cache[instanceId] = {};
     }
 
-    if (isUndefined(cache[instanceId][stringParams])) {
+    if (cache[instanceId][stringParams] === undefined) {
       cache[instanceId][stringParams] = fn(...args);
     }
 
@@ -41,7 +40,7 @@ export function memoize <T, F extends (...args: any[]) => T> (fn: F, { getInstan
     const stringParams = stringify(args);
     const instanceId = getInstanceId();
 
-    if (cache[instanceId] && !isUndefined(cache[instanceId][stringParams])) {
+    if (cache[instanceId] && cache[instanceId][stringParams] !== undefined) {
       delete cache[instanceId][stringParams];
     }
   };

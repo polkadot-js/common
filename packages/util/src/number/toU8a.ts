@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { hexToU8a } from '../hex/toU8a';
-import { isNull } from '../is/null';
-import { isUndefined } from '../is/undefined';
 import { numberToHex } from './toHex';
 
 /**
@@ -21,7 +19,7 @@ import { numberToHex } from './toHex';
  * ```
  */
 export function numberToU8a (value?: number | null, bitLength = -1): Uint8Array {
-  return isUndefined(value) || isNull(value) || isNaN(value)
+  return value === undefined || value === null || isNaN(value)
     ? new Uint8Array()
     : hexToU8a(
       numberToHex(value, bitLength)

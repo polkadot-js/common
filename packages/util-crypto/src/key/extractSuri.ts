@@ -1,8 +1,6 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { assert, isNull } from '@polkadot/util';
-
 import { DeriveJunction } from './DeriveJunction';
 import { keyExtractPath } from './extractPath';
 
@@ -22,7 +20,9 @@ export function keyExtractSuri (suri: string): ExtractResult {
   // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
   const matches = suri.match(RE_CAPTURE);
 
-  assert(!isNull(matches), 'Unable to match provided value to a secret URI');
+  if (matches === null) {
+    throw new Error('Unable to match provided value to a secret URI');
+  }
 
   const [, phrase, , derivePath, , , password] = matches as string[];
   const { path } = keyExtractPath(derivePath);

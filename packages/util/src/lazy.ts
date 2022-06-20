@@ -1,8 +1,6 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isUndefined } from './is/undefined';
-
 type AnyFn = (...args: unknown[]) => unknown;
 
 type WithToString = { toString: () => string };
@@ -31,7 +29,7 @@ export function lazyMethod <T, K> (result: Record<string, T> | AnyFn, item: K, c
       // This check should _always_ be false and unneeded, since we override
       // with a value below ... however we ensure we are quire vigilant against
       // all environment failures, so we are rather be safe than sorry
-      if (isUndefined(value)) {
+      if (value === undefined) {
         value = creator(item);
 
         try {

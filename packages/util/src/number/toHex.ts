@@ -4,8 +4,6 @@
 import type { HexString } from '../types';
 
 import { hexFixLength } from '../hex/fixLength';
-import { isNull } from '../is/null';
-import { isUndefined } from '../is/undefined';
 
 /**
  * @name numberToHex
@@ -23,7 +21,7 @@ import { isUndefined } from '../is/undefined';
  * ```
  */
 export function numberToHex (value?: number | null, bitLength = -1): HexString {
-  if (isUndefined(value) || isNull(value) || isNaN(value)) {
+  if (value === undefined || value === null || isNaN(value)) {
     return '0x';
   }
 
