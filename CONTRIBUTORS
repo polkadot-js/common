@@ -1,4 +1,4 @@
-    1374	Jaco                          	Bump TS to 4.7.4 (#1556)
+    1375	Jaco                          	Bump dev (w/ stable deno publish) (#1557)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
