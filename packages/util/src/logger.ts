@@ -142,7 +142,7 @@ function parseEnv (type: string): [boolean, number] {
  * <BR>
  *
  * ```javascript
- * import { logger } from '@polkadot';
+ * import { logger } from '@polkadot/util';
  *
  * const l = logger('test');
  * ```
