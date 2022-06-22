@@ -46,8 +46,5 @@
   },
   "peerDependencies": {
     "@polkadot/util": "9.5.2-17"
-  },
-  "denoDependencies": {
-    "@noble/secp256k1": "secp256k1"
   }
 }
