@@ -71,5 +71,5 @@ describe('isHex', (): void => {
     ).toEqual(true);
   });
 
-  perf(`isHex (${(ptest.length - 2) / 2} bytes)`, 5000, [[ptest]], isHex);
+  perf(`isHex (${(ptest.length - 2) / 2} bytes)`, 1000, [[ptest]], isHex);
 });
