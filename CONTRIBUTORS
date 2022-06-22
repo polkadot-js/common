@@ -1,4 +1,4 @@
-    1376	Jaco                          	Bump deps (#1558)
+    1377	Jaco                          	Trigger deno build
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	kwingram25                    	Add BN consts and timeToString (#610)
