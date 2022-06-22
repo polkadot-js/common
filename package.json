@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
-    "@polkadot/dev": "^0.67.27",
+    "@polkadot/dev": "^0.67.28",
     "@types/jest": "^28.1.3"
   },
   "resolutions": {
