@@ -1,11 +1,12 @@
 # CHANGELOG
 
-## master
+## 9.6.1 Jun 23, 2022
 
 Changes:
 
 - Add `floatToU8a` and `u8aToFloat` (both 32 & 64-bit, le & be)
 - Adjust `isUndefined` check (local variable available)
+- Adjust use of `assert`, `isUndefined` & `isNull`
 
 
 ## 9.5.1 Jun 18, 2022
