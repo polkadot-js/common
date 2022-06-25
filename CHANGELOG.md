@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 9.6.2 Jun 22, 2022
+## 9.6.2 Jun 25, 2022
 
 Changes:
 
