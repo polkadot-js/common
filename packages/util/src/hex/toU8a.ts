@@ -32,7 +32,7 @@ for (let i = 0; i < CHARS.length; i++) {
  * ```
  */
 export function hexToU8a (value?: HexString | string | null, bitLength = -1): Uint8Array {
-  if (!value) {
+  if (!value || value === '0x') {
     return new Uint8Array();
   }
 
