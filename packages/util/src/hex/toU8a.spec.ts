@@ -18,6 +18,12 @@ describe('hexToU8a', (): void => {
     ).toHaveLength(0);
   });
 
+  it('returns an empty Uint8Array when 0x provided', (): void => {
+    expect(
+      hexToU8a('0x')
+    ).toHaveLength(0);
+  });
+
   it('returns a Uint8Array with the correct values', (): void => {
     expect(
       hexToU8a('0x80000a')

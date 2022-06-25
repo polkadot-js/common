@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 9.6.2 Jun 22, 2022
+
+Changes:
+
+- Fix `hexToU8a` where `0x` is not correctly converted
+
+
 ## 9.6.1 Jun 23, 2022
 
 Changes:
