@@ -18,7 +18,7 @@
  * arrayFlatten([[1, 2], [3, 4], [5]]); // [1, 2, 3, 4, 5]
  * ```
  */
-export function arrayFlatten <T> (arrays: T[][]): T[] {
+export function arrayFlatten <T> (arrays: readonly T[][]): T[] {
   // noop for the single-entry case
   if (arrays.length === 1) {
     return arrays[0];

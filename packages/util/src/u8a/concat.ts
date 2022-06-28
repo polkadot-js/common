@@ -22,7 +22,7 @@ import { u8aToU8a } from './toU8a';
  * ); // [1, 2, 3, 4, 5, 6]
  * ```
  */
-export function u8aConcat (...list: U8aLike[]): Uint8Array {
+export function u8aConcat (...list: readonly U8aLike[]): Uint8Array {
   const u8as = new Array<Uint8Array>(list.length);
   let length = 0;
 
@@ -38,7 +38,7 @@ export function u8aConcat (...list: U8aLike[]): Uint8Array {
  * @name u8aConcatStrict
  * @description A strict version of [[u8aConcat]], accepting only Uint8Array inputs
  */
-export function u8aConcatStrict (u8as: Uint8Array[], length = 0): Uint8Array {
+export function u8aConcatStrict (u8as: readonly Uint8Array[], length = 0): Uint8Array {
   let offset = 0;
 
   if (!length) {

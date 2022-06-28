@@ -6,7 +6,7 @@ import type { AnyString } from '../types';
 import { CC_TO_LO, CC_TO_UP } from './camelCase';
 
 /** @internal */
-function converter (map: string[]): (value?: AnyString | null) => string {
+function converter (map: readonly string[]): (value?: AnyString | null) => string {
   return (value?: AnyString | null): string =>
     value
       ? map[value.charCodeAt(0)] + value.slice(1)

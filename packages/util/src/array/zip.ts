@@ -5,7 +5,7 @@
  * @name arrayZip
  * @description Combines 2 distinct key/value arrays into a single [K, V] array
  */
-export function arrayZip <K, V> (keys: K[], values: V[]): [K, V][] {
+export function arrayZip <K, V> (keys: readonly K[], values: readonly V[]): [K, V][] {
   const result = new Array<[K, V]>(keys.length);
 
   for (let i = 0; i < keys.length; i++) {

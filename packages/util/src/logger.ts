@@ -107,7 +107,7 @@ function isDebugOff (e: string, type: string): boolean {
   );
 }
 
-function getDebugFlag (env: string[], type: string): boolean {
+function getDebugFlag (env: readonly string[], type: string): boolean {
   let flag = false;
 
   for (const e of env) {
