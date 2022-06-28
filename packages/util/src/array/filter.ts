@@ -16,7 +16,7 @@
  * arrayFilter([0, void 0, true, null, false, ''], false); // [0, true, false, '']
  * ```
  */
-export function arrayFilter <T = unknown> (array: (T | null | undefined)[], allowNulls = true): T[] {
+export function arrayFilter <T = unknown> (array: readonly (T | null | undefined)[], allowNulls = true): T[] {
   return array.filter((v): v is T =>
     v !== undefined &&
     (allowNulls || v !== null)

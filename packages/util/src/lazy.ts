@@ -54,7 +54,7 @@ export function lazyMethod <T, K> (result: Record<string, T> | AnyFn, item: K, c
  * @description
  * Creates lazy, on-demand getters for the specific values.
  */
-export function lazyMethods <T, K> (result: Record<string, T>, items: K[], creator: (v: K) => T, getName?: (m: K) => string): Record<string, T> {
+export function lazyMethods <T, K> (result: Record<string, T>, items: readonly K[], creator: (v: K) => T, getName?: (m: K) => string): Record<string, T> {
   for (let i = 0; i < items.length; i++) {
     lazyMethod(result, items[i], creator, getName);
   }

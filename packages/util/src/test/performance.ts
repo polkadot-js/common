@@ -9,7 +9,7 @@ type ExecFn = (...params: any[]) => unknown;
 const NUM_PAD = 16;
 const PRE_PAD = 32;
 
-function loop (count: number, inputs: unknown[][], exec: ExecFn): [number, unknown[]] {
+function loop (count: number, inputs: readonly unknown[][], exec: ExecFn): [number, unknown[]] {
   const start = performance.now();
   const results = new Array<unknown>(inputs.length);
 
@@ -39,7 +39,7 @@ ${formatFixed(ops).padStart(NUM_PAD + PRE_PAD + 1)} ops/s
 ${formatFixed(micro).padStart(NUM_PAD + PRE_PAD + 1)} μs/op`;
 }
 
-export function perf (name: string, count: number, inputs: unknown[][], exec: ExecFn): void {
+export function perf (name: string, count: number, inputs: readonly unknown[][], exec: ExecFn): void {
   if (process.env.GITHUB_REPOSITORY) {
     return;
   }
@@ -55,7 +55,7 @@ ${`${name}:`.padStart(PRE_PAD)} ${time.toFixed(2).padStart(NUM_PAD)} ms${formatO
   });
 }
 
-export function perfCmp (name: string, [first, second]: [string, string], count: number, inputs: unknown[][], exec: ExecFn): void {
+export function perfCmp (name: string, [first, second]: [string, string], count: number, inputs: readonly unknown[][], exec: ExecFn): void {
   if (process.env.GITHUB_REPOSITORY) {
     return;
   }
