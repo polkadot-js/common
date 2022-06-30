@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Upgrade dependencies to latest stable versions
+
+
 ## 9.6.2 Jun 25, 2022
 
 Changes:

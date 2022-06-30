@@ -22,7 +22,7 @@
   "type": "module",
   "version": "9.6.3-0-x",
   "dependencies": {
-    "@babel/runtime": "^7.18.3",
+    "@babel/runtime": "^7.18.6",
     "@polkadot/x-global": "9.6.3-0-x"
   }
 }
