@@ -438,7 +438,7 @@
       "NODL"
     ],
     "decimals": [
-      18
+      11
     ],
     "standardAccount": "*25519",
     "website": "https://nodle.io/"
@@ -658,6 +658,32 @@
     ],
     "standardAccount": "*25519",
     "website": "https://xx.network"
+  },
+  {
+    "prefix": 56,
+    "network": "pendulum",
+    "displayName": "Pendulum chain",
+    "symbols": [
+      "PEN"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://pendulumchain.org/"
+  },
+  {
+    "prefix": 57,
+    "network": "amplitude",
+    "displayName": "Amplitude chain",
+    "symbols": [
+      "AMPE"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://pendulumchain.org/"
   },
   {
     "prefix": 63,
@@ -1037,6 +1063,32 @@
     "website": "https://efinity.io/"
   },
   {
+    "prefix": 1221,
+    "network": "peaq",
+    "displayName": "Peaq Network",
+    "symbols": [
+      "PEAQ"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "Sr25519",
+    "website": "https://www.peaq.network/"
+  },
+  {
+    "prefix": 1222,
+    "network": "apex",
+    "displayName": "Apex Network",
+    "symbols": [
+      "APEX"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "Sr25519",
+    "website": "https://www.peaq.network/"
+  },
+  {
     "prefix": 1284,
     "network": "moonbeam",
     "displayName": "Moonbeam",
@@ -1243,6 +1295,21 @@
     ],
     "standardAccount": "*25519",
     "website": "https://ata.network"
+  },
+  {
+    "prefix": 15253,
+    "network": "ice-network",
+    "displayName": "ICE Network",
+    "symbols": [
+      "ICX",
+      "ICY"
+    ],
+    "decimals": [
+      18,
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://icenetwork.io"
   },
   {
     "prefix": 12191,
