@@ -1,10 +1,12 @@
 # CHANGELOG
 
-## master
+## 9.7.1 Jul 1, 2022
 
 Changes:
 
+- Update signatures where `readonly` arrays are used
 - Upgrade dependencies to latest stable versions
+- Upgrade to `@polkadot/wasm-crypto` 6.2.1
 
 
 ## 9.6.2 Jun 25, 2022
