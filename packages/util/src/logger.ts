@@ -13,6 +13,8 @@ import { u8aToHex } from './u8a/toHex';
 import { u8aToU8a } from './u8a/toU8a';
 import { hasProcess } from './has';
 
+declare const process: { env: Record<string, string> };
+
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
 
