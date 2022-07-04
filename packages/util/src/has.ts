@@ -3,6 +3,15 @@
 
 import { BigInt } from '@polkadot/x-bigint';
 
+// Since we run in very different environments, we have to ensure we have all
+// the types used here for detection (some of these may require Node definitions,
+// which are not available in Deno/browser)
+declare const __dirname: unknown;
+declare const Buffer: unknown;
+declare const module: unknown;
+declare const process: unknown;
+declare const require: unknown;
+
 /** true if the environment has proper BigInt support */
 export const hasBigInt = typeof BigInt === 'function' && typeof BigInt.asIntN === 'function';
 

@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Allow for usage without `@types/node` installed
+
+
 ## 9.7.2 Jul 4, 2022
 
 Changes:

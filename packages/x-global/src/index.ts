@@ -3,11 +3,17 @@
 
 export { packageInfo } from './packageInfo';
 
+// Ensure that we are able to run this without any @types/node definitions
+// and without having lib: ['dom'] in our TypeScript configuration
+// (may not be available in all environments, e.g. Deno springs to mind)
+declare const global: typeof globalThis;
+declare const self: typeof globalThis;
+
 type GlobalThis = typeof globalThis;
 
-type GlobalNames = keyof typeof window;
+type GlobalNames = keyof GlobalThis;
 
-type GlobalType<T extends keyof typeof window> = typeof window[T];
+type GlobalType<T extends GlobalNames> = typeof globalThis[T];
 
 function evaluateThis (fn: (code: string) => unknown): GlobalThis {
   return fn('return this') as GlobalThis;
