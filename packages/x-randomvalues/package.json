@@ -26,6 +26,6 @@
     "@polkadot/x-global": "9.7.3-4-x"
   },
   "devDependencies": {
-    "@types/react-native": "^0.69.1"
+    "@types/react-native": "^0.69.2"
   }
 }
