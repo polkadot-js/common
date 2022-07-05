@@ -17,13 +17,13 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "9.7.3-2-x",
+  "version": "9.7.3-3-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
     "@babel/runtime": "^7.18.6",
-    "@polkadot/x-global": "9.7.3-2-x",
+    "@polkadot/x-global": "9.7.3-3-x",
     "@types/websocket": "^1.0.5",
     "websocket": "^1.0.34"
   }
