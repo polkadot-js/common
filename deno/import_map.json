@@ -1,0 +1,17 @@
+{
+  "imports": {
+    "https://deno.land/x/polkadot/x-bigint/": "../packages/x-bigint/build-deno/",
+    "https://deno.land/x/polkadot/x-fetch/": "../packages/x-fetch/build-deno/",
+    "https://deno.land/x/polkadot/util/": "../packages/util/build-deno/",
+    "https://deno.land/x/polkadot/x-textdecoder/": "../packages/x-textdecoder/build-deno/",
+    "https://deno.land/x/polkadot/x-randomvalues/": "../packages/x-randomvalues/build-deno/",
+    "https://deno.land/x/polkadot/x-textencoder/": "../packages/x-textencoder/build-deno/",
+    "https://deno.land/x/polkadot/hw-ledger/": "../packages/hw-ledger/build-deno/",
+    "https://deno.land/x/polkadot/hw-ledger-transports/": "../packages/hw-ledger-transports/build-deno/",
+    "https://deno.land/x/polkadot/networks/": "../packages/networks/build-deno/",
+    "https://deno.land/x/polkadot/keyring/": "../packages/keyring/build-deno/",
+    "https://deno.land/x/polkadot/x-global/": "../packages/x-global/build-deno/",
+    "https://deno.land/x/polkadot/x-ws/": "../packages/x-ws/build-deno/",
+    "https://deno.land/x/polkadot/util-crypto/": "../packages/util-crypto/build-deno/"
+  }
+}
