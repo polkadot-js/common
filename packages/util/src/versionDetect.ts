@@ -24,7 +24,7 @@ interface PjsChecks extends This {
   __polkadotjs: Record<string, VersionPath[]>;
 }
 
-type PjsGlobal = (Window & This) & PjsChecks;
+type PjsGlobal = This & PjsChecks & Record<string, unknown>;
 type FnString = () => string | undefined;
 
 const DEDUPE = 'Either remove and explicitly install matching versions or dedupe using your package manager.\nThe following conflicting packages were found:';

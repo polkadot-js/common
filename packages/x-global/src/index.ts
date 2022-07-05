@@ -6,17 +6,18 @@ export { packageInfo } from './packageInfo';
 // Ensure that we are able to run this without any @types/node definitions
 // and without having lib: ['dom'] in our TypeScript configuration
 // (may not be available in all environments, e.g. Deno springs to mind)
-declare const global: typeof globalThis;
-declare const self: typeof globalThis;
+declare const global: unknown;
+declare const self: unknown;
+declare const window: unknown;
 
-type GlobalThis = typeof globalThis;
+type GlobalThis = typeof globalThis & Record<string, unknown>;
 
-type GlobalNames = keyof GlobalThis;
+type GlobalNames = keyof typeof globalThis;
 
-type GlobalType<T extends GlobalNames> = typeof globalThis[T];
+type GlobalType<N extends GlobalNames> = typeof globalThis[N];
 
-function evaluateThis (fn: (code: string) => unknown): GlobalThis {
-  return fn('return this') as GlobalThis;
+function evaluateThis (fn: (code: string) => unknown): unknown {
+  return fn('return this');
 }
 
 export const xglobal = (
@@ -29,7 +30,7 @@ export const xglobal = (
         : typeof window !== 'undefined'
           ? window
           : evaluateThis(Function)
-);
+) as GlobalThis;
 
 export function extractGlobal <N extends GlobalNames, T extends GlobalType<N>> (name: N, fallback: unknown): T {
   // Not quite sure why this is here - snuck in with TS 4.7.2 with no real idea
