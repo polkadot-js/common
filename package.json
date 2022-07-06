@@ -25,13 +25,13 @@
     "lint": "polkadot-dev-run-lint",
     "networks:crosscheck": "polkadot-dev-run-test packages/networks/src/crosscheck",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns crosscheck --testPathIgnorePatterns toMiniSecretCmp",
+    "test": "NODE_OPTIONS=--experimental-vm-modules polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns crosscheck --testPathIgnorePatterns toMiniSecretCmp",
     "test:mnemonicCmp": "polkadot-dev-run-test packages/util-crypto/src/mnemonic/toMiniSecretCmp.spec.ts",
     "test:one": "polkadot-dev-run-test --runInBand"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
-    "@polkadot/dev": "^0.67.53",
+    "@polkadot/dev": "^0.67.55",
     "@types/jest": "^28.1.4"
   },
   "resolutions": {
