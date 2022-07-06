@@ -25,6 +25,6 @@
     "@babel/runtime": "^7.18.6",
     "@polkadot/x-global": "9.7.3-6-x",
     "@types/node-fetch": "^2.6.2",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^3.2.6"
   }
 }

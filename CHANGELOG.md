@@ -5,6 +5,7 @@
 Changes:
 
 - Allow for usage without `@types/node` installed
+- Adjust for available ESM-only dependencies
 
 
 ## 9.7.2 Jul 4, 2022

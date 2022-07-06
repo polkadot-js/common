@@ -43,8 +43,7 @@
     "@polkadot/x-textdecoder": "9.7.3-6-x",
     "@polkadot/x-textencoder": "9.7.3-6-x",
     "@types/bn.js": "^5.1.0",
-    "bn.js": "^5.2.1",
-    "ip-regex": "^4.3.0"
+    "bn.js": "^5.2.1"
   },
   "devDependencies": {
     "@polkadot/x-randomvalues": "9.7.3-6-x"
