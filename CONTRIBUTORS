@@ -30,6 +30,7 @@
        1	Jake Naviasky                 	Add evmToAddress and addressToEvm crypto utils. (#705)
        1	JesseAbram                    	added check if valid address to docs (#440)
        1	joe petrowski                 	Add example for multisig address creation (#590)
+       1	kaelnew                       	add ledger support for stafi (#1569)
        1	Lezek123                      	logger - wildcard include/exclude with DEBUG env (#932)
        1	Mario Neises                  	remove redudant export (#257)
        1	Miguel Hervas                 	Add CFG Ledger Support (#1057)
