@@ -4,7 +4,8 @@
 
 Contributed:
 
-- Add Ledger support for Stafi (Thanks to https://github.com/kaelnew)
+- Ledger support for Stafi (Thanks to https://github.com/kaelnew)
+- Ledger support for Aleph Zero (Thanks to https://github.com/carlosala)
 
 Changes:
 
