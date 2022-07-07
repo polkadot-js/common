@@ -1,4 +1,4 @@
-    1405	Jaco                          	Bump deps (#1586)
+    1406	Jaco                          	Align BigInt functions with BN (option handling) (#1587)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	Jakub Pánik                   	Add HydraDX parachain to genesis (#1583)
