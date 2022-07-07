@@ -2,11 +2,17 @@
 
 ## master
 
+Contributed:
+
+- Add Ledger support for Stafi (Thanks to https://github.com/kaelnew)
+
 Changes:
 
 - Remove deprecated signatures for `bnToHex`, `bnToU8a`, `formatBalance`, `hexToBn`, `u8aToBn`
+- Align option handling of `n*` (BigInt) functions with `bn*` (BN)
 - Allow for usage without `@types/node` installed
 - Adjust for available ESM-only dependencies
+- Upgrade dependencies to latest stable versions
 - Upgrade to `@polkadot/wasm-crypto` 6.2.3
 
 
