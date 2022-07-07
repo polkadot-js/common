@@ -6,14 +6,13 @@ import type { NumberOptions, ToBigInt, ToBn } from '../types';
 
 import { BigInt } from '@polkadot/x-bigint';
 
-import { objectSpread } from '../object/spread';
 import { _0n, _1n } from './consts';
 import { nToBigInt } from './toBigInt';
 
 const DIV = BigInt(256);
 const NEG_MASK = BigInt(0xff);
 
-function toU8a (value: bigint, { isLe, isNegative }: NumberOptions): Uint8Array {
+function toU8a (value: bigint, isLe: boolean, isNegative: boolean): Uint8Array {
   const arr: number[] = [];
 
   if (isNegative) {
@@ -44,34 +43,29 @@ function toU8a (value: bigint, { isLe, isNegative }: NumberOptions): Uint8Array 
  * @name nToU8a
  * @summary Creates a Uint8Array object from a bigint.
  */
-export function nToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions): Uint8Array {
-  const opts: NumberOptions = objectSpread(
-    { bitLength: -1, isLe: true, isNegative: false },
-    options
-  );
-
+export function nToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN | bigint | number | null, { bitLength = -1, isLe = true, isNegative = false }: NumberOptions = {}): Uint8Array {
   const valueBi = nToBigInt(value);
 
   if (valueBi === _0n) {
-    return opts.bitLength === -1
+    return bitLength === -1
       ? new Uint8Array()
-      : new Uint8Array(Math.ceil((opts.bitLength || 0) / 8));
+      : new Uint8Array(Math.ceil((bitLength || 0) / 8));
   }
 
-  const u8a = toU8a(valueBi, opts);
+  const u8a = toU8a(valueBi, isLe, isNegative);
 
-  if (opts.bitLength === -1) {
+  if (bitLength === -1) {
     return u8a;
   }
 
-  const byteLength = Math.ceil((opts.bitLength || 0) / 8);
+  const byteLength = Math.ceil((bitLength || 0) / 8);
   const output = new Uint8Array(byteLength);
 
-  if (opts.isNegative) {
+  if (isNegative) {
     output.fill(0xff);
   }
 
-  output.set(u8a, opts.isLe ? 0 : byteLength - u8a.length);
+  output.set(u8a, isLe ? 0 : byteLength - u8a.length);
 
   return output;
 }
