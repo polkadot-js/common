@@ -23,7 +23,7 @@ import { BN } from '../bn/bn';
  * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```
  */
-function u8aToBn (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): BN {
+export function u8aToBn (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): BN {
   const count = value.length;
 
   // shortcut for <= u48 values - in this case the manual conversion
@@ -120,5 +120,3 @@ function u8aToBn (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOp
     ? new BN(value, isLe ? 'le' : 'be').fromTwos(value.length * 8)
     : new BN(value, isLe ? 'le' : 'be');
 }
-
-export { u8aToBn };

@@ -24,7 +24,7 @@ import { hexStripPrefix } from './stripPrefix';
  * hexToBn('0x123480001f'); // => BN(0x123480001f)
  * ```
  */
-function hexToBn (value?: string | null, { isLe = false, isNegative = false }: ToBnOptions = {}): BN {
+export function hexToBn (value?: string | null, { isLe = false, isNegative = false }: ToBnOptions = {}): BN {
   if (!value || value === '0x') {
     return new BN(0);
   }
@@ -38,5 +38,3 @@ function hexToBn (value?: string | null, { isLe = false, isNegative = false }: T
     ? bn.fromTwos(stripped.length * 4)
     : bn;
 }
-
-export { hexToBn };
