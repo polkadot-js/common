@@ -5,21 +5,6 @@ import { perf } from '../test/performance';
 import { u8aToBn } from '.';
 
 describe('u8aToBn', (): void => {
-  it('supports legacy compatibility', (): void => {
-    expect(
-      u8aToBn(
-        new Uint8Array([0x12, 0x34]),
-        true
-      ).toString(16)
-    ).toBe('3412');
-    expect(
-      u8aToBn(
-        new Uint8Array([0x12, 0x34]),
-        false
-      ).toString(16)
-    ).toBe('1234');
-  });
-
   it('converts little-endian by default', (): void => {
     expect(
       u8aToBn(
@@ -272,31 +257,6 @@ describe('u8aToBn', (): void => {
         { isLe: true }
       ).toNumber()
     ).toBe(256);
-  });
-
-  it('handles backward compatibility)', (): void => {
-    expect(
-      u8aToBn(
-        new Uint8Array([0, 1, 0, 0, 0, 0, 0, 0]),
-        false
-      ).eq(
-        u8aToBn(
-          new Uint8Array([0, 1, 0, 0, 0, 0, 0, 0]),
-          { isLe: false }
-        )
-      )
-    ).toBe(true);
-    expect(
-      u8aToBn(
-        new Uint8Array([0, 1, 0, 0, 0, 0, 0, 0]),
-        true
-      ).eq(
-        u8aToBn(
-          new Uint8Array([0, 1, 0, 0, 0, 0, 0, 0]),
-          { isLe: true }
-        )
-      )
-    ).toBe(true);
   });
 
   perf('u8aToBn (u32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);

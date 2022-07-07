@@ -4,7 +4,6 @@
 import type { ToBnOptions } from '../types';
 
 import { BN } from '../bn/bn';
-import { isBoolean } from '../is/boolean';
 
 /**
  * @name u8aToBn
@@ -24,16 +23,7 @@ import { isBoolean } from '../is/boolean';
  * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```
  */
-function u8aToBn (value: Uint8Array, options?: ToBnOptions): BN;
-/** @deprecated Use u8aToBn(value: Uint8Array, options?: ToBnOptions) */
-function u8aToBn (value: Uint8Array, options?: boolean): BN;
-/** @deprecated Use u8aToBn (value?: string | null, options?: ToBnOptions) */
-function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
-  // NOTE: This is the same process as followed in the hexToBn conversion
-  // For Uint8Array, default to LE
-  const { isLe = true, isNegative = false } = isBoolean(options)
-    ? { isLe: options }
-    : options;
+function u8aToBn (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): BN {
   const count = value.length;
 
   // shortcut for <= u48 values - in this case the manual conversion

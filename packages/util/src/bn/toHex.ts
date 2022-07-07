@@ -4,13 +4,10 @@
 import type { HexString, NumberOptions, ToBn } from '../types';
 import type { BN } from './bn';
 
-import { isNumber } from '../is/number';
-import { objectSpread } from '../object/spread';
 import { u8aToHex } from '../u8a';
 import { bnToU8a } from './toU8a';
 
 const ZERO_STR = '0x00';
-const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: false, isNegative: false };
 
 /**
  * @name bnToHex
@@ -27,22 +24,8 @@ const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: false, isNegative: fa
  * bnToHex(new BN(0x123456)); // => '0x123456'
  * ```
  */
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions): HexString;
-/** @deprecated Use bnToHex (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): HexString;
-/** @deprecated Use bnToHex (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | NumberOptions = DEFAULT_OPTS, arg2 = false): HexString {
+export function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, { bitLength = -1, isLe = false, isNegative = false }: NumberOptions = {}): HexString {
   return !value
     ? ZERO_STR
-    : u8aToHex(
-      bnToU8a(value, objectSpread(
-        // We spread here, the default for hex values is BE (JSONRPC via substrate)
-        { isLe: false, isNegative: false },
-        isNumber(arg1)
-          ? { bitLength: arg1, isLe: arg2 }
-          : arg1
-      ))
-    );
+    : u8aToHex(bnToU8a(value, { bitLength, isLe, isNegative }));
 }
-
-export { bnToHex };
