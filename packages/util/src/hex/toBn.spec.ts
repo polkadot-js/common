@@ -69,17 +69,4 @@ describe('hexToBn', (): void => {
       hexToBn('0x0001000000000000', { isLe: true }).toNumber()
     ).toBe(256);
   });
-
-  it('handles legacy compatibility', (): void => {
-    expect(
-      hexToBn('0x0001000000000000', false).eq(
-        hexToBn('0x0001000000000000', { isLe: false })
-      )
-    ).toBe(true);
-    expect(
-      hexToBn('0x0001000000000000', true).eq(
-        hexToBn('0x0001000000000000', { isLe: true })
-      )
-    ).toBe(true);
-  });
 });

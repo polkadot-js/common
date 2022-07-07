@@ -4,6 +4,7 @@
 
 Changes:
 
+- Remove deprecated signatures for `bnToHex`, `bnToU8a`, `formatBalance`, `hexToBn`, `u8aToBn`
 - Allow for usage without `@types/node` installed
 - Adjust for available ESM-only dependencies
 

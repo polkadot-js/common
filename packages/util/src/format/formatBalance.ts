@@ -44,10 +44,6 @@ interface Options {
 
 interface BalanceFormatter {
   <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, options?: Options): string;
-  /** @deprecated Use balanceFormat(input?: number | string | BN | bigint | ExtToBn, options?: Options) */
-  <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, options?: boolean, decimals?: number): string;
-  /** @deprecated Use balanceFormat(input?: number | string | BN | bigint | ExtToBn, options?: Options) */
-  <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, options?: Options, decimals?: number): string;
   calcSi (text: string, decimals?: number): SiDef;
   findSi (type: string): SiDef;
   getDefaults (): Defaults;
@@ -89,17 +85,12 @@ function getPrePost (text: string, decimals: number, forceUnit?: string): [SiDef
 }
 
 // Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, options: Options | boolean = true, optDecimals: number = defaultDecimals): string {
+function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, { decimals = defaultDecimals, forceUnit, withSi = true, withSiFull = false, withUnit = true }: Options = {}): string {
   let text = bnToBn(input).toString();
 
   if (text.length === 0 || text === '0') {
     return '0';
   }
-
-  // extract options - the boolean case is for backwards-compat
-  const { decimals = optDecimals, forceUnit = undefined, withSi = true, withSiFull = false, withUnit = true } = isBoolean(options)
-    ? { withSi: options }
-    : options;
 
   // strip the negative sign so we can work with clean groupings, re-add this in the
   // end when we return the result (from here on we work with positive numbers)

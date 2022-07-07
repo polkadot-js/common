@@ -10,40 +10,32 @@ const ptest = arrayRange(65536).map((v) => [v]);
 describe('bnToU8a', (): void => {
   it('converts null values to 0x00', (): void => {
     expect(
-      bnToU8a(null, -1, false)
+      bnToU8a(null)
     ).toEqual(new Uint8Array());
   });
 
   it('converts null values to 0x00000000 (bitLength)', (): void => {
     expect(
-      bnToU8a(null, 32, false)
+      bnToU8a(null, { bitLength: 32 })
     ).toEqual(new Uint8Array([0, 0, 0, 0]));
   });
 
   it('converts BN values to a prefixed hex representation', (): void => {
     expect(
-      bnToU8a(new BN(0x123456), -1, false)
+      bnToU8a(new BN(0x123456), { isLe: false })
     ).toEqual(new Uint8Array([0x12, 0x34, 0x56]));
   });
 
   it('converts BN values to a prefixed hex representation (bitLength)', (): void => {
     expect(
-      bnToU8a(new BN(0x123456), 32, false)
+      bnToU8a(new BN(0x123456), { bitLength: 32, isLe: false })
     ).toEqual(new Uint8Array([0x00, 0x12, 0x34, 0x56]));
   });
 
   it('converts using little endian (as set)', (): void => {
     expect(
-      bnToU8a(new BN(0x123456), 32, true)
+      bnToU8a(new BN(0x123456), { bitLength: 32, isLe: true })
     ).toEqual(new Uint8Array([0x56, 0x34, 0x12, 0x00]));
-  });
-
-  it('handles backwards compatibility', (): void => {
-    expect(
-      bnToU8a(new BN(1234), 32, false)
-    ).toEqual(
-      bnToU8a(new BN(1234), { bitLength: 32, isLe: false })
-    );
   });
 
   describe('signed', (): void => {

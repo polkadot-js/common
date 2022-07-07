@@ -18,14 +18,8 @@ describe('bnToHex', (): void => {
 
   it('converts BN values to a prefixed hex representation (bitLength)', (): void => {
     expect(
-      bnToHex(new BN(128), 16)
+      bnToHex(new BN(128), { bitLength: 16 })
     ).toBe('0x0080');
-  });
-
-  it('converts BN values to a prefixed hex representation (bitLength + le)', (): void => {
-    expect(
-      bnToHex(new BN(128), 16, true)
-    ).toBe('0x8000');
   });
 
   it('converts BN values to a prefixed hex representation (LE)', (): void => {
@@ -44,13 +38,5 @@ describe('bnToHex', (): void => {
     expect(
       bnToHex(new BN(-1234), { bitLength: 32, isNegative: true })
     ).toBe('0xfffffb2e');
-  });
-
-  it('handles legacy compatibility', (): void => {
-    expect(
-      bnToHex(new BN(1234), 32)
-    ).toBe(
-      bnToHex(new BN(1234), { bitLength: 32 })
-    );
   });
 });
