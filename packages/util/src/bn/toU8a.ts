@@ -22,7 +22,7 @@ const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: true, isNegative: fal
  * bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
  * ```
  */
-function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, { bitLength = -1, isLe = true, isNegative = false } = DEFAULT_OPTS): Uint8Array {
+export function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, { bitLength = -1, isLe = true, isNegative = false } = DEFAULT_OPTS): Uint8Array {
   const valueBn = bnToBn(value);
   const byteLength = bitLength === -1
     ? Math.ceil(valueBn.bitLength() / 8)
@@ -43,5 +43,3 @@ function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number 
 
   return output;
 }
-
-export { bnToU8a };
