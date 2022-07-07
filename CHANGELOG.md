@@ -7,6 +7,7 @@ Changes:
 - Remove deprecated signatures for `bnToHex`, `bnToU8a`, `formatBalance`, `hexToBn`, `u8aToBn`
 - Allow for usage without `@types/node` installed
 - Adjust for available ESM-only dependencies
+- Upgrade to `@polkadot/wasm-crypto` 6.2.3
 
 
 ## 9.7.2 Jul 4, 2022
