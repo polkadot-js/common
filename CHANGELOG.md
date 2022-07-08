@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## master
+## 10.0.1 Jul 8, 2022
+
+- **Breaking change** In this major version version previously deprecated function signatures have been removed. If still using the old forms for either `bnToHex`, `bnToU8a`, `formatBalance`, `hexToBn` or `u8aToBn`, please update and only pass through an options object as the second parameter.
 
 Contributed:
 
