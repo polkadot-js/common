@@ -8,6 +8,7 @@ Contributed:
 
 - Ledger support for Stafi (Thanks to https://github.com/kaelnew)
 - Ledger support for Aleph Zero (Thanks to https://github.com/carlosala)
+- Add genesis for HydraDX parachain (Thanks to https://github.com/jak-pan)
 
 Changes:
 
