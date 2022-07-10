@@ -5,16 +5,27 @@ import { extractGlobal } from '@polkadot/x-global';
 
 export { packageInfo } from './packageInfo';
 
-let resolvedFetch: null | typeof fetch = null;
+// This is an ESM module, use the async import(...) syntax to pull it
+// in. Logically we would like it in nodeFetch(...) itself, however
+// while it is all-ok on Node itself, it does create issues in Jest,
+// possibly due to the Jest 28 need for --experimental-vm-modules
+const importFetch = import('node-fetch').catch(() => null);
+
+// keep track of the resolved import value
+let resolvedFetch: typeof fetch | null = null;
 
 async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> {
-  if (!resolvedFetch) {
-    // we use the async import here to resolve on-demand
-    // (this allows us to use the latest ESM version of the package)
-    const mod = await import('node-fetch');
-
-    resolvedFetch = mod.default as unknown as typeof fetch;
+  if (resolvedFetch) {
+    return resolvedFetch(...args);
   }
+
+  const mod = await importFetch;
+
+  if (!mod || !mod.default) {
+    throw new Error('Unable to import node-fetch in this environment');
+  }
+
+  resolvedFetch = mod.default as unknown as typeof fetch;
 
   return resolvedFetch(...args);
 }

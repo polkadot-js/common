@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 10.0.2 Jul 10, 2022
+
+Changes:
+
+- Adjust async import in `x-fetch` to be Jest-friendly
+
+
 ## 10.0.1 Jul 8, 2022
 
 - **Breaking change** In this major version version previously deprecated function signatures have been removed. If still using the old forms for either `bnToHex`, `bnToU8a`, `formatBalance`, `hexToBn` or `u8aToBn`, please update and only pass through an options object as the second parameter.
