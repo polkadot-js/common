@@ -5,16 +5,21 @@ import { extractGlobal } from '@polkadot/x-global';
 
 export { packageInfo } from './packageInfo';
 
-let resolvedFetch: null | typeof fetch = null;
+const importFetch = import('node-fetch').catch(() => null);
+let resolvedFetch: typeof fetch | null = null;
 
 async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> {
-  if (!resolvedFetch) {
-    // we use the async import here to resolve on-demand
-    // (this allows us to use the latest ESM version of the package)
-    const mod = await import('node-fetch');
-
-    resolvedFetch = mod.default as unknown as typeof fetch;
+  if (resolvedFetch) {
+    return resolvedFetch(...args);
   }
+
+  const mod = await importFetch;
+
+  if (!mod || !mod.default) {
+    throw new Error('Unable to resolve node-fetch');
+  }
+
+  resolvedFetch = mod.default as unknown as typeof fetch;
 
   return resolvedFetch(...args);
 }
