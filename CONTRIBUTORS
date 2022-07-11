@@ -1,4 +1,4 @@
-    1414	Jaco                          	Bump dev (#1595)
+    1415	Jaco                          	Dedupe sqrt tests between bi/bn (#1596)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	Carlo Sala                    	feat(networks): add ledger support for Aleph Zero (#1588)
