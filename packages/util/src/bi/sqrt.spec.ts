@@ -5,7 +5,7 @@ import { BN } from '../bn';
 import { SQRT_MAX_SAFE_INTEGER } from './sqrt';
 import { nSqrt } from '.';
 
-const TESTS: [string | number | BN | bigint, string | number][] = [
+export const SQRT_TESTS: [string | number | BN | bigint, string | number][] = [
   [0, 0],
   [1, 1],
   [4, 2],
@@ -45,7 +45,7 @@ describe('nSqrt', (): void => {
     ).toEqual(true);
   });
 
-  TESTS.forEach(([value, expected], index): void => {
+  SQRT_TESTS.forEach(([value, expected], index): void => {
     it(`calcs for test #${index}`, (): void => {
       expect(
         nSqrt(value) === BigInt(expected)

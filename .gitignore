@@ -1,12 +1,8 @@
 --test-*
 _book/
 build/
-build-cjs/
-build-esm/
-build-deno/
-build-docs/
+build-*/
 coverage/
-docs/.vuepress/dist/
 node_modules/
 tmp/
 /import_map.json
@@ -29,6 +25,4 @@ npm-debug.log*
 package-lock.json
 yarn-debug.log*
 yarn-error.log*
-store.db
-store.db.compacted
 tsconfig.*buildinfo
