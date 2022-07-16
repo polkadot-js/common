@@ -15,7 +15,7 @@ function isAsciiStr (str: AnyString): boolean {
     const b = str.charCodeAt(i);
 
     // check is inlined here, it is faster than making a call
-    if (!((b < 127) && ((b >= 32) || (b === 10) || (b === 9) || (b === 13)))) {
+    if ((b < 32) || (b > 126)) {
       return false;
     }
   }
@@ -31,7 +31,7 @@ function isAsciiBytes (u8a: Uint8Array | Buffer | number[]): boolean {
     const b = u8a[i];
 
     // check is inlined here, it is faster than making a call
-    if (!((b < 127) && ((b >= 32) || (b === 10) || (b === 9) || (b === 13)))) {
+    if ((b < 32) || (b > 126)) {
       return false;
     }
   }
