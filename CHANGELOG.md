@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Add `arrayUnzip` as reverse of `arrayZip`
+
+
 ## 10.0.2 Jul 10, 2022
 
 Changes:

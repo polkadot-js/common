@@ -5,7 +5,7 @@
  * @name arrayShuffle
  * @description Shuffles the input array (unlike sort, this is not done in-place)
  */
-export function arrayShuffle <T> (input: T[]): T[] {
+export function arrayShuffle <T> (input: readonly T[]): T[] {
   const result = input.slice();
   let curr = result.length;
 

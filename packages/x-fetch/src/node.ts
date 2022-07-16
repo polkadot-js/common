@@ -12,11 +12,11 @@ export { packageInfo } from './packageInfo';
 const importFetch = import('node-fetch').catch(() => null);
 
 // keep track of the resolved import value
-let resolvedFetch: typeof fetch | null = null;
+let modFn: typeof fetch | null = null;
 
 async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> {
-  if (resolvedFetch) {
-    return resolvedFetch(...args);
+  if (modFn) {
+    return modFn(...args);
   }
 
   const mod = await importFetch;
@@ -25,9 +25,9 @@ async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> 
     throw new Error('Unable to import node-fetch in this environment');
   }
 
-  resolvedFetch = mod.default as unknown as typeof fetch;
+  modFn = mod.default as unknown as typeof fetch;
 
-  return resolvedFetch(...args);
+  return modFn(...args);
 }
 
 export const fetch = extractGlobal('fetch', nodeFetch);
