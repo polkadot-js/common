@@ -7,6 +7,14 @@ import { u8aToU8a } from '../u8a/toU8a';
 import { isHex } from './hex';
 import { isString } from './string';
 
+const invalid = new Array<boolean>(256);
+
+for (let i = 0; i < 256; i++) {
+  if (i < 32 || i >= 127) {
+    invalid[i] = true;
+  }
+}
+
 /** @internal */
 function isAsciiStr (str: AnyString): boolean {
   const count = str.length;
@@ -15,7 +23,7 @@ function isAsciiStr (str: AnyString): boolean {
     const b = str.charCodeAt(i);
 
     // check is inlined here, it is faster than making a call
-    if (!((b < 127) && ((b >= 32) || (b === 10) || (b === 9) || (b === 13)))) {
+    if ((b >= 127) || (b < 32)) {
       return false;
     }
   }
@@ -31,7 +39,7 @@ function isAsciiBytes (u8a: Uint8Array | Buffer | number[]): boolean {
     const b = u8a[i];
 
     // check is inlined here, it is faster than making a call
-    if (!((b < 127) && ((b >= 32) || (b === 10) || (b === 9) || (b === 13)))) {
+    if ((b >= 127) || (b < 32)) {
       return false;
     }
   }

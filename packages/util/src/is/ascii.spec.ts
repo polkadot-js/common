@@ -7,7 +7,11 @@ import { isAscii } from '.';
 
 describe('isAscii', (): void => {
   it('returns true for an ASCII string', (): void => {
-    expect(isAscii('Hello\tWorld!\n\rTesting')).toEqual(true);
+    expect(isAscii('Hello World! Testing')).toEqual(true);
+  });
+
+  it('returns false for an ASCII string (with formatters)', (): void => {
+    expect(isAscii('Hello\tWorld!\n\rTesting')).toEqual(false);
   });
 
   it('returns false on an non-ascii string', (): void => {
@@ -15,7 +19,7 @@ describe('isAscii', (): void => {
   });
 
   it('returns true for ASCII bytes', (): void => {
-    expect(isAscii(new Uint8Array([0x31, 0x32, 0x20, 10]))).toEqual(true);
+    expect(isAscii(stringToU8a('Hello World! Testing'))).toEqual(true);
   });
 
   it('returns true for empty string inputs', (): void => {
@@ -38,6 +42,6 @@ describe('isAscii', (): void => {
     expect(isAscii('0x010203')).toEqual(false);
   });
 
-  perf('isAscii (str)', 2_000_000, [['Hello\tWorld!\n\rTesting']], isAscii);
-  perf('isAscii (u8a)', 200_000, [[[stringToU8a('Hello\tWorld!\n\rTesting')]]], isAscii);
+  perf('isAscii (str)', 2_000_000, [['Hello World! Testing']], isAscii);
+  perf('isAscii (u8a)', 100_000, [[[stringToU8a('Hello World! Testing')]]], isAscii);
 });
