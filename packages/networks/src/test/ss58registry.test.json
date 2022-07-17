@@ -933,6 +933,19 @@
     "website": "https://invarch.network"
   },
   {
+    "prefix": 126,
+    "network": "joystream",
+    "displayName": "Joystream",
+    "symbols": [
+      "JOY"
+    ],
+    "decimals": [
+      10
+    ],
+    "standardAccount": "*25519",
+    "website": "https://www.joystream.org"
+  },
+  {
     "prefix": 128,
     "network": "clover",
     "displayName": "Clover Finance",
@@ -1210,7 +1223,7 @@
     "network": "tidefi",
     "displayName": "Tidefi",
     "symbols": [
-      "TIFI"
+      "TDFY"
     ],
     "decimals": [
       12
