@@ -25,7 +25,6 @@
     "@substrate/ss58-registry": "^1.24.0"
   },
   "devDependencies": {
-    "@polkadot/hw-ledger": "10.0.3-5-x",
-    "@polkadot/x-fetch": "10.0.3-5-x"
+    "@polkadot/hw-ledger": "10.0.3-5-x"
   }
 }
