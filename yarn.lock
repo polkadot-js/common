@@ -2045,9 +2045,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.67.80":
-  version: 0.67.80
-  resolution: "@polkadot/dev@npm:0.67.80"
+"@polkadot/dev@npm:^0.67.81":
+  version: 0.67.81
+  resolution: "@polkadot/dev@npm:0.67.81"
   dependencies:
     "@babel/cli": ^7.18.6
     "@babel/core": ^7.18.6
@@ -2081,7 +2081,7 @@ __metadata:
     babel-plugin-styled-components: ^2.0.7
     browserslist: ^4.21.2
     coveralls: ^3.1.1
-    eslint: ^8.19.0
+    eslint: ^8.20.0
     eslint-config-standard: ^17.0.0
     eslint-import-resolver-node: ^0.3.6
     eslint-plugin-header: ^3.1.1
@@ -2136,7 +2136,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 54fad512768ed57457b0238e78e9d54bc3e71ce5bc04a4b9a9e233aba8417fa01cf9acc0c0b46873c51a68aa533cc74162a0b5f041309ce8043df8891bc091b7
+  checksum: a2e76356d8aa60cee5e43483a59eb88cad0f54a86d51c5cbdc915b2a4df2cac117a0f5f1f8dcdd7ac57153db7d00774094ff53b6fcc36e416d82f2d60f389690
   languageName: node
   linkType: hard
 
@@ -2189,7 +2189,7 @@ __metadata:
     "@polkadot/hw-ledger": 10.0.3-5-x
     "@polkadot/util": 10.0.3-5-x
     "@polkadot/x-fetch": 10.0.3-5-x
-    "@substrate/ss58-registry": ^1.23.0
+    "@substrate/ss58-registry": ^1.24.0
   languageName: unknown
   linkType: soft
 
@@ -2511,10 +2511,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@substrate/ss58-registry@npm:^1.23.0":
-  version: 1.23.0
-  resolution: "@substrate/ss58-registry@npm:1.23.0"
-  checksum: 6544c713f4200c32ed8cdc3dfe6296bbc5f6f32c27f05c725004eab10f2c0e17f56a44631c35ab58612b5e143de98321aa599b3bdc8c2a9ff6fc41e6e9b8c26b
+"@substrate/ss58-registry@npm:^1.24.0":
+  version: 1.24.0
+  resolution: "@substrate/ss58-registry@npm:1.24.0"
+  checksum: c0abf7a4e91f675cd06eca9b5ce37d09c37b7e260c9183e52243572be9128cb712c45d1d58076df055fcacbd30b71a848286083b0fde3e2503cac8eb7266f1a9
   languageName: node
   linkType: hard
 
@@ -5173,9 +5173,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.19.0":
-  version: 8.19.0
-  resolution: "eslint@npm:8.19.0"
+"eslint@npm:^8.20.0":
+  version: 8.20.0
+  resolution: "eslint@npm:8.20.0"
   dependencies:
     "@eslint/eslintrc": ^1.3.0
     "@humanwhocodes/config-array": ^0.9.2
@@ -5214,7 +5214,7 @@ __metadata:
     v8-compile-cache: ^2.0.3
   bin:
     eslint: bin/eslint.js
-  checksum: 0bc9df1a3a09dcd5a781ec728f280aa8af3ab19c2d1f14e2668b5ee5b8b1fb0e72dde5c3acf738e7f4281685fb24ec149b6154255470b06cf41de76350bca7a4
+  checksum: a31adf390d71d916925586bc8467b48f620e93dd0416bc1e897d99265af88b48d4eba3985b5ff4653ae5cc46311a360d373574002277e159bb38a4363abf9228
   languageName: node
   linkType: hard
 
@@ -9447,7 +9447,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.18.6
-    "@polkadot/dev": ^0.67.80
+    "@polkadot/dev": ^0.67.81
     "@types/jest": ^28.1.6
   languageName: unknown
   linkType: soft
