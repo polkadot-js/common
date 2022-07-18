@@ -217,11 +217,11 @@ describe('pair', (): void => {
   });
 
   it('allows derivation on the pair', (): void => {
-    const alice = createPair({ toSS58, type: 'sr25519' }, { publicKey: PAIRSSR25519[0].publicKey, secretKey: PAIRSSR25519[0].secretKey }, {});
+    const alice = createPair({ toSS58, type: 'sr25519' }, { publicKey: hexToU8a(PAIRSSR25519[0].p), secretKey: hexToU8a(PAIRSSR25519[0].s) }, {});
     const stash = alice.derive('//stash');
     const soft = alice.derive('//funding/0');
 
-    expect(stash.publicKey).toEqual(PAIRSSR25519[1].publicKey);
+    expect(stash.publicKey).toEqual(hexToU8a(PAIRSSR25519[1].s));
     expect(soft.address).toEqual('5ECQNn7UueWHPFda5qUi4fTmTtyCnPvGnuoyVVSj5CboJh9J');
   });
 
