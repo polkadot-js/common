@@ -221,7 +221,7 @@ describe('pair', (): void => {
     const stash = alice.derive('//stash');
     const soft = alice.derive('//funding/0');
 
-    expect(stash.publicKey).toEqual(hexToU8a(PAIRSSR25519[1].s));
+    expect(stash.publicKey).toEqual(hexToU8a(PAIRSSR25519[1].p));
     expect(soft.address).toEqual('5ECQNn7UueWHPFda5qUi4fTmTtyCnPvGnuoyVVSj5CboJh9J');
   });
 
