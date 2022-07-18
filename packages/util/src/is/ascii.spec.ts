@@ -43,5 +43,5 @@ describe('isAscii', (): void => {
   });
 
   perf('isAscii (str)', 2_000_000, [['Hello World! Testing']], isAscii);
-  perf('isAscii (u8a)', 100_000, [[[stringToU8a('Hello World! Testing')]]], isAscii);
+  perf('isAscii (u8a)', 200_000, [[[stringToU8a('Hello World! Testing')]]], isAscii);
 });
