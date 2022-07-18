@@ -20,19 +20,16 @@ for (let i = 0; i < 256; i++) {
 
 /** @internal */
 function hex (value: Uint8Array): string {
-  const mod = value.length % 2;
-  const length = value.length - mod;
-  const dv = new DataView(value.buffer, value.byteOffset);
+  const mod = (value.length % 2) | 0;
+  const length = (value.length - mod) | 0;
   let result = '';
 
   for (let i = 0; i < length; i += 2) {
-    // we only use getUint16 here instead of getUint32 - at least in our
-    // tests this is faster to execute (both long & short strings tested)
-    result += U16[dv.getUint16(i)];
+    result += U16[(value[i] << 8) | value[i + 1]];
   }
 
   if (mod) {
-    result += U8[dv.getUint8(length)];
+    result += U8[value[length] | 0];
   }
 
   return result;
