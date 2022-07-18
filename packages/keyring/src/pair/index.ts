@@ -6,7 +6,7 @@ import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types';
 import type { PairInfo } from './types';
 
-import { assert, objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
+import { objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
 import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclOpen, naclSeal, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode';
@@ -145,8 +145,11 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     // eslint-disable-next-line sort-keys
     decodePkcs8,
     decryptMessage: (encryptedMessageWithNonce: HexString | string | Uint8Array, senderPublicKey: HexString | string | Uint8Array): Uint8Array | null => {
-      assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
-      assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
+      if (isLocked(secretKey)) {
+        throw new Error('Cannot encrypt with a locked key pair');
+      } else if (['ecdsa', 'ethereum'].includes(type)) {
+        throw new Error('Secp256k1 not supported yet');
+      }
 
       const messageU8a = u8aToU8a(encryptedMessageWithNonce);
 
@@ -158,8 +161,11 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       );
     },
     derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair => {
-      assert(type !== 'ethereum', 'Unable to derive on this keypair');
-      assert(!isLocked(secretKey), 'Cannot derive on a locked keypair');
+      if (type === 'ethereum') {
+        throw new Error('Unable to derive on this keypair');
+      } else if (isLocked(secretKey)) {
+        throw new Error('Cannot derive on a locked keypair');
+      }
 
       const { path } = keyExtractPath(suri);
       const derived = keyFromPath({ publicKey, secretKey }, path, type);
@@ -170,8 +176,11 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       return recode(passphrase);
     },
     encryptMessage: (message: HexString | string | Uint8Array, recipientPublicKey: HexString | string | Uint8Array, nonceIn?: Uint8Array): Uint8Array => {
-      assert(!isLocked(secretKey), 'Cannot encrypt with a locked key pair');
-      assert(!['ecdsa', 'ethereum'].includes(type), 'Secp256k1 not supported yet');
+      if (isLocked(secretKey)) {
+        throw new Error('Cannot encrypt with a locked key pair');
+      } else if (['ecdsa', 'ethereum'].includes(type)) {
+        throw new Error('Secp256k1 not supported yet');
+      }
 
       const { nonce, sealed } = naclSeal(u8aToU8a(message), convertSecretKeyToCurve25519(secretKey), convertPublicKeyToCurve25519(u8aToU8a(recipientPublicKey)), nonceIn);
 
@@ -184,7 +193,9 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       meta = objectSpread({}, meta, additional);
     },
     sign: (message: HexString | string | Uint8Array, options: SignOptions = {}): Uint8Array => {
-      assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
+      if (isLocked(secretKey)) {
+        throw new Error('Cannot sign with a locked key pair');
+      }
 
       return u8aConcat(
         options.withType
@@ -212,7 +223,9 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       return signatureVerify(message, signature, TYPE_ADDRESS[type](u8aToU8a(signerPublic))).isValid;
     },
     vrfSign: (message: HexString | string | Uint8Array, context?: HexString | string | Uint8Array, extra?: string | Uint8Array): Uint8Array => {
-      assert(!isLocked(secretKey), 'Cannot sign with a locked key pair');
+      if (isLocked(secretKey)) {
+        throw new Error('Cannot sign with a locked key pair');
+      }
 
       if (type === 'sr25519') {
         return sr25519VrfSign(message, { secretKey }, context, extra);
