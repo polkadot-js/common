@@ -6,6 +6,7 @@ Changes:
 
 - Add `arrayUnzip` as reverse of `arrayZip`
 - Adjust `isAscii` check to disallow `\t`, `\n`, & `\r` characters
+- Adjust `nobody` zero-key pair with pre-computed address
 
 
 ## 10.0.2 Jul 10, 2022
