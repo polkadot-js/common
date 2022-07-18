@@ -8,12 +8,12 @@
  * Checks to see if the input `Uint8Array` has zero length or contains all 0 values.
  */
 export function u8aEmpty (value: Uint8Array): boolean {
-  const len = value.length;
+  const len = value.length | 0;
 
   // on smaller sizes, the byte-by-byte compare is faster than allocating
   // another object for DataView (on very large arrays the DataView is faster)
   for (let i = 0; i < len; i++) {
-    if (value[i]) {
+    if (value[i] | 0) {
       return false;
     }
   }
