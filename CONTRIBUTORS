@@ -1,4 +1,4 @@
-    1420	Jaco                          	Adjust `nobody` zero-key pair with pre-computed address (#1601)
+    1421	Jaco                          	Create public/secret pairs on add to keyring (#1602)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	Carlo Sala                    	feat(networks): add ledger support for Aleph Zero (#1588)
