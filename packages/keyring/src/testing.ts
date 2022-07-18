@@ -18,8 +18,6 @@ interface PairDef {
   type: KeypairType
 }
 
-// /* eslint-disable sort-keys */
-
 // NOTE This is not great since we have the secretKey here explicitly, but a testing
 // keyring is for testing - what happens is that in most cases the keyring is initialises
 // before anything else. Since the sr25519 crypto is async, this creates problems with
