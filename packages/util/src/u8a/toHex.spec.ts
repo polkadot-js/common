@@ -78,12 +78,12 @@ describe('u8aToHex', (): void => {
     ).toEqual('0x68656c6c6f20776f726c64');
   });
 
-  perfCmp('u8aToHex (32k)', ['u8aToHexBuffer', 'u8aToHex'], 2000, [[ptest32k]], (s: Uint8Array, isSecond) =>
+  perfCmp('u8aToHex (32k)', ['u8aToHexBuffer', 'u8aToHex'], 1000, [[ptest32k]], (s: Uint8Array, isSecond) =>
     isSecond
       ? u8aToHex(s)
       : u8aToHexBuffer(s)
   );
-  perfCmp('u8aToHex (128)', ['u8aToHexBuffer', 'u8aToHex'], 100000, [[ptest256]], (s: Uint8Array, isSecond) =>
+  perfCmp('u8aToHex (128)', ['u8aToHexBuffer', 'u8aToHex'], 200_000, [[ptest256]], (s: Uint8Array, isSecond) =>
     isSecond
       ? u8aToHex(s)
       : u8aToHexBuffer(s)
