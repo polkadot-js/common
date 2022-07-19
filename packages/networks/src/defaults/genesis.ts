@@ -50,6 +50,9 @@ export const knownGenesis: KnownGenesis = {
     '0x3d75507dd46301767e601265791da1d9cb47b6ebc94e87347b635e5bf58bd047', // Snakenet Gen2
     '0x0ed32bfcab4a83517fac88f2aa7cbc2f88d3ab93be9a12b6188a036bf8a943c2' // Snakenet Gen1
   ],
+  'interlay-parachain': [
+    '0xbf88efe70e9e0e916416e8bed61f2b45717f517d7f3523e33c7b001e5ffcbc72'
+  ],
   karura: [
     '0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b'
   ],
@@ -107,6 +110,9 @@ export const knownGenesis: KnownGenesis = {
   ],
   subsocial: [
     '0x0bd72c1c305172e1275278aaeb3f161e02eccb7a819e63f62d47bd53a28189f8'
+  ],
+  unique: [
+    '0x84322d9cddbf35088f1e54e9a85c967a41a56a4f43445768125e61af166c7d31'
   ],
   westend: [
     '0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e'

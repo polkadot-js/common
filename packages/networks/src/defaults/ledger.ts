@@ -18,6 +18,7 @@ export const knownLedger: KnownLedger = {
   edgeware: 0x0000020b,
   equilibrium: 0x05f5e0fd,
   genshiro: 0x05f5e0fc,
+  'interlay-parachain': 0x00000162,
   karura: 0x000002ae,
   kusama: 0x000001b2,
   'nodle-para': 0x000003eb,
@@ -29,5 +30,6 @@ export const knownLedger: KnownLedger = {
   stafi: 0x0000038b,
   statemine: 0x000001b2, // common-good on Kusama, shares derivation
   statemint: 0x00000162, // common-good on Polkadot, shares derivation
+  unique: 0x00000162,
   xxnetwork: 0x000007a3
 };
