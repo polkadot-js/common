@@ -47,7 +47,7 @@ export function hexToU8a (value?: HexString | string | null, bitLength = -1): Ui
     ? 2
     : 0;
 
-  const decLength = (value.length - s) / 2;
+  const decLength = Math.ceil((value.length - s) / 2);
   const endLength = Math.ceil(
     bitLength === -1
       ? decLength

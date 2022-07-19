@@ -48,6 +48,12 @@ describe('hexToU8a', (): void => {
     );
   });
 
+  it('converts a non-aligned string', (): void => {
+    expect(
+      hexToU8a('0x123')
+    ).toEqual(new Uint8Array([0x12, 0x30]));
+  });
+
   it('converts known bytes to their correct values', (): void => {
     expect(
       hexToU8a('0x68656c6c6f20776f726c64') // hello world (11 bytes, non-aligned)
