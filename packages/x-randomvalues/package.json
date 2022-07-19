@@ -27,5 +27,8 @@
   },
   "devDependencies": {
     "@types/react-native": "^0.69.3"
+  },
+  "denoDependencies": {
+    "crypto": "std@0.148.0/node/crypto.ts"
   }
 }
