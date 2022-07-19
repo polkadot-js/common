@@ -1,4 +1,4 @@
-    1427	Jaco                          	hexToU8a lookup optimizations (#1608)
+    1428	Jaco                          	Pass internal this through on objectProperties (#1610)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        6	Carlo Sala                    	feat(ledger): add interlay and unique (#1609)
