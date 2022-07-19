@@ -24,5 +24,8 @@
   "dependencies": {
     "@babel/runtime": "^7.18.9",
     "@polkadot/x-global": "10.0.3-11-x"
+  },
+  "denoDependencies": {
+    "util": "std@0.148.0/node/util.ts"
   }
 }
