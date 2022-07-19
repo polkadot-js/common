@@ -3,8 +3,6 @@
 
 import type { HexString } from '../types';
 
-import { hexStripPrefix } from './stripPrefix';
-
 /**
  * @name hexToU8a
  * @summary Creates a Uint8Array object from a hex string.
@@ -25,7 +23,9 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     return new Uint8Array();
   }
 
-  const value = hexStripPrefix(_value);
+  const value = _value.startsWith('0x')
+    ? _value.substring(2)
+    : _value;
   const buf = Buffer.from(value, 'hex');
   const valLength = value.length / 2;
   const resultLength = Math.ceil(

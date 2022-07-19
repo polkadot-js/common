@@ -19,10 +19,9 @@ for (let i = 0; i < 256; i++) {
 }
 
 /** @internal */
-function hex (value: Uint8Array): string {
+function hex (value: Uint8Array, result: HexString): HexString {
   const mod = (value.length % 2) | 0;
   const length = (value.length - mod) | 0;
-  let result = '';
 
   for (let i = 0; i < length; i += 2) {
     result += U16[(value[i] << 8) | value[i + 1]];
@@ -50,13 +49,20 @@ function hex (value: Uint8Array): string {
  * ```
  */
 export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed = true): HexString {
-  const length = Math.ceil(bitLength / 8);
+  // this is not 100% correct sinmce we support isPrefixed = false....
+  const empty = isPrefixed
+    ? '0x'
+    : '' as HexString;
 
-  return `${isPrefixed ? '0x' : ''}${
-    !value || !value.length
-      ? ''
-      : (bitLength > 0 && value.length > length)
-        ? `${hex(value.subarray(0, length / 2))}…${hex(value.subarray(value.length - length / 2))}`
-        : hex(value)
-  }` as HexString;
+  if (!value || !value.length) {
+    return empty;
+  } else if (bitLength > 0) {
+    const length = Math.ceil(bitLength / 8);
+
+    if (value.length > length) {
+      return `${hex(value.subarray(0, length / 2), empty)}…${hex(value.subarray(value.length - length / 2), '' as HexString)}`;
+    }
+  }
+
+  return hex(value, empty);
 }

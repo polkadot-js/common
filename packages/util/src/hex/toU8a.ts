@@ -3,16 +3,23 @@
 
 import type { HexString } from '../types';
 
-import { REGEX_HEX_NOPREFIX, REGEX_HEX_PREFIXED } from '../is/hex';
+const CHR = '0123456789abcdef';
+const U8 = new Array<number>(256);
+const U16 = new Array<number>(256 * 256);
 
-const CHARS = '0123456789abcdef';
-const UNHEX = new Array<number>(256);
-
-for (let i = 0; i < CHARS.length; i++) {
-  UNHEX[CHARS[i].charCodeAt(0)] = i;
+for (let i = 0; i < CHR.length; i++) {
+  U8[CHR[i].charCodeAt(0) | 0] = i | 0;
 
   if (i > 9) {
-    UNHEX[CHARS[i].toUpperCase().charCodeAt(0)] = i;
+    U8[CHR[i].toUpperCase().charCodeAt(0) | 0] = i | 0;
+  }
+}
+
+for (let i = 0; i < 256; i++) {
+  const s = i << 8;
+
+  for (let j = 0; j < 256; j++) {
+    U16[s | j] = (U8[i] << 4) | U8[j];
   }
 }
 
@@ -32,30 +39,23 @@ for (let i = 0; i < CHARS.length; i++) {
  * ```
  */
 export function hexToU8a (value?: HexString | string | null, bitLength = -1): Uint8Array {
-  if (!value || value === '0x') {
+  if (!value) {
     return new Uint8Array();
   }
 
-  let s = 0;
+  let s = value.startsWith('0x')
+    ? 2
+    : 0;
 
-  // we don't use hexStringPrefix here - that has substring which adds
-  // additional overhead. Instead we duplicate the logic, just incrementing
-  // the sactual string pointer, ignoring the prefix as required
-  if (REGEX_HEX_PREFIXED.test(value)) {
-    s = 2;
-  } else if (!REGEX_HEX_NOPREFIX.test(value)) {
-    throw new Error(`Expected hex value to convert, found '${value}'`);
-  }
-
-  const strLength = (value.length - s) / 2;
+  const decLength = (value.length - s) / 2;
   const endLength = Math.ceil(
     bitLength === -1
-      ? strLength
+      ? decLength
       : bitLength / 8
   );
   const result = new Uint8Array(endLength);
-  const offset = endLength > strLength
-    ? endLength - strLength
+  const offset = endLength > decLength
+    ? endLength - decLength
     : 0;
 
   for (let i = offset; i < endLength; i++, s += 2) {
@@ -63,7 +63,7 @@ export function hexToU8a (value?: HexString | string | null, bitLength = -1): Ui
     // HEX_TO_U16[value.substring()] we get an 10x slowdown. In the
     // same vein using charCodeAt (as opposed to value[s] or value.charAt(s)) is
     // also the faster operation by at least 2x with the character map above
-    result[i] = (UNHEX[value.charCodeAt(s)] << 4) + UNHEX[value.charCodeAt(s + 1)];
+    result[i] = U16[(value.charCodeAt(s) << 8) | value.charCodeAt(s + 1)];
   }
 
   return result;
