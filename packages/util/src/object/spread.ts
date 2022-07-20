@@ -10,7 +10,7 @@ export function objectSpread <T extends object> (dest: object, ...sources: (obje
     const src = sources[i];
 
     if (src) {
-      if ((src as Map<unknown, unknown>).entries) {
+      if (typeof (src as Map<string, unknown>).entries === 'function') {
         for (const [key, value] of (src as Map<string, unknown>).entries()) {
           (dest as Record<string, unknown>)[key] = value;
         }
