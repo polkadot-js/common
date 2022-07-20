@@ -128,7 +128,7 @@ describe('objectProperty/objectProperties', (): void => {
 
     expect(getter).not.toHaveBeenCalled();
     expect(test.a).toEqual(123);
-    expect(getter).toHaveBeenCalledWith('a', expect.objectContaining({}));
+    expect(getter).toHaveBeenCalledWith('a', 0, expect.objectContaining({}));
   });
 
   it('calls back with the key name & index (numtiple)', (): void => {

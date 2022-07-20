@@ -35,7 +35,7 @@ describe('lazyMethod', (): void => {
     expect(Object.prototype.hasOwnProperty.call(test, 'a')).toEqual(true);
     expect(getter).not.toHaveBeenCalled();
     expect(test.a).toEqual(123);
-    expect(getter).toHaveBeenCalledWith('a');
+    expect(getter).toHaveBeenCalledWith('a', 0, expect.objectContaining({}));
   });
 
   it('calls the getter a single time', (): void => {
@@ -46,7 +46,7 @@ describe('lazyMethod', (): void => {
 
     expect(getter).not.toHaveBeenCalled();
     expect(test.a).toEqual(123);
-    expect(getter).toHaveBeenCalledWith('a');
+    expect(getter).toHaveBeenCalledWith('a', 0, expect.objectContaining({}));
     expect(test.a).toEqual(123);
     expect(getter).toHaveBeenCalledTimes(1);
   });
