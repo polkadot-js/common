@@ -10,7 +10,13 @@ export function objectSpread <T extends object> (dest: object, ...sources: (obje
     const src = sources[i];
 
     if (src) {
-      Object.assign(dest, src);
+      if ((src as Map<unknown, unknown>).entries) {
+        for (const [key, value] of (src as Map<string, unknown>).entries()) {
+          (dest as Record<string, unknown>)[key] = value;
+        }
+      } else {
+        Object.assign(dest, src);
+      }
     }
   }
 
