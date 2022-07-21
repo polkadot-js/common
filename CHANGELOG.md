@@ -1,13 +1,16 @@
 # CHANGELOG
 
-## master
+## 10.1.1 Jul 21, 2022
 
 Changes:
 
 - Add `arrayUnzip` as reverse of `arrayZip`
+- Adjust `objectSpread` to natively handle `Map` entries spreads
 - Adjust `isAscii` check to disallow `\t`, `\n`, & `\r` characters
 - Adjust `nobody` zero-key pair with pre-computed address
+- Align `objectProperty` & `lazyMethod` call signatures (backwards compatible)
 - Various internal speed optimizations
+- Upgrade dependencies to latest stable versions
 
 
 ## 10.0.2 Jul 10, 2022
