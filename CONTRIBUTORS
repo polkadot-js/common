@@ -1,4 +1,4 @@
-    1431	Jaco                          	Adjust spread check for .entries() (#1613)
+    1432	Jaco                          	10.1.1 (#1614)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        6	Carlo Sala                    	feat(ledger): add interlay and unique (#1609)
