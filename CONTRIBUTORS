@@ -1,4 +1,4 @@
-    1438	Jaco                          	Adjust logger constant map (#1620)
+    1439	Jaco                          	Optimization of flatten 0 case (#1621)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        6	Carlo Sala                    	feat(ledger): add interlay and unique (#1609)
