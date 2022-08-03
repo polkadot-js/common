@@ -19,8 +19,10 @@
  * ```
  */
 export function arrayFlatten <T> (arrays: readonly T[][]): T[] {
-  // noop for the single-entry case
-  if (arrays.length === 1) {
+  // noop for the empty & single-entry case
+  if (arrays.length === 0) {
+    return [];
+  } else if (arrays.length === 1) {
     return arrays[0];
   }
 
