@@ -3,13 +3,15 @@
 
 import type { EncryptedJson } from './types';
 
-import { assert, hexToU8a, isHex } from '@polkadot/util';
+import { hexToU8a, isHex } from '@polkadot/util';
 
 import { base64Decode } from '../base64';
 import { jsonDecryptData } from './decryptData';
 
 export function jsonDecrypt ({ encoded, encoding }: EncryptedJson, passphrase?: string | null): Uint8Array {
-  assert(encoded, 'No encrypted data available to decode');
+  if (!encoded) {
+    throw new Error('No encrypted data available to decode');
+  }
 
   return jsonDecryptData(
     isHex(encoded)

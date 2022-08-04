@@ -6,7 +6,7 @@ import type { Keypair } from '../types';
 
 import nacl from 'tweetnacl';
 
-import { assert, u8aToU8a } from '@polkadot/util';
+import { u8aToU8a } from '@polkadot/util';
 import { ed25519Sign as wasmSign, isReady } from '@polkadot/wasm-crypto';
 
 /**
@@ -24,7 +24,9 @@ import { ed25519Sign as wasmSign, isReady } from '@polkadot/wasm-crypto';
  * ```
  */
 export function ed25519Sign (message: HexString | Uint8Array | string, { publicKey, secretKey }: Partial<Keypair>, onlyJs?: boolean): Uint8Array {
-  assert(secretKey, 'Expected a valid secretKey');
+  if (!secretKey) {
+    throw new Error('Expected a valid secretKey');
+  }
 
   const messageU8a = u8aToU8a(message);
 

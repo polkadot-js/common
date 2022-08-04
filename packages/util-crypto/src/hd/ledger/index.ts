@@ -3,8 +3,6 @@
 
 import type { Keypair } from '../../types';
 
-import { assert } from '@polkadot/util';
-
 import { ed25519PairFromSeed } from '../../ed25519';
 import { mnemonicValidate } from '../../mnemonic';
 import { HARDENED, hdValidatePath } from '../validatePath';
@@ -17,14 +15,19 @@ export function hdLedger (_mnemonic: string, path: string): Keypair {
     .map((s) => s.trim())
     .filter((s) => s);
 
-  assert([12, 24, 25].includes(words.length), 'Expected a mnemonic with 24 words (or 25 including a password)');
+  if (![12, 24, 25].includes(words.length)) {
+    throw new Error('Expected a mnemonic with 24 words (or 25 including a password)');
+  }
 
   const [mnemonic, password] = words.length === 25
     ? [words.slice(0, 24).join(' '), words[24]]
     : [words.join(' '), ''];
 
-  assert(mnemonicValidate(mnemonic), 'Invalid mnemonic passed to ledger derivation');
-  assert(hdValidatePath(path), 'Invalid derivation path');
+  if (!mnemonicValidate(mnemonic)) {
+    throw new Error('Invalid mnemonic passed to ledger derivation');
+  } else if (!hdValidatePath(path)) {
+    throw new Error('Invalid derivation path');
+  }
 
   const parts = path.split('/').slice(1);
   let seed = ledgerMaster(mnemonic, password);

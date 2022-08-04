@@ -3,7 +3,7 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import { assert, u8aToHex, u8aToU8a } from '@polkadot/util';
+import { u8aToHex, u8aToU8a } from '@polkadot/util';
 
 import { keccakAsU8a } from '../keccak';
 import { secp256k1Expand } from '../secp256k1';
@@ -23,7 +23,9 @@ export function ethereumEncode (addressOrPublic?: HexString | string | Uint8Arra
 
   const u8aAddress = u8aToU8a(addressOrPublic);
 
-  assert([20, 32, 33, 65].includes(u8aAddress.length), 'Invalid address or publicKey passed');
+  if (![20, 32, 33, 65].includes(u8aAddress.length)) {
+    throw new Error('Invalid address or publicKey passed');
+  }
 
   const address = u8aToHex(getH160(u8aAddress), -1, false);
   const hash = u8aToHex(keccakAsU8a(address), -1, false);

@@ -3,15 +3,18 @@
 
 import type { EncryptedJsonEncoding } from './types';
 
-import { assert, stringToU8a, u8aFixLength } from '@polkadot/util';
+import { stringToU8a, u8aFixLength } from '@polkadot/util';
 
 import { naclDecrypt } from '../nacl';
 import { scryptEncode, scryptFromU8a } from '../scrypt';
 import { ENCODING, NONCE_LENGTH, SCRYPT_LENGTH } from './constants';
 
 export function jsonDecryptData (encrypted?: Uint8Array | null, passphrase?: string | null, encType: EncryptedJsonEncoding[] = ENCODING): Uint8Array {
-  assert(encrypted, 'No encrypted data available to decode');
-  assert(passphrase || !encType.includes('xsalsa20-poly1305'), 'Password required to decode encrypted data');
+  if (!encrypted) {
+    throw new Error('No encrypted data available to decode');
+  } else if (encType.includes('xsalsa20-poly1305') && !passphrase) {
+    throw new Error('Password required to decode encrypted data');
+  }
 
   let encoded: Uint8Array | null = encrypted;
 
@@ -34,7 +37,9 @@ export function jsonDecryptData (encrypted?: Uint8Array | null, passphrase?: str
     );
   }
 
-  assert(encoded, 'Unable to decode using the supplied passphrase');
+  if (!encoded) {
+    throw new Error('Unable to decode using the supplied passphrase');
+  }
 
   return encoded;
 }

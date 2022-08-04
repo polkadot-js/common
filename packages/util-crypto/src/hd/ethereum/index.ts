@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types';
 
-import { assert, bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
+import { bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
 import { BN_BE_32_OPTS } from '../../bn';
 import { hmacShaAsU8a } from '../../hmac';
@@ -51,7 +51,9 @@ export function hdEthereum (seed: Uint8Array, path = ''): Keypair {
     return hd;
   }
 
-  assert(hdValidatePath(path), 'Invalid derivation path');
+  if (!hdValidatePath(path)) {
+    throw new Error('Invalid derivation path');
+  }
 
   const parts = path.split('/').slice(1);
 
