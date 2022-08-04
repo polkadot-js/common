@@ -6,6 +6,7 @@ Changes:
 
 - Optimization for empty `arrayFlatten` case
 - Coding cleanups for logger (no `as` casting)
+- Optiomizations in assertion checks
 
 
 ## 10.1.2 Jul 29, 2022
