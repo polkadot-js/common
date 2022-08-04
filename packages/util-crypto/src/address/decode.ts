@@ -29,9 +29,9 @@ export function decodeAddress (encoded?: HexString | string | Uint8Array | null,
 
     const [isValid, endPos, ss58Length, ss58Decoded] = checkAddressChecksum(decoded);
 
-    if (!ignoreChecksum && !isValid) {
+    if (!isValid && !ignoreChecksum) {
       throw new Error('Invalid decoded address checksum');
-    } else if (![-1, ss58Decoded].includes(ss58Format)) {
+    } else if (ss58Format !== -1 && ss58Format !== ss58Decoded) {
       throw new Error(`Expected ss58Format ${ss58Format}, received ${ss58Decoded}`);
     }
 
