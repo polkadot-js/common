@@ -5,8 +5,6 @@ import type { HexString } from '@polkadot/util/types';
 import type { DeriveJunction } from '../key/DeriveJunction';
 import type { Prefix } from './types';
 
-import { assert } from '@polkadot/util';
-
 import { keyExtractPath } from '../key';
 import { sr25519DerivePublic } from '../sr25519';
 import { decodeAddress } from './decode';
@@ -25,7 +23,9 @@ function filterHard ({ isHard }: DeriveJunction): boolean {
 export function deriveAddress (who: HexString | Uint8Array | string, suri: string, ss58Format?: Prefix): string {
   const { path } = keyExtractPath(suri);
 
-  assert(path.length && !path.every(filterHard), 'Expected suri to contain a combination of non-hard paths');
+  if (!path.length || path.every(filterHard)) {
+    throw new Error('Expected suri to contain a combination of non-hard paths');
+  }
 
   let publicKey = decodeAddress(who);
 
