@@ -2058,9 +2058,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.67.87":
-  version: 0.67.87
-  resolution: "@polkadot/dev@npm:0.67.87"
+"@polkadot/dev@npm:^0.67.88":
+  version: 0.67.88
+  resolution: "@polkadot/dev@npm:0.67.88"
   dependencies:
     "@babel/cli": ^7.18.10
     "@babel/core": ^7.18.10
@@ -2080,7 +2080,7 @@ __metadata:
     "@babel/register": ^7.18.9
     "@babel/runtime": ^7.18.9
     "@rollup/plugin-alias": ^3.1.9
-    "@rollup/plugin-commonjs": ^22.0.1
+    "@rollup/plugin-commonjs": ^22.0.2
     "@rollup/plugin-inject": ^4.0.4
     "@rollup/plugin-json": ^4.1.0
     "@rollup/plugin-node-resolve": ^13.3.0
@@ -2149,7 +2149,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: ab5bc5b900e166bc590af7e22e1275fa2e74c2bbf8a0c4cd494860e87bb4080c25cf1df0ee3e80b2655ed29498a74ed99a60508fa4f2217cdfcc409ef7fb9a54
+  checksum: c7aa38e12009677df7a385fd5d86b4753e14b27b2a9fd8e44e25c376e6155fbfcde7d51f626f804ae605a995a7e9740eb31fda8c4de79a8347d4d2fda2326ce2
   languageName: node
   linkType: hard
 
@@ -2407,9 +2407,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^22.0.1":
-  version: 22.0.1
-  resolution: "@rollup/plugin-commonjs@npm:22.0.1"
+"@rollup/plugin-commonjs@npm:^22.0.2":
+  version: 22.0.2
+  resolution: "@rollup/plugin-commonjs@npm:22.0.2"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     commondir: ^1.0.1
@@ -2420,7 +2420,7 @@ __metadata:
     resolve: ^1.17.0
   peerDependencies:
     rollup: ^2.68.0
-  checksum: 6326227b688d1069ab2146b6f08c3d189da94bb77388691d7496001148041388542ddcbc6ffa7e9e97419c67e9cf3256a2414d770b4539998b4bc5d807404198
+  checksum: 70098a4b91afe3f164f5d27cba65edf148c5ed146ee0e07a964b66940681553ac77391083114cdcf9427e7f2706bf0d61eab310b3a2caeab83b7452c0292fcae
   languageName: node
   linkType: hard
 
@@ -9498,7 +9498,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.18.10
-    "@polkadot/dev": ^0.67.87
+    "@polkadot/dev": ^0.67.88
     "@types/jest": ^28.1.6
   languageName: unknown
   linkType: soft
