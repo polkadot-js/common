@@ -2058,9 +2058,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.67.88":
-  version: 0.67.88
-  resolution: "@polkadot/dev@npm:0.67.88"
+"@polkadot/dev@npm:^0.67.89":
+  version: 0.67.89
+  resolution: "@polkadot/dev@npm:0.67.89"
   dependencies:
     "@babel/cli": ^7.18.10
     "@babel/core": ^7.18.10
@@ -2149,7 +2149,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: c7aa38e12009677df7a385fd5d86b4753e14b27b2a9fd8e44e25c376e6155fbfcde7d51f626f804ae605a995a7e9740eb31fda8c4de79a8347d4d2fda2326ce2
+  checksum: dcdb286b5e5ae6fa56760f545f92547a13eaf8745df54e28386efe80b69adc756ca9354a08751069fb75d8d767dfcdd3c2282eacc8a86ebc1722bb8d034e3d92
   languageName: node
   linkType: hard
 
@@ -2177,7 +2177,7 @@ __metadata:
     "@ledgerhq/hw-transport": ^6.27.2
     "@polkadot/hw-ledger-transports": 10.1.3
     "@polkadot/util": 10.1.3
-    "@zondax/ledger-substrate": ^0.33.0
+    "@zondax/ledger-substrate": ^0.34.0
   languageName: unknown
   linkType: soft
 
@@ -2997,9 +2997,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zondax/ledger-substrate@npm:^0.33.0":
-  version: 0.33.0
-  resolution: "@zondax/ledger-substrate@npm:0.33.0"
+"@zondax/ledger-substrate@npm:^0.34.0":
+  version: 0.34.0
+  resolution: "@zondax/ledger-substrate@npm:0.34.0"
   dependencies:
     "@babel/runtime": ^7.14.8
     "@ledgerhq/hw-transport": ^6.2.0
@@ -3009,7 +3009,7 @@ __metadata:
     blakejs: ^1.1.1
     bs58: ^4.0.1
     hash.js: ^1.1.7
-  checksum: d0733de70e37a90912d9d468f492390f9eb3c33badd705df812f19c057aad242f2fdf440ad94de75431275895e46d42166d2fe1d0495b619f44286b5fb4e643f
+  checksum: 24a12e9a244f1889a5ce324706264a9b566765e9f7ef80f89a9be50848701a03914ade115477dfd414c0b8ea251e79161874f57339b5661cd8e81c0609c6660e
   languageName: node
   linkType: hard
 
@@ -9498,7 +9498,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.18.10
-    "@polkadot/dev": ^0.67.88
+    "@polkadot/dev": ^0.67.89
     "@types/jest": ^28.1.6
   languageName: unknown
   linkType: soft
