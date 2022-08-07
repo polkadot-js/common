@@ -12,6 +12,7 @@ export const knownLedger: KnownLedger = {
   'aleph-node': 0x00000283,
   astar: 0x0000032a,
   bifrost: 0x00000314,
+  'bifrost-kusama': 0x00000314,
   centrifuge: 0x000002eb,
   composable: 0x00000162,
   'dock-mainnet': 0x00000252,

@@ -23,6 +23,9 @@ export const knownGenesis: KnownGenesis = {
   bifrost: [
     '0x262e1b2ad728475fd6fe88e62d34c200abe6fd693931ddad144059b1eb884e5b'
   ],
+  'bifrost-kusama': [
+    '0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed'
+  ],
   centrifuge: [
     '0xb3db41421702df9a7fcac62b53ffeac85f7853cc4e689e0b93aeb3db18c09d82',
     '0x67dddf2673b69e5f875f6f25277495834398eafd67f492e09f3f3345e003d1b5'
