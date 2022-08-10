@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Ledger support for Kusama Bifrost (Thanks to https://github.com/awesomepan)
+
+Changes:
+
+- Upgrade dependencies to latest stable versions
+
+
 ## 10.1.3 Aug 5, 2022
 
 Changes:
