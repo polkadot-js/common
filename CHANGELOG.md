@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Adjust `ledgerApps` to use new `@zondax/ledger-substrate` interfaces
+- Upgrade dependencies to latest stable versions
+
+
 ## 10.1.4 Aug 12, 2022
 
 Contributed:
