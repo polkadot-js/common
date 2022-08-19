@@ -5,6 +5,8 @@ import type { SubstrateApp } from '@zondax/ledger-substrate';
 import type { ResponseBase } from '@zondax/ledger-substrate/dist/common';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types';
 
+import { newSubstrateApp } from '@zondax/ledger-substrate';
+
 import { transports } from '@polkadot/hw-ledger-transports';
 import { u8aToBuffer } from '@polkadot/util';
 
@@ -81,7 +83,7 @@ export class Ledger {
 
       const transport = await def.create();
 
-      this.#app = ledgerApps[this.#chain](transport);
+      this.#app = newSubstrateApp(transport, ledgerApps[this.#chain]);
     }
 
     return this.#app;
