@@ -1,4 +1,4 @@
-    1446	Jaco                          	10.1.4 (#1629)
+    1447	Jaco                          	Bump deps (#1630)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        6	Carlo Sala                    	feat(ledger): add interlay and unique (#1609)
