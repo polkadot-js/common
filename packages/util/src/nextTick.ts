@@ -10,14 +10,17 @@ export function nextTick (onExec: () => unknown, onError?: (error: Error) => unk
   // actually does not play as nicely in browsers like the setTimeout(...)
   // approach. So the safer, though less optimal approach is the one taken here
   setTimeout((): void => {
-    try {
-      onExec();
-    } catch (error) {
-      if (onError) {
-        onError(error as Error);
-      } else {
-        console.error(error);
-      }
-    }
+    Promise
+      .resolve()
+      .then((): void => {
+        onExec();
+      })
+      .catch((error: Error): void => {
+        if (onError) {
+          onError(error);
+        } else {
+          console.error(error);
+        }
+      });
   }, 0);
 }
