@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 10.1.6 Aug 23, 2022
+
+Changes:
+
+- Adjust `nextTick` with greater care for browser loops
+- Upgrade dependencies to latest stable versions
+
+
 ## 10.1.5 Aug 21, 2022
 
 Changes:
