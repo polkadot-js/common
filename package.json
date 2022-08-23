@@ -11,7 +11,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "10.1.5",
+  "version": "10.1.6",
   "versions": {
     "git": "10.1.5",
     "npm": "10.1.5"
@@ -32,8 +32,8 @@
     "test:one": "polkadot-dev-run-test --runInBand"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.10",
-    "@polkadot/dev": "^0.67.113",
+    "@babel/core": "^7.18.13",
+    "@polkadot/dev": "^0.67.115",
     "@types/jest": "^28.1.7"
   },
   "resolutions": {
