@@ -17,6 +17,16 @@ export { packageInfo } from './packageInfo';
 
 type Chain = keyof typeof ledgerApps;
 
+async function wrapError <T extends ResponseBase> (promise: Promise<T>): Promise<T> {
+  const result = await promise;
+
+  if (result.return_code !== LEDGER_SUCCESS_CODE) {
+    throw new Error(result.error_message);
+  }
+
+  return result;
+}
+
 // A very basic wrapper for a ledger app -
 //  - it connects automatically, creating an app as required
 //  - Promises return errors (instead of wrapper errors)
@@ -41,7 +51,7 @@ export class Ledger {
 
   public async getAddress (confirm = false, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerAddress> {
     return this.#withApp(async (app: SubstrateApp): Promise<LedgerAddress> => {
-      const { address, pubKey } = await this.#wrapError(app.getAddress(account + accountOffset, change, addressIndex + addressOffset, confirm));
+      const { address, pubKey } = await wrapError(app.getAddress(account + accountOffset, change, addressIndex + addressOffset, confirm));
 
       return {
         address,
@@ -52,7 +62,7 @@ export class Ledger {
 
   public async getVersion (): Promise<LedgerVersion> {
     return this.#withApp(async (app: SubstrateApp): Promise<LedgerVersion> => {
-      const { device_locked: isLocked, major, minor, patch, test_mode: isTestMode } = await this.#wrapError(app.getVersion());
+      const { device_locked: isLocked, major, minor, patch, test_mode: isTestMode } = await wrapError(app.getVersion());
 
       return {
         isLocked,
@@ -65,7 +75,7 @@ export class Ledger {
   public async sign (message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerSignature> {
     return this.#withApp(async (app: SubstrateApp): Promise<LedgerSignature> => {
       const buffer = u8aToBuffer(message);
-      const { signature } = await this.#wrapError(app.sign(account + accountOffset, change, addressIndex + addressOffset, buffer));
+      const { signature } = await wrapError(app.sign(account + accountOffset, change, addressIndex + addressOffset, buffer));
 
       return {
         signature: `0x${signature.toString('hex')}`
@@ -99,15 +109,5 @@ export class Ledger {
 
       throw error;
     }
-  };
-
-  #wrapError = async <T extends ResponseBase> (promise: Promise<T>): Promise<T> => {
-    const result = await promise;
-
-    if (result.return_code !== LEDGER_SUCCESS_CODE) {
-      throw new Error(result.error_message);
-    }
-
-    return result;
   };
 }

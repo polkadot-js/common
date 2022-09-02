@@ -4,6 +4,7 @@
 
 Changes:
 
+- Hoist Ledger interface wrapError (internal adjustment)
 - Upgrade dependencies to latest stable versions
 
 
