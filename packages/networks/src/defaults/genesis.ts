@@ -59,6 +59,9 @@ export const knownGenesis: KnownGenesis = {
   karura: [
     '0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b'
   ],
+  khala: [
+    '0xd43540ba6d3eb4897c28a77d48cb5b729fea37603cbbfc7a86a73b72adb3be8d'
+  ],
   kulupu: [
     '0xf7a99d3cb92853d00d5275c971c132c074636256583fee53b3bbe60d7b8769ba'
   ],
@@ -72,6 +75,9 @@ export const knownGenesis: KnownGenesis = {
   ],
   parallel: [
     '0xe61a41c53f5dcd0beb09df93b34402aada44cb05117b71059cce40a2723a4e97'
+  ],
+  phala: [
+    '0x1bb969d85965e4bb5a651abbedf21a54b6b31a21f66b5401cc3f1e286268d736'
   ],
   picasso: [
     '0xe8e7f0f4c4f5a00720b4821dbfddefea7490bcf0b19009961cc46957984e2c1c'
