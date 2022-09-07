@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Ledger support for Phala & Khala (Thanks to https://github.com/carlosala)
+
+
 ## 10.1.7 Sep 2, 2022
 
 Changes:
