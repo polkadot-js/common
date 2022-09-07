@@ -22,11 +22,11 @@
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@babel/runtime": "^7.18.9",
+    "@babel/runtime": "^7.19.0",
     "@polkadot/x-global": "10.1.8-1-x"
   },
   "devDependencies": {
-    "@types/react-native": "^0.69.6"
+    "@types/react-native": "^0.69.8"
   },
   "denoDependencies": {
     "crypto": "std@0.148.0/node/crypto.ts"
