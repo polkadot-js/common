@@ -11,6 +11,7 @@ export const ledgerApps: Record<string, string> = {
   'bifrost-kusama': 'BifrostKusama',
   centrifuge: 'Centrifuge',
   composable: 'Composable',
+  darwinia: 'Darwinia',
   'dock-mainnet': 'Dock',
   edgeware: 'Edgeware',
   equilibrium: 'Equilibrium',
