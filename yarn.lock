@@ -1953,10 +1953,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/secp256k1@npm:1.6.3":
-  version: 1.6.3
-  resolution: "@noble/secp256k1@npm:1.6.3"
-  checksum: 16eb3242533e645deb64444c771515f66bdc2ee0759894efd42fdeed4ab226ed29827aaaf6caa27d3d95b831452fd4246aa1007cd688aa462ad48fc084ab76e6
+"@noble/secp256k1@npm:1.7.0":
+  version: 1.7.0
+  resolution: "@noble/secp256k1@npm:1.7.0"
+  checksum: 540a2b8e527ee1e5522af1c430e54945ad373883cac983b115136cd0950efa1f2c473ee6a36d8e69b6809b3ee586276de62f5fa705c77a9425721e81bada8116
   languageName: node
   linkType: hard
 
@@ -2271,7 +2271,7 @@ __metadata:
     "@babel/runtime": ^7.19.0
     "@polkadot/hw-ledger": 10.1.8-4-x
     "@polkadot/util": 10.1.8-4-x
-    "@substrate/ss58-registry": ^1.28.0
+    "@substrate/ss58-registry": ^1.29.0
   languageName: unknown
   linkType: soft
 
@@ -2281,7 +2281,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.19.0
     "@noble/hashes": 1.1.2
-    "@noble/secp256k1": 1.6.3
+    "@noble/secp256k1": 1.7.0
     "@polkadot/networks": 10.1.8-4-x
     "@polkadot/util": 10.1.8-4-x
     "@polkadot/wasm-crypto": ^6.3.1
@@ -2617,10 +2617,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@substrate/ss58-registry@npm:^1.28.0":
-  version: 1.28.0
-  resolution: "@substrate/ss58-registry@npm:1.28.0"
-  checksum: 7fe9a4cb4d56ed65b8fea8ff63b0e82683c980523c8f8f4cc543a3fc19a9a04a70cd26097ac243f344b8c4fd710dc1e1b47c234046b79faf10d33ba81e8d0639
+"@substrate/ss58-registry@npm:^1.29.0":
+  version: 1.29.0
+  resolution: "@substrate/ss58-registry@npm:1.29.0"
+  checksum: 75993e5d3cace064adfb7b7e35ed567be674e786c0b111ef199ebfa9eec84c8457e3b3d20046fc8af3b4cc2267ae1bddfc6f6e854ddc5de66f7008332a8b4071
   languageName: node
   linkType: hard
 
@@ -2837,13 +2837,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^29.0.0":
-  version: 29.0.0
-  resolution: "@types/jest@npm:29.0.0"
+"@types/jest@npm:^29.0.1":
+  version: 29.0.1
+  resolution: "@types/jest@npm:29.0.1"
   dependencies:
     expect: ^29.0.0
     pretty-format: ^29.0.0
-  checksum: b20c4b38c7c963862d82c21c0a1ae2b96015afb1511c835da43e8fd53659ca884f8103a2159be2ce74d2888472a1ac93d20d08ec1ac0970385cbb74c46d47585
+  checksum: efd30357c290b5d385382302fae927885f2a9bde0aa45d4c7f970fa6e6d750df83edef73f16d1e9a005e08a5bcd7c6ff56a43f5ac2534a517df9ad1e44dd30c4
   languageName: node
   linkType: hard
 
@@ -10753,7 +10753,7 @@ resolve@^2.0.0-next.3:
   dependencies:
     "@babel/core": ^7.19.0
     "@polkadot/dev": ^0.67.125
-    "@types/jest": ^29.0.0
+    "@types/jest": ^29.0.1
   languageName: unknown
   linkType: soft
 
