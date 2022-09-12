@@ -31,7 +31,7 @@
   "dependencies": {
     "@babel/runtime": "^7.19.0",
     "@noble/hashes": "1.1.2",
-    "@noble/secp256k1": "1.6.3",
+    "@noble/secp256k1": "1.7.0",
     "@polkadot/networks": "10.1.8-4-x",
     "@polkadot/util": "10.1.8-4-x",
     "@polkadot/wasm-crypto": "^6.3.1",
