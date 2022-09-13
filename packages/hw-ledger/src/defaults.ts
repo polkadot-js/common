@@ -16,6 +16,7 @@ export const ledgerApps: Record<string, string> = {
   edgeware: 'Edgeware',
   equilibrium: 'Equilibrium',
   genshiro: 'Genshiro',
+  hydradx: 'HydraDX',
   'interlay-parachain': 'Interlay',
   karura: 'Karura',
   khala: 'Khala',
