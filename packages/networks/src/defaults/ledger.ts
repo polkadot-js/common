@@ -20,6 +20,7 @@ export const knownLedger: KnownLedger = {
   edgeware: 0x0000020b,
   equilibrium: 0x05f5e0fd,
   genshiro: 0x05f5e0fc,
+  hydradx: 0x00000162,
   'interlay-parachain': 0x00000162,
   karura: 0x000002ae,
   khala: 0x000001b2,
