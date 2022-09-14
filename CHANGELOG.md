@@ -5,6 +5,7 @@
 Contributed:
 
 - Ledger support for Phala & Khala (Thanks to https://github.com/carlosala)
+- Ledger support for HydraX (Thanks to https://github.com/chcmedeiros)
 
 
 ## 10.1.7 Sep 2, 2022
