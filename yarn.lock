@@ -2433,7 +2433,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.19.0
     "@polkadot/x-global": 10.1.8-6-x
-    "@types/react-native": ^0.69.8
+    "@types/react-native": ^0.70.0
   languageName: unknown
   linkType: soft
 
@@ -2837,13 +2837,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^29.0.1":
-  version: 29.0.1
-  resolution: "@types/jest@npm:29.0.1"
+"@types/jest@npm:^29.0.2":
+  version: 29.0.2
+  resolution: "@types/jest@npm:29.0.2"
   dependencies:
     expect: ^29.0.0
     pretty-format: ^29.0.0
-  checksum: efd30357c290b5d385382302fae927885f2a9bde0aa45d4c7f970fa6e6d750df83edef73f16d1e9a005e08a5bcd7c6ff56a43f5ac2534a517df9ad1e44dd30c4
+  checksum: 27c46b58fad9791adf88167ba2c14ae3513cb1fe5df038faafe7fc4513ebb230dd8029a1dd0acd1abeb82aa014839ac10e0dcf1bfae9fcc0e69bc1eb1e5204f0
   languageName: node
   linkType: hard
 
@@ -2947,12 +2947,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.69.8":
-  version: 0.69.8
-  resolution: "@types/react-native@npm:0.69.8"
+"@types/react-native@npm:^0.70.0":
+  version: 0.70.0
+  resolution: "@types/react-native@npm:0.70.0"
   dependencies:
     "@types/react": "*"
-  checksum: fa86efda36b11281fd81964a8c82c42c9fef2a2f50152d6faa9b5971950a10b75e0a7e5f87c6e28663a93cbf611b06cc8f79dd032d1bb62cdc1d786082c4dae7
+  checksum: 0150a5520925ae009e49eb81e4ca528548ec118b95c363516362bba39ffc068f0df97c43e4543c10ac8f514a42e48cad312c9da49e37257c62180b36f921fa84
   languageName: node
   linkType: hard
 
@@ -10760,7 +10760,7 @@ resolve@^2.0.0-next.3:
   dependencies:
     "@babel/core": ^7.19.0
     "@polkadot/dev": ^0.67.126
-    "@types/jest": ^29.0.1
+    "@types/jest": ^29.0.2
   languageName: unknown
   linkType: soft
 
