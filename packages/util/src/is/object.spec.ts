@@ -21,4 +21,10 @@ describe('isObject', (): void => {
       isObject(null)
     ).toEqual(false);
   });
+
+  it('returns false on bigint', (): void => {
+    expect(
+      isObject(123n)
+    ).toEqual(false);
+  });
 });
