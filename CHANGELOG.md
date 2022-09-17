@@ -1,11 +1,16 @@
 # CHANGELOG
 
-## master
+## 10.1.8 Sep 17, 2022
 
 Contributed:
 
-- Ledger support for Phala & Khala (Thanks to https://github.com/carlosala)
+- Ledger support for Darwinia, Phala & Khala (Thanks to https://github.com/carlosala)
 - Ledger support for HydraX (Thanks to https://github.com/chcmedeiros)
+
+Changes:
+
+- Expand test cases
+- Upgrade dependencies to latest stable versions
 
 
 ## 10.1.7 Sep 2, 2022
