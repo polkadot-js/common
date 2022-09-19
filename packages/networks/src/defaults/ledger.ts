@@ -36,5 +36,6 @@ export const knownLedger: KnownLedger = {
   statemine: 0x000001b2, // common-good on Kusama, shares derivation
   statemint: 0x00000162, // common-good on Polkadot, shares derivation
   unique: 0x00000162,
-  xxnetwork: 0x000007a3
+  xxnetwork: 0x000007a3,
+  vtb: 0x000002b6
 };

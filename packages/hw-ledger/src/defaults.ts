@@ -32,5 +32,6 @@ export const ledgerApps: Record<string, string> = {
   statemine: 'Statemine',
   statemint: 'Statemint',
   unique: 'Unique',
-  xxnetwork: 'XXNetwork'
+  xxnetwork: 'XXNetwork',
+  vtb: 'VTB'
 };
