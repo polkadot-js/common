@@ -1,4 +1,4 @@
-    1462	Jaco                          	Bump dev (#1650)
+    1463	Jaco                          	Bump deps (#1652)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        8	Carlo Sala                    	feat: add darwinia to knownLedger (#1643)
        6	Amaury Martiny                	Add tests from Rust (#283)
