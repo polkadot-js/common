@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Upgrade dependencies to latest stable versions
+
+
 ## 10.1.8 Sep 17, 2022
 
 Contributed:
