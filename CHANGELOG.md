@@ -2,6 +2,10 @@
 
 ## master
 
+Contributed:
+
+- Ledger support for VTB (Thanks to https://github.com/GuilaneDen)
+
 Changes:
 
 - Upgrade dependencies to latest stable versions
