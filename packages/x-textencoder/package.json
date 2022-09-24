@@ -17,13 +17,13 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "10.1.9",
+  "version": "10.1.10-0-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
     "@babel/runtime": "^7.19.0",
-    "@polkadot/x-global": "10.1.9"
+    "@polkadot/x-global": "10.1.10-0-x"
   },
   "denoDependencies": {
     "util": "std@0.148.0/node/util.ts"
