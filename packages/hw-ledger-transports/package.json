@@ -22,12 +22,12 @@
   "react-native": "react-native.js",
   "dependencies": {
     "@babel/runtime": "^7.19.0",
-    "@ledgerhq/hw-transport": "^6.27.5",
-    "@ledgerhq/hw-transport-webhid": "^6.27.5",
-    "@ledgerhq/hw-transport-webusb": "^6.27.5",
+    "@ledgerhq/hw-transport": "^6.27.6",
+    "@ledgerhq/hw-transport-webhid": "^6.27.6",
+    "@ledgerhq/hw-transport-webusb": "^6.27.6",
     "@polkadot/util": "10.1.10-2-x"
   },
   "optionalDependencies": {
-    "@ledgerhq/hw-transport-node-hid-singleton": "^6.28.1"
+    "@ledgerhq/hw-transport-node-hid-singleton": "^6.28.2"
   }
 }
