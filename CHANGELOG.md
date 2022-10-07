@@ -4,6 +4,7 @@
 
 Changes:
 
+- Ensure `{bn, n}ToHex` respects `bitLength` with 0 values
 - Upgrade dependencies to latest stable versions
 
 

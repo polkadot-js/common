@@ -11,7 +11,7 @@ describe('nToU8a', (): void => {
   it('converts null values to 0x00', (): void => {
     expect(
       nToU8a(null)
-    ).toEqual(new Uint8Array());
+    ).toEqual(new Uint8Array(1));
   });
 
   it('converts null values to 0x00000000 (bitLength)', (): void => {

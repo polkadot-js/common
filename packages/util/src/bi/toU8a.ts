@@ -48,7 +48,7 @@ export function nToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN |
 
   if (valueBi === _0n) {
     return bitLength === -1
-      ? new Uint8Array()
+      ? new Uint8Array(1)
       : new Uint8Array(Math.ceil((bitLength || 0) / 8));
   }
 

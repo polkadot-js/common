@@ -10,6 +10,12 @@ describe('nToHex', (): void => {
     ).toBe('0x00');
   });
 
+  it('converts null values to 0x00000000 (with bitLength)', (): void => {
+    expect(
+      nToHex(null, { bitLength: 32 })
+    ).toBe('0x00000000');
+  });
+
   it('converts values to a prefixed hex representation', (): void => {
     expect(
       nToHex(128)
