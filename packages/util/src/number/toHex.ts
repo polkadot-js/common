@@ -21,11 +21,7 @@ import { hexFixLength } from '../hex/fixLength';
  * ```
  */
 export function numberToHex (value?: number | null, bitLength = -1): HexString {
-  if (value === undefined || value === null || isNaN(value)) {
-    return '0x';
-  }
-
-  const hex = value.toString(16);
+  const hex = (!value || Number.isNaN(value) ? 0 : value).toString(16);
 
   return hexFixLength(hex.length % 2 ? `0${hex}` : hex, bitLength, true);
 }

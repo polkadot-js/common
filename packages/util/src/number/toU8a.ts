@@ -19,9 +19,7 @@ import { numberToHex } from './toHex';
  * ```
  */
 export function numberToU8a (value?: number | null, bitLength = -1): Uint8Array {
-  return value === undefined || value === null || isNaN(value)
-    ? new Uint8Array()
-    : hexToU8a(
-      numberToHex(value, bitLength)
-    );
+  return hexToU8a(
+    numberToHex(value, bitLength)
+  );
 }

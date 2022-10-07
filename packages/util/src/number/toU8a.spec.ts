@@ -7,19 +7,19 @@ describe('numberToU8a', (): void => {
   it('converts undefined to empty', (): void => {
     expect(
       numberToU8a()
-    ).toEqual(new Uint8Array());
+    ).toEqual(new Uint8Array(1));
   });
 
   it('converts null to empty', (): void => {
     expect(
       numberToU8a(null)
-    ).toEqual(new Uint8Array());
+    ).toEqual(new Uint8Array(1));
   });
 
   it('converts NaN to empty', (): void => {
     expect(
       numberToU8a(NaN)
-    ).toEqual(new Uint8Array());
+    ).toEqual(new Uint8Array(1));
   });
 
   it('converts 0 to u8a', (): void => {
