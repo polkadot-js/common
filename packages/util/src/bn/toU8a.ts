@@ -30,7 +30,7 @@ export function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | 
 
   if (!value) {
     return bitLength === -1
-      ? new Uint8Array()
+      ? new Uint8Array(1)
       : new Uint8Array(byteLength);
   }
 

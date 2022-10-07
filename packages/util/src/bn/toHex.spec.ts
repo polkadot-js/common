@@ -10,6 +10,12 @@ describe('bnToHex', (): void => {
     ).toBe('0x00');
   });
 
+  it('converts null values to 0x00000000 (with bitLength)', (): void => {
+    expect(
+      bnToHex(null, { bitLength: 32 })
+    ).toBe('0x00000000');
+  });
+
   it('converts BN values to a prefixed hex representation', (): void => {
     expect(
       bnToHex(new BN(128))
