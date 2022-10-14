@@ -1065,6 +1065,19 @@
     "website": "https://centrifuge.io/"
   },
   {
+    "prefix": 137,
+    "network": "vara",
+    "displayName": "Vara Network",
+    "symbols": [
+      "VARA"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://vara-network.io/"
+  },
+  {
     "prefix": 172,
     "network": "parallel",
     "displayName": "Parallel",
@@ -1522,6 +1535,19 @@
     ],
     "standardAccount": "*25519",
     "website": "https://www.dentnet.io"
+  },
+  {
+    "prefix": 9935,
+    "network": "t3rn",
+    "displayName": "t3rn",
+    "symbols": [
+      "TRN"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://t3rn.io/"
   },
   {
     "prefix": 10041,
