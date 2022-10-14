@@ -2106,9 +2106,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.67.140":
-  version: 0.67.140
-  resolution: "@polkadot/dev@npm:0.67.140"
+"@polkadot/dev@npm:^0.67.141":
+  version: 0.67.141
+  resolution: "@polkadot/dev@npm:0.67.141"
   dependencies:
     "@babel/cli": ^7.19.3
     "@babel/core": ^7.19.3
@@ -2205,7 +2205,7 @@ __metadata:
     polkadot-exec-swc: scripts/polkadot-exec-swc.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 4768c351d9b2db904af59d87a658c22e3ce6a946edc7a43561f61c4cab6e82adfafb107176d335f159017e931947b4a085fa29d85ca20996206641496942cd78
+  checksum: 0d9db515c70053f730594bf4d8c7a27d9eca43937d0345c79c26e6948cedf3a96f6b10251ae96375b7273eecdda049def46b85b5e65c9a8a9af88d93a0118cbb
   languageName: node
   linkType: hard
 
@@ -10735,7 +10735,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.19.3
-    "@polkadot/dev": ^0.67.140
+    "@polkadot/dev": ^0.67.141
     "@types/jest": ^29.1.2
   languageName: unknown
   linkType: soft
