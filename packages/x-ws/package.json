@@ -22,7 +22,7 @@
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@babel/runtime": "^7.19.0",
+    "@babel/runtime": "^7.19.4",
     "@polkadot/x-global": "10.1.11-0-x",
     "@types/websocket": "^1.0.5",
     "websocket": "^1.0.34"
