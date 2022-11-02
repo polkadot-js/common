@@ -22,10 +22,10 @@
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@babel/runtime": "^7.20.0",
+    "@babel/runtime": "^7.20.1",
     "@polkadot/x-global": "10.1.12-2-x"
   },
   "denoDependencies": {
-    "util": "std@0.148.0/node/util.ts"
+    "util": "std@0.161.0/node/util.ts"
   }
 }
