@@ -33,9 +33,9 @@
     "test:one": "polkadot-dev-run-test --runInBand"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.6",
-    "@polkadot/dev": "^0.67.152",
-    "@types/jest": "^29.2.1"
+    "@babel/core": "^7.20.2",
+    "@polkadot/dev": "^0.67.154",
+    "@types/jest": "^29.2.2"
   },
   "resolutions": {
     "typescript": "^4.8.4"
