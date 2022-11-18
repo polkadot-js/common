@@ -22,6 +22,7 @@ export const ledgerApps: Record<string, string> = {
   khala: 'Khala',
   kusama: 'Kusama',
   'nodle-para': 'Nodle',
+  origintrail: 'OriginTrail',
   parallel: 'Parallel',
   phala: 'Phala',
   polkadex: 'Polkadex',
