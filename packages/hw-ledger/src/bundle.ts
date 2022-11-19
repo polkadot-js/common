@@ -8,7 +8,7 @@ import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, Ledge
 import { newSubstrateApp } from '@zondax/ledger-substrate';
 
 import { transports } from '@polkadot/hw-ledger-transports';
-import { u8aToBuffer } from '@polkadot/util';
+import { hexAddPrefix, u8aToBuffer } from '@polkadot/util';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants';
 import { ledgerApps } from './defaults';
@@ -17,6 +17,7 @@ export { packageInfo } from './packageInfo';
 
 type Chain = keyof typeof ledgerApps;
 
+/** @internal */
 async function wrapError <T extends ResponseBase> (promise: Promise<T>): Promise<T> {
   const result = await promise;
 
@@ -55,7 +56,7 @@ export class Ledger {
 
       return {
         address,
-        publicKey: `0x${pubKey}`
+        publicKey: hexAddPrefix(pubKey)
       };
     });
   }
@@ -78,7 +79,7 @@ export class Ledger {
       const { signature } = await wrapError(app.sign(account + accountOffset, change, addressIndex + addressOffset, buffer));
 
       return {
-        signature: `0x${signature.toString('hex')}`
+        signature: hexAddPrefix(signature.toString('hex'))
       };
     });
   }
