@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Ledger support for Origintrail (Thanks to https://github.com/carlosala)
+
+Changes:
+
+- Expand type descriptions around Ledger-based structures
+- Upgrade dependencies to latest stable versions
+
+
 ## 10.1.12 Nov 13, 2022
 
 Changes:
