@@ -16,7 +16,7 @@ export { packageInfo } from './packageInfo';
 
 type Chain = keyof typeof ledgerApps;
 
-type WrappedResult = Awaited<ReturnType<SubstrateApp['getVersion'] | SubstrateApp['getAddress'] | SubstrateApp['sign']>>;
+type WrappedResult = Awaited<ReturnType<SubstrateApp['getAddress' | 'getVersion' | 'sign']>>;
 
 /** @internal Wraps a SubstrateApp call, checking the result for any errors which result in a rejection */
 async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promise<T> {
