@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubstrateApp } from '@zondax/ledger-substrate';
-import type { ResponseBase } from '@zondax/ledger-substrate/dist/common';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types';
 
 import { newSubstrateApp } from '@zondax/ledger-substrate';
@@ -17,8 +16,10 @@ export { packageInfo } from './packageInfo';
 
 type Chain = keyof typeof ledgerApps;
 
-/** @internal */
-async function wrapError <T extends ResponseBase> (promise: Promise<T>): Promise<T> {
+type WrappedResult = Awaited<ReturnType<SubstrateApp['getAddress' | 'getVersion' | 'sign']>>;
+
+/** @internal Wraps a SubstrateApp call, checking the result for any errors which result in a rejection */
+async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promise<T> {
   const result = await promise;
 
   if (result.return_code !== LEDGER_SUCCESS_CODE) {
