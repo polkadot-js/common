@@ -1,4 +1,4 @@
-    1486	Jaco                          	10.1.13 (#1678)
+    1487	Jaco                          	Bump deps (#1680)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        9	Carlo Sala                    	feat(networks): support ledger for origintrail (#1674)
        6	Amaury Martiny                	Add tests from Rust (#283)
