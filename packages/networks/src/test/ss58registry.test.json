@@ -1403,32 +1403,6 @@
     "website": "https://subspace.network"
   },
   {
-    "prefix": 3000,
-    "network": "hashed",
-    "displayName": "Hashed Network",
-    "symbols": [
-      "HASH"
-    ],
-    "decimals": [
-      18
-    ],
-    "standardAccount": "*25519",
-    "website": "https://hashed.network"
-  },
-  {
-    "prefix": 4000,
-    "network": "luhn",
-    "displayName": "Luhn Network",
-    "symbols": [
-      "LUHN"
-    ],
-    "decimals": [
-      18
-    ],
-    "standardAccount": "*25519",
-    "website": "https://luhn.network"
-  },
-  {
     "prefix": 4006,
     "network": "tangle",
     "displayName": "Tangle Network",
@@ -1537,6 +1511,19 @@
     "website": "https://unique.network"
   },
   {
+    "prefix": 9072,
+    "network": "hashed",
+    "displayName": "Hashed Network",
+    "symbols": [
+      "HASH"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://hashed.network"
+  },
+  {
     "prefix": 9807,
     "network": "dentnet",
     "displayName": "DENTNet",
@@ -1600,6 +1587,19 @@
     ],
     "standardAccount": "*25519",
     "website": "https://cess.cloud"
+  },
+  {
+    "prefix": 11486,
+    "network": "luhn",
+    "displayName": "Luhn Network",
+    "symbols": [
+      "LUHN"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://luhn.network"
   },
   {
     "prefix": 11820,
