@@ -9,6 +9,7 @@ import type { KnownLedger } from '../types';
 // NOTE: Any network here needs to have a genesisHash attached in the ./genesis.ts config
 export const knownLedger: KnownLedger = {
   acala: 0x00000313,
+  ajuna: 0x00000162,
   'aleph-node': 0x00000283,
   astar: 0x0000032a,
   bifrost: 0x00000314,
