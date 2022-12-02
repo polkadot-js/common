@@ -1,12 +1,16 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { perf } from '@polkadot/util/test/performance';
+
 import { base64Decode } from './base64';
+
+const HELLO_DUAL = 'aGVsbG8gd29ybGQg0J/RgNC40LLQtdGC0YHRgtCy0YPRjiDQvNC4IOS9oOWlvQ==';
 
 const TESTS = [
   {
     // hello world Приветствую ми 你好
-    base64: 'aGVsbG8gd29ybGQg0J/RgNC40LLQtdGC0YHRgtCy0YPRjiDQvNC4IOS9oOWlvQ==',
+    base64: HELLO_DUAL,
     expect: new Uint8Array([104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 32, 208, 159, 209, 128, 208, 184, 208, 178, 208, 181, 209, 130, 209, 129, 209, 130, 208, 178, 209, 131, 209, 142, 32, 208, 188, 208, 184, 32, 228, 189, 160, 229, 165, 189])
   },
   {
@@ -40,3 +44,5 @@ describe('base64Decode', (): void => {
     ).toEqual(test.expect);
   });
 });
+
+perf('base64Decode (hello, dual)', 100_000, [[HELLO_DUAL]], base64Decode);

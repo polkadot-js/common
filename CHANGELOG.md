@@ -10,6 +10,7 @@ Changes:
 
 - `has{Buffer, Process}` now checks on `globalThis` (helps bundlers with auto-injection)
 - Add `/*#__PURE__*/` annotations for specific `export const something = someFunction(...)`
+- Adjust internal character maps to operate on `Uint8Array` instad of `Array<number>`
 - Upgrade dependencies to latest stable versions
 
 

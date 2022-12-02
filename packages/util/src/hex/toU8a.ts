@@ -4,8 +4,8 @@
 import type { HexString } from '../types';
 
 const CHR = '0123456789abcdef';
-const U8 = new Array<number>(256);
-const U16 = new Array<number>(256 * 256);
+const U8 = new Uint8Array(256);
+const U16 = new Uint16Array(256 * 256);
 
 for (let i = 0; i < CHR.length; i++) {
   U8[CHR[i].charCodeAt(0) | 0] = i | 0;
