@@ -9,6 +9,8 @@ Contributed:
 Changes:
 
 - `has{Buffer, Process}` now checks on `globalThis` (helps bundlers with auto-injection)
+- Add `/*#__PURE__*/` annotations for specific `export const something = someFunction(...)`
+- Upgrade dependencies to latest stable versions
 
 
 ## 10.1.14 Nov 27, 2022

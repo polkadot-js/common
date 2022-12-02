@@ -28,13 +28,13 @@ const config = {
  * @description
  * Validates that the supplied value is valid base32, throwing exceptions if not
  */
-export const base32Validate = createValidate(config);
+export const base32Validate = /*#__PURE__*/ createValidate(config);
 
 /**
 * @name isBase32
 * @description Checks if the input is in base32, returning true/false
 */
-export const isBase32 = createIs(base32Validate);
+export const isBase32 = /*#__PURE__*/ createIs(base32Validate);
 
 /**
  * @name base32Decode
@@ -42,7 +42,7 @@ export const isBase32 = createIs(base32Validate);
  * @description
  * From the provided input, decode the base32 and return the result as an `Uint8Array`.
  */
-export const base32Decode = createDecode(config, base32Validate);
+export const base32Decode = /*#__PURE__*/ createDecode(config, base32Validate);
 
 /**
 * @name base32Encode
@@ -50,4 +50,4 @@ export const base32Decode = createDecode(config, base32Validate);
 * @description
 * From the provided input, create the base32 and return the result as a string.
 */
-export const base32Encode = createEncode(config);
+export const base32Encode = /*#__PURE__*/ createEncode(config);

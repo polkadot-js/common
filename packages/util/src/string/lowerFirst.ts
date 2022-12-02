@@ -27,7 +27,7 @@ function converter (map: readonly string[]): (value?: AnyString | null) => strin
  * stringLowerFirst('ABC'); // => 'aBC'
  * ```
  */
-export const stringLowerFirst = converter(CC_TO_LO);
+export const stringLowerFirst = /*#__PURE__*/ converter(CC_TO_LO);
 
 /**
  * @name stringUpperFirst
@@ -43,4 +43,4 @@ export const stringLowerFirst = converter(CC_TO_LO);
  * stringUpperFirst('abc'); // => 'Abc'
  * ```
  */
-export const stringUpperFirst = converter(CC_TO_UP);
+export const stringUpperFirst = /*#__PURE__*/ converter(CC_TO_UP);

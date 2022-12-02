@@ -19,4 +19,4 @@ import { isOn } from './helpers';
  * console.log('isObservable', isObservable(...));
  * ```
  */
-export const isObservable = isOn<Observable>('next');
+export const isObservable = /*#__PURE__*/ isOn<Observable>('next');

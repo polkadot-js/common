@@ -5,4 +5,4 @@ import type { ToBigInt } from '../types';
 
 import { isOn } from './helpers';
 
-export const isToBigInt = isOn<ToBigInt>('toBigInt');
+export const isToBigInt = /*#__PURE__*/ isOn<ToBigInt>('toBigInt');

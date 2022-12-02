@@ -12,7 +12,7 @@ import { createBitHasher, createDualHasher } from '../helpers';
  * @name shaAsU8a
  * @summary Creates a sha Uint8Array from the input.
  */
-export const shaAsU8a = createDualHasher(
+export const shaAsU8a = /*#__PURE__*/ createDualHasher(
   { 256: sha256, 512: sha512 },
   { 256: sha256Js, 512: sha512Js }
 );
@@ -21,10 +21,10 @@ export const shaAsU8a = createDualHasher(
  * @name sha256AsU8a
  * @summary Creates a sha256 Uint8Array from the input.
  */
-export const sha256AsU8a = createBitHasher(256, shaAsU8a);
+export const sha256AsU8a = /*#__PURE__*/ createBitHasher(256, shaAsU8a);
 
 /**
  * @name sha512AsU8a
  * @summary Creates a sha512 Uint8Array from the input.
  */
-export const sha512AsU8a = createBitHasher(512, shaAsU8a);
+export const sha512AsU8a = /*#__PURE__*/ createBitHasher(512, shaAsU8a);
