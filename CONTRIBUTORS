@@ -1,4 +1,4 @@
-    1489	Jaco                          	Adjust has{Buffer, Process} checks w/ globalThis (#1683)
+    1490	Jaco                          	Add /*#__PURE__*/ annotations (#1684)
       10	Carlo Sala                    	feat(networks): support ledger for ajuna  (#1682)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
