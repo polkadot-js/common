@@ -3,4 +3,4 @@
 
 import { isOnObject } from './helpers';
 
-export const isPromise = isOnObject<Promise<unknown>>('catch', 'then');
+export const isPromise = /*#__PURE__*/ isOnObject<Promise<unknown>>('catch', 'then');

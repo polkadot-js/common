@@ -17,13 +17,13 @@ const config = {
  * @description
  * Validates that the supplied value is valid base64
  */
-export const base64Validate = createValidate(config);
+export const base64Validate = /*#__PURE__*/ createValidate(config);
 
 /**
  * @name isBase64
  * @description Checks if the input is in base64, returning true/false
  */
-export const isBase64 = createIs(base64Validate);
+export const isBase64 = /*#__PURE__*/ createIs(base64Validate);
 
 /**
  * @name base64Decode
@@ -31,7 +31,7 @@ export const isBase64 = createIs(base64Validate);
  * @description
  * From the provided input, decode the base64 and return the result as an `Uint8Array`.
  */
-export const base64Decode = createDecode(config, base64Validate);
+export const base64Decode = /*#__PURE__*/ createDecode(config, base64Validate);
 
 /**
  * @name base64Encode
@@ -39,4 +39,4 @@ export const base64Decode = createDecode(config, base64Validate);
  * @description
  * From the provided input, create the base64 and return the result as a string.
  */
-export const base64Encode = createEncode(config);
+export const base64Encode = /*#__PURE__*/ createEncode(config);

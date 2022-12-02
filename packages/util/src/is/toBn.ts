@@ -5,4 +5,4 @@ import type { ToBn } from '../types';
 
 import { isOn } from './helpers';
 
-export const isToBn = isOn<ToBn>('toBn');
+export const isToBn = /*#__PURE__*/ isOn<ToBn>('toBn');

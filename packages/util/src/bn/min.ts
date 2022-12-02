@@ -17,7 +17,7 @@ import { BN } from './bn';
  * bnMax([new BN(1), new BN(3), new BN(2)]).toString(); // => '3'
  * ```
  */
-export const bnMax = createCmp<BN>((a, b) => a.gt(b));
+export const bnMax = /*#__PURE__*/ createCmp<BN>((a, b) => a.gt(b));
 
 /**
  * @name bnMin
@@ -32,4 +32,4 @@ export const bnMax = createCmp<BN>((a, b) => a.gt(b));
  * bnMin([new BN(1), new BN(3), new BN(2)]).toString(); // => '1'
  * ```
  */
-export const bnMin = createCmp<BN>((a, b) => a.lt(b));
+export const bnMin = /*#__PURE__*/ createCmp<BN>((a, b) => a.lt(b));

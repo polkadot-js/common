@@ -16,4 +16,4 @@ interface Compact<T> {
  * @name isCompact
  * @summary Tests for SCALE-Compact-like object instance.
  */
-export const isCompact: <T> (value?: unknown) => value is Compact<T> = isOnObject('toBigInt', 'toBn', 'toNumber', 'unwrap');
+export const isCompact: <T> (value?: unknown) => value is Compact<T> = /*#__PURE__*/ isOnObject('toBigInt', 'toBn', 'toNumber', 'unwrap');

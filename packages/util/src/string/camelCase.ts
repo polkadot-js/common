@@ -65,7 +65,7 @@ function converter (format: (w: string, i: number) => string): (value: AnyString
  * @name stringCamelCase
  * @summary Convert a dash/dot/underscore/space separated Ascii string/String to camelCase
  */
-export const stringCamelCase = converter((w, i) =>
+export const stringCamelCase = /*#__PURE__*/ converter((w, i) =>
   // lowercase for first letter/first word, else uppercase first, rest unchanged
   (i ? CC_TO_UP[w.charCodeAt(0)] : CC_TO_LO[w.charCodeAt(0)]) + w.slice(1)
 );
@@ -74,7 +74,7 @@ export const stringCamelCase = converter((w, i) =>
  * @name stringPascalCase
  * @summary Convert a dash/dot/underscore/space separated Ascii string/String to PascalCase
  */
-export const stringPascalCase = converter((w) =>
+export const stringPascalCase = /*#__PURE__*/ converter((w) =>
   // uppercase the first character, leave the rest unchanged
   CC_TO_UP[w.charCodeAt(0)] + w.slice(1)
 );

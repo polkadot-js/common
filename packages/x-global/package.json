@@ -20,6 +20,6 @@
   "version": "10.1.15-1-x",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.20.1"
+    "@babel/runtime": "^7.20.6"
   }
 }

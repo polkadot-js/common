@@ -21,8 +21,7 @@ import { createAsHex, createBitHasher, createDualHasher } from '../helpers';
  * keccakAsU8a('123'); // => Uint8Array
  * ```
  */
-
-export const keccakAsU8a = createDualHasher(
+export const keccakAsU8a = /*#__PURE__*/ createDualHasher(
   { 256: keccak256, 512: keccak512 },
   { 256: keccak256Js, 512: keccak512Js }
 );
@@ -31,13 +30,13 @@ export const keccakAsU8a = createDualHasher(
  * @name keccak256AsU8a
  * @description Creates a keccak256 Uint8Array from the input.
  */
-export const keccak256AsU8a = createBitHasher(256, keccakAsU8a);
+export const keccak256AsU8a = /*#__PURE__*/ createBitHasher(256, keccakAsU8a);
 
 /**
  * @name keccak512AsU8a
  * @description Creates a keccak512 Uint8Array from the input.
  */
-export const keccak512AsU8a = createBitHasher(512, keccakAsU8a);
+export const keccak512AsU8a = /*#__PURE__*/ createBitHasher(512, keccakAsU8a);
 
 /**
  * @name keccakAsHex
