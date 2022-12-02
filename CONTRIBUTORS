@@ -1,6 +1,6 @@
     1488	Jaco                          	10.1.14 (#1681)
+      10	Carlo Sala                    	feat(networks): support ledger for ajuna  (#1682)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
-       9	Carlo Sala                    	feat(networks): support ledger for origintrail (#1674)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	Jakub Pánik                   	Add HydraDX parachain to genesis (#1583)
        5	kwingram25                    	Add BN consts and timeToString (#610)
