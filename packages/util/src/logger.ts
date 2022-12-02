@@ -3,6 +3,8 @@
 
 import type { Logger, Logger$Data } from './types';
 
+import { xglobal } from '@polkadot/x-global';
+
 import { formatDate } from './format/formatDate';
 import { isBn } from './is/bn';
 import { isBuffer } from './is/buffer';
@@ -12,8 +14,6 @@ import { isU8a } from './is/u8a';
 import { u8aToHex } from './u8a/toHex';
 import { u8aToU8a } from './u8a/toU8a';
 import { hasProcess } from './has';
-
-declare const process: { env: Record<string, string> };
 
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
@@ -124,7 +124,7 @@ function getDebugFlag (env: readonly string[], type: string): boolean {
 }
 
 function parseEnv (type: string): [boolean, number] {
-  const env = (hasProcess ? process : {}).env || {};
+  const env = (hasProcess ? xglobal.process as { env: Record<string, string> } : {}).env || {};
   const maxSize = parseInt(env.DEBUG_MAX || '-1', 10);
 
   return [

@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Ledger support for Ajuna (Thanks to https://github.com/carlosala)
+
+Changes:
+
+- `has{Buffer, Process}` now checks on `globalThis` (helps bundlers with auto-injection)
+
+
 ## 10.1.14 Nov 27, 2022
 
 Changes:
