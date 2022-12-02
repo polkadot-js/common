@@ -11,6 +11,9 @@ export const knownGenesis: KnownGenesis = {
   acala: [
     '0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c'
   ],
+  ajuna: [
+    '0xe358eb1d11b31255a286c12e44fe6780b7edb171d657905a97e39f71d9c6c3ee'
+  ],
   'aleph-node': [
     '0x70255b4d28de0fc4e1a193d7e175ad1ccef431598211c55538f1018651a0344e'
   ],

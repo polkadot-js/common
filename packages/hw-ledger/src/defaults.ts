@@ -5,6 +5,7 @@
 // and maps to the known name in the @zondax/ledger-substrate/supported_apps package
 export const ledgerApps: Record<string, string> = {
   acala: 'Acala',
+  ajuna: 'Ajuna',
   'aleph-node': 'AlephZero',
   astar: 'Astar',
   bifrost: 'Bifrost',
