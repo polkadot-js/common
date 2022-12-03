@@ -34,7 +34,7 @@
     "@noble/secp256k1": "1.7.0",
     "@polkadot/networks": "10.1.15-2-x",
     "@polkadot/util": "10.1.15-2-x",
-    "@polkadot/wasm-crypto": "^6.3.1",
+    "@polkadot/wasm-crypto": "^6.4.1",
     "@polkadot/x-bigint": "10.1.15-2-x",
     "@polkadot/x-randomvalues": "10.1.15-2-x",
     "@scure/base": "1.1.1",
