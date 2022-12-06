@@ -20,6 +20,7 @@ import { pbkdf2Encode } from '../pbkdf2';
 import { randomAsU8a } from '../random';
 import { sha256AsU8a } from '../sha';
 import DEFAULT_WORDLIST from './bip39-en';
+import FRENCH_LIST from './bip39-fr';
 
 const INVALID_MNEMONIC = 'Invalid mnemonic';
 const INVALID_ENTROPY = 'Invalid entropy';
