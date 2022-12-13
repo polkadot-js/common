@@ -24,6 +24,7 @@
       "@polkadot/x-textencoder": ["x-textencoder/src/browser"],
       "@polkadot/x-ws": ["x-ws/src/browser"]
     },
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "target": "es2015"
   }
  }
