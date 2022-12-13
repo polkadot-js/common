@@ -25,6 +25,6 @@
       "@polkadot/x-ws": ["x-ws/src/browser"]
     },
     "skipLibCheck": true,
-    "target": "es2015"
+    "target": "es2020"
   }
  }
