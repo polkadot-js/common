@@ -3,6 +3,7 @@
 
 import { Keyring } from './keyring';
 
+// eslint-disable-next-line deprecation/deprecation
 export { decodeAddress, encodeAddress, setSS58Format } from '@polkadot/util-crypto';
 
 export * from './defaults';

@@ -5,6 +5,7 @@ import { encodeAddress, setSS58Format } from '.';
 
 describe('setSS58Format', (): void => {
   beforeEach((): void => {
+    // eslint-disable-next-line deprecation/deprecation
     setSS58Format(2);
   });
 
