@@ -1,4 +1,4 @@
-    1496	Jaco                          	Adjust TS target (#1693)
+    1497	Jaco                          	Bump dev (w/ deprecation warnings) (#1694)
       10	Carlo Sala                    	feat(networks): support ledger for ajuna  (#1682)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
