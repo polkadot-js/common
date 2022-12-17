@@ -30,7 +30,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.20.6",
-    "@noble/hashes": "1.1.4",
+    "@noble/hashes": "1.1.5",
     "@noble/secp256k1": "1.7.0",
     "@polkadot/networks": "10.2.2-4-x",
     "@polkadot/util": "10.2.2-4-x",
