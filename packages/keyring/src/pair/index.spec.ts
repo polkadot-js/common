@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/keyring authors & contributors
+// Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { hexToU8a, u8aToHex } from '@polkadot/util';
