@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/x-randomvalues authors & contributors
+// Copyright 2017-2023 @polkadot/x-randomvalues authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Adapted from https://github.com/LinusU/react-native-get-random-values/blob/85f48393821c23b83b89a8177f56d3a81dc8b733/index.js

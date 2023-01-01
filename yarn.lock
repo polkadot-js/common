@@ -57,7 +57,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.20.5, @babel/core@npm:^7.20.7":
+"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.20.7":
   version: 7.20.7
   resolution: "@babel/core@npm:7.20.7"
   dependencies:
@@ -1814,75 +1814,75 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/devices@npm:^7.0.5":
-  version: 7.0.5
-  resolution: "@ledgerhq/devices@npm:7.0.5"
+"@ledgerhq/devices@npm:^7.0.6":
+  version: 7.0.6
+  resolution: "@ledgerhq/devices@npm:7.0.6"
   dependencies:
-    "@ledgerhq/errors": ^6.12.1
+    "@ledgerhq/errors": ^6.12.2
     "@ledgerhq/logs": ^6.10.1
     rxjs: 6
     semver: ^7.3.5
-  checksum: 9af8ea36fa971fdf9a35c42e5be93387a48db71f0cd9d0b38ec0664b03df3016a9602ebe94cb4155c83afb7aff73b1474b67b43021e871cd5f4c5b81dc1cb661
+  checksum: aa0d06ac269b1619496f2e4a396e4288a1b6ed997f03176d85dd9cf59309ebc7e70e8293b6df859db955e4691221737880ee17247d712928c16bd6c7c18f9783
   languageName: node
   linkType: hard
 
-"@ledgerhq/errors@npm:^6.10.0, @ledgerhq/errors@npm:^6.12.1":
-  version: 6.12.1
-  resolution: "@ledgerhq/errors@npm:6.12.1"
-  checksum: a729d0933221cd54f3293e6d64f22b8b191bc65577a5aefc14fd42c32ef427634ea3835a86154c7d0072a46363ef15afc638eba8761ced422eb8bd0fbf26d9e7
+"@ledgerhq/errors@npm:^6.10.0, @ledgerhq/errors@npm:^6.12.2":
+  version: 6.12.2
+  resolution: "@ledgerhq/errors@npm:6.12.2"
+  checksum: 7d1310e8c5089a7a0f36ec41a2120ab9a73de531811b024771bfa91c8061807bb19da405b3a37d673e420ac4d90038da3542d3e9df6a4a83fcc46c51ac8f9f72
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-node-hid-noevents@npm:^6.27.8":
-  version: 6.27.8
-  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:6.27.8"
+"@ledgerhq/hw-transport-node-hid-noevents@npm:^6.27.9":
+  version: 6.27.9
+  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:6.27.9"
   dependencies:
-    "@ledgerhq/devices": ^7.0.5
-    "@ledgerhq/errors": ^6.12.1
-    "@ledgerhq/hw-transport": ^6.27.8
+    "@ledgerhq/devices": ^7.0.6
+    "@ledgerhq/errors": ^6.12.2
+    "@ledgerhq/hw-transport": ^6.27.9
     "@ledgerhq/logs": ^6.10.1
     node-hid: 2.1.1
-  checksum: 9e77120bda90d42d08e32f99fe025356f015c364af062691f57aa03b9f1afd8264f6a85407e60622f9510cb0d849100e32309b29d555ca9eafa670fb23eb5fad
+  checksum: 5926a20fc2b84d7e6a45dd271988e45a144d555dca7d5bb4e19d2a531703a6c4d183d861a84dc5aba4f7c0de0ca1b4ca6425617b4d1705c6a82900b2d5a94688
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-node-hid-singleton@npm:^6.28.5":
-  version: 6.28.5
-  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:6.28.5"
+"@ledgerhq/hw-transport-node-hid-singleton@npm:^6.28.6":
+  version: 6.28.6
+  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:6.28.6"
   dependencies:
-    "@ledgerhq/devices": ^7.0.5
-    "@ledgerhq/errors": ^6.12.1
-    "@ledgerhq/hw-transport": ^6.27.8
-    "@ledgerhq/hw-transport-node-hid-noevents": ^6.27.8
+    "@ledgerhq/devices": ^7.0.6
+    "@ledgerhq/errors": ^6.12.2
+    "@ledgerhq/hw-transport": ^6.27.9
+    "@ledgerhq/hw-transport-node-hid-noevents": ^6.27.9
     "@ledgerhq/logs": ^6.10.1
     lodash: ^4.17.21
     node-hid: 2.1.1
     usb: 2.5.1
-  checksum: b27a8b59cfaf6f9bbab65663e0708f382b6c8d9ecb13fc8f6acafb001a57e4b502f35fe82c7b829295b39e7c462e8d5c3ca693dddf5604c6aadd1f22dc22c033
+  checksum: 60785291824085375b584b7fd557a11daf860efdbb35fd35bf7d42e56a94b71e9b525b397684be6cf05e0ed092514a2b183528556061e35725ba933b2bb8140d
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-webhid@npm:^6.27.8":
-  version: 6.27.8
-  resolution: "@ledgerhq/hw-transport-webhid@npm:6.27.8"
+"@ledgerhq/hw-transport-webhid@npm:^6.27.9":
+  version: 6.27.9
+  resolution: "@ledgerhq/hw-transport-webhid@npm:6.27.9"
   dependencies:
-    "@ledgerhq/devices": ^7.0.5
-    "@ledgerhq/errors": ^6.12.1
-    "@ledgerhq/hw-transport": ^6.27.8
+    "@ledgerhq/devices": ^7.0.6
+    "@ledgerhq/errors": ^6.12.2
+    "@ledgerhq/hw-transport": ^6.27.9
     "@ledgerhq/logs": ^6.10.1
-  checksum: 1954decbd2299c4f5e1a71a4d376ec626bce7e437ac6ce1f8ea7cc8a06b1b38b630b94cc36bcc6f9b9a41b49cdf74a7c5d62f5cce7438dea893d20b0069af765
+  checksum: e5a57093cd5d852a955a147b6dad89c35893815f355e060a055c9ff3c7b449dc7f5d6ebf8ca161fe5c766ee72319ddf5251d810c4a83d81e50f11067bee5e333
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-webusb@npm:^6.27.8":
-  version: 6.27.8
-  resolution: "@ledgerhq/hw-transport-webusb@npm:6.27.8"
+"@ledgerhq/hw-transport-webusb@npm:^6.27.9":
+  version: 6.27.9
+  resolution: "@ledgerhq/hw-transport-webusb@npm:6.27.9"
   dependencies:
-    "@ledgerhq/devices": ^7.0.5
-    "@ledgerhq/errors": ^6.12.1
-    "@ledgerhq/hw-transport": ^6.27.8
+    "@ledgerhq/devices": ^7.0.6
+    "@ledgerhq/errors": ^6.12.2
+    "@ledgerhq/hw-transport": ^6.27.9
     "@ledgerhq/logs": ^6.10.1
-  checksum: 9c86d05e71e986120f17517f86970bb255fce38c78195e9727f983829310287ef902c4874b207a5f65817048bc8992467b4cf3ee5e8663d1cb7020eca9523c11
+  checksum: efac8759deb7a6654b2425606b98155d10dda66977eec21f4ae1f28743a12483f7a5d337f62aac06e3bc8a520eb4eb8c274d508da6576833a047bf4802c1d6fd
   languageName: node
   linkType: hard
 
@@ -1897,14 +1897,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport@npm:^6.27.8":
-  version: 6.27.8
-  resolution: "@ledgerhq/hw-transport@npm:6.27.8"
+"@ledgerhq/hw-transport@npm:^6.27.9":
+  version: 6.27.9
+  resolution: "@ledgerhq/hw-transport@npm:6.27.9"
   dependencies:
-    "@ledgerhq/devices": ^7.0.5
-    "@ledgerhq/errors": ^6.12.1
+    "@ledgerhq/devices": ^7.0.6
+    "@ledgerhq/errors": ^6.12.2
     events: ^3.3.0
-  checksum: 28f923833edaf1c3a0560d21ffed507c0a9117d8f4f0789027d409a38bbe6229f8315019c5560ab2b15cb7ba34adafe0f3711c1989110f0dd805baa293cc690b
+  checksum: a6a7fe4e52c23838bf64722147cd8d227046142674a8c4a981120b1a7867d83c1f8d70adda4515cfd7a3d6a0a5cb4d68e4c2d04dc0cbdcd1847ec239229806c8
   languageName: node
   linkType: hard
 
@@ -2209,11 +2209,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports"
   dependencies:
-    "@babel/runtime": ^7.20.6
-    "@ledgerhq/hw-transport": ^6.27.8
-    "@ledgerhq/hw-transport-node-hid-singleton": ^6.28.5
-    "@ledgerhq/hw-transport-webhid": ^6.27.8
-    "@ledgerhq/hw-transport-webusb": ^6.27.8
+    "@babel/runtime": ^7.20.7
+    "@ledgerhq/hw-transport": ^6.27.9
+    "@ledgerhq/hw-transport-node-hid-singleton": ^6.28.6
+    "@ledgerhq/hw-transport-webhid": ^6.27.9
+    "@ledgerhq/hw-transport-webusb": ^6.27.9
     "@polkadot/util": 10.2.2-6-x
   dependenciesMeta:
     "@ledgerhq/hw-transport-node-hid-singleton":
@@ -2225,8 +2225,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/hw-ledger@workspace:packages/hw-ledger"
   dependencies:
-    "@babel/runtime": ^7.20.6
-    "@ledgerhq/hw-transport": ^6.27.8
+    "@babel/runtime": ^7.20.7
+    "@ledgerhq/hw-transport": ^6.27.9
     "@polkadot/hw-ledger-transports": 10.2.2-6-x
     "@polkadot/util": 10.2.2-6-x
     "@zondax/ledger-substrate": ^0.40.2
@@ -2237,7 +2237,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/keyring@workspace:packages/keyring"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
     "@polkadot/util": 10.2.2-6-x
     "@polkadot/util-crypto": 10.2.2-6-x
   peerDependencies:
@@ -2250,7 +2250,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/networks@workspace:packages/networks"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
     "@polkadot/hw-ledger": 10.2.2-6-x
     "@polkadot/util": 10.2.2-6-x
     "@substrate/ss58-registry": ^1.36.0
@@ -2261,7 +2261,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
     "@noble/hashes": 1.1.5
     "@noble/secp256k1": 1.7.0
     "@polkadot/networks": 10.2.2-6-x
@@ -2282,7 +2282,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
     "@polkadot/x-bigint": 10.2.2-6-x
     "@polkadot/x-global": 10.2.2-6-x
     "@polkadot/x-randomvalues": 10.2.2-6-x
@@ -2375,7 +2375,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-bigint@workspace:packages/x-bigint"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
     "@polkadot/x-global": 10.2.2-6-x
   languageName: unknown
   linkType: soft
@@ -2384,7 +2384,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-bundle@workspace:packages/x-bundle"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
     "@polkadot/util": 10.2.2-6-x
     buffer-es6: ^4.9.3
   languageName: unknown
@@ -2394,7 +2394,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-fetch@workspace:packages/x-fetch"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
     "@polkadot/x-global": 10.2.2-6-x
     "@types/node-fetch": ^2.6.2
     node-fetch: ^3.3.0
@@ -2405,7 +2405,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-global@workspace:packages/x-global"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
   languageName: unknown
   linkType: soft
 
@@ -2413,7 +2413,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
     "@polkadot/x-global": 10.2.2-6-x
     "@types/react-native": ^0.70.8
   languageName: unknown
@@ -2423,7 +2423,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-textdecoder@workspace:packages/x-textdecoder"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
     "@polkadot/x-global": 10.2.2-6-x
   languageName: unknown
   linkType: soft
@@ -2432,7 +2432,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-textencoder@workspace:packages/x-textencoder"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
     "@polkadot/x-global": 10.2.2-6-x
   languageName: unknown
   linkType: soft
@@ -2441,7 +2441,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-ws@workspace:packages/x-ws"
   dependencies:
-    "@babel/runtime": ^7.20.6
+    "@babel/runtime": ^7.20.7
     "@polkadot/x-global": 10.2.2-6-x
     "@types/websocket": ^1.0.5
     websocket: ^1.0.34
@@ -2829,13 +2829,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^29.2.4":
-  version: 29.2.4
-  resolution: "@types/jest@npm:29.2.4"
+"@types/jest@npm:^29.2.5":
+  version: 29.2.5
+  resolution: "@types/jest@npm:29.2.5"
   dependencies:
     expect: ^29.0.0
     pretty-format: ^29.0.0
-  checksum: 9deb4756fe1b438d41ff1aae7d6c216c9e49e5fe60f539f8edb6698ffeb530ff7b25d37e223439b03602ca3a7397c9c2e53e1a39c7bd616353472fce0cc04107
+  checksum: d668470f00ec4cb8b8457f1fd90f7358fad8f22d74b85006dad6be522d6b9bf10f49f597e88d1d1a518d211c1b65be32a1f27f0e49ce0658d110a9206b8ea310
   languageName: node
   linkType: hard
 
@@ -10875,9 +10875,9 @@ resolve@^2.0.0-next.3:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@babel/core": ^7.20.5
+    "@babel/core": ^7.20.7
     "@polkadot/dev": ^0.67.175
-    "@types/jest": ^29.2.4
+    "@types/jest": ^29.2.5
   languageName: unknown
   linkType: soft
 

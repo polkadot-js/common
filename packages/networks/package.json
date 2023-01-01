@@ -20,7 +20,7 @@
   "version": "10.2.2-6-x",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.20.6",
+    "@babel/runtime": "^7.20.7",
     "@polkadot/util": "10.2.2-6-x",
     "@substrate/ss58-registry": "^1.36.0"
   },
