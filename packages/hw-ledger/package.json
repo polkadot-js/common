@@ -26,6 +26,6 @@
     "@ledgerhq/hw-transport": "^6.27.9",
     "@polkadot/hw-ledger-transports": "10.2.2-7-x",
     "@polkadot/util": "10.2.2-7-x",
-    "@zondax/ledger-substrate": "^0.40.2"
+    "@zondax/ledger-substrate": "^0.40.3"
   }
 }
