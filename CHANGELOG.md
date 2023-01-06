@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## master
+## 10.2.2 Jan 6, 2023
+
+Contributed:
+
+- Adjust Nodle Ledger mapping (Thanks to https://github.com/aliXsed)
 
 Changes:
 
