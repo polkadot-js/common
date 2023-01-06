@@ -16,6 +16,7 @@
        2	Nantian                       	fix bigint type (#1079)
        2	Stefanie Doll                 	Add missing dependencies to util-crypto (#424)
        1	Agustinus Theodorus           	docs: fix typo in naclSeal docs. (#1005)
+       1	Alex Sedighi                  	fix Nodle's known network name (#1699)
        1	Alexander Krupenkin           	Added ECDSA keypair support (#589)
        1	alexdniep                     	added equilibrium slip44; added equilibrium genesis hash (#984)
        1	amphineko                     	chore: fix typo in versionDetect messages (#941)
