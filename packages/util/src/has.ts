@@ -12,6 +12,7 @@ declare const module: unknown;
 declare const require: unknown;
 
 // We define a scappy low-level interface to mock Buffer
+// (this removes the need for the node typings)
 type BufferClass = ((value: unknown) => unknown) & {
   isBuffer: (value: unknown) => boolean;
 }
