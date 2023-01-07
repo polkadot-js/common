@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## master
+## 10.2.3 Jan 7, 2023
 
 Changes:
 
-- Adjust `isBuffer` check on `xglobal` (no auto-polyfill detection)
+- Adjust `isBuffer` check on `xglobal` (no auto-polyfill detection on eg. parcel)
+- Upgrade dependencies to latest stable versions
 
 
 ## 10.2.2 Jan 6, 2023
