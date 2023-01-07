@@ -1639,5 +1639,18 @@
     ],
     "standardAccount": "*25519",
     "website": "https://nftmart.io"
+  },
+  {
+    "prefix": 13116,
+    "network": "bittensor",
+    "displayName": "Bittensor",
+    "symbols": [
+      "TAO"
+    ],
+    "decimals": [
+      9
+    ],
+    "standardAccount": "*25519",
+    "website": "https://bittensor.com"
   }
 ]

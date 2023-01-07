@@ -17,14 +17,14 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "10.2.3-0-x",
+  "version": "10.2.3",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.20.7",
-    "@polkadot/util": "10.2.3-0-x",
-    "@substrate/ss58-registry": "^1.36.0"
+    "@polkadot/util": "10.2.3",
+    "@substrate/ss58-registry": "^1.37.0"
   },
   "devDependencies": {
-    "@polkadot/hw-ledger": "10.2.3-0-x"
+    "@polkadot/hw-ledger": "10.2.3"
   }
 }
