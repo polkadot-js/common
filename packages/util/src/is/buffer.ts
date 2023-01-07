@@ -1,6 +1,8 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { xglobal } from '@polkadot/x-global';
+
 import { hasBuffer } from '../has';
 import { isFunction } from './function';
 
@@ -20,5 +22,5 @@ import { isFunction } from './function';
  */
 export function isBuffer (value: unknown): value is Buffer {
   // we do check a function first, since it is slightly faster than isBuffer itself
-  return hasBuffer && isFunction(value && (value as Buffer).readDoubleLE) && Buffer.isBuffer(value);
+  return hasBuffer && isFunction(value && (value as Buffer).readDoubleLE) && (xglobal.Buffer as typeof Buffer).isBuffer(value);
 }
