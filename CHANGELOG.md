@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Adjust `isBuffer` check on `xglobal` (no auto-polyfill detection)
+
+
 ## 10.2.2 Jan 6, 2023
 
 Contributed:
