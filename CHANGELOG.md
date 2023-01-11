@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Add the `withAll` (default false) flag to `formatBalance` to format to max decimals
+- Add the `withZero` (default true) flags to `formatBalance` to retain trailing zeros
+
+
 ## 10.2.3 Jan 7, 2023
 
 Changes:
