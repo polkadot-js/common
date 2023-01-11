@@ -37,6 +37,24 @@ describe('formatBalance', (): void => {
       ).toEqual('123.4567 µUnit');
     });
 
+    it('formats 123,456,789,000 (decimals=10, withAll=true)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { decimals: 10, forceUnit: '-', withAll: true, withSi: true })
+      ).toEqual('12.3456789000 Unit');
+    });
+
+    it('formats 123,456,789,000 (decimals=10, withAll=true, withZero=false)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { decimals: 10, forceUnit: '-', withAll: true, withSi: true, withZero: false })
+      ).toEqual('12.3456789 Unit');
+    });
+
+    it('formats 123,000,000,000 (decimals=9, withAll=true, withZero=false)', (): void => {
+      expect(
+        formatBalance('123000000000', { decimals: 9, forceUnit: '-', withAll: true, withSi: true, withZero: false })
+      ).toEqual('123 Unit');
+    });
+
     it('formats 123,456,789,000 (decimals=15, Compact)', (): void => {
       const compact = {
         something: 'else',
