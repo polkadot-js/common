@@ -1,4 +1,4 @@
-    1505	Jaco                          	formatBalance withAll/withZero (#1703)
+    1506	Jaco                          	Bump deps (#1704)
       10	Carlo Sala                    	feat(networks): support ledger for ajuna  (#1682)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
