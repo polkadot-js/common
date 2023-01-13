@@ -98,9 +98,6 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | b
     .padEnd(withAll ? Math.max(decimals, 4) : 4, '0')
     .substring(0, withAll ? Math.max(4, decimals + si.power) : 4);
 
-  console.error(mid, pre, post, text
-    .padStart((mid < 0 ? 0 - mid : 0) + 1, '0'));
-
   // remove all trailing 0's (if required via flag)
   if (!withZero) {
     let end = post.length - 1;
