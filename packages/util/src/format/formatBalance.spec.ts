@@ -13,6 +13,13 @@ describe('formatBalance', (): void => {
       expect(formatBalance('0')).toEqual('0');
     });
 
+    // this is after an issue/test from actual values with forceUnit
+    it('formats 1000 (BN) (decimals = 12, withAll, withZero = false)', (): void => {
+      expect(
+        formatBalance(new BN(1000), { decimals: 12, forceUnit: '-', withAll: true, withSi: false, withZero: true })
+      ).toEqual('0.000000001000');
+    });
+
     it('formats 123,456,789,000 (decimals=15)', (): void => {
       expect(
         formatBalance(TESTVAL, { decimals: 15, withSi: true })
