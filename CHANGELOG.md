@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 10.2.5 Jan 13, 2023
+
+Changes:
+
+- Bugfix for `formatBalance` (forceUnit) with `BN` inputs where output is less than 0
+
+
 ## 10.2.4 Jan 13, 2023
 
 Changes:

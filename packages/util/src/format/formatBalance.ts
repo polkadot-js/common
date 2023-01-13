@@ -93,10 +93,13 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | b
   // get the post from the midpoint onward and then first add max decimals
   // before trimming to the correct (calculated) amount of decimals again
   let post = text
-    .padStart((mid < 0 ? 0 - mid : 0) + 1, '0')
+    .padStart(mid < 0 ? decimals : 1, '0')
     .substring(mid < 0 ? 0 : mid)
     .padEnd(withAll ? Math.max(decimals, 4) : 4, '0')
     .substring(0, withAll ? Math.max(4, decimals + si.power) : 4);
+
+  console.error(mid, pre, post, text
+    .padStart((mid < 0 ? 0 - mid : 0) + 1, '0'));
 
   // remove all trailing 0's (if required via flag)
   if (!withZero) {
