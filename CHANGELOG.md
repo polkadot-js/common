@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 10.2.6 Jan 13, 2023
+
+Changes:
+
+- Drop stray `console.error` log (it really _is_ Friday 13th)
+
+
 ## 10.2.5 Jan 13, 2023
 
 Changes:
