@@ -2415,7 +2415,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.20.7
     "@polkadot/x-global": 10.2.5
-    "@types/react-native": ^0.70.8
+    "@types/react-native": ^0.71.0
   languageName: unknown
   linkType: soft
 
@@ -2939,12 +2939,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.70.8":
-  version: 0.70.8
-  resolution: "@types/react-native@npm:0.70.8"
+"@types/react-native@npm:^0.71.0":
+  version: 0.71.0
+  resolution: "@types/react-native@npm:0.71.0"
   dependencies:
     "@types/react": "*"
-  checksum: e951992178f0a6a2a5bc5312824ad67146594840c03ec51156022eacb23e8db7be7470d0c9ad61828dbae840e531bf0cf553205b9dc290b358091329746fd094
+  checksum: 58332a3ab0bd239fa4211fd39d5143c8a6ae9c9b6217ebea1a8821eccfcc3b3805d9b69dd18eaf4917e9f656b9b59e2517591501b512ee7bd8cb12efa111a255
   languageName: node
   linkType: hard
 
