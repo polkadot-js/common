@@ -141,5 +141,8 @@ export const knownGenesis: KnownGenesis = {
   ],
   xxnetwork: [
     '0x50dd5d206917bf10502c68fb4d18a59fc8aa31586f4e8856b493e43544aa82aa'
+  ],
+  ternoa: [
+    '0x6859c81ca95ef624c9dfe4dc6e3381c33e5d6509e35e147092bfbc780f777c4e'
   ]
 };

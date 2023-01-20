@@ -39,5 +39,6 @@ export const knownLedger: KnownLedger = {
   statemint: 0x00000162, // common-good on Polkadot, shares derivation
   unique: 0x00000162,
   vtb: 0x000002b6,
-  xxnetwork: 0x000007a3
+  xxnetwork: 0x000007a3,
+  ternoa:0x00003e3
 };
