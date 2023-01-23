@@ -33,8 +33,8 @@ export const ledgerApps: Record<string, string> = {
   stafi: 'Stafi',
   statemine: 'Statemine',
   statemint: 'Statemint',
+  ternoa: 'Ternoa',
   unique: 'Unique',
   vtb: 'VTB',
-  xxnetwork: 'XXNetwork',
-  ternoa:'Ternoa'
+  xxnetwork: 'XXNetwork'
 };
