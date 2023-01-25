@@ -1182,6 +1182,19 @@
     "website": "https://geek.gl"
   },
   {
+    "prefix": 995,
+    "network": "ternoa",
+    "displayName": "Ternoa",
+    "symbols": [
+      "CAPS"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://www.ternoa.network"
+  },
+  {
     "prefix": 1110,
     "network": "efinity",
     "displayName": "Efinity",
@@ -1362,19 +1375,6 @@
     ],
     "standardAccount": "*25519",
     "website": "https://chainflip.io/"
-  },
-  {
-    "prefix": 2114,
-    "network": "Turing",
-    "displayName": "Turing Network",
-    "symbols": [
-      "TUR"
-    ],
-    "decimals": [
-      10
-    ],
-    "standardAccount": "*25519",
-    "website": "https://oak.tech/turing/home/"
   },
   {
     "prefix": 2207,
