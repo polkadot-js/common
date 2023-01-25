@@ -2226,7 +2226,7 @@ __metadata:
     "@ledgerhq/hw-transport": ^6.27.10
     "@polkadot/hw-ledger-transports": 10.2.7-4-x
     "@polkadot/util": 10.2.7-4-x
-    "@zondax/ledger-substrate": ^0.40.3
+    "@zondax/ledger-substrate": ^0.40.4
   languageName: unknown
   linkType: soft
 
@@ -2826,13 +2826,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^29.2.6":
-  version: 29.2.6
-  resolution: "@types/jest@npm:29.2.6"
+"@types/jest@npm:^29.4.0":
+  version: 29.4.0
+  resolution: "@types/jest@npm:29.4.0"
   dependencies:
     expect: ^29.0.0
     pretty-format: ^29.0.0
-  checksum: 90190ac830334af1470d255853f9621fe657e5030b4d96773fc1f884833cd303c76580b00c1b86dc38a8db94f1c7141d462190437a10af31852b8845a57c48ba
+  checksum: 23760282362a252e6690314584d83a47512d4cd61663e957ed3398ecf98195fe931c45606ee2f9def12f8ed7d8aa102d492ec42d26facdaf8b78094a31e6568e
   languageName: node
   linkType: hard
 
@@ -3515,9 +3515,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zondax/ledger-substrate@npm:^0.40.3":
-  version: 0.40.3
-  resolution: "@zondax/ledger-substrate@npm:0.40.3"
+"@zondax/ledger-substrate@npm:^0.40.4":
+  version: 0.40.4
+  resolution: "@zondax/ledger-substrate@npm:0.40.4"
   dependencies:
     "@babel/runtime": ^7.18.9
     "@ledgerhq/hw-transport": 6.27.1
@@ -3530,7 +3530,7 @@ __metadata:
     hash.js: ^1.1.7
   bin:
     ledger-substrate: dist/cmd/cli.js
-  checksum: 9029b63435542f95b338cc0758f0fe94f6fa654fcc85130c9d2ddc7acc94020ee398c28b5b430f3afa6c11168c17fa1281a5236fb59ccda06341a9abeef1626b
+  checksum: ce28b088c9245b989fc6991e4a83723dd700d94ce1c7c7c9598be65e5ebae43ae8d3fb2dddf7fa4da477036065efc44425b1c134661b1e1d042e1bef3c885dbc
   languageName: node
   linkType: hard
 
@@ -10784,7 +10784,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.20.12
     "@polkadot/dev": ^0.67.187
-    "@types/jest": ^29.2.6
+    "@types/jest": ^29.4.0
   languageName: unknown
   linkType: soft
 
