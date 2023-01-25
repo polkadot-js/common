@@ -22,7 +22,7 @@
   "dependencies": {
     "@babel/runtime": "^7.20.13",
     "@polkadot/util": "10.2.7-3-x",
-    "@substrate/ss58-registry": "^1.37.0"
+    "@substrate/ss58-registry": "^1.38.0"
   },
   "devDependencies": {
     "@polkadot/hw-ledger": "10.2.7-3-x"
