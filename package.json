@@ -11,9 +11,9 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "10.2.7-1-x",
+  "version": "10.2.7-5-x",
   "versions": {
-    "git": "10.2.7-1-x",
+    "git": "10.2.7-5-x",
     "npm": "10.2.6"
   },
   "workspaces": [
@@ -34,8 +34,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@polkadot/dev": "^0.67.181",
-    "@types/jest": "^29.2.5"
+    "@polkadot/dev": "^0.67.187",
+    "@types/jest": "^29.4.0"
   },
   "resolutions": {
     "typescript": "^4.9.4"

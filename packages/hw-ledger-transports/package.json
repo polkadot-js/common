@@ -16,16 +16,16 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "10.2.7-1-x",
+  "version": "10.2.7-5-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@babel/runtime": "^7.20.7",
+    "@babel/runtime": "^7.20.13",
     "@ledgerhq/hw-transport": "^6.27.10",
     "@ledgerhq/hw-transport-webhid": "^6.27.10",
     "@ledgerhq/hw-transport-webusb": "^6.27.10",
-    "@polkadot/util": "10.2.7-1-x"
+    "@polkadot/util": "10.2.7-5-x"
   },
   "optionalDependencies": {
     "@ledgerhq/hw-transport-node-hid-singleton": "^6.28.7"
