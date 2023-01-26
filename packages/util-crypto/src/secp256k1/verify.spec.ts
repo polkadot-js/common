@@ -6,7 +6,7 @@ import '../bundleInit';
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../test/performance';
+import { perfWasm } from '../test/performance';
 import { hasher } from './hasher';
 import { secp256k1PairFromSeed, secp256k1Verify } from '.';
 
@@ -63,7 +63,7 @@ describe('secp256k1Verify', (): void => {
     });
   });
 
-  performanceWasm('secp256k1Verify', 100, (_, onlyJs) =>
+  perfWasm('secp256k1Verify', 100, (_, onlyJs) =>
     secp256k1Verify(
       `\x19Ethereum Signed Message:\n${message.length.toString()}${message}`,
       '0x55bd020bdbbdc02de34e915effc9b18a99002f4c29f64e22e8dcbb69e722ea6c28e1bb53b9484063fbbfd205e49dcc1f620929f520c9c4c3695150f05a28f52a01',

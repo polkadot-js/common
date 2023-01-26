@@ -2,8 +2,15 @@
 
 ## master
 
+Contributed:
+
+- Ledger support for Ternoa (Thanks to https://github.com/mohsinriaz17)
+
 Changes:
 
+- Expand `arrayChunk` tests
+- Adjust output for Ledger saninity checks
+- Expand exported `bigint` constants to match with those in `BN`
 - Upgrade dependencies to latest stable versions
 - Adjust internal character maps to operate on `Uint8Array` instad of `Array<number>`
 

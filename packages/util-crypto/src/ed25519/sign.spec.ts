@@ -4,7 +4,7 @@
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../test/performance';
+import { perfWasm } from '../test/performance';
 import { ed25519PairFromSeed, ed25519Sign } from '.';
 
 const PAIR = ed25519PairFromSeed(
@@ -30,7 +30,7 @@ describe('ed25519Sign', (): void => {
     });
   });
 
-  performanceWasm('ed25519Sign', 250, (input, onlyJs) =>
+  perfWasm('ed25519Sign', 250, (input, onlyJs) =>
     ed25519Sign(input, PAIR, onlyJs)
   );
 });

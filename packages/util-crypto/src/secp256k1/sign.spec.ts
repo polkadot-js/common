@@ -4,7 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../test/performance';
+import { perfWasm } from '../test/performance';
 import { secp256k1PairFromSeed, secp256k1Sign } from '.';
 
 const pair = secp256k1PairFromSeed(hexToU8a('0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae'));
@@ -29,7 +29,7 @@ describe('sign', (): void => {
 
   // since the libsecp256k1 signatures don't match (but can be verified), we
   // do both signing and verification here (checking the extracted key)
-  performanceWasm('secp256k1Sign', 1000, (_, onlyJs) =>
+  perfWasm('secp256k1Sign', 1000, (_, onlyJs) =>
     secp256k1Sign(msg, pair, undefined, onlyJs)
   );
 });

@@ -5,7 +5,7 @@ import { u8aEq, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { randomAsU8a } from '../random/asU8a';
-import { performanceWasm } from '../test/performance';
+import { perfWasm } from '../test/performance';
 import { pbkdf2Encode } from '.';
 
 const KNOWN_SALT = new Uint8Array([
@@ -42,7 +42,7 @@ describe('pbkdf2Encode', (): void => {
     });
   });
 
-  performanceWasm('pbkdf2Encode', 8, (input, onlyJs) =>
+  perfWasm('pbkdf2Encode', 8, (input, onlyJs) =>
     pbkdf2Encode(input, input, undefined, onlyJs)
   );
 });
