@@ -2,8 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { BN } from '../bn';
-import { SQRT_MAX_SAFE_INTEGER } from './sqrt';
-import { nSqrt } from '.';
+import { _sqrt2pow53n, nSqrt } from '.';
 
 export const SQRT_TESTS: [string | number | BN | bigint, string | number][] = [
   [0, 0],
@@ -41,7 +40,7 @@ describe('nSqrt', (): void => {
         ~~Math.sqrt(
           Number.MAX_SAFE_INTEGER
         )
-      ) === SQRT_MAX_SAFE_INTEGER
+      ) === _sqrt2pow53n
     ).toEqual(true);
   });
 
