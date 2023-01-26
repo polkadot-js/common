@@ -13,7 +13,7 @@ const map = new Uint8Array(256);
 
 // We use charCodeAt for access here and in the decoder loop - this is faster
 // on lookups (array + numbers) and also faster than accessing the specific
-// character via data[i]
+// character via data[i] (around a 50% improvement on perf tests)
 for (let i = 0; i < chars.length; i++) {
   map[chars.charCodeAt(i)] = i;
 }
