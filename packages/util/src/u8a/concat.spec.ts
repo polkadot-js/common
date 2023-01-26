@@ -4,7 +4,7 @@
 import { getRandomValues } from '@polkadot/x-randomvalues';
 
 import { arrayRange } from '../array';
-import { perf } from '../test/performance';
+import { perf } from '../test';
 import { u8aConcat, u8aConcatStrict } from '.';
 
 const ptest = arrayRange(10).map(() => getRandomValues(new Uint8Array(32)));

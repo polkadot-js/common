@@ -4,7 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../test/performance';
+import { perfWasm } from '../test';
 import { secp256k1Expand } from '.';
 
 describe('secp256k1Expand', (): void => {
@@ -36,7 +36,7 @@ describe('secp256k1Expand', (): void => {
     });
   });
 
-  performanceWasm('secp256k1Expand', 2000, (input, onlyJs) => secp256k1Expand(input, onlyJs),
+  perfWasm('secp256k1Expand', 2000, (input, onlyJs) => secp256k1Expand(input, onlyJs),
     [[
       hexToU8a('0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077')
     ]]

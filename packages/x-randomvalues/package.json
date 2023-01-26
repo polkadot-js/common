@@ -26,6 +26,7 @@
     "@polkadot/x-global": "10.2.7-7-x"
   },
   "devDependencies": {
+    "@polkadot/util": "10.2.7-7-x",
     "@types/react-native": "^0.71.0"
   },
   "denoDependencies": {

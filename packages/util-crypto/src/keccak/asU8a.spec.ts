@@ -4,7 +4,7 @@
 import { hexToU8a, stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../test/performance';
+import { perfWasm } from '../test';
 import { keccakAsU8a } from '.';
 
 describe('keccakAsU8a', (): void => {
@@ -43,7 +43,7 @@ describe('keccakAsU8a', (): void => {
       });
     });
 
-    performanceWasm(`keccakAsU8a, bitLength=${bitLength}`, 128000, (input, onlyJs) =>
+    perfWasm(`keccakAsU8a, bitLength=${bitLength}`, 128000, (input, onlyJs) =>
       keccakAsU8a(input, bitLength, onlyJs)
     );
   });

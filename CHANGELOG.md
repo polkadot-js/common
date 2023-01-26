@@ -12,6 +12,7 @@ Changes:
 - Adjust output for Ledger saninity checks
 - Expand exported `bigint` constants to match with those in `BN`
 - Upgrade dependencies to latest stable versions
+- Adjust internal character maps to operate on `Uint8Array` instad of `Array<number>`
 
 
 ## 10.2.6 Jan 13, 2023

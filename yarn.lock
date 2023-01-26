@@ -2411,6 +2411,7 @@ __metadata:
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
     "@babel/runtime": ^7.20.13
+    "@polkadot/util": 10.2.7-7-x
     "@polkadot/x-global": 10.2.7-7-x
     "@types/react-native": ^0.71.0
   languageName: unknown

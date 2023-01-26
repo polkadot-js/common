@@ -4,7 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../test/performance';
+import { perfWasm } from '../test';
 import { blake2AsU8a } from '.';
 
 describe('blake2AsU8a', (): void => {
@@ -61,7 +61,7 @@ describe('blake2AsU8a', (): void => {
   });
 
   describe.each([256, 512] as (256 | 512)[])('bitLength=$p', (bitLength): void => {
-    performanceWasm(`blake2AsU8a, bitLength=${bitLength}`, 64000, (input, onlyJs) =>
+    perfWasm(`blake2AsU8a, bitLength=${bitLength}`, 64000, (input, onlyJs) =>
       blake2AsU8a(input, bitLength, null, onlyJs)
     );
   });

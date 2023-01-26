@@ -5,7 +5,7 @@ import { hexToU8a, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { mnemonicToMiniSecret } from '../../mnemonic';
-import { performanceWasm } from '../../test/performance';
+import { perfWasm } from '../../test';
 import { secp256k1PairFromSeed } from '..';
 
 // mnemonic, secret, public, account_id
@@ -65,7 +65,7 @@ describe('secp256k1PairFromSeed', (): void => {
     });
   });
 
-  performanceWasm('secp256k1PairFromSeed', 500, (input, onlyJs) =>
+  perfWasm('secp256k1PairFromSeed', 500, (input, onlyJs) =>
     secp256k1PairFromSeed(input, onlyJs)
   );
 });
