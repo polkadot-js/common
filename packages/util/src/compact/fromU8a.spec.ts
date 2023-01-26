@@ -3,7 +3,7 @@
 
 import { BN } from '../bn/bn';
 import { hexToU8a } from '../hex/toU8a';
-import { perf } from '../test/performance';
+import { perf } from '../test';
 import { compactFromU8a, compactFromU8aLim } from '.';
 
 describe('compactFromU8a', (): void => {

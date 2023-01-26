@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { arrayRange } from '@polkadot/util';
-import { perf, perfCmp } from '@polkadot/util/test/performance';
+import { perf, perfCmp } from '@polkadot/util/test';
 
 import { randomAsU8a } from '..';
 

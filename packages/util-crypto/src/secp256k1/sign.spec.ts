@@ -4,7 +4,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test/performance';
+import { perfWasm } from '../test';
 import { secp256k1PairFromSeed, secp256k1Sign } from '.';
 
 const pair = secp256k1PairFromSeed(hexToU8a('0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae'));

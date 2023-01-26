@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { stringToU8a } from '../string';
-import { perf } from '../test/performance';
+import { perf } from '../test';
 import { isAscii } from '.';
 
 describe('isAscii', (): void => {

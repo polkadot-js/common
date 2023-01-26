@@ -3,7 +3,7 @@
 
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test/performance';
+import { perfWasm } from '../test';
 import { sha512AsU8a } from '.';
 
 describe('sha512AsU8a', (): void => {

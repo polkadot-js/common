@@ -5,7 +5,7 @@ import { u8aToHex, u8aToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { keccakAsU8a } from '../keccak';
-import { perfWasm } from '../test/performance';
+import { perfWasm } from '../test';
 import { secp256k1Recover } from '.';
 
 const sig = u8aToU8a('0x7505f2880114da51b3f5d535f8687953c0ab9af4ab81e592eaebebf53b728d2b6dfd9b5bcd70fee412b1f31360e7c2774009305cb84fc50c1d0ff8034dfa5fff');

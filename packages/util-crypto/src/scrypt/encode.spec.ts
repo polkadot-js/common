@@ -3,7 +3,7 @@
 
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test/performance';
+import { perfWasm } from '../test';
 import { DEFAULT_PARAMS } from './defaults';
 import { scryptEncode } from '.';
 

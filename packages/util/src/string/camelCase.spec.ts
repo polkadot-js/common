@@ -4,7 +4,7 @@
 import { getRandomValues } from '@polkadot/x-randomvalues';
 
 import { arrayRange } from '../array';
-import { perf } from '../test/performance';
+import { perf } from '../test';
 import { stringCamelCase, stringUpperFirst } from '.';
 
 const SEPS = [' ', '_', '-', '.', ','];

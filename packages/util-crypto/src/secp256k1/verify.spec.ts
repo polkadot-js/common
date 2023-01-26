@@ -6,7 +6,7 @@ import '../bundleInit';
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test/performance';
+import { perfWasm } from '../test';
 import { hasher } from './hasher';
 import { secp256k1PairFromSeed, secp256k1Verify } from '.';
 
