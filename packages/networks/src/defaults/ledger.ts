@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/networks authors & contributors
+// Copyright 2017-2023 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { KnownLedger } from '../types';
@@ -26,7 +26,7 @@ export const knownLedger: KnownLedger = {
   karura: 0x000002ae,
   khala: 0x000001b2,
   kusama: 0x000001b2,
-  'nodle-para': 0x000003eb,
+  nodle: 0x000003eb,
   origintrail: 0x00000162,
   parallel: 0x00000162,
   phala: 0x00000162,
@@ -37,6 +37,7 @@ export const knownLedger: KnownLedger = {
   stafi: 0x0000038b,
   statemine: 0x000001b2, // common-good on Kusama, shares derivation
   statemint: 0x00000162, // common-good on Polkadot, shares derivation
+  ternoa: 0x00003e3,
   unique: 0x00000162,
   vtb: 0x000002b6,
   xxnetwork: 0x000007a3

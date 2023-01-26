@@ -11,10 +11,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "10.1.15-2-x",
+  "version": "10.2.7-6-x",
   "versions": {
-    "git": "10.1.15-2-x",
-    "npm": "10.1.14"
+    "git": "10.2.7-6-x",
+    "npm": "10.2.6"
   },
   "workspaces": [
     "packages/*"
@@ -33,11 +33,11 @@
     "test:one": "polkadot-dev-run-test --runInBand"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.5",
-    "@polkadot/dev": "^0.67.167",
-    "@types/jest": "^29.2.3"
+    "@babel/core": "^7.20.12",
+    "@polkadot/dev": "^0.67.187",
+    "@types/jest": "^29.4.0"
   },
   "resolutions": {
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.4"
   }
 }

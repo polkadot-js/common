@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/keyring authors & contributors
+// Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { KeyringPair$Json } from './types';
@@ -48,6 +48,7 @@ describe('keypair', (): void => {
     });
 
     it('adds from a mnemonic, with correct ss58', (): void => {
+      // eslint-disable-next-line deprecation/deprecation
       setSS58Format(20); // this would not be used
       keyring.setSS58Format(2); // this would be used
 

@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/keyring authors & contributors
+// Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { hexToU8a, u8aToHex } from '@polkadot/util';
@@ -198,10 +198,12 @@ describe('pair', (): void => {
   it('allows encoding of address with different prefixes', (): void => {
     expect(keyring.alice.address).toEqual('5GoKvZWG5ZPYL1WUovuHW3zJBWBP5eT8CbqjdRY4Q6iMaQua');
 
+    // eslint-disable-next-line deprecation/deprecation
     setSS58Format(255);
 
     expect(keyring.alice.address).toEqual('yGHU8YKprxHbHdEv7oUK4rzMZXtsdhcXVG2CAMyC9WhzhjH2k');
 
+    // eslint-disable-next-line deprecation/deprecation
     setSS58Format(42);
   });
 

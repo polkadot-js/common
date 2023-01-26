@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/networks authors & contributors
+// Copyright 2017-2023 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { KnownGenesis } from '../types';
@@ -76,7 +76,7 @@ export const knownGenesis: KnownGenesis = {
     '0xe3777fa922cafbff200cadeaea1a76bd7898ad5b89f7848999058b50e715f636', // Kusama CC2
     '0x3fd7b9eb6a00376e5be61f01abb429ffb0b104be05eaff4d458da48fcd425baf' // Kusama CC1
   ],
-  'nodle-para': [
+  nodle: [
     '0x97da7ede98d7bad4e36b4d734b6055425a3be036da2a332ea5a7037656427a21'
   ],
   origintrail: [
@@ -128,6 +128,9 @@ export const knownGenesis: KnownGenesis = {
   ],
   subsocial: [
     '0x0bd72c1c305172e1275278aaeb3f161e02eccb7a819e63f62d47bd53a28189f8'
+  ],
+  ternoa: [
+    '0x6859c81ca95ef624c9dfe4dc6e3381c33e5d6509e35e147092bfbc780f777c4e'
   ],
   unique: [
     '0x84322d9cddbf35088f1e54e9a85c967a41a56a4f43445768125e61af166c7d31'

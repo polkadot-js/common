@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/x-bundle authors & contributors
+// Copyright 2017-2023 @polkadot/x-bundle authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Adapted from https://github.com/isaacs/inherits/blob/dbade4c47c548aa7259017eca8874d61c8aaad2b/inherits_browser.js

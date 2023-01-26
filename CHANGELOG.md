@@ -2,6 +2,55 @@
 
 ## master
 
+Changes:
+
+- Upgrade dependencies to latest stable versions
+- Adjust internal character maps to operate on `Uint8Array` instad of `Array<number>`
+
+
+## 10.2.6 Jan 13, 2023
+
+Changes:
+
+- Drop stray `console.error` log (it really _is_ Friday 13th)
+
+
+## 10.2.5 Jan 13, 2023
+
+Changes:
+
+- Bugfix for `formatBalance` (forceUnit) with `BN` inputs where output is less than 0
+
+
+## 10.2.4 Jan 13, 2023
+
+Changes:
+
+- Add the `withAll` (default false) flag to `formatBalance` to format to max decimals
+- Add the `withZero` (default true) flags to `formatBalance` to retain trailing zeros
+
+
+## 10.2.3 Jan 7, 2023
+
+Changes:
+
+- Adjust `isBuffer` check on `xglobal` (no auto-polyfill detection on eg. parcel)
+- Upgrade dependencies to latest stable versions
+
+
+## 10.2.2 Jan 6, 2023
+
+Contributed:
+
+- Adjust Nodle Ledger mapping (Thanks to https://github.com/aliXsed)
+
+Changes:
+
+- Upgrade dependencies to latest stable versions
+
+
+## 10.2.1 Dec 4, 2022
+
 Contributed:
 
 - Ledger support for Ajuna (Thanks to https://github.com/carlosala)
@@ -10,8 +59,8 @@ Changes:
 
 - `has{Buffer, Process}` now checks on `globalThis` (helps bundlers with auto-injection)
 - Add `/*#__PURE__*/` annotations for specific `export const something = someFunction(...)`
-- Adjust internal character maps to operate on `Uint8Array` instad of `Array<number>`
 - Upgrade dependencies to latest stable versions
+- Upgrade to `@polkadot/wasm-crypto` 6.4.1
 
 
 ## 10.1.14 Nov 27, 2022

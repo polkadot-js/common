@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { BN } from '../bn';
@@ -11,6 +11,13 @@ describe('formatBalance', (): void => {
     it('formats empty to 0', (): void => {
       expect(formatBalance()).toEqual('0');
       expect(formatBalance('0')).toEqual('0');
+    });
+
+    // this is after an issue/test from actual values with forceUnit
+    it('formats 1000 (BN) (decimals = 12, withAll, withZero = false)', (): void => {
+      expect(
+        formatBalance(new BN(1000), { decimals: 12, forceUnit: '-', withAll: true, withSi: false, withZero: true })
+      ).toEqual('0.000000001000');
     });
 
     it('formats 123,456,789,000 (decimals=15)', (): void => {
@@ -35,6 +42,24 @@ describe('formatBalance', (): void => {
       expect(
         formatBalance(TESTVAL, { decimals: 15, withSi: true })
       ).toEqual('123.4567 µUnit');
+    });
+
+    it('formats 123,456,789,000 (decimals=10, withAll=true)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { decimals: 10, forceUnit: '-', withAll: true, withSi: true })
+      ).toEqual('12.3456789000 Unit');
+    });
+
+    it('formats 123,456,789,000 (decimals=10, withAll=true, withZero=false)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { decimals: 10, forceUnit: '-', withAll: true, withSi: true, withZero: false })
+      ).toEqual('12.3456789 Unit');
+    });
+
+    it('formats 123,000,000,000 (decimals=9, withAll=true, withZero=false)', (): void => {
+      expect(
+        formatBalance('123000000000', { decimals: 9, forceUnit: '-', withAll: true, withSi: true, withZero: false })
+      ).toEqual('123 Unit');
     });
 
     it('formats 123,456,789,000 (decimals=15, Compact)', (): void => {

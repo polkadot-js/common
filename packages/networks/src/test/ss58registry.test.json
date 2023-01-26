@@ -848,6 +848,19 @@
     "website": "https://manta.network"
   },
   {
+    "prefix": 81,
+    "network": "sora_dot_para",
+    "displayName": "SORA Polkadot Parachain",
+    "symbols": [
+      "XOR"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://sora.org"
+  },
+  {
     "prefix": 88,
     "network": "polkadex",
     "displayName": "Polkadex Mainnet",
@@ -1169,6 +1182,19 @@
     "website": "https://geek.gl"
   },
   {
+    "prefix": 995,
+    "network": "ternoa",
+    "displayName": "Ternoa",
+    "symbols": [
+      "CAPS"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://www.ternoa.network"
+  },
+  {
     "prefix": 1110,
     "network": "efinity",
     "displayName": "Efinity",
@@ -1196,10 +1222,10 @@
   },
   {
     "prefix": 1222,
-    "network": "apex",
-    "displayName": "Apex Network",
+    "network": "krest",
+    "displayName": "Krest Network",
     "symbols": [
-      "APEX"
+      "KREST"
     ],
     "decimals": [
       18
@@ -1349,19 +1375,6 @@
     ],
     "standardAccount": "*25519",
     "website": "https://chainflip.io/"
-  },
-  {
-    "prefix": 2114,
-    "network": "Turing",
-    "displayName": "Turing Network",
-    "symbols": [
-      "TUR"
-    ],
-    "decimals": [
-      10
-    ],
-    "standardAccount": "*25519",
-    "website": "https://oak.tech/turing/home/"
   },
   {
     "prefix": 2207,
@@ -1626,5 +1639,18 @@
     ],
     "standardAccount": "*25519",
     "website": "https://nftmart.io"
+  },
+  {
+    "prefix": 13116,
+    "network": "bittensor",
+    "displayName": "Bittensor",
+    "symbols": [
+      "TAO"
+    ],
+    "decimals": [
+      9
+    ],
+    "standardAccount": "*25519",
+    "website": "https://bittensor.com"
   }
 ]

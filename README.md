@@ -1,10 +1,3 @@
-[![polkadotjs](https://img.shields.io/badge/polkadot-js-orange?logo=&style=flat-square)](https://polkadot.js.org)
-![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=flat-square)
-[![npm](https://img.shields.io/npm/v/@polkadot/util?logo=npm&style=flat-square)](https://www.npmjs.com/package/@polkadot/util)
-[![beta](https://img.shields.io/npm/v/@polkadot/util/beta?label=beta&logo=npm&style=flat-square)](https://www.npmjs.com/package/@polkadot/util)
-[![maintainability](https://img.shields.io/codeclimate/maintainability-percentage/polkadot-js/common?logo=code-climate&style=flat-square)](https://codeclimate.com/github/polkadot-js/common)
-[![coverage](https://img.shields.io/codeclimate/coverage/polkadot-js/common?logo=code-climate&style=flat-square)](https://codeclimate.com/github/polkadot-js/common)
-
 # @polkadot/common
 
 Various useful utility functions that are used across all projects in the [@polkadot](https://polkadot.js.org) namespace. It provides utility functions with additional safety checks, allowing not only for consistent coding, but also reducing the general boilerplate.
