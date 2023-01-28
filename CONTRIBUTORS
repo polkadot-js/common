@@ -1,4 +1,4 @@
-    1520	Jaco                          	Bump dev (#1718)
+    1521	Jaco                          	10.3.1 (#1719)
       10	Carlo Sala                    	feat(networks): support ledger for ajuna  (#1682)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)

@@ -17,13 +17,13 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "10.3.0",
+  "version": "10.3.1",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
     "@babel/runtime": "^7.20.13",
-    "@polkadot/x-global": "10.3.0",
+    "@polkadot/x-global": "10.3.1",
     "@types/node-fetch": "^2.6.2",
     "node-fetch": "^3.3.0"
   }
