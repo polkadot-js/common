@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 10.3.1 Jan 28, 2023
 
 Contributed:
 
@@ -9,10 +9,10 @@ Contributed:
 Changes:
 
 - Expand `arrayChunk` tests
-- Adjust output for Ledger saninity checks
+- Adjust output for Ledger sanity checks
 - Expand exported `bigint` constants to match with those in `BN`
-- Upgrade dependencies to latest stable versions
 - Adjust internal character maps to operate on `Uint8Array` instad of `Array<number>`
+- Upgrade dependencies to latest stable versions
 
 
 ## 10.2.6 Jan 13, 2023
