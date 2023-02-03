@@ -3,12 +3,10 @@
 
 import type { Constructor } from '../types';
 
-import { isFunction } from './function';
+import { isOnFunction } from './helpers';
 
 /**
  * @name isClass
  * Tests if the supplied agrument is a Class
  */
-export function isClass <T extends Constructor> (Clazz?: unknown): Clazz is T {
-  return isFunction(Clazz) && isFunction(Clazz.isPrototypeOf) && isFunction(Clazz.hasOwnProperty);
-}
+export const isClass: <T extends Constructor> (value?: unknown) => value is T = /*#__PURE__*/ isOnFunction('isPrototypeOf', 'hasOwnProperty');

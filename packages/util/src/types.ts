@@ -7,6 +7,10 @@ import type { BN } from './bn/bn';
 export interface Constructor<T = any> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   new(...value: any[]): T;
+
+  hasOwnProperty (prop: string): boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  isPrototypeOf (other: any): boolean;
 }
 
 export interface ToBigInt {
