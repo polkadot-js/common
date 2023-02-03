@@ -3,6 +3,8 @@
 
 import type { Constructor } from '../types';
 
+import { isClass } from './class';
+
 /**
  * @name isChildClass
  * @summary Tests if the child extends the parent Class
@@ -20,8 +22,8 @@ import type { Constructor } from '../types';
  */
 export function isChildClass <P extends Constructor> (Parent: P, Child?: Constructor | null | unknown): Child is P {
   // https://stackoverflow.com/questions/30993434/check-if-a-constructor-inherits-another-in-es6/30993664
-  return Child
+  return isClass(Child) && isClass(Parent)
     // eslint-disable-next-line no-prototype-builtins
-    ? Parent === Child || Parent.isPrototypeOf(Child as Constructor)
+    ? Parent === Child || Parent.isPrototypeOf(Child)
     : false;
 }

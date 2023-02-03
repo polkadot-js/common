@@ -10,6 +10,12 @@ export function isOn <T> (...fns: (keyof T)[]): (value?: unknown) => value is T 
     fns.every((f) => isFunction((value as T)[f]));
 }
 
+export function isOnFunction <T> (...fns: (keyof T)[]): (value?: unknown) => value is T {
+  return (value?: unknown): value is T =>
+    isFunction(value) &&
+    fns.every((f) => isFunction((value as T)[f]));
+}
+
 export function isOnObject <T> (...fns: (keyof T)[]): (value?: unknown) => value is T {
   return (value?: unknown): value is T =>
     isObject(value) &&
