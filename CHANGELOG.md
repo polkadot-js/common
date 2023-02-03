@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Add `isClass` helper (checks if input is actual Class Constructor)
+- Adjust `isChildClass` to rely on new `isClass`
+
 ## 10.3.1 Jan 28, 2023
 
 Contributed:
