@@ -5,8 +5,8 @@ import type { BN } from '../bn/bn';
 import type { ToBn } from '../types';
 
 import { bnToBn } from '../bn/toBn';
-import { formatDecimal } from './formatDecimal';
 import { getSeparator } from '../number';
+import { formatDecimal } from './formatDecimal';
 
 interface Options {
   /**
@@ -24,5 +24,6 @@ export function formatNumber <ExtToBn extends ToBn> (
   { locale = 'en' }: Options = {}
 ): string {
   const { thousand } = getSeparator(locale);
+
   return formatDecimal(bnToBn(value).toString(), thousand);
 }

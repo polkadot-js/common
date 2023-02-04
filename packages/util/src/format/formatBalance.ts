@@ -6,9 +6,9 @@ import type { SiDef, ToBn } from '../types';
 
 import { bnToBn } from '../bn/toBn';
 import { isBoolean } from '../is/boolean';
+import { getSeparator } from '../number';
 import { formatDecimal } from './formatDecimal';
 import { calcSi, findSi, SI, SI_MID } from './si';
-import { getSeparator } from '../number';
 
 interface Defaults {
   decimals: number;
@@ -133,6 +133,7 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | b
     : '';
 
   const { decimal, thousand } = getSeparator(locale);
+
   return `${sign}${formatDecimal(pre, thousand)}${post && `${decimal}${post}`}${units}`;
 }
 

@@ -192,13 +192,13 @@ describe('formatBalance', (): void => {
 
     it('formats 123,456 (decimals=0, locale=sl)', (): void => {
       expect(
-        formatBalance(123456, { decimals: 0, withSi: true, locale: 'sl' })
+        formatBalance(123456, { decimals: 0, locale: 'sl', withSi: true })
       ).toEqual('123,4560 kUnit');
     });
 
     it('formats BigInt numbers (locale=sl)', (): void => {
       expect(
-        formatBalance(123456789000n, { decimals: 15, withSi: true, locale: 'sl' })
+        formatBalance(123456789000n, { decimals: 15, locale: 'sl', withSi: true })
       ).toEqual('123,4567 µUnit');
     });
 

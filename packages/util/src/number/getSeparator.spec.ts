@@ -6,10 +6,11 @@ import { getSeparator } from '.';
 describe('getSeparator', (): void => {
   it('uses system locale', (): void => {
     const n = 1000.1;
-    const locale = { 
+    const locale = {
       decimal: n.toLocaleString().substring(5, 6),
-      thousand: n.toLocaleString().substring(1, 2),
+      thousand: n.toLocaleString().substring(1, 2)
     };
+
     expect(
       getSeparator()
     ).toEqual(locale);
@@ -20,7 +21,7 @@ describe('getSeparator', (): void => {
       getSeparator('en')
     ).toEqual({
       decimal: '.',
-      thousand: ',',
+      thousand: ','
     });
   });
 
@@ -29,7 +30,7 @@ describe('getSeparator', (): void => {
       getSeparator('en-gb')
     ).toEqual({
       decimal: '.',
-      thousand: ',',
+      thousand: ','
     });
   });
 
@@ -38,7 +39,7 @@ describe('getSeparator', (): void => {
       getSeparator('sl')
     ).toEqual({
       decimal: ',',
-      thousand: '.',
+      thousand: '.'
     });
   });
 
@@ -47,7 +48,7 @@ describe('getSeparator', (): void => {
       getSeparator('sl-si')
     ).toEqual({
       decimal: ',',
-      thousand: '.',
+      thousand: '.'
     });
   });
 
@@ -56,7 +57,7 @@ describe('getSeparator', (): void => {
       getSeparator('it-it')
     ).toEqual({
       decimal: ',',
-      thousand: '.',
+      thousand: '.'
     });
   });
 
@@ -65,7 +66,7 @@ describe('getSeparator', (): void => {
       getSeparator('ja-jp')
     ).toEqual({
       decimal: '.',
-      thousand: ',',
+      thousand: ','
     });
   });
 });
