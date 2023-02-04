@@ -6,9 +6,9 @@ const NUMBER_REGEX = new RegExp('(\\d+?)(?=(\\d{3})+(?!\\d)|$)', 'g');
 
 /**
  * @name formatDecimal
- * @description Formats a number into string format with thousand seperators
+ * @description Formats a number into string format with thousand separators
  */
-export function formatDecimal (value: string): string {
+export function formatDecimal (value: string, separator = ','): string {
   // We can do this by adjusting the regx, however for the sake of clarity
   // we rather strip and re-add the negative sign in the output
   const isNegative = value[0].startsWith('-');
@@ -17,6 +17,6 @@ export function formatDecimal (value: string): string {
     : value.match(NUMBER_REGEX);
 
   return matched
-    ? `${isNegative ? '-' : ''}${matched.join(',')}`
+    ? `${isNegative ? '-' : ''}${matched.join(separator)}`
     : value;
 }

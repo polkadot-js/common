@@ -33,7 +33,7 @@ function formatAllCaps (w: string): string {
 function converter (format: (w: string, i: number) => string): (value: AnyString) => string {
   return (value: AnyString): string => {
     const parts = value
-      // replace all seperators (including consequtive) with spaces
+      // replace all separators (including consequtive) with spaces
       .replace(/[-_., ]+/g, ' ')
       // we don't want leading or trailing spaces
       .trim()
