@@ -5,8 +5,8 @@ import type { BN } from '../bn/bn';
 import type { ToBn } from '../types';
 
 import { bnToBn } from '../bn/toBn';
-import { getSeparator } from '../number';
 import { formatDecimal } from './formatDecimal';
+import { getSeparator } from './getSeparator';
 
 interface Options {
   /**

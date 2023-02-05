@@ -6,8 +6,8 @@ import type { SiDef, ToBn } from '../types';
 
 import { bnToBn } from '../bn/toBn';
 import { isBoolean } from '../is/boolean';
-import { getSeparator } from '../number';
 import { formatDecimal } from './formatDecimal';
+import { getSeparator } from './getSeparator';
 import { calcSi, findSi, SI, SI_MID } from './si';
 
 interface Defaults {

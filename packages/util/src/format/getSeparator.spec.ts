@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { getSeparator } from '.';
+import { getSeparator } from './getSeparator';
 
 describe('getSeparator', (): void => {
   it('uses system locale', (): void => {
