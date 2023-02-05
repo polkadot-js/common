@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@polkadot/util": "10.3.2-1-x",
-    "@types/react-native": "^0.71.1"
+    "@types/react-native": "^0.71.2"
   },
   "denoDependencies": {
     "crypto": "std@0.161.0/node/crypto.ts"
