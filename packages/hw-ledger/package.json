@@ -23,7 +23,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.20.13",
-    "@ledgerhq/hw-transport": "^6.27.10",
+    "@ledgerhq/hw-transport": "^6.28.0",
     "@polkadot/hw-ledger-transports": "10.3.2-4-x",
     "@polkadot/util": "10.3.2-4-x",
     "@zondax/ledger-substrate": "^0.40.4"
