@@ -189,6 +189,24 @@ describe('formatBalance', (): void => {
         formatBalance(TESTVAL, { decimals: 15, forceUnit: 'µ' })
       ).toEqual('123.4567 µUnit');
     });
+
+    it('formats 123,456 (decimals=0, locale=sl)', (): void => {
+      expect(
+        formatBalance(123456, { decimals: 0, locale: 'sl', withSi: true })
+      ).toEqual('123,4560 kUnit');
+    });
+
+    it('formats BigInt numbers (locale=sl)', (): void => {
+      expect(
+        formatBalance(123456789000n, { decimals: 15, locale: 'sl', withSi: true })
+      ).toEqual('123,4567 µUnit');
+    });
+
+    it('formats 123,456,789,000 (decimals=7, forceUnit=base locale=sl)', (): void => {
+      expect(
+        formatBalance(TESTVAL, { decimals: 7, forceUnit: '-', locale: 'sl' })
+      ).toEqual('12.345,6789 Unit');
+    });
   });
 
   describe('calcSi', (): void => {

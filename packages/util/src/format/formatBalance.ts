@@ -7,6 +7,7 @@ import type { SiDef, ToBn } from '../types';
 import { bnToBn } from '../bn/toBn';
 import { isBoolean } from '../is/boolean';
 import { formatDecimal } from './formatDecimal';
+import { getSeparator } from './getSeparator';
 import { calcSi, findSi, SI, SI_MID } from './si';
 
 interface Defaults {
@@ -48,6 +49,10 @@ interface Options {
    * @description Returns all trailing zeros, otherwise removes (default = true)
    */
   withZero?: boolean;
+  /**
+   * @description The locale to use
+   */
+  locale?: string;
 }
 
 interface BalanceFormatter {
@@ -66,7 +71,7 @@ let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
 // Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, { decimals = defaultDecimals, forceUnit, withAll = false, withSi = true, withSiFull = false, withUnit = true, withZero = true }: Options = {}): string {
+function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, { decimals = defaultDecimals, forceUnit, withAll = false, withSi = true, withSiFull = false, withUnit = true, withZero = true, locale = 'en' }: Options = {}): string {
   // we only work with string inputs here - convert anything
   // into the string-only value
   let text = bnToBn(input).toString();
@@ -127,7 +132,9 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | b
       : ` ${withSiFull ? `${si.text}${withUnit ? ' ' : ''}` : si.value}${withUnit ? unit : ''}`
     : '';
 
-  return `${sign}${formatDecimal(pre)}${post && `.${post}`}${units}`;
+  const { decimal, thousand } = getSeparator(locale);
+
+  return `${sign}${formatDecimal(pre, thousand)}${post && `${decimal}${post}`}${units}`;
 }
 
 export const formatBalance = _formatBalance as BalanceFormatter;
