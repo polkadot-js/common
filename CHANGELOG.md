@@ -2,10 +2,17 @@
 
 ## master
 
+Contributed:
+
+- Locale support for number formatting (Thanks to https://github.com/alko89)
+- Ledger support for Picasso (Thanks to https://github.com/carlosala)
+
 Changes:
 
 - Add `isClass` helper (checks if input is actual Class Constructor)
 - Adjust `isChildClass` to rely on new `isClass`
+- Upgrade dependencies to latest stable versions
+
 
 ## 10.3.1 Jan 28, 2023
 
