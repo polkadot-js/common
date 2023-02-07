@@ -30,6 +30,7 @@ export const knownLedger: KnownLedger = {
   origintrail: 0x00000162,
   parallel: 0x00000162,
   phala: 0x00000162,
+  picasso: 0x000001b2,
   polkadex: 0x0000031f,
   polkadot: 0x00000162,
   polymesh: 0x00000253,
