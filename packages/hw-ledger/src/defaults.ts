@@ -26,6 +26,7 @@ export const ledgerApps: Record<string, string> = {
   origintrail: 'OriginTrail',
   parallel: 'Parallel',
   phala: 'Phala',
+  picasso: 'Picasso',
   polkadex: 'Polkadex',
   polkadot: 'Polkadot',
   polymesh: 'Polymesh',
