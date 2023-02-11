@@ -5,7 +5,7 @@ import known from '@substrate/ss58-registry';
 import fs from 'fs';
 import path from 'path';
 
-import other from './test/ss58registry.test.json';
+import other from './test/ss58registry.test.json' assert { type: 'json' };
 
 describe('@substrate/ss58-registry', (): void => {
   it('has known values', (): void => {
