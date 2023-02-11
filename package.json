@@ -11,9 +11,9 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "10.3.2-5-x",
+  "version": "10.3.2-6-x",
   "versions": {
-    "git": "10.3.2-5-x",
+    "git": "10.3.2-6-x",
     "npm": "10.3.1"
   },
   "workspaces": [
@@ -30,8 +30,8 @@
     "postinstall": "polkadot-dev-yarn-only",
     "test": "NODE_OPTIONS=--experimental-vm-modules polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns crosscheck --testPathIgnorePatterns toMiniSecretCmp",
     "test:mnemonicCmp": "polkadot-dev-run-test packages/util-crypto/src/mnemonic/toMiniSecretCmp.spec.ts",
-    "test:one": "polkadot-dev-run-test --runInBand",
-    "test:node": "polkadot-dev-run-node-test"
+    "test:node": "polkadot-dev-run-node-test",
+    "test:one": "polkadot-dev-run-test --runInBand"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
