@@ -27,7 +27,7 @@ describe.each([true, false])('mnemonicToMiniSecret (compare), onlyJsMnemonic=%p'
 
       describe(mnemonic, (): void => {
         // do iterations to check and re-check that all matches
-        it.concurrent.each(arrayRange(NUM_CHECKS))('check=%p', (count): void => {
+        it.each(arrayRange(NUM_CHECKS))('check=%p', (count): void => {
           const minisecret = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMnemonic);
           const edpub = ed25519PairFromSeed(minisecret).publicKey;
           const srpub = sr25519PairFromSeed(minisecret).publicKey;
