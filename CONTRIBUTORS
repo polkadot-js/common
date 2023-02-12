@@ -1,4 +1,4 @@
-    1527	Jaco                          	Bump deps (#1727)
+    1528	Jaco                          	10.4.1 (#1728)
       11	Carlo Sala                    	feat(networks): support ledger for picasso (#1725)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
