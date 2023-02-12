@@ -36,7 +36,7 @@ export function formatOps (count: number, time: number): string {
 
   return `
 ${formatFixed(ops).padStart(NUM_PAD + PRE_PAD + 1)} ops/s
-${formatFixed(micro).padStart(NUM_PAD + PRE_PAD + 1)} μs/op`;
+${formatFixed(micro).padStart(NUM_PAD + PRE_PAD + 1)} us/op`; // μ
 }
 
 export function perf (name: string, count: number, inputs: readonly unknown[][], exec: ExecFn, withLog?: boolean): void {
