@@ -14,14 +14,12 @@ const NUM_CHECKS = 5;
 
 // generate either a JS or WASM mnemonic
 describe.each([true, false])('mnemonicToMiniSecret (compare), onlyJsMnemonic=%p', (onlyJsMnemonic): void => {
-  beforeAll(async (): Promise<void> => {
-    await cryptoWaitReady();
-  });
-
   // loop through lots of mnemonics
   describe.each(arrayRange(NUM_RUNS))('run=%p', (): void => {
     // compare both JS and WASM outputs against original
-    describe.each([true, false])('onlyJsMini=%p', (onlyJsMini): void => {
+    describe.each([true, false])('onlyJsMini=%p', async (onlyJsMini): Promise<void> => {
+      await cryptoWaitReady();
+
       // NOTE we cannot actually use the onlyJsMnemonic flag here
       const mnemonic = mnemonicGenerate(12);
 
@@ -31,7 +29,6 @@ describe.each([true, false])('mnemonicToMiniSecret (compare), onlyJsMnemonic=%p'
           const minisecret = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMnemonic);
           const edpub = ed25519PairFromSeed(minisecret).publicKey;
           const srpub = sr25519PairFromSeed(minisecret).publicKey;
-
           const testmini = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMini);
 
           // explicit minisecret compare
