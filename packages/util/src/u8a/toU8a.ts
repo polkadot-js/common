@@ -26,10 +26,15 @@ import { stringToU8a } from '../string/toU8a';
  */
 export function u8aToU8a (value?: U8aLike | null): Uint8Array {
   return isU8a(value)
-    ? value
+    // NOTE isBuffer needs to go here since it actually extends
+    // Uint8Array on Node.js environments, so all Buffer are Uint8Array,
+    // but Uint8Array is not Buffer
+    ? isBuffer(value)
+      ? new Uint8Array(value)
+      : value
     : isHex(value)
       ? hexToU8a(value)
-      : isBuffer(value) || Array.isArray(value)
+      : Array.isArray(value)
         ? new Uint8Array(value)
         : stringToU8a(value);
 }
