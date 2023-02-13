@@ -4,11 +4,9 @@
 import { cryptoWaitReady } from '..';
 import { mnemonicValidate } from './validate';
 
-describe('mnemonicValidate', (): void => {
-  beforeEach(async (): Promise<void> => {
-    await cryptoWaitReady();
-  });
+await cryptoWaitReady();
 
+describe('mnemonicValidate', (): void => {
   it('returns true on valid', (): void => {
     expect(
       mnemonicValidate('seed sock milk update focus rotate barely fade car face mechanic mercy')

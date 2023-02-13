@@ -5,11 +5,9 @@ import { cryptoWaitReady } from '..';
 import { mnemonicGenerate } from './generate';
 import { mnemonicValidate } from './validate';
 
-describe('mnemonicGenerate', (): void => {
-  beforeEach(async (): Promise<void> => {
-    await cryptoWaitReady();
-  });
+await cryptoWaitReady();
 
+describe('mnemonicGenerate', (): void => {
   it('generates a valid mnemonic (default strength)', (): void => {
     expect(
       mnemonicValidate(mnemonicGenerate())

@@ -12,12 +12,10 @@ import { cryptoWaitReady, ed25519PairFromSeed, mnemonicGenerate, mnemonicToMiniS
 const NUM_RUNS = 100;
 const NUM_CHECKS = 5;
 
+await cryptoWaitReady();
+
 // generate either a JS or WASM mnemonic
 describe.each([true, false])('mnemonicToMiniSecret (compare), onlyJsMnemonic=%p', (onlyJsMnemonic): void => {
-  beforeAll(async (): Promise<void> => {
-    await cryptoWaitReady();
-  });
-
   // loop through lots of mnemonics
   describe.each(arrayRange(NUM_RUNS))('run=%p', (): void => {
     // compare both JS and WASM outputs against original
