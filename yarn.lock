@@ -1843,15 +1843,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/devices@npm:^7.0.7":
-  version: 7.0.7
-  resolution: "@ledgerhq/devices@npm:7.0.7"
+"@ledgerhq/devices@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "@ledgerhq/devices@npm:8.0.0"
   dependencies:
     "@ledgerhq/errors": ^6.12.3
     "@ledgerhq/logs": ^6.10.1
     rxjs: 6
     semver: ^7.3.5
-  checksum: 75550ebdc26dbe2d9fbcc476687fbf5534f05c8b69085e4be13bf9f92b9edd7bc72d43a4e546e47ba91818159ca0f213d5d1f823817a0d8c2a7c79f0503339e5
+  checksum: 467bc30c8e60753762e52de708d5231234be4c35e0e73e39f8a0d0c7cf795a566208de4687f491de801a0f5642b16ae7de6527813f5283e247b800066ae4c4d0
   languageName: node
   linkType: hard
 
@@ -1862,56 +1862,56 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-node-hid-noevents@npm:^6.27.11":
-  version: 6.27.11
-  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:6.27.11"
+"@ledgerhq/hw-transport-node-hid-noevents@npm:^6.27.12":
+  version: 6.27.12
+  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:6.27.12"
   dependencies:
-    "@ledgerhq/devices": ^7.0.7
+    "@ledgerhq/devices": ^8.0.0
     "@ledgerhq/errors": ^6.12.3
-    "@ledgerhq/hw-transport": ^6.28.0
+    "@ledgerhq/hw-transport": ^6.28.1
     "@ledgerhq/logs": ^6.10.1
     node-hid: ^2.1.2
-  checksum: f46a1570e4e413d5d41d27715588f52bcb0621177af90a02c773d22d1a837ea83fa88bd593d092cdd95294b2f41c7d2b341fce0dcca0105f54693e16c6b812e4
+  checksum: a72b45293e2730ad5825dd90d532907c57d72e31cd00024a89c33cd1cafc44fff995c79b0af126571b004718cf673007e7ab71ec950a369c87f49c8a0628bf9e
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-node-hid-singleton@npm:^6.28.8":
-  version: 6.28.8
-  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:6.28.8"
+"@ledgerhq/hw-transport-node-hid-singleton@npm:^6.28.9":
+  version: 6.28.9
+  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:6.28.9"
   dependencies:
-    "@ledgerhq/devices": ^7.0.7
+    "@ledgerhq/devices": ^8.0.0
     "@ledgerhq/errors": ^6.12.3
-    "@ledgerhq/hw-transport": ^6.28.0
-    "@ledgerhq/hw-transport-node-hid-noevents": ^6.27.11
+    "@ledgerhq/hw-transport": ^6.28.1
+    "@ledgerhq/hw-transport-node-hid-noevents": ^6.27.12
     "@ledgerhq/logs": ^6.10.1
     lodash: ^4.17.21
     node-hid: ^2.1.2
     usb: 2.5.1
-  checksum: 05c9ae29b32704d4a7225f790db3618b6fdc5ec762ccf6def12d12bf78c90292da6018f52178c72bf517ae8dbd74fc85d6f6bad20cb6774c07464c54f5116519
+  checksum: b23129f3f450e532574ebd5c011c175b05f599ca041ad4102828c93433b3f2f5e545f8a364949a1a98b6ec6308a55dd975ad6f28ebc04d95af037a11c1b7d57e
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-webhid@npm:^6.27.11":
-  version: 6.27.11
-  resolution: "@ledgerhq/hw-transport-webhid@npm:6.27.11"
+"@ledgerhq/hw-transport-webhid@npm:^6.27.12":
+  version: 6.27.12
+  resolution: "@ledgerhq/hw-transport-webhid@npm:6.27.12"
   dependencies:
-    "@ledgerhq/devices": ^7.0.7
+    "@ledgerhq/devices": ^8.0.0
     "@ledgerhq/errors": ^6.12.3
-    "@ledgerhq/hw-transport": ^6.28.0
+    "@ledgerhq/hw-transport": ^6.28.1
     "@ledgerhq/logs": ^6.10.1
-  checksum: 791a2ac709f52602541b40e2686239a49705bf1e8839fecf194a118c6a698f099f62c88715f07f89931a6b71b3abd79d163d649da2e820c5cbb938b915e8f4ea
+  checksum: 5f5253417ba6f5eb4d979e031a24c8bef9a642bb6e317c49a6abec33e316061c13aac6de8a7b353a907a11bbb7dd14ef16716be4017f4a008a6cc9136a366cdd
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-webusb@npm:^6.27.11":
-  version: 6.27.11
-  resolution: "@ledgerhq/hw-transport-webusb@npm:6.27.11"
+"@ledgerhq/hw-transport-webusb@npm:^6.27.12":
+  version: 6.27.12
+  resolution: "@ledgerhq/hw-transport-webusb@npm:6.27.12"
   dependencies:
-    "@ledgerhq/devices": ^7.0.7
+    "@ledgerhq/devices": ^8.0.0
     "@ledgerhq/errors": ^6.12.3
-    "@ledgerhq/hw-transport": ^6.28.0
+    "@ledgerhq/hw-transport": ^6.28.1
     "@ledgerhq/logs": ^6.10.1
-  checksum: f82729170dd64c9be29f469f609dadfed1433a2b07ff095cc4905df518dcd35fe444f3e2f4fc195fd28c0b18987c4e21006ea9596bb4908f07bf7539d1811660
+  checksum: 729851a5b5bdb03aae89bc3205957c857b1e68affd15a00fddf01d570e7279dcdc4328441e216edf6df627fcf61f94b41dcea71d19b9b954c65db375566597ba
   languageName: node
   linkType: hard
 
@@ -1926,14 +1926,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport@npm:^6.28.0":
-  version: 6.28.0
-  resolution: "@ledgerhq/hw-transport@npm:6.28.0"
+"@ledgerhq/hw-transport@npm:^6.28.1":
+  version: 6.28.1
+  resolution: "@ledgerhq/hw-transport@npm:6.28.1"
   dependencies:
-    "@ledgerhq/devices": ^7.0.7
+    "@ledgerhq/devices": ^8.0.0
     "@ledgerhq/errors": ^6.12.3
     events: ^3.3.0
-  checksum: 3951b7780eb0412b3732adf2ac92913f8fd5f8adefb484df28d38fd8d2bd4e73f468fad65c1142a265b8d652d3e2ad5aabe579f5d7b285f8fee6ad1b04907b39
+  checksum: 69bf0f72e112c0c2f538c66d0b1dd2b24b19f1fcf5d671fdcfd50838e86dc55702555e0c639bbc55889a42a8ebd07243ad31798c2ff237dc21a1573581caf5ab
   languageName: node
   linkType: hard
 
@@ -2146,9 +2146,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.68.28":
-  version: 0.68.28
-  resolution: "@polkadot/dev@npm:0.68.28"
+"@polkadot/dev@npm:^0.68.29":
+  version: 0.68.29
+  resolution: "@polkadot/dev@npm:0.68.29"
   dependencies:
     "@babel/cli": ^7.20.7
     "@babel/core": ^7.20.12
@@ -2249,7 +2249,7 @@ __metadata:
     polkadot-exec-swc: scripts/polkadot-exec-swc.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 309b4fe7838523b32655c1526ba5715398a3847eb9317517e394534e84deb5e76daae4781f1b29943a6b2ed76459ea16c883387c87efc230fe4dbc0898312c3a
+  checksum: 50f59c7fd646c6dca6d67087cfd6dd942be3d04758e08e99472ec0cf0998e4bcd8314dd7dd109891013739a46d99da1a4c0cdfb56a72db64ad454f87ac508e8c
   languageName: node
   linkType: hard
 
@@ -2258,10 +2258,10 @@ __metadata:
   resolution: "@polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports"
   dependencies:
     "@babel/runtime": ^7.20.13
-    "@ledgerhq/hw-transport": ^6.28.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^6.28.8
-    "@ledgerhq/hw-transport-webhid": ^6.27.11
-    "@ledgerhq/hw-transport-webusb": ^6.27.11
+    "@ledgerhq/hw-transport": ^6.28.1
+    "@ledgerhq/hw-transport-node-hid-singleton": ^6.28.9
+    "@ledgerhq/hw-transport-webhid": ^6.27.12
+    "@ledgerhq/hw-transport-webusb": ^6.27.12
     "@polkadot/util": 10.4.2-5-x
   dependenciesMeta:
     "@ledgerhq/hw-transport-node-hid-singleton":
@@ -2274,7 +2274,7 @@ __metadata:
   resolution: "@polkadot/hw-ledger@workspace:packages/hw-ledger"
   dependencies:
     "@babel/runtime": ^7.20.13
-    "@ledgerhq/hw-transport": ^6.28.0
+    "@ledgerhq/hw-transport": ^6.28.1
     "@polkadot/hw-ledger-transports": 10.4.2-5-x
     "@polkadot/util": 10.4.2-5-x
     "@zondax/ledger-substrate": ^0.40.4
@@ -11734,7 +11734,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.20.12
-    "@polkadot/dev": ^0.68.28
+    "@polkadot/dev": ^0.68.29
     "@types/jest": ^29.4.0
   languageName: unknown
   linkType: soft
