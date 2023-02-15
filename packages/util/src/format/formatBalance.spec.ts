@@ -7,6 +7,38 @@ import { formatBalance } from '.';
 describe('formatBalance', (): void => {
   const TESTVAL = new BN('123456789000');
 
+  // We mess around with the global setDefaults inside some tests,
+  // ensure we restore it to the defaults straight after each run
+  afterEach((): void => {
+    formatBalance.setDefaults({ decimals: 0, unit: 'Unit' });
+  });
+
+  it('returns options for dropdown', (): void => {
+    formatBalance.setDefaults({ decimals: 0, unit: 'TEST' });
+
+    expect(
+      formatBalance.getOptions()
+    ).toEqual([
+      { power: 0, text: 'TEST', value: '-' },
+      { power: 3, text: 'Kilo', value: 'k' },
+      { power: 6, text: 'Mill', value: 'M' },
+      { power: 9, text: 'Bill', value: 'B' },
+      { power: 12, text: 'Tril', value: 'T' },
+      { power: 15, text: 'Peta', value: 'P' },
+      { power: 18, text: 'Exa', value: 'E' },
+      { power: 21, text: 'Zeta', value: 'Z' },
+      { power: 24, text: 'Yotta', value: 'Y' }
+    ]);
+  });
+
+  it('can set defaults from array values', (): void => {
+    formatBalance.setDefaults({ decimals: [12, 24], unit: ['Multi', 'Unit'] });
+
+    expect(
+      formatBalance(TESTVAL)
+    ).toEqual('123.4567 mMulti');
+  });
+
   describe('SI formatting', (): void => {
     it('formats empty to 0', (): void => {
       expect(formatBalance()).toEqual('0');
@@ -248,37 +280,11 @@ describe('formatBalance', (): void => {
     });
 
     it('formats 123,456,789,000 (defaultUnit=TEST)', (): void => {
-      formatBalance.setDefaults({ unit: 'TEST' });
+      formatBalance.setDefaults({ decimals: 12, unit: 'TEST' });
 
       expect(
         formatBalance(TESTVAL)
       ).toEqual('123.4567 mTEST');
     });
-  });
-
-  it('returns options for dropdown', (): void => {
-    formatBalance.setDefaults({ decimals: 0, unit: 'TEST' });
-
-    expect(
-      formatBalance.getOptions()
-    ).toEqual([
-      { power: 0, text: 'TEST', value: '-' },
-      { power: 3, text: 'Kilo', value: 'k' },
-      { power: 6, text: 'Mill', value: 'M' },
-      { power: 9, text: 'Bill', value: 'B' },
-      { power: 12, text: 'Tril', value: 'T' },
-      { power: 15, text: 'Peta', value: 'P' },
-      { power: 18, text: 'Exa', value: 'E' },
-      { power: 21, text: 'Zeta', value: 'Z' },
-      { power: 24, text: 'Yotta', value: 'Y' }
-    ]);
-  });
-
-  it('can set defaults from array values', (): void => {
-    formatBalance.setDefaults({ decimals: [12, 24], unit: ['Multi', 'Unit'] });
-
-    expect(
-      formatBalance(TESTVAL)
-    ).toEqual('123.4567 mMulti');
   });
 });
