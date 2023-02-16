@@ -1,5 +1,5 @@
     1537	Jaco                          	Adjust performance compare (#1738)
-      11	Carlo Sala                    	feat(networks): support ledger for picasso (#1725)
+      12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	Jakub Pánik                   	Add HydraDX parachain to genesis (#1583)
