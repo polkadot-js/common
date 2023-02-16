@@ -85,6 +85,9 @@ export const knownGenesis: KnownGenesis = {
   parallel: [
     '0xe61a41c53f5dcd0beb09df93b34402aada44cb05117b71059cce40a2723a4e97'
   ],
+  pendulum: [
+    '0x5d3c298622d5634ed019bf61ea4b71655030015bde9beb0d6a24743714462c86'
+  ],
   phala: [
     '0x1bb969d85965e4bb5a651abbedf21a54b6b31a21f66b5401cc3f1e286268d736'
   ],
