@@ -71,7 +71,7 @@ let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
 // Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, { decimals = defaultDecimals, forceUnit, withAll = false, withSi = true, withSiFull = false, withUnit = true, withZero = true, locale = 'en' }: Options = {}): string {
+function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, { decimals = defaultDecimals, forceUnit, locale = 'en', withAll = false, withSi = true, withSiFull = false, withUnit = true, withZero = true }: Options = {}): string {
   // we only work with string inputs here - convert anything
   // into the string-only value
   let text = bnToBn(input).toString();

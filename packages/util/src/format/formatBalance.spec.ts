@@ -4,13 +4,18 @@
 import { BN } from '../bn';
 import { formatBalance } from '.';
 
+const FMT_DEFAULTS = {
+  decimals: 0,
+  unit: 'Unit'
+};
+
 describe('formatBalance', (): void => {
   const TESTVAL = new BN('123456789000');
 
   // We mess around with the global setDefaults inside some tests,
   // ensure we restore it to the defaults straight after each run
   afterEach((): void => {
-    formatBalance.setDefaults({ decimals: 0, unit: 'Unit' });
+    formatBalance.setDefaults(FMT_DEFAULTS);
   });
 
   it('returns options for dropdown', (): void => {
@@ -216,7 +221,7 @@ describe('formatBalance', (): void => {
       ).toEqual('12,345.6789 Unit');
     });
 
-    it('formats 123,456,789,000 (decimals=15, forceUnit=µ)', (): void => {
+    it('formats 123,456,789,000 (decimals=15, forceUnit=micro)', (): void => {
       expect(
         formatBalance(TESTVAL, { decimals: 15, forceUnit: 'µ' })
       ).toEqual('123.4567 µUnit');
@@ -265,10 +270,9 @@ describe('formatBalance', (): void => {
 
   describe('defaults', (): void => {
     it('returns defaults', (): void => {
-      expect(formatBalance.getDefaults()).toEqual({
-        decimals: 0,
-        unit: 'Unit'
-      });
+      expect(
+        formatBalance.getDefaults()
+      ).toEqual(FMT_DEFAULTS);
     });
 
     it('formats 123,456,789,000 (defaultDecimals=12)', (): void => {
