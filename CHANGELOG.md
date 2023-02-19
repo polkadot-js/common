@@ -9,6 +9,7 @@ Contributed:
 Changes:
 
 - Ensure `u8aToU8a` correctly unwraps Buffer value (check ordering)
+- Upgrade dependencies to latest stable versions
 
 
 ## 10.4.1 Feb 12, 2023
