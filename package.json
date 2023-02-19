@@ -28,14 +28,14 @@
     "deno": "yarn polkadot-dev-deno-map && yarn build && deno check --import-map=import_map.json mod.ts",
     "lint": "polkadot-dev-run-lint",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "NODE_OPTIONS=--experimental-vm-modules polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns toMiniSecretCmp",
-    "test:mnemonicCmp": "polkadot-dev-run-test packages/util-crypto/src/mnemonic/toMiniSecretCmp.spec.ts",
-    "test:node": "polkadot-dev-run-node-test --browser ^toMiniSecretCmp",
-    "test:one": "polkadot-dev-run-test --runInBand"
+    "test": "polkadot-dev-run-test --env jest --coverage --runInBand ^mnemonic/toMiniSecretCmp",
+    "test:mnemonicCmp": "polkadot-dev-run-test mnemonic/toMiniSecretCmp.spec.ts",
+    "test:node": "polkadot-dev-run-test --env browser ^mnemonic/toMiniSecretCmp",
+    "test:one": "polkadot-dev-run-test --env jest --runInBand"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@polkadot/dev": "^0.68.37",
+    "@polkadot/dev": "^0.68.38",
     "@types/jest": "^29.4.0"
   },
   "resolutions": {

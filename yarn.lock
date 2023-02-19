@@ -2146,9 +2146,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.68.37":
-  version: 0.68.37
-  resolution: "@polkadot/dev@npm:0.68.37"
+"@polkadot/dev@npm:^0.68.38":
+  version: 0.68.38
+  resolution: "@polkadot/dev@npm:0.68.38"
   dependencies:
     "@babel/cli": ^7.20.7
     "@babel/core": ^7.20.12
@@ -2235,7 +2235,6 @@ __metadata:
     polkadot-dev-deno-map: scripts/polkadot-dev-deno-map.mjs
     polkadot-dev-run-esbuild: scripts/polkadot-dev-run-esbuild.mjs
     polkadot-dev-run-lint: scripts/polkadot-dev-run-lint.mjs
-    polkadot-dev-run-node-test: scripts/polkadot-dev-run-node-test.mjs
     polkadot-dev-run-node-ts: scripts/polkadot-dev-run-node-ts.mjs
     polkadot-dev-run-prettier: scripts/polkadot-dev-run-prettier.mjs
     polkadot-dev-run-swc: scripts/polkadot-dev-run-swc.mjs
@@ -2251,7 +2250,7 @@ __metadata:
     polkadot-exec-swc: scripts/polkadot-exec-swc.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 8ac76e1e7513cd2b608cf6526e3c3005f56c081e9cd1b6db33a04bf59223e82fceb1081b9fb9b629d9f46bed712b05914dc962c8ebe97b3bc72b6369f9901c93
+  checksum: 7fa2e683784b02b97fb08c34f1f84d6504e28d2a3d1ae0513b392390a800f4801f281bf789b0c7f0a19e221bfc6de5a2c89a237eb3674ce9ad131188392d7e08
   languageName: node
   linkType: hard
 
@@ -11774,7 +11773,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.20.12
-    "@polkadot/dev": ^0.68.37
+    "@polkadot/dev": ^0.68.38
     "@types/jest": ^29.4.0
   languageName: unknown
   linkType: soft
