@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 10.4.2 Feb 19, 2023
+
+Contributed:
+
+- Ledger support for Pendulum (Thanks to https://github.com/carlosala)
+
+Changes:
+
+- Ensure `u8aToU8a` correctly unwraps Buffer value (check ordering)
+
+
 ## 10.4.1 Feb 12, 2023
 
 Contributed:
