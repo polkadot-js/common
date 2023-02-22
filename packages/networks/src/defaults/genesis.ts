@@ -29,6 +29,10 @@ export const knownGenesis: KnownGenesis = {
   'bifrost-kusama': [
     '0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed'
   ],
+  bittensor: [
+    // TODO: Update with finney genesis hash
+    ''
+  ],
   centrifuge: [
     '0xb3db41421702df9a7fcac62b53ffeac85f7853cc4e689e0b93aeb3db18c09d82',
     '0x67dddf2673b69e5f875f6f25277495834398eafd67f492e09f3f3345e003d1b5'

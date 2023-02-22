@@ -14,6 +14,7 @@ export const knownLedger: KnownLedger = {
   astar: 0x0000032a,
   bifrost: 0x00000314,
   'bifrost-kusama': 0x00000314,
+  bittensor: 0x000003ed,
   centrifuge: 0x000002eb,
   composable: 0x00000162,
   darwinia: 0x00000162,
