@@ -29,7 +29,7 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.20.13",
+    "@babel/runtime": "^7.21.0",
     "@noble/hashes": "1.2.0",
     "@noble/secp256k1": "1.7.1",
     "@polkadot/networks": "10.4.3-2-x",
