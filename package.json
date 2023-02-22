@@ -34,8 +34,8 @@
     "test:one": "polkadot-dev-run-test --env browser -- --runInBand"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
-    "@polkadot/dev": "^0.68.43",
+    "@babel/core": "^7.21.0",
+    "@polkadot/dev": "^0.69.4",
     "@types/jest": "^29.4.0"
   },
   "resolutions": {

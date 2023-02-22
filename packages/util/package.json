@@ -37,7 +37,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.20.13",
+    "@babel/runtime": "^7.21.0",
     "@polkadot/x-bigint": "10.4.3-2-x",
     "@polkadot/x-global": "10.4.3-2-x",
     "@polkadot/x-textdecoder": "10.4.3-2-x",
