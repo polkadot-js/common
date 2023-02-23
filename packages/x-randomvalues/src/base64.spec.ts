@@ -38,11 +38,13 @@ const TESTS = [
 ];
 
 describe('base64Decode', (): void => {
-  it.each(TESTS)('%p', (test): void => {
-    expect(
-      base64Decode(test.base64)
-    ).toEqual(test.expect);
-  });
+  for (const test of TESTS) {
+    it(test.base64, (): void => {
+      expect(
+        base64Decode(test.base64)
+      ).toEqual(test.expect);
+    });
+  }
 });
 
 perf('base64Decode (hello, dual)', 100_000, [[HELLO_DUAL]], base64Decode);

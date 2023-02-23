@@ -16,22 +16,26 @@ describe('mnemonicGenerate', (): void => {
     ).toEqual(true);
   });
 
-  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-    it.each([12, 15, 18, 21, 24] as 12[])('generates a valid mnemonic (%p words)', (num): void => {
-      const mnemonic = mnemonicGenerate(num, onlyJs);
-      const isValid = mnemonicValidate(mnemonic);
+  for (const onlyJs of [false, true]) {
+    describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+      for (const num of <const> [12, 15, 18, 21, 24]) {
+        it(`generates a valid mnemonic (${num} words)`, (): void => {
+          const mnemonic = mnemonicGenerate(num, onlyJs);
+          const isValid = mnemonicValidate(mnemonic);
 
-      expect(mnemonic.split(' ')).toHaveLength(num);
-      expect(isValid).toEqual(true);
+          expect(mnemonic.split(' ')).toHaveLength(num);
+          expect(isValid).toEqual(true);
+        });
+      }
+
+      it('generates non-deterministic', (): void => {
+        const m1 = mnemonicGenerate(24, onlyJs);
+        const m2 = mnemonicGenerate(24, onlyJs);
+
+        expect(m1 === m2).toEqual(false);
+        expect(mnemonicValidate(m1)).toEqual(true);
+        expect(mnemonicValidate(m2)).toEqual(true);
+      });
     });
-
-    it('generates not deterministic', (): void => {
-      const m1 = mnemonicGenerate(24, onlyJs);
-      const m2 = mnemonicGenerate(24, onlyJs);
-
-      expect(m1 === m2).toEqual(false);
-      expect(mnemonicValidate(m1)).toEqual(true);
-      expect(mnemonicValidate(m2)).toEqual(true);
-    });
-  });
+  }
 });

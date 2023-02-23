@@ -15,37 +15,41 @@ describe('mnemonicToMiniSecret', (): void => {
     await cryptoWaitReady();
   });
 
-  it.each([undefined, 'foo', 'bar'])('generates Wasm & Js equivalents for password = %p', (password): void => {
-    expect(
-      u8aEq(
-        mnemonicToMiniSecret(MNEMONIC, password, true),
-        mnemonicToMiniSecret(MNEMONIC, password, false)
-      )
-    ).toEqual(true);
-  });
-
-  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-    it('generates a valid seed', (): void => {
+  for (const password of [undefined, 'foo', 'bar']) {
+    it(`generates Wasm & Js equivalents for password=${password || 'undefined'}`, (): void => {
       expect(
-        u8aToHex(mnemonicToMiniSecret(MNEMONIC, undefined, onlyJs))
-      ).toEqual(SEED);
+        u8aEq(
+          mnemonicToMiniSecret(MNEMONIC, password, true),
+          mnemonicToMiniSecret(MNEMONIC, password, false)
+        )
+      ).toEqual(true);
     });
+  }
 
-    it('fails with non-mnemonics', (): void => {
-      expect(
-        () => mnemonicToMiniSecret('foo bar baz', undefined, onlyJs)
-      ).toThrow(/mnemonic specified/);
-    });
-
-    tests.forEach(([mnemonic, , seed], index): void => {
-      it(`Created correct seed for ${index}`, (): void => {
+  for (const onlyJs of [false, true]) {
+    describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+      it('generates a valid seed', (): void => {
         expect(
-          u8aToHex(mnemonicToMiniSecret(mnemonic, 'Substrate', onlyJs))
-        ).toEqual(
-          // mini returned here, only check first 32-bytes (64 hex + 2 prefix)
-          seed.substring(0, 66)
-        );
+          u8aToHex(mnemonicToMiniSecret(MNEMONIC, undefined, onlyJs))
+        ).toEqual(SEED);
+      });
+
+      it('fails with non-mnemonics', (): void => {
+        expect(
+          () => mnemonicToMiniSecret('foo bar baz', undefined, onlyJs)
+        ).toThrow(/mnemonic specified/);
+      });
+
+      tests.forEach(([mnemonic, , seed], index): void => {
+        it(`Created correct seed for ${index}`, (): void => {
+          expect(
+            u8aToHex(mnemonicToMiniSecret(mnemonic, 'Substrate', onlyJs))
+          ).toEqual(
+            // mini returned here, only check first 32-bytes (64 hex + 2 prefix)
+            seed.substring(0, 66)
+          );
+        });
       });
     });
-  });
+  }
 });

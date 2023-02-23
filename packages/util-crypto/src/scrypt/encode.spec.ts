@@ -18,17 +18,19 @@ describe('scryptEncode', (): void => {
     await waitReady();
   });
 
-  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-    it('generates a known output', (): void => {
-      expect(
-        scryptEncode(KNOWN_TEST, KNOWN_SALT, undefined, onlyJs)
-      ).toEqual({
-        params: DEFAULT_PARAMS,
-        password: KNOWN_PASS,
-        salt: KNOWN_SALT
+  for (const onlyJs of [false, true]) {
+    describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+      it('generates a known output', (): void => {
+        expect(
+          scryptEncode(KNOWN_TEST, KNOWN_SALT, undefined, onlyJs)
+        ).toEqual({
+          params: DEFAULT_PARAMS,
+          password: KNOWN_PASS,
+          salt: KNOWN_SALT
+        });
       });
     });
-  });
+  }
 
   perfWasm('scryptEncode', 4, (input, onlyJs) =>
     scryptEncode(input, input, undefined, onlyJs)

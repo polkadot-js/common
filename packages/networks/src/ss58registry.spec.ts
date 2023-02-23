@@ -20,7 +20,7 @@ describe('@substrate/ss58-registry', (): void => {
         throw error;
       }
 
-      fs.writeFileSync(path.join(__dirname, './test/ss58registry.test.json'), json, { flag: 'w' });
+      fs.writeFileSync(path.join(process.cwd(), 'packages/networks/src/test/ss58registry.test.json'), json, { flag: 'w' });
     }
   });
 });

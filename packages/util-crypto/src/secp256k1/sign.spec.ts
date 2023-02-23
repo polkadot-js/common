@@ -15,17 +15,19 @@ describe('sign', (): void => {
     await waitReady();
   });
 
-  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-    it('generates a known signature', (): void => {
-      expect(
-        secp256k1Sign(msg, pair, undefined, onlyJs)
-      ).toEqual(hexToU8a(
-        // from elliptic, this is - 0xdf92f73d9f060cefacf187b5414491cb992998ace017fa48839b5cda3e264ba8c4efa521361678d9b8582744d77aa4b8d886d7380b7808a683174afad9c4700300
-        // libsecp256k1 & @noble/hashes do agree here...
-        '0xdf92f73d9f060cefacf187b5414491cb992998ace017fa48839b5cda3e264ba83b105adec9e9872647a7d8bb28855b45e22805aea3d097953cbb1391f671d13e01'
-      ));
+  for (const onlyJs of [false, true]) {
+    describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+      it('generates a known signature', (): void => {
+        expect(
+          secp256k1Sign(msg, pair, undefined, onlyJs)
+        ).toEqual(hexToU8a(
+          // from elliptic, this is - 0xdf92f73d9f060cefacf187b5414491cb992998ace017fa48839b5cda3e264ba8c4efa521361678d9b8582744d77aa4b8d886d7380b7808a683174afad9c4700300
+          // libsecp256k1 & @noble/hashes do agree here...
+          '0xdf92f73d9f060cefacf187b5414491cb992998ace017fa48839b5cda3e264ba83b105adec9e9872647a7d8bb28855b45e22805aea3d097953cbb1391f671d13e01'
+        ));
+      });
     });
-  });
+  }
 
   // since the libsecp256k1 signatures don't match (but can be verified), we
   // do both signing and verification here (checking the extracted key)

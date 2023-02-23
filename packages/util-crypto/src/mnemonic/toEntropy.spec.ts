@@ -12,11 +12,13 @@ describe('mnemonicToEntropy', (): void => {
     await cryptoWaitReady();
   });
 
-  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-    tests.forEach(([mnemonic, entropy], index): void => {
-      it(`Created correct entropy for ${index}`, (): void => {
-        expect(u8aToHex(mnemonicToEntropy(mnemonic, onlyJs))).toEqual(entropy);
+  for (const onlyJs of [false, true]) {
+    describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+      tests.forEach(([mnemonic, entropy], index): void => {
+        it(`Created correct entropy for ${index}`, (): void => {
+          expect(u8aToHex(mnemonicToEntropy(mnemonic, onlyJs))).toEqual(entropy);
+        });
       });
     });
-  });
+  }
 });

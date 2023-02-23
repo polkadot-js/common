@@ -35,13 +35,17 @@ describe('sha256AsU8a', (): void => {
     await waitReady();
   });
 
-  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-    it.each(TESTS)('creates known sha-256 hash', ({ input, output }): void => {
-      expect(
-        sha256AsU8a(hexToU8a(input), onlyJs)
-      ).toEqual(hexToU8a(output));
+  for (const onlyJs of [false, true]) {
+    describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+      for (const { input, output } of TESTS) {
+        it(`creates known sha-256 hash, ${output}`, (): void => {
+          expect(
+            sha256AsU8a(hexToU8a(input), onlyJs)
+          ).toEqual(hexToU8a(output));
+        });
+      }
     });
-  });
+  }
 
   perfWasm('sha256AsU8a', 128000, (input, onlyJs) =>
     sha256AsU8a(input, onlyJs)
