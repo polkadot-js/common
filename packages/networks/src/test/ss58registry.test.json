@@ -1286,6 +1286,19 @@
     "website": "https://ajuna.io"
   },
   {
+    "prefix": 1516,
+    "network": "societal",
+    "displayName": "Societal",
+    "symbols": [
+      "SCTL"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://www.sctl.xyz"
+  },
+  {
     "prefix": 1985,
     "network": "seals",
     "displayName": "Seals Network",
@@ -1377,11 +1390,11 @@
     "website": "https://chainflip.io/"
   },
   {
-    "prefix": 2207,
-    "network": "SNOW",
-    "displayName": "SNOW: ICE Canary Network",
+    "prefix": 2206,
+    "network": "ICE",
+    "displayName": "ICE Network",
     "symbols": [
-      "ICZ"
+      "ICY"
     ],
     "decimals": [
       18
@@ -1390,11 +1403,11 @@
     "website": "https://icenetwork.io"
   },
   {
-    "prefix": 2208,
-    "network": "ICE",
-    "displayName": "ICE Network",
+    "prefix": 2207,
+    "network": "SNOW",
+    "displayName": "SNOW: ICE Canary Network",
     "symbols": [
-      "ICY"
+      "ICZ"
     ],
     "decimals": [
       18

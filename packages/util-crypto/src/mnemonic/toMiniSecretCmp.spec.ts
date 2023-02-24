@@ -13,42 +13,52 @@ const NUM_RUNS = 100;
 const NUM_CHECKS = 5;
 
 // generate either a JS or WASM mnemonic
-describe.each([true, false])('mnemonicToMiniSecret (compare), onlyJsMnemonic=%p', (onlyJsMnemonic): void => {
-  // loop through lots of mnemonics
-  describe.each(arrayRange(NUM_RUNS))('run=%p', (): void => {
-    // compare both JS and WASM outputs against original
-    describe.each([true, false])('onlyJsMini=%p', async (onlyJsMini): Promise<void> => {
-      await cryptoWaitReady();
+for (const onlyJsMnemonic of [false, true]) {
+  describe(`mnemonicToMiniSecret (conpare), onlyJs${(onlyJsMnemonic && 'true') || 'false'}`, (): void => {
+    for (const i of arrayRange(NUM_RUNS)) {
+      // loop through lots of mnemonics
+      describe(`run=${i + 1}`, (): void => {
+        // compare both JS and WASM outputs against original
+        for (const onlyJsMini of [false, true]) {
+          describe(`onlyJsMini=${(onlyJsMini && 'true') || 'false'}`, (): void => {
+            beforeAll(async () => {
+              await cryptoWaitReady();
+            });
 
-      // NOTE we cannot actually use the onlyJsMnemonic flag here
-      const mnemonic = mnemonicGenerate(12);
+            // NOTE we cannot actually use the onlyJsMnemonic flag here
+            const mnemonic = mnemonicGenerate(12);
 
-      describe(mnemonic, (): void => {
-        // do iterations to check and re-check that all matches
-        it.each(arrayRange(NUM_CHECKS))('check=%p', (count): void => {
-          const minisecret = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMnemonic);
-          const edpub = ed25519PairFromSeed(minisecret).publicKey;
-          const srpub = sr25519PairFromSeed(minisecret).publicKey;
-          const testmini = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMini);
+            describe(mnemonic, (): void => {
+              // do iterations to check and re-check that all matches
+              for (const count of arrayRange(NUM_CHECKS)) {
+                it(`check=${count + 1}`, (): void => {
+                  const minisecret = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMnemonic);
+                  const edpub = ed25519PairFromSeed(minisecret).publicKey;
+                  const srpub = sr25519PairFromSeed(minisecret).publicKey;
+                  const testmini = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMini);
 
-          // explicit minisecret compare
-          expect(
-            u8aEq(minisecret, testmini)
-          ).toEqual(true);
+                  // explicit minisecret compare
+                  expect(
+                    u8aEq(minisecret, testmini)
+                  ).toEqual(true);
 
-          // compare the sr25519 keypair generated
-          expect(
-            u8aEq(srpub, sr25519PairFromSeed(testmini).publicKey)
-          ).toEqual(true);
+                  // compare the sr25519 keypair generated
+                  expect(
+                    u8aEq(srpub, sr25519PairFromSeed(testmini).publicKey)
+                  ).toEqual(true);
 
-          // compare ed both in WASM and JS
-          [true, false].forEach((onlyJsEd): void => {
-            expect(
-              u8aEq(edpub, ed25519PairFromSeed(testmini, onlyJsEd).publicKey)
-            ).toEqual(true);
+                  // compare ed both in WASM and JS
+                  [true, false].forEach((onlyJsEd): void => {
+                    expect(
+                      u8aEq(edpub, ed25519PairFromSeed(testmini, onlyJsEd).publicKey)
+                    ).toEqual(true);
+                  });
+                });
+              }
+            });
           });
-        });
+        }
       });
-    });
+    }
   });
-});
+}

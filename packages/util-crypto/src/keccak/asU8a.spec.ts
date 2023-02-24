@@ -22,29 +22,33 @@ describe('keccakAsU8a', (): void => {
     )
   };
 
-  describe.each([256, 512] as (256 | 512)[])('bitLength=$p', (bitLength): void => {
-    describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-      it('returns an hex representation (string)', (): void => {
-        expect(
-          keccakAsU8a(input, bitLength, onlyJs)
-        ).toEqual(output[bitLength]);
-      });
+  for (const bitLength of <const> [256, 512]) {
+    describe(`bitLength=${bitLength}`, (): void => {
+      for (const onlyJs of [false, true]) {
+        describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+          it('returns an hex representation (string)', (): void => {
+            expect(
+              keccakAsU8a(input, bitLength, onlyJs)
+            ).toEqual(output[bitLength]);
+          });
 
-      it('returns an hex representation (Buffer)', (): void => {
-        expect(
-          keccakAsU8a(Buffer.from(input), bitLength, onlyJs)
-        ).toEqual(output[bitLength]);
-      });
+          it('returns an hex representation (Buffer)', (): void => {
+            expect(
+              keccakAsU8a(Buffer.from(input), bitLength, onlyJs)
+            ).toEqual(output[bitLength]);
+          });
 
-      it('returns an hex representation (Uint8Array)', (): void => {
-        expect(
-          keccakAsU8a(stringToU8a(input), bitLength, onlyJs)
-        ).toEqual(output[bitLength]);
-      });
+          it('returns an hex representation (Uint8Array)', (): void => {
+            expect(
+              keccakAsU8a(stringToU8a(input), bitLength, onlyJs)
+            ).toEqual(output[bitLength]);
+          });
+        });
+      }
+
+      perfWasm(`keccakAsU8a, bitLength=${bitLength}`, 128000, (input, onlyJs) =>
+        keccakAsU8a(input, bitLength, onlyJs)
+      );
     });
-
-    perfWasm(`keccakAsU8a, bitLength=${bitLength}`, 128000, (input, onlyJs) =>
-      keccakAsU8a(input, bitLength, onlyJs)
-    );
-  });
+  }
 });

@@ -49,21 +49,23 @@ describe('secp256k1PairFromSeed', (): void => {
     secretKey: hexToU8a('0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae')
   };
 
-  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-    it('generates a valid publicKey/secretKey pair (u8a)', (): void => {
-      expect(secp256k1PairFromSeed(TEST, onlyJs)).toEqual(RESULT);
-    });
+  for (const onlyJs of [false, true]) {
+    describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+      it('generates a valid publicKey/secretKey pair (u8a)', (): void => {
+        expect(secp256k1PairFromSeed(TEST, onlyJs)).toEqual(RESULT);
+      });
 
-    tests.forEach(([mnemonic, secretKey, publicKey], index): void => {
-      it(`creates valid against known (${index})`, (): void => {
-        const seed = mnemonicToMiniSecret(mnemonic);
-        const pair = secp256k1PairFromSeed(seed, onlyJs);
+      tests.forEach(([mnemonic, secretKey, publicKey], index): void => {
+        it(`creates valid against known (${index})`, (): void => {
+          const seed = mnemonicToMiniSecret(mnemonic);
+          const pair = secp256k1PairFromSeed(seed, onlyJs);
 
-        expect(u8aToHex(pair.secretKey)).toEqual(secretKey);
-        expect(u8aToHex(pair.publicKey)).toEqual(publicKey);
+          expect(u8aToHex(pair.secretKey)).toEqual(secretKey);
+          expect(u8aToHex(pair.publicKey)).toEqual(publicKey);
+        });
       });
     });
-  });
+  }
 
   perfWasm('secp256k1PairFromSeed', 500, (input, onlyJs) =>
     secp256k1PairFromSeed(input, onlyJs)

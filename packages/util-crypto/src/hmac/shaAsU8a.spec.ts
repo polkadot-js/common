@@ -23,17 +23,21 @@ describe('hmacShaAsU8a', (): void => {
     )
   };
 
-  describe.each([256, 512] as (256 | 512)[])('bitLength=%p', (bitLength): void => {
-    describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-      it('returns an hex representation (string)', (): void => {
-        expect(
-          hmacShaAsU8a(key, data, bitLength, onlyJs)
-        ).toEqual(output[bitLength]);
-      });
+  for (const bitLength of <const> [256, 512]) {
+    describe(`bitLength=${bitLength}`, (): void => {
+      for (const onlyJs of [false, true]) {
+        describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+          it('returns an hex representation (string)', (): void => {
+            expect(
+              hmacShaAsU8a(key, data, bitLength, onlyJs)
+            ).toEqual(output[bitLength]);
+          });
+        });
+      }
     });
 
     perfWasm(`hmacShaAsU8a, bitLength=${bitLength}`, 16000, (input, onlyJs) =>
       hmacShaAsU8a(input, input, bitLength, onlyJs)
     );
-  });
+  }
 });

@@ -21,26 +21,30 @@ describe('pbkdf2Encode', (): void => {
     await waitReady();
   });
 
-  it.each([256, 1024, 2048])('has equivalent Wasm & JS results (%p rounds)', (rounds): void => {
-    const salt = randomAsU8a();
+  for (const rounds of <const> [256, 1024, 2048]) {
+    it(`has equivalent Wasm & JS results (${rounds} rounds)`, (): void => {
+      const salt = randomAsU8a();
 
-    expect(
-      u8aEq(
-        pbkdf2Encode(TEST_PASSWORD, salt, rounds, false).password,
-        pbkdf2Encode(TEST_PASSWORD, salt, rounds, true).password
-      )
-    ).toBe(true);
-  });
-
-  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-    it('creates known iterations', (): void => {
       expect(
-        u8aToHex(pbkdf2Encode(TEST_PASSWORD, KNOWN_SALT, 2048, onlyJs).password)
-      ).toEqual(
-        '0x600ba9ad65e4294d112e028fdad5dd8fce0a6a6e6b89fb36ed006785ccc3b3aec46831b3105c24237293e6cfa1a0ef6717c113f87ff9237a3f73d210adfa6634'
-      );
+        u8aEq(
+          pbkdf2Encode(TEST_PASSWORD, salt, rounds, false).password,
+          pbkdf2Encode(TEST_PASSWORD, salt, rounds, true).password
+        )
+      ).toBe(true);
     });
-  });
+  }
+
+  for (const onlyJs of [false, true]) {
+    describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+      it('creates known iterations', (): void => {
+        expect(
+          u8aToHex(pbkdf2Encode(TEST_PASSWORD, KNOWN_SALT, 2048, onlyJs).password)
+        ).toEqual(
+          '0x600ba9ad65e4294d112e028fdad5dd8fce0a6a6e6b89fb36ed006785ccc3b3aec46831b3105c24237293e6cfa1a0ef6717c113f87ff9237a3f73d210adfa6634'
+        );
+      });
+    });
+  }
 
   perfWasm('pbkdf2Encode', 8, (input, onlyJs) =>
     pbkdf2Encode(input, input, undefined, onlyJs)

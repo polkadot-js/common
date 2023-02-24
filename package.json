@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "build": "polkadot-dev-build-ts",
-    "build:networks": "yarn test:one packages/networks/src",
+    "build:networks": "polkadot-dev-run-test --env browser packages/networks/src",
     "build:release": "polkadot-ci-ghact-build",
     "build:rollup": "polkadot-exec-rollup --config",
     "clean": "polkadot-dev-clean-build",
@@ -31,12 +31,11 @@
     "test": "polkadot-dev-run-test --env browser ^mnemonic/toMiniSecretCmp",
     "test:mnemonicCmp": "polkadot-dev-run-test --env browser mnemonic/toMiniSecretCmp",
     "test:node": "polkadot-dev-run-test --env browser ^mnemonic/toMiniSecretCmp",
-    "test:one": "polkadot-dev-run-test --env browser -- --runInBand"
+    "test:one": "polkadot-dev-run-test --env browser"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
-    "@polkadot/dev": "^0.69.5",
-    "@types/jest": "^29.4.0"
+    "@polkadot/dev": "^0.69.7"
   },
   "resolutions": {
     "typescript": "^4.9.5"
