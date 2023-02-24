@@ -1,4 +1,4 @@
-    1543	Jaco                          	Bump deps (#1745)
+    1544	Jaco                          	Remove usage of {describe, it}.each (#1746)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
