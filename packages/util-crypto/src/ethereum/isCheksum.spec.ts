@@ -1,6 +1,9 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// eslint-disable-next-line spaced-comment
+/// <reference types="@polkadot/dev/node/test/node" />
+
 import { isEthereumChecksum } from './';
 
 const ADDRESS = '0x00a329c0648769A73afAc7F9381E08FB43dBEA72';
