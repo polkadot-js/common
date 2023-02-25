@@ -1,4 +1,4 @@
-    1544	Jaco                          	Remove usage of {describe, it}.each (#1746)
+    1545	Jaco                          	Move test cryptoWaitReady top-level (#1747)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
