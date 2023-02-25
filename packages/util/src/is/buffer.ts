@@ -6,8 +6,8 @@ import { xglobal } from '@polkadot/x-global';
 import { hasBuffer } from '../has';
 import { isFunction } from './function';
 
-// We define these interfaces to not have the Buffer type
-// (doing this removes the need for node types being available)
+// We define a scappy low-level interface to mock Buffer
+// (this removes the need for the node typings in built bundles)
 interface BufTyp { isBuffer: (value: unknown) => boolean }
 interface BufObj { readDoubleLE: (...args: unknown[]) => unknown }
 
@@ -27,5 +27,5 @@ interface BufObj { readDoubleLE: (...args: unknown[]) => unknown }
  */
 export function isBuffer (value: unknown): value is Buffer {
   // we do check a function first, since it is slightly faster than isBuffer itself
-  return hasBuffer && isFunction(value && (value as BufObj).readDoubleLE) && (xglobal.Buffer as BufTyp).isBuffer(value);
+  return hasBuffer && isFunction(value && (value as unknown as BufObj).readDoubleLE) && (xglobal.Buffer as BufTyp).isBuffer(value);
 }
