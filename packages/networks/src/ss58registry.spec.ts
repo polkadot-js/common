@@ -5,8 +5,8 @@
 /// <reference types="@polkadot/dev/node/test/node" />
 
 import known from '@substrate/ss58-registry';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 import other from './test/ss58registry.test.json' assert { type: 'json' };
 
