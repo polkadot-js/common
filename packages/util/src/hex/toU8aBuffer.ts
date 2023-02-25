@@ -50,5 +50,5 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     return u8a;
   }
 
-  return Uint8Array.from(buf.slice(0, resultLength));
+  return Uint8Array.from(buf.subarray(0, resultLength));
 }

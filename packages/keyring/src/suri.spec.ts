@@ -1,6 +1,9 @@
 // Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// eslint-disable-next-line spaced-comment
+/// <reference types="@polkadot/dev/node/test/node" />
+
 // From https://github.com/paritytech/substrate/wiki/Secret-URI-Test-Vectors
 
 import type { KeypairType } from '@polkadot/util-crypto/types';
@@ -87,13 +90,11 @@ const TESTS = {
   ]
 };
 
-describe('keyring.addFromUri', (): void => {
-  Object.entries(TESTS).forEach(([type, tests]): void => {
-    const keyring = new Keyring({ type: type as KeypairType });
+await cryptoWaitReady();
 
-    beforeEach(async (): Promise<void> => {
-      await cryptoWaitReady();
-    });
+describe('keyring.addFromUri', (): void => {
+  for (const [type, tests] of Object.entries(TESTS)) {
+    const keyring = new Keyring({ type: type as KeypairType });
 
     describe(type, (): void => {
       tests.forEach(({ pk, ss, uri }): void => {
@@ -105,5 +106,5 @@ describe('keyring.addFromUri', (): void => {
         });
       });
     });
-  });
+  }
 });

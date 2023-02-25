@@ -1,6 +1,9 @@
 // Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// eslint-disable-next-line spaced-comment
+/// <reference types="@polkadot/dev/node/test/node" />
+
 import { u8aToHex } from '@polkadot/util';
 import { cryptoWaitReady } from '@polkadot/util-crypto';
 
@@ -9,11 +12,9 @@ import Keyring from '.';
 
 const TEST_ADD = '0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac';
 
-describe('testingPairs', (): void => {
-  beforeEach(async (): Promise<void> => {
-    await cryptoWaitReady();
-  });
+await cryptoWaitReady();
 
+describe('testingPairs', (): void => {
   it('creates without failing', (): void => {
     expect(
       Object.keys(createTestPairs())

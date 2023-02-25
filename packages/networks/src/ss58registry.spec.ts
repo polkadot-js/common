@@ -1,9 +1,12 @@
 // Copyright 2017-2023 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// eslint-disable-next-line spaced-comment
+/// <reference types="@polkadot/dev/node/test/node" />
+
 import known from '@substrate/ss58-registry';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 import other from './test/ss58registry.test.json' assert { type: 'json' };
 
