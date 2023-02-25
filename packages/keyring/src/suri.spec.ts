@@ -87,13 +87,11 @@ const TESTS = {
   ]
 };
 
-describe('keyring.addFromUri', (): void => {
-  Object.entries(TESTS).forEach(([type, tests]): void => {
-    const keyring = new Keyring({ type: type as KeypairType });
+await cryptoWaitReady();
 
-    beforeEach(async (): Promise<void> => {
-      await cryptoWaitReady();
-    });
+describe('keyring.addFromUri', (): void => {
+  for (const [type, tests] of Object.entries(TESTS)) {
+    const keyring = new Keyring({ type: type as KeypairType });
 
     describe(type, (): void => {
       tests.forEach(({ pk, ss, uri }): void => {
@@ -105,5 +103,5 @@ describe('keyring.addFromUri', (): void => {
         });
       });
     });
-  });
+  }
 });

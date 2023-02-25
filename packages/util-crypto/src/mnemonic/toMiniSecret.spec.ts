@@ -10,11 +10,9 @@ import { mnemonicToMiniSecret } from './toMiniSecret';
 const MNEMONIC = 'seed sock milk update focus rotate barely fade car face mechanic mercy';
 const SEED = '0x4d1ab2a57929edfd018aaa974e62ed557e3f54b4104acabedf73c8f5a1dbb029';
 
-describe('mnemonicToMiniSecret', (): void => {
-  beforeEach(async (): Promise<void> => {
-    await cryptoWaitReady();
-  });
+await cryptoWaitReady();
 
+describe('mnemonicToMiniSecret', (): void => {
   for (const password of [undefined, 'foo', 'bar']) {
     it(`generates Wasm & Js equivalents for password=${password || 'undefined'}`, (): void => {
       expect(

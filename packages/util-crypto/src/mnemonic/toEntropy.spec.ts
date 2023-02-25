@@ -7,11 +7,9 @@ import tests from '../sr25519/pair/testing.spec';
 import { cryptoWaitReady } from '..';
 import { mnemonicToEntropy } from './toEntropy';
 
-describe('mnemonicToEntropy', (): void => {
-  beforeEach(async (): Promise<void> => {
-    await cryptoWaitReady();
-  });
+await cryptoWaitReady();
 
+describe('mnemonicToEntropy', (): void => {
   for (const onlyJs of [false, true]) {
     describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
       tests.forEach(([mnemonic, entropy], index): void => {

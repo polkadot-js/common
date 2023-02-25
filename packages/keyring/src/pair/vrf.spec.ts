@@ -1,8 +1,6 @@
 // Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyringPair } from '../types';
-
 import { u8aToHex } from '@polkadot/util';
 import { cryptoWaitReady, ed25519PairFromSeed, encodeAddress as toSS58, randomAsU8a, secp256k1PairFromSeed, sr25519PairFromSeed } from '@polkadot/util-crypto';
 
@@ -11,19 +9,13 @@ import { createPair } from '.';
 const MESSAGE = 'this is a test message';
 const CONTEXT = 'some context';
 
+await cryptoWaitReady();
+
+const ecdsa = createPair({ toSS58, type: 'ecdsa' }, secp256k1PairFromSeed(randomAsU8a()));
+const ed25519 = createPair({ toSS58, type: 'ed25519' }, ed25519PairFromSeed(randomAsU8a()));
+const sr25519 = createPair({ toSS58, type: 'sr25519' }, sr25519PairFromSeed(randomAsU8a()));
+
 describe('vrf', (): void => {
-  let ecdsa: KeyringPair;
-  let ed25519: KeyringPair;
-  let sr25519: KeyringPair;
-
-  beforeAll(async (): Promise<void> => {
-    await cryptoWaitReady();
-
-    ecdsa = createPair({ toSS58, type: 'ecdsa' }, secp256k1PairFromSeed(randomAsU8a()));
-    ed25519 = createPair({ toSS58, type: 'ed25519' }, ed25519PairFromSeed(randomAsU8a()));
-    sr25519 = createPair({ toSS58, type: 'sr25519' }, sr25519PairFromSeed(randomAsU8a()));
-  });
-
   it('has deterministic signature values for ecdsa', (): void => {
     const sig1 = ecdsa.vrfSign(MESSAGE, CONTEXT);
     const sig2 = ecdsa.vrfSign(MESSAGE, CONTEXT);

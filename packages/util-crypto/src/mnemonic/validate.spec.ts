@@ -4,26 +4,22 @@
 import { cryptoWaitReady } from '..';
 import { mnemonicValidate } from './validate';
 
+await cryptoWaitReady();
+
 describe('mnemonicValidate', (): void => {
-  beforeEach(async (): Promise<void> => {
-    await cryptoWaitReady();
-  });
+  for (const onlyJs of [undefined, true]) {
+    describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+      it('returns true on valid', (): void => {
+        expect(
+          mnemonicValidate('seed sock milk update focus rotate barely fade car face mechanic mercy', onlyJs)
+        ).toEqual(true);
+      });
 
-  it('returns true on valid', (): void => {
-    expect(
-      mnemonicValidate('seed sock milk update focus rotate barely fade car face mechanic mercy')
-    ).toEqual(true);
-    expect(
-      mnemonicValidate('seed sock milk update focus rotate barely fade car face mechanic mercy', true)
-    ).toEqual(true);
-  });
-
-  it('returns false on invalid', (): void => {
-    expect(
-      mnemonicValidate('wine photo extra cushion basket dwarf humor cloud truck job boat submit')
-    ).toEqual(false);
-    expect(
-      mnemonicValidate('wine photo extra cushion basket dwarf humor cloud truck job boat submit', true)
-    ).toEqual(false);
-  });
+      it('returns false on invalid', (): void => {
+        expect(
+          mnemonicValidate('wine photo extra cushion basket dwarf humor cloud truck job boat submit', onlyJs)
+        ).toEqual(false);
+      });
+    });
+  }
 });
