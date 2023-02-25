@@ -8,7 +8,7 @@ import { isFunction } from './function';
 
 // We define a scappy low-level interface to mock Buffer
 // (this removes the need for the node typings in built bundles)
-interface BufTyp { isBuffer: (value: unknown) => boolean }
+interface BufTyp extends Function { isBuffer: (value: unknown) => boolean }
 interface BufObj { readDoubleLE: (...args: unknown[]) => unknown }
 
 /**

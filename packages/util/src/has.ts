@@ -13,7 +13,7 @@ declare const require: unknown;
 
 // We define a scappy low-level interface to mock Buffer
 // (this removes the need for the node typings in built bundles)
-interface BufTyp { isBuffer: (value: unknown) => boolean; }
+interface BufTyp extends Function { isBuffer: (value: unknown) => boolean; }
 
 /** true if the environment has proper BigInt support */
 export const hasBigInt = typeof BigInt === 'function' && typeof BigInt.asIntN === 'function';
