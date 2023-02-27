@@ -10,12 +10,12 @@ import { BN } from './bn';
 import { logger, loggerFormat } from '.';
 
 describe('logger', (): void => {
-  let dateMatch: unknown;
-  let prefixMatch: unknown;
+  const dateMatch = expect.stringMatching(/20[0-9]{2}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/);
+  const prefixMatch = expect.stringMatching(/TEST:/);
   let l: Logger;
   let ln: Logger;
   let spy: Partial<Console>;
-  let oldEnv: NodeJS.ProcessEnv;
+  let oldEnv: typeof process.env;
 
   beforeEach((): void => {
     oldEnv = process.env;
@@ -33,11 +33,6 @@ describe('logger', (): void => {
       warn: jest.fn()
     };
     global.console = spy as Console;
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    dateMatch = expect.stringMatching(/20[0-9]{2}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    prefixMatch = expect.stringMatching(/TEST:/);
   });
 
   afterEach((): void => {
@@ -151,7 +146,7 @@ describe('logger', (): void => {
   });
 
   it('does not debug log when no process.env', (): void => {
-    process.env = undefined as unknown as NodeJS.ProcessEnv;
+    process.env = undefined as unknown as typeof process.env;
 
     l = logger('test');
     l.debug('test');
