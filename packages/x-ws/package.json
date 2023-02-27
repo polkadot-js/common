@@ -24,7 +24,7 @@
   "dependencies": {
     "@babel/runtime": "^7.21.0",
     "@polkadot/x-global": "10.4.3-6-x",
-    "@types/websocket": "^1.0.5",
-    "websocket": "^1.0.34"
+    "@types/ws": "^8.5.4",
+    "ws": "^8.12.1"
   }
 }

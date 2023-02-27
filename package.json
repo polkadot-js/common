@@ -20,7 +20,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "polkadot-dev-build-ts",
+    "build": "polkadot-dev-build-ts --compiler swc",
     "build:networks": "polkadot-dev-run-test --env browser packages/networks/src",
     "build:release": "polkadot-ci-ghact-build",
     "build:rollup": "polkadot-exec-rollup --config",
