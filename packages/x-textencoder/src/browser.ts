@@ -7,4 +7,4 @@ import { TextEncoder as Fallback } from './fallback';
 
 export { packageInfo } from './packageInfo';
 
-export const TextEncoder = extractGlobal('TextEncoder', Fallback);
+export const TextEncoder = /*#__PURE__*/ extractGlobal('TextEncoder', Fallback);

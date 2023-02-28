@@ -20,4 +20,4 @@ class Fallback {
   }
 }
 
-export const TextEncoder = extractGlobal('TextEncoder', Fallback);
+export const TextEncoder = /*#__PURE__*/ extractGlobal('TextEncoder', Fallback);

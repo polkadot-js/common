@@ -7,4 +7,4 @@ import { extractGlobal } from '@polkadot/x-global';
 
 export { packageInfo } from './packageInfo';
 
-export const TextDecoder = extractGlobal('TextDecoder', util.TextDecoder);
+export const TextDecoder = /*#__PURE__*/ extractGlobal('TextDecoder', util.TextDecoder);
