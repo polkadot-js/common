@@ -7,4 +7,4 @@ import { extractGlobal } from '@polkadot/x-global';
 
 export { packageInfo } from './packageInfo';
 
-export const WebSocket = extractGlobal('WebSocket', ws);
+export const WebSocket = /*#__PURE__*/ extractGlobal('WebSocket', ws);

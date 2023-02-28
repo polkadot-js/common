@@ -7,4 +7,4 @@ import { TextDecoder as Fallback } from './fallback';
 
 export { packageInfo } from './packageInfo';
 
-export const TextDecoder = extractGlobal('TextDecoder', Fallback);
+export const TextDecoder = /*#__PURE__*/ extractGlobal('TextDecoder', Fallback);
