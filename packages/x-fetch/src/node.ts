@@ -30,4 +30,4 @@ async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> 
   return modFn(...args);
 }
 
-export const fetch = extractGlobal('fetch', nodeFetch);
+export const fetch = /*#__PURE__*/ extractGlobal('fetch', nodeFetch);
