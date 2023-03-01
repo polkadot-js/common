@@ -1,4 +1,4 @@
-    1547	Jaco                          	Add __PURE__ annotations for x-* exports (#1750)
+    1548	Jaco                          	Align gh workflows (#1751)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
