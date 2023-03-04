@@ -23,8 +23,8 @@
   "react-native": "react-native.js",
   "dependencies": {
     "@polkadot/x-global": "11.0.0",
-    "@types/websocket": "^1.0.5",
+    "@types/ws": "^8.5.4",
     "tslib": "^2.5.0",
-    "websocket": "^1.0.34"
+    "ws": "^8.12.1"
   }
 }
