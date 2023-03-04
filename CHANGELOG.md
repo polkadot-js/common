@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Change `@polkadot/x-ws` to use [ws](https://www.npmjs.com/package/ws) package (previous: `websocket`)
+
+
 ## 10.4.2 Feb 19, 2023
 
 Contributed:
