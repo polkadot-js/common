@@ -23,8 +23,10 @@
   "react-native": "react-native.js",
   "dependencies": {
     "@polkadot/x-global": "11.0.0",
-    "@types/node-fetch": "^2.6.2",
     "node-fetch": "^3.3.0",
     "tslib": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.2"
   }
 }
