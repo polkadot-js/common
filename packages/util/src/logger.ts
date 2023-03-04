@@ -18,12 +18,12 @@ import { hasProcess } from './has';
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
 
-const logTo = <const> {
+const logTo = {
   debug: 'log',
   error: 'error',
   log: 'log',
   warn: 'warn'
-};
+} as const;
 
 function formatOther (value: unknown): unknown {
   if (value && isObject(value) && value.constructor === Object) {

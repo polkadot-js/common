@@ -65,7 +65,7 @@ describe('blake2AsU8a', (): void => {
     expect(a).toEqual(b);
   });
 
-  for (const bitLength of <const> [256, 512]) {
+  for (const bitLength of [256, 512] as const) {
     describe(`bitLength=${bitLength}`, (): void => {
       perfWasm(`blake2AsU8a, bitLength=${bitLength}`, 64000, (input, onlyJs) =>
         blake2AsU8a(input, bitLength, null, onlyJs)

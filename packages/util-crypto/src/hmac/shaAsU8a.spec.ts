@@ -26,7 +26,7 @@ describe('hmacShaAsU8a', (): void => {
     )
   };
 
-  for (const bitLength of <const> [256, 512]) {
+  for (const bitLength of [256, 512] as const) {
     describe(`bitLength=${bitLength}`, (): void => {
       for (const onlyJs of [false, true]) {
         describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
