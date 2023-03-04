@@ -1,10 +1,15 @@
 # CHANGELOG
 
-## master
+## 11.0.1 Mar 4, 2023
 
 Changes:
 
 - Change `@polkadot/x-ws` to use [ws](https://www.npmjs.com/package/ws) package (previous: `websocket`)
+- Add `/*#__PURE__*/` annotations for `@polkadot/x-*` packages
+- Swap TS -> JS compiler to use tsc (from babel)
+- Adjust all tests to use `node:test` runner (ESM variants)
+- Move `cryptoWaitReady()` top-level in test files
+- Upgrade to `@polkadot/wasm-crypto` 7.0.1
 
 
 ## 10.4.2 Feb 19, 2023

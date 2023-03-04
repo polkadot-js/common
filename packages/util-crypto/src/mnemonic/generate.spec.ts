@@ -19,7 +19,7 @@ describe('mnemonicGenerate', (): void => {
 
   for (const onlyJs of [false, true]) {
     describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
-      for (const num of <const> [12, 15, 18, 21, 24]) {
+      for (const num of [12, 15, 18, 21, 24] as const) {
         it(`generates a valid mnemonic (${num} words)`, (): void => {
           const mnemonic = mnemonicGenerate(num, onlyJs);
           const isValid = mnemonicValidate(mnemonic);

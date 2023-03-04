@@ -24,7 +24,7 @@ describe('pbkdf2Encode', (): void => {
     await waitReady();
   });
 
-  for (const rounds of <const> [256, 1024, 2048]) {
+  for (const rounds of [256, 1024, 2048] as const) {
     it(`has equivalent Wasm & JS results (${rounds} rounds)`, (): void => {
       const salt = randomAsU8a();
 

@@ -22,29 +22,29 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "10.4.3-9-x",
+  "version": "11.0.0",
   "browser": {
     "crypto": false,
     "stream": false
   },
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.21.0",
     "@noble/hashes": "1.2.0",
     "@noble/secp256k1": "1.7.1",
-    "@polkadot/networks": "10.4.3-9-x",
-    "@polkadot/util": "10.4.3-9-x",
-    "@polkadot/wasm-crypto": "^6.4.1",
-    "@polkadot/x-bigint": "10.4.3-9-x",
-    "@polkadot/x-randomvalues": "10.4.3-9-x",
+    "@polkadot/networks": "11.0.0",
+    "@polkadot/util": "11.0.0",
+    "@polkadot/wasm-crypto": "^7.0.2",
+    "@polkadot/x-bigint": "11.0.0",
+    "@polkadot/x-randomvalues": "11.0.0",
     "@scure/base": "1.1.1",
     "ed2curve": "^0.3.0",
+    "tslib": "^2.5.0",
     "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
     "@types/ed2curve": "^0.2.2"
   },
   "peerDependencies": {
-    "@polkadot/util": "10.4.3-9-x"
+    "@polkadot/util": "11.0.0"
   }
 }

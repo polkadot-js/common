@@ -17,14 +17,16 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "10.4.3-9-x",
+  "version": "11.0.0",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@babel/runtime": "^7.21.0",
-    "@polkadot/x-global": "10.4.3-9-x",
-    "@types/node-fetch": "^2.6.2",
-    "node-fetch": "^3.3.0"
+    "@polkadot/x-global": "11.0.0",
+    "node-fetch": "^3.3.0",
+    "tslib": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.2"
   }
 }
