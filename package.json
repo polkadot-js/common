@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "build": "polkadot-dev-build-ts",
-    "build:networks": "polkadot-dev-run-test --env browser packages/networks/src",
+    "build:networks": "polkadot-dev-run-test packages/networks/src",
     "build:release": "polkadot-ci-ghact-build",
     "build:rollup": "polkadot-exec-rollup --config",
     "clean": "polkadot-dev-clean-build",

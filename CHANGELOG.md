@@ -4,6 +4,7 @@
 
 Changes:
 
+- Change `@polkadot/x-ws` to use [ws](https://www.npmjs.com/package/ws) package (previous: `websocket`)
 - Add `/*#__PURE__*/` annotations for `@polkadot/x-*` packages
 - Swap TS -> JS compiler to use tsc (from babel)
 - Adjust all tests to use `node:test` runner (ESM variants)
