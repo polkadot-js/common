@@ -1,4 +1,4 @@
-    1551	Jaco                          	11.0.1 (#1753)
+    1552	Jaco                          	jg-rm-babel-config (#1754)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
