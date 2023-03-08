@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isFunction } from './is/function';
+import { isFunction } from './is/function.js';
 
 type MessageFn = () => string;
 

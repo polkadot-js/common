@@ -3,7 +3,7 @@
 
 import type { HexString } from '@polkadot/util/types';
 import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util-crypto/types';
-import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types';
+import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types.js';
 import type { PairInfo } from './types';
 
 import { objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';

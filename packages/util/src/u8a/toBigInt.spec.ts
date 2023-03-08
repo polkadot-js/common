@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { perf } from '../test';
-import { u8aToBigInt } from '.';
+import { perf } from '../test/index.js';
+import { u8aToBigInt } from './index.js';
 
 describe('u8aToBigInt', (): void => {
   it('converts little-endian by default', (): void => {

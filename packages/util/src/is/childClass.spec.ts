@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { BN } from '../bn';
-import { isChildClass } from '.';
+import { BN } from '../bn/index.js';
+import { isChildClass } from './index.js';
 
 describe('isChildClass', (): void => {
   it('returns true when a Child value', (): void => {

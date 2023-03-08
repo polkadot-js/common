@@ -4,9 +4,9 @@
 import { stringToU8a } from '@polkadot/util';
 import { bip39ToMiniSecret, isReady } from '@polkadot/wasm-crypto';
 
-import { pbkdf2Encode } from '../pbkdf2';
-import { mnemonicToEntropy } from './toEntropy';
-import { mnemonicValidate } from './validate';
+import { pbkdf2Encode } from '../pbkdf2/index.js';
+import { mnemonicToEntropy } from './toEntropy.js';
+import { mnemonicValidate } from './validate.js';
 
 export function mnemonicToMiniSecret (mnemonic: string, password = '', onlyJs?: boolean): Uint8Array {
   if (!mnemonicValidate(mnemonic)) {

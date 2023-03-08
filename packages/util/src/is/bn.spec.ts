@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { BN } from '../bn';
-import { isBn } from '.';
+import { BN } from '../bn/index.js';
+import { isBn } from './index.js';
 
 describe('isBN', (): void => {
   it('returns true when a BN value', (): void => {

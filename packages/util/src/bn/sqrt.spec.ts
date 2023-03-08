@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { SQRT_TESTS } from '../bi/sqrt.spec';
-import { BN, BN_SQRT_MAX_INTEGER, bnSqrt } from '.';
+import { SQRT_TESTS } from '../bi/sqrt.spec.js';
+import { BN, BN_SQRT_MAX_INTEGER, bnSqrt } from './index.js';
 
 describe('bnSqrt', (): void => {
   it('fails on < 0 roots', (): void => {

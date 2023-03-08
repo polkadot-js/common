@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { randomAsU8a } from '../random/asU8a';
-import { sr25519PairFromSeed } from './pair/fromSeed';
-import { sr25519Sign } from './sign';
+import { randomAsU8a } from '../random/asU8a.js';
+import { sr25519PairFromSeed } from './pair/fromSeed.js';
+import { sr25519Sign } from './sign.js';
 
 const MESSAGE = stringToU8a('this is a message');
 

@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { BN, BN_ONE, BN_TWO, bnToBn, bnToU8a } from '../bn';
-import { u8aConcatStrict } from '../u8a';
+import { BN, BN_ONE, BN_TWO, bnToBn, bnToU8a } from '../bn/index.js';
+import { u8aConcatStrict } from '../u8a/index.js';
 
 const MAX_U8 = BN_TWO.pow(new BN(8 - 2)).isub(BN_ONE);
 const MAX_U16 = BN_TWO.pow(new BN(16 - 2)).isub(BN_ONE);

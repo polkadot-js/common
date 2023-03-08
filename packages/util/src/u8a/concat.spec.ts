@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { getRandomValues } from '@polkadot/x-randomvalues';
 
-import { arrayRange } from '../array';
-import { perf } from '../test';
-import { u8aConcat, u8aConcatStrict } from '.';
+import { arrayRange } from '../array/index.js';
+import { perf } from '../test/index.js';
+import { u8aConcat, u8aConcatStrict } from './index.js';
 
 const ptest = arrayRange(10).map(() => getRandomValues(new Uint8Array(32)));
 

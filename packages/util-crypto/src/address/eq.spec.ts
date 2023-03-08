@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { ALICE_PUBLIC_SR } from './encode.spec';
-import { addressEq } from '.';
+import { addressEq } from './index.js';
 
 describe('addressEq', (): void => {
   it('returns false with non-equal', (): void => {

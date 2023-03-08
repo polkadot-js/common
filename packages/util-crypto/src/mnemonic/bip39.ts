@@ -16,10 +16,10 @@
 
 import { stringToU8a, u8aToU8a } from '@polkadot/util';
 
-import { pbkdf2Encode } from '../pbkdf2';
-import { randomAsU8a } from '../random';
-import { sha256AsU8a } from '../sha';
-import DEFAULT_WORDLIST from './bip39-en';
+import { pbkdf2Encode } from '../pbkdf2/index.js';
+import { randomAsU8a } from '../random/index.js';
+import { sha256AsU8a } from '../sha/index.js';
+import DEFAULT_WORDLIST from './bip39-en.js';
 
 const INVALID_MNEMONIC = 'Invalid mnemonic';
 const INVALID_ENTROPY = 'Invalid entropy';

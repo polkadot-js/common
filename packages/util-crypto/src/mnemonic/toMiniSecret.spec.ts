@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { u8aEq, u8aToHex } from '@polkadot/util';
 
-import tests from '../sr25519/pair/testing.spec';
-import { cryptoWaitReady } from '..';
-import { mnemonicToMiniSecret } from './toMiniSecret';
+import { cryptoWaitReady } from '../index.js';
+import tests from '../sr25519/pair/testing.spec.js';
+import { mnemonicToMiniSecret } from './toMiniSecret.js';
 
 const MNEMONIC = 'seed sock milk update focus rotate barely fade car face mechanic mercy';
 const SEED = '0x4d1ab2a57929edfd018aaa974e62ed557e3f54b4104acabedf73c8f5a1dbb029';

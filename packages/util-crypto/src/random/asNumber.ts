@@ -3,7 +3,7 @@
 
 import { BN, hexToBn } from '@polkadot/util';
 
-import { randomAsHex } from './asU8a';
+import { randomAsHex } from './asU8a.js';
 
 const BN_53 = new BN(0b11111111111111111111111111111111111111111111111111111);
 

@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import type { Logger } from './types';
+import type { Logger } from './types.js';
 
-import { BN } from './bn';
-import { logger, loggerFormat } from '.';
+import { BN } from './bn/index.js';
+import { logger, loggerFormat } from './index.js';
 
 describe('logger', (): void => {
   const dateMatch = expect.stringMatching(/20[0-9]{2}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/);

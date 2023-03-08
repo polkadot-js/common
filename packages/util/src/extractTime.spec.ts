@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { extractTime } from '.';
+import { extractTime } from './index.js';
 
 describe('extractTime', (): void => {
   const milliseconds = 1e9 + 123;

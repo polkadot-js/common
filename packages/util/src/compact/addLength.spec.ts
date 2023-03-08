@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { compactAddLength } from '.';
+import { compactAddLength } from './index.js';
 
 describe('compactAddLength', (): void => {
   it('correctly adds the length prefix', (): void => {

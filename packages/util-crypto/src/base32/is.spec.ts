@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { isBase32 } from '.';
+import { isBase32 } from './index.js';
 
 describe('isBase32', (): void => {
   it('validates encoded', (): void => {

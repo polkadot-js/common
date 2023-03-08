@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { stringShorten } from '.';
+import { stringShorten } from './index.js';
 
 describe('stringShorten', (): void => {
   it('returns the value as-is when <= maxLength', (): void => {

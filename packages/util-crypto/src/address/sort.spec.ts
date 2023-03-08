@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { sortAddresses } from '.';
+import { sortAddresses } from './index.js';
 
 describe('sortAddresses', (): void => {
   it('sorts addresses by the publicKeys', (): void => {

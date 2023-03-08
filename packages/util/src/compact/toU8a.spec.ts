@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { BN } from '../bn';
-import { compactToU8a } from '.';
+import { BN } from '../bn/index.js';
+import { compactToU8a } from './index.js';
 
 describe('encode', (): void => {
   it('encodes short u8', (): void => {

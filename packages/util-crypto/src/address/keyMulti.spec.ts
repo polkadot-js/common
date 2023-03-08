@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { createKeyMulti } from '.';
+import { createKeyMulti } from './index.js';
 
 describe('createKeyMulti', (): void => {
   it('creates a valid multikey (aligning with Rust, needs sorting)', (): void => {

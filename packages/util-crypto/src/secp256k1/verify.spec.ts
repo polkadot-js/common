@@ -1,16 +1,16 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import '../bundleInit';
+import '../bundleInit.js';
 
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test';
-import { hasher } from './hasher';
-import { secp256k1PairFromSeed, secp256k1Verify } from '.';
+import { perfWasm } from '../test/index.js';
+import { hasher } from './hasher.js';
+import { secp256k1PairFromSeed, secp256k1Verify } from './index.js';
 
 const message = 'Pay KSMs to the Kusama account:88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee';
 

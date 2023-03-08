@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from '../bn/bn';
-import type { ToBn } from '../types';
+import type { BN } from '../bn/bn.js';
+import type { ToBn } from '../types.js';
 
-import { bnToBn } from '../bn/toBn';
-import { formatDecimal } from './formatDecimal';
-import { getSeparator } from './getSeparator';
+import { bnToBn } from '../bn/toBn.js';
+import { formatDecimal } from './formatDecimal.js';
+import { getSeparator } from './getSeparator.js';
 
 interface Options {
   /**

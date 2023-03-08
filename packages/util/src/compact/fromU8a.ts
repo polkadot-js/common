@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { U8aLike } from '../types';
+import type { U8aLike } from '../types.js';
 
-import { BN } from '../bn';
-import { u8aToBn, u8aToU8a } from '../u8a';
+import { BN } from '../bn/index.js';
+import { u8aToBn, u8aToU8a } from '../u8a/index.js';
 
 /**
  * @name compactFromU8a

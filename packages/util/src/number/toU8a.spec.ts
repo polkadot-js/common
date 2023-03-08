@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { numberToU8a } from '.';
+import { numberToU8a } from './index.js';
 
 describe('numberToU8a', (): void => {
   it('converts undefined to empty', (): void => {

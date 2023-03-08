@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { stringToU8a, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { mnemonicToMiniSecret } from '../../mnemonic';
-import { sr25519PairFromSeed } from '..';
-import tests from './testing.spec';
+import { mnemonicToMiniSecret } from '../../mnemonic/index.js';
+import { sr25519PairFromSeed } from '../index.js';
+import tests from './testing.spec.js';
 
 describe('sr25519PairFromSeed', (): void => {
   const TEST = stringToU8a('12345678901234567890123456789012');

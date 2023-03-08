@@ -4,8 +4,8 @@
 /**
  * @summary Implements [NaCl](http://nacl.cr.yp.to/) secret-key authenticated encryption, public-key authenticated encryption
  */
-export { naclDecrypt } from './decrypt';
-export { naclEncrypt } from './encrypt';
-export { naclBoxPairFromSecret } from './box/fromSecret';
-export { naclOpen } from './open';
-export { naclSeal } from './seal';
+export { naclDecrypt } from './decrypt.js';
+export { naclEncrypt } from './encrypt.js';
+export { naclBoxPairFromSecret } from './box/fromSecret.js';
+export { naclOpen } from './open.js';
+export { naclSeal } from './seal.js';

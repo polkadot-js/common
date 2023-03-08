@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { perf } from '../test';
-import { u8aEmpty } from '.';
+import { perf } from '../test/index.js';
+import { u8aEmpty } from './index.js';
 
 describe('u8aEmpty', (): void => {
   it('returns true on zero length', (): void => {

@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { perf } from '../test';
-import { isU8a } from '.';
+import { perf } from '../test/index.js';
+import { isU8a } from './index.js';
 
 describe('isU8a', (): void => {
   it('returns false on undefined values', (): void => {

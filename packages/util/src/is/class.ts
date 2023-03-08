@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Constructor } from '../types';
+import type { Constructor } from '../types.js';
 
-import { isOnFunction } from './helpers';
+import { isOnFunction } from './helpers.js';
 
 /**
  * @name isClass

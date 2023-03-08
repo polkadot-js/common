@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { assert, assertReturn } from '.';
+import { assert, assertReturn } from './index.js';
 
 describe('assert', (): void => {
   it('should not throw an error when test is true', (): void => {

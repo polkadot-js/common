@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { u8aToHex } from '@polkadot/util';
 import { cryptoWaitReady, ed25519PairFromSeed, encodeAddress as toSS58, randomAsU8a, secp256k1PairFromSeed, sr25519PairFromSeed } from '@polkadot/util-crypto';
 
-import { createPair } from '.';
+import { createPair } from './index.js';
 
 const MESSAGE = 'this is a test message';
 const CONTEXT = 'some context';

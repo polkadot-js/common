@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { ed25519PairFromSeed } from '..';
+import { ed25519PairFromSeed } from '../index.js';
 
 describe('ed25519PairFromSeed', (): void => {
   // NOTE: Aligned with Rust test, b"12345678901234567890123456789012"

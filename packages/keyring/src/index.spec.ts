@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import type { KeyringPair$Json } from './types';
 
@@ -9,7 +9,7 @@ import { hexToU8a, stringToU8a } from '@polkadot/util';
 import { base64Decode, cryptoWaitReady, encodeAddress, randomAsU8a, setSS58Format } from '@polkadot/util-crypto';
 
 import { decodePair } from './pair/decode';
-import Keyring from '.';
+import Keyring from './index.js';
 
 await cryptoWaitReady();
 

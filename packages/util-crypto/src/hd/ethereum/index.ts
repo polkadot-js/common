@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair } from '../../types';
+import type { Keypair } from '../../types.js';
 
 import { bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
-import { BN_BE_32_OPTS } from '../../bn';
-import { hmacShaAsU8a } from '../../hmac';
-import { secp256k1PairFromSeed, secp256k1PrivateKeyTweakAdd } from '../../secp256k1';
-import { HARDENED, hdValidatePath } from '../validatePath';
+import { BN_BE_32_OPTS } from '../../bn.js';
+import { hmacShaAsU8a } from '../../hmac/index.js';
+import { secp256k1PairFromSeed, secp256k1PrivateKeyTweakAdd } from '../../secp256k1/index.js';
+import { HARDENED, hdValidatePath } from '../validatePath.js';
 
 interface CodedKeypair extends Keypair {
   chainCode: Uint8Array;

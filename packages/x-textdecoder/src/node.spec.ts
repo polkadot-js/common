@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/x-textencoder authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { xglobal } from '@polkadot/x-global';
 
@@ -13,7 +13,7 @@ describe('TextDecoder (node)', (): void => {
   let TD: typeof TextDecoder;
 
   beforeEach(async (): Promise<void> => {
-    const node = await import('./node');
+    const node = await import('./node.js');
 
     TD = node.TextDecoder;
   });

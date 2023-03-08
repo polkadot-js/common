@@ -4,7 +4,7 @@
 import { hasBigInt } from '@polkadot/util';
 import { bip39ToEntropy, isReady } from '@polkadot/wasm-crypto';
 
-import { mnemonicToEntropy as jsToEntropy } from './bip39';
+import { mnemonicToEntropy as jsToEntropy } from './bip39.js';
 
 export function mnemonicToEntropy (mnemonic: string, onlyJs?: boolean): Uint8Array {
   return !hasBigInt || (!onlyJs && isReady())

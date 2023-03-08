@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { KeypairType } from '@polkadot/util-crypto/types';
-import type { KeyringPair$Json, KeyringPair$Meta } from '../types';
+import type { KeyringPair$Json, KeyringPair$Meta } from '../types.js';
 
 import { objectSpread } from '@polkadot/util';
 import { jsonEncryptFormat } from '@polkadot/util-crypto';

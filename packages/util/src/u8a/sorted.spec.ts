@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { u8aSorted } from '.';
+import { u8aSorted } from './index.js';
 
 describe('u8aSorted', (): void => {
   it('sorts a simple set of u8a', (): void => {

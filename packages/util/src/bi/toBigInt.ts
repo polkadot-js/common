@@ -1,16 +1,16 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from '../bn/bn';
-import type { HexString, ToBigInt, ToBn } from '../types';
+import type { BN } from '../bn/bn.js';
+import type { HexString, ToBigInt, ToBn } from '../types.js';
 
 import { BigInt } from '@polkadot/x-bigint';
 
-import { hexToBigInt } from '../hex/toBigInt';
-import { isBn } from '../is/bn';
-import { isHex } from '../is/hex';
-import { isToBigInt } from '../is/toBigInt';
-import { isToBn } from '../is/toBn';
+import { hexToBigInt } from '../hex/toBigInt.js';
+import { isBn } from '../is/bn.js';
+import { isHex } from '../is/hex.js';
+import { isToBigInt } from '../is/toBigInt.js';
+import { isToBn } from '../is/toBn.js';
 
 /**
  * @name nToBigInt

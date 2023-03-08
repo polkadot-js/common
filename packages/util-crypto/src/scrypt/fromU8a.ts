@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Params } from './types';
+import type { Params } from './types.js';
 
 import { u8aToBn } from '@polkadot/util';
 
-import { BN_LE_OPTS } from '../bn';
-import { DEFAULT_PARAMS } from './defaults';
+import { BN_LE_OPTS } from '../bn.js';
+import { DEFAULT_PARAMS } from './defaults.js';
 
 interface Result {
   params: Params,

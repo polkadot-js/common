@@ -3,7 +3,7 @@
 
 import { xglobal } from '@polkadot/x-global';
 
-import { isFunction } from './is/function';
+import { isFunction } from './is/function.js';
 
 type This = typeof globalThis;
 

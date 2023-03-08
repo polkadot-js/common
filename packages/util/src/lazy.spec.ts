@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { lazyMethod, lazyMethods } from '.';
+import { lazyMethod, lazyMethods } from './index.js';
 
 describe('lazyMethod', (): void => {
   it('adds a key on the object', (): void => {

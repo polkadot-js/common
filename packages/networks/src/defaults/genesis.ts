@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KnownGenesis } from '../types';
+import type { KnownGenesis } from '../types.js';
 
 // NOTE: In the case where the network was hard-spooned and multiple genesisHashes
 // are provided, it needs to be in reverse order, i.e. most-recent first, oldest

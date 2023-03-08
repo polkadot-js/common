@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString, NumberOptions, ToBn } from '../types';
-import type { BN } from './bn';
+import type { HexString, NumberOptions, ToBn } from '../types.js';
+import type { BN } from './bn.js';
 
-import { u8aToHex } from '../u8a';
-import { bnToU8a } from './toU8a';
+import { u8aToHex } from '../u8a/index.js';
+import { bnToU8a } from './toU8a.js';
 
 /**
  * @name bnToHex

@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 // Originally from https://github.com/polkadot-js/extension/pull/743
 
 import { u8aConcat, u8aEq, u8aToString } from '@polkadot/util';
 
-import { U8A_WRAP_ETHEREUM, U8A_WRAP_POSTFIX, U8A_WRAP_PREFIX, u8aUnwrapBytes, u8aWrapBytes } from './wrap';
+import { U8A_WRAP_ETHEREUM, U8A_WRAP_POSTFIX, U8A_WRAP_PREFIX, u8aUnwrapBytes, u8aWrapBytes } from './wrap.js';
 
 const TEST_DATA = 'this is just some random message that we expect to be wrapped along the way';
 const TEST_ETH = u8aConcat(U8A_WRAP_ETHEREUM, TEST_DATA);

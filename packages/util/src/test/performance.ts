@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { formatDecimal, formatNumber } from '..';
+import { formatDecimal, formatNumber } from '../index.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ExecFn = (...params: any[]) => unknown;

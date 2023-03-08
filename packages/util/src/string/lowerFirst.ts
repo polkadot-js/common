@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyString } from '../types';
+import type { AnyString } from '../types.js';
 
-import { CC_TO_LO, CC_TO_UP } from './camelCase';
+import { CC_TO_LO, CC_TO_UP } from './camelCase.js';
 
 /** @internal */
 function converter (map: readonly string[]): (value?: AnyString | null) => string {

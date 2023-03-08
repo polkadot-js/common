@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from './bn/bn';
+import type { BN } from './bn/bn.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface Constructor<T = any> {

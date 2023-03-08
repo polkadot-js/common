@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import BN from 'bn.js';
 
-import { isCompact } from '.';
+import { isCompact } from './index.js';
 
 describe('isCompact', (): void => {
   it('is false on no value', (): void => {

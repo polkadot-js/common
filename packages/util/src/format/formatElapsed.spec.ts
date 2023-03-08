@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { BN } from '../bn';
-import { formatElapsed } from '.';
+import { BN } from '../bn/index.js';
+import { formatElapsed } from './index.js';
 
 describe('formatElapsed', (): void => {
   const start = 12345678;

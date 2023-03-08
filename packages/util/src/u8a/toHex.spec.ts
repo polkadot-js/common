@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { perfCmp } from '../test';
-import { u8aToHex as u8aToHexBuffer } from './toHexBuffer';
-import { u8aToHex } from '.';
+import { perfCmp } from '../test/index.js';
+import { u8aToHex } from './index.js';
+import { u8aToHex as u8aToHexBuffer } from './toHexBuffer.js';
 
 const ptest32k = new Uint8Array(32768);
 const ptest256 = new Uint8Array(256);

@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { u8aEq, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { randomAsU8a } from '../random/asU8a';
-import { perfWasm } from '../test';
-import { pbkdf2Encode } from '.';
+import { randomAsU8a } from '../random/asU8a.js';
+import { perfWasm } from '../test/index.js';
+import { pbkdf2Encode } from './index.js';
 
 const KNOWN_SALT = new Uint8Array([
   1, 2, 3, 4, 5, 6, 7, 8,

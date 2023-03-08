@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { u8aToHex } from '@polkadot/util';
 
-import tests from '../sr25519/pair/testing.spec';
-import { cryptoWaitReady } from '..';
-import { mnemonicToEntropy } from './toEntropy';
+import { cryptoWaitReady } from '../index.js';
+import tests from '../sr25519/pair/testing.spec.js';
+import { mnemonicToEntropy } from './toEntropy.js';
 
 await cryptoWaitReady();
 

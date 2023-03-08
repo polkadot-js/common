@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { perf } from '../test';
-import { stringLowerFirst } from '.';
+import { perf } from '../test/index.js';
+import { stringLowerFirst } from './index.js';
 
 describe('stringLowerFirst', (): void => {
   it("lowers the first letter if it's a capital letter", (): void => {

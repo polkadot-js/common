@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from '../bn/bn';
-import type { ToBn } from '../types';
+import type { BN } from '../bn/bn.js';
+import type { ToBn } from '../types.js';
 
-import { bnToBn } from '../bn/toBn';
+import { bnToBn } from '../bn/toBn.js';
 
 /** @internal */
 function formatValue (elapsed: number): string {

@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { BN, BN_HUNDRED, BN_ONE, BN_TEN, BN_THOUSAND, BN_ZERO } from '.';
+import { BN, BN_HUNDRED, BN_ONE, BN_TEN, BN_THOUSAND, BN_ZERO } from './index.js';
 
 describe('consts', (): void => {
   it('BN_ZERO equals 0', (): void => {

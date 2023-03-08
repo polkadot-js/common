@@ -1,16 +1,16 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair } from '../types';
-import type { HashType } from './types';
+import type { Keypair } from '../types.js';
+import type { HashType } from './types.js';
 
 import { Signature, signSync } from '@noble/secp256k1';
 
 import { bnToU8a, hasBigInt, u8aConcat } from '@polkadot/util';
 import { isReady, secp256k1Sign as wasm } from '@polkadot/wasm-crypto';
 
-import { BN_BE_256_OPTS } from '../bn';
-import { hasher } from './hasher';
+import { BN_BE_256_OPTS } from '../bn.js';
+import { hasher } from './hasher.js';
 
 /**
  * @name secp256k1Sign

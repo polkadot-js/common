@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { evmToAddress } from '.';
+import { evmToAddress } from './index.js';
 
 describe('evmToAddress', (): void => {
   it('creates a valid known SS58 address', (): void => {

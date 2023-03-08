@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { u8aToHex, u8aToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { keccakAsU8a } from '../keccak';
-import { perfWasm } from '../test';
-import { secp256k1Recover } from '.';
+import { keccakAsU8a } from '../keccak/index.js';
+import { perfWasm } from '../test/index.js';
+import { secp256k1Recover } from './index.js';
 
 const sig = u8aToU8a('0x7505f2880114da51b3f5d535f8687953c0ab9af4ab81e592eaebebf53b728d2b6dfd9b5bcd70fee412b1f31360e7c2774009305cb84fc50c1d0ff8034dfa5fff');
 const msg = u8aToU8a('0xa30b64ce1eedf409c8afb801d72c05234e64849ea538c15dd3c8cf4ffcf166c9');

@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test';
-import { ed25519PairFromSeed, ed25519Sign } from '.';
+import { perfWasm } from '../test/index.js';
+import { ed25519PairFromSeed, ed25519Sign } from './index.js';
 
 const PAIR = ed25519PairFromSeed(
   stringToU8a('12345678901234567890123456789012')

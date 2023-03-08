@@ -2,17 +2,17 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubstrateApp } from '@zondax/ledger-substrate';
-import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types';
+import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types.js';
 
 import { newSubstrateApp } from '@zondax/ledger-substrate';
 
 import { transports } from '@polkadot/hw-ledger-transports';
 import { hexAddPrefix, u8aToBuffer } from '@polkadot/util';
 
-import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants';
-import { ledgerApps } from './defaults';
+import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.js';
+import { ledgerApps } from './defaults.js';
 
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';
 
 type Chain = keyof typeof ledgerApps;
 

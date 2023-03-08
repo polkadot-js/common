@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import type { SubstrateNetwork } from './types';
+import type { SubstrateNetwork } from './types.js';
 
-import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults';
-import { allNetworks, availableNetworks, selectableNetworks } from '.';
+import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults/index.js';
+import { allNetworks, availableNetworks, selectableNetworks } from './index.js';
 
 describe('availableNetworks', (): void => {
   it('has the correct starting order', (): void => {

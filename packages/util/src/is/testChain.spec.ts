@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { isTestChain } from '.';
+import { isTestChain } from './index.js';
 
 describe('isTestChain', (): void => {
   it('enables test environment when chain specification matches text of dev or loc(al)', (): void => {

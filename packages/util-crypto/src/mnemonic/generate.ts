@@ -4,7 +4,7 @@
 import { hasBigInt } from '@polkadot/util';
 import { bip39Generate, isReady } from '@polkadot/wasm-crypto';
 
-import { generateMnemonic } from './bip39';
+import { generateMnemonic } from './bip39.js';
 
 /**
  * @name mnemonicGenerate

@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { Keypair } from '../../types';
+import type { Keypair } from '../../types.js';
 
 import { u8aToU8a } from '@polkadot/util';
 import { sr25519KeypairFromSeed } from '@polkadot/wasm-crypto';
 
-import { sr25519PairFromU8a } from './fromU8a';
+import { sr25519PairFromU8a } from './fromU8a.js';
 
 /**
  * @name sr25519PairFromSeed

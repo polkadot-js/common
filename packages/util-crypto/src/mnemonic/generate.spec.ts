@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { cryptoWaitReady } from '..';
-import { mnemonicGenerate } from './generate';
-import { mnemonicValidate } from './validate';
+import { cryptoWaitReady } from '../index.js';
+import { mnemonicGenerate } from './generate.js';
+import { mnemonicValidate } from './validate.js';
 
 await cryptoWaitReady();
 

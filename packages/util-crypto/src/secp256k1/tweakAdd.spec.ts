@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { secp256k1PrivateKeyTweakAdd } from './tweakAdd';
+import { secp256k1PrivateKeyTweakAdd } from './tweakAdd.js';
 
 describe('TweakAdd', (): void => {
   it('fails for wrong array length', (): void => {

@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { ed25519PairFromString } from '..';
+import { ed25519PairFromString } from '../index.js';
 
 describe('ed25519PairFromSeed', (): void => {
   it('generates a valid publicKey/secretKey pair', (): void => {

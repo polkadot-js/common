@@ -3,10 +3,10 @@
 
 // Adapted from https://github.com/JulienPalard/is_utf8/blob/master/is_utf8.c
 
-import type { HexString } from '../types';
+import type { HexString } from '../types.js';
 
-import { u8aToU8a } from '../u8a/toU8a';
-import { isString } from './string';
+import { u8aToU8a } from '../u8a/toU8a.js';
+import { isString } from './string.js';
 
 /**
  * @name isUtf8

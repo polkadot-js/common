@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/x-textencoder authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { TextEncoder } from './fallback';
+import { TextEncoder } from './fallback.js';
 
 describe('TextEncoder (fallback)', (): void => {
   it('encodes correctly', (): void => {

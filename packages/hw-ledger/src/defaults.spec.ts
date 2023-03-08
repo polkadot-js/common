@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { supportedApps } from '@zondax/ledger-substrate';
 
-import { ledgerApps } from './defaults';
+import { ledgerApps } from './defaults.js';
 
 describe('ledgerApps', (): void => {
   for (const k of Object.keys(ledgerApps)) {

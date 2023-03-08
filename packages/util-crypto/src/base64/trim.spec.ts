@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { base64Trim } from '.';
+import { base64Trim } from './index.js';
 
 describe('base64Trim', (): void => {
   it('trims a utf-8 string', (): void => {

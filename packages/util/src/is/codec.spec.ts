@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { perfCmp } from '../test';
-import { isCodec } from '.';
+import { perfCmp } from '../test/index.js';
+import { isCodec } from './index.js';
 
 const ptest = {
   registry: {

@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SiDef } from '../types';
+import type { SiDef } from '../types.js';
 
 /** @internal */
 export const SI_MID = 8;

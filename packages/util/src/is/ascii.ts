@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyString, U8aLike } from '../types';
+import type { AnyString, U8aLike } from '../types.js';
 
-import { u8aToU8a } from '../u8a/toU8a';
-import { isHex } from './hex';
-import { isString } from './string';
+import { u8aToU8a } from '../u8a/toU8a.js';
+import { isHex } from './hex.js';
+import { isString } from './string.js';
 
 /** @internal */
 function isAsciiStr (str: AnyString): boolean {

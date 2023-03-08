@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { detectPackage } from './versionDetect';
+import { detectPackage } from './versionDetect.js';
 
 describe('detectPackage', (): void => {
   const PKG = '@polkadot/util';

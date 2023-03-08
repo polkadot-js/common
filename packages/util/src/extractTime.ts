@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Time } from './types';
+import type { Time } from './types.js';
 
 const MIN_MS = 60 * 1000;
 const HR_MS = MIN_MS * 60;

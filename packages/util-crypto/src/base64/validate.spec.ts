@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { base64Validate } from '.';
+import { base64Validate } from './index.js';
 
 describe('base64Validate', (): void => {
   it('validates a mixed base64 utf8 string', (): void => {

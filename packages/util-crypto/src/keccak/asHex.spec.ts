@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { keccakAsHex } from '.';
+import { keccakAsHex } from './index.js';
 
 const BITS: (256 | 512)[] = [256, 512];
 

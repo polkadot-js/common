@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { stringify } from '../stringify';
+import { stringify } from '../stringify.js';
 
 interface ObjectIndexed {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

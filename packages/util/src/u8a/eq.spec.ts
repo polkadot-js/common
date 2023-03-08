@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { perf } from '../test';
-import { u8aEq } from '.';
+import { perf } from '../test/index.js';
+import { u8aEq } from './index.js';
 
 const ltest = new Uint8Array(32768);
 const stest = new Uint8Array(256);

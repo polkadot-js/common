@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { isPromise } from '.';
+import { isPromise } from './index.js';
 
 describe('isPromise', (): void => {
   it('returns true on valid Promise (Promise-like)', (): void => {

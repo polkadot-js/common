@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { hexToBigInt } from '.';
+import { hexToBigInt } from './index.js';
 
 describe('hexToBigInt', (): void => {
   it('converts prefixed hex values to BN', (): void => {

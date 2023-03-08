@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { ed25519PairFromSeed, ed25519Verify } from '.';
+import { ed25519PairFromSeed, ed25519Verify } from './index.js';
 
 describe('ed25519Verify', (): void => {
   let publicKey: Uint8Array;

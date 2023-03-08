@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { arrayRange } from '../array';
-import { perf } from '../test';
-import { nToU8a } from '.';
+import { arrayRange } from '../array/index.js';
+import { perf } from '../test/index.js';
+import { nToU8a } from './index.js';
 
 const ptest = arrayRange(65536).map((v) => [v]);
 

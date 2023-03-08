@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { createCmp } from '../bi/helpers';
-import { BN } from './bn';
+import { createCmp } from '../bi/helpers.js';
+import { BN } from './bn.js';
 
 /**
  * @name bnMax

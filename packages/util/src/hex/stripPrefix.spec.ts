@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { hexStripPrefix } from '.';
+import { hexStripPrefix } from './index.js';
 
 describe('hexStripPrefix', (): void => {
   it('returns an empty string when null value supplied', (): void => {

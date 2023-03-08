@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { mnemonicToLegacySeed } from '@polkadot/util-crypto';
 
-import { hdEthereum } from '.';
+import { hdEthereum } from './index.js';
 
 describe('hdEthereum', (): void => {
   const PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy';

@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test';
-import { secp256k1Expand } from '.';
+import { perfWasm } from '../test/index.js';
+import { secp256k1Expand } from './index.js';
 
 describe('secp256k1Expand', (): void => {
   beforeEach(async (): Promise<void> => {

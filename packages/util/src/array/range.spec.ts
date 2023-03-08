@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { arrayRange } from '.';
+import { arrayRange } from './index.js';
 
 describe('arrayRange', (): void => {
   it('does not allow 0 values', (): void => {

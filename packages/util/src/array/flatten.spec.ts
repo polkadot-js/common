@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { perf } from '../test';
-import { arrayFlatten } from '.';
+import { perf } from '../test/index.js';
+import { arrayFlatten } from './index.js';
 
 const PERF_ONE = [[1, 2, 3, 4, 5]];
 const PERF_MUL = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];

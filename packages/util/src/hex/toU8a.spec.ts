@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { perfCmp } from '../test';
-import { hexToU8a as hexToU8aBuffer } from './toU8aBuffer';
-import { hexToU8a } from '.';
+import { perfCmp } from '../test/index.js';
+import { hexToU8a } from './index.js';
+import { hexToU8a as hexToU8aBuffer } from './toU8aBuffer.js';
 
 let ptest = '0x';
 

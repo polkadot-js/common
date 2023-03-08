@@ -1,12 +1,11 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
-import { ed25519PairFromString } from '../ed25519';
-import { keyExtractPath } from '../key';
-import { keyFromPath } from '../key/fromPath';
-import { naclBoxPairFromSecret, naclOpen, naclSeal } from '.';
+import { ed25519PairFromString } from '../ed25519/index.js';
+import { keyExtractPath, keyFromPath } from '../key/index.js';
+import { naclBoxPairFromSecret, naclOpen, naclSeal } from './index.js';
 
 describe('naclOpen', (): void => {
   it('opens a sealed message by the sender', (): void => {

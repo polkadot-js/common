@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyString } from '../types';
+import type { AnyString } from '../types.js';
 
 import { TextEncoder } from '@polkadot/x-textencoder';
 
