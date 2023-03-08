@@ -7,8 +7,8 @@ import type { KeyringInstance, KeyringOptions } from './types';
 
 import { hexToU8a } from '@polkadot/util';
 
-import { Keyring } from './keyring';
-import { createPair } from './pair';
+import { createPair } from './pair/index.js';
+import { Keyring } from './keyring.js';
 
 interface PairDef {
   name?: string;

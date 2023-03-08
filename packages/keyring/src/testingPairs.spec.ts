@@ -7,7 +7,7 @@ import { u8aToHex } from '@polkadot/util';
 import { cryptoWaitReady } from '@polkadot/util-crypto';
 
 import Keyring from './index.js';
-import { createTestPairs } from './testingPairs';
+import { createTestPairs } from './testingPairs.js';
 
 const TEST_ADD = '0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac';
 

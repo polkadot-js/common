@@ -9,9 +9,9 @@ import type { PairInfo } from './types';
 import { objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
 import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclOpen, naclSeal, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
 
-import { decodePair } from './decode';
-import { encodePair } from './encode';
-import { pairToJson } from './toJson';
+import { decodePair } from './decode.js';
+import { encodePair } from './encode.js';
+import { pairToJson } from './toJson.js';
 
 interface Setup {
   toSS58: (publicKey: Uint8Array) => string;

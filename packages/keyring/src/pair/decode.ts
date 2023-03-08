@@ -7,7 +7,7 @@ import type { PairInfo } from './types';
 import { u8aEq } from '@polkadot/util';
 import { jsonDecryptData } from '@polkadot/util-crypto';
 
-import { PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH } from './defaults';
+import { PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH } from './defaults.js';
 
 const SEED_OFFSET = PKCS8_HEADER.length;
 

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { createTestPairs } from '../testingPairs';
+import { createTestPairs } from '../testingPairs.js';
 
 const keyring = createTestPairs({ type: 'ed25519' }, false);
 
