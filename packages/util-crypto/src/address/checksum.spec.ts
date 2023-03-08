@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { base58Decode } from '../base58';
-import { checkAddressChecksum } from './checksum';
+import { base58Decode } from '../base58/index.js';
+import { checkAddressChecksum } from './checksum.js';
 
 describe('checkAddressChecksum', (): void => {
   it('correctly extracts the info from a 1-byte-prefix address', (): void => {

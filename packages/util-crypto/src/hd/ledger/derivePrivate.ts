@@ -3,8 +3,8 @@
 
 import { BN_EIGHT, bnToU8a, u8aConcat, u8aToBn } from '@polkadot/util';
 
-import { BN_LE_32_OPTS, BN_LE_512_OPTS, BN_LE_OPTS } from '../../bn';
-import { hmacShaAsU8a } from '../../hmac';
+import { BN_LE_32_OPTS, BN_LE_512_OPTS, BN_LE_OPTS } from '../../bn.js';
+import { hmacShaAsU8a } from '../../hmac/index.js';
 
 // performs hard-only derivation on the xprv
 export function ledgerDerivePrivate (xprv: Uint8Array, index: number): Uint8Array {

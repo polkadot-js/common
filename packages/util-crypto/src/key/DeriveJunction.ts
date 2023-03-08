@@ -5,8 +5,8 @@ import type { HexString } from '@polkadot/util/types';
 
 import { BN, bnToU8a, compactAddLength, hexToU8a, isBigInt, isBn, isHex, isNumber, isString, stringToU8a } from '@polkadot/util';
 
-import { blake2AsU8a } from '../blake2/asU8a';
-import { BN_LE_256_OPTS } from '../bn';
+import { blake2AsU8a } from '../blake2/asU8a.js';
+import { BN_LE_256_OPTS } from '../bn.js';
 
 const RE_NUMBER = /^\d+$/;
 

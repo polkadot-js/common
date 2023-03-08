@@ -3,7 +3,7 @@
 
 import { u8aToHex } from '@polkadot/util';
 
-import { keccakAsU8a } from '../keccak';
+import { keccakAsU8a } from '../keccak/index.js';
 
 function isInvalidChar (char: string, byte: number): boolean {
   return char !== (

@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { DeriveJunction } from './DeriveJunction';
-import { keyExtractPath } from './extractPath';
+import { DeriveJunction } from './DeriveJunction.js';
+import { keyExtractPath } from './extractPath.js';
 
 export interface ExtractResult {
   derivePath: string,

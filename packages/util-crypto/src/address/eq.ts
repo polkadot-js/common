@@ -5,7 +5,7 @@ import type { HexString } from '@polkadot/util/types';
 
 import { u8aEq } from '@polkadot/util';
 
-import { decodeAddress } from './decode';
+import { decodeAddress } from './decode.js';
 
 /**
  * @name addressEq

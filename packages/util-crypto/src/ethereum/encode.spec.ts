@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { keccakAsU8a } from '../keccak';
-import { ethereumEncode } from './';
+import { keccakAsU8a } from '../keccak/index.js';
+import { ethereumEncode } from './index.js';
 
 describe('formatAddress', () => {
   describe('address to address encoding', (): void => {

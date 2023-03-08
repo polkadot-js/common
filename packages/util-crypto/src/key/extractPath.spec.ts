@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { ExtractResult, keyExtractPath } from './extractPath';
+import { ExtractResult, keyExtractPath } from './extractPath.js';
 
 describe('keyExtractPath', (): void => {
   it('extracts properly from soft', (): void => {

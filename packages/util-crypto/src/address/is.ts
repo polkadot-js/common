@@ -4,7 +4,7 @@
 import type { HexString } from '@polkadot/util/types';
 import type { Prefix } from './types';
 
-import { validateAddress } from './validate';
+import { validateAddress } from './validate.js';
 
 export function isAddress (address?: HexString | string | null, ignoreChecksum?: boolean, ss58Format?: Prefix): address is string {
   try {

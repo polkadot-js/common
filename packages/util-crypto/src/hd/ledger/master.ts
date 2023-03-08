@@ -3,8 +3,8 @@
 
 import { u8aConcat } from '@polkadot/util';
 
-import { hmacShaAsU8a } from '../../hmac';
-import { mnemonicToSeedSync } from '../../mnemonic/bip39';
+import { hmacShaAsU8a } from '../../hmac/index.js';
+import { mnemonicToSeedSync } from '../../mnemonic/bip39.js';
 
 const ED25519_CRYPTO = 'ed25519 seed';
 

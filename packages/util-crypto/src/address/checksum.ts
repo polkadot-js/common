@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { sshash } from './sshash';
+import { sshash } from './sshash.js';
 
 export function checkAddressChecksum (decoded: Uint8Array): [boolean, number, number, number] {
   const ss58Length = (decoded[0] & 0b0100_0000) ? 2 : 1;

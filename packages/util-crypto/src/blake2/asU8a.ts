@@ -8,7 +8,7 @@ import { blake2b as blake2bJs } from '@noble/hashes/blake2b';
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { blake2b, isReady } from '@polkadot/wasm-crypto';
 
-import { createAsHex } from '../helpers';
+import { createAsHex } from '../helpers.js';
 
 /**
  * @name blake2AsU8a

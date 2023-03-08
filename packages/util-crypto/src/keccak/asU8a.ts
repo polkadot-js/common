@@ -5,7 +5,7 @@ import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from '@noble/has
 
 import { keccak256, keccak512 } from '@polkadot/wasm-crypto';
 
-import { createAsHex, createBitHasher, createDualHasher } from '../helpers';
+import { createAsHex, createBitHasher, createDualHasher } from '../helpers.js';
 
 /**
  * @name keccakAsU8a
