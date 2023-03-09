@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EncryptedJson } from './types';
+import type { EncryptedJson } from './types.js';
 
 import { hexToU8a, isHex } from '@polkadot/util';
 

@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { DeriveJunction } from '../key/DeriveJunction';
-import type { Prefix } from './types';
+import type { DeriveJunction } from '../key/DeriveJunction.js';
+import type { Prefix } from './types.js';
 
 import { keyExtractPath } from '../key/index.js';
 import { sr25519DerivePublic } from '../sr25519/index.js';
