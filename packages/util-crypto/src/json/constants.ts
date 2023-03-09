@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EncryptedJsonEncoding, EncryptedJsonVersion } from './types';
+import type { EncryptedJsonEncoding, EncryptedJsonVersion } from './types.js';
 
 export const ENCODING: EncryptedJsonEncoding[] = ['scrypt', 'xsalsa20-poly1305'];
 export const ENCODING_NONE: EncryptedJsonEncoding[] = ['none'];

@@ -11,7 +11,6 @@
       "@polkadot/hw-ledger-transports/*": ["hw-ledger-transports/src/browser.ts"],
       "@polkadot/keyring": ["keyring/src/index.ts"],
       "@polkadot/keyring/packageInfo": ["keyring/src/packageInfo.ts"],
-      "@polkadot/keyring/*": ["keyring/src/*"],
       "@polkadot/networks": ["networks/src/index.ts"],
       "@polkadot/networks/packageInfo": ["networks/src/packageInfo.ts"],
       "@polkadot/util-crypto": ["util-crypto/src/index.ts"],

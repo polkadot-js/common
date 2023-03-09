@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { EncryptedJsonEncoding } from '@polkadot/util-crypto/types';
-import type { PairInfo } from './types';
+import type { PairInfo } from './types.js';
 
 import { u8aEq } from '@polkadot/util';
 import { jsonDecryptData } from '@polkadot/util-crypto';

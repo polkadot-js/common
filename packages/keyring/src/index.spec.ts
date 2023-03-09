@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import type { KeyringPair$Json } from './types';
+import type { KeyringPair$Json } from './types.js';
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
 import { base64Decode, cryptoWaitReady, encodeAddress, randomAsU8a, setSS58Format } from '@polkadot/util-crypto';

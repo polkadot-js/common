@@ -1,17 +1,17 @@
 // Copyright 2017-2023 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type Transport from '@ledgerhq/hw-transport';
-import type { TransportDef } from './types';
+import type { Transport, TransportDef } from './types.js';
 
 import LedgerHid from '@ledgerhq/hw-transport-node-hid-singleton';
 
 export { packageInfo } from './packageInfo.js';
 
+// See usage of Transport interface in types.ts
 export const transports: TransportDef[] = [
   {
     create: (): Promise<Transport> =>
-      LedgerHid.create(),
+      (LedgerHid as unknown as Transport).create(),
     type: 'hid'
   }
 ];
