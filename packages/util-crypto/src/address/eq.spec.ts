@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { ALICE_PUBLIC_SR } from './encode.spec';
+import { ALICE_PUBLIC_SR } from './encode.spec.js';
 import { addressEq } from './index.js';
 
 describe('addressEq', (): void => {
