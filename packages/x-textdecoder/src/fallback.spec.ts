@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { TextDecoder } from './fallback';
+import { TextDecoder } from './fallback.js';
 
 describe('TextDecoder (fallback)', (): void => {
   it('decodes correctly', (): void => {

@@ -7,9 +7,9 @@ import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, Ke
 import { hexToU8a, isHex, stringToU8a } from '@polkadot/util';
 import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from '@polkadot/util-crypto';
 
-import { DEV_PHRASE } from './defaults';
-import { createPair } from './pair';
-import { Pairs } from './pairs';
+import { createPair } from './pair/index.js';
+import { DEV_PHRASE } from './defaults.js';
+import { Pairs } from './pairs.js';
 
 const PairFromSeed = {
   ecdsa: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),

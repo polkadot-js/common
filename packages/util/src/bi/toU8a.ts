@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from '../bn/bn';
-import type { NumberOptions, ToBigInt, ToBn } from '../types';
+import type { BN } from '../bn/bn.js';
+import type { NumberOptions, ToBigInt, ToBn } from '../types.js';
 
 import { BigInt } from '@polkadot/x-bigint';
 
-import { _0n, _1n } from './consts';
-import { nToBigInt } from './toBigInt';
+import { _0n, _1n } from './consts.js';
+import { nToBigInt } from './toBigInt.js';
 
 const DIV = BigInt(256);
 const NEG_MASK = BigInt(0xff);

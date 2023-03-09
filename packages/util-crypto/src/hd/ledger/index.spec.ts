@@ -5,7 +5,7 @@
 
 import { u8aToHex } from '@polkadot/util';
 
-import { hdLedger } from '..';
+import { hdLedger } from '../index.js';
 
 const MNE_0 = 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about';
 const MNE_1 = 'open jelly jeans corn ketchup supreme brief element armed lens vault weather original scissors rug priority vicious lesson raven spot gossip powder person volcano';

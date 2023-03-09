@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN } from '../bn';
-import { isClass } from '.';
+import { BN } from '../bn/index.js';
+import { isClass } from './index.js';
 
 describe('isClass', (): void => {
   it('returns false on a pure object', (): void => {

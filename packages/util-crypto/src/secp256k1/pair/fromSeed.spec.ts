@@ -6,9 +6,9 @@
 import { hexToU8a, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { mnemonicToMiniSecret } from '../../mnemonic';
-import { perfWasm } from '../../test';
-import { secp256k1PairFromSeed } from '..';
+import { mnemonicToMiniSecret } from '../../mnemonic/index.js';
+import { perfWasm } from '../../test/index.js';
+import { secp256k1PairFromSeed } from '../index.js';
 
 // mnemonic, secret, public, account_id
 type Test = [string, string, string, string];

@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN } from '../bn';
-import { formatBalance } from '.';
+import { BN } from '../bn/index.js';
+import { formatBalance } from './index.js';
 
 const FMT_DEFAULTS = {
   decimals: 0,

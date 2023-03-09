@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { validateAddress } from '.';
+import { validateAddress } from './index.js';
 
 describe('validateAddress', (): void => {
   it('decodes an address', (): void => {

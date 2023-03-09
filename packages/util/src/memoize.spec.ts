@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { memoize } from '.';
+import { memoize } from './index.js';
 
 describe('memoize', (): void => {
   it('returns actual values', (): void => {

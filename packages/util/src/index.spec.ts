@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { assert } from '.';
+import { assert } from './index.js';
 
 describe('index', (): void => {
   it('exports ok', (): void => {

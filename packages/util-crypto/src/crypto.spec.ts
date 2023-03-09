@@ -12,7 +12,7 @@ describe('cryptoWaitReady', (): void => {
 
     global.WebAssembly = null as unknown as typeof WebAssembly;
 
-    const { cryptoWaitReady } = await import('./crypto');
+    const { cryptoWaitReady } = await import('./crypto.js');
 
     expect(await cryptoWaitReady()).toBe(false);
 

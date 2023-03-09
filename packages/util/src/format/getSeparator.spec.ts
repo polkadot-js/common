@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { getSeparator } from './getSeparator';
+import { getSeparator } from './getSeparator.js';
 
 describe('getSeparator', (): void => {
   it('uses system locale', (): void => {

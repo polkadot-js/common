@@ -5,8 +5,8 @@ import type { HexString } from '@polkadot/util/types';
 
 import { u8aToHex, u8aToU8a } from '@polkadot/util';
 
-import { keccakAsU8a } from '../keccak';
-import { secp256k1Expand } from '../secp256k1';
+import { keccakAsU8a } from '../keccak/index.js';
+import { secp256k1Expand } from '../secp256k1/index.js';
 
 function getH160 (u8a: Uint8Array): Uint8Array {
   if ([33, 65].includes(u8a.length)) {

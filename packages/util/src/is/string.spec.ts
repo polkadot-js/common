@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isString } from '.';
+import { isString } from './index.js';
 
 describe('isString', (): void => {
   it('returns true on valid strings', (): void => {

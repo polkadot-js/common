@@ -3,10 +3,10 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import type { Logger } from './types';
+import type { Logger } from './types.js';
 
-import { BN } from './bn';
-import { logger, loggerFormat } from '.';
+import { BN } from './bn/index.js';
+import { logger, loggerFormat } from './index.js';
 
 describe('logger', (): void => {
   const dateMatch = expect.stringMatching(/20[0-9]{2}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/);

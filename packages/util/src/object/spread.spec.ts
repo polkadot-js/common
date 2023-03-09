@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { perf } from '../test';
-import { objectSpread } from '.';
+import { perf } from '../test/index.js';
+import { objectSpread } from './index.js';
 
 describe('objectSpread', (): void => {
   it('spreads obj sources', (): void => {

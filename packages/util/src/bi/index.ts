@@ -5,10 +5,10 @@
  * @summary Utility methods to convert to and from `bigint` objects
  */
 
-export * from './consts';
+export * from './consts.js';
 
-export { nSqrt } from './sqrt';
-export { nToBigInt } from './toBigInt';
-export { nMax, nMin } from './min';
-export { nToHex } from './toHex';
-export { nToU8a } from './toU8a';
+export { nSqrt } from './sqrt.js';
+export { nToBigInt } from './toBigInt.js';
+export { nMax, nMin } from './min.js';
+export { nToHex } from './toHex.js';
+export { nToU8a } from './toU8a.js';

@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { perf } from '../test';
-import { u8aToNumber } from '.';
+import { perf } from '../test/index.js';
+import { u8aToNumber } from './index.js';
 
 describe('u8aToNumber', (): void => {
   describe('unsigned', (): void => {

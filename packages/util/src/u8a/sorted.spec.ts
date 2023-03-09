@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { u8aSorted } from '.';
+import { u8aSorted } from './index.js';
 
 describe('u8aSorted', (): void => {
   it('sorts a simple set of u8a', (): void => {

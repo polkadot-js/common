@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { arrayRange } from '.';
+import { arrayRange } from './index.js';
 
 describe('arrayRange', (): void => {
   it('does not allow 0 values', (): void => {

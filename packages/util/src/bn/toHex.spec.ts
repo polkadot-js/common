@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN, bnToHex } from '.';
+import { BN, bnToHex } from './index.js';
 
 describe('bnToHex', (): void => {
   it('converts null values to 0x00', (): void => {

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isUtf8 } from '.';
+import { isUtf8 } from './index.js';
 
 describe('isUtf8', (): void => {
   it('returns true for an ASCII string', (): void => {

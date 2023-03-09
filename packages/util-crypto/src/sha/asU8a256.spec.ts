@@ -6,8 +6,8 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test';
-import { sha256AsU8a } from '.';
+import { perfWasm } from '../test/index.js';
+import { sha256AsU8a } from './index.js';
 
 const TESTS = [
   {

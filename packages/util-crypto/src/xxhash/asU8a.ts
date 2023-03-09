@@ -6,8 +6,8 @@ import type { HexString } from '@polkadot/util/types';
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, twox } from '@polkadot/wasm-crypto';
 
-import { createAsHex } from '../helpers';
-import { xxhash64 } from './xxhash64';
+import { createAsHex } from '../helpers.js';
+import { xxhash64 } from './xxhash64.js';
 
 /**
  * @name xxhashAsU8a

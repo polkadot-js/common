@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isFunction } from '.';
+import { isFunction } from './index.js';
 
 describe('isFunction', (): void => {
   it('returns true on valid functions', (): void => {

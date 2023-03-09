@@ -3,7 +3,7 @@
 
 import nacl from 'tweetnacl';
 
-import { randomAsU8a } from '../random/asU8a';
+import { randomAsU8a } from '../random/asU8a.js';
 
 interface Encrypted {
   encrypted: Uint8Array;

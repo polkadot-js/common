@@ -4,7 +4,7 @@
 import { arrayRange } from '@polkadot/util';
 import { perf, perfCmp } from '@polkadot/util/test';
 
-import { randomAsU8a } from '..';
+import { randomAsU8a } from '../index.js';
 
 type ExecFn = (input: Uint8Array, onlyJs: boolean) => unknown;
 

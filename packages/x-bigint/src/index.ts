@@ -3,7 +3,7 @@
 
 import { xglobal } from '@polkadot/x-global';
 
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';
 
 export const BigInt: BigIntConstructor = typeof xglobal.BigInt === 'function' && typeof xglobal.BigInt.asIntN === 'function'
   ? xglobal.BigInt

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isArray } from '.';
+import { isArray } from './index.js';
 
 describe('isArray', (): void => {
   it('is false on no value', (): void => {

@@ -3,7 +3,7 @@
 
 import { getRandomValues } from '@polkadot/x-randomvalues';
 
-import { createAsHex } from '../helpers';
+import { createAsHex } from '../helpers.js';
 
 /**
  * @name randomAsU8a

@@ -5,7 +5,7 @@
 
 import BN from 'bn.js';
 
-import { isCompact } from '.';
+import { isCompact } from './index.js';
 
 describe('isCompact', (): void => {
   it('is false on no value', (): void => {

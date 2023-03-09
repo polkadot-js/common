@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ToBnOptions } from '../types';
+import type { ToBnOptions } from '../types.js';
 
 import { BigInt } from '@polkadot/x-bigint';
 
-import { _1n } from '../bi/consts';
+import { _1n } from '../bi/consts.js';
 
 const U8_MAX = BigInt(256);
 const U16_MAX = BigInt(256 * 256);

@@ -5,7 +5,7 @@
 
 import { u8aToHex } from '@polkadot/util';
 
-import { convertPublicKeyToCurve25519, convertSecretKeyToCurve25519 } from '.';
+import { convertPublicKeyToCurve25519, convertSecretKeyToCurve25519 } from './index.js';
 
 describe('convertPublicKeyToCurve25519', (): void => {
   it('converts a known key correctly', (): void => {

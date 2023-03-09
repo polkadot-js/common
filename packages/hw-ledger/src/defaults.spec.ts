@@ -5,7 +5,7 @@
 
 import { supportedApps } from '@zondax/ledger-substrate';
 
-import { ledgerApps } from './defaults';
+import { ledgerApps } from './defaults.js';
 
 describe('ledgerApps', (): void => {
   for (const k of Object.keys(ledgerApps)) {

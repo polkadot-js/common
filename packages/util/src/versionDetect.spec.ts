@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { detectPackage } from './versionDetect';
+import { detectPackage } from './versionDetect.js';
 
 describe('detectPackage', (): void => {
   const PKG = '@polkadot/util';

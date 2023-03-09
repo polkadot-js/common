@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hexToBigInt } from '.';
+import { hexToBigInt } from './index.js';
 
 describe('hexToBigInt', (): void => {
   it('converts prefixed hex values to BN', (): void => {

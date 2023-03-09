@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { nToHex } from '.';
+import { nToHex } from './index.js';
 
 describe('nToHex', (): void => {
   it('converts null values to 0x00', (): void => {

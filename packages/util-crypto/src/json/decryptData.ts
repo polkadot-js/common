@@ -5,9 +5,9 @@ import type { EncryptedJsonEncoding } from './types';
 
 import { stringToU8a, u8aFixLength } from '@polkadot/util';
 
-import { naclDecrypt } from '../nacl';
-import { scryptEncode, scryptFromU8a } from '../scrypt';
-import { ENCODING, NONCE_LENGTH, SCRYPT_LENGTH } from './constants';
+import { naclDecrypt } from '../nacl/index.js';
+import { scryptEncode, scryptFromU8a } from '../scrypt/index.js';
+import { ENCODING, NONCE_LENGTH, SCRYPT_LENGTH } from './constants.js';
 
 export function jsonDecryptData (encrypted?: Uint8Array | null, passphrase?: string | null, encType: EncryptedJsonEncoding[] = ENCODING): Uint8Array {
   if (!encrypted) {

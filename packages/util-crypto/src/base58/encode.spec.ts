@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { base32Decode } from '../base32';
-import { base58Encode } from './';
+import { base32Decode } from '../base32/index.js';
+import { base58Encode } from './index.js';
 
 describe('base58Encode', (): void => {
   it('encodes a base32 to a base58', (): void => {

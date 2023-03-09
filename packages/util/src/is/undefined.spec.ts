@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { perf } from '../test';
-import { isUndefined } from '.';
+import { perf } from '../test/index.js';
+import { isUndefined } from './index.js';
 
 describe('isUndefined', (): void => {
   it('returns true on undefined values', (): void => {

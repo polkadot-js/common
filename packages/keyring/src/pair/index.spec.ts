@@ -6,9 +6,9 @@
 import { hexToU8a, u8aToHex } from '@polkadot/util';
 import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkadot/util-crypto';
 
-import { PAIRSSR25519 } from '../testing';
-import { createTestPairs } from '../testingPairs';
-import { createPair } from '.';
+import { PAIRSSR25519 } from '../testing.js';
+import { createTestPairs } from '../testingPairs.js';
+import { createPair } from './index.js';
 
 const keyring = createTestPairs({ type: 'ed25519' }, false);
 

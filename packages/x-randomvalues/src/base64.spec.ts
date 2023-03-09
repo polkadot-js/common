@@ -5,7 +5,7 @@
 
 import { perf } from '@polkadot/util/test';
 
-import { base64Decode } from './base64';
+import { base64Decode } from './base64.js';
 
 const HELLO_DUAL = 'aGVsbG8gd29ybGQg0J/RgNC40LLQtdGC0YHRgtCy0YPRjiDQvNC4IOS9oOWlvQ==';
 

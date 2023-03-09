@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { ExtractResult, keyExtractSuri } from './extractSuri';
+import { ExtractResult, keyExtractSuri } from './extractSuri.js';
 
 describe('keyExtractSuri', (): void => {
   it('does not extract from invalid suri', (): void => {

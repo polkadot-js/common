@@ -3,7 +3,7 @@
 
 import { utils } from '@scure/base';
 
-import { createDecode, createEncode, createIs, createValidate } from './helpers';
+import { createDecode, createEncode, createIs, createValidate } from './helpers.js';
 
 const chars = 'abcdefghijklmnopqrstuvwxyz234567';
 

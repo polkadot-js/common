@@ -4,8 +4,8 @@
 import { hasBigInt } from '@polkadot/util';
 import { bip39ToSeed, isReady } from '@polkadot/wasm-crypto';
 
-import { mnemonicToSeedSync } from './bip39';
-import { mnemonicValidate } from './validate';
+import { mnemonicToSeedSync } from './bip39.js';
+import { mnemonicValidate } from './validate.js';
 
 /**
  * @name mnemonicToLegacySeed

@@ -7,8 +7,8 @@ import type { Prefix } from './types';
 
 import { u8aConcat } from '@polkadot/util';
 
-import { hasher } from '../secp256k1/hasher';
-import { encodeAddress } from './encode';
+import { hasher } from '../secp256k1/hasher.js';
+import { encodeAddress } from './encode.js';
 
 /**
  * @name evmToAddress

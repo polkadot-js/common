@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN } from '../bn';
-import { isChildClass } from '.';
+import { BN } from '../bn/index.js';
+import { isChildClass } from './index.js';
 
 describe('isChildClass', (): void => {
   it('returns true when a Child value', (): void => {

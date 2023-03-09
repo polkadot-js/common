@@ -6,10 +6,10 @@
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { randomAsU8a } from '../random/asU8a';
-import { sr25519PairFromSeed } from './pair/fromSeed';
-import { sr25519Sign } from './sign';
-import { sr25519Verify } from './verify';
+import { randomAsU8a } from '../random/asU8a.js';
+import { sr25519PairFromSeed } from './pair/fromSeed.js';
+import { sr25519Sign } from './sign.js';
+import { sr25519Verify } from './verify.js';
 
 const MESSAGE = stringToU8a('this is a message');
 

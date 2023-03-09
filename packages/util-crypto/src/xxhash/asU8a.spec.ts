@@ -6,8 +6,8 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test';
-import { xxhashAsU8a } from '.';
+import { perfWasm } from '../test/index.js';
+import { xxhashAsU8a } from './index.js';
 
 describe('xxhashAsU8a', (): void => {
   beforeEach(async (): Promise<void> => {

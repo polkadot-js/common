@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { u8aToHex } from './toHexBuffer';
+import { u8aToHex } from './toHexBuffer.js';
 
 describe('u8aToHex', (): void => {
   it('returns empty as 0x', (): void => {

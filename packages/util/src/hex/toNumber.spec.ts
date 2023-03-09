@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hexToNumber } from '.';
+import { hexToNumber } from './index.js';
 
 describe('hexToNumber', (): void => {
   it('converts an empty to NaN', (): void => {

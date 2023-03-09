@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { perf } from '../test';
-import { u8aToBigInt } from '.';
+import { perf } from '../test/index.js';
+import { u8aToBigInt } from './index.js';
 
 describe('u8aToBigInt', (): void => {
   it('converts little-endian by default', (): void => {

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isBuffer } from '.';
+import { isBuffer } from './index.js';
 
 describe('isBuffer', (): void => {
   it('returns true when a Buffer value', (): void => {

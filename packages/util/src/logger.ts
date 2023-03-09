@@ -1,19 +1,19 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Logger, Logger$Data } from './types';
+import type { Logger, Logger$Data } from './types.js';
 
 import { xglobal } from '@polkadot/x-global';
 
-import { formatDate } from './format/formatDate';
-import { isBn } from './is/bn';
-import { isBuffer } from './is/buffer';
-import { isFunction } from './is/function';
-import { isObject } from './is/object';
-import { isU8a } from './is/u8a';
-import { u8aToHex } from './u8a/toHex';
-import { u8aToU8a } from './u8a/toU8a';
-import { hasProcess } from './has';
+import { formatDate } from './format/formatDate.js';
+import { isBn } from './is/bn.js';
+import { isBuffer } from './is/buffer.js';
+import { isFunction } from './is/function.js';
+import { isObject } from './is/object.js';
+import { isU8a } from './is/u8a.js';
+import { u8aToHex } from './u8a/toHex.js';
+import { u8aToU8a } from './u8a/toU8a.js';
+import { hasProcess } from './has.js';
 
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';

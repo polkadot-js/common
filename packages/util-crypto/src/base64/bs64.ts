@@ -3,7 +3,7 @@
 
 import { base64 } from '@scure/base';
 
-import { createDecode, createEncode, createIs, createValidate } from '../base32/helpers';
+import { createDecode, createEncode, createIs, createValidate } from '../base32/helpers.js';
 
 const config = {
   chars: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',

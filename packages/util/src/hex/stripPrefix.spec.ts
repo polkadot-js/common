@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hexStripPrefix } from '.';
+import { hexStripPrefix } from './index.js';
 
 describe('hexStripPrefix', (): void => {
   it('returns an empty string when null value supplied', (): void => {

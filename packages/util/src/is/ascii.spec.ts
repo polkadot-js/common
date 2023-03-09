@@ -3,9 +3,9 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { stringToU8a } from '../string';
-import { perf } from '../test';
-import { isAscii } from '.';
+import { stringToU8a } from '../string/index.js';
+import { perf } from '../test/index.js';
+import { isAscii } from './index.js';
 
 describe('isAscii', (): void => {
   it('returns true for an ASCII string', (): void => {

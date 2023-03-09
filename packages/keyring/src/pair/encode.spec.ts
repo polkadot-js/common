@@ -5,8 +5,8 @@
 
 import { NONCE_LENGTH, SCRYPT_LENGTH } from '@polkadot/util-crypto/json/constants';
 
-import { createTestPairs } from '../testingPairs';
-import { PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH } from './defaults';
+import { createTestPairs } from '../testingPairs.js';
+import { PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH } from './defaults.js';
 
 const PKCS8_LENGTH = PKCS8_DIVIDER.length + PKCS8_HEADER.length + PUB_LENGTH + SEC_LENGTH;
 const ENCODED_LENGTH = 16 + PKCS8_LENGTH + NONCE_LENGTH + SCRYPT_LENGTH;

@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair, KeypairType } from '../types';
+import type { Keypair, KeypairType } from '../types.js';
 
-import { DeriveJunction } from './DeriveJunction';
-import { keyHdkdEcdsa } from './hdkdEcdsa';
-import { keyHdkdEd25519 } from './hdkdEd25519';
-import { keyHdkdSr25519 } from './hdkdSr25519';
+import { DeriveJunction } from './DeriveJunction.js';
+import { keyHdkdEcdsa } from './hdkdEcdsa.js';
+import { keyHdkdEd25519 } from './hdkdEd25519.js';
+import { keyHdkdSr25519 } from './hdkdSr25519.js';
 
 const generators = {
   ecdsa: keyHdkdEcdsa,

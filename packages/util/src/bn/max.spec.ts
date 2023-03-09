@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN, bnMax } from '.';
+import { BN, bnMax } from './index.js';
 
 describe('bnMax', (): void => {
   it('finds BN maximum', (): void => {

@@ -5,8 +5,8 @@ import type { EncryptedJson } from './types';
 
 import { hexToU8a, isHex } from '@polkadot/util';
 
-import { base64Decode } from '../base64';
-import { jsonDecryptData } from './decryptData';
+import { base64Decode } from '../base64/index.js';
+import { jsonDecryptData } from './decryptData.js';
 
 export function jsonDecrypt ({ encoded, encoding }: EncryptedJson, passphrase?: string | null): Uint8Array {
   if (!encoded) {

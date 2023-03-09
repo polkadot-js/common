@@ -6,7 +6,7 @@
 import { ledgerApps } from '@polkadot/hw-ledger/defaults';
 import { isHex } from '@polkadot/util';
 
-import { knownGenesis, knownLedger } from './defaults';
+import { knownGenesis, knownLedger } from './defaults/index.js';
 
 describe('defaults', (): void => {
   describe('genesis', (): void => {

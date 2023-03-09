@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { perfCmp } from '../test';
-import { isCodec } from '.';
+import { perfCmp } from '../test/index.js';
+import { isCodec } from './index.js';
 
 const ptest = {
   registry: {

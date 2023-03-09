@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import './detectPackage';
+import './detectPackage.js';
 
-import { Keyring } from './bundle';
+import { Keyring } from './bundle.js';
 
-export * from './bundle';
+export * from './bundle.js';
 
 export default Keyring;

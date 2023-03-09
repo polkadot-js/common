@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isBoolean } from '.';
+import { isBoolean } from './index.js';
 
 describe('isBoolean', (): void => {
   it('returns true on false', (): void => {

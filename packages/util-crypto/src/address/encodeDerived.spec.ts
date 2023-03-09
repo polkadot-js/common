@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { encodeDerivedAddress } from '.';
+import { encodeDerivedAddress } from './index.js';
 
 describe('encodeDerivedAddress', (): void => {
   it('creates a valid known derived address', (): void => {

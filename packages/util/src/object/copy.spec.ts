@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { objectCopy } from '.';
+import { objectCopy } from './index.js';
 
 describe('objectCopy', (): void => {
   it('makes a shallow copy of the object', (): void => {

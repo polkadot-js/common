@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isObject } from '.';
+import { isObject } from './index.js';
 
 describe('isObject', (): void => {
   it('returns true on valid objects', (): void => {

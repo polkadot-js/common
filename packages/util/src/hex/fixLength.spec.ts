@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hexFixLength } from '.';
+import { hexFixLength } from './index.js';
 
 describe('hexFixLength', (): void => {
   it('returns bitLength === -1 as-is', (): void => {

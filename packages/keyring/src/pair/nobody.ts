@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
+import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types.js';
 
 // empty publicKey
 const publicKey = new Uint8Array(32);

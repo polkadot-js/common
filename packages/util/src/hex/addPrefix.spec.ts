@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hexAddPrefix } from '.';
+import { hexAddPrefix } from './index.js';
 
 describe('hexAddPrefix', (): void => {
   it('does not add when prefix is available', (): void => {

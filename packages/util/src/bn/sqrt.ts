@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ToBn } from '../types';
+import type { ToBn } from '../types.js';
 
-import { BN } from './bn';
-import { BN_MAX_INTEGER, BN_ONE, BN_SQRT_MAX_INTEGER } from './consts';
-import { bnToBn } from './toBn';
+import { BN } from './bn.js';
+import { BN_MAX_INTEGER, BN_ONE, BN_SQRT_MAX_INTEGER } from './consts.js';
+import { bnToBn } from './toBn.js';
 
 /**
  * @name bnSqrt

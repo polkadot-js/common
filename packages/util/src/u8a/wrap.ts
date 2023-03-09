@@ -3,11 +3,11 @@
 
 // Originally from https://github.com/polkadot-js/extension/pull/743
 
-import type { U8aLike } from '../types';
+import type { U8aLike } from '../types.js';
 
-import { u8aConcatStrict } from './concat';
-import { u8aEq } from './eq';
-import { u8aToU8a } from './toU8a';
+import { u8aConcatStrict } from './concat.js';
+import { u8aEq } from './eq.js';
+import { u8aToU8a } from './toU8a.js';
 
 /** @internal */
 export const U8A_WRAP_ETHEREUM = u8aToU8a('\x19Ethereum Signed Message:\n');

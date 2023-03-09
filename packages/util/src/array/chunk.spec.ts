@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { perf } from '../test';
-import { arrayChunk, arrayRange } from '.';
+import { arrayChunk, arrayRange } from '../index.js';
+import { perf } from '../test/index.js';
 
 describe('arrayChunk', (): void => {
   it('chunks with exact', (): void => {

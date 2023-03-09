@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hexHasPrefix } from '.';
+import { hexHasPrefix } from './index.js';
 
 describe('hexHasPrefix', (): void => {
   it('returns true when hex prefix is found', (): void => {

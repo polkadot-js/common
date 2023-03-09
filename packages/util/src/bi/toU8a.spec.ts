@@ -3,9 +3,9 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { arrayRange } from '../array';
-import { perf } from '../test';
-import { nToU8a } from '.';
+import { arrayRange } from '../array/index.js';
+import { perf } from '../test/index.js';
+import { nToU8a } from './index.js';
 
 const ptest = arrayRange(65536).map((v) => [v]);
 

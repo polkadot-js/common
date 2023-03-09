@@ -3,8 +3,8 @@
 
 import { xglobal } from '@polkadot/x-global';
 
-import { hasBuffer } from '../has';
-import { isFunction } from './function';
+import { hasBuffer } from '../has.js';
+import { isFunction } from './function.js';
 
 // We define a scappy low-level interface to mock Buffer
 // (this removes the need for the node typings in built bundles)

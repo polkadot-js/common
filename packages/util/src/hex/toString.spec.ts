@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hexToString } from '.';
+import { hexToString } from './index.js';
 
 describe('hexToString', (): void => {
   it('converts an empty to ""', (): void => {

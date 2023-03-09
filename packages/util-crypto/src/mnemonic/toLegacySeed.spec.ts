@@ -6,7 +6,7 @@
 import { u8aEq, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { mnemonicToLegacySeed } from './';
+import { mnemonicToLegacySeed } from './index.js';
 
 const MNEMONIC = 'seed sock milk update focus rotate barely fade car face mechanic mercy';
 const SEED_32 = '0x3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027';

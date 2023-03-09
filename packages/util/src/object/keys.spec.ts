@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { objectKeys } from '.';
+import { objectKeys } from './index.js';
 
 describe('objectKeys', (): void => {
   it('extracts all keys', (): void => {

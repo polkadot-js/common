@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { createKeyDerived } from '.';
+import { createKeyDerived } from './index.js';
 
 describe('createKeyDerived', (): void => {
   it('matches sub accounts with Rust', (): void => {

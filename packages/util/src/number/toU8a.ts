@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hexToU8a } from '../hex/toU8a';
-import { numberToHex } from './toHex';
+import { hexToU8a } from '../hex/toU8a.js';
+import { numberToHex } from './toHex.js';
 
 /**
  * @name numberToU8a

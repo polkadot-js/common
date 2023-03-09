@@ -3,12 +3,12 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import type { Keypair } from '../types';
+import type { Keypair } from '../types.js';
 
 import { u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { sr25519Agreement, sr25519PairFromSeed } from '.';
+import { sr25519Agreement, sr25519PairFromSeed } from './index.js';
 
 describe('agreement', (): void => {
   let pairA: Keypair;

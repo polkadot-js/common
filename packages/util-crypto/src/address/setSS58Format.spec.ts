@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { encodeAddress, setSS58Format } from '.';
+import { encodeAddress, setSS58Format } from './index.js';
 
 describe('setSS58Format', (): void => {
   beforeEach((): void => {

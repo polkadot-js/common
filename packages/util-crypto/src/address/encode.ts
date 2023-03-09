@@ -7,10 +7,10 @@ import type { Prefix } from './types';
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L34
 import { u8aConcat } from '@polkadot/util';
 
-import { base58Encode } from '../base58';
-import { decodeAddress } from './decode';
-import { defaults } from './defaults';
-import { sshash } from './sshash';
+import { base58Encode } from '../base58/index.js';
+import { decodeAddress } from './decode.js';
+import { defaults } from './defaults.js';
+import { sshash } from './sshash.js';
 
 export function encodeAddress (key: HexString | Uint8Array | string, ss58Format: Prefix = defaults.prefix): string {
   // decode it, this means we can re-encode an address

@@ -9,8 +9,8 @@ import { recoverPublicKey, Signature } from '@noble/secp256k1';
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, secp256k1Recover as wasm } from '@polkadot/wasm-crypto';
 
-import { secp256k1Compress } from './compress';
-import { secp256k1Expand } from './expand';
+import { secp256k1Compress } from './compress.js';
+import { secp256k1Expand } from './expand.js';
 
 /**
  * @name secp256k1Recover

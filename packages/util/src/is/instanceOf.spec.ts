@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isInstanceOf } from '.';
+import { isInstanceOf } from './index.js';
 
 describe('isInstanceOf', (): void => {
   it('returns true on real instances', (): void => {

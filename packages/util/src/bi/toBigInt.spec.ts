@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN } from '../bn';
-import { nToBigInt } from '.';
+import { BN } from '../bn/index.js';
+import { nToBigInt } from './index.js';
 
 describe('nToBigInt', (): void => {
   it('converts null values to 0x00', (): void => {

@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair } from '../../types';
+import type { Keypair } from '../../types.js';
 
-import { randomAsU8a } from '../../random';
-import { ed25519PairFromSeed } from './fromSeed';
+import { randomAsU8a } from '../../random/index.js';
+import { ed25519PairFromSeed } from './fromSeed.js';
 
 /**
  * @name ed25519PairFromRandom

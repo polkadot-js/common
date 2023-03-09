@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { arrayFilter } from '.';
+import { arrayFilter } from './index.js';
 
 describe('filterArray', (): void => {
   it('filters arrays, removing undefined', (): void => {

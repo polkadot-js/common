@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { perf } from '../test';
-import { u8aCmp } from '.';
+import { perf } from '../test/index.js';
+import { u8aCmp } from './index.js';
 
 const ltest = new Uint8Array(32768);
 const stest = new Uint8Array(256);

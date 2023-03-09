@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { compactAddLength } from '.';
+import { compactAddLength } from './index.js';
 
 describe('compactAddLength', (): void => {
   it('correctly adds the length prefix', (): void => {

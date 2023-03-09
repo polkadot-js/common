@@ -10,7 +10,7 @@ import type { KeypairType } from '@polkadot/util-crypto/types';
 import { u8aToHex } from '@polkadot/util';
 import { cryptoWaitReady } from '@polkadot/util-crypto';
 
-import Keyring from '.';
+import Keyring from './index.js';
 
 const PHRASE = 'bottom drive obey lake curtain smoke basket hold race lonely fit walk';
 const ETHEREUM_PHRASE = 'seed sock milk update focus rotate barely fade car face mechanic mercy';

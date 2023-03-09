@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hexToBn } from '.';
+import { hexToBn } from './index.js';
 
 describe('hexToBn', (): void => {
   it('converts prefixed hex values to BN', (): void => {

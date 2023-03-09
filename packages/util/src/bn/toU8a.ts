@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { NumberOptions, ToBn } from '../types';
-import type { BN } from './bn';
+import type { NumberOptions, ToBn } from '../types.js';
+import type { BN } from './bn.js';
 
-import { bnToBn } from './toBn';
+import { bnToBn } from './toBn.js';
 
 const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: true, isNegative: false };
 

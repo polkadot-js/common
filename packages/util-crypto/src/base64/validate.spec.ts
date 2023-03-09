@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { base64Validate } from '.';
+import { base64Validate } from './index.js';
 
 describe('base64Validate', (): void => {
   it('validates a mixed base64 utf8 string', (): void => {

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hdValidatePath } from '.';
+import { hdValidatePath } from './index.js';
 
 const VECTORS: [string, boolean][] = [
   ["m/44'/60'/0'/0/0", true],

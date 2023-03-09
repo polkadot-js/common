@@ -6,8 +6,8 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test';
-import { secp256k1Compress } from '.';
+import { perfWasm } from '../test/index.js';
+import { secp256k1Compress } from './index.js';
 
 describe('secp256k1Compress', (): void => {
   beforeEach(async (): Promise<void> => {

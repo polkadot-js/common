@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { ed25519PairFromSecret } from '..';
+import { ed25519PairFromSecret } from '../index.js';
 
 describe('ed25519PairFromSecret', (): void => {
   const secretKey = new Uint8Array([

@@ -4,7 +4,7 @@
 import { _0n, BN, bnToU8a, hasBigInt, isU8a, nToU8a, u8aToBigInt } from '@polkadot/util';
 import { BigInt } from '@polkadot/x-bigint';
 
-import { BN_BE_256_OPTS, BN_BE_OPTS } from '../bn';
+import { BN_BE_256_OPTS, BN_BE_OPTS } from '../bn.js';
 
 // pre-defined curve param as lifted form elliptic
 // https://github.com/indutny/elliptic/blob/e71b2d9359c5fe9437fbf46f1f05096de447de57/lib/elliptic/curves.js#L182

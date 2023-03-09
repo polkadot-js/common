@@ -5,7 +5,7 @@
 
 import { stringToU8a } from '@polkadot/util';
 
-import { base64Decode } from '.';
+import { base64Decode } from './index.js';
 
 describe('base64Decode', (): void => {
   it('decodes a mixed base64 utf8 string (1)', (): void => {

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { extractTime } from '.';
+import { extractTime } from './index.js';
 
 describe('extractTime', (): void => {
   const milliseconds = 1e9 + 123;

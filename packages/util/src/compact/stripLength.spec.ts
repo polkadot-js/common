@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { compactStripLength } from '.';
+import { compactStripLength } from './index.js';
 
 describe('compactStripLength', (): void => {
   it('correctly removes the length prefix', (): void => {

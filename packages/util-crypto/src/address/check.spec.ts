@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { checkAddress } from '.';
+import { checkAddress } from './index.js';
 
 describe('checkAddress', (): void => {
   it('returns [true, null] for Kusama', (): void => {

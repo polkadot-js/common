@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isError } from '.';
+import { isError } from './index.js';
 
 describe('isError', (): void => {
   it('returns true when an Error value', (): void => {

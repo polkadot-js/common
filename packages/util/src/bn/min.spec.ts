@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN, bnMin } from '.';
+import { BN, bnMin } from './index.js';
 
 describe('bnMin', (): void => {
   it('finds BN minimum', (): void => {

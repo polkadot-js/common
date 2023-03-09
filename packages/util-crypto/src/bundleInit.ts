@@ -7,8 +7,8 @@ import { utils as utilsNobleSecp256k1 } from '@noble/secp256k1';
 
 import { u8aConcat } from '@polkadot/util';
 
-import { cryptoWaitReady } from './crypto';
-import { hmacSha256AsU8a } from './hmac';
+import { hmacSha256AsU8a } from './hmac/index.js';
+import { cryptoWaitReady } from './crypto.js';
 
 // Set overrides on the secp256k1 utils
 //   - hmacShaSync - This needs to be set, unset by default

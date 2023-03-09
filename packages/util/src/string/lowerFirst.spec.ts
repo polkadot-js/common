@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { perf } from '../test';
-import { stringLowerFirst } from '.';
+import { perf } from '../test/index.js';
+import { stringLowerFirst } from './index.js';
 
 describe('stringLowerFirst', (): void => {
   it("lowers the first letter if it's a capital letter", (): void => {

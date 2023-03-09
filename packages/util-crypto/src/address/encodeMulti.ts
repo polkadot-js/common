@@ -5,8 +5,8 @@ import type { BN } from '@polkadot/util';
 import type { HexString } from '@polkadot/util/types';
 import type { Prefix } from './types';
 
-import { encodeAddress } from './encode';
-import { createKeyMulti } from './keyMulti';
+import { encodeAddress } from './encode.js';
+import { createKeyMulti } from './keyMulti.js';
 
 /**
  * @name encodeMultiAddress

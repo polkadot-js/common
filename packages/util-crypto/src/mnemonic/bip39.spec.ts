@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { entropyToMnemonic, mnemonicToEntropy } from './bip39';
-import DEFAULT_WORDLIST from './bip39-en';
+import { entropyToMnemonic, mnemonicToEntropy } from './bip39.js';
+import DEFAULT_WORDLIST from './bip39-en.js';
 
 describe('wordlist', (): void => {
   it('has the correct number of words', (): void => {

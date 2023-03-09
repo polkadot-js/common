@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN } from '../bn';
-import { compactToU8a } from '.';
+import { BN } from '../bn/index.js';
+import { compactToU8a } from './index.js';
 
 describe('encode', (): void => {
   it('encodes short u8', (): void => {

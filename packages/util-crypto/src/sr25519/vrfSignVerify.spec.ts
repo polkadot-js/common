@@ -6,10 +6,10 @@
 import { stringToU8a, u8aEq } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { randomAsU8a } from '../random/asU8a';
-import { sr25519PairFromSeed } from './pair/fromSeed';
-import { sr25519VrfSign } from './vrfSign';
-import { sr25519VrfVerify } from './vrfVerify';
+import { randomAsU8a } from '../random/asU8a.js';
+import { sr25519PairFromSeed } from './pair/fromSeed.js';
+import { sr25519VrfSign } from './vrfSign.js';
+import { sr25519VrfVerify } from './vrfVerify.js';
 
 const MESSAGE = stringToU8a('this is a message');
 

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { encodeMultiAddress } from '.';
+import { encodeMultiAddress } from './index.js';
 
 describe('encodeMultiAddress', (): void => {
   it('creates a valid known multi address', (): void => {

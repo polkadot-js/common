@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { cryptoWaitReady } from '..';
-import { mnemonicValidate } from './validate';
+import { cryptoWaitReady } from '../index.js';
+import { mnemonicValidate } from './validate.js';
 
 await cryptoWaitReady();
 

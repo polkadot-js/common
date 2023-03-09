@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isObservable } from '.';
+import { isObservable } from './index.js';
 
 describe('isObservable', (): void => {
   it('returns true on valid observables', (): void => {

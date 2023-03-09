@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { perf } from '../test';
-import { objectProperties, objectProperty } from '.';
+import { perf } from '../test/index.js';
+import { objectProperties, objectProperty } from './index.js';
 
 describe('objectProperty/objectProperties', (): void => {
   it('sets a property', (): void => {

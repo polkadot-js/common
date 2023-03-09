@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN } from '../bn';
-import { formatElapsed } from '.';
+import { BN } from '../bn/index.js';
+import { formatElapsed } from './index.js';
 
 describe('formatElapsed', (): void => {
   const start = 12345678;

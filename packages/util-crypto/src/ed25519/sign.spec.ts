@@ -6,8 +6,8 @@
 import { stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test';
-import { ed25519PairFromSeed, ed25519Sign } from '.';
+import { perfWasm } from '../test/index.js';
+import { ed25519PairFromSeed, ed25519Sign } from './index.js';
 
 const PAIR = ed25519PairFromSeed(
   stringToU8a('12345678901234567890123456789012')

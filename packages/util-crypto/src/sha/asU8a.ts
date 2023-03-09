@@ -6,7 +6,7 @@ import { sha512 as sha512Js } from '@noble/hashes/sha512';
 
 import { sha256, sha512 } from '@polkadot/wasm-crypto';
 
-import { createBitHasher, createDualHasher } from '../helpers';
+import { createBitHasher, createDualHasher } from '../helpers.js';
 
 /**
  * @name shaAsU8a

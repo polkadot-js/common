@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { evmToAddress } from '.';
+import { evmToAddress } from './index.js';
 
 describe('evmToAddress', (): void => {
   it('creates a valid known SS58 address', (): void => {

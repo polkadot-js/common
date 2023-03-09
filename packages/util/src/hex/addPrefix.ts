@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '../types';
+import type { HexString } from '../types.js';
 
-import { hexHasPrefix } from './hasPrefix';
+import { hexHasPrefix } from './hasPrefix.js';
 
 /**
  * @name hexAddPrefix

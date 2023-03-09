@@ -3,7 +3,7 @@
 
 import crypto from 'crypto';
 
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';
 
 export function getRandomValues <T extends Uint8Array> (output: T): T {
   const bytes = crypto.randomBytes(output.length);

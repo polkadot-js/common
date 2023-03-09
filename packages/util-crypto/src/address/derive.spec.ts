@@ -5,7 +5,7 @@
 
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { deriveAddress } from '.';
+import { deriveAddress } from './index.js';
 
 describe('deriveAddress', (): void => {
   beforeEach(async (): Promise<void> => {

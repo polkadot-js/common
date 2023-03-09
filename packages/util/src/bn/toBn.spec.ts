@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN, bnToBn } from '.';
+import { BN, bnToBn } from './index.js';
 
 describe('bnToBn', (): void => {
   it('converts null values to 0x00', (): void => {

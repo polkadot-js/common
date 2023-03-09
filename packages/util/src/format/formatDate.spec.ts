@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { formatDate } from '.';
+import { formatDate } from './index.js';
 
 describe('formatDate', (): void => {
   it('formats a known date into the correct format', (): void => {

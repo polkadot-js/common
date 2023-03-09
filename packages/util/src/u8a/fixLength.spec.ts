@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { u8aFixLength } from '.';
+import { u8aFixLength } from './index.js';
 
 describe('u8aFixLength', (): void => {
   it('returns bitLength === -1 as-is', (): void => {

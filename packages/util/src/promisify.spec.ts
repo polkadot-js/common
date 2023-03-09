@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { promisify } from '.';
+import { promisify } from './index.js';
 
 describe('promisify', (): void => {
   it('handles functions with no parameters (resolve)', (): Promise<void> => {

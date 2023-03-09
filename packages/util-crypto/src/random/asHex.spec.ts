@@ -5,7 +5,7 @@
 
 import { isHex } from '@polkadot/util';
 
-import { randomAsHex } from '.';
+import { randomAsHex } from './index.js';
 
 describe('randomAsBuffer', (): void => {
   it('generated results does not match', (): void => {

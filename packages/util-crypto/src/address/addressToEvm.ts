@@ -3,7 +3,7 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import { decodeAddress } from './decode';
+import { decodeAddress } from './decode.js';
 
 /**
  * @name addressToEvm

@@ -6,7 +6,7 @@
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { blake2AsHex } from '.';
+import { blake2AsHex } from './index.js';
 
 describe('blake2AsHex', (): void => {
   beforeEach(async (): Promise<void> => {

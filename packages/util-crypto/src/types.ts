@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export * from './address/types';
-export * from './json/types';
+export * from './address/types.js';
+export * from './json/types.js';
 
 export interface Keypair {
   publicKey: Uint8Array;

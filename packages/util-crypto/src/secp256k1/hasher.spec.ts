@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hasher } from './hasher';
+import { hasher } from './hasher.js';
 
 describe('hasher', (): void => {
   it('creates a blake2 hash', (): void => {

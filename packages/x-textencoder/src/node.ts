@@ -5,7 +5,7 @@ import util from 'util';
 
 import { extractGlobal } from '@polkadot/x-global';
 
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';
 
 class Fallback {
   #encoder: util.TextEncoder;

@@ -3,7 +3,7 @@
 
 import { extractGlobal } from '@polkadot/x-global';
 
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';
 
 // This is an ESM module, use the async import(...) syntax to pull it
 // in. Logically we would like it in nodeFetch(...) itself, however

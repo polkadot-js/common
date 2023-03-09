@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair } from '../types';
+import type { Keypair } from '../types.js';
 
 import { isU8a } from '@polkadot/util';
 
-import { sr25519PairFromU8a } from './pair/fromU8a';
-import { sr25519KeypairToU8a } from './pair/toU8a';
+import { sr25519PairFromU8a } from './pair/fromU8a.js';
+import { sr25519KeypairToU8a } from './pair/toU8a.js';
 
 export function createDeriveFn (derive: (pair: Uint8Array, cc: Uint8Array) => Uint8Array): (keypair: Keypair, chainCode: Uint8Array) => Keypair {
   return (keypair: Keypair, chainCode: Uint8Array): Keypair => {

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { naclEncrypt } from '.';
+import { naclEncrypt } from './index.js';
 
 describe('naclEncrypt', (): void => {
   it('encrypts a message', (): void => {

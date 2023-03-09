@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isToBigInt } from '.';
+import { isToBigInt } from './index.js';
 
 describe('isToBigInt', (): void => {
   it('is false on no value', (): void => {

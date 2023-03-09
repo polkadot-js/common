@@ -13,7 +13,7 @@ describe('TextDecoder (node)', (): void => {
   let TD: typeof TextDecoder;
 
   beforeEach(async (): Promise<void> => {
-    const node = await import('./node');
+    const node = await import('./node.js');
 
     TD = node.TextDecoder;
   });

@@ -3,10 +3,10 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import type { SubstrateNetwork } from './types';
+import type { SubstrateNetwork } from './types.js';
 
-import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults';
-import { allNetworks, availableNetworks, selectableNetworks } from '.';
+import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults/index.js';
+import { allNetworks, availableNetworks, selectableNetworks } from './index.js';
 
 describe('availableNetworks', (): void => {
   it('has the correct starting order', (): void => {

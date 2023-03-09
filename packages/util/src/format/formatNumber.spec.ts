@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN } from '../bn';
-import { formatNumber } from '.';
+import { BN } from '../bn/index.js';
+import { formatNumber } from './index.js';
 
 describe('formatNumber', (): void => {
   it('formats empty', (): void => {

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isNull } from '.';
+import { isNull } from './index.js';
 
 describe('isNull', (): void => {
   it('returns true when a null value', (): void => {

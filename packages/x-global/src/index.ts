@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/x-global authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';
 
 // Ensure that we are able to run this without any @types/node definitions
 // and without having lib: ['dom'] in our TypeScript configuration

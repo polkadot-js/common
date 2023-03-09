@@ -5,7 +5,7 @@
 
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { xxhashAsHex } from '.';
+import { xxhashAsHex } from './index.js';
 
 describe('xxhashAsHex', (): void => {
   beforeEach(async (): Promise<void> => {

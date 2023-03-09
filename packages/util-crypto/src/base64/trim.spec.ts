@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { base64Trim } from '.';
+import { base64Trim } from './index.js';
 
 describe('base64Trim', (): void => {
   it('trims a utf-8 string', (): void => {

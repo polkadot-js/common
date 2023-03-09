@@ -6,9 +6,9 @@ import type { HexString } from '@polkadot/util/types';
 
 import { bnToU8a, compactToU8a, stringToU8a, u8aConcat, u8aSorted } from '@polkadot/util';
 
-import { blake2AsU8a } from '../blake2/asU8a';
-import { BN_LE_16_OPTS } from '../bn';
-import { addressToU8a } from './util';
+import { blake2AsU8a } from '../blake2/asU8a.js';
+import { BN_LE_16_OPTS } from '../bn.js';
+import { addressToU8a } from './util.js';
 
 const PREFIX = stringToU8a('modlpy/utilisuba');
 

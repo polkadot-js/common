@@ -9,11 +9,11 @@ import { NativeModules } from 'react-native';
 
 import { xglobal } from '@polkadot/x-global';
 
-import { base64Decode } from './base64';
-import { getRandomValues as getRandomValuesGlobal } from './browser';
-import { insecureRandomValues } from './fallback';
+import { base64Decode } from './base64.js';
+import { getRandomValues as getRandomValuesGlobal } from './browser.js';
+import { insecureRandomValues } from './fallback.js';
 
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';
 
 interface RNExt {
   ExpoRandom: {

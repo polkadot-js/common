@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair } from '../../types';
+import type { Keypair } from '../../types.js';
 
-import { ed25519PairFromSeed } from '../../ed25519';
-import { mnemonicValidate } from '../../mnemonic';
-import { HARDENED, hdValidatePath } from '../validatePath';
-import { ledgerDerivePrivate } from './derivePrivate';
-import { ledgerMaster } from './master';
+import { ed25519PairFromSeed } from '../../ed25519/index.js';
+import { mnemonicValidate } from '../../mnemonic/index.js';
+import { HARDENED, hdValidatePath } from '../validatePath.js';
+import { ledgerDerivePrivate } from './derivePrivate.js';
+import { ledgerMaster } from './master.js';
 
 export function hdLedger (_mnemonic: string, path: string): Keypair {
   const words = _mnemonic

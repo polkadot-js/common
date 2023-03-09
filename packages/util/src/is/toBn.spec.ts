@@ -5,7 +5,7 @@
 
 import BN from 'bn.js';
 
-import { isToBn } from '.';
+import { isToBn } from './index.js';
 
 describe('isToBn', (): void => {
   it('is false on no value', (): void => {

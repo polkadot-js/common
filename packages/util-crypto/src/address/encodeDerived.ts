@@ -5,9 +5,9 @@ import type { BN } from '@polkadot/util';
 import type { HexString } from '@polkadot/util/types';
 import type { Prefix } from './types';
 
-import { decodeAddress } from './decode';
-import { encodeAddress } from './encode';
-import { createKeyDerived } from './keyDerived';
+import { decodeAddress } from './decode.js';
+import { encodeAddress } from './encode.js';
+import { createKeyDerived } from './keyDerived.js';
 
 /**
  * @name encodeDerivedAddress

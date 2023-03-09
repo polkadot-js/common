@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { arrayZip } from '.';
+import { arrayZip } from './index.js';
 
 describe('arrayZip', (): void => {
   it('zips a simple one', (): void => {

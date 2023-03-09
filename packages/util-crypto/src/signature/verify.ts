@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { KeypairType, VerifyResult } from '../types';
+import type { KeypairType, VerifyResult } from '../types.js';
 
 import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from '@polkadot/util';
 
-import { decodeAddress } from '../address/decode';
-import { ed25519Verify } from '../ed25519/verify';
-import { secp256k1Verify } from '../secp256k1/verify';
-import { sr25519Verify } from '../sr25519/verify';
+import { decodeAddress } from '../address/decode.js';
+import { ed25519Verify } from '../ed25519/verify.js';
+import { secp256k1Verify } from '../secp256k1/verify.js';
+import { sr25519Verify } from '../sr25519/verify.js';
 
 interface VerifyInput {
   message: Uint8Array;

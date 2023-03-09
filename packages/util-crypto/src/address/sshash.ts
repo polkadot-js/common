@@ -3,7 +3,7 @@
 
 import { stringToU8a, u8aConcat } from '@polkadot/util';
 
-import { blake2AsU8a } from '../blake2/asU8a';
+import { blake2AsU8a } from '../blake2/asU8a.js';
 
 const SS58_PREFIX = stringToU8a('SS58PRE');
 

@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { perf } from '../test';
-import { arrayRange, arrayShuffle } from '.';
+import { perf } from '../test/index.js';
+import { arrayRange, arrayShuffle } from './index.js';
 
 const ptest = arrayRange(16284);
 

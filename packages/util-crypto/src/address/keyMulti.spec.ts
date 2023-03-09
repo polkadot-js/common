@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { createKeyMulti } from '.';
+import { createKeyMulti } from './index.js';
 
 describe('createKeyMulti', (): void => {
   it('creates a valid multikey (aligning with Rust, needs sorting)', (): void => {

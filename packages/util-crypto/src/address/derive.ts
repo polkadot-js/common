@@ -5,10 +5,10 @@ import type { HexString } from '@polkadot/util/types';
 import type { DeriveJunction } from '../key/DeriveJunction';
 import type { Prefix } from './types';
 
-import { keyExtractPath } from '../key';
-import { sr25519DerivePublic } from '../sr25519';
-import { decodeAddress } from './decode';
-import { encodeAddress } from './encode';
+import { keyExtractPath } from '../key/index.js';
+import { sr25519DerivePublic } from '../sr25519/index.js';
+import { decodeAddress } from './decode.js';
+import { encodeAddress } from './encode.js';
 
 function filterHard ({ isHard }: DeriveJunction): boolean {
   return isHard;

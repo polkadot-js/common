@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { u8aToString } from '.';
+import { u8aToString } from './index.js';
 
 describe('u8aToString', (): void => {
   it('decodes to an empty string for undefined', (): void => {

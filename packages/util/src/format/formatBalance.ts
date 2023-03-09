@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from '../bn/bn';
-import type { SiDef, ToBn } from '../types';
+import type { BN } from '../bn/bn.js';
+import type { SiDef, ToBn } from '../types.js';
 
-import { bnToBn } from '../bn/toBn';
-import { isBoolean } from '../is/boolean';
-import { formatDecimal } from './formatDecimal';
-import { getSeparator } from './getSeparator';
-import { calcSi, findSi, SI, SI_MID } from './si';
+import { bnToBn } from '../bn/toBn.js';
+import { isBoolean } from '../is/boolean.js';
+import { formatDecimal } from './formatDecimal.js';
+import { getSeparator } from './getSeparator.js';
+import { calcSi, findSi, SI, SI_MID } from './si.js';
 
 interface Defaults {
   decimals: number;

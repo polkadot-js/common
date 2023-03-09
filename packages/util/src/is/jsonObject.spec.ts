@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isJsonObject } from '.';
+import { isJsonObject } from './index.js';
 
 const jsonObject = `{
     "Test": "1234",

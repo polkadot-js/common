@@ -6,7 +6,7 @@ import { Point } from '@noble/secp256k1';
 import { bnToU8a, hasBigInt, u8aConcat } from '@polkadot/util';
 import { isReady, secp256k1Expand as wasm } from '@polkadot/wasm-crypto';
 
-import { BN_BE_256_OPTS } from '../bn';
+import { BN_BE_256_OPTS } from '../bn.js';
 
 export function secp256k1Expand (publicKey: Uint8Array, onlyJs?: boolean): Uint8Array {
   if (publicKey.length === 65) {

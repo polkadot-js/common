@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from '../bn';
-import type { ToBigInt, ToBn } from '../types';
+import type { BN } from '../bn/index.js';
+import type { ToBigInt, ToBn } from '../types.js';
 
 import { BigInt } from '@polkadot/x-bigint';
 
-import { _0n, _1n, _2pow53n, _sqrt2pow53n } from './consts';
-import { nToBigInt } from './toBigInt';
+import { _0n, _1n, _2pow53n, _sqrt2pow53n } from './consts.js';
+import { nToBigInt } from './toBigInt.js';
 
 /**
  * @name nSqrt

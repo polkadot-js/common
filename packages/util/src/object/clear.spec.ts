@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { objectClear } from '.';
+import { objectClear } from './index.js';
 
 describe('objectClear', (): void => {
   it('clears an object', (): void => {

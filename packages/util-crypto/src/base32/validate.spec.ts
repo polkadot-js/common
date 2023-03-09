@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { base32Validate } from '.';
+import { base32Validate } from './index.js';
 
 describe('base32Validate', (): void => {
   it('validates encoded', (): void => {

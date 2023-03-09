@@ -5,7 +5,7 @@
 
 import { isU8a } from '@polkadot/util';
 
-import { randomAsU8a } from '.';
+import { randomAsU8a } from './index.js';
 
 describe('randomAsU8a', (): void => {
   it('generates a Uint8Array', (): void => {

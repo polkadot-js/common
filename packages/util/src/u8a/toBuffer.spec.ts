@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { u8aToBuffer } from '.';
+import { u8aToBuffer } from './index.js';
 
 describe('u8aToBuffer', (): void => {
   it('returns [] when the buffer is null', (): void => {

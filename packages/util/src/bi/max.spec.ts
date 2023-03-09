@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { nMax } from '.';
+import { nMax } from './index.js';
 
 describe('nMax', (): void => {
   it('finds maximum', (): void => {

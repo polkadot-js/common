@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN } from './bn';
-import { stringify } from './stringify';
+import { BN } from './bn/index.js';
+import { stringify } from './stringify.js';
 
 describe('stringify', (): void => {
   it('stringifies a BigInt', (): void => {

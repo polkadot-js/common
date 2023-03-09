@@ -5,7 +5,7 @@ import type { Prefix } from './types';
 
 import { logger } from '@polkadot/util';
 
-import { defaults } from './defaults';
+import { defaults } from './defaults.js';
 
 const l = logger('setSS58Format');
 

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { stringShorten } from '.';
+import { stringShorten } from './index.js';
 
 describe('stringShorten', (): void => {
   it('returns the value as-is when <= maxLength', (): void => {

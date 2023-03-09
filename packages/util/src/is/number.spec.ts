@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isNumber } from '.';
+import { isNumber } from './index.js';
 
 describe('isNumber', (): void => {
   it('returns true on valid numbers', (): void => {

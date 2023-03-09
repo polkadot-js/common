@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { perf } from '../test';
-import { isHex } from '.';
+import { perf } from '../test/index.js';
+import { isHex } from './index.js';
 
 describe('isHex', (): void => {
   const test = '1234abcd';

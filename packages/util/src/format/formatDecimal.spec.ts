@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { formatDecimal } from '.';
+import { formatDecimal } from './index.js';
 
 describe('formatDecimal', (): void => {
   it('formats decimals in number groupings', (): void => {

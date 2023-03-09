@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isPromise } from '.';
+import { isPromise } from './index.js';
 
 describe('isPromise', (): void => {
   it('returns true on valid Promise (Promise-like)', (): void => {

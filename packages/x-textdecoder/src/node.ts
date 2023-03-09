@@ -5,6 +5,6 @@ import util from 'util';
 
 import { extractGlobal } from '@polkadot/x-global';
 
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';
 
 export const TextDecoder = /*#__PURE__*/ extractGlobal('TextDecoder', util.TextDecoder);

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { randomAsNumber } from '.';
+import { randomAsNumber } from './index.js';
 
 describe('randomAsNumber', (): void => {
   it('generates subsequent non-matching numbers', (): void => {

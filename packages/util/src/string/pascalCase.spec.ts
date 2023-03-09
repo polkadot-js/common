@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { stringPascalCase } from '.';
+import { stringPascalCase } from './index.js';
 
 describe('stringPascalCase', (): void => {
   it('works correctly', (): void => {

@@ -3,4 +3,4 @@
 
 export { perf, perfCmp } from '@polkadot/util/test';
 
-export { perfWasm } from './performance';
+export { perfWasm } from './performance.js';

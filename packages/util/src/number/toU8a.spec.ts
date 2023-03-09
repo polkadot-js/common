@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { numberToU8a } from '.';
+import { numberToU8a } from './index.js';
 
 describe('numberToU8a', (): void => {
   it('converts undefined to empty', (): void => {

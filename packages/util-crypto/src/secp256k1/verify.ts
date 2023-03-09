@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { HashType } from './types';
+import type { HashType } from './types.js';
 
 import { u8aEq, u8aToU8a } from '@polkadot/util';
 
-import { hasher } from './hasher';
-import { secp256k1Recover } from './recover';
+import { hasher } from './hasher.js';
+import { secp256k1Recover } from './recover.js';
 
 /**
  * @name secp256k1Verify

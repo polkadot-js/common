@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { insecureRandomValues } from './fallback';
+import { insecureRandomValues } from './fallback.js';
 
 describe('fallback (insecure)', (): void => {
   it('subsequent results does not match', (): void => {

@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isTestChain } from '.';
+import { isTestChain } from './index.js';
 
 describe('isTestChain', (): void => {
   it('enables test environment when chain specification matches text of dev or loc(al)', (): void => {

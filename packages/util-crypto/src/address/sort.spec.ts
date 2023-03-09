@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { sortAddresses } from '.';
+import { sortAddresses } from './index.js';
 
 describe('sortAddresses', (): void => {
   it('sorts addresses by the publicKeys', (): void => {

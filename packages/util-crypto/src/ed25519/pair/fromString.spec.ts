@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { ed25519PairFromString } from '..';
+import { ed25519PairFromString } from '../index.js';
 
 describe('ed25519PairFromSeed', (): void => {
   it('generates a valid publicKey/secretKey pair', (): void => {

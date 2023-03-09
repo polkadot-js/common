@@ -5,5 +5,5 @@
 // ... put it back, but keep it removed
 // import './detectPackage';
 
-export * from './interfaces';
-export { packageInfo } from './packageInfo';
+export * from './interfaces.js';
+export { packageInfo } from './packageInfo.js';

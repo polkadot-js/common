@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { numberToHex } from '.';
+import { numberToHex } from './index.js';
 
 describe('numberToHex', (): void => {
   it('converts undefined to 0x00', (): void => {

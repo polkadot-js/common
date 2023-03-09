@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { naclBoxPairFromSecret } from '..';
+import { naclBoxPairFromSecret } from '../index.js';
 
 describe('naclBoxPairFromSecret', (): void => {
   const secretKey = new Uint8Array([

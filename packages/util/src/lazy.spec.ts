@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { lazyMethod, lazyMethods } from '.';
+import { lazyMethod, lazyMethods } from './index.js';
 
 describe('lazyMethod', (): void => {
   it('adds a key on the object', (): void => {

@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ToBnOptions } from '../types';
+import type { ToBnOptions } from '../types.js';
 
-import { BN } from '../bn/bn';
+import { BN } from '../bn/bn.js';
 
 /**
  * @name u8aToBn

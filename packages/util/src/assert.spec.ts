@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { assert, assertReturn } from '.';
+import { assert, assertReturn } from './index.js';
 
 describe('assert', (): void => {
   it('should not throw an error when test is true', (): void => {

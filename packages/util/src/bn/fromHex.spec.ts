@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { isFunction } from '../is/function';
-import { bnFromHex } from '.';
+import { isFunction } from '../is/function.js';
+import { bnFromHex } from './index.js';
 
 describe('bnFromHex', (): void => {
   it('exists as a function', (): void => {

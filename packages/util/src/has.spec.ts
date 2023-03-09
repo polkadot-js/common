@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hasBuffer } from './has';
+import { hasBuffer } from './has.js';
 
 describe('hasBuffer', (): void => {
   it('has Buffer (Jest + Node.js)', (): void => {

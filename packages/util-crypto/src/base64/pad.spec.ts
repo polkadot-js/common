@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { base64Pad } from '.';
+import { base64Pad } from './index.js';
 
 describe('base64Pad', (): void => {
   it('pads a utf-8 string', (): void => {

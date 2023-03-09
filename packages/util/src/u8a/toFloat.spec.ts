@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { hexToU8a } from '../hex';
-import { u8aToFloat } from '.';
+import { hexToU8a } from '../hex/index.js';
+import { u8aToFloat } from './index.js';
 
 describe('u8aToFloat', (): void => {
   it('throws on invalid bitLength', (): void => {

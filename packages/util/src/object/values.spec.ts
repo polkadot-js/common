@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { objectValues } from '.';
+import { objectValues } from './index.js';
 
 describe('objectValues', (): void => {
   it('extracts all values', (): void => {

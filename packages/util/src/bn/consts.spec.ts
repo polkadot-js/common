@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev/node/test/node" />
 
-import { BN, BN_HUNDRED, BN_ONE, BN_TEN, BN_THOUSAND, BN_ZERO } from '.';
+import { BN, BN_HUNDRED, BN_ONE, BN_TEN, BN_THOUSAND, BN_ZERO } from './index.js';
 
 describe('consts', (): void => {
   it('BN_ZERO equals 0', (): void => {
