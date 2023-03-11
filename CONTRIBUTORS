@@ -1,4 +1,4 @@
-    1556	Jaco                          	Update GH actions (#1758)
+    1557	Jaco                          	11.0.2 (#1760)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
