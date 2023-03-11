@@ -7,7 +7,7 @@ import known from '@substrate/ss58-registry';
 import fs from 'node:fs';
 import path from 'node:path';
 
-import other from './test/ss58registry.test.json' assert { type: 'json' };
+const other = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'packages/networks/src/test/ss58registry.test.json'), 'utf-8')) as unknown;
 
 describe('@substrate/ss58-registry', (): void => {
   it('has known values', (): void => {

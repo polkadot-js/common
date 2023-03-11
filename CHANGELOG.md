@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 11.0.2 Mar 11, 2023
+
+Changes:
+
+- Use consistent `.js` imports in source files (TS moduleResolution)
+- Remove TS resolveJsonModule option
+- Upgrade to `@polkadot/wasm-crypto` 7.0.3
+
+
 ## 11.0.1 Mar 4, 2023
 
 Changes:
