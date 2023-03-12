@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { base32Decode } from '../base32/index.js';
 import { base58Decode } from './index.js';

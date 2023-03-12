@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { hexToU8a, u8aToHex } from '@polkadot/util';
 import { cryptoWaitReady, encodeAddress as toSS58, setSS58Format } from '@polkadot/util-crypto';
