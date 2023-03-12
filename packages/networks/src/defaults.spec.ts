@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev/node/test/node" />
+/// <reference types="@polkadot/dev/node/test/node.d.ts" />
 
 import { ledgerApps } from '@polkadot/hw-ledger/defaults';
 import { isHex } from '@polkadot/util';
