@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { HashType } from './types';
+import type { HashType } from './types.js';
 
 import { recoverPublicKey, Signature } from '@noble/secp256k1';
 
