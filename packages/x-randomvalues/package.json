@@ -17,16 +17,16 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "11.0.2",
+  "version": "11.0.3-0-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@polkadot/x-global": "11.0.2",
+    "@polkadot/x-global": "11.0.3-0-x",
     "tslib": "^2.5.0"
   },
   "devDependencies": {
-    "@polkadot/util": "11.0.2",
+    "@polkadot/util": "11.0.3-0-x",
     "@types/react-native": "^0.71.3"
   },
   "denoDependencies": {
