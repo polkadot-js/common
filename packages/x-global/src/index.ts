@@ -10,17 +10,23 @@ declare const global: unknown;
 declare const self: unknown;
 declare const window: unknown;
 
+// The Record<string, unknown> unknown part here is for not-everywhere globals
+// such as `Buffer` (that won't exist is deno/window global environments)
 type GlobalThis = typeof globalThis & Record<string, unknown>;
 
 type GlobalNames = keyof typeof globalThis;
 
 type GlobalType<N extends GlobalNames> = typeof globalThis[N];
 
+/** @internal Last-resort "this", if it gets here it probably would fail anyway */
 function evaluateThis (fn: (code: string) => unknown): unknown {
   return fn('return this');
 }
 
-export const xglobal = (
+/**
+ * A cross-evnironment implementation for globalThis
+ */
+export const xglobal = /*#__PURE__*/ (
   typeof globalThis !== 'undefined'
     ? globalThis
     : typeof global !== 'undefined'
@@ -32,18 +38,24 @@ export const xglobal = (
           : evaluateThis(Function)
 ) as GlobalThis;
 
+/**
+ * Extracts a known global from the environment, applying a fallback if not found
+ */
 export function extractGlobal <N extends GlobalNames, T extends GlobalType<N>> (name: N, fallback: unknown): T {
   // Not quite sure why this is here - snuck in with TS 4.7.2 with no real idea
   // (as of now) as to why this looks like an "any" when we do cast it to a T
   //
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return typeof xglobal[name as 'undefined'] === 'undefined'
+  return typeof xglobal[name] === 'undefined'
     ? fallback as T
-    : xglobal[name as 'undefined'] as unknown as T;
+    : xglobal[name] as T;
 }
 
-export function exposeGlobal <N extends GlobalNames> (name: N, fallback: unknown): void {
-  if (typeof xglobal[name as 'undefined'] === 'undefined') {
-    xglobal[name as 'undefined'] = fallback as undefined;
+/**
+ * Expose a value as a known global, if not already defined
+ */
+export function exposeGlobal <N extends GlobalNames, T extends GlobalType<N>> (name: N, fallback: unknown): void {
+  if (typeof xglobal[name] === 'undefined') {
+    xglobal[name] = fallback as T;
   }
 }
