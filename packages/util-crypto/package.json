@@ -37,12 +37,8 @@
     "@polkadot/x-bigint": "11.0.3-0-x",
     "@polkadot/x-randomvalues": "11.0.3-0-x",
     "@scure/base": "1.1.1",
-    "ed2curve": "^0.3.0",
     "tslib": "^2.5.0",
     "tweetnacl": "^1.0.3"
-  },
-  "devDependencies": {
-    "@types/ed2curve": "^0.2.2"
   },
   "peerDependencies": {
     "@polkadot/util": "11.0.3-0-x"
