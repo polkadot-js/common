@@ -26,7 +26,7 @@ function evaluateThis (fn: (code: string) => unknown): unknown {
 /**
  * A cross-evnironment implementation for globalThis
  */
-export const xglobal = (
+export const xglobal = /*#__PURE__*/ (
   typeof globalThis !== 'undefined'
     ? globalThis
     : typeof global !== 'undefined'
@@ -48,7 +48,7 @@ export function extractGlobal <N extends GlobalNames, T extends GlobalType<N>> (
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return typeof xglobal[name] === 'undefined'
     ? fallback as T
-    : xglobal[name];
+    : xglobal[name] as T;
 }
 
 /**
