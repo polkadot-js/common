@@ -1,4 +1,4 @@
-    1561	Jaco                          	Remove stale workflow (#1764)
+    1562	Jaco                          	Bump dev (#1765)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)

@@ -1,14 +1,12 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "contributors": [],
   "description": "A cross-environment BigInt replacement",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=14"
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-bigint#readme",
   "license": "Apache-2.0",
-  "maintainers": [],
   "name": "@polkadot/x-bigint",
   "repository": {
     "directory": "packages/x-bigint",
@@ -20,9 +18,9 @@
     "./shim.cjs"
   ],
   "type": "module",
-  "version": "11.0.3-3-x",
+  "version": "11.0.3-4-x",
   "dependencies": {
-    "@polkadot/x-global": "11.0.3-3-x",
+    "@polkadot/x-global": "11.0.3-4-x",
     "tslib": "^2.5.0"
   }
 }
