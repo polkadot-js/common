@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/node.d.ts" />
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { base58Decode } from '../base58/index.js';
 import { checkAddressChecksum } from './checksum.js';

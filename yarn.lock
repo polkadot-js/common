@@ -486,32 +486,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev-test@npm:^0.72.1":
-  version: 0.72.1
-  resolution: "@polkadot/dev-test@npm:0.72.1"
+"@polkadot/dev-test@npm:^0.72.8":
+  version: 0.72.8
+  resolution: "@polkadot/dev-test@npm:0.72.8"
   dependencies:
+    jsdom: ^21.1.1
     tslib: ^2.5.0
-  checksum: ff0fbb8c082f9bdee3e5708287337cdc2f2c2ade92bdcc8ff5910a2d764c40b044e363de92e4079173927c2b15f4af9137e50e9f07b944d51c3fd3764dca84d2
+  checksum: d691ba15cd4a7992b677b7ec64f4ef7b1cb5d5c3575b11f6728b2757228829fdda404db295f4db1af4eddadaa9795e1802ba3da230ce22fe32ba6ebc0261a3fc
   languageName: node
   linkType: hard
 
-"@polkadot/dev-ts@npm:^0.72.1":
-  version: 0.72.1
-  resolution: "@polkadot/dev-ts@npm:0.72.1"
+"@polkadot/dev-ts@npm:^0.72.8":
+  version: 0.72.8
+  resolution: "@polkadot/dev-ts@npm:0.72.8"
   dependencies:
+    json5: ^2.2.3
     tslib: ^2.5.0
     typescript: ^4.9.5
-  checksum: 89d716117904072309fea9662c9e2f8bd0cb06becc2909b613a342141fc32f8ea64ff43ee6c35f8d6b39cf5e4f568cad449d41b491eec5602fd5b3aa58033e97
+  checksum: 3dff1b029f7a72a4ee4a9f0ae0125422bafea8cf07192639aa672997fa273ea05c50f8c4e84c134f21e7a038385108ada3094652e35a79abdae95b1a650b25ba
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.72.1":
-  version: 0.72.1
-  resolution: "@polkadot/dev@npm:0.72.1"
+"@polkadot/dev@npm:^0.72.8":
+  version: 0.72.8
+  resolution: "@polkadot/dev@npm:0.72.8"
   dependencies:
     "@eslint/js": ^8.36.0
-    "@polkadot/dev-test": ^0.72.1
-    "@polkadot/dev-ts": ^0.72.1
+    "@polkadot/dev-test": ^0.72.8
+    "@polkadot/dev-ts": ^0.72.8
     "@rollup/plugin-alias": ^4.0.3
     "@rollup/plugin-commonjs": ^24.0.1
     "@rollup/plugin-dynamic-import-vars": ^2.0.3
@@ -537,14 +539,13 @@ __metadata:
     eslint-plugin-sort-destructure-keys: ^1.5.0
     gh-pages: ^5.0.0
     gh-release: ^7.0.2
-    jsdom: ^21.1.1
     madge: ^6.0.0
     rollup: ^3.19.1
     rollup-plugin-cleanup: ^3.2.1
     tap-parser: ^12.0.1
     tslib: ^2.5.0
     typescript: ^4.9.5
-    webpack: ^5.76.1
+    webpack: ^5.76.2
     webpack-cli: ^5.0.1
     webpack-dev-server: ^4.12.0
     webpack-merge: ^5.8.0
@@ -574,7 +575,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 55a396d13dc032d8f77c41e2e3857266e364bad99567bed9d209c0f6563052925624326c36a771cbf32ccd6b315039fc318a54da2b932dbbe57034089c798422
+  checksum: 5208193b7d81290298a81fc2c229614ea28fee3d0166a1fa30128aba40101b3c659e080639a36acfa04499aae1ccd0f63bcf1790941e2ab02d7e0490c55c35b5
   languageName: node
   linkType: hard
 
@@ -5846,6 +5847,15 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"json5@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "json5@npm:2.2.3"
+  bin:
+    json5: lib/cli.js
+  checksum: 2a7436a93393830bce797d4626275152e37e877b265e94ca69c99e3d20c2b9dab021279146a39cdb700e71b2dd32a4cebd1514cd57cee102b1af906ce5040349
+  languageName: node
+  linkType: hard
+
 "jsonfile@npm:^4.0.0":
   version: 4.0.0
   resolution: "jsonfile@npm:4.0.0"
@@ -7716,7 +7726,7 @@ fsevents@~2.3.2:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@polkadot/dev": ^0.72.1
+    "@polkadot/dev": ^0.72.8
     "@types/node": ^18.15.3
   languageName: unknown
   linkType: soft
@@ -9185,9 +9195,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5.76.1":
-  version: 5.76.1
-  resolution: "webpack@npm:5.76.1"
+"webpack@npm:^5.76.2":
+  version: 5.76.2
+  resolution: "webpack@npm:5.76.2"
   dependencies:
     "@types/eslint-scope": ^3.7.3
     "@types/estree": ^0.0.51
@@ -9218,7 +9228,7 @@ fsevents@~2.3.2:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: b01fe0bc2dbca0e10d290ddb0bf81e807a031de48028176e2b21afd696b4d3f25ab9accdad888ef4a1f7c7f4d41f13d5bf2395b7653fdf3e5e3dafa54e56dab2
+  checksum: 86db98299a175c371031449c26077e87b33acd8f45de7f7945ed4b9b37c8ca11bc5169af9c44743efccd4d55e08042a3aa3a3bc42aff831309a0821ffbcd395e
   languageName: node
   linkType: hard
 
