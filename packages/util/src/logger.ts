@@ -29,8 +29,8 @@ function formatOther (value: unknown): unknown {
   if (value && isObject(value) && value.constructor === Object) {
     const result: Record<string, unknown> = {};
 
-    for (const k of Object.keys(value)) {
-      result[k] = loggerFormat(value[k]);
+    for (const [k, v] of Object.entries(value)) {
+      result[k] = loggerFormat(v);
     }
 
     return result;
