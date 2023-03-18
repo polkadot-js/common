@@ -82,6 +82,9 @@ export const knownGenesis: KnownGenesis = {
   origintrail: [
     '0xe7e0962324a3b86c83404dbea483f25fb5dab4c224791c81b756cfc948006174'
   ],
+  p3d: [
+    '0x6c5894837ad89b6d92b114a2fb3eafa8fe3d26a54848e3447015442cd6ef4e66'
+  ],
   parallel: [
     '0xe61a41c53f5dcd0beb09df93b34402aada44cb05117b71059cce40a2723a4e97'
   ],
