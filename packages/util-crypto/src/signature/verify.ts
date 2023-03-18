@@ -46,7 +46,7 @@ function verifyDetect (result: VerifyResult, { message, publicKey, signature }: 
 
         return true;
       }
-    } catch (error) {
+    } catch {
       // do nothing, result.isValid still set to false
     }
 
@@ -74,7 +74,7 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
       },
       sr25519: () => sr25519Verify(message, signature.subarray(1), publicKey)
     }[type]();
-  } catch (error) {
+  } catch {
     // ignore, result.isValid still set to false
   }
 

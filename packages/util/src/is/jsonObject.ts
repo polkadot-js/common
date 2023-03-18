@@ -41,7 +41,7 @@ export function isJsonObject (value: unknown): value is ObjectIndexed {
     const obj = JSON.parse(str) as unknown;
 
     return typeof obj === 'object' && obj !== null;
-  } catch (e) {
+  } catch {
     return false;
   }
 }

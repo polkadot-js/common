@@ -92,7 +92,7 @@ function getPath (infoPath?: string, pathOrFn?: FnString | string | false | null
   } else if (isFunction(pathOrFn)) {
     try {
       return pathOrFn() || '';
-    } catch (error) {
+    } catch {
       return '';
     }
   }

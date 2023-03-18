@@ -29,7 +29,6 @@
       "@polkadot/x-textdecoder": ["x-textdecoder/src/browser.ts"],
       "@polkadot/x-textencoder": ["x-textencoder/src/browser.ts"],
       "@polkadot/x-ws": ["x-ws/src/browser.ts"]
-    },
-    "skipLibCheck": true
+    }
   }
  }
