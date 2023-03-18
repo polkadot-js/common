@@ -9,7 +9,7 @@ import { validateAddress } from './validate.js';
 export function isAddress (address?: HexString | string | null, ignoreChecksum?: boolean, ss58Format?: Prefix): address is string {
   try {
     return validateAddress(address, ignoreChecksum, ss58Format);
-  } catch (error) {
+  } catch {
     return false;
   }
 }

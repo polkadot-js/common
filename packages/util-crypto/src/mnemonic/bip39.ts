@@ -115,7 +115,7 @@ export function generateMnemonic (numWords: 12 | 15 | 18 | 21 | 24): string {
 export function validateMnemonic (mnemonic: string): boolean {
   try {
     mnemonicToEntropy(mnemonic);
-  } catch (e) {
+  } catch {
     return false;
   }
 

@@ -56,7 +56,7 @@ export function createIs (validate: ValidateFn): ValidateFn {
   return (value?: unknown, ipfsCompat?: boolean): value is string => {
     try {
       return validate(value, ipfsCompat);
-    } catch (error) {
+    } catch {
       return false;
     }
   };

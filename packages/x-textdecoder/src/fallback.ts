@@ -3,7 +3,7 @@
 
 // This is very limited, only handling Ascii values
 export class TextDecoder {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-useless-constructor
+  // eslint-disable-next-line no-useless-constructor
   constructor (_?: 'utf-8' | 'utf8') {
     // nothing
   }

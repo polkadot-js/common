@@ -37,7 +37,7 @@ function deriveChild (hd: CodedKeypair, index: number): CodedKeypair {
       secp256k1PrivateKeyTweakAdd(hd.secretKey, I.slice(0, 32)),
       I.slice(32)
     );
-  } catch (err) {
+  } catch {
     // In case parse256(IL) >= n or ki == 0, proceed with the next value for i
     return deriveChild(hd, index + 1);
   }
