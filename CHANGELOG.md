@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 11.1.1 Mar 18, 2023
+
+Contributed:
+
+- Add 3DPass genesisHash (Thanks to https://github.com/fedosov)
+
+Changes:
+
+- Remove support for encrypt/decrypt functionality on keypair
+- Upgrade dependencies to latest stable versions
+
+
 ## 11.0.2 Mar 11, 2023
 
 Changes:
