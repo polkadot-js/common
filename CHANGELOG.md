@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Expand error details for invalid publicKeys in secp256k1 compress/expand operations
+
+
 ## 11.1.1 Mar 18, 2023
 
 Contributed:

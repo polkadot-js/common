@@ -24,7 +24,7 @@ export function ethereumEncode (addressOrPublic?: HexString | string | Uint8Arra
   const u8aAddress = u8aToU8a(addressOrPublic);
 
   if (![20, 32, 33, 65].includes(u8aAddress.length)) {
-    throw new Error('Invalid address or publicKey passed');
+    throw new Error(`Invalid address or publicKey provided, received ${u8aAddress.length} bytes input`);
   }
 
   const address = u8aToHex(getH160(u8aAddress), -1, false);

@@ -7,12 +7,12 @@ import { hasBigInt } from '@polkadot/util';
 import { isReady, secp256k1Compress as wasm } from '@polkadot/wasm-crypto';
 
 export function secp256k1Compress (publicKey: Uint8Array, onlyJs?: boolean): Uint8Array {
-  if (publicKey.length === 33) {
-    return publicKey;
+  if (![33, 65].includes(publicKey.length)) {
+    throw new Error(`Invalid publicKey provided, received ${publicKey.length} bytes input`);
   }
 
-  if (publicKey.length !== 65) {
-    throw new Error('Invalid publicKey provided');
+  if (publicKey.length === 33) {
+    return publicKey;
   }
 
   return !hasBigInt || (!onlyJs && isReady())
