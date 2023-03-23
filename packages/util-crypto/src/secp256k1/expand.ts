@@ -9,12 +9,12 @@ import { isReady, secp256k1Expand as wasm } from '@polkadot/wasm-crypto';
 import { BN_BE_256_OPTS } from '../bn.js';
 
 export function secp256k1Expand (publicKey: Uint8Array, onlyJs?: boolean): Uint8Array {
-  if (publicKey.length === 65) {
-    return publicKey.subarray(1);
+  if (![33, 65].includes(publicKey.length)) {
+    throw new Error(`Invalid publicKey provided, received ${publicKey.length} bytes input`);
   }
 
-  if (publicKey.length !== 33) {
-    throw new Error('Invalid publicKey provided');
+  if (publicKey.length === 65) {
+    return publicKey.subarray(1);
   }
 
   if (!hasBigInt || (!onlyJs && isReady())) {
