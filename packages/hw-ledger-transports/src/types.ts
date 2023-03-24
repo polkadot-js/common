@@ -1,7 +1,8 @@
 // Copyright 2017-2023 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export type LedgerTypes = 'hid' | 'u2f' | 'webusb';
+// u2f is deprecated an therefore not added
+export type TransportType = 'hid' | 'webusb';
 
 // The actual namespaced Transport interface, imported via
 //
@@ -19,5 +20,5 @@ export interface TransportDef {
   /** Create a transport to be used in Ledger operations */
   create (): Promise<Transport>;
   /** The type of the underlying transport definition */
-  type: LedgerTypes;
+  type: TransportType;
 }

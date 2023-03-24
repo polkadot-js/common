@@ -599,7 +599,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/hw-ledger@workspace:packages/hw-ledger"
   dependencies:
-    "@ledgerhq/hw-transport": ^6.28.1
     "@polkadot/hw-ledger-transports": 11.1.2-1-x
     "@polkadot/util": 11.1.2-1-x
     "@zondax/ledger-substrate": ^0.40.6
