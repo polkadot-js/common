@@ -3,19 +3,26 @@
 
 export type LedgerTypes = 'hid' | 'u2f' | 'webusb';
 
-// The actual namespaced Transport interface (as detailed on the next line)
+// The actual namespaced Transport interface, imported via
 //
 //   import type Transport from '@ledgerhq/hw-transport';
 //
-// does not quite work on moduleResolution: nodenext, so we just go with a
-// very light interface here
+// does not work on moduleResolution: nodenext, so we just go with a
+// very light interface for Transport (and then TransportStatic).
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Transport {
+  // empty on purpose, just a stub
+}
+
+export interface TransportStatic {
+  /** Create a transport to be used in Ledger operations */
   create (): Promise<Transport>;
 }
 
-export interface TransportDef {
-  /** Create a transport to be used in Ledger operations */
-  create (): Promise<Transport>;
+export interface TransportDef extends Pick<TransportStatic, 'create'> {
   /** The type of the underlying transport definition */
   type: LedgerTypes;
 }
+
+export type TransportItem = [type: LedgerTypes, Clazz: unknown];
