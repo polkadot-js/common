@@ -6,7 +6,7 @@ import type { Keypair } from '../types.js';
 
 import { ed25519 } from '@noble/curves/ed25519';
 
-import { u8aToU8a } from '@polkadot/util';
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { ed25519Sign as wasmSign, isReady } from '@polkadot/wasm-crypto';
 
 /**
@@ -33,7 +33,7 @@ export function ed25519Sign (message: HexString | Uint8Array | string, { publicK
   const messageU8a = u8aToU8a(message);
   const privateU8a = secretKey.subarray(0, 32);
 
-  return !onlyJs && isReady()
+  return !hasBigInt || (!onlyJs && isReady())
     ? wasmSign(publicKey, privateU8a, messageU8a)
     : ed25519.sign(messageU8a, privateU8a);
 }

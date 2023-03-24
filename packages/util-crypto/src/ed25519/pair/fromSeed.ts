@@ -5,7 +5,7 @@ import type { Keypair } from '../../types.js';
 
 import { ed25519 } from '@noble/curves/ed25519';
 
-import { u8aConcatStrict } from '@polkadot/util';
+import { hasBigInt, u8aConcatStrict } from '@polkadot/util';
 import { ed25519KeypairFromSeed, isReady } from '@polkadot/wasm-crypto';
 
 /**
@@ -23,7 +23,7 @@ import { ed25519KeypairFromSeed, isReady } from '@polkadot/wasm-crypto';
  * ```
  */
 export function ed25519PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypair {
-  if (!onlyJs && isReady()) {
+  if (!hasBigInt || (!onlyJs && isReady())) {
     const full = ed25519KeypairFromSeed(seed);
 
     return {

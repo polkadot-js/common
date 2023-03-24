@@ -5,7 +5,7 @@ import type { HexString } from '@polkadot/util/types';
 
 import { ed25519 } from '@noble/curves/ed25519';
 
-import { u8aToU8a } from '@polkadot/util';
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { ed25519Verify as wasmVerify, isReady } from '@polkadot/wasm-crypto';
 
 /**
@@ -34,7 +34,7 @@ export function ed25519Verify (message: HexString | Uint8Array | string, signatu
   }
 
   try {
-    return !onlyJs && isReady()
+    return !hasBigInt || (!onlyJs && isReady())
       ? wasmVerify(signatureU8a, messageU8a, publicKeyU8a)
       : ed25519.verify(signatureU8a, messageU8a, publicKeyU8a);
   } catch {
