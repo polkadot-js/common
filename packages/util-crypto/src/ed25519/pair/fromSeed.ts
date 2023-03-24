@@ -3,8 +3,9 @@
 
 import type { Keypair } from '../../types.js';
 
-import nacl from 'tweetnacl';
+import { ed25519 } from '@noble/curves/ed25519';
 
+import { u8aConcatStrict } from '@polkadot/util';
 import { ed25519KeypairFromSeed, isReady } from '@polkadot/wasm-crypto';
 
 /**
@@ -31,5 +32,10 @@ export function ed25519PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypai
     };
   }
 
-  return nacl.sign.keyPair.fromSeed(seed);
+  const publicKey = ed25519.getPublicKey(seed);
+
+  return {
+    publicKey,
+    secretKey: u8aConcatStrict([seed, publicKey])
+  };
 }
