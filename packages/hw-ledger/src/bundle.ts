@@ -36,21 +36,21 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
 export class Ledger {
   #app: SubstrateApp | null = null;
 
-  #ledgerApp: string;
+  #ledgerName: string;
 
   #transportDef: TransportDef;
 
   constructor (transport: TransportType, chain: Chain) {
-    const ledgerApp = ledgerApps[chain];
+    const ledgerName = ledgerApps[chain];
     const transportDef = transports.find(({ type }) => type === transport);
 
-    if (!ledgerApp) {
+    if (!ledgerName) {
       throw new Error(`Unsupported Ledger chain ${chain}`);
     } else if (!transportDef) {
       throw new Error(`Unsupported Ledger transport ${transport}`);
     }
 
-    this.#ledgerApp = ledgerApp;
+    this.#ledgerName = ledgerName;
     this.#transportDef = transportDef;
   }
 
@@ -109,7 +109,7 @@ export class Ledger {
       if (!this.#app) {
         const transport = await this.#transportDef.create();
 
-        this.#app = newSubstrateApp(transport, this.#ledgerApp);
+        this.#app = newSubstrateApp(transport, this.#ledgerName);
       }
 
       return await fn(this.#app);
