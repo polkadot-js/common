@@ -4,7 +4,7 @@
 import type { Keypair } from '../types.js';
 import type { HashType } from './types.js';
 
-import { Signature, signSync } from '@noble/secp256k1';
+import { secp256k1 } from '@noble/curves/secp256k1';
 
 import { bnToU8a, hasBigInt, u8aConcat } from '@polkadot/util';
 import { isReady, secp256k1Sign as wasm } from '@polkadot/wasm-crypto';
@@ -27,12 +27,11 @@ export function secp256k1Sign (message: Uint8Array | string, { secretKey }: Part
     return wasm(data, secretKey);
   }
 
-  const [sigBytes, recoveryParam] = signSync(data, secretKey, { canonical: true, recovered: true });
-  const { r, s } = Signature.fromHex(sigBytes);
+  const signature = secp256k1.sign(data, secretKey);
 
   return u8aConcat(
-    bnToU8a(r, BN_BE_256_OPTS),
-    bnToU8a(s, BN_BE_256_OPTS),
-    new Uint8Array([recoveryParam || 0])
+    bnToU8a(signature.r, BN_BE_256_OPTS),
+    bnToU8a(signature.s, BN_BE_256_OPTS),
+    new Uint8Array([signature.recovery || 0])
   );
 }

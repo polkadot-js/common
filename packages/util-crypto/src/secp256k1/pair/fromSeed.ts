@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types.js';
 
-import { getPublicKey } from '@noble/secp256k1';
+import { secp256k1 } from '@noble/curves/secp256k1';
 
 import { hasBigInt, u8aEmpty } from '@polkadot/util';
 import { isReady, secp256k1FromSeed } from '@polkadot/wasm-crypto';
@@ -36,7 +36,7 @@ export function secp256k1PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keyp
   }
 
   return {
-    publicKey: getPublicKey(seed, true),
+    publicKey: secp256k1.getPublicKey(seed, true),
     secretKey: seed
   };
 }

@@ -314,17 +314,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/hashes@npm:1.3.0":
-  version: 1.3.0
-  resolution: "@noble/hashes@npm:1.3.0"
-  checksum: d7ddb6d7c60f1ce1f87facbbef5b724cdea536fc9e7f59ae96e0fc9de96c8f1a2ae2bdedbce10f7dcc621338dfef8533daa73c873f2b5c87fa1a4e05a95c2e2e
+"@noble/curves@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "@noble/curves@npm:0.9.0"
+  dependencies:
+    "@noble/hashes": 1.3.0
+  checksum: c927b3591bb604e6020efef0d0f17c844a8744a7dd22fa276e6d14cf4394fee2060597a19ad3663baed82c031a97249f6ca669723f3743a08e3946bd1015abd9
   languageName: node
   linkType: hard
 
-"@noble/secp256k1@npm:1.7.1":
-  version: 1.7.1
-  resolution: "@noble/secp256k1@npm:1.7.1"
-  checksum: d2301f1f7690368d8409a3152450458f27e54df47e3f917292de3de82c298770890c2de7c967d237eff9c95b70af485389a9695f73eb05a43e2bd562d18b18cb
+"@noble/hashes@npm:1.3.0, @noble/hashes@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "@noble/hashes@npm:1.3.0"
+  checksum: d7ddb6d7c60f1ce1f87facbbef5b724cdea536fc9e7f59ae96e0fc9de96c8f1a2ae2bdedbce10f7dcc621338dfef8533daa73c873f2b5c87fa1a4e05a95c2e2e
   languageName: node
   linkType: hard
 
@@ -486,34 +488,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev-test@npm:^0.72.18":
-  version: 0.72.18
-  resolution: "@polkadot/dev-test@npm:0.72.18"
+"@polkadot/dev-test@npm:^0.72.20":
+  version: 0.72.20
+  resolution: "@polkadot/dev-test@npm:0.72.20"
   dependencies:
     jsdom: ^21.1.1
     tslib: ^2.5.0
-  checksum: cf91151513f827116fff0c8a78927800dccb1f1bdecbb6c1dd3292c8182d0b9324e2c36060b924688a73d6d055b2579c7a7a27775f66f3d01a7a1c8d3e73ac7c
+  checksum: ac733035d55a2b6aa304457430212a34f2c7e93f0a64870ae4ea42117a26316298dfa75243a7973f2474815bf3a95adbad73a39afcba0bf66bf0c9e7d1c86184
   languageName: node
   linkType: hard
 
-"@polkadot/dev-ts@npm:^0.72.18":
-  version: 0.72.18
-  resolution: "@polkadot/dev-ts@npm:0.72.18"
+"@polkadot/dev-ts@npm:^0.72.20":
+  version: 0.72.20
+  resolution: "@polkadot/dev-ts@npm:0.72.20"
   dependencies:
     json5: ^2.2.3
     tslib: ^2.5.0
     typescript: ^5.0.2
-  checksum: 85aa6393b608e3b6ea7975cfdeff204c5710517644adcd2959d065d6c0f1a9db8bc2d12f2c0d16535ad42c932e31d51586bdfcf09d6beece03f4f737bcfacf5d
+  checksum: 93c71fdd40f25a7cedc23f24c2cba598215e54e744df4c11dcf286636aef920c8050ca68ae8017963676a3b7de038dce05418ab0c54177e45dc3dd0427bc6cf1
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.72.18":
-  version: 0.72.18
-  resolution: "@polkadot/dev@npm:0.72.18"
+"@polkadot/dev@npm:^0.72.20":
+  version: 0.72.20
+  resolution: "@polkadot/dev@npm:0.72.20"
   dependencies:
     "@eslint/js": ^8.36.0
-    "@polkadot/dev-test": ^0.72.18
-    "@polkadot/dev-ts": ^0.72.18
+    "@polkadot/dev-test": ^0.72.20
+    "@polkadot/dev-ts": ^0.72.20
     "@rollup/plugin-alias": ^4.0.3
     "@rollup/plugin-commonjs": ^24.0.1
     "@rollup/plugin-dynamic-import-vars": ^2.0.3
@@ -542,7 +544,6 @@ __metadata:
     madge: ^6.0.0
     rollup: ^3.20.1
     rollup-plugin-cleanup: ^3.2.1
-    tap-parser: ^12.0.1
     tslib: ^2.5.0
     typescript: ^5.0.2
     webpack: ^5.76.3
@@ -575,7 +576,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: c9279cb9c386b24165fa76656110629b8faa466cb89c9fa3b3eddb61ef7172163668aa51ee9d0ba389a80f9b4711cd167c5cba1c516606013ab4680257d1b16e
+  checksum: d58b5787035e8d25bf4e55eed3ef20a3131d8d098e3c788ed97a1613abf7738e80307cdf8ab5cfb87d5ddaa11ef1b208181fe1fd4d5f65e12d19a5e8aa943a3d
   languageName: node
   linkType: hard
 
@@ -634,14 +635,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
-    "@noble/hashes": 1.3.0
-    "@noble/secp256k1": 1.7.1
+    "@noble/curves": ^0.9.0
+    "@noble/hashes": ^1.3.0
     "@polkadot/networks": 11.1.2-3-x
     "@polkadot/util": 11.1.2-3-x
     "@polkadot/wasm-crypto": ^7.0.3
     "@polkadot/x-bigint": 11.1.2-3-x
     "@polkadot/x-randomvalues": 11.1.2-3-x
-    "@scure/base": 1.1.1
+    "@scure/base": ^1.1.1
     tslib: ^2.5.0
     tweetnacl: ^1.0.3
   peerDependencies:
@@ -786,7 +787,7 @@ __metadata:
   dependencies:
     "@polkadot/util": 11.1.2-3-x
     "@polkadot/x-global": 11.1.2-3-x
-    "@types/react-native": ^0.71.4
+    "@types/react-native": ^0.71.5
     tslib: ^2.5.0
   languageName: unknown
   linkType: soft
@@ -942,7 +943,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@scure/base@npm:1.1.1":
+"@scure/base@npm:^1.1.1":
   version: 1.1.1
   resolution: "@scure/base@npm:1.1.1"
   checksum: b4fc810b492693e7e8d0107313ac74c3646970c198bbe26d7332820886fa4f09441991023ec9aa3a2a51246b74409ab5ebae2e8ef148bbc253da79ac49130309
@@ -1132,10 +1133,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.15.6":
-  version: 18.15.6
-  resolution: "@types/node@npm:18.15.6"
-  checksum: 46a1b04553a03574fb845bb4414292d47338d29c40fa25861d3c9e8a957455dfb23ff6385428da1613b02ddc3b5b5fe91c9227c55db80a46a655799ea2add285
+"@types/node@npm:*, @types/node@npm:^18.15.7":
+  version: 18.15.7
+  resolution: "@types/node@npm:18.15.7"
+  checksum: 08d1dd1898be10cd274955ed7f491bcab5b7e70ce66b6a1e996a582d5467f7517046b0d9c5f4e15871df94dd72d1ad9e7be236d2cff1a1450ec906d7fa3062d2
   languageName: node
   linkType: hard
 
@@ -1174,12 +1175,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.71.4":
-  version: 0.71.4
-  resolution: "@types/react-native@npm:0.71.4"
+"@types/react-native@npm:^0.71.5":
+  version: 0.71.5
+  resolution: "@types/react-native@npm:0.71.5"
   dependencies:
     "@types/react": "*"
-  checksum: 74d021dfe6b5a58b75270366edb5244b123f054392c11df3001e3a4157de153dc9939d217ddbd4ce945d25a1d44df5fa84a181b74c4e247afa0c6ec6ff546631
+  checksum: a9d88591154aeb94ee42ed88f194fed77148592e35d2bb807d9ad7aa04216ec068f5bc541e6c320c8cbac775a4f0c863bc1bd5c1c884a8f1d599494783f61d63
   languageName: node
   linkType: hard
 
@@ -4042,13 +4043,6 @@ __metadata:
   version: 4.0.7
   resolution: "eventemitter3@npm:4.0.7"
   checksum: 1875311c42fcfe9c707b2712c32664a245629b42bb0a5a84439762dd0fd637fc54d078155ea83c2af9e0323c9ac13687e03cfba79b03af9f40c89b4960099374
-  languageName: node
-  linkType: hard
-
-"events-to-array@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "events-to-array@npm:2.0.3"
-  checksum: 8a5aa632c2078fee673671a2fc1241c9090f0a1e6ed7b203936717f20273e9bbbb73942cf9a1ce45b7befb93945c18b254e176e0553674a72c7d1dcca100acc5
   languageName: node
   linkType: hard
 
@@ -7725,8 +7719,8 @@ fsevents@~2.3.2:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@polkadot/dev": ^0.72.18
-    "@types/node": ^18.15.6
+    "@polkadot/dev": ^0.72.20
+    "@types/node": ^18.15.7
   languageName: unknown
   linkType: soft
 
@@ -8429,27 +8423,6 @@ fsevents@~2.3.2:
   version: 3.2.4
   resolution: "symbol-tree@npm:3.2.4"
   checksum: 6e8fc7e1486b8b54bea91199d9535bb72f10842e40c79e882fc94fb7b14b89866adf2fd79efa5ebb5b658bc07fb459ccce5ac0e99ef3d72f474e74aaf284029d
-  languageName: node
-  linkType: hard
-
-"tap-parser@npm:^12.0.1":
-  version: 12.0.1
-  resolution: "tap-parser@npm:12.0.1"
-  dependencies:
-    events-to-array: ^2.0.3
-    tap-yaml: ^1.0.2
-  bin:
-    tap-parser: bin/cmd.js
-  checksum: bc62a7cac455f3cd97f33d5417b1b59807279873c1fa2d7792daf8f8a501d92f2661ce509dc93521b9b9d373748774fd73fe4a7bc1f337c236f2485478a08960
-  languageName: node
-  linkType: hard
-
-"tap-yaml@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "tap-yaml@npm:1.0.2"
-  dependencies:
-    yaml: ^1.10.2
-  checksum: 842024ca2aee6a3016182b1c06d69807b859e2da09639ad17b16bd31370d3cc54e6b083a67629c0680c7180628115b768ac9803cfea13fc13455ff57737a8964
   languageName: node
   linkType: hard
 
@@ -9450,13 +9423,6 @@ fsevents@~2.3.2:
   version: 4.0.0
   resolution: "yallist@npm:4.0.0"
   checksum: 343617202af32df2a15a3be36a5a8c0c8545208f3d3dfbc6bb7c3e3b7e8c6f8e7485432e4f3b88da3031a6e20afa7c711eded32ddfb122896ac5d914e75848d5
-  languageName: node
-  linkType: hard
-
-"yaml@npm:^1.10.2":
-  version: 1.10.2
-  resolution: "yaml@npm:1.10.2"
-  checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f
   languageName: node
   linkType: hard
 
