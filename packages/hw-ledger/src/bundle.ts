@@ -36,22 +36,21 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
 export class Ledger {
   #app: SubstrateApp | null = null;
 
-  #chain: Chain;
+  #ledgerApp: string;
 
   #transportDef: TransportDef;
 
   constructor (transport: TransportType, chain: Chain) {
-    if (!Object.keys(ledgerApps).includes(chain)) {
-      throw new Error(`Unsupported chain ${chain}`);
-    }
-
+    const ledgerApp = ledgerApps[chain];
     const transportDef = transports.find(({ type }) => type === transport);
 
-    if (!transportDef) {
-      throw new Error(`Unsupported transport ${transport}`);
+    if (!ledgerApp) {
+      throw new Error(`Unsupported Ledger chain ${chain}`);
+    } else if (!transportDef) {
+      throw new Error(`Unsupported Ledger transport ${transport}`);
     }
 
-    this.#chain = chain;
+    this.#ledgerApp = ledgerApp;
     this.#transportDef = transportDef;
   }
 
@@ -102,28 +101,18 @@ export class Ledger {
   /**
    * @internal
    *
-   * Retrieves the Ledger app that we are operating with
-   */
-  async getApp (): Promise<SubstrateApp> {
-    if (!this.#app) {
-      const transport = await this.#transportDef.create();
-
-      this.#app = newSubstrateApp(transport, ledgerApps[this.#chain]);
-    }
-
-    return this.#app;
-  }
-
-  /**
-   * @internal
-   *
-   * Performs an operation against an app, with error code wrapping
+   * Returns a created SubstrateApp to perform operations against. Generally
+   * this is only used internally, to ensure consistent bahavior.
    */
   async withApp <T> (fn: (app: SubstrateApp) => Promise<T>): Promise<T> {
     try {
-      const app = await this.getApp();
+      if (!this.#app) {
+        const transport = await this.#transportDef.create();
 
-      return await fn(app);
+        this.#app = newSubstrateApp(transport, this.#ledgerApp);
+      }
+
+      return await fn(this.#app);
     } catch (error) {
       this.#app = null;
 
