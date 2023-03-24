@@ -17,7 +17,7 @@ describe('formatAddress', () => {
     it('returns fails on invalid address', () => {
       expect(
         () => ethereumEncode('0xnotaddress')
-      ).toThrow(/Invalid address or publicKey passed/);
+      ).toThrow(/Invalid address or publicKey provided/);
     });
 
     it('converts lowercase to the checksummed address', () => {
