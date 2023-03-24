@@ -14,7 +14,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "11.1.2-0-x",
+  "version": "11.1.2-1-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
@@ -22,7 +22,7 @@
     "@ledgerhq/hw-transport": "^6.28.1",
     "@ledgerhq/hw-transport-webhid": "^6.27.12",
     "@ledgerhq/hw-transport-webusb": "^6.27.12",
-    "@polkadot/util": "11.1.2-0-x",
+    "@polkadot/util": "11.1.2-1-x",
     "tslib": "^2.5.0"
   },
   "optionalDependencies": {
