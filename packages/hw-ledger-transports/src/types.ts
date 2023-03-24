@@ -15,14 +15,9 @@ export interface Transport {
   // empty on purpose, just a stub
 }
 
-export interface TransportStatic {
+export interface TransportDef {
   /** Create a transport to be used in Ledger operations */
   create (): Promise<Transport>;
-}
-
-export interface TransportDef extends Pick<TransportStatic, 'create'> {
   /** The type of the underlying transport definition */
   type: LedgerTypes;
 }
-
-export type TransportItem = [type: LedgerTypes, Clazz: unknown];

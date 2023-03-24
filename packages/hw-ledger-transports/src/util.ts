@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Transport, TransportDef, TransportItem, TransportStatic } from './types.js';
+import type { LedgerTypes, Transport, TransportDef } from './types.js';
 
-export function createDefs (...items: readonly TransportItem[]): TransportDef[] {
+export function createDefs (...items: readonly [type: LedgerTypes, Clazz: unknown][]): TransportDef[] {
   return items.map(([type, Clazz]): TransportDef => ({
     create: (): Promise<Transport> =>
-      (Clazz as TransportStatic).create(),
+      (Clazz as Pick<TransportDef, 'create'>).create(),
     type
   }));
 }
