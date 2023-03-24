@@ -8,6 +8,7 @@
       "@polkadot/hw-ledger/*": ["hw-ledger/src/*.ts"],
       "@polkadot/hw-ledger-transports": ["hw-ledger-transports/src/browser.ts"],
       "@polkadot/hw-ledger-transports/packageInfo": ["hw-ledger-transports/src/packageInfo.ts"],
+      "@polkadot/hw-ledger-transports/types": ["hw-ledger-transports/src/types.ts"],
       "@polkadot/hw-ledger-transports/*": ["hw-ledger-transports/src/browser.ts"],
       "@polkadot/keyring": ["keyring/src/index.ts"],
       "@polkadot/keyring/packageInfo": ["keyring/src/packageInfo.ts"],

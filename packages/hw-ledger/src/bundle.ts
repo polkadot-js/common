@@ -2,7 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubstrateApp } from '@zondax/ledger-substrate';
-import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types.js';
+import type { TransportDef, TransportType } from '@polkadot/hw-ledger-transports/types';
+import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerVersion } from './types.js';
 
 import { newSubstrateApp } from '@zondax/ledger-substrate';
 
@@ -37,18 +38,21 @@ export class Ledger {
 
   #chain: Chain;
 
-  #transport: LedgerTypes;
+  #transportDef: TransportDef;
 
-  constructor (transport: LedgerTypes, chain: Chain) {
-    // u2f is deprecated
-    if (!['hid', 'webusb'].includes(transport)) {
-      throw new Error(`Unsupported transport ${transport}`);
-    } else if (!Object.keys(ledgerApps).includes(chain)) {
+  constructor (transport: TransportType, chain: Chain) {
+    if (!Object.keys(ledgerApps).includes(chain)) {
       throw new Error(`Unsupported chain ${chain}`);
     }
 
+    const transportDef = transports.find(({ type }) => type === transport);
+
+    if (!transportDef) {
+      throw new Error(`Unsupported transport ${transport}`);
+    }
+
     this.#chain = chain;
-    this.#transport = transport;
+    this.#transportDef = transportDef;
   }
 
   /**
@@ -102,13 +106,7 @@ export class Ledger {
    */
   async getApp (): Promise<SubstrateApp> {
     if (!this.#app) {
-      const def = transports.find(({ type }) => type === this.#transport);
-
-      if (!def) {
-        throw new Error(`Unable to find a transport for ${this.#transport}`);
-      }
-
-      const transport = await def.create();
+      const transport = await this.#transportDef.create();
 
       this.#app = newSubstrateApp(transport, ledgerApps[this.#chain]);
     }

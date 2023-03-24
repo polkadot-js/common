@@ -3,8 +3,6 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-export type LedgerTypes = 'hid' | 'u2f' | 'webusb';
-
 export interface AccountOptions {
   /** The index of the account */
   account: number;
