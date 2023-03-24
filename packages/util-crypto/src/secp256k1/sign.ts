@@ -27,7 +27,7 @@ export function secp256k1Sign (message: Uint8Array | string, { secretKey }: Part
     return wasm(data, secretKey);
   }
 
-  const signature = secp256k1.sign(data, secretKey);
+  const signature = secp256k1.sign(data, secretKey, { lowS: true });
 
   return u8aConcat(
     bnToU8a(signature.r, BN_BE_256_OPTS),
