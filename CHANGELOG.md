@@ -5,6 +5,8 @@
 Changes:
 
 - Expand error details for invalid publicKeys in secp256k1 compress/expand operations
+- Expand `@polkadot/hw-ledger` with specific per-method JSDoc
+- Upgrade dependencies to latest stable versions
 
 
 ## 11.1.1 Mar 18, 2023

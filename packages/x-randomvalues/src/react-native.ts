@@ -24,7 +24,7 @@ interface RNExt {
   }
 }
 
-interface GlobalExt extends Window {
+interface GlobalExt {
   nativeCallSyncHook: unknown;
 }
 

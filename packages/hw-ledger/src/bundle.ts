@@ -51,6 +51,10 @@ export class Ledger {
     this.#transport = transport;
   }
 
+  /**
+   * Returns the address associated with a specific account & address offset. Optionally
+   * asks for on-device confirmation
+   */
   public async getAddress (confirm = false, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerAddress> {
     return this.withApp(async (app: SubstrateApp): Promise<LedgerAddress> => {
       const { address, pubKey } = await wrapError(app.getAddress(account + accountOffset, change, addressIndex + addressOffset, confirm));
@@ -62,6 +66,9 @@ export class Ledger {
     });
   }
 
+  /**
+   * Returns the version of the Ledger application on the device
+   */
   public async getVersion (): Promise<LedgerVersion> {
     return this.withApp(async (app: SubstrateApp): Promise<LedgerVersion> => {
       const { device_locked: isLocked, major, minor, patch, test_mode: isTestMode } = await wrapError(app.getVersion());
@@ -74,6 +81,9 @@ export class Ledger {
     });
   }
 
+  /**
+   * Signs a transcation on the Ledger device
+   */
   public async sign (message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerSignature> {
     return this.withApp(async (app: SubstrateApp): Promise<LedgerSignature> => {
       const buffer = u8aToBuffer(message);
@@ -85,6 +95,11 @@ export class Ledger {
     });
   }
 
+  /**
+   * @internal
+   *
+   * Retrieves the Ledger app that we are operating with
+   */
   async getApp (): Promise<SubstrateApp> {
     if (!this.#app) {
       const def = transports.find(({ type }) => type === this.#transport);
@@ -101,6 +116,11 @@ export class Ledger {
     return this.#app;
   }
 
+  /**
+   * @internal
+   *
+   * Performs an operation against an app, with error code wrapping
+   */
   async withApp <T> (fn: (app: SubstrateApp) => Promise<T>): Promise<T> {
     try {
       const app = await this.getApp();
