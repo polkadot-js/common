@@ -1,4 +1,4 @@
-    1573	Jaco                          	Bump dev (w/ some node:test adjustments) (#1778)
+    1574	Jaco                          	Add repo dev req. for Node.js (#1779)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
