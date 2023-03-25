@@ -486,34 +486,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev-test@npm:^0.72.20":
-  version: 0.72.20
-  resolution: "@polkadot/dev-test@npm:0.72.20"
+"@polkadot/dev-test@npm:^0.72.21":
+  version: 0.72.21
+  resolution: "@polkadot/dev-test@npm:0.72.21"
   dependencies:
     jsdom: ^21.1.1
     tslib: ^2.5.0
-  checksum: ac733035d55a2b6aa304457430212a34f2c7e93f0a64870ae4ea42117a26316298dfa75243a7973f2474815bf3a95adbad73a39afcba0bf66bf0c9e7d1c86184
+  checksum: 38e60464d848749717cf3659bf6fc129a5ad39cc1cac1498f52f98ddbe0ddbf1fa41057ca7ec33ad9b7eecb82ab0e301aea29d0df58bb27b1379fe4d2a9c8525
   languageName: node
   linkType: hard
 
-"@polkadot/dev-ts@npm:^0.72.20":
-  version: 0.72.20
-  resolution: "@polkadot/dev-ts@npm:0.72.20"
+"@polkadot/dev-ts@npm:^0.72.21":
+  version: 0.72.21
+  resolution: "@polkadot/dev-ts@npm:0.72.21"
   dependencies:
     json5: ^2.2.3
     tslib: ^2.5.0
     typescript: ^5.0.2
-  checksum: 93c71fdd40f25a7cedc23f24c2cba598215e54e744df4c11dcf286636aef920c8050ca68ae8017963676a3b7de038dce05418ab0c54177e45dc3dd0427bc6cf1
+  checksum: 94ef39b7e7da2d3d49f4d2edb65df7406eab7268f835eab3a0774521ebb214df900869199bb8321d4aa3d2cff39e277e47ef57bde9e780f624f47d6db6e6edf4
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.72.20":
-  version: 0.72.20
-  resolution: "@polkadot/dev@npm:0.72.20"
+"@polkadot/dev@npm:^0.72.21":
+  version: 0.72.21
+  resolution: "@polkadot/dev@npm:0.72.21"
   dependencies:
     "@eslint/js": ^8.36.0
-    "@polkadot/dev-test": ^0.72.20
-    "@polkadot/dev-ts": ^0.72.20
+    "@polkadot/dev-test": ^0.72.21
+    "@polkadot/dev-ts": ^0.72.21
     "@rollup/plugin-alias": ^4.0.3
     "@rollup/plugin-commonjs": ^24.0.1
     "@rollup/plugin-dynamic-import-vars": ^2.0.3
@@ -540,7 +540,7 @@ __metadata:
     gh-pages: ^5.0.0
     gh-release: ^7.0.2
     madge: ^6.0.0
-    rollup: ^3.20.1
+    rollup: ^3.20.2
     rollup-plugin-cleanup: ^3.2.1
     tslib: ^2.5.0
     typescript: ^5.0.2
@@ -574,7 +574,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: d58b5787035e8d25bf4e55eed3ef20a3131d8d098e3c788ed97a1613abf7738e80307cdf8ab5cfb87d5ddaa11ef1b208181fe1fd4d5f65e12d19a5e8aa943a3d
+  checksum: 6a5b23ff10b9f7d93d668ea162ed3bed7fd6ba7354b3d00e812db9c3a63c9e38a3178475fba4eba1adb1106bc6687fde5aac2c40872b449655afcbe6c8ba4dab
   languageName: node
   linkType: hard
 
@@ -1131,10 +1131,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.15.7":
-  version: 18.15.7
-  resolution: "@types/node@npm:18.15.7"
-  checksum: 08d1dd1898be10cd274955ed7f491bcab5b7e70ce66b6a1e996a582d5467f7517046b0d9c5f4e15871df94dd72d1ad9e7be236d2cff1a1450ec906d7fa3062d2
+"@types/node@npm:*, @types/node@npm:^18.15.8":
+  version: 18.15.8
+  resolution: "@types/node@npm:18.15.8"
+  checksum: 795695b9f5bbfaea864261d3179da530dbe8c615bd525d6afcaa0d508f0b73f252507b54c735b1d744932677e30f55161bbe9b78487a60bd6a93b2d03027d30d
   languageName: node
   linkType: hard
 
@@ -7699,9 +7699,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"rollup@npm:^3.20.1":
-  version: 3.20.1
-  resolution: "rollup@npm:3.20.1"
+"rollup@npm:^3.20.2":
+  version: 3.20.2
+  resolution: "rollup@npm:3.20.2"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -7709,7 +7709,7 @@ fsevents@~2.3.2:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: dc88f337133228311c4d52f005310f2b23ad6d0765b8909698aede1eecde32057ef2ae84e244fd27a45ff944f66f3c120d0b5e163c4642356d2d501df531b798
+  checksum: 34b0932839b7c2a5d1742fb21ce95a47e0b49a0849f4abee2dccf25833187aa7babb898ca90d4fc761cffa4102b9ed0ac6ad7f6f6b96c8b8e2d67305abc5da65
   languageName: node
   linkType: hard
 
@@ -7717,8 +7717,8 @@ fsevents@~2.3.2:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@polkadot/dev": ^0.72.20
-    "@types/node": ^18.15.7
+    "@polkadot/dev": ^0.72.21
+    "@types/node": ^18.15.8
   languageName: unknown
   linkType: soft
 
