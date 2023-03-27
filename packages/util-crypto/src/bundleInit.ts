@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import '@polkadot/x-bigint/shim';
+import '@polkadot/x-crypto/shim';
 
 import { utils as utilsNobleSecp256k1 } from '@noble/secp256k1';
 
