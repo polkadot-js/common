@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/x-randomvalues authors & contributors
+// Copyright 2017-2023 @polkadot/x-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Adapted from https://github.com/LinusU/react-native-get-random-values/blob/85f48393821c23b83b89a8177f56d3a81dc8b733/index.js
@@ -7,10 +7,9 @@
 
 import { NativeModules } from 'react-native';
 
-import { xglobal } from '@polkadot/x-global';
+import { extractGlobal, xglobal } from '@polkadot/x-global';
 
 import { base64Decode } from './base64.js';
-import { getRandomValues as getRandomValuesGlobal } from './browser.js';
 import { insecureRandomValues } from './fallback.js';
 
 export { packageInfo } from './packageInfo.js';
@@ -42,10 +41,10 @@ function getRandomValuesNative <T extends Uint8Array> (output: T): T {
   return output;
 }
 
-export const getRandomValues = (
-  typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function'
-    ? getRandomValuesGlobal
-    : (typeof (xglobal as unknown as GlobalExt).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
-      ? insecureRandomValues
-      : getRandomValuesNative
+const getRandomValues = (
+  (typeof (xglobal as unknown as GlobalExt).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
+    ? insecureRandomValues
+    : getRandomValuesNative
 );
+
+export const crypto = /*#__PURE__*/ extractGlobal('crypto', { getRandomValues });

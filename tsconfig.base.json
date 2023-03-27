@@ -24,9 +24,11 @@
       "@polkadot/x-bundle/*": ["x-bundle/src/*.ts"],
       "@polkadot/x-bigint": ["x-bigint/src/index.ts"],
       "@polkadot/x-bigint/shim": ["x-bigint/src/shim.ts"],
+      "@polkadot/x-crypto": ["x-crypto/src/browser.ts"],
+      "@polkadot/x-crypto/shim": ["x-crypto/src/shim.ts"],
       "@polkadot/x-fetch": ["x-fetch/src/browser.ts"],
       "@polkadot/x-global": ["x-global/src/index.ts"],
-      "@polkadot/x-randomvalues": ["x-randomvalues/src/browser.ts"],
+      "@polkadot/x-randomvalues": ["x-randomvalues/src/index.ts"],
       "@polkadot/x-textdecoder": ["x-textdecoder/src/browser.ts"],
       "@polkadot/x-textencoder": ["x-textencoder/src/browser.ts"],
       "@polkadot/x-ws": ["x-ws/src/browser.ts"]

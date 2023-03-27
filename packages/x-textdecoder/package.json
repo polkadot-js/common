@@ -24,6 +24,6 @@
     "tslib": "^2.5.0"
   },
   "denoDependencies": {
-    "util": "std@0.161.0/node/util.ts"
+    "node:util": "std@0.161.0/node/util.ts"
   }
 }

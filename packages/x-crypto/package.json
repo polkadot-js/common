@@ -1,29 +1,33 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/common/issues",
-  "description": "A TextDecoder replacement",
+  "description": "A cross-environment BigInt replacement",
   "engines": {
     "node": ">=14"
   },
-  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-textencoder#readme",
+  "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-crypto#readme",
   "license": "Apache-2.0",
-  "name": "@polkadot/x-textencoder",
+  "name": "@polkadot/x-crypto",
   "repository": {
-    "directory": "packages/x-textencoder",
+    "directory": "packages/x-crypto",
     "type": "git",
     "url": "https://github.com/polkadot-js/common.git"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "./shim.js",
+    "./shim.cjs"
+  ],
   "type": "module",
   "version": "11.1.3-1-x",
-  "browser": "browser.js",
-  "main": "node.js",
-  "react-native": "react-native.js",
   "dependencies": {
     "@polkadot/x-global": "11.1.3-1-x",
     "tslib": "^2.5.0"
   },
+  "devDependencies": {
+    "@polkadot/util": "11.1.3-1-x",
+    "@types/react-native": "^0.71.5"
+  },
   "denoDependencies": {
-    "node:util": "std@0.161.0/node/util.ts"
+    "node:crypto": "std@0.161.0/node/crypto.ts"
   }
 }

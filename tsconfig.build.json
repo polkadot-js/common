@@ -12,10 +12,11 @@
     { "path": "./packages/util-crypto/tsconfig.build.json" },
     { "path": "./packages/x-bigint/tsconfig.build.json" },
     { "path": "./packages/x-bundle/tsconfig.build.json" },
+    { "path": "./packages/x-crypto/tsconfig.build.json" },
+    { "path": "./packages/x-crypto/tsconfig.spec.json" },
     { "path": "./packages/x-fetch/tsconfig.build.json" },
     { "path": "./packages/x-global/tsconfig.build.json" },
     { "path": "./packages/x-randomvalues/tsconfig.build.json" },
-    { "path": "./packages/x-randomvalues/tsconfig.spec.json" },
     { "path": "./packages/x-textdecoder/tsconfig.build.json" },
     { "path": "./packages/x-textencoder/tsconfig.build.json" },
     { "path": "./packages/x-ws/tsconfig.build.json" }

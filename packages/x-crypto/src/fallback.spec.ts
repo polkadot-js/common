@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/x-randomvalues authors & contributors
+// Copyright 2017-2023 @polkadot/x-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
