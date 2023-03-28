@@ -5,9 +5,10 @@ import { xglobal } from '@polkadot/x-global';
 
 export { packageInfo } from './packageInfo.js';
 
+export const crypto = xglobal.crypto;
+
+// getRandomValues needs to be called on the crypto object,
+// hence the need for the wrapper function
 export function getRandomValues <T extends Uint8Array> (arr: T): T {
-  // We use x-global here - this prevents packagers such as rollup
-  // confusing this with the "normal" Node.js import and stubbing it
-  // (and also aligns with eg. x-fetch, where x-global is used)
-  return xglobal.crypto.getRandomValues(arr);
+  return crypto.getRandomValues(arr);
 }

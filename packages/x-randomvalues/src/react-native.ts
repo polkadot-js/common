@@ -10,7 +10,7 @@ import { NativeModules } from 'react-native';
 import { xglobal } from '@polkadot/x-global';
 
 import { base64Decode } from './base64.js';
-import { getRandomValues as getRandomValuesGlobal } from './browser.js';
+import { crypto as cryptoBrowser, getRandomValues as getRandomValuesBrowser } from './browser.js';
 import { insecureRandomValues } from './fallback.js';
 
 export { packageInfo } from './packageInfo.js';
@@ -28,7 +28,7 @@ interface GlobalExt {
   nativeCallSyncHook: unknown;
 }
 
-function getRandomValuesNative <T extends Uint8Array> (output: T): T {
+function getRandomValuesRn <T extends Uint8Array> (output: T): T {
   const bytes = base64Decode(
     (NativeModules as RNExt).RNGetRandomValues
       ? (NativeModules as RNExt).RNGetRandomValues.getRandomBase64(output.length)
@@ -42,10 +42,16 @@ function getRandomValuesNative <T extends Uint8Array> (output: T): T {
   return output;
 }
 
-export const getRandomValues = (
+export const getRandomValues = /*#__PURE__*/ (
   typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function'
-    ? getRandomValuesGlobal
+    ? getRandomValuesBrowser
     : (typeof (xglobal as unknown as GlobalExt).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
       ? insecureRandomValues
-      : getRandomValuesNative
+      : getRandomValuesRn
+);
+
+export const crypto = /*#__PURE__*/ (
+  getRandomValues === getRandomValuesBrowser
+    ? cryptoBrowser
+    : { getRandomValues }
 );
