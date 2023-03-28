@@ -10,7 +10,6 @@ export const ledgerApps: Record<string, string> = {
   astar: 'Astar',
   bifrost: 'Bifrost',
   'bifrost-kusama': 'BifrostKusama',
-  bittensor: 'Bittensor',
   centrifuge: 'Centrifuge',
   composable: 'Composable',
   darwinia: 'Darwinia',
