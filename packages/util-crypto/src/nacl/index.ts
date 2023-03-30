@@ -7,5 +7,3 @@
 export { naclDecrypt } from './decrypt.js';
 export { naclEncrypt } from './encrypt.js';
 export { naclBoxPairFromSecret } from './box/fromSecret.js';
-export { naclOpen } from './open.js';
-export { naclSeal } from './seal.js';
