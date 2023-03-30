@@ -1,9 +1,8 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import nacl from 'tweetnacl';
-
 import { randomAsU8a } from '../random/asU8a.js';
+import { naclSecretbox } from './tweetnacl.js';
 
 interface Encrypted {
   encrypted: Uint8Array;
@@ -26,7 +25,7 @@ interface Encrypted {
  */
 export function naclEncrypt (message: Uint8Array, secret: Uint8Array, nonce: Uint8Array = randomAsU8a(24)): Encrypted {
   return {
-    encrypted: nacl.secretbox(message, nonce, secret),
+    encrypted: naclSecretbox(message, nonce, secret),
     nonce
   };
 }
