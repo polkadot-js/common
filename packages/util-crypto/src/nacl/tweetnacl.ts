@@ -169,17 +169,17 @@ function crypto_stream_salsa20_xor (c: Uint8Array, cpos: number, m: Uint8Array |
   return 0;
 }
 
-function crypto_stream_salsa20 (c: Uint8Array, cpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
-  return crypto_stream_salsa20_xor(c, cpos, null, 0, d, n, k);
-}
+// function crypto_stream_salsa20 (c: Uint8Array, cpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
+//   return crypto_stream_salsa20_xor(c, cpos, null, 0, d, n, k);
+// }
 
-function crypto_stream (c: Uint8Array, cpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
-  const s = new Uint8Array(32);
-  crypto_core_hsalsa20(s,n,k,sigma);
-  return crypto_stream_salsa20(c,cpos,d,n.subarray(16),s);
-}
+// function crypto_stream (c: Uint8Array, cpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
+//   const s = new Uint8Array(32);
+//   crypto_core_hsalsa20(s,n,k,sigma);
+//   return crypto_stream_salsa20(c,cpos,d,n.subarray(16),s);
+// }
 
-function crypto_stream_xor (c: Uint8Array, cpos: number, m: Uint8Array, mpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
+function crypto_stream_xor (c: Uint8Array, cpos: number, m: Uint8Array | null, mpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
   const s = new Uint8Array(32);
   crypto_core_hsalsa20(s,n,k,sigma);
   return crypto_stream_salsa20_xor(c, cpos, m, mpos, d, n.subarray(16), s);
@@ -269,7 +269,8 @@ function crypto_secretbox_open (m: Uint8Array, c: Uint8Array, d: number, n: Uint
   let i;
   const x = new Uint8Array(32);
   if (d < 32) return -1;
-  crypto_stream(x,0,32,n,k);
+  // crypto_stream(x,0,32,n,k);
+  crypto_stream_xor(x, 0, null, 0, 32, n, k);
   if (crypto_onetimeauth_verify(c, 16,c, 32,d - 32,x) !== 0) return -1;
   crypto_stream_xor(m,0,c,0,d,n,k);
   for (i = 0; i < 32; i++) m[i] = 0;
