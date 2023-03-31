@@ -8,6 +8,14 @@ import { u8aToString } from '@polkadot/util';
 import { base32Decode } from './index.js';
 
 describe('base32Decode', (): void => {
+  it('decodes an empty string)', (): void => {
+    expect(
+      u8aToString(
+        base32Decode('')
+      )
+    ).toEqual('');
+  });
+
   it('decodes a base32', (): void => {
     expect(
       u8aToString(

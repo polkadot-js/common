@@ -18,10 +18,10 @@ describe('base32Validate', (): void => {
     ).toEqual(true);
   });
 
-  it('fails on empty', (): void => {
+  it('does not fail on empty', (): void => {
     expect(
-      () => base32Validate('')
-    ).toThrow(/Expected/);
+      base32Validate('')
+    ).toEqual(true);
   });
 
   it('fails on non-string', (): void => {
