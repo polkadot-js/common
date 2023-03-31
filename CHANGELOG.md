@@ -8,6 +8,7 @@ Contributed:
 
 Changes:
 
+- Allow empty string as valid base32/base58/base64 decoder input (yields empty)
 - Add additional/missing `/*#__PURE__*/` annotations
 - Upgrade dependencies to latest stable versions
 

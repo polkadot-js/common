@@ -65,11 +65,9 @@ export function createIs (validate: ValidateFn): ValidateFn {
 /** @internal */
 export function createValidate ({ chars, ipfs, type }: Config): ValidateFn {
   return (value?: unknown, ipfsCompat?: boolean): value is string => {
-    if (!value || typeof value !== 'string') {
-      throw new Error(`Expected non-null, non-empty ${type} string input`);
-    }
-
-    if (ipfs && ipfsCompat && value[0] !== ipfs) {
+    if (typeof value !== 'string') {
+      throw new Error(`Expected ${type} string input`);
+    } else if (ipfs && ipfsCompat && value[0] !== ipfs) {
       throw new Error(`Expected ipfs-compatible ${type} to start with '${ipfs}'`);
     }
 
