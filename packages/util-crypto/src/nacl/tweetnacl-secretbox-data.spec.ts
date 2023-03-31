@@ -1,6 +1,22 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// Imported from https://github.com/dchest/tweetnacl-js/blob/6a9594a35a27f9c723c5f1c107e376d1c65c23b3/test/data/secretbox.random.js//
+//
+// Changes made:
+//  - ESM export
+//  - Auto-lint fixes
+//
+// Original headers:
+//
+// Ported in 2014 by Dmitry Chestnykh and Devi Mandiri.
+// Public domain.
+//
+// Implementation derived from TweetNaCl version 20140427.
+// See for details: http://tweetnacl.cr.yp.to/
+//
+//
+
 export const TEST_DATA = [
   [
     'givKPH4F/eDcIEUZcws1+BIWqcnx35Ul4qkA7Ilxj1c=',

@@ -6,6 +6,10 @@
 // Adapted from https://github.com/dchest/tweetnacl-js/blob/6a9594a35a27f9c723c5f1c107e376d1c65c23b3/test/04-secretbox.quick.js
 // Adapted from https://github.com/dchest/tweetnacl-js/blob/6a9594a35a27f9c723c5f1c107e376d1c65c23b3/test/04-secretbox.js
 //
+// Changes made:
+//  - Jest-like test environment (not tape)
+//  - Combine quite and random tests into single file
+//
 // Original headers:
 //
 // Ported in 2014 by Dmitry Chestnykh and Devi Mandiri.
