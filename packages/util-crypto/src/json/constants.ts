@@ -3,8 +3,8 @@
 
 import type { EncryptedJsonEncoding, EncryptedJsonVersion } from './types.js';
 
-export const ENCODING: EncryptedJsonEncoding[] = ['scrypt', 'xsalsa20-poly1305'];
-export const ENCODING_NONE: EncryptedJsonEncoding[] = ['none'];
+export const ENCODING: readonly EncryptedJsonEncoding[] = ['scrypt', 'xsalsa20-poly1305'] as const;
+export const ENCODING_NONE: readonly EncryptedJsonEncoding[] = ['none'] as const;
 export const ENCODING_VERSION: EncryptedJsonVersion = '3';
 
 export const NONCE_LENGTH = 24;

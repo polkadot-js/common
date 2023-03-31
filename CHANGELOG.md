@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Add Bittensor genesisHash (Thanks to https://github.com/camfairchild)
+
+Changes:
+
+- Add additional/missing `/*#__PURE__*/` annotations
+- Upgrade dependencies to latest stable versions
+
+
 ## 11.1.2 Mar 25, 2023
 
 Changes:

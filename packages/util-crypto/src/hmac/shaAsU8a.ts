@@ -39,10 +39,10 @@ export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLen
  * @name hmacSha256AsU8a
  * @description creates a Hmac Sha256 Uint8Array from the key & data
  */
-export const hmacSha256AsU8a = createSha(256);
+export const hmacSha256AsU8a = /*#__PURE__*/ createSha(256);
 
 /**
  * @name hmacSha512AsU8a
  * @description creates a Hmac Sha512 Uint8Array from the key & data
  */
-export const hmacSha512AsU8a = createSha(512);
+export const hmacSha512AsU8a = /*#__PURE__*/ createSha(512);
