@@ -12,6 +12,7 @@
 // - Comment out unused functions
 // - export the only box/secretbox create/open functions (these are camelCase)
 // - Linting style is mostly disabled below (apart form the changes above), so should be verifyable against original
+// - It is _messy_ the unused code is commented out, not removed
 //
 // Original headers:
 //
