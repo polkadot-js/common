@@ -82,9 +82,9 @@ function vn (x: Uint8Array, xi: number, y: Uint8Array, yi: number, n: number): n
   return (1 & ((d - 1) >>> 8)) - 1;
 }
 
-function crypto_verify_16 (x: Uint8Array, xi: number, y: Uint8Array, yi: number): number {
-  return vn(x,xi,y,yi,16);
-}
+// function crypto_verify_16 (x: Uint8Array, xi: number, y: Uint8Array, yi: number): number {
+//   return vn(x,xi,y,yi,16);
+// }
 
 // function crypto_verify_32(x, xi, y, yi) {
 //   return vn(x,xi,y,yi,32);
@@ -130,15 +130,15 @@ function core (out: Uint8Array, inp: Uint8Array, k: Uint8Array, c: Uint8Array, h
   }
 }
 
-function crypto_core_salsa20 (out: Uint8Array, inp: Uint8Array, k: Uint8Array, c: Uint8Array): number {
-  core(out,inp,k,c,false);
-  return 0;
-}
+// function crypto_core_salsa20 (out: Uint8Array, inp: Uint8Array, k: Uint8Array, c: Uint8Array): number {
+//   core(out,inp,k,c,false);
+//   return 0;
+// }
 
-function crypto_core_hsalsa20 (out: Uint8Array, inp: Uint8Array, k: Uint8Array, c: Uint8Array): number {
-  core(out,inp,k,c,true);
-  return 0;
-}
+// function crypto_core_hsalsa20 (out: Uint8Array, inp: Uint8Array, k: Uint8Array, c: Uint8Array): number {
+//   core(out,inp,k,c,true);
+//   return 0;
+// }
 
 const sigma = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107]);
 // "expand 32-byte k"
@@ -150,7 +150,8 @@ function crypto_stream_salsa20_xor (c: Uint8Array, cpos: number, m: Uint8Array |
   for (i = 0; i < 16; i++) z[i] = 0;
   for (i = 0; i < 8; i++) z[i] = n[i];
   while (b >= 64) {
-    crypto_core_salsa20(x,z,k,sigma);
+    // crypto_core_salsa20(x,z,k,sigma);
+    core(x, z, k, sigma, false);
     for (i = 0; i < 64; i++) c[cpos+i] = (m?m[mpos+i]:0) ^ x[i];
     u = 1;
     for (i = 8; i < 16; i++) {
@@ -163,7 +164,8 @@ function crypto_stream_salsa20_xor (c: Uint8Array, cpos: number, m: Uint8Array |
     if (m) mpos += 64;
   }
   if (b > 0) {
-    crypto_core_salsa20(x,z,k,sigma);
+    // crypto_core_salsa20(x,z,k,sigma);
+    core(x, z, k, sigma, false);
     for (i = 0; i < b; i++) c[cpos+i] = (m?m[mpos+i]:0) ^ x[i];
   }
   return 0;
@@ -181,7 +183,8 @@ function crypto_stream_salsa20_xor (c: Uint8Array, cpos: number, m: Uint8Array |
 
 function crypto_stream_xor (c: Uint8Array, cpos: number, m: Uint8Array | null, mpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
   const s = new Uint8Array(32);
-  crypto_core_hsalsa20(s,n,k,sigma);
+  // crypto_core_hsalsa20(s,n,k,sigma);
+  core(s, n, k, sigma, true);
   return crypto_stream_salsa20_xor(c, cpos, m, mpos, d, n.subarray(16), s);
 }
 
@@ -194,9 +197,7 @@ function add1305 (h: Uint32Array, c: Uint32Array): void {
   }
 }
 
-const minusp = new Uint32Array([
-  5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 252
-]);
+const minusp = new Uint32Array([5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 252]);
 
 function crypto_onetimeauth (out: Uint8Array, outpos: number, m: Uint8Array, mpos: number, n: number, k: Uint8Array): number {
   let i, j, u;
@@ -253,7 +254,8 @@ function crypto_onetimeauth (out: Uint8Array, outpos: number, m: Uint8Array, mpo
 function crypto_onetimeauth_verify (h: Uint8Array, hpos: number, m: Uint8Array, mpos: number, n: number, k: Uint8Array) {
   const x = new Uint8Array(16);
   crypto_onetimeauth(x,0,m,mpos,n,k);
-  return crypto_verify_16(h,hpos,x,0);
+  // return crypto_verify_16(h,hpos,x,0);
+  return vn(h, hpos, x, 0, 16);
 }
 
 function crypto_secretbox (c: Uint8Array, m: Uint8Array, d: number, n: Uint8Array, k: Uint8Array) {
