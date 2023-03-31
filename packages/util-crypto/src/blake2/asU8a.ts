@@ -37,4 +37,4 @@ export function blake2AsU8a (data: HexString | Uint8Array | string, bitLength: 6
  * @name blake2AsHex
  * @description Creates a blake2b hex from the input.
  */
-export const blake2AsHex = createAsHex(blake2AsU8a);
+export const blake2AsHex = /*#__PURE__*/ createAsHex(blake2AsU8a);
