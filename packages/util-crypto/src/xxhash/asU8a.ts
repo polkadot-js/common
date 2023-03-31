@@ -44,4 +44,4 @@ export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bit
  * @name xxhashAsHex
  * @description Creates a xxhash64 hex from the input.
  */
-export const xxhashAsHex = createAsHex(xxhashAsU8a);
+export const xxhashAsHex = /*#__PURE__*/ createAsHex(xxhashAsU8a);
