@@ -61,8 +61,7 @@ function ld32 (x: Uint8Array, i: number): number {
 // }
 
 function st32 (x: Uint8Array, j: number, u: number): void {
-  let i;
-  for (i = 0; i < 4; i++) { x[j+i] = u & 255; u >>>= 8; }
+  for (let i = 0; i < 4; i++) { x[j+i] = u & 255; u >>>= 8; }
 }
 
 // function ts64(x, i, u) {
@@ -77,8 +76,8 @@ function st32 (x: Uint8Array, j: number, u: number): void {
 // }
 
 function vn (x: Uint8Array, xi: number, y: Uint8Array, yi: number, n: number): number {
-  let i,d = 0;
-  for (i = 0; i < n; i++) d |= x[xi+i]^y[yi+i];
+  let d = 0;
+  for (let i = 0; i < n; i++) d |= x[xi+i]^y[yi+i];
   return (1 & ((d - 1) >>> 8)) - 1;
 }
 
@@ -189,8 +188,8 @@ function crypto_stream_xor (c: Uint8Array, cpos: number, m: Uint8Array | null, m
 }
 
 function add1305 (h: Uint32Array, c: Uint32Array): void {
-  let j, u = 0;
-  for (j = 0; j < 17; j++) {
+  let u = 0;
+  for (let j = 0; j < 17; j++) {
     u = (u + ((h[j] + c[j]) | 0)) | 0;
     h[j] = u & 255;
     u >>>= 8;
@@ -259,23 +258,21 @@ function crypto_onetimeauth_verify (h: Uint8Array, hpos: number, m: Uint8Array, 
 }
 
 function crypto_secretbox (c: Uint8Array, m: Uint8Array, d: number, n: Uint8Array, k: Uint8Array) {
-  let i;
   if (d < 32) return -1;
   crypto_stream_xor(c,0,m,0,d,n,k);
   crypto_onetimeauth(c, 16, c, 32, d - 32, c);
-  for (i = 0; i < 16; i++) c[i] = 0;
+  for (let i = 0; i < 16; i++) c[i] = 0;
   return 0;
 }
 
 function crypto_secretbox_open (m: Uint8Array, c: Uint8Array, d: number, n: Uint8Array, k: Uint8Array): number {
-  let i;
   const x = new Uint8Array(32);
   if (d < 32) return -1;
   // crypto_stream(x,0,32,n,k);
   crypto_stream_xor(x, 0, null, 0, 32, n, k);
   if (crypto_onetimeauth_verify(c, 16,c, 32,d - 32,x) !== 0) return -1;
   crypto_stream_xor(m,0,c,0,d,n,k);
-  for (i = 0; i < 32; i++) m[i] = 0;
+  for (let i = 0; i < 32; i++) m[i] = 0;
   return 0;
 }
 
