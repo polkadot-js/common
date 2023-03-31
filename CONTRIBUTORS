@@ -1,4 +1,4 @@
-    1575	Jaco                          	Additional __PURE__ annotations (#1787)
+    1576	Jaco                          	Allow empty string as valid base32/base58/base64 decoder input (#1788)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
