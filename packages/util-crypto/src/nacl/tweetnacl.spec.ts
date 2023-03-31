@@ -4745,12 +4745,10 @@ describe('tweetnacl', (): void => {
     for (let i = 0; i < TEST_DATA.length; i++) {
       const [keyBase64, nonceBase64, msgBase64, expBase64] = TEST_DATA[i];
 
-      it(`is ok on ${msgBase64}`, (): void => {
+      it(`is ok on "${msgBase64}"`, (): void => {
         const key = base64Decode(keyBase64);
         const nonce = base64Decode(nonceBase64);
-        const msg = msgBase64
-          ? base64Decode(msgBase64)
-          : new Uint8Array();
+        const msg = base64Decode(msgBase64);
         const goodBox = base64Decode(expBase64);
         const box = naclSecretbox(msg, nonce, key);
 
