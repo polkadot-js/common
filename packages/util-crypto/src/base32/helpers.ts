@@ -25,12 +25,12 @@ type DecodeFn = (value: string, ipfsCompat?: boolean) => Uint8Array;
 
 type EncodeFn = (value: U8aLike, ipfsCompat?: boolean) => string;
 
-type ValidateFn = (value?: unknown, ipfsCompat?: boolean) => value is string;
+type ValidateFn = (value?: unknown, ipfsCompat?: boolean, allowEmpty?: boolean) => value is string;
 
 /** @internal */
 export function createDecode ({ coder, ipfs }: Config, validate: ValidateFn): DecodeFn {
   return (value: string, ipfsCompat?: boolean): Uint8Array => {
-    validate(value, ipfsCompat);
+    validate(value, ipfsCompat, true);
 
     return coder.decode(
       ipfs && ipfsCompat
@@ -64,8 +64,8 @@ export function createIs (validate: ValidateFn): ValidateFn {
 
 /** @internal */
 export function createValidate ({ chars, ipfs, type }: Config): ValidateFn {
-  return (value?: unknown, ipfsCompat?: boolean): value is string => {
-    if (typeof value !== 'string') {
+  return (value?: unknown, ipfsCompat?: boolean, allowEmpty?: boolean): value is string => {
+    if (typeof value !== 'string' || (!value && !allowEmpty)) {
       throw new Error(`Expected ${type} string input`);
     } else if (ipfs && ipfsCompat && value[0] !== ipfs) {
       throw new Error(`Expected ipfs-compatible ${type} to start with '${ipfs}'`);
