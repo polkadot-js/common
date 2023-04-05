@@ -1,4 +1,4 @@
-    1573	Jaco                          	Bump dev (w/ some node:test adjustments) (#1778)
+    1579	Jaco                          	Update lock wf (#1791)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
@@ -23,6 +23,7 @@
        1	amphineko                     	chore: fix typo in versionDetect messages (#941)
        1	Axel Chalon                   	Simplify @polkadot/keyring KeyringPair (#419)
        1	Brad Larson                   	[FIX] Adjust error message (#646)
+       1	Cameron Fairchild             	Add bittensor details (#1783)
        1	Carlos Medeiros               	add hydradx to knownLedger (#1647)
        1	Eliott Teissonniere           	add nodle ledger specs (#1089)
        1	Guilane DENGUIR               	feat(VTB): Added support for VTB blockchain (#1651)
