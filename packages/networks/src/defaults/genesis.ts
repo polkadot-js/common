@@ -154,5 +154,8 @@ export const knownGenesis: KnownGenesis = {
   ],
   xxnetwork: [
     '0x50dd5d206917bf10502c68fb4d18a59fc8aa31586f4e8856b493e43544aa82aa'
-  ]
+  ],
+  cerenetwork: [
+    '0x81443836a9a24caaa23f1241897d1235717535711d1d3fe24eae4fdc942c092c'
+  ],
 };
