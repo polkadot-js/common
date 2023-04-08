@@ -19,13 +19,13 @@
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@ledgerhq/hw-transport": "^6.28.1",
-    "@ledgerhq/hw-transport-webhid": "^6.27.12",
-    "@ledgerhq/hw-transport-webusb": "^6.27.12",
+    "@ledgerhq/hw-transport": "^6.28.2",
+    "@ledgerhq/hw-transport-webhid": "^6.27.13",
+    "@ledgerhq/hw-transport-webusb": "^6.27.13",
     "@polkadot/util": "11.1.4-1-x",
     "tslib": "^2.5.0"
   },
   "optionalDependencies": {
-    "@ledgerhq/hw-transport-node-hid-singleton": "^6.28.9"
+    "@ledgerhq/hw-transport-node-hid-singleton": "^6.28.10"
   }
 }
