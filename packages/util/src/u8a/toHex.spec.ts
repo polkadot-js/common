@@ -43,7 +43,8 @@ describe('u8aToHex', (): void => {
     expect(
       u8aToHex(
         new Uint8Array([128, 0, 10]),
-        -1, false
+        -1,
+        false
       )
     ).toEqual('80000a');
   });
