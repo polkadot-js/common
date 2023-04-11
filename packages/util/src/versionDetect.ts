@@ -7,17 +7,14 @@ import { isFunction } from './is/function.js';
 
 type This = typeof globalThis;
 
-interface PackageJson {
-  name: string;
-  path?: string;
-  type?: string;
+interface VersionPath {
+  path: string;
+  type: string;
   version: string;
 }
 
-interface VersionPath {
-  path?: string;
-  type?: string;
-  version: string;
+interface PackageInfo extends VersionPath {
+  name: string;
 }
 
 interface PjsChecks extends This {
@@ -58,7 +55,7 @@ function formatDisplay <T extends { version: string }> (all: T[], fmt: (version:
 }
 
 /** @internal */
-function formatInfo (version: string, { name }: PackageJson): string[] {
+function formatInfo (version: string, { name }: PackageInfo): string[] {
   return [
     version,
     name
@@ -110,7 +107,7 @@ function warn <T extends { version: string }> (pre: string, all: T[], fmt: (vers
  * @summary Checks that a specific package is only imported once
  * @description A `@polkadot/*` version detection utility, checking for one occurence of a package in addition to checking for ddependency versions.
  */
-export function detectPackage ({ name, path, type, version }: PackageJson, pathOrFn?: FnString | string | false | null, deps: PackageJson[] = []): void {
+export function detectPackage ({ name, path, type, version }: PackageInfo, pathOrFn?: FnString | string | false | null, deps: PackageInfo[] = []): void {
   if (!name.startsWith('@polkadot')) {
     throw new Error(`Invalid package descriptor ${name}`);
   }

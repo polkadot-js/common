@@ -162,16 +162,16 @@ formatBalance.getOptions = (decimals: number = defaultDecimals): SiDef[] => {
 
 // Sets the default decimals to use for formatting (ui-wide)
 formatBalance.setDefaults = ({ decimals, unit }: SetDefaults): void => {
-  defaultDecimals = decimals === undefined
-    ? defaultDecimals
-    : Array.isArray(decimals)
+  defaultDecimals = (
+    Array.isArray(decimals)
       ? decimals[0]
-      : decimals;
-  defaultUnit = unit === undefined
-    ? defaultUnit
-    : Array.isArray(unit)
+      : decimals
+  ) ?? defaultDecimals;
+  defaultUnit = (
+    Array.isArray(unit)
       ? unit[0]
-      : unit;
+      : unit
+  ) ?? defaultUnit;
 
   SI[SI_MID].text = defaultUnit;
 };
