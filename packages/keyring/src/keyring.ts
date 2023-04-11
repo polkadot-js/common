@@ -43,7 +43,7 @@ export class Keyring implements KeyringInstance {
 
   readonly #type: KeypairType;
 
-  #ss58?: number;
+  #ss58: number;
 
   public decodeAddress = decodeAddress;
 
@@ -55,7 +55,7 @@ export class Keyring implements KeyringInstance {
     }
 
     this.#pairs = new Pairs();
-    this.#ss58 = options.ss58Format;
+    this.#ss58 = options.ss58Format ?? 42;
     this.#type = options.type;
   }
 
@@ -246,7 +246,7 @@ export class Keyring implements KeyringInstance {
   public encodeAddress = (address: Uint8Array | string, ss58Format?: number): string => {
     return this.type === 'ethereum'
       ? ethereumEncode(address)
-      : encodeAddress(address, ss58Format === undefined ? this.#ss58 : ss58Format);
+      : encodeAddress(address, ss58Format ?? this.#ss58);
   };
 
   /**

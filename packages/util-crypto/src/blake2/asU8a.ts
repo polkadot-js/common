@@ -30,7 +30,9 @@ export function blake2AsU8a (data: HexString | Uint8Array | string, bitLength: 6
 
   return !hasBigInt || (!onlyJs && isReady())
     ? blake2b(u8a, u8aToU8a(key), byteLength)
-    : blake2bJs(u8a, { dkLen: byteLength, key: key || undefined });
+    : key
+      ? blake2bJs(u8a, { dkLen: byteLength, key })
+      : blake2bJs(u8a, { dkLen: byteLength });
 }
 
 /**

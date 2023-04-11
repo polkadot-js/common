@@ -21,7 +21,7 @@ The following conflicting packages were found:
   it('should not log the first time', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackage({ name: PKG, version: VER1 }, PATH);
+    detectPackage({ name: PKG, path: 'auto', type: 'esm', version: VER1 }, PATH);
     expect(spy).not.toHaveBeenCalled();
     spy.mockRestore();
   });
@@ -37,7 +37,7 @@ The following conflicting packages were found:
   it('should allow for function use', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackage({ name: PKG, type: 'cjs', version: VER3 }, () => PATH);
+    detectPackage({ name: PKG, path: 'auto', type: 'cjs', version: VER3 }, () => PATH);
     expect(spy).toHaveBeenCalledWith(`${MISMATCH}
 \tcjs ${VER3}        \tnode_modules/@polkadot/util`);
     spy.mockRestore();
@@ -45,15 +45,15 @@ The following conflicting packages were found:
 });
 
 describe('detectPackageDeps', (): void => {
-  const DEP0 = { name: '@polkadot/keyring', version: '1.1.1' };
-  const DEP1 = { name: '@polkadot/util', version: '1.1.2' };
-  const DEP2 = { name: '@polkadot/util-crypto', version: '1.1.3' };
-  const DEP3 = { name: '@polkadot/networks', version: '1.1.1' };
+  const DEP0 = { name: '@polkadot/keyring', path: 'auto', type: 'esm', version: '1.1.1' };
+  const DEP1 = { name: '@polkadot/util', path: 'auto', type: 'esm', version: '1.1.2' };
+  const DEP2 = { name: '@polkadot/util-crypto', path: 'auto', type: 'esm', version: '1.1.3' };
+  const DEP3 = { name: '@polkadot/networks', path: 'auto', type: 'esm', version: '1.1.1' };
 
   it('should not log when no mismatches are found', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackage({ name: '@polkadot/one', version: '1.1.1' }, false, [DEP0, DEP3]);
+    detectPackage({ name: '@polkadot/one', path: 'auto', type: 'esm', version: '1.1.1' }, false, [DEP0, DEP3]);
     expect(spy).not.toHaveBeenCalled();
     spy.mockRestore();
   });
@@ -61,7 +61,7 @@ describe('detectPackageDeps', (): void => {
   it('should log when mismatches are found', (): void => {
     const spy = jest.spyOn(console, 'warn');
 
-    detectPackage({ name: '@polkadot/two', version: '1.1.1' }, false, [DEP0, DEP1, DEP2, DEP3]);
+    detectPackage({ name: '@polkadot/two', path: 'auto', type: 'esm', version: '1.1.1' }, false, [DEP0, DEP1, DEP2, DEP3]);
     expect(spy).toHaveBeenCalledWith(`@polkadot/two requires direct dependencies exactly matching version 1.1.1.
 Either remove and explicitly install matching versions or dedupe using your package manager.
 The following conflicting packages were found:
