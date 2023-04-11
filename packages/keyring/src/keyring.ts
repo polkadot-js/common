@@ -43,7 +43,7 @@ export class Keyring implements KeyringInstance {
 
   readonly #type: KeypairType;
 
-  #ss58: number;
+  #ss58?: number | undefined;
 
   public decodeAddress = decodeAddress;
 
@@ -55,7 +55,7 @@ export class Keyring implements KeyringInstance {
     }
 
     this.#pairs = new Pairs();
-    this.#ss58 = options.ss58Format ?? 42;
+    this.#ss58 = options.ss58Format;
     this.#type = options.type;
   }
 
