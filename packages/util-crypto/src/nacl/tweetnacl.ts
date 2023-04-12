@@ -1,9 +1,20 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/* eslint-disable */
+/* eslint-disable brace-style,camelcase,comma-spacing,curly,one-var,padding-line-between-statements,space-infix-ops */
 
-// Imported from https://github.com/dchest/tweetnacl-js/blob/6a9594a35a27f9c723c5f1c107e376d1c65c23b3/nacl.js
+// Adapted from https://github.com/dchest/tweetnacl-js/blob/6a9594a35a27f9c723c5f1c107e376d1c65c23b3/nacl.js
+//
+// Changes made:
+//
+// - Added TS types
+// - Change var to let/const
+// - Comment out unused functions
+// - export the only box/secretbox create/open functions (these are camelCase)
+// - Linting style is mostly disabled below (apart form the changes above), so should be verifyable against original
+// - Inline some calls (flatten, reduce call tree)
+// - Some inline let definitions on loop variables
+// - It is _messy_ the unused code is commented out, not removed
 //
 // Original headers:
 //
@@ -71,9 +82,9 @@ function vn (x: Uint8Array, xi: number, y: Uint8Array, yi: number, n: number): n
   return (1 & ((d - 1) >>> 8)) - 1;
 }
 
-function crypto_verify_16 (x: Uint8Array, xi: number, y: Uint8Array, yi: number): number {
-  return vn(x,xi,y,yi,16);
-}
+// function crypto_verify_16 (x: Uint8Array, xi: number, y: Uint8Array, yi: number): number {
+//   return vn(x,xi,y,yi,16);
+// }
 
 // function crypto_verify_32(x, xi, y, yi) {
 //   return vn(x,xi,y,yi,32);
@@ -119,18 +130,18 @@ function core (out: Uint8Array, inp: Uint8Array, k: Uint8Array, c: Uint8Array, h
   }
 }
 
-function crypto_core_salsa20 (out: Uint8Array, inp: Uint8Array, k: Uint8Array, c: Uint8Array): number {
-  core(out,inp,k,c,false);
-  return 0;
-}
+// function crypto_core_salsa20 (out: Uint8Array, inp: Uint8Array, k: Uint8Array, c: Uint8Array): number {
+//   core(out,inp,k,c,false);
+//   return 0;
+// }
 
-function crypto_core_hsalsa20 (out: Uint8Array, inp: Uint8Array, k: Uint8Array, c: Uint8Array): number {
-  core(out,inp,k,c,true);
-  return 0;
-}
+// function crypto_core_hsalsa20 (out: Uint8Array, inp: Uint8Array, k: Uint8Array, c: Uint8Array): number {
+//   core(out,inp,k,c,true);
+//   return 0;
+// }
 
 const sigma = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107]);
-            // "expand 32-byte k"
+// "expand 32-byte k"
 
 function crypto_stream_salsa20_xor (c: Uint8Array, cpos: number, m: Uint8Array | null, mpos: number, b: number, n: Uint8Array, k: Uint8Array): number {
   const z = new Uint8Array(16), x = new Uint8Array(64);
@@ -139,7 +150,7 @@ function crypto_stream_salsa20_xor (c: Uint8Array, cpos: number, m: Uint8Array |
   for (i = 0; i < 16; i++) z[i] = 0;
   for (i = 0; i < 8; i++) z[i] = n[i];
   while (b >= 64) {
-    crypto_core_salsa20(x,z,k,sigma);
+    core(x, z, k, sigma, false);
     for (i = 0; i < 64; i++) c[cpos+i] = (m?m[mpos+i]:0) ^ x[i];
     u = 1;
     for (i = 8; i < 16; i++) {
@@ -152,25 +163,25 @@ function crypto_stream_salsa20_xor (c: Uint8Array, cpos: number, m: Uint8Array |
     if (m) mpos += 64;
   }
   if (b > 0) {
-    crypto_core_salsa20(x,z,k,sigma);
+    core(x, z, k, sigma, false);
     for (i = 0; i < b; i++) c[cpos+i] = (m?m[mpos+i]:0) ^ x[i];
   }
   return 0;
 }
 
-function crypto_stream_salsa20 (c: Uint8Array, cpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
-  return crypto_stream_salsa20_xor(c, cpos, null, 0, d, n, k);
-}
+// function crypto_stream_salsa20 (c: Uint8Array, cpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
+//   return crypto_stream_salsa20_xor(c, cpos, null, 0, d, n, k);
+// }
 
-function crypto_stream (c: Uint8Array, cpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
-  const s = new Uint8Array(32);
-  crypto_core_hsalsa20(s,n,k,sigma);
-  return crypto_stream_salsa20(c,cpos,d,n.subarray(16),s);
-}
+// function crypto_stream (c: Uint8Array, cpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
+//   const s = new Uint8Array(32);
+//   crypto_core_hsalsa20(s,n,k,sigma);
+//   return crypto_stream_salsa20(c,cpos,d,n.subarray(16),s);
+// }
 
 function crypto_stream_xor (c: Uint8Array, cpos: number, m: Uint8Array | null, mpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
   const s = new Uint8Array(32);
-  crypto_core_hsalsa20(s,n,k,sigma);
+  core(s, n, k, sigma, true);
   return crypto_stream_salsa20_xor(c, cpos, m, mpos, d, n.subarray(16), s);
 }
 
@@ -240,7 +251,7 @@ function crypto_onetimeauth (out: Uint8Array, outpos: number, m: Uint8Array, mpo
 function crypto_onetimeauth_verify (h: Uint8Array, hpos: number, m: Uint8Array, mpos: number, n: number, k: Uint8Array) {
   const x = new Uint8Array(16);
   crypto_onetimeauth(x,0,m,mpos,n,k);
-  return crypto_verify_16(h,hpos,x,0);
+  return vn(h, hpos, x, 0, 16);
 }
 
 function crypto_secretbox (c: Uint8Array, m: Uint8Array, d: number, n: Uint8Array, k: Uint8Array) {
@@ -254,7 +265,7 @@ function crypto_secretbox (c: Uint8Array, m: Uint8Array, d: number, n: Uint8Arra
 function crypto_secretbox_open (m: Uint8Array, c: Uint8Array, d: number, n: Uint8Array, k: Uint8Array): number {
   const x = new Uint8Array(32);
   if (d < 32) return -1;
-  crypto_stream(x,0,32,n,k);
+  crypto_stream_xor(x, 0, null, 0, 32, n, k);
   if (crypto_onetimeauth_verify(c, 16,c, 32,d - 32,x) !== 0) return -1;
   crypto_stream_xor(m,0,c,0,d,n,k);
   for (let i = 0; i < 32; i++) m[i] = 0;
@@ -963,7 +974,7 @@ function checkArrayTypes (...args: unknown[]): void {
 //   return b;
 // };
 
-nacl.secretbox = function (msg: Uint8Array, nonce: Uint8Array, key: Uint8Array): Uint8Array {
+export function naclSecretbox (msg: Uint8Array, nonce: Uint8Array, key: Uint8Array): Uint8Array {
   checkArrayTypes(msg, nonce, key);
   checkLengths(key, nonce);
   const m = new Uint8Array(crypto_secretbox_ZEROBYTES + msg.length);
@@ -973,7 +984,7 @@ nacl.secretbox = function (msg: Uint8Array, nonce: Uint8Array, key: Uint8Array):
   return c.subarray(crypto_secretbox_BOXZEROBYTES);
 }
 
-nacl.secretbox.open = function (box: Uint8Array, nonce: Uint8Array, key: Uint8Array): Uint8Array | null {
+export function naclSecretboxOpen (box: Uint8Array, nonce: Uint8Array, key: Uint8Array): Uint8Array | null {
   checkArrayTypes(box, nonce, key);
   checkLengths(key, nonce);
   const c = new Uint8Array(crypto_secretbox_BOXZEROBYTES + box.length);
