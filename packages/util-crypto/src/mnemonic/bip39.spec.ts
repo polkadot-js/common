@@ -3,17 +3,21 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
+import * as lists from './bip39-lang/index.js';
 import { entropyToMnemonic, mnemonicToEntropy } from './bip39.js';
-import DEFAULT_WORDLIST from './bip39-en.js';
 
-describe('wordlist', (): void => {
-  it('has the correct number of words', (): void => {
-    expect(DEFAULT_WORDLIST).toHaveLength(2048);
-  });
+describe('wordlists', (): void => {
+  for (const [k, v] of Object.entries(lists)) {
+    describe(`language ${k}`, (): void => {
+      it('has the correct number of words', (): void => {
+        expect(v).toHaveLength(2048);
+      });
 
-  it('has no empty words', (): void => {
-    expect(DEFAULT_WORDLIST.some((n) => !n.length || n.trim() !== n)).toEqual(false);
-  });
+      it('has no empty words', (): void => {
+        expect(v.some((n) => !n.length || n.trim() !== n)).toEqual(false);
+      });
+    });
+  }
 });
 
 describe('bip39', (): void => {
