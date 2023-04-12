@@ -1163,31 +1163,3 @@ export function naclSecretboxOpen (box: Uint8Array, nonce: Uint8Array, key: Uint
 // nacl.setPRNG = function(fn) {
 //   randombytes = fn;
 // };
-
-// (function() {
-//   // Initialize PRNG if environment provides CSPRNG.
-//   // If not, methods calling randombytes will throw.
-//   var crypto = typeof self !== 'undefined' ? (self.crypto || self.msCrypto) : null;
-//   if (crypto && crypto.getRandomValues) {
-//     // Browsers.
-//     var QUOTA = 65536;
-//     nacl.setPRNG(function(x, n) {
-//       var i, v = new Uint8Array(n);
-//       for (i = 0; i < n; i += QUOTA) {
-//         crypto.getRandomValues(v.subarray(i, i + Math.min(n - i, QUOTA)));
-//       }
-//       for (i = 0; i < n; i++) x[i] = v[i];
-//       cleanup(v);
-//     });
-//   } else if (typeof require !== 'undefined') {
-//     // Node.js.
-//     crypto = require('crypto');
-//     if (crypto && crypto.randomBytes) {
-//       nacl.setPRNG(function(x, n) {
-//         var i, v = crypto.randomBytes(n);
-//         for (i = 0; i < n; i++) x[i] = v[i];
-//         cleanup(v);
-//       });
-//     }
-//   }
-// })();
