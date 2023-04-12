@@ -1,4 +1,4 @@
-    1589	Jaco                          	Import box functionality from tweetnacl (#1785)
+    1590	Jaco                          	Use @noble/curves (secp256k1 + ed25519) (#1776)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
