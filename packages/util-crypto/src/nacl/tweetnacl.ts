@@ -12,7 +12,7 @@
 // - Comment out unused functions
 // - export the only box/secretbox create/open functions (these are camelCase)
 // - Linting style is mostly disabled below (apart form the changes above), so should be verifyable against original
-// - Inline some calls (flatten, reduce call tree, original is commented as a check)
+// - Inline some calls (flatten, reduce call tree)
 // - Some inline let definitions on loop variables
 // - It is _messy_ the unused code is commented out, not removed
 //
@@ -150,7 +150,6 @@ function crypto_stream_salsa20_xor (c: Uint8Array, cpos: number, m: Uint8Array |
   for (i = 0; i < 16; i++) z[i] = 0;
   for (i = 0; i < 8; i++) z[i] = n[i];
   while (b >= 64) {
-    // crypto_core_salsa20(x,z,k,sigma);
     core(x, z, k, sigma, false);
     for (i = 0; i < 64; i++) c[cpos+i] = (m?m[mpos+i]:0) ^ x[i];
     u = 1;
@@ -164,7 +163,6 @@ function crypto_stream_salsa20_xor (c: Uint8Array, cpos: number, m: Uint8Array |
     if (m) mpos += 64;
   }
   if (b > 0) {
-    // crypto_core_salsa20(x,z,k,sigma);
     core(x, z, k, sigma, false);
     for (i = 0; i < b; i++) c[cpos+i] = (m?m[mpos+i]:0) ^ x[i];
   }
@@ -183,7 +181,6 @@ function crypto_stream_salsa20_xor (c: Uint8Array, cpos: number, m: Uint8Array |
 
 function crypto_stream_xor (c: Uint8Array, cpos: number, m: Uint8Array | null, mpos: number, d: number, n: Uint8Array, k: Uint8Array): number {
   const s = new Uint8Array(32);
-  // crypto_core_hsalsa20(s,n,k,sigma);
   core(s, n, k, sigma, true);
   return crypto_stream_salsa20_xor(c, cpos, m, mpos, d, n.subarray(16), s);
 }
@@ -269,7 +266,6 @@ function crypto_secretbox (c: Uint8Array, m: Uint8Array, d: number, n: Uint8Arra
 function crypto_secretbox_open (m: Uint8Array, c: Uint8Array, d: number, n: Uint8Array, k: Uint8Array): number {
   const x = new Uint8Array(32);
   if (d < 32) return -1;
-  // crypto_stream(x,0,32,n,k);
   crypto_stream_xor(x, 0, null, 0, 32, n, k);
   if (crypto_onetimeauth_verify(c, 16,c, 32,d - 32,x) !== 0) return -1;
   crypto_stream_xor(m,0,c,0,d,n,k);
