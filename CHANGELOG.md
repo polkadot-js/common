@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 11.1.3 Apr 1, 2023
 
 Contributed:
 
@@ -8,7 +8,7 @@ Contributed:
 
 Changes:
 
-- Allow empty string as valid base32/base58/base64 decoder input (yields empty)
+- Allow empty string as valid base32/base58/base64 decoder input
 - Add additional/missing `/*#__PURE__*/` annotations
 - Upgrade dependencies to latest stable versions
 

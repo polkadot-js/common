@@ -25,27 +25,26 @@
 // See for details: http://tweetnacl.cr.yp.to/
 
 // var u64 = function(h, l) { this.hi = h|0 >>> 0; this.lo = l|0 >>> 0; };
-
-// function gf (init?: number[]): Float64Array {
-//   const r = new Float64Array(16);
-//   if (init) for (let i = 0; i < init.length; i++) r[i] = init[i];
+// var gf = function(init) {
+//   var i, r = new Float64Array(16);
+//   if (init) for (i = 0; i < init.length; i++) r[i] = init[i];
 //   return r;
-// }
+// };
 
 // //  Pluggable, initialized in high-level API below.
 // var randombytes = function(/* x, n */) { throw new Error('no PRNG'); };
 
-// const _0 = new Uint8Array(16);
+// var _0 = new Uint8Array(16);
 // var _9 = new Uint8Array(32); _9[0] = 9;
 
 // var gf0 = gf(),
-// gf1 = gf([1]),
-// const _121665 = gf([0xdb41, 1]);
-// D = gf([0x78a3, 0x1359, 0x4dca, 0x75eb, 0xd8ab, 0x4141, 0x0a4d, 0x0070, 0xe898, 0x7779, 0x4079, 0x8cc7, 0xfe73, 0x2b6f, 0x6cee, 0x5203]),
-// D2 = gf([0xf159, 0x26b2, 0x9b94, 0xebd6, 0xb156, 0x8283, 0x149a, 0x00e0, 0xd130, 0xeef3, 0x80f2, 0x198e, 0xfce7, 0x56df, 0xd9dc, 0x2406]),
-// X = gf([0xd51a, 0x8f25, 0x2d60, 0xc956, 0xa7b2, 0x9525, 0xc760, 0x692c, 0xdc5c, 0xfdd6, 0xe231, 0xc0a4, 0x53fe, 0xcd6e, 0x36d3, 0x2169]),
-// Y = gf([0x6658, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666]),
-// I = gf([0xa0b0, 0x4a0e, 0x1b27, 0xc4ee, 0xe478, 0xad2f, 0x1806, 0x2f43, 0xd7a7, 0x3dfb, 0x0099, 0x2b4d, 0xdf0b, 0x4fc1, 0x2480, 0x2b83]);
+//     gf1 = gf([1]),
+//     _121665 = gf([0xdb41, 1]),
+//     D = gf([0x78a3, 0x1359, 0x4dca, 0x75eb, 0xd8ab, 0x4141, 0x0a4d, 0x0070, 0xe898, 0x7779, 0x4079, 0x8cc7, 0xfe73, 0x2b6f, 0x6cee, 0x5203]),
+//     D2 = gf([0xf159, 0x26b2, 0x9b94, 0xebd6, 0xb156, 0x8283, 0x149a, 0x00e0, 0xd130, 0xeef3, 0x80f2, 0x198e, 0xfce7, 0x56df, 0xd9dc, 0x2406]),
+//     X = gf([0xd51a, 0x8f25, 0x2d60, 0xc956, 0xa7b2, 0x9525, 0xc760, 0x692c, 0xdc5c, 0xfdd6, 0xe231, 0xc0a4, 0x53fe, 0xcd6e, 0x36d3, 0x2169]),
+//     Y = gf([0x6658, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666]),
+//     I = gf([0xa0b0, 0x4a0e, 0x1b27, 0xc4ee, 0xe478, 0xad2f, 0x1806, 0x2f43, 0xd7a7, 0x3dfb, 0x0099, 0x2b4d, 0xdf0b, 0x4fc1, 0x2480, 0x2b83]);
 
 function L32 (x: number, c: number): number { return (x << c) | (x >>> (32 - c)); }
 
@@ -878,19 +877,19 @@ const crypto_secretbox_KEYBYTES = 32;
 const crypto_secretbox_NONCEBYTES = 24;
 const crypto_secretbox_ZEROBYTES = 32;
 const crypto_secretbox_BOXZEROBYTES = 16;
-// crypto_scalarmult_BYTES = 32,
-// crypto_scalarmult_SCALARBYTES = 32,
+// const crypto_scalarmult_BYTES = 32;
+// const crypto_scalarmult_SCALARBYTES = 32;
 // const crypto_box_PUBLICKEYBYTES = 32;
 // const crypto_box_SECRETKEYBYTES = 32;
 // const crypto_box_BEFORENMBYTES = 32;
-// crypto_box_NONCEBYTES = crypto_secretbox_NONCEBYTES,
-// crypto_box_ZEROBYTES = crypto_secretbox_ZEROBYTES,
-// crypto_box_BOXZEROBYTES = crypto_secretbox_BOXZEROBYTES,
-// crypto_sign_BYTES = 64,
-// crypto_sign_PUBLICKEYBYTES = 32,
-// crypto_sign_SECRETKEYBYTES = 64,
-// crypto_sign_SEEDBYTES = 32,
-// crypto_hash_BYTES = 64;
+// const crypto_box_NONCEBYTES = crypto_secretbox_NONCEBYTES;
+// const crypto_box_ZEROBYTES = crypto_secretbox_ZEROBYTES;
+// const crypto_box_BOXZEROBYTES = crypto_secretbox_BOXZEROBYTES;
+// const crypto_sign_BYTES = 64;
+// const crypto_sign_PUBLICKEYBYTES = 32;
+// const crypto_sign_SECRETKEYBYTES = 64;
+// const crypto_sign_SEEDBYTES = 32;
+// const crypto_hash_BYTES = 64;
 
 // nacl.lowlevel = {
 //   crypto_core_hsalsa20: crypto_core_hsalsa20,
@@ -1025,25 +1024,25 @@ export function naclSecretboxOpen (box: Uint8Array, nonce: Uint8Array, key: Uint
 // nacl.scalarMult.scalarLength = crypto_scalarmult_SCALARBYTES;
 // nacl.scalarMult.groupElementLength = crypto_scalarmult_BYTES;
 
-// export function naclBox (msg: Uint8Array, nonce: Uint8Array, publicKey: Uint8Array, secretKey: Uint8Array) {
-//   const k = nacl_box_before(publicKey, secretKey);
-//   return naclSecretbox(msg, nonce, k);
-// }
+// nacl.box = function (msg, nonce, publicKey, secretKey) {
+//   var k = nacl.box.before(publicKey, secretKey);
+//   return nacl.secretbox(msg, nonce, k);
+// };
 
-// function nacl_box_before (publicKey: Uint8Array, secretKey: Uint8Array) {
+// nacl.box.before = function(publicKey, secretKey) {
 //   checkArrayTypes(publicKey, secretKey);
 //   checkBoxLengths(publicKey, secretKey);
-//   const k = new Uint8Array(crypto_box_BEFORENMBYTES);
+//   var k = new Uint8Array(crypto_box_BEFORENMBYTES);
 //   crypto_box_beforenm(k, publicKey, secretKey);
 //   return k;
-// }
+// };
 
 // nacl.box.after = nacl.secretbox;
 
-// export function naclBoxOpen (msg: Uint8Array, nonce: Uint8Array, publicKey: Uint8Array, secretKey: Uint8Array): Uint8Array | null {
-//   const k = nacl_box_before(publicKey, secretKey);
-//   return naclSecretboxOpen(msg, nonce, k);
-// }
+// nacl.box.open = function (msg, nonce, publicKey, secretKey) {
+//   var k = nacl.box.before(publicKey, secretKey);
+//   return nacl.secretbox.open(msg, nonce, k);
+// };
 
 // nacl.box.open.after = nacl.secretbox.open;
 

@@ -3,7 +3,9 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import { ExtractResult, keyExtractPath } from './extractPath.js';
+import type { ExtractResult } from './extractPath.js';
+
+import { keyExtractPath } from './extractPath.js';
 
 describe('keyExtractPath', (): void => {
   it('extracts properly from soft', (): void => {
