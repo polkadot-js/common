@@ -1,4 +1,4 @@
-    1583	Jaco                          	Align x-bigint extraction with other x-* (#1797)
+    1589	Jaco                          	Import box functionality from tweetnacl (#1785)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
