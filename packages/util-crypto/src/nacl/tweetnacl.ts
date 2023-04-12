@@ -251,7 +251,6 @@ function crypto_onetimeauth (out: Uint8Array, outpos: number, m: Uint8Array, mpo
 function crypto_onetimeauth_verify (h: Uint8Array, hpos: number, m: Uint8Array, mpos: number, n: number, k: Uint8Array) {
   const x = new Uint8Array(16);
   crypto_onetimeauth(x,0,m,mpos,n,k);
-  // return crypto_verify_16(h,hpos,x,0);
   return vn(h, hpos, x, 0, 16);
 }
 
