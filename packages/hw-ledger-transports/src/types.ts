@@ -1,20 +1,13 @@
 // Copyright 2017-2023 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// CJS, so we use import * syntax
+import type * as HwTransport from '@ledgerhq/hw-transport';
+
 // u2f is deprecated an therefore not added
 export type TransportType = 'hid' | 'webusb';
 
-// The actual namespaced Transport interface, imported via
-//
-//   import type Transport from '@ledgerhq/hw-transport';
-//
-// does not work on moduleResolution: nodenext, so we just go with a
-// very light interface for Transport (and then TransportStatic).
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Transport {
-  // empty on purpose, just a stub
-}
+export type Transport = HwTransport.default;
 
 export interface TransportDef {
   /** Create a transport to be used in Ledger operations */

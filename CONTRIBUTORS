@@ -1,4 +1,4 @@
-    1579	Jaco                          	Update lock wf (#1791)
+    1582	Jaco                          	Bump dev (w/ lint updates) (#1795)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
