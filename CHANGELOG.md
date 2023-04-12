@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Swap secp256k1 functionality to `@noble/curves`
+- Swap ed25519 functionality to `@noble/curves`
+- Replace `tweetnacl` secretbox usage with slimmer local version
+
+
 ## 11.1.3 Apr 1, 2023
 
 Contributed:

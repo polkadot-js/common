@@ -4,9 +4,9 @@
 import type { HexString } from '@polkadot/util/types';
 import type { Keypair } from '../types.js';
 
-import nacl from 'tweetnacl';
+import { ed25519 } from '@noble/curves/ed25519';
 
-import { u8aToU8a } from '@polkadot/util';
+import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { ed25519Sign as wasmSign, isReady } from '@polkadot/wasm-crypto';
 
 /**
@@ -26,11 +26,14 @@ import { ed25519Sign as wasmSign, isReady } from '@polkadot/wasm-crypto';
 export function ed25519Sign (message: HexString | Uint8Array | string, { publicKey, secretKey }: Partial<Keypair>, onlyJs?: boolean): Uint8Array {
   if (!secretKey) {
     throw new Error('Expected a valid secretKey');
+  } else if (!publicKey) {
+    throw new Error('Expected a valid publicKey');
   }
 
   const messageU8a = u8aToU8a(message);
+  const privateU8a = secretKey.subarray(0, 32);
 
-  return !onlyJs && isReady()
-    ? wasmSign(publicKey as Uint8Array, secretKey.subarray(0, 32), messageU8a)
-    : nacl.sign.detached(messageU8a, secretKey);
+  return !hasBigInt || (!onlyJs && isReady())
+    ? wasmSign(publicKey, privateU8a, messageU8a)
+    : ed25519.sign(messageU8a, privateU8a);
 }
