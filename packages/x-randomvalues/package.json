@@ -25,7 +25,6 @@
     "tslib": "^2.5.0"
   },
   "devDependencies": {
-    "@polkadot/util": "11.1.4-10-x",
     "@types/react-native": "^0.71.5"
   },
   "denoDependencies": {

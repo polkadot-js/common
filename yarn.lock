@@ -785,7 +785,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
-    "@polkadot/util": 11.1.4-10-x
     "@polkadot/wasm-util": ^7.0.3
     "@polkadot/x-global": 11.1.4-10-x
     "@types/react-native": ^0.71.5
