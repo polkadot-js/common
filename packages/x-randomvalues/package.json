@@ -15,13 +15,13 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "11.1.4-10-x",
+  "version": "11.1.4-11",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
     "@polkadot/wasm-util": "^7.0.3",
-    "@polkadot/x-global": "11.1.4-10-x",
+    "@polkadot/x-global": "11.1.4-11",
     "tslib": "^2.5.0"
   },
   "devDependencies": {
