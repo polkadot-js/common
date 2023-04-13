@@ -732,7 +732,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-util@npm:7.0.3":
+"@polkadot/wasm-util@npm:7.0.3, @polkadot/wasm-util@npm:^7.0.3":
   version: 7.0.3
   resolution: "@polkadot/wasm-util@npm:7.0.3"
   dependencies:
@@ -786,6 +786,7 @@ __metadata:
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
     "@polkadot/util": 11.1.4-10-x
+    "@polkadot/wasm-util": ^7.0.3
     "@polkadot/x-global": 11.1.4-10-x
     "@types/react-native": ^0.71.5
     tslib: ^2.5.0

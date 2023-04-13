@@ -7,9 +7,9 @@
 
 import { NativeModules } from 'react-native';
 
+import { base64Decode } from '@polkadot/wasm-util/base64';
 import { xglobal } from '@polkadot/x-global';
 
-import { base64Decode } from './base64.js';
 import { getRandomValues as getRandomValuesGlobal } from './browser.js';
 import { insecureRandomValues } from './fallback.js';
 
@@ -28,18 +28,19 @@ interface GlobalExt {
   nativeCallSyncHook: unknown;
 }
 
-function getRandomValuesNative <T extends Uint8Array> (output: T): T {
-  const bytes = base64Decode(
+/**
+ * @internal
+ *
+ * A getRandomValues util that detects and uses the available RN
+ * random utiliy generation functions.
+ **/
+function getRandomValuesNative (output: Uint8Array): Uint8Array {
+  return base64Decode(
     (NativeModules as RNExt).RNGetRandomValues
       ? (NativeModules as RNExt).RNGetRandomValues.getRandomBase64(output.length)
-      : (NativeModules as RNExt).ExpoRandom.getRandomBase64String(output.length)
+      : (NativeModules as RNExt).ExpoRandom.getRandomBase64String(output.length),
+    output
   );
-
-  for (let i = 0; i < bytes.length; i++) {
-    output[i] = bytes[i];
-  }
-
-  return output;
 }
 
 export const getRandomValues = (

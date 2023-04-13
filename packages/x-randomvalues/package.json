@@ -20,6 +20,7 @@
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
+    "@polkadot/wasm-util": "^7.0.3",
     "@polkadot/x-global": "11.1.4-10-x",
     "tslib": "^2.5.0"
   },
