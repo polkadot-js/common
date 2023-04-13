@@ -25,18 +25,22 @@ const INVALID_MNEMONIC = 'Invalid mnemonic';
 const INVALID_ENTROPY = 'Invalid entropy';
 const INVALID_CHECKSUM = 'Invalid mnemonic checksum';
 
+/** @internal */
 function normalize (str?: string): string {
   return (str || '').normalize('NFKD');
 }
 
+/** @internal */
 function binaryToByte (bin: string): number {
   return parseInt(bin, 2);
 }
 
+/** @internal */
 function bytesToBinary (bytes: number[]): string {
   return bytes.map((x) => x.toString(2).padStart(8, '0')).join('');
 }
 
+/** @internal */
 function deriveChecksumBits (entropyBuffer: Uint8Array): string {
   return bytesToBinary(
     Array.from(sha256AsU8a(entropyBuffer))
