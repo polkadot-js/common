@@ -30,11 +30,13 @@ export function blake2AsU8a (data: HexString | Uint8Array | string, bitLength: 6
 
   return !hasBigInt || (!onlyJs && isReady())
     ? blake2b(u8a, u8aToU8a(key), byteLength)
-    : blake2bJs(u8a, { dkLen: byteLength, key: key || undefined });
+    : key
+      ? blake2bJs(u8a, { dkLen: byteLength, key })
+      : blake2bJs(u8a, { dkLen: byteLength });
 }
 
 /**
  * @name blake2AsHex
  * @description Creates a blake2b hex from the input.
  */
-export const blake2AsHex = createAsHex(blake2AsU8a);
+export const blake2AsHex = /*#__PURE__*/ createAsHex(blake2AsU8a);

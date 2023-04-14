@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Swap secp256k1 functionality to `@noble/curves`
+- Swap ed25519 functionality to `@noble/curves`
+- Replace `tweetnacl` secretbox usage with slimmer local version
+
+
+## 11.1.3 Apr 1, 2023
+
+Contributed:
+
+- Add Bittensor genesisHash (Thanks to https://github.com/camfairchild)
+
+Changes:
+
+- Allow empty string as valid base32/base58/base64 decoder input
+- Add additional/missing `/*#__PURE__*/` annotations
+- Upgrade dependencies to latest stable versions
+
+
 ## 11.1.2 Mar 25, 2023
 
 Changes:

@@ -1,10 +1,22 @@
 // Copyright 2017-2023 @polkadot/x-bigint authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { xglobal } from '@polkadot/x-global';
+import { extractGlobal } from '@polkadot/x-global';
 
 export { packageInfo } from './packageInfo.js';
 
-export const BigInt: BigIntConstructor = typeof xglobal.BigInt === 'function' && typeof xglobal.BigInt.asIntN === 'function'
-  ? xglobal.BigInt
-  : (() => Number.NaN) as unknown as BigIntConstructor;
+/**
+ * @internal
+ *
+ * There are _still_ some older environments (specifically RN < 0.70), that does
+ * not have proper BigInt support - a non-working fallback is provided for those.
+ *
+ * We detect availability of BigInt upon usage, so this is purely to allow functional
+ * compilation & bundling. Since we have operators such as *+-/ top-level, a number-ish
+ * result is used here.
+ */
+function invalidFallback (): number {
+  return Number.NaN;
+}
+
+export const BigInt = /*#__PURE__*/ extractGlobal('BigInt', invalidFallback);

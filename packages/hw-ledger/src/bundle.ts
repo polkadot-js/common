@@ -30,9 +30,14 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
   return result;
 }
 
-// A very basic wrapper for a ledger app -
-//  - it connects automatically, creating an app as required
-//  - Promises return errors (instead of wrapper errors)
+/**
+ * @name Ledger
+ *
+ * @description
+ * A very basic wrapper for a ledger app -
+ *   - it connects automatically on use, creating an underlying interface as required
+ *   - Promises reject with errors (unwrapped errors from @zondax/ledger-substrate)
+ */
 export class Ledger {
   #app: SubstrateApp | null = null;
 

@@ -29,9 +29,15 @@ export const knownGenesis: KnownGenesis = {
   'bifrost-kusama': [
     '0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed'
   ],
+  bittensor: [
+    '0x2f0555cc76fc2840a25a6ea3b9637146806f1f44b090c175ffde2a7e5ab36c03'
+  ],
   centrifuge: [
     '0xb3db41421702df9a7fcac62b53ffeac85f7853cc4e689e0b93aeb3db18c09d82',
     '0x67dddf2673b69e5f875f6f25277495834398eafd67f492e09f3f3345e003d1b5'
+  ],
+  cere: [
+    '0x81443836a9a24caaa23f1241897d1235717535711d1d3fe24eae4fdc942c092c'
   ],
   composable: [
     '0xdaab8df776eb52ec604a5df5d388bb62a050a0aaec4556a64265b9d42755552d'

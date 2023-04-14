@@ -42,4 +42,4 @@ export const keccak512AsU8a = /*#__PURE__*/ createBitHasher(512, keccakAsU8a);
  * @name keccakAsHex
  * @description Creates a keccak hex string from the input.
  */
-export const keccakAsHex = createAsHex(keccakAsU8a);
+export const keccakAsHex = /*#__PURE__*/ createAsHex(keccakAsU8a);

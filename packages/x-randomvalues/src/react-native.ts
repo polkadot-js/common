@@ -2,14 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // Adapted from https://github.com/LinusU/react-native-get-random-values/blob/85f48393821c23b83b89a8177f56d3a81dc8b733/index.js
+//
 // Copyright (c) 2018, 2020 Linus Unnebäck
 // SPDX-License-Identifier: MIT
 
 import { NativeModules } from 'react-native';
 
+import { base64Decode } from '@polkadot/wasm-util/base64';
 import { xglobal } from '@polkadot/x-global';
 
-import { base64Decode } from './base64.js';
 import { crypto as cryptoBrowser, getRandomValues as getRandomValuesBrowser } from './browser.js';
 import { insecureRandomValues } from './fallback.js';
 
@@ -24,33 +25,30 @@ interface RNExt {
   }
 }
 
-interface GlobalExt {
-  nativeCallSyncHook: unknown;
-}
-
-function getRandomValuesRn <T extends Uint8Array> (output: T): T {
-  const bytes = base64Decode(
+/**
+ * @internal
+ *
+ * A getRandomValues util that detects and uses the available RN
+ * random utiliy generation functions.
+ **/
+function getRandomValuesRn (output: Uint8Array): Uint8Array {
+  return base64Decode(
     (NativeModules as RNExt).RNGetRandomValues
       ? (NativeModules as RNExt).RNGetRandomValues.getRandomBase64(output.length)
-      : (NativeModules as RNExt).ExpoRandom.getRandomBase64String(output.length)
+      : (NativeModules as RNExt).ExpoRandom.getRandomBase64String(output.length),
+    output
   );
-
-  for (let i = 0; i < bytes.length; i++) {
-    output[i] = bytes[i];
-  }
-
-  return output;
 }
 
-export const getRandomValues = /*#__PURE__*/ (
-  typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function'
+export const getRandomValues = (
+  (typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function')
     ? getRandomValuesBrowser
-    : (typeof (xglobal as unknown as GlobalExt).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
+    : (typeof xglobal.nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
       ? insecureRandomValues
       : getRandomValuesRn
 );
 
-export const crypto = /*#__PURE__*/ (
+export const crypto = (
   getRandomValues === getRandomValuesBrowser
     ? cryptoBrowser
     : { getRandomValues }

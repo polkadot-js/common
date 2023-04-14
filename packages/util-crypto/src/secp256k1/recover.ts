@@ -4,7 +4,7 @@
 import type { HexString } from '@polkadot/util/types';
 import type { HashType } from './types.js';
 
-import { recoverPublicKey, Signature } from '@noble/secp256k1';
+import { secp256k1 } from '@noble/curves/secp256k1';
 
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, secp256k1Recover as wasm } from '@polkadot/wasm-crypto';
@@ -21,7 +21,11 @@ export function secp256k1Recover (msgHash: HexString | Uint8Array | string, sign
   const msg = u8aToU8a(msgHash);
   const publicKey = !hasBigInt || (!onlyJs && isReady())
     ? wasm(msg, sig, recovery)
-    : recoverPublicKey(msg, Signature.fromCompact(sig).toRawBytes(), recovery);
+    : secp256k1.Signature
+      .fromCompact(sig)
+      .addRecoveryBit(recovery)
+      .recoverPublicKey(msg)
+      .toRawBytes();
 
   if (!publicKey) {
     throw new Error('Unable to recover publicKey from signature');
