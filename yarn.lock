@@ -581,7 +581,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/hw-ledger-transports@11.1.4-14-x, @polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports":
+"@polkadot/hw-ledger-transports@11.1.4-15-x, @polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports":
   version: 0.0.0-use.local
   resolution: "@polkadot/hw-ledger-transports@workspace:packages/hw-ledger-transports"
   dependencies:
@@ -589,7 +589,7 @@ __metadata:
     "@ledgerhq/hw-transport-node-hid-singleton": ^6.28.10
     "@ledgerhq/hw-transport-webhid": ^6.27.13
     "@ledgerhq/hw-transport-webusb": ^6.27.13
-    "@polkadot/util": 11.1.4-14-x
+    "@polkadot/util": 11.1.4-15-x
     tslib: ^2.5.0
   dependenciesMeta:
     "@ledgerhq/hw-transport-node-hid-singleton":
@@ -597,12 +597,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/hw-ledger@11.1.4-14-x, @polkadot/hw-ledger@workspace:packages/hw-ledger":
+"@polkadot/hw-ledger@11.1.4-15-x, @polkadot/hw-ledger@workspace:packages/hw-ledger":
   version: 0.0.0-use.local
   resolution: "@polkadot/hw-ledger@workspace:packages/hw-ledger"
   dependencies:
-    "@polkadot/hw-ledger-transports": 11.1.4-14-x
-    "@polkadot/util": 11.1.4-14-x
+    "@polkadot/hw-ledger-transports": 11.1.4-15-x
+    "@polkadot/util": 11.1.4-15-x
     "@zondax/ledger-substrate": ^0.40.6
     tslib: ^2.5.0
   languageName: unknown
@@ -612,53 +612,53 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/keyring@workspace:packages/keyring"
   dependencies:
-    "@polkadot/util": 11.1.4-14-x
-    "@polkadot/util-crypto": 11.1.4-14-x
+    "@polkadot/util": 11.1.4-15-x
+    "@polkadot/util-crypto": 11.1.4-15-x
     tslib: ^2.5.0
   peerDependencies:
-    "@polkadot/util": 11.1.4-14-x
-    "@polkadot/util-crypto": 11.1.4-14-x
+    "@polkadot/util": 11.1.4-15-x
+    "@polkadot/util-crypto": 11.1.4-15-x
   languageName: unknown
   linkType: soft
 
-"@polkadot/networks@11.1.4-14-x, @polkadot/networks@workspace:packages/networks":
+"@polkadot/networks@11.1.4-15-x, @polkadot/networks@workspace:packages/networks":
   version: 0.0.0-use.local
   resolution: "@polkadot/networks@workspace:packages/networks"
   dependencies:
-    "@polkadot/hw-ledger": 11.1.4-14-x
-    "@polkadot/util": 11.1.4-14-x
+    "@polkadot/hw-ledger": 11.1.4-15-x
+    "@polkadot/util": 11.1.4-15-x
     "@substrate/ss58-registry": ^1.39.0
     tslib: ^2.5.0
   languageName: unknown
   linkType: soft
 
-"@polkadot/util-crypto@11.1.4-14-x, @polkadot/util-crypto@workspace:packages/util-crypto":
+"@polkadot/util-crypto@11.1.4-15-x, @polkadot/util-crypto@workspace:packages/util-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/util-crypto@workspace:packages/util-crypto"
   dependencies:
     "@noble/curves": 1.0.0
     "@noble/hashes": 1.3.0
-    "@polkadot/networks": 11.1.4-14-x
-    "@polkadot/util": 11.1.4-14-x
+    "@polkadot/networks": 11.1.4-15-x
+    "@polkadot/util": 11.1.4-15-x
     "@polkadot/wasm-crypto": ^7.0.3
-    "@polkadot/x-bigint": 11.1.4-14-x
-    "@polkadot/x-randomvalues": 11.1.4-14-x
+    "@polkadot/x-bigint": 11.1.4-15-x
+    "@polkadot/x-randomvalues": 11.1.4-15-x
     "@scure/base": 1.1.1
     tslib: ^2.5.0
   peerDependencies:
-    "@polkadot/util": 11.1.4-14-x
+    "@polkadot/util": 11.1.4-15-x
   languageName: unknown
   linkType: soft
 
-"@polkadot/util@11.1.4-14-x, @polkadot/util@workspace:packages/util":
+"@polkadot/util@11.1.4-15-x, @polkadot/util@workspace:packages/util":
   version: 0.0.0-use.local
   resolution: "@polkadot/util@workspace:packages/util"
   dependencies:
-    "@polkadot/x-bigint": 11.1.4-14-x
-    "@polkadot/x-global": 11.1.4-14-x
-    "@polkadot/x-randomvalues": 11.1.4-14-x
-    "@polkadot/x-textdecoder": 11.1.4-14-x
-    "@polkadot/x-textencoder": 11.1.4-14-x
+    "@polkadot/x-bigint": 11.1.4-15-x
+    "@polkadot/x-global": 11.1.4-15-x
+    "@polkadot/x-randomvalues": 11.1.4-15-x
+    "@polkadot/x-textdecoder": 11.1.4-15-x
+    "@polkadot/x-textencoder": 11.1.4-15-x
     "@types/bn.js": ^5.1.1
     bn.js: ^5.2.1
     tslib: ^2.5.0
@@ -743,11 +743,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/x-bigint@11.1.4-14-x, @polkadot/x-bigint@workspace:packages/x-bigint":
+"@polkadot/x-bigint@11.1.4-15-x, @polkadot/x-bigint@workspace:packages/x-bigint":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-bigint@workspace:packages/x-bigint"
   dependencies:
-    "@polkadot/x-global": 11.1.4-14-x
+    "@polkadot/x-global": 11.1.4-15-x
     tslib: ^2.5.0
   languageName: unknown
   linkType: soft
@@ -756,7 +756,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-bundle@workspace:packages/x-bundle"
   dependencies:
-    "@polkadot/util": 11.1.4-14-x
+    "@polkadot/util": 11.1.4-15-x
     buffer-es6: ^4.9.3
     tslib: ^2.5.0
   languageName: unknown
@@ -766,14 +766,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-fetch@workspace:packages/x-fetch"
   dependencies:
-    "@polkadot/x-global": 11.1.4-14-x
+    "@polkadot/x-global": 11.1.4-15-x
     "@types/node-fetch": ^2.6.3
     node-fetch: ^3.3.1
     tslib: ^2.5.0
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-global@11.1.4-14-x, @polkadot/x-global@workspace:packages/x-global":
+"@polkadot/x-global@11.1.4-15-x, @polkadot/x-global@workspace:packages/x-global":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-global@workspace:packages/x-global"
   dependencies:
@@ -781,34 +781,34 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-randomvalues@11.1.4-14-x, @polkadot/x-randomvalues@workspace:packages/x-randomvalues":
+"@polkadot/x-randomvalues@11.1.4-15-x, @polkadot/x-randomvalues@workspace:packages/x-randomvalues":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-randomvalues@workspace:packages/x-randomvalues"
   dependencies:
-    "@polkadot/util": 11.1.4-14-x
+    "@polkadot/util": 11.1.4-15-x
     "@polkadot/wasm-util": ^7.0.3
-    "@polkadot/x-global": 11.1.4-14-x
+    "@polkadot/x-global": 11.1.4-15-x
     "@types/react-native": ^0.71.5
     tslib: ^2.5.0
   peerDependencies:
-    "@polkadot/util": 11.1.4-14-x
+    "@polkadot/util": 11.1.4-15-x
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-textdecoder@11.1.4-14-x, @polkadot/x-textdecoder@workspace:packages/x-textdecoder":
+"@polkadot/x-textdecoder@11.1.4-15-x, @polkadot/x-textdecoder@workspace:packages/x-textdecoder":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-textdecoder@workspace:packages/x-textdecoder"
   dependencies:
-    "@polkadot/x-global": 11.1.4-14-x
+    "@polkadot/x-global": 11.1.4-15-x
     tslib: ^2.5.0
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-textencoder@11.1.4-14-x, @polkadot/x-textencoder@workspace:packages/x-textencoder":
+"@polkadot/x-textencoder@11.1.4-15-x, @polkadot/x-textencoder@workspace:packages/x-textencoder":
   version: 0.0.0-use.local
   resolution: "@polkadot/x-textencoder@workspace:packages/x-textencoder"
   dependencies:
-    "@polkadot/x-global": 11.1.4-14-x
+    "@polkadot/x-global": 11.1.4-15-x
     tslib: ^2.5.0
   languageName: unknown
   linkType: soft
@@ -817,7 +817,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-ws@workspace:packages/x-ws"
   dependencies:
-    "@polkadot/x-global": 11.1.4-14-x
+    "@polkadot/x-global": 11.1.4-15-x
     "@types/ws": ^8.5.4
     tslib: ^2.5.0
     ws: ^8.13.0
