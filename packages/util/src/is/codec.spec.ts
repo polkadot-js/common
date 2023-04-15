@@ -11,6 +11,7 @@ const ptest = {
     get: () => null
   },
   toHex: () => '0x',
+  toHuman: () => '0x',
   toU8a: () => new Uint8Array()
 };
 
