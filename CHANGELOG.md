@@ -13,6 +13,7 @@ Changes:
 - Replace `tweetnacl` secretbox usage with slimmer local version
 - Adjust `isCodec` helper with closer API alignment
 - Initial steps to multi-language bip39 support
+- Upgrade dependencies to latest stable versions
 
 
 ## 11.1.3 Apr 1, 2023

@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@polkadot/util": "11.1.4-15-x",
-    "@types/react-native": "^0.71.5"
+    "@types/react-native": "^0.71.6"
   },
   "peerDependencies": {
     "@polkadot/util": "11.1.4-15-x"
