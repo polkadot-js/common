@@ -15,12 +15,12 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "11.1.4-18-x",
+  "version": "11.1.4-19-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@polkadot/x-global": "11.1.4-18-x",
+    "@polkadot/x-global": "11.1.4-19-x",
     "tslib": "^2.5.0"
   }
 }
