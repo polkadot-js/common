@@ -32,10 +32,10 @@ for (const onlyJsMnemonic of [false, true]) {
               // do iterations to check and re-check that all matches
               for (const count of arrayRange(NUM_CHECKS)) {
                 it(`check=${count + 1}`, (): void => {
-                  const minisecret = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMnemonic);
+                  const minisecret = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', undefined, onlyJsMnemonic);
                   const edpub = ed25519PairFromSeed(minisecret).publicKey;
                   const srpub = sr25519PairFromSeed(minisecret).publicKey;
-                  const testmini = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', onlyJsMini);
+                  const testmini = mnemonicToMiniSecret(mnemonic, count ? `${count}` : '', undefined, onlyJsMini);
 
                   // explicit minisecret compare
                   expect(

@@ -19,8 +19,8 @@ import { validateMnemonic } from './bip39.js';
  * const isValidMnemonic = mnemonicValidate(mnemonic); // => boolean
  * ```
  */
-export function mnemonicValidate (mnemonic: string, onlyJs?: boolean): boolean {
-  return !hasBigInt || (!onlyJs && isReady())
+export function mnemonicValidate (mnemonic: string, wordlist?: string[], onlyJs?: boolean): boolean {
+  return !hasBigInt || (!wordlist && !onlyJs && isReady())
     ? bip39Validate(mnemonic)
-    : validateMnemonic(mnemonic);
+    : validateMnemonic(mnemonic, wordlist);
 }

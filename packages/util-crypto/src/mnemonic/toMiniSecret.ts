@@ -8,16 +8,14 @@ import { pbkdf2Encode } from '../pbkdf2/index.js';
 import { mnemonicToEntropy } from './toEntropy.js';
 import { mnemonicValidate } from './validate.js';
 
-export function mnemonicToMiniSecret (mnemonic: string, password = '', onlyJs?: boolean): Uint8Array {
-  if (!mnemonicValidate(mnemonic)) {
+export function mnemonicToMiniSecret (mnemonic: string, password = '', wordlist?: string[], onlyJs?: boolean): Uint8Array {
+  if (!mnemonicValidate(mnemonic, wordlist, onlyJs)) {
     throw new Error('Invalid bip39 mnemonic specified');
-  }
-
-  if (!onlyJs && isReady()) {
+  } else if (!wordlist && !onlyJs && isReady()) {
     return bip39ToMiniSecret(mnemonic, password);
   }
 
-  const entropy = mnemonicToEntropy(mnemonic);
+  const entropy = mnemonicToEntropy(mnemonic, wordlist);
   const salt = stringToU8a(`mnemonic${password}`);
 
   // return the first 32 bytes as the seed
