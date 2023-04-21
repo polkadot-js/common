@@ -1,16 +1,17 @@
 // Copyright 2017-2023 @polkadot/x-randomvalues authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import crypto from 'node:crypto';
+// Needs Node 15+ for webcrypto
+import nodeCrypto from 'node:crypto';
+
+import { extractGlobal } from '@polkadot/x-global';
 
 export { packageInfo } from './packageInfo.js';
 
+export const crypto = /*#__PURE__*/ extractGlobal('crypto', nodeCrypto.webcrypto);
+
+// getRandomValues needs to be called on the crypto object,
+// hence the need for the wrapper function
 export function getRandomValues <T extends Uint8Array> (output: T): T {
-  const bytes = crypto.randomBytes(output.length);
-
-  for (let i = 0; i < bytes.length; i++) {
-    output[i] = bytes[i];
-  }
-
-  return output;
+  return crypto.getRandomValues(output);
 }

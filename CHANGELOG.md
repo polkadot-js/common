@@ -13,6 +13,7 @@ Changes:
 - Replace `tweetnacl` secretbox usage with slimmer local version
 - Adjust `isCodec` helper with closer API alignment
 - Initial steps to multi-language bip39 support
+- Use Node webcrypto for Node `getRandomValues` support
 - Upgrade dependencies to latest stable versions
 - Drop support for Node 14 (EOL 30 Apr 2023)
 
