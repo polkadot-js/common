@@ -14,6 +14,7 @@ Changes:
 - Adjust `isCodec` helper with closer API alignment
 - Initial steps to multi-language bip39 support
 - Upgrade dependencies to latest stable versions
+- Drop support for Node 14 (EOL 30 Apr 2023)
 
 
 ## 11.1.3 Apr 1, 2023
