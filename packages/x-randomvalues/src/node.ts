@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/x-randomvalues authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 export { packageInfo } from './packageInfo.js';
 
