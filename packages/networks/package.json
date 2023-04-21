@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "description": "A list of all available Substrate networks and their applicable prefixes",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/networks#readme",
   "license": "Apache-2.0",
@@ -15,14 +15,14 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "11.1.4-12",
+  "version": "11.1.4-16-x",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/util": "11.1.4-12",
+    "@polkadot/util": "11.1.4-16-x",
     "@substrate/ss58-registry": "^1.39.0",
     "tslib": "^2.5.0"
   },
   "devDependencies": {
-    "@polkadot/hw-ledger": "11.1.4-12"
+    "@polkadot/hw-ledger": "11.1.4-16-x"
   }
 }

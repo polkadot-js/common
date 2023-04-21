@@ -2,7 +2,7 @@
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/common/issues",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/hw-ledger-transports#readme",
   "license": "Apache-2.0",
@@ -14,7 +14,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "11.1.4-12",
+  "version": "11.1.4-16-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
@@ -22,7 +22,7 @@
     "@ledgerhq/hw-transport": "^6.28.2",
     "@ledgerhq/hw-transport-webhid": "^6.27.13",
     "@ledgerhq/hw-transport-webusb": "^6.27.13",
-    "@polkadot/util": "11.1.4-12",
+    "@polkadot/util": "11.1.4-16-x",
     "tslib": "^2.5.0"
   },
   "optionalDependencies": {

@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "description": "A cross-environment window.crypto.getRandomValues replacement",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-randomvalues#readme",
   "license": "Apache-2.0",
@@ -15,23 +15,20 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "11.1.4-12",
+  "version": "11.1.4-16-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
     "@polkadot/wasm-util": "^7.0.3",
-    "@polkadot/x-global": "11.1.4-12",
+    "@polkadot/x-global": "11.1.4-16-x",
     "tslib": "^2.5.0"
   },
   "devDependencies": {
-    "@polkadot/util": "11.1.4-12",
-    "@types/react-native": "^0.71.5"
+    "@polkadot/util": "11.1.4-16-x",
+    "@types/react-native": "^0.71.6"
   },
   "peerDependencies": {
-    "@polkadot/util": "11.1.4-12"
-  },
-  "denoDependencies": {
-    "crypto": "std@0.161.0/node/crypto.ts"
+    "@polkadot/util": "11.1.4-16-x"
   }
 }

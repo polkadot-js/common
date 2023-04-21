@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "description": "A cross-environment fetch replacement",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-fetch#readme",
   "license": "Apache-2.0",
@@ -15,12 +15,12 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "11.1.4-12",
+  "version": "11.1.4-16-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@polkadot/x-global": "11.1.4-12",
+    "@polkadot/x-global": "11.1.4-16-x",
     "node-fetch": "^3.3.1",
     "tslib": "^2.5.0"
   },
