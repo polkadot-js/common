@@ -1,4 +1,4 @@
-    1601	Jaco                          	Allow wordlist? param to mnemonic* functions (#1814)
+    1602	Jaco                          	12.0.1 (#1815)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
