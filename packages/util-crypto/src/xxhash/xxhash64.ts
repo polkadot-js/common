@@ -16,6 +16,7 @@ import { BigInt } from '@polkadot/x-bigint';
 //   - support only for Uint8Array inputs
 //   - no constructor function, straight fill & digest
 //   - update code removed, only called once, no streams
+//   - inline single-use functions
 
 interface State {
   seed: bigint;
@@ -74,22 +75,8 @@ function fromU8a (u8a: Uint8Array, p: number, count: 2 | 4): bigint {
   return result;
 }
 
-function toU8a (h64: bigint): Uint8Array {
-  const result = new Uint8Array(8);
-
-  for (let i = 7; i >= 0; i--) {
-    result[i] = Number(h64 % _256n);
-
-    h64 = h64 / _256n;
-  }
-
-  return result;
-}
-
-function state (initSeed: bigint | number): State {
-  const seed = BigInt(initSeed);
-
-  return {
+function init (seed: bigint, input: Uint8Array): State {
+  const state = {
     seed,
     u8a: new Uint8Array(32),
     u8asize: 0,
@@ -98,9 +85,7 @@ function state (initSeed: bigint | number): State {
     v3: seed,
     v4: seed - P64_1
   };
-}
 
-function init (state: State, input: Uint8Array): State {
   if (input.length < 32) {
     state.u8a.set(input);
     state.u8asize = input.length;
@@ -132,7 +117,7 @@ function init (state: State, input: Uint8Array): State {
 }
 
 export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Array {
-  const { seed, u8a, u8asize, v1, v2, v3, v4 } = init(state(initSeed), input);
+  const { seed, u8a, u8asize, v1, v2, v3, v4 } = init(BigInt(initSeed), input);
   let p = 0;
   let h64 = U64 & (BigInt(input.length) + (
     input.length >= 32
@@ -156,6 +141,15 @@ export function xxhash64 (input: Uint8Array, initSeed: bigint | number): Uint8Ar
 
   h64 = U64 & (P64_2 * (h64 ^ (h64 >> _33n)));
   h64 = U64 & (P64_3 * (h64 ^ (h64 >> _29n)));
+  h64 = U64 & (h64 ^ (h64 >> _32n));
 
-  return toU8a(U64 & (h64 ^ (h64 >> _32n)));
+  const result = new Uint8Array(8);
+
+  for (let i = 7; i >= 0; i--) {
+    result[i] = Number(h64 % _256n);
+
+    h64 = h64 / _256n;
+  }
+
+  return result;
 }
