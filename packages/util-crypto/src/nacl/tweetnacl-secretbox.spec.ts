@@ -8,7 +8,7 @@
 //
 // Changes made:
 //  - Jest-like test environment (not tape)
-//  - Combine quite and random tests into single file
+//  - Combine "quick" and "random" tests into single file
 //
 // Original headers:
 //
