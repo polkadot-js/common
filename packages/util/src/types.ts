@@ -81,7 +81,7 @@ export type HexDigit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
 // One day when template strings support regex, we can improve this
 export type HexString = `0x${string}`;
 
-export type U8aLike = HexString | number[] | Buffer | Uint8Array | AnyString;
+export type U8aLike = HexString | number[] | Uint8Array | AnyString;
 
 export interface IBigIntConstructor {
   new (value: string | number | bigint | boolean): bigint;
