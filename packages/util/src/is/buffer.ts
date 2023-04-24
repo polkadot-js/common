@@ -22,7 +22,7 @@ import { isFunction } from './function.js';
  * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
  * ```
  */
-export function isBuffer (value: unknown): value is BufferObj {
+export function isBuffer (value: unknown): value is Buffer {
   // we do check a function first, since it is slightly faster than isBuffer itself
   return hasBuffer && !!value && isFunction((value as unknown as BufferObj).readDoubleLE) && (xglobal.Buffer as unknown as BufferObjConstructor).isBuffer(value);
 }

@@ -1,8 +1,6 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BufferObj } from '../types.js';
-
 /**
  * @name u8aToBuffer
  * @summary Creates a Buffer object from a hex string.
@@ -17,6 +15,6 @@ import type { BufferObj } from '../types.js';
  * console.log('Buffer', u8aToBuffer('0x123480001f'));
  * ```
  */
-export function u8aToBuffer (value?: Uint8Array | null): BufferObj {
+export function u8aToBuffer (value?: Uint8Array | null): Buffer {
   return Buffer.from(value || []);
 }
