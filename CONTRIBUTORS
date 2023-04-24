@@ -1,4 +1,4 @@
-    1602	Jaco                          	12.0.1 (#1815)
+    1603	Jaco                          	Flatten Buffer | Uint8Array types (#1816)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
