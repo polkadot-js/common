@@ -4,7 +4,7 @@
 
 Changes:
 
-- Flatten `Buffer | Uint8Array` types to base-only `Uint8Array`
+- Flatten `Buffer | Uint8Array` types (as used) to base-only `Uint8Array`
 
 
 ## 12.0.1 Apr 22, 2023
