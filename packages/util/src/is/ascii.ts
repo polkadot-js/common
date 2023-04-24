@@ -24,7 +24,7 @@ function isAsciiStr (str: AnyString): boolean {
 }
 
 /** @internal */
-function isAsciiBytes (u8a: Uint8Array | Buffer | number[]): boolean {
+function isAsciiBytes (u8a: Uint8Array | number[]): boolean {
   const count = u8a.length | 0;
 
   for (let i = 0; i < count; i++) {

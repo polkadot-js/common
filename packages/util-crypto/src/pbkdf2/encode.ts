@@ -17,7 +17,7 @@ interface Result {
   salt: Uint8Array;
 }
 
-export function pbkdf2Encode (passphrase?: HexString | Buffer | Uint8Array | string, salt: Buffer | Uint8Array = randomAsU8a(), rounds = 2048, onlyJs?: boolean): Result {
+export function pbkdf2Encode (passphrase?: HexString | Uint8Array | string, salt: Uint8Array = randomAsU8a(), rounds = 2048, onlyJs?: boolean): Result {
   const u8aPass = u8aToU8a(passphrase);
   const u8aSalt = u8aToU8a(salt);
 
