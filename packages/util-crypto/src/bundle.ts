@@ -3,9 +3,10 @@
 
 import './bundleInit.js';
 
+// all named
 export { packageInfo } from './packageInfo.js';
 
-// all internal exports
+// all starred
 export * from './address/index.js';
 export * from './base32/index.js';
 export * from './base58/index.js';
@@ -20,8 +21,8 @@ export * from './json/index.js';
 export * from './keccak/index.js';
 export * from './key/index.js';
 export * from './mnemonic/index.js';
-export * from './networks.js';
 export * from './nacl/index.js';
+export * from './networks.js';
 export * from './pbkdf2/index.js';
 export * from './random/index.js';
 export * from './scrypt/index.js';
