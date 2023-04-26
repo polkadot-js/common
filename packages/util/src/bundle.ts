@@ -4,8 +4,11 @@
 /**
  * @summary Utility methods for this package are split into groups
  */
+
+// all named
 export { packageInfo } from './packageInfo.js';
 
+// all starred
 export * from './array/index.js';
 export * from './assert.js';
 export * from './bi/index.js';

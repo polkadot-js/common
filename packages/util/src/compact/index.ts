@@ -23,6 +23,6 @@
  */
 
 export { compactAddLength } from './addLength.js';
-export { compactStripLength } from './stripLength.js';
 export { compactFromU8a, compactFromU8aLim } from './fromU8a.js';
+export { compactStripLength } from './stripLength.js';
 export { compactToU8a } from './toU8a.js';
