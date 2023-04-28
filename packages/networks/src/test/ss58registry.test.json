@@ -597,7 +597,7 @@
   {
     "prefix": 50,
     "network": "composable",
-    "displayName": "Composable",
+    "displayName": "Composable Finance",
     "symbols": [
       "LAYR"
     ],
@@ -716,7 +716,7 @@
   {
     "prefix": 65,
     "network": "aventus",
-    "displayName": "AvN Mainnet",
+    "displayName": "Aventus Mainnet",
     "symbols": [
       "AVT"
     ],
@@ -1338,6 +1338,19 @@
     "website": "https://explorer.mainnet.cloudwalk.io"
   },
   {
+    "prefix": 2021,
+    "network": "logion",
+    "displayName": "logion network",
+    "symbols": [
+      "LGNT"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://logion.network"
+  },
+  {
     "prefix": 2032,
     "network": "interlay",
     "displayName": "Interlay",
@@ -1639,6 +1652,19 @@
     ],
     "standardAccount": "*25519",
     "website": "https://ata.network"
+  },
+  {
+    "prefix": 12155,
+    "network": "impact",
+    "displayName": "Impact Protocol Network",
+    "symbols": [
+      "BSTY"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://impactprotocol.network/"
   },
   {
     "prefix": 12191,

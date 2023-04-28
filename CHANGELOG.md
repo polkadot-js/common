@@ -5,6 +5,9 @@
 Changes:
 
 - Flatten `Buffer | Uint8Array` types (as used) to base-only `Uint8Array`
+- Apply `readonly` specifiers to private class fields where applicable
+- Adjust compilation output for `__internal__` class fields
+- Upgrade dependencies to latest stable versions
 
 
 ## 12.0.1 Apr 22, 2023
