@@ -17,11 +17,11 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "12.0.2-1-x",
+  "version": "12.0.2-2-x",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/hw-ledger-transports": "12.0.2-1-x",
-    "@polkadot/util": "12.0.2-1-x",
+    "@polkadot/hw-ledger-transports": "12.0.2-2-x",
+    "@polkadot/util": "12.0.2-2-x",
     "@zondax/ledger-substrate": "^0.40.7",
     "tslib": "^2.5.0"
   }
