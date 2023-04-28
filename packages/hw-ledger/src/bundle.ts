@@ -39,11 +39,10 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
  *   - Promises reject with errors (unwrapped errors from @zondax/ledger-substrate)
  */
 export class Ledger {
+  readonly #ledgerName: string;
+  readonly #transportDef: TransportDef;
+
   #app: SubstrateApp | null = null;
-
-  #ledgerName: string;
-
-  #transportDef: TransportDef;
 
   constructor (transport: TransportType, chain: Chain) {
     const ledgerName = ledgerApps[chain];
