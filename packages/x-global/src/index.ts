@@ -24,7 +24,7 @@ function evaluateThis (fn: (code: string) => unknown): unknown {
 }
 
 /**
- * A cross-evnironment implementation for globalThis
+ * A cross-environment implementation for globalThis
  */
 export const xglobal = /*#__PURE__*/ (
   typeof globalThis !== 'undefined'

@@ -18,7 +18,7 @@
 export function arrayChunk <T> (array: T[], chunkSize: number): T[][] {
   const outputSize = Math.ceil(array.length / chunkSize);
 
-  // noop for the single-split case
+  // shortcut for the single-split case
   if (outputSize === 1) {
     return [array];
   }

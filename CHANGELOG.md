@@ -1,12 +1,14 @@
 # CHANGELOG
 
-## master
+## 12.1.1 Apr 29, 2023
 
 Changes:
 
+- Add shareable `identity` & `noop` functions
 - Flatten `Buffer | Uint8Array` types (as used) to base-only `Uint8Array`
 - Apply `readonly` specifiers to private class fields where applicable
 - Adjust compilation output for `__internal__` class fields
+- Remove unused types from `util`
 - Upgrade dependencies to latest stable versions
 
 

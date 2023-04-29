@@ -45,7 +45,7 @@ function getEntry (name: string): VersionPath[] {
 function formatDisplay <T extends { version: string }> (all: T[], fmt: (version: string, data: T) => string[]): string {
   let max = 0;
 
-  for (let i = 0; i < all.length; i++) {
+  for (let i = 0, count = all.length; i < count; i++) {
     max = Math.max(max, all[i].version.length);
   }
 

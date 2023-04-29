@@ -3,14 +3,12 @@
 
 import type { BN } from './bn/bn.js';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface Constructor<T = any> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  new(...value: any[]): T;
+export interface Constructor<T extends object = object> {
+  prototype: T;
+  new (...args: never[]): T;
 
   hasOwnProperty (prop: string): boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  isPrototypeOf (other: any): boolean;
+  isPrototypeOf (other: unknown): boolean;
 }
 
 export interface ToBigInt {
@@ -27,15 +25,12 @@ export interface SiDef {
   value: string;
 }
 
-type Logger$Data$Fn = () => unknown[];
-export type Logger$Data = (unknown | Logger$Data$Fn)[];
-
 export interface Logger {
-  debug: (...values: Logger$Data) => void;
-  error: (...values: Logger$Data) => void;
-  log: (...values: Logger$Data) => void;
-  noop: (...values: Logger$Data) => void;
-  warn: (...values: Logger$Data) => void;
+  debug: (...values: unknown[]) => void;
+  error: (...values: unknown[]) => void;
+  log: (...values: unknown[]) => void;
+  noop: (...values: unknown[]) => void;
+  warn: (...values: unknown[]) => void;
 }
 
 export interface ToBnOptions {
@@ -55,11 +50,6 @@ export interface NumberOptions extends ToBnOptions {
    */
   bitLength?: number;
 }
-
-export type BnList = {
-  0: BN;
-  1: BN;
-} & BN[];
 
 export interface Time {
   days: number;
@@ -90,31 +80,11 @@ export interface BufferObj extends Uint8Array {
 
 // We define a scappy low-level interface to mock Buffer
 // (this removes the need for the node typings in built bundles)
-export interface BufferObjConstructor extends Function {
+export interface BufferObjConstructor extends Constructor<BufferObj> {
   isBuffer: (value: unknown) => boolean;
 }
 
 export type U8aLike = HexString | number[] | Uint8Array | AnyString;
-
-export interface IBigIntConstructor {
-  new (value: string | number | bigint | boolean): bigint;
-
-  /**
-  * Interprets the low bits of a BigInt as a 2's-complement signed integer.
-  * All higher bits are discarded.
-  * @param bits The number of low bits to use
-  * @param int The BigInt whose bits to extract
-  */
-  asIntN (bits: number, int: bigint): bigint;
-
-  /**
-  * Interprets the low bits of a BigInt as an unsigned integer.
-  * All higher bits are discarded.
-  * @param bits The number of low bits to use
-  * @param int The BigInt whose bits to extract
-  */
-  asUintN (bits: number, int: bigint): bigint;
-}
 
 export interface Observable {
   next: (...params: unknown[]) => unknown;

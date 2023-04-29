@@ -23,9 +23,10 @@ import { u8aToU8a } from './toU8a.js';
  * ```
  */
 export function u8aConcat (...list: readonly U8aLike[]): Uint8Array {
-  const u8as = new Array<Uint8Array>(list.length);
+  const count = list.length;
+  const u8as = new Array<Uint8Array>(count);
 
-  for (let i = 0; i < list.length; i++) {
+  for (let i = 0; i < count; i++) {
     u8as[i] = u8aToU8a(list[i]);
   }
 

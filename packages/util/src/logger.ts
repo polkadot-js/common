@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Logger, Logger$Data } from './types.js';
+import type { Logger } from './types.js';
 
 import { xglobal } from '@polkadot/x-global';
 
@@ -14,6 +14,7 @@ import { isU8a } from './is/u8a.js';
 import { u8aToHex } from './u8a/toHex.js';
 import { u8aToU8a } from './u8a/toU8a.js';
 import { hasProcess } from './has.js';
+import { noop } from './noop.js';
 
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
@@ -65,7 +66,7 @@ function formatWithLength (maxLength: number): (v: unknown) => unknown {
   };
 }
 
-function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): void {
+function apply (log: LogType, type: string, values: unknown[], maxSize = -1): void {
   if (values.length === 1 && isFunction(values[0])) {
     const fnResult = values[0]() as unknown;
 
@@ -79,10 +80,6 @@ function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): 
       .map(loggerFormat)
       .map(formatWithLength(maxSize))
   );
-}
-
-function noop (): void {
-  // noop
 }
 
 function isDebugOn (e: string, type: string): boolean {
@@ -149,17 +146,17 @@ function parseEnv (type: string): [boolean, number] {
  * const l = logger('test');
  * ```
  */
-export function logger (_type: string): Logger {
-  const type = `${_type.toUpperCase()}:`.padStart(16);
-  const [isDebug, maxSize] = parseEnv(_type.toLowerCase());
+export function logger (origin: string): Logger {
+  const type = `${origin.toUpperCase()}:`.padStart(16);
+  const [isDebug, maxSize] = parseEnv(origin.toLowerCase());
 
   return {
     debug: isDebug
-      ? (...values: Logger$Data) => apply('debug', type, values, maxSize)
+      ? (...values: unknown[]) => apply('debug', type, values, maxSize)
       : noop,
-    error: (...values: Logger$Data) => apply('error', type, values),
-    log: (...values: Logger$Data) => apply('log', type, values),
+    error: (...values: unknown[]) => apply('error', type, values),
+    log: (...values: unknown[]) => apply('log', type, values),
     noop,
-    warn: (...values: Logger$Data) => apply('warn', type, values)
+    warn: (...values: unknown[]) => apply('warn', type, values)
   };
 }
