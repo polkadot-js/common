@@ -22,28 +22,28 @@ export function u8aToBigInt (value: Uint8Array, { isLe = true, isNegative = fals
   const u8a = isLe
     ? value
     : value.reverse();
-
   const dvI = new DataView(u8a.buffer, u8a.byteOffset);
-  const mod = u8a.length % 2;
+  const count = u8a.length;
+  const mod = count % 2;
   let result = BigInt(0);
 
   // This is mostly written for readability (with the single isNegative shortcut),
   // as opposed to performance, e.g. `u8aToBn` does loop unrolling, etc.
   if (isNegative) {
-    for (let i = u8a.length - 2; i >= mod; i -= 2) {
+    for (let i = count - 2; i >= mod; i -= 2) {
       result = (result * U16_MAX) + BigInt(dvI.getUint16(i, true) ^ 0xffff);
     }
 
     if (mod) {
-      result = (result * U8_MAX) + BigInt(dvI.getUint8(0) ^ 0xff);
+      result = (result * U8_MAX) + BigInt(u8a[0] ^ 0xff);
     }
   } else {
-    for (let i = u8a.length - 2; i >= mod; i -= 2) {
+    for (let i = count - 2; i >= mod; i -= 2) {
       result = (result * U16_MAX) + BigInt(dvI.getUint16(i, true));
     }
 
     if (mod) {
-      result = (result * U8_MAX) + BigInt(dvI.getUint8(0));
+      result = (result * U8_MAX) + BigInt(u8a[0]);
     }
   }
 
