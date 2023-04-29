@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import { BN } from '../bn/index.js';
+// import { BN } from '../bn/index.js';
 import { perf } from '../test/index.js';
 import { u8aToBn } from './index.js';
 
