@@ -25,6 +25,7 @@ export * from './lazy.js';
 export * from './logger.js';
 export * from './memoize.js';
 export * from './nextTick.js';
+export * from './noop.js';
 export * from './number/index.js';
 export * from './object/index.js';
 export * from './promisify.js';
