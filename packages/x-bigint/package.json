@@ -18,9 +18,9 @@
     "./shim.cjs"
   ],
   "type": "module",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "dependencies": {
-    "@polkadot/x-global": "12.1.0",
+    "@polkadot/x-global": "12.1.1",
     "tslib": "^2.5.0"
   }
 }
