@@ -3,9 +3,11 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
+import { BN } from '../bn/index.js';
 import { perf } from '../test/index.js';
 import { u8aToBn } from './index.js';
 
+// test-cases are the same as in u8aToBigInt
 describe('u8aToBn', (): void => {
   it('converts little-endian by default', (): void => {
     expect(
@@ -264,4 +266,7 @@ describe('u8aToBn', (): void => {
   perf('u8aToBn (u32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
   perf('u8aToBn (i32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToBn(v, { isNegative: true }));
   perf('u8aToBn (u64)', 500_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
+
+  // perf('BN (constructor)', 1_000_000, [[12345678]], (v: number) => new BN(v));
+  // perf('BN (constructor -> string)', 1_000_000, [[12345678]], (v: number) => new BN(v).toString());
 });
