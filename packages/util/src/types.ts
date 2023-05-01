@@ -5,7 +5,7 @@ import type { BN } from './bn/bn.js';
 
 export interface Constructor<T extends object = object> {
   prototype: T;
-  new (...args: never[]): T;
+  new (...args: unknown[]): T;
 
   hasOwnProperty (prop: string): boolean;
   isPrototypeOf (other: unknown): boolean;
