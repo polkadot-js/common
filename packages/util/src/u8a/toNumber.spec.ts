@@ -132,6 +132,6 @@ describe('u8aToNumber', (): void => {
     });
   });
 
-  perf('u8aToNumber (u32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToNumber);
-  perf('u8aToNumber (i32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToNumber(v, { isNegative: true }));
+  perf('u8aToNumber (i32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToNumber(v, { isNegative: true }));
+  perf('u8aToNumber (u32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToNumber);
 });
