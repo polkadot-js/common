@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Align `u8aToBigInt` tests with `u8aToBn`
+
+
+## 12.1.2 May 1, 2023
+
+Changes:
+
+- Adjust typing for `isChildClass` & `Constructor` usage
+
+
 ## 12.1.1 Apr 29, 2023
 
 Changes:

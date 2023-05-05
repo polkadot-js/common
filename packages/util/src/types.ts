@@ -3,9 +3,10 @@
 
 import type { BN } from './bn/bn.js';
 
-export interface Constructor<T = object> {
+export interface Constructor<T extends Object = Object> {
   prototype: T;
-  new (...args: unknown[]): T;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  new (...args: any[]): T;
 
   hasOwnProperty (prop: string): boolean;
   isPrototypeOf (other: unknown): boolean;

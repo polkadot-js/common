@@ -14,10 +14,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "12.1.2-0-x",
+  "version": "12.1.2",
   "versions": {
-    "git": "12.1.2-0-x",
-    "npm": "12.1.1"
+    "git": "12.1.2",
+    "npm": "12.1.2"
   },
   "workspaces": [
     "packages/*"
@@ -37,8 +37,8 @@
     "test:one": "polkadot-dev-run-test --env browser"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.73.6",
-    "@types/node": "^18.16.2"
+    "@polkadot/dev": "^0.73.9",
+    "@types/node": "^18.16.3"
   },
   "resolutions": {
     "typescript": "^5.0.4"
