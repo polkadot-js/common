@@ -81,6 +81,20 @@ describe('u8aToBn', (): void => {
           ).toString(16)
         ).toBe('78563412785634127856341278563412');
       });
+
+      for (let i = 1; i < 32; i++) {
+        const tu8a = [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78];
+        const tstr = tu8a.map((n) => n.toString(16));
+
+        it(`converts values with length ${i}`, (): void => {
+          expect(
+            u8aToBn(
+              new Uint8Array(tu8a.slice(0, i)),
+              { isLe: true }
+            ).toString(16)
+          ).toBe(tstr.slice(0, i).reverse().join(''));
+        });
+      }
     });
 
     describe('signed', (): void => {
@@ -221,6 +235,20 @@ describe('u8aToBn', (): void => {
         ).toString(16)
       ).toBe('12345678123456781234567812345678');
     });
+
+    for (let i = 1; i < 32; i++) {
+      const tu8a = [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78];
+      const tstr = tu8a.map((n) => n.toString(16));
+
+      it(`converts values with length ${i}`, (): void => {
+        expect(
+          u8aToBn(
+            new Uint8Array(tu8a.slice(0, i)),
+            { isLe: false }
+          ).toString(16)
+        ).toBe(tstr.slice(0, i).join(''));
+      });
+    }
   });
 
   describe('empty creation', (): void => {
