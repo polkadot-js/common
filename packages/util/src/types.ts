@@ -3,7 +3,7 @@
 
 import type { BN } from './bn/bn.js';
 
-export interface Constructor<T extends object = object> {
+export interface Constructor<T = object> {
   prototype: T;
   new (...args: unknown[]): T;
 
