@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Align `u8aToBigInt` tests with `u8aToBn`
+
+
 ## 12.1.2 May 1, 2023
 
 Changes:
