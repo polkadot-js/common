@@ -3,7 +3,8 @@
 
 import type { BN } from './bn/bn.js';
 
-export interface Constructor<T extends Object = Object> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface Constructor<T = any> {
   prototype: T;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   new (...args: any[]): T;
