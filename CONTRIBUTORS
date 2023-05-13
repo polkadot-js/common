@@ -1,4 +1,4 @@
-    1611	Jaco                          	Bump dev (#1827)
+    1613	Jaco                          	12.2.1 (#1829)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
