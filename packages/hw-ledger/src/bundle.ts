@@ -89,7 +89,7 @@ export class Ledger {
   }
 
   /**
-   * Signs a transcation on the Ledger device
+   * Signs a transaction on the Ledger device
    */
   public async sign (message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerSignature> {
     return this.withApp(async (app: SubstrateApp): Promise<LedgerSignature> => {

@@ -1,11 +1,13 @@
 # CHANGELOG
 
-## master
+## 12.2.1 May 13, 2023
 
 Changes:
 
 - Align `u8aToBigInt` tests with `u8aToBn`
 - Unroll loops on most-frequently used paths for `u8aToBigInt`
+- Add `module` to `package.json` export map (ESM-only)
+- Upgrade dependencies to latest stable versions
 
 
 ## 12.1.2 May 1, 2023
