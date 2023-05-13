@@ -5,6 +5,7 @@
 Changes:
 
 - Align `u8aToBigInt` tests with `u8aToBn`
+- Unroll loops on most-frequently used paths for `u8aToBigInt`
 
 
 ## 12.1.2 May 1, 2023

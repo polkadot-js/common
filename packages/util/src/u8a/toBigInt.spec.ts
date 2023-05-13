@@ -54,6 +54,15 @@ describe('u8aToBigInt', (): void => {
         ).toBe('78563412');
       });
 
+      it('converts values (i32)', (): void => {
+        expect(
+          u8aToBigInt(
+            new Uint8Array([0xf2, 0x34, 0x56, 0x78]),
+            { isLe: false, isNegative: true }
+          ).toString(16)
+        ).toBe('-dcba988');
+      });
+
       it('converts values (u40)', (): void => {
         expect(
           u8aToBigInt(
@@ -71,6 +80,29 @@ describe('u8aToBigInt', (): void => {
           ).toString(16)
         ).toBe('bc9a78563412');
       });
+
+      it('converts values (u128)', (): void => {
+        expect(
+          u8aToBigInt(
+            new Uint8Array([0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78]),
+            { isLe: true }
+          ).toString(16)
+        ).toBe('78563412785634127856341278563412');
+      });
+
+      for (let i = 1; i < 32; i++) {
+        const tu8a = [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78];
+        const tstr = tu8a.map((n) => n.toString(16));
+
+        it(`converts values with length ${i}`, (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array(tu8a.slice(0, i)),
+              { isLe: true }
+            ).toString(16)
+          ).toBe(tstr.slice(0, i).reverse().join(''));
+        });
+      }
     });
 
     describe('signed', (): void => {
@@ -193,6 +225,29 @@ describe('u8aToBigInt', (): void => {
         ).toString(16)
       ).toBe('123456789abc');
     });
+
+    it('converts values (u128)', (): void => {
+      expect(
+        u8aToBigInt(
+          new Uint8Array([0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78]),
+          { isLe: false }
+        ).toString(16)
+      ).toBe('12345678123456781234567812345678');
+    });
+
+    for (let i = 1; i < 32; i++) {
+      const tu8a = [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78];
+      const tstr = tu8a.map((n) => n.toString(16));
+
+      it(`converts values with length ${i}`, (): void => {
+        expect(
+          u8aToBigInt(
+            new Uint8Array(tu8a.slice(0, i)),
+            { isLe: false }
+          ).toString(16)
+        ).toBe(tstr.slice(0, i).join(''));
+      });
+    }
   });
 
   describe('empty creation', (): void => {
@@ -262,9 +317,11 @@ describe('u8aToBigInt', (): void => {
     ).toBe(256n);
   });
 
-  perf('u8aToBigInt (u32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBigInt);
-  perf('u8aToBigInt (i32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToBigInt(v, { isNegative: true }));
-  perf('u8aToBigInt (u64)', 500_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBigInt);
+  perf('u8aToBigInt (i32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToBigInt(v, { isNegative: true }));
+
+  perf('u8aToBigInt (u32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBigInt);
+  perf('u8aToBigInt (u64)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBigInt);
+  perf('u8aToBigInt (u128)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBigInt);
 
   // perf('BigInt (constructor)', 1_000_000, [[12345678]], (v: number) => BigInt(v).toString());
   // perf('BigInt (constructor -> string)', 1_000_000, [[12345678]], (v: number) => BigInt(v).toString());
