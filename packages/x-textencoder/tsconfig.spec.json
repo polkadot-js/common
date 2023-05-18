@@ -3,17 +3,15 @@
   "compilerOptions": {
     "baseUrl": "..",
     "outDir": "./build",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "emitDeclarationOnly": false,
+    "noEmit": true
   },
-  "exclude": [
-    "**/*.spec.ts",
-    "**/mod.ts"
+  "include": [
+    "**/*.spec.ts"
   ],
   "references": [
-    { "path": "../x-bigint/tsconfig.build.json" },
     { "path": "../x-global/tsconfig.build.json" },
-    { "path": "../x-randomvalues/tsconfig.build.json" },
-    { "path": "../x-textdecoder/tsconfig.build.json" },
     { "path": "../x-textencoder/tsconfig.build.json" }
   ]
 }

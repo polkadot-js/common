@@ -5,11 +5,16 @@
   "files": [],
   "references": [
     { "path": "./packages/hw-ledger/tsconfig.build.json" },
+    { "path": "./packages/hw-ledger/tsconfig.spec.json" },
     { "path": "./packages/hw-ledger-transports/tsconfig.build.json" },
     { "path": "./packages/keyring/tsconfig.build.json" },
+    { "path": "./packages/keyring/tsconfig.spec.json" },
     { "path": "./packages/networks/tsconfig.build.json" },
+    { "path": "./packages/networks/tsconfig.spec.json" },
     { "path": "./packages/util/tsconfig.build.json" },
+    { "path": "./packages/util/tsconfig.spec.json" },
     { "path": "./packages/util-crypto/tsconfig.build.json" },
+    { "path": "./packages/util-crypto/tsconfig.spec.json" },
     { "path": "./packages/x-bigint/tsconfig.build.json" },
     { "path": "./packages/x-bundle/tsconfig.build.json" },
     { "path": "./packages/x-fetch/tsconfig.build.json" },
@@ -17,7 +22,9 @@
     { "path": "./packages/x-randomvalues/tsconfig.build.json" },
     { "path": "./packages/x-randomvalues/tsconfig.spec.json" },
     { "path": "./packages/x-textdecoder/tsconfig.build.json" },
+    { "path": "./packages/x-textdecoder/tsconfig.spec.json" },
     { "path": "./packages/x-textencoder/tsconfig.build.json" },
+    { "path": "./packages/x-textencoder/tsconfig.spec.json" },
     { "path": "./packages/x-ws/tsconfig.build.json" }
   ]
 }

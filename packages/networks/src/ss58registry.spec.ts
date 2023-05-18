@@ -7,7 +7,7 @@ import known from '@substrate/ss58-registry';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const other = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'packages/networks/src/test/ss58registry.test.json'), 'utf-8')) as unknown;
+const other = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'packages/networks/test/ss58registry.json'), 'utf-8')) as unknown;
 
 describe('@substrate/ss58-registry', (): void => {
   it('has known values', (): void => {
@@ -22,7 +22,7 @@ describe('@substrate/ss58-registry', (): void => {
         throw error;
       }
 
-      fs.writeFileSync(path.join(process.cwd(), 'packages/networks/src/test/ss58registry.test.json'), json, { flag: 'w' });
+      fs.writeFileSync(path.join(process.cwd(), 'packages/networks/test/ss58registry.json'), json, { flag: 'w' });
     }
   });
 });
