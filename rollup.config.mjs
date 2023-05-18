@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import path from 'path';
+import path from 'node:path';
 
 import { createBundle } from '@polkadot/dev/config/rollup';
 
@@ -23,7 +23,8 @@ const entries = ['hw-ledger-transports', 'networks', 'x-bigint', 'x-fetch', 'x-g
 
 const overrides = {
   '@polkadot/hw-ledger': {
-    // these are all in the un-shakable and unused hdDerivation stuff from the Zondax libs, ignore
+    // these are all used in the un-shakeable (and unused inside @polkadot/*) hdDerivation
+    // functionality from the Zondax libs, disable it completely with empty stubs
     entries: {
       'bip32-ed25519': path.resolve(process.cwd(), 'packages/x-bundle/build/empty.js'),
       bip39: path.resolve(process.cwd(), 'packages/x-bundle/build/empty.js'),
@@ -36,7 +37,7 @@ const overrides = {
   '@polkadot/util-crypto': {
     entries: {
       '@polkadot/wasm-crypto': path.resolve(process.cwd(), 'node_modules/@polkadot/wasm-crypto/bundle.js'),
-      'bn.js': path.resolve(process.cwd(), 'packages/x-bundle/build/bn.cjs'),
+      'bn.js': path.resolve(process.cwd(), 'packages/x-bundle/build/cjs/bn.js'),
       buffer: path.resolve(process.cwd(), 'packages/x-bundle/build/buffer.js'),
       crypto: path.resolve(process.cwd(), 'packages/x-bundle/build/crypto.js')
     },

@@ -23,7 +23,7 @@
     "@ledgerhq/hw-transport-webhid": "^6.27.14",
     "@ledgerhq/hw-transport-webusb": "^6.27.14",
     "@polkadot/util": "12.2.1",
-    "tslib": "^2.5.0"
+    "tslib": "^2.5.1"
   },
   "optionalDependencies": {
     "@ledgerhq/hw-transport-node-hid-singleton": "^6.28.11"

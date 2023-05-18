@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Remove unused `@types/*` dev dependencies
+
+
 ## 12.2.1 May 13, 2023
 
 Changes:

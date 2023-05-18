@@ -21,6 +21,6 @@
   "version": "12.2.1",
   "dependencies": {
     "@polkadot/x-global": "12.2.1",
-    "tslib": "^2.5.0"
+    "tslib": "^2.5.1"
   }
 }

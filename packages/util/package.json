@@ -41,7 +41,7 @@
     "@polkadot/x-textencoder": "12.2.1",
     "@types/bn.js": "^5.1.1",
     "bn.js": "^5.2.1",
-    "tslib": "^2.5.0"
+    "tslib": "^2.5.1"
   },
   "devDependencies": {
     "@polkadot/x-randomvalues": "12.2.1"
