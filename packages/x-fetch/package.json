@@ -22,9 +22,6 @@
   "dependencies": {
     "@polkadot/x-global": "12.2.1",
     "node-fetch": "^3.3.1",
-    "tslib": "^2.5.0"
-  },
-  "devDependencies": {
-    "@types/node-fetch": "^2.6.3"
+    "tslib": "^2.5.1"
   }
 }
