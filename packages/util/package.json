@@ -18,7 +18,7 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "12.2.1",
+  "version": "12.2.2-0-x",
   "main": "index.js",
   "exports": {
     "./hex/toU8a": {
@@ -35,15 +35,15 @@
     }
   },
   "dependencies": {
-    "@polkadot/x-bigint": "12.2.1",
-    "@polkadot/x-global": "12.2.1",
-    "@polkadot/x-textdecoder": "12.2.1",
-    "@polkadot/x-textencoder": "12.2.1",
+    "@polkadot/x-bigint": "12.2.2-0-x",
+    "@polkadot/x-global": "12.2.2-0-x",
+    "@polkadot/x-textdecoder": "12.2.2-0-x",
+    "@polkadot/x-textencoder": "12.2.2-0-x",
     "@types/bn.js": "^5.1.1",
     "bn.js": "^5.2.1",
     "tslib": "^2.5.1"
   },
   "devDependencies": {
-    "@polkadot/x-randomvalues": "12.2.1"
+    "@polkadot/x-randomvalues": "12.2.2-0-x"
   }
 }
