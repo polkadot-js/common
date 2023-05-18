@@ -3,15 +3,16 @@
   "compilerOptions": {
     "baseUrl": "..",
     "outDir": "./build",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "emitDeclarationOnly": false,
+    "noEmit": true
   },
-  "exclude": [
-    "**/*.spec.ts",
-    "**/test/*",
-    "**/mod.ts"
+  "include": [
+    "**/*.spec.ts"
   ],
   "references": [
     { "path": "../hw-ledger/tsconfig.build.json" },
+    { "path": "../networks/tsconfig.build.json" },
     { "path": "../util/tsconfig.build.json" }
   ]
 }

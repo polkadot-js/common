@@ -5,6 +5,10 @@
     "outDir": "./build",
     "rootDir": "./src"
   },
+  "exclude": [
+    "**/*.spec.ts",
+    "**/mod.ts"
+  ],
   "references": [
     { "path": "../hw-ledger-transports/tsconfig.build.json" },
     { "path": "../util/tsconfig.build.json" }

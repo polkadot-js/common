@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "outDir": "./build",
+    "rootDir": "./src",
+    "emitDeclarationOnly": false,
+    "noEmit": true
+  },
+  "include": [
+    "**/*.spec.ts"
+  ],
+  "references": [
+    { "path": "../x-global/tsconfig.build.json" },
+    { "path": "../x-textdecoder/tsconfig.build.json" }
+  ]
+}

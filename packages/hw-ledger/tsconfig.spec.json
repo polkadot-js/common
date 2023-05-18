@@ -3,13 +3,14 @@
   "compilerOptions": {
     "baseUrl": "..",
     "outDir": "./build",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "emitDeclarationOnly": false,
+    "noEmit": true
   },
-  "exclude": [
-    "**/mod.ts",
+  "include": [
     "**/*.spec.ts"
   ],
   "references": [
-    { "path": "../x-global/tsconfig.build.json" }
+    { "path": "../hw-ledger/tsconfig.build.json" }
   ]
 }
