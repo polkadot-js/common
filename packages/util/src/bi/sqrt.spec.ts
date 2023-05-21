@@ -6,6 +6,7 @@
 import { BN } from '../bn/index.js';
 import { _sqrt2pow53n, nSqrt } from './index.js';
 
+// eslint-disable-next-line jest/no-export
 export const SQRT_TESTS: [string | number | BN | bigint, string | number][] = [
   [0, 0],
   [1, 1],

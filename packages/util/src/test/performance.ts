@@ -3,6 +3,8 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
+/* global it, expect */
+
 import { formatDecimal, formatNumber } from '../index.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

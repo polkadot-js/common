@@ -5,8 +5,10 @@
 
 import { encodeAddress } from './index.js';
 
+// eslint-disable-next-line jest/no-export
 export const ALICE_PUBLIC_SR = new Uint8Array([212, 53, 147, 199, 21, 253, 211, 28, 97, 20, 26, 189, 4, 169, 159, 214, 130, 44, 133, 88, 133, 76, 205, 227, 154, 86, 132, 231, 165, 109, 162, 125]);
 
+// eslint-disable-next-line jest/no-export
 export const ALICE_PUBLIC_ED = new Uint8Array([209, 114, 167, 76, 218, 76, 134, 89, 18, 195, 43, 160, 168, 10, 87, 174, 105, 171, 174, 65, 14, 92, 203, 89, 222, 232, 78, 47, 68, 50, 219, 79]);
 
 const SUBKEY = [

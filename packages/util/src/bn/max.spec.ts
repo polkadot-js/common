@@ -6,13 +6,13 @@
 import { BN, bnMax } from './index.js';
 
 describe('bnMax', (): void => {
-  it('finds BN maximum', (): void => {
+  it('finds BN maximum (sorted)', (): void => {
     expect(
       bnMax(new BN(1), new BN(2), new BN(3))
     ).toEqual(new BN(3));
   });
 
-  it('finds BN maximum', (): void => {
+  it('finds BN maximum (unsorted)', (): void => {
     expect(
       bnMax(new BN(2), new BN(3), new BN(1))
     ).toEqual(new BN(3));

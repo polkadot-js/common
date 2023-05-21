@@ -24,6 +24,7 @@ describe('promisify', (): void => {
         throw new Error('Received unexpected result');
       })
       .catch((error: Error): void => {
+        // eslint-disable-next-line jest/no-conditional-expect
         expect(error.message).toEqual('test reject');
       });
   });
@@ -42,6 +43,7 @@ describe('promisify', (): void => {
       cb(new Error(`test reject: ${a},${b.toString()},${c}`));
 
     return promisify(null, fn, 3, 'string', true).catch((error: Error): void => {
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(error.message).toEqual('test reject: 3,string,true');
     });
   });

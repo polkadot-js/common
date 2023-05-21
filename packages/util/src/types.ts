@@ -76,8 +76,8 @@ export type HexString = `0x${string}`;
 // BufferObj interface compatible with Buffer since we don't want to require
 // references to the Buffer types from the node typings
 export interface BufferObj extends Uint8Array {
-  equals (otherBuffer: Uint8Array): boolean;
-  readDoubleLE (offset?: number): number;
+  equals: (otherBuffer: Uint8Array) => boolean;
+  readDoubleLE: (offset?: number) => number;
 }
 
 // We define a scappy low-level interface to mock Buffer
