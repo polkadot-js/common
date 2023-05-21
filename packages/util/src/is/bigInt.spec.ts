@@ -6,13 +6,13 @@
 import { isBigInt } from './index.js';
 
 describe('isBigInt', (): void => {
-  it('returns true when a BigInt value', (): void => {
+  it('returns true with a ...n value', (): void => {
     expect(
       isBigInt(123456n)
     ).toEqual(true);
   });
 
-  it('returns true when a BigInt value', (): void => {
+  it('returns true with a BigInt(...) value', (): void => {
     expect(
       isBigInt(BigInt(123456))
     ).toEqual(true);

@@ -28,7 +28,7 @@ for (const onlyJsMnemonic of [false, true]) {
             // NOTE we cannot actually use the onlyJsMnemonic flag here
             const mnemonic = mnemonicGenerate(12);
 
-            describe(mnemonic, (): void => {
+            describe(`${mnemonic}`, (): void => {
               // do iterations to check and re-check that all matches
               for (const count of arrayRange(NUM_CHECKS)) {
                 it(`check=${count + 1}`, (): void => {

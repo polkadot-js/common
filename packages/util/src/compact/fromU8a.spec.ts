@@ -31,7 +31,7 @@ describe('compactFromU8a', (): void => {
     );
   });
 
-  it('decodes from same u32 encoded value (short)', (): void => {
+  it('decodes from same u32 encoded value (short, max)', (): void => {
     expect(
       compactFromU8a(new Uint8Array([254, 255, 255, 255])).toString()
     ).toEqual(
@@ -67,7 +67,7 @@ describe('compactFromU8a', (): void => {
     ).toEqual([7, new BN('5af3107a4000', 16)]);
   });
 
-  it('decodes an actual value', (): void => {
+  it('decodes an actual value (100000000)', (): void => {
     expect(
       compactFromU8a(
         hexToU8a('0x0284d717')

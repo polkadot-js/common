@@ -68,12 +68,6 @@ describe('hexToU8a', (): void => {
     ).toEqual(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64]));
   });
 
-  it.skip('fails when non-hex value provided', (): void => {
-    expect(
-      () => hexToU8a('notahex')
-    ).toThrow(/hex value to convert/);
-  });
-
   perfCmp('hexToU8a', ['hexToU8aBuffer', 'hexToU8a'], 40, [[ptest]], (s: string, isSecond) =>
     isSecond
       ? hexToU8a(s)

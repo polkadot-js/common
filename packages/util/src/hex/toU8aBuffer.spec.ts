@@ -35,10 +35,4 @@ describe('hexToU8a', (): void => {
       new Uint8Array([128, 0])
     );
   });
-
-  it.skip('fails when non-hex value provided', (): void => {
-    expect(
-      () => hexToU8a('notahex')
-    ).toThrow(/hex value to convert/);
-  });
 });

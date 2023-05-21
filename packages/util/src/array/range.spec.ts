@@ -12,13 +12,13 @@ describe('arrayRange', (): void => {
     ).toThrow(/Expected non-zero, positive number as a range size/);
   });
 
-  it('it creates a range of the specified length', (): void => {
+  it('creates a range of the specified length', (): void => {
     expect(
       arrayRange(10)
     ).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
 
-  it('it creates a range of the specified length, with offset', (): void => {
+  it('creates a range of the specified length, with offset', (): void => {
     expect(
       arrayRange(7, 3)
     ).toEqual([3, 4, 5, 6, 7, 8, 9]);

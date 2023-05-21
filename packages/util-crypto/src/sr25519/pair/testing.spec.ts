@@ -153,6 +153,7 @@ const tests: Test[] = [
   ]
 ];
 
+// eslint-disable-next-line jest/no-export
 export default tests;
 
 it('has a test', (): void => {

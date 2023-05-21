@@ -37,13 +37,13 @@ describe('keyExtractPath', (): void => {
     expect(test.path[1].chainCode).toEqual(Uint8Array.from([2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
 
-  it('does not extract from invalid paths', (): void => {
+  it('does not extract from invalid paths (1)', (): void => {
     expect(
       (): ExtractResult => keyExtractPath('1/2')
     ).toThrow(/does not match input/);
   });
 
-  it('does not extract from invalid paths', (): void => {
+  it('does not extract from invalid paths (2)', (): void => {
     expect(
       (): ExtractResult => keyExtractPath('hello')
     ).toThrow(/does not match input/);

@@ -3,9 +3,6 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-// no TS, this is not meant to be a global...
-export {};
-
 describe('cryptoWaitReady', (): void => {
   it('should return false when it cannot initialize', async (): Promise<void> => {
     const old = global.WebAssembly;

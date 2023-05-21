@@ -26,7 +26,7 @@ describe('isUtf8', (): void => {
     expect(isUtf8()).toEqual(false);
   });
 
-  it('it is valid for ru', (): void => {
+  it('is valid for ru', (): void => {
     expect(isUtf8('Приветствую, ми')).toEqual(true);
   });
 

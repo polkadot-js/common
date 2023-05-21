@@ -6,13 +6,13 @@
 import { nMax } from './index.js';
 
 describe('nMax', (): void => {
-  it('finds maximum', (): void => {
+  it('finds maximum (sorted)', (): void => {
     expect(
       nMax(1n, 2n, 3n)
     ).toEqual(3n);
   });
 
-  it('finds maximum', (): void => {
+  it('finds maximum (unsorted)', (): void => {
     expect(
       nMax(2n, 3n, 1n)
     ).toEqual(3n);
