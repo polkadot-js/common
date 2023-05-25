@@ -21,12 +21,12 @@
   "react-native": "react-native.js",
   "dependencies": {
     "@polkadot/x-global": "12.2.2-2-x",
-    "tslib": "^2.5.1"
+    "tslib": "^2.5.2"
   },
   "devDependencies": {
     "@polkadot/util": "12.2.2-2-x",
     "@polkadot/wasm-util": "^7.2.1",
-    "@types/react-native": "^0.72.0"
+    "@types/react-native": "^0.72.1"
   },
   "peerDependencies": {
     "@polkadot/util": "12.2.2-2-x",
