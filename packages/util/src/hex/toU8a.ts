@@ -7,7 +7,7 @@ const CHR = '0123456789abcdef';
 const U8 = new Uint8Array(256);
 const U16 = new Uint8Array(256 * 256);
 
-for (let i = 0; i < CHR.length; i++) {
+for (let i = 0, count = CHR.length; i < count; i++) {
   U8[CHR[i].charCodeAt(0) | 0] = i | 0;
 
   if (i > 9) {

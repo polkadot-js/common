@@ -71,7 +71,7 @@ export function createValidate ({ chars, ipfs, type }: Config): ValidateFn {
       throw new Error(`Expected ipfs-compatible ${type} to start with '${ipfs}'`);
     }
 
-    for (let i = (ipfsCompat ? 1 : 0); i < value.length; i++) {
+    for (let i = (ipfsCompat ? 1 : 0), count = value.length; i < count; i++) {
       if (!(chars.includes(value[i]) || (
         value[i] === '=' && (
           (i === value.length - 1) ||

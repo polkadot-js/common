@@ -16,7 +16,7 @@ export function insecureRandomValues <T extends Uint8Array> (arr: T): T {
 
   let r = 0;
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0, count = arr.length; i < count; i++) {
     if ((i & 0b11) === 0) {
       r = Math.random() * 0x100000000;
     }

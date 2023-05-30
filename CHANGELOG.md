@@ -4,7 +4,9 @@
 
 Changes:
 
+- Apply missing count assignment for `for (...)` loops
 - Remove unused `@types/*` dev dependencies
+- Upgrade dependencies to latest stable versions
 
 
 ## 12.2.1 May 13, 2023

@@ -11,7 +11,7 @@ export class TextDecoder {
   decode (value: Uint8Array): string {
     let result = '';
 
-    for (let i = 0; i < value.length; i++) {
+    for (let i = 0, count = value.length; i < count; i++) {
       result += String.fromCharCode(value[i]);
     }
 
