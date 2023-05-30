@@ -35,7 +35,7 @@ export function u8aEq (a: HexString | Uint8Array | string, b: HexString | Uint8A
       }
     }
 
-    for (let i = length; i < u8aa.length; i++) {
+    for (let i = length, count = u8aa.length; i < count; i++) {
       if (u8aa[i] !== u8ab[i]) {
         return false;
       }

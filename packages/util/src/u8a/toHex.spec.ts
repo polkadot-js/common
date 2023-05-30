@@ -10,7 +10,7 @@ import { u8aToHex as u8aToHexBuffer } from './toHexBuffer.js';
 const ptest32k = new Uint8Array(32768);
 const ptest256 = new Uint8Array(256);
 
-for (let i = 0; i < ptest32k.length; i++) {
+for (let i = 0, count = ptest32k.length; i < count; i++) {
   if (i < ptest256.length) {
     ptest256[1] = i % 256;
   }

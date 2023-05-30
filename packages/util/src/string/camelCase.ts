@@ -6,7 +6,7 @@ import type { AnyString } from '../types.js';
 export const CC_TO_UP = new Array<string>(256);
 export const CC_TO_LO = new Array<string>(256);
 
-for (let i = 0; i < CC_TO_UP.length; i++) {
+for (let i = 0, count = CC_TO_UP.length; i < count; i++) {
   CC_TO_LO[i] = String.fromCharCode(i).toLowerCase();
   CC_TO_UP[i] = String.fromCharCode(i).toUpperCase();
 }
@@ -39,10 +39,9 @@ function converter (format: (w: string, i: number) => string): (value: AnyString
       .trim()
       // split into words
       .split(' ');
-    const count = parts.length;
     let result = '';
 
-    for (let i = 0; i < count; i++) {
+    for (let i = 0, count = parts.length; i < count; i++) {
       const w = parts[i];
 
       // apply the formatting

@@ -10,7 +10,7 @@ const ltest = new Uint8Array(32768);
 const stest = new Uint8Array(256);
 const ztest = new Uint8Array(64);
 
-for (let i = 0; i < ltest.length; i++) {
+for (let i = 0, count = ltest.length; i < count; i++) {
   if (i < ztest.length) {
     ztest[i] = i % 256;
   }

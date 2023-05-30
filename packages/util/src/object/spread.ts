@@ -6,7 +6,7 @@
  * @summary Concats all sources into the destination
  */
 export function objectSpread <T extends object> (dest: object, ...sources: (object | undefined | null)[]): T {
-  for (let i = 0; i < sources.length; i++) {
+  for (let i = 0, count = sources.length; i < count; i++) {
     const src = sources[i];
 
     if (src) {

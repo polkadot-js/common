@@ -9,9 +9,7 @@ import { isString } from './string.js';
 
 /** @internal */
 function isAsciiStr (str: AnyString): boolean {
-  const count = str.length | 0;
-
-  for (let i = 0; i < count; i++) {
+  for (let i = 0, count = str.length; i < count; i++) {
     const b = str.charCodeAt(i);
 
     // check is inlined here, it is faster than making a call
@@ -25,9 +23,7 @@ function isAsciiStr (str: AnyString): boolean {
 
 /** @internal */
 function isAsciiBytes (u8a: Uint8Array | number[]): boolean {
-  const count = u8a.length | 0;
-
-  for (let i = 0; i < count; i++) {
+  for (let i = 0, count = u8a.length; i < count; i++) {
     const b = u8a[i] | 0;
 
     // check is inlined here, it is faster than making a call

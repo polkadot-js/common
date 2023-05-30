@@ -31,7 +31,7 @@ export const SI: SiDef[] = [
 /** @internal */
 export function findSi (type: string): SiDef {
   // use a loop here, better RN support (which doesn't have [].find)
-  for (let i = 0; i < SI.length; i++) {
+  for (let i = 0, count = SI.length; i < count; i++) {
     if (SI[i].value === type) {
       return SI[i];
     }
