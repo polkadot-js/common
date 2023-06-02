@@ -5,8 +5,7 @@
 
 import { xglobal } from '@polkadot/x-global';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+// @ts-expect-error Clearing this, it is obviously not valid in normal code
 xglobal.TextEncoder = undefined;
 
 describe('TextEncoder (node)', (): void => {

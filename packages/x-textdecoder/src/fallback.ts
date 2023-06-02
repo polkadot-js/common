@@ -3,9 +3,10 @@
 
 // This is very limited, only handling Ascii values
 export class TextDecoder {
-  // eslint-disable-next-line no-useless-constructor
-  constructor (_?: 'utf-8' | 'utf8') {
-    // nothing
+  __encoding: string;
+
+  constructor (encoding: 'utf-8' | 'utf8') {
+    this.__encoding = encoding;
   }
 
   decode (value: Uint8Array): string {
