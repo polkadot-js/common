@@ -3,9 +3,9 @@
 
 // This is very limited, only handling Ascii values
 export class TextDecoder {
-  __encoding: string;
+  __encoding?: string;
 
-  constructor (encoding: 'utf-8' | 'utf8') {
+  constructor (encoding?: 'utf-8' | 'utf8') {
     this.__encoding = encoding;
   }
 
