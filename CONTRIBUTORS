@@ -1,4 +1,4 @@
-    1619	Jaco                          	Apply missing count assignment in for  loops (#1836)
+    1620	Jaco                          	Bump deps (w/ TS 5.1) (#1837)
       12	Carlo Sala                    	feat(networks): support ledger for pendulum (#1739)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
