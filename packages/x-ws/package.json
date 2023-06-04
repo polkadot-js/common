@@ -21,7 +21,7 @@
   "react-native": "react-native.js",
   "dependencies": {
     "@polkadot/x-global": "12.2.2-6-x",
-    "tslib": "^2.5.2",
+    "tslib": "^2.5.3",
     "ws": "^8.13.0"
   },
   "devDependencies": {
