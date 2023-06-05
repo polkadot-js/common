@@ -115,6 +115,6 @@ describe('selectableNetworks', (): void => {
 
   it('has a sorted list (first external, last external)', (): void => {
     expect(selectableNetworks[3].displayName).toEqual('3DP network');
-    expect(selectableNetworks[selectableNetworks.length - 1].displayName).toEqual('xx network');
+    expect(selectableNetworks[selectableNetworks.length - 1].displayName).toEqual('Zeitgeist');
   });
 });
