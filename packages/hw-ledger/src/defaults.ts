@@ -38,5 +38,6 @@ export const ledgerApps: Record<string, string> = {
   ternoa: 'Ternoa',
   unique: 'Unique',
   vtb: 'VTB',
-  xxnetwork: 'XXNetwork'
+  xxnetwork: 'XXNetwork',
+  zeitgeist: 'Zeitgeist'
 };

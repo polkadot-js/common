@@ -157,5 +157,8 @@ export const knownGenesis: KnownGenesis = {
   ],
   xxnetwork: [
     '0x50dd5d206917bf10502c68fb4d18a59fc8aa31586f4e8856b493e43544aa82aa'
+  ],
+  zeitgeist: [
+    '0x1bf2a2ecb4a868de66ea8610f2ce7c8c43706561b6476031315f6640fe38e060'
   ]
 };
