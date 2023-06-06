@@ -75,11 +75,14 @@ export function createValidate ({ chars, ipfs, type, withPadding }: Config): Val
     for (let i = (ipfsCompat ? 1 : 0), count = value.length; i < count; i++) {
       if (chars.includes(value[i])) {
         // all ok, character found
-      } else if (withPadding && value[i] === '=' && (
-        (i === count - 1) ||
-        (value[i + 1] === '=')
-      )) {
-        // padding character found, allowed here
+      } else if (withPadding && value[i] === '=') {
+        if (i === count - 1) {
+          // last character, everything ok
+        } else if (value[i + 1] === '=') {
+          // next one is also padding, sequence ok
+        } else {
+          throw new Error(`Invalid ${type} padding sequence "${value[i]}${value[i + 1]}" at index ${i}`);
+        }
       } else {
         throw new Error(`Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`);
       }

@@ -27,6 +27,6 @@ describe('base64Validate', (): void => {
   it('validates misplaced padding characters', (): void => {
     expect(
       () => base64Validate('bGlnaHQgdw=g=')
-    ).toThrow(/Invalid base64 character/);
+    ).toThrow(/Invalid base64 padding sequence "=g"/);
   });
 });
