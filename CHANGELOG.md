@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Only allow padding characters in base64 strings
+
+
 ## 12.2.2 Jun 4, 2023
 
 Changes:

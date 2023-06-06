@@ -8,7 +8,8 @@ import { createDecode, createEncode, createIs, createValidate } from '../base32/
 const config = {
   chars: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
   coder: base64,
-  type: 'base64'
+  type: 'base64',
+  withPadding: true
 };
 
 /**
