@@ -15,16 +15,41 @@ export interface KeyringOptions {
   type?: KeypairType;
 }
 
-export interface KeyringPair$Meta {
-  genesisHash?: HexString | null;
+export interface KeyringPair$MetaHardware {
+  accountIndex?: number;
+  addressOffset: number;
+  hardwareType?: 'ledger';
+}
+
+export interface KeyringPair$MetaFlags {
+  isDefaultAuthSelected?: boolean;
   isExternal?: boolean;
+  isHardware?: boolean;
+  isHidden?: boolean;
+  isInjected?: boolean;
   isMultisig?: boolean;
+  isRecent?: boolean;
   isTesting?: boolean;
+}
+
+export interface KeyringPair$MetaContract {
+  abi: string;
+  genesisHash?: HexString | null;
+}
+
+export interface KeyringPair$Meta extends KeyringPair$MetaHardware, KeyringPair$MetaFlags {
+  address?: string;
+  contract?: KeyringPair$MetaContract;
+  genesisHash?: HexString | null;
   name?: string;
+  parentAddress?: string;
+  suri?: string;
   tags?: string[];
   threshold?: number;
+  type?: KeypairType;
   whenCreated?: number;
   whenEdited?: number;
+  whenUsed?: number;
 
   [key: string]: unknown;
 }
