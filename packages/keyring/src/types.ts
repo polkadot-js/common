@@ -17,7 +17,7 @@ export interface KeyringOptions {
 
 export interface KeyringPair$MetaHardware {
   accountIndex?: number;
-  addressOffset: number;
+  addressOffset?: number;
   hardwareType?: 'ledger';
 }
 
@@ -37,12 +37,16 @@ export interface KeyringPair$MetaContract {
   genesisHash?: HexString | null;
 }
 
-export interface KeyringPair$Meta extends KeyringPair$MetaHardware, KeyringPair$MetaFlags {
+export interface KeyringPair$MetaParent {
+  parentAddress?: string;
+  parentName?: string;
+}
+
+export interface KeyringPair$Meta extends KeyringPair$MetaHardware, KeyringPair$MetaFlags, KeyringPair$MetaParent {
   address?: string;
   contract?: KeyringPair$MetaContract;
   genesisHash?: HexString | null;
   name?: string;
-  parentAddress?: string;
   suri?: string;
   tags?: string[];
   threshold?: number;
