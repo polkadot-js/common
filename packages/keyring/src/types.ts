@@ -16,7 +16,15 @@ export interface KeyringOptions {
 }
 
 export interface KeyringPair$Meta {
+  genesisHash?: HexString | null;
+  isExternal?: boolean;
+  isMultisig?: boolean;
+  isTesting?: boolean;
   name?: string;
+  tags?: string[];
+  threshold?: number;
+  whenCreated?: number;
+  whenEdited?: number;
 
   [key: string]: unknown;
 }
