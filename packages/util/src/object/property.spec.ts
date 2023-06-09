@@ -8,7 +8,7 @@ import { objectProperties, objectProperty } from './index.js';
 
 describe('objectProperty/objectProperties', (): void => {
   it('sets a property', (): void => {
-    const test: Record<string, unknown> = {};
+    const test: { a?: unknown } = {};
 
     expect(test.a).toEqual(undefined);
 
@@ -20,7 +20,7 @@ describe('objectProperty/objectProperties', (): void => {
   });
 
   it('does not override an existing property (record)', (): void => {
-    const test: Record<string, unknown> = { a: 1 };
+    const test = { a: 1 };
 
     expect(test.a).toEqual(1);
 
@@ -75,7 +75,7 @@ describe('objectProperty/objectProperties', (): void => {
       }
     }
 
-    const test = new Child() as unknown as Record<string, unknown>;
+    const test = new Child() as unknown as { a: number; b: number; c?: number };
 
     expect(test.a).toEqual(1);
     expect(test.b).toEqual(1);
@@ -99,7 +99,7 @@ describe('objectProperty/objectProperties', (): void => {
       }
     }
 
-    const test = new Test() as unknown as Record<string, unknown>;
+    const test = new Test() as unknown as { a: number };
 
     expect(test.a).toEqual(1);
   });
@@ -116,14 +116,14 @@ describe('objectProperty/objectProperties', (): void => {
       }
     }
 
-    const test = new Test() as unknown as Record<string, unknown>;
+    const test = new Test() as unknown as { a: number; b: number };
 
     expect(test.a).toEqual(1);
     expect(test.b).toEqual(2);
   });
 
   it('calls back with the key name (single)', (): void => {
-    const test: Record<string, unknown> = {};
+    const test: { a?: number } = {};
     const getter = jest.fn(() => 123);
 
     objectProperty(test, 'a', getter);
@@ -134,7 +134,7 @@ describe('objectProperty/objectProperties', (): void => {
   });
 
   it('calls back with the key name & index (numtiple)', (): void => {
-    const test: Record<string, unknown> = {};
+    const test: { a?: number; b?: number; c?: number } = {};
     const getter = jest.fn(() => 123);
 
     objectProperties(test, ['a', 'b', 'c'], getter);

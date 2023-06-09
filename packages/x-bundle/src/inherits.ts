@@ -5,10 +5,18 @@
 // The ISC License
 // Copyright (c) Isaac Z. Schlueter
 
-export default function inherits (child: Record<string, unknown>, parent: Record<string, unknown>): void {
+interface Class {
+  prototype: object;
+  super_: Class;
+
+  [key: string]: unknown;
+}
+
+export default function inherits (child: Class, parent: Class): void {
   if (parent) {
     child.super_ = parent;
-    child.prototype = Object.create(parent.prototype as object, {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    child.prototype = Object.create(parent.prototype, {
       constructor: {
         configurable: true,
         enumerable: false,

@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Constructor } from '../types.js';
+import type { Class } from '../types.js';
 
 import { isClass } from './class.js';
 
@@ -20,8 +20,8 @@ import { isClass } from './class.js';
  * console.log('isChildClass', isChildClass(BN, Uint8Array); // => false
  * ```
  */
-export function isChildClass <P extends Constructor> (Parent: P, Child?: unknown): Child is P {
-  // https://stackoverflow.com/questions/30993434/check-if-a-constructor-inherits-another-in-es6/30993664
+export function isChildClass <P extends Class> (Parent: P, Child?: unknown): Child is P {
+  // https://stackoverflow.com/questions/30993434/check-if-a-Class-inherits-another-in-es6/30993664
   return isClass(Child) && isClass(Parent)
     // eslint-disable-next-line no-prototype-builtins
     ? Parent === Child || Parent.isPrototypeOf(Child)

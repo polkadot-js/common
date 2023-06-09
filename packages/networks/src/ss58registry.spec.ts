@@ -16,7 +16,7 @@ describe('@substrate/ss58-registry', (): void => {
     try {
       expect(JSON.parse(json)).toEqual(other);
     } catch (error) {
-      if (process.env.GITHUB_REPOSITORY) {
+      if (process.env['GITHUB_REPOSITORY']) {
         console.error(json);
 
         throw error;

@@ -43,7 +43,7 @@ function getRandomValuesRn (output: Uint8Array): Uint8Array {
 export const getRandomValues = (
   (typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function')
     ? getRandomValuesBrowser
-    : (typeof xglobal.nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
+    : (typeof xglobal['nativeCallSyncHook'] === 'undefined' || !NativeModules['ExpoRandom'])
       ? insecureRandomValues
       : getRandomValuesRn
 );

@@ -15,7 +15,11 @@ export interface KeyringOptions {
   type?: KeypairType;
 }
 
-export type KeyringPair$Meta = Record<string, unknown>;
+export interface KeyringPair$Meta {
+  name?: string;
+
+  [key: string]: unknown;
+}
 
 export interface KeyringPair$Json extends EncryptedJson {
   /** The ss58 encoded address or the hex-encoded version (the latter is for ETH-compat chains) */
