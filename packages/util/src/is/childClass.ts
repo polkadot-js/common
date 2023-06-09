@@ -21,7 +21,7 @@ import { isClass } from './class.js';
  * ```
  */
 export function isChildClass <P extends Class> (Parent: P, Child?: unknown): Child is P {
-  // https://stackoverflow.com/questions/30993434/check-if-a-Class-inherits-another-in-es6/30993664
+  // https://stackoverflow.com/questions/30993434/check-if-a-constructor-inherits-another-in-es6/30993664
   return isClass(Child) && isClass(Parent)
     // eslint-disable-next-line no-prototype-builtins
     ? Parent === Child || Parent.isPrototypeOf(Child)
