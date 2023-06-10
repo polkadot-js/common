@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { RegistryEntry } from '@substrate/ss58-registry';
+import type { HexString } from '@polkadot/util/types';
 
 export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate';
 
@@ -9,7 +10,7 @@ export type KnownIcon = Record<string, Icon>;
 
 export type KnownLedger = Record<string, number>;
 
-export type KnownGenesis = Record<string, string[]>;
+export type KnownGenesis = Record<string, HexString[]>;
 
 export type KnownSubstrate = RegistryEntry;
 
