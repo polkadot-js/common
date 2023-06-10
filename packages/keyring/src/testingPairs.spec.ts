@@ -62,6 +62,7 @@ describe('testingPairs', (): void => {
       '0x4c42532034540267bf568198ccec4cb822a025da542861fcb146a5fab6433ff8',
       '0x94c49300a58d576011096bcb006aa06f5a91b34b4383891e8029c21dc39fbb8b'];
 
+    // @ts-expect-error We should not delete from the maps, however this is a test
     delete ring.nobody;
 
     Object

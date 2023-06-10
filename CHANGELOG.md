@@ -5,6 +5,8 @@
 Changes:
 
 - Only allow padding characters in base64 strings
+- Expand typings for keyring meta with known keys
+- Adjust object index access for stricter tsconfig settings
 
 
 ## 12.2.2 Jun 4, 2023

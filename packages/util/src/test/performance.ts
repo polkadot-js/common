@@ -44,7 +44,7 @@ ${formatFixed(micro).padStart(NUM_PAD + PRE_PAD + 1)} μs/op`;
 }
 
 export function perf (name: string, count: number, inputs: readonly unknown[][], exec: ExecFn, withLog?: boolean): void {
-  const test = process.env.GITHUB_REPOSITORY
+  const test = process.env['GITHUB_REPOSITORY']
     ? it.skip
     : it;
 
@@ -64,7 +64,7 @@ ${`${name}:`.padStart(PRE_PAD)} ${time.toFixed(2).padStart(NUM_PAD)} ms${formatO
 }
 
 export function perfCmp (name: string, [first, second]: [string, string], count: number, inputs: readonly unknown[][], exec: ExecFn): void {
-  const test = process.env.GITHUB_REPOSITORY
+  const test = process.env['GITHUB_REPOSITORY']
     ? it.skip
     : it;
 
