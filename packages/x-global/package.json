@@ -15,7 +15,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "12.3.0",
+  "version": "12.3.1",
   "main": "index.js",
   "dependencies": {
     "tslib": "^2.5.3"
