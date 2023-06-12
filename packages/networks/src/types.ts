@@ -17,7 +17,7 @@ export type KnownSubstrate = RegistryEntry;
 export type KnownTestnet = Record<string, true>;
 
 export interface SubstrateNetwork extends KnownSubstrate {
-  genesisHash: string[];
+  genesisHash: HexString[];
   hasLedgerSupport: boolean;
   icon: Icon;
   isIgnored: boolean;

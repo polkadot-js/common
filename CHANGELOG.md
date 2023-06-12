@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 12.3.2 Jun 12, 2023
+
+Changes:
+
+- Adjust `SubstrateNetwork` typing with `HexString` genesisHash
+- Re-export `Constructor<T>` type (deprecated, replaced with `Class<T>`)
+
+
 ## 12.3.1 Jun 11, 2023
 
 Changes:
