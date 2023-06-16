@@ -5,16 +5,22 @@
 
 import known from '@substrate/ss58-registry';
 import fs from 'node:fs';
-import path from 'node:path';
 
-const other = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'packages/networks/test/ss58registry.json'), 'utf-8')) as unknown;
+import { stringify } from '@polkadot/util';
 
 describe('@substrate/ss58-registry', (): void => {
   it('has known values', (): void => {
-    const json = JSON.stringify(known, null, 2);
+    const testUrl = new URL('../test/ss58registry.json', import.meta.url);
+    const json = stringify(known, 2);
 
     try {
-      expect(JSON.parse(json)).toEqual(other);
+      expect(
+        JSON.parse(json)
+      ).toEqual(
+        JSON.parse(
+          fs.readFileSync(testUrl, 'utf-8')
+        )
+      );
     } catch (error) {
       if (process.env['GITHUB_REPOSITORY']) {
         console.error(json);
@@ -22,7 +28,7 @@ describe('@substrate/ss58-registry', (): void => {
         throw error;
       }
 
-      fs.writeFileSync(path.join(process.cwd(), 'packages/networks/test/ss58registry.json'), json, { flag: 'w' });
+      fs.writeFileSync(testUrl, json, { flag: 'w' });
     }
   });
 });

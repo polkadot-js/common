@@ -5,7 +5,7 @@
 
 /* global it, expect */
 
-import { formatDecimal, formatNumber } from '../index.js';
+import { formatDecimal, formatNumber, stringify } from '../index.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ExecFn = (...params: any[]) => unknown;
@@ -85,7 +85,7 @@ ${`${second}:`.padStart(PRE_PAD)} ${t2.toFixed(2).padStart(NUM_PAD)} ms ${t1 > t
 
     expect(
       r1.filter((_, i) =>
-        JSON.stringify(r1[i]) !== JSON.stringify(r2[i])
+        stringify(r1[i]) !== stringify(r2[i])
       )
     ).toHaveLength(0);
   });
