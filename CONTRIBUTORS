@@ -1,4 +1,4 @@
-    1628	Jaco                          	Use import.meta.url instead of process.cwd() (#1847)
+    1629	Jaco                          	Bump deps (#1850)
       13	Carlo Sala                    	feat(networks): add zeitgeist Ledger support (#1840)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
