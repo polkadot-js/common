@@ -51,12 +51,14 @@ export function u8aUnwrapBytes (bytes: U8aLike): Uint8Array {
 
 /**
  * @name u8aWrapBytes
- * @description Adds a <Bytes>...</Bytes> wrapper to the supplied value (if not already existing)
+ * @description
+ * Adds a <Bytes>...</Bytes> wrapper to the supplied value, if
+ * - We don't already have a Bytes wrapper
+ * - The message is not an Ethereum-style message
  */
 export function u8aWrapBytes (bytes: U8aLike): Uint8Array {
   const u8a = u8aToU8a(bytes);
 
-  // if Ethereum-wrapping, we don't add our wrapping bytes
   return u8aIsWrapped(u8a, true)
     ? u8a
     : u8aConcatStrict([U8A_WRAP_PREFIX, u8a, U8A_WRAP_POSTFIX]);

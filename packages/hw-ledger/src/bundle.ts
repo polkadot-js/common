@@ -8,7 +8,7 @@ import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerVersion } fr
 import { newSubstrateApp } from '@zondax/ledger-substrate';
 
 import { transports } from '@polkadot/hw-ledger-transports';
-import { hexAddPrefix, u8aToBuffer } from '@polkadot/util';
+import { hexAddPrefix, u8aToBuffer, u8aWrapBytes } from '@polkadot/util';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.js';
 import { ledgerApps } from './defaults.js';
@@ -110,7 +110,7 @@ export class Ledger {
    * Signs a message (non-transactional) on the Ledger device
    */
   public async signRaw (message: Uint8Array, accountOffset?: number, addressOffset?: number, options?: Partial<AccountOptions>): Promise<LedgerSignature> {
-    return this.withApp(sign('signRaw', message, accountOffset, addressOffset, options));
+    return this.withApp(sign('signRaw', u8aWrapBytes(message), accountOffset, addressOffset, options));
   }
 
   /**
