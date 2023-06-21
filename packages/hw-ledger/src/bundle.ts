@@ -8,7 +8,7 @@ import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerVersion } fr
 import { newSubstrateApp } from '@zondax/ledger-substrate';
 
 import { transports } from '@polkadot/hw-ledger-transports';
-import { hexAddPrefix, u8aToBuffer } from '@polkadot/util';
+import { hexAddPrefix, u8aToBuffer, u8aWrapBytes } from '@polkadot/util';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.js';
 import { ledgerApps } from './defaults.js';
@@ -28,6 +28,17 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
   }
 
   return result;
+}
+
+/** @internal Wraps a sign/signRaw call and returns the associated signature */
+function sign (method: 'sign' | 'signRaw', message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): (app: SubstrateApp) => Promise<LedgerSignature> {
+  return async (app: SubstrateApp): Promise<LedgerSignature> => {
+    const { signature } = await wrapError(app[method](account + accountOffset, change, addressIndex + addressOffset, u8aToBuffer(message)));
+
+    return {
+      signature: hexAddPrefix(signature.toString('hex'))
+    };
+  };
 }
 
 /**
@@ -91,15 +102,15 @@ export class Ledger {
   /**
    * Signs a transaction on the Ledger device
    */
-  public async sign (message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerSignature> {
-    return this.withApp(async (app: SubstrateApp): Promise<LedgerSignature> => {
-      const buffer = u8aToBuffer(message);
-      const { signature } = await wrapError(app.sign(account + accountOffset, change, addressIndex + addressOffset, buffer));
+  public async sign (message: Uint8Array, accountOffset?: number, addressOffset?: number, options?: Partial<AccountOptions>): Promise<LedgerSignature> {
+    return this.withApp(sign('sign', message, accountOffset, addressOffset, options));
+  }
 
-      return {
-        signature: hexAddPrefix(signature.toString('hex'))
-      };
-    });
+  /**
+   * Signs a message (non-transactional) on the Ledger device
+   */
+  public async signRaw (message: Uint8Array, accountOffset?: number, addressOffset?: number, options?: Partial<AccountOptions>): Promise<LedgerSignature> {
+    return this.withApp(sign('signRaw', u8aWrapBytes(message), accountOffset, addressOffset, options));
   }
 
   /**

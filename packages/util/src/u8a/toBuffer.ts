@@ -12,7 +12,7 @@
  * ```javascript
  * import { u8aToBuffer } from '@polkadot/util';
  *
- * console.log('Buffer', u8aToBuffer('0x123480001f'));
+ * console.log('Buffer', u8aToBuffer(new Uint8Array([1, 2, 3])));
  * ```
  */
 export function u8aToBuffer (value?: Uint8Array | null): Buffer {
