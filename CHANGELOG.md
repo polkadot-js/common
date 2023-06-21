@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Upgrade dependencies to latest stable versions
+- Use `stringify/import.meta.url` helpers in specs
+
 ## 12.3.2 Jun 12, 2023
 
 Changes:
