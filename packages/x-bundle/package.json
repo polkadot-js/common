@@ -20,6 +20,6 @@
   "dependencies": {
     "@polkadot/util": "12.3.3-2-x",
     "buffer-es6": "^4.9.3",
-    "tslib": "^2.5.3"
+    "tslib": "^2.6.0"
   }
 }
