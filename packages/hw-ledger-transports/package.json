@@ -26,6 +26,6 @@
     "tslib": "^2.6.0"
   },
   "optionalDependencies": {
-    "@ledgerhq/hw-transport-node-hid-singleton": "^6.28.13"
+    "@ledgerhq/hw-transport-node-hid-singleton": "^6.28.14"
   }
 }
