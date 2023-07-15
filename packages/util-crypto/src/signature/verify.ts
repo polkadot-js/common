@@ -1,7 +1,6 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '@polkadot/util/types';
 import type { KeypairType, VerifyResult } from '../types.js';
 
 import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from '@polkadot/util';
@@ -87,7 +86,7 @@ function getVerifyFn (signature: Uint8Array): VerifyFn {
     : verifyDetect;
 }
 
-export function signatureVerify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, addressOrPublicKey: HexString | Uint8Array | string): VerifyResult {
+export function signatureVerify (message: string | Uint8Array, signature: string | Uint8Array, addressOrPublicKey: string | Uint8Array): VerifyResult {
   const signatureU8a = u8aToU8a(signature);
 
   if (![64, 65, 66].includes(signatureU8a.length)) {

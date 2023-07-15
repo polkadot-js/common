@@ -1,7 +1,6 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '@polkadot/util/types';
 import type { Prefix } from './types.js';
 
 import { base58Decode } from '../base58/index.js';
@@ -14,7 +13,7 @@ import { defaults } from './defaults.js';
  * @description
  * From the provided input, validate that the address is a valid input.
  */
-export function checkAddress (address: HexString | string, prefix: Prefix): [boolean, string | null] {
+export function checkAddress (address: string, prefix: Prefix): [boolean, string | null] {
   let decoded;
 
   try {

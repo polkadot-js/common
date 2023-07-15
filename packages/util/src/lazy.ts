@@ -3,7 +3,7 @@
 
 type AnyFn = (...args: unknown[]) => unknown;
 
-type WithToString = { toString: () => string };
+interface WithToString { toString: () => string }
 
 /**
  * @name lazyMethod

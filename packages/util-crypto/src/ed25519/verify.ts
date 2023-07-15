@@ -1,8 +1,6 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '@polkadot/util/types';
-
 import { ed25519 } from '@noble/curves/ed25519';
 
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
@@ -22,7 +20,7 @@ import { ed25519Verify as wasmVerify, isReady } from '@polkadot/wasm-crypto';
  * ed25519Verify([...], [...], [...]); // => true/false
  * ```
  */
-export function ed25519Verify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, publicKey: HexString | Uint8Array | string, onlyJs?: boolean): boolean {
+export function ed25519Verify (message: string | Uint8Array, signature: string | Uint8Array, publicKey: string | Uint8Array, onlyJs?: boolean): boolean {
   const messageU8a = u8aToU8a(message);
   const publicKeyU8a = u8aToU8a(publicKey);
   const signatureU8a = u8aToU8a(signature);

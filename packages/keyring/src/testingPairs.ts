@@ -47,7 +47,9 @@ export function createTestPairs <O extends KeyringOptions, M = DetectMap<O>> (op
   const map: TestKeyringMap = { nobody: nobody() };
 
   for (const p of pairs) {
-    map[p.meta.name as string] = p;
+    if (p.meta.name) {
+      map[p.meta.name] = p;
+    }
   }
 
   return map as M;

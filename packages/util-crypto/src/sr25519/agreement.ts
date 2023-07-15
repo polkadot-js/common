@@ -1,8 +1,6 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '@polkadot/util/types';
-
 import { u8aToU8a } from '@polkadot/util';
 import { sr25519Agree } from '@polkadot/wasm-crypto';
 
@@ -10,7 +8,7 @@ import { sr25519Agree } from '@polkadot/wasm-crypto';
  * @name sr25519Agreement
  * @description Key agreement between other's public key and self secret key
  */
-export function sr25519Agreement (secretKey: HexString | Uint8Array | string, publicKey: HexString | Uint8Array | string): Uint8Array {
+export function sr25519Agreement (secretKey: string | Uint8Array, publicKey: string | Uint8Array): Uint8Array {
   const secretKeyU8a = u8aToU8a(secretKey);
   const publicKeyU8a = u8aToU8a(publicKey);
 

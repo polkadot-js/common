@@ -1,7 +1,6 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '@polkadot/util/types';
 import type { Keypair } from '../types.js';
 
 import { ed25519 } from '@noble/curves/ed25519';
@@ -23,7 +22,7 @@ import { ed25519Sign as wasmSign, isReady } from '@polkadot/wasm-crypto';
  * ed25519Sign([...], [...]); // => [...]
  * ```
  */
-export function ed25519Sign (message: HexString | Uint8Array | string, { publicKey, secretKey }: Partial<Keypair>, onlyJs?: boolean): Uint8Array {
+export function ed25519Sign (message: string | Uint8Array, { publicKey, secretKey }: Partial<Keypair>, onlyJs?: boolean): Uint8Array {
   if (!secretKey) {
     throw new Error('Expected a valid secretKey');
   } else if (!publicKey) {

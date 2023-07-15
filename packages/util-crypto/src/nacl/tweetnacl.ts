@@ -958,7 +958,7 @@ function checkLengths (k: Uint8Array, n: Uint8Array): void {
 // }
 
 function checkArrayTypes (...args: unknown[]): void {
-  for (let i = 0; i < args.length; i++) {
+  for (let i = 0, count = args.length; i < count; i++) {
     if (!(args[i] instanceof Uint8Array))
       throw new TypeError('unexpected type, use Uint8Array');
   }

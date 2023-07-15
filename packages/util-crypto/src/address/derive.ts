@@ -1,7 +1,6 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '@polkadot/util/types';
 import type { DeriveJunction } from '../key/DeriveJunction.js';
 import type { Prefix } from './types.js';
 
@@ -20,7 +19,7 @@ function filterHard ({ isHard }: DeriveJunction): boolean {
  * @description
  * Creates a sr25519 derived address based on the input address/publicKey and the uri supplied.
  */
-export function deriveAddress (who: HexString | Uint8Array | string, suri: string, ss58Format?: Prefix): string {
+export function deriveAddress (who: string | Uint8Array, suri: string, ss58Format?: Prefix): string {
   const { path } = keyExtractPath(suri);
 
   if (!path.length || path.every(filterHard)) {

@@ -1,7 +1,6 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '@polkadot/util/types';
 import type { HashType } from './types.js';
 
 import { secp256k1 } from '@noble/curves/secp256k1';
@@ -16,7 +15,7 @@ import { secp256k1Expand } from './expand.js';
  * @name secp256k1Recover
  * @description Recovers a publicKey from the supplied signature
  */
-export function secp256k1Recover (msgHash: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, recovery: number, hashType: HashType = 'blake2', onlyJs?: boolean): Uint8Array {
+export function secp256k1Recover (msgHash: string | Uint8Array, signature: string | Uint8Array, recovery: number, hashType: HashType = 'blake2', onlyJs?: boolean): Uint8Array {
   const sig = u8aToU8a(signature).subarray(0, 64);
   const msg = u8aToU8a(msgHash);
   const publicKey = !hasBigInt || (!onlyJs && isReady())

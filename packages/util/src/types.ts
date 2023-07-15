@@ -90,7 +90,7 @@ export interface BufferObjClass extends Class<BufferObj> {
   isBuffer: (value: unknown) => boolean;
 }
 
-export type U8aLike = HexString | number[] | Uint8Array | AnyString;
+export type U8aLike = number[] | Uint8Array | AnyString;
 
 export interface Observable {
   next: (...params: unknown[]) => unknown;
