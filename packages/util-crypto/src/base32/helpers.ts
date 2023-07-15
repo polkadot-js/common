@@ -68,7 +68,7 @@ export function createValidate ({ chars, ipfs, type, withPadding }: Config): Val
   return (value?: unknown, ipfsCompat?: boolean): value is string => {
     if (typeof value !== 'string') {
       throw new Error(`Expected ${type} string input`);
-    } else if (ipfs && ipfsCompat && value[0] !== ipfs) {
+    } else if (ipfs && ipfsCompat && !value.startsWith(ipfs)) {
       throw new Error(`Expected ipfs-compatible ${type} to start with '${ipfs}'`);
     }
 

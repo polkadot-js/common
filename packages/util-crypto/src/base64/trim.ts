@@ -6,7 +6,7 @@
  * @description Trims padding characters
  */
 export function base64Trim (value: string): string {
-  while (value.length && value[value.length - 1] === '=') {
+  while (value.length && value.endsWith('=')) {
     value = value.slice(0, -1);
   }
 

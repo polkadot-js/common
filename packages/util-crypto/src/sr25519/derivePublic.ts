@@ -1,12 +1,10 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '@polkadot/util/types';
-
 import { isU8a, u8aToU8a } from '@polkadot/util';
 import { sr25519DerivePublicSoft } from '@polkadot/wasm-crypto';
 
-export function sr25519DerivePublic (publicKey: HexString | Uint8Array | string, chainCode: Uint8Array): Uint8Array {
+export function sr25519DerivePublic (publicKey: string | Uint8Array, chainCode: Uint8Array): Uint8Array {
   const publicKeyU8a = u8aToU8a(publicKey);
 
   if (!isU8a(chainCode) || chainCode.length !== 32) {

@@ -136,7 +136,7 @@ describe('tweetnacl/secretbox', (): void => {
   });
 
   describe('tweetnacl/test/04-secretbox.js', (): void => {
-    for (let i = 0; i < TEST_DATA.length; i++) {
+    for (let i = 0, count = TEST_DATA.length; i < count; i++) {
       const [keyBase64, nonceBase64, msgBase64, expBase64] = TEST_DATA[i];
 
       it(`is ok on "${msgBase64}"`, (): void => {

@@ -16,7 +16,7 @@ function getH160 (u8a: Uint8Array): Uint8Array {
   return u8a.slice(-20);
 }
 
-export function ethereumEncode (addressOrPublic?: HexString | string | Uint8Array): HexString {
+export function ethereumEncode (addressOrPublic?: string | Uint8Array): HexString {
   if (!addressOrPublic) {
     return '0x';
   }

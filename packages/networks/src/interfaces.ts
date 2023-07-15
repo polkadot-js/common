@@ -29,8 +29,8 @@ function toExpanded (o: KnownSubstrate): SubstrateNetwork {
   n.isIgnored = n.isTestnet || (
     !(
       o.standardAccount &&
-      o.decimals && o.decimals.length &&
-      o.symbols && o.symbols.length
+      o.decimals?.length &&
+      o.symbols?.length
     ) &&
     o.prefix !== 42
   );

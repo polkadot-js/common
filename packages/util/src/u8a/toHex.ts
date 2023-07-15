@@ -54,7 +54,7 @@ export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed 
     ? '0x'
     : '' as HexString;
 
-  if (!value || !value.length) {
+  if (!value?.length) {
     return empty;
   } else if (bitLength > 0) {
     const length = Math.ceil(bitLength / 8);

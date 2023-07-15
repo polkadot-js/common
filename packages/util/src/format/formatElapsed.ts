@@ -24,7 +24,7 @@ function formatValue (elapsed: number): string {
  * @description Formats an elapsed value into s, m, h or day segments
  */
 export function formatElapsed <ExtToBn extends ToBn> (now?: Date | null, value?: bigint | BN | ExtToBn | Date | number | null): string {
-  const tsNow = (now && now.getTime()) || 0;
+  const tsNow = now?.getTime() || 0;
   const tsValue = value instanceof Date
     ? value.getTime()
     : bnToBn(value).toNumber();

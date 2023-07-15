@@ -3,10 +3,8 @@
 
 import { stringify } from '../stringify.js';
 
-interface ObjectIndexed {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [index: string]: any;
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ObjectIndexed = Record<string, any>;
 
 /**
  * @name isJsonObject

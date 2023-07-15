@@ -81,7 +81,7 @@ export function mnemonicToEntropy (mnemonic: string, wordlist: string[] = DEFAUL
 
   // calculate the checksum and compare
   const matched = entropyBits.match(/(.{1,8})/g);
-  const entropyBytes = matched && matched.map(binaryToByte);
+  const entropyBytes = matched?.map(binaryToByte);
 
   if (!entropyBytes || (entropyBytes.length % 4 !== 0) || (entropyBytes.length < 16) || (entropyBytes.length > 32)) {
     throw new Error(INVALID_ENTROPY);
@@ -103,7 +103,7 @@ export function entropyToMnemonic (entropy: Uint8Array, wordlist: string[] = DEF
   }
 
   const matched = `${bytesToBinary(Array.from(entropy))}${deriveChecksumBits(entropy)}`.match(/(.{1,11})/g);
-  const mapped = matched && matched.map((b) => wordlist[binaryToByte(b)]);
+  const mapped = matched?.map((b) => wordlist[binaryToByte(b)]);
 
   if (!mapped || (mapped.length < 12)) {
     throw new Error('Unable to map entropy to mnemonic');

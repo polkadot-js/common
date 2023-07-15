@@ -21,7 +21,7 @@ async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> 
 
   const mod = await importFetch;
 
-  if (!mod || !mod.default) {
+  if (!mod?.default) {
     throw new Error('Unable to import node-fetch in this environment');
   }
 

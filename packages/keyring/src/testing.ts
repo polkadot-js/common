@@ -119,7 +119,7 @@ function createMeta (name?: string, seed?: string) {
 
   return {
     isTesting: true,
-    name: name || (seed && seed.replace('//', '_').toLowerCase())
+    name: name || seed?.replace('//', '_').toLowerCase()
   };
 }
 

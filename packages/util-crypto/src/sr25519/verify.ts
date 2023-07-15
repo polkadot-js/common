@@ -1,8 +1,6 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '@polkadot/util/types';
-
 import { u8aToU8a } from '@polkadot/util';
 import { sr25519Verify as wasmVerify } from '@polkadot/wasm-crypto';
 
@@ -10,7 +8,7 @@ import { sr25519Verify as wasmVerify } from '@polkadot/wasm-crypto';
  * @name sr25519Verify
  * @description Verifies the signature of `message`, using the supplied pair
  */
-export function sr25519Verify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, publicKey: HexString | Uint8Array | string): boolean {
+export function sr25519Verify (message: string | Uint8Array, signature: string | Uint8Array, publicKey: string | Uint8Array): boolean {
   const publicKeyU8a = u8aToU8a(publicKey);
   const signatureU8a = u8aToU8a(signature);
 
