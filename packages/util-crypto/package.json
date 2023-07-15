@@ -20,7 +20,7 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "12.3.3-4-x",
+  "version": "12.3.3-5-x",
   "browser": {
     "crypto": false,
     "stream": false
@@ -29,16 +29,16 @@
   "dependencies": {
     "@noble/curves": "1.1.0",
     "@noble/hashes": "1.3.1",
-    "@polkadot/networks": "12.3.3-4-x",
-    "@polkadot/util": "12.3.3-4-x",
+    "@polkadot/networks": "12.3.3-5-x",
+    "@polkadot/util": "12.3.3-5-x",
     "@polkadot/wasm-crypto": "^7.2.1",
     "@polkadot/wasm-util": "^7.2.1",
-    "@polkadot/x-bigint": "12.3.3-4-x",
-    "@polkadot/x-randomvalues": "12.3.3-4-x",
+    "@polkadot/x-bigint": "12.3.3-5-x",
+    "@polkadot/x-randomvalues": "12.3.3-5-x",
     "@scure/base": "1.1.1",
     "tslib": "^2.6.0"
   },
   "peerDependencies": {
-    "@polkadot/util": "12.3.3-4-x"
+    "@polkadot/util": "12.3.3-5-x"
   }
 }
