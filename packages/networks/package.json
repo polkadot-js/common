@@ -20,7 +20,7 @@
   "dependencies": {
     "@polkadot/util": "12.3.3-6-x",
     "@substrate/ss58-registry": "^1.41.0",
-    "tslib": "^2.6.0"
+    "tslib": "^2.6.1"
   },
   "devDependencies": {
     "@polkadot/hw-ledger": "12.3.3-6-x"
