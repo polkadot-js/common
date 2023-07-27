@@ -15,17 +15,15 @@ const importFetch = import('node-fetch').catch(() => null);
 let modFn: typeof fetch | null = null;
 
 async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> {
-  if (modFn) {
-    return modFn(...args);
+  if (!modFn) {
+    const mod = await importFetch;
+
+    if (!mod?.default) {
+      throw new Error('Unable to import node-fetch in this environment');
+    }
+
+    modFn = mod.default as unknown as typeof fetch;
   }
-
-  const mod = await importFetch;
-
-  if (!mod?.default) {
-    throw new Error('Unable to import node-fetch in this environment');
-  }
-
-  modFn = mod.default as unknown as typeof fetch;
 
   return modFn(...args);
 }
