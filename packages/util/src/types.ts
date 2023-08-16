@@ -79,14 +79,22 @@ export type HexString = `0x${string}`;
 
 // BufferObj interface compatible with Buffer since we don't want to require
 // references to the Buffer types from the node typings
+//
+// Caveat: the references still do sneak in in the d.ts files, specifically
+// inside u8a/toBuffer & is/buffer (but not in compiled outputs)
 export interface BufferObj extends Uint8Array {
+  // Possibly used externally via type imports
   equals: (otherBuffer: Uint8Array) => boolean;
+  // As used in is/buffer
   readDoubleLE: (offset?: number) => number;
 }
 
 // We define a scappy low-level interface to mock Buffer
 // (this removes the need for the node typings in built bundles)
 export interface BufferObjClass extends Class<BufferObj> {
+  // As used in u8a/toBuffer
+  from: <T = BufferObj>(value: unknown) => T;
+  // As used in is/buffer
   isBuffer: (value: unknown) => boolean;
 }
 

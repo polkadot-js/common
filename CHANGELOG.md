@@ -4,9 +4,11 @@
 
 Changes:
 
-- Add support for Ledger `signRaw`
-- Upgrade dependencies to latest stable versions
+- Add support for Ledger `signRaw`, as exposed by lower-level
+- Update code to use `?.` shortcuts where appropriate
+- Adjust `u8aToBuffer` & `isBuffer` typings to not require `Buffer`
 - Use `stringify/import.meta.url` helpers in specs
+- Upgrade dependencies to latest stable versions
 
 
 ## 12.3.2 Jun 12, 2023

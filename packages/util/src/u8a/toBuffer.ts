@@ -1,6 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { BufferObj, BufferObjClass } from '../types.js';
+
+import { xglobal } from '@polkadot/x-global';
+
 /**
  * @name u8aToBuffer
  * @summary Creates a Buffer object from a hex string.
@@ -15,6 +19,6 @@
  * console.log('Buffer', u8aToBuffer(new Uint8Array([1, 2, 3])));
  * ```
  */
-export function u8aToBuffer (value?: Uint8Array | null): Buffer {
-  return Buffer.from(value || []);
+export function u8aToBuffer <T = BufferObj> (value?: Uint8Array | null): T {
+  return (xglobal.Buffer as unknown as BufferObjClass).from(value || []);
 }
