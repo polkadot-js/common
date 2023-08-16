@@ -222,15 +222,13 @@
     "network": "darwinia",
     "displayName": "Darwinia Network",
     "symbols": [
-      "RING",
-      "KTON"
+      "RING"
     ],
     "decimals": [
-      9,
-      9
+      18
     ],
-    "standardAccount": "*25519",
-    "website": "https://darwinia.network/"
+    "standardAccount": "secp256k1",
+    "website": "https://darwinia.network"
   },
   {
     "prefix": 19,
@@ -714,6 +712,19 @@
     "website": "https://hydradx.io"
   },
   {
+    "prefix": 64,
+    "network": "ewx",
+    "displayName": "Energy Web X",
+    "symbols": [
+      "EWT"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://www.energyweb.org"
+  },
+  {
     "prefix": 65,
     "network": "aventus",
     "displayName": "Aventus Mainnet",
@@ -1182,6 +1193,19 @@
     "website": "https://allfeat.network"
   },
   {
+    "prefix": 666,
+    "network": "metaquity_network",
+    "displayName": "Metaquity Network",
+    "symbols": [
+      "MQTY"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://metaquity.xyz/"
+  },
+  {
     "prefix": 789,
     "network": "geek",
     "displayName": "GEEK Network",
@@ -1587,6 +1611,19 @@
     ],
     "standardAccount": "*25519",
     "website": "https://unique.network"
+  },
+  {
+    "prefix": 8886,
+    "network": "golden_gate_sydney",
+    "displayName": "Golden Gate Sydney",
+    "symbols": [
+      "GGXT"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://ggxchain.io/"
   },
   {
     "prefix": 9072,
