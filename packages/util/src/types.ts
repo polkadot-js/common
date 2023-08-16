@@ -83,6 +83,8 @@ export type HexString = `0x${string}`;
 // Caveat: the references still do sneak in in the d.ts files, specifically
 // inside u8a/toBuffer & is/buffer (but not in compiled outputs)
 export interface BufferObj extends Uint8Array {
+  // Possibly used externally via type imports
+  equals: (otherBuffer: Uint8Array) => boolean;
   // As used in is/buffer
   readDoubleLE: (offset?: number) => number;
 }
