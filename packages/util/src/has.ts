@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BufferObjClass } from './types.js';
+import type { BufferClass } from './types.js';
 
 import { BigInt } from '@polkadot/x-bigint';
 import { xglobal } from '@polkadot/x-global';
@@ -32,7 +32,7 @@ export const hasWasm = typeof WebAssembly !== 'undefined';
 // that some bundlers such as parcel would add (this is a check, not a use)
 
 /** true if the environment has support for Buffer (typically Node.js) */
-export const hasBuffer = typeof xglobal.Buffer === 'function' && typeof (xglobal.Buffer as unknown as BufferObjClass).isBuffer === 'function';
+export const hasBuffer = typeof xglobal.Buffer === 'function' && typeof (xglobal.Buffer as unknown as BufferClass).isBuffer === 'function';
 
 /** true if the environment has process available (typically Node.js) */
 export const hasProcess = typeof xglobal.process === 'object';

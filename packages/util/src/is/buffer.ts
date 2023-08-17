@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BufferObj, BufferObjClass } from '../types.js';
+import type { BufferClass, BufferObject } from '../types.js';
 
 import { xglobal } from '@polkadot/x-global';
 
@@ -22,7 +22,7 @@ import { isFunction } from './function.js';
  * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
  * ```
  */
-export function isBuffer <T = BufferObj> (value: unknown): value is T {
+export function isBuffer <T = BufferObject> (value: unknown): value is T {
   // we do check a function first, since it is slightly faster than isBuffer itself
-  return hasBuffer && !!value && isFunction((value as unknown as BufferObj).readDoubleLE) && (xglobal.Buffer as unknown as BufferObjClass).isBuffer(value);
+  return hasBuffer && !!value && isFunction((value as unknown as BufferObject).readDoubleLE) && (xglobal.Buffer as unknown as BufferClass).isBuffer(value);
 }
