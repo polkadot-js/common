@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BufferObj, BufferObjClass } from '../types.js';
+import type { BufferClass, BufferObject } from '../types.js';
 
 import { xglobal } from '@polkadot/x-global';
 
@@ -19,6 +19,6 @@ import { xglobal } from '@polkadot/x-global';
  * console.log('Buffer', u8aToBuffer(new Uint8Array([1, 2, 3])));
  * ```
  */
-export function u8aToBuffer <T = BufferObj> (value?: Uint8Array | null): T {
-  return (xglobal.Buffer as unknown as BufferObjClass).from(value || []);
+export function u8aToBuffer <T = BufferObject> (value?: Uint8Array | null): T {
+  return (xglobal.Buffer as unknown as BufferClass).from(value || []);
 }
