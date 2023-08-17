@@ -257,6 +257,19 @@
     "website": "https://stafi.io"
   },
   {
+    "prefix": 21,
+    "network": "karmachain",
+    "displayName": "Karmacoin",
+    "symbols": [
+      "KCOIN"
+    ],
+    "decimals": [
+      6
+    ],
+    "standardAccount": "*25519",
+    "website": "https://karmaco.in"
+  },
+  {
     "prefix": 22,
     "network": "dock-pos-mainnet",
     "displayName": "Dock Mainnet",
@@ -1492,6 +1505,19 @@
     "website": "https://subspace.network"
   },
   {
+    "prefix": 3333,
+    "network": "peerplays",
+    "displayName": "Peerplays",
+    "symbols": [
+      "PPY"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "secp256k1",
+    "website": "https://www.peerplays.com/"
+  },
+  {
     "prefix": 4006,
     "network": "tangle",
     "displayName": "Tangle Network",
@@ -1572,6 +1598,19 @@
     ],
     "standardAccount": "*25519",
     "website": "https://gmordie.com"
+  },
+  {
+    "prefix": 7306,
+    "network": "krigan",
+    "displayName": "Krigan Network",
+    "symbols": [
+      "KRGN"
+    ],
+    "decimals": [
+      9
+    ],
+    "standardAccount": "*25519",
+    "website": "https://krigan.network"
   },
   {
     "prefix": 7391,
@@ -1767,5 +1806,18 @@
     ],
     "standardAccount": "*25519",
     "website": "https://bittensor.com"
+  },
+  {
+    "prefix": 14697,
+    "network": "goro",
+    "displayName": "GORO Network",
+    "symbols": [
+      "GORO"
+    ],
+    "decimals": [
+      9
+    ],
+    "standardAccount": "*25519",
+    "website": "https://goro.network"
   }
 ]
