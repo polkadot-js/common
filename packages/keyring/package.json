@@ -23,7 +23,7 @@
   "dependencies": {
     "@polkadot/util": "12.4.1",
     "@polkadot/util-crypto": "12.4.1",
-    "tslib": "^2.6.1"
+    "tslib": "^2.6.2"
   },
   "peerDependencies": {
     "@polkadot/util": "12.4.1",
