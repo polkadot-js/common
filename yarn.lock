@@ -463,40 +463,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev-test@npm:^0.76.15":
-  version: 0.76.15
-  resolution: "@polkadot/dev-test@npm:0.76.15"
+"@polkadot/dev-test@npm:^0.76.17":
+  version: 0.76.17
+  resolution: "@polkadot/dev-test@npm:0.76.17"
   dependencies:
     jsdom: ^22.1.0
-    tslib: ^2.6.1
-  checksum: a19177c0811f0a992f23639d49d5cc4fa7d4971a2232d951829d5ce13ba914a0ac08ea3a351cddd6895bdfeedca3fbeee222e1529cf287918e676f62725c4902
+    tslib: ^2.6.2
+  checksum: 94f29d2411d0d9d9d1dfe16967f741e2c2ad2644053bb8f82b98dc2c7b215accaa814839588a674a0081f642cad670c060da2940bc5fde10009455b6e7721a31
   languageName: node
   linkType: hard
 
-"@polkadot/dev-ts@npm:^0.76.15":
-  version: 0.76.15
-  resolution: "@polkadot/dev-ts@npm:0.76.15"
+"@polkadot/dev-ts@npm:^0.76.17":
+  version: 0.76.17
+  resolution: "@polkadot/dev-ts@npm:0.76.17"
   dependencies:
     json5: ^2.2.3
-    tslib: ^2.6.1
+    tslib: ^2.6.2
     typescript: ^5.1.6
-  checksum: 939f80bb9e215adf32f221a9f9069f497690374bfbdf0a59aa3b95d2042f4c304b2cb054f6204411f4bcb88e1781a12c426d29a11b488b529414f37030429680
+  checksum: 40fd1f0e609f0c667252e254eda5cdfc302bd19920a7e2752da799ab752145485c52c70d99154c6c7c1a26305d7287fbe050e1a342842c55a2a697da168015e5
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.76.15":
-  version: 0.76.15
-  resolution: "@polkadot/dev@npm:0.76.15"
+"@polkadot/dev@npm:^0.76.17":
+  version: 0.76.17
+  resolution: "@polkadot/dev@npm:0.76.17"
   dependencies:
     "@eslint/js": ^8.47.0
-    "@polkadot/dev-test": ^0.76.15
-    "@polkadot/dev-ts": ^0.76.15
+    "@polkadot/dev-test": ^0.76.17
+    "@polkadot/dev-ts": ^0.76.17
     "@rollup/plugin-alias": ^5.0.0
     "@rollup/plugin-commonjs": ^25.0.4
     "@rollup/plugin-dynamic-import-vars": ^2.0.5
     "@rollup/plugin-inject": ^5.0.3
     "@rollup/plugin-json": ^6.0.0
-    "@rollup/plugin-node-resolve": ^15.1.0
+    "@rollup/plugin-node-resolve": ^15.2.0
     "@tsconfig/strictest": ^2.0.1
     "@typescript-eslint/eslint-plugin": ^6.4.0
     "@typescript-eslint/parser": ^6.4.0
@@ -506,7 +506,7 @@ __metadata:
     eslint-import-resolver-typescript: ^3.6.0
     eslint-plugin-deprecation: ^1.5.0
     eslint-plugin-header: ^3.1.1
-    eslint-plugin-import: ^2.28.0
+    eslint-plugin-import: ^2.28.1
     eslint-plugin-import-newlines: ^1.3.4
     eslint-plugin-jest: ^27.2.3
     eslint-plugin-n: ^16.0.1
@@ -523,7 +523,7 @@ __metadata:
     madge: ^6.1.0
     rollup: ^3.28.0
     rollup-plugin-cleanup: ^3.2.1
-    tslib: ^2.6.1
+    tslib: ^2.6.2
     typescript: ^5.1.6
     webpack: ^5.88.2
     webpack-cli: ^5.1.4
@@ -555,7 +555,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 0901aee6fab181968cdb3b60dee47c69de3c3832651a7388cb632f58acf28716105b8e57c8e2ade258930c3ae6e01376f7063f7b69c9ef74702f180c0f9eb3eb
+  checksum: bddb4c4a903f77fd272ec06b2cbcc60891005b75b08de431f39eb7e3dc8c31f332986408afe5237b99eacb8915bcad4d62d75b24e70d8b010960840825108c35
   languageName: node
   linkType: hard
 
@@ -568,7 +568,7 @@ __metadata:
     "@ledgerhq/hw-transport-webhid": ^6.27.19
     "@ledgerhq/hw-transport-webusb": ^6.27.19
     "@polkadot/util": 12.4.1
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   dependenciesMeta:
     "@ledgerhq/hw-transport-node-hid-singleton":
       optional: true
@@ -582,7 +582,7 @@ __metadata:
     "@polkadot/hw-ledger-transports": 12.4.1
     "@polkadot/util": 12.4.1
     "@zondax/ledger-substrate": ^0.41.1
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   languageName: unknown
   linkType: soft
 
@@ -592,7 +592,7 @@ __metadata:
   dependencies:
     "@polkadot/util": 12.4.1
     "@polkadot/util-crypto": 12.4.1
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   peerDependencies:
     "@polkadot/util": 12.4.1
     "@polkadot/util-crypto": 12.4.1
@@ -606,7 +606,7 @@ __metadata:
     "@polkadot/hw-ledger": 12.4.1
     "@polkadot/util": 12.4.1
     "@substrate/ss58-registry": ^1.43.0
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   languageName: unknown
   linkType: soft
 
@@ -623,7 +623,7 @@ __metadata:
     "@polkadot/x-bigint": 12.4.1
     "@polkadot/x-randomvalues": 12.4.1
     "@scure/base": 1.1.1
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   peerDependencies:
     "@polkadot/util": 12.4.1
   languageName: unknown
@@ -640,7 +640,7 @@ __metadata:
     "@polkadot/x-textencoder": 12.4.1
     "@types/bn.js": ^5.1.1
     bn.js: ^5.2.1
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   languageName: unknown
   linkType: soft
 
@@ -729,7 +729,7 @@ __metadata:
   resolution: "@polkadot/x-bigint@workspace:packages/x-bigint"
   dependencies:
     "@polkadot/x-global": 12.4.1
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   languageName: unknown
   linkType: soft
 
@@ -739,7 +739,7 @@ __metadata:
   dependencies:
     "@polkadot/util": 12.4.1
     buffer-es6: ^4.9.3
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   languageName: unknown
   linkType: soft
 
@@ -749,7 +749,7 @@ __metadata:
   dependencies:
     "@polkadot/x-global": 12.4.1
     node-fetch: ^3.3.2
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   languageName: unknown
   linkType: soft
 
@@ -757,7 +757,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-global@workspace:packages/x-global"
   dependencies:
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   languageName: unknown
   linkType: soft
 
@@ -769,7 +769,7 @@ __metadata:
     "@polkadot/wasm-util": ^7.2.2
     "@polkadot/x-global": 12.4.1
     "@types/react-native": ^0.72.2
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   peerDependencies:
     "@polkadot/util": 12.4.1
     "@polkadot/wasm-util": "*"
@@ -781,7 +781,7 @@ __metadata:
   resolution: "@polkadot/x-textdecoder@workspace:packages/x-textdecoder"
   dependencies:
     "@polkadot/x-global": 12.4.1
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   languageName: unknown
   linkType: soft
 
@@ -790,7 +790,7 @@ __metadata:
   resolution: "@polkadot/x-textencoder@workspace:packages/x-textencoder"
   dependencies:
     "@polkadot/x-global": 12.4.1
-    tslib: ^2.6.1
+    tslib: ^2.6.2
   languageName: unknown
   linkType: soft
 
@@ -800,7 +800,7 @@ __metadata:
   dependencies:
     "@polkadot/x-global": 12.4.1
     "@types/ws": ^8.5.5
-    tslib: ^2.6.1
+    tslib: ^2.6.2
     ws: ^8.13.0
   languageName: unknown
   linkType: soft
@@ -899,9 +899,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:^15.1.0":
-  version: 15.1.0
-  resolution: "@rollup/plugin-node-resolve@npm:15.1.0"
+"@rollup/plugin-node-resolve@npm:^15.2.0":
+  version: 15.2.0
+  resolution: "@rollup/plugin-node-resolve@npm:15.2.0"
   dependencies:
     "@rollup/pluginutils": ^5.0.1
     "@types/resolve": 1.20.2
@@ -914,7 +914,7 @@ __metadata:
   peerDependenciesMeta:
     rollup:
       optional: true
-  checksum: 83617cdbb90cb780251e8b16dc1671e35bde90b8d4d30e008aefe706b5b643057f6299bdd3226b2a30bf5e4f807a880169de3faa47b9f2ba38d39f294f85f951
+  checksum: 92abfd7f1f5df08d71e4b8dd433d31cf1d62f68891ae3dd5e03a8a7f8d42d9c4433c14a25ead04204fea8235c663a3bbb66ba5528103a6dab66bd8c124f85a0d
   languageName: node
   linkType: hard
 
@@ -1114,10 +1114,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.5.0":
-  version: 20.5.0
-  resolution: "@types/node@npm:20.5.0"
-  checksum: 659bc5fc93b5c02bd88ca4bfae4f6b9dc307d45884d1dd9d69df85819a9943cdc00cd3c87eec3048866df6a67f52297f74d170e47a44f61edb3e8f770d94e85e
+"@types/node@npm:*, @types/node@npm:^20.5.1":
+  version: 20.5.1
+  resolution: "@types/node@npm:20.5.1"
+  checksum: 3dbe611cd67afa987102c8558ee70f848949c5dcfee5f60abc073e55c0d7b048e391bf06bb1e0dc052cb7210ca97136ac496cbaf6e89123c989de6bd125fde82
   languageName: node
   linkType: hard
 
@@ -3782,9 +3782,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import@npm:^2.28.0":
-  version: 2.28.0
-  resolution: "eslint-plugin-import@npm:2.28.0"
+"eslint-plugin-import@npm:^2.28.1":
+  version: 2.28.1
+  resolution: "eslint-plugin-import@npm:2.28.1"
   dependencies:
     array-includes: ^3.1.6
     array.prototype.findlastindex: ^1.2.2
@@ -3795,18 +3795,17 @@ __metadata:
     eslint-import-resolver-node: ^0.3.7
     eslint-module-utils: ^2.8.0
     has: ^1.0.3
-    is-core-module: ^2.12.1
+    is-core-module: ^2.13.0
     is-glob: ^4.0.3
     minimatch: ^3.1.2
     object.fromentries: ^2.0.6
     object.groupby: ^1.0.0
     object.values: ^1.1.6
-    resolve: ^1.22.3
     semver: ^6.3.1
     tsconfig-paths: ^3.14.2
   peerDependencies:
     eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8
-  checksum: f9eba311b93ca1bb89311856b1f7285bd79e0181d7eb70fe115053ff77e2235fea749b30f538b78927dc65769340b5be61f4c9581d1c82bcdcccb2061f440ad1
+  checksum: e8ae6dd8f06d8adf685f9c1cfd46ac9e053e344a05c4090767e83b63a85c8421ada389807a39e73c643b9bff156715c122e89778169110ed68d6428e12607edf
   languageName: node
   linkType: hard
 
@@ -7746,7 +7745,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"resolve@^1.1.6, resolve@^1.20.0, resolve@npm:^1.21.0, resolve@npm:^1.22.1, resolve@npm:^1.22.2, resolve@npm:^1.22.3, resolve@npm:^1.22.4":
+"resolve@^1.1.6, resolve@^1.20.0, resolve@npm:^1.21.0, resolve@npm:^1.22.1, resolve@npm:^1.22.2, resolve@npm:^1.22.4":
   version: 1.22.4
   resolution: "resolve@npm:1.22.4"
   dependencies:
@@ -7772,7 +7771,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@^1.1.6#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.21.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.1#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.3#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.4#~builtin<compat/resolve>":
+"resolve@patch:resolve@^1.1.6#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.21.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.1#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.4#~builtin<compat/resolve>":
   version: 1.22.4
   resolution: "resolve@patch:resolve@npm%3A1.22.4#~builtin<compat/resolve>::version=1.22.4&hash=07638b"
   dependencies:
@@ -7891,8 +7890,8 @@ fsevents@~2.3.2:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@polkadot/dev": ^0.76.15
-    "@types/node": ^20.5.0
+    "@polkadot/dev": ^0.76.17
+    "@types/node": ^20.5.1
   languageName: unknown
   linkType: soft
 
@@ -8862,10 +8861,10 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.3.1, tslib@npm:^2.6.1":
-  version: 2.6.1
-  resolution: "tslib@npm:2.6.1"
-  checksum: b0d176d176487905b66ae4d5856647df50e37beea7571c53b8d10ba9222c074b81f1410fb91da13debaf2cbc970663609068bdebafa844ea9d69b146527c38fe
+"tslib@npm:^2.3.1, tslib@npm:^2.6.1, tslib@npm:^2.6.2":
+  version: 2.6.2
+  resolution: "tslib@npm:2.6.2"
+  checksum: 329ea56123005922f39642318e3d1f0f8265d1e7fcb92c633e0809521da75eeaca28d2cf96d7248229deb40e5c19adf408259f4b9640afd20d13aecc1430f3ad
   languageName: node
   linkType: hard
 

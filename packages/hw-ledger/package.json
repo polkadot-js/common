@@ -23,6 +23,6 @@
     "@polkadot/hw-ledger-transports": "12.4.1",
     "@polkadot/util": "12.4.1",
     "@zondax/ledger-substrate": "^0.41.1",
-    "tslib": "^2.6.1"
+    "tslib": "^2.6.2"
   }
 }
