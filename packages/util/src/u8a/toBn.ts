@@ -25,10 +25,13 @@ import { BN } from '../bn/bn.js';
  */
 export function u8aToBn (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): BN {
   const count = value.length;
+  const signByte = isLe
+    ? value[count - 1]
+    : value[0];
 
   // shortcut for <= u48 values - in this case the manual conversion
   // here seems to be more efficient than passing the full array
-  if (isNegative) {
+  if (isNegative && (signByte & 0x80)) {
     if (isLe) {
       // Most common case i{8, 16, 32} default LE SCALE-encoded
       // For <= 32, we also optimize the xor to a single op

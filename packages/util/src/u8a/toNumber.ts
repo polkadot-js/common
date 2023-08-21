@@ -15,7 +15,7 @@ interface ToNumberOptions {
 export function u8aToNumber (value: Uint8Array, { isNegative = false }: ToNumberOptions = {}): number {
   const count = value.length;
 
-  if (isNegative) {
+  if (isNegative && (value[count - 1] & 0x80)) {
     switch (count) {
       case 0:
         return 0;

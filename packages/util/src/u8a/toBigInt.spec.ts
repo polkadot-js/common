@@ -106,67 +106,125 @@ describe('u8aToBigInt', (): void => {
     });
 
     describe('signed', (): void => {
-      it('converts values (i8)', (): void => {
-        expect(
-          u8aToBigInt(
-            new Uint8Array([244]),
-            { isLe: true, isNegative: true }
-          ).toString()
-        ).toBe('-12');
+      describe('positive values', (): void => {
+        it('converts positive numbers (i8)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([12]),
+              { isNegative: true }
+            ).toString()
+          ).toBe('12');
+        });
+
+        it('converts positive numbers (i16)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([210, 4]),
+              { isNegative: true }
+            ).toString()
+          ).toBe('1234');
+        });
+
+        it('converts positive numbers (i24)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([64, 226, 1]),
+              { isNegative: true }
+            ).toString()
+          ).toBe('123456');
+        });
+
+        it('converts positive numbers (i32)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([21, 205, 91, 7]),
+              { isNegative: true }
+            ).toString()
+          ).toBe('123456789');
+        });
+
+        it('converts positive numbers (i40)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([203, 36, 104, 12, 8]),
+              { isNegative: true }
+            ).toString()
+          ).toBe('34567890123');
+        });
+
+        it('converts positive numbers (i48)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([255, 159, 114, 78, 24, 9]),
+              { isNegative: true }
+            ).toString()
+          ).toBe('9999999999999');
+        });
       });
 
-      it('converts values (i16)', (): void => {
-        expect(
-          u8aToBigInt(
-            new Uint8Array([46, 251]),
-            { isLe: true, isNegative: true }
-          ).toString()
-        ).toBe('-1234');
-      });
+      describe('negative values', (): void => {
+        it('converts values (i8)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([244]),
+              { isLe: true, isNegative: true }
+            ).toString()
+          ).toBe('-12');
+        });
 
-      it('converts values (i24)', (): void => {
-        expect(
-          u8aToBigInt(
-            new Uint8Array([192, 29, 254]),
-            { isLe: true, isNegative: true }
-          ).toString()
-        ).toBe('-123456');
-      });
+        it('converts values (i16)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([46, 251]),
+              { isLe: true, isNegative: true }
+            ).toString()
+          ).toBe('-1234');
+        });
 
-      it('converts values (i32)', (): void => {
-        expect(
-          u8aToBigInt(
-            new Uint8Array([235, 50, 164, 248]),
-            { isLe: true, isNegative: true }
-          ).toString()
-        ).toBe('-123456789');
-      });
+        it('converts values (i24)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([192, 29, 254]),
+              { isLe: true, isNegative: true }
+            ).toString()
+          ).toBe('-123456');
+        });
 
-      it('converts values (i40)', (): void => {
-        expect(
-          u8aToBigInt(
-            new Uint8Array([65, 86, 129, 173, 254]),
-            { isLe: true, isNegative: true }
-          ).toString()
-        ).toBe('-5678999999');
-      });
+        it('converts values (i32)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([235, 50, 164, 248]),
+              { isLe: true, isNegative: true }
+            ).toString()
+          ).toBe('-123456789');
+        });
 
-      it('converts values (i48)', (): void => {
-        expect(
-          u8aToBigInt(
-            new Uint8Array([1, 96, 141, 177, 231, 246]),
-            { isLe: true, isNegative: true }
-          ).toString()
-        ).toBe('-9999999999999');
-      });
+        it('converts values (i40)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([65, 86, 129, 173, 254]),
+              { isLe: true, isNegative: true }
+            ).toString()
+          ).toBe('-5678999999');
+        });
 
-      it('converts values (i64)', (): void => {
-        expect(
-          u8aToBigInt(
-            new Uint8Array([1, 0, 156, 88, 76, 73, 31, 242]),
-            { isLe: true, isNegative: true }
-          ).toString()
-        ).toBe('-999999999999999999');
+        it('converts values (i48)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([1, 96, 141, 177, 231, 246]),
+              { isLe: true, isNegative: true }
+            ).toString()
+          ).toBe('-9999999999999');
+        });
+
+        it('converts values (i64)', (): void => {
+          expect(
+            u8aToBigInt(
+              new Uint8Array([1, 0, 156, 88, 76, 73, 31, 242]),
+              { isLe: true, isNegative: true }
+            ).toString()
+          ).toBe('-999999999999999999');
+        });
       });
     });
   });

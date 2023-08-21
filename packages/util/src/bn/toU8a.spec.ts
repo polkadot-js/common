@@ -41,6 +41,54 @@ describe('bnToU8a', (): void => {
   });
 
   describe('signed', (): void => {
+    it('converts positive numbers (BE, i8)', (): void => {
+      expect(
+        bnToU8a(new BN(12), { isLe: false, isNegative: true })
+      ).toEqual(new Uint8Array([12]));
+    });
+
+    it('converts positive numbers (BE, i32)', (): void => {
+      expect(
+        bnToU8a(new BN(123456789), { isLe: false, isNegative: true })
+      ).toEqual(new Uint8Array([7, 91, 205, 21]));
+    });
+
+    it('converts positive numbers (LE, i8)', (): void => {
+      expect(
+        bnToU8a(new BN(12), { isNegative: true })
+      ).toEqual(new Uint8Array([12]));
+    });
+
+    it('converts positive numbers (LE, i16)', (): void => {
+      expect(
+        bnToU8a(new BN(1234), { isNegative: true })
+      ).toEqual(new Uint8Array([210, 4]));
+    });
+
+    it('converts positive numbers (LE, i24)', (): void => {
+      expect(
+        bnToU8a(new BN(123456), { isNegative: true })
+      ).toEqual(new Uint8Array([64, 226, 1]));
+    });
+
+    it('converts positive numbers (LE, i32)', (): void => {
+      expect(
+        bnToU8a(new BN(123456789), { isNegative: true })
+      ).toEqual(new Uint8Array([21, 205, 91, 7]));
+    });
+
+    it('converts positive numbers (LE, i40)', (): void => {
+      expect(
+        bnToU8a(new BN(34567890123), { isNegative: true })
+      ).toEqual(new Uint8Array([203, 36, 104, 12, 8]));
+    });
+
+    it('converts positive numbers (LE, i48)', (): void => {
+      expect(
+        bnToU8a(new BN(9999999999999), { isNegative: true })
+      ).toEqual(new Uint8Array([255, 159, 114, 78, 24, 9]));
+    });
+
     it('converts negative numbers (BE)', (): void => {
       expect(
         bnToU8a(new BN(-1234), { isLe: false, isNegative: true })
