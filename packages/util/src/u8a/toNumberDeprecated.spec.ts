@@ -111,6 +111,45 @@ describe('u8aToNumber', (): void => {
         )
       ).toBe(-9999999999999);
     });
+
+    // Fails
+    it('converts values (0i8)', (): void => {
+      expect(
+        u8aToNumber(
+          new Uint8Array([0]),
+          { isNegative: true }
+        )
+      ).toBe(0);
+    });
+
+    // Fails
+    it('converts values (0i16)', (): void => {
+      expect(
+        u8aToNumber(
+          new Uint8Array([0, 0]),
+          { isNegative: true }
+        )
+      ).toBe(0);
+    });
+
+    // Succeeds, why does it not work for i8 & i16? They need `isNegative=false` to work
+    it('converts values (0i32)', (): void => {
+      expect(
+        u8aToNumber(
+          new Uint8Array([0, 0, 0, 0]),
+          { isNegative: true }
+        )
+      ).toBe(0);
+    });
+
+    it('converts values (127i8)', (): void => {
+      expect(
+        u8aToNumber(
+          new Uint8Array([127]),
+          { isNegative: true } // always set to true by `Int` https://github.com/polkadot-js/api/blob/master/packages/types-codec/src/abstract/Int.ts#L95-L100
+        )
+      ).toBe(127);
+    });
   });
 
   describe('empty creation', (): void => {
