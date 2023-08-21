@@ -142,6 +142,7 @@ describe('u8aToNumber', (): void => {
       ).toBe(0);
     });
 
+    // Fails, as "isNegative" is set to try, see below why
     it('converts values (127i8)', (): void => {
       expect(
         u8aToNumber(
@@ -149,6 +150,16 @@ describe('u8aToNumber', (): void => {
           { isNegative: true } // always set to true by `Int` https://github.com/polkadot-js/api/blob/master/packages/types-codec/src/abstract/Int.ts#L95-L100
         )
       ).toBe(127);
+    });
+
+    // Succeeds again for i32, but why? What to adapt for i8 & i16?
+    it('converts values (42i32)', (): void => {
+      expect(
+        u8aToNumber(
+          new Uint8Array([42, 0, 0, 0]),
+          { isNegative: true } // always set to true by `Int` https://github.com/polkadot-js/api/blob/master/packages/types-codec/src/abstract/Int.ts#L95-L100
+        )
+      ).toBe(42);
     });
   });
 
