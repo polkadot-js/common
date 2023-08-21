@@ -3,135 +3,458 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import { perf } from '../test/index.js';
-import { u8aToNumber } from './index.js';
+import { u8aToUnsignedNumber, u8aToSignedNumber } from './index.js';
 
-describe('u8aToNumber', (): void => {
-  describe('unsigned', (): void => {
-    it('converts values (u8)', (): void => {
+describe('u8aToSignedNumber', (): void => {
+  describe('i8', (): void => {
+    it('converts values (-128i8)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array([0x12])
+        u8aToSignedNumber(
+          new Uint8Array([128])
         )
-      ).toBe(18);
+      ).toBe(-128);
     });
 
-    it('converts values (u16)', (): void => {
+    it('converts values (-127i8)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array([0x12, 0x34])
+        u8aToSignedNumber(
+          new Uint8Array([129])
         )
-      ).toBe(13330);
+      ).toBe(-127);
     });
 
-    it('converts values (u24)', (): void => {
+    it('converts values (-123i8)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array([0x12, 0x34, 0x56])
+        u8aToSignedNumber(
+          new Uint8Array([133])
         )
-      ).toBe(5649426);
+      ).toBe(-123);
     });
 
-    it('converts values (u32)', (): void => {
+    it('converts values (-42i8)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array([0x12, 0x34, 0x56, 0x78])
+        u8aToSignedNumber(
+          new Uint8Array([214])
         )
-      ).toBe(2018915346);
+      ).toBe(-42);
     });
 
-    it('converts values (u40)', (): void => {
+    it('converts values (-1i8)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array([0x12, 0x34, 0x56, 0x78, 0x9a])
+        u8aToSignedNumber(
+          new Uint8Array([255])
         )
-      ).toBe(663443878930);
+      ).toBe(-1);
     });
 
-    it('converts values (u48)', (): void => {
+    it('converts values (0i8)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array([0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc])
+        u8aToSignedNumber(
+          new Uint8Array([0])
         )
-      ).toBe(207371629900818);
+      ).toBe(0);
     });
+
+    it('converts values (0i8)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([0])
+        )
+      ).toBe(0);
+    });
+
+    it('converts values (1i8)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([1])
+        )
+      ).toBe(1);
+    });
+
+    it('converts values (42i8)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([42])
+        )
+      ).toBe(42);
+    });
+
+    it('converts values (123i8)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([123])
+        )
+      ).toBe(123);
+    });
+
+    it('converts values (126i8)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([126])
+        )
+      ).toBe(126);
+    });
+
+    it('converts values (127i8)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([127])
+        )
+      ).toBe(127);
+    });
+
+
   });
 
-  describe('signed', (): void => {
-    it('converts values (i8)', (): void => {
+  describe('i16', (): void => {
+    it('converts values (-32768i16)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array([244]),
-          { isNegative: true }
+        u8aToSignedNumber(
+          new Uint8Array([0, 128])
         )
-      ).toBe(-12);
+      ).toBe(-32768);
     });
 
-    it('converts values (i16)', (): void => {
+    it('converts values (-32767i16)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array([46, 251]),
-          { isNegative: true }
+        u8aToSignedNumber(
+          new Uint8Array([1, 128])
+        )
+      ).toBe(-32767);
+    });
+
+    it('converts values (-12345i16)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([199, 207])
+        )
+      ).toBe(-12345);
+    });
+
+    it('converts values (-42i16)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([214, 255])
+        )
+      ).toBe(-42);
+    });
+
+    it('converts values (-1i16)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([255, 255])
+        )
+      ).toBe(-1);
+    });
+
+    it('converts values (0i16)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([0, 0])
+        )
+      ).toBe(0);
+    });
+
+    it('converts values (0i16)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([0, 0])
+        )
+      ).toBe(0);
+    });
+
+    it('converts values (1i16)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([1, 0])
+        )
+      ).toBe(1);
+    });
+
+    it('converts values (42i16)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([42, 0])
+        )
+      ).toBe(42);
+    });
+
+    it('converts values (12345i16)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([57, 48])
+        )
+      ).toBe(12345);
+    });
+
+    it('converts values (32766i16)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([254, 127])
+        )
+      ).toBe(32766);
+    });
+
+    it('converts values (32767i16)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([255, 127])
+        )
+      ).toBe(32767);
+    });
+
+
+  });
+
+  describe('i32', (): void => {
+    it('converts values (-2147483648i32)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([0, 0, 0, 128])
+        )
+      ).toBe(-2147483648);
+    });
+
+    it('converts values (-2147483647i32)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([1, 0, 0, 128])
+        )
+      ).toBe(-2147483647);
+    });
+
+    it('converts values (-1234i32)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([46, 251, 255, 255])
         )
       ).toBe(-1234);
     });
 
-    it('converts values (i24)', (): void => {
+    it('converts values (-42i32)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array([192, 29, 254]),
-          { isNegative: true }
+        u8aToSignedNumber(
+          new Uint8Array([214, 255, 255, 255])
         )
-      ).toBe(-123456);
+      ).toBe(-42);
     });
 
-    it('converts values (i32)', (): void => {
+    it('converts values (-1i32)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array([235, 50, 164, 248]),
-          { isNegative: true }
+        u8aToSignedNumber(
+          new Uint8Array([255, 255, 255, 255])
         )
-      ).toBe(-123456789);
+      ).toBe(-1);
     });
 
-    it('converts values (i40)', (): void => {
+    it('converts values (0i32)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array([65, 86, 129, 173, 254]),
-          { isNegative: true }
-        )
-      ).toBe(-5678999999);
-    });
-
-    it('converts values (i48)', (): void => {
-      expect(
-        u8aToNumber(
-          new Uint8Array([1, 96, 141, 177, 231, 246]),
-          { isNegative: true }
-        )
-      ).toBe(-9999999999999);
-    });
-  });
-
-  describe('empty creation', (): void => {
-    it('handles unsigned (le)', (): void => {
-      expect(
-        u8aToNumber(
-          new Uint8Array()
+        u8aToSignedNumber(
+          new Uint8Array([0, 0, 0, 0])
         )
       ).toBe(0);
     });
 
-    it('handles signed (le)', (): void => {
+    it('converts values (0i32)', (): void => {
       expect(
-        u8aToNumber(
-          new Uint8Array(),
-          { isNegative: true }
+        u8aToSignedNumber(
+          new Uint8Array([0, 0, 0, 0])
         )
       ).toBe(0);
     });
+
+    it('converts values (1i32)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([1, 0, 0, 0])
+        )
+      ).toBe(1);
+    });
+
+    it('converts values (42i32)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([42, 0, 0, 0])
+        )
+      ).toBe(42);
+    });
+
+    it('converts values (1234i32)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([210, 4, 0, 0])
+        )
+      ).toBe(1234);
+    });
+
+    it('converts values (2147483646i32)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([254, 255, 255, 127])
+        )
+      ).toBe(2147483646);
+    });
+
+    it('converts values (2147483647i32)', (): void => {
+      expect(
+        u8aToSignedNumber(
+          new Uint8Array([255, 255, 255, 127])
+        )
+      ).toBe(2147483647);
+    });
   });
 
-  perf('u8aToNumber (i32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToNumber(v, { isNegative: true }));
-  perf('u8aToNumber (u32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToNumber);
+});
+
+
+describe('u8aToUnsignedNumber', (): void => {
+  describe('u8', (): void => {
+    it('converts values (0u8)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([0])
+        )
+      ).toBe(0);
+    });
+
+    it('converts values (1u8)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([1])
+        )
+      ).toBe(1);
+    });
+
+    it('converts values (42u8)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([42])
+        )
+      ).toBe(42);
+    });
+
+    it('converts values (123u8)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([123])
+        )
+      ).toBe(123);
+    });
+
+    it('converts values (254u8)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([254])
+        )
+      ).toBe(254);
+    });
+
+    it('converts values (255u8)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([255])
+        )
+      ).toBe(255);
+    });
+  });
+
+  describe('u16', (): void => {
+    it('converts values (0u16)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([0, 0])
+        )
+      ).toBe(0);
+    });
+
+    it('converts values (1u16)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([1, 0])
+        )
+      ).toBe(1);
+    });
+
+    it('converts values (42u16)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([42, 0])
+        )
+      ).toBe(42);
+    });
+
+    it('converts values (12345u16)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([57, 48])
+        )
+      ).toBe(12345);
+    });
+
+    it('converts values (65534u16)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([254, 255])
+        )
+      ).toBe(65534);
+    });
+
+    it('converts values (65535u16)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([255, 255])
+        )
+      ).toBe(65535);
+    });
+  });
+
+  describe('u32', (): void => {
+    it('converts values (0u32)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([0, 0, 0, 0])
+        )
+      ).toBe(0);
+    });
+
+    it('converts values (1u32)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([1, 0, 0, 0])
+        )
+      ).toBe(1);
+    });
+
+    it('converts values (42u32)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([42, 0, 0, 0])
+        )
+      ).toBe(42);
+    });
+
+    it('converts values (1234567u32)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([135, 214, 18, 0])
+        )
+      ).toBe(1234567);
+    });
+
+    it('converts values (4294967294u32)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([254, 255, 255, 255])
+        )
+      ).toBe(4294967294);
+    });
+
+    it('converts values (4294967295u32)', (): void => {
+      expect(
+        u8aToUnsignedNumber(
+          new Uint8Array([255, 255, 255, 255])
+        )
+      ).toBe(4294967295);
+    });
+  });
 });

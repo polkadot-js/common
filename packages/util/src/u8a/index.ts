@@ -16,7 +16,7 @@ export { u8aToBn } from './toBn.js';
 export { u8aToBuffer } from './toBuffer.js';
 export { u8aToFloat } from './toFloat.js';
 export { u8aToHex } from './toHex.js';
-export { u8aToNumber } from './toNumber.js';
+export { u8aToNumber, u8aToUnsignedNumber, u8aToSignedNumber } from './toNumber.js';
 export { u8aToString } from './toString.js';
 export { u8aToU8a } from './toU8a.js';
 export { U8A_WRAP_ETHEREUM, U8A_WRAP_POSTFIX, U8A_WRAP_PREFIX, u8aIsWrapped, u8aUnwrapBytes, u8aWrapBytes } from './wrap.js';

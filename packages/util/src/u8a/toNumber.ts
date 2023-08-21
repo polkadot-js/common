@@ -3,16 +3,18 @@
 
 interface ToNumberOptions {
   /**
+   * @deprecated Use `u8aToUnsignedNumber` or `u8aToSignedNumber` instead.
    * @description Number is signed, apply two's complement
    */
   isNegative?: boolean;
 }
 
 /**
+ * @deprecated Use `u8aToUnsignedNumber` or `u8aToSignedNumber` instead.
  * @name u8aToNumber
  * @summary Creates a number from a Uint8Array object. This only operates on LE values as used in SCALE.
  */
-export function u8aToNumber (value: Uint8Array, { isNegative = false }: ToNumberOptions = {}): number {
+export function u8aToNumber(value: Uint8Array, { isNegative = false }: ToNumberOptions = {}): number {
   const count = value.length;
 
   if (isNegative) {
@@ -69,6 +71,54 @@ export function u8aToNumber (value: Uint8Array, { isNegative = false }: ToNumber
     case 6:
       return value[0] + (value[1] << 8) + (value[2] << 16) + ((value[3] + (value[4] << 8) + (value[5] << 16)) * 0x1_00_00_00);
 
+    default:
+      throw new Error('Value more than 48-bits cannot be reliably converted');
+  }
+}
+
+/**
+ * @name u8aToUnsignedNumber
+ * @summary Creates a unsigned number from a Uint8Array object. This only operates on LE values as used in SCALE.
+ */
+export function u8aToUnsignedNumber(value: Uint8Array): number {
+  const count = value.length;
+
+  if (count === 0) {
+    return 0; // TODO throw error  no bytes available
+  }
+
+  switch (count * 8) {
+    case 8:
+      return new DataView(value.buffer).getUint8(0);
+    case 16:
+      return new DataView(value.buffer).getUint16(0, true);
+    case 32:
+      return new DataView(value.buffer).getUint32(0, true);
+    default:
+      throw new Error('Value more than 48-bits cannot be reliably converted');
+  }
+}
+
+/**
+ * @name u8aToSignedNumber
+ * @summary Creates a signed number from a Uint8Array object. This only operates on LE values as used in SCALE.
+ */
+export function u8aToSignedNumber(value: Uint8Array): number {
+  const count = value.length;
+
+  if (count === 0) {
+    return 0; // TODO throw error  no bytes available
+  }
+
+  switch (count * 8) {
+    case 8:
+      return new DataView(value.buffer).getInt8(0);
+
+    case 16:
+      return new DataView(value.buffer).getInt16(0, true);
+
+    case 32:
+      return new DataView(value.buffer).getInt32(0, true);
     default:
       throw new Error('Value more than 48-bits cannot be reliably converted');
   }
