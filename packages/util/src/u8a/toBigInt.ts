@@ -16,13 +16,14 @@ const U64_MAX = BigInt('0x10000000000000000');
  * @summary Creates a BigInt from a Uint8Array object.
  */
 export function u8aToBigInt (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): bigint {
-  // BE is not the optimal path - LE is the SCALE default
+  // slice + reverse is expensive, however SCALE is LE by default so this is the path
+  // we are most interested in (the BE is added for the sake of being comprehensive)
   const u8a = isLe
     ? value
     : value.slice().reverse();
   const count = u8a.length;
 
-  if (isNegative) {
+  if (isNegative && count && (u8a[count - 1] & 0x80)) {
     switch (count) {
       case 0:
         return BigInt(0);

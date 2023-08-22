@@ -14,15 +14,16 @@ const NEG_MASK = BigInt(0xff);
 
 function toU8a (value: bigint, isLe: boolean, isNegative: boolean): Uint8Array {
   const arr: number[] = [];
+  const withSigned = isNegative && (value < _0n);
 
-  if (isNegative) {
+  if (withSigned) {
     value = (value + _1n) * -_1n;
   }
 
   while (value !== _0n) {
     const mod = value % DIV;
     const val = Number(
-      isNegative
+      withSigned
         ? mod ^ NEG_MASK
         : mod
     );
