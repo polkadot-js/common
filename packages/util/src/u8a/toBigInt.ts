@@ -12,33 +12,34 @@ const U16_MAX = BigInt(256 * 256);
 const U64_MAX = BigInt('0x10000000000000000');
 
 /**
- * @name u8aToBigInt
+ * @name valueToBigInt
  * @summary Creates a BigInt from a Uint8Array object.
  */
-export function u8aToBigInt (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): bigint {
+export function valueToBigInt (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): bigint {
   // slice + reverse is expensive, however SCALE is LE by default so this is the path
   // we are most interested in (the BE is added for the sake of being comprehensive)
-  const u8a = isLe
-    ? value
-    : value.slice().reverse();
-  const count = u8a.length;
+  if (!isLe) {
+    value = value.slice().reverse();
+  }
 
-  if (isNegative && count && (u8a[count - 1] & 0x80)) {
+  const count = value.length;
+
+  if (isNegative && count && (value[count - 1] & 0x80)) {
     switch (count) {
       case 0:
         return BigInt(0);
 
       case 1:
-        return BigInt(((u8a[0] ^ 0x0000_00ff) * -1) - 1);
+        return BigInt(((value[0] ^ 0x0000_00ff) * -1) - 1);
 
       case 2:
-        return BigInt((((u8a[0] + (u8a[1] << 8)) ^ 0x0000_ffff) * -1) - 1);
+        return BigInt((((value[0] + (value[1] << 8)) ^ 0x0000_ffff) * -1) - 1);
 
       case 4:
-        return BigInt((((u8a[0] + (u8a[1] << 8) + (u8a[2] << 16) + (u8a[3] * 0x1_00_00_00)) ^ 0xffff_ffff) * -1) - 1);
+        return BigInt((((value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] * 0x1_00_00_00)) ^ 0xffff_ffff) * -1) - 1);
     }
 
-    const dvI = new DataView(u8a.buffer, u8a.byteOffset);
+    const dvI = new DataView(value.buffer, value.byteOffset);
 
     if (count === 8) {
       return dvI.getBigInt64(0, true);
@@ -52,7 +53,7 @@ export function u8aToBigInt (value: Uint8Array, { isLe = true, isNegative = fals
     }
 
     if (mod) {
-      result = (result * U8_MAX) + BigInt(u8a[0] ^ 0xff);
+      result = (result * U8_MAX) + BigInt(value[0] ^ 0xff);
     }
 
     return (result * -_1n) - _1n;
@@ -63,16 +64,16 @@ export function u8aToBigInt (value: Uint8Array, { isLe = true, isNegative = fals
       return BigInt(0);
 
     case 1:
-      return BigInt(u8a[0]);
+      return BigInt(value[0]);
 
     case 2:
-      return BigInt(u8a[0] + (u8a[1] << 8));
+      return BigInt(value[0] + (value[1] << 8));
 
     case 4:
-      return BigInt(u8a[0] + (u8a[1] << 8) + (u8a[2] << 16) + (u8a[3] * 0x1_00_00_00));
+      return BigInt(value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] * 0x1_00_00_00));
   }
 
-  const dvI = new DataView(u8a.buffer, u8a.byteOffset);
+  const dvI = new DataView(value.buffer, value.byteOffset);
 
   switch (count) {
     case 8:
@@ -90,7 +91,7 @@ export function u8aToBigInt (value: Uint8Array, { isLe = true, isNegative = fals
       }
 
       if (mod) {
-        result = (result * U8_MAX) + BigInt(u8a[0]);
+        result = (result * U8_MAX) + BigInt(value[0]);
       }
 
       return result;
