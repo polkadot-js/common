@@ -7,21 +7,18 @@ import { TESTS } from '../bn/toU8a.spec.js';
 import { perf } from '../test/index.js';
 import { u8aToNumber } from './index.js';
 
-const TESTS_NUM = TESTS.filter(([isLe,, numarr]) =>
-  isLe === true &&
-  numarr.length <= 6
-);
+const TESTS_NUM = TESTS.filter(([,, numarr]) => numarr.length <= 6);
 
 describe('u8aToNumber', (): void => {
   describe('conversion tests', (): void => {
     for (let i = 0, count = TESTS_NUM.length; i < count; i++) {
-      const [, isNegative, numarr, strval] = TESTS_NUM[i];
+      const [isLe, isNegative, numarr, strval] = TESTS_NUM[i];
 
-      it(`${i}: creates ${strval} (bitLength=${numarr.length * 8}, isNegative=${isNegative})`, (): void => {
+      it(`${i}: creates ${strval} (bitLength=${numarr.length * 8}, isLe=${isLe}, isNegative=${isNegative})`, (): void => {
         expect(
           u8aToNumber(
             new Uint8Array(numarr),
-            { isNegative }
+            { isLe, isNegative }
           ).toString()
         ).toBe(strval);
       });
