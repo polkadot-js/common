@@ -6,7 +6,6 @@
 import { perf } from '../test/index.js';
 import { u8aToBn } from './index.js';
 
-// TODO Share this with toNumber & toBigInt (expended there)
 // eslint-disable-next-line jest/no-export
 export const TESTS: [isLe: boolean, isNegative: boolean, numarr: number[], strval: string][] = [
   // LE, positive numbers
