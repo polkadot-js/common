@@ -5,7 +5,7 @@ import type { ToBnOptions } from '../types.js';
 
 /**
  * @name u8aToNumber
- * @summary Creates a number from a Uint8Array object. This only operates on LE values as used in SCALE.
+ * @summary Creates a number from a Uint8Array object.
  */
 export function u8aToNumber (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): number {
   // slice + reverse is expensive, however SCALE is LE by default so this is the path
