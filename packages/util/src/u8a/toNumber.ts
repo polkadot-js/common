@@ -19,7 +19,7 @@ export function u8aToNumber (value: Uint8Array, { isLe = true, isNegative = fals
   // indicates a signed value, we use a two's complement conversion. If one of these
   // flags are not set, we just do a normal unsigned conversion (the same shortcut
   // applies in both the u8aTo{BigInt, Bn} conversions as well)
-  if (isNegative && (!count || (u8a[count - 1] & 0x80))) {
+  if (isNegative && count && (u8a[count - 1] & 0x80)) {
     switch (count) {
       case 0:
         return 0;

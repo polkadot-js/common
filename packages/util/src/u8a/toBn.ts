@@ -33,7 +33,7 @@ export function u8aToBn (value: Uint8Array, { isLe = true, isNegative = false }:
 
   // shortcut for <= u48 values - in this case the manual conversion
   // here seems to be more efficient than passing the full array
-  if (isNegative && (!count || (u8a[count - 1] & 0x80))) {
+  if (isNegative && count && (u8a[count - 1] & 0x80)) {
     // Most common case i{8, 16, 32} default LE SCALE-encoded
     // For <= 32, we also optimize the xor to a single op
     switch (count) {

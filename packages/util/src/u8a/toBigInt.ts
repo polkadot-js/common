@@ -23,7 +23,7 @@ export function u8aToBigInt (value: Uint8Array, { isLe = true, isNegative = fals
     : value.slice().reverse();
   const count = u8a.length;
 
-  if (isNegative && (!count || (u8a[count - 1] & 0x80))) {
+  if (isNegative && count && (u8a[count - 1] & 0x80)) {
     switch (count) {
       case 0:
         return BigInt(0);
