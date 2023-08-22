@@ -3,9 +3,9 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
+import { TESTS } from '../bn/toU8a.spec.js';
 import { perf } from '../test/index.js';
 import { u8aToNumber } from './index.js';
-import { TESTS } from './toBn.spec.js';
 
 const TESTS_NUM = TESTS.filter(([isLe,, numarr]) =>
   isLe === true &&

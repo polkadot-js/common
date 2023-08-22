@@ -3,9 +3,9 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
+import { TESTS } from '../bn/toU8a.spec.js';
 import { perf } from '../test/index.js';
 import { u8aToBigInt } from './index.js';
-import { TESTS } from './toBn.spec.js';
 
 // test-cases are the same as in u8aToBn
 describe('u8aToBigInt', (): void => {
