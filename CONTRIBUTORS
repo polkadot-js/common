@@ -1,4 +1,4 @@
-    1643	Jaco                          	Check sign flag for i{8, 16, 32, ...} conversions (#1867)
+    1644	Jaco                          	Adjust BE u8aTo{Bn, BigInt, Number} check (#1868)
       13	Carlo Sala                    	feat(networks): add zeitgeist Ledger support (#1840)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
