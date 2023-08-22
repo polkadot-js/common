@@ -19,7 +19,7 @@ export const TESTS: [isLe: boolean, isNegative: boolean, numarr: number[], strva
   [true, false, [0x12, 0x34, 0x56, 0x78, 0x9a], '663443878930'],
   [true, false, [0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc], '207371629900818'],
   [true, false, [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78], '159954953172672629770948536149615195154'],
-  // LE, positivive numbers (w/ signed flag)
+  // LE, positive numbers (w/ signed flag)
   [true, true, [12], '12'],
   [true, true, [210, 4], '1234'],
   [true, true, [64, 226, 1], '123456'],
