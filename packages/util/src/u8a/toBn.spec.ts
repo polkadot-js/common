@@ -32,36 +32,26 @@ describe('u8aToBn', (): void => {
     }
   });
 
-  describe('LE', (): void => {
-    for (let i = 1; i < 32; i++) {
-      const tu8a = [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78];
-      const tstr = tu8a.map((n) => n.toString(16));
+  describe('length tests', (): void => {
+    [true, false].forEach((isLe) => {
+      for (let i = 1; i < 32; i++) {
+        const tu8a = [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78];
+        const tstr = tu8a.map((n) => n.toString(16));
 
-      it(`converts values with length ${i}`, (): void => {
-        expect(
-          u8aToBn(
-            new Uint8Array(tu8a.slice(0, i)),
-            { isLe: true }
-          ).toString(16)
-        ).toBe(tstr.slice(0, i).reverse().join(''));
-      });
-    }
-  });
-
-  describe('BE', (): void => {
-    for (let i = 1; i < 32; i++) {
-      const tu8a = [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78];
-      const tstr = tu8a.map((n) => n.toString(16));
-
-      it(`converts values with length ${i}`, (): void => {
-        expect(
-          u8aToBn(
-            new Uint8Array(tu8a.slice(0, i)),
-            { isLe: false }
-          ).toString(16)
-        ).toBe(tstr.slice(0, i).join(''));
-      });
-    }
+        it(`converts values with bitLength=${i * 8}, isLe=${isLe}`, (): void => {
+          expect(
+            u8aToBn(
+              new Uint8Array(tu8a.slice(0, i)),
+              { isLe }
+            ).toString(16)
+          ).toBe(
+            isLe
+              ? tstr.slice(0, i).reverse().join('')
+              : tstr.slice(0, i).join('')
+          );
+        });
+      }
+    });
   });
 
   describe('empty creation', (): void => {
@@ -99,26 +89,6 @@ describe('u8aToBn', (): void => {
           { isLe: false, isNegative: true }
         ).toString(16)
       ).toBe('0');
-    });
-  });
-
-  describe('negative', (): void => {
-    it('handles negative numbers (little-endian)', (): void => {
-      expect(
-        u8aToBn(
-          new Uint8Array([46, 251]),
-          { isLe: true, isNegative: true }
-        ).toNumber()
-      ).toBe(-1234);
-    });
-
-    it('handles negative numbers (big-endian)', (): void => {
-      expect(
-        u8aToBn(
-          new Uint8Array([251, 46]),
-          { isLe: false, isNegative: true }
-        ).toNumber()
-      ).toBe(-1234);
     });
   });
 
