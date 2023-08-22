@@ -9,7 +9,7 @@ import type { ToBnOptions } from '../types.js';
  */
 export function u8aToNumber (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): number {
   // slice + reverse is expensive, however SCALE is LE by default so this is the path
-  // we are most interseted in (the BE is added for the sake of being comprehensive)
+  // we are most interested in (the BE is added for the sake of being comprehensive)
   const u8a = isLe
     ? value
     : value.slice().reverse();
