@@ -12,10 +12,10 @@ const U16_MAX = BigInt(256 * 256);
 const U64_MAX = BigInt('0x10000000000000000');
 
 /**
- * @name valueToBigInt
+ * @name u8aToBigInt
  * @summary Creates a BigInt from a Uint8Array object.
  */
-export function valueToBigInt (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): bigint {
+export function u8aToBigInt (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): bigint {
   // slice + reverse is expensive, however SCALE is LE by default so this is the path
   // we are most interested in (the BE is added for the sake of being comprehensive)
   if (!isLe) {

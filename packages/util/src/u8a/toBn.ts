@@ -6,7 +6,7 @@ import type { ToBnOptions } from '../types.js';
 import { BN } from '../bn/bn.js';
 
 /**
- * @name valueToBn
+ * @name u8aToBn
  * @summary Creates a BN from a Uint8Array object.
  * @description
  * `UInt8Array` input values return the actual BN. `null` or `undefined` values returns an `0x0` value.
@@ -18,12 +18,12 @@ import { BN } from '../bn/bn.js';
  * <BR>
  *
  * ```javascript
- * import { valueToBn } from '@polkadot/util';
+ * import { u8aToBn } from '@polkadot/util';
  *
- * valueToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
+ * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```
  */
-export function valueToBn (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): BN {
+export function u8aToBn (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): BN {
   // slice + reverse is expensive, however SCALE is LE by default so this is the path
   // we are most interested in (the BE is added for the sake of being comprehensive)
   if (!isLe) {

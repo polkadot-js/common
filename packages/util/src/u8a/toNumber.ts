@@ -4,10 +4,10 @@
 import type { ToBnOptions } from '../types.js';
 
 /**
- * @name valueToNumber
+ * @name u8aToNumber
  * @summary Creates a number from a Uint8Array object.
  */
-export function valueToNumber (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): number {
+export function u8aToNumber (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): number {
   // slice + reverse is expensive, however SCALE is LE by default so this is the path
   // we are most interested in (the BE is added for the sake of being comprehensive)
   if (!isLe) {
@@ -19,7 +19,7 @@ export function valueToNumber (value: Uint8Array, { isLe = true, isNegative = fa
   // When the value is a i{8, 16, 24, 32, 40, 40} values and the top-most bit
   // indicates a signed value, we use a two's complement conversion. If one of these
   // flags are not set, we just do a normal unsigned conversion (the same shortcut
-  // applies in both the valueTo{BigInt, Bn} conversions as well)
+  // applies in both the u8aTo{BigInt, Bn} conversions as well)
   if (isNegative && count && (value[count - 1] & 0x80)) {
     switch (count) {
       case 0:
