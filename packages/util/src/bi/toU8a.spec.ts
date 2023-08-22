@@ -14,12 +14,13 @@ describe('nToU8a', (): void => {
   describe('conversion tests', (): void => {
     for (let i = 0, count = TESTS.length; i < count; i++) {
       const [isLe, isNegative, numarr, strval] = TESTS[i];
+      const bitLength = numarr.length * 8;
 
-      it(`${i}: converts from ${strval} (bitLength=${numarr.length * 8}, isLe=${isLe}, isNegative=${isNegative})`, (): void => {
+      it(`${i}: converts from ${strval} (bitLength=${bitLength}, isLe=${isLe}, isNegative=${isNegative})`, (): void => {
         expect(
           nToU8a(
             BigInt(strval),
-            { isLe, isNegative }
+            { bitLength, isLe, isNegative }
           )
         ).toEqual(new Uint8Array(numarr));
       });

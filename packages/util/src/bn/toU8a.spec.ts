@@ -30,6 +30,8 @@ export const TESTS: [isLe: boolean, isNegative: boolean, numarr: number[], strva
   [true, true, [244], '-12'],
   [true, true, [46, 251], '-1234'],
   [true, true, [192, 29, 254], '-123456'],
+  [true, true, [255, 255, 255, 255], '-1'],
+  [true, true, [254, 255, 255, 255], '-2'],
   [true, true, [235, 50, 164, 248], '-123456789'],
   [true, true, [65, 86, 129, 173, 254], '-5678999999'],
   [true, true, [1, 96, 141, 177, 231, 246], '-9999999999999'],
@@ -49,12 +51,13 @@ describe('bnToU8a', (): void => {
   describe('conversion tests', (): void => {
     for (let i = 0, count = TESTS.length; i < count; i++) {
       const [isLe, isNegative, numarr, strval] = TESTS[i];
+      const bitLength = numarr.length * 8;
 
-      it(`${i}: converts from ${strval} (bitLength=${numarr.length * 8}, isLe=${isLe}, isNegative=${isNegative})`, (): void => {
+      it(`${i}: converts from ${strval} (bitLength=${bitLength}, isLe=${isLe}, isNegative=${isNegative})`, (): void => {
         expect(
           bnToU8a(
             new BN(strval),
-            { isLe, isNegative }
+            { bitLength, isLe, isNegative }
           )
         ).toEqual(new Uint8Array(numarr));
       });
