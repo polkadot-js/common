@@ -376,12 +376,8 @@ describe('u8aToBn', (): void => {
     ).toBe(256);
   });
 
-  perf('u8aToBn (i32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToBn(v, { isNegative: true }));
-
+  perf('u8aToBn (i32)', 750_000, [[new Uint8Array([0x9c, 0x9c, 0x9c, 0x9c])]], (v: Uint8Array) => u8aToBn(v, { isNegative: true }));
   perf('u8aToBn (u32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
   perf('u8aToBn (u64)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
   perf('u8aToBn (u128)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
-
-  // perf('BN (constructor)', 1_000_000, [[12345678]], (v: number) => new BN(v));
-  // perf('BN (constructor -> string)', 1_000_000, [[12345678]], (v: number) => new BN(v).toString());
 });

@@ -375,12 +375,8 @@ describe('u8aToBigInt', (): void => {
     ).toBe(256n);
   });
 
-  perf('u8aToBigInt (i32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToBigInt(v, { isNegative: true }));
-
+  perf('u8aToBigInt (i32)', 750_000, [[new Uint8Array([0x9c, 0x9c, 0x9c, 0x9c])]], (v: Uint8Array) => u8aToBigInt(v, { isNegative: true }));
   perf('u8aToBigInt (u32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBigInt);
   perf('u8aToBigInt (u64)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBigInt);
   perf('u8aToBigInt (u128)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBigInt);
-
-  // perf('BigInt (constructor)', 1_000_000, [[12345678]], (v: number) => BigInt(v).toString());
-  // perf('BigInt (constructor -> string)', 1_000_000, [[12345678]], (v: number) => BigInt(v).toString());
 });
