@@ -1,11 +1,12 @@
 # CHANGELOG
 
-## master
+## 12.4.2 Aug 23, 2023
 
 Changes:
 
 - Fix `u8aTo{BigInt, Bn, Number}` for non-negative `i{8, 16, 32...}` inputs
 - Extend `u8aToBuffer` with `hasBuffer` check
+- Adjust util tests (extract input/output arrays)
 
 
 ## 12.4.1 Aug 17, 2023
