@@ -3,28 +3,13 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import { TESTS } from '../bn/toU8a.spec.js';
+import { TESTS } from '../bi/toU8a.spec.js';
 import { perf } from '../test/index.js';
 import { u8aToNumber } from './index.js';
 
 const TESTS_NUM = TESTS.filter(([,, numarr]) => numarr.length <= 6);
 
 describe('u8aToNumber', (): void => {
-  describe('conversion tests', (): void => {
-    for (let i = 0, count = TESTS_NUM.length; i < count; i++) {
-      const [isLe, isNegative, numarr, strval] = TESTS_NUM[i];
-
-      it(`${i}: creates ${strval} (bitLength=${numarr.length * 8}, isLe=${isLe}, isNegative=${isNegative})`, (): void => {
-        expect(
-          u8aToNumber(
-            new Uint8Array(numarr),
-            { isLe, isNegative }
-          ).toString()
-        ).toBe(strval);
-      });
-    }
-  });
-
   describe('empty creation', (): void => {
     it('handles unsigned (le)', (): void => {
       expect(
@@ -41,6 +26,19 @@ describe('u8aToNumber', (): void => {
           { isNegative: true }
         )
       ).toBe(0);
+    });
+  });
+
+  describe('conversion tests', (): void => {
+    TESTS_NUM.forEach(([isLe, isNegative, numarr, strval], i): void => {
+      it(`#${i}: creates ${strval} (bitLength=${numarr.length * 8}, isLe=${isLe}, isNegative=${isNegative})`, (): void => {
+        expect(
+          u8aToNumber(
+            new Uint8Array(numarr),
+            { isLe, isNegative }
+          ).toString()
+        ).toBe(strval);
+      });
     });
   });
 
