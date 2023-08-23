@@ -3,8 +3,20 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
+import type { U8aLike } from '../types.js';
+
 import { perf } from '../test/index.js';
 import { u8aToU8a } from './index.js';
+
+const TESTS: [input: U8aLike | null | undefined, output: Uint8Array][] = [
+  ['0x80000a', new Uint8Array([128, 0, 10])],
+  ['abcde fghij', new Uint8Array([97, 98, 99, 100, 101, 32, 102, 103, 104, 105, 106])],
+  [[128, 0, 10, 11, 12], new Uint8Array([128, 0, 10, 11, 12])],
+  [Buffer.from([1, 2, 3, 128, 0, 10, 11, 12]), new Uint8Array([1, 2, 3, 128, 0, 10, 11, 12])],
+  [Buffer.from('80000a', 'hex'), new Uint8Array([128, 0, 10])],
+  // this is where completely invalid data is being passed
+  [123 as unknown as Uint8Array, new Uint8Array([49, 50, 51])]
+];
 
 describe('u8aToU8a', (): void => {
   it('returns an empty Uint8Array when null/undefined/"" provided', (): void => {
@@ -19,44 +31,6 @@ describe('u8aToU8a', (): void => {
     ).toHaveLength(0);
   });
 
-  it('returns a Uint8Array (hex input)', (): void => {
-    expect(
-      u8aToU8a('0x80000a')
-    ).toEqual(
-      new Uint8Array([128, 0, 10])
-    );
-  });
-
-  it('returns Uint8Array (string input)', (): void => {
-    expect(
-      u8aToU8a('abcde fghij')
-    ).toEqual(new Uint8Array([97, 98, 99, 100, 101, 32, 102, 103, 104, 105, 106]));
-  });
-
-  it('creates from Array', (): void => {
-    expect(
-      u8aToU8a([128, 0, 10, 11, 12])
-    ).toEqual(
-      new Uint8Array([128, 0, 10, 11, 12])
-    );
-  });
-
-  it('creates from a Buffer', (): void => {
-    expect(
-      u8aToU8a(Buffer.from([1, 2, 3, 128, 0, 10, 11, 12])).buffer
-    ).toEqual(
-      new Uint8Array([1, 2, 3, 128, 0, 10, 11, 12]).buffer
-    );
-  });
-
-  it('creates from a Buffer (hex)', (): void => {
-    expect(
-      u8aToU8a(Buffer.from('80000a', 'hex')).buffer
-    ).toEqual(
-      new Uint8Array([128, 0, 10]).buffer
-    );
-  });
-
   it('returns a Uint8Array as-is (u8a input)', (): void => {
     const input = new Uint8Array([128, 0, 10]);
 
@@ -65,11 +39,16 @@ describe('u8aToU8a', (): void => {
     ).toEqual(true);
   });
 
-  it('creates unknowns via string conversion', (): void => {
-    expect(
-      // this is where completely invalid data is being passed
-      u8aToU8a(123 as unknown as Uint8Array)
-    ).toEqual(new Uint8Array([49, 50, 51]));
+  describe('conversion tests', (): void => {
+    TESTS.forEach(([input, output], i): void => {
+      it(`#${i}: converts ${input as string} (typeof=${typeof input})`, (): void => {
+        expect(
+          u8aToU8a(input)
+        ).toEqual(
+          output
+        );
+      });
+    });
   });
 
   perf('u8aToU8a (hex)', 250_000, [['0x1234']], u8aToU8a);
