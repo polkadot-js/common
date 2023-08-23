@@ -5,6 +5,8 @@ import type { BufferClass, BufferObject } from '../types.js';
 
 import { xglobal } from '@polkadot/x-global';
 
+import { hasBuffer } from '../has.js';
+
 /**
  * @name u8aToBuffer
  * @summary Creates a Buffer object from a hex string.
@@ -20,5 +22,7 @@ import { xglobal } from '@polkadot/x-global';
  * ```
  */
 export function u8aToBuffer <T = BufferObject> (value?: Uint8Array | null): T {
-  return (xglobal.Buffer as unknown as BufferClass).from(value || []);
+  return hasBuffer
+    ? (xglobal.Buffer as unknown as BufferClass).from(value || [])
+    : (value || []) as unknown as T;
 }
