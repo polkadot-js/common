@@ -5,6 +5,7 @@
 Changes:
 
 - Fix `u8aTo{BigInt, Bn, Number}` for non-negative `i{8, 16, 32...}` inputs
+- Extend `u8aToBuffer` with `hasBuffer` check
 
 
 ## 12.4.1 Aug 17, 2023
