@@ -19,17 +19,17 @@ class ExtString extends String {
 // eslint-disable-next-line @typescript-eslint/ban-types
 const TESTS: [isLe: boolean | undefined, bitLength: 32 | 64 | undefined, input: String | string | number | Number, output: string][] = [
   [undefined, undefined, +0.0, '0x00000000'],
-  [undefined, undefined, -0.0, '0x00000000'],
+  [undefined, undefined, -0.0, '0x00000080'],
   [undefined, undefined, 123.456, '0x79e9f642'],
   [undefined, undefined, '123.456', '0x79e9f642'],
   [undefined, undefined, new ExtNumber(123.456), '0x79e9f642'],
   [undefined, undefined, new ExtString(123.456), '0x79e9f642'],
   [true, 32, new ExtString(123.456), '0x79e9f642'],
   [true, undefined, Number.NaN, '0x0000c07f'],
-  [false, undefined, -0.0, '0x00000000'],
+  [false, undefined, -0.0, '0x80000000'],
   [undefined, 64, +0.0, '0x0000000000000000'],
-  [true, 64, -0.0, '0x0000000000000000'],
-  [false, 64, -0.0, '0x0000000000000000'],
+  [true, 64, -0.0, '0x0000000000000080'],
+  [false, 64, -0.0, '0x8000000000000000'],
   [undefined, 64, Number.NaN, '0x000000000000f87f']
 ];
 
