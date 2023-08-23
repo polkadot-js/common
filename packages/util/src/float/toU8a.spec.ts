@@ -42,7 +42,7 @@ describe('floatToU8a', (): void => {
 
   describe('conversion tests', (): void => {
     TESTS.forEach(([isLe, bitLength, input, output], i): void => {
-      it(`#${i}: correctly encodes ${input.toString()} (typeof=${typeof input})`, (): void => {
+      it(`#${i}: correctly encodes ${typeof input === 'number' ? input : input.toString()} (typeof=${typeof input})`, (): void => {
         expect(
           u8aToHex(floatToU8a(input, { bitLength, isLe }))
         ).toEqual(output);
