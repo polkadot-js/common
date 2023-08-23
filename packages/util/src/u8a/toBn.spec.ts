@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import { TESTS } from '../bn/toU8a.spec.js';
+import { TESTS } from '../bi/toU8a.spec.js';
 import { perf } from '../test/index.js';
 import { u8aToBn } from './index.js';
 
@@ -15,43 +15,6 @@ describe('u8aToBn', (): void => {
         new Uint8Array([0x12, 0x34])
       ).toString(16)
     ).toBe('3412');
-  });
-
-  describe('conversion tests', (): void => {
-    for (let i = 0, count = TESTS.length; i < count; i++) {
-      const [isLe, isNegative, numarr, strval] = TESTS[i];
-
-      it(`${i}: creates ${strval} (bitLength=${numarr.length * 8}, isLe=${isLe}, isNegative=${isNegative})`, (): void => {
-        expect(
-          u8aToBn(
-            new Uint8Array(numarr),
-            { isLe, isNegative }
-          ).toString()
-        ).toBe(strval);
-      });
-    }
-  });
-
-  describe('length tests', (): void => {
-    [true, false].forEach((isLe) => {
-      for (let i = 1; i < 32; i++) {
-        const tu8a = [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78];
-        const tstr = tu8a.map((n) => n.toString(16));
-
-        it(`converts values with bitLength=${i * 8}, isLe=${isLe}`, (): void => {
-          expect(
-            u8aToBn(
-              new Uint8Array(tu8a.slice(0, i)),
-              { isLe }
-            ).toString(16)
-          ).toBe(
-            isLe
-              ? tstr.slice(0, i).reverse().join('')
-              : tstr.slice(0, i).join('')
-          );
-        });
-      }
-    });
   });
 
   describe('empty creation', (): void => {
@@ -99,6 +62,41 @@ describe('u8aToBn', (): void => {
         { isLe: true }
       ).toNumber()
     ).toBe(256);
+  });
+
+  describe('length tests', (): void => {
+    [true, false].forEach((isLe) => {
+      for (let i = 1; i < 32; i++) {
+        const tu8a = [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78];
+        const tstr = tu8a.map((n) => n.toString(16));
+
+        it(`converts values with bitLength=${i * 8}, isLe=${isLe}`, (): void => {
+          expect(
+            u8aToBn(
+              new Uint8Array(tu8a.slice(0, i)),
+              { isLe }
+            ).toString(16)
+          ).toBe(
+            isLe
+              ? tstr.slice(0, i).reverse().join('')
+              : tstr.slice(0, i).join('')
+          );
+        });
+      }
+    });
+  });
+
+  describe('conversion tests', (): void => {
+    TESTS.forEach(([isLe, isNegative, numarr, strval], i): void => {
+      it(`#${i}: creates ${strval} (bitLength=${numarr.length * 8}, isLe=${isLe}, isNegative=${isNegative})`, (): void => {
+        expect(
+          u8aToBn(
+            new Uint8Array(numarr),
+            { isLe, isNegative }
+          ).toString()
+        ).toBe(strval);
+      });
+    });
   });
 
   perf('u8aToBn (i32)', 750_000, [[new Uint8Array([0x9c, 0x9c, 0x9c, 0x9c])]], (v: Uint8Array) => u8aToBn(v, { isNegative: true }));
