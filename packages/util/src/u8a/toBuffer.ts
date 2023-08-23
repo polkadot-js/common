@@ -24,5 +24,5 @@ import { hasBuffer } from '../has.js';
 export function u8aToBuffer <T = BufferObject> (value?: Uint8Array | null): T {
   return hasBuffer
     ? (xglobal.Buffer as unknown as BufferClass).from(value || [])
-    : (value || []) as unknown as T;
+    : (value || new Uint8Array()) as T;
 }
