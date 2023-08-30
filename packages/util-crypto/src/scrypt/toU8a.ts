@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Params } from './types.js';
+import type { ScryptParams } from './types.js';
 
 import { bnToU8a, u8aConcat } from '@polkadot/util';
 
 import { BN_LE_32_OPTS } from '../bn.js';
 
-export function scryptToU8a (salt: Uint8Array, { N, p, r }: Params): Uint8Array {
+export function scryptToU8a (salt: Uint8Array, { N, p, r }: ScryptParams): Uint8Array {
   return u8aConcat(
     salt,
     bnToU8a(N, BN_LE_32_OPTS),

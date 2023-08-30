@@ -5,13 +5,9 @@ import type { HexString } from '@polkadot/util/types';
 import type { EncryptedJson, Keypair, KeypairType, Prefix } from '@polkadot/util-crypto/types';
 
 export interface KeyringOptions {
-  /**
-   * @description The ss58Format to use for address encoding (defaults to 42)
-   */
+  /** The ss58Format to use for address encoding (defaults to 42) */
   ss58Format?: Prefix;
-  /**
-   * @description The type of keyring to create (defaults to ed25519)
-   */
+  /** The type of keyring to create (defaults to ed25519) */
   type?: KeypairType;
 }
 
@@ -76,9 +72,7 @@ export interface KeyringPair$Json extends EncryptedJson {
 }
 
 export interface SignOptions {
-  /**
-   * @description Create a MultiSignature-compatible output with an indicator type
-   **/
+  /** Create a MultiSignature-compatible output with an indicator type */
   withType?: boolean;
 }
 
