@@ -5,6 +5,7 @@ import type { BN } from './bn/bn.js';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+/** An interface that defines an actual JS class */
 export interface Class<T = any, A extends unknown[] = any[]> {
   prototype: T;
 
@@ -40,20 +41,14 @@ export interface Logger {
 }
 
 export interface ToBnOptions {
-  /**
-   * @description Convert in LE format
-   */
+  /** Convert in LE format */
   isLe?: boolean;
-  /**
-   * @description Number is signed, apply two's complement
-   */
+  /** Number is signed, apply two's complement */
   isNegative?: boolean;
 }
 
 export interface NumberOptions extends ToBnOptions {
-  /**
-   * @description Limit to the specified bitLength, despite input length
-   */
+  /** Limit to the specified bitLength, despite input length */
   bitLength?: number;
 }
 

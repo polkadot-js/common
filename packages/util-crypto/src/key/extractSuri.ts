@@ -25,7 +25,7 @@ export function keyExtractSuri (suri: string): ExtractResult {
     throw new Error('Unable to match provided value to a secret URI');
   }
 
-  const [, phrase, , derivePath, , , password] = matches as string[];
+  const [, phrase, , derivePath, , , password] = matches;
   const { path } = keyExtractPath(derivePath);
 
   return {
