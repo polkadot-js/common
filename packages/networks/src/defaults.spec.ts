@@ -9,9 +9,10 @@ import { isHex } from '@polkadot/util';
 import { knownGenesis, knownLedger, knownTestnet } from './defaults/index.js';
 
 describe('defaults', (): void => {
-  describe('genesis', (): void => {
-    const genesisKeys = Object.keys(knownGenesis);
+  const genesisKeys = Object.keys(knownGenesis);
+  const ledgerKeys = Object.keys(knownLedger);
 
+  describe('genesis', (): void => {
     it('has hex values for all genesis chains', (): void => {
       expect(
         genesisKeys.filter((network) =>
@@ -31,7 +32,7 @@ describe('defaults', (): void => {
 
     it('has genesis for all Ledger chains', (): void => {
       expect(
-        Object.keys(knownLedger).filter((network) =>
+        ledgerKeys.filter((network) =>
           !knownGenesis[network]
         )
       ).toEqual([]);
@@ -41,7 +42,7 @@ describe('defaults', (): void => {
   describe('Ledger', (): void => {
     it('has entries for each of the apps (hwledger -> networks)', (): void => {
       expect(
-        Object.keys(knownLedger).filter((network) =>
+        ledgerKeys.filter((network) =>
           !ledgerApps[network]
         )
       ).toEqual([]);
