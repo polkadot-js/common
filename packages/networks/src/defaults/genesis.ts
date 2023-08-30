@@ -3,10 +3,14 @@
 
 import type { KnownGenesis } from '../types.js';
 
-// NOTE: In the case where the network was hard-spooned and multiple genesisHashes
-// are provided, it needs to be in reverse order, i.e. most-recent first, oldest
-// last. This make lookups for the current a simple genesisHash[0]
-// (See Kusama as an example)
+// In the case where the network was hard-spooned and multiple genesisHashes
+// are provided, it needs to be in reverse order, i.e. most-recent goes first,
+// oldest goes last. This make lookups for the current a simple genesisHash[0]
+// where the latest ios always the first entry (See Kusama as an example)
+//
+// IMPORTANT: Apart from the test relays, this list is limited to live parachains
+// and live production  networks. It does not and should not contain any testnets,
+// either stand-alone or connected to test relays such as Westend/Rococo
 export const knownGenesis: KnownGenesis = {
   acala: [
     '0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c'

@@ -6,22 +6,33 @@
 import { ledgerApps } from '@polkadot/hw-ledger/defaults';
 import { isHex } from '@polkadot/util';
 
-import { knownGenesis, knownLedger } from './defaults/index.js';
+import { knownGenesis, knownLedger, knownTestnet } from './defaults/index.js';
 
 describe('defaults', (): void => {
+  const genesisKeys = Object.keys(knownGenesis);
+  const ledgerKeys = Object.keys(knownLedger);
+
   describe('genesis', (): void => {
     it('has hex values for all genesis chains', (): void => {
       expect(
-        Object.keys(knownGenesis).filter((network) =>
+        genesisKeys.filter((network) =>
           !knownGenesis[network].length ||
           knownGenesis[network].some((g) => !isHex(g, 256))
         )
       ).toEqual([]);
     });
 
+    it('has no entries for testnets', (): void => {
+      expect(
+        genesisKeys.filter((network) =>
+          knownTestnet[network]
+        )
+      ).toEqual([]);
+    });
+
     it('has genesis for all Ledger chains', (): void => {
       expect(
-        Object.keys(knownLedger).filter((network) =>
+        ledgerKeys.filter((network) =>
           !knownGenesis[network]
         )
       ).toEqual([]);
@@ -31,7 +42,7 @@ describe('defaults', (): void => {
   describe('Ledger', (): void => {
     it('has entries for each of the apps (hwledger -> networks)', (): void => {
       expect(
-        Object.keys(knownLedger).filter((network) =>
+        ledgerKeys.filter((network) =>
           !ledgerApps[network]
         )
       ).toEqual([]);
