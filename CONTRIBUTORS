@@ -1,4 +1,4 @@
-    1649	Jaco                          	Bump deps (noble hashes/curves) (#1873)
+    1650	Jaco                          	Bump dev deps (#1874)
       13	Carlo Sala                    	feat(networks): add zeitgeist Ledger support (#1840)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
