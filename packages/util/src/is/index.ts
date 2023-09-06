@@ -25,6 +25,7 @@ export { isNumber } from './number.js';
 export { isObject } from './object.js';
 export { isObservable } from './observable.js';
 export { isPromise } from './promise.js';
+export { isRiscV } from './riscv.js';
 export { isString } from './string.js';
 export { isTestChain } from './testChain.js';
 export { isToBigInt } from './toBigInt.js';
