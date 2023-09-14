@@ -56,6 +56,9 @@ export const knownGenesis: KnownGenesis = {
   edgeware: [
     '0x742a2ca70c2fda6cee4f8df98d64c4c670a052d9568058982dad9d5a7a135c5b'
   ],
+  enjin: [
+    '0xd8761d3c88f26dc12875c00d3165f7d67243d56fc85b4cf19937601a7916e5a9'
+  ],
   equilibrium: [
     '0x6f1a800de3daff7f5e037ddf66ab22ce03ab91874debeddb1086f5f7dbd48925'
   ],
@@ -85,6 +88,9 @@ export const knownGenesis: KnownGenesis = {
     '0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe', // Kusama CC3,
     '0xe3777fa922cafbff200cadeaea1a76bd7898ad5b89f7848999058b50e715f636', // Kusama CC2
     '0x3fd7b9eb6a00376e5be61f01abb429ffb0b104be05eaff4d458da48fcd425baf' // Kusama CC1
+  ],
+  matrixchain: [
+    '0x3af4ff48ec76d2efc8476730f423ac07e25ad48f5f4c9dc39c778b164d808615'
   ],
   nodle: [
     '0x97da7ede98d7bad4e36b4d734b6055425a3be036da2a332ea5a7037656427a21'
