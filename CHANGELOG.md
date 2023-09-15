@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 12.5.1 Sep 15, 2023
+
+Contributed:
+
+- Add `isRiskV` helper (Thanks to https://github.com/peetzweg)
+- Ledger support for Enjin & Matrixchain (Thanks to https://github.com/leonardocustodio)
+
+Changes:
+
+- Expand interface type comments (assists in-editor helpers)
+- Upgrade dependencies to latest stable versions
+
+
 ## 12.4.2 Aug 23, 2023
 
 Changes:
