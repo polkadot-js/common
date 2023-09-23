@@ -22,7 +22,7 @@
   "dependencies": {
     "@polkadot/hw-ledger-transports": "12.5.1",
     "@polkadot/util": "12.5.1",
-    "@zondax/ledger-substrate": "^0.41.2",
+    "@zondax/ledger-substrate": "^0.41.3",
     "tslib": "^2.6.2"
   }
 }

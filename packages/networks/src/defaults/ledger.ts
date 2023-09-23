@@ -37,12 +37,13 @@ export const knownLedger: KnownLedger = {
   polkadex: 0x0000031f,
   polkadot: 0x00000162,
   polymesh: 0x00000253,
+  quartz: 0x00000277,
   sora: 0x00000269,
   stafi: 0x0000038b,
   statemine: 0x000001b2, // common-good on Kusama, shares derivation
   statemint: 0x00000162, // common-good on Polkadot, shares derivation
   ternoa: 0x00003e3,
-  unique: 0x00000162,
+  unique: 0x00000295,
   vtb: 0x000002b6,
   xxnetwork: 0x000007a3,
   zeitgeist: 0x00000162
