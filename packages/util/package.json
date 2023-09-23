@@ -39,7 +39,7 @@
     "@polkadot/x-global": "12.5.2-0-x",
     "@polkadot/x-textdecoder": "12.5.2-0-x",
     "@polkadot/x-textencoder": "12.5.2-0-x",
-    "@types/bn.js": "^5.1.1",
+    "@types/bn.js": "^5.1.2",
     "bn.js": "^5.2.1",
     "tslib": "^2.6.2"
   },
