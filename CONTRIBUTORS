@@ -58,4 +58,5 @@
        1	Wei Tang                      	ss58: add Kulupu prefix to the list (#595)
        1	WoeOm                         	Handing high precision scenes (#450)
        1	xx network                    	Add xxnetwork genesis hash and ledger app (#1463)
+       1	Yaroslav Bolyukin             	Add quartz support for ledger, update unique slip-0044 identifier (#1882)
        1	Yuri                          	Extra check for process for browser bundles (#923)
