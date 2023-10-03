@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Ledger support for Quartz (Thanks to https://github.com/CertainLach)
+
+
 ## 12.5.1 Sep 15, 2023
 
 Contributed:
