@@ -105,7 +105,7 @@ function warn <T extends { version: string }> (pre: string, all: T[], fmt: (vers
 /**
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
- * @description A `@polkadot/*` version detection utility, checking for one occurence of a package in addition to checking for ddependency versions.
+ * @description A `@polkadot/*` version detection utility, checking for one occurrence of a package in addition to checking for dependency versions.
  */
 export function detectPackage ({ name, path, type, version }: PackageInfo, pathOrFn?: FnString | string | false | null, deps: PackageInfo[] = []): void {
   if (!name.startsWith('@polkadot')) {
@@ -116,7 +116,9 @@ export function detectPackage ({ name, path, type, version }: PackageInfo, pathO
 
   entry.push({ path: getPath(path, pathOrFn), type, version });
 
-  if (entry.length !== 1) {
+  // if we have more than one entry at DIFFERENT version types then warn. If there is more than one entry at the same
+  // version, then it's just the esm and cjs versions installed alongside each other, which is fine.
+  if (entry.length !== 1 && !entry.every((e) => e.version === version)) {
     warn(`${name} has multiple versions, ensure that there is only one installed.`, entry, formatVersion);
   } else {
     const mismatches = deps.filter((d) => d && d.version !== version);

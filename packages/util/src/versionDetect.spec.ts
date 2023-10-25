@@ -70,3 +70,19 @@ The following conflicting packages were found:
     spy.mockRestore();
   });
 });
+
+describe('detectPackageEsmCjs', (): void => {
+  const PKG = '@polkadot/wasm-crypto';
+  const VER1 = '9.8.0-beta.45';
+  const PATH = '/Users/jaco/Projects/polkadot-js/api/node_modules/@polkadot/api/node_modules/@polkadot/wasm-crypto'
+  it('should not log when there are concurrent esm and cjs versions of the same package with the same version number', (): void => {
+    const spy = jest.spyOn(console, 'warn');
+    const pkgEsm = { name: PKG, path: PATH, type: 'esm', version: VER1 }
+    const pkgCjs = { name: PKG, path: `${PATH}/cjs`, type: 'cjs', version: VER1 }
+    detectPackage(pkgEsm, false, []);
+    detectPackage(pkgCjs,  false, [] );
+
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockRestore();
+  });
+})
