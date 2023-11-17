@@ -13,7 +13,6 @@ import { isObject } from './is/object.js';
 import { isU8a } from './is/u8a.js';
 import { u8aToHex } from './u8a/toHex.js';
 import { u8aToU8a } from './u8a/toU8a.js';
-import { hasProcess } from './has.js';
 import { noop } from './noop.js';
 
 type ConsoleType = 'error' | 'log' | 'warn';
@@ -121,11 +120,10 @@ function getDebugFlag (env: readonly string[], type: string): boolean {
 }
 
 function parseEnv (type: string): [boolean, number] {
-  const env = (hasProcess ? xglobal.process as { env: Record<string, string> } : {}).env || {};
-  const maxSize = parseInt(env['DEBUG_MAX'] || '-1', 10);
+  const maxSize = parseInt(xglobal.process?.env?.['DEBUG_MAX'] || '-1', 10);
 
   return [
-    getDebugFlag((env['DEBUG'] || '').toLowerCase().split(','), type),
+    getDebugFlag((xglobal.process?.env?.['DEBUG'] || '').toLowerCase().split(','), type),
     isNaN(maxSize)
       ? -1
       : maxSize

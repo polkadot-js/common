@@ -8,7 +8,9 @@ Contributed:
 
 Changes:
 
+- Adjust logger check for `process.env`
 - Drop support for Node 16 (EOL 11 Sep 2023)
+- Upgrade dependencies to latest stable versions
 
 
 ## 12.5.1 Sep 15, 2023
