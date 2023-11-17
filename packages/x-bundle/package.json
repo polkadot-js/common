@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "description": "A bundler helper",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-bundle#readme",
   "license": "Apache-2.0",
@@ -15,10 +15,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "12.5.2-5-x",
+  "version": "12.5.2-6-x",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/util": "12.5.2-5-x",
+    "@polkadot/util": "12.5.2-6-x",
     "buffer-es6": "^4.9.3",
     "tslib": "^2.6.2"
   }

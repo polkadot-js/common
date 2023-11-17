@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "description": "Keyring management",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/keyring#readme",
   "license": "Apache-2.0",
@@ -18,15 +18,15 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "12.5.2-5-x",
+  "version": "12.5.2-6-x",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/util": "12.5.2-5-x",
-    "@polkadot/util-crypto": "12.5.2-5-x",
+    "@polkadot/util": "12.5.2-6-x",
+    "@polkadot/util-crypto": "12.5.2-6-x",
     "tslib": "^2.6.2"
   },
   "peerDependencies": {
-    "@polkadot/util": "12.5.2-5-x",
-    "@polkadot/util-crypto": "12.5.2-5-x"
+    "@polkadot/util": "12.5.2-6-x",
+    "@polkadot/util-crypto": "12.5.2-6-x"
   }
 }

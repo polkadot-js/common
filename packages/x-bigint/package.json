@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "description": "A cross-environment BigInt replacement",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-bigint#readme",
   "license": "Apache-2.0",
@@ -18,9 +18,9 @@
     "./shim.cjs"
   ],
   "type": "module",
-  "version": "12.5.2-5-x",
+  "version": "12.5.2-6-x",
   "dependencies": {
-    "@polkadot/x-global": "12.5.2-5-x",
+    "@polkadot/x-global": "12.5.2-6-x",
     "tslib": "^2.6.2"
   }
 }

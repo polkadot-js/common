@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/common/issues",
   "description": "A TextDecoder replacement",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "homepage": "https://github.com/polkadot-js/common/tree/master/packages/x-textencoder#readme",
   "license": "Apache-2.0",
@@ -15,12 +15,12 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "12.5.2-5-x",
+  "version": "12.5.2-6-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@polkadot/x-global": "12.5.2-5-x",
+    "@polkadot/x-global": "12.5.2-6-x",
     "tslib": "^2.6.2"
   }
 }
