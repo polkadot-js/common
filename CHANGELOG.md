@@ -9,6 +9,7 @@ Contributed:
 Changes:
 
 - Adjust logger check for `process.env`
+- Adjust `isRiscV` helper to check for `PVM\0` bytes
 - Drop support for Node 16 (EOL 11 Sep 2023)
 - Upgrade dependencies to latest stable versions
 
