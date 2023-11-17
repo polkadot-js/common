@@ -4,7 +4,7 @@
 import { u8aEq } from '../u8a/eq.js';
 import { isU8a } from './u8a.js';
 
-const ELF_MAGIC = new Uint8Array([0x7f, 0x45, 0x4c, 0x46]); // ELF magic bytes: 0x7f, 'E', 'L', 'F'
+const ELF_MAGIC = new Uint8Array([0x50, 0x56, 0x4d, 0x00]); // 'P', 'V', 'M', 0x00
 
 /**
  * @name isRiscV
