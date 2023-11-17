@@ -508,12 +508,16 @@
   },
   {
     "prefix": 41,
-    "network": "poli",
-    "displayName": "Polimec Chain",
-    "symbols": [],
-    "decimals": [],
+    "network": "polimec",
+    "displayName": "Polimec Protocol",
+    "symbols": [
+      "PLMC"
+    ],
+    "decimals": [
+      10
+    ],
     "standardAccount": "*25519",
-    "website": "https://polimec.io/"
+    "website": "https://www.polimec.org/"
   },
   {
     "prefix": 42,
