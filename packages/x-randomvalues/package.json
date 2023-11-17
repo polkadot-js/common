@@ -15,21 +15,21 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "12.5.2-7-x",
+  "version": "12.5.2-8-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@polkadot/x-global": "12.5.2-7-x",
+    "@polkadot/x-global": "12.5.2-8-x",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@polkadot/util": "12.5.2-7-x",
+    "@polkadot/util": "12.5.2-8-x",
     "@polkadot/wasm-util": "^7.3.1",
     "@types/react-native": "^0.72.6"
   },
   "peerDependencies": {
-    "@polkadot/util": "12.5.2-7-x",
+    "@polkadot/util": "12.5.2-8-x",
     "@polkadot/wasm-util": "*"
   }
 }

@@ -1,4 +1,4 @@
-    1662	Jaco                          	Bump wasm + slight adj. to logger process.env (#1894)
+    1663	Jaco                          	Adjust `isRiscV` helper to check for `PVM\0` bytes (#1895)
       13	Carlo Sala                    	feat(networks): add zeitgeist Ledger support (#1840)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
