@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import { detectPackage } from './versionDetect.js';
+import { detectPackage, POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG } from './versionDetect.js';
 
 describe('detectPackage', (): void => {
   const PKG = '@polkadot/util';
@@ -67,6 +67,44 @@ Either remove and explicitly install matching versions or dedupe using your pack
 The following conflicting packages were found:
 \t1.1.2\t@polkadot/util
 \t1.1.3\t@polkadot/util-crypto`);
+    spy.mockRestore();
+  });
+});
+
+describe('detectPackageEsmCjsNoWarnings', (): void => {
+  const PKG = '@polkadot/wasm-crypto';
+  const VER1 = '9.8.0-beta.45';
+  const PATH = '/Users/jaco/Projects/polkadot-js/api/node_modules/@polkadot/api/node_modules/@polkadot/wasm-crypto';
+
+  it('should not log when there are concurrent esm and cjs versions of the same package with the same version number and warnings are disabled', (): void => {
+    const spy = jest.spyOn(console, 'warn');
+    const pkgEsm = { name: PKG, path: PATH, type: 'esm', version: VER1 };
+    const pkgCjs = { name: PKG, path: `${PATH}/cjs`, type: 'cjs', version: VER1 };
+
+    process.env[POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG] = '1';
+    detectPackage(pkgEsm, false, []);
+    detectPackage(pkgCjs, false, []);
+
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockRestore();
+  });
+});
+
+describe('detectPackageEsmCjs', (): void => {
+  const PKG = '@polkadot/wasm-crypto-wasm';
+  const VER1 = '9.8.0-beta.45';
+  const PATH = '/Users/jaco/Projects/polkadot-js/api/node_modules/@polkadot/api/node_modules/@polkadot/wasm-crypto-wasm';
+
+  it('should log when there are concurrent esm and cjs versions of the same package with the same version number and warnings are not disabled', (): void => {
+    const spy = jest.spyOn(console, 'warn');
+    const pkgEsm = { name: PKG, path: PATH, type: 'esm', version: VER1 };
+    const pkgCjs = { name: PKG, path: `${PATH}/cjs`, type: 'cjs', version: VER1 };
+
+    process.env[POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG] = undefined;
+    detectPackage(pkgEsm, false, []);
+    detectPackage(pkgCjs, false, []);
+
+    expect(spy).toHaveBeenCalled();
     spy.mockRestore();
   });
 });

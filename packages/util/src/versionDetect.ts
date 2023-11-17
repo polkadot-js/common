@@ -26,6 +26,8 @@ type FnString = () => string | undefined;
 
 const DEDUPE = 'Either remove and explicitly install matching versions or dedupe using your package manager.\nThe following conflicting packages were found:';
 
+export const POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG = 'POLKADOTJS_DISABLE_ESM_CJS_WARNING';
+
 /** @internal */
 function getEntry (name: string): VersionPath[] {
   const _global = xglobal as PjsGlobal;
@@ -105,7 +107,7 @@ function warn <T extends { version: string }> (pre: string, all: T[], fmt: (vers
 /**
  * @name detectPackage
  * @summary Checks that a specific package is only imported once
- * @description A `@polkadot/*` version detection utility, checking for one occurence of a package in addition to checking for ddependency versions.
+ * @description A `@polkadot/*` version detection utility, checking for one occurrence of a package in addition to checking for dependency versions.
  */
 export function detectPackage ({ name, path, type, version }: PackageInfo, pathOrFn?: FnString | string | false | null, deps: PackageInfo[] = []): void {
   if (!name.startsWith('@polkadot')) {
@@ -116,7 +118,14 @@ export function detectPackage ({ name, path, type, version }: PackageInfo, pathO
 
   entry.push({ path: getPath(path, pathOrFn), type, version });
 
-  if (entry.length !== 1) {
+  // if we have more than one entry at DIFFERENT version types then warn. If there is more than one entry at the same
+  // version and ESM/CJS dual warnings are disabled, then do not display warnings
+  const entriesSameVersion = entry.every((e) => e.version === version);
+  const esmCjsWarningDisabled = POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG in process.env && process.env[POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG] === '1';
+  const multipleEntries = entry.length !== 1;
+  const disableWarnings = esmCjsWarningDisabled && entriesSameVersion;
+
+  if (multipleEntries && !disableWarnings) {
     warn(`${name} has multiple versions, ensure that there is only one installed.`, entry, formatVersion);
   } else {
     const mismatches = deps.filter((d) => d && d.version !== version);
