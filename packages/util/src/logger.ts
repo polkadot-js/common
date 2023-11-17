@@ -120,10 +120,11 @@ function getDebugFlag (env: readonly string[], type: string): boolean {
 }
 
 function parseEnv (type: string): [boolean, number] {
-  const maxSize = parseInt(xglobal.process?.env?.['DEBUG_MAX'] || '-1', 10);
+  const env = (xglobal.process as { env?: Record<string, string> })?.env;
+  const maxSize = parseInt(env?.['DEBUG_MAX'] || '-1', 10);
 
   return [
-    getDebugFlag((xglobal.process?.env?.['DEBUG'] || '').toLowerCase().split(','), type),
+    getDebugFlag((env?.['DEBUG'] || '').toLowerCase().split(','), type),
     isNaN(maxSize)
       ? -1
       : maxSize
