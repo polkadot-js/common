@@ -6,6 +6,10 @@ Contributed:
 
 - Ledger support for Quartz (Thanks to https://github.com/CertainLach)
 
+Changes:
+
+- Drop support for Node 16 (EOL 11 Sep 2023)
+
 
 ## 12.5.1 Sep 15, 2023
 
