@@ -5,6 +5,7 @@
 Contributed:
 
 - Ledger support for Quartz (Thanks to https://github.com/CertainLach)
+- Add flag to disable same-version esm/cjs warnings (Thanks to https://github.com/forgetso)
 
 Changes:
 
