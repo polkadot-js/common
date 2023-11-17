@@ -25,6 +25,7 @@
        1	Brad Larson                   	[FIX] Adjust error message (#646)
        1	Cameron Fairchild             	Add bittensor details (#1783)
        1	Carlos Medeiros               	add hydradx to knownLedger (#1647)
+       1	Chris                         	Get rid of warnings for dual esm and cjs packages of the same version (#1890)
        1	Eliott Teissonniere           	add nodle ledger specs (#1089)
        1	Guilane DENGUIR               	feat(VTB): Added support for VTB blockchain (#1651)
        1	h4x3rotab                     	Throws an error when signing with a locked keypair (#578)
