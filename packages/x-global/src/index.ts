@@ -10,9 +10,13 @@ declare const global: unknown;
 declare const self: unknown;
 declare const window: unknown;
 
-// The Record<string, unknown> unknown part here is for not-everywhere globals
+// The [key: string]: unknown part here is for not-everywhere globals
 // such as `Buffer` (that won't exist is deno/window global environments)
-type GlobalThis = typeof globalThis & Record<string, unknown>;
+type GlobalThis = typeof globalThis & {
+  env?: Record<string, string>;
+
+  [key: string]: unknown;
+};
 
 type GlobalNames = keyof typeof globalThis;
 
