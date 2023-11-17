@@ -121,7 +121,7 @@ export function detectPackage ({ name, path, type, version }: PackageInfo, pathO
   // if we have more than one entry at DIFFERENT version types then warn. If there is more than one entry at the same
   // version and ESM/CJS dual warnings are disabled, then do not display warnings
   const entriesSameVersion = entry.every((e) => e.version === version);
-  const esmCjsWarningDisabled = POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG in process.env && process.env[POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG] === '1';
+  const esmCjsWarningDisabled = xglobal.process?.env?.[POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG] === '1';
   const multipleEntries = entry.length !== 1;
   const disableWarnings = esmCjsWarningDisabled && entriesSameVersion;
 
