@@ -13,7 +13,9 @@ declare const window: unknown;
 // The [key: string]: unknown part here is for not-everywhere globals
 // such as `Buffer` (that won't exist is deno/window global environments)
 type GlobalThis = typeof globalThis & {
-  env?: Record<string, string>;
+  process?: {
+    env?: Record<string, string>;
+  };
 
   [key: string]: unknown;
 };
@@ -60,6 +62,6 @@ export function extractGlobal <N extends GlobalNames, T extends GlobalType<N>> (
  */
 export function exposeGlobal <N extends GlobalNames, T extends GlobalType<N>> (name: N, fallback: unknown): void {
   if (typeof xglobal[name] === 'undefined') {
-    xglobal[name] = fallback as T;
+    (xglobal as Record<string, unknown>)[name] = fallback as T;
   }
 }
