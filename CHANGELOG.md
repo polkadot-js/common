@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 12.6.1 Nov 18, 2023
 
 Contributed:
 
