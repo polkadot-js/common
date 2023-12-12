@@ -126,7 +126,8 @@ export class Ledger {
 
         // We need this override for the actual type passing - the Deno environment
         // is quite a bit stricter and it yields invalids between the two (specifically
-        // since we mangle the imports from .default in the types for CJS/ESM)
+        // since we mangle the imports from .default in the types for CJS/ESM and between
+        // esm.sh versions this yields problematic outputs)
         //
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
         this.#app = newSubstrateApp(transport as any, this.#ledgerName);
