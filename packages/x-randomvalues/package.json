@@ -25,8 +25,8 @@
   },
   "devDependencies": {
     "@polkadot/util": "12.6.1",
-    "@polkadot/wasm-util": "^7.3.1",
-    "@types/react-native": "^0.72.6"
+    "@polkadot/wasm-util": "^7.3.2",
+    "@types/react-native": "^0.72.8"
   },
   "peerDependencies": {
     "@polkadot/util": "12.6.1",
