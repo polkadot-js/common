@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 12.6.2 Dec 18, 2023
+
+Changes:
+
+- Update to latest `@polkadot/wasm-crypto`
+- Upgrade dependencies to latest versions
+
+
 ## 12.6.1 Nov 18, 2023
 
 Contributed:
