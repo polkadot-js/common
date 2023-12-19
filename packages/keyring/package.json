@@ -14,8 +14,8 @@
     "url": "https://github.com/polkadot-js/common.git"
   },
   "sideEffects": [
-    "./detectPackage.js",
-    "./detectPackage.cjs"
+    "./packageDetect.js",
+    "./packageDetect.cjs"
   ],
   "type": "module",
   "version": "12.6.3-0-x",
