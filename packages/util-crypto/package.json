@@ -16,8 +16,8 @@
   "sideEffects": [
     "./bundleInit.js",
     "./bundleInit.cjs",
-    "./detectPackage.js",
-    "./detectPackage.cjs"
+    "./packageDetect.js",
+    "./packageDetect.cjs"
   ],
   "type": "module",
   "version": "12.6.3-0-x",
