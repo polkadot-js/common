@@ -470,34 +470,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev-test@npm:^0.78.3":
-  version: 0.78.3
-  resolution: "@polkadot/dev-test@npm:0.78.3"
+"@polkadot/dev-test@npm:^0.78.4":
+  version: 0.78.4
+  resolution: "@polkadot/dev-test@npm:0.78.4"
   dependencies:
     jsdom: "npm:^23.0.1"
     tslib: "npm:^2.6.2"
-  checksum: 8ea03f6bcb1216f309627ad97eac75509e0fd1907b693bbf28f87a435606aba445268d4232bb21891182af946d11f5d5011717a30227ab7a02ededf01d8c223e
+  checksum: 9968b813c644e24f109d146811abc9bb147336f059110271c8253ad7a0d9aadc7d22ddcb8bbecea3c37ecddafe09cc98fc2c651feb7f551cffcf1f9911fe9d3b
   languageName: node
   linkType: hard
 
-"@polkadot/dev-ts@npm:^0.78.3":
-  version: 0.78.3
-  resolution: "@polkadot/dev-ts@npm:0.78.3"
+"@polkadot/dev-ts@npm:^0.78.4":
+  version: 0.78.4
+  resolution: "@polkadot/dev-ts@npm:0.78.4"
   dependencies:
     json5: "npm:^2.2.3"
     tslib: "npm:^2.6.2"
     typescript: "npm:^5.3.3"
-  checksum: f99a4fd13808ef4dc7bca8582353b361fbbcfae0aacc964ba0e2706acf92bbf0cd9694dedb169e6fba0280c71d7d5b50a9e0315c47bb3a95be0343fa5da33432
+  checksum: ee495b9abe5e9d73262eb992eab1e9ff4fccf64fe26721b8d3c4078124908d2c82185aef99431f193db007c20229227a1bdfc0c0fcfff9e06106be2a31d3acb4
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.78.3":
-  version: 0.78.3
-  resolution: "@polkadot/dev@npm:0.78.3"
+"@polkadot/dev@npm:^0.78.4":
+  version: 0.78.4
+  resolution: "@polkadot/dev@npm:0.78.4"
   dependencies:
     "@eslint/js": "npm:^8.56.0"
-    "@polkadot/dev-test": "npm:^0.78.3"
-    "@polkadot/dev-ts": "npm:^0.78.3"
+    "@polkadot/dev-test": "npm:^0.78.4"
+    "@polkadot/dev-ts": "npm:^0.78.4"
     "@rollup/plugin-alias": "npm:^5.1.0"
     "@rollup/plugin-commonjs": "npm:^25.0.7"
     "@rollup/plugin-dynamic-import-vars": "npm:^2.1.2"
@@ -562,7 +562,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 0c4a0330f3505e3c0bd75686a6b1f9220a58ac21b458ef05bdbc7e83fbd0c5d7107d8c518d542eb05108d000b5aca46c6a1380e258018ddba5912cc7479b3de3
+  checksum: 24bfb6022bfd2277234857a77429daecd842facfec3176890a4e159e09e508ec521574b2d10fe0910aac3d82d0f052702e9e5fda579513d114dc5176ed112f58
   languageName: node
   linkType: hard
 
@@ -8062,7 +8062,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@polkadot/dev": "npm:^0.78.3"
+    "@polkadot/dev": "npm:^0.78.4"
     "@types/node": "npm:^20.10.5"
   languageName: unknown
   linkType: soft
