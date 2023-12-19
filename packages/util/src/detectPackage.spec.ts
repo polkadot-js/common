@@ -3,7 +3,7 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import { detectPackage, POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG } from './versionDetect.js';
+import { detectPackage, POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG } from './detectPackage.js';
 
 describe('detectPackage', (): void => {
   const PKG = '@polkadot/util';
