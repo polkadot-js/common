@@ -3,7 +3,7 @@
 
 // TODO: This was removed, really cannot recall the reason...
 // ... put it back, but keep it removed
-// import './detectPackage';
+// import './packageDetect.js';
 
 export * from './interfaces.js';
 export { packageInfo } from './packageInfo.js';
