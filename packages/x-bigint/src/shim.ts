@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/x-bigint authors & contributors
+// Copyright 2017-2024 @polkadot/x-bigint authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { BigInt } from '@polkadot/x-bigint';

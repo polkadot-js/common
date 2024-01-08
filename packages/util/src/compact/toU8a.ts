@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2024 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { BN, BN_ONE, BN_TWO, bnToBn, bnToU8a } from '../bn/index.js';

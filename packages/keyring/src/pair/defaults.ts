@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/keyring authors & contributors
+// Copyright 2017-2024 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 export const PKCS8_DIVIDER = new Uint8Array([161, 35, 3, 33, 0]);

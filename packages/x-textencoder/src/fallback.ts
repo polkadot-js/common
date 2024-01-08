@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/x-textencoder authors & contributors
+// Copyright 2017-2024 @polkadot/x-textencoder authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // This is very limited, only handling Ascii values
