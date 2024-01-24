@@ -716,6 +716,19 @@
     "website": "https://pendulumchain.org/"
   },
   {
+    "prefix": 58,
+    "network": "eternal-civilization",
+    "displayName": "Eternal Civilization",
+    "symbols": [
+      "ECC"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "http://www.ysknfr.cn/"
+  },
+  {
     "prefix": 63,
     "network": "hydradx",
     "displayName": "HydraDX",
@@ -727,19 +740,6 @@
     ],
     "standardAccount": "*25519",
     "website": "https://hydradx.io"
-  },
-  {
-    "prefix": 64,
-    "network": "ewx",
-    "displayName": "Energy Web X",
-    "symbols": [
-      "EWT"
-    ],
-    "decimals": [
-      18
-    ],
-    "standardAccount": "*25519",
-    "website": "https://www.energyweb.org"
   },
   {
     "prefix": 65,
@@ -1129,7 +1129,7 @@
       12
     ],
     "standardAccount": "*25519",
-    "website": "https://vara-network.io/"
+    "website": "https://vara.network/"
   },
   {
     "prefix": 172,
@@ -1221,6 +1221,19 @@
     ],
     "standardAccount": "*25519",
     "website": "https://metaquity.xyz/"
+  },
+  {
+    "prefix": 777,
+    "network": "curio",
+    "displayName": "Curio",
+    "symbols": [
+      "CGT"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://parachain.capitaldex.exchange/"
   },
   {
     "prefix": 789,
@@ -1522,19 +1535,6 @@
     "website": "https://www.peerplays.com/"
   },
   {
-    "prefix": 4006,
-    "network": "tangle",
-    "displayName": "Tangle Network",
-    "symbols": [
-      "TNT"
-    ],
-    "decimals": [
-      18
-    ],
-    "standardAccount": "*25519",
-    "website": "https://www.webb.tools/"
-  },
-  {
     "prefix": 4450,
     "network": "g1",
     "displayName": "Ğ1",
@@ -1559,6 +1559,19 @@
     ],
     "standardAccount": "*25519",
     "website": "https://humanode.io"
+  },
+  {
+    "prefix": 5845,
+    "network": "tangle",
+    "displayName": "Tangle Network",
+    "symbols": [
+      "TNT"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://www.tangle.tools/"
   },
   {
     "prefix": 6094,
