@@ -22,7 +22,7 @@
   "dependencies": {
     "@polkadot/x-global": "12.6.3-4-x",
     "tslib": "^2.6.2",
-    "ws": "^8.15.1"
+    "ws": "^8.16.0"
   },
   "devDependencies": {
     "@types/ws": "^8.5.10"
