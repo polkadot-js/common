@@ -53,6 +53,7 @@
        1	Rocco Musolino                	remove doc broken link (#697)
        1	Shamilkhan                    	Add genesis hash for Cere Network (#1806)
        1	Song Zhou                     	Add in ability to encrypt/decrypt msg with keyring (#1070)
+       1	Tarik Gul                     	ci: add user (TarikGul) to auto-approve (#1914)
        1	Thibaut Sardan                	add hasLedgerSupport prop to networks (#835)
        1	Tomokazu Kozuma               	fix comment (#1119)
        1	Tore19                        	Add stafi genesis hash (#1096)
