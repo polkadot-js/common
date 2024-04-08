@@ -18,15 +18,15 @@
     "./packageDetect.cjs"
   ],
   "type": "module",
-  "version": "12.6.3-8-x",
+  "version": "12.6.3-9-x",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/util": "12.6.3-8-x",
-    "@polkadot/util-crypto": "12.6.3-8-x",
+    "@polkadot/util": "12.6.3-9-x",
+    "@polkadot/util-crypto": "12.6.3-9-x",
     "tslib": "^2.6.2"
   },
   "peerDependencies": {
-    "@polkadot/util": "12.6.3-8-x",
-    "@polkadot/util-crypto": "12.6.3-8-x"
+    "@polkadot/util": "12.6.3-9-x",
+    "@polkadot/util-crypto": "12.6.3-9-x"
   }
 }
