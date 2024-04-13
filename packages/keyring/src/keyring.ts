@@ -295,7 +295,7 @@ export class Keyring implements KeyringInstance {
 
   /**
    * @name toJson
-   * @summary Returns a JSON object associated with the input argument that contains metadata assocated with an account
+   * @summary Returns a JSON object associated with the input argument that contains metadata associated with an account
    * @description Returns a JSON object containing the metadata associated with an account
    * when valid address or public key and when the account passphrase is provided if the account secret
    * is not already unlocked and available in memory. Note that in [Polkadot-JS Apps](https://github.com/polkadot-js/apps) the user
