@@ -1263,16 +1263,16 @@
   },
   {
     "prefix": 1110,
-    "network": "efinity",
-    "displayName": "Efinity",
+    "network": "matrixchain",
+    "displayName": "Enjin Matrixchain",
     "symbols": [
-      "EFI"
+      "ENJ"
     ],
     "decimals": [
       18
     ],
     "standardAccount": "*25519",
-    "website": "https://efinity.io/"
+    "website": "https://enjin.io/"
   },
   {
     "prefix": 1221,
@@ -1472,7 +1472,7 @@
   {
     "prefix": 2135,
     "network": "enjin",
-    "displayName": "Enjin",
+    "displayName": "Enjin Relaychain",
     "symbols": [
       "ENJ"
     ],
