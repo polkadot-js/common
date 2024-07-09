@@ -1,11 +1,11 @@
 // Copyright 2017-2024 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SubstrateApp } from '@zondax/ledger-substrate';
+import type { ResponseError } from '@zondax/ledger-js';
 import type { TransportDef, TransportType } from '@polkadot/hw-ledger-transports/types';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerVersion } from './types.js';
 
-import { newSubstrateApp } from '@zondax/ledger-substrate';
+import { PolkadotGenericApp } from '@zondax/ledger-substrate';
 
 import { transports } from '@polkadot/hw-ledger-transports';
 import { hexAddPrefix, u8aToBuffer, u8aWrapBytes } from '@polkadot/util';
@@ -17,23 +17,34 @@ export { packageInfo } from './packageInfo.js';
 
 type Chain = keyof typeof ledgerApps;
 
-type WrappedResult = Awaited<ReturnType<SubstrateApp['getAddress' | 'getVersion' | 'sign']>>;
+type WrappedResult = Awaited<ReturnType<PolkadotGenericApp['getAddress' | 'getVersion' | 'sign']>>;
 
-/** @internal Wraps a SubstrateApp call, checking the result for any errors which result in a rejection */
+/** @internal Wraps a PolkadotGenericApp call, checking the result for any errors which result in a rejection */
 async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promise<T> {
-  const result = await promise;
+  let result: T;
 
-  if (result.return_code !== LEDGER_SUCCESS_CODE) {
-    throw new Error(result.error_message);
+  try {
+    result = await promise;
+  } catch (e: unknown) {
+    // We check to see if the propogated error is the newer ResponseError type.
+    // The response code use to be part of the result, but with the latest breaking changes from 0.42.x
+    // the interface and it's types have completely changed.
+    if ((e as ResponseError).returnCode) {
+      throw new Error((e as ResponseError).errorMessage);
+    }
+
+    throw new Error((e as Error).message);
   }
 
   return result;
 }
 
 /** @internal Wraps a sign/signRaw call and returns the associated signature */
-function sign (method: 'sign' | 'signRaw', message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): (app: SubstrateApp) => Promise<LedgerSignature> {
-  return async (app: SubstrateApp): Promise<LedgerSignature> => {
-    const { signature } = await wrapError(app[method](account + accountOffset, change, addressIndex + addressOffset, u8aToBuffer(message)));
+function sign (method: 'sign' | 'signRaw', message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+  const bip42Path = `m/44'/354'/${addressIndex}'/${0}'/${0}'`;
+
+  return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
+    const { signature } = await wrapError(app[method](bip42Path, u8aToBuffer(message)));
 
     return {
       signature: hexAddPrefix(signature.toString('hex'))
@@ -53,7 +64,7 @@ export class Ledger {
   readonly #ledgerName: string;
   readonly #transportDef: TransportDef;
 
-  #app: SubstrateApp | null = null;
+  #app: PolkadotGenericApp | null = null;
 
   constructor (transport: TransportType, chain: Chain) {
     const ledgerName = ledgerApps[chain];
@@ -73,9 +84,11 @@ export class Ledger {
    * Returns the address associated with a specific account & address offset. Optionally
    * asks for on-device confirmation
    */
-  public async getAddress (confirm = false, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerAddress> {
-    return this.withApp(async (app: SubstrateApp): Promise<LedgerAddress> => {
-      const { address, pubKey } = await wrapError(app.getAddress(account + accountOffset, change, addressIndex + addressOffset, confirm));
+  public async getAddress (confirm = false, ss58Prefix: number, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerAddress> {
+    const bip42Path = `m/44'/354'/${addressIndex}'/${0}'/${0}'`;
+
+    return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerAddress> => {
+      const { address, pubKey } = await wrapError(app.getAddress(bip42Path, ss58Prefix, confirm));
 
       return {
         address,
@@ -88,13 +101,13 @@ export class Ledger {
    * Returns the version of the Ledger application on the device
    */
   public async getVersion (): Promise<LedgerVersion> {
-    return this.withApp(async (app: SubstrateApp): Promise<LedgerVersion> => {
-      const { device_locked: isLocked, major, minor, patch, test_mode: isTestMode } = await wrapError(app.getVersion());
+    return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerVersion> => {
+      const { deviceLocked: isLocked, major, minor, patch, testMode: isTestMode } = await wrapError(app.getVersion());
 
       return {
-        isLocked,
-        isTestMode,
-        version: [major, minor, patch]
+        isLocked: !!isLocked,
+        isTestMode: !!isTestMode,
+        version: [major || 0, minor || 0, patch || 0]
       };
     });
   }
@@ -116,10 +129,10 @@ export class Ledger {
   /**
    * @internal
    *
-   * Returns a created SubstrateApp to perform operations against. Generally
+   * Returns a created PolkadotGenericApp to perform operations against. Generally
    * this is only used internally, to ensure consistent bahavior.
    */
-  async withApp <T> (fn: (app: SubstrateApp) => Promise<T>): Promise<T> {
+  async withApp <T> (fn: (app: PolkadotGenericApp) => Promise<T>): Promise<T> {
     try {
       if (!this.#app) {
         const transport = await this.#transportDef.create();
@@ -130,7 +143,7 @@ export class Ledger {
         // esm.sh versions this yields problematic outputs)
         //
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-        this.#app = newSubstrateApp(transport as any, this.#ledgerName);
+        this.#app = new PolkadotGenericApp(transport as any, this.#ledgerName);
       }
 
       return await fn(this.#app);
