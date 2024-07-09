@@ -10,7 +10,7 @@ import { PolkadotGenericApp } from '@zondax/ledger-substrate';
 import { transports } from '@polkadot/hw-ledger-transports';
 import { hexAddPrefix, u8aToBuffer, u8aWrapBytes } from '@polkadot/util';
 
-import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.js';
+import { LEDGER_DEFAULT_INDEX } from './constants.js';
 import { ledgerApps } from './defaults.js';
 
 export { packageInfo } from './packageInfo.js';
@@ -40,8 +40,8 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
 }
 
 /** @internal Wraps a sign/signRaw call and returns the associated signature */
-function sign (method: 'sign' | 'signRaw', message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
-  const bip42Path = `m/44'/354'/${addressIndex}'/${0}'/${0}'`;
+function sign (method: 'sign' | 'signRaw', message: Uint8Array, accountOffset = 0, addressOffset = 0, { addressIndex = LEDGER_DEFAULT_INDEX }: Partial<AccountOptions> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+  const bip42Path = `m/44'/354'/${addressIndex}'/${accountOffset}'/${addressOffset}'`;
 
   return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
     const { signature } = await wrapError(app[method](bip42Path, u8aToBuffer(message)));
@@ -84,8 +84,8 @@ export class Ledger {
    * Returns the address associated with a specific account & address offset. Optionally
    * asks for on-device confirmation
    */
-  public async getAddress (confirm = false, ss58Prefix: number, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerAddress> {
-    const bip42Path = `m/44'/354'/${addressIndex}'/${0}'/${0}'`;
+  public async getAddress (confirm = false, accountOffset = 0, addressOffset = 0, ss58Prefix: number, { addressIndex = LEDGER_DEFAULT_INDEX }: Partial<AccountOptions> = {}): Promise<LedgerAddress> {
+    const bip42Path = `m/44'/354'/${addressIndex}'/${accountOffset}'/${addressOffset}'`;
 
     return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerAddress> => {
       const { address, pubKey } = await wrapError(app.getAddress(bip42Path, ss58Prefix, confirm));
