@@ -69,11 +69,12 @@ function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, 
 export class Ledger {
   readonly #transportDef: TransportDef;
   readonly #slip44: number;
-  readonly #chainId: string;
+  readonly #chainId?: string;
+  readonly #metaUrl?: string;
 
   #app: PolkadotGenericApp | null = null;
 
-  constructor (transport: TransportType, chain: Chain, chainId: string, slip44: number) {
+  constructor (transport: TransportType, chain: Chain, slip44: number, chainId?: string, metaUrl?: string) {
     const ledgerName = ledgerApps[chain];
     const transportDef = transports.find(({ type }) => type === transport);
 
@@ -83,6 +84,7 @@ export class Ledger {
       throw new Error(`Unsupported Ledger transport ${transport}`);
     }
 
+    this.#metaUrl = metaUrl;
     this.#chainId = chainId;
     this.#slip44 = slip44;
     this.#transportDef = transportDef;
@@ -151,7 +153,7 @@ export class Ledger {
         // esm.sh versions this yields problematic outputs)
         //
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-        this.#app = new PolkadotGenericApp(transport as any, this.#chainId, 'https://api.zondax.ch/polkadot/transaction/metadata');
+        this.#app = new PolkadotGenericApp(transport as any, this.#chainId, this.#metaUrl);
       }
 
       return await fn(this.#app);
