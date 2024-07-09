@@ -9,7 +9,6 @@ import { PolkadotGenericApp } from '@zondax/ledger-substrate';
 import { transports } from '@polkadot/hw-ledger-transports';
 import { hexAddPrefix, u8aToBuffer, u8aWrapBytes } from '@polkadot/util';
 
-import { LEDGER_DEFAULT_INDEX } from './constants.js';
 import { ledgerApps } from './defaults.js';
 
 export { packageInfo } from './packageInfo.js';
@@ -47,8 +46,8 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
 }
 
 /** @internal Wraps a sign/signRaw call and returns the associated signature */
-function sign (method: 'sign' | 'signRaw', message: Uint8Array, accountOffset = 0, addressOffset = 0, { addressIndex = LEDGER_DEFAULT_INDEX }: Partial<AccountOptions> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
-  const bip42Path = `m/44'/354'/${addressIndex}'/${accountOffset}'/${addressOffset}'`;
+function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, addressOffset = 0, { addressIndex = 0 }: Partial<AccountOptions> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+  const bip42Path = `m/44'/${slip44}'/${addressIndex}'/${0}'/${addressOffset}'`;
 
   return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
     const { signature } = await wrapError(app[method](bip42Path, u8aToBuffer(message)));
@@ -68,12 +67,13 @@ function sign (method: 'sign' | 'signRaw', message: Uint8Array, accountOffset = 
  *   - Promises reject with errors (unwrapped errors from @zondax/ledger-substrate)
  */
 export class Ledger {
-  readonly #ledgerName: string;
   readonly #transportDef: TransportDef;
+  readonly #slip44: number;
+  readonly #chainId: string;
 
   #app: PolkadotGenericApp | null = null;
 
-  constructor (transport: TransportType, chain: Chain) {
+  constructor (transport: TransportType, chain: Chain, chainId: string, slip44: number) {
     const ledgerName = ledgerApps[chain];
     const transportDef = transports.find(({ type }) => type === transport);
 
@@ -83,7 +83,8 @@ export class Ledger {
       throw new Error(`Unsupported Ledger transport ${transport}`);
     }
 
-    this.#ledgerName = ledgerName;
+    this.#chainId = chainId;
+    this.#slip44 = slip44;
     this.#transportDef = transportDef;
   }
 
@@ -91,8 +92,8 @@ export class Ledger {
    * Returns the address associated with a specific account & address offset. Optionally
    * asks for on-device confirmation
    */
-  public async getAddress (confirm = false, accountOffset = 0, addressOffset = 0, ss58Prefix: number, { addressIndex = LEDGER_DEFAULT_INDEX }: Partial<AccountOptions> = {}): Promise<LedgerAddress> {
-    const bip42Path = `m/44'/354'/${addressIndex}'/${accountOffset}'/${addressOffset}'`;
+  public async getAddress (confirm = false, addressOffset = 0, ss58Prefix: number, { addressIndex = 0 }: Partial<AccountOptions> = {}): Promise<LedgerAddress> {
+    const bip42Path = `m/44'/${this.#slip44}'/${addressIndex}'/${0}'/${addressOffset}'`;
 
     return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerAddress> => {
       const { address, pubKey } = await wrapError(app.getAddress(bip42Path, ss58Prefix, confirm));
@@ -122,15 +123,15 @@ export class Ledger {
   /**
    * Signs a transaction on the Ledger device
    */
-  public async sign (message: Uint8Array, accountOffset?: number, addressOffset?: number, options?: Partial<AccountOptions>): Promise<LedgerSignature> {
-    return this.withApp(sign('sign', message, accountOffset, addressOffset, options));
+  public async sign (message: Uint8Array, addressOffset?: number, options?: Partial<AccountOptions>): Promise<LedgerSignature> {
+    return this.withApp(sign('sign', message, this.#slip44, addressOffset, options));
   }
 
   /**
    * Signs a message (non-transactional) on the Ledger device
    */
-  public async signRaw (message: Uint8Array, accountOffset?: number, addressOffset?: number, options?: Partial<AccountOptions>): Promise<LedgerSignature> {
-    return this.withApp(sign('signRaw', u8aWrapBytes(message), accountOffset, addressOffset, options));
+  public async signRaw (message: Uint8Array, addressOffset?: number, options?: Partial<AccountOptions>): Promise<LedgerSignature> {
+    return this.withApp(sign('signRaw', u8aWrapBytes(message), this.#slip44, addressOffset, options));
   }
 
   /**
@@ -150,7 +151,7 @@ export class Ledger {
         // esm.sh versions this yields problematic outputs)
         //
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-        this.#app = new PolkadotGenericApp(transport as any, this.#ledgerName);
+        this.#app = new PolkadotGenericApp(transport as any, this.#chainId, 'https://api.zondax.ch/polkadot/transaction/metadata');
       }
 
       return await fn(this.#app);
