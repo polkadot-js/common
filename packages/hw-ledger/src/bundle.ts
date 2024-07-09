@@ -1,7 +1,6 @@
 // Copyright 2017-2024 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ResponseError } from '@zondax/ledger-js';
 import type { TransportDef, TransportType } from '@polkadot/hw-ledger-transports/types';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerVersion } from './types.js';
 
@@ -18,6 +17,14 @@ export { packageInfo } from './packageInfo.js';
 type Chain = keyof typeof ledgerApps;
 
 type WrappedResult = Awaited<ReturnType<PolkadotGenericApp['getAddress' | 'getVersion' | 'sign']>>;
+
+// This type is a copy of the `class Response` error
+// imported from `@zondax/ledger-js`. This is a hack to avoid versioning issues
+// with Deno.
+interface ResponseError {
+  errorMessage: string
+  returnCode: number
+}
 
 /** @internal Wraps a PolkadotGenericApp call, checking the result for any errors which result in a rejection */
 async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promise<T> {
