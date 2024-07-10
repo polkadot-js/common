@@ -92,7 +92,7 @@ export class LedgerGeneric {
   readonly #chainId?: string;
   /**
    * The metaUrl is seen as a server url that the underlying `PolkadotGenericApp` will use to
-   * retrieve the signature given a tx blob, and a chainId. It is important to note that if you would like to avoid 
+   * retrieve the signature given a tx blob, and a chainId. It is important to note that if you would like to avoid
    * having any network calls made, use `signWithMetadata`, and avoid `sign`.
    */
   readonly #metaUrl?: string;
