@@ -36,7 +36,7 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
     // The response code use to be part of the result, but with the latest breaking changes from 0.42.x
     // the interface and it's types have completely changed.
     if ((e as ResponseError).returnCode) {
-      throw new Error((e as ResponseError).errorMessage);
+      throw new Error(`${(e as ResponseError).returnCode}: ${(e as ResponseError).errorMessage}`);
     }
 
     throw new Error((e as Error).message);
