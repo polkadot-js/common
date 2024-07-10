@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { TransportDef, TransportType } from '@polkadot/hw-ledger-transports/types';
-import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerVersion } from './types.js';
+import type { AccountOptionsGeneric, LedgerAddress, LedgerSignature, LedgerVersion } from './types.js';
 
 import { PolkadotGenericApp } from '@zondax/ledger-substrate';
 
@@ -15,9 +15,9 @@ export { packageInfo } from './packageInfo.js';
 
 type Chain = keyof typeof ledgerApps;
 
-type WrappedResult = Awaited<ReturnType<PolkadotGenericApp['getAddress' | 'getVersion' | 'sign']>>;
+type WrappedResult = Awaited<ReturnType<PolkadotGenericApp['getAddress' | 'getVersion' | 'sign' | 'signWithMetadata']>>;
 
-// This type is a copy of the `class ResponseError`
+// FIXME This type is a copy of the `class ResponseError`
 // imported from `@zondax/ledger-js`. This is a hack to avoid versioning issues
 // with Deno.
 interface ResponseError {
@@ -46,11 +46,28 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
 }
 
 /** @internal Wraps a sign/signRaw call and returns the associated signature */
-function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, addressOffset = 0, { addressIndex = 0 }: Partial<AccountOptions> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, addressOffset = 0, { addressIndex = 0 }: Partial<AccountOptionsGeneric> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
   const bip42Path = `m/44'/${slip44}'/${addressIndex}'/${0}'/${addressOffset}'`;
 
   return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
     const { signature } = await wrapError(app[method](bip42Path, u8aToBuffer(message)));
+
+    return {
+      signature: hexAddPrefix(signature.toString('hex'))
+    };
+  };
+}
+
+/** @internal Wraps a signWithMetadata call and returns the associated signature */
+function signWithMetadata (message: Uint8Array, slip44: number, addressOffset = 0, { addressIndex = 0, metadata }: Partial<AccountOptionsGeneric> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+  const bip42Path = `m/44'/${slip44}'/${addressIndex}'/${0}'/${addressOffset}'`;
+
+  return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
+    if (!metadata) {
+      throw new Error('The metadata option must be present when using signWithMetadata');
+    }
+
+    const { signature } = await wrapError(app.signWithMetadata(bip42Path, u8aToBuffer(message), metadata));
 
     return {
       signature: hexAddPrefix(signature.toString('hex'))
@@ -69,7 +86,15 @@ function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, 
 export class LedgerGeneric {
   readonly #transportDef: TransportDef;
   readonly #slip44: number;
+  /**
+   * The chainId is represented by the chains token in all lowercase. Example: Polkadot -> dot
+   */
   readonly #chainId?: string;
+  /**
+   * The metaUrl is seen as a server url that the underlying `PolkadotGenericApp` will use to
+   * retrieve the signature given a tx blob, and a chainId. It is important to note that if you would like to avoid 
+   * having any network calls made, use `signWithMetadata`, and avoid `sign`.
+   */
   readonly #metaUrl?: string;
 
   #app: PolkadotGenericApp | null = null;
@@ -91,10 +116,10 @@ export class LedgerGeneric {
   }
 
   /**
-   * Returns the address associated with a specific account & address offset. Optionally
+   * @description Returns the address associated with a specific account & address offset. Optionally
    * asks for on-device confirmation
    */
-  public async getAddress (confirm = false, addressOffset = 0, ss58Prefix: number, { addressIndex = 0 }: Partial<AccountOptions> = {}): Promise<LedgerAddress> {
+  public async getAddress (confirm = false, addressOffset = 0, ss58Prefix: number, { addressIndex = 0 }: Partial<AccountOptionsGeneric> = {}): Promise<LedgerAddress> {
     const bip42Path = `m/44'/${this.#slip44}'/${addressIndex}'/${0}'/${addressOffset}'`;
 
     return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerAddress> => {
@@ -108,7 +133,7 @@ export class LedgerGeneric {
   }
 
   /**
-   * Returns the version of the Ledger application on the device
+   * @description Returns the version of the Ledger application on the device
    */
   public async getVersion (): Promise<LedgerVersion> {
     return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerVersion> => {
@@ -123,17 +148,24 @@ export class LedgerGeneric {
   }
 
   /**
-   * Signs a transaction on the Ledger device
+   * @description Signs a transaction on the Ledger device. This requires the LedgerGeneric class to be instantiated with `chainId`, and `metaUrl`
    */
-  public async sign (message: Uint8Array, addressOffset?: number, options?: Partial<AccountOptions>): Promise<LedgerSignature> {
+  public async sign (message: Uint8Array, addressOffset?: number, options?: Partial<AccountOptionsGeneric>): Promise<LedgerSignature> {
     return this.withApp(sign('sign', message, this.#slip44, addressOffset, options));
   }
 
   /**
-   * Signs a message (non-transactional) on the Ledger device
+   * @description Signs a message (non-transactional) on the Ledger device
    */
-  public async signRaw (message: Uint8Array, addressOffset?: number, options?: Partial<AccountOptions>): Promise<LedgerSignature> {
+  public async signRaw (message: Uint8Array, addressOffset?: number, options?: Partial<AccountOptionsGeneric>): Promise<LedgerSignature> {
     return this.withApp(sign('signRaw', u8aWrapBytes(message), this.#slip44, addressOffset, options));
+  }
+
+  /**
+   * @description Signs a transaction on the ledger device provided some metadata.
+   */
+  public async signWithMetadata (message: Uint8Array, addressOffset?: number, options?: Partial<AccountOptionsGeneric>): Promise<LedgerSignature> {
+    return this.withApp(signWithMetadata(u8aWrapBytes(message), this.#slip44, addressOffset, options));
   }
 
   /**
