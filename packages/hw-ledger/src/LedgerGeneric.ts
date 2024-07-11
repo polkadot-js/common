@@ -165,7 +165,7 @@ export class LedgerGeneric {
    * @description Signs a transaction on the ledger device provided some metadata.
    */
   public async signWithMetadata (message: Uint8Array, addressIndex?: number, addressOffset?: number, options?: Partial<AccountOptionsGeneric>): Promise<LedgerSignature> {
-    return this.withApp(signWithMetadata(u8aWrapBytes(message), this.#slip44, addressIndex, addressOffset, options));
+    return this.withApp(signWithMetadata(message, this.#slip44, addressIndex, addressOffset, options));
   }
 
   /**
