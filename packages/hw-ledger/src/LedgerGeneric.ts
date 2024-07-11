@@ -46,7 +46,7 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
 }
 
 /** @internal Wraps a sign/signRaw call and returns the associated signature */
-function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, addressOffset = 0, { addressIndex = 0 }: Partial<AccountOptionsGeneric> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, addressIndex = 0, addressOffset = 0): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
   const bip42Path = `m/44'/${slip44}'/${addressIndex}'/${0}'/${addressOffset}'`;
 
   return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
@@ -59,7 +59,7 @@ function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, 
 }
 
 /** @internal Wraps a signWithMetadata call and returns the associated signature */
-function signWithMetadata (message: Uint8Array, slip44: number, addressOffset = 0, { addressIndex = 0, metadata }: Partial<AccountOptionsGeneric> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+function signWithMetadata (message: Uint8Array, slip44: number, addressIndex = 0, addressOffset = 0, { metadata }: Partial<AccountOptionsGeneric> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
   const bip42Path = `m/44'/${slip44}'/${addressIndex}'/${0}'/${addressOffset}'`;
 
   return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
@@ -119,7 +119,7 @@ export class LedgerGeneric {
    * @description Returns the address associated with a specific account & address offset. Optionally
    * asks for on-device confirmation
    */
-  public async getAddress (confirm = false, addressOffset = 0, ss58Prefix: number, { addressIndex = 0 }: Partial<AccountOptionsGeneric> = {}): Promise<LedgerAddress> {
+  public async getAddress (ss58Prefix: number, confirm = false, addressIndex = 0, addressOffset = 0): Promise<LedgerAddress> {
     const bip42Path = `m/44'/${this.#slip44}'/${addressIndex}'/${0}'/${addressOffset}'`;
 
     return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerAddress> => {
@@ -150,22 +150,22 @@ export class LedgerGeneric {
   /**
    * @description Signs a transaction on the Ledger device. This requires the LedgerGeneric class to be instantiated with `chainId`, and `metaUrl`
    */
-  public async sign (message: Uint8Array, addressOffset?: number, options?: Partial<AccountOptionsGeneric>): Promise<LedgerSignature> {
-    return this.withApp(sign('sign', message, this.#slip44, addressOffset, options));
+  public async sign (message: Uint8Array, addressIndex?: number, addressOffset?: number): Promise<LedgerSignature> {
+    return this.withApp(sign('sign', message, this.#slip44, addressIndex, addressOffset));
   }
 
   /**
    * @description Signs a message (non-transactional) on the Ledger device
    */
-  public async signRaw (message: Uint8Array, addressOffset?: number, options?: Partial<AccountOptionsGeneric>): Promise<LedgerSignature> {
-    return this.withApp(sign('signRaw', u8aWrapBytes(message), this.#slip44, addressOffset, options));
+  public async signRaw (message: Uint8Array, addressIndex?: number, addressOffset?: number): Promise<LedgerSignature> {
+    return this.withApp(sign('signRaw', u8aWrapBytes(message), this.#slip44, addressIndex, addressOffset));
   }
 
   /**
    * @description Signs a transaction on the ledger device provided some metadata.
    */
-  public async signWithMetadata (message: Uint8Array, addressOffset?: number, options?: Partial<AccountOptionsGeneric>): Promise<LedgerSignature> {
-    return this.withApp(signWithMetadata(u8aWrapBytes(message), this.#slip44, addressOffset, options));
+  public async signWithMetadata (message: Uint8Array, addressIndex?: number, addressOffset?: number, options?: Partial<AccountOptionsGeneric>): Promise<LedgerSignature> {
+    return this.withApp(signWithMetadata(u8aWrapBytes(message), this.#slip44, addressIndex, addressOffset, options));
   }
 
   /**
