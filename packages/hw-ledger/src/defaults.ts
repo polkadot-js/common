@@ -27,6 +27,7 @@ export const ledgerApps: Record<string, string> = {
   nodle: 'Nodle',
   origintrail: 'OriginTrail',
   parallel: 'Parallel',
+  peaq: 'Peaq',
   pendulum: 'Pendulum',
   phala: 'Phala',
   picasso: 'Picasso',

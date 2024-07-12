@@ -1608,7 +1608,7 @@ __metadata:
   dependencies:
     "@polkadot/hw-ledger-transports": "npm:13.0.1"
     "@polkadot/util": "npm:13.0.1"
-    "@zondax/ledger-substrate": "npm:0.44.4"
+    "@zondax/ledger-substrate": "npm:0.44.7"
     tslib: "npm:^2.6.2"
   languageName: unknown
   linkType: soft
@@ -3213,14 +3213,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zondax/ledger-substrate@npm:0.44.4":
-  version: 0.44.4
-  resolution: "@zondax/ledger-substrate@npm:0.44.4"
+"@zondax/ledger-substrate@npm:0.44.7":
+  version: 0.44.7
+  resolution: "@zondax/ledger-substrate@npm:0.44.7"
   dependencies:
     "@ledgerhq/hw-transport": "npm:6.31.0"
     "@zondax/ledger-js": "npm:^0.8.2"
     axios: "npm:^1.7.2"
-  checksum: 10/1d219fb1ceda3370d3c8ba5efc5489e1e9a7197853f27c123537345fad8f6bdc5e056f536486e8ff91ff5c19d4aefb37d696614d9c43eba5aca4fe7eedfede20
+  checksum: 10/5f103011c6e19cae070f8cb91f5d70f475e4fbde8d317d9c6c795d4aa272ae69c1c80b32b4fe01ce7273d7cc6fa32e1b6e63373a61d3cd1dc0c15e108c63ca3e
   languageName: node
   linkType: hard
 
