@@ -4,7 +4,7 @@
 
 Contributed:
 
-- Add peaq support for ledger
+- Add peaq support for ledger (Thanks to https://github.com/lavish0000)
 
 
 ## 13.0.1 July 12, 2024
