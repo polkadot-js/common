@@ -15,7 +15,6 @@ Changes:
 - Bump ws, react-native, ss58Registry
 - Bump yarn to 4.3.1
 - Update CI to checkout and setup_node v4
--
 
 
 ## 12.6.2 Dec 18, 2023
