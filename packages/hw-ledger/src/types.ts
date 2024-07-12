@@ -3,6 +3,9 @@
 
 import type { HexString } from '@polkadot/util/types';
 
+/**
+ * Legacy Type that works with the `Ledger` class.
+ */
 export interface AccountOptions {
   /** The index of the account */
   account: number;
@@ -10,6 +13,11 @@ export interface AccountOptions {
   addressIndex: number;
   /** The change to apply */
   change: number;
+}
+
+export interface AccountOptionsGeneric extends AccountOptions {
+  /** Option for PolkadotGenericApp.signWithMetadata */
+  metadata: Buffer;
 }
 
 export interface LedgerAddress {
