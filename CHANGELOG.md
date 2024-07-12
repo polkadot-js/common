@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 13.0.1 July 12, 2024
+
+Breaking Changes:
+
+- Add Support for latest Ledger App
+  - This deprecates `class Ledger` in favor of `class LedgerGeneric`
+  - More info in the following PR ([#1925](https://github.com/polkadot-js/common/pull/1925))
+
+Changes:
+
+- Bump dev to 0.79.1
+- Comments around pair encode/decode 1-3
+- Bump ws, react-native, ss58Registry
+- Bump yarn to 4.3.1
+- Update CI to checkout and setup_node v4
+-
+
+
 ## 12.6.2 Dec 18, 2023
 
 Changes:
