@@ -18,7 +18,8 @@ type Chain = keyof typeof ledgerApps;
 type WrappedResult = Awaited<ReturnType<PolkadotGenericApp['getAddress' | 'getVersion' | 'sign' | 'signWithMetadata']>>;
 
 // FIXME This type is a copy of the `class ResponseError`
-// imported from `@zondax/ledger-js`. This is a hack to avoid versioning issues
+// imported from `@zondax/ledger-js`. Happens because ledger-js includes
+// circular dependencies. This is a hack to avoid versioning issues
 // with Deno.
 interface ResponseError {
   errorMessage: string
@@ -83,7 +84,7 @@ function signWithMetadata (message: Uint8Array, slip44: number, accountIndex = 0
  * @description
  * A very basic wrapper for a ledger app -
  *   - it connects automatically on use, creating an underlying interface as required
- *   - Promises reject with errors (unwrapped errors from @zondax/ledger-substrate)
+ *   - Promises reject with errors (unwrapped errors from @zondax/ledger-substrate-js)
  */
 export class LedgerGeneric {
   readonly #transportDef: TransportDef;
