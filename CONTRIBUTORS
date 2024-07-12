@@ -40,6 +40,7 @@
        1	kaelnew                       	add ledger support for stafi (#1569)
        1	Leonardo Custodio             	Ledger support (#1879)
        1	Lezek123                      	logger - wildcard include/exclude with DEBUG env (#932)
+       1	Lovish Arora                  	Add peaq support for ledger (#1928)
        1	Mario Neises                  	remove redudant export (#257)
        1	Miguel Hervas                 	Add CFG Ledger Support (#1057)
        1	Mikhail Fedosov               	feat: add 3dpass network (#1769)
