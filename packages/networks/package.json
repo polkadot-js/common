@@ -15,14 +15,14 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "12.6.3-13-x",
+  "version": "13.0.1",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/util": "12.6.3-13-x",
+    "@polkadot/util": "13.0.1",
     "@substrate/ss58-registry": "^1.46.0",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@polkadot/hw-ledger": "12.6.3-13-x"
+    "@polkadot/hw-ledger": "13.0.1"
   }
 }

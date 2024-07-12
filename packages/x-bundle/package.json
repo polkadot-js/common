@@ -15,10 +15,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "12.6.3-13-x",
+  "version": "13.0.1",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/util": "12.6.3-13-x",
+    "@polkadot/util": "13.0.1",
     "buffer-es6": "^4.9.3",
     "tslib": "^2.6.2"
   }
