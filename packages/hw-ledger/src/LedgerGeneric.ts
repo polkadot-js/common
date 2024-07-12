@@ -47,7 +47,7 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
 
 /** @internal Wraps a sign/signRaw call and returns the associated signature */
 function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, addressIndex = 0, addressOffset = 0): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
-  const bip42Path = `m/44'/${slip44}'/${addressIndex}'/${0}/${addressOffset}`;
+  const bip42Path = `m/44'/${slip44}'/${addressIndex}'/${0}'/${addressOffset}'`;
 
   return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
     const { signature } = await wrapError(app[method](bip42Path, u8aToBuffer(message)));
@@ -60,14 +60,16 @@ function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, 
 
 /** @internal Wraps a signWithMetadata call and returns the associated signature */
 function signWithMetadata (message: Uint8Array, slip44: number, addressIndex = 0, addressOffset = 0, { metadata }: Partial<AccountOptionsGeneric> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
-  const bip42Path = `m/44'/${slip44}'/${addressIndex}'/${0}/${addressOffset}`;
+  const bip42Path = `m/44'/${slip44}'/${addressIndex}'/${0}'/${addressOffset}'`;
 
   return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
     if (!metadata) {
       throw new Error('The metadata option must be present when using signWithMetadata');
     }
 
-    const { signature } = await wrapError(app.signWithMetadata(bip42Path, u8aToBuffer(message), metadata));
+    const bufferMsg = Buffer.from(message);
+
+    const { signature } = await wrapError(app.signWithMetadata(bip42Path, bufferMsg, metadata));
 
     return {
       signature: hexAddPrefix(signature.toString('hex'))
@@ -120,7 +122,7 @@ export class LedgerGeneric {
    * asks for on-device confirmation
    */
   public async getAddress (ss58Prefix: number, confirm = false, addressIndex = 0, addressOffset = 0): Promise<LedgerAddress> {
-    const bip42Path = `m/44'/${this.#slip44}'/${addressIndex}'/${0}/${addressOffset}`;
+    const bip42Path = `m/44'/${this.#slip44}'/${addressIndex}'/${0}'/${addressOffset}'`;
 
     return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerAddress> => {
       const { address, pubKey } = await wrapError(app.getAddress(bip42Path, ss58Prefix, confirm));
