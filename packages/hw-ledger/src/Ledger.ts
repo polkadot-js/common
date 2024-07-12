@@ -48,6 +48,7 @@ function sign (method: 'sign' | 'signRaw', message: Uint8Array, accountOffset = 
  * Legacy wrapper for a ledger app -
  *   - it connects automatically on use, creating an underlying interface as required
  *   - Promises reject with errors (unwrapped errors from @zondax/ledger-substrate)
+ * @deprecated Use LedgerGeneric for up to date integration with ledger
  */
 export class Ledger {
   readonly #ledgerName: string;
