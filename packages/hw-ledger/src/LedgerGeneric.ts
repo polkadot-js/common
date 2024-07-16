@@ -9,6 +9,7 @@ import { PolkadotGenericApp } from '@zondax/ledger-substrate';
 import { transports } from '@polkadot/hw-ledger-transports';
 import { hexAddPrefix, u8aToBuffer, u8aWrapBytes } from '@polkadot/util';
 
+import { POLKADOT_SLIP } from './constants.js';
 import { ledgerApps } from './defaults.js';
 
 export { packageInfo } from './packageInfo.js';
@@ -47,8 +48,8 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
 }
 
 /** @internal Wraps a sign/signRaw call and returns the associated signature */
-function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, accountIndex = 0, addressOffset = 0): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
-  const bip42Path = `m/44'/${slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
+function sign (method: 'sign' | 'signRaw', message: Uint8Array, accountIndex = 0, addressOffset = 0): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+  const bip42Path = `m/44'/${POLKADOT_SLIP}'/${accountIndex}'/${0}'/${addressOffset}'`;
 
   return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
     const { signature } = await wrapError(app[method](bip42Path, u8aToBuffer(message)));
@@ -60,8 +61,8 @@ function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, 
 }
 
 /** @internal Wraps a signWithMetadata call and returns the associated signature */
-function signWithMetadata (message: Uint8Array, slip44: number, accountIndex = 0, addressOffset = 0, { metadata }: Partial<AccountOptionsGeneric> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
-  const bip42Path = `m/44'/${slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
+function signWithMetadata (message: Uint8Array, accountIndex = 0, addressOffset = 0, { metadata }: Partial<AccountOptionsGeneric> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+  const bip42Path = `m/44'/${POLKADOT_SLIP}'/${accountIndex}'/${0}'/${addressOffset}'`;
 
   return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
     if (!metadata) {
@@ -88,7 +89,6 @@ function signWithMetadata (message: Uint8Array, slip44: number, accountIndex = 0
  */
 export class LedgerGeneric {
   readonly #transportDef: TransportDef;
-  readonly #slip44: number;
   /**
    * The chainId is represented by the chains token in all lowercase. Example: Polkadot -> dot
    */
@@ -102,7 +102,7 @@ export class LedgerGeneric {
 
   #app: PolkadotGenericApp | null = null;
 
-  constructor (transport: TransportType, chain: Chain, slip44: number, chainId?: string, metaUrl?: string) {
+  constructor (transport: TransportType, chain: Chain, chainId?: string, metaUrl?: string) {
     const ledgerName = ledgerApps[chain];
     const transportDef = transports.find(({ type }) => type === transport);
 
@@ -114,7 +114,6 @@ export class LedgerGeneric {
 
     this.#metaUrl = metaUrl;
     this.#chainId = chainId;
-    this.#slip44 = slip44;
     this.#transportDef = transportDef;
   }
 
@@ -123,7 +122,7 @@ export class LedgerGeneric {
    * asks for on-device confirmation
    */
   public async getAddress (ss58Prefix: number, confirm = false, accountIndex = 0, addressOffset = 0): Promise<LedgerAddress> {
-    const bip42Path = `m/44'/${this.#slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
+    const bip42Path = `m/44'/${POLKADOT_SLIP}'/${accountIndex}'/${0}'/${addressOffset}'`;
 
     return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerAddress> => {
       const { address, pubKey } = await wrapError(app.getAddress(bip42Path, ss58Prefix, confirm));
@@ -154,21 +153,21 @@ export class LedgerGeneric {
    * @description Signs a transaction on the Ledger device. This requires the LedgerGeneric class to be instantiated with `chainId`, and `metaUrl`
    */
   public async sign (message: Uint8Array, accountIndex?: number, addressOffset?: number): Promise<LedgerSignature> {
-    return this.withApp(sign('sign', message, this.#slip44, accountIndex, addressOffset));
+    return this.withApp(sign('sign', message, accountIndex, addressOffset));
   }
 
   /**
    * @description Signs a message (non-transactional) on the Ledger device
    */
   public async signRaw (message: Uint8Array, accountIndex?: number, addressOffset?: number): Promise<LedgerSignature> {
-    return this.withApp(sign('signRaw', u8aWrapBytes(message), this.#slip44, accountIndex, addressOffset));
+    return this.withApp(sign('signRaw', u8aWrapBytes(message), accountIndex, addressOffset));
   }
 
   /**
    * @description Signs a transaction on the ledger device provided some metadata.
    */
   public async signWithMetadata (message: Uint8Array, accountIndex?: number, addressOffset?: number, options?: Partial<AccountOptionsGeneric>): Promise<LedgerSignature> {
-    return this.withApp(signWithMetadata(message, this.#slip44, accountIndex, addressOffset, options));
+    return this.withApp(signWithMetadata(message, accountIndex, addressOffset, options));
   }
 
   /**
