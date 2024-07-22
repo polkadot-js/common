@@ -1741,7 +1741,7 @@
       "TCESS"
     ],
     "decimals": [
-      12
+      18
     ],
     "standardAccount": "*25519",
     "website": "https://cess.cloud"
@@ -1754,7 +1754,7 @@
       "CESS"
     ],
     "decimals": [
-      12
+      18
     ],
     "standardAccount": "*25519",
     "website": "https://cess.cloud"
@@ -1812,6 +1812,19 @@
     "website": "https://nftmart.io"
   },
   {
+    "prefix": 12850,
+    "network": "analog-timechain",
+    "displayName": "Analog Timechain",
+    "symbols": [
+      "ANLOG"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://analog.one"
+  },
+  {
     "prefix": 13116,
     "network": "bittensor",
     "displayName": "Bittensor",
@@ -1836,5 +1849,44 @@
     ],
     "standardAccount": "*25519",
     "website": "https://goro.network"
+  },
+  {
+    "prefix": 14998,
+    "network": "mosaic-chain",
+    "displayName": "Mosaic Chain",
+    "symbols": [
+      "MOS"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://mosaicchain.io"
+  },
+  {
+    "prefix": 29972,
+    "network": "mythos",
+    "displayName": "Mythos",
+    "symbols": [
+      "MYTH"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "secp256k1",
+    "website": "https://mythos.foundation"
+  },
+  {
+    "prefix": 8888,
+    "network": "xcavate",
+    "displayName": "Xcavate Protocol",
+    "symbols": [
+      "XCAV"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "*25519",
+    "website": "https://xcavate.io/"
   }
 ]
