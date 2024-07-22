@@ -1,6 +1,6 @@
     1674	Jaco                          	Bump deps (#1912)
       13	Carlo Sala                    	feat(networks): add zeitgeist Ledger support (#1840)
-      12	Tarik Gul                     	Revert slip44 change (#1931)
+      13	Tarik Gul                     	Bump @substrate/ss58-registry to 1.49.0 (#1932)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
        5	Jakub Pánik                   	Add HydraDX parachain to genesis (#1583)
