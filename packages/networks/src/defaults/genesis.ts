@@ -104,6 +104,9 @@ export const knownGenesis: KnownGenesis = {
   parallel: [
     '0xe61a41c53f5dcd0beb09df93b34402aada44cb05117b71059cce40a2723a4e97'
   ],
+  peaq: [
+    '0xd2a5d385932d1f650dae03ef8e2748983779ee342c614f80854d32b8cd8fa48c'
+  ],
   pendulum: [
     '0x5d3c298622d5634ed019bf61ea4b71655030015bde9beb0d6a24743714462c86'
   ],

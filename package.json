@@ -6,7 +6,7 @@
   },
   "homepage": "https://github.com/polkadot-js/common#readme",
   "license": "Apache-2.0",
-  "packageManager": "yarn@4.2.2",
+  "packageManager": "yarn@4.3.1",
   "private": true,
   "repository": {
     "type": "git",
@@ -14,10 +14,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "12.6.3-11-x",
+  "version": "13.0.3-2-x",
   "versions": {
-    "git": "12.6.3-11-x",
-    "npm": "12.6.2"
+    "git": "13.0.3-2-x",
+    "npm": "13.0.2"
   },
   "workspaces": [
     "packages/*"

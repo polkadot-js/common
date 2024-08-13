@@ -14,18 +14,18 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "12.6.3-11-x",
+  "version": "13.0.3-2-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@ledgerhq/hw-transport": "^6.30.2",
-    "@ledgerhq/hw-transport-webhid": "^6.28.2",
-    "@ledgerhq/hw-transport-webusb": "^6.28.2",
-    "@polkadot/util": "12.6.3-11-x",
+    "@ledgerhq/hw-transport": "^6.31.0",
+    "@ledgerhq/hw-transport-webhid": "^6.29.0",
+    "@ledgerhq/hw-transport-webusb": "^6.29.0",
+    "@polkadot/util": "13.0.3-2-x",
     "tslib": "^2.6.2"
   },
   "optionalDependencies": {
-    "@ledgerhq/hw-transport-node-hid-singleton": "^6.30.2"
+    "@ledgerhq/hw-transport-node-hid-singleton": "^6.31.1"
   }
 }
