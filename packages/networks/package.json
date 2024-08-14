@@ -19,8 +19,8 @@
   "main": "index.js",
   "dependencies": {
     "@polkadot/util": "13.0.3-1-x",
-    "@substrate/ss58-registry": "^1.46.0",
-    "tslib": "^2.6.2"
+    "@substrate/ss58-registry": "^1.49.0",
+    "tslib": "^2.6.3"
   },
   "devDependencies": {
     "@polkadot/hw-ledger": "13.0.3-1-x"
