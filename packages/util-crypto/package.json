@@ -35,8 +35,8 @@
     "@polkadot/wasm-util": "^7.3.2",
     "@polkadot/x-bigint": "13.0.3-2-x",
     "@polkadot/x-randomvalues": "13.0.3-2-x",
-    "@scure/base": "^1.1.5",
-    "tslib": "^2.6.2"
+    "@scure/base": "^1.1.7",
+    "tslib": "^2.6.3"
   },
   "peerDependencies": {
     "@polkadot/util": "13.0.3-2-x"

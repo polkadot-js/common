@@ -37,8 +37,8 @@
     "test:one": "polkadot-dev-run-test --env browser"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.79.1",
-    "@types/node": "^20.11.5"
+    "@polkadot/dev": "^0.79.3",
+    "@types/node": "^20.14.15"
   },
   "resolutions": {
     "typescript": "^5.3.3"
