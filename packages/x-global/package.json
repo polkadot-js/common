@@ -18,6 +18,6 @@
   "version": "13.0.3-2-x",
   "main": "index.js",
   "dependencies": {
-    "tslib": "^2.6.2"
+    "tslib": "^2.6.3"
   }
 }
