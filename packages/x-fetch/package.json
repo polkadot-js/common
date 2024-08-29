@@ -22,6 +22,6 @@
   "dependencies": {
     "@polkadot/x-global": "13.0.3-4-x",
     "node-fetch": "^3.3.2",
-    "tslib": "^2.6.3"
+    "tslib": "^2.7.0"
   }
 }
