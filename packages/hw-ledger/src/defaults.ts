@@ -18,7 +18,7 @@ export const ledgerApps: Record<string, string> = {
   enjin: 'Enjin',
   equilibrium: 'Equilibrium',
   genshiro: 'Genshiro',
-  hydradx: 'Hydration',
+  hydradx: 'HydraDX',
   'interlay-parachain': 'Interlay',
   karura: 'Karura',
   khala: 'Khala',
