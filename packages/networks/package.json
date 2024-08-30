@@ -19,7 +19,7 @@
   "main": "index.js",
   "dependencies": {
     "@polkadot/util": "13.0.3-5-x",
-    "@substrate/ss58-registry": "^1.49.0",
+    "@substrate/ss58-registry": "^1.50.0",
     "tslib": "^2.7.0"
   },
   "devDependencies": {

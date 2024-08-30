@@ -1644,7 +1644,7 @@ __metadata:
   dependencies:
     "@polkadot/hw-ledger": "npm:13.0.3-5-x"
     "@polkadot/util": "npm:13.0.3-5-x"
-    "@substrate/ss58-registry": "npm:^1.49.0"
+    "@substrate/ss58-registry": "npm:^1.50.0"
     tslib: "npm:^2.7.0"
   languageName: unknown
   linkType: soft
@@ -2468,10 +2468,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@substrate/ss58-registry@npm:^1.49.0":
-  version: 1.49.0
-  resolution: "@substrate/ss58-registry@npm:1.49.0"
-  checksum: 10/6214c8f8586aefbb67b70bd2f02a9d133cfb15f360d691f1164c192036b59d1e282495e884b7da80a32e54eed1bd2bcc421f571e548a29410a5a50be7b2daa10
+"@substrate/ss58-registry@npm:^1.50.0":
+  version: 1.50.0
+  resolution: "@substrate/ss58-registry@npm:1.50.0"
+  checksum: 10/66c096c9027ea4dba748c551e410d21014828311454443f62b0d4d6bdd5f5881fef027c9ed1bf84dc706d33c04242e5ecc09276ae4a52a34f3d818db519b633b
   languageName: node
   linkType: hard
 
