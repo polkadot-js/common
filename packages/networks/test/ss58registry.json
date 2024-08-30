@@ -731,7 +731,7 @@
   {
     "prefix": 63,
     "network": "hydradx",
-    "displayName": "HydraDX",
+    "displayName": "Hydration",
     "symbols": [
       "HDX"
     ],
@@ -739,7 +739,7 @@
       12
     ],
     "standardAccount": "*25519",
-    "website": "https://hydradx.io"
+    "website": "https://hydration.net"
   },
   {
     "prefix": 65,
@@ -1416,6 +1416,19 @@
     ],
     "standardAccount": "*25519",
     "website": "https://logion.network"
+  },
+  {
+    "prefix": 2024,
+    "network": "vow-chain",
+    "displayName": "Enigmatic Smile",
+    "symbols": [
+      "VOW"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://www.vow.foundation/"
   },
   {
     "prefix": 2032,
