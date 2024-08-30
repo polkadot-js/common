@@ -6,7 +6,7 @@
   },
   "homepage": "https://github.com/polkadot-js/common#readme",
   "license": "Apache-2.0",
-  "packageManager": "yarn@4.3.1",
+  "packageManager": "yarn@4.4.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -14,9 +14,9 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "13.0.3-2-x",
+  "version": "13.0.3-6-x",
   "versions": {
-    "git": "13.0.3-2-x",
+    "git": "13.0.3-6-x",
     "npm": "13.0.2"
   },
   "workspaces": [
@@ -37,10 +37,10 @@
     "test:one": "polkadot-dev-run-test --env browser"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.79.1",
-    "@types/node": "^20.11.5"
+    "@polkadot/dev": "^0.80.1",
+    "@types/node": "^20.14.15"
   },
   "resolutions": {
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.4"
   }
 }

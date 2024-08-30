@@ -15,16 +15,16 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "13.0.3-2-x",
+  "version": "13.0.3-6-x",
   "browser": "browser.js",
   "main": "node.js",
   "react-native": "react-native.js",
   "dependencies": {
-    "@polkadot/x-global": "13.0.3-2-x",
-    "tslib": "^2.6.2",
+    "@polkadot/x-global": "13.0.3-6-x",
+    "tslib": "^2.7.0",
     "ws": "^8.16.0"
   },
   "devDependencies": {
-    "@types/ws": "^8.5.10"
+    "@types/ws": "^8.5.12"
   }
 }

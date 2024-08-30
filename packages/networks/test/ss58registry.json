@@ -1418,6 +1418,19 @@
     "website": "https://logion.network"
   },
   {
+    "prefix": 2024,
+    "network": "vow-chain",
+    "displayName": "Enigmatic Smile",
+    "symbols": [
+      "VOW"
+    ],
+    "decimals": [
+      18
+    ],
+    "standardAccount": "*25519",
+    "website": "https://www.vow.foundation/"
+  },
+  {
     "prefix": 2032,
     "network": "interlay",
     "displayName": "Interlay",
