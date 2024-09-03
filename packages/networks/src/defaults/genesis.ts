@@ -77,7 +77,7 @@ export const knownGenesis: KnownGenesis = {
   ],
   integritee: [
     '0xcdedc8eadbfa209d3f207bba541e57c3c58a667b05a2e1d1e86353c9000758da', // on Kusama
-    '0xe13e7af377c64e83f95e0d70d5e5c3c01d697a84538776c5b9bbe0e7d7b6034c', // on Polkadot
+    '0xe13e7af377c64e83f95e0d70d5e5c3c01d697a84538776c5b9bbe0e7d7b6034c' // on Polkadot
   ],
   'interlay-parachain': [
     '0xbf88efe70e9e0e916416e8bed61f2b45717f517d7f3523e33c7b001e5ffcbc72'
