@@ -19,10 +19,12 @@ export const knownLedger: KnownLedger = {
   darwinia: 0x00000162,
   'dock-mainnet': 0x00000252,
   edgeware: 0x0000020b,
+  encointer: 0x000001b2, // common-good on Kusama, shares derivation
   enjin: 0x00000483,
   equilibrium: 0x05f5e0fd,
   genshiro: 0x05f5e0fc,
   hydradx: 0x00000162,
+  integritee: 0x000007df,
   'interlay-parachain': 0x00000162,
   karura: 0x000002ae,
   khala: 0x000001b2,
