@@ -1,9 +1,11 @@
 // Copyright 2017-2024 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// These match up with the keys of the knownLedger object in the @polkadot/networks/defaults/ledger.ts
-// and maps to the known name in the @zondax/ledger-substrate/supported_apps package
-export const ledgerApps: Record<string, string> = {
+// These map to the known name in the @zondax/ledger-substrate/supported_apps package
+// but they do not reflect all ledger apps that are supported. Since ledger now has support for all
+// substrate chains via the PolkadotGenericApp, any new chains that need ledger support can be added to
+// `genericLedgerApps` below.
+export const prevLedgerRecord: Record<string, string> = {
   acala: 'Acala',
   ajuna: 'Ajuna',
   'aleph-node': 'AlephZero',
@@ -44,4 +46,16 @@ export const ledgerApps: Record<string, string> = {
   vtb: 'VTB',
   xxnetwork: 'XXNetwork',
   zeitgeist: 'Zeitgeist'
+};
+
+// Any chains moving forward that are supported by the PolkadotGenericApp from ledger will input their names below.
+export const genericLedgerApps = {
+  encointer: 'Encointer',
+  integritee: 'Integritee'
+};
+
+// These match up with the keys of the knownLedger object in the @polkadot/networks/defaults/ledger.ts
+export const ledgerApps: Record<string, string> = {
+  ...prevLedgerRecord,
+  ...genericLedgerApps
 };
