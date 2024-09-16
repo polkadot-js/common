@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 13.0.3 Sep 16, 2024
+
+Contributed:
+
+HydraDx - Hydration Rebrand Thanks to (https://github.com/jak-pan) ([#1923](https://github.com/polkadot-js/common/pull/1923))
+
+Changes:
+
+- Update all deps that have patch releases ([#1934](https://github.com/polkadot-js/common/pull/1934))
+- Bump yarn to 4.4.1 ([#1940](https://github.com/polkadot-js/common/pull/1940))
+- Update ss58-registry to 1.50.0 ([#1937](https://github.com/polkadot-js/common/pull/1937))
+- Update dev and typescript ([#1936](https://github.com/polkadot-js/common/pull/1936))
+- Add Encointer and Integritee to Ledger, and adjust tests ([#1939](https://github.com/polkadot-js/common/pull/1939))
+
+
 ## 13.0.2 July 12, 2024
 
 Contributed:
