@@ -13,6 +13,7 @@ Changes:
 - Update ss58-registry to 1.50.0 ([#1937](https://github.com/polkadot-js/common/pull/1937))
 - Update dev and typescript ([#1936](https://github.com/polkadot-js/common/pull/1936))
 - Add Encointer and Integritee to Ledger, and adjust tests ([#1939](https://github.com/polkadot-js/common/pull/1939))
+  - This PR added the addition of `genericLedgerApps` and `prevLedgerRecord` objects. They both combine into `ledgerApps` in `hw-ledger/defaults`.
 
 
 ## 13.0.2 July 12, 2024
