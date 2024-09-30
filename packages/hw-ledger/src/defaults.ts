@@ -52,7 +52,8 @@ export const prevLedgerRecord: Record<string, string> = {
 export const genericLedgerApps = {
   bittensor: 'Bittensor',
   encointer: 'Encointer',
-  integritee: 'Integritee'
+  integritee: 'Integritee',
+  polimec: 'Polimec'
 };
 
 // These match up with the keys of the knownLedger object in the @polkadot/networks/defaults/ledger.ts
