@@ -1607,7 +1607,7 @@ __metadata:
     "@ledgerhq/hw-transport-webhid": "npm:^6.29.4"
     "@ledgerhq/hw-transport-webusb": "npm:^6.29.4"
     "@polkadot/util": "npm:13.1.2-3-x"
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   dependenciesMeta:
     "@ledgerhq/hw-transport-node-hid-singleton":
       optional: true
@@ -1621,7 +1621,7 @@ __metadata:
     "@polkadot/hw-ledger-transports": "npm:13.1.2-3-x"
     "@polkadot/util": "npm:13.1.2-3-x"
     "@zondax/ledger-substrate": "npm:1.0.0"
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   languageName: unknown
   linkType: soft
 
@@ -1631,7 +1631,7 @@ __metadata:
   dependencies:
     "@polkadot/util": "npm:13.1.2-3-x"
     "@polkadot/util-crypto": "npm:13.1.2-3-x"
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   peerDependencies:
     "@polkadot/util": 13.1.2-3-x
     "@polkadot/util-crypto": 13.1.2-3-x
@@ -1644,8 +1644,8 @@ __metadata:
   dependencies:
     "@polkadot/hw-ledger": "npm:13.1.2-3-x"
     "@polkadot/util": "npm:13.1.2-3-x"
-    "@substrate/ss58-registry": "npm:^1.50.0"
-    tslib: "npm:^2.7.0"
+    "@substrate/ss58-registry": "npm:^1.51.0"
+    tslib: "npm:^2.8.0"
   languageName: unknown
   linkType: soft
 
@@ -1662,7 +1662,7 @@ __metadata:
     "@polkadot/x-bigint": "npm:13.1.2-3-x"
     "@polkadot/x-randomvalues": "npm:13.1.2-3-x"
     "@scure/base": "npm:^1.1.7"
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   peerDependencies:
     "@polkadot/util": 13.1.2-3-x
   languageName: unknown
@@ -1677,9 +1677,9 @@ __metadata:
     "@polkadot/x-randomvalues": "npm:13.1.2-3-x"
     "@polkadot/x-textdecoder": "npm:13.1.2-3-x"
     "@polkadot/x-textencoder": "npm:13.1.2-3-x"
-    "@types/bn.js": "npm:^5.1.5"
+    "@types/bn.js": "npm:^5.1.6"
     bn.js: "npm:^5.2.1"
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   languageName: unknown
   linkType: soft
 
@@ -1768,7 +1768,7 @@ __metadata:
   resolution: "@polkadot/x-bigint@workspace:packages/x-bigint"
   dependencies:
     "@polkadot/x-global": "npm:13.1.2-3-x"
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   languageName: unknown
   linkType: soft
 
@@ -1778,7 +1778,7 @@ __metadata:
   dependencies:
     "@polkadot/util": "npm:13.1.2-3-x"
     buffer-es6: "npm:^4.9.3"
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   languageName: unknown
   linkType: soft
 
@@ -1788,7 +1788,7 @@ __metadata:
   dependencies:
     "@polkadot/x-global": "npm:13.1.2-3-x"
     node-fetch: "npm:^3.3.2"
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   languageName: unknown
   linkType: soft
 
@@ -1796,7 +1796,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/x-global@workspace:packages/x-global"
   dependencies:
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   languageName: unknown
   linkType: soft
 
@@ -1808,7 +1808,7 @@ __metadata:
     "@polkadot/wasm-util": "npm:^7.3.2"
     "@polkadot/x-global": "npm:13.1.2-3-x"
     "@types/react-native": "npm:^0.73.0"
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   peerDependencies:
     "@polkadot/util": 13.1.2-3-x
     "@polkadot/wasm-util": "*"
@@ -1820,7 +1820,7 @@ __metadata:
   resolution: "@polkadot/x-textdecoder@workspace:packages/x-textdecoder"
   dependencies:
     "@polkadot/x-global": "npm:13.1.2-3-x"
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   languageName: unknown
   linkType: soft
 
@@ -1829,7 +1829,7 @@ __metadata:
   resolution: "@polkadot/x-textencoder@workspace:packages/x-textencoder"
   dependencies:
     "@polkadot/x-global": "npm:13.1.2-3-x"
-    tslib: "npm:^2.7.0"
+    tslib: "npm:^2.8.0"
   languageName: unknown
   linkType: soft
 
@@ -1839,8 +1839,8 @@ __metadata:
   dependencies:
     "@polkadot/x-global": "npm:13.1.2-3-x"
     "@types/ws": "npm:^8.5.12"
-    tslib: "npm:^2.7.0"
-    ws: "npm:^8.16.0"
+    tslib: "npm:^2.8.0"
+    ws: "npm:^8.18.0"
   languageName: unknown
   linkType: soft
 
@@ -2468,10 +2468,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@substrate/ss58-registry@npm:^1.50.0":
-  version: 1.50.0
-  resolution: "@substrate/ss58-registry@npm:1.50.0"
-  checksum: 10/66c096c9027ea4dba748c551e410d21014828311454443f62b0d4d6bdd5f5881fef027c9ed1bf84dc706d33c04242e5ecc09276ae4a52a34f3d818db519b633b
+"@substrate/ss58-registry@npm:^1.51.0":
+  version: 1.51.0
+  resolution: "@substrate/ss58-registry@npm:1.51.0"
+  checksum: 10/34eb21292f543a8be7c62ad3bcdae89d61c8a51e35a0be4687b6b4e955b5180a90a7691a9e6779f7509f8dfcfdfa372d8278087a9668521b9c501adb85c915b6
   languageName: node
   linkType: hard
 
@@ -2491,12 +2491,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/bn.js@npm:^5.1.5":
-  version: 5.1.5
-  resolution: "@types/bn.js@npm:5.1.5"
+"@types/bn.js@npm:^5.1.6":
+  version: 5.1.6
+  resolution: "@types/bn.js@npm:5.1.6"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 10/9719330c86aeae0a6a447c974cf0f853ba3660ede20de61f435b03d699e30e6d8b35bf71a8dc9fdc8317784438e83177644ba068ed653d0ae0106e1ecbfe289e
+  checksum: 10/db565b5a2af59b09459d74441153bf23a0e80f1fb2d070330786054e7ce1a7285dc40afcd8f289426c61a83166bdd70814f70e2d439744686aac5d3ea75daf13
   languageName: node
   linkType: hard
 
@@ -2652,12 +2652,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.14.15":
-  version: 20.14.15
-  resolution: "@types/node@npm:20.14.15"
+"@types/node@npm:*, @types/node@npm:^22.7.5":
+  version: 22.7.5
+  resolution: "@types/node@npm:22.7.5"
   dependencies:
-    undici-types: "npm:~5.26.4"
-  checksum: 10/87a4a4313e886c1db1c8042004956095477e040f67df993fd16a2d50488c750bda81e85bf702c2e629e964605034e8dfe0cb91b65ce22b6b8eec37ece61c6b6c
+    undici-types: "npm:~6.19.2"
+  checksum: 10/e8ba102f8c1aa7623787d625389be68d64e54fcbb76d41f6c2c64e8cf4c9f4a2370e7ef5e5f1732f3c57529d3d26afdcb2edc0101c5e413a79081449825c57ac
   languageName: node
   linkType: hard
 
@@ -10769,7 +10769,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@polkadot/dev": "npm:^0.80.1"
-    "@types/node": "npm:^20.14.15"
+    "@types/node": "npm:^22.7.5"
   languageName: unknown
   linkType: soft
 
@@ -11892,10 +11892,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.1, tslib@npm:^2.1.0, tslib@npm:^2.3.1, tslib@npm:^2.6.2, tslib@npm:^2.7.0":
-  version: 2.7.0
-  resolution: "tslib@npm:2.7.0"
-  checksum: 10/9a5b47ddac65874fa011c20ff76db69f97cf90c78cff5934799ab8894a5342db2d17b4e7613a087046bc1d133d21547ddff87ac558abeec31ffa929c88b7fce6
+"tslib@npm:^2.0.1, tslib@npm:^2.1.0, tslib@npm:^2.3.1, tslib@npm:^2.6.2, tslib@npm:^2.7.0, tslib@npm:^2.8.0":
+  version: 2.8.0
+  resolution: "tslib@npm:2.8.0"
+  checksum: 10/1bc7c43937477059b4d26f2dbde7e49ef0fb4f38f3014e0603eaea76d6a885742c8b1762af45949145e5e7408a736d20ded949da99dabc8ccba1fc5531d2d927
   languageName: node
   linkType: hard
 
@@ -12084,10 +12084,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~5.26.4":
-  version: 5.26.5
-  resolution: "undici-types@npm:5.26.5"
-  checksum: 10/0097779d94bc0fd26f0418b3a05472410408877279141ded2bd449167be1aed7ea5b76f756562cb3586a07f251b90799bab22d9019ceba49c037c76445f7cddd
+"undici-types@npm:~6.19.2":
+  version: 6.19.8
+  resolution: "undici-types@npm:6.19.8"
+  checksum: 10/cf0b48ed4fc99baf56584afa91aaffa5010c268b8842f62e02f752df209e3dea138b372a60a963b3b2576ed932f32329ce7ddb9cb5f27a6c83040d8cd74b7a70
   languageName: node
   linkType: hard
 
@@ -12808,9 +12808,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^8.13.0, ws@npm:^8.16.0":
-  version: 8.16.0
-  resolution: "ws@npm:8.16.0"
+"ws@npm:^8.13.0, ws@npm:^8.16.0, ws@npm:^8.18.0":
+  version: 8.18.0
+  resolution: "ws@npm:8.18.0"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ">=5.0.2"
@@ -12819,7 +12819,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 10/7c511c59e979bd37b63c3aea4a8e4d4163204f00bd5633c053b05ed67835481995f61a523b0ad2b603566f9a89b34cb4965cb9fab9649fbfebd8f740cea57f17
+  checksum: 10/70dfe53f23ff4368d46e4c0b1d4ca734db2c4149c6f68bc62cb16fc21f753c47b35fcc6e582f3bdfba0eaeb1c488cddab3c2255755a5c3eecb251431e42b3ff6
   languageName: node
   linkType: hard
 
