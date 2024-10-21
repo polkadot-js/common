@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 13.2.1 Oct 21, 2024
+
+Contributed:
+
+- Add bittensor to genericLedgerApps (Thanks to https://github.com/camfairchild) ([#1941](https://github.com/polkadot-js/common/pull/1941))
+
+Changes:
+
+- Fix Deno CI Build ([#1947](https://github.com/polkadot-js/common/pull/1947))
+- Bump yarn to 4.5.0 ([#1946](https://github.com/polkadot-js/common/pull/1946))
+- Update Ledger Deps ([#1948](https://github.com/polkadot-js/common/pull/1948))
+- Update WS and deps ([#1949](https://github.com/polkadot-js/common/pull/1949))
+- Bump polkadot/wasm to 7.4.1 ([#1950](https://github.com/polkadot-js/common/pull/1950))
+- Bump dev to 0.81.2 ([#1951](https://github.com/polkadot-js/common/pull/1951))
+  - Allows for CJS target in build
+
+
 ## 13.1.1 Sep 16, 2024
 
 Contributed:
