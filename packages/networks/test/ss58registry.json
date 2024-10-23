@@ -1588,16 +1588,16 @@
   },
   {
     "prefix": 6094,
-    "network": "subspace",
-    "displayName": "Subspace",
+    "network": "autonomys",
+    "displayName": "Autonomys",
     "symbols": [
-      "SSC"
+      "AI3"
     ],
     "decimals": [
       18
     ],
     "standardAccount": "*25519",
-    "website": "https://subspace.network"
+    "website": "https://autonomys.xyz"
   },
   {
     "prefix": 7007,
