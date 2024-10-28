@@ -23,6 +23,7 @@ export const knownLedger: KnownLedger = {
   encointer: 0x000001b2,
   enjin: 0x00000483,
   equilibrium: 0x05f5e0fd,
+  frequency: 0x0000082b,
   genshiro: 0x05f5e0fc,
   hydradx: 0x00000162,
   integritee: 0x000007df,
