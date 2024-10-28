@@ -52,6 +52,7 @@ export const prevLedgerRecord: Record<string, string> = {
 export const genericLedgerApps = {
   bittensor: 'Bittensor',
   encointer: 'Encointer',
+  frequency: 'Frequency',
   integritee: 'Integritee',
   polimec: 'Polimec'
 };
