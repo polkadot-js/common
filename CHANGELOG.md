@@ -5,6 +5,7 @@
 Contributed:
 
 - Add Polimec support to the Generic Ledger App ([#1945](https://github.com/polkadot-js/common/pull/1945)) (Thanks to https://github.com/lrazovic)
+- Add Frequency to the Generic Ledger App ([#1955](https://github.com/polkadot-js/common/pull/1955)) (Thanks to https://github.com/wilwade)
 
 Changes:
 
