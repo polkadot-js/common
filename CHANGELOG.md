@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 13.2.2 Oct 28, 2024
+
+Contributed:
+
+- Add Polimec support to the Generic Ledger App ([#1945](https://github.com/polkadot-js/common/pull/1945)) (Thanks to https://github.com/lrazovic)
+
+Changes:
+
+- Bump yarn to 4.5.1 ([#1953](https://github.com/polkadot-js/common/pull/1953))
+
+
 ## 13.2.1 Oct 21, 2024
 
 Contributed:
