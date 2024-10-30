@@ -49,7 +49,7 @@ function hex (value: Uint8Array, result: HexString): HexString {
  * ```
  */
 export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed = true): HexString {
-  // this is not 100% correct sinmce we support isPrefixed = false....
+  // this is not 100% correct since we support isPrefixed = false ...
   const empty = isPrefixed
     ? '0x'
     : '' as HexString;
