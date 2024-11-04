@@ -51,6 +51,7 @@ export const knownLedger: KnownLedger = {
   ternoa: 0x00003e3,
   unique: 0x00000295,
   vara: 0x00001370,
+  'vara-testnet': 0x00001371,
   vtb: 0x000002b6,
   xxnetwork: 0x000007a3,
   zeitgeist: 0x00000162
