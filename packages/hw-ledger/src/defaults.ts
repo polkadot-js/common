@@ -54,7 +54,8 @@ export const genericLedgerApps = {
   encointer: 'Encointer',
   frequency: 'Frequency',
   integritee: 'Integritee',
-  polimec: 'Polimec'
+  polimec: 'Polimec',
+  vara: 'Vara'
 };
 
 // These match up with the keys of the knownLedger object in the @polkadot/networks/defaults/ledger.ts
