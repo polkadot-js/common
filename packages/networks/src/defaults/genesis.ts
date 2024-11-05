@@ -180,9 +180,6 @@ export const knownGenesis: KnownGenesis = {
   vara: [
     '0xfe1b4c55fd4d668101126434206571a7838a8b6b93a6d1b95d607e78e6c53763'
   ],
-  'vara-testnet': [
-    '0x525639f713f397dcf839bd022cd821f367ebcf179de7b9253531f8adbe5436d6'
-  ],
   vtb: [
     '0x286bc8414c7000ce1d6ee6a834e29a54c1784814b76243eb77ed0b2c5573c60f',
     '0x7483b89572fb2bd687c7b9a93b242d0b237f9aba463aba07ec24503931038aaa'
