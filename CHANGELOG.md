@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 13.2.3 Nov 11, 2024
+
+Contributed:
+
+- Add Vara support to the Generic Ledger App ([#1958](https://github.com/polkadot-js/common/pull/1958)) (Thanks to https://github.com/breathx)
+
+Changes:
+
+- Bump Dev to 0.82.1 ([#1959](https://github.com/polkadot-js/common/pull/1959))
+
+
 ## 13.2.2 Oct 28, 2024
 
 Contributed:
