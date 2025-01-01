@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Imported from https://github.com/dchest/tweetnacl-js/blob/6a9594a35a27f9c723c5f1c107e376d1c65c23b3/test/data/secretbox.random.js//
