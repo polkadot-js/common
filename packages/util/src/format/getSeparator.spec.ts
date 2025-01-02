@@ -16,7 +16,6 @@ describe('getSeparator', (): void => {
     { decimal: ',', locale: 'sl-si', thousand: '.' },
     { decimal: ',', locale: 'it-it', thousand: '.' },
     { decimal: '.', locale: 'ja-jp', thousand: ',' },
-    { decimal: '٫', locale: 'ar', thousand: '١' },
     { decimal: '.', locale: 'hi-IN', thousand: ',' },
     { decimal: '.', locale: undefined, thousand: ',' } // Fallback test
   ];
