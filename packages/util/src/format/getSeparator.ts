@@ -8,11 +8,8 @@
  */
 export function getSeparator (locale?: string):
 { thousand: string, decimal: string } {
-  const formattedDecimal = (0.1).toLocaleString(locale, { useGrouping: false });
-  const formattedThousand = (1000).toLocaleString(locale, { useGrouping: true });
-
   return {
-    decimal: formattedDecimal.charAt(1),
-    thousand: formattedThousand.replace(/\d/g, '').charAt(0)
+    decimal: (0.1).toLocaleString(locale, { useGrouping: false }).charAt(1),
+    thousand: (1000).toLocaleString(locale, { useGrouping: true }).replace(/\d/g, '').charAt(0)
   };
 }
