@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 13.3.1 Jan 6, 2025
+
+Changes:
+
+- Give compatibility for nodejs v22
+  - Fix `getSeparator` which fixes toLocaleString ([#1965](https://github.com/polkadot-js/common/pull/1965))
+- 2025 Headers ([#1963](https://github.com/polkadot-js/common/pull/1963))
+
+
 ## 13.2.3 Nov 11, 2024
 
 Contributed:
