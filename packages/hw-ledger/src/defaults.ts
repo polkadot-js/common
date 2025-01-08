@@ -26,6 +26,7 @@ export const prevLedgerRecord: Record<string, string> = {
   khala: 'Khala',
   kusama: 'Kusama',
   matrixchain: 'Matrixchain',
+  mythos: 'Mythos',
   nodle: 'Nodle',
   origintrail: 'OriginTrail',
   parallel: 'Parallel',
@@ -55,7 +56,8 @@ export const genericLedgerApps = {
   frequency: 'Frequency',
   integritee: 'Integritee',
   polimec: 'Polimec',
-  vara: 'Vara'
+  vara: 'Vara',
+  mythos: 'Mythos',
 };
 
 // These match up with the keys of the knownLedger object in the @polkadot/networks/defaults/ledger.ts
