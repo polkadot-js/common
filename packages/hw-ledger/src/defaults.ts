@@ -26,7 +26,6 @@ export const prevLedgerRecord: Record<string, string> = {
   khala: 'Khala',
   kusama: 'Kusama',
   matrixchain: 'Matrixchain',
-  mythos: 'Mythos',
   nodle: 'Nodle',
   origintrail: 'OriginTrail',
   parallel: 'Parallel',
