@@ -4,7 +4,6 @@
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { stringToU8a } from '@polkadot/util';
-import { waitReady } from '@polkadot/wasm-crypto';
 
 import { randomAsU8a } from '../random/asU8a.js';
 import { sr25519PairFromSeed } from './pair/fromSeed.js';
@@ -14,10 +13,6 @@ import { sr25519Verify } from './verify.js';
 const MESSAGE = stringToU8a('this is a message');
 
 describe('verify', (): void => {
-  beforeEach(async (): Promise<void> => {
-    await waitReady();
-  });
-
   it('can sign and verify a message', (): void => {
     const pair = sr25519PairFromSeed(randomAsU8a());
     const signature = sr25519Sign(MESSAGE, pair);

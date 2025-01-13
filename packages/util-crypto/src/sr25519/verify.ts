@@ -1,8 +1,9 @@
 // Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import * as sr25519 from 'micro-sr25519';
+
 import { u8aToU8a } from '@polkadot/util';
-import { sr25519Verify as wasmVerify } from '@polkadot/wasm-crypto';
 
 /**
  * @name sr25519Verify
@@ -18,5 +19,5 @@ export function sr25519Verify (message: string | Uint8Array, signature: string |
     throw new Error(`Invalid signature, received ${signatureU8a.length} bytes, expected 64`);
   }
 
-  return wasmVerify(signatureU8a, u8aToU8a(message), publicKeyU8a);
+  return sr25519.verify(u8aToU8a(message), signatureU8a, publicKeyU8a);
 }

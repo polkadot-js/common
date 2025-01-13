@@ -1,8 +1,9 @@
 // Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { getSharedSecret } from 'micro-sr25519';
+
 import { u8aToU8a } from '@polkadot/util';
-import { sr25519Agree } from '@polkadot/wasm-crypto';
 
 /**
  * @name sr25519Agreement
@@ -18,5 +19,5 @@ export function sr25519Agreement (secretKey: string | Uint8Array, publicKey: str
     throw new Error(`Invalid secretKey, received ${secretKeyU8a.length} bytes, expected 64`);
   }
 
-  return sr25519Agree(publicKeyU8a, secretKeyU8a);
+  return getSharedSecret(secretKeyU8a, publicKeyU8a);
 }
