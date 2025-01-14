@@ -3,10 +3,9 @@
 
 import type { Keypair } from '../types.js';
 
-import { isU8a } from '@polkadot/util';
+import * as sr25519 from 'micro-sr25519';
 
-import { sr25519PairFromU8a } from './pair/fromU8a.js';
-import { sr25519KeypairToU8a } from './pair/toU8a.js';
+import { isU8a } from '@polkadot/util';
 
 export function createDeriveFn (derive: (pair: Uint8Array, cc: Uint8Array) => Uint8Array): (keypair: Keypair, chainCode: Uint8Array) => Keypair {
   return (keypair: Keypair, chainCode: Uint8Array): Keypair => {
@@ -14,8 +13,9 @@ export function createDeriveFn (derive: (pair: Uint8Array, cc: Uint8Array) => Ui
       throw new Error('Invalid chainCode passed to derive');
     }
 
-    return sr25519PairFromU8a(
-      derive(sr25519KeypairToU8a(keypair), chainCode)
-    );
+    const secretKey = derive(keypair.secretKey, chainCode);
+    const publicKey = sr25519.getPublicKey(secretKey);
+
+    return { publicKey, secretKey };
   };
 }

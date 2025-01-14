@@ -3,8 +3,9 @@
 
 import type { Keypair } from '../types.js';
 
+import * as sr25519 from 'micro-sr25519';
+
 import { u8aToU8a } from '@polkadot/util';
-import { sr25519Sign as wasmSign } from '@polkadot/wasm-crypto';
 
 /**
  * @name sr25519Sign
@@ -17,5 +18,5 @@ export function sr25519Sign (message: string | Uint8Array, { publicKey, secretKe
     throw new Error('Expected a valid secretKey, 64-bytes');
   }
 
-  return wasmSign(publicKey, secretKey, u8aToU8a(message));
+  return sr25519.sign(secretKey, u8aToU8a(message));
 }

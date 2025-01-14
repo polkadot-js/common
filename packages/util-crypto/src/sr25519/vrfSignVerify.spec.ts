@@ -4,7 +4,6 @@
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { stringToU8a, u8aEq } from '@polkadot/util';
-import { waitReady } from '@polkadot/wasm-crypto';
 
 import { randomAsU8a } from '../random/asU8a.js';
 import { sr25519PairFromSeed } from './pair/fromSeed.js';
@@ -14,10 +13,6 @@ import { sr25519VrfVerify } from './vrfVerify.js';
 const MESSAGE = stringToU8a('this is a message');
 
 describe('vrf sign and verify', (): void => {
-  beforeEach(async (): Promise<void> => {
-    await waitReady();
-  });
-
   it('has 96-byte proofs', (): void => {
     const pair = sr25519PairFromSeed(randomAsU8a());
 

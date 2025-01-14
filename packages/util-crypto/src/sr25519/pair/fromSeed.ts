@@ -3,10 +3,9 @@
 
 import type { Keypair } from '../../types.js';
 
-import { u8aToU8a } from '@polkadot/util';
-import { sr25519KeypairFromSeed } from '@polkadot/wasm-crypto';
+import * as sr25519 from 'micro-sr25519';
 
-import { sr25519PairFromU8a } from './fromU8a.js';
+import { u8aToU8a } from '@polkadot/util';
 
 /**
  * @name sr25519PairFromSeed
@@ -19,7 +18,11 @@ export function sr25519PairFromSeed (seed: string | Uint8Array): Keypair {
     throw new Error(`Expected a seed matching 32 bytes, found ${seedU8a.length}`);
   }
 
-  return sr25519PairFromU8a(
-    sr25519KeypairFromSeed(seedU8a)
-  );
+  const sec = sr25519.secretFromSeed(seedU8a);
+  const pub = sr25519.getPublicKey(sec);
+
+  return {
+    publicKey: pub,
+    secretKey: sec
+  };
 }
