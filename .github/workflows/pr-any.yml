@@ -23,5 +23,6 @@ jobs:
     - name: ${{ matrix.step }}
       if: always()
       run: |
+        deno --version
         yarn install --immutable
         yarn ${{ matrix.step }}
