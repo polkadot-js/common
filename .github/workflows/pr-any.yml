@@ -19,7 +19,7 @@ jobs:
     - uses: denoland/setup-deno@v1
       with:
         # Deno v2 throws errors with specific types therefore we set it to the last version before v2
-        deno-version: v2.1.6
+        deno-version: v1.46.3
     - name: ${{ matrix.step }}
       if: always()
       run: |
