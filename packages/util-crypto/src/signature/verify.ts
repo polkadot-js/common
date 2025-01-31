@@ -71,6 +71,11 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
     if (!result.isValid) {
       result = verifyDetect(result, { message, publicKey, signature }, VERIFIERS_ECDSA);
     }
+
+    // If both failed, explicitly set crypto to 'none'
+    if (!result.isValid) {
+      result.crypto = 'none';
+    }
   }
 
   return result;
