@@ -31,13 +31,10 @@ const VERIFIERS_ECDSA: Verifier[] = [
 
 const VERIFIERS: Verifier[] = [
   ['ed25519', ed25519Verify],
-  ['sr25519', sr25519Verify],
-  ...VERIFIERS_ECDSA
+  ['sr25519', sr25519Verify]
 ];
 
-const CRYPTO_TYPES: ('ed25519' | 'sr25519' | 'ecdsa')[] = ['ed25519', 'sr25519', 'ecdsa'];
-
-function verifyDetect (result: VerifyResult, { message, publicKey, signature }: VerifyInput, verifiers = VERIFIERS): VerifyResult {
+function verifyDetect (result: VerifyResult, { message, publicKey, signature }: VerifyInput, verifiers = [...VERIFIERS, ...VERIFIERS_ECDSA]): VerifyResult {
   result.isValid = verifiers.some(([crypto, verify]): boolean => {
     try {
       if (verify(message, signature, publicKey)) {
@@ -56,25 +53,24 @@ function verifyDetect (result: VerifyResult, { message, publicKey, signature }: 
 }
 
 function verifyMultisig (result: VerifyResult, { message, publicKey, signature }: VerifyInput): VerifyResult {
-  if (![0, 1, 2].includes(signature[0])) {
+  if (![0, 1, 2].includes(signature[0]) || ![65, 66].includes(signature.length)) {
     throw new Error(`Unknown crypto type, expected signature prefix [0..2], found ${signature[0]}`);
   }
 
-  const type = CRYPTO_TYPES[signature[0]] || 'none';
+  // If the signature is 66 bytes it must be an ecdsa signature
+  // containing: prefix [1 byte] + signature [65] bytes.
+  // Remove the and then verify
+  if (signature.length === 66) {
+    result = verifyDetect(result, { message, publicKey, signature: signature.subarray(1) }, VERIFIERS_ECDSA);
+  } else {
+    // The signature contains 65 bytes which is either
+    // - A ed25519 or sr25519 signature [1 byte prefix + 64 bytes]
+    // - An ecdsa signature [65 bytes]
+    result = verifyDetect(result, { message, publicKey, signature: signature.subarray(1) }, VERIFIERS);
 
-  result.crypto = type;
-
-  try {
-    result.isValid = {
-      ecdsa: () => verifyDetect(result, { message, publicKey, signature: signature.subarray(1) }, VERIFIERS_ECDSA).isValid,
-      ed25519: () => ed25519Verify(message, signature.subarray(1), publicKey),
-      none: () => {
-        throw Error('no verify for `none` crypto type');
-      },
-      sr25519: () => sr25519Verify(message, signature.subarray(1), publicKey)
-    }[type]();
-  } catch {
-    // ignore, result.isValid still set to false
+    if (!result.isValid) {
+      result = verifyDetect(result, { message, publicKey, signature }, VERIFIERS_ECDSA);
+    }
   }
 
   return result;
