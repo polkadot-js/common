@@ -2,13 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
+import '../bundleInit.js';
 
 import Keyring from '@polkadot/keyring';
 import { hexToU8a, stringToU8a, u8aConcat, u8aToHex, u8aWrapBytes } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { decodeAddress } from '../address/index.js';
-import { cryptoWaitReady, mnemonicGenerate } from '../bundle.js';
+import { cryptoWaitReady, mnemonicGenerate } from '@polkadot/util-crypto/bundle';
 import { signatureVerify } from './index.js';
 
 const ADDR_ED = 'DxN4uvzwPzJLtn17yew6jEffPhXQfdKHTp2brufb98vGbPN';
