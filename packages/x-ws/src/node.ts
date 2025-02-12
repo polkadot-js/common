@@ -14,6 +14,8 @@ export { packageInfo } from './packageInfo.js';
  *
  * To avoid these issues, we explicitly use the `ws` library in Node.js 22+
  * while still preserving support for the browser WebSocket API in browser environments.
+ *
+ * Related Issue: https://github.com/polkadot-js/common/issues/1975
  */
 const isNode22 = typeof process !== 'undefined' && parseInt(process.versions?.node?.split('.')[0] || '0', 10) >= 22;
 
