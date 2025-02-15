@@ -2,18 +2,17 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
-import '../bundleInit.js';
 
-import Keyring from '@polkadot/keyring';
 import { hexToU8a, stringToU8a, u8aConcat, u8aToHex, u8aWrapBytes } from '@polkadot/util';
-import { cryptoWaitReady, mnemonicGenerate } from '@polkadot/util-crypto/bundle';
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { decodeAddress } from '../address/index.js';
 import { signatureVerify } from './index.js';
 
 const ADDR_ED = 'DxN4uvzwPzJLtn17yew6jEffPhXQfdKHTp2brufb98vGbPN';
+const ADDR_SR = 'EK1bFgKm2FsghcttHT7TB7rNyXApFgs9fCbijMGQNyFGBQm';
 const ADDR_SR_WRAP = 'J9nD3s7zssCX7bion1xctAF6xcVexcpy2uwy4jTm9JL8yuK';
+const ADDR_EC = 'XyFVXiGaHxoBhXZkSh6NS2rjFyVaVNUo5UiZDqZbuSfUdji';
 const ADDR_ET = '0x54Dab85EE2c7b9F7421100d7134eFb5DfA4239bF';
 const MESSAGE = 'hello world';
 const SIG_ED = '0x299d3bf4c8bb51af732f8067b3a3015c0862a5ff34721749d8ed6577ea2708365d1c5f76bd519009971e41156f12c70abc2533837ceb3bad9a05a99ab923de06';
@@ -21,30 +20,13 @@ const SIG_SR = '0xca01419b5a17219f7b78335658cab3b126db523a5df7be4bfc2bef76c2eb3b
 const SIG_SR_WRAP = '0x84b6afb1c8e54bbcb3f4872baf172580e21310e9387a53742627d6652d121447fa406b82805ed3184fb7bd519175cc9f99f283f97954d95cf966ee164df85489';
 const SIG_EC = '0x994638ee586d2c5dbd9bacacbc35d9b7e9018de8f7892f00c900db63bc57b1283e2ee7bc51a9b1c1dae121ac4f4b9e2a41cd1d6bf4bb3e24d7fed6faf6d85e0501';
 const SIG_ET = '0x4e35aad35793b71f08566615661c9b741d7c605bc8935ac08608dff685324d71b5704fbd14c9297d2f584ea0735f015dcf0def66b802b3f555e1db916eda4b7700';
+const MUL_ED = u8aToHex(u8aConcat(new Uint8Array([0]), hexToU8a(SIG_ED)));
+const MUL_SR = u8aToHex(u8aConcat(new Uint8Array([1]), hexToU8a(SIG_SR)));
+const MUL_EC = u8aToHex(u8aConcat(new Uint8Array([2]), hexToU8a(SIG_EC)));
 const MUL_ET = u8aToHex(u8aConcat(new Uint8Array([2]), hexToU8a(SIG_ET)));
 
-enum E_MultiSignaturePrefix {
-  ed25519 = 0,
-  sr25519 = 1,
-  ecdsa = 2,
-  InvalidPrefix = 9
-}
-
-async function initializeKeyringPair (signatureType: 'ed25519' | 'sr25519' | 'ecdsa' | 'ethereum', mnemonic: string) {
-  const keyring = new Keyring({
-    type: signatureType
-  });
-
-  await cryptoWaitReady();
-
-  return keyring.addFromMnemonic(mnemonic);
-}
-
 describe('signatureVerify', (): void => {
-  let mnemonic: string;
-
   beforeEach(async (): Promise<void> => {
-    mnemonic = mnemonicGenerate();
     await waitReady();
   });
 
@@ -55,38 +37,22 @@ describe('signatureVerify', (): void => {
   });
 
   describe('verifyDetect', (): void => {
-    it('verifies ed25519 signature', async (): Promise<void> => {
-      const keyringPair = await initializeKeyringPair('ed25519', mnemonic);
-      const publicKey = keyringPair.publicKey;
-
-      for (let i = 0; i < 5; i++) {
-        const message = `message to sign ${i}`;
-        const signature = keyringPair.sign(message);
-
-        expect(signatureVerify(message, signature, publicKey)).toEqual({
-          crypto: 'ed25519',
-          isValid: true,
-          isWrapped: false,
-          publicKey
-        });
-      }
+    it('verifies ed25519 signature', (): void => {
+      expect(signatureVerify(MESSAGE, SIG_ED, ADDR_ED)).toEqual({
+        crypto: 'ed25519',
+        isValid: true,
+        isWrapped: false,
+        publicKey: decodeAddress(ADDR_ED)
+      });
     });
 
-    it('verifies ecdsa signatures', async (): Promise<void> => {
-      const keyringPair = await initializeKeyringPair('ecdsa', mnemonic);
-      const publicKey = keyringPair.publicKey;
-
-      for (let i = 0; i < 5; i++) {
-        const message = `message to sign ${i}`;
-        const signature = keyringPair.sign(message);
-
-        expect(signatureVerify(message, signature, publicKey)).toEqual({
-          crypto: 'ecdsa',
-          isValid: true,
-          isWrapped: false,
-          publicKey
-        });
-      }
+    it('verifies ecdsa signatures', (): void => {
+      expect(signatureVerify(MESSAGE, SIG_EC, ADDR_EC)).toEqual({
+        crypto: 'ecdsa',
+        isValid: true,
+        isWrapped: false,
+        publicKey: decodeAddress(ADDR_EC)
+      });
     });
 
     it('verifies an ethereum signature', (): void => {
@@ -122,21 +88,13 @@ describe('signatureVerify', (): void => {
       });
     });
 
-    it('verifies an sr25519 signature', async (): Promise<void> => {
-      const keyringPair = await initializeKeyringPair('sr25519', mnemonic);
-      const publicKey = keyringPair.publicKey;
-
-      for (let i = 0; i < 5; i++) {
-        const message = `message to sign ${i}`;
-        const signature = keyringPair.sign(message);
-
-        expect(signatureVerify(message, signature, publicKey)).toEqual({
-          crypto: 'sr25519',
-          isValid: true,
-          isWrapped: false,
-          publicKey
-        });
-      }
+    it('verifies an sr25519 signature', (): void => {
+      expect(signatureVerify(MESSAGE, SIG_SR, ADDR_SR)).toEqual({
+        crypto: 'sr25519',
+        isValid: true,
+        isWrapped: false,
+        publicKey: decodeAddress(ADDR_SR)
+      });
     });
 
     it('verifies an sr25519 signature (with msg wrapper, without wrapped sig)', (): void => {
@@ -177,49 +135,22 @@ describe('signatureVerify', (): void => {
   });
 
   describe('verifyMultisig', (): void => {
-    it('verifies an ed25519 signature', async (): Promise<void> => {
-      const keyringPair = await initializeKeyringPair('ed25519', mnemonic);
-      const publicKey = keyringPair.publicKey;
-
-      for (let i = 0; i < 5; i++) {
-        const message = `message to sign ${i}`;
-        let signature = keyringPair.sign(message);
-        const prefixedSignature = [
-          E_MultiSignaturePrefix.ed25519,
-          ...Array.from(signature)
-        ];
-
-        signature = new Uint8Array(prefixedSignature);
-
-        expect(signatureVerify(message, signature, publicKey)).toEqual({
-          crypto: 'ed25519',
-          isValid: true,
-          isWrapped: false,
-          publicKey
-        });
-      }
+    it('verifies an ed25519 signature', (): void => {
+      expect(signatureVerify(MESSAGE, MUL_ED, ADDR_ED)).toEqual({
+        crypto: 'ed25519',
+        isValid: true,
+        isWrapped: false,
+        publicKey: decodeAddress(ADDR_ED)
+      });
     });
 
-    it('verifies an ecdsa signature', async (): Promise<void> => {
-      const keyringPair = await initializeKeyringPair('ecdsa', mnemonic);
-      const publicKey = keyringPair.publicKey;
-
-      for (let i = 0; i < 5; i++) {
-        const message = `message to sign ${i}`;
-        let signature = keyringPair.sign(message);
-        const prefixedSignature = [
-          E_MultiSignaturePrefix.ecdsa,
-          ...Array.from(signature)
-        ];
-
-        signature = new Uint8Array(prefixedSignature);
-        expect(signatureVerify(message, signature, publicKey)).toEqual({
-          crypto: 'ecdsa',
-          isValid: true,
-          isWrapped: false,
-          publicKey
-        });
-      }
+    it('verifies an ecdsa signature', (): void => {
+      expect(signatureVerify(MESSAGE, MUL_EC, ADDR_EC)).toEqual({
+        crypto: 'ecdsa',
+        isValid: true,
+        isWrapped: false,
+        publicKey: decodeAddress(ADDR_EC)
+      });
     });
 
     it('verifies an ethereum signature', (): void => {
@@ -231,47 +162,21 @@ describe('signatureVerify', (): void => {
       });
     });
 
-    it('verifies an sr25519 signature', async (): Promise<void> => {
-      const keyringPair = await initializeKeyringPair('sr25519', mnemonic);
-      const publicKey = keyringPair.publicKey;
-
-      for (let i = 0; i < 5; i++) {
-        const message = `message to sign ${i}`;
-        let signature = keyringPair.sign(message);
-        const prefixedSignature = [
-          E_MultiSignaturePrefix.sr25519,
-          ...Array.from(signature)
-        ];
-
-        signature = new Uint8Array(prefixedSignature);
-
-        expect(signatureVerify(message, signature, publicKey)).toEqual({
-          crypto: 'sr25519',
-          isValid: true,
-          isWrapped: false,
-          publicKey
-        });
-      }
+    it('verifies an sr25519 signature', (): void => {
+      expect(signatureVerify(MESSAGE, MUL_SR, ADDR_SR)).toEqual({
+        crypto: 'sr25519',
+        isValid: true,
+        isWrapped: false,
+        publicKey: decodeAddress(ADDR_SR)
+      });
     });
 
-    it('fails on an invalid signature', async (): Promise<void> => {
-      const keyringPair = await initializeKeyringPair('ecdsa', mnemonic);
-      const publicKey = keyringPair.publicKey;
-
-      const message = 'message to sign';
-      let signature = keyringPair.sign(message);
-      const prefixedSignature = [
-        E_MultiSignaturePrefix.InvalidPrefix,
-        ...Array.from(signature)
-      ];
-
-      signature = new Uint8Array(prefixedSignature);
-
-      expect(signatureVerify(message, signature, publicKey)).toEqual({
-        crypto: 'none',
+    it('fails on an invalid signature', (): void => {
+      expect(signatureVerify(MESSAGE, MUL_SR, ADDR_ED)).toEqual({
+        crypto: 'sr25519',
         isValid: false,
         isWrapped: false,
-        publicKey
+        publicKey: new Uint8Array([61, 12, 55, 211, 0, 211, 97, 199, 4, 37, 17, 213, 81, 175, 166, 23, 251, 199, 144, 210, 19, 83, 186, 1, 196, 231, 14, 156, 171, 46, 141, 146])
       });
     });
   });
