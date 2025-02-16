@@ -7,6 +7,7 @@ import { hexToU8a, stringToU8a, u8aConcat, u8aToHex, u8aWrapBytes } from '@polka
 import { waitReady } from '@polkadot/wasm-crypto';
 
 import { decodeAddress } from '../address/index.js';
+import { secp256k1Sign } from '../secp256k1/sign.js';
 import { signatureVerify } from './index.js';
 
 const ADDR_ED = 'DxN4uvzwPzJLtn17yew6jEffPhXQfdKHTp2brufb98vGbPN';
@@ -173,11 +174,57 @@ describe('signatureVerify', (): void => {
 
     it('fails on an invalid signature', (): void => {
       expect(signatureVerify(MESSAGE, MUL_SR, ADDR_ED)).toEqual({
-        crypto: 'sr25519',
+        crypto: 'none',
         isValid: false,
         isWrapped: false,
         publicKey: new Uint8Array([61, 12, 55, 211, 0, 211, 97, 199, 4, 37, 17, 213, 81, 175, 166, 23, 251, 199, 144, 210, 19, 83, 186, 1, 196, 231, 14, 156, 171, 46, 141, 146])
       });
+    });
+    /**
+     * ref: https://github.com/polkadot-js/common/issues/1898
+     *
+     * The following test ensures that we cover a reproduction that showed
+     * an inherent issue with verifying ecdsa signatures which is fixed in
+     * https://github.com/polkadot-js/common/pull/1973.
+     *
+     * It uses a random secretKey, and publicKey pair along with `secp256k1Sign`
+     * as the signer which is used for `ecdsa`.
+     */
+    it('Ensure ecdsa can sign and verify 1000 messages', (): void => {
+      const verifyThousandMessages = () => {
+        const secretKey = new Uint8Array([
+          103, 97, 114, 98, 97, 103, 101, 32, 114, 105, 100,
+          103, 101, 32, 107, 105, 99, 107, 32, 114, 111, 115,
+          101, 32, 101, 110, 100, 32, 115, 113, 117, 101
+        ]);
+        const publicKey = new Uint8Array([
+          2, 179, 102, 92, 246, 50, 172, 88,
+          81, 116, 8, 211, 192, 131, 154, 184,
+          122, 83, 180, 104, 4, 227, 214, 195,
+          140, 11, 82, 229, 49, 211, 185, 176,
+          63
+        ]);
+
+        for (let i = 0; i < 1000; i++) {
+          const message = `message ${i}`;
+          const encodedMessage = stringToU8a(message);
+          const signature = secp256k1Sign(encodedMessage, { secretKey });
+
+          const { isValid: valid } = signatureVerify(
+            message,
+            signature,
+            publicKey
+          );
+
+          if (!valid) {
+            return false;
+          }
+        }
+
+        return true;
+      };
+
+      expect(verifyThousandMessages()).toEqual(true);
     });
   });
 });
