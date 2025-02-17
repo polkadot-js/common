@@ -19,4 +19,4 @@ export { packageInfo } from './packageInfo.js';
  */
 const isNode22 = typeof process !== 'undefined' && parseInt(process.versions?.node?.split('.')[0] || '0', 10) >= 22;
 
-export const WebSocket = isNode22 ? ws : /*#__PURE__*/ extractGlobal('WebSocket', ws);
+export const WebSocket = isNode22 ? (ws as unknown as typeof globalThis.WebSocket) : /*#__PURE__*/ extractGlobal('WebSocket', ws);
