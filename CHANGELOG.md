@@ -7,6 +7,8 @@ Changes:
 - Enable KeyringPair Creation with Custom Mnemonic Wordlists ([#1974](https://github.com/polkadot-js/common/pull/1974))
 - Use ws library in Node.js 22+ for Better WebSocket Error Handling ([#1976](https://github.com/polkadot-js/common/pull/1976))
 - Fix Misclassification of ECDSA Signatures in `verifyMultisig` ([#1973](https://github.com/polkadot-js/common/pull/1973))
+- Bump dev to 0.83.2 ([#1972](https://github.com/polkadot-js/common/pull/1972))
+- Bump yarn to 4.6.0 ([#1967](https://github.com/polkadot-js/common/pull/1967))
 
 
 ## 13.3.1 Jan 6, 2025
