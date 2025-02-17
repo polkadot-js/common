@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 13.4.2 Feb 17, 2025
+
+Changes:
+
+- Cast ws as global.WebSocket ([#1978](https://github.com/polkadot-js/common/pull/1978))
+
+
 ## 13.4.1 Feb 16, 2025
 
 Changes:
