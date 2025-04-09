@@ -1,5 +1,6 @@
 // Copyright 2017-2025 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
+
 /**
  * @name objectSpread
  * @summary Concats all sources into the destination
@@ -20,15 +21,18 @@ export function objectSpread <T extends object> (dest: object, ...sources: (obje
         }
       } else {
         // Create a clean copy of the source object
-        const sanitizedSrc = Object.create(null);
+        const sanitizedSrc = Object.create(null) as Record<string, unknown>;
+
         for (const [key, value] of Object.entries(src)) {
           if (!filterProps.has(key)) {
             sanitizedSrc[key] = value;
           }
         }
+
         Object.assign(dest, sanitizedSrc);
       }
     }
   }
+
   return dest as T;
 }
