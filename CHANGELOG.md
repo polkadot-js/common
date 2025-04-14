@@ -1,12 +1,19 @@
 # CHANGELOG
 
+## 13.4.4 Apr 14, 2025
+
+Changes:
+
+- Improve objectSpread function property handling ([#1982](https://github.com/polkadot-js/common/pull/1982))
+
+
 ## 13.4.3 Feb 17, 2025
 
 Changes:
 
 - Rollback ws change in x-ws ([#1980](https://github.com/polkadot-js/common/pull/1980))
   NOTE: this rollbacks changes made in ([#1976](https://github.com/polkadot-js/common/pull/1976)) to ensure websocket usage doesnt break in any downstream libs.
-  
+
 
 ## 13.4.2 Feb 17, 2025
 
