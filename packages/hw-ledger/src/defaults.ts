@@ -14,6 +14,7 @@ export const prevLedgerRecord: Record<string, string> = {
   'bifrost-kusama': 'BifrostKusama',
   centrifuge: 'Centrifuge',
   composable: 'Composable',
+  creditcoin3: 'Creditcoin3',
   darwinia: 'Darwinia',
   'dock-mainnet': 'Dock',
   edgeware: 'Edgeware',
@@ -45,8 +46,7 @@ export const prevLedgerRecord: Record<string, string> = {
   unique: 'Unique',
   vtb: 'VTB',
   xxnetwork: 'XXNetwork',
-  zeitgeist: 'Zeitgeist',
-  creditcoin3: 'Creditcoin3'
+  zeitgeist: 'Zeitgeist'
 };
 
 // Any chains moving forward that are supported by the PolkadotGenericApp from ledger will input their names below.
