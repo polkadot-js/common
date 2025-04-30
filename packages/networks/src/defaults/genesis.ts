@@ -46,6 +46,9 @@ export const knownGenesis: KnownGenesis = {
   composable: [
     '0xdaab8df776eb52ec604a5df5d388bb62a050a0aaec4556a64265b9d42755552d'
   ],
+  creditcoin3: [
+    '0x4436a7d64e363df85e065a894721002a86643283f9707338bf195d360ba2ee71'
+  ],
   darwinia: [
     '0xe71578b37a7c799b0ab4ee87ffa6f059a6b98f71f06fb8c84a8d88013a548ad6'
   ],
