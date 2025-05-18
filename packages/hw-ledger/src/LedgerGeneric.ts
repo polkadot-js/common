@@ -47,11 +47,26 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
 }
 
 /** @internal Wraps a sign/signRaw call and returns the associated signature */
-function sign (method: 'sign' | 'signRaw', message: Uint8Array, slip44: number, accountIndex = 0, addressOffset = 0): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+function sign (method: 'signEd25519' | 'signRawEd25519', message: Uint8Array, slip44: number, accountIndex = 0, addressOffset = 0): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
   const bip42Path = `m/44'/${slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
 
   return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
     const { signature } = await wrapError(app[method](bip42Path, u8aToBuffer(message)));
+
+    return {
+      signature: hexAddPrefix(signature.toString('hex'))
+    };
+  };
+}
+
+/** @internal Wraps a sign/signRaw call and returns the associated signature */
+function signEcdsa (method: 'signEcdsa' | 'signRawEcdsa', message: Uint8Array, slip44: number, accountIndex = 0, addressOffset = 0): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+  const bip42Path = `m/44'/${slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
+
+  return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
+    const { r, s, v } = await wrapError(app[method](bip42Path, u8aToBuffer(message)));
+
+    const signature = Buffer.concat([r, s, v]);
 
     return {
       signature: hexAddPrefix(signature.toString('hex'))
@@ -70,7 +85,28 @@ function signWithMetadata (message: Uint8Array, slip44: number, accountIndex = 0
 
     const bufferMsg = Buffer.from(message);
 
-    const { signature } = await wrapError(app.signWithMetadata(bip42Path, bufferMsg, metadata));
+    const { signature } = await wrapError(app.signWithMetadataEd25519(bip42Path, bufferMsg, metadata));
+
+    return {
+      signature: hexAddPrefix(signature.toString('hex'))
+    };
+  };
+}
+
+/** @internal Wraps a signWithMetadata call and returns the associated signature */
+function signWithMetadataEcdsa (message: Uint8Array, slip44: number, accountIndex = 0, addressOffset = 0, { metadata }: Partial<AccountOptionsGeneric> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
+  const bip42Path = `m/44'/${slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
+
+  return async (app: PolkadotGenericApp): Promise<LedgerSignature> => {
+    if (!metadata) {
+      throw new Error('The metadata option must be present when using signWithMetadata');
+    }
+
+    const bufferMsg = Buffer.from(message);
+
+    const { r, s, v } = await wrapError(app.signWithMetadataEcdsa(bip42Path, bufferMsg, metadata));
+
+    const signature = Buffer.concat([r, s, v]);
 
     return {
       signature: hexAddPrefix(signature.toString('hex'))
@@ -126,12 +162,25 @@ export class LedgerGeneric {
     const bip42Path = `m/44'/${this.#slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
 
     return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerAddress> => {
-      const { address, pubKey } = await wrapError(app.getAddress(bip42Path, ss58Prefix, confirm));
+      const { address, pubKey } = await wrapError(app.getAddressEd25519(bip42Path, ss58Prefix, confirm));
 
       return {
         address,
         publicKey: hexAddPrefix(pubKey)
       };
+    });
+  }
+
+  public async getAddressEcdsa (confirm = false, accountIndex = 0, addressOffset = 0) {
+      const bip42Path = `m/44'/${this.#slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
+
+      return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerAddress> => {
+        const { address, pubKey } = await wrapError(app.getAddressEcdsa(bip42Path, confirm));
+
+        return {
+          address,
+          publicKey: hexAddPrefix(pubKey)
+        };
     });
   }
 
@@ -154,14 +203,28 @@ export class LedgerGeneric {
    * @description Signs a transaction on the Ledger device. This requires the LedgerGeneric class to be instantiated with `chainId`, and `metaUrl`
    */
   public async sign (message: Uint8Array, accountIndex?: number, addressOffset?: number): Promise<LedgerSignature> {
-    return this.withApp(sign('sign', message, this.#slip44, accountIndex, addressOffset));
+    return this.withApp(sign('signEd25519', message, this.#slip44, accountIndex, addressOffset));
   }
 
   /**
    * @description Signs a message (non-transactional) on the Ledger device
    */
   public async signRaw (message: Uint8Array, accountIndex?: number, addressOffset?: number): Promise<LedgerSignature> {
-    return this.withApp(sign('signRaw', u8aWrapBytes(message), this.#slip44, accountIndex, addressOffset));
+    return this.withApp(sign('signRawEd25519', u8aWrapBytes(message), this.#slip44, accountIndex, addressOffset));
+  }
+
+  /**
+   * @description Signs a transaction on the Ledger device with Ecdsa. This requires the LedgerGeneric class to be instantiated with `chainId`, and `metaUrl`
+   */
+  public async signEcdsa (message: Uint8Array, accountIndex?: number, addressOffset?: number): Promise<LedgerSignature> {
+    return this.withApp(signEcdsa('signEcdsa', u8aWrapBytes(message), this.#slip44, accountIndex, addressOffset));
+  }
+
+  /**
+   * @description Signs a message with Ecdsa (non-transactional) on the Ledger device
+   */
+  public async signRawEcdsa (message: Uint8Array, accountIndex?: number, addressOffset?: number): Promise<LedgerSignature> {
+    return this.withApp(signEcdsa('signRawEcdsa', u8aWrapBytes(message), this.#slip44, accountIndex, addressOffset));
   }
 
   /**
@@ -169,6 +232,13 @@ export class LedgerGeneric {
    */
   public async signWithMetadata (message: Uint8Array, accountIndex?: number, addressOffset?: number, options?: Partial<AccountOptionsGeneric>): Promise<LedgerSignature> {
     return this.withApp(signWithMetadata(message, this.#slip44, accountIndex, addressOffset, options));
+  }
+  
+  /**
+   * @description Signs a transaction on the ledger device for an ecdsa signature provided some metadata.
+   */
+  public async signWithMetadataEcdsa(message: Uint8Array, accountIndex?: number, addressOffset?: number, options?: Partial<AccountOptionsGeneric>) {
+    return this.withApp(signWithMetadataEcdsa(message, this.#slip44, accountIndex, addressOffset, options));
   }
 
   /**
