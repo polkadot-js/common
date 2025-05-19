@@ -176,15 +176,15 @@ export class LedgerGeneric {
    * asks for on-device confirmation
    */
   public async getAddressEcdsa (confirm = false, accountIndex = 0, addressOffset = 0) {
-      const bip42Path = `m/44'/${this.#slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
+    const bip42Path = `m/44'/${this.#slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
 
-      return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerAddress> => {
-        const { address, pubKey } = await wrapError(app.getAddressEcdsa(bip42Path, confirm));
+    return this.withApp(async (app: PolkadotGenericApp): Promise<LedgerAddress> => {
+      const { address, pubKey } = await wrapError(app.getAddressEcdsa(bip42Path, confirm));
 
-        return {
-          address,
-          publicKey: hexAddPrefix(pubKey)
-        };
+      return {
+        address,
+        publicKey: hexAddPrefix(pubKey)
+      };
     });
   }
 
@@ -237,11 +237,11 @@ export class LedgerGeneric {
   public async signWithMetadata (message: Uint8Array, accountIndex?: number, addressOffset?: number, options?: Partial<AccountOptionsGeneric>): Promise<LedgerSignature> {
     return this.withApp(signWithMetadata(message, this.#slip44, accountIndex, addressOffset, options));
   }
-  
+
   /**
    * @description Signs a transaction on the ledger device for an ecdsa signature provided some metadata.
    */
-  public async signWithMetadataEcdsa(message: Uint8Array, accountIndex?: number, addressOffset?: number, options?: Partial<AccountOptionsGeneric>) {
+  public async signWithMetadataEcdsa (message: Uint8Array, accountIndex?: number, addressOffset?: number, options?: Partial<AccountOptionsGeneric>) {
     return this.withApp(signWithMetadataEcdsa(message, this.#slip44, accountIndex, addressOffset, options));
   }
 
