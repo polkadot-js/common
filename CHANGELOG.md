@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.5.1 May 19, 2025
+
+Changes:
+
+- Ledger ECDSA signing support ([#1986](https://github.com/polkadot-js/common/pull/1986))
+- Bump yarn to 4.9.1 ([#1987](https://github.com/polkadot-js/common/pull/1987))
+
+
 ## 13.4.4 Apr 14, 2025
 
 Changes:
