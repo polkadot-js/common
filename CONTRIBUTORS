@@ -1,5 +1,5 @@
     1674	Jaco                          	Bump deps (#1912)
-      42	Tarik Gul                     	Bump yarn to 4.9.1 (#1987)
+      43	Tarik Gul                     	13.5.1 (#1988)
       13	Carlo Sala                    	feat(networks): add zeitgeist Ledger support (#1840)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
