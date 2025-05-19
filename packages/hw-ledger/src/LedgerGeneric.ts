@@ -46,7 +46,7 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
   return result;
 }
 
-/** @internal Wraps a sign/signRaw call and returns the associated signature */
+/** @internal Wraps a signEd25519/signRawEd25519 call and returns the associated signature */
 function sign (method: 'signEd25519' | 'signRawEd25519', message: Uint8Array, slip44: number, accountIndex = 0, addressOffset = 0): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
   const bip42Path = `m/44'/${slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
 
@@ -59,7 +59,7 @@ function sign (method: 'signEd25519' | 'signRawEd25519', message: Uint8Array, sl
   };
 }
 
-/** @internal Wraps a sign/signRaw call and returns the associated signature */
+/** @internal Wraps a signEcdsa/signRawEcdsa call and returns the associated signature */
 function signEcdsa (method: 'signEcdsa' | 'signRawEcdsa', message: Uint8Array, slip44: number, accountIndex = 0, addressOffset = 0): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
   const bip42Path = `m/44'/${slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
 
@@ -74,7 +74,7 @@ function signEcdsa (method: 'signEcdsa' | 'signRawEcdsa', message: Uint8Array, s
   };
 }
 
-/** @internal Wraps a signWithMetadata call and returns the associated signature */
+/** @internal Wraps a signWithMetadataEd25519 call and returns the associated signature */
 function signWithMetadata (message: Uint8Array, slip44: number, accountIndex = 0, addressOffset = 0, { metadata }: Partial<AccountOptionsGeneric> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
   const bip42Path = `m/44'/${slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
 
@@ -93,7 +93,7 @@ function signWithMetadata (message: Uint8Array, slip44: number, accountIndex = 0
   };
 }
 
-/** @internal Wraps a signWithMetadata call and returns the associated signature */
+/** @internal Wraps a signWithMetadataEcdsa call and returns the associated signature */
 function signWithMetadataEcdsa (message: Uint8Array, slip44: number, accountIndex = 0, addressOffset = 0, { metadata }: Partial<AccountOptionsGeneric> = {}): (app: PolkadotGenericApp) => Promise<LedgerSignature> {
   const bip42Path = `m/44'/${slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
 
@@ -155,7 +155,7 @@ export class LedgerGeneric {
   }
 
   /**
-   * @description Returns the address associated with a specific account & address offset. Optionally
+   * @description Returns the address associated with a specific Ed25519 account & address offset. Optionally
    * asks for on-device confirmation
    */
   public async getAddress (ss58Prefix: number, confirm = false, accountIndex = 0, addressOffset = 0): Promise<LedgerAddress> {
@@ -171,6 +171,10 @@ export class LedgerGeneric {
     });
   }
 
+  /**
+   * @description Returns the address associated with a specific ecdsa account & address offset. Optionally
+   * asks for on-device confirmation
+   */
   public async getAddressEcdsa (confirm = false, accountIndex = 0, addressOffset = 0) {
       const bip42Path = `m/44'/${this.#slip44}'/${accountIndex}'/${0}'/${addressOffset}'`;
 
