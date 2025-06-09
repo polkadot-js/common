@@ -14,8 +14,12 @@ interface Result {
 }
 
 export function scryptFromU8a (data: Uint8Array): Result {
+   if (!(data instanceof Uint8Array)) {
+    throw new Error('Expected input to be a Uint8Array');
+  }
+
   // Ensure the input is exactly 44 bytes: 32 for salt + 3 * 4 for N, p, r
-  if (data.length !== 32 + 12) {
+  if (data.length < 32 + 12) {
     throw new Error(`Invalid input length: expected 44 bytes, found ${data.length}`);
   }
 
