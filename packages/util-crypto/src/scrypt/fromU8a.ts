@@ -14,6 +14,11 @@ interface Result {
 }
 
 export function scryptFromU8a (data: Uint8Array): Result {
+  // Ensure the input is exactly 44 bytes: 32 for salt + 3 * 4 for N, p, r
+  if (data.length !== 32 + 12) {
+    throw new Error(`Invalid input length: expected 44 bytes, found ${data.length}`);
+  }
+
   const salt = data.subarray(0, 32);
   const N = u8aToBn(data.subarray(32 + 0, 32 + 4), BN_LE_OPTS).toNumber();
   const p = u8aToBn(data.subarray(32 + 4, 32 + 8), BN_LE_OPTS).toNumber();
