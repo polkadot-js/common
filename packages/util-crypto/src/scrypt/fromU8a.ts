@@ -14,7 +14,7 @@ interface Result {
 }
 
 export function scryptFromU8a (data: Uint8Array): Result {
-   if (!(data instanceof Uint8Array)) {
+  if (!(data instanceof Uint8Array)) {
     throw new Error('Expected input to be a Uint8Array');
   }
 
