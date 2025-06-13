@@ -24,6 +24,7 @@
        1	Alexander Krupenkin           	Added ECDSA keypair support (#589)
        1	alexdniep                     	added equilibrium slip44; added equilibrium genesis hash (#984)
        1	amphineko                     	chore: fix typo in versionDetect messages (#941)
+       1	Arjun Porwal                  	Add input length validation in `scryptFromU8a` function (#1990)
        1	Axel Chalon                   	Simplify @polkadot/keyring KeyringPair (#419)
        1	Brad Larson                   	[FIX] Adjust error message (#646)
        1	Carlos Medeiros               	add hydradx to knownLedger (#1647)
