@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 13.5.2 Jun 17, 2025
+
+Changes:
+
+- fix: enhance error handling for secure random number generation in React Native ([#1991](https://github.com/polkadot-js/common/pull/1991))
+- Add input length validation in scryptFromU8a function ([#1990](https://github.com/polkadot-js/common/pull/1990))
+
+Contributed:
+
+- Add Liberland support to Generic Ledger App ([#1989](https://github.com/polkadot-js/common/pull/1989))
+
 ## 13.5.1 May 19, 2025
 
 Changes:
