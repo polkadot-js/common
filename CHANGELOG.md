@@ -1,12 +1,38 @@
 # CHANGELOG
 
+## 13.5.2 Jun 17, 2025
+
+Changes:
+
+- fix: enhance error handling for secure random number generation in React Native ([#1991](https://github.com/polkadot-js/common/pull/1991))
+- Add input length validation in scryptFromU8a function ([#1990](https://github.com/polkadot-js/common/pull/1990))
+
+Contributed:
+
+- Add Liberland support to Generic Ledger App ([#1989](https://github.com/polkadot-js/common/pull/1989))
+
+## 13.5.1 May 19, 2025
+
+Changes:
+
+- Ledger ECDSA signing support ([#1986](https://github.com/polkadot-js/common/pull/1986))
+- Bump yarn to 4.9.1 ([#1987](https://github.com/polkadot-js/common/pull/1987))
+
+
+## 13.4.4 Apr 14, 2025
+
+Changes:
+
+- Improve objectSpread function property handling ([#1982](https://github.com/polkadot-js/common/pull/1982))
+
+
 ## 13.4.3 Feb 17, 2025
 
 Changes:
 
 - Rollback ws change in x-ws ([#1980](https://github.com/polkadot-js/common/pull/1980))
   NOTE: this rollbacks changes made in ([#1976](https://github.com/polkadot-js/common/pull/1976)) to ensure websocket usage doesnt break in any downstream libs.
-  
+
 
 ## 13.4.2 Feb 17, 2025
 
