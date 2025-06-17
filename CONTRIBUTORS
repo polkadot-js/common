@@ -54,6 +54,7 @@
        1	peetzweg/                     	adds `isRiscV` guard function similar to isWasm (#1878)
        1	qwer951123                    	Add acala genesis (#1161)
        1	Radek Bochenek                	feat: add Liberland support to Generic Ledger App (#1989)
+       1	rajk93                        	chore: add error handling for secure rng in react native (#1991)
        1	Raoul Millais                 	Fix yarn add instructions in x-global README (#873)
        1	Raymond Zhong                 	Add Edgeware ledger app (#1006)
        1	Reto Trinkler                 	Adding 4 as address type of ss58 for Katal Chain (#639)
