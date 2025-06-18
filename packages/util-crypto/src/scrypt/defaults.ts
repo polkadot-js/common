@@ -4,12 +4,12 @@
 import type { ScryptParams } from './types.js';
 
 export const ALLOWED_PARAMS: ScryptParams[] = [
-  { N: 1 << 13, r: 8, p: 10 },
-  { N: 1 << 14, r: 8, p: 5 },
-  { N: 1 << 15, r: 8, p: 3 },
-  { N: 1 << 15, r: 8, p: 1 },
-  { N: 1 << 16, r: 8, p: 2 },
-  { N: 1 << 17, r: 8, p: 1 }
+  { N: 1 << 13, p: 10, r: 8 },
+  { N: 1 << 14, p: 5, r: 8 },
+  { N: 1 << 15, p: 3, r: 8 },
+  { N: 1 << 15, p: 1, r: 8 },
+  { N: 1 << 16, p: 2, r: 8 },
+  { N: 1 << 17, p: 1, r: 8 }
 ];
 
 export const DEFAULT_PARAMS: ScryptParams = {
