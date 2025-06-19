@@ -25,6 +25,10 @@ import { stringToU8a } from '../string/toU8a.js';
  * ```
  */
 export function u8aToU8a (value?: U8aLike | null): Uint8Array {
+  if (value === null || value === undefined) {
+    throw new Error('u8aToU8a: Expected non-null, non-undefined value');
+  }
+
   return isU8a(value)
     // NOTE isBuffer needs to go here since it actually extends
     // Uint8Array on Node.js environments, so all Buffer are Uint8Array,
