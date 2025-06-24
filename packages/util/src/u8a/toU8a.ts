@@ -14,6 +14,8 @@ import { stringToU8a } from '../string/toU8a.js';
  * @summary Creates a Uint8Array value from a Uint8Array, Buffer, string or hex input.
  * @description
  * `null` or `undefined` inputs returns a `[]` result, Uint8Array values returns the value, hex strings returns a Uint8Array representation.
+ * If `strict` is true, `null` or `undefined` will throw an error instead of returning an empty array.
+ * Supports input types: Uint8Array, Buffer, hex string, string, or number array.
  * @example
  * <BR>
  *
