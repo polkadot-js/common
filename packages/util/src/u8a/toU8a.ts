@@ -24,8 +24,8 @@ import { stringToU8a } from '../string/toU8a.js';
  * u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
  * ```
  */
-export function u8aToU8a (value?: U8aLike | null): Uint8Array {
-  if (value === null || value === undefined) {
+export function u8aToU8a (value?: U8aLike | null, strict = false): Uint8Array {
+  if (strict && (value === null || value === undefined)) {
     throw new Error('u8aToU8a: Expected non-null, non-undefined value');
   }
 

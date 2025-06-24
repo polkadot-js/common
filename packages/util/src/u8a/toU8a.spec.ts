@@ -20,8 +20,7 @@ const TESTS: [input: U8aLike | null | undefined, output: Uint8Array][] = [
 
 describe('u8aToU8a', (): void => {
   it('returns an empty Uint8Array when null/undefined/"" provided', (): void => {
-    expect(u8aToU8a(undefined)).toThrow('u8aToU8a: Expected non-null, non-undefined value');
-    expect(u8aToU8a(null)).toThrow('u8aToU8a: Expected non-null, non-undefined value');
+    expect(u8aToU8a(null)).toHaveLength(0);
     expect(
       u8aToU8a()
     ).toHaveLength(0);
@@ -31,6 +30,11 @@ describe('u8aToU8a', (): void => {
     expect(
       u8aToU8a('')
     ).toEqual(new Uint8Array());
+  });
+
+  it('Throw error on null/undefined values on strict checking', () => {
+    expect(() => u8aToU8a(undefined, true)).toThrow('u8aToU8a: Expected non-null, non-undefined value');
+    expect(() => u8aToU8a(null, true)).toThrow('u8aToU8a: Expected non-null, non-undefined value');
   });
 
   it('returns a Uint8Array as-is (u8a input)', (): void => {
