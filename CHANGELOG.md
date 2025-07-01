@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.5.3 July 1, 2025
+
+Changes:
+
+- Update polkadot dependencies ([#1995](https://github.com/polkadot-js/common/pull/1995))
+- Add Optional Strict Input Checking to u8aToU8a ([#1994](https://github.com/polkadot-js/common/pull/1994))
+- Update scrypt parameter validation ([#1993](https://github.com/polkadot-js/common/pull/1993))
+
 ## 13.5.2 Jun 17, 2025
 
 Changes:
