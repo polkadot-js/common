@@ -49,7 +49,7 @@ export const knownGenesis: KnownGenesis = {
   creditcoin3: [
     '0x4436a7d64e363df85e065a894721002a86643283f9707338bf195d360ba2ee71', // cc3 mainnet
     '0xfc4ec97a1c1f119c4353aecb4a17c7c0cf7b40d5d660143d8bad9117e9866572', // cc3 testnet/drynet
-    '0xfc9df99a665f964aed6649f275055e54df5e3420489538ed31d7788f53d11ef6'  // cc3 devnet
+    '0xfc9df99a665f964aed6649f275055e54df5e3420489538ed31d7788f53d11ef6' // cc3 devnet
   ],
   darwinia: [
     '0xe71578b37a7c799b0ab4ee87ffa6f059a6b98f71f06fb8c84a8d88013a548ad6'
