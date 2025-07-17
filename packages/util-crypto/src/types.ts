@@ -19,7 +19,7 @@ export interface Seedpair {
 }
 
 /** The supported types of pairs */
-export type KeypairType = 'ed25519' | 'sr25519' | 'ecdsa' | 'ethereum';
+export type KeypairType = 'ed25519' | 'sr25519' | 'ecdsa' | 'ethereum' | 'mldsa';
 
 export interface VerifyResult {
   /** The detected crypto interface, or 'none' if not detected */

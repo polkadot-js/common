@@ -9,6 +9,7 @@ import { decodeAddress } from '../address/decode.js';
 import { ed25519Verify } from '../ed25519/verify.js';
 import { secp256k1Verify } from '../secp256k1/verify.js';
 import { sr25519Verify } from '../sr25519/verify.js';
+import { mldsaVerify } from '../mldsa/verify.js';
 
 interface VerifyInput {
   message: Uint8Array;
@@ -31,7 +32,8 @@ const VERIFIERS_ECDSA: Verifier[] = [
 
 const VERIFIERS: Verifier[] = [
   ['ed25519', ed25519Verify],
-  ['sr25519', sr25519Verify]
+  ['sr25519', sr25519Verify],
+  ['mldsa', mldsaVerify]
 ];
 
 function verifyDetect (result: VerifyResult, { message, publicKey, signature }: VerifyInput, verifiers = [...VERIFIERS, ...VERIFIERS_ECDSA]): VerifyResult {

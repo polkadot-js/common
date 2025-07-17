@@ -15,7 +15,8 @@ const PairFromSeed = {
   ecdsa: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
   ed25519: (seed: Uint8Array): Keypair => ed25519FromSeed(seed),
   ethereum: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
-  sr25519: (seed: Uint8Array): Keypair => sr25519FromSeed(seed)
+  sr25519: (seed: Uint8Array): Keypair => sr25519FromSeed(seed),
+  mldsa: (_seed: Uint8Array): Keypair => { throw new Error('ML-DSA keypair generation not implemented'); } //  Placeholder: ML-DSA generation needs implementation
 };
 
 function pairToPublic ({ publicKey }: KeyringPair): Uint8Array {

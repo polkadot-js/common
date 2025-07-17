@@ -23,6 +23,7 @@ const TYPE_FROM_SEED = {
   ecdsa: secp256k1FromSeed,
   ed25519: ed25519FromSeed,
   ethereum: secp256k1FromSeed,
+  mldsa: secp256k1FromSeed, // Placeholder: ML-DSA derivation needs implementation
   sr25519: sr25519FromSeed
 };
 
@@ -30,21 +31,24 @@ const TYPE_PREFIX = {
   ecdsa: new Uint8Array([2]),
   ed25519: new Uint8Array([0]),
   ethereum: new Uint8Array([2]),
-  sr25519: new Uint8Array([1])
+  sr25519: new Uint8Array([1]),
+  mldsa: new Uint8Array([3]) // Placeholder: ML-DSA prefix needs implementation
 };
 
 const TYPE_SIGNATURE = {
   ecdsa: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'blake2'),
   ed25519: ed25519Sign,
   ethereum: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'keccak'),
-  sr25519: sr25519Sign
+  sr25519: sr25519Sign,
+  mldsa: (_m: Uint8Array, _p: Partial<Keypair>) => { throw new Error('ML-DSA signing not implemented'); } // Placeholder: ML-DSA signing needs implementation
 };
 
 const TYPE_ADDRESS = {
   ecdsa: (p: Uint8Array) => p.length > 32 ? blake2AsU8a(p) : p,
   ed25519: (p: Uint8Array) => p,
   ethereum: (p: Uint8Array) => p.length === 20 ? p : keccakAsU8a(secp256k1Expand(p)),
-  sr25519: (p: Uint8Array) => p
+  sr25519: (p: Uint8Array) => p,
+  mldsa: (p: Uint8Array) => p // Placeholder: ML-DSA address processing needs implementation
 };
 
 function isLocked (secretKey?: Uint8Array): secretKey is undefined {
