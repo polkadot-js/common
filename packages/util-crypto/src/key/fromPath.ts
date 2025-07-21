@@ -13,9 +13,10 @@ const generators = {
   ed25519: keyHdkdEd25519,
   // FIXME This is Substrate-compatible, not Ethereum-compatible
   ethereum: keyHdkdEcdsa,
-  sr25519: keyHdkdSr25519,
-  // TODO: Implement ML-DSA key derivation
-  mldsa: () => { throw new Error('ML-DSA key derivation not implemented'); }
+  mldsa: () => {
+    throw new Error('ML-DSA key derivation not implemented');
+  },
+  sr25519: keyHdkdSr25519
 };
 
 export function keyFromPath (pair: Keypair, path: DeriveJunction[], type: KeypairType): Keypair {

@@ -13,10 +13,10 @@
  * @param {Uint8Array} publicKey - The public key to use for verification.
  * @returns {boolean} - Returns a boolean indicating if the signature is valid.
  */
-export function mldsaVerify(
-  // message: Uint8Array | string,
-  // signature: Uint8Array,
-  // publicKey: Uint8Array
+export function mldsaVerify (
+// message: Uint8Array | string,
+// signature: Uint8Array,
+// publicKey: Uint8Array
 ): boolean {
   throw new Error('mldsa verification is not implemented');
 }
