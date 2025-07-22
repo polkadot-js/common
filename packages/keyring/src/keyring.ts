@@ -5,7 +5,7 @@ import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types.js';
 
 import { hexToU8a, isHex, stringToU8a } from '@polkadot/util';
-import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from '@polkadot/util-crypto';
+import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mldsaPairFromSeed, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from '@polkadot/util-crypto';
 
 import { createPair } from './pair/index.js';
 import { DEV_PHRASE } from './defaults.js';
@@ -15,9 +15,7 @@ const PairFromSeed = {
   ecdsa: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
   ed25519: (seed: Uint8Array): Keypair => ed25519FromSeed(seed),
   ethereum: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
-  mldsa: (_seed: Uint8Array): Keypair => {
-    throw new Error('ML-DSA keypair generation not implemented');
-  },
+  mldsa: (seed: Uint8Array): Keypair => mldsaPairFromSeed(seed),
   sr25519: (seed: Uint8Array): Keypair => sr25519FromSeed(seed)
 };
 
@@ -53,8 +51,8 @@ export class Keyring implements KeyringInstance {
   constructor (options: KeyringOptions = {}) {
     options.type = options.type || 'ed25519';
 
-    if (!['ecdsa', 'ethereum', 'ed25519', 'sr25519'].includes(options.type || 'undefined')) {
-      throw new Error(`Expected a keyring type of either 'ed25519', 'sr25519', 'ethereum' or 'ecdsa', found '${options.type || 'unknown'}`);
+    if (!['ecdsa', 'ethereum', 'ed25519', 'mldsa', 'sr25519'].includes(options.type || 'undefined')) {
+      throw new Error(`Expected a keyring type of either 'ed25519', 'sr25519', 'ethereum', 'ecdsa' or 'mldsa', found '${options.type || 'unknown'}`);
     }
 
     this.#pairs = new Pairs();

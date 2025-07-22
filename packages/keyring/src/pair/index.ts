@@ -6,7 +6,7 @@ import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } fro
 import type { PairInfo } from './types.js';
 
 import { objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
-import { blake2AsU8a, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
+import { blake2AsU8a, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, mldsaPairFromSeed, mldsaSign, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode.js';
 import { encodePair } from './encode.js';
@@ -23,7 +23,7 @@ const TYPE_FROM_SEED = {
   ecdsa: secp256k1FromSeed,
   ed25519: ed25519FromSeed,
   ethereum: secp256k1FromSeed,
-  mldsa: secp256k1FromSeed, // Placeholder: ML-DSA derivation needs implementation
+  mldsa: mldsaPairFromSeed,
   sr25519: sr25519FromSeed
 };
 
@@ -31,7 +31,7 @@ const TYPE_PREFIX = {
   ecdsa: new Uint8Array([2]),
   ed25519: new Uint8Array([0]),
   ethereum: new Uint8Array([2]),
-  mldsa: new Uint8Array([3]), // Placeholder: ML-DSA prefix needs implementation
+  mldsa: new Uint8Array([3]),
   sr25519: new Uint8Array([1])
 };
 
@@ -39,9 +39,7 @@ const TYPE_SIGNATURE = {
   ecdsa: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'blake2'),
   ed25519: ed25519Sign,
   ethereum: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'keccak'),
-  mldsa: (_m: Uint8Array, _p: Partial<Keypair>) => {
-    throw new Error('ML-DSA signing not implemented');
-  },
+  mldsa: mldsaSign,
   sr25519: sr25519Sign
 };
 
@@ -49,7 +47,7 @@ const TYPE_ADDRESS = {
   ecdsa: (p: Uint8Array) => p.length > 32 ? blake2AsU8a(p) : p,
   ed25519: (p: Uint8Array) => p,
   ethereum: (p: Uint8Array) => p.length === 20 ? p : keccakAsU8a(secp256k1Expand(p)),
-  mldsa: (p: Uint8Array) => p, // Placeholder: ML-DSA address processing needs implementation
+  mldsa: (p: Uint8Array) => blake2AsU8a(p),
   sr25519: (p: Uint8Array) => p
 };
 

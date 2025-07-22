@@ -7,15 +7,14 @@ import type { DeriveJunction } from './DeriveJunction.js';
 import { keyHdkdEcdsa } from './hdkdEcdsa.js';
 import { keyHdkdEd25519 } from './hdkdEd25519.js';
 import { keyHdkdSr25519 } from './hdkdSr25519.js';
+import { keyHdkdMldsa } from '../mldsa/hdkd.js';
 
 const generators = {
   ecdsa: keyHdkdEcdsa,
   ed25519: keyHdkdEd25519,
   // FIXME This is Substrate-compatible, not Ethereum-compatible
   ethereum: keyHdkdEcdsa,
-  mldsa: () => {
-    throw new Error('ML-DSA key derivation not implemented');
-  },
+  mldsa: keyHdkdMldsa,
   sr25519: keyHdkdSr25519
 };
 

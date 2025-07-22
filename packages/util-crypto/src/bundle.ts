@@ -20,6 +20,7 @@ export * from './hmac/index.js';
 export * from './json/index.js';
 export * from './keccak/index.js';
 export * from './key/index.js';
+export * from './mldsa/index.js';
 export * from './mnemonic/index.js';
 export * from './nacl/index.js';
 export * from './networks.js';

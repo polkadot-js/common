@@ -8,6 +8,7 @@ import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from '@polkadot/
 import { decodeAddress } from '../address/decode.js';
 import { ed25519Verify } from '../ed25519/verify.js';
 import { mldsaVerify } from '../mldsa/verify.js';
+import { MLDSA_SIGNATURE_LENGTH } from '../mldsa/constants.js';
 import { secp256k1Verify } from '../secp256k1/verify.js';
 import { sr25519Verify } from '../sr25519/verify.js';
 
@@ -55,14 +56,19 @@ function verifyDetect (result: VerifyResult, { message, publicKey, signature }: 
 }
 
 function verifyMultisig (result: VerifyResult, { message, publicKey, signature }: VerifyInput): VerifyResult {
-  if (![0, 1, 2].includes(signature[0]) || ![65, 66].includes(signature.length)) {
-    throw new Error(`Unknown crypto type, expected signature prefix [0..2], found ${signature[0]}`);
+  if ((![0, 1, 2].includes(signature[0]) || ![65, 66].includes(signature.length)) &&
+      !(signature[0] === 3 && signature.length === MLDSA_SIGNATURE_LENGTH + 1)) {
+    throw new Error(`Unknown crypto type, expected signature prefix [0..3], found ${signature[0]}`);
   }
 
+  // If the signature is MLDSA with prefix (4628 bytes)
+  if (signature[0] === 3 && signature.length === MLDSA_SIGNATURE_LENGTH + 1) {
+    result = verifyDetect(result, { message, publicKey, signature: signature.subarray(1) }, [['mldsa', mldsaVerify]]);
+  }
   // If the signature is 66 bytes it must be an ecdsa signature
   // containing: prefix [1 byte] + signature [65] bytes.
   // Remove the and then verify
-  if (signature.length === 66) {
+  else if (signature.length === 66) {
     result = verifyDetect(result, { message, publicKey, signature: signature.subarray(1) }, VERIFIERS_ECDSA);
   } else {
     // The signature contains 65 bytes which is either
@@ -84,7 +90,8 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
 }
 
 function getVerifyFn (signature: Uint8Array): VerifyFn {
-  return [0, 1, 2].includes(signature[0]) && [65, 66].includes(signature.length)
+  return ([0, 1, 2].includes(signature[0]) && [65, 66].includes(signature.length)) ||
+         (signature[0] === 3 && signature.length === MLDSA_SIGNATURE_LENGTH + 1)
     ? verifyMultisig
     : verifyDetect;
 }
@@ -92,8 +99,8 @@ function getVerifyFn (signature: Uint8Array): VerifyFn {
 export function signatureVerify (message: string | Uint8Array, signature: string | Uint8Array, addressOrPublicKey: string | Uint8Array): VerifyResult {
   const signatureU8a = u8aToU8a(signature);
 
-  if (![64, 65, 66].includes(signatureU8a.length)) {
-    throw new Error(`Invalid signature length, expected [64..66] bytes, found ${signatureU8a.length}`);
+  if (![64, 65, 66, MLDSA_SIGNATURE_LENGTH, MLDSA_SIGNATURE_LENGTH + 1].includes(signatureU8a.length)) {
+    throw new Error(`Invalid signature length, expected [64..66], ${MLDSA_SIGNATURE_LENGTH}, or ${MLDSA_SIGNATURE_LENGTH + 1} bytes, found ${signatureU8a.length}`);
   }
 
   const publicKey = decodeAddress(addressOrPublicKey);
