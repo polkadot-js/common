@@ -1145,6 +1145,19 @@
     "website": "https://parallel.fi/"
   },
   {
+    "prefix": 189,
+    "network": "resonance",
+    "displayName": "Resonance",
+    "symbols": [
+      "RES"
+    ],
+    "decimals": [
+      12
+    ],
+    "standardAccount": "mldsa",
+    "website": "https://quantus.com"
+  },
+  {
     "prefix": 252,
     "network": "social-network",
     "displayName": "Social Network",
