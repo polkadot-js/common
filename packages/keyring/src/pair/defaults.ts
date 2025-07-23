@@ -18,3 +18,26 @@ export const SEC_LENGTH = 64;
 
 /** length of a user-input seed */
 export const SEED_LENGTH = 32;
+
+// Generation 4 constants for variable-length keys (post-quantum support)
+
+/** public/secret start block for generation 4 (variable-length keys) */
+export const PAIR_HDR_V4 = new Uint8Array([48, 84, 2, 1, 4, 48, 5, 6, 3, 43, 101, 112, 4, 34, 4, 32]);
+
+/** public/secret section divider for generation 4 */
+export const PAIR_DIV_V4 = new Uint8Array([161, 35, 4, 33, 0]);
+
+/** length of crypto type field in generation 4 */
+export const CRYPTO_TYPE_LENGTH = 1;
+
+/** length of key length field in generation 4 */
+export const KEY_LENGTH_FIELD_SIZE = 4;
+
+/** crypto type identifiers for generation 4 encoding */
+export const CRYPTO_TYPES = {
+  ed25519: 0,
+  sr25519: 1,
+  ecdsa: 2,
+  ethereum: 2, // same as ecdsa
+  mldsa: 3
+} as const;

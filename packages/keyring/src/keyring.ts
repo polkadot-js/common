@@ -176,7 +176,7 @@ export class Keyring implements KeyringInstance {
       ? [type]
       : type;
 
-    if (!['ed25519', 'sr25519', 'ecdsa', 'ethereum'].includes(cryptoType)) {
+    if (!['ed25519', 'sr25519', 'ecdsa', 'ethereum', 'mldsa'].includes(cryptoType)) {
       throw new Error(`Unknown crypto type ${cryptoType}`);
     }
 

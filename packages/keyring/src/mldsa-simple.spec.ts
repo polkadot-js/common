@@ -130,6 +130,10 @@ describe('MLDSA simple integration', (): void => {
     const signature1 = pair.sign(MESSAGE);
     expect(signature1).toBeInstanceOf(Uint8Array);
 
+    // Create password-protected JSON backup BEFORE locking
+    const password = 'unlock-test';
+    pair.toJson(password);
+
     // Lock the pair
     pair.lock();
     expect(pair.isLocked).toBe(true);
@@ -137,9 +141,7 @@ describe('MLDSA simple integration', (): void => {
     // Cannot sign when locked
     expect(() => pair.sign(MESSAGE)).toThrow('Cannot sign with a locked key pair');
 
-    // Create password-protected JSON and unlock
-    const password = 'unlock-test';
-    const json = pair.toJson(password);
+    // Unlock using the password (restores from encoded backup)
     pair.unlock(password);
 
     expect(pair.isLocked).toBe(false);
@@ -158,6 +160,6 @@ describe('MLDSA simple integration', (): void => {
 
     pair.setMeta({ name: 'Updated Name', description: 'Post-quantum signature test' });
     expect(pair.meta.name).toBe('Updated Name');
-    expect(pair.meta.description).toBe('Post-quantum signature test');
+    expect(pair.meta['description']).toBe('Post-quantum signature test');
   });
 });

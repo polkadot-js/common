@@ -6,7 +6,7 @@ import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } fro
 import type { PairInfo } from './types.js';
 
 import { objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
-import { blake2AsU8a, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, mldsaPairFromSeed, mldsaSign, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
+import { blake2AsU8a, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, mldsaPairFromSeed, mldsaSign, mldsaVerify, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode.js';
 import { encodePair } from './encode.js';
@@ -94,21 +94,38 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
   const decodePkcs8 = (passphrase?: string, userEncoded?: Uint8Array | null): void => {
     const decoded = decodePair(passphrase, userEncoded || encoded, encTypes);
 
-    if (decoded.secretKey.length === 64) {
-      publicKey = decoded.publicKey;
-      secretKey = decoded.secretKey;
+    // For MLDSA, handle variable-length keys from Generation 4 encoding
+    if (type === 'mldsa') {
+      if (decoded.secretKey.length === 4896 && decoded.publicKey.length === 2592) {
+        // These are actual MLDSA keys from Generation 4 encoding
+        publicKey = decoded.publicKey;
+        secretKey = decoded.secretKey;
+      } else if (decoded.secretKey.length === 32) {
+        // This is a seed, generate the keypair
+        const pair = TYPE_FROM_SEED[type](decoded.secretKey);
+        publicKey = pair.publicKey;
+        secretKey = pair.secretKey;
+      } else {
+        throw new Error(`Invalid MLDSA key sizes: secret=${decoded.secretKey.length}, public=${decoded.publicKey.length}`);
+      }
     } else {
-      const pair = TYPE_FROM_SEED[type](decoded.secretKey);
+      // Legacy logic for other crypto types (Generations 1-3)
+      if (decoded.secretKey.length === 64) {
+        publicKey = decoded.publicKey;
+        secretKey = decoded.secretKey;
+      } else {
+        const pair = TYPE_FROM_SEED[type](decoded.secretKey);
 
-      publicKey = pair.publicKey;
-      secretKey = pair.secretKey;
+        publicKey = pair.publicKey;
+        secretKey = pair.secretKey;
+      }
     }
   };
 
   const recode = (passphrase?: string): Uint8Array => {
     isLocked(secretKey) && encoded && decodePkcs8(passphrase, encoded);
 
-    encoded = encodePair({ publicKey, secretKey }, passphrase); // re-encode, latest version
+    encoded = encodePair({ publicKey, secretKey }, passphrase, type); // re-encode, latest version
     encTypes = undefined; // swap to defaults, latest version follows
 
     return encoded;
@@ -196,6 +213,15 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
       return decodePkcs8(passphrase);
     },
     verify: (message: string | Uint8Array, signature: string | Uint8Array, signerPublic: string | Uint8Array): boolean => {
+      // For MLDSA, use direct verification to handle unprefixed signatures
+      if (type === 'mldsa') {
+        try {
+          return mldsaVerify(message, u8aToU8a(signature), u8aToU8a(signerPublic));
+        } catch {
+          return false;
+        }
+      }
+
       return signatureVerify(message, signature, TYPE_ADDRESS[type](u8aToU8a(signerPublic))).isValid;
     },
     vrfSign: (message: string | Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array => {
