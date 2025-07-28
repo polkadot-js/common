@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 13.5.4 July 28, 2025
+
+Changes:
+
+- Add Creditcoin3 support to Generic Ledger App  ([#1985](https://github.com/polkadot-js/common/pull/1985))
+
 ## 13.5.3 July 1, 2025
 
 Changes:
