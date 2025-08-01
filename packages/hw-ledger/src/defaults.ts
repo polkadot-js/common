@@ -51,9 +51,11 @@ export const prevLedgerRecord: Record<string, string> = {
 // Any chains moving forward that are supported by the PolkadotGenericApp from ledger will input their names below.
 export const genericLedgerApps = {
   bittensor: 'Bittensor',
+  creditcoin3: 'Creditcoin3',
   encointer: 'Encointer',
   frequency: 'Frequency',
   integritee: 'Integritee',
+  liberland: 'Liberland',
   mythos: 'Mythos',
   polimec: 'Polimec',
   vara: 'Vara'

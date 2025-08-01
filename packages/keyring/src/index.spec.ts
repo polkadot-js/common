@@ -6,7 +6,8 @@
 import type { KeyringPair$Json } from './types.js';
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
-import { base64Decode, cryptoWaitReady, encodeAddress, randomAsU8a, setSS58Format } from '@polkadot/util-crypto';
+import { base64Decode, cryptoWaitReady, encodeAddress, mnemonicGenerate, randomAsU8a, setSS58Format } from '@polkadot/util-crypto';
+import * as languages from '@polkadot/util-crypto/mnemonic/wordlists/index';
 
 import { decodePair } from './pair/decode.js';
 import Keyring from './index.js';
@@ -572,6 +573,37 @@ describe('keypair', (): void => {
 
       expect(pair.isLocked).toBe(false);
       expect(pair.address).toBe('FLiSDPCcJ6auZUGXALLj6jpahcP6adVFDBUQznPXUQ7yoqH');
+    });
+  });
+
+  describe('wordlist', (): void => {
+    it('creates keypair from different wordlists mnemonics', (): void => {
+      Object.keys(languages).forEach((language) => {
+        const mnemonic = mnemonicGenerate(12, languages[language as keyof typeof languages]);
+        const keyring = new Keyring({
+          type: 'ed25519'
+        });
+
+        expect(keyring.addFromMnemonic(
+          mnemonic,
+          {},
+          'ed25519',
+          languages[language as keyof typeof languages]
+        )).toBeDefined();
+      });
+    });
+    it('cannot create from invalid wordlist', (): void => {
+      const mnemonic = mnemonicGenerate(12, languages.japanese);
+      const keyring = new Keyring({
+        type: 'ed25519'
+      });
+
+      expect(() => keyring.addFromMnemonic(
+        mnemonic,
+        {},
+        'ed25519',
+        languages.english
+      )).toThrow('Invalid bip39 mnemonic specified');
     });
   });
 });

@@ -1,5 +1,71 @@
 # CHANGELOG
 
+## 13.5.4 July 28, 2025
+
+Changes:
+
+- Add Creditcoin3 support to Generic Ledger App  ([#1985](https://github.com/polkadot-js/common/pull/1985))
+
+## 13.5.3 July 1, 2025
+
+Changes:
+
+- Update polkadot dependencies ([#1995](https://github.com/polkadot-js/common/pull/1995))
+- Add Optional Strict Input Checking to u8aToU8a ([#1994](https://github.com/polkadot-js/common/pull/1994))
+- Update scrypt parameter validation ([#1993](https://github.com/polkadot-js/common/pull/1993))
+
+## 13.5.2 Jun 17, 2025
+
+Changes:
+
+- fix: enhance error handling for secure random number generation in React Native ([#1991](https://github.com/polkadot-js/common/pull/1991))
+- Add input length validation in scryptFromU8a function ([#1990](https://github.com/polkadot-js/common/pull/1990))
+
+Contributed:
+
+- Add Liberland support to Generic Ledger App ([#1989](https://github.com/polkadot-js/common/pull/1989))
+
+## 13.5.1 May 19, 2025
+
+Changes:
+
+- Ledger ECDSA signing support ([#1986](https://github.com/polkadot-js/common/pull/1986))
+- Bump yarn to 4.9.1 ([#1987](https://github.com/polkadot-js/common/pull/1987))
+
+
+## 13.4.4 Apr 14, 2025
+
+Changes:
+
+- Improve objectSpread function property handling ([#1982](https://github.com/polkadot-js/common/pull/1982))
+
+
+## 13.4.3 Feb 17, 2025
+
+Changes:
+
+- Rollback ws change in x-ws ([#1980](https://github.com/polkadot-js/common/pull/1980))
+  NOTE: this rollbacks changes made in ([#1976](https://github.com/polkadot-js/common/pull/1976)) to ensure websocket usage doesnt break in any downstream libs.
+
+
+## 13.4.2 Feb 17, 2025
+
+Changes:
+
+- Cast ws as global.WebSocket ([#1978](https://github.com/polkadot-js/common/pull/1978))
+
+
+## 13.4.1 Feb 16, 2025
+
+Changes:
+
+- Enable KeyringPair Creation with Custom Mnemonic Wordlists ([#1974](https://github.com/polkadot-js/common/pull/1974))
+- Use ws library in Node.js 22+ for Better WebSocket Error Handling ([#1976](https://github.com/polkadot-js/common/pull/1976))
+- Fix Misclassification of ECDSA Signatures in `verifyMultisig` ([#1973](https://github.com/polkadot-js/common/pull/1973))
+- Bump dev to 0.83.2 ([#1972](https://github.com/polkadot-js/common/pull/1972))
+- Bump yarn to 4.6.0 ([#1967](https://github.com/polkadot-js/common/pull/1967))
+
+
 ## 13.3.1 Jan 6, 2025
 
 Changes:
