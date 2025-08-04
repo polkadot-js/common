@@ -56,6 +56,7 @@ export const genericLedgerApps = {
   frequency: 'Frequency',
   integritee: 'Integritee',
   liberland: 'Liberland',
+  mythos: 'Mythos',
   polimec: 'Polimec',
   vara: 'Vara'
 };

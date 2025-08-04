@@ -110,6 +110,9 @@ export const knownGenesis: KnownGenesis = {
   matrixchain: [
     '0x3af4ff48ec76d2efc8476730f423ac07e25ad48f5f4c9dc39c778b164d808615'
   ],
+  mythos: [
+    '0xf6ee56e9c5277df5b4ce6ae9983ee88f3cbed27d31beeb98f9f84f997a1ab0b9'
+  ],
   nodle: [
     '0x97da7ede98d7bad4e36b4d734b6055425a3be036da2a332ea5a7037656427a21'
   ],
