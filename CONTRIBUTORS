@@ -41,6 +41,7 @@
        1	Jake Naviasky                 	Add evmToAddress and addressToEvm crypto utils. (#705)
        1	JesseAbram                    	added check if valid address to docs (#440)
        1	joe petrowski                 	Add example for multisig address creation (#590)
+       1	José Molina Colmenero         	Add ledger support for Mythos (#1969)
        1	kaelnew                       	add ledger support for stafi (#1569)
        1	Leonardo Custodio             	Ledger support (#1879)
        1	Leonardo Razovic              	feat: add Polimec (#1945)
