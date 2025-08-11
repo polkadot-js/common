@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 13.5.5 Aug 11, 2025
+
+Changes:
+
+- Add ledger support for Mythos ([#1969](https://github.com/polkadot-js/common/pull/1969))
+
 ## 13.5.4 July 28, 2025
 
 Changes:
