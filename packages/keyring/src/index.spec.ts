@@ -367,7 +367,7 @@ describe('keypair', (): void => {
 
     it('creates with dev phrase with derivation path specified - addFromUri', (): void => {
       expect(
-        keyring.addFromUri(PHRASE, undefined,undefined, undefined, 2048).address
+        keyring.addFromUri(PHRASE, undefined, undefined, undefined, 2048).address
       ).toEqual(ETH_ADDRESS_ONE);
     });
 
