@@ -24,7 +24,7 @@ import { mnemonicValidate } from './validate.js';
  * }
  * ```
  */
-export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs?: boolean, byteLength: 32 | 64 = 32): Uint8Array {
+export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs?: boolean, byteLength: 32 | 64 = 32, rounds?: number): Uint8Array {
   if (!mnemonicValidate(mnemonic)) {
     throw new Error('Invalid bip39 mnemonic specified');
   } else if (![32, 64].includes(byteLength)) {
@@ -34,6 +34,6 @@ export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs?: 
   return byteLength === 32
     ? !hasBigInt || (!onlyJs && isReady())
       ? bip39ToSeed(mnemonic, password)
-      : mnemonicToSeedSync(mnemonic, password).subarray(0, 32)
-    : mnemonicToSeedSync(mnemonic, password);
+      : mnemonicToSeedSync(mnemonic, password, rounds).subarray(0, 32)
+    : mnemonicToSeedSync(mnemonic, password, rounds);
 }

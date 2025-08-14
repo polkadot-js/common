@@ -47,10 +47,11 @@ function deriveChecksumBits (entropyBuffer: Uint8Array): string {
   ).slice(0, (entropyBuffer.length * 8) / 32);
 }
 
-export function mnemonicToSeedSync (mnemonic: string, password?: string): Uint8Array {
+export function mnemonicToSeedSync (mnemonic: string, password?: string, rounds?: number): Uint8Array {
   return pbkdf2Encode(
     stringToU8a(normalize(mnemonic)),
-    stringToU8a(`mnemonic${normalize(password)}`)
+    stringToU8a(`mnemonic${normalize(password)}`),
+    rounds
   ).password;
 }
 

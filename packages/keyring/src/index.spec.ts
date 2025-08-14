@@ -358,7 +358,7 @@ describe('keypair', (): void => {
     });
 
     it('creates with dev phrase with derivation path specified', (): void => {
-      const pair = keyring.createFromUri(PHRASE);
+      const pair = keyring.createFromUri(PHRASE, undefined, undefined, undefined, 2048);
 
       expect(
         pair.address
@@ -367,7 +367,7 @@ describe('keypair', (): void => {
 
     it('creates with dev phrase with derivation path specified - addFromUri', (): void => {
       expect(
-        keyring.addFromUri(PHRASE).address
+        keyring.addFromUri(PHRASE, undefined,undefined, undefined, 2048).address
       ).toEqual(ETH_ADDRESS_ONE);
     });
 
@@ -375,12 +375,12 @@ describe('keypair', (): void => {
       const keyringUntyped = new Keyring();
 
       expect(
-        keyringUntyped.addFromUri(PHRASE, {}, 'ethereum').address
+        keyringUntyped.addFromUri(PHRASE, {}, 'ethereum', undefined, 2048).address
       ).toEqual(ETH_ADDRESS_ONE);
     });
 
     it('encodes a pair toJSON (and decodes)', (): void => {
-      const pair = keyring.createFromUri(PHRASE);
+      const pair = keyring.createFromUri(PHRASE, undefined, undefined, undefined, 2048);
       const json = pair.toJson('password');
 
       expect(json.address).toEqual('0x0381351b1b46d2602b0992bb5d5531f9c1696b0812feb2534b6884adc47e2e1d8b'); // this is the public key (different from address for ethereum)
@@ -399,7 +399,7 @@ describe('keypair', (): void => {
     });
 
     it('encodes a pair toJSON and back', (): void => {
-      const pairOriginal = keyring.createFromUri(PHRASE);
+      const pairOriginal = keyring.createFromUri(PHRASE, undefined, undefined, undefined, 2048);
       const json = pairOriginal.toJson('password');
       const pair = keyring.addFromJson(
         json
