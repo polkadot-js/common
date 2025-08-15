@@ -8,7 +8,6 @@ import { mnemonicToSeedSync } from '../../mnemonic/bip39.js';
 
 const ED25519_CRYPTO = 'ed25519 seed';
 
-
 /**
  * Gets an xprv from a mnemonic
  *
