@@ -152,7 +152,12 @@ export class Keyring implements KeyringInstance {
    * @name addFromUri
    * @summary Creates an account via an suri
    * @description Extracts the phrase, path and password from a SURI format for specifying secret keys `<secret>/<soft-key>//<hard-key>///<password>` (the `///password` may be omitted, and `/<soft-key>` and `//<hard-key>` maybe repeated and mixed). The secret can be a hex string, mnemonic phrase or a string (to be padded)
-   */
+   * @param _suri
+   * @param meta
+   * @param type The supported types of pairs. Either 'ed25519' | 'sr25519' | 'ecdsa' | 'ethereum'.
+   * @param wordlist - Optional custom wordlist for mnemonic.
+   * @param rounds - Optional: Number of PBKDF2 iterations to run (default: 210000 (when onlyJS = true) or 2048 (when onlyJS = false).
+  */
   public addFromUri (suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type, wordlist?: string[], rounds?: number): KeyringPair {
     return this.addPair(
       this.createFromUri(suri, meta, type, wordlist, rounds)
@@ -202,6 +207,12 @@ export class Keyring implements KeyringInstance {
    * @name createFromUri
    * @summary Creates a Keypair from an suri
    * @description This creates a pair from the suri, but does not add it to the keyring
+   *
+   * @param _suri
+   * @param meta
+   * @param type The supported types of pairs. Either 'ed25519' | 'sr25519' | 'ecdsa' | 'ethereum'.
+   * @param wordlist - Optional custom wordlist for mnemonic.
+   * @param rounds - Optional: Number of PBKDF2 iterations to run (default: 210000 (when onlyJS = true) or 2048 (when onlyJS = false).
    */
   public createFromUri (_suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type, wordlist?: string[], rounds?: number): KeyringPair {
     // here we only aut-add the dev phrase if we have a hard-derived path
