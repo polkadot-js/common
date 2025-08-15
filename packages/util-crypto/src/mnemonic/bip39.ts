@@ -47,10 +47,16 @@ function deriveChecksumBits (entropyBuffer: Uint8Array): string {
   ).slice(0, (entropyBuffer.length * 8) / 32);
 }
 
-export function mnemonicToSeedSync (mnemonic: string, password?: string): Uint8Array {
+/*
+ * @param mnemonic - The BIP-39 mnemonic phrase to derive the secret from.
+ * @param password - Optional: password to secure the seed (default: empty string).
+ * @param rounds - Optional: Number of PBKDF2 iterations to run (default: 210000).
+*/
+export function mnemonicToSeedSync (mnemonic: string, password?: string, rounds?: number): Uint8Array {
   return pbkdf2Encode(
     stringToU8a(normalize(mnemonic)),
-    stringToU8a(`mnemonic${normalize(password)}`)
+    stringToU8a(`mnemonic${normalize(password)}`),
+    rounds
   ).password;
 }
 
