@@ -1,5 +1,5 @@
     1674	Jaco                          	Bump deps (#1912)
-      43	Tarik Gul                     	13.5.1 (#1988)
+      44	Tarik Gul                     	Set pbkdf2Encode rounds to default to 210,000 (#1983)
       13	Carlo Sala                    	feat(networks): add zeitgeist Ledger support (#1840)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        8	Valentin Fernandez            	13.5.5. (#2000)
