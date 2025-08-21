@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
@@ -13,7 +13,7 @@ const XPRV = '0x402b03cd9c8bed9ba9f9bd6cd9c315ce9fcc59c7c25d37c85a36096617e69d41
 describe('ledgerDerive', (): void => {
   it('derives a known master xprv', (): void => {
     expect(u8aToHex(
-      ledgerMaster(MNEMONIC)
+      ledgerMaster(MNEMONIC, undefined, 2048)
     )).toEqual(XPRV);
   });
 });

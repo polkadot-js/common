@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/keyring authors & contributors
+// Copyright 2017-2025 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
@@ -6,7 +6,8 @@
 import type { KeyringPair$Json } from './types.js';
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
-import { base64Decode, cryptoWaitReady, encodeAddress, randomAsU8a, setSS58Format } from '@polkadot/util-crypto';
+import { base64Decode, cryptoWaitReady, encodeAddress, mnemonicGenerate, randomAsU8a, setSS58Format } from '@polkadot/util-crypto';
+import * as languages from '@polkadot/util-crypto/mnemonic/wordlists/index';
 
 import { decodePair } from './pair/decode.js';
 import Keyring from './index.js';
@@ -357,7 +358,7 @@ describe('keypair', (): void => {
     });
 
     it('creates with dev phrase with derivation path specified', (): void => {
-      const pair = keyring.createFromUri(PHRASE);
+      const pair = keyring.createFromUri(PHRASE, undefined, undefined, undefined, 2048);
 
       expect(
         pair.address
@@ -366,7 +367,7 @@ describe('keypair', (): void => {
 
     it('creates with dev phrase with derivation path specified - addFromUri', (): void => {
       expect(
-        keyring.addFromUri(PHRASE).address
+        keyring.addFromUri(PHRASE, undefined, undefined, undefined, 2048).address
       ).toEqual(ETH_ADDRESS_ONE);
     });
 
@@ -374,12 +375,12 @@ describe('keypair', (): void => {
       const keyringUntyped = new Keyring();
 
       expect(
-        keyringUntyped.addFromUri(PHRASE, {}, 'ethereum').address
+        keyringUntyped.addFromUri(PHRASE, {}, 'ethereum', undefined, 2048).address
       ).toEqual(ETH_ADDRESS_ONE);
     });
 
     it('encodes a pair toJSON (and decodes)', (): void => {
-      const pair = keyring.createFromUri(PHRASE);
+      const pair = keyring.createFromUri(PHRASE, undefined, undefined, undefined, 2048);
       const json = pair.toJson('password');
 
       expect(json.address).toEqual('0x0381351b1b46d2602b0992bb5d5531f9c1696b0812feb2534b6884adc47e2e1d8b'); // this is the public key (different from address for ethereum)
@@ -398,7 +399,7 @@ describe('keypair', (): void => {
     });
 
     it('encodes a pair toJSON and back', (): void => {
-      const pairOriginal = keyring.createFromUri(PHRASE);
+      const pairOriginal = keyring.createFromUri(PHRASE, undefined, undefined, undefined, 2048);
       const json = pairOriginal.toJson('password');
       const pair = keyring.addFromJson(
         json
@@ -572,6 +573,37 @@ describe('keypair', (): void => {
 
       expect(pair.isLocked).toBe(false);
       expect(pair.address).toBe('FLiSDPCcJ6auZUGXALLj6jpahcP6adVFDBUQznPXUQ7yoqH');
+    });
+  });
+
+  describe('wordlist', (): void => {
+    it('creates keypair from different wordlists mnemonics', (): void => {
+      Object.keys(languages).forEach((language) => {
+        const mnemonic = mnemonicGenerate(12, languages[language as keyof typeof languages]);
+        const keyring = new Keyring({
+          type: 'ed25519'
+        });
+
+        expect(keyring.addFromMnemonic(
+          mnemonic,
+          {},
+          'ed25519',
+          languages[language as keyof typeof languages]
+        )).toBeDefined();
+      });
+    });
+    it('cannot create from invalid wordlist', (): void => {
+      const mnemonic = mnemonicGenerate(12, languages.japanese);
+      const keyring = new Keyring({
+        type: 'ed25519'
+      });
+
+      expect(() => keyring.addFromMnemonic(
+        mnemonic,
+        {},
+        'ed25519',
+        languages.english
+      )).toThrow('Invalid bip39 mnemonic specified');
     });
   });
 });

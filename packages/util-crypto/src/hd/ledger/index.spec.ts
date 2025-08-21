@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
@@ -54,7 +54,7 @@ describe('ledgerDerive', (): void => {
     tests.forEach(({ ed25519, index: [account, address], mnemonic }, index): void => {
       it(`derives a known ed25519 seed for ${network} (${index})`, (): void => {
         expect(u8aToHex(
-          hdLedger(mnemonic, `m/44'/${slip44}'/${account}'/0'/${address}'`)
+          hdLedger(mnemonic, `m/44'/${slip44}'/${account}'/0'/${address}'`, 2048)
             .secretKey
             .slice(0, 32)
         )).toEqual(ed25519);

@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
@@ -49,6 +49,6 @@ describe('pbkdf2Encode', (): void => {
   }
 
   perfWasm('pbkdf2Encode', 8, (input, onlyJs) =>
-    pbkdf2Encode(input, input, undefined, onlyJs)
+    pbkdf2Encode(input, input, 2048, onlyJs)
   );
 });

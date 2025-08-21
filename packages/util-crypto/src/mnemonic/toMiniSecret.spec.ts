@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
@@ -20,8 +20,8 @@ describe('mnemonicToMiniSecret', (): void => {
     it(`generates Wasm & Js equivalents for password=${password || 'undefined'}`, (): void => {
       expect(
         u8aEq(
-          mnemonicToMiniSecret(MNEMONIC, password, undefined, true),
-          mnemonicToMiniSecret(MNEMONIC, password, undefined, false)
+          mnemonicToMiniSecret(MNEMONIC, password, undefined, true, 2048),
+          mnemonicToMiniSecret(MNEMONIC, password, undefined, false, 2048)
         )
       ).toEqual(true);
     });
@@ -31,10 +31,10 @@ describe('mnemonicToMiniSecret', (): void => {
     const mnemonic = '엉덩이 능동적 숫자 팩시밀리 비난 서적 파출소 도움 독창적 인생 상류 먼지 답변 음반 수박 사업 노란색 공사 우체국 특급 도대체 금지 굉장히 고무신';
 
     expect(
-      () => mnemonicToMiniSecret(mnemonic, 'testing')
+      () => mnemonicToMiniSecret(mnemonic, 'testing', undefined, false, 2048)
     ).toThrow();
     expect(
-      u8aToHex(mnemonicToMiniSecret(mnemonic, 'testing', koreanWords))
+      u8aToHex(mnemonicToMiniSecret(mnemonic, 'testing', koreanWords, false, 2048))
     ).toEqual('0xefa278a62535581767a2f49cb542ed91b65fb911e1b05e7a09c702b257f10c13');
   });
 
@@ -42,20 +42,20 @@ describe('mnemonicToMiniSecret', (): void => {
     describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
       it('generates a valid seed', (): void => {
         expect(
-          u8aToHex(mnemonicToMiniSecret(MNEMONIC, undefined, undefined, onlyJs))
+          u8aToHex(mnemonicToMiniSecret(MNEMONIC, undefined, undefined, onlyJs, 2048))
         ).toEqual(SEED);
       });
 
       it('fails with non-mnemonics', (): void => {
         expect(
-          () => mnemonicToMiniSecret('foo bar baz', undefined, undefined, onlyJs)
+          () => mnemonicToMiniSecret('foo bar baz', undefined, undefined, onlyJs, 2048)
         ).toThrow(/mnemonic specified/);
       });
 
       tests.forEach(([mnemonic, , seed], index): void => {
         it(`Created correct seed for ${index}`, (): void => {
           expect(
-            u8aToHex(mnemonicToMiniSecret(mnemonic, 'Substrate', undefined, onlyJs))
+            u8aToHex(mnemonicToMiniSecret(mnemonic, 'Substrate', undefined, onlyJs, 2048))
           ).toEqual(
             // mini returned here, only check first 32-bytes (64 hex + 2 prefix)
             seed.substring(0, 66)

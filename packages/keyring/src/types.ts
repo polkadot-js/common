@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/keyring authors & contributors
+// Copyright 2017-2025 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
@@ -116,13 +116,13 @@ export interface KeyringInstance {
   addPair (pair: KeyringPair): KeyringPair;
   addFromAddress (address: string | Uint8Array, meta?: KeyringPair$Meta, encoded?: Uint8Array | null, type?: KeypairType, ignoreChecksum?: boolean): KeyringPair;
   addFromJson (pair: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair;
-  addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
+  addFromMnemonic (mnemonic: string, meta?: KeyringPair$Meta, type?: KeypairType, wordlist?: string[]): KeyringPair;
   addFromPair (pair: Keypair, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair
   addFromSeed (seed: Uint8Array, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
-  addFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
+  addFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType, wordlist?: string[]): KeyringPair;
   createFromJson (json: KeyringPair$Json, ignoreChecksum?: boolean): KeyringPair;
   createFromPair (pair: Keypair, meta: KeyringPair$Meta, type: KeypairType): KeyringPair
-  createFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType): KeyringPair;
+  createFromUri (suri: string, meta?: KeyringPair$Meta, type?: KeypairType, wordlist?: string[]): KeyringPair;
   getPair (address: string | Uint8Array): KeyringPair;
   getPairs (): KeyringPair[];
   getPublicKeys (): Uint8Array[];

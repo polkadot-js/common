@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { pbkdf2 as pbkdf2Js } from '@noble/hashes/pbkdf2';
@@ -15,7 +15,14 @@ interface Result {
   salt: Uint8Array;
 }
 
-export function pbkdf2Encode (passphrase?: string | Uint8Array, salt: Uint8Array = randomAsU8a(), rounds = 2048, onlyJs?: boolean): Result {
+export function pbkdf2Encode (passphrase?: string | Uint8Array, salt: Uint8Array = randomAsU8a(), rounds = 210000, onlyJs?: boolean): Result {
+  // When using the JS implementation (pbkdf2Js), large iteration counts can
+  // cause excessive computation time or memory usage. In that case, we cap
+  // the number of rounds to 2048 to ensure reliable performance.
+  if (onlyJs && rounds > 2048) {
+    rounds = 2048;
+  }
+
   const u8aPass = u8aToU8a(passphrase);
   const u8aSalt = u8aToU8a(salt);
 

@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/networks authors & contributors
+// Copyright 2017-2025 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { KnownGenesis } from '../types.js';
@@ -46,6 +46,11 @@ export const knownGenesis: KnownGenesis = {
   composable: [
     '0xdaab8df776eb52ec604a5df5d388bb62a050a0aaec4556a64265b9d42755552d'
   ],
+  creditcoin3: [
+    '0x4436a7d64e363df85e065a894721002a86643283f9707338bf195d360ba2ee71', // cc3 mainnet
+    '0xfc4ec97a1c1f119c4353aecb4a17c7c0cf7b40d5d660143d8bad9117e9866572', // cc3 testnet/drynet
+    '0xfc9df99a665f964aed6649f275055e54df5e3420489538ed31d7788f53d11ef6' // cc3 devnet
+  ],
   darwinia: [
     '0xe71578b37a7c799b0ab4ee87ffa6f059a6b98f71f06fb8c84a8d88013a548ad6'
   ],
@@ -67,6 +72,9 @@ export const knownGenesis: KnownGenesis = {
   ],
   equilibrium: [
     '0x6f1a800de3daff7f5e037ddf66ab22ce03ab91874debeddb1086f5f7dbd48925'
+  ],
+  frequency: [
+    '0x4a587bf17a404e3572747add7aab7bbe56e805a5479c6c436f07f36fcc8d3ae1'
   ],
   genshiro: [
     '0x9b8cefc0eb5c568b527998bdd76c184e2b76ae561be76e4667072230217ea243'
@@ -99,8 +107,14 @@ export const knownGenesis: KnownGenesis = {
     '0xe3777fa922cafbff200cadeaea1a76bd7898ad5b89f7848999058b50e715f636', // Kusama CC2
     '0x3fd7b9eb6a00376e5be61f01abb429ffb0b104be05eaff4d458da48fcd425baf' // Kusama CC1
   ],
+  liberland: [
+    '0x6bd89e052d67a45bb60a9a23e8581053d5e0d619f15cb9865946937e690c42d6'
+  ],
   matrixchain: [
     '0x3af4ff48ec76d2efc8476730f423ac07e25ad48f5f4c9dc39c778b164d808615'
+  ],
+  mythos: [
+    '0xf6ee56e9c5277df5b4ce6ae9983ee88f3cbed27d31beeb98f9f84f997a1ab0b9'
   ],
   nodle: [
     '0x97da7ede98d7bad4e36b4d734b6055425a3be036da2a332ea5a7037656427a21'
@@ -126,6 +140,9 @@ export const knownGenesis: KnownGenesis = {
   picasso: [
     '0x6811a339673c9daa897944dcdac99c6e2939cc88245ed21951a0a3c9a2be75bc',
     '0xe8e7f0f4c4f5a00720b4821dbfddefea7490bcf0b19009961cc46957984e2c1c'
+  ],
+  polimec: [
+    '0x7eb9354488318e7549c722669dcbdcdc526f1fef1420e7944667212f3601fdbd'
   ],
   polkadex: [
     '0x3920bcb4960a1eef5580cd5367ff3f430eef052774f78468852f7b9cb39f8a3c'
@@ -173,6 +190,9 @@ export const knownGenesis: KnownGenesis = {
   ],
   unique: [
     '0x84322d9cddbf35088f1e54e9a85c967a41a56a4f43445768125e61af166c7d31'
+  ],
+  vara: [
+    '0xfe1b4c55fd4d668101126434206571a7838a8b6b93a6d1b95d607e78e6c53763'
   ],
   vtb: [
     '0x286bc8414c7000ce1d6ee6a834e29a54c1784814b76243eb77ed0b2c5573c60f',

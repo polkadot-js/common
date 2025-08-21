@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Keypair } from '../../types.js';
@@ -9,7 +9,7 @@ import { HARDENED, hdValidatePath } from '../validatePath.js';
 import { ledgerDerivePrivate } from './derivePrivate.js';
 import { ledgerMaster } from './master.js';
 
-export function hdLedger (_mnemonic: string, path: string): Keypair {
+export function hdLedger (_mnemonic: string, path: string, rounds?: number): Keypair {
   const words = _mnemonic
     .split(' ')
     .map((s) => s.trim())
@@ -30,7 +30,7 @@ export function hdLedger (_mnemonic: string, path: string): Keypair {
   }
 
   const parts = path.split('/').slice(1);
-  let seed = ledgerMaster(mnemonic, password);
+  let seed = ledgerMaster(mnemonic, password, rounds);
 
   for (const p of parts) {
     const n = parseInt(p.replace(/'$/, ''), 10);

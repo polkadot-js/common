@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/keyring authors & contributors
+// Copyright 2017-2025 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
@@ -98,7 +98,7 @@ describe('keyring.addFromUri', (): void => {
     describe(`${type}`, (): void => {
       tests.forEach(({ pk, ss, uri }): void => {
         it(`creates ${uri}`, (): void => {
-          const pair = keyring.addFromUri(uri, {}, type as KeypairType);
+          const pair = keyring.addFromUri(uri, {}, type as KeypairType, undefined, 2048);
 
           expect(u8aToHex(pair.publicKey)).toEqual(pk);
           expect(pair.address).toEqual(ss);

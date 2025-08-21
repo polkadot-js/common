@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/util authors & contributors
+// Copyright 2017-2025 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /**
@@ -9,7 +9,7 @@
 export function getSeparator (locale?: string):
 { thousand: string, decimal: string } {
   return {
-    decimal: (0.1).toLocaleString(locale).substring(1, 2),
-    thousand: (1000).toLocaleString(locale).substring(1, 2)
+    decimal: (0.1).toLocaleString(locale, { useGrouping: false }).charAt(1),
+    thousand: (1000).toLocaleString(locale, { useGrouping: true }).replace(/\d/g, '').charAt(0)
   };
 }

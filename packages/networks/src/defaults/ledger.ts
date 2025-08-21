@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/networks authors & contributors
+// Copyright 2017-2025 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { KnownLedger } from '../types.js';
@@ -17,6 +17,7 @@ export const knownLedger: KnownLedger = {
   bittensor: 0x00000162,
   centrifuge: 0x000002eb,
   composable: 0x00000162,
+  creditcoin3: 0x00000162,
   darwinia: 0x00000162,
   dentnet: 0x000002de,
   'dock-mainnet': 0x00000252,
@@ -24,6 +25,7 @@ export const knownLedger: KnownLedger = {
   encointer: 0x000001b2,
   enjin: 0x00000483,
   equilibrium: 0x05f5e0fd,
+  frequency: 0x0000082b,
   genshiro: 0x05f5e0fc,
   hydradx: 0x00000162,
   integritee: 0x000007df,
@@ -31,7 +33,9 @@ export const knownLedger: KnownLedger = {
   karura: 0x000002ae,
   khala: 0x000001b2,
   kusama: 0x000001b2,
+  liberland: 0x000002ff,
   matrixchain: 0x00000483,
+  mythos: 0x0000003c,
   nodle: 0x000003eb,
   origintrail: 0x00000162,
   parallel: 0x00000162,
@@ -39,6 +43,7 @@ export const knownLedger: KnownLedger = {
   pendulum: 0x00000162,
   phala: 0x00000162,
   picasso: 0x000001b2,
+  polimec: 0x00000d10,
   polkadex: 0x0000031f,
   polkadot: 0x00000162,
   polymesh: 0x00000253,
@@ -49,6 +54,7 @@ export const knownLedger: KnownLedger = {
   statemint: 0x00000162, // common-good on Polkadot, shares derivation
   ternoa: 0x00003e3,
   unique: 0x00000295,
+  vara: 0x00001370,
   vtb: 0x000002b6,
   xxnetwork: 0x000007a3,
   zeitgeist: 0x00000162

@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Prefix } from './types.js';
@@ -15,7 +15,7 @@ export function encodeAddress (key: string | Uint8Array, ss58Format: Prefix = de
   // decode it, this means we can re-encode an address
   const u8a = decodeAddress(key);
 
-  if ((ss58Format < 0) || (ss58Format > 16383) || [46, 47].includes(ss58Format)) {
+  if ((ss58Format < 0) || (ss58Format > 16383 && !ss58Exceptions.includes(ss58Format)) || [46, 47].includes(ss58Format)) {
     throw new Error('Out of range ss58Format specified');
   } else if (!defaults.allowedDecodedLengths.includes(u8a.length)) {
     throw new Error(`Expected a valid key to convert, with length ${defaults.allowedDecodedLengths.join(', ')}`);
@@ -38,3 +38,6 @@ export function encodeAddress (key: string | Uint8Array, ss58Format: Prefix = de
     )
   );
 }
+
+// Exceptions like 29972 (Mythos chain) which uses Ethereum style account (not ss58 Encoded)
+const ss58Exceptions = [29972];

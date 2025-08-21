@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/hw-ledger authors & contributors
+// Copyright 2017-2025 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // These map to the known name in the @zondax/ledger-substrate/supported_apps package
@@ -51,9 +51,15 @@ export const prevLedgerRecord: Record<string, string> = {
 // Any chains moving forward that are supported by the PolkadotGenericApp from ledger will input their names below.
 export const genericLedgerApps = {
   bittensor: 'Bittensor',
+  creditcoin3: 'Creditcoin3',
   dentnet: 'DENTNet',
   encointer: 'Encointer',
-  integritee: 'Integritee'
+  frequency: 'Frequency',
+  integritee: 'Integritee',
+  liberland: 'Liberland',
+  mythos: 'Mythos',
+  polimec: 'Polimec',
+  vara: 'Vara'
 };
 
 // These match up with the keys of the knownLedger object in the @polkadot/networks/defaults/ledger.ts
