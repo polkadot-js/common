@@ -19,6 +19,7 @@ export const knownLedger: KnownLedger = {
   composable: 0x00000162,
   creditcoin3: 0x00000162,
   darwinia: 0x00000162,
+  dentnet: 0x000002de,
   'dock-mainnet': 0x00000252,
   edgeware: 0x0000020b,
   encointer: 0x000001b2,

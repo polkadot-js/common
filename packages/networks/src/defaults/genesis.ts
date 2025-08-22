@@ -54,6 +54,9 @@ export const knownGenesis: KnownGenesis = {
   darwinia: [
     '0xe71578b37a7c799b0ab4ee87ffa6f059a6b98f71f06fb8c84a8d88013a548ad6'
   ],
+  dentnet: [
+    '0x0313f6a011d128d22f996703cbab05162e2fdc9e031493314fe6db79979c5ca7'
+  ],
   'dock-mainnet': [
     '0x6bfe24dca2a3be10f22212678ac13a6446ec764103c0f3471c71609eac384aae',
     '0xf73467c6544aa68df2ee546b135f955c46b90fa627e9b5d7935f41061bb8a5a9'
