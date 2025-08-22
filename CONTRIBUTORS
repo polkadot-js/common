@@ -35,6 +35,7 @@
        1	Guilane DENGUIR               	feat(VTB): Added support for VTB blockchain (#1651)
        1	h4x3rotab                     	Throws an error when signing with a locked keypair (#578)
        1	Harry Liu                     	Update README.md (#446)
+       1	henrikdent                    	Add DENTNet ledger support (via generic Polkadot app) (#1942)
        1	Hoon Kim                      	replace plasm genesis with astar (#1397)
        1	Hussein Ait-Lahcen            	Add Picasso Genesis Hash (#1261)
        1	Igor                          	Support genshiro network (#1148)
