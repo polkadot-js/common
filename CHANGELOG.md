@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 13.5.6 Aug 25, 2025
+
+Changes:
+
+- Set pbkdf2Encode rounds to default to 210,000 ([#1983](https://github.com/polkadot-js/common/pull/1983))
+
+Contributed:
+
+- Add DENTNet to generic Polkadot app supported chains ([#1942](https://github.com/polkadot-js/common/pull/1942))
+
+
 ## 13.5.5 Aug 11, 2025
 
 Changes:
