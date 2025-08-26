@@ -5,6 +5,7 @@
 Changes:
 
 - Set pbkdf2Encode rounds to default to 210,000 ([#1983](https://github.com/polkadot-js/common/pull/1983))
+- Bump @polkadot/wasm deps ([#2002](https://github.com/polkadot-js/common/pull/2002))
 
 Contributed:
 
