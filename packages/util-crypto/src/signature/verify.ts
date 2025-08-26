@@ -22,7 +22,7 @@ type VerifyFn = (result: VerifyResult, input: VerifyInput) => VerifyResult;
 
 const secp256k1VerifyHasher = (hashType: 'blake2' | 'keccak') =>
   (message: Uint8Array | string, signature: Uint8Array, publicKey: Uint8Array) =>
-    secp256k1Verify(message, signature, publicKey, hashType);
+    secp256k1Verify(message, signature, publicKey, hashType, true);
 
 const VERIFIERS_ECDSA: Verifier[] = [
   ['ecdsa', secp256k1VerifyHasher('blake2')],

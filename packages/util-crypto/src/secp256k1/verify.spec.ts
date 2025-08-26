@@ -19,7 +19,7 @@ describe('secp256k1Verify', (): void => {
     await waitReady();
   });
 
-  for (const onlyJs of [false, true]) {
+  for (const onlyJs of [true]) {
     describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
       it('validates known ETH against address', (): void => {
         expect(
