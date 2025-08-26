@@ -2,7 +2,7 @@
       44	Tarik Gul                     	Set pbkdf2Encode rounds to default to 210,000 (#1983)
       13	Carlo Sala                    	feat(networks): add zeitgeist Ledger support (#1840)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
-       8	Valentin Fernandez            	13.5.5. (#2000)
+       9	Valentin Fernandez            	Bump `@polkadot/wasm` deps (#2002)
        6	Amaury Martiny                	Add tests from Rust (#283)
        6	Jakub Pánik                   	HydraDX -> Hydration rebrand (#1923)
        5	kwingram25                    	Add BN consts and timeToString (#610)
