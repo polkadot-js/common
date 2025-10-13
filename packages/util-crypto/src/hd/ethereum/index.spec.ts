@@ -39,14 +39,14 @@ describe('hdEthereum', (): void => {
   ]);
 
   it('derives the right key pair from a mnemonic', (): void => {
-    const key = hdEthereum(mnemonicToLegacySeed(PHRASE, '', false, 64, 2048));
+    const key = hdEthereum(mnemonicToLegacySeed(PHRASE, '', false, 64));
 
     expect(key.publicKey).toEqual(PUBLIC);
     expect(key.secretKey).toEqual(SECRET);
   });
 
   it('derives the right key pair from a mnemonic and a derivation path', (): void => {
-    const key = hdEthereum(mnemonicToLegacySeed(PHRASE, '', false, 64, 2048), derivationPath);
+    const key = hdEthereum(mnemonicToLegacySeed(PHRASE, '', false, 64), derivationPath);
 
     expect(key.publicKey).toEqual(PUBLICDERIVED);
     expect(key.secretKey).toEqual(SECRETDERIVED);

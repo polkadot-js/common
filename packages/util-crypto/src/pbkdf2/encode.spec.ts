@@ -49,6 +49,6 @@ describe('pbkdf2Encode', (): void => {
   }
 
   perfWasm('pbkdf2Encode', 8, (input, onlyJs) =>
-    pbkdf2Encode(input, input, 2048, onlyJs)
+    pbkdf2Encode(input, input, undefined, onlyJs)
   );
 });

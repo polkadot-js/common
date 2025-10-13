@@ -98,7 +98,7 @@ describe('keyring.addFromUri', (): void => {
     describe(`${type}`, (): void => {
       tests.forEach(({ pk, ss, uri }): void => {
         it(`creates ${uri}`, (): void => {
-          const pair = keyring.addFromUri(uri, {}, type as KeypairType, undefined, 2048);
+          const pair = keyring.addFromUri(uri, {}, type as KeypairType);
 
           expect(u8aToHex(pair.publicKey)).toEqual(pk);
           expect(pair.address).toEqual(ss);
