@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 13.5.7 Oct 13, 2025
+
+Changes:
+
+- Revert "Set pbkdf2Encode rounds to default to 210,000" ([#2007](https://github.com/polkadot-js/common/pull/2007))
+
+
 ## 13.5.6 Aug 26, 2025
 
 Changes:
