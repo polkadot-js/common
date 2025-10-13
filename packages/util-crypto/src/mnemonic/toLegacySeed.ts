@@ -23,14 +23,8 @@ import { mnemonicValidate } from './validate.js';
  *   console.log(`Seed generated from mnemonic: ${mnemonicToLegacySeed(mnemonic)}`); => u8a
  * }
  * ```
- *
- * @param mnemonic - The BIP-39 mnemonic phrase to derive the secret from.
- * @param password - Optional: password to secure the seed (default: empty string).
- * @param onlyJs - Optional: If `true`, forces use of the JavaScript implementation instead of WASM.
- * @param byteLength - Optional: Either 32 or 64. Default is 32
- * @param rounds - Optional: Number of PBKDF2 iterations to run (default: 210000).
-*/
-export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs?: boolean, byteLength: 32 | 64 = 32, rounds?: number): Uint8Array {
+ */
+export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs?: boolean, byteLength: 32 | 64 = 32): Uint8Array {
   if (!mnemonicValidate(mnemonic)) {
     throw new Error('Invalid bip39 mnemonic specified');
   } else if (![32, 64].includes(byteLength)) {
@@ -40,6 +34,6 @@ export function mnemonicToLegacySeed (mnemonic: string, password = '', onlyJs?: 
   return byteLength === 32
     ? !hasBigInt || (!onlyJs && isReady())
       ? bip39ToSeed(mnemonic, password)
-      : mnemonicToSeedSync(mnemonic, password, rounds).subarray(0, 32)
-    : mnemonicToSeedSync(mnemonic, password, rounds);
+      : mnemonicToSeedSync(mnemonic, password).subarray(0, 32)
+    : mnemonicToSeedSync(mnemonic, password);
 }
