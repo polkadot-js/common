@@ -126,4 +126,22 @@ describe('keyExtractSuri', (): void => {
     expect(test.path[0].isHard).toEqual(true);
     expect(test.path[0].chainCode).toEqual(Uint8Array.from([20, 65, 108, 105, 99, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
   });
+
+  it('derives on uncommon characters', (): void => {
+    const languageMnemonics = {
+      chineseSimplified: '熙 礼 淀 谋 耗 搜 雨 瑞 雷 合 析 感',
+      chineseTraditional: '召 胸 捕 乏 講 祥 隙 幫 動 框 場 給',
+      french: 'ruiner minute maison ouragan palourde piscine nerveux descente romance édifier ancien médaille',
+      japanese: 'ほったん はちみつ おやゆび ほかん いりぐち さんいん てぶくろ だいじょうぶ ふとん でぬかえ ちしき あわてる',
+      korean: '김밥 방향 논리 저절로 증상 지진 회장 오히려 시리즈 최근 학용품 곡식'
+    };
+
+    Object.keys(languageMnemonics).forEach((mnemonic) => {
+      const test = keyExtractSuri(mnemonic);
+
+      expect(test.password).not.toBeDefined();
+      expect(test.phrase).toEqual(mnemonic);
+      expect(test.path.length).toEqual(0);
+    });
+  });
 });

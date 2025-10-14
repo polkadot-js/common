@@ -6,7 +6,7 @@ import type { ScryptParams } from './types.js';
 import { u8aToBn } from '@polkadot/util';
 
 import { BN_LE_OPTS } from '../bn.js';
-import { DEFAULT_PARAMS } from './defaults.js';
+import { ALLOWED_PARAMS } from './defaults.js';
 
 interface Result {
   params: ScryptParams,
@@ -14,17 +14,29 @@ interface Result {
 }
 
 export function scryptFromU8a (data: Uint8Array): Result {
-  const salt = data.subarray(0, 32);
-  const N = u8aToBn(data.subarray(32 + 0, 32 + 4), BN_LE_OPTS).toNumber();
-  const p = u8aToBn(data.subarray(32 + 4, 32 + 8), BN_LE_OPTS).toNumber();
-  const r = u8aToBn(data.subarray(32 + 8, 32 + 12), BN_LE_OPTS).toNumber();
+  if (!(data instanceof Uint8Array)) {
+    throw new Error('Expected input to be a Uint8Array');
+  }
 
-  // FIXME At this moment we assume these to be fixed params, this is not a great idea
-  // since we lose flexibility and updates for greater security. However we need some
-  // protection against carefully-crafted params that can eat up CPU since these are user
-  // inputs. So we need to get very clever here, but atm we only allow the defaults
-  // and if no match, bail out
-  if (N !== DEFAULT_PARAMS.N || p !== DEFAULT_PARAMS.p || r !== DEFAULT_PARAMS.r) {
+  // Ensure the input is exactly 44 bytes: 32 for salt + 3 * 4 for N, p, r
+  if (data.length < 32 + 12) {
+    throw new Error(`Invalid input length: expected 44 bytes, found ${data.length}`);
+  }
+
+  const salt = data.subarray(0, 32);
+  const N = u8aToBn(data.subarray(32, 36), BN_LE_OPTS).toNumber();
+  const p = u8aToBn(data.subarray(36, 40), BN_LE_OPTS).toNumber();
+  const r = u8aToBn(data.subarray(40, 44), BN_LE_OPTS).toNumber();
+
+  if (N > (1 << 20) || p > 4 || r > 16) {
+    throw new Error('Scrypt parameters exceed safe limits');
+  }
+
+  const isAllowed = ALLOWED_PARAMS.some((preset) =>
+    preset.N === N && preset.p === p && preset.r === r
+  );
+
+  if (!isAllowed) {
     throw new Error('Invalid injected scrypt params found');
   }
 

@@ -12,7 +12,6 @@ import { base64Decode } from '@polkadot/wasm-util/base64';
 import { xglobal } from '@polkadot/x-global';
 
 import { crypto as cryptoBrowser, getRandomValues as getRandomValuesBrowser } from './browser.js';
-import { insecureRandomValues } from './fallback.js';
 
 export { packageInfo } from './packageInfo.js';
 
@@ -32,6 +31,10 @@ interface RNExt {
  * random utiliy generation functions.
  **/
 function getRandomValuesRn (output: Uint8Array): Uint8Array {
+  if (!NativeModules['ExpoRandom'] && !(NativeModules as RNExt).RNGetRandomValues) {
+    throw new Error('No secure random number generator available. This environment does not support crypto.getRandomValues and no React Native secure RNG module is available.');
+  }
+
   return base64Decode(
     (NativeModules as RNExt).RNGetRandomValues
       ? (NativeModules as RNExt).RNGetRandomValues.getRandomBase64(output.length)
@@ -43,8 +46,10 @@ function getRandomValuesRn (output: Uint8Array): Uint8Array {
 export const getRandomValues = (
   (typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function')
     ? getRandomValuesBrowser
-    : (typeof xglobal['nativeCallSyncHook'] === 'undefined' || !NativeModules['ExpoRandom'])
-      ? insecureRandomValues
+    : (typeof xglobal['nativeCallSyncHook'] === 'undefined')
+      ? () => {
+        throw new Error('No secure random number generator available. This environment does not support crypto.getRandomValues.');
+      }
       : getRandomValuesRn
 );
 
