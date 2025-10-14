@@ -3,9 +3,9 @@
 
 import type { Keypair } from '../types.js';
 
+import { randomBytes } from '@noble/hashes/utils';
 import * as sr25519 from '@scure/sr25519';
 
-import { randomBytes } from '@noble/hashes/utils';
 import { u8aToU8a } from '@polkadot/util';
 
 const EMPTY_U8A = new Uint8Array();
