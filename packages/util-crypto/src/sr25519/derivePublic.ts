@@ -1,8 +1,9 @@
 // Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import * as sr25519 from '@scure/sr25519';
+
 import { isU8a, u8aToU8a } from '@polkadot/util';
-import { sr25519DerivePublicSoft } from '@polkadot/wasm-crypto';
 
 export function sr25519DerivePublic (publicKey: string | Uint8Array, chainCode: Uint8Array): Uint8Array {
   const publicKeyU8a = u8aToU8a(publicKey);
@@ -13,5 +14,5 @@ export function sr25519DerivePublic (publicKey: string | Uint8Array, chainCode: 
     throw new Error(`Invalid publicKey, received ${publicKeyU8a.length} bytes, expected 32`);
   }
 
-  return sr25519DerivePublicSoft(publicKeyU8a, chainCode);
+  return sr25519.HDKD.publicSoft(publicKeyU8a, chainCode);
 }

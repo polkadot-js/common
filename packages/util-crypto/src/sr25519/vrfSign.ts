@@ -3,8 +3,10 @@
 
 import type { Keypair } from '../types.js';
 
+import { randomBytes } from '@noble/hashes/utils';
+import * as sr25519 from '@scure/sr25519';
+
 import { u8aToU8a } from '@polkadot/util';
-import { vrfSign } from '@polkadot/wasm-crypto';
 
 const EMPTY_U8A = new Uint8Array();
 
@@ -17,5 +19,6 @@ export function sr25519VrfSign (message: string | Uint8Array, { secretKey }: Par
     throw new Error('Invalid secretKey, expected 64-bytes');
   }
 
-  return vrfSign(secretKey, u8aToU8a(context), u8aToU8a(message), u8aToU8a(extra));
+  return sr25519.vrf.sign(u8aToU8a(message), secretKey, u8aToU8a(context), u8aToU8a(extra), randomBytes);
+  // return vrfSign(secretKey, u8aToU8a(context), u8aToU8a(message), u8aToU8a(extra));
 }
