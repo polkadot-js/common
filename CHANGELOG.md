@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 13.5.9 Nov 25, 2025
+
+Changes:
+
+- Bump polkadot dependencies ([#2011](https://github.com/polkadot-js/common/pull/2011))
+
+
 ## 13.5.8 Nov 11, 2025
 
 Changes:
