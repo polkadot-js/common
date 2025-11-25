@@ -1,8 +1,9 @@
 // Copyright 2017-2025 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import * as sr25519 from '@scure/sr25519';
+
 import { u8aToU8a } from '@polkadot/util';
-import { vrfVerify } from '@polkadot/wasm-crypto';
 
 const EMPTY_U8A = new Uint8Array();
 
@@ -20,5 +21,5 @@ export function sr25519VrfVerify (message: string | Uint8Array, signOutput: stri
     throw new Error('Invalid vrfSign output, expected 96 bytes');
   }
 
-  return vrfVerify(publicKeyU8a, u8aToU8a(context), u8aToU8a(message), u8aToU8a(extra), proofU8a);
+  return sr25519.vrf.verify(u8aToU8a(message), proofU8a, publicKeyU8a, u8aToU8a(context), u8aToU8a(extra));
 }
