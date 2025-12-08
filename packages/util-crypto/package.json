@@ -36,6 +36,7 @@
     "@polkadot/x-bigint": "13.5.9",
     "@polkadot/x-randomvalues": "13.5.9",
     "@scure/base": "^1.1.7",
+    "@scure/sr25519": "^0.2.0",
     "tslib": "^2.8.0"
   },
   "peerDependencies": {
