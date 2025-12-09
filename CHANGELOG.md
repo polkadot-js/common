@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 14.0.1 Dec 9, 2025
+
+Changes:
+
+- fix(x-randomvalues): prioritize native RN modules over polyfilled crypto ([#2013](https://github.com/polkadot-js/common/pull/2013))
+- sr25519: switch from wasm to micro-sr25519 ([#1971](https://github.com/polkadot-js/common/pull/1971))
+
+
 ## 13.5.9 Nov 25, 2025
 
 Changes:
