@@ -43,14 +43,18 @@ function getRandomValuesRn (output: Uint8Array): Uint8Array {
   );
 }
 
+// Check for native RN modules first (highest priority)
+const hasNativeRNModules = !!NativeModules['ExpoRandom'] || !!(NativeModules as RNExt).RNGetRandomValues;
+const hasNativeCrypto = typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function';
+
 export const getRandomValues = (
-  (typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function')
-    ? getRandomValuesBrowser
-    : (typeof xglobal['nativeCallSyncHook'] === 'undefined')
-      ? () => {
+  hasNativeRNModules
+    ? getRandomValuesRn
+    : hasNativeCrypto
+      ? getRandomValuesBrowser
+      : () => {
         throw new Error('No secure random number generator available. This environment does not support crypto.getRandomValues.');
       }
-      : getRandomValuesRn
 );
 
 export const crypto = (
