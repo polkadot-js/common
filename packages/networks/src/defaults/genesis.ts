@@ -33,6 +33,10 @@ export const knownGenesis: KnownGenesis = {
   'bifrost-kusama': [
     '0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed'
   ],
+  'bifrost-network': [
+    '0x63e1e2390bf7758f2462ad22b950e7e191f3500226ba6f572346ac06ced516fe', //bifrost mainnet
+    '0x15b34a3b7443c73fa1f687cce2d8e5981f6a2eaad54809a6b6af28e83d2adaff' //bifrost testnet
+  ],
   bittensor: [
     '0x2f0555cc76fc2840a25a6ea3b9637146806f1f44b090c175ffde2a7e5ab36c03'
   ],
