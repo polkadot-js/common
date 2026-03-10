@@ -21,10 +21,10 @@ export function secp256k1Expand (publicKey: Uint8Array, onlyJs?: boolean): Uint8
     return wasm(publicKey).subarray(1);
   }
 
-  const { px, py } = secp256k1.ProjectivePoint.fromHex(publicKey);
+  const { x, y } = secp256k1.ProjectivePoint.fromHex(publicKey).toAffine();
 
   return u8aConcat(
-    bnToU8a(px, BN_BE_256_OPTS),
-    bnToU8a(py, BN_BE_256_OPTS)
+    bnToU8a(x, BN_BE_256_OPTS),
+    bnToU8a(y, BN_BE_256_OPTS)
   );
 }
