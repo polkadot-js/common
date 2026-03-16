@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 14.0.2 Mar 16, 2026
+
+Changes:
+
+- Set headers to 2026 ([#2021](https://github.com/polkadot-js/common/pull/2021))
+
+Contributed:
+
+- fix(util-crypto): use correct x/y getters in secp256k1Expand ([#2018](https://github.com/polkadot-js/common/pull/2018)) (Thanks to https://github.com/AndreasGassmann)
+
+
 ## 14.0.1 Dec 9, 2025
 
 Changes:
