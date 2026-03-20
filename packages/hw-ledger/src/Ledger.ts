@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubstrateApp } from '@zondax/ledger-substrate';
-import type { TransportDef, TransportType } from '@polkadot/hw-ledger-transports/types';
+import type { Transport, TransportDef, TransportType } from '@polkadot/hw-ledger-transports/types';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerVersion } from './types.js';
 
 import { newSubstrateApp } from '@zondax/ledger-substrate';
@@ -28,6 +28,17 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
   }
 
   return result;
+}
+
+/** @internal Best-effort transport cleanup after failed operations */
+async function closeTransport (transport: Transport | null): Promise<void> {
+  if (transport) {
+    try {
+      await transport.close();
+    } catch {
+      // Ignore cleanup errors so the original failure is preserved.
+    }
+  }
 }
 
 /** @internal Wraps a sign/signRaw call and returns the associated signature */
@@ -121,9 +132,11 @@ export class Ledger {
    * this is only used internally, to ensure consistent bahavior.
    */
   async withApp <T> (fn: (app: SubstrateApp) => Promise<T>): Promise<T> {
+    let transport: Transport | null = null;
+
     try {
       if (!this.#app) {
-        const transport = await this.#transportDef.create();
+        transport = await this.#transportDef.create();
 
         // We need this override for the actual type passing - the Deno environment
         // is quite a bit stricter and it yields invalids between the two (specifically
@@ -136,6 +149,7 @@ export class Ledger {
 
       return await fn(this.#app);
     } catch (error) {
+      await closeTransport(this.#app?.transport || transport);
       this.#app = null;
 
       throw error;
