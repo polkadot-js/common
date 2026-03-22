@@ -32,6 +32,7 @@
        1	Chris                         	Get rid of warnings for dual esm and cjs packages of the same version (#1890)
        1	Dmitrii Novikov               	Add `Vara` support to Generic Ledger App (#1958)
        1	Eliott Teissonniere           	add nodle ledger specs (#1089)
+       1	Francis O'Brien               	Fix(hw-ledger): reset transport on operation errors and add explicit disconnect API (#2024)
        1	Guilane DENGUIR               	feat(VTB): Added support for VTB blockchain (#1651)
        1	h4x3rotab                     	Throws an error when signing with a locked keypair (#578)
        1	Harry Liu                     	Update README.md (#446)
