@@ -126,10 +126,21 @@ export class Ledger {
   }
 
   /**
+   * Closes any active transport connection
+   */
+  public async disconnect (): Promise<void> {
+    const app = this.#app;
+
+    this.#app = null;
+
+    await closeTransport(app?.transport || null);
+  }
+
+  /**
    * @internal
    *
    * Returns a created SubstrateApp to perform operations against. Generally
-   * this is only used internally, to ensure consistent bahavior.
+   * this is only used internally, to ensure consistent behavior.
    */
   async withApp <T> (fn: (app: SubstrateApp) => Promise<T>): Promise<T> {
     let transport: Transport | null = null;

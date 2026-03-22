@@ -33,7 +33,7 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
   try {
     result = await promise;
   } catch (e: unknown) {
-    // We check to see if the propogated error is the newer ResponseError type.
+    // We check to see if the propagated error is the newer ResponseError type.
     // The response code use to be part of the result, but with the latest breaking changes from 0.42.x
     // the interface and it's types have completely changed.
     if ((e as ResponseError).returnCode) {
@@ -254,6 +254,17 @@ export class LedgerGeneric {
    */
   public async signWithMetadataEcdsa (message: Uint8Array, accountIndex?: number, addressOffset?: number, options?: Partial<AccountOptionsGeneric>) {
     return this.withApp(signWithMetadataEcdsa(message, this.#slip44, accountIndex, addressOffset, options));
+  }
+
+  /**
+   * Closes any active transport connection
+   */
+  public async disconnect (): Promise<void> {
+    const app = this.#app;
+
+    this.#app = null;
+
+    await closeTransport(app?.transport || null);
   }
 
   /**
