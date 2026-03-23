@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 14.0.3 Mar 23, 2026
+
+Changes:
+
+- Fix(hw-ledger): reset transport on operation errors and add explicit disconnect API ([#2024](https://github.com/polkadot-js/common/pull/2024))
+
+
 ## 14.0.2 Mar 16, 2026
 
 Changes:
