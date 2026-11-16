@@ -62,7 +62,7 @@ export function nToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN |
   const byteLength = Math.ceil((bitLength || 0) / 8);
   const output = new Uint8Array(byteLength);
 
-  if (isNegative) {
+  if (isNegative && valueBi < _0n) {
     output.fill(0xff);
   }
 

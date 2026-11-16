@@ -95,5 +95,20 @@ describe('nToU8a', (): void => {
     ).toEqual(new Uint8Array([0x56, 0x34, 0x12, 0x00]));
   });
 
+  it('pads positive values with zeros when isNegative is set (bitLength)', (): void => {
+    expect(
+      nToU8a(4n, { bitLength: 32, isNegative: true })
+    ).toEqual(new Uint8Array([4, 0, 0, 0]));
+    expect(
+      nToU8a(0x1234n, { bitLength: 32, isLe: false, isNegative: true })
+    ).toEqual(new Uint8Array([0x00, 0x00, 0x12, 0x34]));
+  });
+
+  it('pads negative values with 0xff when isNegative is set (bitLength)', (): void => {
+    expect(
+      nToU8a(-4n, { bitLength: 32, isNegative: true })
+    ).toEqual(new Uint8Array([252, 255, 255, 255]));
+  });
+
   perf('nToU8a', 250000, ptest, nToU8a);
 });
