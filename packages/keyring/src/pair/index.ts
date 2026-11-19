@@ -209,7 +209,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     },
     vrfVerify: (message: string | Uint8Array, vrfResult: Uint8Array, signerPublic: Uint8Array | string, context?: string | Uint8Array, extra?: string | Uint8Array): boolean => {
       if (type === 'sr25519') {
-        return sr25519VrfVerify(message, vrfResult, publicKey, context, extra);
+        return sr25519VrfVerify(message, vrfResult, signerPublic, context, extra);
       }
 
       const result = signatureVerify(message, u8aConcat(TYPE_PREFIX[type], vrfResult.subarray(32)), TYPE_ADDRESS[type](u8aToU8a(signerPublic)));
