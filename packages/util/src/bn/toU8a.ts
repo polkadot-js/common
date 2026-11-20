@@ -9,6 +9,18 @@ import { bnToBn } from './toBn.js';
 const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: true, isNegative: false };
 
 /**
+ * The bits a signed value needs: its magnitude (one less for a negative value,
+ * since -2^n fits in n + 1 bits) plus one for the sign
+ */
+function signedBitLength (value: BN): number {
+  return (
+    value.isNeg()
+      ? value.neg().isubn(1)
+      : value
+  ).bitLength() + 1;
+}
+
+/**
  * @name bnToU8a
  * @summary Creates a Uint8Array object from a BN.
  * @description
@@ -25,7 +37,7 @@ const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: true, isNegative: fal
 export function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, { bitLength = -1, isLe = true, isNegative = false } = DEFAULT_OPTS): Uint8Array {
   const valueBn = bnToBn(value);
   const byteLength = bitLength === -1
-    ? Math.ceil(valueBn.bitLength() / 8)
+    ? Math.ceil((isNegative ? signedBitLength(valueBn) : valueBn.bitLength()) / 8)
     : Math.ceil((bitLength || 0) / 8);
 
   if (!value) {

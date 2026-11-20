@@ -49,6 +49,28 @@ export const TESTS: [isLe: boolean, isNegative: boolean, numarr: number[], strva
 
 const ptest = arrayRange(65536).map((v) => [v]);
 
+// Signed values without a bitLength, as [isLe, numarr, strval]: the most
+// significant byte must carry the sign, so u8aToBigInt(..., { isNegative: true })
+// reads the same value back
+// eslint-disable-next-line jest/no-export
+export const TESTS_SIGNED: [isLe: boolean, numarr: number[], strval: string][] = [
+  [true, [0xff], '-1'],
+  [true, [0x80], '-128'],
+  [true, [0x7f, 0xff], '-129'],
+  [true, [0x01, 0xff], '-255'],
+  [true, [0x00, 0xff], '-256'],
+  [true, [0xff, 0xfe], '-257'],
+  [true, [0x2e, 0xfb], '-1234'],
+  [true, [0xff, 0x7f, 0xff], '-32769'],
+  [true, [0x7f], '127'],
+  [true, [0x80, 0x00], '128'],
+  [true, [0x00, 0x80, 0x00], '32768'],
+  [false, [0xff], '-1'],
+  [false, [0xff, 0x7f], '-129'],
+  [false, [0xff, 0x00], '-256'],
+  [false, [0x00, 0x80], '128']
+];
+
 describe('nToU8a', (): void => {
   describe('conversion tests', (): void => {
     TESTS.forEach(([isLe, isNegative, numarr, strval], i): void => {
@@ -60,6 +82,16 @@ describe('nToU8a', (): void => {
             BigInt(strval),
             { bitLength, isLe, isNegative }
           )
+        ).toEqual(new Uint8Array(numarr));
+      });
+    });
+  });
+
+  describe('signed conversion tests (no bitLength)', (): void => {
+    TESTS_SIGNED.forEach(([isLe, numarr, strval], i): void => {
+      it(`#${i}: converts from ${strval} (isLe=${isLe}, isNegative=true)`, (): void => {
+        expect(
+          nToU8a(BigInt(strval), { isLe, isNegative: true })
         ).toEqual(new Uint8Array(numarr));
       });
     });

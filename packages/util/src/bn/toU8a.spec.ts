@@ -4,7 +4,7 @@
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { arrayRange } from '../array/index.js';
-import { TESTS } from '../bi/toU8a.spec.js';
+import { TESTS, TESTS_SIGNED } from '../bi/toU8a.spec.js';
 import { perf } from '../test/index.js';
 import { BN, bnToU8a } from './index.js';
 
@@ -51,6 +51,16 @@ describe('bnToU8a', (): void => {
             new BN(strval),
             { bitLength, isLe, isNegative }
           )
+        ).toEqual(new Uint8Array(numarr));
+      });
+    });
+  });
+
+  describe('signed conversion tests (no bitLength)', (): void => {
+    TESTS_SIGNED.forEach(([isLe, numarr, strval], i): void => {
+      it(`#${i}: converts from ${strval} (isLe=${isLe}, isNegative=true)`, (): void => {
+        expect(
+          bnToU8a(new BN(strval), { isLe, isNegative: true })
         ).toEqual(new Uint8Array(numarr));
       });
     });

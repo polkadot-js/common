@@ -41,6 +41,23 @@ function toU8a (value: bigint, isLe: boolean, isNegative: boolean): Uint8Array {
 }
 
 /**
+ * Without a bitLength the most significant bit of a signed value is its sign,
+ * so add a 0xff (negative) or 0x00 (positive) byte when it does not match
+ */
+function withSignByte (u8a: Uint8Array, isLe: boolean, isNeg: boolean): Uint8Array {
+  if (u8a.length && ((u8a[isLe ? u8a.length - 1 : 0] & 0x80) !== 0) === isNeg) {
+    return u8a;
+  }
+
+  const output = new Uint8Array(u8a.length + 1);
+
+  output.set(u8a, isLe ? 0 : 1);
+  output[isLe ? u8a.length : 0] = isNeg ? 0xff : 0x00;
+
+  return output;
+}
+
+/**
  * @name nToU8a
  * @summary Creates a Uint8Array object from a bigint.
  */
@@ -56,7 +73,9 @@ export function nToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN |
   const u8a = toU8a(valueBi, isLe, isNegative);
 
   if (bitLength === -1) {
-    return u8a;
+    return isNegative
+      ? withSignByte(u8a, isLe, valueBi < _0n)
+      : u8a;
   }
 
   const byteLength = Math.ceil((bitLength || 0) / 8);
